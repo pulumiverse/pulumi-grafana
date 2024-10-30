@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['RoleAssignmentArgs', 'RoleAssignment']
@@ -219,10 +224,10 @@ class RoleAssignment(pulumi.CustomResource):
             uid="testrole",
             version=1,
             global_=True,
-            permissions=[grafana.enterprise.RolePermissionArgs(
-                action="org.users:add",
-                scope="users:*",
-            )])
+            permissions=[{
+                "action": "org.users:add",
+                "scope": "users:*",
+            }])
         test_team = grafana.oss.Team("test_team", name="terraform_test_team")
         test_user = grafana.oss.User("test_user",
             email="terraform_user@test.com",
@@ -279,10 +284,10 @@ class RoleAssignment(pulumi.CustomResource):
             uid="testrole",
             version=1,
             global_=True,
-            permissions=[grafana.enterprise.RolePermissionArgs(
-                action="org.users:add",
-                scope="users:*",
-            )])
+            permissions=[{
+                "action": "org.users:add",
+                "scope": "users:*",
+            }])
         test_team = grafana.oss.Team("test_team", name="terraform_test_team")
         test_user = grafana.oss.User("test_user",
             email="terraform_user@test.com",

@@ -4,29 +4,74 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'IntegrationDefaultRouteArgs',
+    'IntegrationDefaultRouteArgsDict',
     'IntegrationDefaultRouteMsteamsArgs',
+    'IntegrationDefaultRouteMsteamsArgsDict',
     'IntegrationDefaultRouteSlackArgs',
+    'IntegrationDefaultRouteSlackArgsDict',
     'IntegrationDefaultRouteTelegramArgs',
+    'IntegrationDefaultRouteTelegramArgsDict',
     'IntegrationTemplatesArgs',
+    'IntegrationTemplatesArgsDict',
     'IntegrationTemplatesEmailArgs',
+    'IntegrationTemplatesEmailArgsDict',
     'IntegrationTemplatesMicrosoftTeamsArgs',
+    'IntegrationTemplatesMicrosoftTeamsArgsDict',
     'IntegrationTemplatesPhoneCallArgs',
+    'IntegrationTemplatesPhoneCallArgsDict',
     'IntegrationTemplatesSlackArgs',
+    'IntegrationTemplatesSlackArgsDict',
     'IntegrationTemplatesSmsArgs',
+    'IntegrationTemplatesSmsArgsDict',
     'IntegrationTemplatesTelegramArgs',
+    'IntegrationTemplatesTelegramArgsDict',
     'IntegrationTemplatesWebArgs',
+    'IntegrationTemplatesWebArgsDict',
     'RouteMsteamsArgs',
+    'RouteMsteamsArgsDict',
     'RouteSlackArgs',
+    'RouteSlackArgsDict',
     'RouteTelegramArgs',
+    'RouteTelegramArgsDict',
     'ScheduleSlackArgs',
+    'ScheduleSlackArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class IntegrationDefaultRouteArgsDict(TypedDict):
+        escalation_chain_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the escalation chain.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        msteams: NotRequired[pulumi.Input['IntegrationDefaultRouteMsteamsArgsDict']]
+        """
+        MS teams-specific settings for a route.
+        """
+        slack: NotRequired[pulumi.Input['IntegrationDefaultRouteSlackArgsDict']]
+        """
+        Slack-specific settings for a route.
+        """
+        telegram: NotRequired[pulumi.Input['IntegrationDefaultRouteTelegramArgsDict']]
+        """
+        Telegram-specific settings for a route.
+        """
+elif False:
+    IntegrationDefaultRouteArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class IntegrationDefaultRouteArgs:
@@ -111,6 +156,19 @@ class IntegrationDefaultRouteArgs:
         pulumi.set(self, "telegram", value)
 
 
+if not MYPY:
+    class IntegrationDefaultRouteMsteamsArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable notification in MS teams. Defaults to `true`.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        MS teams channel id. Alerts will be directed to this channel in Microsoft teams.
+        """
+elif False:
+    IntegrationDefaultRouteMsteamsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class IntegrationDefaultRouteMsteamsArgs:
     def __init__(__self__, *,
@@ -149,6 +207,19 @@ class IntegrationDefaultRouteMsteamsArgs:
     def id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "id", value)
 
+
+if not MYPY:
+    class IntegrationDefaultRouteSlackArgsDict(TypedDict):
+        channel_id: NotRequired[pulumi.Input[str]]
+        """
+        Slack channel id. Alerts will be directed to this channel in Slack.
+        """
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable notification in Slack. Defaults to `true`.
+        """
+elif False:
+    IntegrationDefaultRouteSlackArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class IntegrationDefaultRouteSlackArgs:
@@ -189,6 +260,19 @@ class IntegrationDefaultRouteSlackArgs:
         pulumi.set(self, "enabled", value)
 
 
+if not MYPY:
+    class IntegrationDefaultRouteTelegramArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable notification in Telegram. Defaults to `true`.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        Telegram channel id. Alerts will be directed to this channel in Telegram.
+        """
+elif False:
+    IntegrationDefaultRouteTelegramArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class IntegrationDefaultRouteTelegramArgs:
     def __init__(__self__, *,
@@ -227,6 +311,55 @@ class IntegrationDefaultRouteTelegramArgs:
     def id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "id", value)
 
+
+if not MYPY:
+    class IntegrationTemplatesArgsDict(TypedDict):
+        acknowledge_signal: NotRequired[pulumi.Input[str]]
+        """
+        Template for sending a signal to acknowledge the Incident.
+        """
+        email: NotRequired[pulumi.Input['IntegrationTemplatesEmailArgsDict']]
+        """
+        Templates for Email.
+        """
+        grouping_key: NotRequired[pulumi.Input[str]]
+        """
+        Template for the key by which alerts are grouped.
+        """
+        microsoft_teams: NotRequired[pulumi.Input['IntegrationTemplatesMicrosoftTeamsArgsDict']]
+        """
+        Templates for Microsoft Teams.
+        """
+        phone_call: NotRequired[pulumi.Input['IntegrationTemplatesPhoneCallArgsDict']]
+        """
+        Templates for Phone Call.
+        """
+        resolve_signal: NotRequired[pulumi.Input[str]]
+        """
+        Template for sending a signal to resolve the Incident.
+        """
+        slack: NotRequired[pulumi.Input['IntegrationTemplatesSlackArgsDict']]
+        """
+        Templates for Slack.
+        """
+        sms: NotRequired[pulumi.Input['IntegrationTemplatesSmsArgsDict']]
+        """
+        Templates for SMS.
+        """
+        source_link: NotRequired[pulumi.Input[str]]
+        """
+        Template for a source link.
+        """
+        telegram: NotRequired[pulumi.Input['IntegrationTemplatesTelegramArgsDict']]
+        """
+        Templates for Telegram.
+        """
+        web: NotRequired[pulumi.Input['IntegrationTemplatesWebArgsDict']]
+        """
+        Templates for Web.
+        """
+elif False:
+    IntegrationTemplatesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class IntegrationTemplatesArgs:
@@ -411,6 +544,19 @@ class IntegrationTemplatesArgs:
         pulumi.set(self, "web", value)
 
 
+if not MYPY:
+    class IntegrationTemplatesEmailArgsDict(TypedDict):
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert message.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    IntegrationTemplatesEmailArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class IntegrationTemplatesEmailArgs:
     def __init__(__self__, *,
@@ -449,6 +595,23 @@ class IntegrationTemplatesEmailArgs:
     def title(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "title", value)
 
+
+if not MYPY:
+    class IntegrationTemplatesMicrosoftTeamsArgsDict(TypedDict):
+        image_url: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert image url.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert message.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    IntegrationTemplatesMicrosoftTeamsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class IntegrationTemplatesMicrosoftTeamsArgs:
@@ -505,6 +668,15 @@ class IntegrationTemplatesMicrosoftTeamsArgs:
         pulumi.set(self, "title", value)
 
 
+if not MYPY:
+    class IntegrationTemplatesPhoneCallArgsDict(TypedDict):
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    IntegrationTemplatesPhoneCallArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class IntegrationTemplatesPhoneCallArgs:
     def __init__(__self__, *,
@@ -527,6 +699,23 @@ class IntegrationTemplatesPhoneCallArgs:
     def title(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "title", value)
 
+
+if not MYPY:
+    class IntegrationTemplatesSlackArgsDict(TypedDict):
+        image_url: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert image url.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert message.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    IntegrationTemplatesSlackArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class IntegrationTemplatesSlackArgs:
@@ -583,6 +772,15 @@ class IntegrationTemplatesSlackArgs:
         pulumi.set(self, "title", value)
 
 
+if not MYPY:
+    class IntegrationTemplatesSmsArgsDict(TypedDict):
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    IntegrationTemplatesSmsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class IntegrationTemplatesSmsArgs:
     def __init__(__self__, *,
@@ -605,6 +803,23 @@ class IntegrationTemplatesSmsArgs:
     def title(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "title", value)
 
+
+if not MYPY:
+    class IntegrationTemplatesTelegramArgsDict(TypedDict):
+        image_url: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert image url.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert message.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    IntegrationTemplatesTelegramArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class IntegrationTemplatesTelegramArgs:
@@ -661,6 +876,23 @@ class IntegrationTemplatesTelegramArgs:
         pulumi.set(self, "title", value)
 
 
+if not MYPY:
+    class IntegrationTemplatesWebArgsDict(TypedDict):
+        image_url: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert image url.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert message.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    IntegrationTemplatesWebArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class IntegrationTemplatesWebArgs:
     def __init__(__self__, *,
@@ -716,6 +948,19 @@ class IntegrationTemplatesWebArgs:
         pulumi.set(self, "title", value)
 
 
+if not MYPY:
+    class RouteMsteamsArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable notification in MS teams. Defaults to `true`.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        MS teams channel id. Alerts will be directed to this channel in Microsoft teams.
+        """
+elif False:
+    RouteMsteamsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RouteMsteamsArgs:
     def __init__(__self__, *,
@@ -754,6 +999,19 @@ class RouteMsteamsArgs:
     def id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "id", value)
 
+
+if not MYPY:
+    class RouteSlackArgsDict(TypedDict):
+        channel_id: NotRequired[pulumi.Input[str]]
+        """
+        Slack channel id. Alerts will be directed to this channel in Slack.
+        """
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable notification in Slack. Defaults to `true`.
+        """
+elif False:
+    RouteSlackArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RouteSlackArgs:
@@ -794,6 +1052,19 @@ class RouteSlackArgs:
         pulumi.set(self, "enabled", value)
 
 
+if not MYPY:
+    class RouteTelegramArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable notification in Telegram. Defaults to `true`.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        Telegram channel id. Alerts will be directed to this channel in Telegram.
+        """
+elif False:
+    RouteTelegramArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RouteTelegramArgs:
     def __init__(__self__, *,
@@ -832,6 +1103,19 @@ class RouteTelegramArgs:
     def id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "id", value)
 
+
+if not MYPY:
+    class ScheduleSlackArgsDict(TypedDict):
+        channel_id: NotRequired[pulumi.Input[str]]
+        """
+        Slack channel id. Reminder about schedule shifts will be directed to this channel in Slack.
+        """
+        user_group_id: NotRequired[pulumi.Input[str]]
+        """
+        Slack user group id. Members of user group will be updated when on-call users change.
+        """
+elif False:
+    ScheduleSlackArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ScheduleSlackArgs:

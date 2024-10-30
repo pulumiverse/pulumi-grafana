@@ -26,7 +26,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getServiceAccount(args: GetServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:oss/getServiceAccount:getServiceAccount", {
         "name": args.name,
@@ -95,7 +94,11 @@ export interface GetServiceAccountResult {
  * ```
  */
 export function getServiceAccountOutput(args: GetServiceAccountOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceAccountResult> {
-    return pulumi.output(args).apply((a: any) => getServiceAccount(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:oss/getServiceAccount:getServiceAccount", {
+        "name": args.name,
+        "orgId": args.orgId,
+    }, opts);
 }
 
 /**

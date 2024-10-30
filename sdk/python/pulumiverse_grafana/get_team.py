@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -137,10 +142,10 @@ def get_team(name: Optional[str] = None,
     test = grafana.oss.Team("test",
         name="test-team",
         email="test-team-email@test.com",
-        preferences=grafana.oss.TeamPreferencesArgs(
-            theme="dark",
-            timezone="utc",
-        ))
+        preferences={
+            "theme": "dark",
+            "timezone": "utc",
+        })
     from_name = grafana.oss.get_team_output(name=test.name)
     ```
     """
@@ -162,9 +167,6 @@ def get_team(name: Optional[str] = None,
         read_team_sync=pulumi.get(__ret__, 'read_team_sync'),
         team_id=pulumi.get(__ret__, 'team_id'),
         team_syncs=pulumi.get(__ret__, 'team_syncs'))
-
-
-@_utilities.lift_output_func(get_team)
 def get_team_output(name: Optional[pulumi.Input[str]] = None,
                     org_id: Optional[pulumi.Input[Optional[str]]] = None,
                     read_team_sync: Optional[pulumi.Input[Optional[bool]]] = None,
@@ -183,12 +185,27 @@ def get_team_output(name: Optional[pulumi.Input[str]] = None,
     test = grafana.oss.Team("test",
         name="test-team",
         email="test-team-email@test.com",
-        preferences=grafana.oss.TeamPreferencesArgs(
-            theme="dark",
-            timezone="utc",
-        ))
+        preferences={
+            "theme": "dark",
+            "timezone": "utc",
+        })
     from_name = grafana.oss.get_team_output(name=test.name)
     ```
     """
     pulumi.log.warn("""get_team is deprecated: grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam""")
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['orgId'] = org_id
+    __args__['readTeamSync'] = read_team_sync
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:index/getTeam:getTeam', __args__, opts=opts, typ=GetTeamResult)
+    return __ret__.apply(lambda __response__: GetTeamResult(
+        email=pulumi.get(__response__, 'email'),
+        id=pulumi.get(__response__, 'id'),
+        members=pulumi.get(__response__, 'members'),
+        name=pulumi.get(__response__, 'name'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        preferences=pulumi.get(__response__, 'preferences'),
+        read_team_sync=pulumi.get(__response__, 'read_team_sync'),
+        team_id=pulumi.get(__response__, 'team_id'),
+        team_syncs=pulumi.get(__response__, 'team_syncs')))

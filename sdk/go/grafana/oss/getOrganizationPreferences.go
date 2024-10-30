@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := oss.LookupOrganizationPreferences(ctx, nil, nil)
+//			_, err := oss.LookupOrganizationPreferences(ctx, &oss.LookupOrganizationPreferencesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -71,14 +71,20 @@ type LookupOrganizationPreferencesResult struct {
 
 func LookupOrganizationPreferencesOutput(ctx *pulumi.Context, args LookupOrganizationPreferencesOutputArgs, opts ...pulumi.InvokeOption) LookupOrganizationPreferencesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupOrganizationPreferencesResult, error) {
+		ApplyT(func(v interface{}) (LookupOrganizationPreferencesResultOutput, error) {
 			args := v.(LookupOrganizationPreferencesArgs)
-			r, err := LookupOrganizationPreferences(ctx, &args, opts...)
-			var s LookupOrganizationPreferencesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupOrganizationPreferencesResult
+			secret, err := ctx.InvokePackageRaw("grafana:oss/getOrganizationPreferences:getOrganizationPreferences", args, &rv, "", opts...)
+			if err != nil {
+				return LookupOrganizationPreferencesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupOrganizationPreferencesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupOrganizationPreferencesResultOutput), nil
+			}
+			return output, nil
 		}).(LookupOrganizationPreferencesResultOutput)
 }
 

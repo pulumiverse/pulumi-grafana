@@ -1491,7 +1491,7 @@ export interface ReportDashboard {
     /**
      * Add report variables to the dashboard. Values should be separated by commas.
      */
-    reportVariables?: pulumi.Input<{[key: string]: any}>;
+    reportVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Time range of the report.
      */
@@ -3932,7 +3932,7 @@ export namespace enterprise {
         /**
          * Add report variables to the dashboard. Values should be separated by commas.
          */
-        reportVariables?: pulumi.Input<{[key: string]: any}>;
+        reportVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Time range of the report.
          */

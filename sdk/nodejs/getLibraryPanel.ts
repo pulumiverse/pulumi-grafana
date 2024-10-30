@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
 export function getLibraryPanel(args?: GetLibraryPanelArgs, opts?: pulumi.InvokeOptions): Promise<GetLibraryPanelResult> {
     pulumi.log.warn("getLibraryPanel is deprecated: grafana.index/getlibrarypanel.getLibraryPanel has been deprecated in favor of grafana.oss/getlibrarypanel.getLibraryPanel")
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getLibraryPanel:getLibraryPanel", {
         "name": args.name,
@@ -104,7 +103,14 @@ export interface GetLibraryPanelResult {
  */
 /** @deprecated grafana.index/getlibrarypanel.getLibraryPanel has been deprecated in favor of grafana.oss/getlibrarypanel.getLibraryPanel */
 export function getLibraryPanelOutput(args?: GetLibraryPanelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLibraryPanelResult> {
-    return pulumi.output(args).apply((a: any) => getLibraryPanel(a, opts))
+    pulumi.log.warn("getLibraryPanel is deprecated: grafana.index/getlibrarypanel.getLibraryPanel has been deprecated in favor of grafana.oss/getlibrarypanel.getLibraryPanel")
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getLibraryPanel:getLibraryPanel", {
+        "name": args.name,
+        "orgId": args.orgId,
+        "uid": args.uid,
+    }, opts);
 }
 
 /**

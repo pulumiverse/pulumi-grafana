@@ -69,14 +69,20 @@ type LookupOncallScheduleResult struct {
 
 func LookupOncallScheduleOutput(ctx *pulumi.Context, args LookupOncallScheduleOutputArgs, opts ...pulumi.InvokeOption) LookupOncallScheduleResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupOncallScheduleResult, error) {
+		ApplyT(func(v interface{}) (LookupOncallScheduleResultOutput, error) {
 			args := v.(LookupOncallScheduleArgs)
-			r, err := LookupOncallSchedule(ctx, &args, opts...)
-			var s LookupOncallScheduleResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupOncallScheduleResult
+			secret, err := ctx.InvokePackageRaw("grafana:index/getOncallSchedule:getOncallSchedule", args, &rv, "", opts...)
+			if err != nil {
+				return LookupOncallScheduleResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupOncallScheduleResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupOncallScheduleResultOutput), nil
+			}
+			return output, nil
 		}).(LookupOncallScheduleResultOutput)
 }
 

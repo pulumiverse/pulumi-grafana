@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
 /** @deprecated grafana.index/getoncallintegration.getOncallIntegration has been deprecated in favor of grafana.oncall/getintegration.getIntegration */
 export function getOncallIntegration(args: GetOncallIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetOncallIntegrationResult> {
     pulumi.log.warn("getOncallIntegration is deprecated: grafana.index/getoncallintegration.getOncallIntegration has been deprecated in favor of grafana.oncall/getintegration.getIntegration")
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOncallIntegration:getOncallIntegration", {
         "id": args.id,
@@ -67,7 +66,11 @@ export interface GetOncallIntegrationResult {
  */
 /** @deprecated grafana.index/getoncallintegration.getOncallIntegration has been deprecated in favor of grafana.oncall/getintegration.getIntegration */
 export function getOncallIntegrationOutput(args: GetOncallIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallIntegrationResult> {
-    return pulumi.output(args).apply((a: any) => getOncallIntegration(a, opts))
+    pulumi.log.warn("getOncallIntegration is deprecated: grafana.index/getoncallintegration.getOncallIntegration has been deprecated in favor of grafana.oncall/getintegration.getIntegration")
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getOncallIntegration:getOncallIntegration", {
+        "id": args.id,
+    }, opts);
 }
 
 /**

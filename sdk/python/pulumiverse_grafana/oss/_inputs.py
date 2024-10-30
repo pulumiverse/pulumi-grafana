@@ -4,21 +4,57 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'DashboardPermissionPermissionArgs',
+    'DashboardPermissionPermissionArgsDict',
     'FolderPermissionPermissionArgs',
+    'FolderPermissionPermissionArgsDict',
     'PlaylistItemArgs',
+    'PlaylistItemArgsDict',
     'ServiceAccountPermissionPermissionArgs',
+    'ServiceAccountPermissionPermissionArgsDict',
     'SsoSettingsOauth2SettingsArgs',
+    'SsoSettingsOauth2SettingsArgsDict',
     'SsoSettingsSamlSettingsArgs',
+    'SsoSettingsSamlSettingsArgsDict',
     'TeamPreferencesArgs',
+    'TeamPreferencesArgsDict',
     'TeamTeamSyncArgs',
+    'TeamTeamSyncArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class DashboardPermissionPermissionArgsDict(TypedDict):
+        permission: pulumi.Input[str]
+        """
+        Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        """
+        role: NotRequired[pulumi.Input[str]]
+        """
+        Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
+        """
+        team_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the team to manage permissions for. Defaults to `0`.
+        """
+        user_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the user or service account to manage permissions for. Defaults to `0`.
+        """
+elif False:
+    DashboardPermissionPermissionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DashboardPermissionPermissionArgs:
@@ -90,6 +126,27 @@ class DashboardPermissionPermissionArgs:
         pulumi.set(self, "user_id", value)
 
 
+if not MYPY:
+    class FolderPermissionPermissionArgsDict(TypedDict):
+        permission: pulumi.Input[str]
+        """
+        Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        """
+        role: NotRequired[pulumi.Input[str]]
+        """
+        Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
+        """
+        team_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the team to manage permissions for. Defaults to `0`.
+        """
+        user_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the user or service account to manage permissions for. Defaults to `0`.
+        """
+elif False:
+    FolderPermissionPermissionArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class FolderPermissionPermissionArgs:
     def __init__(__self__, *,
@@ -160,6 +217,16 @@ class FolderPermissionPermissionArgs:
         pulumi.set(self, "user_id", value)
 
 
+if not MYPY:
+    class PlaylistItemArgsDict(TypedDict):
+        order: pulumi.Input[int]
+        title: pulumi.Input[str]
+        id: NotRequired[pulumi.Input[str]]
+        type: NotRequired[pulumi.Input[str]]
+        value: NotRequired[pulumi.Input[str]]
+elif False:
+    PlaylistItemArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class PlaylistItemArgs:
     def __init__(__self__, *,
@@ -223,6 +290,23 @@ class PlaylistItemArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class ServiceAccountPermissionPermissionArgsDict(TypedDict):
+        permission: pulumi.Input[str]
+        """
+        Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        """
+        team_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the team to manage permissions for. Defaults to `0`.
+        """
+        user_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the user or service account to manage permissions for. Defaults to `0`.
+        """
+elif False:
+    ServiceAccountPermissionPermissionArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceAccountPermissionPermissionArgs:
     def __init__(__self__, *,
@@ -276,6 +360,163 @@ class ServiceAccountPermissionPermissionArgs:
     def user_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_id", value)
 
+
+if not MYPY:
+    class SsoSettingsOauth2SettingsArgsDict(TypedDict):
+        client_id: pulumi.Input[str]
+        """
+        The client Id of your OAuth2 app.
+        """
+        allow_assign_grafana_admin: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, it will automatically sync the Grafana server administrator role.
+        """
+        allow_sign_up: NotRequired[pulumi.Input[bool]]
+        """
+        If not enabled, only existing Grafana users can log in using OAuth.
+        """
+        allowed_domains: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+        """
+        allowed_groups: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+        """
+        allowed_organizations: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+        """
+        api_url: NotRequired[pulumi.Input[str]]
+        """
+        The user information endpoint of your OAuth2 provider. Required for okta and generic_oauth providers.
+        """
+        auth_style: NotRequired[pulumi.Input[str]]
+        """
+        It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+        """
+        auth_url: NotRequired[pulumi.Input[str]]
+        """
+        The authorization endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        """
+        auto_login: NotRequired[pulumi.Input[bool]]
+        """
+        Log in automatically, skipping the login screen.
+        """
+        client_secret: NotRequired[pulumi.Input[str]]
+        """
+        The client secret of your OAuth2 app.
+        """
+        custom: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+        """
+        define_allowed_groups: NotRequired[pulumi.Input[bool]]
+        """
+        Define allowed groups.
+        """
+        define_allowed_teams_ids: NotRequired[pulumi.Input[bool]]
+        """
+        Define allowed teams ids.
+        """
+        email_attribute_name: NotRequired[pulumi.Input[str]]
+        """
+        Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+        """
+        email_attribute_path: NotRequired[pulumi.Input[str]]
+        """
+        JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+        """
+        empty_scopes: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, no scopes will be sent to the OAuth2 provider.
+        """
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+        """
+        groups_attribute_path: NotRequired[pulumi.Input[str]]
+        """
+        JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+        """
+        id_token_attribute_name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+        """
+        login_attribute_path: NotRequired[pulumi.Input[str]]
+        """
+        JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Helpful if you use more than one identity providers or SSO protocols.
+        """
+        name_attribute_path: NotRequired[pulumi.Input[str]]
+        """
+        JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+        """
+        role_attribute_path: NotRequired[pulumi.Input[str]]
+        """
+        JMESPath expression to use for Grafana role lookup.
+        """
+        role_attribute_strict: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+        """
+        scopes: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated OAuth2 scopes.
+        """
+        signout_redirect_url: NotRequired[pulumi.Input[str]]
+        """
+        The URL to redirect the user to after signing out from Grafana.
+        """
+        skip_org_role_sync: NotRequired[pulumi.Input[bool]]
+        """
+        Prevent synchronizing users’ organization roles from your IdP.
+        """
+        team_ids: NotRequired[pulumi.Input[str]]
+        """
+        String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+        """
+        team_ids_attribute_path: NotRequired[pulumi.Input[str]]
+        """
+        The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teams_url endpoint. Only applicable to Generic OAuth.
+        """
+        teams_url: NotRequired[pulumi.Input[str]]
+        """
+        The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+        """
+        tls_client_ca: NotRequired[pulumi.Input[str]]
+        """
+        The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+        """
+        tls_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The path to the certificate. Is not applicable on Grafana Cloud.
+        """
+        tls_client_key: NotRequired[pulumi.Input[str]]
+        """
+        The path to the key. Is not applicable on Grafana Cloud.
+        """
+        tls_skip_verify_insecure: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+        """
+        token_url: NotRequired[pulumi.Input[str]]
+        """
+        The token endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        """
+        use_pkce: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+        """
+        use_refresh_token: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+        """
+elif False:
+    SsoSettingsOauth2SettingsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SsoSettingsOauth2SettingsArgs:
@@ -891,6 +1132,139 @@ class SsoSettingsOauth2SettingsArgs:
         pulumi.set(self, "use_refresh_token", value)
 
 
+if not MYPY:
+    class SsoSettingsSamlSettingsArgsDict(TypedDict):
+        allow_idp_initiated: NotRequired[pulumi.Input[bool]]
+        """
+        Whether SAML IdP-initiated login is allowed.
+        """
+        allow_sign_up: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
+        """
+        allowed_organizations: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
+        """
+        assertion_attribute_email: NotRequired[pulumi.Input[str]]
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user email.
+        """
+        assertion_attribute_groups: NotRequired[pulumi.Input[str]]
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user groups.
+        """
+        assertion_attribute_login: NotRequired[pulumi.Input[str]]
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
+        """
+        assertion_attribute_name: NotRequired[pulumi.Input[str]]
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
+        """
+        assertion_attribute_org: NotRequired[pulumi.Input[str]]
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user organization.
+        """
+        assertion_attribute_role: NotRequired[pulumi.Input[str]]
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user roles.
+        """
+        auto_login: NotRequired[pulumi.Input[bool]]
+        """
+        Whether SAML auto login is enabled.
+        """
+        certificate: NotRequired[pulumi.Input[str]]
+        """
+        Base64-encoded string for the SP X.509 certificate.
+        """
+        certificate_path: NotRequired[pulumi.Input[str]]
+        """
+        Path for the SP X.509 certificate.
+        """
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Define whether this configuration is enabled for SAML. Defaults to `true`.
+        """
+        idp_metadata: NotRequired[pulumi.Input[str]]
+        """
+        Base64-encoded string for the IdP SAML metadata XML.
+        """
+        idp_metadata_path: NotRequired[pulumi.Input[str]]
+        """
+        Path for the IdP SAML metadata XML.
+        """
+        idp_metadata_url: NotRequired[pulumi.Input[str]]
+        """
+        URL for the IdP SAML metadata XML.
+        """
+        max_issue_delay: NotRequired[pulumi.Input[str]]
+        """
+        Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.
+        """
+        metadata_valid_duration: NotRequired[pulumi.Input[str]]
+        """
+        Duration, for how long the SP metadata is valid. For example: 48h, 5d.
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Name used to refer to the SAML authentication.
+        """
+        name_id_format: NotRequired[pulumi.Input[str]]
+        """
+        The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        """
+        org_mapping: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.
+        """
+        private_key: NotRequired[pulumi.Input[str]]
+        """
+        Base64-encoded string for the SP private key.
+        """
+        private_key_path: NotRequired[pulumi.Input[str]]
+        """
+        Path for the SP private key.
+        """
+        relay_state: NotRequired[pulumi.Input[str]]
+        """
+        Relay state for IdP-initiated login. Should match relay state configured in IdP.
+        """
+        role_values_admin: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated roles which will be mapped into the Admin role.
+        """
+        role_values_editor: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated roles which will be mapped into the Editor role.
+        """
+        role_values_grafana_admin: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
+        """
+        role_values_none: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated roles which will be mapped into the None role.
+        """
+        role_values_viewer: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated roles which will be mapped into the Viewer role.
+        """
+        signature_algorithm: NotRequired[pulumi.Input[str]]
+        """
+        Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
+        """
+        single_logout: NotRequired[pulumi.Input[bool]]
+        """
+        Whether SAML Single Logout is enabled.
+        """
+        skip_org_role_sync: NotRequired[pulumi.Input[bool]]
+        """
+        Prevent synchronizing users’ organization roles from your IdP.
+        """
+elif False:
+    SsoSettingsSamlSettingsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SsoSettingsSamlSettingsArgs:
     def __init__(__self__, *,
@@ -1410,6 +1784,27 @@ class SsoSettingsSamlSettingsArgs:
         pulumi.set(self, "skip_org_role_sync", value)
 
 
+if not MYPY:
+    class TeamPreferencesArgsDict(TypedDict):
+        home_dashboard_uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the dashboard to display when a team member logs in.
+        """
+        theme: NotRequired[pulumi.Input[str]]
+        """
+        The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
+        """
+        timezone: NotRequired[pulumi.Input[str]]
+        """
+        The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
+        """
+        week_start: NotRequired[pulumi.Input[str]]
+        """
+        The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+        """
+elif False:
+    TeamPreferencesArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class TeamPreferencesArgs:
     def __init__(__self__, *,
@@ -1480,6 +1875,12 @@ class TeamPreferencesArgs:
     def week_start(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "week_start", value)
 
+
+if not MYPY:
+    class TeamTeamSyncArgsDict(TypedDict):
+        groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    TeamTeamSyncArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class TeamTeamSyncArgs:

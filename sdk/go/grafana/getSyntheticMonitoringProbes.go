@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := syntheticMonitoring.GetProbes(ctx, nil, nil)
+//			_, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -66,14 +66,20 @@ type GetSyntheticMonitoringProbesResult struct {
 
 func GetSyntheticMonitoringProbesOutput(ctx *pulumi.Context, args GetSyntheticMonitoringProbesOutputArgs, opts ...pulumi.InvokeOption) GetSyntheticMonitoringProbesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetSyntheticMonitoringProbesResult, error) {
+		ApplyT(func(v interface{}) (GetSyntheticMonitoringProbesResultOutput, error) {
 			args := v.(GetSyntheticMonitoringProbesArgs)
-			r, err := GetSyntheticMonitoringProbes(ctx, &args, opts...)
-			var s GetSyntheticMonitoringProbesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetSyntheticMonitoringProbesResult
+			secret, err := ctx.InvokePackageRaw("grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes", args, &rv, "", opts...)
+			if err != nil {
+				return GetSyntheticMonitoringProbesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetSyntheticMonitoringProbesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetSyntheticMonitoringProbesResultOutput), nil
+			}
+			return output, nil
 		}).(GetSyntheticMonitoringProbesResultOutput)
 }
 

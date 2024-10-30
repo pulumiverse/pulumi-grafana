@@ -92,7 +92,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = syntheticMonitoring.GetProbes(ctx, nil, nil)
+//			_, err = syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}

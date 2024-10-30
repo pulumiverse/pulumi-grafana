@@ -66,14 +66,20 @@ type LookupLibraryPanelResult struct {
 
 func LookupLibraryPanelOutput(ctx *pulumi.Context, args LookupLibraryPanelOutputArgs, opts ...pulumi.InvokeOption) LookupLibraryPanelResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupLibraryPanelResult, error) {
+		ApplyT(func(v interface{}) (LookupLibraryPanelResultOutput, error) {
 			args := v.(LookupLibraryPanelArgs)
-			r, err := LookupLibraryPanel(ctx, &args, opts...)
-			var s LookupLibraryPanelResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupLibraryPanelResult
+			secret, err := ctx.InvokePackageRaw("grafana:oss/getLibraryPanel:getLibraryPanel", args, &rv, "", opts...)
+			if err != nil {
+				return LookupLibraryPanelResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupLibraryPanelResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupLibraryPanelResultOutput), nil
+			}
+			return output, nil
 		}).(LookupLibraryPanelResultOutput)
 }
 

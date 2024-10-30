@@ -42,7 +42,6 @@ import * as utilities from "./utilities";
 export function getDataSource(args?: GetDataSourceArgs, opts?: pulumi.InvokeOptions): Promise<GetDataSourceResult> {
     pulumi.log.warn("getDataSource is deprecated: grafana.index/getdatasource.getDataSource has been deprecated in favor of grafana.oss/getdatasource.getDataSource")
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getDataSource:getDataSource", {
         "name": args.name,
@@ -150,7 +149,14 @@ export interface GetDataSourceResult {
  */
 /** @deprecated grafana.index/getdatasource.getDataSource has been deprecated in favor of grafana.oss/getdatasource.getDataSource */
 export function getDataSourceOutput(args?: GetDataSourceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDataSourceResult> {
-    return pulumi.output(args).apply((a: any) => getDataSource(a, opts))
+    pulumi.log.warn("getDataSource is deprecated: grafana.index/getdatasource.getDataSource has been deprecated in favor of grafana.oss/getdatasource.getDataSource")
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getDataSource:getDataSource", {
+        "name": args.name,
+        "orgId": args.orgId,
+        "uid": args.uid,
+    }, opts);
 }
 
 /**

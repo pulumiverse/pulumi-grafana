@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = ['AccessPolicyTokenArgs', 'AccessPolicyToken']
@@ -266,13 +271,13 @@ class AccessPolicyToken(pulumi.CustomResource):
                 "metrics:read",
                 "logs:read",
             ],
-            realms=[grafana.cloud.AccessPolicyRealmArgs(
-                type="org",
-                identifier=current.id,
-                label_policies=[grafana.cloud.AccessPolicyRealmLabelPolicyArgs(
-                    selector="{namespace=\\"default\\"}",
-                )],
-            )])
+            realms=[{
+                "type": "org",
+                "identifier": current.id,
+                "label_policies": [{
+                    "selector": "{namespace=\\"default\\"}",
+                }],
+            }])
         test_access_policy_token = grafana.cloud.AccessPolicyToken("test",
             region="us",
             access_policy_id=test.policy_id,
@@ -327,13 +332,13 @@ class AccessPolicyToken(pulumi.CustomResource):
                 "metrics:read",
                 "logs:read",
             ],
-            realms=[grafana.cloud.AccessPolicyRealmArgs(
-                type="org",
-                identifier=current.id,
-                label_policies=[grafana.cloud.AccessPolicyRealmLabelPolicyArgs(
-                    selector="{namespace=\\"default\\"}",
-                )],
-            )])
+            realms=[{
+                "type": "org",
+                "identifier": current.id,
+                "label_policies": [{
+                    "selector": "{namespace=\\"default\\"}",
+                }],
+            }])
         test_access_policy_token = grafana.cloud.AccessPolicyToken("test",
             region="us",
             access_policy_id=test.policy_id,

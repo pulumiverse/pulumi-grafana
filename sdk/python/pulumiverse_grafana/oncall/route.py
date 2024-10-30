@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -288,12 +293,12 @@ class Route(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  escalation_chain_id: Optional[pulumi.Input[str]] = None,
                  integration_id: Optional[pulumi.Input[str]] = None,
-                 msteams: Optional[pulumi.Input[pulumi.InputType['RouteMsteamsArgs']]] = None,
+                 msteams: Optional[pulumi.Input[Union['RouteMsteamsArgs', 'RouteMsteamsArgsDict']]] = None,
                  position: Optional[pulumi.Input[int]] = None,
                  routing_regex: Optional[pulumi.Input[str]] = None,
                  routing_type: Optional[pulumi.Input[str]] = None,
-                 slack: Optional[pulumi.Input[pulumi.InputType['RouteSlackArgs']]] = None,
-                 telegram: Optional[pulumi.Input[pulumi.InputType['RouteTelegramArgs']]] = None,
+                 slack: Optional[pulumi.Input[Union['RouteSlackArgs', 'RouteSlackArgsDict']]] = None,
+                 telegram: Optional[pulumi.Input[Union['RouteTelegramArgs', 'RouteTelegramArgsDict']]] = None,
                  __props__=None):
         """
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/routes/)
@@ -310,24 +315,24 @@ class Route(pulumi.CustomResource):
         example_integration = grafana.on_call.Integration("example_integration",
             name="Grafana Integration",
             type="grafana",
-            default_route=grafana.on_call.IntegrationDefaultRouteArgs())
+            default_route={})
         example_route = grafana.on_call.Route("example_route",
             integration_id=example_integration.id,
             escalation_chain_id=default.id,
             routing_regex="us-(east|west)",
             position=0,
-            slack=grafana.on_call.RouteSlackArgs(
-                channel_id=example_slack_channel.slack_id,
-                enabled=True,
-            ),
-            telegram=grafana.on_call.RouteTelegramArgs(
-                id="ONCALLTELEGRAMID",
-                enabled=True,
-            ),
-            msteams=grafana.on_call.RouteMsteamsArgs(
-                id="ONCALLMSTEAMSID",
-                enabled=False,
-            ))
+            slack={
+                "channel_id": example_slack_channel.slack_id,
+                "enabled": True,
+            },
+            telegram={
+                "id": "ONCALLTELEGRAMID",
+                "enabled": True,
+            },
+            msteams={
+                "id": "ONCALLMSTEAMSID",
+                "enabled": False,
+            })
         ```
 
         ## Import
@@ -340,12 +345,12 @@ class Route(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[str] integration_id: The ID of the integration.
-        :param pulumi.Input[pulumi.InputType['RouteMsteamsArgs']] msteams: MS teams-specific settings for a route.
+        :param pulumi.Input[Union['RouteMsteamsArgs', 'RouteMsteamsArgsDict']] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
         :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
-        :param pulumi.Input[pulumi.InputType['RouteSlackArgs']] slack: Slack-specific settings for a route.
-        :param pulumi.Input[pulumi.InputType['RouteTelegramArgs']] telegram: Telegram-specific settings for a route.
+        :param pulumi.Input[Union['RouteSlackArgs', 'RouteSlackArgsDict']] slack: Slack-specific settings for a route.
+        :param pulumi.Input[Union['RouteTelegramArgs', 'RouteTelegramArgsDict']] telegram: Telegram-specific settings for a route.
         """
         ...
     @overload
@@ -368,24 +373,24 @@ class Route(pulumi.CustomResource):
         example_integration = grafana.on_call.Integration("example_integration",
             name="Grafana Integration",
             type="grafana",
-            default_route=grafana.on_call.IntegrationDefaultRouteArgs())
+            default_route={})
         example_route = grafana.on_call.Route("example_route",
             integration_id=example_integration.id,
             escalation_chain_id=default.id,
             routing_regex="us-(east|west)",
             position=0,
-            slack=grafana.on_call.RouteSlackArgs(
-                channel_id=example_slack_channel.slack_id,
-                enabled=True,
-            ),
-            telegram=grafana.on_call.RouteTelegramArgs(
-                id="ONCALLTELEGRAMID",
-                enabled=True,
-            ),
-            msteams=grafana.on_call.RouteMsteamsArgs(
-                id="ONCALLMSTEAMSID",
-                enabled=False,
-            ))
+            slack={
+                "channel_id": example_slack_channel.slack_id,
+                "enabled": True,
+            },
+            telegram={
+                "id": "ONCALLTELEGRAMID",
+                "enabled": True,
+            },
+            msteams={
+                "id": "ONCALLMSTEAMSID",
+                "enabled": False,
+            })
         ```
 
         ## Import
@@ -411,12 +416,12 @@ class Route(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  escalation_chain_id: Optional[pulumi.Input[str]] = None,
                  integration_id: Optional[pulumi.Input[str]] = None,
-                 msteams: Optional[pulumi.Input[pulumi.InputType['RouteMsteamsArgs']]] = None,
+                 msteams: Optional[pulumi.Input[Union['RouteMsteamsArgs', 'RouteMsteamsArgsDict']]] = None,
                  position: Optional[pulumi.Input[int]] = None,
                  routing_regex: Optional[pulumi.Input[str]] = None,
                  routing_type: Optional[pulumi.Input[str]] = None,
-                 slack: Optional[pulumi.Input[pulumi.InputType['RouteSlackArgs']]] = None,
-                 telegram: Optional[pulumi.Input[pulumi.InputType['RouteTelegramArgs']]] = None,
+                 slack: Optional[pulumi.Input[Union['RouteSlackArgs', 'RouteSlackArgsDict']]] = None,
+                 telegram: Optional[pulumi.Input[Union['RouteTelegramArgs', 'RouteTelegramArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -456,12 +461,12 @@ class Route(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             escalation_chain_id: Optional[pulumi.Input[str]] = None,
             integration_id: Optional[pulumi.Input[str]] = None,
-            msteams: Optional[pulumi.Input[pulumi.InputType['RouteMsteamsArgs']]] = None,
+            msteams: Optional[pulumi.Input[Union['RouteMsteamsArgs', 'RouteMsteamsArgsDict']]] = None,
             position: Optional[pulumi.Input[int]] = None,
             routing_regex: Optional[pulumi.Input[str]] = None,
             routing_type: Optional[pulumi.Input[str]] = None,
-            slack: Optional[pulumi.Input[pulumi.InputType['RouteSlackArgs']]] = None,
-            telegram: Optional[pulumi.Input[pulumi.InputType['RouteTelegramArgs']]] = None) -> 'Route':
+            slack: Optional[pulumi.Input[Union['RouteSlackArgs', 'RouteSlackArgsDict']]] = None,
+            telegram: Optional[pulumi.Input[Union['RouteTelegramArgs', 'RouteTelegramArgsDict']]] = None) -> 'Route':
         """
         Get an existing Route resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -471,12 +476,12 @@ class Route(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[str] integration_id: The ID of the integration.
-        :param pulumi.Input[pulumi.InputType['RouteMsteamsArgs']] msteams: MS teams-specific settings for a route.
+        :param pulumi.Input[Union['RouteMsteamsArgs', 'RouteMsteamsArgsDict']] msteams: MS teams-specific settings for a route.
         :param pulumi.Input[int] position: The position of the route (starts from 0).
         :param pulumi.Input[str] routing_regex: Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
         :param pulumi.Input[str] routing_type: The type of route. Can be jinja2, regex Defaults to `regex`.
-        :param pulumi.Input[pulumi.InputType['RouteSlackArgs']] slack: Slack-specific settings for a route.
-        :param pulumi.Input[pulumi.InputType['RouteTelegramArgs']] telegram: Telegram-specific settings for a route.
+        :param pulumi.Input[Union['RouteSlackArgs', 'RouteSlackArgsDict']] slack: Slack-specific settings for a route.
+        :param pulumi.Input[Union['RouteTelegramArgs', 'RouteTelegramArgsDict']] telegram: Telegram-specific settings for a route.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

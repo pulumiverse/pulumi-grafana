@@ -30,7 +30,6 @@ import * as utilities from "../utilities";
  */
 export function getFolders(args?: GetFoldersArgs, opts?: pulumi.InvokeOptions): Promise<GetFoldersResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:oss/getFolders:getFolders", {
         "orgId": args.orgId,
@@ -87,7 +86,11 @@ export interface GetFoldersResult {
  * ```
  */
 export function getFoldersOutput(args?: GetFoldersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFoldersResult> {
-    return pulumi.output(args).apply((a: any) => getFolders(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:oss/getFolders:getFolders", {
+        "orgId": args.orgId,
+    }, opts);
 }
 
 /**

@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
 export function getOrganizationPreferences(args?: GetOrganizationPreferencesArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationPreferencesResult> {
     pulumi.log.warn("getOrganizationPreferences is deprecated: grafana.index/getorganizationpreferences.getOrganizationPreferences has been deprecated in favor of grafana.oss/getorganizationpreferences.getOrganizationPreferences")
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getOrganizationPreferences:getOrganizationPreferences", {
         "orgId": args.orgId,
@@ -82,7 +81,12 @@ export interface GetOrganizationPreferencesResult {
  */
 /** @deprecated grafana.index/getorganizationpreferences.getOrganizationPreferences has been deprecated in favor of grafana.oss/getorganizationpreferences.getOrganizationPreferences */
 export function getOrganizationPreferencesOutput(args?: GetOrganizationPreferencesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationPreferencesResult> {
-    return pulumi.output(args).apply((a: any) => getOrganizationPreferences(a, opts))
+    pulumi.log.warn("getOrganizationPreferences is deprecated: grafana.index/getorganizationpreferences.getOrganizationPreferences has been deprecated in favor of grafana.oss/getorganizationpreferences.getOrganizationPreferences")
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getOrganizationPreferences:getOrganizationPreferences", {
+        "orgId": args.orgId,
+    }, opts);
 }
 
 /**

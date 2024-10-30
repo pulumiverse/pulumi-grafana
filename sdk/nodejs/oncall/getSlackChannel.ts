@@ -19,7 +19,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getSlackChannel(args: GetSlackChannelArgs, opts?: pulumi.InvokeOptions): Promise<GetSlackChannelResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:onCall/getSlackChannel:getSlackChannel", {
         "name": args.name,
@@ -68,7 +67,10 @@ export interface GetSlackChannelResult {
  * ```
  */
 export function getSlackChannelOutput(args: GetSlackChannelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSlackChannelResult> {
-    return pulumi.output(args).apply((a: any) => getSlackChannel(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:onCall/getSlackChannel:getSlackChannel", {
+        "name": args.name,
+    }, opts);
 }
 
 /**

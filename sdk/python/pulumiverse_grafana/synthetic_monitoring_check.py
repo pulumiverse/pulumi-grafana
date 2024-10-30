@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -378,7 +383,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                  job: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  probes: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
-                 settings: Optional[pulumi.Input[pulumi.InputType['SyntheticMonitoringCheckSettingsArgs']]] = None,
+                 settings: Optional[pulumi.Input[Union['SyntheticMonitoringCheckSettingsArgs', 'SyntheticMonitoringCheckSettingsArgsDict']]] = None,
                  target: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -409,9 +414,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "bar",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                dns=grafana.synthetic_monitoring.CheckSettingsDnsArgs(),
-            ))
+            settings={
+                "dns": {},
+            })
         ```
 
         ### DNS Complex
@@ -433,31 +438,31 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "baz",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                dns=grafana.synthetic_monitoring.CheckSettingsDnsArgs(
-                    ip_version="Any",
-                    server="8.8.4.4",
-                    port=8600,
-                    record_type="CNAME",
-                    protocol="TCP",
-                    valid_r_codes=[
+            settings={
+                "dns": {
+                    "ip_version": "Any",
+                    "server": "8.8.4.4",
+                    "port": 8600,
+                    "record_type": "CNAME",
+                    "protocol": "TCP",
+                    "valid_r_codes": [
                         "NOERROR",
                         "NOTAUTH",
                     ],
-                    validate_answer_rrs=grafana.synthetic_monitoring.CheckSettingsDnsValidateAnswerRrsArgs(
-                        fail_if_matches_regexps=[".+-bad-stuff*"],
-                        fail_if_not_matches_regexps=[".+-good-stuff*"],
-                    ),
-                    validate_authority_rrs=grafana.synthetic_monitoring.CheckSettingsDnsValidateAuthorityRrsArgs(
-                        fail_if_matches_regexps=[".+-bad-stuff*"],
-                        fail_if_not_matches_regexps=[".+-good-stuff*"],
-                    ),
-                    validate_additional_rrs=[grafana.synthetic_monitoring.CheckSettingsDnsValidateAdditionalRrArgs(
-                        fail_if_matches_regexps=[".+-bad-stuff*"],
-                        fail_if_not_matches_regexps=[".+-good-stuff*"],
-                    )],
-                ),
-            ))
+                    "validate_answer_rrs": {
+                        "fail_if_matches_regexps": [".+-bad-stuff*"],
+                        "fail_if_not_matches_regexps": [".+-good-stuff*"],
+                    },
+                    "validate_authority_rrs": {
+                        "fail_if_matches_regexps": [".+-bad-stuff*"],
+                        "fail_if_not_matches_regexps": [".+-good-stuff*"],
+                    },
+                    "validate_additional_rrs": [{
+                        "fail_if_matches_regexps": [".+-bad-stuff*"],
+                        "fail_if_not_matches_regexps": [".+-good-stuff*"],
+                    }],
+                },
+            })
         ```
 
         ### HTTP Basic
@@ -476,9 +481,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "bar",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                http=grafana.synthetic_monitoring.CheckSettingsHttpArgs(),
-            ))
+            settings={
+                "http": {},
+            })
         ```
 
         ### HTTP Complex
@@ -500,20 +505,20 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "bar",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                http=grafana.synthetic_monitoring.CheckSettingsHttpArgs(
-                    ip_version="V6",
-                    method="TRACE",
-                    body="and spirit",
-                    no_follow_redirects=True,
-                    bearer_token="asdfjkl;",
-                    proxy_url="https://almost-there",
-                    fail_if_ssl=True,
-                    fail_if_not_ssl=True,
-                    cache_busting_query_param_name="pineapple",
-                    tls_config=grafana.synthetic_monitoring.CheckSettingsHttpTlsConfigArgs(
-                        server_name="grafana.org",
-                        client_cert=\"\"\"-----BEGIN CERTIFICATE-----
+            settings={
+                "http": {
+                    "ip_version": "V6",
+                    "method": "TRACE",
+                    "body": "and spirit",
+                    "no_follow_redirects": True,
+                    "bearer_token": "asdfjkl;",
+                    "proxy_url": "https://almost-there",
+                    "fail_if_ssl": True,
+                    "fail_if_not_ssl": True,
+                    "cache_busting_query_param_name": "pineapple",
+                    "tls_config": {
+                        "server_name": "grafana.org",
+                        "client_cert": \"\"\"-----BEGIN CERTIFICATE-----
         MIIEljCCAn4CCQCKJPUQQxeO0zANBgkqhkiG9w0BAQsFADANMQswCQYDVQQGEwJT
         RTAeFw0yMTA1MjkxOTIyNTdaFw0yNDAzMTgxOTIyNTdaMA0xCzAJBgNVBAYTAlNF
         MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAnmbazDNUT0rSI4BpGZK+
@@ -541,30 +546,30 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         vuhxvtppolNnyOgGxwG4zquqq2V5/+vKjKY=
         -----END CERTIFICATE-----
         \"\"\",
-                    ),
-                    headers=["Content-Type: multipart/form-data; boundary=something"],
-                    basic_auth=grafana.synthetic_monitoring.CheckSettingsHttpBasicAuthArgs(
-                        username="open",
-                        password="sesame",
-                    ),
-                    valid_status_codes=[
+                    },
+                    "headers": ["Content-Type: multipart/form-data; boundary=something"],
+                    "basic_auth": {
+                        "username": "open",
+                        "password": "sesame",
+                    },
+                    "valid_status_codes": [
                         200,
                         201,
                     ],
-                    valid_http_versions=[
+                    "valid_http_versions": [
                         "HTTP/1.0",
                         "HTTP/1.1",
                         "HTTP/2.0",
                     ],
-                    fail_if_body_matches_regexps=[".*bad stuff.*"],
-                    fail_if_body_not_matches_regexps=[".*good stuff.*"],
-                    fail_if_header_matches_regexps=[grafana.synthetic_monitoring.CheckSettingsHttpFailIfHeaderMatchesRegexpArgs(
-                        header="Content-Type",
-                        regexp="application/soap*",
-                        allow_missing=True,
-                    )],
-                ),
-            ))
+                    "fail_if_body_matches_regexps": [".*bad stuff.*"],
+                    "fail_if_body_not_matches_regexps": [".*good stuff.*"],
+                    "fail_if_header_matches_regexps": [{
+                        "header": "Content-Type",
+                        "regexp": "application/soap*",
+                        "allow_missing": True,
+                    }],
+                },
+            })
         ```
 
         ### Ping Basic
@@ -583,9 +588,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "bar",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                ping=grafana.synthetic_monitoring.CheckSettingsPingArgs(),
-            ))
+            settings={
+                "ping": {},
+            })
         ```
 
         ### Ping Complex
@@ -607,13 +612,13 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "baz",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                ping=grafana.synthetic_monitoring.CheckSettingsPingArgs(
-                    ip_version="Any",
-                    payload_size=20,
-                    dont_fragment=True,
-                ),
-            ))
+            settings={
+                "ping": {
+                    "ip_version": "Any",
+                    "payload_size": 20,
+                    "dont_fragment": True,
+                },
+            })
         ```
 
         ### TCP Basic
@@ -632,9 +637,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "bar",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                tcp=grafana.synthetic_monitoring.CheckSettingsTcpArgs(),
-            ))
+            settings={
+                "tcp": {},
+            })
         ```
 
         ### TCP Complex
@@ -656,24 +661,24 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "baz",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                tcp=grafana.synthetic_monitoring.CheckSettingsTcpArgs(
-                    ip_version="V6",
-                    tls=True,
-                    query_responses=[
-                        grafana.synthetic_monitoring.CheckSettingsTcpQueryResponseArgs(
-                            send="howdy",
-                            expect="hi",
-                        ),
-                        grafana.synthetic_monitoring.CheckSettingsTcpQueryResponseArgs(
-                            send="like this",
-                            expect="like that",
-                            start_tls=True,
-                        ),
+            settings={
+                "tcp": {
+                    "ip_version": "V6",
+                    "tls": True,
+                    "query_responses": [
+                        {
+                            "send": "howdy",
+                            "expect": "hi",
+                        },
+                        {
+                            "send": "like this",
+                            "expect": "like that",
+                            "start_tls": True,
+                        },
                     ],
-                    tls_config=grafana.synthetic_monitoring.CheckSettingsTcpTlsConfigArgs(
-                        server_name="grafana.com",
-                        ca_cert=\"\"\"-----BEGIN CERTIFICATE-----
+                    "tls_config": {
+                        "server_name": "grafana.com",
+                        "ca_cert": \"\"\"-----BEGIN CERTIFICATE-----
         MIIEljCCAn4CCQCKJPUQQxeO0zANBgkqhkiG9w0BAQsFADANMQswCQYDVQQGEwJT
         RTAeFw0yMTA1MjkxOTIyNTdaFw0yNDAzMTgxOTIyNTdaMA0xCzAJBgNVBAYTAlNF
         MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAnmbazDNUT0rSI4BpGZK+
@@ -701,9 +706,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         vuhxvtppolNnyOgGxwG4zquqq2V5/+vKjKY=
         -----END CERTIFICATE-----
         \"\"\",
-                    ),
-                ),
-            ))
+                    },
+                },
+            })
         ```
 
         ### Traceroute Basic
@@ -724,9 +729,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "bar",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                traceroute=grafana.synthetic_monitoring.CheckSettingsTracerouteArgs(),
-            ))
+            settings={
+                "traceroute": {},
+            })
         ```
 
         ### Traceroute Complex
@@ -750,13 +755,13 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "baz",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                traceroute=grafana.synthetic_monitoring.CheckSettingsTracerouteArgs(
-                    max_hops=25,
-                    max_unknown_hops=10,
-                    ptr_lookup=False,
-                ),
-            ))
+            settings={
+                "traceroute": {
+                    "max_hops": 25,
+                    "max_unknown_hops": 10,
+                    "ptr_lookup": False,
+                },
+            })
         ```
 
         ## Import
@@ -774,7 +779,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         :param pulumi.Input[str] job: Name used for job label.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] probes: List of probe location IDs where this target will be checked from.
-        :param pulumi.Input[pulumi.InputType['SyntheticMonitoringCheckSettingsArgs']] settings: Check settings. Should contain exactly one nested block.
+        :param pulumi.Input[Union['SyntheticMonitoringCheckSettingsArgs', 'SyntheticMonitoringCheckSettingsArgsDict']] settings: Check settings. Should contain exactly one nested block.
         :param pulumi.Input[str] target: Hostname to ping.
         :param pulumi.Input[int] timeout: Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
         """
@@ -811,9 +816,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "bar",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                dns=grafana.synthetic_monitoring.CheckSettingsDnsArgs(),
-            ))
+            settings={
+                "dns": {},
+            })
         ```
 
         ### DNS Complex
@@ -835,31 +840,31 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "baz",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                dns=grafana.synthetic_monitoring.CheckSettingsDnsArgs(
-                    ip_version="Any",
-                    server="8.8.4.4",
-                    port=8600,
-                    record_type="CNAME",
-                    protocol="TCP",
-                    valid_r_codes=[
+            settings={
+                "dns": {
+                    "ip_version": "Any",
+                    "server": "8.8.4.4",
+                    "port": 8600,
+                    "record_type": "CNAME",
+                    "protocol": "TCP",
+                    "valid_r_codes": [
                         "NOERROR",
                         "NOTAUTH",
                     ],
-                    validate_answer_rrs=grafana.synthetic_monitoring.CheckSettingsDnsValidateAnswerRrsArgs(
-                        fail_if_matches_regexps=[".+-bad-stuff*"],
-                        fail_if_not_matches_regexps=[".+-good-stuff*"],
-                    ),
-                    validate_authority_rrs=grafana.synthetic_monitoring.CheckSettingsDnsValidateAuthorityRrsArgs(
-                        fail_if_matches_regexps=[".+-bad-stuff*"],
-                        fail_if_not_matches_regexps=[".+-good-stuff*"],
-                    ),
-                    validate_additional_rrs=[grafana.synthetic_monitoring.CheckSettingsDnsValidateAdditionalRrArgs(
-                        fail_if_matches_regexps=[".+-bad-stuff*"],
-                        fail_if_not_matches_regexps=[".+-good-stuff*"],
-                    )],
-                ),
-            ))
+                    "validate_answer_rrs": {
+                        "fail_if_matches_regexps": [".+-bad-stuff*"],
+                        "fail_if_not_matches_regexps": [".+-good-stuff*"],
+                    },
+                    "validate_authority_rrs": {
+                        "fail_if_matches_regexps": [".+-bad-stuff*"],
+                        "fail_if_not_matches_regexps": [".+-good-stuff*"],
+                    },
+                    "validate_additional_rrs": [{
+                        "fail_if_matches_regexps": [".+-bad-stuff*"],
+                        "fail_if_not_matches_regexps": [".+-good-stuff*"],
+                    }],
+                },
+            })
         ```
 
         ### HTTP Basic
@@ -878,9 +883,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "bar",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                http=grafana.synthetic_monitoring.CheckSettingsHttpArgs(),
-            ))
+            settings={
+                "http": {},
+            })
         ```
 
         ### HTTP Complex
@@ -902,20 +907,20 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "bar",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                http=grafana.synthetic_monitoring.CheckSettingsHttpArgs(
-                    ip_version="V6",
-                    method="TRACE",
-                    body="and spirit",
-                    no_follow_redirects=True,
-                    bearer_token="asdfjkl;",
-                    proxy_url="https://almost-there",
-                    fail_if_ssl=True,
-                    fail_if_not_ssl=True,
-                    cache_busting_query_param_name="pineapple",
-                    tls_config=grafana.synthetic_monitoring.CheckSettingsHttpTlsConfigArgs(
-                        server_name="grafana.org",
-                        client_cert=\"\"\"-----BEGIN CERTIFICATE-----
+            settings={
+                "http": {
+                    "ip_version": "V6",
+                    "method": "TRACE",
+                    "body": "and spirit",
+                    "no_follow_redirects": True,
+                    "bearer_token": "asdfjkl;",
+                    "proxy_url": "https://almost-there",
+                    "fail_if_ssl": True,
+                    "fail_if_not_ssl": True,
+                    "cache_busting_query_param_name": "pineapple",
+                    "tls_config": {
+                        "server_name": "grafana.org",
+                        "client_cert": \"\"\"-----BEGIN CERTIFICATE-----
         MIIEljCCAn4CCQCKJPUQQxeO0zANBgkqhkiG9w0BAQsFADANMQswCQYDVQQGEwJT
         RTAeFw0yMTA1MjkxOTIyNTdaFw0yNDAzMTgxOTIyNTdaMA0xCzAJBgNVBAYTAlNF
         MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAnmbazDNUT0rSI4BpGZK+
@@ -943,30 +948,30 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         vuhxvtppolNnyOgGxwG4zquqq2V5/+vKjKY=
         -----END CERTIFICATE-----
         \"\"\",
-                    ),
-                    headers=["Content-Type: multipart/form-data; boundary=something"],
-                    basic_auth=grafana.synthetic_monitoring.CheckSettingsHttpBasicAuthArgs(
-                        username="open",
-                        password="sesame",
-                    ),
-                    valid_status_codes=[
+                    },
+                    "headers": ["Content-Type: multipart/form-data; boundary=something"],
+                    "basic_auth": {
+                        "username": "open",
+                        "password": "sesame",
+                    },
+                    "valid_status_codes": [
                         200,
                         201,
                     ],
-                    valid_http_versions=[
+                    "valid_http_versions": [
                         "HTTP/1.0",
                         "HTTP/1.1",
                         "HTTP/2.0",
                     ],
-                    fail_if_body_matches_regexps=[".*bad stuff.*"],
-                    fail_if_body_not_matches_regexps=[".*good stuff.*"],
-                    fail_if_header_matches_regexps=[grafana.synthetic_monitoring.CheckSettingsHttpFailIfHeaderMatchesRegexpArgs(
-                        header="Content-Type",
-                        regexp="application/soap*",
-                        allow_missing=True,
-                    )],
-                ),
-            ))
+                    "fail_if_body_matches_regexps": [".*bad stuff.*"],
+                    "fail_if_body_not_matches_regexps": [".*good stuff.*"],
+                    "fail_if_header_matches_regexps": [{
+                        "header": "Content-Type",
+                        "regexp": "application/soap*",
+                        "allow_missing": True,
+                    }],
+                },
+            })
         ```
 
         ### Ping Basic
@@ -985,9 +990,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "bar",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                ping=grafana.synthetic_monitoring.CheckSettingsPingArgs(),
-            ))
+            settings={
+                "ping": {},
+            })
         ```
 
         ### Ping Complex
@@ -1009,13 +1014,13 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "baz",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                ping=grafana.synthetic_monitoring.CheckSettingsPingArgs(
-                    ip_version="Any",
-                    payload_size=20,
-                    dont_fragment=True,
-                ),
-            ))
+            settings={
+                "ping": {
+                    "ip_version": "Any",
+                    "payload_size": 20,
+                    "dont_fragment": True,
+                },
+            })
         ```
 
         ### TCP Basic
@@ -1034,9 +1039,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "bar",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                tcp=grafana.synthetic_monitoring.CheckSettingsTcpArgs(),
-            ))
+            settings={
+                "tcp": {},
+            })
         ```
 
         ### TCP Complex
@@ -1058,24 +1063,24 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "baz",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                tcp=grafana.synthetic_monitoring.CheckSettingsTcpArgs(
-                    ip_version="V6",
-                    tls=True,
-                    query_responses=[
-                        grafana.synthetic_monitoring.CheckSettingsTcpQueryResponseArgs(
-                            send="howdy",
-                            expect="hi",
-                        ),
-                        grafana.synthetic_monitoring.CheckSettingsTcpQueryResponseArgs(
-                            send="like this",
-                            expect="like that",
-                            start_tls=True,
-                        ),
+            settings={
+                "tcp": {
+                    "ip_version": "V6",
+                    "tls": True,
+                    "query_responses": [
+                        {
+                            "send": "howdy",
+                            "expect": "hi",
+                        },
+                        {
+                            "send": "like this",
+                            "expect": "like that",
+                            "start_tls": True,
+                        },
                     ],
-                    tls_config=grafana.synthetic_monitoring.CheckSettingsTcpTlsConfigArgs(
-                        server_name="grafana.com",
-                        ca_cert=\"\"\"-----BEGIN CERTIFICATE-----
+                    "tls_config": {
+                        "server_name": "grafana.com",
+                        "ca_cert": \"\"\"-----BEGIN CERTIFICATE-----
         MIIEljCCAn4CCQCKJPUQQxeO0zANBgkqhkiG9w0BAQsFADANMQswCQYDVQQGEwJT
         RTAeFw0yMTA1MjkxOTIyNTdaFw0yNDAzMTgxOTIyNTdaMA0xCzAJBgNVBAYTAlNF
         MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAnmbazDNUT0rSI4BpGZK+
@@ -1103,9 +1108,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         vuhxvtppolNnyOgGxwG4zquqq2V5/+vKjKY=
         -----END CERTIFICATE-----
         \"\"\",
-                    ),
-                ),
-            ))
+                    },
+                },
+            })
         ```
 
         ### Traceroute Basic
@@ -1126,9 +1131,9 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "bar",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                traceroute=grafana.synthetic_monitoring.CheckSettingsTracerouteArgs(),
-            ))
+            settings={
+                "traceroute": {},
+            })
         ```
 
         ### Traceroute Complex
@@ -1152,13 +1157,13 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             labels={
                 "foo": "baz",
             },
-            settings=grafana.synthetic_monitoring.CheckSettingsArgs(
-                traceroute=grafana.synthetic_monitoring.CheckSettingsTracerouteArgs(
-                    max_hops=25,
-                    max_unknown_hops=10,
-                    ptr_lookup=False,
-                ),
-            ))
+            settings={
+                "traceroute": {
+                    "max_hops": 25,
+                    "max_unknown_hops": 10,
+                    "ptr_lookup": False,
+                },
+            })
         ```
 
         ## Import
@@ -1189,7 +1194,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                  job: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  probes: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
-                 settings: Optional[pulumi.Input[pulumi.InputType['SyntheticMonitoringCheckSettingsArgs']]] = None,
+                 settings: Optional[pulumi.Input[Union['SyntheticMonitoringCheckSettingsArgs', 'SyntheticMonitoringCheckSettingsArgsDict']]] = None,
                  target: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -1240,7 +1245,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             job: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             probes: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
-            settings: Optional[pulumi.Input[pulumi.InputType['SyntheticMonitoringCheckSettingsArgs']]] = None,
+            settings: Optional[pulumi.Input[Union['SyntheticMonitoringCheckSettingsArgs', 'SyntheticMonitoringCheckSettingsArgsDict']]] = None,
             target: Optional[pulumi.Input[str]] = None,
             tenant_id: Optional[pulumi.Input[int]] = None,
             timeout: Optional[pulumi.Input[int]] = None) -> 'SyntheticMonitoringCheck':
@@ -1258,7 +1263,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         :param pulumi.Input[str] job: Name used for job label.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] probes: List of probe location IDs where this target will be checked from.
-        :param pulumi.Input[pulumi.InputType['SyntheticMonitoringCheckSettingsArgs']] settings: Check settings. Should contain exactly one nested block.
+        :param pulumi.Input[Union['SyntheticMonitoringCheckSettingsArgs', 'SyntheticMonitoringCheckSettingsArgsDict']] settings: Check settings. Should contain exactly one nested block.
         :param pulumi.Input[str] target: Hostname to ping.
         :param pulumi.Input[int] tenant_id: The tenant ID of the check.
         :param pulumi.Input[int] timeout: Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.

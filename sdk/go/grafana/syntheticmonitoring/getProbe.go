@@ -78,14 +78,20 @@ type LookupProbeResult struct {
 
 func LookupProbeOutput(ctx *pulumi.Context, args LookupProbeOutputArgs, opts ...pulumi.InvokeOption) LookupProbeResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupProbeResult, error) {
+		ApplyT(func(v interface{}) (LookupProbeResultOutput, error) {
 			args := v.(LookupProbeArgs)
-			r, err := LookupProbe(ctx, &args, opts...)
-			var s LookupProbeResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupProbeResult
+			secret, err := ctx.InvokePackageRaw("grafana:syntheticMonitoring/getProbe:getProbe", args, &rv, "", opts...)
+			if err != nil {
+				return LookupProbeResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupProbeResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupProbeResultOutput), nil
+			}
+			return output, nil
 		}).(LookupProbeResultOutput)
 }
 

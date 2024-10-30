@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -138,9 +143,6 @@ def get_dashboards(folder_uids: Optional[Sequence[str]] = None,
         limit=pulumi.get(__ret__, 'limit'),
         org_id=pulumi.get(__ret__, 'org_id'),
         tags=pulumi.get(__ret__, 'tags'))
-
-
-@_utilities.lift_output_func(get_dashboards)
 def get_dashboards_output(folder_uids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           limit: Optional[pulumi.Input[Optional[int]]] = None,
                           org_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -160,4 +162,17 @@ def get_dashboards_output(folder_uids: Optional[pulumi.Input[Optional[Sequence[s
     :param Sequence[str] tags: List of string Grafana dashboard tags to search for, eg. `["prod"]`. Used only as search input, i.e., attribute value will remain unchanged.
     """
     pulumi.log.warn("""get_dashboards is deprecated: grafana.index/getdashboards.getDashboards has been deprecated in favor of grafana.oss/getdashboards.getDashboards""")
-    ...
+    __args__ = dict()
+    __args__['folderUids'] = folder_uids
+    __args__['limit'] = limit
+    __args__['orgId'] = org_id
+    __args__['tags'] = tags
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:index/getDashboards:getDashboards', __args__, opts=opts, typ=GetDashboardsResult)
+    return __ret__.apply(lambda __response__: GetDashboardsResult(
+        dashboards=pulumi.get(__response__, 'dashboards'),
+        folder_uids=pulumi.get(__response__, 'folder_uids'),
+        id=pulumi.get(__response__, 'id'),
+        limit=pulumi.get(__response__, 'limit'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        tags=pulumi.get(__response__, 'tags')))

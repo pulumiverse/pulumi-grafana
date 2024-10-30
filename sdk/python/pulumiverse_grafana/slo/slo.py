@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -303,14 +308,14 @@ class SLO(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alertings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOAlertingArgs']]]]] = None,
+                 alertings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 destination_datasource: Optional[pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']]] = None,
+                 destination_datasource: Optional[pulumi.Input[Union['SLODestinationDatasourceArgs', 'SLODestinationDatasourceArgsDict']]] = None,
                  folder_uid: Optional[pulumi.Input[str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOLabelArgs', 'SLOLabelArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 objectives: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]]] = None,
-                 queries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOQueryArgs']]]]] = None,
+                 objectives: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOObjectiveArgs', 'SLOObjectiveArgsDict']]]]] = None,
+                 queries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOQueryArgs', 'SLOQueryArgsDict']]]]] = None,
                  __props__=None):
         """
         Resource manages Grafana SLOs.
@@ -330,49 +335,49 @@ class SLO(pulumi.CustomResource):
         test = grafana.slo.SLO("test",
             name="Terraform Testing",
             description="Terraform Description",
-            queries=[grafana.slo.SLOQueryArgs(
-                freeform=grafana.slo.SLOQueryFreeformArgs(
-                    query="sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-                ),
-                type="freeform",
-            )],
-            objectives=[grafana.slo.SLOObjectiveArgs(
-                value=0.995,
-                window="30d",
-            )],
-            destination_datasource=grafana.slo.SLODestinationDatasourceArgs(
-                uid="grafanacloud-prom",
-            ),
-            labels=[grafana.slo.SLOLabelArgs(
-                key="slo",
-                value="terraform",
-            )],
-            alertings=[grafana.slo.SLOAlertingArgs(
-                fastburns=[grafana.slo.SLOAlertingFastburnArgs(
-                    annotations=[
-                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
-                            key="name",
-                            value="SLO Burn Rate Very High",
-                        ),
-                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
-                            key="description",
-                            value="Error budget is burning too fast",
-                        ),
+            queries=[{
+                "freeform": {
+                    "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+                },
+                "type": "freeform",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            alertings=[{
+                "fastburns": [{
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate Very High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
                     ],
-                )],
-                slowburns=[grafana.slo.SLOAlertingSlowburnArgs(
-                    annotations=[
-                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
-                            key="name",
-                            value="SLO Burn Rate High",
-                        ),
-                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
-                            key="description",
-                            value="Error budget is burning too fast",
-                        ),
+                }],
+                "slowburns": [{
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
                     ],
-                )],
-            )])
+                }],
+            }])
         ```
 
         ### Advanced
@@ -384,62 +389,62 @@ class SLO(pulumi.CustomResource):
         test = grafana.slo.SLO("test",
             name="Complex Resource - Terraform Ratio Query Example",
             description="Complex Resource - Terraform Ratio Query Description",
-            queries=[grafana.slo.SLOQueryArgs(
-                ratio=grafana.slo.SLOQueryRatioArgs(
-                    success_metric="kubelet_http_requests_total{status!~\\"5..\\"}",
-                    total_metric="kubelet_http_requests_total",
-                    group_by_labels=[
+            queries=[{
+                "ratio": {
+                    "success_metric": "kubelet_http_requests_total{status!~\\"5..\\"}",
+                    "total_metric": "kubelet_http_requests_total",
+                    "group_by_labels": [
                         "job",
                         "instance",
                     ],
-                ),
-                type="ratio",
-            )],
-            objectives=[grafana.slo.SLOObjectiveArgs(
-                value=0.995,
-                window="30d",
-            )],
-            destination_datasource=grafana.slo.SLODestinationDatasourceArgs(
-                uid="grafanacloud-prom",
-            ),
-            labels=[grafana.slo.SLOLabelArgs(
-                key="slo",
-                value="terraform",
-            )],
-            alertings=[grafana.slo.SLOAlertingArgs(
-                fastburns=[grafana.slo.SLOAlertingFastburnArgs(
-                    annotations=[
-                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
-                            key="name",
-                            value="SLO Burn Rate Very High",
-                        ),
-                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
-                            key="description",
-                            value="Error budget is burning too fast",
-                        ),
+                },
+                "type": "ratio",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            alertings=[{
+                "fastburns": [{
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate Very High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
                     ],
-                    labels=[grafana.slo.SLOAlertingFastburnLabelArgs(
-                        key="type",
-                        value="slo",
-                    )],
-                )],
-                slowburns=[grafana.slo.SLOAlertingSlowburnArgs(
-                    annotations=[
-                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
-                            key="name",
-                            value="SLO Burn Rate High",
-                        ),
-                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
-                            key="description",
-                            value="Error budget is burning too fast",
-                        ),
+                    "labels": [{
+                        "key": "type",
+                        "value": "slo",
+                    }],
+                }],
+                "slowburns": [{
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
                     ],
-                    labels=[grafana.slo.SLOAlertingSlowburnLabelArgs(
-                        key="type",
-                        value="slo",
-                    )],
-                )],
-            )])
+                    "labels": [{
+                        "key": "type",
+                        "value": "slo",
+                    }],
+                }],
+            }])
         ```
 
         ## Import
@@ -450,18 +455,18 @@ class SLO(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOAlertingArgs']]]] alertings: Configures the alerting rules that will be generated for each
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']]]] alertings: Configures the alerting rules that will be generated for each
                			time window associated with the SLO. Grafana SLOs can generate
                			alerts when the short-term error budget burn is very high, the
                			long-term error budget burn rate is high, or when the remaining
                			error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
-        :param pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']] destination_datasource: Destination Datasource sets the datasource defined for an SLO
+        :param pulumi.Input[Union['SLODestinationDatasourceArgs', 'SLODestinationDatasourceArgsDict']] destination_datasource: Destination Datasource sets the datasource defined for an SLO
         :param pulumi.Input[str] folder_uid: UID for the SLO folder
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SLOLabelArgs', 'SLOLabelArgsDict']]]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOQueryArgs']]]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SLOObjectiveArgs', 'SLOObjectiveArgsDict']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SLOQueryArgs', 'SLOQueryArgsDict']]]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         ...
     @overload
@@ -487,49 +492,49 @@ class SLO(pulumi.CustomResource):
         test = grafana.slo.SLO("test",
             name="Terraform Testing",
             description="Terraform Description",
-            queries=[grafana.slo.SLOQueryArgs(
-                freeform=grafana.slo.SLOQueryFreeformArgs(
-                    query="sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
-                ),
-                type="freeform",
-            )],
-            objectives=[grafana.slo.SLOObjectiveArgs(
-                value=0.995,
-                window="30d",
-            )],
-            destination_datasource=grafana.slo.SLODestinationDatasourceArgs(
-                uid="grafanacloud-prom",
-            ),
-            labels=[grafana.slo.SLOLabelArgs(
-                key="slo",
-                value="terraform",
-            )],
-            alertings=[grafana.slo.SLOAlertingArgs(
-                fastburns=[grafana.slo.SLOAlertingFastburnArgs(
-                    annotations=[
-                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
-                            key="name",
-                            value="SLO Burn Rate Very High",
-                        ),
-                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
-                            key="description",
-                            value="Error budget is burning too fast",
-                        ),
+            queries=[{
+                "freeform": {
+                    "query": "sum(rate(apiserver_request_total{code!=\\"500\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))",
+                },
+                "type": "freeform",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            alertings=[{
+                "fastburns": [{
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate Very High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
                     ],
-                )],
-                slowburns=[grafana.slo.SLOAlertingSlowburnArgs(
-                    annotations=[
-                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
-                            key="name",
-                            value="SLO Burn Rate High",
-                        ),
-                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
-                            key="description",
-                            value="Error budget is burning too fast",
-                        ),
+                }],
+                "slowburns": [{
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
                     ],
-                )],
-            )])
+                }],
+            }])
         ```
 
         ### Advanced
@@ -541,62 +546,62 @@ class SLO(pulumi.CustomResource):
         test = grafana.slo.SLO("test",
             name="Complex Resource - Terraform Ratio Query Example",
             description="Complex Resource - Terraform Ratio Query Description",
-            queries=[grafana.slo.SLOQueryArgs(
-                ratio=grafana.slo.SLOQueryRatioArgs(
-                    success_metric="kubelet_http_requests_total{status!~\\"5..\\"}",
-                    total_metric="kubelet_http_requests_total",
-                    group_by_labels=[
+            queries=[{
+                "ratio": {
+                    "success_metric": "kubelet_http_requests_total{status!~\\"5..\\"}",
+                    "total_metric": "kubelet_http_requests_total",
+                    "group_by_labels": [
                         "job",
                         "instance",
                     ],
-                ),
-                type="ratio",
-            )],
-            objectives=[grafana.slo.SLOObjectiveArgs(
-                value=0.995,
-                window="30d",
-            )],
-            destination_datasource=grafana.slo.SLODestinationDatasourceArgs(
-                uid="grafanacloud-prom",
-            ),
-            labels=[grafana.slo.SLOLabelArgs(
-                key="slo",
-                value="terraform",
-            )],
-            alertings=[grafana.slo.SLOAlertingArgs(
-                fastburns=[grafana.slo.SLOAlertingFastburnArgs(
-                    annotations=[
-                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
-                            key="name",
-                            value="SLO Burn Rate Very High",
-                        ),
-                        grafana.slo.SLOAlertingFastburnAnnotationArgs(
-                            key="description",
-                            value="Error budget is burning too fast",
-                        ),
+                },
+                "type": "ratio",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            alertings=[{
+                "fastburns": [{
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate Very High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
                     ],
-                    labels=[grafana.slo.SLOAlertingFastburnLabelArgs(
-                        key="type",
-                        value="slo",
-                    )],
-                )],
-                slowburns=[grafana.slo.SLOAlertingSlowburnArgs(
-                    annotations=[
-                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
-                            key="name",
-                            value="SLO Burn Rate High",
-                        ),
-                        grafana.slo.SLOAlertingSlowburnAnnotationArgs(
-                            key="description",
-                            value="Error budget is burning too fast",
-                        ),
+                    "labels": [{
+                        "key": "type",
+                        "value": "slo",
+                    }],
+                }],
+                "slowburns": [{
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
                     ],
-                    labels=[grafana.slo.SLOAlertingSlowburnLabelArgs(
-                        key="type",
-                        value="slo",
-                    )],
-                )],
-            )])
+                    "labels": [{
+                        "key": "type",
+                        "value": "slo",
+                    }],
+                }],
+            }])
         ```
 
         ## Import
@@ -620,14 +625,14 @@ class SLO(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alertings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOAlertingArgs']]]]] = None,
+                 alertings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 destination_datasource: Optional[pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']]] = None,
+                 destination_datasource: Optional[pulumi.Input[Union['SLODestinationDatasourceArgs', 'SLODestinationDatasourceArgsDict']]] = None,
                  folder_uid: Optional[pulumi.Input[str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOLabelArgs', 'SLOLabelArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 objectives: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]]] = None,
-                 queries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOQueryArgs']]]]] = None,
+                 objectives: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOObjectiveArgs', 'SLOObjectiveArgsDict']]]]] = None,
+                 queries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOQueryArgs', 'SLOQueryArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -663,14 +668,14 @@ class SLO(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alertings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOAlertingArgs']]]]] = None,
+            alertings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            destination_datasource: Optional[pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']]] = None,
+            destination_datasource: Optional[pulumi.Input[Union['SLODestinationDatasourceArgs', 'SLODestinationDatasourceArgsDict']]] = None,
             folder_uid: Optional[pulumi.Input[str]] = None,
-            labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]]] = None,
+            labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOLabelArgs', 'SLOLabelArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            objectives: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]]] = None,
-            queries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOQueryArgs']]]]] = None) -> 'SLO':
+            objectives: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOObjectiveArgs', 'SLOObjectiveArgsDict']]]]] = None,
+            queries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOQueryArgs', 'SLOQueryArgsDict']]]]] = None) -> 'SLO':
         """
         Get an existing SLO resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -678,18 +683,18 @@ class SLO(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOAlertingArgs']]]] alertings: Configures the alerting rules that will be generated for each
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']]]] alertings: Configures the alerting rules that will be generated for each
                			time window associated with the SLO. Grafana SLOs can generate
                			alerts when the short-term error budget burn is very high, the
                			long-term error budget burn rate is high, or when the remaining
                			error budget is below a certain threshold. Annotations and Labels support templating.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
-        :param pulumi.Input[pulumi.InputType['SLODestinationDatasourceArgs']] destination_datasource: Destination Datasource sets the datasource defined for an SLO
+        :param pulumi.Input[Union['SLODestinationDatasourceArgs', 'SLODestinationDatasourceArgsDict']] destination_datasource: Destination Datasource sets the datasource defined for an SLO
         :param pulumi.Input[str] folder_uid: UID for the SLO folder
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOLabelArgs']]]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SLOLabelArgs', 'SLOLabelArgsDict']]]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOObjectiveArgs']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SLOQueryArgs']]]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SLOObjectiveArgs', 'SLOObjectiveArgsDict']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SLOQueryArgs', 'SLOQueryArgsDict']]]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -129,9 +134,6 @@ def get_service_account(name: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         org_id=pulumi.get(__ret__, 'org_id'),
         role=pulumi.get(__ret__, 'role'))
-
-
-@_utilities.lift_output_func(get_service_account)
 def get_service_account_output(name: Optional[pulumi.Input[str]] = None,
                                org_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceAccountResult]:
@@ -157,4 +159,14 @@ def get_service_account_output(name: Optional[pulumi.Input[str]] = None,
     :param str name: The name of the Service Account.
     :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['orgId'] = org_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:oss/getServiceAccount:getServiceAccount', __args__, opts=opts, typ=GetServiceAccountResult)
+    return __ret__.apply(lambda __response__: GetServiceAccountResult(
+        id=pulumi.get(__response__, 'id'),
+        is_disabled=pulumi.get(__response__, 'is_disabled'),
+        name=pulumi.get(__response__, 'name'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        role=pulumi.get(__response__, 'role')))

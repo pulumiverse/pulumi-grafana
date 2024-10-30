@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -240,9 +245,6 @@ def get_data_source(name: Optional[str] = None,
         uid=pulumi.get(__ret__, 'uid'),
         url=pulumi.get(__ret__, 'url'),
         username=pulumi.get(__ret__, 'username'))
-
-
-@_utilities.lift_output_func(get_data_source)
 def get_data_source_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                            org_id: Optional[pulumi.Input[Optional[str]]] = None,
                            uid: Optional[pulumi.Input[Optional[str]]] = None,
@@ -280,4 +282,23 @@ def get_data_source_output(name: Optional[pulumi.Input[Optional[str]]] = None,
 
     :param str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['orgId'] = org_id
+    __args__['uid'] = uid
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:oss/getDataSource:getDataSource', __args__, opts=opts, typ=GetDataSourceResult)
+    return __ret__.apply(lambda __response__: GetDataSourceResult(
+        access_mode=pulumi.get(__response__, 'access_mode'),
+        basic_auth_enabled=pulumi.get(__response__, 'basic_auth_enabled'),
+        basic_auth_username=pulumi.get(__response__, 'basic_auth_username'),
+        database_name=pulumi.get(__response__, 'database_name'),
+        id=pulumi.get(__response__, 'id'),
+        is_default=pulumi.get(__response__, 'is_default'),
+        json_data_encoded=pulumi.get(__response__, 'json_data_encoded'),
+        name=pulumi.get(__response__, 'name'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        type=pulumi.get(__response__, 'type'),
+        uid=pulumi.get(__response__, 'uid'),
+        url=pulumi.get(__response__, 'url'),
+        username=pulumi.get(__response__, 'username')))

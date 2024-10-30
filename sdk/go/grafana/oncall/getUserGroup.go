@@ -63,14 +63,20 @@ type GetUserGroupResult struct {
 
 func GetUserGroupOutput(ctx *pulumi.Context, args GetUserGroupOutputArgs, opts ...pulumi.InvokeOption) GetUserGroupResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetUserGroupResult, error) {
+		ApplyT(func(v interface{}) (GetUserGroupResultOutput, error) {
 			args := v.(GetUserGroupArgs)
-			r, err := GetUserGroup(ctx, &args, opts...)
-			var s GetUserGroupResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetUserGroupResult
+			secret, err := ctx.InvokePackageRaw("grafana:onCall/getUserGroup:getUserGroup", args, &rv, "", opts...)
+			if err != nil {
+				return GetUserGroupResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetUserGroupResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetUserGroupResultOutput), nil
+			}
+			return output, nil
 		}).(GetUserGroupResultOutput)
 }
 

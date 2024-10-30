@@ -66,14 +66,20 @@ type LookupOncallIntegrationResult struct {
 
 func LookupOncallIntegrationOutput(ctx *pulumi.Context, args LookupOncallIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupOncallIntegrationResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupOncallIntegrationResult, error) {
+		ApplyT(func(v interface{}) (LookupOncallIntegrationResultOutput, error) {
 			args := v.(LookupOncallIntegrationArgs)
-			r, err := LookupOncallIntegration(ctx, &args, opts...)
-			var s LookupOncallIntegrationResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupOncallIntegrationResult
+			secret, err := ctx.InvokePackageRaw("grafana:index/getOncallIntegration:getOncallIntegration", args, &rv, "", opts...)
+			if err != nil {
+				return LookupOncallIntegrationResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupOncallIntegrationResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupOncallIntegrationResultOutput), nil
+			}
+			return output, nil
 		}).(LookupOncallIntegrationResultOutput)
 }
 

@@ -15,7 +15,6 @@ import * as utilities from "../utilities";
  */
 export function getDashboards(args?: GetDashboardsArgs, opts?: pulumi.InvokeOptions): Promise<GetDashboardsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:oss/getDashboards:getDashboards", {
         "folderUids": args.folderUids,
@@ -81,7 +80,14 @@ export interface GetDashboardsResult {
  * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
  */
 export function getDashboardsOutput(args?: GetDashboardsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDashboardsResult> {
-    return pulumi.output(args).apply((a: any) => getDashboards(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:oss/getDashboards:getDashboards", {
+        "folderUids": args.folderUids,
+        "limit": args.limit,
+        "orgId": args.orgId,
+        "tags": args.tags,
+    }, opts);
 }
 
 /**

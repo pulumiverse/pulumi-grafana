@@ -41,7 +41,7 @@ type OutlierDetector struct {
 	// The name of the outlier detector.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
-	QueryParams pulumi.MapOutput `pulumi:"queryParams"`
+	QueryParams pulumi.StringMapOutput `pulumi:"queryParams"`
 }
 
 // NewOutlierDetector registers a new resource with the given unique name, arguments, and options.
@@ -110,7 +110,7 @@ type outlierDetectorState struct {
 	// The name of the outlier detector.
 	Name *string `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
-	QueryParams map[string]interface{} `pulumi:"queryParams"`
+	QueryParams map[string]string `pulumi:"queryParams"`
 }
 
 type OutlierDetectorState struct {
@@ -129,7 +129,7 @@ type OutlierDetectorState struct {
 	// The name of the outlier detector.
 	Name pulumi.StringPtrInput
 	// An object representing the query params to query Grafana with.
-	QueryParams pulumi.MapInput
+	QueryParams pulumi.StringMapInput
 }
 
 func (OutlierDetectorState) ElementType() reflect.Type {
@@ -152,7 +152,7 @@ type outlierDetectorArgs struct {
 	// The name of the outlier detector.
 	Name *string `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
-	QueryParams map[string]interface{} `pulumi:"queryParams"`
+	QueryParams map[string]string `pulumi:"queryParams"`
 }
 
 // The set of arguments for constructing a OutlierDetector resource.
@@ -172,7 +172,7 @@ type OutlierDetectorArgs struct {
 	// The name of the outlier detector.
 	Name pulumi.StringPtrInput
 	// An object representing the query params to query Grafana with.
-	QueryParams pulumi.MapInput
+	QueryParams pulumi.StringMapInput
 }
 
 func (OutlierDetectorArgs) ElementType() reflect.Type {
@@ -298,8 +298,8 @@ func (o OutlierDetectorOutput) Name() pulumi.StringOutput {
 }
 
 // An object representing the query params to query Grafana with.
-func (o OutlierDetectorOutput) QueryParams() pulumi.MapOutput {
-	return o.ApplyT(func(v *OutlierDetector) pulumi.MapOutput { return v.QueryParams }).(pulumi.MapOutput)
+func (o OutlierDetectorOutput) QueryParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *OutlierDetector) pulumi.StringMapOutput { return v.QueryParams }).(pulumi.StringMapOutput)
 }
 
 type OutlierDetectorArrayOutput struct{ *pulumi.OutputState }

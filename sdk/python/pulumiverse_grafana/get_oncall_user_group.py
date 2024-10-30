@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -88,9 +93,6 @@ def get_oncall_user_group(slack_handle: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         slack_handle=pulumi.get(__ret__, 'slack_handle'),
         slack_id=pulumi.get(__ret__, 'slack_id'))
-
-
-@_utilities.lift_output_func(get_oncall_user_group)
 def get_oncall_user_group_output(slack_handle: Optional[pulumi.Input[str]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallUserGroupResult]:
     """
@@ -106,4 +108,11 @@ def get_oncall_user_group_output(slack_handle: Optional[pulumi.Input[str]] = Non
     ```
     """
     pulumi.log.warn("""get_oncall_user_group is deprecated: grafana.index/getoncallusergroup.getOncallUserGroup has been deprecated in favor of grafana.oncall/getusergroup.getUserGroup""")
-    ...
+    __args__ = dict()
+    __args__['slackHandle'] = slack_handle
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:index/getOncallUserGroup:getOncallUserGroup', __args__, opts=opts, typ=GetOncallUserGroupResult)
+    return __ret__.apply(lambda __response__: GetOncallUserGroupResult(
+        id=pulumi.get(__response__, 'id'),
+        slack_handle=pulumi.get(__response__, 'slack_handle'),
+        slack_id=pulumi.get(__response__, 'slack_id')))

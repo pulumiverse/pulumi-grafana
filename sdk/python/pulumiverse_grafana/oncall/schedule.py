@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -326,7 +331,7 @@ class Schedule(pulumi.CustomResource):
                  ical_url_primary: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  shifts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 slack: Optional[pulumi.Input[pulumi.InputType['ScheduleSlackArgs']]] = None,
+                 slack: Optional[pulumi.Input[Union['ScheduleSlackArgs', 'ScheduleSlackArgsDict']]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
                  time_zone: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -347,7 +352,7 @@ class Schedule(pulumi.CustomResource):
         :param pulumi.Input[str] ical_url_primary: The URL of the external calendar iCal file.
         :param pulumi.Input[str] name: The schedule's name.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] shifts: The list of ID's of on-call shifts.
-        :param pulumi.Input[pulumi.InputType['ScheduleSlackArgs']] slack: The Slack-specific settings for a schedule.
+        :param pulumi.Input[Union['ScheduleSlackArgs', 'ScheduleSlackArgsDict']] slack: The Slack-specific settings for a schedule.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         :param pulumi.Input[str] time_zone: The schedule's time zone.
         :param pulumi.Input[str] type: The schedule's type. Valid values are `ical`, `calendar`.
@@ -387,7 +392,7 @@ class Schedule(pulumi.CustomResource):
                  ical_url_primary: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  shifts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 slack: Optional[pulumi.Input[pulumi.InputType['ScheduleSlackArgs']]] = None,
+                 slack: Optional[pulumi.Input[Union['ScheduleSlackArgs', 'ScheduleSlackArgsDict']]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
                  time_zone: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -428,7 +433,7 @@ class Schedule(pulumi.CustomResource):
             ical_url_primary: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             shifts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            slack: Optional[pulumi.Input[pulumi.InputType['ScheduleSlackArgs']]] = None,
+            slack: Optional[pulumi.Input[Union['ScheduleSlackArgs', 'ScheduleSlackArgsDict']]] = None,
             team_id: Optional[pulumi.Input[str]] = None,
             time_zone: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'Schedule':
@@ -444,7 +449,7 @@ class Schedule(pulumi.CustomResource):
         :param pulumi.Input[str] ical_url_primary: The URL of the external calendar iCal file.
         :param pulumi.Input[str] name: The schedule's name.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] shifts: The list of ID's of on-call shifts.
-        :param pulumi.Input[pulumi.InputType['ScheduleSlackArgs']] slack: The Slack-specific settings for a schedule.
+        :param pulumi.Input[Union['ScheduleSlackArgs', 'ScheduleSlackArgsDict']] slack: The Slack-specific settings for a schedule.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         :param pulumi.Input[str] time_zone: The schedule's time zone.
         :param pulumi.Input[str] type: The schedule's type. Valid values are `ical`, `calendar`.

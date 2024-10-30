@@ -66,14 +66,20 @@ type GetOncallTeamResult struct {
 
 func GetOncallTeamOutput(ctx *pulumi.Context, args GetOncallTeamOutputArgs, opts ...pulumi.InvokeOption) GetOncallTeamResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetOncallTeamResult, error) {
+		ApplyT(func(v interface{}) (GetOncallTeamResultOutput, error) {
 			args := v.(GetOncallTeamArgs)
-			r, err := GetOncallTeam(ctx, &args, opts...)
-			var s GetOncallTeamResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetOncallTeamResult
+			secret, err := ctx.InvokePackageRaw("grafana:index/getOncallTeam:getOncallTeam", args, &rv, "", opts...)
+			if err != nil {
+				return GetOncallTeamResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetOncallTeamResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetOncallTeamResultOutput), nil
+			}
+			return output, nil
 		}).(GetOncallTeamResultOutput)
 }
 

@@ -33,7 +33,6 @@ import * as utilities from "./utilities";
 /** @deprecated grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam */
 export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamResult> {
     pulumi.log.warn("getTeam is deprecated: grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam")
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getTeam:getTeam", {
         "name": args.name,
@@ -94,7 +93,13 @@ export interface GetTeamResult {
  */
 /** @deprecated grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam */
 export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamResult> {
-    return pulumi.output(args).apply((a: any) => getTeam(a, opts))
+    pulumi.log.warn("getTeam is deprecated: grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam")
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getTeam:getTeam", {
+        "name": args.name,
+        "orgId": args.orgId,
+        "readTeamSync": args.readTeamSync,
+    }, opts);
 }
 
 /**

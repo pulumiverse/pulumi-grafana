@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -286,7 +291,7 @@ class NotificationPolicy(pulumi.CustomResource):
                  group_interval: Optional[pulumi.Input[str]] = None,
                  group_wait: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyPolicyArgs']]]]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NotificationPolicyPolicyArgs', 'NotificationPolicyPolicyArgsDict']]]]] = None,
                  repeat_interval: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -307,18 +312,18 @@ class NotificationPolicy(pulumi.CustomResource):
 
         a_contact_point = grafana.alerting.ContactPoint("a_contact_point",
             name="A Contact Point",
-            emails=[grafana.alerting.ContactPointEmailArgs(
-                addresses=[
+            emails=[{
+                "addresses": [
                     "one@company.org",
                     "two@company.org",
                 ],
-                message="{{ len .Alerts.Firing }} firing.",
-            )])
+                "message": "{{ len .Alerts.Firing }} firing.",
+            }])
         a_mute_timing = grafana.alerting.MuteTiming("a_mute_timing",
             name="Some Mute Timing",
-            intervals=[grafana.alerting.MuteTimingIntervalArgs(
-                weekdays=["monday"],
-            )])
+            intervals=[{
+                "weekdays": ["monday"],
+            }])
         my_notification_policy = grafana.alerting.NotificationPolicy("my_notification_policy",
             group_bies=["..."],
             contact_point=a_contact_point.name,
@@ -326,49 +331,49 @@ class NotificationPolicy(pulumi.CustomResource):
             group_interval="6m",
             repeat_interval="3h",
             policies=[
-                grafana.alerting.NotificationPolicyPolicyArgs(
-                    matchers=[
-                        grafana.alerting.NotificationPolicyPolicyMatcherArgs(
-                            label="mylabel",
-                            match="=",
-                            value="myvalue",
-                        ),
-                        grafana.alerting.NotificationPolicyPolicyMatcherArgs(
-                            label="alertname",
-                            match="=",
-                            value="CPU Usage",
-                        ),
-                        grafana.alerting.NotificationPolicyPolicyMatcherArgs(
-                            label="Name",
-                            match="=~",
-                            value="host.*|host-b.*",
-                        ),
+                {
+                    "matchers": [
+                        {
+                            "label": "mylabel",
+                            "match": "=",
+                            "value": "myvalue",
+                        },
+                        {
+                            "label": "alertname",
+                            "match": "=",
+                            "value": "CPU Usage",
+                        },
+                        {
+                            "label": "Name",
+                            "match": "=~",
+                            "value": "host.*|host-b.*",
+                        },
                     ],
-                    contact_point=a_contact_point.name,
-                    continue_=True,
-                    mute_timings=[a_mute_timing.name],
-                    group_wait="45s",
-                    group_interval="6m",
-                    repeat_interval="3h",
-                    policies=[grafana.alerting.NotificationPolicyPolicyPolicyArgs(
-                        matchers=[grafana.alerting.NotificationPolicyPolicyPolicyMatcherArgs(
-                            label="sublabel",
-                            match="=",
-                            value="subvalue",
-                        )],
-                        contact_point=a_contact_point.name,
-                        group_bies=["..."],
-                    )],
-                ),
-                grafana.alerting.NotificationPolicyPolicyArgs(
-                    matchers=[grafana.alerting.NotificationPolicyPolicyMatcherArgs(
-                        label="anotherlabel",
-                        match="=~",
-                        value="another value.*",
-                    )],
-                    contact_point=a_contact_point.name,
-                    group_bies=["..."],
-                ),
+                    "contact_point": a_contact_point.name,
+                    "continue_": True,
+                    "mute_timings": [a_mute_timing.name],
+                    "group_wait": "45s",
+                    "group_interval": "6m",
+                    "repeat_interval": "3h",
+                    "policies": [{
+                        "matchers": [{
+                            "label": "sublabel",
+                            "match": "=",
+                            "value": "subvalue",
+                        }],
+                        "contact_point": a_contact_point.name,
+                        "group_bies": ["..."],
+                    }],
+                },
+                {
+                    "matchers": [{
+                        "label": "anotherlabel",
+                        "match": "=~",
+                        "value": "another value.*",
+                    }],
+                    "contact_point": a_contact_point.name,
+                    "group_bies": ["..."],
+                },
             ])
         ```
 
@@ -389,7 +394,7 @@ class NotificationPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyPolicyArgs']]]] policies: Routing rules for specific label sets.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationPolicyPolicyArgs', 'NotificationPolicyPolicyArgsDict']]]] policies: Routing rules for specific label sets.
         :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
         ...
@@ -416,18 +421,18 @@ class NotificationPolicy(pulumi.CustomResource):
 
         a_contact_point = grafana.alerting.ContactPoint("a_contact_point",
             name="A Contact Point",
-            emails=[grafana.alerting.ContactPointEmailArgs(
-                addresses=[
+            emails=[{
+                "addresses": [
                     "one@company.org",
                     "two@company.org",
                 ],
-                message="{{ len .Alerts.Firing }} firing.",
-            )])
+                "message": "{{ len .Alerts.Firing }} firing.",
+            }])
         a_mute_timing = grafana.alerting.MuteTiming("a_mute_timing",
             name="Some Mute Timing",
-            intervals=[grafana.alerting.MuteTimingIntervalArgs(
-                weekdays=["monday"],
-            )])
+            intervals=[{
+                "weekdays": ["monday"],
+            }])
         my_notification_policy = grafana.alerting.NotificationPolicy("my_notification_policy",
             group_bies=["..."],
             contact_point=a_contact_point.name,
@@ -435,49 +440,49 @@ class NotificationPolicy(pulumi.CustomResource):
             group_interval="6m",
             repeat_interval="3h",
             policies=[
-                grafana.alerting.NotificationPolicyPolicyArgs(
-                    matchers=[
-                        grafana.alerting.NotificationPolicyPolicyMatcherArgs(
-                            label="mylabel",
-                            match="=",
-                            value="myvalue",
-                        ),
-                        grafana.alerting.NotificationPolicyPolicyMatcherArgs(
-                            label="alertname",
-                            match="=",
-                            value="CPU Usage",
-                        ),
-                        grafana.alerting.NotificationPolicyPolicyMatcherArgs(
-                            label="Name",
-                            match="=~",
-                            value="host.*|host-b.*",
-                        ),
+                {
+                    "matchers": [
+                        {
+                            "label": "mylabel",
+                            "match": "=",
+                            "value": "myvalue",
+                        },
+                        {
+                            "label": "alertname",
+                            "match": "=",
+                            "value": "CPU Usage",
+                        },
+                        {
+                            "label": "Name",
+                            "match": "=~",
+                            "value": "host.*|host-b.*",
+                        },
                     ],
-                    contact_point=a_contact_point.name,
-                    continue_=True,
-                    mute_timings=[a_mute_timing.name],
-                    group_wait="45s",
-                    group_interval="6m",
-                    repeat_interval="3h",
-                    policies=[grafana.alerting.NotificationPolicyPolicyPolicyArgs(
-                        matchers=[grafana.alerting.NotificationPolicyPolicyPolicyMatcherArgs(
-                            label="sublabel",
-                            match="=",
-                            value="subvalue",
-                        )],
-                        contact_point=a_contact_point.name,
-                        group_bies=["..."],
-                    )],
-                ),
-                grafana.alerting.NotificationPolicyPolicyArgs(
-                    matchers=[grafana.alerting.NotificationPolicyPolicyMatcherArgs(
-                        label="anotherlabel",
-                        match="=~",
-                        value="another value.*",
-                    )],
-                    contact_point=a_contact_point.name,
-                    group_bies=["..."],
-                ),
+                    "contact_point": a_contact_point.name,
+                    "continue_": True,
+                    "mute_timings": [a_mute_timing.name],
+                    "group_wait": "45s",
+                    "group_interval": "6m",
+                    "repeat_interval": "3h",
+                    "policies": [{
+                        "matchers": [{
+                            "label": "sublabel",
+                            "match": "=",
+                            "value": "subvalue",
+                        }],
+                        "contact_point": a_contact_point.name,
+                        "group_bies": ["..."],
+                    }],
+                },
+                {
+                    "matchers": [{
+                        "label": "anotherlabel",
+                        "match": "=~",
+                        "value": "another value.*",
+                    }],
+                    "contact_point": a_contact_point.name,
+                    "group_bies": ["..."],
+                },
             ])
         ```
 
@@ -512,7 +517,7 @@ class NotificationPolicy(pulumi.CustomResource):
                  group_interval: Optional[pulumi.Input[str]] = None,
                  group_wait: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyPolicyArgs']]]]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NotificationPolicyPolicyArgs', 'NotificationPolicyPolicyArgsDict']]]]] = None,
                  repeat_interval: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -553,7 +558,7 @@ class NotificationPolicy(pulumi.CustomResource):
             group_interval: Optional[pulumi.Input[str]] = None,
             group_wait: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
-            policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyPolicyArgs']]]]] = None,
+            policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NotificationPolicyPolicyArgs', 'NotificationPolicyPolicyArgsDict']]]]] = None,
             repeat_interval: Optional[pulumi.Input[str]] = None) -> 'NotificationPolicy':
         """
         Get an existing NotificationPolicy resource's state with the given name, id, and optional extra
@@ -567,7 +572,7 @@ class NotificationPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyPolicyArgs']]]] policies: Routing rules for specific label sets.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationPolicyPolicyArgs', 'NotificationPolicyPolicyArgsDict']]]] policies: Routing rules for specific label sets.
         :param pulumi.Input[str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

@@ -64,14 +64,20 @@ type LookupEscalationChainResult struct {
 
 func LookupEscalationChainOutput(ctx *pulumi.Context, args LookupEscalationChainOutputArgs, opts ...pulumi.InvokeOption) LookupEscalationChainResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupEscalationChainResult, error) {
+		ApplyT(func(v interface{}) (LookupEscalationChainResultOutput, error) {
 			args := v.(LookupEscalationChainArgs)
-			r, err := LookupEscalationChain(ctx, &args, opts...)
-			var s LookupEscalationChainResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupEscalationChainResult
+			secret, err := ctx.InvokePackageRaw("grafana:onCall/getEscalationChain:getEscalationChain", args, &rv, "", opts...)
+			if err != nil {
+				return LookupEscalationChainResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupEscalationChainResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupEscalationChainResultOutput), nil
+			}
+			return output, nil
 		}).(LookupEscalationChainResultOutput)
 }
 

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -525,9 +530,6 @@ def get_stack(slug: Optional[str] = None,
         traces_url=pulumi.get(__ret__, 'traces_url'),
         traces_user_id=pulumi.get(__ret__, 'traces_user_id'),
         url=pulumi.get(__ret__, 'url'))
-
-
-@_utilities.lift_output_func(get_stack)
 def get_stack_output(slug: Optional[pulumi.Input[str]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStackResult]:
     """
@@ -552,4 +554,47 @@ def get_stack_output(slug: Optional[pulumi.Input[str]] = None,
     :param str slug: Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance
            available at “https://\\n\\n.grafana.net".
     """
-    ...
+    __args__ = dict()
+    __args__['slug'] = slug
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('grafana:cloud/getStack:getStack', __args__, opts=opts, typ=GetStackResult)
+    return __ret__.apply(lambda __response__: GetStackResult(
+        alertmanager_name=pulumi.get(__response__, 'alertmanager_name'),
+        alertmanager_status=pulumi.get(__response__, 'alertmanager_status'),
+        alertmanager_url=pulumi.get(__response__, 'alertmanager_url'),
+        alertmanager_user_id=pulumi.get(__response__, 'alertmanager_user_id'),
+        description=pulumi.get(__response__, 'description'),
+        graphite_name=pulumi.get(__response__, 'graphite_name'),
+        graphite_status=pulumi.get(__response__, 'graphite_status'),
+        graphite_url=pulumi.get(__response__, 'graphite_url'),
+        graphite_user_id=pulumi.get(__response__, 'graphite_user_id'),
+        id=pulumi.get(__response__, 'id'),
+        influx_url=pulumi.get(__response__, 'influx_url'),
+        labels=pulumi.get(__response__, 'labels'),
+        logs_name=pulumi.get(__response__, 'logs_name'),
+        logs_status=pulumi.get(__response__, 'logs_status'),
+        logs_url=pulumi.get(__response__, 'logs_url'),
+        logs_user_id=pulumi.get(__response__, 'logs_user_id'),
+        name=pulumi.get(__response__, 'name'),
+        org_id=pulumi.get(__response__, 'org_id'),
+        org_name=pulumi.get(__response__, 'org_name'),
+        org_slug=pulumi.get(__response__, 'org_slug'),
+        otlp_url=pulumi.get(__response__, 'otlp_url'),
+        profiles_name=pulumi.get(__response__, 'profiles_name'),
+        profiles_status=pulumi.get(__response__, 'profiles_status'),
+        profiles_url=pulumi.get(__response__, 'profiles_url'),
+        profiles_user_id=pulumi.get(__response__, 'profiles_user_id'),
+        prometheus_name=pulumi.get(__response__, 'prometheus_name'),
+        prometheus_remote_endpoint=pulumi.get(__response__, 'prometheus_remote_endpoint'),
+        prometheus_remote_write_endpoint=pulumi.get(__response__, 'prometheus_remote_write_endpoint'),
+        prometheus_status=pulumi.get(__response__, 'prometheus_status'),
+        prometheus_url=pulumi.get(__response__, 'prometheus_url'),
+        prometheus_user_id=pulumi.get(__response__, 'prometheus_user_id'),
+        region_slug=pulumi.get(__response__, 'region_slug'),
+        slug=pulumi.get(__response__, 'slug'),
+        status=pulumi.get(__response__, 'status'),
+        traces_name=pulumi.get(__response__, 'traces_name'),
+        traces_status=pulumi.get(__response__, 'traces_status'),
+        traces_url=pulumi.get(__response__, 'traces_url'),
+        traces_user_id=pulumi.get(__response__, 'traces_user_id'),
+        url=pulumi.get(__response__, 'url')))

@@ -25,7 +25,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getFolder(args: GetFolderArgs, opts?: pulumi.InvokeOptions): Promise<GetFolderResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:oss/getFolder:getFolder", {
         "orgId": args.orgId,
@@ -97,7 +96,11 @@ export interface GetFolderResult {
  * ```
  */
 export function getFolderOutput(args: GetFolderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFolderResult> {
-    return pulumi.output(args).apply((a: any) => getFolder(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:oss/getFolder:getFolder", {
+        "orgId": args.orgId,
+        "title": args.title,
+    }, opts);
 }
 
 /**

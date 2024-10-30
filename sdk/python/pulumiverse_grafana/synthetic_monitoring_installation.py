@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['SyntheticMonitoringInstallationArgs', 'SyntheticMonitoringInstallation']
@@ -193,10 +198,10 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
                 "logs:write",
                 "traces:write",
             ],
-            realms=[grafana.cloud.AccessPolicyRealmArgs(
-                type="stack",
-                identifier=sm_stack.id,
-            )])
+            realms=[{
+                "type": "stack",
+                "identifier": sm_stack.id,
+            }])
         sm_metrics_publish_access_policy_token = grafana.cloud.AccessPolicyToken("sm_metrics_publish",
             region=cloud_region,
             access_policy_id=sm_metrics_publish.policy_id,
@@ -261,10 +266,10 @@ class SyntheticMonitoringInstallation(pulumi.CustomResource):
                 "logs:write",
                 "traces:write",
             ],
-            realms=[grafana.cloud.AccessPolicyRealmArgs(
-                type="stack",
-                identifier=sm_stack.id,
-            )])
+            realms=[{
+                "type": "stack",
+                "identifier": sm_stack.id,
+            }])
         sm_metrics_publish_access_policy_token = grafana.cloud.AccessPolicyToken("sm_metrics_publish",
             region=cloud_region,
             access_policy_id=sm_metrics_publish.policy_id,

@@ -4,125 +4,258 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'CloudAccessPolicyRealmArgs',
+    'CloudAccessPolicyRealmArgsDict',
     'CloudAccessPolicyRealmLabelPolicyArgs',
+    'CloudAccessPolicyRealmLabelPolicyArgsDict',
     'ContactPointAlertmanagerArgs',
+    'ContactPointAlertmanagerArgsDict',
     'ContactPointDingdingArgs',
+    'ContactPointDingdingArgsDict',
     'ContactPointDiscordArgs',
+    'ContactPointDiscordArgsDict',
     'ContactPointEmailArgs',
+    'ContactPointEmailArgsDict',
     'ContactPointGooglechatArgs',
+    'ContactPointGooglechatArgsDict',
     'ContactPointKafkaArgs',
+    'ContactPointKafkaArgsDict',
     'ContactPointLineArgs',
+    'ContactPointLineArgsDict',
     'ContactPointOncallArgs',
+    'ContactPointOncallArgsDict',
     'ContactPointOpsgenyArgs',
+    'ContactPointOpsgenyArgsDict',
     'ContactPointOpsgenyResponderArgs',
+    'ContactPointOpsgenyResponderArgsDict',
     'ContactPointPagerdutyArgs',
+    'ContactPointPagerdutyArgsDict',
     'ContactPointPushoverArgs',
+    'ContactPointPushoverArgsDict',
     'ContactPointSensugoArgs',
+    'ContactPointSensugoArgsDict',
     'ContactPointSlackArgs',
+    'ContactPointSlackArgsDict',
     'ContactPointSnArgs',
+    'ContactPointSnArgsDict',
     'ContactPointTeamArgs',
+    'ContactPointTeamArgsDict',
     'ContactPointTelegramArgs',
+    'ContactPointTelegramArgsDict',
     'ContactPointThreemaArgs',
+    'ContactPointThreemaArgsDict',
     'ContactPointVictoropArgs',
+    'ContactPointVictoropArgsDict',
     'ContactPointWebexArgs',
+    'ContactPointWebexArgsDict',
     'ContactPointWebhookArgs',
+    'ContactPointWebhookArgsDict',
     'ContactPointWecomArgs',
+    'ContactPointWecomArgsDict',
     'DashboardPermissionPermissionArgs',
+    'DashboardPermissionPermissionArgsDict',
     'DataSourcePermissionPermissionArgs',
+    'DataSourcePermissionPermissionArgsDict',
     'FolderPermissionPermissionArgs',
+    'FolderPermissionPermissionArgsDict',
     'MachineLearningHolidayCustomPeriodArgs',
+    'MachineLearningHolidayCustomPeriodArgsDict',
     'MachineLearningOutlierDetectorAlgorithmArgs',
+    'MachineLearningOutlierDetectorAlgorithmArgsDict',
     'MachineLearningOutlierDetectorAlgorithmConfigArgs',
+    'MachineLearningOutlierDetectorAlgorithmConfigArgsDict',
     'MuteTimingIntervalArgs',
+    'MuteTimingIntervalArgsDict',
     'MuteTimingIntervalTimeArgs',
+    'MuteTimingIntervalTimeArgsDict',
     'NotificationPolicyPolicyArgs',
+    'NotificationPolicyPolicyArgsDict',
     'NotificationPolicyPolicyMatcherArgs',
+    'NotificationPolicyPolicyMatcherArgsDict',
     'NotificationPolicyPolicyPolicyArgs',
+    'NotificationPolicyPolicyPolicyArgsDict',
     'NotificationPolicyPolicyPolicyMatcherArgs',
+    'NotificationPolicyPolicyPolicyMatcherArgsDict',
     'NotificationPolicyPolicyPolicyPolicyArgs',
+    'NotificationPolicyPolicyPolicyPolicyArgsDict',
     'NotificationPolicyPolicyPolicyPolicyMatcherArgs',
+    'NotificationPolicyPolicyPolicyPolicyMatcherArgsDict',
     'NotificationPolicyPolicyPolicyPolicyPolicyArgs',
+    'NotificationPolicyPolicyPolicyPolicyPolicyArgsDict',
     'NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs',
+    'NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgsDict',
     'OncallIntegrationDefaultRouteArgs',
+    'OncallIntegrationDefaultRouteArgsDict',
     'OncallIntegrationDefaultRouteMsteamsArgs',
+    'OncallIntegrationDefaultRouteMsteamsArgsDict',
     'OncallIntegrationDefaultRouteSlackArgs',
+    'OncallIntegrationDefaultRouteSlackArgsDict',
     'OncallIntegrationDefaultRouteTelegramArgs',
+    'OncallIntegrationDefaultRouteTelegramArgsDict',
     'OncallIntegrationTemplatesArgs',
+    'OncallIntegrationTemplatesArgsDict',
     'OncallIntegrationTemplatesEmailArgs',
+    'OncallIntegrationTemplatesEmailArgsDict',
     'OncallIntegrationTemplatesMicrosoftTeamsArgs',
+    'OncallIntegrationTemplatesMicrosoftTeamsArgsDict',
     'OncallIntegrationTemplatesPhoneCallArgs',
+    'OncallIntegrationTemplatesPhoneCallArgsDict',
     'OncallIntegrationTemplatesSlackArgs',
+    'OncallIntegrationTemplatesSlackArgsDict',
     'OncallIntegrationTemplatesSmsArgs',
+    'OncallIntegrationTemplatesSmsArgsDict',
     'OncallIntegrationTemplatesTelegramArgs',
+    'OncallIntegrationTemplatesTelegramArgsDict',
     'OncallIntegrationTemplatesWebArgs',
+    'OncallIntegrationTemplatesWebArgsDict',
     'OncallRouteMsteamsArgs',
+    'OncallRouteMsteamsArgsDict',
     'OncallRouteSlackArgs',
+    'OncallRouteSlackArgsDict',
     'OncallRouteTelegramArgs',
+    'OncallRouteTelegramArgsDict',
     'OncallScheduleSlackArgs',
+    'OncallScheduleSlackArgsDict',
     'PlaylistItemArgs',
+    'PlaylistItemArgsDict',
     'ReportDashboardArgs',
+    'ReportDashboardArgsDict',
     'ReportDashboardTimeRangeArgs',
+    'ReportDashboardTimeRangeArgsDict',
     'ReportScheduleArgs',
+    'ReportScheduleArgsDict',
     'RolePermissionArgs',
+    'RolePermissionArgsDict',
     'RuleGroupRuleArgs',
+    'RuleGroupRuleArgsDict',
     'RuleGroupRuleDataArgs',
+    'RuleGroupRuleDataArgsDict',
     'RuleGroupRuleDataRelativeTimeRangeArgs',
+    'RuleGroupRuleDataRelativeTimeRangeArgsDict',
     'RuleGroupRuleNotificationSettingsArgs',
+    'RuleGroupRuleNotificationSettingsArgsDict',
     'SLOAlertingArgs',
+    'SLOAlertingArgsDict',
     'SLOAlertingAdvancedOptionsArgs',
+    'SLOAlertingAdvancedOptionsArgsDict',
     'SLOAlertingAnnotationArgs',
+    'SLOAlertingAnnotationArgsDict',
     'SLOAlertingFastburnArgs',
+    'SLOAlertingFastburnArgsDict',
     'SLOAlertingFastburnAnnotationArgs',
+    'SLOAlertingFastburnAnnotationArgsDict',
     'SLOAlertingFastburnLabelArgs',
+    'SLOAlertingFastburnLabelArgsDict',
     'SLOAlertingLabelArgs',
+    'SLOAlertingLabelArgsDict',
     'SLOAlertingSlowburnArgs',
+    'SLOAlertingSlowburnArgsDict',
     'SLOAlertingSlowburnAnnotationArgs',
+    'SLOAlertingSlowburnAnnotationArgsDict',
     'SLOAlertingSlowburnLabelArgs',
+    'SLOAlertingSlowburnLabelArgsDict',
     'SLODestinationDatasourceArgs',
+    'SLODestinationDatasourceArgsDict',
     'SLOLabelArgs',
+    'SLOLabelArgsDict',
     'SLOObjectiveArgs',
+    'SLOObjectiveArgsDict',
     'SLOQueryArgs',
+    'SLOQueryArgsDict',
     'SLOQueryFreeformArgs',
+    'SLOQueryFreeformArgsDict',
     'SLOQueryRatioArgs',
+    'SLOQueryRatioArgsDict',
     'ServiceAccountPermissionPermissionArgs',
+    'ServiceAccountPermissionPermissionArgsDict',
     'SsoSettingsOauth2SettingsArgs',
+    'SsoSettingsOauth2SettingsArgsDict',
     'SsoSettingsSamlSettingsArgs',
+    'SsoSettingsSamlSettingsArgsDict',
     'SyntheticMonitoringCheckSettingsArgs',
+    'SyntheticMonitoringCheckSettingsArgsDict',
     'SyntheticMonitoringCheckSettingsDnsArgs',
+    'SyntheticMonitoringCheckSettingsDnsArgsDict',
     'SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs',
+    'SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgsDict',
     'SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs',
+    'SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgsDict',
     'SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs',
+    'SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgsDict',
     'SyntheticMonitoringCheckSettingsGrpcArgs',
+    'SyntheticMonitoringCheckSettingsGrpcArgsDict',
     'SyntheticMonitoringCheckSettingsGrpcTlsConfigArgs',
+    'SyntheticMonitoringCheckSettingsGrpcTlsConfigArgsDict',
     'SyntheticMonitoringCheckSettingsHttpArgs',
+    'SyntheticMonitoringCheckSettingsHttpArgsDict',
     'SyntheticMonitoringCheckSettingsHttpBasicAuthArgs',
+    'SyntheticMonitoringCheckSettingsHttpBasicAuthArgsDict',
     'SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs',
+    'SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgsDict',
     'SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs',
+    'SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgsDict',
     'SyntheticMonitoringCheckSettingsHttpTlsConfigArgs',
+    'SyntheticMonitoringCheckSettingsHttpTlsConfigArgsDict',
     'SyntheticMonitoringCheckSettingsMultihttpArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpArgsDict',
     'SyntheticMonitoringCheckSettingsMultihttpEntryArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryArgsDict',
     'SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgsDict',
     'SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgsDict',
     'SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgsDict',
     'SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgsDict',
     'SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgsDict',
     'SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs',
+    'SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgsDict',
     'SyntheticMonitoringCheckSettingsPingArgs',
+    'SyntheticMonitoringCheckSettingsPingArgsDict',
     'SyntheticMonitoringCheckSettingsScriptedArgs',
+    'SyntheticMonitoringCheckSettingsScriptedArgsDict',
     'SyntheticMonitoringCheckSettingsTcpArgs',
+    'SyntheticMonitoringCheckSettingsTcpArgsDict',
     'SyntheticMonitoringCheckSettingsTcpQueryResponseArgs',
+    'SyntheticMonitoringCheckSettingsTcpQueryResponseArgsDict',
     'SyntheticMonitoringCheckSettingsTcpTlsConfigArgs',
+    'SyntheticMonitoringCheckSettingsTcpTlsConfigArgsDict',
     'SyntheticMonitoringCheckSettingsTracerouteArgs',
+    'SyntheticMonitoringCheckSettingsTracerouteArgsDict',
     'TeamPreferencesArgs',
+    'TeamPreferencesArgsDict',
     'TeamTeamSyncArgs',
+    'TeamTeamSyncArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class CloudAccessPolicyRealmArgsDict(TypedDict):
+        identifier: pulumi.Input[str]
+        """
+        The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
+        """
+        type: pulumi.Input[str]
+        """
+        Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+        """
+        label_policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['CloudAccessPolicyRealmLabelPolicyArgsDict']]]]
+elif False:
+    CloudAccessPolicyRealmArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CloudAccessPolicyRealmArgs:
@@ -173,6 +306,15 @@ class CloudAccessPolicyRealmArgs:
         pulumi.set(self, "label_policies", value)
 
 
+if not MYPY:
+    class CloudAccessPolicyRealmLabelPolicyArgsDict(TypedDict):
+        selector: pulumi.Input[str]
+        """
+        The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+        """
+elif False:
+    CloudAccessPolicyRealmLabelPolicyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CloudAccessPolicyRealmLabelPolicyArgs:
     def __init__(__self__, *,
@@ -194,6 +336,35 @@ class CloudAccessPolicyRealmLabelPolicyArgs:
     def selector(self, value: pulumi.Input[str]):
         pulumi.set(self, "selector", value)
 
+
+if not MYPY:
+    class ContactPointAlertmanagerArgsDict(TypedDict):
+        url: pulumi.Input[str]
+        """
+        The URL of the Alertmanager instance.
+        """
+        basic_auth_password: NotRequired[pulumi.Input[str]]
+        """
+        The password component of the basic auth credentials to use.
+        """
+        basic_auth_user: NotRequired[pulumi.Input[str]]
+        """
+        The username component of the basic auth credentials to use.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointAlertmanagerArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ContactPointAlertmanagerArgs:
@@ -296,6 +467,39 @@ class ContactPointAlertmanagerArgs:
     def uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uid", value)
 
+
+if not MYPY:
+    class ContactPointDingdingArgsDict(TypedDict):
+        url: pulumi.Input[str]
+        """
+        The DingDing webhook URL.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        The templated content of the message.
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        The format of message to send - either 'link' or 'actionCard'
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        The templated title of the message.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointDingdingArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ContactPointDingdingArgs:
@@ -414,6 +618,43 @@ class ContactPointDingdingArgs:
     def uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uid", value)
 
+
+if not MYPY:
+    class ContactPointDiscordArgsDict(TypedDict):
+        url: pulumi.Input[str]
+        """
+        The discord webhook URL.
+        """
+        avatar_url: NotRequired[pulumi.Input[str]]
+        """
+        The URL of a custom avatar image to use. Defaults to ``.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        The templated content of the message. Defaults to ``.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        The templated content of the title.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+        use_discord_username: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to use the bot account's plain username instead of "Grafana." Defaults to `false`.
+        """
+elif False:
+    ContactPointDiscordArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ContactPointDiscordArgs:
@@ -549,6 +790,39 @@ class ContactPointDiscordArgs:
         pulumi.set(self, "use_discord_username", value)
 
 
+if not MYPY:
+    class ContactPointEmailArgsDict(TypedDict):
+        addresses: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        The addresses to send emails to.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        The templated content of the email. Defaults to ``.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        single_email: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `false`.
+        """
+        subject: NotRequired[pulumi.Input[str]]
+        """
+        The templated subject line of the email. Defaults to ``.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointEmailArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ContactPointEmailArgs:
     def __init__(__self__, *,
@@ -667,6 +941,35 @@ class ContactPointEmailArgs:
         pulumi.set(self, "uid", value)
 
 
+if not MYPY:
+    class ContactPointGooglechatArgsDict(TypedDict):
+        url: pulumi.Input[str]
+        """
+        The Google Chat webhook URL.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        The templated content of the message.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        The templated content of the title.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointGooglechatArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ContactPointGooglechatArgs:
     def __init__(__self__, *,
@@ -768,6 +1071,55 @@ class ContactPointGooglechatArgs:
     def uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uid", value)
 
+
+if not MYPY:
+    class ContactPointKafkaArgsDict(TypedDict):
+        rest_proxy_url: pulumi.Input[str]
+        """
+        The URL of the Kafka REST proxy to send requests to.
+        """
+        topic: pulumi.Input[str]
+        """
+        The name of the Kafka topic to publish to.
+        """
+        api_version: NotRequired[pulumi.Input[str]]
+        """
+        The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+        """
+        cluster_id: NotRequired[pulumi.Input[str]]
+        """
+        The Id of cluster to use when contacting the Kafka REST Server. Required api_version to be 'v3'
+        """
+        description: NotRequired[pulumi.Input[str]]
+        """
+        The templated description of the Kafka message.
+        """
+        details: NotRequired[pulumi.Input[str]]
+        """
+        The templated details to include with the message.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The password to use when making a call to the Kafka REST Proxy
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The user name to use when making a call to the Kafka REST Proxy
+        """
+elif False:
+    ContactPointKafkaArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ContactPointKafkaArgs:
@@ -950,6 +1302,35 @@ class ContactPointKafkaArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class ContactPointLineArgsDict(TypedDict):
+        token: pulumi.Input[str]
+        """
+        The bearer token used to authorize the client.
+        """
+        description: NotRequired[pulumi.Input[str]]
+        """
+        The templated description of the message.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        The templated title of the message.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointLineArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ContactPointLineArgs:
     def __init__(__self__, *,
@@ -1051,6 +1432,59 @@ class ContactPointLineArgs:
     def uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uid", value)
 
+
+if not MYPY:
+    class ContactPointOncallArgsDict(TypedDict):
+        url: pulumi.Input[str]
+        """
+        The URL to send webhook requests to.
+        """
+        authorization_credentials: NotRequired[pulumi.Input[str]]
+        """
+        Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+        """
+        authorization_scheme: NotRequired[pulumi.Input[str]]
+        """
+        Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+        """
+        basic_auth_password: NotRequired[pulumi.Input[str]]
+        """
+        The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+        """
+        basic_auth_user: NotRequired[pulumi.Input[str]]
+        """
+        The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        http_method: NotRequired[pulumi.Input[str]]
+        """
+        The HTTP method to use in the request. Defaults to `POST`.
+        """
+        max_alerts: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Custom message. You can use template variables.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Templated title of the message.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointOncallArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ContactPointOncallArgs:
@@ -1250,6 +1684,55 @@ class ContactPointOncallArgs:
         pulumi.set(self, "uid", value)
 
 
+if not MYPY:
+    class ContactPointOpsgenyArgsDict(TypedDict):
+        api_key: pulumi.Input[str]
+        """
+        The OpsGenie API key to use.
+        """
+        auto_close: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to auto-close alerts in OpsGenie when they resolve in the Alertmanager.
+        """
+        description: NotRequired[pulumi.Input[str]]
+        """
+        A templated high-level description to use for the alert.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        The templated content of the message.
+        """
+        override_priority: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to allow the alert priority to be configured via the value of the `og_priority` annotation on the alert.
+        """
+        responders: NotRequired[pulumi.Input[Sequence[pulumi.Input['ContactPointOpsgenyResponderArgsDict']]]]
+        """
+        Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.
+        """
+        send_tags_as: NotRequired[pulumi.Input[str]]
+        """
+        Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+        url: NotRequired[pulumi.Input[str]]
+        """
+        Allows customization of the OpsGenie API URL.
+        """
+elif False:
+    ContactPointOpsgenyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ContactPointOpsgenyArgs:
     def __init__(__self__, *,
@@ -1432,6 +1915,27 @@ class ContactPointOpsgenyArgs:
         pulumi.set(self, "url", value)
 
 
+if not MYPY:
+    class ContactPointOpsgenyResponderArgsDict(TypedDict):
+        type: pulumi.Input[str]
+        """
+        Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the responder. Must be specified if name and username are empty.
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Name of the responder. Must be specified if username and id are empty.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        User name of the responder. Must be specified if name and id are empty.
+        """
+elif False:
+    ContactPointOpsgenyResponderArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ContactPointOpsgenyResponderArgs:
     def __init__(__self__, *,
@@ -1501,6 +2005,67 @@ class ContactPointOpsgenyResponderArgs:
     def username(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username", value)
 
+
+if not MYPY:
+    class ContactPointPagerdutyArgsDict(TypedDict):
+        integration_key: pulumi.Input[str]
+        """
+        The PagerDuty API key.
+        """
+        class_: NotRequired[pulumi.Input[str]]
+        """
+        The class or type of event, for example `ping failure`.
+        """
+        client: NotRequired[pulumi.Input[str]]
+        """
+        The name of the monitoring client that is triggering this event.
+        """
+        client_url: NotRequired[pulumi.Input[str]]
+        """
+        The URL of the monitoring client that is triggering this event.
+        """
+        component: NotRequired[pulumi.Input[str]]
+        """
+        The component being affected by the event.
+        """
+        details: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A set of arbitrary key/value pairs that provide further detail about the incident.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        group: NotRequired[pulumi.Input[str]]
+        """
+        The group to which the provided component belongs to.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        severity: NotRequired[pulumi.Input[str]]
+        """
+        The PagerDuty event severity level. Default is `critical`.
+        """
+        source: NotRequired[pulumi.Input[str]]
+        """
+        The unique location of the affected system.
+        """
+        summary: NotRequired[pulumi.Input[str]]
+        """
+        The templated summary message of the event.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+        url: NotRequired[pulumi.Input[str]]
+        """
+        The URL to send API requests to
+        """
+elif False:
+    ContactPointPagerdutyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ContactPointPagerdutyArgs:
@@ -1731,6 +2296,71 @@ class ContactPointPagerdutyArgs:
     def url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "url", value)
 
+
+if not MYPY:
+    class ContactPointPushoverArgsDict(TypedDict):
+        api_token: pulumi.Input[str]
+        """
+        The Pushover API token.
+        """
+        user_key: pulumi.Input[str]
+        """
+        The Pushover user key.
+        """
+        device: NotRequired[pulumi.Input[str]]
+        """
+        Comma-separated list of devices to which the event is associated.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        expire: NotRequired[pulumi.Input[int]]
+        """
+        How many seconds for which the notification will continue to be retried by Pushover.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        The templated notification message content.
+        """
+        ok_priority: NotRequired[pulumi.Input[int]]
+        """
+        The priority level of the resolved event.
+        """
+        ok_sound: NotRequired[pulumi.Input[str]]
+        """
+        The sound associated with the resolved notification.
+        """
+        priority: NotRequired[pulumi.Input[int]]
+        """
+        The priority level of the event.
+        """
+        retry: NotRequired[pulumi.Input[int]]
+        """
+        How often, in seconds, the Pushover servers will send the same notification to the user.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        sound: NotRequired[pulumi.Input[str]]
+        """
+        The sound associated with the notification.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        The templated title of the message.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+        upload_image: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.
+        """
+elif False:
+    ContactPointPushoverArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ContactPointPushoverArgs:
@@ -1977,6 +2607,51 @@ class ContactPointPushoverArgs:
         pulumi.set(self, "upload_image", value)
 
 
+if not MYPY:
+    class ContactPointSensugoArgsDict(TypedDict):
+        api_key: pulumi.Input[str]
+        """
+        The SensuGo API key.
+        """
+        url: pulumi.Input[str]
+        """
+        The SensuGo URL to send requests to.
+        """
+        check: NotRequired[pulumi.Input[str]]
+        """
+        The SensuGo check to which the event should be routed.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        entity: NotRequired[pulumi.Input[str]]
+        """
+        The entity being monitored.
+        """
+        handler: NotRequired[pulumi.Input[str]]
+        """
+        A custom handler to execute in addition to the check.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Templated message content describing the alert.
+        """
+        namespace: NotRequired[pulumi.Input[str]]
+        """
+        The namespace in which the check resides.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointSensugoArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ContactPointSensugoArgs:
     def __init__(__self__, *,
@@ -2141,6 +2816,71 @@ class ContactPointSensugoArgs:
     def uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uid", value)
 
+
+if not MYPY:
+    class ContactPointSlackArgsDict(TypedDict):
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        endpoint_url: NotRequired[pulumi.Input[str]]
+        """
+        Use this to override the Slack API endpoint URL to send requests to.
+        """
+        icon_emoji: NotRequired[pulumi.Input[str]]
+        """
+        The name of a Slack workspace emoji to use as the bot icon.
+        """
+        icon_url: NotRequired[pulumi.Input[str]]
+        """
+        A URL of an image to use as the bot icon.
+        """
+        mention_channel: NotRequired[pulumi.Input[str]]
+        """
+        Describes how to ping the slack channel that messages are being sent to. Options are `here` for an @here ping, `channel` for @channel, or empty for no ping.
+        """
+        mention_groups: NotRequired[pulumi.Input[str]]
+        """
+        Comma-separated list of groups to mention in the message.
+        """
+        mention_users: NotRequired[pulumi.Input[str]]
+        """
+        Comma-separated list of users to mention in the message.
+        """
+        recipient: NotRequired[pulumi.Input[str]]
+        """
+        Channel, private group, or IM channel (can be an encoded ID or a name) to send messages to.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        text: NotRequired[pulumi.Input[str]]
+        """
+        Templated content of the message.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Templated title of the message.
+        """
+        token: NotRequired[pulumi.Input[str]]
+        """
+        A Slack API token,for sending messages directly without the webhook method.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+        url: NotRequired[pulumi.Input[str]]
+        """
+        A Slack webhook URL,for sending messages via the webhook method.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        Username for the bot to use.
+        """
+elif False:
+    ContactPointSlackArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ContactPointSlackArgs:
@@ -2389,6 +3129,53 @@ class ContactPointSlackArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class ContactPointSnArgsDict(TypedDict):
+        topic: pulumi.Input[str]
+        """
+        The Amazon SNS topic to send notifications to.
+        """
+        access_key: NotRequired[pulumi.Input[str]]
+        """
+        AWS access key ID used to authenticate with Amazon SNS.
+        """
+        assume_role_arn: NotRequired[pulumi.Input[str]]
+        """
+        The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.
+        """
+        auth_provider: NotRequired[pulumi.Input[str]]
+        """
+        The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+        """
+        body: NotRequired[pulumi.Input[str]]
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        external_id: NotRequired[pulumi.Input[str]]
+        """
+        The external ID to use when assuming the role.
+        """
+        message_format: NotRequired[pulumi.Input[str]]
+        """
+        The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+        """
+        secret_key: NotRequired[pulumi.Input[str]]
+        """
+        AWS secret access key used to authenticate with Amazon SNS.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        subject: NotRequired[pulumi.Input[str]]
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointSnArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ContactPointSnArgs:
     def __init__(__self__, *,
@@ -2579,6 +3366,39 @@ class ContactPointSnArgs:
         pulumi.set(self, "uid", value)
 
 
+if not MYPY:
+    class ContactPointTeamArgsDict(TypedDict):
+        url: pulumi.Input[str]
+        """
+        A Teams webhook URL.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        The templated message content to send.
+        """
+        section_title: NotRequired[pulumi.Input[str]]
+        """
+        The templated subtitle for each message section.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        The templated title of the message.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointTeamArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ContactPointTeamArgs:
     def __init__(__self__, *,
@@ -2696,6 +3516,55 @@ class ContactPointTeamArgs:
     def uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uid", value)
 
+
+if not MYPY:
+    class ContactPointTelegramArgsDict(TypedDict):
+        chat_id: pulumi.Input[str]
+        """
+        The chat ID to send messages to.
+        """
+        token: pulumi.Input[str]
+        """
+        The Telegram bot token.
+        """
+        disable_notifications: NotRequired[pulumi.Input[bool]]
+        """
+        When set users will receive a notification with no sound.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        disable_web_page_preview: NotRequired[pulumi.Input[bool]]
+        """
+        When set it disables link previews for links in the message.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        The templated content of the message.
+        """
+        message_thread_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the message thread to send the message to.
+        """
+        parse_mode: NotRequired[pulumi.Input[str]]
+        """
+        Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.
+        """
+        protect_content: NotRequired[pulumi.Input[bool]]
+        """
+        When set it protects the contents of the message from forwarding and saving.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointTelegramArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ContactPointTelegramArgs:
@@ -2878,6 +3747,43 @@ class ContactPointTelegramArgs:
         pulumi.set(self, "uid", value)
 
 
+if not MYPY:
+    class ContactPointThreemaArgsDict(TypedDict):
+        api_secret: pulumi.Input[str]
+        """
+        The Threema API key.
+        """
+        gateway_id: pulumi.Input[str]
+        """
+        The Threema gateway ID.
+        """
+        recipient_id: pulumi.Input[str]
+        """
+        The ID of the recipient of the message.
+        """
+        description: NotRequired[pulumi.Input[str]]
+        """
+        The templated description of the message.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        The templated title of the message.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointThreemaArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ContactPointThreemaArgs:
     def __init__(__self__, *,
@@ -3010,6 +3916,39 @@ class ContactPointThreemaArgs:
         pulumi.set(self, "uid", value)
 
 
+if not MYPY:
+    class ContactPointVictoropArgsDict(TypedDict):
+        url: pulumi.Input[str]
+        """
+        The VictorOps webhook URL.
+        """
+        description: NotRequired[pulumi.Input[str]]
+        """
+        Templated description of the message.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        The VictorOps alert state - typically either `CRITICAL` or `RECOVERY`.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Templated title to display.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointVictoropArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ContactPointVictoropArgs:
     def __init__(__self__, *,
@@ -3127,6 +4066,39 @@ class ContactPointVictoropArgs:
     def uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uid", value)
 
+
+if not MYPY:
+    class ContactPointWebexArgsDict(TypedDict):
+        api_url: NotRequired[pulumi.Input[str]]
+        """
+        The URL to send webhook requests to.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        The templated title of the message to send.
+        """
+        room_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the Webex Teams room where to send the messages.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        token: NotRequired[pulumi.Input[str]]
+        """
+        The bearer token used to authorize the client.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointWebexArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ContactPointWebexArgs:
@@ -3246,6 +4218,59 @@ class ContactPointWebexArgs:
     def uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uid", value)
 
+
+if not MYPY:
+    class ContactPointWebhookArgsDict(TypedDict):
+        url: pulumi.Input[str]
+        """
+        The URL to send webhook requests to.
+        """
+        authorization_credentials: NotRequired[pulumi.Input[str]]
+        """
+        Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.
+        """
+        authorization_scheme: NotRequired[pulumi.Input[str]]
+        """
+        Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.
+        """
+        basic_auth_password: NotRequired[pulumi.Input[str]]
+        """
+        The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+        """
+        basic_auth_user: NotRequired[pulumi.Input[str]]
+        """
+        The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        http_method: NotRequired[pulumi.Input[str]]
+        """
+        The HTTP method to use in the request. Defaults to `POST`.
+        """
+        max_alerts: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Custom message. You can use template variables.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Templated title of the message.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+elif False:
+    ContactPointWebhookArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ContactPointWebhookArgs:
@@ -3445,6 +4470,55 @@ class ContactPointWebhookArgs:
         pulumi.set(self, "uid", value)
 
 
+if not MYPY:
+    class ContactPointWecomArgsDict(TypedDict):
+        agent_id: NotRequired[pulumi.Input[str]]
+        """
+        Agent ID added to the request payload when using APIAPP.
+        """
+        corp_id: NotRequired[pulumi.Input[str]]
+        """
+        Corp ID used to get token when using APIAPP.
+        """
+        disable_resolve_message: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        The templated content of the message to send.
+        """
+        msg_type: NotRequired[pulumi.Input[str]]
+        """
+        The type of them message. Supported: markdown, text. Default: text.
+        """
+        secret: NotRequired[pulumi.Input[str]]
+        """
+        The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.
+        """
+        settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        The templated title of the message to send.
+        """
+        to_user: NotRequired[pulumi.Input[str]]
+        """
+        The ID of user that should receive the message. Multiple entries should be separated by '|'. Default: @all.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the contact point.
+        """
+        url: NotRequired[pulumi.Input[str]]
+        """
+        The WeCom webhook URL. Required if using GroupRobot.
+        """
+elif False:
+    ContactPointWecomArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ContactPointWecomArgs:
     def __init__(__self__, *,
@@ -3628,6 +4702,27 @@ class ContactPointWecomArgs:
         pulumi.set(self, "url", value)
 
 
+if not MYPY:
+    class DashboardPermissionPermissionArgsDict(TypedDict):
+        permission: pulumi.Input[str]
+        """
+        Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        """
+        role: NotRequired[pulumi.Input[str]]
+        """
+        Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
+        """
+        team_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the team to manage permissions for. Defaults to `0`.
+        """
+        user_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the user or service account to manage permissions for. Defaults to `0`.
+        """
+elif False:
+    DashboardPermissionPermissionArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class DashboardPermissionPermissionArgs:
     def __init__(__self__, *,
@@ -3697,6 +4792,27 @@ class DashboardPermissionPermissionArgs:
     def user_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_id", value)
 
+
+if not MYPY:
+    class DataSourcePermissionPermissionArgsDict(TypedDict):
+        permission: pulumi.Input[str]
+        """
+        Permission to associate with item. Options: `Query`, `Edit` or `Admin` (`Admin` can only be used with Grafana v10.3.0+).
+        """
+        built_in_role: NotRequired[pulumi.Input[str]]
+        """
+        Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
+        """
+        team_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the team to manage permissions for. Defaults to `0`.
+        """
+        user_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the user or service account to manage permissions for. Defaults to `0`.
+        """
+elif False:
+    DataSourcePermissionPermissionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DataSourcePermissionPermissionArgs:
@@ -3768,6 +4884,27 @@ class DataSourcePermissionPermissionArgs:
         pulumi.set(self, "user_id", value)
 
 
+if not MYPY:
+    class FolderPermissionPermissionArgsDict(TypedDict):
+        permission: pulumi.Input[str]
+        """
+        Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        """
+        role: NotRequired[pulumi.Input[str]]
+        """
+        Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
+        """
+        team_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the team to manage permissions for. Defaults to `0`.
+        """
+        user_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the user or service account to manage permissions for. Defaults to `0`.
+        """
+elif False:
+    FolderPermissionPermissionArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class FolderPermissionPermissionArgs:
     def __init__(__self__, *,
@@ -3838,6 +4975,17 @@ class FolderPermissionPermissionArgs:
         pulumi.set(self, "user_id", value)
 
 
+if not MYPY:
+    class MachineLearningHolidayCustomPeriodArgsDict(TypedDict):
+        end_time: pulumi.Input[str]
+        start_time: pulumi.Input[str]
+        name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the custom period.
+        """
+elif False:
+    MachineLearningHolidayCustomPeriodArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class MachineLearningHolidayCustomPeriodArgs:
     def __init__(__self__, *,
@@ -3882,6 +5030,23 @@ class MachineLearningHolidayCustomPeriodArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+
+if not MYPY:
+    class MachineLearningOutlierDetectorAlgorithmArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The name of the algorithm to use ('mad' or 'dbscan').
+        """
+        sensitivity: pulumi.Input[float]
+        """
+        Specify the sensitivity of the detector (in range [0,1]).
+        """
+        config: NotRequired[pulumi.Input['MachineLearningOutlierDetectorAlgorithmConfigArgsDict']]
+        """
+        For DBSCAN only, specify the configuration map
+        """
+elif False:
+    MachineLearningOutlierDetectorAlgorithmArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class MachineLearningOutlierDetectorAlgorithmArgs:
@@ -3936,6 +5101,15 @@ class MachineLearningOutlierDetectorAlgorithmArgs:
         pulumi.set(self, "config", value)
 
 
+if not MYPY:
+    class MachineLearningOutlierDetectorAlgorithmConfigArgsDict(TypedDict):
+        epsilon: pulumi.Input[float]
+        """
+        Specify the epsilon parameter (positive float)
+        """
+elif False:
+    MachineLearningOutlierDetectorAlgorithmConfigArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class MachineLearningOutlierDetectorAlgorithmConfigArgs:
     def __init__(__self__, *,
@@ -3957,6 +5131,35 @@ class MachineLearningOutlierDetectorAlgorithmConfigArgs:
     def epsilon(self, value: pulumi.Input[float]):
         pulumi.set(self, "epsilon", value)
 
+
+if not MYPY:
+    class MuteTimingIntervalArgsDict(TypedDict):
+        days_of_months: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        An inclusive range of days, 1-31, within a month, e.g. "1" or "14:16". Negative values can be used to represent days counting from the end of a month, e.g. "-1".
+        """
+        location: NotRequired[pulumi.Input[str]]
+        """
+        Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g "America/New_York"
+        """
+        months: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        An inclusive range of months, either numerical or full calendar month, e.g. "1:3", "december", or "may:august".
+        """
+        times: NotRequired[pulumi.Input[Sequence[pulumi.Input['MuteTimingIntervalTimeArgsDict']]]]
+        """
+        The time ranges, represented in minutes, during which to mute in a given day.
+        """
+        weekdays: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        An inclusive range of weekdays, e.g. "monday" or "tuesday:thursday".
+        """
+        years: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A positive inclusive range of years, e.g. "2030" or "2025:2026".
+        """
+elif False:
+    MuteTimingIntervalArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class MuteTimingIntervalArgs:
@@ -4061,6 +5264,19 @@ class MuteTimingIntervalArgs:
         pulumi.set(self, "years", value)
 
 
+if not MYPY:
+    class MuteTimingIntervalTimeArgsDict(TypedDict):
+        end: pulumi.Input[str]
+        """
+        The time, in hh:mm format, of when the interval should end exclusively.
+        """
+        start: pulumi.Input[str]
+        """
+        The time, in hh:mm format, of when the interval should begin inclusively.
+        """
+elif False:
+    MuteTimingIntervalTimeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class MuteTimingIntervalTimeArgs:
     def __init__(__self__, *,
@@ -4097,6 +5313,47 @@ class MuteTimingIntervalTimeArgs:
     def start(self, value: pulumi.Input[str]):
         pulumi.set(self, "start", value)
 
+
+if not MYPY:
+    class NotificationPolicyPolicyArgsDict(TypedDict):
+        contact_point: NotRequired[pulumi.Input[str]]
+        """
+        The contact point to route notifications that match this rule to.
+        """
+        continue_: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+        """
+        group_bies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        """
+        group_interval: NotRequired[pulumi.Input[str]]
+        """
+        Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        """
+        group_wait: NotRequired[pulumi.Input[str]]
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        """
+        matchers: NotRequired[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyMatcherArgsDict']]]]
+        """
+        Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+        """
+        mute_timings: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of mute timing names to apply to alerts that match this policy.
+        """
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyArgsDict']]]]
+        """
+        Routing rules for specific label sets.
+        """
+        repeat_interval: NotRequired[pulumi.Input[str]]
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+elif False:
+    NotificationPolicyPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NotificationPolicyPolicyArgs:
@@ -4249,6 +5506,23 @@ class NotificationPolicyPolicyArgs:
         pulumi.set(self, "repeat_interval", value)
 
 
+if not MYPY:
+    class NotificationPolicyPolicyMatcherArgsDict(TypedDict):
+        label: pulumi.Input[str]
+        """
+        The name of the label to match against.
+        """
+        match: pulumi.Input[str]
+        """
+        The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        """
+        value: pulumi.Input[str]
+        """
+        The label value to match against.
+        """
+elif False:
+    NotificationPolicyPolicyMatcherArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class NotificationPolicyPolicyMatcherArgs:
     def __init__(__self__, *,
@@ -4300,6 +5574,47 @@ class NotificationPolicyPolicyMatcherArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class NotificationPolicyPolicyPolicyArgsDict(TypedDict):
+        contact_point: NotRequired[pulumi.Input[str]]
+        """
+        The contact point to route notifications that match this rule to.
+        """
+        continue_: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+        """
+        group_bies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        """
+        group_interval: NotRequired[pulumi.Input[str]]
+        """
+        Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        """
+        group_wait: NotRequired[pulumi.Input[str]]
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        """
+        matchers: NotRequired[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyMatcherArgsDict']]]]
+        """
+        Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+        """
+        mute_timings: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of mute timing names to apply to alerts that match this policy.
+        """
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyArgsDict']]]]
+        """
+        Routing rules for specific label sets.
+        """
+        repeat_interval: NotRequired[pulumi.Input[str]]
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+elif False:
+    NotificationPolicyPolicyPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NotificationPolicyPolicyPolicyArgs:
@@ -4452,6 +5767,23 @@ class NotificationPolicyPolicyPolicyArgs:
         pulumi.set(self, "repeat_interval", value)
 
 
+if not MYPY:
+    class NotificationPolicyPolicyPolicyMatcherArgsDict(TypedDict):
+        label: pulumi.Input[str]
+        """
+        The name of the label to match against.
+        """
+        match: pulumi.Input[str]
+        """
+        The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        """
+        value: pulumi.Input[str]
+        """
+        The label value to match against.
+        """
+elif False:
+    NotificationPolicyPolicyPolicyMatcherArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class NotificationPolicyPolicyPolicyMatcherArgs:
     def __init__(__self__, *,
@@ -4503,6 +5835,47 @@ class NotificationPolicyPolicyPolicyMatcherArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class NotificationPolicyPolicyPolicyPolicyArgsDict(TypedDict):
+        contact_point: NotRequired[pulumi.Input[str]]
+        """
+        The contact point to route notifications that match this rule to.
+        """
+        continue_: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+        """
+        group_bies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        """
+        group_interval: NotRequired[pulumi.Input[str]]
+        """
+        Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        """
+        group_wait: NotRequired[pulumi.Input[str]]
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        """
+        matchers: NotRequired[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyMatcherArgsDict']]]]
+        """
+        Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+        """
+        mute_timings: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of mute timing names to apply to alerts that match this policy.
+        """
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyArgsDict']]]]
+        """
+        Routing rules for specific label sets.
+        """
+        repeat_interval: NotRequired[pulumi.Input[str]]
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+elif False:
+    NotificationPolicyPolicyPolicyPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NotificationPolicyPolicyPolicyPolicyArgs:
@@ -4655,6 +6028,23 @@ class NotificationPolicyPolicyPolicyPolicyArgs:
         pulumi.set(self, "repeat_interval", value)
 
 
+if not MYPY:
+    class NotificationPolicyPolicyPolicyPolicyMatcherArgsDict(TypedDict):
+        label: pulumi.Input[str]
+        """
+        The name of the label to match against.
+        """
+        match: pulumi.Input[str]
+        """
+        The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        """
+        value: pulumi.Input[str]
+        """
+        The label value to match against.
+        """
+elif False:
+    NotificationPolicyPolicyPolicyPolicyMatcherArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class NotificationPolicyPolicyPolicyPolicyMatcherArgs:
     def __init__(__self__, *,
@@ -4706,6 +6096,43 @@ class NotificationPolicyPolicyPolicyPolicyMatcherArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class NotificationPolicyPolicyPolicyPolicyPolicyArgsDict(TypedDict):
+        group_bies: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        """
+        contact_point: NotRequired[pulumi.Input[str]]
+        """
+        The contact point to route notifications that match this rule to.
+        """
+        continue_: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+        """
+        group_interval: NotRequired[pulumi.Input[str]]
+        """
+        Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        """
+        group_wait: NotRequired[pulumi.Input[str]]
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        """
+        matchers: NotRequired[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgsDict']]]]
+        """
+        Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+        """
+        mute_timings: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of mute timing names to apply to alerts that match this policy.
+        """
+        repeat_interval: NotRequired[pulumi.Input[str]]
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+elif False:
+    NotificationPolicyPolicyPolicyPolicyPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
@@ -4841,6 +6268,23 @@ class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
         pulumi.set(self, "repeat_interval", value)
 
 
+if not MYPY:
+    class NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgsDict(TypedDict):
+        label: pulumi.Input[str]
+        """
+        The name of the label to match against.
+        """
+        match: pulumi.Input[str]
+        """
+        The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        """
+        value: pulumi.Input[str]
+        """
+        The label value to match against.
+        """
+elif False:
+    NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs:
     def __init__(__self__, *,
@@ -4892,6 +6336,28 @@ class NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class OncallIntegrationDefaultRouteArgsDict(TypedDict):
+        escalation_chain_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the escalation chain.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        msteams: NotRequired[pulumi.Input['OncallIntegrationDefaultRouteMsteamsArgsDict']]
+        """
+        MS teams-specific settings for a route.
+        """
+        slack: NotRequired[pulumi.Input['OncallIntegrationDefaultRouteSlackArgsDict']]
+        """
+        Slack-specific settings for a route.
+        """
+        telegram: NotRequired[pulumi.Input['OncallIntegrationDefaultRouteTelegramArgsDict']]
+        """
+        Telegram-specific settings for a route.
+        """
+elif False:
+    OncallIntegrationDefaultRouteArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class OncallIntegrationDefaultRouteArgs:
@@ -4976,6 +6442,19 @@ class OncallIntegrationDefaultRouteArgs:
         pulumi.set(self, "telegram", value)
 
 
+if not MYPY:
+    class OncallIntegrationDefaultRouteMsteamsArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable notification in MS teams. Defaults to `true`.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        MS teams channel id. Alerts will be directed to this channel in Microsoft teams.
+        """
+elif False:
+    OncallIntegrationDefaultRouteMsteamsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class OncallIntegrationDefaultRouteMsteamsArgs:
     def __init__(__self__, *,
@@ -5014,6 +6493,19 @@ class OncallIntegrationDefaultRouteMsteamsArgs:
     def id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "id", value)
 
+
+if not MYPY:
+    class OncallIntegrationDefaultRouteSlackArgsDict(TypedDict):
+        channel_id: NotRequired[pulumi.Input[str]]
+        """
+        Slack channel id. Alerts will be directed to this channel in Slack.
+        """
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable notification in Slack. Defaults to `true`.
+        """
+elif False:
+    OncallIntegrationDefaultRouteSlackArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class OncallIntegrationDefaultRouteSlackArgs:
@@ -5054,6 +6546,19 @@ class OncallIntegrationDefaultRouteSlackArgs:
         pulumi.set(self, "enabled", value)
 
 
+if not MYPY:
+    class OncallIntegrationDefaultRouteTelegramArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable notification in Telegram. Defaults to `true`.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        Telegram channel id. Alerts will be directed to this channel in Telegram.
+        """
+elif False:
+    OncallIntegrationDefaultRouteTelegramArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class OncallIntegrationDefaultRouteTelegramArgs:
     def __init__(__self__, *,
@@ -5092,6 +6597,55 @@ class OncallIntegrationDefaultRouteTelegramArgs:
     def id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "id", value)
 
+
+if not MYPY:
+    class OncallIntegrationTemplatesArgsDict(TypedDict):
+        acknowledge_signal: NotRequired[pulumi.Input[str]]
+        """
+        Template for sending a signal to acknowledge the Incident.
+        """
+        email: NotRequired[pulumi.Input['OncallIntegrationTemplatesEmailArgsDict']]
+        """
+        Templates for Email.
+        """
+        grouping_key: NotRequired[pulumi.Input[str]]
+        """
+        Template for the key by which alerts are grouped.
+        """
+        microsoft_teams: NotRequired[pulumi.Input['OncallIntegrationTemplatesMicrosoftTeamsArgsDict']]
+        """
+        Templates for Microsoft Teams.
+        """
+        phone_call: NotRequired[pulumi.Input['OncallIntegrationTemplatesPhoneCallArgsDict']]
+        """
+        Templates for Phone Call.
+        """
+        resolve_signal: NotRequired[pulumi.Input[str]]
+        """
+        Template for sending a signal to resolve the Incident.
+        """
+        slack: NotRequired[pulumi.Input['OncallIntegrationTemplatesSlackArgsDict']]
+        """
+        Templates for Slack.
+        """
+        sms: NotRequired[pulumi.Input['OncallIntegrationTemplatesSmsArgsDict']]
+        """
+        Templates for SMS.
+        """
+        source_link: NotRequired[pulumi.Input[str]]
+        """
+        Template for a source link.
+        """
+        telegram: NotRequired[pulumi.Input['OncallIntegrationTemplatesTelegramArgsDict']]
+        """
+        Templates for Telegram.
+        """
+        web: NotRequired[pulumi.Input['OncallIntegrationTemplatesWebArgsDict']]
+        """
+        Templates for Web.
+        """
+elif False:
+    OncallIntegrationTemplatesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class OncallIntegrationTemplatesArgs:
@@ -5276,6 +6830,19 @@ class OncallIntegrationTemplatesArgs:
         pulumi.set(self, "web", value)
 
 
+if not MYPY:
+    class OncallIntegrationTemplatesEmailArgsDict(TypedDict):
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert message.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    OncallIntegrationTemplatesEmailArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class OncallIntegrationTemplatesEmailArgs:
     def __init__(__self__, *,
@@ -5314,6 +6881,23 @@ class OncallIntegrationTemplatesEmailArgs:
     def title(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "title", value)
 
+
+if not MYPY:
+    class OncallIntegrationTemplatesMicrosoftTeamsArgsDict(TypedDict):
+        image_url: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert image url.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert message.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    OncallIntegrationTemplatesMicrosoftTeamsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class OncallIntegrationTemplatesMicrosoftTeamsArgs:
@@ -5370,6 +6954,15 @@ class OncallIntegrationTemplatesMicrosoftTeamsArgs:
         pulumi.set(self, "title", value)
 
 
+if not MYPY:
+    class OncallIntegrationTemplatesPhoneCallArgsDict(TypedDict):
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    OncallIntegrationTemplatesPhoneCallArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class OncallIntegrationTemplatesPhoneCallArgs:
     def __init__(__self__, *,
@@ -5392,6 +6985,23 @@ class OncallIntegrationTemplatesPhoneCallArgs:
     def title(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "title", value)
 
+
+if not MYPY:
+    class OncallIntegrationTemplatesSlackArgsDict(TypedDict):
+        image_url: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert image url.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert message.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    OncallIntegrationTemplatesSlackArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class OncallIntegrationTemplatesSlackArgs:
@@ -5448,6 +7058,15 @@ class OncallIntegrationTemplatesSlackArgs:
         pulumi.set(self, "title", value)
 
 
+if not MYPY:
+    class OncallIntegrationTemplatesSmsArgsDict(TypedDict):
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    OncallIntegrationTemplatesSmsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class OncallIntegrationTemplatesSmsArgs:
     def __init__(__self__, *,
@@ -5470,6 +7089,23 @@ class OncallIntegrationTemplatesSmsArgs:
     def title(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "title", value)
 
+
+if not MYPY:
+    class OncallIntegrationTemplatesTelegramArgsDict(TypedDict):
+        image_url: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert image url.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert message.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    OncallIntegrationTemplatesTelegramArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class OncallIntegrationTemplatesTelegramArgs:
@@ -5526,6 +7162,23 @@ class OncallIntegrationTemplatesTelegramArgs:
         pulumi.set(self, "title", value)
 
 
+if not MYPY:
+    class OncallIntegrationTemplatesWebArgsDict(TypedDict):
+        image_url: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert image url.
+        """
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert message.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    OncallIntegrationTemplatesWebArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class OncallIntegrationTemplatesWebArgs:
     def __init__(__self__, *,
@@ -5581,6 +7234,19 @@ class OncallIntegrationTemplatesWebArgs:
         pulumi.set(self, "title", value)
 
 
+if not MYPY:
+    class OncallRouteMsteamsArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable notification in MS teams. Defaults to `true`.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        MS teams channel id. Alerts will be directed to this channel in Microsoft teams.
+        """
+elif False:
+    OncallRouteMsteamsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class OncallRouteMsteamsArgs:
     def __init__(__self__, *,
@@ -5619,6 +7285,19 @@ class OncallRouteMsteamsArgs:
     def id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "id", value)
 
+
+if not MYPY:
+    class OncallRouteSlackArgsDict(TypedDict):
+        channel_id: NotRequired[pulumi.Input[str]]
+        """
+        Slack channel id. Alerts will be directed to this channel in Slack.
+        """
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable notification in Slack. Defaults to `true`.
+        """
+elif False:
+    OncallRouteSlackArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class OncallRouteSlackArgs:
@@ -5659,6 +7338,19 @@ class OncallRouteSlackArgs:
         pulumi.set(self, "enabled", value)
 
 
+if not MYPY:
+    class OncallRouteTelegramArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable notification in Telegram. Defaults to `true`.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        Telegram channel id. Alerts will be directed to this channel in Telegram.
+        """
+elif False:
+    OncallRouteTelegramArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class OncallRouteTelegramArgs:
     def __init__(__self__, *,
@@ -5698,6 +7390,19 @@ class OncallRouteTelegramArgs:
         pulumi.set(self, "id", value)
 
 
+if not MYPY:
+    class OncallScheduleSlackArgsDict(TypedDict):
+        channel_id: NotRequired[pulumi.Input[str]]
+        """
+        Slack channel id. Reminder about schedule shifts will be directed to this channel in Slack.
+        """
+        user_group_id: NotRequired[pulumi.Input[str]]
+        """
+        Slack user group id. Members of user group will be updated when on-call users change.
+        """
+elif False:
+    OncallScheduleSlackArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class OncallScheduleSlackArgs:
     def __init__(__self__, *,
@@ -5736,6 +7441,16 @@ class OncallScheduleSlackArgs:
     def user_group_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_group_id", value)
 
+
+if not MYPY:
+    class PlaylistItemArgsDict(TypedDict):
+        order: pulumi.Input[int]
+        title: pulumi.Input[str]
+        id: NotRequired[pulumi.Input[str]]
+        type: NotRequired[pulumi.Input[str]]
+        value: NotRequired[pulumi.Input[str]]
+elif False:
+    PlaylistItemArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class PlaylistItemArgs:
@@ -5800,15 +7515,32 @@ class PlaylistItemArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class ReportDashboardArgsDict(TypedDict):
+        uid: pulumi.Input[str]
+        """
+        Dashboard uid.
+        """
+        report_variables: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Add report variables to the dashboard. Values should be separated by commas.
+        """
+        time_range: NotRequired[pulumi.Input['ReportDashboardTimeRangeArgsDict']]
+        """
+        Time range of the report.
+        """
+elif False:
+    ReportDashboardArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ReportDashboardArgs:
     def __init__(__self__, *,
                  uid: pulumi.Input[str],
-                 report_variables: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 report_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  time_range: Optional[pulumi.Input['ReportDashboardTimeRangeArgs']] = None):
         """
         :param pulumi.Input[str] uid: Dashboard uid.
-        :param pulumi.Input[Mapping[str, Any]] report_variables: Add report variables to the dashboard. Values should be separated by commas.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] report_variables: Add report variables to the dashboard. Values should be separated by commas.
         :param pulumi.Input['ReportDashboardTimeRangeArgs'] time_range: Time range of the report.
         """
         pulumi.set(__self__, "uid", uid)
@@ -5831,14 +7563,14 @@ class ReportDashboardArgs:
 
     @property
     @pulumi.getter(name="reportVariables")
-    def report_variables(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def report_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Add report variables to the dashboard. Values should be separated by commas.
         """
         return pulumi.get(self, "report_variables")
 
     @report_variables.setter
-    def report_variables(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def report_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "report_variables", value)
 
     @property
@@ -5853,6 +7585,19 @@ class ReportDashboardArgs:
     def time_range(self, value: Optional[pulumi.Input['ReportDashboardTimeRangeArgs']]):
         pulumi.set(self, "time_range", value)
 
+
+if not MYPY:
+    class ReportDashboardTimeRangeArgsDict(TypedDict):
+        from_: NotRequired[pulumi.Input[str]]
+        """
+        Start of the time range.
+        """
+        to: NotRequired[pulumi.Input[str]]
+        """
+        End of the time range.
+        """
+elif False:
+    ReportDashboardTimeRangeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ReportDashboardTimeRangeArgs:
@@ -5892,6 +7637,40 @@ class ReportDashboardTimeRangeArgs:
     def to(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "to", value)
 
+
+if not MYPY:
+    class ReportScheduleArgsDict(TypedDict):
+        frequency: pulumi.Input[str]
+        """
+        Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
+        """
+        custom_interval: NotRequired[pulumi.Input[str]]
+        """
+        Custom interval of the report.
+        **Note:** This field is only available when frequency is set to `custom`.
+        """
+        end_time: NotRequired[pulumi.Input[str]]
+        """
+        End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
+        """
+        last_day_of_month: NotRequired[pulumi.Input[bool]]
+        """
+        Send the report on the last day of the month Defaults to `false`.
+        """
+        start_time: NotRequired[pulumi.Input[str]]
+        """
+        Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
+        """
+        timezone: NotRequired[pulumi.Input[str]]
+        """
+        Set the report time zone. Defaults to `GMT`.
+        """
+        workdays_only: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to send the report only on work days. Defaults to `false`.
+        """
+elif False:
+    ReportScheduleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ReportScheduleArgs:
@@ -6013,6 +7792,19 @@ class ReportScheduleArgs:
         pulumi.set(self, "workdays_only", value)
 
 
+if not MYPY:
+    class RolePermissionArgsDict(TypedDict):
+        action: pulumi.Input[str]
+        """
+        Specific action users granted with the role will be allowed to perform (for example: `users:read`)
+        """
+        scope: NotRequired[pulumi.Input[str]]
+        """
+        Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
+        """
+elif False:
+    RolePermissionArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RolePermissionArgs:
     def __init__(__self__, *,
@@ -6050,6 +7842,55 @@ class RolePermissionArgs:
     def scope(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "scope", value)
 
+
+if not MYPY:
+    class RuleGroupRuleArgsDict(TypedDict):
+        condition: pulumi.Input[str]
+        """
+        The `ref_id` of the query node in the `data` field to use as the alert condition.
+        """
+        datas: pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleDataArgsDict']]]
+        """
+        A sequence of stages that describe the contents of the rule.
+        """
+        name: pulumi.Input[str]
+        """
+        The name of the alert rule.
+        """
+        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+        """
+        exec_err_state: NotRequired[pulumi.Input[str]]
+        """
+        Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+        """
+        for_: NotRequired[pulumi.Input[str]]
+        """
+        The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
+        """
+        is_paused: NotRequired[pulumi.Input[bool]]
+        """
+        Sets whether the alert should be paused or not. Defaults to `false`.
+        """
+        labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
+        """
+        no_data_state: NotRequired[pulumi.Input[str]]
+        """
+        Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+        """
+        notification_settings: NotRequired[pulumi.Input['RuleGroupRuleNotificationSettingsArgsDict']]
+        """
+        Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+        """
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        The unique identifier of the alert rule.
+        """
+elif False:
+    RuleGroupRuleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RuleGroupRuleArgs:
@@ -6231,6 +8072,31 @@ class RuleGroupRuleArgs:
         pulumi.set(self, "uid", value)
 
 
+if not MYPY:
+    class RuleGroupRuleDataArgsDict(TypedDict):
+        datasource_uid: pulumi.Input[str]
+        """
+        The UID of the datasource being queried, or "-100" if this stage is an expression stage.
+        """
+        model: pulumi.Input[str]
+        """
+        Custom JSON data to send to the specified datasource when querying.
+        """
+        ref_id: pulumi.Input[str]
+        """
+        A unique string to identify this query stage within a rule.
+        """
+        relative_time_range: pulumi.Input['RuleGroupRuleDataRelativeTimeRangeArgsDict']
+        """
+        The time range, relative to when the query is executed, across which to query.
+        """
+        query_type: NotRequired[pulumi.Input[str]]
+        """
+        An optional identifier for the type of query being executed. Defaults to ``.
+        """
+elif False:
+    RuleGroupRuleDataArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RuleGroupRuleDataArgs:
     def __init__(__self__, *,
@@ -6314,6 +8180,19 @@ class RuleGroupRuleDataArgs:
         pulumi.set(self, "query_type", value)
 
 
+if not MYPY:
+    class RuleGroupRuleDataRelativeTimeRangeArgsDict(TypedDict):
+        from_: pulumi.Input[int]
+        """
+        The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.
+        """
+        to: pulumi.Input[int]
+        """
+        The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.
+        """
+elif False:
+    RuleGroupRuleDataRelativeTimeRangeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RuleGroupRuleDataRelativeTimeRangeArgs:
     def __init__(__self__, *,
@@ -6350,6 +8229,35 @@ class RuleGroupRuleDataRelativeTimeRangeArgs:
     def to(self, value: pulumi.Input[int]):
         pulumi.set(self, "to", value)
 
+
+if not MYPY:
+    class RuleGroupRuleNotificationSettingsArgsDict(TypedDict):
+        contact_point: pulumi.Input[str]
+        """
+        The contact point to route notifications that match this rule to.
+        """
+        group_bies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
+        """
+        group_interval: NotRequired[pulumi.Input[str]]
+        """
+        Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        """
+        group_wait: NotRequired[pulumi.Input[str]]
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        """
+        mute_timings: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of mute timing names to apply to alerts that match this policy.
+        """
+        repeat_interval: NotRequired[pulumi.Input[str]]
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+elif False:
+    RuleGroupRuleNotificationSettingsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RuleGroupRuleNotificationSettingsArgs:
@@ -6453,6 +8361,31 @@ class RuleGroupRuleNotificationSettingsArgs:
         pulumi.set(self, "repeat_interval", value)
 
 
+if not MYPY:
+    class SLOAlertingArgsDict(TypedDict):
+        advanced_options: NotRequired[pulumi.Input['SLOAlertingAdvancedOptionsArgsDict']]
+        """
+        Advanced Options for Alert Rules
+        """
+        annotations: NotRequired[pulumi.Input[Sequence[pulumi.Input['SLOAlertingAnnotationArgsDict']]]]
+        """
+        Annotations will be attached to all alerts generated by any of these rules.
+        """
+        fastburns: NotRequired[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnArgsDict']]]]
+        """
+        Alerting Rules generated for Fast Burn alerts
+        """
+        labels: NotRequired[pulumi.Input[Sequence[pulumi.Input['SLOAlertingLabelArgsDict']]]]
+        """
+        Labels will be attached to all alerts generated by any of these rules.
+        """
+        slowburns: NotRequired[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnArgsDict']]]]
+        """
+        Alerting Rules generated for Slow Burn alerts
+        """
+elif False:
+    SLOAlertingArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SLOAlertingArgs:
     def __init__(__self__, *,
@@ -6540,6 +8473,15 @@ class SLOAlertingArgs:
         pulumi.set(self, "slowburns", value)
 
 
+if not MYPY:
+    class SLOAlertingAdvancedOptionsArgsDict(TypedDict):
+        min_failures: NotRequired[pulumi.Input[int]]
+        """
+        Minimum number of failed events to trigger an alert
+        """
+elif False:
+    SLOAlertingAdvancedOptionsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SLOAlertingAdvancedOptionsArgs:
     def __init__(__self__, *,
@@ -6562,6 +8504,13 @@ class SLOAlertingAdvancedOptionsArgs:
     def min_failures(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_failures", value)
 
+
+if not MYPY:
+    class SLOAlertingAnnotationArgsDict(TypedDict):
+        key: pulumi.Input[str]
+        value: pulumi.Input[str]
+elif False:
+    SLOAlertingAnnotationArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SLOAlertingAnnotationArgs:
@@ -6589,6 +8538,19 @@ class SLOAlertingAnnotationArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class SLOAlertingFastburnArgsDict(TypedDict):
+        annotations: NotRequired[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnAnnotationArgsDict']]]]
+        """
+        Annotations to attach only to Fast Burn alerts.
+        """
+        labels: NotRequired[pulumi.Input[Sequence[pulumi.Input['SLOAlertingFastburnLabelArgsDict']]]]
+        """
+        Labels to attach only to Fast Burn alerts.
+        """
+elif False:
+    SLOAlertingFastburnArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SLOAlertingFastburnArgs:
@@ -6629,6 +8591,13 @@ class SLOAlertingFastburnArgs:
         pulumi.set(self, "labels", value)
 
 
+if not MYPY:
+    class SLOAlertingFastburnAnnotationArgsDict(TypedDict):
+        key: pulumi.Input[str]
+        value: pulumi.Input[str]
+elif False:
+    SLOAlertingFastburnAnnotationArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SLOAlertingFastburnAnnotationArgs:
     def __init__(__self__, *,
@@ -6655,6 +8624,13 @@ class SLOAlertingFastburnAnnotationArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class SLOAlertingFastburnLabelArgsDict(TypedDict):
+        key: pulumi.Input[str]
+        value: pulumi.Input[str]
+elif False:
+    SLOAlertingFastburnLabelArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SLOAlertingFastburnLabelArgs:
@@ -6683,6 +8659,13 @@ class SLOAlertingFastburnLabelArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class SLOAlertingLabelArgsDict(TypedDict):
+        key: pulumi.Input[str]
+        value: pulumi.Input[str]
+elif False:
+    SLOAlertingLabelArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SLOAlertingLabelArgs:
     def __init__(__self__, *,
@@ -6709,6 +8692,19 @@ class SLOAlertingLabelArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class SLOAlertingSlowburnArgsDict(TypedDict):
+        annotations: NotRequired[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnAnnotationArgsDict']]]]
+        """
+        Annotations to attach only to Slow Burn alerts.
+        """
+        labels: NotRequired[pulumi.Input[Sequence[pulumi.Input['SLOAlertingSlowburnLabelArgsDict']]]]
+        """
+        Labels to attach only to Slow Burn alerts.
+        """
+elif False:
+    SLOAlertingSlowburnArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SLOAlertingSlowburnArgs:
@@ -6749,6 +8745,13 @@ class SLOAlertingSlowburnArgs:
         pulumi.set(self, "labels", value)
 
 
+if not MYPY:
+    class SLOAlertingSlowburnAnnotationArgsDict(TypedDict):
+        key: pulumi.Input[str]
+        value: pulumi.Input[str]
+elif False:
+    SLOAlertingSlowburnAnnotationArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SLOAlertingSlowburnAnnotationArgs:
     def __init__(__self__, *,
@@ -6775,6 +8778,13 @@ class SLOAlertingSlowburnAnnotationArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class SLOAlertingSlowburnLabelArgsDict(TypedDict):
+        key: pulumi.Input[str]
+        value: pulumi.Input[str]
+elif False:
+    SLOAlertingSlowburnLabelArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SLOAlertingSlowburnLabelArgs:
@@ -6803,6 +8813,15 @@ class SLOAlertingSlowburnLabelArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class SLODestinationDatasourceArgsDict(TypedDict):
+        uid: NotRequired[pulumi.Input[str]]
+        """
+        UID for the Mimir Datasource
+        """
+elif False:
+    SLODestinationDatasourceArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SLODestinationDatasourceArgs:
     def __init__(__self__, *,
@@ -6825,6 +8844,13 @@ class SLODestinationDatasourceArgs:
     def uid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uid", value)
 
+
+if not MYPY:
+    class SLOLabelArgsDict(TypedDict):
+        key: pulumi.Input[str]
+        value: pulumi.Input[str]
+elif False:
+    SLOLabelArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SLOLabelArgs:
@@ -6852,6 +8878,19 @@ class SLOLabelArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class SLOObjectiveArgsDict(TypedDict):
+        value: pulumi.Input[float]
+        """
+        Value between 0 and 1. If the value of the query is above the objective, the SLO is met.
+        """
+        window: pulumi.Input[str]
+        """
+        A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.
+        """
+elif False:
+    SLOObjectiveArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SLOObjectiveArgs:
@@ -6889,6 +8928,17 @@ class SLOObjectiveArgs:
     def window(self, value: pulumi.Input[str]):
         pulumi.set(self, "window", value)
 
+
+if not MYPY:
+    class SLOQueryArgsDict(TypedDict):
+        type: pulumi.Input[str]
+        """
+        Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        """
+        freeform: NotRequired[pulumi.Input['SLOQueryFreeformArgsDict']]
+        ratio: NotRequired[pulumi.Input['SLOQueryRatioArgsDict']]
+elif False:
+    SLOQueryArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SLOQueryArgs:
@@ -6936,6 +8986,15 @@ class SLOQueryArgs:
         pulumi.set(self, "ratio", value)
 
 
+if not MYPY:
+    class SLOQueryFreeformArgsDict(TypedDict):
+        query: pulumi.Input[str]
+        """
+        Freeform Query Field
+        """
+elif False:
+    SLOQueryFreeformArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SLOQueryFreeformArgs:
     def __init__(__self__, *,
@@ -6957,6 +9016,23 @@ class SLOQueryFreeformArgs:
     def query(self, value: pulumi.Input[str]):
         pulumi.set(self, "query", value)
 
+
+if not MYPY:
+    class SLOQueryRatioArgsDict(TypedDict):
+        success_metric: pulumi.Input[str]
+        """
+        Counter metric for success events (numerator)
+        """
+        total_metric: pulumi.Input[str]
+        """
+        Metric for total events (denominator)
+        """
+        group_by_labels: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
+        """
+elif False:
+    SLOQueryRatioArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SLOQueryRatioArgs:
@@ -7011,6 +9087,23 @@ class SLOQueryRatioArgs:
         pulumi.set(self, "group_by_labels", value)
 
 
+if not MYPY:
+    class ServiceAccountPermissionPermissionArgsDict(TypedDict):
+        permission: pulumi.Input[str]
+        """
+        Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        """
+        team_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the team to manage permissions for. Defaults to `0`.
+        """
+        user_id: NotRequired[pulumi.Input[str]]
+        """
+        ID of the user or service account to manage permissions for. Defaults to `0`.
+        """
+elif False:
+    ServiceAccountPermissionPermissionArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceAccountPermissionPermissionArgs:
     def __init__(__self__, *,
@@ -7064,6 +9157,163 @@ class ServiceAccountPermissionPermissionArgs:
     def user_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_id", value)
 
+
+if not MYPY:
+    class SsoSettingsOauth2SettingsArgsDict(TypedDict):
+        client_id: pulumi.Input[str]
+        """
+        The client Id of your OAuth2 app.
+        """
+        allow_assign_grafana_admin: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, it will automatically sync the Grafana server administrator role.
+        """
+        allow_sign_up: NotRequired[pulumi.Input[bool]]
+        """
+        If not enabled, only existing Grafana users can log in using OAuth.
+        """
+        allowed_domains: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated domains. The user should belong to at least one domain to log in.
+        """
+        allowed_groups: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated groups. The user should be a member of at least one group to log in. For Generic OAuth, if you configure allowed*groups, you must also configure groups*attribute_path.
+        """
+        allowed_organizations: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated organizations. The user should be a member of at least one organization to log in.
+        """
+        api_url: NotRequired[pulumi.Input[str]]
+        """
+        The user information endpoint of your OAuth2 provider. Required for okta and generic_oauth providers.
+        """
+        auth_style: NotRequired[pulumi.Input[str]]
+        """
+        It determines how client*id and client*secret are sent to Oauth2 provider. Possible values are AutoDetect, InParams, InHeader. Default is AutoDetect.
+        """
+        auth_url: NotRequired[pulumi.Input[str]]
+        """
+        The authorization endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        """
+        auto_login: NotRequired[pulumi.Input[bool]]
+        """
+        Log in automatically, skipping the login screen.
+        """
+        client_secret: NotRequired[pulumi.Input[str]]
+        """
+        The client secret of your OAuth2 app.
+        """
+        custom: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Custom fields to configure for OAuth2 such as the [force*use*graph_api](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/azuread/#force-fetching-groups-from-microsoft-graph-api) field.
+        """
+        define_allowed_groups: NotRequired[pulumi.Input[bool]]
+        """
+        Define allowed groups.
+        """
+        define_allowed_teams_ids: NotRequired[pulumi.Input[bool]]
+        """
+        Define allowed teams ids.
+        """
+        email_attribute_name: NotRequired[pulumi.Input[str]]
+        """
+        Name of the key to use for user email lookup within the attributes map of OAuth2 ID token. Only applicable to Generic OAuth.
+        """
+        email_attribute_path: NotRequired[pulumi.Input[str]]
+        """
+        JMESPath expression to use for user email lookup from the user information. Only applicable to Generic OAuth.
+        """
+        empty_scopes: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, no scopes will be sent to the OAuth2 provider.
+        """
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+        """
+        groups_attribute_path: NotRequired[pulumi.Input[str]]
+        """
+        JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
+        """
+        id_token_attribute_name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
+        """
+        login_attribute_path: NotRequired[pulumi.Input[str]]
+        """
+        JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Helpful if you use more than one identity providers or SSO protocols.
+        """
+        name_attribute_path: NotRequired[pulumi.Input[str]]
+        """
+        JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+        """
+        role_attribute_path: NotRequired[pulumi.Input[str]]
+        """
+        JMESPath expression to use for Grafana role lookup.
+        """
+        role_attribute_strict: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
+        """
+        scopes: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated OAuth2 scopes.
+        """
+        signout_redirect_url: NotRequired[pulumi.Input[str]]
+        """
+        The URL to redirect the user to after signing out from Grafana.
+        """
+        skip_org_role_sync: NotRequired[pulumi.Input[bool]]
+        """
+        Prevent synchronizing users’ organization roles from your IdP.
+        """
+        team_ids: NotRequired[pulumi.Input[str]]
+        """
+        String list of Team Ids. If set, the user must be a member of one of the given teams to log in. If you configure team*ids, you must also configure teams*url and team*ids*attribute_path.
+        """
+        team_ids_attribute_path: NotRequired[pulumi.Input[str]]
+        """
+        The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teams_url endpoint. Only applicable to Generic OAuth.
+        """
+        teams_url: NotRequired[pulumi.Input[str]]
+        """
+        The URL used to query for Team Ids. If not set, the default value is /teams. If you configure teams*url, you must also configure team*ids*attribute*path. Only applicable to Generic OAuth.
+        """
+        tls_client_ca: NotRequired[pulumi.Input[str]]
+        """
+        The path to the trusted certificate authority list. Is not applicable on Grafana Cloud.
+        """
+        tls_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The path to the certificate. Is not applicable on Grafana Cloud.
+        """
+        tls_client_key: NotRequired[pulumi.Input[str]]
+        """
+        The path to the key. Is not applicable on Grafana Cloud.
+        """
+        tls_skip_verify_insecure: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, the client accepts any certificate presented by the server and any host name in that certificate. You should only use this for testing, because this mode leaves SSL/TLS susceptible to man-in-the-middle attacks.
+        """
+        token_url: NotRequired[pulumi.Input[str]]
+        """
+        The token endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        """
+        use_pkce: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, Grafana will use Proof Key for Code Exchange (PKCE) with the OAuth2 Authorization Code Grant.
+        """
+        use_refresh_token: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, Grafana will fetch a new access token using the refresh token provided by the OAuth2 provider.
+        """
+elif False:
+    SsoSettingsOauth2SettingsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SsoSettingsOauth2SettingsArgs:
@@ -7679,6 +9929,139 @@ class SsoSettingsOauth2SettingsArgs:
         pulumi.set(self, "use_refresh_token", value)
 
 
+if not MYPY:
+    class SsoSettingsSamlSettingsArgsDict(TypedDict):
+        allow_idp_initiated: NotRequired[pulumi.Input[bool]]
+        """
+        Whether SAML IdP-initiated login is allowed.
+        """
+        allow_sign_up: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
+        """
+        allowed_organizations: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
+        """
+        assertion_attribute_email: NotRequired[pulumi.Input[str]]
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user email.
+        """
+        assertion_attribute_groups: NotRequired[pulumi.Input[str]]
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user groups.
+        """
+        assertion_attribute_login: NotRequired[pulumi.Input[str]]
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
+        """
+        assertion_attribute_name: NotRequired[pulumi.Input[str]]
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
+        """
+        assertion_attribute_org: NotRequired[pulumi.Input[str]]
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user organization.
+        """
+        assertion_attribute_role: NotRequired[pulumi.Input[str]]
+        """
+        Friendly name or name of the attribute within the SAML assertion to use as the user roles.
+        """
+        auto_login: NotRequired[pulumi.Input[bool]]
+        """
+        Whether SAML auto login is enabled.
+        """
+        certificate: NotRequired[pulumi.Input[str]]
+        """
+        Base64-encoded string for the SP X.509 certificate.
+        """
+        certificate_path: NotRequired[pulumi.Input[str]]
+        """
+        Path for the SP X.509 certificate.
+        """
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Define whether this configuration is enabled for SAML. Defaults to `true`.
+        """
+        idp_metadata: NotRequired[pulumi.Input[str]]
+        """
+        Base64-encoded string for the IdP SAML metadata XML.
+        """
+        idp_metadata_path: NotRequired[pulumi.Input[str]]
+        """
+        Path for the IdP SAML metadata XML.
+        """
+        idp_metadata_url: NotRequired[pulumi.Input[str]]
+        """
+        URL for the IdP SAML metadata XML.
+        """
+        max_issue_delay: NotRequired[pulumi.Input[str]]
+        """
+        Duration, since the IdP issued a response and the SP is allowed to process it. For example: 90s, 1h.
+        """
+        metadata_valid_duration: NotRequired[pulumi.Input[str]]
+        """
+        Duration, for how long the SP metadata is valid. For example: 48h, 5d.
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Name used to refer to the SAML authentication.
+        """
+        name_id_format: NotRequired[pulumi.Input[str]]
+        """
+        The Name ID Format to request within the SAML assertion. Defaults to urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        """
+        org_mapping: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated Organization:OrgId:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: Viewer, Editor or Admin.
+        """
+        private_key: NotRequired[pulumi.Input[str]]
+        """
+        Base64-encoded string for the SP private key.
+        """
+        private_key_path: NotRequired[pulumi.Input[str]]
+        """
+        Path for the SP private key.
+        """
+        relay_state: NotRequired[pulumi.Input[str]]
+        """
+        Relay state for IdP-initiated login. Should match relay state configured in IdP.
+        """
+        role_values_admin: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated roles which will be mapped into the Admin role.
+        """
+        role_values_editor: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated roles which will be mapped into the Editor role.
+        """
+        role_values_grafana_admin: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated roles which will be mapped into the Grafana Admin (Super Admin) role.
+        """
+        role_values_none: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated roles which will be mapped into the None role.
+        """
+        role_values_viewer: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated roles which will be mapped into the Viewer role.
+        """
+        signature_algorithm: NotRequired[pulumi.Input[str]]
+        """
+        Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
+        """
+        single_logout: NotRequired[pulumi.Input[bool]]
+        """
+        Whether SAML Single Logout is enabled.
+        """
+        skip_org_role_sync: NotRequired[pulumi.Input[bool]]
+        """
+        Prevent synchronizing users’ organization roles from your IdP.
+        """
+elif False:
+    SsoSettingsSamlSettingsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SsoSettingsSamlSettingsArgs:
     def __init__(__self__, *,
@@ -8198,6 +10581,43 @@ class SsoSettingsSamlSettingsArgs:
         pulumi.set(self, "skip_org_role_sync", value)
 
 
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsArgsDict(TypedDict):
+        dns: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsDnsArgsDict']]
+        """
+        Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
+        """
+        grpc: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsGrpcArgsDict']]
+        """
+        Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
+        """
+        http: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsHttpArgsDict']]
+        """
+        Settings for HTTP check. The target must be a URL (http or https).
+        """
+        multihttp: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpArgsDict']]
+        """
+        Settings for MultiHTTP check. The target must be a URL (http or https)
+        """
+        ping: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsPingArgsDict']]
+        """
+        Settings for ping (ICMP) check. The target must be a valid hostname or IP address.
+        """
+        scripted: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsScriptedArgsDict']]
+        """
+        Settings for scripted check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6/.
+        """
+        tcp: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsTcpArgsDict']]
+        """
+        Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
+        """
+        traceroute: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsTracerouteArgsDict']]
+        """
+        Settings for traceroute check. The target must be a valid hostname or IP address
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsArgs:
     def __init__(__self__, *,
@@ -8332,6 +10752,51 @@ class SyntheticMonitoringCheckSettingsArgs:
     def traceroute(self, value: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsTracerouteArgs']]):
         pulumi.set(self, "traceroute", value)
 
+
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsDnsArgsDict(TypedDict):
+        ip_version: NotRequired[pulumi.Input[str]]
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        Port to target. Defaults to `53`.
+        """
+        protocol: NotRequired[pulumi.Input[str]]
+        """
+        `TCP` or `UDP`. Defaults to `UDP`.
+        """
+        record_type: NotRequired[pulumi.Input[str]]
+        """
+        One of `ANY`, `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`. Defaults to `A`.
+        """
+        server: NotRequired[pulumi.Input[str]]
+        """
+        DNS server address to target. Defaults to `8.8.8.8`.
+        """
+        source_ip_address: NotRequired[pulumi.Input[str]]
+        """
+        Source IP address.
+        """
+        valid_r_codes: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of valid response codes. Options include `NOERROR`, `BADALG`, `BADMODE`, `BADKEY`, `BADCOOKIE`, `BADNAME`, `BADSIG`, `BADTIME`, `BADTRUNC`, `BADVERS`, `FORMERR`, `NOTIMP`, `NOTAUTH`, `NOTZONE`, `NXDOMAIN`, `NXRRSET`, `REFUSED`, `SERVFAIL`, `YXDOMAIN`, `YXRRSET`.
+        """
+        validate_additional_rrs: NotRequired[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgsDict']]]]
+        """
+        Validate additional matches.
+        """
+        validate_answer_rrs: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgsDict']]
+        """
+        Validate response answer.
+        """
+        validate_authority_rrs: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgsDict']]
+        """
+        Validate response authority.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsDnsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsDnsArgs:
@@ -8500,6 +10965,19 @@ class SyntheticMonitoringCheckSettingsDnsArgs:
         pulumi.set(self, "validate_authority_rrs", value)
 
 
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgsDict(TypedDict):
+        fail_if_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Fail if value matches regex.
+        """
+        fail_if_not_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Fail if value does not match regex.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs:
     def __init__(__self__, *,
@@ -8538,6 +11016,19 @@ class SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs:
     def fail_if_not_matches_regexps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "fail_if_not_matches_regexps", value)
 
+
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgsDict(TypedDict):
+        fail_if_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Fail if value matches regex.
+        """
+        fail_if_not_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Fail if value does not match regex.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs:
@@ -8578,6 +11069,19 @@ class SyntheticMonitoringCheckSettingsDnsValidateAnswerRrsArgs:
         pulumi.set(self, "fail_if_not_matches_regexps", value)
 
 
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgsDict(TypedDict):
+        fail_if_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Fail if value matches regex.
+        """
+        fail_if_not_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Fail if value does not match regex.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs:
     def __init__(__self__, *,
@@ -8616,6 +11120,27 @@ class SyntheticMonitoringCheckSettingsDnsValidateAuthorityRrsArgs:
     def fail_if_not_matches_regexps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "fail_if_not_matches_regexps", value)
 
+
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsGrpcArgsDict(TypedDict):
+        ip_version: NotRequired[pulumi.Input[str]]
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
+        service: NotRequired[pulumi.Input[str]]
+        """
+        gRPC service.
+        """
+        tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+        """
+        tls_config: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsGrpcTlsConfigArgsDict']]
+        """
+        TLS config.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsGrpcArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsGrpcArgs:
@@ -8687,6 +11212,31 @@ class SyntheticMonitoringCheckSettingsGrpcArgs:
     def tls_config(self, value: Optional[pulumi.Input['SyntheticMonitoringCheckSettingsGrpcTlsConfigArgs']]):
         pulumi.set(self, "tls_config", value)
 
+
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsGrpcTlsConfigArgsDict(TypedDict):
+        ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        CA certificate in PEM format.
+        """
+        client_cert: NotRequired[pulumi.Input[str]]
+        """
+        Client certificate in PEM format.
+        """
+        client_key: NotRequired[pulumi.Input[str]]
+        """
+        Client key in PEM format.
+        """
+        insecure_skip_verify: NotRequired[pulumi.Input[bool]]
+        """
+        Disable target certificate validation. Defaults to `false`.
+        """
+        server_name: NotRequired[pulumi.Input[str]]
+        """
+        Used to verify the hostname for the targets.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsGrpcTlsConfigArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsGrpcTlsConfigArgs:
@@ -8774,6 +11324,87 @@ class SyntheticMonitoringCheckSettingsGrpcTlsConfigArgs:
     def server_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_name", value)
 
+
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsHttpArgsDict(TypedDict):
+        basic_auth: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsHttpBasicAuthArgsDict']]
+        """
+        Basic auth settings.
+        """
+        bearer_token: NotRequired[pulumi.Input[str]]
+        """
+        Token for use with bearer authorization header.
+        """
+        body: NotRequired[pulumi.Input[str]]
+        """
+        The body of the HTTP request used in probe.
+        """
+        cache_busting_query_param_name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
+        """
+        fail_if_body_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of regexes. If any match the response body, the check will fail.
+        """
+        fail_if_body_not_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of regexes. If any do not match the response body, the check will fail.
+        """
+        fail_if_header_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgsDict']]]]
+        """
+        Check fails if headers match.
+        """
+        fail_if_header_not_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgsDict']]]]
+        """
+        Check fails if headers do not match.
+        """
+        fail_if_not_ssl: NotRequired[pulumi.Input[bool]]
+        """
+        Fail if SSL is not present. Defaults to `false`.
+        """
+        fail_if_ssl: NotRequired[pulumi.Input[bool]]
+        """
+        Fail if SSL is present. Defaults to `false`.
+        """
+        headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The HTTP headers set for the probe.
+        """
+        ip_version: NotRequired[pulumi.Input[str]]
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
+        method: NotRequired[pulumi.Input[str]]
+        """
+        Request method. One of `GET`, `CONNECT`, `DELETE`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE` Defaults to `GET`.
+        """
+        no_follow_redirects: NotRequired[pulumi.Input[bool]]
+        """
+        Do not follow redirects. Defaults to `false`.
+        """
+        proxy_connect_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The HTTP headers sent to the proxy URL
+        """
+        proxy_url: NotRequired[pulumi.Input[str]]
+        """
+        Proxy URL.
+        """
+        tls_config: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsHttpTlsConfigArgsDict']]
+        """
+        TLS config.
+        """
+        valid_http_versions: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of valid HTTP versions. Options include `HTTP/1.0`, `HTTP/1.1`, `HTTP/2.0`
+        """
+        valid_status_codes: NotRequired[pulumi.Input[Sequence[pulumi.Input[int]]]]
+        """
+        Accepted status codes. If unset, defaults to 2xx.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsHttpArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsHttpArgs:
@@ -9086,6 +11717,19 @@ class SyntheticMonitoringCheckSettingsHttpArgs:
         pulumi.set(self, "valid_status_codes", value)
 
 
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsHttpBasicAuthArgsDict(TypedDict):
+        password: pulumi.Input[str]
+        """
+        Basic auth password.
+        """
+        username: pulumi.Input[str]
+        """
+        Basic auth username.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsHttpBasicAuthArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsHttpBasicAuthArgs:
     def __init__(__self__, *,
@@ -9122,6 +11766,23 @@ class SyntheticMonitoringCheckSettingsHttpBasicAuthArgs:
     def username(self, value: pulumi.Input[str]):
         pulumi.set(self, "username", value)
 
+
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgsDict(TypedDict):
+        header: pulumi.Input[str]
+        """
+        Header name.
+        """
+        regexp: pulumi.Input[str]
+        """
+        Regex that header value should match.
+        """
+        allow_missing: NotRequired[pulumi.Input[bool]]
+        """
+        Allow header to be missing from responses. Defaults to `false`.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs:
@@ -9176,6 +11837,23 @@ class SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs:
         pulumi.set(self, "allow_missing", value)
 
 
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgsDict(TypedDict):
+        header: pulumi.Input[str]
+        """
+        Header name.
+        """
+        regexp: pulumi.Input[str]
+        """
+        Regex that header value should match.
+        """
+        allow_missing: NotRequired[pulumi.Input[bool]]
+        """
+        Allow header to be missing from responses. Defaults to `false`.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs:
     def __init__(__self__, *,
@@ -9228,6 +11906,31 @@ class SyntheticMonitoringCheckSettingsHttpFailIfHeaderNotMatchesRegexpArgs:
     def allow_missing(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "allow_missing", value)
 
+
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsHttpTlsConfigArgsDict(TypedDict):
+        ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        CA certificate in PEM format.
+        """
+        client_cert: NotRequired[pulumi.Input[str]]
+        """
+        Client certificate in PEM format.
+        """
+        client_key: NotRequired[pulumi.Input[str]]
+        """
+        Client key in PEM format.
+        """
+        insecure_skip_verify: NotRequired[pulumi.Input[bool]]
+        """
+        Disable target certificate validation. Defaults to `false`.
+        """
+        server_name: NotRequired[pulumi.Input[str]]
+        """
+        Used to verify the hostname for the targets.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsHttpTlsConfigArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsHttpTlsConfigArgs:
@@ -9316,6 +12019,12 @@ class SyntheticMonitoringCheckSettingsHttpTlsConfigArgs:
         pulumi.set(self, "server_name", value)
 
 
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsMultihttpArgsDict(TypedDict):
+        entries: NotRequired[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryArgsDict']]]]
+elif False:
+    SyntheticMonitoringCheckSettingsMultihttpArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsMultihttpArgs:
     def __init__(__self__, *,
@@ -9332,6 +12041,23 @@ class SyntheticMonitoringCheckSettingsMultihttpArgs:
     def entries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryArgs']]]]):
         pulumi.set(self, "entries", value)
 
+
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsMultihttpEntryArgsDict(TypedDict):
+        assertions: NotRequired[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgsDict']]]]
+        """
+        Assertions to make on the request response
+        """
+        request: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgsDict']]
+        """
+        An individual MultiHTTP request
+        """
+        variables: NotRequired[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgsDict']]]]
+        """
+        Variables to extract from the request response
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsMultihttpEntryArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsMultihttpEntryArgs:
@@ -9387,6 +12113,31 @@ class SyntheticMonitoringCheckSettingsMultihttpEntryArgs:
     def variables(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs']]]]):
         pulumi.set(self, "variables", value)
 
+
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgsDict(TypedDict):
+        type: pulumi.Input[str]
+        """
+        The type of assertion to make: TEXT, JSON*PATH*VALUE, JSON*PATH*ASSERTION, REGEX_ASSERTION
+        """
+        condition: NotRequired[pulumi.Input[str]]
+        """
+        The condition of the assertion: NOT*CONTAINS, EQUALS, STARTS*WITH, ENDS*WITH, TYPE*OF, CONTAINS
+        """
+        expression: NotRequired[pulumi.Input[str]]
+        """
+        The expression of the assertion. Should start with $.
+        """
+        subject: NotRequired[pulumi.Input[str]]
+        """
+        The subject of the assertion: RESPONSE*HEADERS, HTTP*STATUS*CODE, RESPONSE*BODY
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        The value of the assertion
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs:
@@ -9474,6 +12225,31 @@ class SyntheticMonitoringCheckSettingsMultihttpEntryAssertionArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgsDict(TypedDict):
+        method: pulumi.Input[str]
+        """
+        The HTTP method to use
+        """
+        url: pulumi.Input[str]
+        """
+        The URL for the request
+        """
+        bodies: NotRequired[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgsDict']]]]
+        """
+        The body of the HTTP request used in probe.
+        """
+        headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgsDict']]]]
+        """
+        The headers to send with the request
+        """
+        query_fields: NotRequired[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgsDict']]]]
+        """
+        Query fields to send with the request
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs:
     def __init__(__self__, *,
@@ -9559,6 +12335,23 @@ class SyntheticMonitoringCheckSettingsMultihttpEntryRequestArgs:
         pulumi.set(self, "query_fields", value)
 
 
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgsDict(TypedDict):
+        content_encoding: NotRequired[pulumi.Input[str]]
+        """
+        The content encoding of the body
+        """
+        content_type: NotRequired[pulumi.Input[str]]
+        """
+        The content type of the body
+        """
+        payload: NotRequired[pulumi.Input[str]]
+        """
+        The body payload
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs:
     def __init__(__self__, *,
@@ -9614,6 +12407,19 @@ class SyntheticMonitoringCheckSettingsMultihttpEntryRequestBodyArgs:
         pulumi.set(self, "payload", value)
 
 
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the header to send
+        """
+        value: pulumi.Input[str]
+        """
+        Value of the header to send
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs:
     def __init__(__self__, *,
@@ -9651,6 +12457,19 @@ class SyntheticMonitoringCheckSettingsMultihttpEntryRequestHeaderArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the query field to send
+        """
+        value: pulumi.Input[str]
+        """
+        Value of the query field to send
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs:
     def __init__(__self__, *,
@@ -9687,6 +12506,27 @@ class SyntheticMonitoringCheckSettingsMultihttpEntryRequestQueryFieldArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgsDict(TypedDict):
+        type: pulumi.Input[str]
+        """
+        The method of finding the variable value to extract. JSON*PATH, REGEX, CSS*SELECTOR
+        """
+        attribute: NotRequired[pulumi.Input[str]]
+        """
+        The attribute to use when finding the variable value. Only used when type is CSS_SELECTOR
+        """
+        expression: NotRequired[pulumi.Input[str]]
+        """
+        The expression to when finding the variable. Should start with $. Only use when type is JSON_PATH or REGEX
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the variable to extract
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs:
@@ -9757,6 +12597,27 @@ class SyntheticMonitoringCheckSettingsMultihttpEntryVariableArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsPingArgsDict(TypedDict):
+        dont_fragment: NotRequired[pulumi.Input[bool]]
+        """
+        Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+        """
+        ip_version: NotRequired[pulumi.Input[str]]
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
+        payload_size: NotRequired[pulumi.Input[int]]
+        """
+        Payload size. Defaults to `0`.
+        """
+        source_ip_address: NotRequired[pulumi.Input[str]]
+        """
+        Source IP address.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsPingArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsPingArgs:
@@ -9829,6 +12690,12 @@ class SyntheticMonitoringCheckSettingsPingArgs:
         pulumi.set(self, "source_ip_address", value)
 
 
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsScriptedArgsDict(TypedDict):
+        script: pulumi.Input[str]
+elif False:
+    SyntheticMonitoringCheckSettingsScriptedArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsScriptedArgs:
     def __init__(__self__, *,
@@ -9844,6 +12711,31 @@ class SyntheticMonitoringCheckSettingsScriptedArgs:
     def script(self, value: pulumi.Input[str]):
         pulumi.set(self, "script", value)
 
+
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsTcpArgsDict(TypedDict):
+        ip_version: NotRequired[pulumi.Input[str]]
+        """
+        Options are `V4`, `V6`, `Any`. Specifies whether the corresponding check will be performed using IPv4 or IPv6. The `Any` value indicates that IPv6 should be used, falling back to IPv4 if that's not available. Defaults to `V4`.
+        """
+        query_responses: NotRequired[pulumi.Input[Sequence[pulumi.Input['SyntheticMonitoringCheckSettingsTcpQueryResponseArgsDict']]]]
+        """
+        The query sent in the TCP probe and the expected associated response.
+        """
+        source_ip_address: NotRequired[pulumi.Input[str]]
+        """
+        Source IP address.
+        """
+        tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+        """
+        tls_config: NotRequired[pulumi.Input['SyntheticMonitoringCheckSettingsTcpTlsConfigArgsDict']]
+        """
+        TLS config.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsTcpArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsTcpArgs:
@@ -9932,6 +12824,23 @@ class SyntheticMonitoringCheckSettingsTcpArgs:
         pulumi.set(self, "tls_config", value)
 
 
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsTcpQueryResponseArgsDict(TypedDict):
+        expect: pulumi.Input[str]
+        """
+        Response to expect.
+        """
+        send: pulumi.Input[str]
+        """
+        Data to send.
+        """
+        start_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Upgrade TCP connection to TLS. Defaults to `false`.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsTcpQueryResponseArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsTcpQueryResponseArgs:
     def __init__(__self__, *,
@@ -9984,6 +12893,31 @@ class SyntheticMonitoringCheckSettingsTcpQueryResponseArgs:
     def start_tls(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "start_tls", value)
 
+
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsTcpTlsConfigArgsDict(TypedDict):
+        ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        CA certificate in PEM format.
+        """
+        client_cert: NotRequired[pulumi.Input[str]]
+        """
+        Client certificate in PEM format.
+        """
+        client_key: NotRequired[pulumi.Input[str]]
+        """
+        Client key in PEM format.
+        """
+        insecure_skip_verify: NotRequired[pulumi.Input[bool]]
+        """
+        Disable target certificate validation. Defaults to `false`.
+        """
+        server_name: NotRequired[pulumi.Input[str]]
+        """
+        Used to verify the hostname for the targets.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsTcpTlsConfigArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsTcpTlsConfigArgs:
@@ -10072,6 +13006,23 @@ class SyntheticMonitoringCheckSettingsTcpTlsConfigArgs:
         pulumi.set(self, "server_name", value)
 
 
+if not MYPY:
+    class SyntheticMonitoringCheckSettingsTracerouteArgsDict(TypedDict):
+        max_hops: NotRequired[pulumi.Input[int]]
+        """
+        Maximum TTL for the trace Defaults to `64`.
+        """
+        max_unknown_hops: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of hosts to travers that give no response Defaults to `15`.
+        """
+        ptr_lookup: NotRequired[pulumi.Input[bool]]
+        """
+        Reverse lookup hostnames from IP addresses Defaults to `true`.
+        """
+elif False:
+    SyntheticMonitoringCheckSettingsTracerouteArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SyntheticMonitoringCheckSettingsTracerouteArgs:
     def __init__(__self__, *,
@@ -10126,6 +13077,27 @@ class SyntheticMonitoringCheckSettingsTracerouteArgs:
     def ptr_lookup(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "ptr_lookup", value)
 
+
+if not MYPY:
+    class TeamPreferencesArgsDict(TypedDict):
+        home_dashboard_uid: NotRequired[pulumi.Input[str]]
+        """
+        The UID of the dashboard to display when a team member logs in.
+        """
+        theme: NotRequired[pulumi.Input[str]]
+        """
+        The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
+        """
+        timezone: NotRequired[pulumi.Input[str]]
+        """
+        The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
+        """
+        week_start: NotRequired[pulumi.Input[str]]
+        """
+        The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+        """
+elif False:
+    TeamPreferencesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class TeamPreferencesArgs:
@@ -10197,6 +13169,12 @@ class TeamPreferencesArgs:
     def week_start(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "week_start", value)
 
+
+if not MYPY:
+    class TeamTeamSyncArgsDict(TypedDict):
+        groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    TeamTeamSyncArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class TeamTeamSyncArgs:

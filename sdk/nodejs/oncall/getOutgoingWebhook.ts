@@ -19,7 +19,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getOutgoingWebhook(args: GetOutgoingWebhookArgs, opts?: pulumi.InvokeOptions): Promise<GetOutgoingWebhookResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:onCall/getOutgoingWebhook:getOutgoingWebhook", {
         "name": args.name,
@@ -64,7 +63,10 @@ export interface GetOutgoingWebhookResult {
  * ```
  */
 export function getOutgoingWebhookOutput(args: GetOutgoingWebhookOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOutgoingWebhookResult> {
-    return pulumi.output(args).apply((a: any) => getOutgoingWebhook(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:onCall/getOutgoingWebhook:getOutgoingWebhook", {
+        "name": args.name,
+    }, opts);
 }
 
 /**

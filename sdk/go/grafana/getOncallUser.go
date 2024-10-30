@@ -70,14 +70,20 @@ type GetOncallUserResult struct {
 
 func GetOncallUserOutput(ctx *pulumi.Context, args GetOncallUserOutputArgs, opts ...pulumi.InvokeOption) GetOncallUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetOncallUserResult, error) {
+		ApplyT(func(v interface{}) (GetOncallUserResultOutput, error) {
 			args := v.(GetOncallUserArgs)
-			r, err := GetOncallUser(ctx, &args, opts...)
-			var s GetOncallUserResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetOncallUserResult
+			secret, err := ctx.InvokePackageRaw("grafana:index/getOncallUser:getOncallUser", args, &rv, "", opts...)
+			if err != nil {
+				return GetOncallUserResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetOncallUserResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetOncallUserResultOutput), nil
+			}
+			return output, nil
 		}).(GetOncallUserResultOutput)
 }
 

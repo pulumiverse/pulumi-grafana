@@ -32,7 +32,6 @@ import * as utilities from "./utilities";
 /** @deprecated grafana.index/getusers.getUsers has been deprecated in favor of grafana.oss/getusers.getUsers */
 export function getUsers(opts?: pulumi.InvokeOptions): Promise<GetUsersResult> {
     pulumi.log.warn("getUsers is deprecated: grafana.index/getusers.getUsers has been deprecated in favor of grafana.oss/getusers.getUsers")
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getUsers:getUsers", {
     }, opts);
@@ -76,5 +75,8 @@ export interface GetUsersResult {
  */
 /** @deprecated grafana.index/getusers.getUsers has been deprecated in favor of grafana.oss/getusers.getUsers */
 export function getUsersOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetUsersResult> {
-    return pulumi.output(getUsers(opts))
+    pulumi.log.warn("getUsers is deprecated: grafana.index/getusers.getUsers has been deprecated in favor of grafana.oss/getusers.getUsers")
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("grafana:index/getUsers:getUsers", {
+    }, opts);
 }

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = ['JobArgs', 'Job']
@@ -17,11 +22,11 @@ class JobArgs:
                  datasource_type: pulumi.Input[str],
                  datasource_uid: pulumi.Input[str],
                  metric: pulumi.Input[str],
-                 query_params: pulumi.Input[Mapping[str, Any]],
-                 custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 query_params: pulumi.Input[Mapping[str, pulumi.Input[str]]],
+                 custom_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  holidays: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 hyper_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 hyper_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  training_window: Optional[pulumi.Input[int]] = None):
@@ -30,11 +35,11 @@ class JobArgs:
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] metric: The metric used to query the job results.
-        :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
-        :param pulumi.Input[Mapping[str, Any]] custom_labels: An object representing the custom labels added on the forecast.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] query_params: An object representing the query params to query Grafana with.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_labels: An object representing the custom labels added on the forecast.
         :param pulumi.Input[str] description: A description of the job.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
-        :param pulumi.Input[Mapping[str, Any]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         :param pulumi.Input[int] interval: The data interval in seconds to train the data on. Defaults to `300`.
         :param pulumi.Input[str] name: The name of the job.
         :param pulumi.Input[int] training_window: The data interval in seconds to train the data on. Defaults to `7776000`.
@@ -96,26 +101,26 @@ class JobArgs:
 
     @property
     @pulumi.getter(name="queryParams")
-    def query_params(self) -> pulumi.Input[Mapping[str, Any]]:
+    def query_params(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
         """
         An object representing the query params to query Grafana with.
         """
         return pulumi.get(self, "query_params")
 
     @query_params.setter
-    def query_params(self, value: pulumi.Input[Mapping[str, Any]]):
+    def query_params(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
         pulumi.set(self, "query_params", value)
 
     @property
     @pulumi.getter(name="customLabels")
-    def custom_labels(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def custom_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         An object representing the custom labels added on the forecast.
         """
         return pulumi.get(self, "custom_labels")
 
     @custom_labels.setter
-    def custom_labels(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def custom_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "custom_labels", value)
 
     @property
@@ -144,14 +149,14 @@ class JobArgs:
 
     @property
     @pulumi.getter(name="hyperParams")
-    def hyper_params(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def hyper_params(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         """
         return pulumi.get(self, "hyper_params")
 
     @hyper_params.setter
-    def hyper_params(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def hyper_params(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "hyper_params", value)
 
     @property
@@ -194,29 +199,29 @@ class JobArgs:
 @pulumi.input_type
 class _JobState:
     def __init__(__self__, *,
-                 custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 custom_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  holidays: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 hyper_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 hyper_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  metric: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 query_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 query_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  training_window: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Job resources.
-        :param pulumi.Input[Mapping[str, Any]] custom_labels: An object representing the custom labels added on the forecast.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_labels: An object representing the custom labels added on the forecast.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
-        :param pulumi.Input[Mapping[str, Any]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         :param pulumi.Input[int] interval: The data interval in seconds to train the data on. Defaults to `300`.
         :param pulumi.Input[str] metric: The metric used to query the job results.
         :param pulumi.Input[str] name: The name of the job.
-        :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] query_params: An object representing the query params to query Grafana with.
         :param pulumi.Input[int] training_window: The data interval in seconds to train the data on. Defaults to `7776000`.
         """
         if custom_labels is not None:
@@ -244,14 +249,14 @@ class _JobState:
 
     @property
     @pulumi.getter(name="customLabels")
-    def custom_labels(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def custom_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         An object representing the custom labels added on the forecast.
         """
         return pulumi.get(self, "custom_labels")
 
     @custom_labels.setter
-    def custom_labels(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def custom_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "custom_labels", value)
 
     @property
@@ -304,14 +309,14 @@ class _JobState:
 
     @property
     @pulumi.getter(name="hyperParams")
-    def hyper_params(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def hyper_params(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         """
         return pulumi.get(self, "hyper_params")
 
     @hyper_params.setter
-    def hyper_params(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def hyper_params(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "hyper_params", value)
 
     @property
@@ -352,14 +357,14 @@ class _JobState:
 
     @property
     @pulumi.getter(name="queryParams")
-    def query_params(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def query_params(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         An object representing the query params to query Grafana with.
         """
         return pulumi.get(self, "query_params")
 
     @query_params.setter
-    def query_params(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def query_params(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "query_params", value)
 
     @property
@@ -380,16 +385,16 @@ class Job(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 custom_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  holidays: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 hyper_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 hyper_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  metric: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 query_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 query_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  training_window: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
@@ -403,16 +408,16 @@ class Job(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] custom_labels: An object representing the custom labels added on the forecast.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_labels: An object representing the custom labels added on the forecast.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
-        :param pulumi.Input[Mapping[str, Any]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         :param pulumi.Input[int] interval: The data interval in seconds to train the data on. Defaults to `300`.
         :param pulumi.Input[str] metric: The metric used to query the job results.
         :param pulumi.Input[str] name: The name of the job.
-        :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] query_params: An object representing the query params to query Grafana with.
         :param pulumi.Input[int] training_window: The data interval in seconds to train the data on. Defaults to `7776000`.
         """
         ...
@@ -445,16 +450,16 @@ class Job(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 custom_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  datasource_type: Optional[pulumi.Input[str]] = None,
                  datasource_uid: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  holidays: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 hyper_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 hyper_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  metric: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 query_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 query_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  training_window: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -496,16 +501,16 @@ class Job(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            custom_labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            custom_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             datasource_type: Optional[pulumi.Input[str]] = None,
             datasource_uid: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             holidays: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            hyper_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            hyper_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             interval: Optional[pulumi.Input[int]] = None,
             metric: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            query_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            query_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             training_window: Optional[pulumi.Input[int]] = None) -> 'Job':
         """
         Get an existing Job resource's state with the given name, id, and optional extra
@@ -514,16 +519,16 @@ class Job(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] custom_labels: An object representing the custom labels added on the forecast.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_labels: An object representing the custom labels added on the forecast.
         :param pulumi.Input[str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
-        :param pulumi.Input[Mapping[str, Any]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         :param pulumi.Input[int] interval: The data interval in seconds to train the data on. Defaults to `300`.
         :param pulumi.Input[str] metric: The metric used to query the job results.
         :param pulumi.Input[str] name: The name of the job.
-        :param pulumi.Input[Mapping[str, Any]] query_params: An object representing the query params to query Grafana with.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] query_params: An object representing the query params to query Grafana with.
         :param pulumi.Input[int] training_window: The data interval in seconds to train the data on. Defaults to `7776000`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -545,7 +550,7 @@ class Job(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="customLabels")
-    def custom_labels(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def custom_labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         An object representing the custom labels added on the forecast.
         """
@@ -585,7 +590,7 @@ class Job(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="hyperParams")
-    def hyper_params(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def hyper_params(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
         """
@@ -617,7 +622,7 @@ class Job(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="queryParams")
-    def query_params(self) -> pulumi.Output[Mapping[str, Any]]:
+    def query_params(self) -> pulumi.Output[Mapping[str, str]]:
         """
         An object representing the query params to query Grafana with.
         """
