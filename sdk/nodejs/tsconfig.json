@@ -123,6 +123,7 @@
         "oncallOutgoingWebhook.ts",
         "oncallRoute.ts",
         "oncallSchedule.ts",
+        "oncallUserNotificationRule.ts",
         "organization.ts",
         "organizationPreferences.ts",
         "oss/annotation.ts",

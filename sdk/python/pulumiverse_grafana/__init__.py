@@ -66,6 +66,7 @@ from .oncall_on_call_shift import *
 from .oncall_outgoing_webhook import *
 from .oncall_route import *
 from .oncall_schedule import *
+from .oncall_user_notification_rule import *
 from .organization import *
 from .organization_preferences import *
 from .playlist import *
@@ -546,6 +547,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana",
   "classes": {
    "grafana:index/oncallSchedule:OncallSchedule": "OncallSchedule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/oncallUserNotificationRule",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/oncallUserNotificationRule:OncallUserNotificationRule": "OncallUserNotificationRule"
   }
  },
  {
