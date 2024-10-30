@@ -1,4 +1,4 @@
-.idea
+.envrc
 .code
 **/vendor/
 .pulumi
