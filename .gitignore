@@ -26,4 +26,4 @@ provider/**/schema-embed.json
 **/__pycache__
 **/venv
 
-go.work.sum
+go.work*
