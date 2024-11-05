@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.OnCall
 {
     /// <summary>
     /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/personal_notification_rules/)
@@ -99,12 +99,11 @@ namespace Pulumiverse.Grafana
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:index/oncallUserNotificationRule:OncallUserNotificationRule name "{{ id }}"
+    /// $ pulumi import grafana:onCall/userNotificationRule:UserNotificationRule name "{{ id }}"
     /// ```
     /// </summary>
-    [Obsolete(@"grafana.index/oncallusernotificationrule.OncallUserNotificationRule has been deprecated in favor of grafana.oncall/usernotificationrule.UserNotificationRule")]
-    [GrafanaResourceType("grafana:index/oncallUserNotificationRule:OncallUserNotificationRule")]
-    public partial class OncallUserNotificationRule : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:onCall/userNotificationRule:UserNotificationRule")]
+    public partial class UserNotificationRule : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
@@ -138,19 +137,19 @@ namespace Pulumiverse.Grafana
 
 
         /// <summary>
-        /// Create a OncallUserNotificationRule resource with the given unique name, arguments, and options.
+        /// Create a UserNotificationRule resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public OncallUserNotificationRule(string name, OncallUserNotificationRuleArgs args, CustomResourceOptions? options = null)
-            : base("grafana:index/oncallUserNotificationRule:OncallUserNotificationRule", name, args ?? new OncallUserNotificationRuleArgs(), MakeResourceOptions(options, ""))
+        public UserNotificationRule(string name, UserNotificationRuleArgs args, CustomResourceOptions? options = null)
+            : base("grafana:onCall/userNotificationRule:UserNotificationRule", name, args ?? new UserNotificationRuleArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private OncallUserNotificationRule(string name, Input<string> id, OncallUserNotificationRuleState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/oncallUserNotificationRule:OncallUserNotificationRule", name, state, MakeResourceOptions(options, id))
+        private UserNotificationRule(string name, Input<string> id, UserNotificationRuleState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:onCall/userNotificationRule:UserNotificationRule", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -160,6 +159,10 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:index/oncallUserNotificationRule:OncallUserNotificationRule" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -167,7 +170,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing OncallUserNotificationRule resource's state with the given name, ID, and optional extra
+        /// Get an existing UserNotificationRule resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -175,13 +178,13 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static OncallUserNotificationRule Get(string name, Input<string> id, OncallUserNotificationRuleState? state = null, CustomResourceOptions? options = null)
+        public static UserNotificationRule Get(string name, Input<string> id, UserNotificationRuleState? state = null, CustomResourceOptions? options = null)
         {
-            return new OncallUserNotificationRule(name, id, state, options);
+            return new UserNotificationRule(name, id, state, options);
         }
     }
 
-    public sealed class OncallUserNotificationRuleArgs : global::Pulumi.ResourceArgs
+    public sealed class UserNotificationRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
@@ -213,13 +216,13 @@ namespace Pulumiverse.Grafana
         [Input("userId", required: true)]
         public Input<string> UserId { get; set; } = null!;
 
-        public OncallUserNotificationRuleArgs()
+        public UserNotificationRuleArgs()
         {
         }
-        public static new OncallUserNotificationRuleArgs Empty => new OncallUserNotificationRuleArgs();
+        public static new UserNotificationRuleArgs Empty => new UserNotificationRuleArgs();
     }
 
-    public sealed class OncallUserNotificationRuleState : global::Pulumi.ResourceArgs
+    public sealed class UserNotificationRuleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
@@ -251,9 +254,9 @@ namespace Pulumiverse.Grafana
         [Input("userId")]
         public Input<string>? UserId { get; set; }
 
-        public OncallUserNotificationRuleState()
+        public UserNotificationRuleState()
         {
         }
-        public static new OncallUserNotificationRuleState Empty => new OncallUserNotificationRuleState();
+        public static new UserNotificationRuleState Empty => new UserNotificationRuleState();
     }
 }

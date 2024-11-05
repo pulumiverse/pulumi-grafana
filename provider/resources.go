@@ -260,85 +260,6 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 
-			// Cloud
-			"grafana_cloud_access_policy": {
-				Tok: grafanaResource(cloudMod, "AccessPolicy"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "CloudAccessPolicy"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "cloud_access_policy.md",
-				},
-			},
-			"grafana_cloud_access_policy_token": {
-				Tok: grafanaResource(cloudMod, "AccessPolicyToken"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "CloudAccessPolicyToken"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "cloud_access_policy_token.md",
-				},
-			},
-			"grafana_cloud_org_member": {
-				Tok: grafanaResource(cloudMod, "OrgMember"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "CloudOrgMember"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "cloud_org_member.md",
-				},
-			},
-			"grafana_cloud_plugin_installation": {
-				Tok: grafanaResource(cloudMod, "PluginInstallation"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "CloudPluginInstallation"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "cloud_plugin_installation.md",
-				},
-			},
-			"grafana_cloud_stack": {
-				Tok: grafanaResource(cloudMod, "Stack"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "CloudStack"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "cloud_stack.md",
-				},
-			},
-			"grafana_cloud_stack_service_account": {
-				Tok: grafanaResource(cloudMod, "StackServiceAccount"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "CloudStackServiceAccount"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "cloud_stack_service_account.md",
-				},
-			},
-			"grafana_cloud_stack_service_account_token": {
-				Tok: grafanaResource(cloudMod, "StackServiceAccountToken"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "CloudStackServiceAccountToken"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "cloud_stack_service_account_token.md",
-				},
-			},
-
 			// Enterprise
 			"grafana_data_source_permission": {
 				Tok: grafanaResource(enterpriseMod, "DataSourcePermission"),
@@ -651,120 +572,6 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 
-			// Machine Learning
-			"grafana_machine_learning_holiday": {
-				Tok: grafanaResource(mlMod, "Holiday"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "MachineLearningHoliday"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "machine_learning_holiday.md",
-				},
-			},
-			"grafana_machine_learning_job": {
-				Tok: grafanaResource(mlMod, "Job"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "MachineLearningJob"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "machine_learning_job.md",
-				},
-			},
-			"grafana_machine_learning_outlier_detector": {
-				Tok: grafanaResource(mlMod, "OutlierDetector"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "MachineLearningOutlierDetector"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "machine_learning_outlier_detector.md",
-				},
-			},
-
-			// OnCall
-			"grafana_oncall_escalation": {
-				Tok: grafanaResource(oncallMod, "Escalation"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "OncallEscalation"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_escalation.md",
-				},
-			},
-			"grafana_oncall_escalation_chain": {
-				Tok: grafanaResource(oncallMod, "EscalationChain"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "OncallEscalationChain"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_escalation_chain.md",
-				},
-			},
-			"grafana_oncall_integration": {
-				Tok: grafanaResource(oncallMod, "Integration"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "OncallIntegration"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_integration.md",
-				},
-			},
-			"grafana_oncall_on_call_shift": {
-				Tok: grafanaResource(oncallMod, "OnCallShift"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "OncallOnCallShift"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_on_call_shift.md",
-				},
-			},
-			"grafana_oncall_outgoing_webhook": {
-				Tok: grafanaResource(oncallMod, "OutgoingWebhook"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "OncallOutgoingWebhook"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_outgoing_webhook.md",
-				},
-			},
-			"grafana_oncall_route": {
-				Tok: grafanaResource(oncallMod, "Route"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "OncallRoute"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_route.md",
-				},
-			},
-			"grafana_oncall_schedule": {
-				Tok: grafanaResource(oncallMod, "Schedule"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "OncallSchedule"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_schedule.md",
-				},
-			},
-
 			// SLO
 			"grafana_slo": {
 				Tok: grafanaResource(sloMod, "SLO"),
@@ -777,65 +584,8 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "slo.md",
 				},
 			},
-
-			// Synthetic Monitoring
-			"grafana_synthetic_monitoring_check": {
-				Tok: grafanaResource(syntheticMonitoringMod, "Check"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "SyntheticMonitoringCheck"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "synthetic_monitoring_check.md",
-				},
-			},
-			"grafana_synthetic_monitoring_installation": {
-				Tok: grafanaResource(syntheticMonitoringMod, "Installation"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "SyntheticMonitoringInstallation"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "synthetic_monitoring_installation.md",
-				},
-			},
-			"grafana_synthetic_monitoring_probe": {
-				Tok: grafanaResource(syntheticMonitoringMod, "Probe"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "SyntheticMonitoringProbe"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "synthetic_monitoring_probe.md",
-				},
-			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Alerting
-
-			// Cloud
-			"grafana_cloud_ips": {
-				Tok: grafanaDataSource(cloudMod, "getIps"),
-				Docs: &tfbridge.DocInfo{
-					Source: "cloud_ips.md",
-				},
-			},
-			"grafana_cloud_organization": {
-				Tok: grafanaDataSource(cloudMod, "getOrganization"),
-				Docs: &tfbridge.DocInfo{
-					Source: "cloud_organization.md",
-				},
-			},
-			"grafana_cloud_stack": {
-				Tok: grafanaDataSource(cloudMod, "getStack"),
-				Docs: &tfbridge.DocInfo{
-					Source: "cloud_stack.md",
-				},
-			},
-
 			// Enterprise
 			"grafana_role": {
 				Tok: grafanaDataSource(enterpriseMod, "getRole"),
@@ -918,77 +668,11 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 
-			// Machine Learning
-
-			// OnCall
-			"grafana_oncall_escalation_chain": {
-				Tok: grafanaDataSource(oncallMod, "getEscalationChain"),
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_escalation_chain.md",
-				},
-			},
-			"grafana_oncall_integration": {
-				Tok: grafanaDataSource(oncallMod, "getIntegration"),
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_integration.md",
-				},
-			},
-			"grafana_oncall_outgoing_webhook": {
-				Tok: grafanaDataSource(oncallMod, "getOutgoingWebhook"),
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_outgoing_webhook.md",
-				},
-			},
-			"grafana_oncall_schedule": {
-				Tok: grafanaDataSource(oncallMod, "getSchedule"),
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_schedule.md",
-				},
-			},
-			"grafana_oncall_slack_channel": {
-				Tok: grafanaDataSource(oncallMod, "getSlackChannel"),
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_slack_channel.md",
-				},
-			},
-			"grafana_oncall_team": {
-				Tok: grafanaDataSource(oncallMod, "getTeam"),
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_team.md",
-				},
-			},
-			"grafana_oncall_user": {
-				Tok: grafanaDataSource(oncallMod, "getUser"),
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_user.md",
-				},
-			},
-			"grafana_oncall_user_group": {
-				Tok: grafanaDataSource(oncallMod, "getUserGroup"),
-				Docs: &tfbridge.DocInfo{
-					Source: "oncall_user_group.md",
-				},
-			},
-
 			// SLO
 			"grafana_slos": {
 				Tok: grafanaDataSource(sloMod, "getSlos"),
 				Docs: &tfbridge.DocInfo{
 					Source: "slos.md",
-				},
-			},
-
-			// Synthetic Monitoring
-			"grafana_synthetic_monitoring_probe": {
-				Tok: grafanaDataSource(syntheticMonitoringMod, "getProbe"),
-				Docs: &tfbridge.DocInfo{
-					Source: "synthetic_monitoring_probe.md",
-				},
-			},
-			"grafana_synthetic_monitoring_probes": {
-				Tok: grafanaDataSource(syntheticMonitoringMod, "getProbes"),
-				Docs: &tfbridge.DocInfo{
-					Source: "synthetic_monitoring_probes.md",
 				},
 			},
 		},
@@ -1037,10 +721,24 @@ func Provider() tfbridge.ProviderInfo {
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 	}
 
-	prov.MustComputeTokens(tks.SingleModule("grafana_", grafanaMod, tks.MakeStandard(grafanaPkg)))
-
+	prov.MustComputeTokens(
+		tks.MappedModules(
+			"grafana_",
+			"index",
+			map[string]string{
+				"alerting":             alertingMod,
+				"cloud":                cloudMod,
+				"enterprise":           enterpriseMod,
+				"machine_learning":     mlMod,
+				"oncall":               oncallMod,
+				"oss":                  ossMod,
+				"slo":                  sloMod,
+				"synthetic_monitoring": syntheticMonitoringMod,
+			},
+			tks.MakeStandard(grafanaPkg),
+		),
+	)
 	prov.SetAutonaming(255, "-")
-
 	prov.MustApplyAutoAliases()
 
 	return prov

@@ -120,12 +120,6 @@ func NewCloudAccessPolicyToken(ctx *pulumi.Context,
 	if args.Region == nil {
 		return nil, errors.New("invalid value for required argument 'Region'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken"),
-		},
-	})
-	opts = append(opts, aliases)
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"token",
 	})

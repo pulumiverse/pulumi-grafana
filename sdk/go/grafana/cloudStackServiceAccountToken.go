@@ -85,12 +85,6 @@ func NewCloudStackServiceAccountToken(ctx *pulumi.Context,
 	if args.StackSlug == nil {
 		return nil, errors.New("invalid value for required argument 'StackSlug'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken"),
-		},
-	})
-	opts = append(opts, aliases)
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"key",
 	})

@@ -139,10 +139,6 @@ namespace Pulumiverse.Grafana
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
-                Aliases =
-                {
-                    new global::Pulumi.Alias { Type = "grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation" },
-                },
                 AdditionalSecretOutputs =
                 {
                     "metricsPublisherKey",

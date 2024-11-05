@@ -136,12 +136,6 @@ func NewCloudStack(ctx *pulumi.Context,
 	if args.Slug == nil {
 		return nil, errors.New("invalid value for required argument 'Slug'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/cloudStack:CloudStack"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CloudStack
 	err := ctx.RegisterResource("grafana:index/cloudStack:CloudStack", name, args, &resource, opts...)

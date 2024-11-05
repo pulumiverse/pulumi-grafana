@@ -657,12 +657,6 @@ func NewSyntheticMonitoringCheck(ctx *pulumi.Context,
 	if args.Target == nil {
 		return nil, errors.New("invalid value for required argument 'Target'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SyntheticMonitoringCheck
 	err := ctx.RegisterResource("grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck", name, args, &resource, opts...)

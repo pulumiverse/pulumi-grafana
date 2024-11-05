@@ -12,12 +12,12 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['OncallUserNotificationRuleArgs', 'OncallUserNotificationRule']
+__all__ = ['UserNotificationRuleArgs', 'UserNotificationRule']
 
 @pulumi.input_type
-class OncallUserNotificationRuleArgs:
+class UserNotificationRuleArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
                  user_id: pulumi.Input[str],
@@ -25,7 +25,7 @@ class OncallUserNotificationRuleArgs:
                  important: Optional[pulumi.Input[bool]] = None,
                  position: Optional[pulumi.Input[int]] = None):
         """
-        The set of arguments for constructing a OncallUserNotificationRule resource.
+        The set of arguments for constructing a UserNotificationRule resource.
         :param pulumi.Input[str] type: The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notify_by_msteams` is only available for Grafana Cloud customers.
         :param pulumi.Input[str] user_id: User ID
         :param pulumi.Input[int] duration: A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
@@ -103,7 +103,7 @@ class OncallUserNotificationRuleArgs:
 
 
 @pulumi.input_type
-class _OncallUserNotificationRuleState:
+class _UserNotificationRuleState:
     def __init__(__self__, *,
                  duration: Optional[pulumi.Input[int]] = None,
                  important: Optional[pulumi.Input[bool]] = None,
@@ -111,7 +111,7 @@ class _OncallUserNotificationRuleState:
                  type: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering OncallUserNotificationRule resources.
+        Input properties used for looking up and filtering UserNotificationRule resources.
         :param pulumi.Input[int] duration: A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
         :param pulumi.Input[bool] important: Boolean value which indicates if a rule is “important”
         :param pulumi.Input[int] position: Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
@@ -190,12 +190,7 @@ class _OncallUserNotificationRuleState:
         pulumi.set(self, "user_id", value)
 
 
-warnings.warn("""grafana.index/oncallusernotificationrule.OncallUserNotificationRule has been deprecated in favor of grafana.oncall/usernotificationrule.UserNotificationRule""", DeprecationWarning)
-
-
-class OncallUserNotificationRule(pulumi.CustomResource):
-    warnings.warn("""grafana.index/oncallusernotificationrule.OncallUserNotificationRule has been deprecated in favor of grafana.oncall/usernotificationrule.UserNotificationRule""", DeprecationWarning)
-
+class UserNotificationRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -262,7 +257,7 @@ class OncallUserNotificationRule(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:index/oncallUserNotificationRule:OncallUserNotificationRule name "{{ id }}"
+        $ pulumi import grafana:onCall/userNotificationRule:UserNotificationRule name "{{ id }}"
         ```
 
         :param str resource_name: The name of the resource.
@@ -277,7 +272,7 @@ class OncallUserNotificationRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: OncallUserNotificationRuleArgs,
+                 args: UserNotificationRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/personal_notification_rules/)
@@ -335,16 +330,16 @@ class OncallUserNotificationRule(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:index/oncallUserNotificationRule:OncallUserNotificationRule name "{{ id }}"
+        $ pulumi import grafana:onCall/userNotificationRule:UserNotificationRule name "{{ id }}"
         ```
 
         :param str resource_name: The name of the resource.
-        :param OncallUserNotificationRuleArgs args: The arguments to use to populate this resource's properties.
+        :param UserNotificationRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(OncallUserNotificationRuleArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(UserNotificationRuleArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -359,14 +354,13 @@ class OncallUserNotificationRule(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
-        pulumi.log.warn("""OncallUserNotificationRule is deprecated: grafana.index/oncallusernotificationrule.OncallUserNotificationRule has been deprecated in favor of grafana.oncall/usernotificationrule.UserNotificationRule""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = OncallUserNotificationRuleArgs.__new__(OncallUserNotificationRuleArgs)
+            __props__ = UserNotificationRuleArgs.__new__(UserNotificationRuleArgs)
 
             __props__.__dict__["duration"] = duration
             __props__.__dict__["important"] = important
@@ -377,8 +371,10 @@ class OncallUserNotificationRule(pulumi.CustomResource):
             if user_id is None and not opts.urn:
                 raise TypeError("Missing required property 'user_id'")
             __props__.__dict__["user_id"] = user_id
-        super(OncallUserNotificationRule, __self__).__init__(
-            'grafana:index/oncallUserNotificationRule:OncallUserNotificationRule',
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/oncallUserNotificationRule:OncallUserNotificationRule")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
+        super(UserNotificationRule, __self__).__init__(
+            'grafana:onCall/userNotificationRule:UserNotificationRule',
             resource_name,
             __props__,
             opts)
@@ -391,9 +387,9 @@ class OncallUserNotificationRule(pulumi.CustomResource):
             important: Optional[pulumi.Input[bool]] = None,
             position: Optional[pulumi.Input[int]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            user_id: Optional[pulumi.Input[str]] = None) -> 'OncallUserNotificationRule':
+            user_id: Optional[pulumi.Input[str]] = None) -> 'UserNotificationRule':
         """
-        Get an existing OncallUserNotificationRule resource's state with the given name, id, and optional extra
+        Get an existing UserNotificationRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -407,14 +403,14 @@ class OncallUserNotificationRule(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _OncallUserNotificationRuleState.__new__(_OncallUserNotificationRuleState)
+        __props__ = _UserNotificationRuleState.__new__(_UserNotificationRuleState)
 
         __props__.__dict__["duration"] = duration
         __props__.__dict__["important"] = important
         __props__.__dict__["position"] = position
         __props__.__dict__["type"] = type
         __props__.__dict__["user_id"] = user_id
-        return OncallUserNotificationRule(resource_name, opts=opts, __props__=__props__)
+        return UserNotificationRule(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter

@@ -86,8 +86,6 @@ export class OncallEscalationChain extends pulumi.CustomResource {
             resourceInputs["teamId"] = args ? args.teamId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/oncallEscalationChain:OncallEscalationChain" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(OncallEscalationChain.__pulumiType, name, resourceInputs, opts);
     }
 }

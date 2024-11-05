@@ -799,6 +799,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "onCall/userNotificationRule",
+  "fqn": "pulumiverse_grafana.oncall",
+  "classes": {
+   "grafana:onCall/userNotificationRule:UserNotificationRule": "UserNotificationRule"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "oss/annotation",
   "fqn": "pulumiverse_grafana.oss",
   "classes": {

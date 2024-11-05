@@ -354,8 +354,6 @@ class OncallIntegration(pulumi.CustomResource):
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             __props__.__dict__["link"] = None
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/oncallIntegration:OncallIntegration")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(OncallIntegration, __self__).__init__(
             'grafana:index/oncallIntegration:OncallIntegration',
             resource_name,

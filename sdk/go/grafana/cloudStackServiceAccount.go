@@ -84,12 +84,6 @@ func NewCloudStackServiceAccount(ctx *pulumi.Context,
 	if args.StackSlug == nil {
 		return nil, errors.New("invalid value for required argument 'StackSlug'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/cloudStackServiceAccount:CloudStackServiceAccount"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CloudStackServiceAccount
 	err := ctx.RegisterResource("grafana:index/cloudStackServiceAccount:CloudStackServiceAccount", name, args, &resource, opts...)

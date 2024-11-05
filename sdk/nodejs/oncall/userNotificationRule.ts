@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/personal_notification_rules/)
@@ -70,14 +70,12 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:index/oncallUserNotificationRule:OncallUserNotificationRule name "{{ id }}"
+ * $ pulumi import grafana:onCall/userNotificationRule:UserNotificationRule name "{{ id }}"
  * ```
- *
- * @deprecated grafana.index/oncallusernotificationrule.OncallUserNotificationRule has been deprecated in favor of grafana.oncall/usernotificationrule.UserNotificationRule
  */
-export class OncallUserNotificationRule extends pulumi.CustomResource {
+export class UserNotificationRule extends pulumi.CustomResource {
     /**
-     * Get an existing OncallUserNotificationRule resource's state with the given name, ID, and optional extra
+     * Get an existing UserNotificationRule resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -85,23 +83,22 @@ export class OncallUserNotificationRule extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: OncallUserNotificationRuleState, opts?: pulumi.CustomResourceOptions): OncallUserNotificationRule {
-        pulumi.log.warn("OncallUserNotificationRule is deprecated: grafana.index/oncallusernotificationrule.OncallUserNotificationRule has been deprecated in favor of grafana.oncall/usernotificationrule.UserNotificationRule")
-        return new OncallUserNotificationRule(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: UserNotificationRuleState, opts?: pulumi.CustomResourceOptions): UserNotificationRule {
+        return new UserNotificationRule(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/oncallUserNotificationRule:OncallUserNotificationRule';
+    public static readonly __pulumiType = 'grafana:onCall/userNotificationRule:UserNotificationRule';
 
     /**
-     * Returns true if the given object is an instance of OncallUserNotificationRule.  This is designed to work even
+     * Returns true if the given object is an instance of UserNotificationRule.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is OncallUserNotificationRule {
+    public static isInstance(obj: any): obj is UserNotificationRule {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === OncallUserNotificationRule.__pulumiType;
+        return obj['__pulumiType'] === UserNotificationRule.__pulumiType;
     }
 
     /**
@@ -126,28 +123,25 @@ export class OncallUserNotificationRule extends pulumi.CustomResource {
     public readonly userId!: pulumi.Output<string>;
 
     /**
-     * Create a OncallUserNotificationRule resource with the given unique name, arguments, and options.
+     * Create a UserNotificationRule resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    /** @deprecated grafana.index/oncallusernotificationrule.OncallUserNotificationRule has been deprecated in favor of grafana.oncall/usernotificationrule.UserNotificationRule */
-    constructor(name: string, args: OncallUserNotificationRuleArgs, opts?: pulumi.CustomResourceOptions)
-    /** @deprecated grafana.index/oncallusernotificationrule.OncallUserNotificationRule has been deprecated in favor of grafana.oncall/usernotificationrule.UserNotificationRule */
-    constructor(name: string, argsOrState?: OncallUserNotificationRuleArgs | OncallUserNotificationRuleState, opts?: pulumi.CustomResourceOptions) {
-        pulumi.log.warn("OncallUserNotificationRule is deprecated: grafana.index/oncallusernotificationrule.OncallUserNotificationRule has been deprecated in favor of grafana.oncall/usernotificationrule.UserNotificationRule")
+    constructor(name: string, args: UserNotificationRuleArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: UserNotificationRuleArgs | UserNotificationRuleState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as OncallUserNotificationRuleState | undefined;
+            const state = argsOrState as UserNotificationRuleState | undefined;
             resourceInputs["duration"] = state ? state.duration : undefined;
             resourceInputs["important"] = state ? state.important : undefined;
             resourceInputs["position"] = state ? state.position : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["userId"] = state ? state.userId : undefined;
         } else {
-            const args = argsOrState as OncallUserNotificationRuleArgs | undefined;
+            const args = argsOrState as UserNotificationRuleArgs | undefined;
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
@@ -161,14 +155,16 @@ export class OncallUserNotificationRule extends pulumi.CustomResource {
             resourceInputs["userId"] = args ? args.userId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(OncallUserNotificationRule.__pulumiType, name, resourceInputs, opts);
+        const aliasOpts = { aliases: [{ type: "grafana:index/oncallUserNotificationRule:OncallUserNotificationRule" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
+        super(UserNotificationRule.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering OncallUserNotificationRule resources.
+ * Input properties used for looking up and filtering UserNotificationRule resources.
  */
-export interface OncallUserNotificationRuleState {
+export interface UserNotificationRuleState {
     /**
      * A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
      */
@@ -192,9 +188,9 @@ export interface OncallUserNotificationRuleState {
 }
 
 /**
- * The set of arguments for constructing a OncallUserNotificationRule resource.
+ * The set of arguments for constructing a UserNotificationRule resource.
  */
-export interface OncallUserNotificationRuleArgs {
+export interface UserNotificationRuleArgs {
     /**
      * A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
      */

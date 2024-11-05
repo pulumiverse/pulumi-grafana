@@ -123,12 +123,6 @@ func NewCloudAccessPolicy(ctx *pulumi.Context,
 	if args.Scopes == nil {
 		return nil, errors.New("invalid value for required argument 'Scopes'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/cloudAccessPolicy:CloudAccessPolicy"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CloudAccessPolicy
 	err := ctx.RegisterResource("grafana:index/cloudAccessPolicy:CloudAccessPolicy", name, args, &resource, opts...)

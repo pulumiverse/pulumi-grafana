@@ -1226,8 +1226,6 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
             __props__.__dict__["target"] = target
             __props__.__dict__["timeout"] = timeout
             __props__.__dict__["tenant_id"] = None
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(SyntheticMonitoringCheck, __self__).__init__(
             'grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck',
             resource_name,

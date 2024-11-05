@@ -242,8 +242,6 @@ class CloudOrgMember(pulumi.CustomResource):
             if user is None and not opts.urn:
                 raise TypeError("Missing required property 'user'")
             __props__.__dict__["user"] = user
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/cloudOrgMember:CloudOrgMember")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(CloudOrgMember, __self__).__init__(
             'grafana:index/cloudOrgMember:CloudOrgMember',
             resource_name,

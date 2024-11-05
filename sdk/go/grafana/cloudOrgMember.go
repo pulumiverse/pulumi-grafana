@@ -50,12 +50,6 @@ func NewCloudOrgMember(ctx *pulumi.Context,
 	if args.User == nil {
 		return nil, errors.New("invalid value for required argument 'User'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/cloudOrgMember:CloudOrgMember"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CloudOrgMember
 	err := ctx.RegisterResource("grafana:index/cloudOrgMember:CloudOrgMember", name, args, &resource, opts...)

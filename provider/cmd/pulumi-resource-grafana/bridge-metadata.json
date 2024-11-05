@@ -674,7 +674,14 @@
                 }
             },
             "grafana_oncall_user_notification_rule": {
-                "current": "grafana:index/oncallUserNotificationRule:OncallUserNotificationRule"
+                "current": "grafana:onCall/userNotificationRule:UserNotificationRule",
+                "past": [
+                    {
+                        "name": "grafana:index/oncallUserNotificationRule:OncallUserNotificationRule",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_organization": {
                 "current": "grafana:oss/organization:Organization",
@@ -1847,6 +1854,11 @@
                     "grafana:index/oncallSchedule:OncallSchedule"
                 ]
             },
+            "grafana_oncall_user_notification_rule": {
+                "aliases": [
+                    "grafana:index/oncallUserNotificationRule:OncallUserNotificationRule"
+                ]
+            },
             "grafana_organization": {
                 "aliases": [
                     "grafana:index/organization:Organization"
@@ -2182,6 +2194,7 @@
             "grafana:onCall/outgoingWebhook:OutgoingWebhook": 0,
             "grafana:onCall/route:Route": 0,
             "grafana:onCall/schedule:Schedule": 0,
+            "grafana:onCall/userNotificationRule:UserNotificationRule": 1,
             "grafana:oss/annotation:Annotation": 0,
             "grafana:oss/dashboard:Dashboard": 0,
             "grafana:oss/dashboardPermission:DashboardPermission": 0,
