@@ -124,8 +124,6 @@ export class OncallSchedule extends pulumi.CustomResource {
             resourceInputs["type"] = args ? args.type : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/oncallSchedule:OncallSchedule" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(OncallSchedule.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -143,8 +143,6 @@ export class MachineLearningJob extends pulumi.CustomResource {
             resourceInputs["trainingWindow"] = args ? args.trainingWindow : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/machineLearningJob:MachineLearningJob" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(MachineLearningJob.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -163,8 +163,6 @@ export class CloudAccessPolicy extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/cloudAccessPolicy:CloudAccessPolicy" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(CloudAccessPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }

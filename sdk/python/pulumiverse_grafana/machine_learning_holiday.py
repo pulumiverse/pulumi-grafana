@@ -281,8 +281,6 @@ class MachineLearningHoliday(pulumi.CustomResource):
             __props__.__dict__["ical_timezone"] = ical_timezone
             __props__.__dict__["ical_url"] = ical_url
             __props__.__dict__["name"] = name
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/machineLearningHoliday:MachineLearningHoliday")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(MachineLearningHoliday, __self__).__init__(
             'grafana:index/machineLearningHoliday:MachineLearningHoliday',
             resource_name,

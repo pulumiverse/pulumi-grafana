@@ -35,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Route{}
 	case "grafana:onCall/schedule:Schedule":
 		r = &Schedule{}
+	case "grafana:onCall/userNotificationRule:UserNotificationRule":
+		r = &UserNotificationRule{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -81,6 +83,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"onCall/schedule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"onCall/userNotificationRule",
 		&module{version},
 	)
 }

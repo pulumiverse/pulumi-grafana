@@ -11760,11 +11760,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/cloudAccessPolicy:CloudAccessPolicy"
-                }
-            ],
             "deprecationMessage": "grafana.index/cloudaccesspolicy.CloudAccessPolicy has been deprecated in favor of grafana.cloud/accesspolicy.AccessPolicy"
         },
         "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken": {
@@ -11883,11 +11878,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken"
-                }
-            ],
             "deprecationMessage": "grafana.index/cloudaccesspolicytoken.CloudAccessPolicyToken has been deprecated in favor of grafana.cloud/accesspolicytoken.AccessPolicyToken"
         },
         "grafana:index/cloudOrgMember:CloudOrgMember": {
@@ -11961,11 +11951,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/cloudOrgMember:CloudOrgMember"
-                }
-            ],
             "deprecationMessage": "grafana.index/cloudorgmember.CloudOrgMember has been deprecated in favor of grafana.cloud/orgmember.OrgMember"
         },
         "grafana:index/cloudPluginInstallation:CloudPluginInstallation": {
@@ -12032,11 +12017,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/cloudPluginInstallation:CloudPluginInstallation"
-                }
-            ],
             "deprecationMessage": "grafana.index/cloudplugininstallation.CloudPluginInstallation has been deprecated in favor of grafana.cloud/plugininstallation.PluginInstallation"
         },
         "grafana:index/cloudStack:CloudStack": {
@@ -12423,11 +12403,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/cloudStack:CloudStack"
-                }
-            ],
             "deprecationMessage": "grafana.index/cloudstack.CloudStack has been deprecated in favor of grafana.cloud/stack.Stack"
         },
         "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount": {
@@ -12504,11 +12479,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount"
-                }
-            ],
             "deprecationMessage": "grafana.index/cloudstackserviceaccount.CloudStackServiceAccount has been deprecated in favor of grafana.cloud/stackserviceaccount.StackServiceAccount"
         },
         "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken": {
@@ -12599,11 +12569,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken"
-                }
-            ],
             "deprecationMessage": "grafana.index/cloudstackserviceaccounttoken.CloudStackServiceAccountToken has been deprecated in favor of grafana.cloud/stackserviceaccounttoken.StackServiceAccountToken"
         },
         "grafana:index/contactPoint:ContactPoint": {
@@ -14542,11 +14507,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/machineLearningHoliday:MachineLearningHoliday"
-                }
-            ],
             "deprecationMessage": "grafana.index/machinelearningholiday.MachineLearningHoliday has been deprecated in favor of grafana.machinelearning/holiday.Holiday"
         },
         "grafana:index/machineLearningJob:MachineLearningJob": {
@@ -14742,11 +14702,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/machineLearningJob:MachineLearningJob"
-                }
-            ],
             "deprecationMessage": "grafana.index/machinelearningjob.MachineLearningJob has been deprecated in favor of grafana.machinelearning/job.Job"
         },
         "grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector": {
@@ -14881,11 +14836,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector"
-                }
-            ],
             "deprecationMessage": "grafana.index/machinelearningoutlierdetector.MachineLearningOutlierDetector has been deprecated in favor of grafana.machinelearning/outlierdetector.OutlierDetector"
         },
         "grafana:index/messageTemplate:MessageTemplate": {
@@ -15385,11 +15335,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/oncallEscalation:OncallEscalation"
-                }
-            ],
             "deprecationMessage": "grafana.index/oncallescalation.OncallEscalation has been deprecated in favor of grafana.oncall/escalation.Escalation"
         },
         "grafana:index/oncallEscalationChain:OncallEscalationChain": {
@@ -15431,11 +15376,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/oncallEscalationChain:OncallEscalationChain"
-                }
-            ],
             "deprecationMessage": "grafana.index/oncallescalationchain.OncallEscalationChain has been deprecated in favor of grafana.oncall/escalationchain.EscalationChain"
         },
         "grafana:index/oncallIntegration:OncallIntegration": {
@@ -15530,11 +15470,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/oncallIntegration:OncallIntegration"
-                }
-            ],
             "deprecationMessage": "grafana.index/oncallintegration.OncallIntegration has been deprecated in favor of grafana.oncall/integration.Integration"
         },
         "grafana:index/oncallOnCallShift:OncallOnCallShift": {
@@ -15806,11 +15741,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/oncallOnCallShift:OncallOnCallShift"
-                }
-            ],
             "deprecationMessage": "grafana.index/oncalloncallshift.OncallOnCallShift has been deprecated in favor of grafana.oncall/oncallshift.OnCallShift"
         },
         "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook": {
@@ -16015,11 +15945,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook"
-                }
-            ],
             "deprecationMessage": "grafana.index/oncalloutgoingwebhook.OncallOutgoingWebhook has been deprecated in favor of grafana.oncall/outgoingwebhook.OutgoingWebhook"
         },
         "grafana:index/oncallRoute:OncallRoute": {
@@ -16144,11 +16069,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/oncallRoute:OncallRoute"
-                }
-            ],
             "deprecationMessage": "grafana.index/oncallroute.OncallRoute has been deprecated in favor of grafana.oncall/route.Route"
         },
         "grafana:index/oncallSchedule:OncallSchedule": {
@@ -16289,15 +16209,10 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/oncallSchedule:OncallSchedule"
-                }
-            ],
             "deprecationMessage": "grafana.index/oncallschedule.OncallSchedule has been deprecated in favor of grafana.oncall/schedule.Schedule"
         },
         "grafana:index/oncallUserNotificationRule:OncallUserNotificationRule": {
-            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/personal_notification_rules/)\n\n**Note**: you must be running Grafana OnCall \u003e= v1.8.0 to use this resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst myUser = grafana.onCall.getUser({\n    username: \"my_username\",\n});\nconst myUserStep1 = new grafana.OncallUserNotificationRule(\"my_user_step_1\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 0,\n    type: \"notify_by_mobile_app\",\n});\nconst myUserStep2 = new grafana.OncallUserNotificationRule(\"my_user_step_2\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 1,\n    duration: 600,\n    type: \"wait\",\n});\nconst myUserStep3 = new grafana.OncallUserNotificationRule(\"my_user_step_3\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 2,\n    type: \"notify_by_phone_call\",\n});\nconst myUserStep4 = new grafana.OncallUserNotificationRule(\"my_user_step_4\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 3,\n    duration: 300,\n    type: \"wait\",\n});\nconst myUserStep5 = new grafana.OncallUserNotificationRule(\"my_user_step_5\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 4,\n    type: \"notify_by_slack\",\n});\nconst myUserImportantStep1 = new grafana.OncallUserNotificationRule(\"my_user_important_step_1\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    important: true,\n    position: 0,\n    type: \"notify_by_mobile_app_critical\",\n});\nconst myUserImportantStep2 = new grafana.OncallUserNotificationRule(\"my_user_important_step_2\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    important: true,\n    position: 1,\n    duration: 300,\n    type: \"wait\",\n});\nconst myUserImportantStep3 = new grafana.OncallUserNotificationRule(\"my_user_important_step_3\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    important: true,\n    position: 2,\n    type: \"notify_by_mobile_app_critical\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nmy_user = grafana.onCall.get_user(username=\"my_username\")\nmy_user_step1 = grafana.OncallUserNotificationRule(\"my_user_step_1\",\n    user_id=my_user.id,\n    position=0,\n    type=\"notify_by_mobile_app\")\nmy_user_step2 = grafana.OncallUserNotificationRule(\"my_user_step_2\",\n    user_id=my_user.id,\n    position=1,\n    duration=600,\n    type=\"wait\")\nmy_user_step3 = grafana.OncallUserNotificationRule(\"my_user_step_3\",\n    user_id=my_user.id,\n    position=2,\n    type=\"notify_by_phone_call\")\nmy_user_step4 = grafana.OncallUserNotificationRule(\"my_user_step_4\",\n    user_id=my_user.id,\n    position=3,\n    duration=300,\n    type=\"wait\")\nmy_user_step5 = grafana.OncallUserNotificationRule(\"my_user_step_5\",\n    user_id=my_user.id,\n    position=4,\n    type=\"notify_by_slack\")\nmy_user_important_step1 = grafana.OncallUserNotificationRule(\"my_user_important_step_1\",\n    user_id=my_user.id,\n    important=True,\n    position=0,\n    type=\"notify_by_mobile_app_critical\")\nmy_user_important_step2 = grafana.OncallUserNotificationRule(\"my_user_important_step_2\",\n    user_id=my_user.id,\n    important=True,\n    position=1,\n    duration=300,\n    type=\"wait\")\nmy_user_important_step3 = grafana.OncallUserNotificationRule(\"my_user_important_step_3\",\n    user_id=my_user.id,\n    important=True,\n    position=2,\n    type=\"notify_by_mobile_app_critical\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myUser = Grafana.OnCall.GetUser.Invoke(new()\n    {\n        Username = \"my_username\",\n    });\n\n    var myUserStep1 = new Grafana.OncallUserNotificationRule(\"my_user_step_1\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 0,\n        Type = \"notify_by_mobile_app\",\n    });\n\n    var myUserStep2 = new Grafana.OncallUserNotificationRule(\"my_user_step_2\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 1,\n        Duration = 600,\n        Type = \"wait\",\n    });\n\n    var myUserStep3 = new Grafana.OncallUserNotificationRule(\"my_user_step_3\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 2,\n        Type = \"notify_by_phone_call\",\n    });\n\n    var myUserStep4 = new Grafana.OncallUserNotificationRule(\"my_user_step_4\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 3,\n        Duration = 300,\n        Type = \"wait\",\n    });\n\n    var myUserStep5 = new Grafana.OncallUserNotificationRule(\"my_user_step_5\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 4,\n        Type = \"notify_by_slack\",\n    });\n\n    var myUserImportantStep1 = new Grafana.OncallUserNotificationRule(\"my_user_important_step_1\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Important = true,\n        Position = 0,\n        Type = \"notify_by_mobile_app_critical\",\n    });\n\n    var myUserImportantStep2 = new Grafana.OncallUserNotificationRule(\"my_user_important_step_2\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Important = true,\n        Position = 1,\n        Duration = 300,\n        Type = \"wait\",\n    });\n\n    var myUserImportantStep3 = new Grafana.OncallUserNotificationRule(\"my_user_important_step_3\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Important = true,\n        Position = 2,\n        Type = \"notify_by_mobile_app_critical\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyUser, err := onCall.GetUser(ctx, \u0026oncall.GetUserArgs{\n\t\t\tUsername: \"my_username\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewOncallUserNotificationRule(ctx, \"my_user_step_1\", \u0026grafana.OncallUserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(0),\n\t\t\tType:     pulumi.String(\"notify_by_mobile_app\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewOncallUserNotificationRule(ctx, \"my_user_step_2\", \u0026grafana.OncallUserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(1),\n\t\t\tDuration: pulumi.Int(600),\n\t\t\tType:     pulumi.String(\"wait\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewOncallUserNotificationRule(ctx, \"my_user_step_3\", \u0026grafana.OncallUserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(2),\n\t\t\tType:     pulumi.String(\"notify_by_phone_call\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewOncallUserNotificationRule(ctx, \"my_user_step_4\", \u0026grafana.OncallUserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(3),\n\t\t\tDuration: pulumi.Int(300),\n\t\t\tType:     pulumi.String(\"wait\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewOncallUserNotificationRule(ctx, \"my_user_step_5\", \u0026grafana.OncallUserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(4),\n\t\t\tType:     pulumi.String(\"notify_by_slack\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewOncallUserNotificationRule(ctx, \"my_user_important_step_1\", \u0026grafana.OncallUserNotificationRuleArgs{\n\t\t\tUserId:    pulumi.String(myUser.Id),\n\t\t\tImportant: pulumi.Bool(true),\n\t\t\tPosition:  pulumi.Int(0),\n\t\t\tType:      pulumi.String(\"notify_by_mobile_app_critical\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewOncallUserNotificationRule(ctx, \"my_user_important_step_2\", \u0026grafana.OncallUserNotificationRuleArgs{\n\t\t\tUserId:    pulumi.String(myUser.Id),\n\t\t\tImportant: pulumi.Bool(true),\n\t\t\tPosition:  pulumi.Int(1),\n\t\t\tDuration:  pulumi.Int(300),\n\t\t\tType:      pulumi.String(\"wait\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewOncallUserNotificationRule(ctx, \"my_user_important_step_3\", \u0026grafana.OncallUserNotificationRuleArgs{\n\t\t\tUserId:    pulumi.String(myUser.Id),\n\t\t\tImportant: pulumi.Bool(true),\n\t\t\tPosition:  pulumi.Int(2),\n\t\t\tType:      pulumi.String(\"notify_by_mobile_app_critical\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.inputs.GetUserArgs;\nimport com.pulumi.grafana.OncallUserNotificationRule;\nimport com.pulumi.grafana.OncallUserNotificationRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myUser = OnCallFunctions.getUser(GetUserArgs.builder()\n            .username(\"my_username\")\n            .build());\n\n        var myUserStep1 = new OncallUserNotificationRule(\"myUserStep1\", OncallUserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(0)\n            .type(\"notify_by_mobile_app\")\n            .build());\n\n        var myUserStep2 = new OncallUserNotificationRule(\"myUserStep2\", OncallUserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(1)\n            .duration(600)\n            .type(\"wait\")\n            .build());\n\n        var myUserStep3 = new OncallUserNotificationRule(\"myUserStep3\", OncallUserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(2)\n            .type(\"notify_by_phone_call\")\n            .build());\n\n        var myUserStep4 = new OncallUserNotificationRule(\"myUserStep4\", OncallUserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(3)\n            .duration(300)\n            .type(\"wait\")\n            .build());\n\n        var myUserStep5 = new OncallUserNotificationRule(\"myUserStep5\", OncallUserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(4)\n            .type(\"notify_by_slack\")\n            .build());\n\n        var myUserImportantStep1 = new OncallUserNotificationRule(\"myUserImportantStep1\", OncallUserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .important(true)\n            .position(0)\n            .type(\"notify_by_mobile_app_critical\")\n            .build());\n\n        var myUserImportantStep2 = new OncallUserNotificationRule(\"myUserImportantStep2\", OncallUserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .important(true)\n            .position(1)\n            .duration(300)\n            .type(\"wait\")\n            .build());\n\n        var myUserImportantStep3 = new OncallUserNotificationRule(\"myUserImportantStep3\", OncallUserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .important(true)\n            .position(2)\n            .type(\"notify_by_mobile_app_critical\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myUserStep1:\n    type: grafana:OncallUserNotificationRule\n    name: my_user_step_1\n    properties:\n      userId: ${myUser.id}\n      position: 0\n      type: notify_by_mobile_app\n  myUserStep2:\n    type: grafana:OncallUserNotificationRule\n    name: my_user_step_2\n    properties:\n      userId: ${myUser.id}\n      position: 1\n      duration: 600 # 10 minutes\n      type: wait\n  myUserStep3:\n    type: grafana:OncallUserNotificationRule\n    name: my_user_step_3\n    properties:\n      userId: ${myUser.id}\n      position: 2\n      type: notify_by_phone_call\n  myUserStep4:\n    type: grafana:OncallUserNotificationRule\n    name: my_user_step_4\n    properties:\n      userId: ${myUser.id}\n      position: 3\n      duration: 300 # 5 minutes\n      type: wait\n  myUserStep5:\n    type: grafana:OncallUserNotificationRule\n    name: my_user_step_5\n    properties:\n      userId: ${myUser.id}\n      position: 4\n      type: notify_by_slack\n  myUserImportantStep1:\n    type: grafana:OncallUserNotificationRule\n    name: my_user_important_step_1\n    properties:\n      userId: ${myUser.id}\n      important: true\n      position: 0\n      type: notify_by_mobile_app_critical\n  myUserImportantStep2:\n    type: grafana:OncallUserNotificationRule\n    name: my_user_important_step_2\n    properties:\n      userId: ${myUser.id}\n      important: true\n      position: 1\n      duration: 300 # 5 minutes\n      type: wait\n  myUserImportantStep3:\n    type: grafana:OncallUserNotificationRule\n    name: my_user_important_step_3\n    properties:\n      userId: ${myUser.id}\n      important: true\n      position: 2\n      type: notify_by_mobile_app_critical\nvariables:\n  myUser:\n    fn::invoke:\n      Function: grafana:onCall:getUser\n      Arguments:\n        username: my_username\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:index/oncallUserNotificationRule:OncallUserNotificationRule name \"{{ id }}\"\n```\n\n",
+            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/personal_notification_rules/)\n\n**Note**: you must be running Grafana OnCall \u003e= v1.8.0 to use this resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst myUser = grafana.onCall.getUser({\n    username: \"my_username\",\n});\nconst myUserStep1 = new grafana.oncall.UserNotificationRule(\"my_user_step_1\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 0,\n    type: \"notify_by_mobile_app\",\n});\nconst myUserStep2 = new grafana.oncall.UserNotificationRule(\"my_user_step_2\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 1,\n    duration: 600,\n    type: \"wait\",\n});\nconst myUserStep3 = new grafana.oncall.UserNotificationRule(\"my_user_step_3\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 2,\n    type: \"notify_by_phone_call\",\n});\nconst myUserStep4 = new grafana.oncall.UserNotificationRule(\"my_user_step_4\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 3,\n    duration: 300,\n    type: \"wait\",\n});\nconst myUserStep5 = new grafana.oncall.UserNotificationRule(\"my_user_step_5\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 4,\n    type: \"notify_by_slack\",\n});\nconst myUserImportantStep1 = new grafana.oncall.UserNotificationRule(\"my_user_important_step_1\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    important: true,\n    position: 0,\n    type: \"notify_by_mobile_app_critical\",\n});\nconst myUserImportantStep2 = new grafana.oncall.UserNotificationRule(\"my_user_important_step_2\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    important: true,\n    position: 1,\n    duration: 300,\n    type: \"wait\",\n});\nconst myUserImportantStep3 = new grafana.oncall.UserNotificationRule(\"my_user_important_step_3\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    important: true,\n    position: 2,\n    type: \"notify_by_mobile_app_critical\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nmy_user = grafana.onCall.get_user(username=\"my_username\")\nmy_user_step1 = grafana.on_call.UserNotificationRule(\"my_user_step_1\",\n    user_id=my_user.id,\n    position=0,\n    type=\"notify_by_mobile_app\")\nmy_user_step2 = grafana.on_call.UserNotificationRule(\"my_user_step_2\",\n    user_id=my_user.id,\n    position=1,\n    duration=600,\n    type=\"wait\")\nmy_user_step3 = grafana.on_call.UserNotificationRule(\"my_user_step_3\",\n    user_id=my_user.id,\n    position=2,\n    type=\"notify_by_phone_call\")\nmy_user_step4 = grafana.on_call.UserNotificationRule(\"my_user_step_4\",\n    user_id=my_user.id,\n    position=3,\n    duration=300,\n    type=\"wait\")\nmy_user_step5 = grafana.on_call.UserNotificationRule(\"my_user_step_5\",\n    user_id=my_user.id,\n    position=4,\n    type=\"notify_by_slack\")\nmy_user_important_step1 = grafana.on_call.UserNotificationRule(\"my_user_important_step_1\",\n    user_id=my_user.id,\n    important=True,\n    position=0,\n    type=\"notify_by_mobile_app_critical\")\nmy_user_important_step2 = grafana.on_call.UserNotificationRule(\"my_user_important_step_2\",\n    user_id=my_user.id,\n    important=True,\n    position=1,\n    duration=300,\n    type=\"wait\")\nmy_user_important_step3 = grafana.on_call.UserNotificationRule(\"my_user_important_step_3\",\n    user_id=my_user.id,\n    important=True,\n    position=2,\n    type=\"notify_by_mobile_app_critical\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myUser = Grafana.OnCall.GetUser.Invoke(new()\n    {\n        Username = \"my_username\",\n    });\n\n    var myUserStep1 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_1\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 0,\n        Type = \"notify_by_mobile_app\",\n    });\n\n    var myUserStep2 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_2\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 1,\n        Duration = 600,\n        Type = \"wait\",\n    });\n\n    var myUserStep3 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_3\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 2,\n        Type = \"notify_by_phone_call\",\n    });\n\n    var myUserStep4 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_4\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 3,\n        Duration = 300,\n        Type = \"wait\",\n    });\n\n    var myUserStep5 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_5\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 4,\n        Type = \"notify_by_slack\",\n    });\n\n    var myUserImportantStep1 = new Grafana.OnCall.UserNotificationRule(\"my_user_important_step_1\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Important = true,\n        Position = 0,\n        Type = \"notify_by_mobile_app_critical\",\n    });\n\n    var myUserImportantStep2 = new Grafana.OnCall.UserNotificationRule(\"my_user_important_step_2\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Important = true,\n        Position = 1,\n        Duration = 300,\n        Type = \"wait\",\n    });\n\n    var myUserImportantStep3 = new Grafana.OnCall.UserNotificationRule(\"my_user_important_step_3\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Important = true,\n        Position = 2,\n        Type = \"notify_by_mobile_app_critical\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyUser, err := onCall.GetUser(ctx, \u0026oncall.GetUserArgs{\n\t\t\tUsername: \"my_username\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_step_1\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(0),\n\t\t\tType:     pulumi.String(\"notify_by_mobile_app\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_step_2\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(1),\n\t\t\tDuration: pulumi.Int(600),\n\t\t\tType:     pulumi.String(\"wait\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_step_3\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(2),\n\t\t\tType:     pulumi.String(\"notify_by_phone_call\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_step_4\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(3),\n\t\t\tDuration: pulumi.Int(300),\n\t\t\tType:     pulumi.String(\"wait\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_step_5\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(4),\n\t\t\tType:     pulumi.String(\"notify_by_slack\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_important_step_1\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:    pulumi.String(myUser.Id),\n\t\t\tImportant: pulumi.Bool(true),\n\t\t\tPosition:  pulumi.Int(0),\n\t\t\tType:      pulumi.String(\"notify_by_mobile_app_critical\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_important_step_2\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:    pulumi.String(myUser.Id),\n\t\t\tImportant: pulumi.Bool(true),\n\t\t\tPosition:  pulumi.Int(1),\n\t\t\tDuration:  pulumi.Int(300),\n\t\t\tType:      pulumi.String(\"wait\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_important_step_3\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:    pulumi.String(myUser.Id),\n\t\t\tImportant: pulumi.Bool(true),\n\t\t\tPosition:  pulumi.Int(2),\n\t\t\tType:      pulumi.String(\"notify_by_mobile_app_critical\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.inputs.GetUserArgs;\nimport com.pulumi.grafana.onCall.UserNotificationRule;\nimport com.pulumi.grafana.onCall.UserNotificationRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myUser = OnCallFunctions.getUser(GetUserArgs.builder()\n            .username(\"my_username\")\n            .build());\n\n        var myUserStep1 = new UserNotificationRule(\"myUserStep1\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(0)\n            .type(\"notify_by_mobile_app\")\n            .build());\n\n        var myUserStep2 = new UserNotificationRule(\"myUserStep2\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(1)\n            .duration(600)\n            .type(\"wait\")\n            .build());\n\n        var myUserStep3 = new UserNotificationRule(\"myUserStep3\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(2)\n            .type(\"notify_by_phone_call\")\n            .build());\n\n        var myUserStep4 = new UserNotificationRule(\"myUserStep4\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(3)\n            .duration(300)\n            .type(\"wait\")\n            .build());\n\n        var myUserStep5 = new UserNotificationRule(\"myUserStep5\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(4)\n            .type(\"notify_by_slack\")\n            .build());\n\n        var myUserImportantStep1 = new UserNotificationRule(\"myUserImportantStep1\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .important(true)\n            .position(0)\n            .type(\"notify_by_mobile_app_critical\")\n            .build());\n\n        var myUserImportantStep2 = new UserNotificationRule(\"myUserImportantStep2\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .important(true)\n            .position(1)\n            .duration(300)\n            .type(\"wait\")\n            .build());\n\n        var myUserImportantStep3 = new UserNotificationRule(\"myUserImportantStep3\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .important(true)\n            .position(2)\n            .type(\"notify_by_mobile_app_critical\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myUserStep1:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_1\n    properties:\n      userId: ${myUser.id}\n      position: 0\n      type: notify_by_mobile_app\n  myUserStep2:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_2\n    properties:\n      userId: ${myUser.id}\n      position: 1\n      duration: 600 # 10 minutes\n      type: wait\n  myUserStep3:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_3\n    properties:\n      userId: ${myUser.id}\n      position: 2\n      type: notify_by_phone_call\n  myUserStep4:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_4\n    properties:\n      userId: ${myUser.id}\n      position: 3\n      duration: 300 # 5 minutes\n      type: wait\n  myUserStep5:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_5\n    properties:\n      userId: ${myUser.id}\n      position: 4\n      type: notify_by_slack\n  myUserImportantStep1:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_important_step_1\n    properties:\n      userId: ${myUser.id}\n      important: true\n      position: 0\n      type: notify_by_mobile_app_critical\n  myUserImportantStep2:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_important_step_2\n    properties:\n      userId: ${myUser.id}\n      important: true\n      position: 1\n      duration: 300 # 5 minutes\n      type: wait\n  myUserImportantStep3:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_important_step_3\n    properties:\n      userId: ${myUser.id}\n      important: true\n      position: 2\n      type: notify_by_mobile_app_critical\nvariables:\n  myUser:\n    fn::invoke:\n      Function: grafana:onCall:getUser\n      Arguments:\n        username: my_username\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:index/oncallUserNotificationRule:OncallUserNotificationRule name \"{{ id }}\"\n```\n\n",
             "properties": {
                 "duration": {
                     "type": "integer",
@@ -16376,7 +16291,8 @@
                     }
                 },
                 "type": "object"
-            }
+            },
+            "deprecationMessage": "grafana.index/oncallusernotificationrule.OncallUserNotificationRule has been deprecated in favor of grafana.oncall/usernotificationrule.UserNotificationRule"
         },
         "grafana:index/organization:Organization": {
             "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)\n\nThis resource represents an instance-scoped resource and uses Grafana's admin APIs.\nIt does not work with API tokens or service accounts which are org-scoped.\nYou must use basic auth.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.oss.Organization(\"test\", {\n    name: \"Test Organization\",\n    adminUser: \"admin\",\n    createUsers: true,\n    admins: [\"admin@example.com\"],\n    editors: [\n        \"editor-01@example.com\",\n        \"editor-02@example.com\",\n    ],\n    viewers: [\n        \"viewer-01@example.com\",\n        \"viewer-02@example.com\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest = grafana.oss.Organization(\"test\",\n    name=\"Test Organization\",\n    admin_user=\"admin\",\n    create_users=True,\n    admins=[\"admin@example.com\"],\n    editors=[\n        \"editor-01@example.com\",\n        \"editor-02@example.com\",\n    ],\n    viewers=[\n        \"viewer-01@example.com\",\n        \"viewer-02@example.com\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Oss.Organization(\"test\", new()\n    {\n        Name = \"Test Organization\",\n        AdminUser = \"admin\",\n        CreateUsers = true,\n        Admins = new[]\n        {\n            \"admin@example.com\",\n        },\n        Editors = new[]\n        {\n            \"editor-01@example.com\",\n            \"editor-02@example.com\",\n        },\n        Viewers = new[]\n        {\n            \"viewer-01@example.com\",\n            \"viewer-02@example.com\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oss.NewOrganization(ctx, \"test\", \u0026oss.OrganizationArgs{\n\t\t\tName:        pulumi.String(\"Test Organization\"),\n\t\t\tAdminUser:   pulumi.String(\"admin\"),\n\t\t\tCreateUsers: pulumi.Bool(true),\n\t\t\tAdmins: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"admin@example.com\"),\n\t\t\t},\n\t\t\tEditors: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"editor-01@example.com\"),\n\t\t\t\tpulumi.String(\"editor-02@example.com\"),\n\t\t\t},\n\t\t\tViewers: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"viewer-01@example.com\"),\n\t\t\t\tpulumi.String(\"viewer-02@example.com\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.Organization;\nimport com.pulumi.grafana.oss.OrganizationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Organization(\"test\", OrganizationArgs.builder()\n            .name(\"Test Organization\")\n            .adminUser(\"admin\")\n            .createUsers(true)\n            .admins(\"admin@example.com\")\n            .editors(            \n                \"editor-01@example.com\",\n                \"editor-02@example.com\")\n            .viewers(            \n                \"viewer-01@example.com\",\n                \"viewer-02@example.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:oss:Organization\n    properties:\n      name: Test Organization\n      adminUser: admin\n      createUsers: true\n      admins:\n        - admin@example.com\n      editors:\n        - editor-01@example.com\n        - editor-02@example.com\n      viewers:\n        - viewer-01@example.com\n        - viewer-02@example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:index/organization:Organization name \"{{ id }}\"\n```\n\n",
@@ -18106,11 +18022,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck"
-                }
-            ],
             "deprecationMessage": "grafana.index/syntheticmonitoringcheck.SyntheticMonitoringCheck has been deprecated in favor of grafana.syntheticmonitoring/check.Check"
         },
         "grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation": {
@@ -18188,11 +18099,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation"
-                }
-            ],
             "deprecationMessage": "grafana.index/syntheticmonitoringinstallation.SyntheticMonitoringInstallation has been deprecated in favor of grafana.syntheticmonitoring/installation.Installation"
         },
         "grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe": {
@@ -18331,11 +18237,6 @@
                 },
                 "type": "object"
             },
-            "aliases": [
-                {
-                    "type": "grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe"
-                }
-            ],
             "deprecationMessage": "grafana.index/syntheticmonitoringprobe.SyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/probe.Probe"
         },
         "grafana:index/team:Team": {
@@ -20146,6 +20047,93 @@
             "aliases": [
                 {
                     "type": "grafana:index/oncallSchedule:OncallSchedule"
+                }
+            ]
+        },
+        "grafana:onCall/userNotificationRule:UserNotificationRule": {
+            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/personal_notification_rules/)\n\n**Note**: you must be running Grafana OnCall \u003e= v1.8.0 to use this resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst myUser = grafana.onCall.getUser({\n    username: \"my_username\",\n});\nconst myUserStep1 = new grafana.oncall.UserNotificationRule(\"my_user_step_1\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 0,\n    type: \"notify_by_mobile_app\",\n});\nconst myUserStep2 = new grafana.oncall.UserNotificationRule(\"my_user_step_2\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 1,\n    duration: 600,\n    type: \"wait\",\n});\nconst myUserStep3 = new grafana.oncall.UserNotificationRule(\"my_user_step_3\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 2,\n    type: \"notify_by_phone_call\",\n});\nconst myUserStep4 = new grafana.oncall.UserNotificationRule(\"my_user_step_4\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 3,\n    duration: 300,\n    type: \"wait\",\n});\nconst myUserStep5 = new grafana.oncall.UserNotificationRule(\"my_user_step_5\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    position: 4,\n    type: \"notify_by_slack\",\n});\nconst myUserImportantStep1 = new grafana.oncall.UserNotificationRule(\"my_user_important_step_1\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    important: true,\n    position: 0,\n    type: \"notify_by_mobile_app_critical\",\n});\nconst myUserImportantStep2 = new grafana.oncall.UserNotificationRule(\"my_user_important_step_2\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    important: true,\n    position: 1,\n    duration: 300,\n    type: \"wait\",\n});\nconst myUserImportantStep3 = new grafana.oncall.UserNotificationRule(\"my_user_important_step_3\", {\n    userId: myUser.then(myUser =\u003e myUser.id),\n    important: true,\n    position: 2,\n    type: \"notify_by_mobile_app_critical\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nmy_user = grafana.onCall.get_user(username=\"my_username\")\nmy_user_step1 = grafana.on_call.UserNotificationRule(\"my_user_step_1\",\n    user_id=my_user.id,\n    position=0,\n    type=\"notify_by_mobile_app\")\nmy_user_step2 = grafana.on_call.UserNotificationRule(\"my_user_step_2\",\n    user_id=my_user.id,\n    position=1,\n    duration=600,\n    type=\"wait\")\nmy_user_step3 = grafana.on_call.UserNotificationRule(\"my_user_step_3\",\n    user_id=my_user.id,\n    position=2,\n    type=\"notify_by_phone_call\")\nmy_user_step4 = grafana.on_call.UserNotificationRule(\"my_user_step_4\",\n    user_id=my_user.id,\n    position=3,\n    duration=300,\n    type=\"wait\")\nmy_user_step5 = grafana.on_call.UserNotificationRule(\"my_user_step_5\",\n    user_id=my_user.id,\n    position=4,\n    type=\"notify_by_slack\")\nmy_user_important_step1 = grafana.on_call.UserNotificationRule(\"my_user_important_step_1\",\n    user_id=my_user.id,\n    important=True,\n    position=0,\n    type=\"notify_by_mobile_app_critical\")\nmy_user_important_step2 = grafana.on_call.UserNotificationRule(\"my_user_important_step_2\",\n    user_id=my_user.id,\n    important=True,\n    position=1,\n    duration=300,\n    type=\"wait\")\nmy_user_important_step3 = grafana.on_call.UserNotificationRule(\"my_user_important_step_3\",\n    user_id=my_user.id,\n    important=True,\n    position=2,\n    type=\"notify_by_mobile_app_critical\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myUser = Grafana.OnCall.GetUser.Invoke(new()\n    {\n        Username = \"my_username\",\n    });\n\n    var myUserStep1 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_1\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 0,\n        Type = \"notify_by_mobile_app\",\n    });\n\n    var myUserStep2 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_2\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 1,\n        Duration = 600,\n        Type = \"wait\",\n    });\n\n    var myUserStep3 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_3\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 2,\n        Type = \"notify_by_phone_call\",\n    });\n\n    var myUserStep4 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_4\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 3,\n        Duration = 300,\n        Type = \"wait\",\n    });\n\n    var myUserStep5 = new Grafana.OnCall.UserNotificationRule(\"my_user_step_5\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Position = 4,\n        Type = \"notify_by_slack\",\n    });\n\n    var myUserImportantStep1 = new Grafana.OnCall.UserNotificationRule(\"my_user_important_step_1\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Important = true,\n        Position = 0,\n        Type = \"notify_by_mobile_app_critical\",\n    });\n\n    var myUserImportantStep2 = new Grafana.OnCall.UserNotificationRule(\"my_user_important_step_2\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Important = true,\n        Position = 1,\n        Duration = 300,\n        Type = \"wait\",\n    });\n\n    var myUserImportantStep3 = new Grafana.OnCall.UserNotificationRule(\"my_user_important_step_3\", new()\n    {\n        UserId = myUser.Apply(getUserResult =\u003e getUserResult.Id),\n        Important = true,\n        Position = 2,\n        Type = \"notify_by_mobile_app_critical\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyUser, err := onCall.GetUser(ctx, \u0026oncall.GetUserArgs{\n\t\t\tUsername: \"my_username\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_step_1\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(0),\n\t\t\tType:     pulumi.String(\"notify_by_mobile_app\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_step_2\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(1),\n\t\t\tDuration: pulumi.Int(600),\n\t\t\tType:     pulumi.String(\"wait\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_step_3\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(2),\n\t\t\tType:     pulumi.String(\"notify_by_phone_call\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_step_4\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(3),\n\t\t\tDuration: pulumi.Int(300),\n\t\t\tType:     pulumi.String(\"wait\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_step_5\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:   pulumi.String(myUser.Id),\n\t\t\tPosition: pulumi.Int(4),\n\t\t\tType:     pulumi.String(\"notify_by_slack\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_important_step_1\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:    pulumi.String(myUser.Id),\n\t\t\tImportant: pulumi.Bool(true),\n\t\t\tPosition:  pulumi.Int(0),\n\t\t\tType:      pulumi.String(\"notify_by_mobile_app_critical\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_important_step_2\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:    pulumi.String(myUser.Id),\n\t\t\tImportant: pulumi.Bool(true),\n\t\t\tPosition:  pulumi.Int(1),\n\t\t\tDuration:  pulumi.Int(300),\n\t\t\tType:      pulumi.String(\"wait\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = onCall.NewUserNotificationRule(ctx, \"my_user_important_step_3\", \u0026onCall.UserNotificationRuleArgs{\n\t\t\tUserId:    pulumi.String(myUser.Id),\n\t\t\tImportant: pulumi.Bool(true),\n\t\t\tPosition:  pulumi.Int(2),\n\t\t\tType:      pulumi.String(\"notify_by_mobile_app_critical\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.inputs.GetUserArgs;\nimport com.pulumi.grafana.onCall.UserNotificationRule;\nimport com.pulumi.grafana.onCall.UserNotificationRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myUser = OnCallFunctions.getUser(GetUserArgs.builder()\n            .username(\"my_username\")\n            .build());\n\n        var myUserStep1 = new UserNotificationRule(\"myUserStep1\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(0)\n            .type(\"notify_by_mobile_app\")\n            .build());\n\n        var myUserStep2 = new UserNotificationRule(\"myUserStep2\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(1)\n            .duration(600)\n            .type(\"wait\")\n            .build());\n\n        var myUserStep3 = new UserNotificationRule(\"myUserStep3\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(2)\n            .type(\"notify_by_phone_call\")\n            .build());\n\n        var myUserStep4 = new UserNotificationRule(\"myUserStep4\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(3)\n            .duration(300)\n            .type(\"wait\")\n            .build());\n\n        var myUserStep5 = new UserNotificationRule(\"myUserStep5\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .position(4)\n            .type(\"notify_by_slack\")\n            .build());\n\n        var myUserImportantStep1 = new UserNotificationRule(\"myUserImportantStep1\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .important(true)\n            .position(0)\n            .type(\"notify_by_mobile_app_critical\")\n            .build());\n\n        var myUserImportantStep2 = new UserNotificationRule(\"myUserImportantStep2\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .important(true)\n            .position(1)\n            .duration(300)\n            .type(\"wait\")\n            .build());\n\n        var myUserImportantStep3 = new UserNotificationRule(\"myUserImportantStep3\", UserNotificationRuleArgs.builder()\n            .userId(myUser.applyValue(getUserResult -\u003e getUserResult.id()))\n            .important(true)\n            .position(2)\n            .type(\"notify_by_mobile_app_critical\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myUserStep1:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_1\n    properties:\n      userId: ${myUser.id}\n      position: 0\n      type: notify_by_mobile_app\n  myUserStep2:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_2\n    properties:\n      userId: ${myUser.id}\n      position: 1\n      duration: 600 # 10 minutes\n      type: wait\n  myUserStep3:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_3\n    properties:\n      userId: ${myUser.id}\n      position: 2\n      type: notify_by_phone_call\n  myUserStep4:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_4\n    properties:\n      userId: ${myUser.id}\n      position: 3\n      duration: 300 # 5 minutes\n      type: wait\n  myUserStep5:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_step_5\n    properties:\n      userId: ${myUser.id}\n      position: 4\n      type: notify_by_slack\n  myUserImportantStep1:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_important_step_1\n    properties:\n      userId: ${myUser.id}\n      important: true\n      position: 0\n      type: notify_by_mobile_app_critical\n  myUserImportantStep2:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_important_step_2\n    properties:\n      userId: ${myUser.id}\n      important: true\n      position: 1\n      duration: 300 # 5 minutes\n      type: wait\n  myUserImportantStep3:\n    type: grafana:onCall:UserNotificationRule\n    name: my_user_important_step_3\n    properties:\n      userId: ${myUser.id}\n      important: true\n      position: 2\n      type: notify_by_mobile_app_critical\nvariables:\n  myUser:\n    fn::invoke:\n      Function: grafana:onCall:getUser\n      Arguments:\n        username: my_username\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:onCall/userNotificationRule:UserNotificationRule name \"{{ id }}\"\n```\n\n",
+            "properties": {
+                "duration": {
+                    "type": "integer",
+                    "description": "A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600\n"
+                },
+                "important": {
+                    "type": "boolean",
+                    "description": "Boolean value which indicates if a rule is “important”\n"
+                },
+                "position": {
+                    "type": "integer",
+                    "description": "Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notify_by_msteams` is only available for Grafana Cloud customers.\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "User ID\n"
+                }
+            },
+            "required": [
+                "important",
+                "type",
+                "userId"
+            ],
+            "inputProperties": {
+                "duration": {
+                    "type": "integer",
+                    "description": "A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600\n"
+                },
+                "important": {
+                    "type": "boolean",
+                    "description": "Boolean value which indicates if a rule is “important”\n"
+                },
+                "position": {
+                    "type": "integer",
+                    "description": "Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notify_by_msteams` is only available for Grafana Cloud customers.\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "User ID\n"
+                }
+            },
+            "requiredInputs": [
+                "type",
+                "userId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering UserNotificationRule resources.\n",
+                "properties": {
+                    "duration": {
+                        "type": "integer",
+                        "description": "A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600\n"
+                    },
+                    "important": {
+                        "type": "boolean",
+                        "description": "Boolean value which indicates if a rule is “important”\n"
+                    },
+                    "position": {
+                        "type": "integer",
+                        "description": "Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notify_by_msteams` is only available for Grafana Cloud customers.\n"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "User ID\n"
+                    }
+                },
+                "type": "object"
+            },
+            "aliases": [
+                {
+                    "type": "grafana:index/oncallUserNotificationRule:OncallUserNotificationRule"
                 }
             ]
         },

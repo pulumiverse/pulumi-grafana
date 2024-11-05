@@ -62,12 +62,6 @@ func NewOncallEscalationChain(ctx *pulumi.Context,
 		args = &OncallEscalationChainArgs{}
 	}
 
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/oncallEscalationChain:OncallEscalationChain"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource OncallEscalationChain
 	err := ctx.RegisterResource("grafana:index/oncallEscalationChain:OncallEscalationChain", name, args, &resource, opts...)

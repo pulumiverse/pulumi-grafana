@@ -134,8 +134,6 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
             resourceInputs["queryParams"] = args ? args.queryParams : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(MachineLearningOutlierDetector.__pulumiType, name, resourceInputs, opts);
     }
 }

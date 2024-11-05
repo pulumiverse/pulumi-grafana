@@ -80,6 +80,11 @@ export type Schedule = import("./schedule").Schedule;
 export const Schedule: typeof import("./schedule").Schedule = null as any;
 utilities.lazyLoad(exports, ["Schedule"], () => require("./schedule"));
 
+export { UserNotificationRuleArgs, UserNotificationRuleState } from "./userNotificationRule";
+export type UserNotificationRule = import("./userNotificationRule").UserNotificationRule;
+export const UserNotificationRule: typeof import("./userNotificationRule").UserNotificationRule = null as any;
+utilities.lazyLoad(exports, ["UserNotificationRule"], () => require("./userNotificationRule"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -99,6 +104,8 @@ const _module = {
                 return new Route(name, <any>undefined, { urn })
             case "grafana:onCall/schedule:Schedule":
                 return new Schedule(name, <any>undefined, { urn })
+            case "grafana:onCall/userNotificationRule:UserNotificationRule":
+                return new UserNotificationRule(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -111,3 +118,4 @@ pulumi.runtime.registerResourceModule("grafana", "onCall/onCallShift", _module)
 pulumi.runtime.registerResourceModule("grafana", "onCall/outgoingWebhook", _module)
 pulumi.runtime.registerResourceModule("grafana", "onCall/route", _module)
 pulumi.runtime.registerResourceModule("grafana", "onCall/schedule", _module)
+pulumi.runtime.registerResourceModule("grafana", "onCall/userNotificationRule", _module)

@@ -116,6 +116,7 @@
         "oncall/outgoingWebhook.ts",
         "oncall/route.ts",
         "oncall/schedule.ts",
+        "oncall/userNotificationRule.ts",
         "oncallEscalation.ts",
         "oncallEscalationChain.ts",
         "oncallIntegration.ts",

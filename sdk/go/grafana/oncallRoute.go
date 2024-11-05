@@ -122,12 +122,6 @@ func NewOncallRoute(ctx *pulumi.Context,
 	if args.RoutingRegex == nil {
 		return nil, errors.New("invalid value for required argument 'RoutingRegex'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/oncallRoute:OncallRoute"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource OncallRoute
 	err := ctx.RegisterResource("grafana:index/oncallRoute:OncallRoute", name, args, &resource, opts...)

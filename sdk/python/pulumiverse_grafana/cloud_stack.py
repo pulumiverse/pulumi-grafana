@@ -906,8 +906,6 @@ class CloudStack(pulumi.CustomResource):
             __props__.__dict__["traces_status"] = None
             __props__.__dict__["traces_url"] = None
             __props__.__dict__["traces_user_id"] = None
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/cloudStack:CloudStack")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(CloudStack, __self__).__init__(
             'grafana:index/cloudStack:CloudStack',
             resource_name,

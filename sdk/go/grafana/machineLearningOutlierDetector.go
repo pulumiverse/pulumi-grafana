@@ -68,12 +68,6 @@ func NewMachineLearningOutlierDetector(ctx *pulumi.Context,
 	if args.QueryParams == nil {
 		return nil, errors.New("invalid value for required argument 'QueryParams'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MachineLearningOutlierDetector
 	err := ctx.RegisterResource("grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector", name, args, &resource, opts...)

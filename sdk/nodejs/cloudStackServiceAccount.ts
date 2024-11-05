@@ -115,8 +115,6 @@ export class CloudStackServiceAccount extends pulumi.CustomResource {
             resourceInputs["stackSlug"] = args ? args.stackSlug : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(CloudStackServiceAccount.__pulumiType, name, resourceInputs, opts);
     }
 }
