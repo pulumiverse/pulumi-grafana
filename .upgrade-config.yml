@@ -4,4 +4,5 @@
 upstream-provider-name: terraform-provider-grafana
 upstream-provider-org: grafana
 remove-plugins: true
+pulumi-infer-version: true
 pr-reviewers: ringods
