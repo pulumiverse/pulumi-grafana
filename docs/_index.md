@@ -15,9 +15,35 @@ The Grafana provider must be configured with credentials to deploy and update re
 ```typescript
 import * as grafana from "@pulumiverse/grafana";
 
-const sa = new grafana.ServiceAccount("example", {
-    role: "Viewer",
-})
+const stack = new grafana.cloud.Stack("stack", {
+    name: "<stack-name>",
+    slug: "<stack-name>",
+    // Regions https://grafana.com/api/stack-regions
+    regionSlug: "<region>",
+});
+
+const serviceAccount = new grafana.cloud.StackServiceAccount("serviceAccount", {
+    stackSlug: stack.slug,
+    name: "Service account",
+    role: "Admin",
+});
+
+const serviceAccountToken = new grafana.cloud.StackServiceAccountToken("serviceAccountToken", {
+    stackSlug: stack.slug,
+    name: "Service account token",
+    serviceAccountId: serviceAccount.id,
+});
+
+const serviceAccountProvider = new grafana.Provider("serviceAccountProvider", {
+    auth: serviceAccountToken.key,
+    url: stack.url.apply((url) => url as string),
+});
+
+const testFolder = new grafana.oss.Folder(
+    "folder",
+    { title: "Folder title" },
+    { provider: serviceAccountProvider }
+);
 
 ```
 

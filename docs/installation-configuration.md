@@ -51,6 +51,8 @@ Once you have provisioned these credentials, you can set environment variables t
 {{% choosable os linux %}}
 
 ```bash
+$ export GRAFANA_CLOUD_ACCESS_POLICY_TOKEN=<GRAFANA_CLOUD_ACCESS_POLICY_TOKEN>
+
 $ export GRAFANA_URL=<GRAFANA_URL>
 $ export GRAFANA_AUTH=<GRAFANA_AUTH>
 ```
@@ -60,6 +62,8 @@ $ export GRAFANA_AUTH=<GRAFANA_AUTH>
 {{% choosable os macos %}}
 
 ```bash
+$ export GRAFANA_CLOUD_ACCESS_POLICY_TOKEN=<GRAFANA_CLOUD_ACCESS_POLICY_TOKEN>
+
 $ export GRAFANA_URL=<GRAFANA_URL>
 $ export GRAFANA_AUTH=<GRAFANA_AUTH>
 ```
@@ -69,6 +73,8 @@ $ export GRAFANA_AUTH=<GRAFANA_AUTH>
 {{% choosable os windows %}}
 
 ```powershell
+> $env:GRAFANA_CLOUD_ACCESS_POLICY_TOKEN = "<GRAFANA_CLOUD_ACCESS_POLICY_TOKEN>"
+
 > $env:GRAFANA_URL = "<GRAFANA_URL>"
 > $env:GRAFANA_AUTH = "<GRAFANA_AUTH>"
 ```
