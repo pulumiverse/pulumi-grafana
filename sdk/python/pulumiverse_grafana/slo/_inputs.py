@@ -198,7 +198,13 @@ class SLOAlertingAdvancedOptionsArgs:
 if not MYPY:
     class SLOAlertingAnnotationArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOAlertingAnnotationArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -207,12 +213,19 @@ class SLOAlertingAnnotationArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -222,6 +235,9 @@ class SLOAlertingAnnotationArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -284,7 +300,13 @@ class SLOAlertingFastburnArgs:
 if not MYPY:
     class SLOAlertingFastburnAnnotationArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOAlertingFastburnAnnotationArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -293,12 +315,19 @@ class SLOAlertingFastburnAnnotationArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -308,6 +337,9 @@ class SLOAlertingFastburnAnnotationArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -318,7 +350,13 @@ class SLOAlertingFastburnAnnotationArgs:
 if not MYPY:
     class SLOAlertingFastburnLabelArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOAlertingFastburnLabelArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -327,12 +365,19 @@ class SLOAlertingFastburnLabelArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -342,6 +387,9 @@ class SLOAlertingFastburnLabelArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -352,7 +400,13 @@ class SLOAlertingFastburnLabelArgs:
 if not MYPY:
     class SLOAlertingLabelArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOAlertingLabelArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -361,12 +415,19 @@ class SLOAlertingLabelArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -376,6 +437,9 @@ class SLOAlertingLabelArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -438,7 +502,13 @@ class SLOAlertingSlowburnArgs:
 if not MYPY:
     class SLOAlertingSlowburnAnnotationArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOAlertingSlowburnAnnotationArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -447,12 +517,19 @@ class SLOAlertingSlowburnAnnotationArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -462,6 +539,9 @@ class SLOAlertingSlowburnAnnotationArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -472,7 +552,13 @@ class SLOAlertingSlowburnAnnotationArgs:
 if not MYPY:
     class SLOAlertingSlowburnLabelArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOAlertingSlowburnLabelArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -481,12 +567,19 @@ class SLOAlertingSlowburnLabelArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -496,6 +589,9 @@ class SLOAlertingSlowburnLabelArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -505,9 +601,9 @@ class SLOAlertingSlowburnLabelArgs:
 
 if not MYPY:
     class SLODestinationDatasourceArgsDict(TypedDict):
-        uid: NotRequired[pulumi.Input[str]]
+        uid: pulumi.Input[str]
         """
-        UID for the Mimir Datasource
+        UID for the Datasource
         """
 elif False:
     SLODestinationDatasourceArgsDict: TypeAlias = Mapping[str, Any]
@@ -515,30 +611,35 @@ elif False:
 @pulumi.input_type
 class SLODestinationDatasourceArgs:
     def __init__(__self__, *,
-                 uid: Optional[pulumi.Input[str]] = None):
+                 uid: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] uid: UID for the Mimir Datasource
+        :param pulumi.Input[str] uid: UID for the Datasource
         """
-        if uid is not None:
-            pulumi.set(__self__, "uid", uid)
+        pulumi.set(__self__, "uid", uid)
 
     @property
     @pulumi.getter
-    def uid(self) -> Optional[pulumi.Input[str]]:
+    def uid(self) -> pulumi.Input[str]:
         """
-        UID for the Mimir Datasource
+        UID for the Datasource
         """
         return pulumi.get(self, "uid")
 
     @uid.setter
-    def uid(self, value: Optional[pulumi.Input[str]]):
+    def uid(self, value: pulumi.Input[str]):
         pulumi.set(self, "uid", value)
 
 
 if not MYPY:
     class SLOLabelArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOLabelArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -547,12 +648,19 @@ class SLOLabelArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -562,6 +670,9 @@ class SLOLabelArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter

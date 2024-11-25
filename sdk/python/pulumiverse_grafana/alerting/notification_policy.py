@@ -299,8 +299,8 @@ class NotificationPolicy(pulumi.CustomResource):
 
         !> This resource manages the entire notification policy tree, and will overwrite any existing policies.
 
-        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/)
+        * Official documentation
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#notification-policies)
 
         This resource requires Grafana 9.1.0 or later.
 
@@ -408,8 +408,8 @@ class NotificationPolicy(pulumi.CustomResource):
 
         !> This resource manages the entire notification policy tree, and will overwrite any existing policies.
 
-        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/)
+        * Official documentation
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#notification-policies)
 
         This resource requires Grafana 9.1.0 or later.
 

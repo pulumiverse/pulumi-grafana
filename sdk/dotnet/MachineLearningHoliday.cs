@@ -15,6 +15,65 @@ namespace Pulumiverse.Grafana
     /// 
     /// To use a holiday in a job, use its id in the `holidays` attribute of a `grafana.machineLearning.Job`:
     /// 
+    /// ### iCal Holiday
+    /// 
+    /// This holiday uses an iCal file to define the holidays.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var ical = new Grafana.MachineLearning.Holiday("ical", new()
+    ///     {
+    ///         Name = "My iCal holiday",
+    ///         Description = "My Holiday",
+    ///         IcalUrl = "https://calendar.google.com/calendar/ical/en.uk%23holiday%40group.v.calendar.google.com/public/basic.ics",
+    ///         IcalTimezone = "Europe/London",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Custom Periods Holiday
+    /// 
+    /// This holiday uses custom periods to define the holidays.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var customPeriods = new Grafana.MachineLearning.Holiday("custom_periods", new()
+    ///     {
+    ///         Name = "My custom periods holiday",
+    ///         Description = "My Holiday",
+    ///         CustomPeriods = new[]
+    ///         {
+    ///             new Grafana.MachineLearning.Inputs.HolidayCustomPeriodArgs
+    ///             {
+    ///                 Name = "First of January",
+    ///                 StartTime = "2023-01-01T00:00:00Z",
+    ///                 EndTime = "2023-01-02T00:00:00Z",
+    ///             },
+    ///             new Grafana.MachineLearning.Inputs.HolidayCustomPeriodArgs
+    ///             {
+    ///                 Name = "First of Feburary",
+    ///                 StartTime = "2023-02-01T00:00:00Z",
+    ///                 EndTime = "2023-02-02T00:00:00Z",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// ```sh

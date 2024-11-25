@@ -168,6 +168,18 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? NameAttributePath { get; set; }
 
         /// <summary>
+        /// JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "org_mapping"). Only applicable to Generic OAuth and Okta.
+        /// </summary>
+        [Input("orgAttributePath")]
+        public Input<string>? OrgAttributePath { get; set; }
+
+        /// <summary>
+        /// List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+        /// </summary>
+        [Input("orgMapping")]
+        public Input<string>? OrgMapping { get; set; }
+
+        /// <summary>
         /// JMESPath expression to use for Grafana role lookup.
         /// </summary>
         [Input("roleAttributePath")]

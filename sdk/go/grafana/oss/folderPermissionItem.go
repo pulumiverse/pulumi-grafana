@@ -94,7 +94,7 @@ type FolderPermissionItem struct {
 
 	// The UID of the folder.
 	FolderUid pulumi.StringOutput `pulumi:"folderUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// the permission to be assigned
 	Permission pulumi.StringOutput `pulumi:"permission"`
@@ -150,7 +150,7 @@ func GetFolderPermissionItem(ctx *pulumi.Context,
 type folderPermissionItemState struct {
 	// The UID of the folder.
 	FolderUid *string `pulumi:"folderUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// the permission to be assigned
 	Permission *string `pulumi:"permission"`
@@ -165,7 +165,7 @@ type folderPermissionItemState struct {
 type FolderPermissionItemState struct {
 	// The UID of the folder.
 	FolderUid pulumi.StringPtrInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// the permission to be assigned
 	Permission pulumi.StringPtrInput
@@ -184,7 +184,7 @@ func (FolderPermissionItemState) ElementType() reflect.Type {
 type folderPermissionItemArgs struct {
 	// The UID of the folder.
 	FolderUid string `pulumi:"folderUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// the permission to be assigned
 	Permission string `pulumi:"permission"`
@@ -200,7 +200,7 @@ type folderPermissionItemArgs struct {
 type FolderPermissionItemArgs struct {
 	// The UID of the folder.
 	FolderUid pulumi.StringInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// the permission to be assigned
 	Permission pulumi.StringInput
@@ -304,7 +304,7 @@ func (o FolderPermissionItemOutput) FolderUid() pulumi.StringOutput {
 	return o.ApplyT(func(v *FolderPermissionItem) pulumi.StringOutput { return v.FolderUid }).(pulumi.StringOutput)
 }
 
-// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 func (o FolderPermissionItemOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FolderPermissionItem) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }

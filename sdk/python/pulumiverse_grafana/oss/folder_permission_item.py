@@ -29,7 +29,7 @@ class FolderPermissionItemArgs:
         The set of arguments for constructing a FolderPermissionItem resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
         :param pulumi.Input[str] permission: the permission to be assigned
-        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[str] role: the role onto which the permission is to be assigned
         :param pulumi.Input[str] team: the team onto which the permission is to be assigned
         :param pulumi.Input[str] user: the user or service account onto which the permission is to be assigned
@@ -73,7 +73,7 @@ class FolderPermissionItemArgs:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -130,7 +130,7 @@ class _FolderPermissionItemState:
         """
         Input properties used for looking up and filtering FolderPermissionItem resources.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
-        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[str] permission: the permission to be assigned
         :param pulumi.Input[str] role: the role onto which the permission is to be assigned
         :param pulumi.Input[str] team: the team onto which the permission is to be assigned
@@ -165,7 +165,7 @@ class _FolderPermissionItemState:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -278,7 +278,7 @@ class FolderPermissionItem(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
-        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[str] permission: the permission to be assigned
         :param pulumi.Input[str] role: the role onto which the permission is to be assigned
         :param pulumi.Input[str] team: the team onto which the permission is to be assigned
@@ -397,7 +397,7 @@ class FolderPermissionItem(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder_uid: The UID of the folder.
-        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[str] permission: the permission to be assigned
         :param pulumi.Input[str] role: the role onto which the permission is to be assigned
         :param pulumi.Input[str] team: the team onto which the permission is to be assigned
@@ -427,7 +427,7 @@ class FolderPermissionItem(pulumi.CustomResource):
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Output[str]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 

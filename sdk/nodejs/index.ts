@@ -45,6 +45,11 @@ export type CloudStackServiceAccountToken = import("./cloudStackServiceAccountTo
 export const CloudStackServiceAccountToken: typeof import("./cloudStackServiceAccountToken").CloudStackServiceAccountToken = null as any;
 utilities.lazyLoad(exports, ["CloudStackServiceAccountToken"], () => require("./cloudStackServiceAccountToken"));
 
+export { ConnectionsMetricsEndpointScrapeJobArgs, ConnectionsMetricsEndpointScrapeJobState } from "./connectionsMetricsEndpointScrapeJob";
+export type ConnectionsMetricsEndpointScrapeJob = import("./connectionsMetricsEndpointScrapeJob").ConnectionsMetricsEndpointScrapeJob;
+export const ConnectionsMetricsEndpointScrapeJob: typeof import("./connectionsMetricsEndpointScrapeJob").ConnectionsMetricsEndpointScrapeJob = null as any;
+utilities.lazyLoad(exports, ["ConnectionsMetricsEndpointScrapeJob"], () => require("./connectionsMetricsEndpointScrapeJob"));
+
 export { ContactPointArgs, ContactPointState } from "./contactPoint";
 export type ContactPoint = import("./contactPoint").ContactPoint;
 export const ContactPoint: typeof import("./contactPoint").ContactPoint = null as any;
@@ -120,6 +125,11 @@ export const getCloudStack: typeof import("./getCloudStack").getCloudStack = nul
 export const getCloudStackOutput: typeof import("./getCloudStack").getCloudStackOutput = null as any;
 utilities.lazyLoad(exports, ["getCloudStack","getCloudStackOutput"], () => require("./getCloudStack"));
 
+export { GetConnectionsMetricsEndpointScrapeJobArgs, GetConnectionsMetricsEndpointScrapeJobResult, GetConnectionsMetricsEndpointScrapeJobOutputArgs } from "./getConnectionsMetricsEndpointScrapeJob";
+export const getConnectionsMetricsEndpointScrapeJob: typeof import("./getConnectionsMetricsEndpointScrapeJob").getConnectionsMetricsEndpointScrapeJob = null as any;
+export const getConnectionsMetricsEndpointScrapeJobOutput: typeof import("./getConnectionsMetricsEndpointScrapeJob").getConnectionsMetricsEndpointScrapeJobOutput = null as any;
+utilities.lazyLoad(exports, ["getConnectionsMetricsEndpointScrapeJob","getConnectionsMetricsEndpointScrapeJobOutput"], () => require("./getConnectionsMetricsEndpointScrapeJob"));
+
 export { GetDashboardArgs, GetDashboardResult, GetDashboardOutputArgs } from "./getDashboard";
 export const getDashboard: typeof import("./getDashboard").getDashboard = null as any;
 export const getDashboardOutput: typeof import("./getDashboard").getDashboardOutput = null as any;
@@ -149,6 +159,11 @@ export { GetLibraryPanelArgs, GetLibraryPanelResult, GetLibraryPanelOutputArgs }
 export const getLibraryPanel: typeof import("./getLibraryPanel").getLibraryPanel = null as any;
 export const getLibraryPanelOutput: typeof import("./getLibraryPanel").getLibraryPanelOutput = null as any;
 utilities.lazyLoad(exports, ["getLibraryPanel","getLibraryPanelOutput"], () => require("./getLibraryPanel"));
+
+export { GetLibraryPanelsArgs, GetLibraryPanelsResult, GetLibraryPanelsOutputArgs } from "./getLibraryPanels";
+export const getLibraryPanels: typeof import("./getLibraryPanels").getLibraryPanels = null as any;
+export const getLibraryPanelsOutput: typeof import("./getLibraryPanels").getLibraryPanelsOutput = null as any;
+utilities.lazyLoad(exports, ["getLibraryPanels","getLibraryPanelsOutput"], () => require("./getLibraryPanels"));
 
 export { GetOnCallSlackChannelArgs, GetOnCallSlackChannelResult, GetOnCallSlackChannelOutputArgs } from "./getOnCallSlackChannel";
 export const getOnCallSlackChannel: typeof import("./getOnCallSlackChannel").getOnCallSlackChannel = null as any;
@@ -466,6 +481,8 @@ const _module = {
                 return new CloudStackServiceAccount(name, <any>undefined, { urn })
             case "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken":
                 return new CloudStackServiceAccountToken(name, <any>undefined, { urn })
+            case "grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob":
+                return new ConnectionsMetricsEndpointScrapeJob(name, <any>undefined, { urn })
             case "grafana:index/contactPoint:ContactPoint":
                 return new ContactPoint(name, <any>undefined, { urn })
             case "grafana:index/dashboard:Dashboard":
@@ -573,6 +590,7 @@ pulumi.runtime.registerResourceModule("grafana", "index/cloudPluginInstallation"
 pulumi.runtime.registerResourceModule("grafana", "index/cloudStack", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudStackServiceAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/cloudStackServiceAccountToken", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/connectionsMetricsEndpointScrapeJob", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/contactPoint", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dashboard", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dashboardPermission", _module)

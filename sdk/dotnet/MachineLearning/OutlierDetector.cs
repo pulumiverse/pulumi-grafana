@@ -17,6 +17,80 @@ namespace Pulumiverse.Grafana.MachineLearning
     /// 
     /// Visit https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for more details.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ### DBSCAN Outlier Detector
+    /// 
+    /// This outlier detector uses the DBSCAN algorithm to detect outliers.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myDbscanOutlierDetector = new Grafana.MachineLearning.OutlierDetector("my_dbscan_outlier_detector", new()
+    ///     {
+    ///         Name = "My DBSCAN outlier detector",
+    ///         Description = "My DBSCAN Outlier Detector",
+    ///         Metric = "tf_test_dbscan_job",
+    ///         DatasourceType = "prometheus",
+    ///         DatasourceUid = "AbCd12345",
+    ///         QueryParams = 
+    ///         {
+    ///             { "expr", "grafanacloud_grafana_instance_active_user_count" },
+    ///         },
+    ///         Interval = 300,
+    ///         Algorithm = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmArgs
+    ///         {
+    ///             Name = "dbscan",
+    ///             Sensitivity = 0.5,
+    ///             Config = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmConfigArgs
+    ///             {
+    ///                 Epsilon = 1,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### MAD Outlier Detector
+    /// 
+    /// This outlier detector uses the Median Absolute Deviation (MAD) algorithm to detect outliers.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myMadOutlierDetector = new Grafana.MachineLearning.OutlierDetector("my_mad_outlier_detector", new()
+    ///     {
+    ///         Name = "My MAD outlier detector",
+    ///         Description = "My MAD Outlier Detector",
+    ///         Metric = "tf_test_mad_job",
+    ///         DatasourceType = "prometheus",
+    ///         DatasourceUid = "AbCd12345",
+    ///         QueryParams = 
+    ///         {
+    ///             { "expr", "grafanacloud_grafana_instance_active_user_count" },
+    ///         },
+    ///         Interval = 300,
+    ///         Algorithm = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmArgs
+    ///         {
+    ///             Name = "mad",
+    ///             Sensitivity = 0.7,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// ```sh
@@ -27,7 +101,8 @@ namespace Pulumiverse.Grafana.MachineLearning
     public partial class OutlierDetector : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        /// The algorithm to use and its configuration. See
+        /// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         /// </summary>
         [Output("algorithm")]
         public Output<Outputs.OutlierDetectorAlgorithm> Algorithm { get; private set; } = null!;
@@ -51,7 +126,7 @@ namespace Pulumiverse.Grafana.MachineLearning
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The data interval in seconds to monitor. Defaults to `300`.
+        /// The data interval in seconds to monitor.
         /// </summary>
         [Output("interval")]
         public Output<int?> Interval { get; private set; } = null!;
@@ -126,7 +201,8 @@ namespace Pulumiverse.Grafana.MachineLearning
     public sealed class OutlierDetectorArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        /// The algorithm to use and its configuration. See
+        /// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         /// </summary>
         [Input("algorithm", required: true)]
         public Input<Inputs.OutlierDetectorAlgorithmArgs> Algorithm { get; set; } = null!;
@@ -150,7 +226,7 @@ namespace Pulumiverse.Grafana.MachineLearning
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The data interval in seconds to monitor. Defaults to `300`.
+        /// The data interval in seconds to monitor.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
@@ -188,7 +264,8 @@ namespace Pulumiverse.Grafana.MachineLearning
     public sealed class OutlierDetectorState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        /// The algorithm to use and its configuration. See
+        /// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         /// </summary>
         [Input("algorithm")]
         public Input<Inputs.OutlierDetectorAlgorithmGetArgs>? Algorithm { get; set; }
@@ -212,7 +289,7 @@ namespace Pulumiverse.Grafana.MachineLearning
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The data interval in seconds to monitor. Defaults to `300`.
+        /// The data interval in seconds to monitor.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }

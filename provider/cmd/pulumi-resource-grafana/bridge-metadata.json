@@ -71,6 +71,62 @@
                     }
                 ]
             },
+            "grafana_cloud_provider_aws_account": {
+                "current": "grafana:cloud/providerAwsAccount:ProviderAwsAccount",
+                "fields": {
+                    "regions": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "grafana_cloud_provider_aws_cloudwatch_scrape_job": {
+                "current": "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob",
+                "fields": {
+                    "custom_namespace": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "metric": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "statistics": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "regions_subset_override": {
+                        "maxItemsOne": false
+                    },
+                    "service": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "metric": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "statistics": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "resource_discovery_tag_filter": {
+                                    "maxItemsOne": false
+                                },
+                                "tags_to_add_to_metrics": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_cloud_stack": {
                 "current": "grafana:cloud/stack:Stack",
                 "past": [
@@ -100,6 +156,9 @@
                         "majorVersion": 0
                     }
                 ]
+            },
+            "grafana_connections_metrics_endpoint_scrape_job": {
+                "current": "grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob"
             },
             "grafana_contact_point": {
                 "current": "grafana:alerting/contactPoint:ContactPoint",
@@ -329,6 +388,9 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "grafana_machine_learning_alert": {
+                "current": "grafana:machineLearning/alert:Alert"
             },
             "grafana_machine_learning_holiday": {
                 "current": "grafana:machineLearning/holiday:Holiday",
@@ -567,6 +629,9 @@
                                     "maxItemsOne": true
                                 },
                                 "microsoft_teams": {
+                                    "maxItemsOne": true
+                                },
+                                "mobile_app": {
                                     "maxItemsOne": true
                                 },
                                 "phone_call": {
@@ -850,6 +915,9 @@
                                             }
                                         }
                                     }
+                                },
+                                "record": {
+                                    "maxItemsOne": true
                                 }
                             }
                         }
@@ -994,6 +1062,42 @@
                     }
                 ],
                 "fields": {
+                    "ldap_settings": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "config": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "servers": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "group_mappings": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "group_search_base_dns": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "root_ca_cert_value": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "search_base_dns": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "tls_ciphers": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "oauth2_settings": {
                         "maxItemsOne": true
                     },
@@ -1253,6 +1357,14 @@
             }
         },
         "datasources": {
+            "grafana_cloud_access_policies": {
+                "current": "grafana:cloud/getAccessPolicies:getAccessPolicies",
+                "fields": {
+                    "access_policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "grafana_cloud_ips": {
                 "current": "grafana:cloud/getIps:getIps",
                 "past": [
@@ -1290,6 +1402,117 @@
                     }
                 ]
             },
+            "grafana_cloud_provider_aws_account": {
+                "current": "grafana:cloud/getProviderAwsAccount:getProviderAwsAccount",
+                "fields": {
+                    "regions": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "grafana_cloud_provider_aws_cloudwatch_scrape_job": {
+                "current": "grafana:cloud/getProviderAwsCloudwatchScrapeJob:getProviderAwsCloudwatchScrapeJob",
+                "fields": {
+                    "custom_namespace": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "metric": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "statistics": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "regions": {
+                        "maxItemsOne": false
+                    },
+                    "service": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "metric": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "statistics": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "resource_discovery_tag_filter": {
+                                    "maxItemsOne": false
+                                },
+                                "tags_to_add_to_metrics": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "grafana_cloud_provider_aws_cloudwatch_scrape_jobs": {
+                "current": "grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs",
+                "fields": {
+                    "scrape_job": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "custom_namespace": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "metric": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "statistics": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "regions": {
+                                    "maxItemsOne": false
+                                },
+                                "service": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "metric": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "statistics": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "resource_discovery_tag_filter": {
+                                                "maxItemsOne": false
+                                            },
+                                            "tags_to_add_to_metrics": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_cloud_stack": {
                 "current": "grafana:cloud/getStack:getStack",
                 "past": [
@@ -1299,6 +1522,9 @@
                         "majorVersion": 0
                     }
                 ]
+            },
+            "grafana_connections_metrics_endpoint_scrape_job": {
+                "current": "grafana:index/getConnectionsMetricsEndpointScrapeJob:getConnectionsMetricsEndpointScrapeJob"
             },
             "grafana_dashboard": {
                 "current": "grafana:oss/getDashboard:getDashboard",
@@ -1377,6 +1603,14 @@
                 ],
                 "fields": {
                     "dashboard_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "grafana_library_panels": {
+                "current": "grafana:index/getLibraryPanels:getLibraryPanels",
+                "fields": {
+                    "panels": {
                         "maxItemsOne": false
                     }
                 }
@@ -1460,6 +1694,14 @@
                         "majorVersion": 0
                     }
                 ]
+            },
+            "grafana_oncall_users": {
+                "current": "grafana:onCall/getUsers:getUsers",
+                "fields": {
+                    "users": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "grafana_organization": {
                 "current": "grafana:oss/getOrganization:getOrganization",
@@ -2119,6 +2361,8 @@
             "grafana:cloud/accessPolicyToken:AccessPolicyToken": 0,
             "grafana:cloud/orgMember:OrgMember": 1,
             "grafana:cloud/pluginInstallation:PluginInstallation": 0,
+            "grafana:cloud/providerAwsAccount:ProviderAwsAccount": 1,
+            "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob": 1,
             "grafana:cloud/stack:Stack": 0,
             "grafana:cloud/stackServiceAccount:StackServiceAccount": 0,
             "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": 0,
@@ -2137,6 +2381,7 @@
             "grafana:index/cloudStack:CloudStack": 0,
             "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount": 0,
             "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken": 0,
+            "grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob": 1,
             "grafana:index/contactPoint:ContactPoint": 0,
             "grafana:index/dashboard:Dashboard": 0,
             "grafana:index/dashboardPermission:DashboardPermission": 0,
@@ -2184,6 +2429,7 @@
             "grafana:index/team:Team": 0,
             "grafana:index/teamExternalGroup:TeamExternalGroup": 0,
             "grafana:index/user:User": 0,
+            "grafana:machineLearning/alert:Alert": 1,
             "grafana:machineLearning/holiday:Holiday": 0,
             "grafana:machineLearning/job:Job": 0,
             "grafana:machineLearning/outlierDetector:OutlierDetector": 0,
@@ -2222,26 +2468,32 @@
             "grafana:syntheticMonitoring/probe:Probe": 0
         },
         "functions": {
+            "grafana:cloud/getAccessPolicies:getAccessPolicies": 1,
             "grafana:cloud/getIps:getIps": 0,
             "grafana:cloud/getOrganization:getOrganization": 0,
+            "grafana:cloud/getProviderAwsAccount:getProviderAwsAccount": 1,
+            "grafana:cloud/getProviderAwsCloudwatchScrapeJob:getProviderAwsCloudwatchScrapeJob": 1,
+            "grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs": 1,
             "grafana:cloud/getStack:getStack": 0,
             "grafana:enterprise/getRole:getRole": 0,
             "grafana:index/getCloudIps:getCloudIps": 0,
             "grafana:index/getCloudOrganization:getCloudOrganization": 0,
             "grafana:index/getCloudStack:getCloudStack": 0,
+            "grafana:index/getConnectionsMetricsEndpointScrapeJob:getConnectionsMetricsEndpointScrapeJob": 1,
             "grafana:index/getDashboard:getDashboard": 0,
             "grafana:index/getDashboards:getDashboards": 0,
             "grafana:index/getDataSource:getDataSource": 0,
             "grafana:index/getFolder:getFolder": 0,
             "grafana:index/getFolders:getFolders": 0,
             "grafana:index/getLibraryPanel:getLibraryPanel": 0,
+            "grafana:index/getLibraryPanels:getLibraryPanels": 1,
             "grafana:index/getOnCallSlackChannel:getOnCallSlackChannel": 0,
             "grafana:index/getOncallEscalationChain:getOncallEscalationChain": 0,
             "grafana:index/getOncallIntegration:getOncallIntegration": 0,
             "grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook": 0,
             "grafana:index/getOncallSchedule:getOncallSchedule": 0,
             "grafana:index/getOncallTeam:getOncallTeam": 0,
-            "grafana:index/getOncallUser:getOncallUser": 0,
+            "grafana:index/getOncallUser:getOncallUser": 1,
             "grafana:index/getOncallUserGroup:getOncallUserGroup": 0,
             "grafana:index/getOrganization:getOrganization": 0,
             "grafana:index/getOrganizationPreferences:getOrganizationPreferences": 0,
@@ -2259,8 +2511,9 @@
             "grafana:onCall/getSchedule:getSchedule": 0,
             "grafana:onCall/getSlackChannel:getSlackChannel": 0,
             "grafana:onCall/getTeam:getTeam": 0,
-            "grafana:onCall/getUser:getUser": 0,
+            "grafana:onCall/getUser:getUser": 1,
             "grafana:onCall/getUserGroup:getUserGroup": 0,
+            "grafana:onCall/getUsers:getUsers": 1,
             "grafana:oss/getDashboard:getDashboard": 0,
             "grafana:oss/getDashboards:getDashboards": 0,
             "grafana:oss/getDataSource:getDataSource": 0,

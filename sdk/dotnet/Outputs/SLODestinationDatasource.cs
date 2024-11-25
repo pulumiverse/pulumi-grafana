@@ -15,12 +15,12 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class SLODestinationDatasource
     {
         /// <summary>
-        /// UID for the Mimir Datasource
+        /// UID for the Datasource
         /// </summary>
-        public readonly string? Uid;
+        public readonly string Uid;
 
         [OutputConstructor]
-        private SLODestinationDatasource(string? uid)
+        private SLODestinationDatasource(string uid)
         {
             Uid = uid;
         }

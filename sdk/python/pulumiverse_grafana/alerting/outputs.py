@@ -52,6 +52,7 @@ __all__ = [
     'RuleGroupRuleData',
     'RuleGroupRuleDataRelativeTimeRange',
     'RuleGroupRuleNotificationSettings',
+    'RuleGroupRuleRecord',
 ]
 
 @pulumi.output_type
@@ -4028,18 +4029,20 @@ class RuleGroupRule(dict):
                  labels: Optional[Mapping[str, str]] = None,
                  no_data_state: Optional[str] = None,
                  notification_settings: Optional['outputs.RuleGroupRuleNotificationSettings'] = None,
+                 record: Optional['outputs.RuleGroupRuleRecord'] = None,
                  uid: Optional[str] = None):
         """
         :param str condition: The `ref_id` of the query node in the `data` field to use as the alert condition.
         :param Sequence['RuleGroupRuleDataArgs'] datas: A sequence of stages that describe the contents of the rule.
         :param str name: The name of the alert rule.
-        :param Mapping[str, str] annotations: Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+        :param Mapping[str, str] annotations: Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
         :param str exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
         :param str for_: The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
         :param bool is_paused: Sets whether the alert should be paused or not. Defaults to `false`.
         :param Mapping[str, str] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
         :param str no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
-        :param 'RuleGroupRuleNotificationSettingsArgs' notification_settings: Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+        :param 'RuleGroupRuleNotificationSettingsArgs' notification_settings: Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
+        :param 'RuleGroupRuleRecordArgs' record: Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
         :param str uid: The unique identifier of the alert rule.
         """
         pulumi.set(__self__, "condition", condition)
@@ -4059,6 +4062,8 @@ class RuleGroupRule(dict):
             pulumi.set(__self__, "no_data_state", no_data_state)
         if notification_settings is not None:
             pulumi.set(__self__, "notification_settings", notification_settings)
+        if record is not None:
+            pulumi.set(__self__, "record", record)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -4090,7 +4095,7 @@ class RuleGroupRule(dict):
     @pulumi.getter
     def annotations(self) -> Optional[Mapping[str, str]]:
         """
-        Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+        Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
         """
         return pulumi.get(self, "annotations")
 
@@ -4138,9 +4143,17 @@ class RuleGroupRule(dict):
     @pulumi.getter(name="notificationSettings")
     def notification_settings(self) -> Optional['outputs.RuleGroupRuleNotificationSettings']:
         """
-        Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+        Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
         """
         return pulumi.get(self, "notification_settings")
+
+    @property
+    @pulumi.getter
+    def record(self) -> Optional['outputs.RuleGroupRuleRecord']:
+        """
+        Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
+        """
+        return pulumi.get(self, "record")
 
     @property
     @pulumi.getter
@@ -4386,5 +4399,51 @@ class RuleGroupRuleNotificationSettings(dict):
         Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
         return pulumi.get(self, "repeat_interval")
+
+
+@pulumi.output_type
+class RuleGroupRuleRecord(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "from":
+            suggest = "from_"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RuleGroupRuleRecord. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RuleGroupRuleRecord.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RuleGroupRuleRecord.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 from_: str,
+                 metric: str):
+        """
+        :param str from_: The ref id of the query node in the data field to use as the source of the metric.
+        :param str metric: The name of the metric to write to.
+        """
+        pulumi.set(__self__, "from_", from_)
+        pulumi.set(__self__, "metric", metric)
+
+    @property
+    @pulumi.getter(name="from")
+    def from_(self) -> str:
+        """
+        The ref id of the query node in the data field to use as the source of the metric.
+        """
+        return pulumi.get(self, "from_")
+
+    @property
+    @pulumi.getter
+    def metric(self) -> str:
+        """
+        The name of the metric to write to.
+        """
+        return pulumi.get(self, "metric")
 
 

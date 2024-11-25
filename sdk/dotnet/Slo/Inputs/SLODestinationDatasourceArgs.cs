@@ -14,10 +14,10 @@ namespace Pulumiverse.Grafana.Slo.Inputs
     public sealed class SLODestinationDatasourceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// UID for the Mimir Datasource
+        /// UID for the Datasource
         /// </summary>
-        [Input("uid")]
-        public Input<string>? Uid { get; set; }
+        [Input("uid", required: true)]
+        public Input<string> Uid { get; set; } = null!;
 
         public SLODestinationDatasourceArgs()
         {

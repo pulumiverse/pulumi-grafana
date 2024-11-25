@@ -220,7 +220,7 @@ type SLO struct {
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
-	DestinationDatasource SLODestinationDatasourcePtrOutput `pulumi:"destinationDatasource"`
+	DestinationDatasource SLODestinationDatasourceOutput `pulumi:"destinationDatasource"`
 	// UID for the SLO folder
 	FolderUid pulumi.StringPtrOutput `pulumi:"folderUid"`
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
@@ -231,6 +231,8 @@ type SLO struct {
 	Objectives SLOObjectiveArrayOutput `pulumi:"objectives"`
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries SLOQueryArrayOutput `pulumi:"queries"`
+	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+	SearchExpression pulumi.StringPtrOutput `pulumi:"searchExpression"`
 }
 
 // NewSLO registers a new resource with the given unique name, arguments, and options.
@@ -242,6 +244,9 @@ func NewSLO(ctx *pulumi.Context,
 
 	if args.Description == nil {
 		return nil, errors.New("invalid value for required argument 'Description'")
+	}
+	if args.DestinationDatasource == nil {
+		return nil, errors.New("invalid value for required argument 'DestinationDatasource'")
 	}
 	if args.Objectives == nil {
 		return nil, errors.New("invalid value for required argument 'Objectives'")
@@ -298,6 +303,8 @@ type sloState struct {
 	Objectives []SLOObjective `pulumi:"objectives"`
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries []SLOQuery `pulumi:"queries"`
+	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+	SearchExpression *string `pulumi:"searchExpression"`
 }
 
 type SLOState struct {
@@ -321,6 +328,8 @@ type SLOState struct {
 	Objectives SLOObjectiveArrayInput
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries SLOQueryArrayInput
+	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+	SearchExpression pulumi.StringPtrInput
 }
 
 func (SLOState) ElementType() reflect.Type {
@@ -337,7 +346,7 @@ type sloArgs struct {
 	// Description is a free-text field that can provide more context to an SLO.
 	Description string `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
-	DestinationDatasource *SLODestinationDatasource `pulumi:"destinationDatasource"`
+	DestinationDatasource SLODestinationDatasource `pulumi:"destinationDatasource"`
 	// UID for the SLO folder
 	FolderUid *string `pulumi:"folderUid"`
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
@@ -348,6 +357,8 @@ type sloArgs struct {
 	Objectives []SLOObjective `pulumi:"objectives"`
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries []SLOQuery `pulumi:"queries"`
+	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+	SearchExpression *string `pulumi:"searchExpression"`
 }
 
 // The set of arguments for constructing a SLO resource.
@@ -361,7 +372,7 @@ type SLOArgs struct {
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringInput
 	// Destination Datasource sets the datasource defined for an SLO
-	DestinationDatasource SLODestinationDatasourcePtrInput
+	DestinationDatasource SLODestinationDatasourceInput
 	// UID for the SLO folder
 	FolderUid pulumi.StringPtrInput
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
@@ -372,6 +383,8 @@ type SLOArgs struct {
 	Objectives SLOObjectiveArrayInput
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries SLOQueryArrayInput
+	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+	SearchExpression pulumi.StringPtrInput
 }
 
 func (SLOArgs) ElementType() reflect.Type {
@@ -477,8 +490,8 @@ func (o SLOOutput) Description() pulumi.StringOutput {
 }
 
 // Destination Datasource sets the datasource defined for an SLO
-func (o SLOOutput) DestinationDatasource() SLODestinationDatasourcePtrOutput {
-	return o.ApplyT(func(v *SLO) SLODestinationDatasourcePtrOutput { return v.DestinationDatasource }).(SLODestinationDatasourcePtrOutput)
+func (o SLOOutput) DestinationDatasource() SLODestinationDatasourceOutput {
+	return o.ApplyT(func(v *SLO) SLODestinationDatasourceOutput { return v.DestinationDatasource }).(SLODestinationDatasourceOutput)
 }
 
 // UID for the SLO folder
@@ -504,6 +517,11 @@ func (o SLOOutput) Objectives() SLOObjectiveArrayOutput {
 // Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 func (o SLOOutput) Queries() SLOQueryArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOQueryArrayOutput { return v.Queries }).(SLOQueryArrayOutput)
+}
+
+// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+func (o SLOOutput) SearchExpression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SLO) pulumi.StringPtrOutput { return v.SearchExpression }).(pulumi.StringPtrOutput)
 }
 
 type SLOArrayOutput struct{ *pulumi.OutputState }

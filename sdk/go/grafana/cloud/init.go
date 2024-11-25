@@ -29,6 +29,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &OrgMember{}
 	case "grafana:cloud/pluginInstallation:PluginInstallation":
 		r = &PluginInstallation{}
+	case "grafana:cloud/providerAwsAccount:ProviderAwsAccount":
+		r = &ProviderAwsAccount{}
+	case "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob":
+		r = &ProviderAwsCloudwatchScrapeJob{}
 	case "grafana:cloud/stack:Stack":
 		r = &Stack{}
 	case "grafana:cloud/stackServiceAccount:StackServiceAccount":
@@ -66,6 +70,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"cloud/pluginInstallation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"cloud/providerAwsAccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"cloud/providerAwsCloudwatchScrapeJob",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

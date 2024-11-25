@@ -45,6 +45,25 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly cloudApiUrl!: pulumi.Output<string | undefined>;
     /**
+     * A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+     * environment variable.
+     */
+    public readonly cloudProviderAccessToken!: pulumi.Output<string | undefined>;
+    /**
+     * A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+     * variable.
+     */
+    public readonly cloudProviderUrl!: pulumi.Output<string | undefined>;
+    /**
+     * A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+     * environment variable.
+     */
+    public readonly connectionsApiAccessToken!: pulumi.Output<string | undefined>;
+    /**
+     * A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+     */
+    public readonly connectionsApiUrl!: pulumi.Output<string | undefined>;
+    /**
      * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
      */
     public readonly oncallAccessToken!: pulumi.Output<string | undefined>;
@@ -87,6 +106,10 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["caCert"] = (args ? args.caCert : undefined) ?? utilities.getEnv("GRAFANA_CA_CERT");
             resourceInputs["cloudAccessPolicyToken"] = (args?.cloudAccessPolicyToken ? pulumi.secret(args.cloudAccessPolicyToken) : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_ACCESS_POLICY_TOKEN");
             resourceInputs["cloudApiUrl"] = (args ? args.cloudApiUrl : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_API_URL");
+            resourceInputs["cloudProviderAccessToken"] = args?.cloudProviderAccessToken ? pulumi.secret(args.cloudProviderAccessToken) : undefined;
+            resourceInputs["cloudProviderUrl"] = args ? args.cloudProviderUrl : undefined;
+            resourceInputs["connectionsApiAccessToken"] = args?.connectionsApiAccessToken ? pulumi.secret(args.connectionsApiAccessToken) : undefined;
+            resourceInputs["connectionsApiUrl"] = args ? args.connectionsApiUrl : undefined;
             resourceInputs["insecureSkipVerify"] = pulumi.output((args ? args.insecureSkipVerify : undefined) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
             resourceInputs["oncallAccessToken"] = (args?.oncallAccessToken ? pulumi.secret(args.oncallAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             resourceInputs["oncallUrl"] = (args ? args.oncallUrl : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
@@ -101,7 +124,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["url"] = (args ? args.url : undefined) ?? utilities.getEnv("GRAFANA_URL");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["auth", "cloudAccessPolicyToken", "oncallAccessToken", "smAccessToken", "tlsKey"] };
+        const secretOpts = { additionalSecretOutputs: ["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "oncallAccessToken", "smAccessToken", "tlsKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
@@ -130,6 +153,25 @@ export interface ProviderArgs {
      * Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
      */
     cloudApiUrl?: pulumi.Input<string>;
+    /**
+     * A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+     * environment variable.
+     */
+    cloudProviderAccessToken?: pulumi.Input<string>;
+    /**
+     * A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+     * variable.
+     */
+    cloudProviderUrl?: pulumi.Input<string>;
+    /**
+     * A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+     * environment variable.
+     */
+    connectionsApiAccessToken?: pulumi.Input<string>;
+    /**
+     * A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+     */
+    connectionsApiUrl?: pulumi.Input<string>;
     /**
      * Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
      */

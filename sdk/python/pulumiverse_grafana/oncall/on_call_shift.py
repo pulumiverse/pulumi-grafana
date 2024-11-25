@@ -33,6 +33,7 @@ class OnCallShiftArgs:
                  start_rotation_from_user_index: Optional[pulumi.Input[int]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
                  time_zone: Optional[pulumi.Input[str]] = None,
+                 until: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  week_start: Optional[pulumi.Input[str]] = None):
         """
@@ -51,6 +52,7 @@ class OnCallShiftArgs:
         :param pulumi.Input[int] start_rotation_from_user_index: The index of the list of users in rolling_users, from which on-call rotation starts.
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         :param pulumi.Input[str] time_zone: The shift's timezone.  Overrides schedule's timezone.
+        :param pulumi.Input[str] until: The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
         :param pulumi.Input[Sequence[pulumi.Input[str]]] users: The list of on-call users (for single*event and recurrent*event event type).
         :param pulumi.Input[str] week_start: Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
         """
@@ -79,6 +81,8 @@ class OnCallShiftArgs:
             pulumi.set(__self__, "team_id", team_id)
         if time_zone is not None:
             pulumi.set(__self__, "time_zone", time_zone)
+        if until is not None:
+            pulumi.set(__self__, "until", until)
         if users is not None:
             pulumi.set(__self__, "users", users)
         if week_start is not None:
@@ -254,6 +258,18 @@ class OnCallShiftArgs:
 
     @property
     @pulumi.getter
+    def until(self) -> Optional[pulumi.Input[str]]:
+        """
+        The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+        """
+        return pulumi.get(self, "until")
+
+    @until.setter
+    def until(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "until", value)
+
+    @property
+    @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The list of on-call users (for single*event and recurrent*event event type).
@@ -294,6 +310,7 @@ class _OnCallShiftState:
                  team_id: Optional[pulumi.Input[str]] = None,
                  time_zone: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 until: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  week_start: Optional[pulumi.Input[str]] = None):
         """
@@ -312,6 +329,7 @@ class _OnCallShiftState:
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         :param pulumi.Input[str] time_zone: The shift's timezone.  Overrides schedule's timezone.
         :param pulumi.Input[str] type: The shift's type. Can be rolling*users, recurrent*event, single_event
+        :param pulumi.Input[str] until: The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
         :param pulumi.Input[Sequence[pulumi.Input[str]]] users: The list of on-call users (for single*event and recurrent*event event type).
         :param pulumi.Input[str] week_start: Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
         """
@@ -343,6 +361,8 @@ class _OnCallShiftState:
             pulumi.set(__self__, "time_zone", time_zone)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if until is not None:
+            pulumi.set(__self__, "until", until)
         if users is not None:
             pulumi.set(__self__, "users", users)
         if week_start is not None:
@@ -518,6 +538,18 @@ class _OnCallShiftState:
 
     @property
     @pulumi.getter
+    def until(self) -> Optional[pulumi.Input[str]]:
+        """
+        The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+        """
+        return pulumi.get(self, "until")
+
+    @until.setter
+    def until(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "until", value)
+
+    @property
+    @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The list of on-call users (for single*event and recurrent*event event type).
@@ -560,6 +592,7 @@ class OnCallShift(pulumi.CustomResource):
                  team_id: Optional[pulumi.Input[str]] = None,
                  time_zone: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 until: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  week_start: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -588,6 +621,7 @@ class OnCallShift(pulumi.CustomResource):
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         :param pulumi.Input[str] time_zone: The shift's timezone.  Overrides schedule's timezone.
         :param pulumi.Input[str] type: The shift's type. Can be rolling*users, recurrent*event, single_event
+        :param pulumi.Input[str] until: The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
         :param pulumi.Input[Sequence[pulumi.Input[str]]] users: The list of on-call users (for single*event and recurrent*event event type).
         :param pulumi.Input[str] week_start: Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
         """
@@ -635,6 +669,7 @@ class OnCallShift(pulumi.CustomResource):
                  team_id: Optional[pulumi.Input[str]] = None,
                  time_zone: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 until: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  week_start: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -666,6 +701,7 @@ class OnCallShift(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
+            __props__.__dict__["until"] = until
             __props__.__dict__["users"] = users
             __props__.__dict__["week_start"] = week_start
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/oncallOnCallShift:OncallOnCallShift")])
@@ -694,6 +730,7 @@ class OnCallShift(pulumi.CustomResource):
             team_id: Optional[pulumi.Input[str]] = None,
             time_zone: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
+            until: Optional[pulumi.Input[str]] = None,
             users: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             week_start: Optional[pulumi.Input[str]] = None) -> 'OnCallShift':
         """
@@ -717,6 +754,7 @@ class OnCallShift(pulumi.CustomResource):
         :param pulumi.Input[str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
         :param pulumi.Input[str] time_zone: The shift's timezone.  Overrides schedule's timezone.
         :param pulumi.Input[str] type: The shift's type. Can be rolling*users, recurrent*event, single_event
+        :param pulumi.Input[str] until: The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
         :param pulumi.Input[Sequence[pulumi.Input[str]]] users: The list of on-call users (for single*event and recurrent*event event type).
         :param pulumi.Input[str] week_start: Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
         """
@@ -738,6 +776,7 @@ class OnCallShift(pulumi.CustomResource):
         __props__.__dict__["team_id"] = team_id
         __props__.__dict__["time_zone"] = time_zone
         __props__.__dict__["type"] = type
+        __props__.__dict__["until"] = until
         __props__.__dict__["users"] = users
         __props__.__dict__["week_start"] = week_start
         return OnCallShift(resource_name, opts=opts, __props__=__props__)
@@ -853,6 +892,14 @@ class OnCallShift(pulumi.CustomResource):
         The shift's type. Can be rolling*users, recurrent*event, single_event
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def until(self) -> pulumi.Output[Optional[str]]:
+        """
+        The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+        """
+        return pulumi.get(self, "until")
 
     @property
     @pulumi.getter

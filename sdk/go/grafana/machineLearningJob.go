@@ -14,6 +14,231 @@ import (
 
 // A job defines the queries and model parameters for a machine learning task.
 //
+// ## Example Usage
+//
+// ### Basic Forecast
+//
+// This forecast uses a Prometheus datasource, where the source query is defined in the `expr` field of the `queryParams` attribute.
+//
+// Other datasources are supported, but the structure `queryParams` may differ.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"httpMethod":        "POST",
+//				"prometheusType":    "Mimir",
+//				"prometheusVersion": "2.4.0",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"basicAuthPassword": "password",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
+//			foo, err := oss.NewDataSource(ctx, "foo", &oss.DataSourceArgs{
+//				Type:                  pulumi.String("prometheus"),
+//				Name:                  pulumi.String("prometheus-ds-test"),
+//				Uid:                   pulumi.String("prometheus-ds-test-uid"),
+//				Url:                   pulumi.String("https://my-instance.com"),
+//				BasicAuthEnabled:      pulumi.Bool(true),
+//				BasicAuthUsername:     pulumi.String("username"),
+//				JsonDataEncoded:       pulumi.String(json0),
+//				SecureJsonDataEncoded: pulumi.String(json1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = machineLearning.NewJob(ctx, "test_job", &machineLearning.JobArgs{
+//				Name:           pulumi.String("Test Job"),
+//				Metric:         pulumi.String("tf_test_job"),
+//				DatasourceType: pulumi.String("prometheus"),
+//				DatasourceUid:  foo.Uid,
+//				QueryParams: pulumi.StringMap{
+//					"expr": pulumi.String("grafanacloud_grafana_instance_active_user_count"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Tuned Forecast
+//
+// This forecast has tuned hyperparameters to improve the accuracy of the model.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"httpMethod":        "POST",
+//				"prometheusType":    "Mimir",
+//				"prometheusVersion": "2.4.0",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"basicAuthPassword": "password",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
+//			foo, err := oss.NewDataSource(ctx, "foo", &oss.DataSourceArgs{
+//				Type:                  pulumi.String("prometheus"),
+//				Name:                  pulumi.String("prometheus-ds-test"),
+//				Uid:                   pulumi.String("prometheus-ds-test-uid"),
+//				Url:                   pulumi.String("https://my-instance.com"),
+//				BasicAuthEnabled:      pulumi.Bool(true),
+//				BasicAuthUsername:     pulumi.String("username"),
+//				JsonDataEncoded:       pulumi.String(json0),
+//				SecureJsonDataEncoded: pulumi.String(json1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = machineLearning.NewJob(ctx, "test_job", &machineLearning.JobArgs{
+//				Name:           pulumi.String("Test Job"),
+//				Metric:         pulumi.String("tf_test_job"),
+//				DatasourceType: pulumi.String("prometheus"),
+//				DatasourceUid:  foo.Uid,
+//				QueryParams: pulumi.StringMap{
+//					"expr": pulumi.String("grafanacloud_grafana_instance_active_user_count"),
+//				},
+//				HyperParams: pulumi.StringMap{
+//					"daily_seasonality":  pulumi.String("15"),
+//					"weekly_seasonality": pulumi.String("10"),
+//				},
+//				CustomLabels: pulumi.StringMap{
+//					"example_label": pulumi.String("example_value"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Forecast with Holidays
+//
+// This forecast has holidays which will be taken into account when training the model.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"httpMethod":        "POST",
+//				"prometheusType":    "Mimir",
+//				"prometheusVersion": "2.4.0",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"basicAuthPassword": "password",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
+//			foo, err := oss.NewDataSource(ctx, "foo", &oss.DataSourceArgs{
+//				Type:                  pulumi.String("prometheus"),
+//				Name:                  pulumi.String("prometheus-ds-test"),
+//				Uid:                   pulumi.String("prometheus-ds-test-uid"),
+//				Url:                   pulumi.String("https://my-instance.com"),
+//				BasicAuthEnabled:      pulumi.Bool(true),
+//				BasicAuthUsername:     pulumi.String("username"),
+//				JsonDataEncoded:       pulumi.String(json0),
+//				SecureJsonDataEncoded: pulumi.String(json1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testHoliday, err := machineLearning.NewHoliday(ctx, "test_holiday", &machineLearning.HolidayArgs{
+//				Name: pulumi.String("Test Holiday"),
+//				CustomPeriods: machinelearning.HolidayCustomPeriodArray{
+//					&machinelearning.HolidayCustomPeriodArgs{
+//						Name:      pulumi.String("First of January"),
+//						StartTime: pulumi.String("2023-01-01T00:00:00Z"),
+//						EndTime:   pulumi.String("2023-01-02T00:00:00Z"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = machineLearning.NewJob(ctx, "test_job", &machineLearning.JobArgs{
+//				Name:           pulumi.String("Test Job"),
+//				Metric:         pulumi.String("tf_test_job"),
+//				DatasourceType: pulumi.String("prometheus"),
+//				DatasourceUid:  foo.Uid,
+//				QueryParams: pulumi.StringMap{
+//					"expr": pulumi.String("grafanacloud_grafana_instance_active_user_count"),
+//				},
+//				Holidays: pulumi.StringArray{
+//					testHoliday.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // ```sh
@@ -34,9 +259,10 @@ type MachineLearningJob struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayOutput `pulumi:"holidays"`
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+	// for the full list of available hyperparameters.
 	HyperParams pulumi.StringMapOutput `pulumi:"hyperParams"`
-	// The data interval in seconds to train the data on. Defaults to `300`.
+	// The data interval in seconds to train the data on.
 	Interval pulumi.IntPtrOutput `pulumi:"interval"`
 	// The metric used to query the job results.
 	Metric pulumi.StringOutput `pulumi:"metric"`
@@ -44,7 +270,7 @@ type MachineLearningJob struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
 	QueryParams pulumi.StringMapOutput `pulumi:"queryParams"`
-	// The data interval in seconds to train the data on. Defaults to `7776000`.
+	// The data interval in seconds to train the data on.
 	TrainingWindow pulumi.IntPtrOutput `pulumi:"trainingWindow"`
 }
 
@@ -100,9 +326,10 @@ type machineLearningJobState struct {
 	Description *string `pulumi:"description"`
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays []string `pulumi:"holidays"`
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+	// for the full list of available hyperparameters.
 	HyperParams map[string]string `pulumi:"hyperParams"`
-	// The data interval in seconds to train the data on. Defaults to `300`.
+	// The data interval in seconds to train the data on.
 	Interval *int `pulumi:"interval"`
 	// The metric used to query the job results.
 	Metric *string `pulumi:"metric"`
@@ -110,7 +337,7 @@ type machineLearningJobState struct {
 	Name *string `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
 	QueryParams map[string]string `pulumi:"queryParams"`
-	// The data interval in seconds to train the data on. Defaults to `7776000`.
+	// The data interval in seconds to train the data on.
 	TrainingWindow *int `pulumi:"trainingWindow"`
 }
 
@@ -125,9 +352,10 @@ type MachineLearningJobState struct {
 	Description pulumi.StringPtrInput
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayInput
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+	// for the full list of available hyperparameters.
 	HyperParams pulumi.StringMapInput
-	// The data interval in seconds to train the data on. Defaults to `300`.
+	// The data interval in seconds to train the data on.
 	Interval pulumi.IntPtrInput
 	// The metric used to query the job results.
 	Metric pulumi.StringPtrInput
@@ -135,7 +363,7 @@ type MachineLearningJobState struct {
 	Name pulumi.StringPtrInput
 	// An object representing the query params to query Grafana with.
 	QueryParams pulumi.StringMapInput
-	// The data interval in seconds to train the data on. Defaults to `7776000`.
+	// The data interval in seconds to train the data on.
 	TrainingWindow pulumi.IntPtrInput
 }
 
@@ -154,9 +382,10 @@ type machineLearningJobArgs struct {
 	Description *string `pulumi:"description"`
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays []string `pulumi:"holidays"`
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+	// for the full list of available hyperparameters.
 	HyperParams map[string]string `pulumi:"hyperParams"`
-	// The data interval in seconds to train the data on. Defaults to `300`.
+	// The data interval in seconds to train the data on.
 	Interval *int `pulumi:"interval"`
 	// The metric used to query the job results.
 	Metric string `pulumi:"metric"`
@@ -164,7 +393,7 @@ type machineLearningJobArgs struct {
 	Name *string `pulumi:"name"`
 	// An object representing the query params to query Grafana with.
 	QueryParams map[string]string `pulumi:"queryParams"`
-	// The data interval in seconds to train the data on. Defaults to `7776000`.
+	// The data interval in seconds to train the data on.
 	TrainingWindow *int `pulumi:"trainingWindow"`
 }
 
@@ -180,9 +409,10 @@ type MachineLearningJobArgs struct {
 	Description pulumi.StringPtrInput
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayInput
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+	// for the full list of available hyperparameters.
 	HyperParams pulumi.StringMapInput
-	// The data interval in seconds to train the data on. Defaults to `300`.
+	// The data interval in seconds to train the data on.
 	Interval pulumi.IntPtrInput
 	// The metric used to query the job results.
 	Metric pulumi.StringInput
@@ -190,7 +420,7 @@ type MachineLearningJobArgs struct {
 	Name pulumi.StringPtrInput
 	// An object representing the query params to query Grafana with.
 	QueryParams pulumi.StringMapInput
-	// The data interval in seconds to train the data on. Defaults to `7776000`.
+	// The data interval in seconds to train the data on.
 	TrainingWindow pulumi.IntPtrInput
 }
 
@@ -306,12 +536,13 @@ func (o MachineLearningJobOutput) Holidays() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.StringArrayOutput { return v.Holidays }).(pulumi.StringArrayOutput)
 }
 
-// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+// for the full list of available hyperparameters.
 func (o MachineLearningJobOutput) HyperParams() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.StringMapOutput { return v.HyperParams }).(pulumi.StringMapOutput)
 }
 
-// The data interval in seconds to train the data on. Defaults to `300`.
+// The data interval in seconds to train the data on.
 func (o MachineLearningJobOutput) Interval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.IntPtrOutput { return v.Interval }).(pulumi.IntPtrOutput)
 }
@@ -331,7 +562,7 @@ func (o MachineLearningJobOutput) QueryParams() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.StringMapOutput { return v.QueryParams }).(pulumi.StringMapOutput)
 }
 
-// The data interval in seconds to train the data on. Defaults to `7776000`.
+// The data interval in seconds to train the data on.
 func (o MachineLearningJobOutput) TrainingWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.IntPtrOutput { return v.TrainingWindow }).(pulumi.IntPtrOutput)
 }

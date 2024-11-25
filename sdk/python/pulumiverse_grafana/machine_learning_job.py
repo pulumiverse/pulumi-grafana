@@ -39,10 +39,11 @@ class MachineLearningJobArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_labels: An object representing the custom labels added on the forecast.
         :param pulumi.Input[str] description: A description of the job.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
-        :param pulumi.Input[int] interval: The data interval in seconds to train the data on. Defaults to `300`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+               for the full list of available hyperparameters.
+        :param pulumi.Input[int] interval: The data interval in seconds to train the data on.
         :param pulumi.Input[str] name: The name of the job.
-        :param pulumi.Input[int] training_window: The data interval in seconds to train the data on. Defaults to `7776000`.
+        :param pulumi.Input[int] training_window: The data interval in seconds to train the data on.
         """
         pulumi.set(__self__, "datasource_type", datasource_type)
         pulumi.set(__self__, "datasource_uid", datasource_uid)
@@ -151,7 +152,8 @@ class MachineLearningJobArgs:
     @pulumi.getter(name="hyperParams")
     def hyper_params(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+        The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+        for the full list of available hyperparameters.
         """
         return pulumi.get(self, "hyper_params")
 
@@ -163,7 +165,7 @@ class MachineLearningJobArgs:
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[int]]:
         """
-        The data interval in seconds to train the data on. Defaults to `300`.
+        The data interval in seconds to train the data on.
         """
         return pulumi.get(self, "interval")
 
@@ -187,7 +189,7 @@ class MachineLearningJobArgs:
     @pulumi.getter(name="trainingWindow")
     def training_window(self) -> Optional[pulumi.Input[int]]:
         """
-        The data interval in seconds to train the data on. Defaults to `7776000`.
+        The data interval in seconds to train the data on.
         """
         return pulumi.get(self, "training_window")
 
@@ -217,12 +219,13 @@ class _MachineLearningJobState:
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
-        :param pulumi.Input[int] interval: The data interval in seconds to train the data on. Defaults to `300`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+               for the full list of available hyperparameters.
+        :param pulumi.Input[int] interval: The data interval in seconds to train the data on.
         :param pulumi.Input[str] metric: The metric used to query the job results.
         :param pulumi.Input[str] name: The name of the job.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] query_params: An object representing the query params to query Grafana with.
-        :param pulumi.Input[int] training_window: The data interval in seconds to train the data on. Defaults to `7776000`.
+        :param pulumi.Input[int] training_window: The data interval in seconds to train the data on.
         """
         if custom_labels is not None:
             pulumi.set(__self__, "custom_labels", custom_labels)
@@ -311,7 +314,8 @@ class _MachineLearningJobState:
     @pulumi.getter(name="hyperParams")
     def hyper_params(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+        The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+        for the full list of available hyperparameters.
         """
         return pulumi.get(self, "hyper_params")
 
@@ -323,7 +327,7 @@ class _MachineLearningJobState:
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[int]]:
         """
-        The data interval in seconds to train the data on. Defaults to `300`.
+        The data interval in seconds to train the data on.
         """
         return pulumi.get(self, "interval")
 
@@ -371,7 +375,7 @@ class _MachineLearningJobState:
     @pulumi.getter(name="trainingWindow")
     def training_window(self) -> Optional[pulumi.Input[int]]:
         """
-        The data interval in seconds to train the data on. Defaults to `7776000`.
+        The data interval in seconds to train the data on.
         """
         return pulumi.get(self, "training_window")
 
@@ -405,6 +409,127 @@ class MachineLearningJob(pulumi.CustomResource):
         """
         A job defines the queries and model parameters for a machine learning task.
 
+        ## Example Usage
+
+        ### Basic Forecast
+
+        This forecast uses a Prometheus datasource, where the source query is defined in the `expr` field of the `query_params` attribute.
+
+        Other datasources are supported, but the structure `query_params` may differ.
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        foo = grafana.oss.DataSource("foo",
+            type="prometheus",
+            name="prometheus-ds-test",
+            uid="prometheus-ds-test-uid",
+            url="https://my-instance.com",
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            json_data_encoded=json.dumps({
+                "httpMethod": "POST",
+                "prometheusType": "Mimir",
+                "prometheusVersion": "2.4.0",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "basicAuthPassword": "password",
+            }))
+        test_job = grafana.machine_learning.Job("test_job",
+            name="Test Job",
+            metric="tf_test_job",
+            datasource_type="prometheus",
+            datasource_uid=foo.uid,
+            query_params={
+                "expr": "grafanacloud_grafana_instance_active_user_count",
+            })
+        ```
+
+        ### Tuned Forecast
+
+        This forecast has tuned hyperparameters to improve the accuracy of the model.
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        foo = grafana.oss.DataSource("foo",
+            type="prometheus",
+            name="prometheus-ds-test",
+            uid="prometheus-ds-test-uid",
+            url="https://my-instance.com",
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            json_data_encoded=json.dumps({
+                "httpMethod": "POST",
+                "prometheusType": "Mimir",
+                "prometheusVersion": "2.4.0",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "basicAuthPassword": "password",
+            }))
+        test_job = grafana.machine_learning.Job("test_job",
+            name="Test Job",
+            metric="tf_test_job",
+            datasource_type="prometheus",
+            datasource_uid=foo.uid,
+            query_params={
+                "expr": "grafanacloud_grafana_instance_active_user_count",
+            },
+            hyper_params={
+                "daily_seasonality": "15",
+                "weekly_seasonality": "10",
+            },
+            custom_labels={
+                "example_label": "example_value",
+            })
+        ```
+
+        ### Forecast with Holidays
+
+        This forecast has holidays which will be taken into account when training the model.
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        foo = grafana.oss.DataSource("foo",
+            type="prometheus",
+            name="prometheus-ds-test",
+            uid="prometheus-ds-test-uid",
+            url="https://my-instance.com",
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            json_data_encoded=json.dumps({
+                "httpMethod": "POST",
+                "prometheusType": "Mimir",
+                "prometheusVersion": "2.4.0",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "basicAuthPassword": "password",
+            }))
+        test_holiday = grafana.machine_learning.Holiday("test_holiday",
+            name="Test Holiday",
+            custom_periods=[{
+                "name": "First of January",
+                "start_time": "2023-01-01T00:00:00Z",
+                "end_time": "2023-01-02T00:00:00Z",
+            }])
+        test_job = grafana.machine_learning.Job("test_job",
+            name="Test Job",
+            metric="tf_test_job",
+            datasource_type="prometheus",
+            datasource_uid=foo.uid,
+            query_params={
+                "expr": "grafanacloud_grafana_instance_active_user_count",
+            },
+            holidays=[test_holiday.id])
+        ```
+
         ## Import
 
         ```sh
@@ -418,12 +543,13 @@ class MachineLearningJob(pulumi.CustomResource):
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
-        :param pulumi.Input[int] interval: The data interval in seconds to train the data on. Defaults to `300`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+               for the full list of available hyperparameters.
+        :param pulumi.Input[int] interval: The data interval in seconds to train the data on.
         :param pulumi.Input[str] metric: The metric used to query the job results.
         :param pulumi.Input[str] name: The name of the job.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] query_params: An object representing the query params to query Grafana with.
-        :param pulumi.Input[int] training_window: The data interval in seconds to train the data on. Defaults to `7776000`.
+        :param pulumi.Input[int] training_window: The data interval in seconds to train the data on.
         """
         ...
     @overload
@@ -433,6 +559,127 @@ class MachineLearningJob(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         A job defines the queries and model parameters for a machine learning task.
+
+        ## Example Usage
+
+        ### Basic Forecast
+
+        This forecast uses a Prometheus datasource, where the source query is defined in the `expr` field of the `query_params` attribute.
+
+        Other datasources are supported, but the structure `query_params` may differ.
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        foo = grafana.oss.DataSource("foo",
+            type="prometheus",
+            name="prometheus-ds-test",
+            uid="prometheus-ds-test-uid",
+            url="https://my-instance.com",
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            json_data_encoded=json.dumps({
+                "httpMethod": "POST",
+                "prometheusType": "Mimir",
+                "prometheusVersion": "2.4.0",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "basicAuthPassword": "password",
+            }))
+        test_job = grafana.machine_learning.Job("test_job",
+            name="Test Job",
+            metric="tf_test_job",
+            datasource_type="prometheus",
+            datasource_uid=foo.uid,
+            query_params={
+                "expr": "grafanacloud_grafana_instance_active_user_count",
+            })
+        ```
+
+        ### Tuned Forecast
+
+        This forecast has tuned hyperparameters to improve the accuracy of the model.
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        foo = grafana.oss.DataSource("foo",
+            type="prometheus",
+            name="prometheus-ds-test",
+            uid="prometheus-ds-test-uid",
+            url="https://my-instance.com",
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            json_data_encoded=json.dumps({
+                "httpMethod": "POST",
+                "prometheusType": "Mimir",
+                "prometheusVersion": "2.4.0",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "basicAuthPassword": "password",
+            }))
+        test_job = grafana.machine_learning.Job("test_job",
+            name="Test Job",
+            metric="tf_test_job",
+            datasource_type="prometheus",
+            datasource_uid=foo.uid,
+            query_params={
+                "expr": "grafanacloud_grafana_instance_active_user_count",
+            },
+            hyper_params={
+                "daily_seasonality": "15",
+                "weekly_seasonality": "10",
+            },
+            custom_labels={
+                "example_label": "example_value",
+            })
+        ```
+
+        ### Forecast with Holidays
+
+        This forecast has holidays which will be taken into account when training the model.
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        foo = grafana.oss.DataSource("foo",
+            type="prometheus",
+            name="prometheus-ds-test",
+            uid="prometheus-ds-test-uid",
+            url="https://my-instance.com",
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            json_data_encoded=json.dumps({
+                "httpMethod": "POST",
+                "prometheusType": "Mimir",
+                "prometheusVersion": "2.4.0",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "basicAuthPassword": "password",
+            }))
+        test_holiday = grafana.machine_learning.Holiday("test_holiday",
+            name="Test Holiday",
+            custom_periods=[{
+                "name": "First of January",
+                "start_time": "2023-01-01T00:00:00Z",
+                "end_time": "2023-01-02T00:00:00Z",
+            }])
+        test_job = grafana.machine_learning.Job("test_job",
+            name="Test Job",
+            metric="tf_test_job",
+            datasource_type="prometheus",
+            datasource_uid=foo.uid,
+            query_params={
+                "expr": "grafanacloud_grafana_instance_active_user_count",
+            },
+            holidays=[test_holiday.id])
+        ```
 
         ## Import
 
@@ -528,12 +775,13 @@ class MachineLearningJob(pulumi.CustomResource):
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
-        :param pulumi.Input[int] interval: The data interval in seconds to train the data on. Defaults to `300`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+               for the full list of available hyperparameters.
+        :param pulumi.Input[int] interval: The data interval in seconds to train the data on.
         :param pulumi.Input[str] metric: The metric used to query the job results.
         :param pulumi.Input[str] name: The name of the job.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] query_params: An object representing the query params to query Grafana with.
-        :param pulumi.Input[int] training_window: The data interval in seconds to train the data on. Defaults to `7776000`.
+        :param pulumi.Input[int] training_window: The data interval in seconds to train the data on.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -596,7 +844,8 @@ class MachineLearningJob(pulumi.CustomResource):
     @pulumi.getter(name="hyperParams")
     def hyper_params(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+        The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+        for the full list of available hyperparameters.
         """
         return pulumi.get(self, "hyper_params")
 
@@ -604,7 +853,7 @@ class MachineLearningJob(pulumi.CustomResource):
     @pulumi.getter
     def interval(self) -> pulumi.Output[Optional[int]]:
         """
-        The data interval in seconds to train the data on. Defaults to `300`.
+        The data interval in seconds to train the data on.
         """
         return pulumi.get(self, "interval")
 
@@ -636,7 +885,7 @@ class MachineLearningJob(pulumi.CustomResource):
     @pulumi.getter(name="trainingWindow")
     def training_window(self) -> pulumi.Output[Optional[int]]:
         """
-        The data interval in seconds to train the data on. Defaults to `7776000`.
+        The data interval in seconds to train the data on.
         """
         return pulumi.get(self, "training_window")
 

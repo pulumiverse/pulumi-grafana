@@ -99,6 +99,10 @@ export class Team extends pulumi.CustomResource {
      * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      */
     public readonly teamSync!: pulumi.Output<outputs.TeamTeamSync | undefined>;
+    /**
+     * The team uid assigned to this team by Grafana.
+     */
+    public /*out*/ readonly teamUid!: pulumi.Output<string>;
 
     /**
      * Create a Team resource with the given unique name, arguments, and options.
@@ -124,6 +128,7 @@ export class Team extends pulumi.CustomResource {
             resourceInputs["preferences"] = state ? state.preferences : undefined;
             resourceInputs["teamId"] = state ? state.teamId : undefined;
             resourceInputs["teamSync"] = state ? state.teamSync : undefined;
+            resourceInputs["teamUid"] = state ? state.teamUid : undefined;
         } else {
             const args = argsOrState as TeamArgs | undefined;
             resourceInputs["email"] = args ? args.email : undefined;
@@ -134,6 +139,7 @@ export class Team extends pulumi.CustomResource {
             resourceInputs["preferences"] = args ? args.preferences : undefined;
             resourceInputs["teamSync"] = args ? args.teamSync : undefined;
             resourceInputs["teamId"] = undefined /*out*/;
+            resourceInputs["teamUid"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/team:Team" }] };
@@ -175,6 +181,10 @@ export interface TeamState {
      * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      */
     teamSync?: pulumi.Input<inputs.TeamTeamSync>;
+    /**
+     * The team uid assigned to this team by Grafana.
+     */
+    teamUid?: pulumi.Input<string>;
 }
 
 /**

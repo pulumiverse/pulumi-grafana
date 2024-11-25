@@ -176,17 +176,27 @@ class SLOAlertingAnnotation(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 
@@ -226,17 +236,27 @@ class SLOAlertingFastburnAnnotation(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 
@@ -245,17 +265,27 @@ class SLOAlertingFastburnLabel(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 
@@ -264,17 +294,27 @@ class SLOAlertingLabel(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 
@@ -314,17 +354,27 @@ class SLOAlertingSlowburnAnnotation(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 
@@ -333,35 +383,44 @@ class SLOAlertingSlowburnLabel(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 
 @pulumi.output_type
 class SLODestinationDatasource(dict):
     def __init__(__self__, *,
-                 uid: Optional[str] = None):
+                 uid: str):
         """
-        :param str uid: UID for the Mimir Datasource
+        :param str uid: UID for the Datasource
         """
-        if uid is not None:
-            pulumi.set(__self__, "uid", uid)
+        pulumi.set(__self__, "uid", uid)
 
     @property
     @pulumi.getter
-    def uid(self) -> Optional[str]:
+    def uid(self) -> str:
         """
-        UID for the Mimir Datasource
+        UID for the Datasource
         """
         return pulumi.get(self, "uid")
 
@@ -371,17 +430,27 @@ class SLOLabel(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 
@@ -539,6 +608,7 @@ class GetSlosSloResult(dict):
                  name: str,
                  objectives: Sequence['outputs.GetSlosSloObjectiveResult'],
                  queries: Sequence['outputs.GetSlosSloQueryResult'],
+                 search_expression: str,
                  uuid: str):
         """
         :param Sequence['GetSlosSloAlertingArgs'] alertings: Configures the alerting rules that will be generated for each
@@ -553,6 +623,7 @@ class GetSlosSloResult(dict):
         :param str name: Name should be a short description of your indicator. Consider names like "API Availability"
         :param Sequence['GetSlosSloObjectiveArgs'] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
         :param Sequence['GetSlosSloQueryArgs'] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        :param str search_expression: The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
         :param str uuid: A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
         """
         pulumi.set(__self__, "alertings", alertings)
@@ -563,6 +634,7 @@ class GetSlosSloResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "objectives", objectives)
         pulumi.set(__self__, "queries", queries)
+        pulumi.set(__self__, "search_expression", search_expression)
         pulumi.set(__self__, "uuid", uuid)
 
     @property
@@ -632,6 +704,14 @@ class GetSlosSloResult(dict):
         Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         return pulumi.get(self, "queries")
+
+    @property
+    @pulumi.getter(name="searchExpression")
+    def search_expression(self) -> str:
+        """
+        The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        """
+        return pulumi.get(self, "search_expression")
 
     @property
     @pulumi.getter
@@ -733,17 +813,27 @@ class GetSlosSloAlertingAnnotationResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 
@@ -783,17 +873,27 @@ class GetSlosSloAlertingFastburnAnnotationResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 
@@ -802,17 +902,27 @@ class GetSlosSloAlertingFastburnLabelResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 
@@ -821,17 +931,27 @@ class GetSlosSloAlertingLabelResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 
@@ -871,17 +991,27 @@ class GetSlosSloAlertingSlowburnAnnotationResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 
@@ -890,35 +1020,44 @@ class GetSlosSloAlertingSlowburnLabelResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 
 @pulumi.output_type
 class GetSlosSloDestinationDatasourceResult(dict):
     def __init__(__self__, *,
-                 uid: Optional[str] = None):
+                 uid: str):
         """
-        :param str uid: UID for the Mimir Datasource
+        :param str uid: UID for the Datasource
         """
-        if uid is not None:
-            pulumi.set(__self__, "uid", uid)
+        pulumi.set(__self__, "uid", uid)
 
     @property
     @pulumi.getter
-    def uid(self) -> Optional[str]:
+    def uid(self) -> str:
         """
-        UID for the Mimir Datasource
+        UID for the Datasource
         """
         return pulumi.get(self, "uid")
 
@@ -928,17 +1067,27 @@ class GetSlosSloLabelResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Key for filtering and identification
+        :param str value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
 

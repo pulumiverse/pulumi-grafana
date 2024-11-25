@@ -27,7 +27,7 @@ type OncallEscalation struct {
 
 	// The ID of an Action for triggerWebhook type step.
 	ActionToTrigger pulumi.StringPtrOutput `pulumi:"actionToTrigger"`
-	// The duration of delay for wait type step.
+	// The duration of delay for wait type step. (60-86400) seconds
 	Duration pulumi.IntPtrOutput `pulumi:"duration"`
 	// The ID of the escalation chain.
 	EscalationChainId pulumi.StringOutput `pulumi:"escalationChainId"`
@@ -49,7 +49,9 @@ type OncallEscalation struct {
 	PersonsToNotifyNextEachTimes pulumi.StringArrayOutput `pulumi:"personsToNotifyNextEachTimes"`
 	// The position of the escalation step (starts from 0).
 	Position pulumi.IntOutput `pulumi:"position"`
-	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+	// The severity of the incident for declareIncident type step.
+	Severity pulumi.StringPtrOutput `pulumi:"severity"`
+	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -94,7 +96,7 @@ func GetOncallEscalation(ctx *pulumi.Context,
 type oncallEscalationState struct {
 	// The ID of an Action for triggerWebhook type step.
 	ActionToTrigger *string `pulumi:"actionToTrigger"`
-	// The duration of delay for wait type step.
+	// The duration of delay for wait type step. (60-86400) seconds
 	Duration *int `pulumi:"duration"`
 	// The ID of the escalation chain.
 	EscalationChainId *string `pulumi:"escalationChainId"`
@@ -116,14 +118,16 @@ type oncallEscalationState struct {
 	PersonsToNotifyNextEachTimes []string `pulumi:"personsToNotifyNextEachTimes"`
 	// The position of the escalation step (starts from 0).
 	Position *int `pulumi:"position"`
-	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+	// The severity of the incident for declareIncident type step.
+	Severity *string `pulumi:"severity"`
+	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
 	Type *string `pulumi:"type"`
 }
 
 type OncallEscalationState struct {
 	// The ID of an Action for triggerWebhook type step.
 	ActionToTrigger pulumi.StringPtrInput
-	// The duration of delay for wait type step.
+	// The duration of delay for wait type step. (60-86400) seconds
 	Duration pulumi.IntPtrInput
 	// The ID of the escalation chain.
 	EscalationChainId pulumi.StringPtrInput
@@ -145,7 +149,9 @@ type OncallEscalationState struct {
 	PersonsToNotifyNextEachTimes pulumi.StringArrayInput
 	// The position of the escalation step (starts from 0).
 	Position pulumi.IntPtrInput
-	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+	// The severity of the incident for declareIncident type step.
+	Severity pulumi.StringPtrInput
+	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
 	Type pulumi.StringPtrInput
 }
 
@@ -156,7 +162,7 @@ func (OncallEscalationState) ElementType() reflect.Type {
 type oncallEscalationArgs struct {
 	// The ID of an Action for triggerWebhook type step.
 	ActionToTrigger *string `pulumi:"actionToTrigger"`
-	// The duration of delay for wait type step.
+	// The duration of delay for wait type step. (60-86400) seconds
 	Duration *int `pulumi:"duration"`
 	// The ID of the escalation chain.
 	EscalationChainId string `pulumi:"escalationChainId"`
@@ -178,7 +184,9 @@ type oncallEscalationArgs struct {
 	PersonsToNotifyNextEachTimes []string `pulumi:"personsToNotifyNextEachTimes"`
 	// The position of the escalation step (starts from 0).
 	Position int `pulumi:"position"`
-	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+	// The severity of the incident for declareIncident type step.
+	Severity *string `pulumi:"severity"`
+	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
 	Type string `pulumi:"type"`
 }
 
@@ -186,7 +194,7 @@ type oncallEscalationArgs struct {
 type OncallEscalationArgs struct {
 	// The ID of an Action for triggerWebhook type step.
 	ActionToTrigger pulumi.StringPtrInput
-	// The duration of delay for wait type step.
+	// The duration of delay for wait type step. (60-86400) seconds
 	Duration pulumi.IntPtrInput
 	// The ID of the escalation chain.
 	EscalationChainId pulumi.StringInput
@@ -208,7 +216,9 @@ type OncallEscalationArgs struct {
 	PersonsToNotifyNextEachTimes pulumi.StringArrayInput
 	// The position of the escalation step (starts from 0).
 	Position pulumi.IntInput
-	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+	// The severity of the incident for declareIncident type step.
+	Severity pulumi.StringPtrInput
+	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
 	Type pulumi.StringInput
 }
 
@@ -304,7 +314,7 @@ func (o OncallEscalationOutput) ActionToTrigger() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallEscalation) pulumi.StringPtrOutput { return v.ActionToTrigger }).(pulumi.StringPtrOutput)
 }
 
-// The duration of delay for wait type step.
+// The duration of delay for wait type step. (60-86400) seconds
 func (o OncallEscalationOutput) Duration() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *OncallEscalation) pulumi.IntPtrOutput { return v.Duration }).(pulumi.IntPtrOutput)
 }
@@ -359,7 +369,12 @@ func (o OncallEscalationOutput) Position() pulumi.IntOutput {
 	return o.ApplyT(func(v *OncallEscalation) pulumi.IntOutput { return v.Position }).(pulumi.IntOutput)
 }
 
-// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+// The severity of the incident for declareIncident type step.
+func (o OncallEscalationOutput) Severity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OncallEscalation) pulumi.StringPtrOutput { return v.Severity }).(pulumi.StringPtrOutput)
+}
+
+// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
 func (o OncallEscalationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *OncallEscalation) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

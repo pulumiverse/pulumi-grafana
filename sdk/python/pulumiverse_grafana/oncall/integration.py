@@ -220,7 +220,7 @@ class Integration(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
+        * [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
 
         ## Example Usage
@@ -272,7 +272,7 @@ class Integration(pulumi.CustomResource):
                  args: IntegrationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
+        * [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
 
         ## Example Usage

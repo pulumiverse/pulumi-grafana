@@ -7,11 +7,17 @@ import typing
 # Export this package's modules as members:
 from .access_policy import *
 from .access_policy_token import *
+from .get_access_policies import *
 from .get_ips import *
 from .get_organization import *
+from .get_provider_aws_account import *
+from .get_provider_aws_cloudwatch_scrape_job import *
+from .get_provider_aws_cloudwatch_scrape_jobs import *
 from .get_stack import *
 from .org_member import *
 from .plugin_installation import *
+from .provider_aws_account import *
+from .provider_aws_cloudwatch_scrape_job import *
 from .stack import *
 from .stack_service_account import *
 from .stack_service_account_token import *

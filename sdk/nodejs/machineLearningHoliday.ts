@@ -11,6 +11,48 @@ import * as utilities from "./utilities";
  *
  * To use a holiday in a job, use its id in the `holidays` attribute of a `grafana.machineLearning.Job`:
  *
+ * ### iCal Holiday
+ *
+ * This holiday uses an iCal file to define the holidays.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const ical = new grafana.machinelearning.Holiday("ical", {
+ *     name: "My iCal holiday",
+ *     description: "My Holiday",
+ *     icalUrl: "https://calendar.google.com/calendar/ical/en.uk%23holiday%40group.v.calendar.google.com/public/basic.ics",
+ *     icalTimezone: "Europe/London",
+ * });
+ * ```
+ *
+ * ### Custom Periods Holiday
+ *
+ * This holiday uses custom periods to define the holidays.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const customPeriods = new grafana.machinelearning.Holiday("custom_periods", {
+ *     name: "My custom periods holiday",
+ *     description: "My Holiday",
+ *     customPeriods: [
+ *         {
+ *             name: "First of January",
+ *             startTime: "2023-01-01T00:00:00Z",
+ *             endTime: "2023-01-02T00:00:00Z",
+ *         },
+ *         {
+ *             name: "First of Feburary",
+ *             startTime: "2023-02-01T00:00:00Z",
+ *             endTime: "2023-02-02T00:00:00Z",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * ```sh

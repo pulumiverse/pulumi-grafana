@@ -104,6 +104,12 @@ namespace Pulumiverse.Grafana
         [Output("teamSync")]
         public Output<Outputs.TeamTeamSync?> TeamSync { get; private set; } = null!;
 
+        /// <summary>
+        /// The team uid assigned to this team by Grafana.
+        /// </summary>
+        [Output("teamUid")]
+        public Output<string> TeamUid { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Team resource with the given unique name, arguments, and options.
@@ -258,6 +264,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("teamSync")]
         public Input<Inputs.TeamTeamSyncGetArgs>? TeamSync { get; set; }
+
+        /// <summary>
+        /// The team uid assigned to this team by Grafana.
+        /// </summary>
+        [Input("teamUid")]
+        public Input<string>? TeamUid { get; set; }
 
         public TeamState()
         {

@@ -31,7 +31,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> ActionToTrigger { get; private set; } = null!;
 
         /// <summary>
-        /// The duration of delay for wait type step.
+        /// The duration of delay for wait type step. (60-86400) seconds
         /// </summary>
         [Output("duration")]
         public Output<int?> Duration { get; private set; } = null!;
@@ -97,7 +97,13 @@ namespace Pulumiverse.Grafana
         public Output<int> Position { get; private set; } = null!;
 
         /// <summary>
-        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+        /// The severity of the incident for declare_incident type step.
+        /// </summary>
+        [Output("severity")]
+        public Output<string?> Severity { get; private set; } = null!;
+
+        /// <summary>
+        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -156,7 +162,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? ActionToTrigger { get; set; }
 
         /// <summary>
-        /// The duration of delay for wait type step.
+        /// The duration of delay for wait type step. (60-86400) seconds
         /// </summary>
         [Input("duration")]
         public Input<int>? Duration { get; set; }
@@ -234,7 +240,13 @@ namespace Pulumiverse.Grafana
         public Input<int> Position { get; set; } = null!;
 
         /// <summary>
-        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+        /// The severity of the incident for declare_incident type step.
+        /// </summary>
+        [Input("severity")]
+        public Input<string>? Severity { get; set; }
+
+        /// <summary>
+        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -254,7 +266,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? ActionToTrigger { get; set; }
 
         /// <summary>
-        /// The duration of delay for wait type step.
+        /// The duration of delay for wait type step. (60-86400) seconds
         /// </summary>
         [Input("duration")]
         public Input<int>? Duration { get; set; }
@@ -332,7 +344,13 @@ namespace Pulumiverse.Grafana
         public Input<int>? Position { get; set; }
 
         /// <summary>
-        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+        /// The severity of the incident for declare_incident type step.
+        /// </summary>
+        [Input("severity")]
+        public Input<string>? Severity { get; set; }
+
+        /// <summary>
+        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

@@ -132,7 +132,7 @@ type DataSourcePermissionItem struct {
 
 	// The UID of the datasource.
 	DatasourceUid pulumi.StringOutput `pulumi:"datasourceUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// the permission to be assigned
 	Permission pulumi.StringOutput `pulumi:"permission"`
@@ -188,7 +188,7 @@ func GetDataSourcePermissionItem(ctx *pulumi.Context,
 type dataSourcePermissionItemState struct {
 	// The UID of the datasource.
 	DatasourceUid *string `pulumi:"datasourceUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// the permission to be assigned
 	Permission *string `pulumi:"permission"`
@@ -203,7 +203,7 @@ type dataSourcePermissionItemState struct {
 type DataSourcePermissionItemState struct {
 	// The UID of the datasource.
 	DatasourceUid pulumi.StringPtrInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// the permission to be assigned
 	Permission pulumi.StringPtrInput
@@ -222,7 +222,7 @@ func (DataSourcePermissionItemState) ElementType() reflect.Type {
 type dataSourcePermissionItemArgs struct {
 	// The UID of the datasource.
 	DatasourceUid string `pulumi:"datasourceUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// the permission to be assigned
 	Permission string `pulumi:"permission"`
@@ -238,7 +238,7 @@ type dataSourcePermissionItemArgs struct {
 type DataSourcePermissionItemArgs struct {
 	// The UID of the datasource.
 	DatasourceUid pulumi.StringInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// the permission to be assigned
 	Permission pulumi.StringInput
@@ -342,7 +342,7 @@ func (o DataSourcePermissionItemOutput) DatasourceUid() pulumi.StringOutput {
 	return o.ApplyT(func(v *DataSourcePermissionItem) pulumi.StringOutput { return v.DatasourceUid }).(pulumi.StringOutput)
 }
 
-// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 func (o DataSourcePermissionItemOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DataSourcePermissionItem) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }

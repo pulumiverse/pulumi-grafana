@@ -139,6 +139,7 @@ namespace Pulumiverse.Grafana
         public readonly bool? ReadTeamSync;
         public readonly int TeamId;
         public readonly ImmutableArray<Outputs.GetTeamTeamSyncResult> TeamSyncs;
+        public readonly string TeamUid;
 
         [OutputConstructor]
         private GetTeamResult(
@@ -158,7 +159,9 @@ namespace Pulumiverse.Grafana
 
             int teamId,
 
-            ImmutableArray<Outputs.GetTeamTeamSyncResult> teamSyncs)
+            ImmutableArray<Outputs.GetTeamTeamSyncResult> teamSyncs,
+
+            string teamUid)
         {
             Email = email;
             Id = id;
@@ -169,6 +172,7 @@ namespace Pulumiverse.Grafana
             ReadTeamSync = readTeamSync;
             TeamId = teamId;
             TeamSyncs = teamSyncs;
+            TeamUid = teamUid;
         }
     }
 }

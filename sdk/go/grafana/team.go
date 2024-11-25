@@ -84,6 +84,8 @@ type Team struct {
 	// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
 	// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 	TeamSync TeamTeamSyncPtrOutput `pulumi:"teamSync"`
+	// The team uid assigned to this team by Grafana.
+	TeamUid pulumi.StringOutput `pulumi:"teamUid"`
 }
 
 // NewTeam registers a new resource with the given unique name, arguments, and options.
@@ -139,6 +141,8 @@ type teamState struct {
 	// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
 	// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 	TeamSync *TeamTeamSync `pulumi:"teamSync"`
+	// The team uid assigned to this team by Grafana.
+	TeamUid *string `pulumi:"teamUid"`
 }
 
 type TeamState struct {
@@ -159,6 +163,8 @@ type TeamState struct {
 	// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
 	// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 	TeamSync TeamTeamSyncPtrInput
+	// The team uid assigned to this team by Grafana.
+	TeamUid pulumi.StringPtrInput
 }
 
 func (TeamState) ElementType() reflect.Type {
@@ -328,6 +334,11 @@ func (o TeamOutput) TeamId() pulumi.IntOutput {
 // API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 func (o TeamOutput) TeamSync() TeamTeamSyncPtrOutput {
 	return o.ApplyT(func(v *Team) TeamTeamSyncPtrOutput { return v.TeamSync }).(TeamTeamSyncPtrOutput)
+}
+
+// The team uid assigned to this team by Grafana.
+func (o TeamOutput) TeamUid() pulumi.StringOutput {
+	return o.ApplyT(func(v *Team) pulumi.StringOutput { return v.TeamUid }).(pulumi.StringOutput)
 }
 
 type TeamArrayOutput struct{ *pulumi.OutputState }

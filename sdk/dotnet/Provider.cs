@@ -47,6 +47,33 @@ namespace Pulumiverse.Grafana
         public Output<string?> CloudApiUrl { get; private set; } = null!;
 
         /// <summary>
+        /// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+        /// environment variable.
+        /// </summary>
+        [Output("cloudProviderAccessToken")]
+        public Output<string?> CloudProviderAccessToken { get; private set; } = null!;
+
+        /// <summary>
+        /// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+        /// variable.
+        /// </summary>
+        [Output("cloudProviderUrl")]
+        public Output<string?> CloudProviderUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+        /// environment variable.
+        /// </summary>
+        [Output("connectionsApiAccessToken")]
+        public Output<string?> ConnectionsApiAccessToken { get; private set; } = null!;
+
+        /// <summary>
+        /// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+        /// </summary>
+        [Output("connectionsApiUrl")]
+        public Output<string?> ConnectionsApiUrl { get; private set; } = null!;
+
+        /// <summary>
         /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         /// </summary>
         [Output("oncallAccessToken")]
@@ -110,6 +137,8 @@ namespace Pulumiverse.Grafana
                 {
                     "auth",
                     "cloudAccessPolicyToken",
+                    "cloudProviderAccessToken",
+                    "connectionsApiAccessToken",
                     "oncallAccessToken",
                     "smAccessToken",
                     "tlsKey",
@@ -170,6 +199,53 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("cloudApiUrl")]
         public Input<string>? CloudApiUrl { get; set; }
+
+        [Input("cloudProviderAccessToken")]
+        private Input<string>? _cloudProviderAccessToken;
+
+        /// <summary>
+        /// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+        /// environment variable.
+        /// </summary>
+        public Input<string>? CloudProviderAccessToken
+        {
+            get => _cloudProviderAccessToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _cloudProviderAccessToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+        /// variable.
+        /// </summary>
+        [Input("cloudProviderUrl")]
+        public Input<string>? CloudProviderUrl { get; set; }
+
+        [Input("connectionsApiAccessToken")]
+        private Input<string>? _connectionsApiAccessToken;
+
+        /// <summary>
+        /// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+        /// environment variable.
+        /// </summary>
+        public Input<string>? ConnectionsApiAccessToken
+        {
+            get => _connectionsApiAccessToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _connectionsApiAccessToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+        /// </summary>
+        [Input("connectionsApiUrl")]
+        public Input<string>? ConnectionsApiUrl { get; set; }
 
         /// <summary>
         /// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

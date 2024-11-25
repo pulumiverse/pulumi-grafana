@@ -66,6 +66,29 @@ func GetCloudApiUrl(ctx *pulumi.Context) string {
 	return value
 }
 
+// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+// environment variable.
+func GetCloudProviderAccessToken(ctx *pulumi.Context) string {
+	return config.Get(ctx, "grafana:cloudProviderAccessToken")
+}
+
+// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+// variable.
+func GetCloudProviderUrl(ctx *pulumi.Context) string {
+	return config.Get(ctx, "grafana:cloudProviderUrl")
+}
+
+// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+// environment variable.
+func GetConnectionsApiAccessToken(ctx *pulumi.Context) string {
+	return config.Get(ctx, "grafana:connectionsApiAccessToken")
+}
+
+// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+func GetConnectionsApiUrl(ctx *pulumi.Context) string {
+	return config.Get(ctx, "grafana:connectionsApiUrl")
+}
+
 // Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 func GetInsecureSkipVerify(ctx *pulumi.Context) bool {
 	v, err := config.TryBool(ctx, "grafana:insecureSkipVerify")

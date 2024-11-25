@@ -14,7 +14,13 @@ namespace Pulumiverse.Grafana.Slo.Outputs
     [OutputType]
     public sealed class SLOAlertingLabel
     {
+        /// <summary>
+        /// Key for filtering and identification
+        /// </summary>
         public readonly string Key;
+        /// <summary>
+        /// Templatable value
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

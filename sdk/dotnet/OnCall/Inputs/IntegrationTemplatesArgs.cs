@@ -32,10 +32,16 @@ namespace Pulumiverse.Grafana.OnCall.Inputs
         public Input<string>? GroupingKey { get; set; }
 
         /// <summary>
-        /// Templates for Microsoft Teams.
+        /// Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
         /// </summary>
         [Input("microsoftTeams")]
         public Input<Inputs.IntegrationTemplatesMicrosoftTeamsArgs>? MicrosoftTeams { get; set; }
+
+        /// <summary>
+        /// Templates for Mobile app push notifications.
+        /// </summary>
+        [Input("mobileApp")]
+        public Input<Inputs.IntegrationTemplatesMobileAppArgs>? MobileApp { get; set; }
 
         /// <summary>
         /// Templates for Phone Call.

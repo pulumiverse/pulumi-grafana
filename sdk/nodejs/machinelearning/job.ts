@@ -7,6 +7,131 @@ import * as utilities from "../utilities";
 /**
  * A job defines the queries and model parameters for a machine learning task.
  *
+ * ## Example Usage
+ *
+ * ### Basic Forecast
+ *
+ * This forecast uses a Prometheus datasource, where the source query is defined in the `expr` field of the `queryParams` attribute.
+ *
+ * Other datasources are supported, but the structure `queryParams` may differ.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const foo = new grafana.oss.DataSource("foo", {
+ *     type: "prometheus",
+ *     name: "prometheus-ds-test",
+ *     uid: "prometheus-ds-test-uid",
+ *     url: "https://my-instance.com",
+ *     basicAuthEnabled: true,
+ *     basicAuthUsername: "username",
+ *     jsonDataEncoded: JSON.stringify({
+ *         httpMethod: "POST",
+ *         prometheusType: "Mimir",
+ *         prometheusVersion: "2.4.0",
+ *     }),
+ *     secureJsonDataEncoded: JSON.stringify({
+ *         basicAuthPassword: "password",
+ *     }),
+ * });
+ * const testJob = new grafana.machinelearning.Job("test_job", {
+ *     name: "Test Job",
+ *     metric: "tf_test_job",
+ *     datasourceType: "prometheus",
+ *     datasourceUid: foo.uid,
+ *     queryParams: {
+ *         expr: "grafanacloud_grafana_instance_active_user_count",
+ *     },
+ * });
+ * ```
+ *
+ * ### Tuned Forecast
+ *
+ * This forecast has tuned hyperparameters to improve the accuracy of the model.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const foo = new grafana.oss.DataSource("foo", {
+ *     type: "prometheus",
+ *     name: "prometheus-ds-test",
+ *     uid: "prometheus-ds-test-uid",
+ *     url: "https://my-instance.com",
+ *     basicAuthEnabled: true,
+ *     basicAuthUsername: "username",
+ *     jsonDataEncoded: JSON.stringify({
+ *         httpMethod: "POST",
+ *         prometheusType: "Mimir",
+ *         prometheusVersion: "2.4.0",
+ *     }),
+ *     secureJsonDataEncoded: JSON.stringify({
+ *         basicAuthPassword: "password",
+ *     }),
+ * });
+ * const testJob = new grafana.machinelearning.Job("test_job", {
+ *     name: "Test Job",
+ *     metric: "tf_test_job",
+ *     datasourceType: "prometheus",
+ *     datasourceUid: foo.uid,
+ *     queryParams: {
+ *         expr: "grafanacloud_grafana_instance_active_user_count",
+ *     },
+ *     hyperParams: {
+ *         daily_seasonality: "15",
+ *         weekly_seasonality: "10",
+ *     },
+ *     customLabels: {
+ *         example_label: "example_value",
+ *     },
+ * });
+ * ```
+ *
+ * ### Forecast with Holidays
+ *
+ * This forecast has holidays which will be taken into account when training the model.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const foo = new grafana.oss.DataSource("foo", {
+ *     type: "prometheus",
+ *     name: "prometheus-ds-test",
+ *     uid: "prometheus-ds-test-uid",
+ *     url: "https://my-instance.com",
+ *     basicAuthEnabled: true,
+ *     basicAuthUsername: "username",
+ *     jsonDataEncoded: JSON.stringify({
+ *         httpMethod: "POST",
+ *         prometheusType: "Mimir",
+ *         prometheusVersion: "2.4.0",
+ *     }),
+ *     secureJsonDataEncoded: JSON.stringify({
+ *         basicAuthPassword: "password",
+ *     }),
+ * });
+ * const testHoliday = new grafana.machinelearning.Holiday("test_holiday", {
+ *     name: "Test Holiday",
+ *     customPeriods: [{
+ *         name: "First of January",
+ *         startTime: "2023-01-01T00:00:00Z",
+ *         endTime: "2023-01-02T00:00:00Z",
+ *     }],
+ * });
+ * const testJob = new grafana.machinelearning.Job("test_job", {
+ *     name: "Test Job",
+ *     metric: "tf_test_job",
+ *     datasourceType: "prometheus",
+ *     datasourceUid: foo.uid,
+ *     queryParams: {
+ *         expr: "grafanacloud_grafana_instance_active_user_count",
+ *     },
+ *     holidays: [testHoliday.id],
+ * });
+ * ```
+ *
  * ## Import
  *
  * ```sh
@@ -62,11 +187,12 @@ export class Job extends pulumi.CustomResource {
      */
     public readonly holidays!: pulumi.Output<string[] | undefined>;
     /**
-     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+     * for the full list of available hyperparameters.
      */
     public readonly hyperParams!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The data interval in seconds to train the data on. Defaults to `300`.
+     * The data interval in seconds to train the data on.
      */
     public readonly interval!: pulumi.Output<number | undefined>;
     /**
@@ -82,7 +208,7 @@ export class Job extends pulumi.CustomResource {
      */
     public readonly queryParams!: pulumi.Output<{[key: string]: string}>;
     /**
-     * The data interval in seconds to train the data on. Defaults to `7776000`.
+     * The data interval in seconds to train the data on.
      */
     public readonly trainingWindow!: pulumi.Output<number | undefined>;
 
@@ -168,11 +294,12 @@ export interface JobState {
      */
     holidays?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+     * for the full list of available hyperparameters.
      */
     hyperParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The data interval in seconds to train the data on. Defaults to `300`.
+     * The data interval in seconds to train the data on.
      */
     interval?: pulumi.Input<number>;
     /**
@@ -188,7 +315,7 @@ export interface JobState {
      */
     queryParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The data interval in seconds to train the data on. Defaults to `7776000`.
+     * The data interval in seconds to train the data on.
      */
     trainingWindow?: pulumi.Input<number>;
 }
@@ -218,11 +345,12 @@ export interface JobArgs {
      */
     holidays?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+     * for the full list of available hyperparameters.
      */
     hyperParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The data interval in seconds to train the data on. Defaults to `300`.
+     * The data interval in seconds to train the data on.
      */
     interval?: pulumi.Input<number>;
     /**
@@ -238,7 +366,7 @@ export interface JobArgs {
      */
     queryParams: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The data interval in seconds to train the data on. Defaults to `7776000`.
+     * The data interval in seconds to train the data on.
      */
     trainingWindow?: pulumi.Input<number>;
 }

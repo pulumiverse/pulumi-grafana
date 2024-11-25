@@ -19,6 +19,7 @@ namespace Pulumiverse.Grafana
         /// 		
         /// This data source uses Grafana's admin APIs for reading users which
         /// does not currently work with API Tokens. You must use basic auth.
+        /// This data source is also not compatible with Grafana Cloud, as it does not allow basic auth.
         /// 
         /// ## Example Usage
         /// 
@@ -53,6 +54,7 @@ namespace Pulumiverse.Grafana
         /// 		
         /// This data source uses Grafana's admin APIs for reading users which
         /// does not currently work with API Tokens. You must use basic auth.
+        /// This data source is also not compatible with Grafana Cloud, as it does not allow basic auth.
         /// 
         /// ## Example Usage
         /// 

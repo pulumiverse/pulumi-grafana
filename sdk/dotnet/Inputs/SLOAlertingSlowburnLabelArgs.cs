@@ -13,9 +13,15 @@ namespace Pulumiverse.Grafana.Inputs
 
     public sealed class SLOAlertingSlowburnLabelArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Key for filtering and identification
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// Templatable value
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 

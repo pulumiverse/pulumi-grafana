@@ -23,6 +23,7 @@ __all__ = [
     'IntegrationTemplates',
     'IntegrationTemplatesEmail',
     'IntegrationTemplatesMicrosoftTeams',
+    'IntegrationTemplatesMobileApp',
     'IntegrationTemplatesPhoneCall',
     'IntegrationTemplatesSlack',
     'IntegrationTemplatesSms',
@@ -32,6 +33,7 @@ __all__ = [
     'RouteSlack',
     'RouteTelegram',
     'ScheduleSlack',
+    'GetUsersUserResult',
 ]
 
 @pulumi.output_type
@@ -235,6 +237,8 @@ class IntegrationTemplates(dict):
             suggest = "grouping_key"
         elif key == "microsoftTeams":
             suggest = "microsoft_teams"
+        elif key == "mobileApp":
+            suggest = "mobile_app"
         elif key == "phoneCall":
             suggest = "phone_call"
         elif key == "resolveSignal":
@@ -258,6 +262,7 @@ class IntegrationTemplates(dict):
                  email: Optional['outputs.IntegrationTemplatesEmail'] = None,
                  grouping_key: Optional[str] = None,
                  microsoft_teams: Optional['outputs.IntegrationTemplatesMicrosoftTeams'] = None,
+                 mobile_app: Optional['outputs.IntegrationTemplatesMobileApp'] = None,
                  phone_call: Optional['outputs.IntegrationTemplatesPhoneCall'] = None,
                  resolve_signal: Optional[str] = None,
                  slack: Optional['outputs.IntegrationTemplatesSlack'] = None,
@@ -269,7 +274,8 @@ class IntegrationTemplates(dict):
         :param str acknowledge_signal: Template for sending a signal to acknowledge the Incident.
         :param 'IntegrationTemplatesEmailArgs' email: Templates for Email.
         :param str grouping_key: Template for the key by which alerts are grouped.
-        :param 'IntegrationTemplatesMicrosoftTeamsArgs' microsoft_teams: Templates for Microsoft Teams.
+        :param 'IntegrationTemplatesMicrosoftTeamsArgs' microsoft_teams: Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
+        :param 'IntegrationTemplatesMobileAppArgs' mobile_app: Templates for Mobile app push notifications.
         :param 'IntegrationTemplatesPhoneCallArgs' phone_call: Templates for Phone Call.
         :param str resolve_signal: Template for sending a signal to resolve the Incident.
         :param 'IntegrationTemplatesSlackArgs' slack: Templates for Slack.
@@ -286,6 +292,8 @@ class IntegrationTemplates(dict):
             pulumi.set(__self__, "grouping_key", grouping_key)
         if microsoft_teams is not None:
             pulumi.set(__self__, "microsoft_teams", microsoft_teams)
+        if mobile_app is not None:
+            pulumi.set(__self__, "mobile_app", mobile_app)
         if phone_call is not None:
             pulumi.set(__self__, "phone_call", phone_call)
         if resolve_signal is not None:
@@ -329,9 +337,17 @@ class IntegrationTemplates(dict):
     @pulumi.getter(name="microsoftTeams")
     def microsoft_teams(self) -> Optional['outputs.IntegrationTemplatesMicrosoftTeams']:
         """
-        Templates for Microsoft Teams.
+        Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
         """
         return pulumi.get(self, "microsoft_teams")
+
+    @property
+    @pulumi.getter(name="mobileApp")
+    def mobile_app(self) -> Optional['outputs.IntegrationTemplatesMobileApp']:
+        """
+        Templates for Mobile app push notifications.
+        """
+        return pulumi.get(self, "mobile_app")
 
     @property
     @pulumi.getter(name="phoneCall")
@@ -463,6 +479,37 @@ class IntegrationTemplatesMicrosoftTeams(dict):
         Template for Alert image url.
         """
         return pulumi.get(self, "image_url")
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[str]:
+        """
+        Template for Alert message.
+        """
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        """
+        Template for Alert title.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class IntegrationTemplatesMobileApp(dict):
+    def __init__(__self__, *,
+                 message: Optional[str] = None,
+                 title: Optional[str] = None):
+        """
+        :param str message: Template for Alert message.
+        :param str title: Template for Alert title.
+        """
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
 
     @property
     @pulumi.getter
@@ -857,5 +904,38 @@ class ScheduleSlack(dict):
         Slack user group id. Members of user group will be updated when on-call users change.
         """
         return pulumi.get(self, "user_group_id")
+
+
+@pulumi.output_type
+class GetUsersUserResult(dict):
+    def __init__(__self__, *,
+                 email: str,
+                 id: str,
+                 role: str,
+                 username: str):
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        return pulumi.get(self, "username")
 
 

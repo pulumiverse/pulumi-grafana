@@ -11,7 +11,7 @@ import (
 
 	grafana "github.com/grafana/terraform-provider-grafana/v3/pkg/provider"
 
-	pfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
+	pfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"

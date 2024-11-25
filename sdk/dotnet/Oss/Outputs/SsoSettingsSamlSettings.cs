@@ -63,9 +63,25 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly string? CertificatePath;
         /// <summary>
+        /// The client Id of your OAuth2 app.
+        /// </summary>
+        public readonly string? ClientId;
+        /// <summary>
+        /// The client secret of your OAuth2 app.
+        /// </summary>
+        public readonly string? ClientSecret;
+        /// <summary>
         /// Define whether this configuration is enabled for SAML. Defaults to `true`.
         /// </summary>
         public readonly bool? Enabled;
+        /// <summary>
+        /// The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+        /// </summary>
+        public readonly string? EntityId;
+        /// <summary>
+        /// If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+        /// </summary>
+        public readonly bool? ForceUseGraphApi;
         /// <summary>
         /// Base64-encoded string for the IdP SAML metadata XML.
         /// </summary>
@@ -142,6 +158,10 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// Prevent synchronizing users’ organization roles from your IdP.
         /// </summary>
         public readonly bool? SkipOrgRoleSync;
+        /// <summary>
+        /// The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+        /// </summary>
+        public readonly string? TokenUrl;
 
         [OutputConstructor]
         private SsoSettingsSamlSettings(
@@ -169,7 +189,15 @@ namespace Pulumiverse.Grafana.Oss.Outputs
 
             string? certificatePath,
 
+            string? clientId,
+
+            string? clientSecret,
+
             bool? enabled,
+
+            string? entityId,
+
+            bool? forceUseGraphApi,
 
             string? idpMetadata,
 
@@ -207,7 +235,9 @@ namespace Pulumiverse.Grafana.Oss.Outputs
 
             bool? singleLogout,
 
-            bool? skipOrgRoleSync)
+            bool? skipOrgRoleSync,
+
+            string? tokenUrl)
         {
             AllowIdpInitiated = allowIdpInitiated;
             AllowSignUp = allowSignUp;
@@ -221,7 +251,11 @@ namespace Pulumiverse.Grafana.Oss.Outputs
             AutoLogin = autoLogin;
             Certificate = certificate;
             CertificatePath = certificatePath;
+            ClientId = clientId;
+            ClientSecret = clientSecret;
             Enabled = enabled;
+            EntityId = entityId;
+            ForceUseGraphApi = forceUseGraphApi;
             IdpMetadata = idpMetadata;
             IdpMetadataPath = idpMetadataPath;
             IdpMetadataUrl = idpMetadataUrl;
@@ -241,6 +275,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
             SignatureAlgorithm = signatureAlgorithm;
             SingleLogout = singleLogout;
             SkipOrgRoleSync = skipOrgRoleSync;
+            TokenUrl = tokenUrl;
         }
     }
 }

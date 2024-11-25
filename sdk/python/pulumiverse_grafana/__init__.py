@@ -13,6 +13,7 @@ from .cloud_plugin_installation import *
 from .cloud_stack import *
 from .cloud_stack_service_account import *
 from .cloud_stack_service_account_token import *
+from .connections_metrics_endpoint_scrape_job import *
 from .contact_point import *
 from .dashboard import *
 from .dashboard_permission import *
@@ -28,12 +29,14 @@ from .folder_permission_item import *
 from .get_cloud_ips import *
 from .get_cloud_organization import *
 from .get_cloud_stack import *
+from .get_connections_metrics_endpoint_scrape_job import *
 from .get_dashboard import *
 from .get_dashboards import *
 from .get_data_source import *
 from .get_folder import *
 from .get_folders import *
 from .get_library_panel import *
+from .get_library_panels import *
 from .get_on_call_slack_channel import *
 from .get_oncall_escalation_chain import *
 from .get_oncall_integration import *
@@ -199,6 +202,22 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloud/providerAwsAccount",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/providerAwsAccount:ProviderAwsAccount": "ProviderAwsAccount"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/providerAwsCloudwatchScrapeJob",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob": "ProviderAwsCloudwatchScrapeJob"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloud/stack",
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {
@@ -339,6 +358,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana",
   "classes": {
    "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken": "CloudStackServiceAccountToken"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/connectionsMetricsEndpointScrapeJob",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob": "ConnectionsMetricsEndpointScrapeJob"
   }
  },
  {
@@ -715,6 +742,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana",
   "classes": {
    "grafana:index/user:User": "User"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "machineLearning/alert",
+  "fqn": "pulumiverse_grafana.machinelearning",
+  "classes": {
+   "grafana:machineLearning/alert:Alert": "Alert"
   }
  },
  {

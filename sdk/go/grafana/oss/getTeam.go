@@ -76,6 +76,7 @@ type LookupTeamResult struct {
 	ReadTeamSync *bool               `pulumi:"readTeamSync"`
 	TeamId       int                 `pulumi:"teamId"`
 	TeamSyncs    []GetTeamTeamSync   `pulumi:"teamSyncs"`
+	TeamUid      string              `pulumi:"teamUid"`
 }
 
 func LookupTeamOutput(ctx *pulumi.Context, args LookupTeamOutputArgs, opts ...pulumi.InvokeOption) LookupTeamResultOutput {
@@ -158,6 +159,10 @@ func (o LookupTeamResultOutput) TeamId() pulumi.IntOutput {
 
 func (o LookupTeamResultOutput) TeamSyncs() GetTeamTeamSyncArrayOutput {
 	return o.ApplyT(func(v LookupTeamResult) []GetTeamTeamSync { return v.TeamSyncs }).(GetTeamTeamSyncArrayOutput)
+}
+
+func (o LookupTeamResultOutput) TeamUid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTeamResult) string { return v.TeamUid }).(pulumi.StringOutput)
 }
 
 func init() {

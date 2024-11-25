@@ -37,6 +37,29 @@ cloudApiUrl: Optional[str]
 Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 """
 
+cloudProviderAccessToken: Optional[str]
+"""
+A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+environment variable.
+"""
+
+cloudProviderUrl: Optional[str]
+"""
+A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+variable.
+"""
+
+connectionsApiAccessToken: Optional[str]
+"""
+A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+environment variable.
+"""
+
+connectionsApiUrl: Optional[str]
+"""
+A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+"""
+
 insecureSkipVerify: Optional[bool]
 """
 Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

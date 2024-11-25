@@ -190,7 +190,7 @@ export class SLO extends pulumi.CustomResource {
     /**
      * Destination Datasource sets the datasource defined for an SLO
      */
-    public readonly destinationDatasource!: pulumi.Output<outputs.SLODestinationDatasource | undefined>;
+    public readonly destinationDatasource!: pulumi.Output<outputs.SLODestinationDatasource>;
     /**
      * UID for the SLO folder
      */
@@ -211,6 +211,10 @@ export class SLO extends pulumi.CustomResource {
      * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
      */
     public readonly queries!: pulumi.Output<outputs.SLOQuery[]>;
+    /**
+     * The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+     */
+    public readonly searchExpression!: pulumi.Output<string | undefined>;
 
     /**
      * Create a SLO resource with the given unique name, arguments, and options.
@@ -236,10 +240,14 @@ export class SLO extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["objectives"] = state ? state.objectives : undefined;
             resourceInputs["queries"] = state ? state.queries : undefined;
+            resourceInputs["searchExpression"] = state ? state.searchExpression : undefined;
         } else {
             const args = argsOrState as SLOArgs | undefined;
             if ((!args || args.description === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'description'");
+            }
+            if ((!args || args.destinationDatasource === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'destinationDatasource'");
             }
             if ((!args || args.objectives === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'objectives'");
@@ -255,6 +263,7 @@ export class SLO extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["objectives"] = args ? args.objectives : undefined;
             resourceInputs["queries"] = args ? args.queries : undefined;
+            resourceInputs["searchExpression"] = args ? args.searchExpression : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/sLO:SLO" }] };
@@ -303,6 +312,10 @@ export interface SLOState {
      * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
      */
     queries?: pulumi.Input<pulumi.Input<inputs.SLOQuery>[]>;
+    /**
+     * The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+     */
+    searchExpression?: pulumi.Input<string>;
 }
 
 /**
@@ -324,7 +337,7 @@ export interface SLOArgs {
     /**
      * Destination Datasource sets the datasource defined for an SLO
      */
-    destinationDatasource?: pulumi.Input<inputs.SLODestinationDatasource>;
+    destinationDatasource: pulumi.Input<inputs.SLODestinationDatasource>;
     /**
      * UID for the SLO folder
      */
@@ -345,4 +358,8 @@ export interface SLOArgs {
      * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
      */
     queries: pulumi.Input<pulumi.Input<inputs.SLOQuery>[]>;
+    /**
+     * The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+     */
+    searchExpression?: pulumi.Input<string>;
 }

@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Manages Grafana SSO Settings for OAuth2 and SAML. Support for SAML is currently in preview, it will be available in Grafana Enterprise starting with v11.1.
+ * Manages Grafana SSO Settings for OAuth2, SAML and LDAP. Support for LDAP is currently in preview, it will be available in Grafana starting with v11.3.
  *
  * * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/sso-settings/)
@@ -64,6 +64,46 @@ import * as utilities from "./utilities";
  *         nameIdFormat: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
  *     },
  * });
+ * // Configure SSO using LDAP
+ * const ldapSsoSettings = new grafana.oss.SsoSettings("ldap_sso_settings", {
+ *     providerName: "ldap",
+ *     ldapSettings: {
+ *         enabled: true,
+ *         config: {
+ *             servers: [{
+ *                 host: "127.0.0.1",
+ *                 port: 389,
+ *                 searchFilter: "(cn=%s)",
+ *                 bindDn: "cn=admin,dc=grafana,dc=org",
+ *                 bindPassword: "grafana",
+ *                 searchBaseDns: ["dc=grafana,dc=org"],
+ *                 attributes: {
+ *                     name: "givenName",
+ *                     surname: "sn",
+ *                     username: "cn",
+ *                     member_of: "memberOf",
+ *                     email: "email",
+ *                 },
+ *                 groupMappings: [
+ *                     {
+ *                         groupDn: "cn=superadmins,dc=grafana,dc=org",
+ *                         orgRole: "Admin",
+ *                         orgId: 1,
+ *                         grafanaAdmin: true,
+ *                     },
+ *                     {
+ *                         groupDn: "cn=users,dc=grafana,dc=org",
+ *                         orgRole: "Editor",
+ *                     },
+ *                     {
+ *                         groupDn: "*",
+ *                         orgRole: "Viewer",
+ *                     },
+ *                 ],
+ *             }],
+ *         },
+ *     },
+ * });
  * ```
  *
  * ## Import
@@ -108,11 +148,15 @@ export class SsoSettings extends pulumi.CustomResource {
     }
 
     /**
+     * The LDAP settings set. Required for the ldap provider.
+     */
+    public readonly ldapSettings!: pulumi.Output<outputs.SsoSettingsLdapSettings | undefined>;
+    /**
      * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
      */
     public readonly oauth2Settings!: pulumi.Output<outputs.SsoSettingsOauth2Settings | undefined>;
     /**
-     * The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+     * The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
      */
     public readonly providerName!: pulumi.Output<string>;
     /**
@@ -136,6 +180,7 @@ export class SsoSettings extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SsoSettingsState | undefined;
+            resourceInputs["ldapSettings"] = state ? state.ldapSettings : undefined;
             resourceInputs["oauth2Settings"] = state ? state.oauth2Settings : undefined;
             resourceInputs["providerName"] = state ? state.providerName : undefined;
             resourceInputs["samlSettings"] = state ? state.samlSettings : undefined;
@@ -144,6 +189,7 @@ export class SsoSettings extends pulumi.CustomResource {
             if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
+            resourceInputs["ldapSettings"] = args ? args.ldapSettings : undefined;
             resourceInputs["oauth2Settings"] = args ? args.oauth2Settings : undefined;
             resourceInputs["providerName"] = args ? args.providerName : undefined;
             resourceInputs["samlSettings"] = args ? args.samlSettings : undefined;
@@ -160,11 +206,15 @@ export class SsoSettings extends pulumi.CustomResource {
  */
 export interface SsoSettingsState {
     /**
+     * The LDAP settings set. Required for the ldap provider.
+     */
+    ldapSettings?: pulumi.Input<inputs.SsoSettingsLdapSettings>;
+    /**
      * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
      */
     oauth2Settings?: pulumi.Input<inputs.SsoSettingsOauth2Settings>;
     /**
-     * The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+     * The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
      */
     providerName?: pulumi.Input<string>;
     /**
@@ -178,11 +228,15 @@ export interface SsoSettingsState {
  */
 export interface SsoSettingsArgs {
     /**
+     * The LDAP settings set. Required for the ldap provider.
+     */
+    ldapSettings?: pulumi.Input<inputs.SsoSettingsLdapSettings>;
+    /**
      * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
      */
     oauth2Settings?: pulumi.Input<inputs.SsoSettingsOauth2Settings>;
     /**
-     * The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+     * The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
      */
     providerName: pulumi.Input<string>;
     /**

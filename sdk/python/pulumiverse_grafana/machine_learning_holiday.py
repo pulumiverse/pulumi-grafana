@@ -215,6 +215,46 @@ class MachineLearningHoliday(pulumi.CustomResource):
 
         To use a holiday in a job, use its id in the `holidays` attribute of a `machineLearning.Job`:
 
+        ### iCal Holiday
+
+        This holiday uses an iCal file to define the holidays.
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        ical = grafana.machine_learning.Holiday("ical",
+            name="My iCal holiday",
+            description="My Holiday",
+            ical_url="https://calendar.google.com/calendar/ical/en.uk%23holiday%40group.v.calendar.google.com/public/basic.ics",
+            ical_timezone="Europe/London")
+        ```
+
+        ### Custom Periods Holiday
+
+        This holiday uses custom periods to define the holidays.
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        custom_periods = grafana.machine_learning.Holiday("custom_periods",
+            name="My custom periods holiday",
+            description="My Holiday",
+            custom_periods=[
+                {
+                    "name": "First of January",
+                    "start_time": "2023-01-01T00:00:00Z",
+                    "end_time": "2023-01-02T00:00:00Z",
+                },
+                {
+                    "name": "First of Feburary",
+                    "start_time": "2023-02-01T00:00:00Z",
+                    "end_time": "2023-02-02T00:00:00Z",
+                },
+            ])
+        ```
+
         ## Import
 
         ```sh
@@ -239,6 +279,46 @@ class MachineLearningHoliday(pulumi.CustomResource):
         A holiday describes time periods where a time series is expected to behave differently to normal.
 
         To use a holiday in a job, use its id in the `holidays` attribute of a `machineLearning.Job`:
+
+        ### iCal Holiday
+
+        This holiday uses an iCal file to define the holidays.
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        ical = grafana.machine_learning.Holiday("ical",
+            name="My iCal holiday",
+            description="My Holiday",
+            ical_url="https://calendar.google.com/calendar/ical/en.uk%23holiday%40group.v.calendar.google.com/public/basic.ics",
+            ical_timezone="Europe/London")
+        ```
+
+        ### Custom Periods Holiday
+
+        This holiday uses custom periods to define the holidays.
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        custom_periods = grafana.machine_learning.Holiday("custom_periods",
+            name="My custom periods holiday",
+            description="My Holiday",
+            custom_periods=[
+                {
+                    "name": "First of January",
+                    "start_time": "2023-01-01T00:00:00Z",
+                    "end_time": "2023-01-02T00:00:00Z",
+                },
+                {
+                    "name": "First of Feburary",
+                    "start_time": "2023-02-01T00:00:00Z",
+                    "end_time": "2023-02-02T00:00:00Z",
+                },
+            ])
+        ```
 
         ## Import
 

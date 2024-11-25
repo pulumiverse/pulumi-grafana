@@ -22,15 +22,19 @@ __all__ = ['SsoSettingsArgs', 'SsoSettings']
 class SsoSettingsArgs:
     def __init__(__self__, *,
                  provider_name: pulumi.Input[str],
+                 ldap_settings: Optional[pulumi.Input['SsoSettingsLdapSettingsArgs']] = None,
                  oauth2_settings: Optional[pulumi.Input['SsoSettingsOauth2SettingsArgs']] = None,
                  saml_settings: Optional[pulumi.Input['SsoSettingsSamlSettingsArgs']] = None):
         """
         The set of arguments for constructing a SsoSettings resource.
-        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
+        :param pulumi.Input['SsoSettingsLdapSettingsArgs'] ldap_settings: The LDAP settings set. Required for the ldap provider.
         :param pulumi.Input['SsoSettingsOauth2SettingsArgs'] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
         :param pulumi.Input['SsoSettingsSamlSettingsArgs'] saml_settings: The SAML settings set. Required for the saml provider.
         """
         pulumi.set(__self__, "provider_name", provider_name)
+        if ldap_settings is not None:
+            pulumi.set(__self__, "ldap_settings", ldap_settings)
         if oauth2_settings is not None:
             pulumi.set(__self__, "oauth2_settings", oauth2_settings)
         if saml_settings is not None:
@@ -40,13 +44,25 @@ class SsoSettingsArgs:
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Input[str]:
         """
-        The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
         """
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
     def provider_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "provider_name", value)
+
+    @property
+    @pulumi.getter(name="ldapSettings")
+    def ldap_settings(self) -> Optional[pulumi.Input['SsoSettingsLdapSettingsArgs']]:
+        """
+        The LDAP settings set. Required for the ldap provider.
+        """
+        return pulumi.get(self, "ldap_settings")
+
+    @ldap_settings.setter
+    def ldap_settings(self, value: Optional[pulumi.Input['SsoSettingsLdapSettingsArgs']]):
+        pulumi.set(self, "ldap_settings", value)
 
     @property
     @pulumi.getter(name="oauth2Settings")
@@ -76,21 +92,37 @@ class SsoSettingsArgs:
 @pulumi.input_type
 class _SsoSettingsState:
     def __init__(__self__, *,
+                 ldap_settings: Optional[pulumi.Input['SsoSettingsLdapSettingsArgs']] = None,
                  oauth2_settings: Optional[pulumi.Input['SsoSettingsOauth2SettingsArgs']] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
                  saml_settings: Optional[pulumi.Input['SsoSettingsSamlSettingsArgs']] = None):
         """
         Input properties used for looking up and filtering SsoSettings resources.
+        :param pulumi.Input['SsoSettingsLdapSettingsArgs'] ldap_settings: The LDAP settings set. Required for the ldap provider.
         :param pulumi.Input['SsoSettingsOauth2SettingsArgs'] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
-        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
         :param pulumi.Input['SsoSettingsSamlSettingsArgs'] saml_settings: The SAML settings set. Required for the saml provider.
         """
+        if ldap_settings is not None:
+            pulumi.set(__self__, "ldap_settings", ldap_settings)
         if oauth2_settings is not None:
             pulumi.set(__self__, "oauth2_settings", oauth2_settings)
         if provider_name is not None:
             pulumi.set(__self__, "provider_name", provider_name)
         if saml_settings is not None:
             pulumi.set(__self__, "saml_settings", saml_settings)
+
+    @property
+    @pulumi.getter(name="ldapSettings")
+    def ldap_settings(self) -> Optional[pulumi.Input['SsoSettingsLdapSettingsArgs']]:
+        """
+        The LDAP settings set. Required for the ldap provider.
+        """
+        return pulumi.get(self, "ldap_settings")
+
+    @ldap_settings.setter
+    def ldap_settings(self, value: Optional[pulumi.Input['SsoSettingsLdapSettingsArgs']]):
+        pulumi.set(self, "ldap_settings", value)
 
     @property
     @pulumi.getter(name="oauth2Settings")
@@ -108,7 +140,7 @@ class _SsoSettingsState:
     @pulumi.getter(name="providerName")
     def provider_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
         """
         return pulumi.get(self, "provider_name")
 
@@ -139,12 +171,13 @@ class SsoSettings(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 ldap_settings: Optional[pulumi.Input[Union['SsoSettingsLdapSettingsArgs', 'SsoSettingsLdapSettingsArgsDict']]] = None,
                  oauth2_settings: Optional[pulumi.Input[Union['SsoSettingsOauth2SettingsArgs', 'SsoSettingsOauth2SettingsArgsDict']]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
                  saml_settings: Optional[pulumi.Input[Union['SsoSettingsSamlSettingsArgs', 'SsoSettingsSamlSettingsArgsDict']]] = None,
                  __props__=None):
         """
-        Manages Grafana SSO Settings for OAuth2 and SAML. Support for SAML is currently in preview, it will be available in Grafana Enterprise starting with v11.1.
+        Manages Grafana SSO Settings for OAuth2, SAML and LDAP. Support for LDAP is currently in preview, it will be available in Grafana starting with v11.3.
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/sso-settings/)
@@ -197,6 +230,45 @@ class SsoSettings(pulumi.CustomResource):
                 "assertion_attribute_login": "login",
                 "assertion_attribute_email": "email",
                 "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
+            })
+        # Configure SSO using LDAP
+        ldap_sso_settings = grafana.oss.SsoSettings("ldap_sso_settings",
+            provider_name="ldap",
+            ldap_settings={
+                "enabled": True,
+                "config": {
+                    "servers": [{
+                        "host": "127.0.0.1",
+                        "port": 389,
+                        "search_filter": "(cn=%s)",
+                        "bind_dn": "cn=admin,dc=grafana,dc=org",
+                        "bind_password": "grafana",
+                        "search_base_dns": ["dc=grafana,dc=org"],
+                        "attributes": {
+                            "name": "givenName",
+                            "surname": "sn",
+                            "username": "cn",
+                            "member_of": "memberOf",
+                            "email": "email",
+                        },
+                        "group_mappings": [
+                            {
+                                "group_dn": "cn=superadmins,dc=grafana,dc=org",
+                                "org_role": "Admin",
+                                "org_id": 1,
+                                "grafana_admin": True,
+                            },
+                            {
+                                "group_dn": "cn=users,dc=grafana,dc=org",
+                                "org_role": "Editor",
+                            },
+                            {
+                                "group_dn": "*",
+                                "org_role": "Viewer",
+                            },
+                        ],
+                    }],
+                },
             })
         ```
 
@@ -212,8 +284,9 @@ class SsoSettings(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['SsoSettingsLdapSettingsArgs', 'SsoSettingsLdapSettingsArgsDict']] ldap_settings: The LDAP settings set. Required for the ldap provider.
         :param pulumi.Input[Union['SsoSettingsOauth2SettingsArgs', 'SsoSettingsOauth2SettingsArgsDict']] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
-        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
         :param pulumi.Input[Union['SsoSettingsSamlSettingsArgs', 'SsoSettingsSamlSettingsArgsDict']] saml_settings: The SAML settings set. Required for the saml provider.
         """
         ...
@@ -223,7 +296,7 @@ class SsoSettings(pulumi.CustomResource):
                  args: SsoSettingsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Grafana SSO Settings for OAuth2 and SAML. Support for SAML is currently in preview, it will be available in Grafana Enterprise starting with v11.1.
+        Manages Grafana SSO Settings for OAuth2, SAML and LDAP. Support for LDAP is currently in preview, it will be available in Grafana starting with v11.3.
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/sso-settings/)
@@ -276,6 +349,45 @@ class SsoSettings(pulumi.CustomResource):
                 "assertion_attribute_login": "login",
                 "assertion_attribute_email": "email",
                 "name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
+            })
+        # Configure SSO using LDAP
+        ldap_sso_settings = grafana.oss.SsoSettings("ldap_sso_settings",
+            provider_name="ldap",
+            ldap_settings={
+                "enabled": True,
+                "config": {
+                    "servers": [{
+                        "host": "127.0.0.1",
+                        "port": 389,
+                        "search_filter": "(cn=%s)",
+                        "bind_dn": "cn=admin,dc=grafana,dc=org",
+                        "bind_password": "grafana",
+                        "search_base_dns": ["dc=grafana,dc=org"],
+                        "attributes": {
+                            "name": "givenName",
+                            "surname": "sn",
+                            "username": "cn",
+                            "member_of": "memberOf",
+                            "email": "email",
+                        },
+                        "group_mappings": [
+                            {
+                                "group_dn": "cn=superadmins,dc=grafana,dc=org",
+                                "org_role": "Admin",
+                                "org_id": 1,
+                                "grafana_admin": True,
+                            },
+                            {
+                                "group_dn": "cn=users,dc=grafana,dc=org",
+                                "org_role": "Editor",
+                            },
+                            {
+                                "group_dn": "*",
+                                "org_role": "Viewer",
+                            },
+                        ],
+                    }],
+                },
             })
         ```
 
@@ -304,6 +416,7 @@ class SsoSettings(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 ldap_settings: Optional[pulumi.Input[Union['SsoSettingsLdapSettingsArgs', 'SsoSettingsLdapSettingsArgsDict']]] = None,
                  oauth2_settings: Optional[pulumi.Input[Union['SsoSettingsOauth2SettingsArgs', 'SsoSettingsOauth2SettingsArgsDict']]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
                  saml_settings: Optional[pulumi.Input[Union['SsoSettingsSamlSettingsArgs', 'SsoSettingsSamlSettingsArgsDict']]] = None,
@@ -317,6 +430,7 @@ class SsoSettings(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SsoSettingsArgs.__new__(SsoSettingsArgs)
 
+            __props__.__dict__["ldap_settings"] = ldap_settings
             __props__.__dict__["oauth2_settings"] = oauth2_settings
             if provider_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_name'")
@@ -334,6 +448,7 @@ class SsoSettings(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            ldap_settings: Optional[pulumi.Input[Union['SsoSettingsLdapSettingsArgs', 'SsoSettingsLdapSettingsArgsDict']]] = None,
             oauth2_settings: Optional[pulumi.Input[Union['SsoSettingsOauth2SettingsArgs', 'SsoSettingsOauth2SettingsArgsDict']]] = None,
             provider_name: Optional[pulumi.Input[str]] = None,
             saml_settings: Optional[pulumi.Input[Union['SsoSettingsSamlSettingsArgs', 'SsoSettingsSamlSettingsArgsDict']]] = None) -> 'SsoSettings':
@@ -344,18 +459,28 @@ class SsoSettings(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['SsoSettingsLdapSettingsArgs', 'SsoSettingsLdapSettingsArgsDict']] ldap_settings: The LDAP settings set. Required for the ldap provider.
         :param pulumi.Input[Union['SsoSettingsOauth2SettingsArgs', 'SsoSettingsOauth2SettingsArgsDict']] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
-        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        :param pulumi.Input[str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
         :param pulumi.Input[Union['SsoSettingsSamlSettingsArgs', 'SsoSettingsSamlSettingsArgsDict']] saml_settings: The SAML settings set. Required for the saml provider.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _SsoSettingsState.__new__(_SsoSettingsState)
 
+        __props__.__dict__["ldap_settings"] = ldap_settings
         __props__.__dict__["oauth2_settings"] = oauth2_settings
         __props__.__dict__["provider_name"] = provider_name
         __props__.__dict__["saml_settings"] = saml_settings
         return SsoSettings(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="ldapSettings")
+    def ldap_settings(self) -> pulumi.Output[Optional['outputs.SsoSettingsLdapSettings']]:
+        """
+        The LDAP settings set. Required for the ldap provider.
+        """
+        return pulumi.get(self, "ldap_settings")
 
     @property
     @pulumi.getter(name="oauth2Settings")
@@ -369,7 +494,7 @@ class SsoSettings(pulumi.CustomResource):
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Output[str]:
         """
-        The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
         """
         return pulumi.get(self, "provider_name")
 

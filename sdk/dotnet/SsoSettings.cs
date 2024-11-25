@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana
 {
     /// <summary>
-    /// Manages Grafana SSO Settings for OAuth2 and SAML. Support for SAML is currently in preview, it will be available in Grafana Enterprise starting with v11.1.
+    /// Manages Grafana SSO Settings for OAuth2, SAML and LDAP. Support for LDAP is currently in preview, it will be available in Grafana starting with v11.3.
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/sso-settings/)
@@ -81,6 +81,62 @@ namespace Pulumiverse.Grafana
     ///         },
     ///     });
     /// 
+    ///     // Configure SSO using LDAP
+    ///     var ldapSsoSettings = new Grafana.Oss.SsoSettings("ldap_sso_settings", new()
+    ///     {
+    ///         ProviderName = "ldap",
+    ///         LdapSettings = new Grafana.Oss.Inputs.SsoSettingsLdapSettingsArgs
+    ///         {
+    ///             Enabled = true,
+    ///             Config = new Grafana.Oss.Inputs.SsoSettingsLdapSettingsConfigArgs
+    ///             {
+    ///                 Servers = new[]
+    ///                 {
+    ///                     new Grafana.Oss.Inputs.SsoSettingsLdapSettingsConfigServerArgs
+    ///                     {
+    ///                         Host = "127.0.0.1",
+    ///                         Port = 389,
+    ///                         SearchFilter = "(cn=%s)",
+    ///                         BindDn = "cn=admin,dc=grafana,dc=org",
+    ///                         BindPassword = "grafana",
+    ///                         SearchBaseDns = new[]
+    ///                         {
+    ///                             "dc=grafana,dc=org",
+    ///                         },
+    ///                         Attributes = 
+    ///                         {
+    ///                             { "name", "givenName" },
+    ///                             { "surname", "sn" },
+    ///                             { "username", "cn" },
+    ///                             { "member_of", "memberOf" },
+    ///                             { "email", "email" },
+    ///                         },
+    ///                         GroupMappings = new[]
+    ///                         {
+    ///                             new Grafana.Oss.Inputs.SsoSettingsLdapSettingsConfigServerGroupMappingArgs
+    ///                             {
+    ///                                 GroupDn = "cn=superadmins,dc=grafana,dc=org",
+    ///                                 OrgRole = "Admin",
+    ///                                 OrgId = 1,
+    ///                                 GrafanaAdmin = true,
+    ///                             },
+    ///                             new Grafana.Oss.Inputs.SsoSettingsLdapSettingsConfigServerGroupMappingArgs
+    ///                             {
+    ///                                 GroupDn = "cn=users,dc=grafana,dc=org",
+    ///                                 OrgRole = "Editor",
+    ///                             },
+    ///                             new Grafana.Oss.Inputs.SsoSettingsLdapSettingsConfigServerGroupMappingArgs
+    ///                             {
+    ///                                 GroupDn = "*",
+    ///                                 OrgRole = "Viewer",
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -99,13 +155,19 @@ namespace Pulumiverse.Grafana
     public partial class SsoSettings : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The LDAP settings set. Required for the ldap provider.
+        /// </summary>
+        [Output("ldapSettings")]
+        public Output<Outputs.SsoSettingsLdapSettings?> LdapSettings { get; private set; } = null!;
+
+        /// <summary>
         /// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
         /// </summary>
         [Output("oauth2Settings")]
         public Output<Outputs.SsoSettingsOauth2Settings?> Oauth2Settings { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        /// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
         /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
@@ -168,13 +230,19 @@ namespace Pulumiverse.Grafana
     public sealed class SsoSettingsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The LDAP settings set. Required for the ldap provider.
+        /// </summary>
+        [Input("ldapSettings")]
+        public Input<Inputs.SsoSettingsLdapSettingsArgs>? LdapSettings { get; set; }
+
+        /// <summary>
         /// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
         /// </summary>
         [Input("oauth2Settings")]
         public Input<Inputs.SsoSettingsOauth2SettingsArgs>? Oauth2Settings { get; set; }
 
         /// <summary>
-        /// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        /// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
@@ -194,13 +262,19 @@ namespace Pulumiverse.Grafana
     public sealed class SsoSettingsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The LDAP settings set. Required for the ldap provider.
+        /// </summary>
+        [Input("ldapSettings")]
+        public Input<Inputs.SsoSettingsLdapSettingsGetArgs>? LdapSettings { get; set; }
+
+        /// <summary>
         /// The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
         /// </summary>
         [Input("oauth2Settings")]
         public Input<Inputs.SsoSettingsOauth2SettingsGetArgs>? Oauth2Settings { get; set; }
 
         /// <summary>
-        /// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml.
+        /// The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
         /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }

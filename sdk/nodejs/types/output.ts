@@ -994,6 +994,14 @@ export interface GetFoldersFolder {
     url: string;
 }
 
+export interface GetLibraryPanelsPanel {
+    description: string;
+    folderUid: string;
+    modelJson: string;
+    name: string;
+    uid: string;
+}
+
 export interface GetRolePermission {
     /**
      * Specific action users granted with the role will be allowed to perform (for example: `users:read`)
@@ -1043,6 +1051,10 @@ export interface GetSlosSlo {
      */
     queries: outputs.GetSlosSloQuery[];
     /**
+     * The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+     */
+    searchExpression: string;
+    /**
      * A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
      */
     uuid: string;
@@ -1079,7 +1091,13 @@ export interface GetSlosSloAlertingAdvancedOptions {
 }
 
 export interface GetSlosSloAlertingAnnotation {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
@@ -1095,17 +1113,35 @@ export interface GetSlosSloAlertingFastburn {
 }
 
 export interface GetSlosSloAlertingFastburnAnnotation {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
 export interface GetSlosSloAlertingFastburnLabel {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
 export interface GetSlosSloAlertingLabel {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
@@ -1121,24 +1157,42 @@ export interface GetSlosSloAlertingSlowburn {
 }
 
 export interface GetSlosSloAlertingSlowburnAnnotation {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
 export interface GetSlosSloAlertingSlowburnLabel {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
 export interface GetSlosSloDestinationDatasource {
     /**
-     * UID for the Mimir Datasource
+     * UID for the Datasource
      */
-    uid?: string;
+    uid: string;
 }
 
 export interface GetSlosSloLabel {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
@@ -1578,9 +1632,13 @@ export interface OncallIntegrationTemplates {
      */
     groupingKey?: string;
     /**
-     * Templates for Microsoft Teams.
+     * Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
      */
     microsoftTeams?: outputs.OncallIntegrationTemplatesMicrosoftTeams;
+    /**
+     * Templates for Mobile app push notifications.
+     */
+    mobileApp?: outputs.OncallIntegrationTemplatesMobileApp;
     /**
      * Templates for Phone Call.
      */
@@ -1627,6 +1685,17 @@ export interface OncallIntegrationTemplatesMicrosoftTeams {
      * Template for Alert image url.
      */
     imageUrl?: string;
+    /**
+     * Template for Alert message.
+     */
+    message?: string;
+    /**
+     * Template for Alert title.
+     */
+    title?: string;
+}
+
+export interface OncallIntegrationTemplatesMobileApp {
     /**
      * Template for Alert message.
      */
@@ -1819,7 +1888,7 @@ export interface RolePermission {
 
 export interface RuleGroupRule {
     /**
-     * Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+     * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
      */
     annotations?: {[key: string]: string};
     /**
@@ -1855,9 +1924,13 @@ export interface RuleGroupRule {
      */
     noDataState?: string;
     /**
-     * Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+     * Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
      */
     notificationSettings?: outputs.RuleGroupRuleNotificationSettings;
+    /**
+     * Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
+     */
+    record?: outputs.RuleGroupRuleRecord;
     /**
      * The unique identifier of the alert rule.
      */
@@ -1925,6 +1998,17 @@ export interface RuleGroupRuleNotificationSettings {
     repeatInterval?: string;
 }
 
+export interface RuleGroupRuleRecord {
+    /**
+     * The ref id of the query node in the data field to use as the source of the metric.
+     */
+    from: string;
+    /**
+     * The name of the metric to write to.
+     */
+    metric: string;
+}
+
 export interface SLOAlerting {
     /**
      * Advanced Options for Alert Rules
@@ -1956,7 +2040,13 @@ export interface SLOAlertingAdvancedOptions {
 }
 
 export interface SLOAlertingAnnotation {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
@@ -1972,17 +2062,35 @@ export interface SLOAlertingFastburn {
 }
 
 export interface SLOAlertingFastburnAnnotation {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
 export interface SLOAlertingFastburnLabel {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
 export interface SLOAlertingLabel {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
@@ -1998,24 +2106,42 @@ export interface SLOAlertingSlowburn {
 }
 
 export interface SLOAlertingSlowburnAnnotation {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
 export interface SLOAlertingSlowburnLabel {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
 export interface SLODestinationDatasource {
     /**
-     * UID for the Mimir Datasource
+     * UID for the Datasource
      */
-    uid?: string;
+    uid: string;
 }
 
 export interface SLOLabel {
+    /**
+     * Key for filtering and identification
+     */
     key: string;
+    /**
+     * Templatable value
+     */
     value: string;
 }
 
@@ -2074,6 +2200,146 @@ export interface ServiceAccountPermissionPermission {
      * ID of the user or service account to manage permissions for. Defaults to `0`.
      */
     userId?: string;
+}
+
+export interface SsoSettingsLdapSettings {
+    /**
+     * Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+     */
+    allowSignUp?: boolean;
+    /**
+     * The LDAP configuration.
+     */
+    config: outputs.SsoSettingsLdapSettingsConfig;
+    /**
+     * Define whether this configuration is enabled for LDAP. Defaults to `true`.
+     */
+    enabled?: boolean;
+    /**
+     * Prevent synchronizing users’ organization roles from LDAP.
+     */
+    skipOrgRoleSync?: boolean;
+}
+
+export interface SsoSettingsLdapSettingsConfig {
+    /**
+     * The LDAP servers configuration.
+     */
+    servers: outputs.SsoSettingsLdapSettingsConfigServer[];
+}
+
+export interface SsoSettingsLdapSettingsConfigServer {
+    /**
+     * The LDAP server attributes. The following attributes can be configured: email, member_of, name, surname, username.
+     */
+    attributes?: {[key: string]: string};
+    /**
+     * The search user bind DN.
+     */
+    bindDn?: string;
+    /**
+     * The search user bind password.
+     */
+    bindPassword?: string;
+    /**
+     * The path to the client certificate.
+     */
+    clientCert?: string;
+    /**
+     * The Base64 encoded value of the client certificate.
+     */
+    clientCertValue?: string;
+    /**
+     * The path to the client private key.
+     */
+    clientKey?: string;
+    /**
+     * The Base64 encoded value of the client private key.
+     */
+    clientKeyValue?: string;
+    /**
+     * For mapping an LDAP group to a Grafana organization and role.
+     */
+    groupMappings?: outputs.SsoSettingsLdapSettingsConfigServerGroupMapping[];
+    /**
+     * An array of the base DNs to search through for groups. Typically uses ou=groups.
+     */
+    groupSearchBaseDns?: string[];
+    /**
+     * Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available).
+     */
+    groupSearchFilter?: string;
+    /**
+     * The %s in the search filter will be replaced with the attribute defined in this field.
+     */
+    groupSearchFilterUserAttribute?: string;
+    /**
+     * The LDAP server host.
+     */
+    host: string;
+    /**
+     * Minimum TLS version allowed. Accepted values are: TLS1.2, TLS1.3.
+     */
+    minTlsVersion?: string;
+    /**
+     * The LDAP server port.
+     */
+    port?: number;
+    /**
+     * The path to the root CA certificate.
+     */
+    rootCaCert?: string;
+    /**
+     * The Base64 encoded values of the root CA certificates.
+     */
+    rootCaCertValues?: string[];
+    /**
+     * An array of base DNs to search through.
+     */
+    searchBaseDns: string[];
+    /**
+     * The user search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)".
+     */
+    searchFilter: string;
+    /**
+     * If set to true, the SSL cert validation will be skipped.
+     */
+    sslSkipVerify?: boolean;
+    /**
+     * If set to true, use LDAP with STARTTLS instead of LDAPS.
+     */
+    startTls?: boolean;
+    /**
+     * The timeout in seconds for connecting to the LDAP host.
+     */
+    timeout?: number;
+    /**
+     * Accepted TLS ciphers. For a complete list of supported ciphers, refer to: https://go.dev/src/crypto/tls/cipher_suites.go.
+     */
+    tlsCiphers?: string[];
+    /**
+     * Set to true if LDAP server should use an encrypted TLS connection (either with STARTTLS or LDAPS).
+     */
+    useSsl?: boolean;
+}
+
+export interface SsoSettingsLdapSettingsConfigServerGroupMapping {
+    /**
+     * If set to true, it makes the user of groupDn Grafana server admin.
+     */
+    grafanaAdmin?: boolean;
+    /**
+     * LDAP distinguished name (DN) of LDAP group. If you want to match all (or no LDAP groups) then you can use wildcard ("*").
+     */
+    groupDn: string;
+    /**
+     * The Grafana organization database id.
+     */
+    orgId?: number;
+    /**
+     * Assign users of groupDn the organization role Admin, Editor, or Viewer.
+     */
+    orgRole: string;
 }
 
 export interface SsoSettingsOauth2Settings {
@@ -2169,6 +2435,14 @@ export interface SsoSettingsOauth2Settings {
      * JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
      */
     nameAttributePath?: string;
+    /**
+     * JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "orgMapping"). Only applicable to Generic OAuth and Okta.
+     */
+    orgAttributePath?: string;
+    /**
+     * List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+     */
+    orgMapping?: string;
     /**
      * JMESPath expression to use for Grafana role lookup.
      */
@@ -2281,9 +2555,25 @@ export interface SsoSettingsSamlSettings {
      */
     certificatePath?: string;
     /**
+     * The client Id of your OAuth2 app.
+     */
+    clientId?: string;
+    /**
+     * The client secret of your OAuth2 app.
+     */
+    clientSecret?: string;
+    /**
      * Define whether this configuration is enabled for SAML. Defaults to `true`.
      */
     enabled?: boolean;
+    /**
+     * The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+     */
+    entityId?: string;
+    /**
+     * If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+     */
+    forceUseGraphApi?: boolean;
     /**
      * Base64-encoded string for the IdP SAML metadata XML.
      */
@@ -2360,6 +2650,10 @@ export interface SsoSettingsSamlSettings {
      * Prevent synchronizing users’ organization roles from your IdP.
      */
     skipOrgRoleSync?: boolean;
+    /**
+     * The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+     */
+    tokenUrl?: string;
 }
 
 export interface SyntheticMonitoringCheckSettings {
@@ -4042,7 +4336,7 @@ export namespace alerting {
 
     export interface RuleGroupRule {
         /**
-         * Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+         * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
          */
         annotations?: {[key: string]: string};
         /**
@@ -4078,9 +4372,13 @@ export namespace alerting {
          */
         noDataState?: string;
         /**
-         * Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+         * Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
          */
         notificationSettings?: outputs.alerting.RuleGroupRuleNotificationSettings;
+        /**
+         * Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
+         */
+        record?: outputs.alerting.RuleGroupRuleRecord;
         /**
          * The unique identifier of the alert rule.
          */
@@ -4148,6 +4446,17 @@ export namespace alerting {
         repeatInterval?: string;
     }
 
+    export interface RuleGroupRuleRecord {
+        /**
+         * The ref id of the query node in the data field to use as the source of the metric.
+         */
+        from: string;
+        /**
+         * The name of the metric to write to.
+         */
+        metric: string;
+    }
+
 }
 
 export namespace cloud {
@@ -4168,6 +4477,269 @@ export namespace cloud {
          * The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
          */
         selector: string;
+    }
+
+    export interface GetAccessPoliciesAccessPolicy {
+        displayName: string;
+        id: string;
+        name: string;
+        region: string;
+        status: string;
+    }
+
+    export interface GetProviderAwsCloudwatchScrapeJobCustomNamespace {
+        /**
+         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         */
+        metrics?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric[];
+        /**
+         * The name of the custom namespace to scrape.
+         */
+        name: string;
+        /**
+         * The interval in seconds to scrape the custom namespace.
+         */
+        scrapeIntervalSeconds: number;
+    }
+
+    export interface GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric {
+        /**
+         * The name of the metric to scrape.
+         */
+        name: string;
+        /**
+         * A set of statistics to scrape.
+         */
+        statistics: string[];
+    }
+
+    export interface GetProviderAwsCloudwatchScrapeJobService {
+        /**
+         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         */
+        metrics?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobServiceMetric[];
+        /**
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         */
+        name: string;
+        /**
+         * One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+         */
+        resourceDiscoveryTagFilters?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter[];
+        /**
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         */
+        scrapeIntervalSeconds: number;
+        /**
+         * A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+         */
+        tagsToAddToMetrics: string[];
+    }
+
+    export interface GetProviderAwsCloudwatchScrapeJobServiceMetric {
+        /**
+         * The name of the metric to scrape.
+         */
+        name: string;
+        /**
+         * A set of statistics to scrape.
+         */
+        statistics: string[];
+    }
+
+    export interface GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The value of the tag filter.
+         */
+        value: string;
+    }
+
+    export interface GetProviderAwsCloudwatchScrapeJobsScrapeJob {
+        /**
+         * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloud.ProviderAwsAccount` resource.
+         */
+        awsAccountResourceId: string;
+        /**
+         * Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+         */
+        customNamespaces?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace[];
+        /**
+         * When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+         */
+        disabledReason: string;
+        /**
+         * Whether the CloudWatch Scrape Job is enabled or not.
+         */
+        enabled: boolean;
+        /**
+         * When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+         */
+        exportTags: boolean;
+        id: string;
+        name: string;
+        /**
+         * The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
+         */
+        regions: string[];
+        /**
+         * When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
+         */
+        regionsSubsetOverrideUsed: boolean;
+        /**
+         * The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+         */
+        roleArn: string;
+        /**
+         * One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+         */
+        services?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobService[];
+        stackId: string;
+    }
+
+    export interface GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace {
+        /**
+         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         */
+        metrics?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric[];
+        /**
+         * The name of the custom namespace to scrape.
+         */
+        name: string;
+        /**
+         * The interval in seconds to scrape the custom namespace.
+         */
+        scrapeIntervalSeconds: number;
+    }
+
+    export interface GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric {
+        /**
+         * The name of the metric to scrape.
+         */
+        name: string;
+        /**
+         * A set of statistics to scrape.
+         */
+        statistics: string[];
+    }
+
+    export interface GetProviderAwsCloudwatchScrapeJobsScrapeJobService {
+        /**
+         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         */
+        metrics?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric[];
+        /**
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         */
+        name: string;
+        /**
+         * One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+         */
+        resourceDiscoveryTagFilters?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter[];
+        /**
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         */
+        scrapeIntervalSeconds: number;
+        /**
+         * A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+         */
+        tagsToAddToMetrics: string[];
+    }
+
+    export interface GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric {
+        /**
+         * The name of the metric to scrape.
+         */
+        name: string;
+        /**
+         * A set of statistics to scrape.
+         */
+        statistics: string[];
+    }
+
+    export interface GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The value of the tag filter.
+         */
+        value: string;
+    }
+
+    export interface ProviderAwsCloudwatchScrapeJobCustomNamespace {
+        /**
+         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         */
+        metrics?: outputs.cloud.ProviderAwsCloudwatchScrapeJobCustomNamespaceMetric[];
+        /**
+         * The name of the custom namespace to scrape.
+         */
+        name: string;
+        /**
+         * The interval in seconds to scrape the custom namespace.
+         */
+        scrapeIntervalSeconds: number;
+    }
+
+    export interface ProviderAwsCloudwatchScrapeJobCustomNamespaceMetric {
+        /**
+         * The name of the metric to scrape.
+         */
+        name: string;
+        /**
+         * A set of statistics to scrape.
+         */
+        statistics: string[];
+    }
+
+    export interface ProviderAwsCloudwatchScrapeJobService {
+        /**
+         * One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         */
+        metrics?: outputs.cloud.ProviderAwsCloudwatchScrapeJobServiceMetric[];
+        /**
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+         */
+        name: string;
+        /**
+         * One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+         */
+        resourceDiscoveryTagFilters?: outputs.cloud.ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter[];
+        /**
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         */
+        scrapeIntervalSeconds: number;
+        /**
+         * A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+         */
+        tagsToAddToMetrics: string[];
+    }
+
+    export interface ProviderAwsCloudwatchScrapeJobServiceMetric {
+        /**
+         * The name of the metric to scrape.
+         */
+        name: string;
+        /**
+         * A set of statistics to scrape.
+         */
+        statistics: string[];
+    }
+
+    export interface ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The value of the tag filter.
+         */
+        value: string;
     }
 
 }
@@ -4309,6 +4881,13 @@ export namespace machineLearning {
 }
 
 export namespace onCall {
+    export interface GetUsersUser {
+        email: string;
+        id: string;
+        role: string;
+        username: string;
+    }
+
     export interface IntegrationDefaultRoute {
         /**
          * The ID of the escalation chain.
@@ -4376,9 +4955,13 @@ export namespace onCall {
          */
         groupingKey?: string;
         /**
-         * Templates for Microsoft Teams.
+         * Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
          */
         microsoftTeams?: outputs.onCall.IntegrationTemplatesMicrosoftTeams;
+        /**
+         * Templates for Mobile app push notifications.
+         */
+        mobileApp?: outputs.onCall.IntegrationTemplatesMobileApp;
         /**
          * Templates for Phone Call.
          */
@@ -4425,6 +5008,17 @@ export namespace onCall {
          * Template for Alert image url.
          */
         imageUrl?: string;
+        /**
+         * Template for Alert message.
+         */
+        message?: string;
+        /**
+         * Template for Alert title.
+         */
+        title?: string;
+    }
+
+    export interface IntegrationTemplatesMobileApp {
         /**
          * Template for Alert message.
          */
@@ -4673,6 +5267,146 @@ export namespace oss {
         userId?: string;
     }
 
+    export interface SsoSettingsLdapSettings {
+        /**
+         * Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+         */
+        allowSignUp?: boolean;
+        /**
+         * The LDAP configuration.
+         */
+        config: outputs.oss.SsoSettingsLdapSettingsConfig;
+        /**
+         * Define whether this configuration is enabled for LDAP. Defaults to `true`.
+         */
+        enabled?: boolean;
+        /**
+         * Prevent synchronizing users’ organization roles from LDAP.
+         */
+        skipOrgRoleSync?: boolean;
+    }
+
+    export interface SsoSettingsLdapSettingsConfig {
+        /**
+         * The LDAP servers configuration.
+         */
+        servers: outputs.oss.SsoSettingsLdapSettingsConfigServer[];
+    }
+
+    export interface SsoSettingsLdapSettingsConfigServer {
+        /**
+         * The LDAP server attributes. The following attributes can be configured: email, member_of, name, surname, username.
+         */
+        attributes?: {[key: string]: string};
+        /**
+         * The search user bind DN.
+         */
+        bindDn?: string;
+        /**
+         * The search user bind password.
+         */
+        bindPassword?: string;
+        /**
+         * The path to the client certificate.
+         */
+        clientCert?: string;
+        /**
+         * The Base64 encoded value of the client certificate.
+         */
+        clientCertValue?: string;
+        /**
+         * The path to the client private key.
+         */
+        clientKey?: string;
+        /**
+         * The Base64 encoded value of the client private key.
+         */
+        clientKeyValue?: string;
+        /**
+         * For mapping an LDAP group to a Grafana organization and role.
+         */
+        groupMappings?: outputs.oss.SsoSettingsLdapSettingsConfigServerGroupMapping[];
+        /**
+         * An array of the base DNs to search through for groups. Typically uses ou=groups.
+         */
+        groupSearchBaseDns?: string[];
+        /**
+         * Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available).
+         */
+        groupSearchFilter?: string;
+        /**
+         * The %s in the search filter will be replaced with the attribute defined in this field.
+         */
+        groupSearchFilterUserAttribute?: string;
+        /**
+         * The LDAP server host.
+         */
+        host: string;
+        /**
+         * Minimum TLS version allowed. Accepted values are: TLS1.2, TLS1.3.
+         */
+        minTlsVersion?: string;
+        /**
+         * The LDAP server port.
+         */
+        port?: number;
+        /**
+         * The path to the root CA certificate.
+         */
+        rootCaCert?: string;
+        /**
+         * The Base64 encoded values of the root CA certificates.
+         */
+        rootCaCertValues?: string[];
+        /**
+         * An array of base DNs to search through.
+         */
+        searchBaseDns: string[];
+        /**
+         * The user search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)".
+         */
+        searchFilter: string;
+        /**
+         * If set to true, the SSL cert validation will be skipped.
+         */
+        sslSkipVerify?: boolean;
+        /**
+         * If set to true, use LDAP with STARTTLS instead of LDAPS.
+         */
+        startTls?: boolean;
+        /**
+         * The timeout in seconds for connecting to the LDAP host.
+         */
+        timeout?: number;
+        /**
+         * Accepted TLS ciphers. For a complete list of supported ciphers, refer to: https://go.dev/src/crypto/tls/cipher_suites.go.
+         */
+        tlsCiphers?: string[];
+        /**
+         * Set to true if LDAP server should use an encrypted TLS connection (either with STARTTLS or LDAPS).
+         */
+        useSsl?: boolean;
+    }
+
+    export interface SsoSettingsLdapSettingsConfigServerGroupMapping {
+        /**
+         * If set to true, it makes the user of groupDn Grafana server admin.
+         */
+        grafanaAdmin?: boolean;
+        /**
+         * LDAP distinguished name (DN) of LDAP group. If you want to match all (or no LDAP groups) then you can use wildcard ("*").
+         */
+        groupDn: string;
+        /**
+         * The Grafana organization database id.
+         */
+        orgId?: number;
+        /**
+         * Assign users of groupDn the organization role Admin, Editor, or Viewer.
+         */
+        orgRole: string;
+    }
+
     export interface SsoSettingsOauth2Settings {
         /**
          * If enabled, it will automatically sync the Grafana server administrator role.
@@ -4766,6 +5500,14 @@ export namespace oss {
          * JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
          */
         nameAttributePath?: string;
+        /**
+         * JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "orgMapping"). Only applicable to Generic OAuth and Okta.
+         */
+        orgAttributePath?: string;
+        /**
+         * List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+         */
+        orgMapping?: string;
         /**
          * JMESPath expression to use for Grafana role lookup.
          */
@@ -4878,9 +5620,25 @@ export namespace oss {
          */
         certificatePath?: string;
         /**
+         * The client Id of your OAuth2 app.
+         */
+        clientId?: string;
+        /**
+         * The client secret of your OAuth2 app.
+         */
+        clientSecret?: string;
+        /**
          * Define whether this configuration is enabled for SAML. Defaults to `true`.
          */
         enabled?: boolean;
+        /**
+         * The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+         */
+        entityId?: string;
+        /**
+         * If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+         */
+        forceUseGraphApi?: boolean;
         /**
          * Base64-encoded string for the IdP SAML metadata XML.
          */
@@ -4957,6 +5715,10 @@ export namespace oss {
          * Prevent synchronizing users’ organization roles from your IdP.
          */
         skipOrgRoleSync?: boolean;
+        /**
+         * The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+         */
+        tokenUrl?: string;
     }
 
     export interface TeamPreferences {
@@ -5023,6 +5785,10 @@ export namespace slo {
          */
         queries: outputs.slo.GetSlosSloQuery[];
         /**
+         * The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+         */
+        searchExpression: string;
+        /**
          * A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
          */
         uuid: string;
@@ -5059,7 +5825,13 @@ export namespace slo {
     }
 
     export interface GetSlosSloAlertingAnnotation {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 
@@ -5075,17 +5847,35 @@ export namespace slo {
     }
 
     export interface GetSlosSloAlertingFastburnAnnotation {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 
     export interface GetSlosSloAlertingFastburnLabel {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 
     export interface GetSlosSloAlertingLabel {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 
@@ -5101,24 +5891,42 @@ export namespace slo {
     }
 
     export interface GetSlosSloAlertingSlowburnAnnotation {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 
     export interface GetSlosSloAlertingSlowburnLabel {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 
     export interface GetSlosSloDestinationDatasource {
         /**
-         * UID for the Mimir Datasource
+         * UID for the Datasource
          */
-        uid?: string;
+        uid: string;
     }
 
     export interface GetSlosSloLabel {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 
@@ -5195,7 +6003,13 @@ export namespace slo {
     }
 
     export interface SLOAlertingAnnotation {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 
@@ -5211,17 +6025,35 @@ export namespace slo {
     }
 
     export interface SLOAlertingFastburnAnnotation {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 
     export interface SLOAlertingFastburnLabel {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 
     export interface SLOAlertingLabel {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 
@@ -5237,24 +6069,42 @@ export namespace slo {
     }
 
     export interface SLOAlertingSlowburnAnnotation {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 
     export interface SLOAlertingSlowburnLabel {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 
     export interface SLODestinationDatasource {
         /**
-         * UID for the Mimir Datasource
+         * UID for the Datasource
          */
-        uid?: string;
+        uid: string;
     }
 
     export interface SLOLabel {
+        /**
+         * Key for filtering and identification
+         */
         key: string;
+        /**
+         * Templatable value
+         */
         value: string;
     }
 

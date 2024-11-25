@@ -44,7 +44,7 @@ export interface GetUserResult {
      */
     readonly email: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of the user.
      */
     readonly id: string;
     /**

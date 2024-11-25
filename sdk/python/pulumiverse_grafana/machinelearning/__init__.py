@@ -5,6 +5,7 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .alert import *
 from .holiday import *
 from .job import *
 from .outlier_detector import *

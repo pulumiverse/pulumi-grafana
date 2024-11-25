@@ -5188,7 +5188,7 @@ func (o NotificationPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput) Index(i pu
 }
 
 type RuleGroupRule struct {
-	// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
 	Annotations map[string]string `pulumi:"annotations"`
 	// The `refId` of the query node in the `data` field to use as the alert condition.
 	Condition string `pulumi:"condition"`
@@ -5206,8 +5206,10 @@ type RuleGroupRule struct {
 	Name string `pulumi:"name"`
 	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
 	NoDataState *string `pulumi:"noDataState"`
-	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
 	NotificationSettings *RuleGroupRuleNotificationSettings `pulumi:"notificationSettings"`
+	// Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
+	Record *RuleGroupRuleRecord `pulumi:"record"`
 	// The unique identifier of the alert rule.
 	Uid *string `pulumi:"uid"`
 }
@@ -5224,7 +5226,7 @@ type RuleGroupRuleInput interface {
 }
 
 type RuleGroupRuleArgs struct {
-	// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The `refId` of the query node in the `data` field to use as the alert condition.
 	Condition pulumi.StringInput `pulumi:"condition"`
@@ -5242,8 +5244,10 @@ type RuleGroupRuleArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
 	NoDataState pulumi.StringPtrInput `pulumi:"noDataState"`
-	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
 	NotificationSettings RuleGroupRuleNotificationSettingsPtrInput `pulumi:"notificationSettings"`
+	// Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
+	Record RuleGroupRuleRecordPtrInput `pulumi:"record"`
 	// The unique identifier of the alert rule.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
 }
@@ -5299,7 +5303,7 @@ func (o RuleGroupRuleOutput) ToRuleGroupRuleOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
 func (o RuleGroupRuleOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v RuleGroupRule) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
@@ -5344,9 +5348,14 @@ func (o RuleGroupRuleOutput) NoDataState() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *string { return v.NoDataState }).(pulumi.StringPtrOutput)
 }
 
-// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
 func (o RuleGroupRuleOutput) NotificationSettings() RuleGroupRuleNotificationSettingsPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *RuleGroupRuleNotificationSettings { return v.NotificationSettings }).(RuleGroupRuleNotificationSettingsPtrOutput)
+}
+
+// Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
+func (o RuleGroupRuleOutput) Record() RuleGroupRuleRecordPtrOutput {
+	return o.ApplyT(func(v RuleGroupRule) *RuleGroupRuleRecord { return v.Record }).(RuleGroupRuleRecordPtrOutput)
 }
 
 // The unique identifier of the alert rule.
@@ -5800,6 +5809,162 @@ func (o RuleGroupRuleNotificationSettingsPtrOutput) RepeatInterval() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+type RuleGroupRuleRecord struct {
+	// The ref id of the query node in the data field to use as the source of the metric.
+	From string `pulumi:"from"`
+	// The name of the metric to write to.
+	Metric string `pulumi:"metric"`
+}
+
+// RuleGroupRuleRecordInput is an input type that accepts RuleGroupRuleRecordArgs and RuleGroupRuleRecordOutput values.
+// You can construct a concrete instance of `RuleGroupRuleRecordInput` via:
+//
+//	RuleGroupRuleRecordArgs{...}
+type RuleGroupRuleRecordInput interface {
+	pulumi.Input
+
+	ToRuleGroupRuleRecordOutput() RuleGroupRuleRecordOutput
+	ToRuleGroupRuleRecordOutputWithContext(context.Context) RuleGroupRuleRecordOutput
+}
+
+type RuleGroupRuleRecordArgs struct {
+	// The ref id of the query node in the data field to use as the source of the metric.
+	From pulumi.StringInput `pulumi:"from"`
+	// The name of the metric to write to.
+	Metric pulumi.StringInput `pulumi:"metric"`
+}
+
+func (RuleGroupRuleRecordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleGroupRuleRecord)(nil)).Elem()
+}
+
+func (i RuleGroupRuleRecordArgs) ToRuleGroupRuleRecordOutput() RuleGroupRuleRecordOutput {
+	return i.ToRuleGroupRuleRecordOutputWithContext(context.Background())
+}
+
+func (i RuleGroupRuleRecordArgs) ToRuleGroupRuleRecordOutputWithContext(ctx context.Context) RuleGroupRuleRecordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleGroupRuleRecordOutput)
+}
+
+func (i RuleGroupRuleRecordArgs) ToRuleGroupRuleRecordPtrOutput() RuleGroupRuleRecordPtrOutput {
+	return i.ToRuleGroupRuleRecordPtrOutputWithContext(context.Background())
+}
+
+func (i RuleGroupRuleRecordArgs) ToRuleGroupRuleRecordPtrOutputWithContext(ctx context.Context) RuleGroupRuleRecordPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleGroupRuleRecordOutput).ToRuleGroupRuleRecordPtrOutputWithContext(ctx)
+}
+
+// RuleGroupRuleRecordPtrInput is an input type that accepts RuleGroupRuleRecordArgs, RuleGroupRuleRecordPtr and RuleGroupRuleRecordPtrOutput values.
+// You can construct a concrete instance of `RuleGroupRuleRecordPtrInput` via:
+//
+//	        RuleGroupRuleRecordArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleGroupRuleRecordPtrInput interface {
+	pulumi.Input
+
+	ToRuleGroupRuleRecordPtrOutput() RuleGroupRuleRecordPtrOutput
+	ToRuleGroupRuleRecordPtrOutputWithContext(context.Context) RuleGroupRuleRecordPtrOutput
+}
+
+type ruleGroupRuleRecordPtrType RuleGroupRuleRecordArgs
+
+func RuleGroupRuleRecordPtr(v *RuleGroupRuleRecordArgs) RuleGroupRuleRecordPtrInput {
+	return (*ruleGroupRuleRecordPtrType)(v)
+}
+
+func (*ruleGroupRuleRecordPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleGroupRuleRecord)(nil)).Elem()
+}
+
+func (i *ruleGroupRuleRecordPtrType) ToRuleGroupRuleRecordPtrOutput() RuleGroupRuleRecordPtrOutput {
+	return i.ToRuleGroupRuleRecordPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleGroupRuleRecordPtrType) ToRuleGroupRuleRecordPtrOutputWithContext(ctx context.Context) RuleGroupRuleRecordPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleGroupRuleRecordPtrOutput)
+}
+
+type RuleGroupRuleRecordOutput struct{ *pulumi.OutputState }
+
+func (RuleGroupRuleRecordOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleGroupRuleRecord)(nil)).Elem()
+}
+
+func (o RuleGroupRuleRecordOutput) ToRuleGroupRuleRecordOutput() RuleGroupRuleRecordOutput {
+	return o
+}
+
+func (o RuleGroupRuleRecordOutput) ToRuleGroupRuleRecordOutputWithContext(ctx context.Context) RuleGroupRuleRecordOutput {
+	return o
+}
+
+func (o RuleGroupRuleRecordOutput) ToRuleGroupRuleRecordPtrOutput() RuleGroupRuleRecordPtrOutput {
+	return o.ToRuleGroupRuleRecordPtrOutputWithContext(context.Background())
+}
+
+func (o RuleGroupRuleRecordOutput) ToRuleGroupRuleRecordPtrOutputWithContext(ctx context.Context) RuleGroupRuleRecordPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleGroupRuleRecord) *RuleGroupRuleRecord {
+		return &v
+	}).(RuleGroupRuleRecordPtrOutput)
+}
+
+// The ref id of the query node in the data field to use as the source of the metric.
+func (o RuleGroupRuleRecordOutput) From() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleGroupRuleRecord) string { return v.From }).(pulumi.StringOutput)
+}
+
+// The name of the metric to write to.
+func (o RuleGroupRuleRecordOutput) Metric() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleGroupRuleRecord) string { return v.Metric }).(pulumi.StringOutput)
+}
+
+type RuleGroupRuleRecordPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleGroupRuleRecordPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleGroupRuleRecord)(nil)).Elem()
+}
+
+func (o RuleGroupRuleRecordPtrOutput) ToRuleGroupRuleRecordPtrOutput() RuleGroupRuleRecordPtrOutput {
+	return o
+}
+
+func (o RuleGroupRuleRecordPtrOutput) ToRuleGroupRuleRecordPtrOutputWithContext(ctx context.Context) RuleGroupRuleRecordPtrOutput {
+	return o
+}
+
+func (o RuleGroupRuleRecordPtrOutput) Elem() RuleGroupRuleRecordOutput {
+	return o.ApplyT(func(v *RuleGroupRuleRecord) RuleGroupRuleRecord {
+		if v != nil {
+			return *v
+		}
+		var ret RuleGroupRuleRecord
+		return ret
+	}).(RuleGroupRuleRecordOutput)
+}
+
+// The ref id of the query node in the data field to use as the source of the metric.
+func (o RuleGroupRuleRecordPtrOutput) From() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleGroupRuleRecord) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.From
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the metric to write to.
+func (o RuleGroupRuleRecordPtrOutput) Metric() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleGroupRuleRecord) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Metric
+	}).(pulumi.StringPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointAlertmanagerInput)(nil)).Elem(), ContactPointAlertmanagerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointAlertmanagerArrayInput)(nil)).Elem(), ContactPointAlertmanagerArray{})
@@ -5872,6 +6037,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleDataRelativeTimeRangeInput)(nil)).Elem(), RuleGroupRuleDataRelativeTimeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleNotificationSettingsInput)(nil)).Elem(), RuleGroupRuleNotificationSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleNotificationSettingsPtrInput)(nil)).Elem(), RuleGroupRuleNotificationSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleRecordInput)(nil)).Elem(), RuleGroupRuleRecordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleRecordPtrInput)(nil)).Elem(), RuleGroupRuleRecordArgs{})
 	pulumi.RegisterOutputType(ContactPointAlertmanagerOutput{})
 	pulumi.RegisterOutputType(ContactPointAlertmanagerArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointDingdingOutput{})
@@ -5943,4 +6110,6 @@ func init() {
 	pulumi.RegisterOutputType(RuleGroupRuleDataRelativeTimeRangeOutput{})
 	pulumi.RegisterOutputType(RuleGroupRuleNotificationSettingsOutput{})
 	pulumi.RegisterOutputType(RuleGroupRuleNotificationSettingsPtrOutput{})
+	pulumi.RegisterOutputType(RuleGroupRuleRecordOutput{})
+	pulumi.RegisterOutputType(RuleGroupRuleRecordPtrOutput{})
 }

@@ -23,6 +23,10 @@ class ProviderArgs:
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  cloud_access_policy_token: Optional[pulumi.Input[str]] = None,
                  cloud_api_url: Optional[pulumi.Input[str]] = None,
+                 cloud_provider_access_token: Optional[pulumi.Input[str]] = None,
+                 cloud_provider_url: Optional[pulumi.Input[str]] = None,
+                 connections_api_access_token: Optional[pulumi.Input[str]] = None,
+                 connections_api_url: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
@@ -44,6 +48,13 @@ class ProviderArgs:
         :param pulumi.Input[str] cloud_access_policy_token: Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
                variable.
         :param pulumi.Input[str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
+        :param pulumi.Input[str] cloud_provider_access_token: A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+               environment variable.
+        :param pulumi.Input[str] cloud_provider_url: A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+               variable.
+        :param pulumi.Input[str] connections_api_access_token: A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+               environment variable.
+        :param pulumi.Input[str] connections_api_url: A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -77,6 +88,14 @@ class ProviderArgs:
             cloud_api_url = _utilities.get_env('GRAFANA_CLOUD_API_URL')
         if cloud_api_url is not None:
             pulumi.set(__self__, "cloud_api_url", cloud_api_url)
+        if cloud_provider_access_token is not None:
+            pulumi.set(__self__, "cloud_provider_access_token", cloud_provider_access_token)
+        if cloud_provider_url is not None:
+            pulumi.set(__self__, "cloud_provider_url", cloud_provider_url)
+        if connections_api_access_token is not None:
+            pulumi.set(__self__, "connections_api_access_token", connections_api_access_token)
+        if connections_api_url is not None:
+            pulumi.set(__self__, "connections_api_url", connections_api_url)
         if insecure_skip_verify is None:
             insecure_skip_verify = _utilities.get_env_bool('GRAFANA_INSECURE_SKIP_VERIFY')
         if insecure_skip_verify is not None:
@@ -174,6 +193,57 @@ class ProviderArgs:
     @cloud_api_url.setter
     def cloud_api_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cloud_api_url", value)
+
+    @property
+    @pulumi.getter(name="cloudProviderAccessToken")
+    def cloud_provider_access_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+        environment variable.
+        """
+        return pulumi.get(self, "cloud_provider_access_token")
+
+    @cloud_provider_access_token.setter
+    def cloud_provider_access_token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cloud_provider_access_token", value)
+
+    @property
+    @pulumi.getter(name="cloudProviderUrl")
+    def cloud_provider_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+        variable.
+        """
+        return pulumi.get(self, "cloud_provider_url")
+
+    @cloud_provider_url.setter
+    def cloud_provider_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cloud_provider_url", value)
+
+    @property
+    @pulumi.getter(name="connectionsApiAccessToken")
+    def connections_api_access_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+        environment variable.
+        """
+        return pulumi.get(self, "connections_api_access_token")
+
+    @connections_api_access_token.setter
+    def connections_api_access_token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "connections_api_access_token", value)
+
+    @property
+    @pulumi.getter(name="connectionsApiUrl")
+    def connections_api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+        """
+        return pulumi.get(self, "connections_api_url")
+
+    @connections_api_url.setter
+    def connections_api_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "connections_api_url", value)
 
     @property
     @pulumi.getter(name="insecureSkipVerify")
@@ -331,6 +401,10 @@ class Provider(pulumi.ProviderResource):
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  cloud_access_policy_token: Optional[pulumi.Input[str]] = None,
                  cloud_api_url: Optional[pulumi.Input[str]] = None,
+                 cloud_provider_access_token: Optional[pulumi.Input[str]] = None,
+                 cloud_provider_url: Optional[pulumi.Input[str]] = None,
+                 connections_api_access_token: Optional[pulumi.Input[str]] = None,
+                 connections_api_url: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
@@ -359,6 +433,13 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[str] cloud_access_policy_token: Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
                variable.
         :param pulumi.Input[str] cloud_api_url: Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
+        :param pulumi.Input[str] cloud_provider_access_token: A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+               environment variable.
+        :param pulumi.Input[str] cloud_provider_url: A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+               variable.
+        :param pulumi.Input[str] connections_api_access_token: A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+               environment variable.
+        :param pulumi.Input[str] connections_api_url: A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -407,6 +488,10 @@ class Provider(pulumi.ProviderResource):
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  cloud_access_policy_token: Optional[pulumi.Input[str]] = None,
                  cloud_api_url: Optional[pulumi.Input[str]] = None,
+                 cloud_provider_access_token: Optional[pulumi.Input[str]] = None,
+                 cloud_provider_url: Optional[pulumi.Input[str]] = None,
+                 connections_api_access_token: Optional[pulumi.Input[str]] = None,
+                 connections_api_url: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
@@ -440,6 +525,10 @@ class Provider(pulumi.ProviderResource):
             if cloud_api_url is None:
                 cloud_api_url = _utilities.get_env('GRAFANA_CLOUD_API_URL')
             __props__.__dict__["cloud_api_url"] = cloud_api_url
+            __props__.__dict__["cloud_provider_access_token"] = None if cloud_provider_access_token is None else pulumi.Output.secret(cloud_provider_access_token)
+            __props__.__dict__["cloud_provider_url"] = cloud_provider_url
+            __props__.__dict__["connections_api_access_token"] = None if connections_api_access_token is None else pulumi.Output.secret(connections_api_access_token)
+            __props__.__dict__["connections_api_url"] = connections_api_url
             if insecure_skip_verify is None:
                 insecure_skip_verify = _utilities.get_env_bool('GRAFANA_INSECURE_SKIP_VERIFY')
             __props__.__dict__["insecure_skip_verify"] = pulumi.Output.from_input(insecure_skip_verify).apply(pulumi.runtime.to_json) if insecure_skip_verify is not None else None
@@ -474,7 +563,7 @@ class Provider(pulumi.ProviderResource):
             if url is None:
                 url = _utilities.get_env('GRAFANA_URL')
             __props__.__dict__["url"] = url
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["auth", "cloudAccessPolicyToken", "oncallAccessToken", "smAccessToken", "tlsKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "oncallAccessToken", "smAccessToken", "tlsKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'grafana',
@@ -516,6 +605,41 @@ class Provider(pulumi.ProviderResource):
         Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
         """
         return pulumi.get(self, "cloud_api_url")
+
+    @property
+    @pulumi.getter(name="cloudProviderAccessToken")
+    def cloud_provider_access_token(self) -> pulumi.Output[Optional[str]]:
+        """
+        A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+        environment variable.
+        """
+        return pulumi.get(self, "cloud_provider_access_token")
+
+    @property
+    @pulumi.getter(name="cloudProviderUrl")
+    def cloud_provider_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+        variable.
+        """
+        return pulumi.get(self, "cloud_provider_url")
+
+    @property
+    @pulumi.getter(name="connectionsApiAccessToken")
+    def connections_api_access_token(self) -> pulumi.Output[Optional[str]]:
+        """
+        A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+        environment variable.
+        """
+        return pulumi.get(self, "connections_api_access_token")
+
+    @property
+    @pulumi.getter(name="connectionsApiUrl")
+    def connections_api_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+        """
+        return pulumi.get(self, "connections_api_url")
 
     @property
     @pulumi.getter(name="oncallAccessToken")

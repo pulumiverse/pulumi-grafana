@@ -37,6 +37,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CloudStackServiceAccount{}
 	case "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken":
 		r = &CloudStackServiceAccountToken{}
+	case "grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob":
+		r = &ConnectionsMetricsEndpointScrapeJob{}
 	case "grafana:index/contactPoint:ContactPoint":
 		r = &ContactPoint{}
 	case "grafana:index/dashboard:Dashboard":
@@ -200,6 +202,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/cloudStackServiceAccountToken",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/connectionsMetricsEndpointScrapeJob",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

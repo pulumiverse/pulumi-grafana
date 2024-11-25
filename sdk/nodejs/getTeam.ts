@@ -66,6 +66,7 @@ export interface GetTeamResult {
     readonly readTeamSync?: boolean;
     readonly teamId: number;
     readonly teamSyncs: outputs.GetTeamTeamSync[];
+    readonly teamUid: string;
 }
 /**
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)

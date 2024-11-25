@@ -27,9 +27,13 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? GroupingKey;
         /// <summary>
-        /// Templates for Microsoft Teams.
+        /// Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
         /// </summary>
         public readonly Outputs.OncallIntegrationTemplatesMicrosoftTeams? MicrosoftTeams;
+        /// <summary>
+        /// Templates for Mobile app push notifications.
+        /// </summary>
+        public readonly Outputs.OncallIntegrationTemplatesMobileApp? MobileApp;
         /// <summary>
         /// Templates for Phone Call.
         /// </summary>
@@ -69,6 +73,8 @@ namespace Pulumiverse.Grafana.Outputs
 
             Outputs.OncallIntegrationTemplatesMicrosoftTeams? microsoftTeams,
 
+            Outputs.OncallIntegrationTemplatesMobileApp? mobileApp,
+
             Outputs.OncallIntegrationTemplatesPhoneCall? phoneCall,
 
             string? resolveSignal,
@@ -87,6 +93,7 @@ namespace Pulumiverse.Grafana.Outputs
             Email = email;
             GroupingKey = groupingKey;
             MicrosoftTeams = microsoftTeams;
+            MobileApp = mobileApp;
             PhoneCall = phoneCall;
             ResolveSignal = resolveSignal;
             Slack = slack;

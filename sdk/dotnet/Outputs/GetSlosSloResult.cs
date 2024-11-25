@@ -51,6 +51,10 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloQueryResult> Queries;
         /// <summary>
+        /// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        /// </summary>
+        public readonly string SearchExpression;
+        /// <summary>
         /// A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
         /// </summary>
         public readonly string Uuid;
@@ -73,6 +77,8 @@ namespace Pulumiverse.Grafana.Outputs
 
             ImmutableArray<Outputs.GetSlosSloQueryResult> queries,
 
+            string searchExpression,
+
             string uuid)
         {
             Alertings = alertings;
@@ -83,6 +89,7 @@ namespace Pulumiverse.Grafana.Outputs
             Name = name;
             Objectives = objectives;
             Queries = queries;
+            SearchExpression = searchExpression;
             Uuid = uuid;
         }
     }
