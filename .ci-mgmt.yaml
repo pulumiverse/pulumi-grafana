@@ -28,5 +28,5 @@ license:
     - github.com/grafana/grafana-com-public-clients/go/gcom # Temporary while Grafana provider hasn't been upgraded yet
 pr-assign: ringods
 toolVersions:
-  go: "1.22.x"
+  go: "1.23.x"
 pulumiConvert: 1

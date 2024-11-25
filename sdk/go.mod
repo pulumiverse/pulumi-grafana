@@ -1,6 +1,6 @@
 module github.com/pulumiverse/pulumi-grafana/sdk
 
-go 1.22
+go 1.23
 
 require (
 	github.com/blang/semver v3.5.1+incompatible
