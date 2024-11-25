@@ -108,6 +108,12 @@ namespace Pulumiverse.Grafana
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
+        /// The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+        /// </summary>
+        [Output("until")]
+        public Output<string?> Until { get; private set; } = null!;
+
+        /// <summary>
         /// The list of on-call users (for single*event and recurrent*event event type).
         /// </summary>
         [Output("users")]
@@ -274,6 +280,12 @@ namespace Pulumiverse.Grafana
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        /// <summary>
+        /// The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+        /// </summary>
+        [Input("until")]
+        public Input<string>? Until { get; set; }
+
         [Input("users")]
         private InputList<string>? _users;
 
@@ -407,6 +419,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        /// <summary>
+        /// The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+        /// </summary>
+        [Input("until")]
+        public Input<string>? Until { get; set; }
 
         [Input("users")]
         private InputList<string>? _users;

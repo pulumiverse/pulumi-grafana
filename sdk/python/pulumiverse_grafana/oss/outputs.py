@@ -13,12 +13,17 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'DashboardPermissionPermission',
     'FolderPermissionPermission',
     'PlaylistItem',
     'ServiceAccountPermissionPermission',
+    'SsoSettingsLdapSettings',
+    'SsoSettingsLdapSettingsConfig',
+    'SsoSettingsLdapSettingsConfigServer',
+    'SsoSettingsLdapSettingsConfigServerGroupMapping',
     'SsoSettingsOauth2Settings',
     'SsoSettingsSamlSettings',
     'TeamPreferences',
@@ -281,6 +286,506 @@ class ServiceAccountPermissionPermission(dict):
 
 
 @pulumi.output_type
+class SsoSettingsLdapSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowSignUp":
+            suggest = "allow_sign_up"
+        elif key == "skipOrgRoleSync":
+            suggest = "skip_org_role_sync"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SsoSettingsLdapSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SsoSettingsLdapSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SsoSettingsLdapSettings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 config: 'outputs.SsoSettingsLdapSettingsConfig',
+                 allow_sign_up: Optional[bool] = None,
+                 enabled: Optional[bool] = None,
+                 skip_org_role_sync: Optional[bool] = None):
+        """
+        :param 'SsoSettingsLdapSettingsConfigArgs' config: The LDAP configuration.
+        :param bool allow_sign_up: Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+        :param bool enabled: Define whether this configuration is enabled for LDAP. Defaults to `true`.
+        :param bool skip_org_role_sync: Prevent synchronizing users’ organization roles from LDAP.
+        """
+        pulumi.set(__self__, "config", config)
+        if allow_sign_up is not None:
+            pulumi.set(__self__, "allow_sign_up", allow_sign_up)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if skip_org_role_sync is not None:
+            pulumi.set(__self__, "skip_org_role_sync", skip_org_role_sync)
+
+    @property
+    @pulumi.getter
+    def config(self) -> 'outputs.SsoSettingsLdapSettingsConfig':
+        """
+        The LDAP configuration.
+        """
+        return pulumi.get(self, "config")
+
+    @property
+    @pulumi.getter(name="allowSignUp")
+    def allow_sign_up(self) -> Optional[bool]:
+        """
+        Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+        """
+        return pulumi.get(self, "allow_sign_up")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Define whether this configuration is enabled for LDAP. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="skipOrgRoleSync")
+    def skip_org_role_sync(self) -> Optional[bool]:
+        """
+        Prevent synchronizing users’ organization roles from LDAP.
+        """
+        return pulumi.get(self, "skip_org_role_sync")
+
+
+@pulumi.output_type
+class SsoSettingsLdapSettingsConfig(dict):
+    def __init__(__self__, *,
+                 servers: Sequence['outputs.SsoSettingsLdapSettingsConfigServer']):
+        """
+        :param Sequence['SsoSettingsLdapSettingsConfigServerArgs'] servers: The LDAP servers configuration.
+        """
+        pulumi.set(__self__, "servers", servers)
+
+    @property
+    @pulumi.getter
+    def servers(self) -> Sequence['outputs.SsoSettingsLdapSettingsConfigServer']:
+        """
+        The LDAP servers configuration.
+        """
+        return pulumi.get(self, "servers")
+
+
+@pulumi.output_type
+class SsoSettingsLdapSettingsConfigServer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "searchBaseDns":
+            suggest = "search_base_dns"
+        elif key == "searchFilter":
+            suggest = "search_filter"
+        elif key == "bindDn":
+            suggest = "bind_dn"
+        elif key == "bindPassword":
+            suggest = "bind_password"
+        elif key == "clientCert":
+            suggest = "client_cert"
+        elif key == "clientCertValue":
+            suggest = "client_cert_value"
+        elif key == "clientKey":
+            suggest = "client_key"
+        elif key == "clientKeyValue":
+            suggest = "client_key_value"
+        elif key == "groupMappings":
+            suggest = "group_mappings"
+        elif key == "groupSearchBaseDns":
+            suggest = "group_search_base_dns"
+        elif key == "groupSearchFilter":
+            suggest = "group_search_filter"
+        elif key == "groupSearchFilterUserAttribute":
+            suggest = "group_search_filter_user_attribute"
+        elif key == "minTlsVersion":
+            suggest = "min_tls_version"
+        elif key == "rootCaCert":
+            suggest = "root_ca_cert"
+        elif key == "rootCaCertValues":
+            suggest = "root_ca_cert_values"
+        elif key == "sslSkipVerify":
+            suggest = "ssl_skip_verify"
+        elif key == "startTls":
+            suggest = "start_tls"
+        elif key == "tlsCiphers":
+            suggest = "tls_ciphers"
+        elif key == "useSsl":
+            suggest = "use_ssl"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SsoSettingsLdapSettingsConfigServer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SsoSettingsLdapSettingsConfigServer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SsoSettingsLdapSettingsConfigServer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 host: str,
+                 search_base_dns: Sequence[str],
+                 search_filter: str,
+                 attributes: Optional[Mapping[str, str]] = None,
+                 bind_dn: Optional[str] = None,
+                 bind_password: Optional[str] = None,
+                 client_cert: Optional[str] = None,
+                 client_cert_value: Optional[str] = None,
+                 client_key: Optional[str] = None,
+                 client_key_value: Optional[str] = None,
+                 group_mappings: Optional[Sequence['outputs.SsoSettingsLdapSettingsConfigServerGroupMapping']] = None,
+                 group_search_base_dns: Optional[Sequence[str]] = None,
+                 group_search_filter: Optional[str] = None,
+                 group_search_filter_user_attribute: Optional[str] = None,
+                 min_tls_version: Optional[str] = None,
+                 port: Optional[int] = None,
+                 root_ca_cert: Optional[str] = None,
+                 root_ca_cert_values: Optional[Sequence[str]] = None,
+                 ssl_skip_verify: Optional[bool] = None,
+                 start_tls: Optional[bool] = None,
+                 timeout: Optional[int] = None,
+                 tls_ciphers: Optional[Sequence[str]] = None,
+                 use_ssl: Optional[bool] = None):
+        """
+        :param str host: The LDAP server host.
+        :param Sequence[str] search_base_dns: An array of base DNs to search through.
+        :param str search_filter: The user search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)".
+        :param Mapping[str, str] attributes: The LDAP server attributes. The following attributes can be configured: email, member_of, name, surname, username.
+        :param str bind_dn: The search user bind DN.
+        :param str bind_password: The search user bind password.
+        :param str client_cert: The path to the client certificate.
+        :param str client_cert_value: The Base64 encoded value of the client certificate.
+        :param str client_key: The path to the client private key.
+        :param str client_key_value: The Base64 encoded value of the client private key.
+        :param Sequence['SsoSettingsLdapSettingsConfigServerGroupMappingArgs'] group_mappings: For mapping an LDAP group to a Grafana organization and role.
+        :param Sequence[str] group_search_base_dns: An array of the base DNs to search through for groups. Typically uses ou=groups.
+        :param str group_search_filter: Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available).
+        :param str group_search_filter_user_attribute: The %s in the search filter will be replaced with the attribute defined in this field.
+        :param str min_tls_version: Minimum TLS version allowed. Accepted values are: TLS1.2, TLS1.3.
+        :param int port: The LDAP server port.
+        :param str root_ca_cert: The path to the root CA certificate.
+        :param Sequence[str] root_ca_cert_values: The Base64 encoded values of the root CA certificates.
+        :param bool ssl_skip_verify: If set to true, the SSL cert validation will be skipped.
+        :param bool start_tls: If set to true, use LDAP with STARTTLS instead of LDAPS.
+        :param int timeout: The timeout in seconds for connecting to the LDAP host.
+        :param Sequence[str] tls_ciphers: Accepted TLS ciphers. For a complete list of supported ciphers, refer to: https://go.dev/src/crypto/tls/cipher_suites.go.
+        :param bool use_ssl: Set to true if LDAP server should use an encrypted TLS connection (either with STARTTLS or LDAPS).
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "search_base_dns", search_base_dns)
+        pulumi.set(__self__, "search_filter", search_filter)
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if bind_dn is not None:
+            pulumi.set(__self__, "bind_dn", bind_dn)
+        if bind_password is not None:
+            pulumi.set(__self__, "bind_password", bind_password)
+        if client_cert is not None:
+            pulumi.set(__self__, "client_cert", client_cert)
+        if client_cert_value is not None:
+            pulumi.set(__self__, "client_cert_value", client_cert_value)
+        if client_key is not None:
+            pulumi.set(__self__, "client_key", client_key)
+        if client_key_value is not None:
+            pulumi.set(__self__, "client_key_value", client_key_value)
+        if group_mappings is not None:
+            pulumi.set(__self__, "group_mappings", group_mappings)
+        if group_search_base_dns is not None:
+            pulumi.set(__self__, "group_search_base_dns", group_search_base_dns)
+        if group_search_filter is not None:
+            pulumi.set(__self__, "group_search_filter", group_search_filter)
+        if group_search_filter_user_attribute is not None:
+            pulumi.set(__self__, "group_search_filter_user_attribute", group_search_filter_user_attribute)
+        if min_tls_version is not None:
+            pulumi.set(__self__, "min_tls_version", min_tls_version)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if root_ca_cert is not None:
+            pulumi.set(__self__, "root_ca_cert", root_ca_cert)
+        if root_ca_cert_values is not None:
+            pulumi.set(__self__, "root_ca_cert_values", root_ca_cert_values)
+        if ssl_skip_verify is not None:
+            pulumi.set(__self__, "ssl_skip_verify", ssl_skip_verify)
+        if start_tls is not None:
+            pulumi.set(__self__, "start_tls", start_tls)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+        if tls_ciphers is not None:
+            pulumi.set(__self__, "tls_ciphers", tls_ciphers)
+        if use_ssl is not None:
+            pulumi.set(__self__, "use_ssl", use_ssl)
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The LDAP server host.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="searchBaseDns")
+    def search_base_dns(self) -> Sequence[str]:
+        """
+        An array of base DNs to search through.
+        """
+        return pulumi.get(self, "search_base_dns")
+
+    @property
+    @pulumi.getter(name="searchFilter")
+    def search_filter(self) -> str:
+        """
+        The user search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)".
+        """
+        return pulumi.get(self, "search_filter")
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[Mapping[str, str]]:
+        """
+        The LDAP server attributes. The following attributes can be configured: email, member_of, name, surname, username.
+        """
+        return pulumi.get(self, "attributes")
+
+    @property
+    @pulumi.getter(name="bindDn")
+    def bind_dn(self) -> Optional[str]:
+        """
+        The search user bind DN.
+        """
+        return pulumi.get(self, "bind_dn")
+
+    @property
+    @pulumi.getter(name="bindPassword")
+    def bind_password(self) -> Optional[str]:
+        """
+        The search user bind password.
+        """
+        return pulumi.get(self, "bind_password")
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> Optional[str]:
+        """
+        The path to the client certificate.
+        """
+        return pulumi.get(self, "client_cert")
+
+    @property
+    @pulumi.getter(name="clientCertValue")
+    def client_cert_value(self) -> Optional[str]:
+        """
+        The Base64 encoded value of the client certificate.
+        """
+        return pulumi.get(self, "client_cert_value")
+
+    @property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> Optional[str]:
+        """
+        The path to the client private key.
+        """
+        return pulumi.get(self, "client_key")
+
+    @property
+    @pulumi.getter(name="clientKeyValue")
+    def client_key_value(self) -> Optional[str]:
+        """
+        The Base64 encoded value of the client private key.
+        """
+        return pulumi.get(self, "client_key_value")
+
+    @property
+    @pulumi.getter(name="groupMappings")
+    def group_mappings(self) -> Optional[Sequence['outputs.SsoSettingsLdapSettingsConfigServerGroupMapping']]:
+        """
+        For mapping an LDAP group to a Grafana organization and role.
+        """
+        return pulumi.get(self, "group_mappings")
+
+    @property
+    @pulumi.getter(name="groupSearchBaseDns")
+    def group_search_base_dns(self) -> Optional[Sequence[str]]:
+        """
+        An array of the base DNs to search through for groups. Typically uses ou=groups.
+        """
+        return pulumi.get(self, "group_search_base_dns")
+
+    @property
+    @pulumi.getter(name="groupSearchFilter")
+    def group_search_filter(self) -> Optional[str]:
+        """
+        Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available).
+        """
+        return pulumi.get(self, "group_search_filter")
+
+    @property
+    @pulumi.getter(name="groupSearchFilterUserAttribute")
+    def group_search_filter_user_attribute(self) -> Optional[str]:
+        """
+        The %s in the search filter will be replaced with the attribute defined in this field.
+        """
+        return pulumi.get(self, "group_search_filter_user_attribute")
+
+    @property
+    @pulumi.getter(name="minTlsVersion")
+    def min_tls_version(self) -> Optional[str]:
+        """
+        Minimum TLS version allowed. Accepted values are: TLS1.2, TLS1.3.
+        """
+        return pulumi.get(self, "min_tls_version")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        The LDAP server port.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="rootCaCert")
+    def root_ca_cert(self) -> Optional[str]:
+        """
+        The path to the root CA certificate.
+        """
+        return pulumi.get(self, "root_ca_cert")
+
+    @property
+    @pulumi.getter(name="rootCaCertValues")
+    def root_ca_cert_values(self) -> Optional[Sequence[str]]:
+        """
+        The Base64 encoded values of the root CA certificates.
+        """
+        return pulumi.get(self, "root_ca_cert_values")
+
+    @property
+    @pulumi.getter(name="sslSkipVerify")
+    def ssl_skip_verify(self) -> Optional[bool]:
+        """
+        If set to true, the SSL cert validation will be skipped.
+        """
+        return pulumi.get(self, "ssl_skip_verify")
+
+    @property
+    @pulumi.getter(name="startTls")
+    def start_tls(self) -> Optional[bool]:
+        """
+        If set to true, use LDAP with STARTTLS instead of LDAPS.
+        """
+        return pulumi.get(self, "start_tls")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[int]:
+        """
+        The timeout in seconds for connecting to the LDAP host.
+        """
+        return pulumi.get(self, "timeout")
+
+    @property
+    @pulumi.getter(name="tlsCiphers")
+    def tls_ciphers(self) -> Optional[Sequence[str]]:
+        """
+        Accepted TLS ciphers. For a complete list of supported ciphers, refer to: https://go.dev/src/crypto/tls/cipher_suites.go.
+        """
+        return pulumi.get(self, "tls_ciphers")
+
+    @property
+    @pulumi.getter(name="useSsl")
+    def use_ssl(self) -> Optional[bool]:
+        """
+        Set to true if LDAP server should use an encrypted TLS connection (either with STARTTLS or LDAPS).
+        """
+        return pulumi.get(self, "use_ssl")
+
+
+@pulumi.output_type
+class SsoSettingsLdapSettingsConfigServerGroupMapping(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "groupDn":
+            suggest = "group_dn"
+        elif key == "orgRole":
+            suggest = "org_role"
+        elif key == "grafanaAdmin":
+            suggest = "grafana_admin"
+        elif key == "orgId":
+            suggest = "org_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SsoSettingsLdapSettingsConfigServerGroupMapping. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SsoSettingsLdapSettingsConfigServerGroupMapping.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SsoSettingsLdapSettingsConfigServerGroupMapping.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 group_dn: str,
+                 org_role: str,
+                 grafana_admin: Optional[bool] = None,
+                 org_id: Optional[int] = None):
+        """
+        :param str group_dn: LDAP distinguished name (DN) of LDAP group. If you want to match all (or no LDAP groups) then you can use wildcard ("*").
+        :param str org_role: Assign users of group_dn the organization role Admin, Editor, or Viewer.
+        :param bool grafana_admin: If set to true, it makes the user of group_dn Grafana server admin.
+        :param int org_id: The Grafana organization database id.
+        """
+        pulumi.set(__self__, "group_dn", group_dn)
+        pulumi.set(__self__, "org_role", org_role)
+        if grafana_admin is not None:
+            pulumi.set(__self__, "grafana_admin", grafana_admin)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
+
+    @property
+    @pulumi.getter(name="groupDn")
+    def group_dn(self) -> str:
+        """
+        LDAP distinguished name (DN) of LDAP group. If you want to match all (or no LDAP groups) then you can use wildcard ("*").
+        """
+        return pulumi.get(self, "group_dn")
+
+    @property
+    @pulumi.getter(name="orgRole")
+    def org_role(self) -> str:
+        """
+        Assign users of group_dn the organization role Admin, Editor, or Viewer.
+        """
+        return pulumi.get(self, "org_role")
+
+    @property
+    @pulumi.getter(name="grafanaAdmin")
+    def grafana_admin(self) -> Optional[bool]:
+        """
+        If set to true, it makes the user of group_dn Grafana server admin.
+        """
+        return pulumi.get(self, "grafana_admin")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[int]:
+        """
+        The Grafana organization database id.
+        """
+        return pulumi.get(self, "org_id")
+
+
+@pulumi.output_type
 class SsoSettingsOauth2Settings(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -325,6 +830,10 @@ class SsoSettingsOauth2Settings(dict):
             suggest = "login_attribute_path"
         elif key == "nameAttributePath":
             suggest = "name_attribute_path"
+        elif key == "orgAttributePath":
+            suggest = "org_attribute_path"
+        elif key == "orgMapping":
+            suggest = "org_mapping"
         elif key == "roleAttributePath":
             suggest = "role_attribute_path"
         elif key == "roleAttributeStrict":
@@ -389,6 +898,8 @@ class SsoSettingsOauth2Settings(dict):
                  login_attribute_path: Optional[str] = None,
                  name: Optional[str] = None,
                  name_attribute_path: Optional[str] = None,
+                 org_attribute_path: Optional[str] = None,
+                 org_mapping: Optional[str] = None,
                  role_attribute_path: Optional[str] = None,
                  role_attribute_strict: Optional[bool] = None,
                  scopes: Optional[str] = None,
@@ -428,6 +939,8 @@ class SsoSettingsOauth2Settings(dict):
         :param str login_attribute_path: JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
         :param str name: Helpful if you use more than one identity providers or SSO protocols.
         :param str name_attribute_path: JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+        :param str org_attribute_path: JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "org_mapping"). Only applicable to Generic OAuth and Okta.
+        :param str org_mapping: List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
         :param str role_attribute_path: JMESPath expression to use for Grafana role lookup.
         :param bool role_attribute_strict: If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
         :param str scopes: List of comma- or space-separated OAuth2 scopes.
@@ -489,6 +1002,10 @@ class SsoSettingsOauth2Settings(dict):
             pulumi.set(__self__, "name", name)
         if name_attribute_path is not None:
             pulumi.set(__self__, "name_attribute_path", name_attribute_path)
+        if org_attribute_path is not None:
+            pulumi.set(__self__, "org_attribute_path", org_attribute_path)
+        if org_mapping is not None:
+            pulumi.set(__self__, "org_mapping", org_mapping)
         if role_attribute_path is not None:
             pulumi.set(__self__, "role_attribute_path", role_attribute_path)
         if role_attribute_strict is not None:
@@ -705,6 +1222,22 @@ class SsoSettingsOauth2Settings(dict):
         return pulumi.get(self, "name_attribute_path")
 
     @property
+    @pulumi.getter(name="orgAttributePath")
+    def org_attribute_path(self) -> Optional[str]:
+        """
+        JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "org_mapping"). Only applicable to Generic OAuth and Okta.
+        """
+        return pulumi.get(self, "org_attribute_path")
+
+    @property
+    @pulumi.getter(name="orgMapping")
+    def org_mapping(self) -> Optional[str]:
+        """
+        List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+        """
+        return pulumi.get(self, "org_mapping")
+
+    @property
     @pulumi.getter(name="roleAttributePath")
     def role_attribute_path(self) -> Optional[str]:
         """
@@ -852,6 +1385,14 @@ class SsoSettingsSamlSettings(dict):
             suggest = "auto_login"
         elif key == "certificatePath":
             suggest = "certificate_path"
+        elif key == "clientId":
+            suggest = "client_id"
+        elif key == "clientSecret":
+            suggest = "client_secret"
+        elif key == "entityId":
+            suggest = "entity_id"
+        elif key == "forceUseGraphApi":
+            suggest = "force_use_graph_api"
         elif key == "idpMetadata":
             suggest = "idp_metadata"
         elif key == "idpMetadataPath":
@@ -888,6 +1429,8 @@ class SsoSettingsSamlSettings(dict):
             suggest = "single_logout"
         elif key == "skipOrgRoleSync":
             suggest = "skip_org_role_sync"
+        elif key == "tokenUrl":
+            suggest = "token_url"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SsoSettingsSamlSettings. Access the value via the '{suggest}' property getter instead.")
@@ -913,7 +1456,11 @@ class SsoSettingsSamlSettings(dict):
                  auto_login: Optional[bool] = None,
                  certificate: Optional[str] = None,
                  certificate_path: Optional[str] = None,
+                 client_id: Optional[str] = None,
+                 client_secret: Optional[str] = None,
                  enabled: Optional[bool] = None,
+                 entity_id: Optional[str] = None,
+                 force_use_graph_api: Optional[bool] = None,
                  idp_metadata: Optional[str] = None,
                  idp_metadata_path: Optional[str] = None,
                  idp_metadata_url: Optional[str] = None,
@@ -932,7 +1479,8 @@ class SsoSettingsSamlSettings(dict):
                  role_values_viewer: Optional[str] = None,
                  signature_algorithm: Optional[str] = None,
                  single_logout: Optional[bool] = None,
-                 skip_org_role_sync: Optional[bool] = None):
+                 skip_org_role_sync: Optional[bool] = None,
+                 token_url: Optional[str] = None):
         """
         :param bool allow_idp_initiated: Whether SAML IdP-initiated login is allowed.
         :param bool allow_sign_up: Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
@@ -946,7 +1494,11 @@ class SsoSettingsSamlSettings(dict):
         :param bool auto_login: Whether SAML auto login is enabled.
         :param str certificate: Base64-encoded string for the SP X.509 certificate.
         :param str certificate_path: Path for the SP X.509 certificate.
+        :param str client_id: The client Id of your OAuth2 app.
+        :param str client_secret: The client secret of your OAuth2 app.
         :param bool enabled: Define whether this configuration is enabled for SAML. Defaults to `true`.
+        :param str entity_id: The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+        :param bool force_use_graph_api: If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
         :param str idp_metadata: Base64-encoded string for the IdP SAML metadata XML.
         :param str idp_metadata_path: Path for the IdP SAML metadata XML.
         :param str idp_metadata_url: URL for the IdP SAML metadata XML.
@@ -966,6 +1518,7 @@ class SsoSettingsSamlSettings(dict):
         :param str signature_algorithm: Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
         :param bool single_logout: Whether SAML Single Logout is enabled.
         :param bool skip_org_role_sync: Prevent synchronizing users’ organization roles from your IdP.
+        :param str token_url: The token endpoint of your OAuth2 provider. Required for Azure AD providers.
         """
         if allow_idp_initiated is not None:
             pulumi.set(__self__, "allow_idp_initiated", allow_idp_initiated)
@@ -991,8 +1544,16 @@ class SsoSettingsSamlSettings(dict):
             pulumi.set(__self__, "certificate", certificate)
         if certificate_path is not None:
             pulumi.set(__self__, "certificate_path", certificate_path)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if entity_id is not None:
+            pulumi.set(__self__, "entity_id", entity_id)
+        if force_use_graph_api is not None:
+            pulumi.set(__self__, "force_use_graph_api", force_use_graph_api)
         if idp_metadata is not None:
             pulumi.set(__self__, "idp_metadata", idp_metadata)
         if idp_metadata_path is not None:
@@ -1031,6 +1592,8 @@ class SsoSettingsSamlSettings(dict):
             pulumi.set(__self__, "single_logout", single_logout)
         if skip_org_role_sync is not None:
             pulumi.set(__self__, "skip_org_role_sync", skip_org_role_sync)
+        if token_url is not None:
+            pulumi.set(__self__, "token_url", token_url)
 
     @property
     @pulumi.getter(name="allowIdpInitiated")
@@ -1129,12 +1692,44 @@ class SsoSettingsSamlSettings(dict):
         return pulumi.get(self, "certificate_path")
 
     @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[str]:
+        """
+        The client Id of your OAuth2 app.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> Optional[str]:
+        """
+        The client secret of your OAuth2 app.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @property
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
         """
         Define whether this configuration is enabled for SAML. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> Optional[str]:
+        """
+        The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+        """
+        return pulumi.get(self, "entity_id")
+
+    @property
+    @pulumi.getter(name="forceUseGraphApi")
+    def force_use_graph_api(self) -> Optional[bool]:
+        """
+        If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+        """
+        return pulumi.get(self, "force_use_graph_api")
 
     @property
     @pulumi.getter(name="idpMetadata")
@@ -1287,6 +1882,14 @@ class SsoSettingsSamlSettings(dict):
         Prevent synchronizing users’ organization roles from your IdP.
         """
         return pulumi.get(self, "skip_org_role_sync")
+
+    @property
+    @pulumi.getter(name="tokenUrl")
+    def token_url(self) -> Optional[str]:
+        """
+        The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+        """
+        return pulumi.get(self, "token_url")
 
 
 @pulumi.output_type

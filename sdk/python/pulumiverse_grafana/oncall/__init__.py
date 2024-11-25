@@ -15,6 +15,7 @@ from .get_slack_channel import *
 from .get_team import *
 from .get_user import *
 from .get_user_group import *
+from .get_users import *
 from .integration import *
 from .on_call_shift import *
 from .outgoing_webhook import *

@@ -697,8 +697,10 @@ type IntegrationTemplates struct {
 	Email *IntegrationTemplatesEmail `pulumi:"email"`
 	// Template for the key by which alerts are grouped.
 	GroupingKey *string `pulumi:"groupingKey"`
-	// Templates for Microsoft Teams.
+	// Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
 	MicrosoftTeams *IntegrationTemplatesMicrosoftTeams `pulumi:"microsoftTeams"`
+	// Templates for Mobile app push notifications.
+	MobileApp *IntegrationTemplatesMobileApp `pulumi:"mobileApp"`
 	// Templates for Phone Call.
 	PhoneCall *IntegrationTemplatesPhoneCall `pulumi:"phoneCall"`
 	// Template for sending a signal to resolve the Incident.
@@ -733,8 +735,10 @@ type IntegrationTemplatesArgs struct {
 	Email IntegrationTemplatesEmailPtrInput `pulumi:"email"`
 	// Template for the key by which alerts are grouped.
 	GroupingKey pulumi.StringPtrInput `pulumi:"groupingKey"`
-	// Templates for Microsoft Teams.
+	// Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
 	MicrosoftTeams IntegrationTemplatesMicrosoftTeamsPtrInput `pulumi:"microsoftTeams"`
+	// Templates for Mobile app push notifications.
+	MobileApp IntegrationTemplatesMobileAppPtrInput `pulumi:"mobileApp"`
 	// Templates for Phone Call.
 	PhoneCall IntegrationTemplatesPhoneCallPtrInput `pulumi:"phoneCall"`
 	// Template for sending a signal to resolve the Incident.
@@ -843,9 +847,14 @@ func (o IntegrationTemplatesOutput) GroupingKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IntegrationTemplates) *string { return v.GroupingKey }).(pulumi.StringPtrOutput)
 }
 
-// Templates for Microsoft Teams.
+// Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
 func (o IntegrationTemplatesOutput) MicrosoftTeams() IntegrationTemplatesMicrosoftTeamsPtrOutput {
 	return o.ApplyT(func(v IntegrationTemplates) *IntegrationTemplatesMicrosoftTeams { return v.MicrosoftTeams }).(IntegrationTemplatesMicrosoftTeamsPtrOutput)
+}
+
+// Templates for Mobile app push notifications.
+func (o IntegrationTemplatesOutput) MobileApp() IntegrationTemplatesMobileAppPtrOutput {
+	return o.ApplyT(func(v IntegrationTemplates) *IntegrationTemplatesMobileApp { return v.MobileApp }).(IntegrationTemplatesMobileAppPtrOutput)
 }
 
 // Templates for Phone Call.
@@ -937,7 +946,7 @@ func (o IntegrationTemplatesPtrOutput) GroupingKey() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Templates for Microsoft Teams.
+// Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
 func (o IntegrationTemplatesPtrOutput) MicrosoftTeams() IntegrationTemplatesMicrosoftTeamsPtrOutput {
 	return o.ApplyT(func(v *IntegrationTemplates) *IntegrationTemplatesMicrosoftTeams {
 		if v == nil {
@@ -945,6 +954,16 @@ func (o IntegrationTemplatesPtrOutput) MicrosoftTeams() IntegrationTemplatesMicr
 		}
 		return v.MicrosoftTeams
 	}).(IntegrationTemplatesMicrosoftTeamsPtrOutput)
+}
+
+// Templates for Mobile app push notifications.
+func (o IntegrationTemplatesPtrOutput) MobileApp() IntegrationTemplatesMobileAppPtrOutput {
+	return o.ApplyT(func(v *IntegrationTemplates) *IntegrationTemplatesMobileApp {
+		if v == nil {
+			return nil
+		}
+		return v.MobileApp
+	}).(IntegrationTemplatesMobileAppPtrOutput)
 }
 
 // Templates for Phone Call.
@@ -1341,6 +1360,162 @@ func (o IntegrationTemplatesMicrosoftTeamsPtrOutput) Message() pulumi.StringPtrO
 // Template for Alert title.
 func (o IntegrationTemplatesMicrosoftTeamsPtrOutput) Title() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationTemplatesMicrosoftTeams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Title
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationTemplatesMobileApp struct {
+	// Template for Alert message.
+	Message *string `pulumi:"message"`
+	// Template for Alert title.
+	Title *string `pulumi:"title"`
+}
+
+// IntegrationTemplatesMobileAppInput is an input type that accepts IntegrationTemplatesMobileAppArgs and IntegrationTemplatesMobileAppOutput values.
+// You can construct a concrete instance of `IntegrationTemplatesMobileAppInput` via:
+//
+//	IntegrationTemplatesMobileAppArgs{...}
+type IntegrationTemplatesMobileAppInput interface {
+	pulumi.Input
+
+	ToIntegrationTemplatesMobileAppOutput() IntegrationTemplatesMobileAppOutput
+	ToIntegrationTemplatesMobileAppOutputWithContext(context.Context) IntegrationTemplatesMobileAppOutput
+}
+
+type IntegrationTemplatesMobileAppArgs struct {
+	// Template for Alert message.
+	Message pulumi.StringPtrInput `pulumi:"message"`
+	// Template for Alert title.
+	Title pulumi.StringPtrInput `pulumi:"title"`
+}
+
+func (IntegrationTemplatesMobileAppArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationTemplatesMobileApp)(nil)).Elem()
+}
+
+func (i IntegrationTemplatesMobileAppArgs) ToIntegrationTemplatesMobileAppOutput() IntegrationTemplatesMobileAppOutput {
+	return i.ToIntegrationTemplatesMobileAppOutputWithContext(context.Background())
+}
+
+func (i IntegrationTemplatesMobileAppArgs) ToIntegrationTemplatesMobileAppOutputWithContext(ctx context.Context) IntegrationTemplatesMobileAppOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationTemplatesMobileAppOutput)
+}
+
+func (i IntegrationTemplatesMobileAppArgs) ToIntegrationTemplatesMobileAppPtrOutput() IntegrationTemplatesMobileAppPtrOutput {
+	return i.ToIntegrationTemplatesMobileAppPtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationTemplatesMobileAppArgs) ToIntegrationTemplatesMobileAppPtrOutputWithContext(ctx context.Context) IntegrationTemplatesMobileAppPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationTemplatesMobileAppOutput).ToIntegrationTemplatesMobileAppPtrOutputWithContext(ctx)
+}
+
+// IntegrationTemplatesMobileAppPtrInput is an input type that accepts IntegrationTemplatesMobileAppArgs, IntegrationTemplatesMobileAppPtr and IntegrationTemplatesMobileAppPtrOutput values.
+// You can construct a concrete instance of `IntegrationTemplatesMobileAppPtrInput` via:
+//
+//	        IntegrationTemplatesMobileAppArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationTemplatesMobileAppPtrInput interface {
+	pulumi.Input
+
+	ToIntegrationTemplatesMobileAppPtrOutput() IntegrationTemplatesMobileAppPtrOutput
+	ToIntegrationTemplatesMobileAppPtrOutputWithContext(context.Context) IntegrationTemplatesMobileAppPtrOutput
+}
+
+type integrationTemplatesMobileAppPtrType IntegrationTemplatesMobileAppArgs
+
+func IntegrationTemplatesMobileAppPtr(v *IntegrationTemplatesMobileAppArgs) IntegrationTemplatesMobileAppPtrInput {
+	return (*integrationTemplatesMobileAppPtrType)(v)
+}
+
+func (*integrationTemplatesMobileAppPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationTemplatesMobileApp)(nil)).Elem()
+}
+
+func (i *integrationTemplatesMobileAppPtrType) ToIntegrationTemplatesMobileAppPtrOutput() IntegrationTemplatesMobileAppPtrOutput {
+	return i.ToIntegrationTemplatesMobileAppPtrOutputWithContext(context.Background())
+}
+
+func (i *integrationTemplatesMobileAppPtrType) ToIntegrationTemplatesMobileAppPtrOutputWithContext(ctx context.Context) IntegrationTemplatesMobileAppPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationTemplatesMobileAppPtrOutput)
+}
+
+type IntegrationTemplatesMobileAppOutput struct{ *pulumi.OutputState }
+
+func (IntegrationTemplatesMobileAppOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationTemplatesMobileApp)(nil)).Elem()
+}
+
+func (o IntegrationTemplatesMobileAppOutput) ToIntegrationTemplatesMobileAppOutput() IntegrationTemplatesMobileAppOutput {
+	return o
+}
+
+func (o IntegrationTemplatesMobileAppOutput) ToIntegrationTemplatesMobileAppOutputWithContext(ctx context.Context) IntegrationTemplatesMobileAppOutput {
+	return o
+}
+
+func (o IntegrationTemplatesMobileAppOutput) ToIntegrationTemplatesMobileAppPtrOutput() IntegrationTemplatesMobileAppPtrOutput {
+	return o.ToIntegrationTemplatesMobileAppPtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationTemplatesMobileAppOutput) ToIntegrationTemplatesMobileAppPtrOutputWithContext(ctx context.Context) IntegrationTemplatesMobileAppPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationTemplatesMobileApp) *IntegrationTemplatesMobileApp {
+		return &v
+	}).(IntegrationTemplatesMobileAppPtrOutput)
+}
+
+// Template for Alert message.
+func (o IntegrationTemplatesMobileAppOutput) Message() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationTemplatesMobileApp) *string { return v.Message }).(pulumi.StringPtrOutput)
+}
+
+// Template for Alert title.
+func (o IntegrationTemplatesMobileAppOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationTemplatesMobileApp) *string { return v.Title }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationTemplatesMobileAppPtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationTemplatesMobileAppPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationTemplatesMobileApp)(nil)).Elem()
+}
+
+func (o IntegrationTemplatesMobileAppPtrOutput) ToIntegrationTemplatesMobileAppPtrOutput() IntegrationTemplatesMobileAppPtrOutput {
+	return o
+}
+
+func (o IntegrationTemplatesMobileAppPtrOutput) ToIntegrationTemplatesMobileAppPtrOutputWithContext(ctx context.Context) IntegrationTemplatesMobileAppPtrOutput {
+	return o
+}
+
+func (o IntegrationTemplatesMobileAppPtrOutput) Elem() IntegrationTemplatesMobileAppOutput {
+	return o.ApplyT(func(v *IntegrationTemplatesMobileApp) IntegrationTemplatesMobileApp {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationTemplatesMobileApp
+		return ret
+	}).(IntegrationTemplatesMobileAppOutput)
+}
+
+// Template for Alert message.
+func (o IntegrationTemplatesMobileAppPtrOutput) Message() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationTemplatesMobileApp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Message
+	}).(pulumi.StringPtrOutput)
+}
+
+// Template for Alert title.
+func (o IntegrationTemplatesMobileAppPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationTemplatesMobileApp) *string {
 		if v == nil {
 			return nil
 		}
@@ -2771,6 +2946,118 @@ func (o ScheduleSlackPtrOutput) UserGroupId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetUsersUser struct {
+	Email    string `pulumi:"email"`
+	Id       string `pulumi:"id"`
+	Role     string `pulumi:"role"`
+	Username string `pulumi:"username"`
+}
+
+// GetUsersUserInput is an input type that accepts GetUsersUserArgs and GetUsersUserOutput values.
+// You can construct a concrete instance of `GetUsersUserInput` via:
+//
+//	GetUsersUserArgs{...}
+type GetUsersUserInput interface {
+	pulumi.Input
+
+	ToGetUsersUserOutput() GetUsersUserOutput
+	ToGetUsersUserOutputWithContext(context.Context) GetUsersUserOutput
+}
+
+type GetUsersUserArgs struct {
+	Email    pulumi.StringInput `pulumi:"email"`
+	Id       pulumi.StringInput `pulumi:"id"`
+	Role     pulumi.StringInput `pulumi:"role"`
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetUsersUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutput() GetUsersUserOutput {
+	return i.ToGetUsersUserOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserOutput)
+}
+
+// GetUsersUserArrayInput is an input type that accepts GetUsersUserArray and GetUsersUserArrayOutput values.
+// You can construct a concrete instance of `GetUsersUserArrayInput` via:
+//
+//	GetUsersUserArray{ GetUsersUserArgs{...} }
+type GetUsersUserArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersUserArrayOutput() GetUsersUserArrayOutput
+	ToGetUsersUserArrayOutputWithContext(context.Context) GetUsersUserArrayOutput
+}
+
+type GetUsersUserArray []GetUsersUserInput
+
+func (GetUsersUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return i.ToGetUsersUserArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserArrayOutput)
+}
+
+type GetUsersUserOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutput() GetUsersUserOutput {
+	return o
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return o
+}
+
+func (o GetUsersUserOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Email }).(pulumi.StringOutput)
+}
+
+func (o GetUsersUserOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetUsersUserOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Role }).(pulumi.StringOutput)
+}
+
+func (o GetUsersUserOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetUsersUserArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersUser {
+		return vs[0].([]GetUsersUser)[vs[1].(int)]
+	}).(GetUsersUserOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationDefaultRouteInput)(nil)).Elem(), IntegrationDefaultRouteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationDefaultRoutePtrInput)(nil)).Elem(), IntegrationDefaultRouteArgs{})
@@ -2786,6 +3073,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationTemplatesEmailPtrInput)(nil)).Elem(), IntegrationTemplatesEmailArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationTemplatesMicrosoftTeamsInput)(nil)).Elem(), IntegrationTemplatesMicrosoftTeamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationTemplatesMicrosoftTeamsPtrInput)(nil)).Elem(), IntegrationTemplatesMicrosoftTeamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationTemplatesMobileAppInput)(nil)).Elem(), IntegrationTemplatesMobileAppArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationTemplatesMobileAppPtrInput)(nil)).Elem(), IntegrationTemplatesMobileAppArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationTemplatesPhoneCallInput)(nil)).Elem(), IntegrationTemplatesPhoneCallArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationTemplatesPhoneCallPtrInput)(nil)).Elem(), IntegrationTemplatesPhoneCallArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationTemplatesSlackInput)(nil)).Elem(), IntegrationTemplatesSlackArgs{})
@@ -2804,6 +3093,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteTelegramPtrInput)(nil)).Elem(), RouteTelegramArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScheduleSlackInput)(nil)).Elem(), ScheduleSlackArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScheduleSlackPtrInput)(nil)).Elem(), ScheduleSlackArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
 	pulumi.RegisterOutputType(IntegrationDefaultRouteOutput{})
 	pulumi.RegisterOutputType(IntegrationDefaultRoutePtrOutput{})
 	pulumi.RegisterOutputType(IntegrationDefaultRouteMsteamsOutput{})
@@ -2818,6 +3109,8 @@ func init() {
 	pulumi.RegisterOutputType(IntegrationTemplatesEmailPtrOutput{})
 	pulumi.RegisterOutputType(IntegrationTemplatesMicrosoftTeamsOutput{})
 	pulumi.RegisterOutputType(IntegrationTemplatesMicrosoftTeamsPtrOutput{})
+	pulumi.RegisterOutputType(IntegrationTemplatesMobileAppOutput{})
+	pulumi.RegisterOutputType(IntegrationTemplatesMobileAppPtrOutput{})
 	pulumi.RegisterOutputType(IntegrationTemplatesPhoneCallOutput{})
 	pulumi.RegisterOutputType(IntegrationTemplatesPhoneCallPtrOutput{})
 	pulumi.RegisterOutputType(IntegrationTemplatesSlackOutput{})
@@ -2836,4 +3129,6 @@ func init() {
 	pulumi.RegisterOutputType(RouteTelegramPtrOutput{})
 	pulumi.RegisterOutputType(ScheduleSlackOutput{})
 	pulumi.RegisterOutputType(ScheduleSlackPtrOutput{})
+	pulumi.RegisterOutputType(GetUsersUserOutput{})
+	pulumi.RegisterOutputType(GetUsersUserArrayOutput{})
 }

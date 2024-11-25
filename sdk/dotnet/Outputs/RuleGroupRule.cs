@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class RuleGroupRule
     {
         /// <summary>
-        /// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+        /// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Annotations;
         /// <summary>
@@ -51,9 +51,13 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly string? NoDataState;
         /// <summary>
-        /// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+        /// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
         /// </summary>
         public readonly Outputs.RuleGroupRuleNotificationSettings? NotificationSettings;
+        /// <summary>
+        /// Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
+        /// </summary>
+        public readonly Outputs.RuleGroupRuleRecord? Record;
         /// <summary>
         /// The unique identifier of the alert rule.
         /// </summary>
@@ -81,6 +85,8 @@ namespace Pulumiverse.Grafana.Outputs
 
             Outputs.RuleGroupRuleNotificationSettings? notificationSettings,
 
+            Outputs.RuleGroupRuleRecord? record,
+
             string? uid)
         {
             Annotations = annotations;
@@ -93,6 +99,7 @@ namespace Pulumiverse.Grafana.Outputs
             Name = name;
             NoDataState = noDataState;
             NotificationSettings = notificationSettings;
+            Record = record;
             Uid = uid;
         }
     }

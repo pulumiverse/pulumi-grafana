@@ -102,7 +102,7 @@ type DashboardPermissionItem struct {
 
 	// The UID of the dashboard.
 	DashboardUid pulumi.StringOutput `pulumi:"dashboardUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// the permission to be assigned
 	Permission pulumi.StringOutput `pulumi:"permission"`
@@ -158,7 +158,7 @@ func GetDashboardPermissionItem(ctx *pulumi.Context,
 type dashboardPermissionItemState struct {
 	// The UID of the dashboard.
 	DashboardUid *string `pulumi:"dashboardUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// the permission to be assigned
 	Permission *string `pulumi:"permission"`
@@ -173,7 +173,7 @@ type dashboardPermissionItemState struct {
 type DashboardPermissionItemState struct {
 	// The UID of the dashboard.
 	DashboardUid pulumi.StringPtrInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// the permission to be assigned
 	Permission pulumi.StringPtrInput
@@ -192,7 +192,7 @@ func (DashboardPermissionItemState) ElementType() reflect.Type {
 type dashboardPermissionItemArgs struct {
 	// The UID of the dashboard.
 	DashboardUid string `pulumi:"dashboardUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// the permission to be assigned
 	Permission string `pulumi:"permission"`
@@ -208,7 +208,7 @@ type dashboardPermissionItemArgs struct {
 type DashboardPermissionItemArgs struct {
 	// The UID of the dashboard.
 	DashboardUid pulumi.StringInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// the permission to be assigned
 	Permission pulumi.StringInput
@@ -312,7 +312,7 @@ func (o DashboardPermissionItemOutput) DashboardUid() pulumi.StringOutput {
 	return o.ApplyT(func(v *DashboardPermissionItem) pulumi.StringOutput { return v.DashboardUid }).(pulumi.StringOutput)
 }
 
-// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 func (o DashboardPermissionItemOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DashboardPermissionItem) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }

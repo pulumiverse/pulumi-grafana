@@ -15,6 +15,11 @@ export type AccessPolicyToken = import("./accessPolicyToken").AccessPolicyToken;
 export const AccessPolicyToken: typeof import("./accessPolicyToken").AccessPolicyToken = null as any;
 utilities.lazyLoad(exports, ["AccessPolicyToken"], () => require("./accessPolicyToken"));
 
+export { GetAccessPoliciesArgs, GetAccessPoliciesResult, GetAccessPoliciesOutputArgs } from "./getAccessPolicies";
+export const getAccessPolicies: typeof import("./getAccessPolicies").getAccessPolicies = null as any;
+export const getAccessPoliciesOutput: typeof import("./getAccessPolicies").getAccessPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getAccessPolicies","getAccessPoliciesOutput"], () => require("./getAccessPolicies"));
+
 export { GetIpsResult } from "./getIps";
 export const getIps: typeof import("./getIps").getIps = null as any;
 export const getIpsOutput: typeof import("./getIps").getIpsOutput = null as any;
@@ -24,6 +29,21 @@ export { GetOrganizationArgs, GetOrganizationResult, GetOrganizationOutputArgs }
 export const getOrganization: typeof import("./getOrganization").getOrganization = null as any;
 export const getOrganizationOutput: typeof import("./getOrganization").getOrganizationOutput = null as any;
 utilities.lazyLoad(exports, ["getOrganization","getOrganizationOutput"], () => require("./getOrganization"));
+
+export { GetProviderAwsAccountArgs, GetProviderAwsAccountResult, GetProviderAwsAccountOutputArgs } from "./getProviderAwsAccount";
+export const getProviderAwsAccount: typeof import("./getProviderAwsAccount").getProviderAwsAccount = null as any;
+export const getProviderAwsAccountOutput: typeof import("./getProviderAwsAccount").getProviderAwsAccountOutput = null as any;
+utilities.lazyLoad(exports, ["getProviderAwsAccount","getProviderAwsAccountOutput"], () => require("./getProviderAwsAccount"));
+
+export { GetProviderAwsCloudwatchScrapeJobArgs, GetProviderAwsCloudwatchScrapeJobResult, GetProviderAwsCloudwatchScrapeJobOutputArgs } from "./getProviderAwsCloudwatchScrapeJob";
+export const getProviderAwsCloudwatchScrapeJob: typeof import("./getProviderAwsCloudwatchScrapeJob").getProviderAwsCloudwatchScrapeJob = null as any;
+export const getProviderAwsCloudwatchScrapeJobOutput: typeof import("./getProviderAwsCloudwatchScrapeJob").getProviderAwsCloudwatchScrapeJobOutput = null as any;
+utilities.lazyLoad(exports, ["getProviderAwsCloudwatchScrapeJob","getProviderAwsCloudwatchScrapeJobOutput"], () => require("./getProviderAwsCloudwatchScrapeJob"));
+
+export { GetProviderAwsCloudwatchScrapeJobsArgs, GetProviderAwsCloudwatchScrapeJobsResult, GetProviderAwsCloudwatchScrapeJobsOutputArgs } from "./getProviderAwsCloudwatchScrapeJobs";
+export const getProviderAwsCloudwatchScrapeJobs: typeof import("./getProviderAwsCloudwatchScrapeJobs").getProviderAwsCloudwatchScrapeJobs = null as any;
+export const getProviderAwsCloudwatchScrapeJobsOutput: typeof import("./getProviderAwsCloudwatchScrapeJobs").getProviderAwsCloudwatchScrapeJobsOutput = null as any;
+utilities.lazyLoad(exports, ["getProviderAwsCloudwatchScrapeJobs","getProviderAwsCloudwatchScrapeJobsOutput"], () => require("./getProviderAwsCloudwatchScrapeJobs"));
 
 export { GetStackArgs, GetStackResult, GetStackOutputArgs } from "./getStack";
 export const getStack: typeof import("./getStack").getStack = null as any;
@@ -39,6 +59,16 @@ export { PluginInstallationArgs, PluginInstallationState } from "./pluginInstall
 export type PluginInstallation = import("./pluginInstallation").PluginInstallation;
 export const PluginInstallation: typeof import("./pluginInstallation").PluginInstallation = null as any;
 utilities.lazyLoad(exports, ["PluginInstallation"], () => require("./pluginInstallation"));
+
+export { ProviderAwsAccountArgs, ProviderAwsAccountState } from "./providerAwsAccount";
+export type ProviderAwsAccount = import("./providerAwsAccount").ProviderAwsAccount;
+export const ProviderAwsAccount: typeof import("./providerAwsAccount").ProviderAwsAccount = null as any;
+utilities.lazyLoad(exports, ["ProviderAwsAccount"], () => require("./providerAwsAccount"));
+
+export { ProviderAwsCloudwatchScrapeJobArgs, ProviderAwsCloudwatchScrapeJobState } from "./providerAwsCloudwatchScrapeJob";
+export type ProviderAwsCloudwatchScrapeJob = import("./providerAwsCloudwatchScrapeJob").ProviderAwsCloudwatchScrapeJob;
+export const ProviderAwsCloudwatchScrapeJob: typeof import("./providerAwsCloudwatchScrapeJob").ProviderAwsCloudwatchScrapeJob = null as any;
+utilities.lazyLoad(exports, ["ProviderAwsCloudwatchScrapeJob"], () => require("./providerAwsCloudwatchScrapeJob"));
 
 export { StackArgs, StackState } from "./stack";
 export type Stack = import("./stack").Stack;
@@ -68,6 +98,10 @@ const _module = {
                 return new OrgMember(name, <any>undefined, { urn })
             case "grafana:cloud/pluginInstallation:PluginInstallation":
                 return new PluginInstallation(name, <any>undefined, { urn })
+            case "grafana:cloud/providerAwsAccount:ProviderAwsAccount":
+                return new ProviderAwsAccount(name, <any>undefined, { urn })
+            case "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob":
+                return new ProviderAwsCloudwatchScrapeJob(name, <any>undefined, { urn })
             case "grafana:cloud/stack:Stack":
                 return new Stack(name, <any>undefined, { urn })
             case "grafana:cloud/stackServiceAccount:StackServiceAccount":
@@ -83,6 +117,8 @@ pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicy", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicyToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/orgMember", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/pluginInstallation", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloud/providerAwsAccount", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloud/providerAwsCloudwatchScrapeJob", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stack", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stackServiceAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stackServiceAccountToken", _module)

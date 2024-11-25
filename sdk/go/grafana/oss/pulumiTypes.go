@@ -494,6 +494,758 @@ func (o ServiceAccountPermissionPermissionArrayOutput) Index(i pulumi.IntInput) 
 	}).(ServiceAccountPermissionPermissionOutput)
 }
 
+type SsoSettingsLdapSettings struct {
+	// Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+	AllowSignUp *bool `pulumi:"allowSignUp"`
+	// The LDAP configuration.
+	Config SsoSettingsLdapSettingsConfig `pulumi:"config"`
+	// Define whether this configuration is enabled for LDAP. Defaults to `true`.
+	Enabled *bool `pulumi:"enabled"`
+	// Prevent synchronizing users’ organization roles from LDAP.
+	SkipOrgRoleSync *bool `pulumi:"skipOrgRoleSync"`
+}
+
+// SsoSettingsLdapSettingsInput is an input type that accepts SsoSettingsLdapSettingsArgs and SsoSettingsLdapSettingsOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsInput` via:
+//
+//	SsoSettingsLdapSettingsArgs{...}
+type SsoSettingsLdapSettingsInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsOutput() SsoSettingsLdapSettingsOutput
+	ToSsoSettingsLdapSettingsOutputWithContext(context.Context) SsoSettingsLdapSettingsOutput
+}
+
+type SsoSettingsLdapSettingsArgs struct {
+	// Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+	AllowSignUp pulumi.BoolPtrInput `pulumi:"allowSignUp"`
+	// The LDAP configuration.
+	Config SsoSettingsLdapSettingsConfigInput `pulumi:"config"`
+	// Define whether this configuration is enabled for LDAP. Defaults to `true`.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Prevent synchronizing users’ organization roles from LDAP.
+	SkipOrgRoleSync pulumi.BoolPtrInput `pulumi:"skipOrgRoleSync"`
+}
+
+func (SsoSettingsLdapSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettings)(nil)).Elem()
+}
+
+func (i SsoSettingsLdapSettingsArgs) ToSsoSettingsLdapSettingsOutput() SsoSettingsLdapSettingsOutput {
+	return i.ToSsoSettingsLdapSettingsOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsArgs) ToSsoSettingsLdapSettingsOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsOutput)
+}
+
+func (i SsoSettingsLdapSettingsArgs) ToSsoSettingsLdapSettingsPtrOutput() SsoSettingsLdapSettingsPtrOutput {
+	return i.ToSsoSettingsLdapSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsArgs) ToSsoSettingsLdapSettingsPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsOutput).ToSsoSettingsLdapSettingsPtrOutputWithContext(ctx)
+}
+
+// SsoSettingsLdapSettingsPtrInput is an input type that accepts SsoSettingsLdapSettingsArgs, SsoSettingsLdapSettingsPtr and SsoSettingsLdapSettingsPtrOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsPtrInput` via:
+//
+//	        SsoSettingsLdapSettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SsoSettingsLdapSettingsPtrInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsPtrOutput() SsoSettingsLdapSettingsPtrOutput
+	ToSsoSettingsLdapSettingsPtrOutputWithContext(context.Context) SsoSettingsLdapSettingsPtrOutput
+}
+
+type ssoSettingsLdapSettingsPtrType SsoSettingsLdapSettingsArgs
+
+func SsoSettingsLdapSettingsPtr(v *SsoSettingsLdapSettingsArgs) SsoSettingsLdapSettingsPtrInput {
+	return (*ssoSettingsLdapSettingsPtrType)(v)
+}
+
+func (*ssoSettingsLdapSettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsLdapSettings)(nil)).Elem()
+}
+
+func (i *ssoSettingsLdapSettingsPtrType) ToSsoSettingsLdapSettingsPtrOutput() SsoSettingsLdapSettingsPtrOutput {
+	return i.ToSsoSettingsLdapSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *ssoSettingsLdapSettingsPtrType) ToSsoSettingsLdapSettingsPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsPtrOutput)
+}
+
+type SsoSettingsLdapSettingsOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettings)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsOutput) ToSsoSettingsLdapSettingsOutput() SsoSettingsLdapSettingsOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsOutput) ToSsoSettingsLdapSettingsOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsOutput) ToSsoSettingsLdapSettingsPtrOutput() SsoSettingsLdapSettingsPtrOutput {
+	return o.ToSsoSettingsLdapSettingsPtrOutputWithContext(context.Background())
+}
+
+func (o SsoSettingsLdapSettingsOutput) ToSsoSettingsLdapSettingsPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SsoSettingsLdapSettings) *SsoSettingsLdapSettings {
+		return &v
+	}).(SsoSettingsLdapSettingsPtrOutput)
+}
+
+// Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+func (o SsoSettingsLdapSettingsOutput) AllowSignUp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettings) *bool { return v.AllowSignUp }).(pulumi.BoolPtrOutput)
+}
+
+// The LDAP configuration.
+func (o SsoSettingsLdapSettingsOutput) Config() SsoSettingsLdapSettingsConfigOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettings) SsoSettingsLdapSettingsConfig { return v.Config }).(SsoSettingsLdapSettingsConfigOutput)
+}
+
+// Define whether this configuration is enabled for LDAP. Defaults to `true`.
+func (o SsoSettingsLdapSettingsOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Prevent synchronizing users’ organization roles from LDAP.
+func (o SsoSettingsLdapSettingsOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettings) *bool { return v.SkipOrgRoleSync }).(pulumi.BoolPtrOutput)
+}
+
+type SsoSettingsLdapSettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsLdapSettings)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsPtrOutput) ToSsoSettingsLdapSettingsPtrOutput() SsoSettingsLdapSettingsPtrOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsPtrOutput) ToSsoSettingsLdapSettingsPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsPtrOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsPtrOutput) Elem() SsoSettingsLdapSettingsOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettings) SsoSettingsLdapSettings {
+		if v != nil {
+			return *v
+		}
+		var ret SsoSettingsLdapSettings
+		return ret
+	}).(SsoSettingsLdapSettingsOutput)
+}
+
+// Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+func (o SsoSettingsLdapSettingsPtrOutput) AllowSignUp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowSignUp
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The LDAP configuration.
+func (o SsoSettingsLdapSettingsPtrOutput) Config() SsoSettingsLdapSettingsConfigPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettings) *SsoSettingsLdapSettingsConfig {
+		if v == nil {
+			return nil
+		}
+		return &v.Config
+	}).(SsoSettingsLdapSettingsConfigPtrOutput)
+}
+
+// Define whether this configuration is enabled for LDAP. Defaults to `true`.
+func (o SsoSettingsLdapSettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Prevent synchronizing users’ organization roles from LDAP.
+func (o SsoSettingsLdapSettingsPtrOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SkipOrgRoleSync
+	}).(pulumi.BoolPtrOutput)
+}
+
+type SsoSettingsLdapSettingsConfig struct {
+	// The LDAP servers configuration.
+	Servers []SsoSettingsLdapSettingsConfigServer `pulumi:"servers"`
+}
+
+// SsoSettingsLdapSettingsConfigInput is an input type that accepts SsoSettingsLdapSettingsConfigArgs and SsoSettingsLdapSettingsConfigOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsConfigInput` via:
+//
+//	SsoSettingsLdapSettingsConfigArgs{...}
+type SsoSettingsLdapSettingsConfigInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsConfigOutput() SsoSettingsLdapSettingsConfigOutput
+	ToSsoSettingsLdapSettingsConfigOutputWithContext(context.Context) SsoSettingsLdapSettingsConfigOutput
+}
+
+type SsoSettingsLdapSettingsConfigArgs struct {
+	// The LDAP servers configuration.
+	Servers SsoSettingsLdapSettingsConfigServerArrayInput `pulumi:"servers"`
+}
+
+func (SsoSettingsLdapSettingsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettingsConfig)(nil)).Elem()
+}
+
+func (i SsoSettingsLdapSettingsConfigArgs) ToSsoSettingsLdapSettingsConfigOutput() SsoSettingsLdapSettingsConfigOutput {
+	return i.ToSsoSettingsLdapSettingsConfigOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsConfigArgs) ToSsoSettingsLdapSettingsConfigOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigOutput)
+}
+
+func (i SsoSettingsLdapSettingsConfigArgs) ToSsoSettingsLdapSettingsConfigPtrOutput() SsoSettingsLdapSettingsConfigPtrOutput {
+	return i.ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsConfigArgs) ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigOutput).ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(ctx)
+}
+
+// SsoSettingsLdapSettingsConfigPtrInput is an input type that accepts SsoSettingsLdapSettingsConfigArgs, SsoSettingsLdapSettingsConfigPtr and SsoSettingsLdapSettingsConfigPtrOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsConfigPtrInput` via:
+//
+//	        SsoSettingsLdapSettingsConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type SsoSettingsLdapSettingsConfigPtrInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsConfigPtrOutput() SsoSettingsLdapSettingsConfigPtrOutput
+	ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(context.Context) SsoSettingsLdapSettingsConfigPtrOutput
+}
+
+type ssoSettingsLdapSettingsConfigPtrType SsoSettingsLdapSettingsConfigArgs
+
+func SsoSettingsLdapSettingsConfigPtr(v *SsoSettingsLdapSettingsConfigArgs) SsoSettingsLdapSettingsConfigPtrInput {
+	return (*ssoSettingsLdapSettingsConfigPtrType)(v)
+}
+
+func (*ssoSettingsLdapSettingsConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsLdapSettingsConfig)(nil)).Elem()
+}
+
+func (i *ssoSettingsLdapSettingsConfigPtrType) ToSsoSettingsLdapSettingsConfigPtrOutput() SsoSettingsLdapSettingsConfigPtrOutput {
+	return i.ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ssoSettingsLdapSettingsConfigPtrType) ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigPtrOutput)
+}
+
+type SsoSettingsLdapSettingsConfigOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettingsConfig)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsConfigOutput) ToSsoSettingsLdapSettingsConfigOutput() SsoSettingsLdapSettingsConfigOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigOutput) ToSsoSettingsLdapSettingsConfigOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigOutput) ToSsoSettingsLdapSettingsConfigPtrOutput() SsoSettingsLdapSettingsConfigPtrOutput {
+	return o.ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(context.Background())
+}
+
+func (o SsoSettingsLdapSettingsConfigOutput) ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SsoSettingsLdapSettingsConfig) *SsoSettingsLdapSettingsConfig {
+		return &v
+	}).(SsoSettingsLdapSettingsConfigPtrOutput)
+}
+
+// The LDAP servers configuration.
+func (o SsoSettingsLdapSettingsConfigOutput) Servers() SsoSettingsLdapSettingsConfigServerArrayOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfig) []SsoSettingsLdapSettingsConfigServer { return v.Servers }).(SsoSettingsLdapSettingsConfigServerArrayOutput)
+}
+
+type SsoSettingsLdapSettingsConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsLdapSettingsConfig)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsConfigPtrOutput) ToSsoSettingsLdapSettingsConfigPtrOutput() SsoSettingsLdapSettingsConfigPtrOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigPtrOutput) ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigPtrOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigPtrOutput) Elem() SsoSettingsLdapSettingsConfigOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettingsConfig) SsoSettingsLdapSettingsConfig {
+		if v != nil {
+			return *v
+		}
+		var ret SsoSettingsLdapSettingsConfig
+		return ret
+	}).(SsoSettingsLdapSettingsConfigOutput)
+}
+
+// The LDAP servers configuration.
+func (o SsoSettingsLdapSettingsConfigPtrOutput) Servers() SsoSettingsLdapSettingsConfigServerArrayOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettingsConfig) []SsoSettingsLdapSettingsConfigServer {
+		if v == nil {
+			return nil
+		}
+		return v.Servers
+	}).(SsoSettingsLdapSettingsConfigServerArrayOutput)
+}
+
+type SsoSettingsLdapSettingsConfigServer struct {
+	// The LDAP server attributes. The following attributes can be configured: email, member_of, name, surname, username.
+	Attributes map[string]string `pulumi:"attributes"`
+	// The search user bind DN.
+	BindDn *string `pulumi:"bindDn"`
+	// The search user bind password.
+	BindPassword *string `pulumi:"bindPassword"`
+	// The path to the client certificate.
+	ClientCert *string `pulumi:"clientCert"`
+	// The Base64 encoded value of the client certificate.
+	ClientCertValue *string `pulumi:"clientCertValue"`
+	// The path to the client private key.
+	ClientKey *string `pulumi:"clientKey"`
+	// The Base64 encoded value of the client private key.
+	ClientKeyValue *string `pulumi:"clientKeyValue"`
+	// For mapping an LDAP group to a Grafana organization and role.
+	GroupMappings []SsoSettingsLdapSettingsConfigServerGroupMapping `pulumi:"groupMappings"`
+	// An array of the base DNs to search through for groups. Typically uses ou=groups.
+	GroupSearchBaseDns []string `pulumi:"groupSearchBaseDns"`
+	// Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available).
+	GroupSearchFilter *string `pulumi:"groupSearchFilter"`
+	// The %s in the search filter will be replaced with the attribute defined in this field.
+	GroupSearchFilterUserAttribute *string `pulumi:"groupSearchFilterUserAttribute"`
+	// The LDAP server host.
+	Host string `pulumi:"host"`
+	// Minimum TLS version allowed. Accepted values are: TLS1.2, TLS1.3.
+	MinTlsVersion *string `pulumi:"minTlsVersion"`
+	// The LDAP server port.
+	Port *int `pulumi:"port"`
+	// The path to the root CA certificate.
+	RootCaCert *string `pulumi:"rootCaCert"`
+	// The Base64 encoded values of the root CA certificates.
+	RootCaCertValues []string `pulumi:"rootCaCertValues"`
+	// An array of base DNs to search through.
+	SearchBaseDns []string `pulumi:"searchBaseDns"`
+	// The user search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)".
+	SearchFilter string `pulumi:"searchFilter"`
+	// If set to true, the SSL cert validation will be skipped.
+	SslSkipVerify *bool `pulumi:"sslSkipVerify"`
+	// If set to true, use LDAP with STARTTLS instead of LDAPS.
+	StartTls *bool `pulumi:"startTls"`
+	// The timeout in seconds for connecting to the LDAP host.
+	Timeout *int `pulumi:"timeout"`
+	// Accepted TLS ciphers. For a complete list of supported ciphers, refer to: https://go.dev/src/crypto/tls/cipher_suites.go.
+	TlsCiphers []string `pulumi:"tlsCiphers"`
+	// Set to true if LDAP server should use an encrypted TLS connection (either with STARTTLS or LDAPS).
+	UseSsl *bool `pulumi:"useSsl"`
+}
+
+// SsoSettingsLdapSettingsConfigServerInput is an input type that accepts SsoSettingsLdapSettingsConfigServerArgs and SsoSettingsLdapSettingsConfigServerOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsConfigServerInput` via:
+//
+//	SsoSettingsLdapSettingsConfigServerArgs{...}
+type SsoSettingsLdapSettingsConfigServerInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsConfigServerOutput() SsoSettingsLdapSettingsConfigServerOutput
+	ToSsoSettingsLdapSettingsConfigServerOutputWithContext(context.Context) SsoSettingsLdapSettingsConfigServerOutput
+}
+
+type SsoSettingsLdapSettingsConfigServerArgs struct {
+	// The LDAP server attributes. The following attributes can be configured: email, member_of, name, surname, username.
+	Attributes pulumi.StringMapInput `pulumi:"attributes"`
+	// The search user bind DN.
+	BindDn pulumi.StringPtrInput `pulumi:"bindDn"`
+	// The search user bind password.
+	BindPassword pulumi.StringPtrInput `pulumi:"bindPassword"`
+	// The path to the client certificate.
+	ClientCert pulumi.StringPtrInput `pulumi:"clientCert"`
+	// The Base64 encoded value of the client certificate.
+	ClientCertValue pulumi.StringPtrInput `pulumi:"clientCertValue"`
+	// The path to the client private key.
+	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
+	// The Base64 encoded value of the client private key.
+	ClientKeyValue pulumi.StringPtrInput `pulumi:"clientKeyValue"`
+	// For mapping an LDAP group to a Grafana organization and role.
+	GroupMappings SsoSettingsLdapSettingsConfigServerGroupMappingArrayInput `pulumi:"groupMappings"`
+	// An array of the base DNs to search through for groups. Typically uses ou=groups.
+	GroupSearchBaseDns pulumi.StringArrayInput `pulumi:"groupSearchBaseDns"`
+	// Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available).
+	GroupSearchFilter pulumi.StringPtrInput `pulumi:"groupSearchFilter"`
+	// The %s in the search filter will be replaced with the attribute defined in this field.
+	GroupSearchFilterUserAttribute pulumi.StringPtrInput `pulumi:"groupSearchFilterUserAttribute"`
+	// The LDAP server host.
+	Host pulumi.StringInput `pulumi:"host"`
+	// Minimum TLS version allowed. Accepted values are: TLS1.2, TLS1.3.
+	MinTlsVersion pulumi.StringPtrInput `pulumi:"minTlsVersion"`
+	// The LDAP server port.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The path to the root CA certificate.
+	RootCaCert pulumi.StringPtrInput `pulumi:"rootCaCert"`
+	// The Base64 encoded values of the root CA certificates.
+	RootCaCertValues pulumi.StringArrayInput `pulumi:"rootCaCertValues"`
+	// An array of base DNs to search through.
+	SearchBaseDns pulumi.StringArrayInput `pulumi:"searchBaseDns"`
+	// The user search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)".
+	SearchFilter pulumi.StringInput `pulumi:"searchFilter"`
+	// If set to true, the SSL cert validation will be skipped.
+	SslSkipVerify pulumi.BoolPtrInput `pulumi:"sslSkipVerify"`
+	// If set to true, use LDAP with STARTTLS instead of LDAPS.
+	StartTls pulumi.BoolPtrInput `pulumi:"startTls"`
+	// The timeout in seconds for connecting to the LDAP host.
+	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
+	// Accepted TLS ciphers. For a complete list of supported ciphers, refer to: https://go.dev/src/crypto/tls/cipher_suites.go.
+	TlsCiphers pulumi.StringArrayInput `pulumi:"tlsCiphers"`
+	// Set to true if LDAP server should use an encrypted TLS connection (either with STARTTLS or LDAPS).
+	UseSsl pulumi.BoolPtrInput `pulumi:"useSsl"`
+}
+
+func (SsoSettingsLdapSettingsConfigServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettingsConfigServer)(nil)).Elem()
+}
+
+func (i SsoSettingsLdapSettingsConfigServerArgs) ToSsoSettingsLdapSettingsConfigServerOutput() SsoSettingsLdapSettingsConfigServerOutput {
+	return i.ToSsoSettingsLdapSettingsConfigServerOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsConfigServerArgs) ToSsoSettingsLdapSettingsConfigServerOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigServerOutput)
+}
+
+// SsoSettingsLdapSettingsConfigServerArrayInput is an input type that accepts SsoSettingsLdapSettingsConfigServerArray and SsoSettingsLdapSettingsConfigServerArrayOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsConfigServerArrayInput` via:
+//
+//	SsoSettingsLdapSettingsConfigServerArray{ SsoSettingsLdapSettingsConfigServerArgs{...} }
+type SsoSettingsLdapSettingsConfigServerArrayInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsConfigServerArrayOutput() SsoSettingsLdapSettingsConfigServerArrayOutput
+	ToSsoSettingsLdapSettingsConfigServerArrayOutputWithContext(context.Context) SsoSettingsLdapSettingsConfigServerArrayOutput
+}
+
+type SsoSettingsLdapSettingsConfigServerArray []SsoSettingsLdapSettingsConfigServerInput
+
+func (SsoSettingsLdapSettingsConfigServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SsoSettingsLdapSettingsConfigServer)(nil)).Elem()
+}
+
+func (i SsoSettingsLdapSettingsConfigServerArray) ToSsoSettingsLdapSettingsConfigServerArrayOutput() SsoSettingsLdapSettingsConfigServerArrayOutput {
+	return i.ToSsoSettingsLdapSettingsConfigServerArrayOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsConfigServerArray) ToSsoSettingsLdapSettingsConfigServerArrayOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigServerArrayOutput)
+}
+
+type SsoSettingsLdapSettingsConfigServerOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsConfigServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettingsConfigServer)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsConfigServerOutput) ToSsoSettingsLdapSettingsConfigServerOutput() SsoSettingsLdapSettingsConfigServerOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigServerOutput) ToSsoSettingsLdapSettingsConfigServerOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerOutput {
+	return o
+}
+
+// The LDAP server attributes. The following attributes can be configured: email, member_of, name, surname, username.
+func (o SsoSettingsLdapSettingsConfigServerOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
+}
+
+// The search user bind DN.
+func (o SsoSettingsLdapSettingsConfigServerOutput) BindDn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.BindDn }).(pulumi.StringPtrOutput)
+}
+
+// The search user bind password.
+func (o SsoSettingsLdapSettingsConfigServerOutput) BindPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.BindPassword }).(pulumi.StringPtrOutput)
+}
+
+// The path to the client certificate.
+func (o SsoSettingsLdapSettingsConfigServerOutput) ClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.ClientCert }).(pulumi.StringPtrOutput)
+}
+
+// The Base64 encoded value of the client certificate.
+func (o SsoSettingsLdapSettingsConfigServerOutput) ClientCertValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.ClientCertValue }).(pulumi.StringPtrOutput)
+}
+
+// The path to the client private key.
+func (o SsoSettingsLdapSettingsConfigServerOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
+}
+
+// The Base64 encoded value of the client private key.
+func (o SsoSettingsLdapSettingsConfigServerOutput) ClientKeyValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.ClientKeyValue }).(pulumi.StringPtrOutput)
+}
+
+// For mapping an LDAP group to a Grafana organization and role.
+func (o SsoSettingsLdapSettingsConfigServerOutput) GroupMappings() SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) []SsoSettingsLdapSettingsConfigServerGroupMapping {
+		return v.GroupMappings
+	}).(SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput)
+}
+
+// An array of the base DNs to search through for groups. Typically uses ou=groups.
+func (o SsoSettingsLdapSettingsConfigServerOutput) GroupSearchBaseDns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) []string { return v.GroupSearchBaseDns }).(pulumi.StringArrayOutput)
+}
+
+// Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available).
+func (o SsoSettingsLdapSettingsConfigServerOutput) GroupSearchFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.GroupSearchFilter }).(pulumi.StringPtrOutput)
+}
+
+// The %s in the search filter will be replaced with the attribute defined in this field.
+func (o SsoSettingsLdapSettingsConfigServerOutput) GroupSearchFilterUserAttribute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.GroupSearchFilterUserAttribute }).(pulumi.StringPtrOutput)
+}
+
+// The LDAP server host.
+func (o SsoSettingsLdapSettingsConfigServerOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Minimum TLS version allowed. Accepted values are: TLS1.2, TLS1.3.
+func (o SsoSettingsLdapSettingsConfigServerOutput) MinTlsVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.MinTlsVersion }).(pulumi.StringPtrOutput)
+}
+
+// The LDAP server port.
+func (o SsoSettingsLdapSettingsConfigServerOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The path to the root CA certificate.
+func (o SsoSettingsLdapSettingsConfigServerOutput) RootCaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.RootCaCert }).(pulumi.StringPtrOutput)
+}
+
+// The Base64 encoded values of the root CA certificates.
+func (o SsoSettingsLdapSettingsConfigServerOutput) RootCaCertValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) []string { return v.RootCaCertValues }).(pulumi.StringArrayOutput)
+}
+
+// An array of base DNs to search through.
+func (o SsoSettingsLdapSettingsConfigServerOutput) SearchBaseDns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) []string { return v.SearchBaseDns }).(pulumi.StringArrayOutput)
+}
+
+// The user search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)".
+func (o SsoSettingsLdapSettingsConfigServerOutput) SearchFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) string { return v.SearchFilter }).(pulumi.StringOutput)
+}
+
+// If set to true, the SSL cert validation will be skipped.
+func (o SsoSettingsLdapSettingsConfigServerOutput) SslSkipVerify() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *bool { return v.SslSkipVerify }).(pulumi.BoolPtrOutput)
+}
+
+// If set to true, use LDAP with STARTTLS instead of LDAPS.
+func (o SsoSettingsLdapSettingsConfigServerOutput) StartTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *bool { return v.StartTls }).(pulumi.BoolPtrOutput)
+}
+
+// The timeout in seconds for connecting to the LDAP host.
+func (o SsoSettingsLdapSettingsConfigServerOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *int { return v.Timeout }).(pulumi.IntPtrOutput)
+}
+
+// Accepted TLS ciphers. For a complete list of supported ciphers, refer to: https://go.dev/src/crypto/tls/cipher_suites.go.
+func (o SsoSettingsLdapSettingsConfigServerOutput) TlsCiphers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) []string { return v.TlsCiphers }).(pulumi.StringArrayOutput)
+}
+
+// Set to true if LDAP server should use an encrypted TLS connection (either with STARTTLS or LDAPS).
+func (o SsoSettingsLdapSettingsConfigServerOutput) UseSsl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *bool { return v.UseSsl }).(pulumi.BoolPtrOutput)
+}
+
+type SsoSettingsLdapSettingsConfigServerArrayOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsConfigServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SsoSettingsLdapSettingsConfigServer)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsConfigServerArrayOutput) ToSsoSettingsLdapSettingsConfigServerArrayOutput() SsoSettingsLdapSettingsConfigServerArrayOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigServerArrayOutput) ToSsoSettingsLdapSettingsConfigServerArrayOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerArrayOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigServerArrayOutput) Index(i pulumi.IntInput) SsoSettingsLdapSettingsConfigServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SsoSettingsLdapSettingsConfigServer {
+		return vs[0].([]SsoSettingsLdapSettingsConfigServer)[vs[1].(int)]
+	}).(SsoSettingsLdapSettingsConfigServerOutput)
+}
+
+type SsoSettingsLdapSettingsConfigServerGroupMapping struct {
+	// If set to true, it makes the user of groupDn Grafana server admin.
+	GrafanaAdmin *bool `pulumi:"grafanaAdmin"`
+	// LDAP distinguished name (DN) of LDAP group. If you want to match all (or no LDAP groups) then you can use wildcard ("*").
+	GroupDn string `pulumi:"groupDn"`
+	// The Grafana organization database id.
+	OrgId *int `pulumi:"orgId"`
+	// Assign users of groupDn the organization role Admin, Editor, or Viewer.
+	OrgRole string `pulumi:"orgRole"`
+}
+
+// SsoSettingsLdapSettingsConfigServerGroupMappingInput is an input type that accepts SsoSettingsLdapSettingsConfigServerGroupMappingArgs and SsoSettingsLdapSettingsConfigServerGroupMappingOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsConfigServerGroupMappingInput` via:
+//
+//	SsoSettingsLdapSettingsConfigServerGroupMappingArgs{...}
+type SsoSettingsLdapSettingsConfigServerGroupMappingInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsConfigServerGroupMappingOutput() SsoSettingsLdapSettingsConfigServerGroupMappingOutput
+	ToSsoSettingsLdapSettingsConfigServerGroupMappingOutputWithContext(context.Context) SsoSettingsLdapSettingsConfigServerGroupMappingOutput
+}
+
+type SsoSettingsLdapSettingsConfigServerGroupMappingArgs struct {
+	// If set to true, it makes the user of groupDn Grafana server admin.
+	GrafanaAdmin pulumi.BoolPtrInput `pulumi:"grafanaAdmin"`
+	// LDAP distinguished name (DN) of LDAP group. If you want to match all (or no LDAP groups) then you can use wildcard ("*").
+	GroupDn pulumi.StringInput `pulumi:"groupDn"`
+	// The Grafana organization database id.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
+	// Assign users of groupDn the organization role Admin, Editor, or Viewer.
+	OrgRole pulumi.StringInput `pulumi:"orgRole"`
+}
+
+func (SsoSettingsLdapSettingsConfigServerGroupMappingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettingsConfigServerGroupMapping)(nil)).Elem()
+}
+
+func (i SsoSettingsLdapSettingsConfigServerGroupMappingArgs) ToSsoSettingsLdapSettingsConfigServerGroupMappingOutput() SsoSettingsLdapSettingsConfigServerGroupMappingOutput {
+	return i.ToSsoSettingsLdapSettingsConfigServerGroupMappingOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsConfigServerGroupMappingArgs) ToSsoSettingsLdapSettingsConfigServerGroupMappingOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerGroupMappingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigServerGroupMappingOutput)
+}
+
+// SsoSettingsLdapSettingsConfigServerGroupMappingArrayInput is an input type that accepts SsoSettingsLdapSettingsConfigServerGroupMappingArray and SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsConfigServerGroupMappingArrayInput` via:
+//
+//	SsoSettingsLdapSettingsConfigServerGroupMappingArray{ SsoSettingsLdapSettingsConfigServerGroupMappingArgs{...} }
+type SsoSettingsLdapSettingsConfigServerGroupMappingArrayInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput() SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput
+	ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutputWithContext(context.Context) SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput
+}
+
+type SsoSettingsLdapSettingsConfigServerGroupMappingArray []SsoSettingsLdapSettingsConfigServerGroupMappingInput
+
+func (SsoSettingsLdapSettingsConfigServerGroupMappingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SsoSettingsLdapSettingsConfigServerGroupMapping)(nil)).Elem()
+}
+
+func (i SsoSettingsLdapSettingsConfigServerGroupMappingArray) ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput() SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput {
+	return i.ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsConfigServerGroupMappingArray) ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput)
+}
+
+type SsoSettingsLdapSettingsConfigServerGroupMappingOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsConfigServerGroupMappingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettingsConfigServerGroupMapping)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingOutput) ToSsoSettingsLdapSettingsConfigServerGroupMappingOutput() SsoSettingsLdapSettingsConfigServerGroupMappingOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingOutput) ToSsoSettingsLdapSettingsConfigServerGroupMappingOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerGroupMappingOutput {
+	return o
+}
+
+// If set to true, it makes the user of groupDn Grafana server admin.
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingOutput) GrafanaAdmin() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServerGroupMapping) *bool { return v.GrafanaAdmin }).(pulumi.BoolPtrOutput)
+}
+
+// LDAP distinguished name (DN) of LDAP group. If you want to match all (or no LDAP groups) then you can use wildcard ("*").
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingOutput) GroupDn() pulumi.StringOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServerGroupMapping) string { return v.GroupDn }).(pulumi.StringOutput)
+}
+
+// The Grafana organization database id.
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServerGroupMapping) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
+// Assign users of groupDn the organization role Admin, Editor, or Viewer.
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingOutput) OrgRole() pulumi.StringOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServerGroupMapping) string { return v.OrgRole }).(pulumi.StringOutput)
+}
+
+type SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SsoSettingsLdapSettingsConfigServerGroupMapping)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput) ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput() SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput) ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput) Index(i pulumi.IntInput) SsoSettingsLdapSettingsConfigServerGroupMappingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SsoSettingsLdapSettingsConfigServerGroupMapping {
+		return vs[0].([]SsoSettingsLdapSettingsConfigServerGroupMapping)[vs[1].(int)]
+	}).(SsoSettingsLdapSettingsConfigServerGroupMappingOutput)
+}
+
 type SsoSettingsOauth2Settings struct {
 	// If enabled, it will automatically sync the Grafana server administrator role.
 	AllowAssignGrafanaAdmin *bool `pulumi:"allowAssignGrafanaAdmin"`
@@ -541,6 +1293,10 @@ type SsoSettingsOauth2Settings struct {
 	Name *string `pulumi:"name"`
 	// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
 	NameAttributePath *string `pulumi:"nameAttributePath"`
+	// JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "orgMapping"). Only applicable to Generic OAuth and Okta.
+	OrgAttributePath *string `pulumi:"orgAttributePath"`
+	// List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+	OrgMapping *string `pulumi:"orgMapping"`
 	// JMESPath expression to use for Grafana role lookup.
 	RoleAttributePath *string `pulumi:"roleAttributePath"`
 	// If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
@@ -631,6 +1387,10 @@ type SsoSettingsOauth2SettingsArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
 	NameAttributePath pulumi.StringPtrInput `pulumi:"nameAttributePath"`
+	// JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "orgMapping"). Only applicable to Generic OAuth and Okta.
+	OrgAttributePath pulumi.StringPtrInput `pulumi:"orgAttributePath"`
+	// List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+	OrgMapping pulumi.StringPtrInput `pulumi:"orgMapping"`
 	// JMESPath expression to use for Grafana role lookup.
 	RoleAttributePath pulumi.StringPtrInput `pulumi:"roleAttributePath"`
 	// If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
@@ -853,6 +1613,16 @@ func (o SsoSettingsOauth2SettingsOutput) Name() pulumi.StringPtrOutput {
 // JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
 func (o SsoSettingsOauth2SettingsOutput) NameAttributePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.NameAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "orgMapping"). Only applicable to Generic OAuth and Okta.
+func (o SsoSettingsOauth2SettingsOutput) OrgAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.OrgAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+func (o SsoSettingsOauth2SettingsOutput) OrgMapping() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.OrgMapping }).(pulumi.StringPtrOutput)
 }
 
 // JMESPath expression to use for Grafana role lookup.
@@ -1184,6 +1954,26 @@ func (o SsoSettingsOauth2SettingsPtrOutput) NameAttributePath() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "orgMapping"). Only applicable to Generic OAuth and Okta.
+func (o SsoSettingsOauth2SettingsPtrOutput) OrgAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OrgAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+func (o SsoSettingsOauth2SettingsPtrOutput) OrgMapping() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OrgMapping
+	}).(pulumi.StringPtrOutput)
+}
+
 // JMESPath expression to use for Grafana role lookup.
 func (o SsoSettingsOauth2SettingsPtrOutput) RoleAttributePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
@@ -1359,8 +2149,16 @@ type SsoSettingsSamlSettings struct {
 	Certificate *string `pulumi:"certificate"`
 	// Path for the SP X.509 certificate.
 	CertificatePath *string `pulumi:"certificatePath"`
+	// The client Id of your OAuth2 app.
+	ClientId *string `pulumi:"clientId"`
+	// The client secret of your OAuth2 app.
+	ClientSecret *string `pulumi:"clientSecret"`
 	// Define whether this configuration is enabled for SAML. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+	EntityId *string `pulumi:"entityId"`
+	// If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+	ForceUseGraphApi *bool `pulumi:"forceUseGraphApi"`
 	// Base64-encoded string for the IdP SAML metadata XML.
 	IdpMetadata *string `pulumi:"idpMetadata"`
 	// Path for the IdP SAML metadata XML.
@@ -1399,6 +2197,8 @@ type SsoSettingsSamlSettings struct {
 	SingleLogout *bool `pulumi:"singleLogout"`
 	// Prevent synchronizing users’ organization roles from your IdP.
 	SkipOrgRoleSync *bool `pulumi:"skipOrgRoleSync"`
+	// The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+	TokenUrl *string `pulumi:"tokenUrl"`
 }
 
 // SsoSettingsSamlSettingsInput is an input type that accepts SsoSettingsSamlSettingsArgs and SsoSettingsSamlSettingsOutput values.
@@ -1437,8 +2237,16 @@ type SsoSettingsSamlSettingsArgs struct {
 	Certificate pulumi.StringPtrInput `pulumi:"certificate"`
 	// Path for the SP X.509 certificate.
 	CertificatePath pulumi.StringPtrInput `pulumi:"certificatePath"`
+	// The client Id of your OAuth2 app.
+	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
+	// The client secret of your OAuth2 app.
+	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
 	// Define whether this configuration is enabled for SAML. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+	EntityId pulumi.StringPtrInput `pulumi:"entityId"`
+	// If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+	ForceUseGraphApi pulumi.BoolPtrInput `pulumi:"forceUseGraphApi"`
 	// Base64-encoded string for the IdP SAML metadata XML.
 	IdpMetadata pulumi.StringPtrInput `pulumi:"idpMetadata"`
 	// Path for the IdP SAML metadata XML.
@@ -1477,6 +2285,8 @@ type SsoSettingsSamlSettingsArgs struct {
 	SingleLogout pulumi.BoolPtrInput `pulumi:"singleLogout"`
 	// Prevent synchronizing users’ organization roles from your IdP.
 	SkipOrgRoleSync pulumi.BoolPtrInput `pulumi:"skipOrgRoleSync"`
+	// The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+	TokenUrl pulumi.StringPtrInput `pulumi:"tokenUrl"`
 }
 
 func (SsoSettingsSamlSettingsArgs) ElementType() reflect.Type {
@@ -1616,9 +2426,29 @@ func (o SsoSettingsSamlSettingsOutput) CertificatePath() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.CertificatePath }).(pulumi.StringPtrOutput)
 }
 
+// The client Id of your OAuth2 app.
+func (o SsoSettingsSamlSettingsOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client secret of your OAuth2 app.
+func (o SsoSettingsSamlSettingsOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
 // Define whether this configuration is enabled for SAML. Defaults to `true`.
 func (o SsoSettingsSamlSettingsOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SsoSettingsSamlSettings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+func (o SsoSettingsSamlSettingsOutput) EntityId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.EntityId }).(pulumi.StringPtrOutput)
+}
+
+// If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+func (o SsoSettingsSamlSettingsOutput) ForceUseGraphApi() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *bool { return v.ForceUseGraphApi }).(pulumi.BoolPtrOutput)
 }
 
 // Base64-encoded string for the IdP SAML metadata XML.
@@ -1714,6 +2544,11 @@ func (o SsoSettingsSamlSettingsOutput) SingleLogout() pulumi.BoolPtrOutput {
 // Prevent synchronizing users’ organization roles from your IdP.
 func (o SsoSettingsSamlSettingsOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SsoSettingsSamlSettings) *bool { return v.SkipOrgRoleSync }).(pulumi.BoolPtrOutput)
+}
+
+// The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+func (o SsoSettingsSamlSettingsOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.TokenUrl }).(pulumi.StringPtrOutput)
 }
 
 type SsoSettingsSamlSettingsPtrOutput struct{ *pulumi.OutputState }
@@ -1860,6 +2695,26 @@ func (o SsoSettingsSamlSettingsPtrOutput) CertificatePath() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+// The client Id of your OAuth2 app.
+func (o SsoSettingsSamlSettingsPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The client secret of your OAuth2 app.
+func (o SsoSettingsSamlSettingsPtrOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientSecret
+	}).(pulumi.StringPtrOutput)
+}
+
 // Define whether this configuration is enabled for SAML. Defaults to `true`.
 func (o SsoSettingsSamlSettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsSamlSettings) *bool {
@@ -1867,6 +2722,26 @@ func (o SsoSettingsSamlSettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 			return nil
 		}
 		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+func (o SsoSettingsSamlSettingsPtrOutput) EntityId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EntityId
+	}).(pulumi.StringPtrOutput)
+}
+
+// If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+func (o SsoSettingsSamlSettingsPtrOutput) ForceUseGraphApi() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ForceUseGraphApi
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -2058,6 +2933,16 @@ func (o SsoSettingsSamlSettingsPtrOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput
 		}
 		return v.SkipOrgRoleSync
 	}).(pulumi.BoolPtrOutput)
+}
+
+// The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+func (o SsoSettingsSamlSettingsPtrOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TokenUrl
+	}).(pulumi.StringPtrOutput)
 }
 
 type TeamPreferences struct {
@@ -2977,6 +3862,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PlaylistItemArrayInput)(nil)).Elem(), PlaylistItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountPermissionPermissionInput)(nil)).Elem(), ServiceAccountPermissionPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountPermissionPermissionArrayInput)(nil)).Elem(), ServiceAccountPermissionPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsInput)(nil)).Elem(), SsoSettingsLdapSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsPtrInput)(nil)).Elem(), SsoSettingsLdapSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsConfigInput)(nil)).Elem(), SsoSettingsLdapSettingsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsConfigPtrInput)(nil)).Elem(), SsoSettingsLdapSettingsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsConfigServerInput)(nil)).Elem(), SsoSettingsLdapSettingsConfigServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsConfigServerArrayInput)(nil)).Elem(), SsoSettingsLdapSettingsConfigServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsConfigServerGroupMappingInput)(nil)).Elem(), SsoSettingsLdapSettingsConfigServerGroupMappingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsConfigServerGroupMappingArrayInput)(nil)).Elem(), SsoSettingsLdapSettingsConfigServerGroupMappingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsOauth2SettingsInput)(nil)).Elem(), SsoSettingsOauth2SettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsOauth2SettingsPtrInput)(nil)).Elem(), SsoSettingsOauth2SettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsSamlSettingsInput)(nil)).Elem(), SsoSettingsSamlSettingsArgs{})
@@ -3003,6 +3896,14 @@ func init() {
 	pulumi.RegisterOutputType(PlaylistItemArrayOutput{})
 	pulumi.RegisterOutputType(ServiceAccountPermissionPermissionOutput{})
 	pulumi.RegisterOutputType(ServiceAccountPermissionPermissionArrayOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsPtrOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsConfigOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsConfigPtrOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsConfigServerOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsConfigServerArrayOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsConfigServerGroupMappingOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput{})
 	pulumi.RegisterOutputType(SsoSettingsOauth2SettingsOutput{})
 	pulumi.RegisterOutputType(SsoSettingsOauth2SettingsPtrOutput{})
 	pulumi.RegisterOutputType(SsoSettingsSamlSettingsOutput{})

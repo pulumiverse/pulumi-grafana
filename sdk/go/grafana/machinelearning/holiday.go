@@ -15,6 +15,78 @@ import (
 //
 // To use a holiday in a job, use its id in the `holidays` attribute of a `machineLearning.Job`:
 //
+// ### iCal Holiday
+//
+// This holiday uses an iCal file to define the holidays.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := machineLearning.NewHoliday(ctx, "ical", &machineLearning.HolidayArgs{
+//				Name:         pulumi.String("My iCal holiday"),
+//				Description:  pulumi.String("My Holiday"),
+//				IcalUrl:      pulumi.String("https://calendar.google.com/calendar/ical/en.uk%23holiday%40group.v.calendar.google.com/public/basic.ics"),
+//				IcalTimezone: pulumi.String("Europe/London"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Custom Periods Holiday
+//
+// This holiday uses custom periods to define the holidays.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := machineLearning.NewHoliday(ctx, "custom_periods", &machineLearning.HolidayArgs{
+//				Name:        pulumi.String("My custom periods holiday"),
+//				Description: pulumi.String("My Holiday"),
+//				CustomPeriods: machinelearning.HolidayCustomPeriodArray{
+//					&machinelearning.HolidayCustomPeriodArgs{
+//						Name:      pulumi.String("First of January"),
+//						StartTime: pulumi.String("2023-01-01T00:00:00Z"),
+//						EndTime:   pulumi.String("2023-01-02T00:00:00Z"),
+//					},
+//					&machinelearning.HolidayCustomPeriodArgs{
+//						Name:      pulumi.String("First of Feburary"),
+//						StartTime: pulumi.String("2023-02-01T00:00:00Z"),
+//						EndTime:   pulumi.String("2023-02-02T00:00:00Z"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // ```sh

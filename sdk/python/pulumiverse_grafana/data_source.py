@@ -555,6 +555,14 @@ class DataSource(pulumi.CustomResource):
                 "accessKey": "123",
                 "secretKey": "456",
             }))
+        cloudwatch_assume_arn = grafana.oss.DataSource("cloudwatch_assumeARN",
+            type="cloudwatch",
+            name="cw-assumeARN-example",
+            json_data_encoded=json.dumps({
+                "defaultRegion": "us-east-1",
+                "authType": "grafana_assume_role",
+                "assumeRoleArn": "arn:aws:iam::123456789012:root",
+            }))
         prometheus = grafana.oss.DataSource("prometheus",
             type="prometheus",
             name="mimir",
@@ -654,6 +662,14 @@ class DataSource(pulumi.CustomResource):
             secure_json_data_encoded=json.dumps({
                 "accessKey": "123",
                 "secretKey": "456",
+            }))
+        cloudwatch_assume_arn = grafana.oss.DataSource("cloudwatch_assumeARN",
+            type="cloudwatch",
+            name="cw-assumeARN-example",
+            json_data_encoded=json.dumps({
+                "defaultRegion": "us-east-1",
+                "authType": "grafana_assume_role",
+                "assumeRoleArn": "arn:aws:iam::123456789012:root",
             }))
         prometheus = grafana.oss.DataSource("prometheus",
             type="prometheus",

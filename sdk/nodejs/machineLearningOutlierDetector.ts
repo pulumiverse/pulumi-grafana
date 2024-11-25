@@ -13,6 +13,61 @@ import * as utilities from "./utilities";
  *
  * Visit https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for more details.
  *
+ * ## Example Usage
+ *
+ * ### DBSCAN Outlier Detector
+ *
+ * This outlier detector uses the DBSCAN algorithm to detect outliers.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const myDbscanOutlierDetector = new grafana.machinelearning.OutlierDetector("my_dbscan_outlier_detector", {
+ *     name: "My DBSCAN outlier detector",
+ *     description: "My DBSCAN Outlier Detector",
+ *     metric: "tf_test_dbscan_job",
+ *     datasourceType: "prometheus",
+ *     datasourceUid: "AbCd12345",
+ *     queryParams: {
+ *         expr: "grafanacloud_grafana_instance_active_user_count",
+ *     },
+ *     interval: 300,
+ *     algorithm: {
+ *         name: "dbscan",
+ *         sensitivity: 0.5,
+ *         config: {
+ *             epsilon: 1,
+ *         },
+ *     },
+ * });
+ * ```
+ *
+ * ### MAD Outlier Detector
+ *
+ * This outlier detector uses the Median Absolute Deviation (MAD) algorithm to detect outliers.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const myMadOutlierDetector = new grafana.machinelearning.OutlierDetector("my_mad_outlier_detector", {
+ *     name: "My MAD outlier detector",
+ *     description: "My MAD Outlier Detector",
+ *     metric: "tf_test_mad_job",
+ *     datasourceType: "prometheus",
+ *     datasourceUid: "AbCd12345",
+ *     queryParams: {
+ *         expr: "grafanacloud_grafana_instance_active_user_count",
+ *     },
+ *     interval: 300,
+ *     algorithm: {
+ *         name: "mad",
+ *         sensitivity: 0.7,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * ```sh
@@ -51,7 +106,8 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
     }
 
     /**
-     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See
+     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     public readonly algorithm!: pulumi.Output<outputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
@@ -67,7 +123,7 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The data interval in seconds to monitor. Defaults to `300`.
+     * The data interval in seconds to monitor.
      */
     public readonly interval!: pulumi.Output<number | undefined>;
     /**
@@ -143,7 +199,8 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
  */
 export interface MachineLearningOutlierDetectorState {
     /**
-     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See
+     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     algorithm?: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
@@ -159,7 +216,7 @@ export interface MachineLearningOutlierDetectorState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The data interval in seconds to monitor. Defaults to `300`.
+     * The data interval in seconds to monitor.
      */
     interval?: pulumi.Input<number>;
     /**
@@ -181,7 +238,8 @@ export interface MachineLearningOutlierDetectorState {
  */
 export interface MachineLearningOutlierDetectorArgs {
     /**
-     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See
+     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     algorithm: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
@@ -197,7 +255,7 @@ export interface MachineLearningOutlierDetectorArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The data interval in seconds to monitor. Defaults to `300`.
+     * The data interval in seconds to monitor.
      */
     interval?: pulumi.Input<number>;
     /**

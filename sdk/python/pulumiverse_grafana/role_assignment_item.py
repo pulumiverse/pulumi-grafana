@@ -27,7 +27,7 @@ class RoleAssignmentItemArgs:
         """
         The set of arguments for constructing a RoleAssignmentItem resource.
         :param pulumi.Input[str] role_uid: the role UID onto which to assign an actor
-        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[str] service_account_id: the service account onto which the role is to be assigned
         :param pulumi.Input[str] team_id: the team onto which the role is to be assigned
         :param pulumi.Input[str] user_id: the user onto which the role is to be assigned
@@ -58,7 +58,7 @@ class RoleAssignmentItemArgs:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -113,7 +113,7 @@ class _RoleAssignmentItemState:
                  user_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RoleAssignmentItem resources.
-        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[str] role_uid: the role UID onto which to assign an actor
         :param pulumi.Input[str] service_account_id: the service account onto which the role is to be assigned
         :param pulumi.Input[str] team_id: the team onto which the role is to be assigned
@@ -134,7 +134,7 @@ class _RoleAssignmentItemState:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -256,7 +256,7 @@ class RoleAssignmentItem(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[str] role_uid: the role UID onto which to assign an actor
         :param pulumi.Input[str] service_account_id: the service account onto which the role is to be assigned
         :param pulumi.Input[str] team_id: the team onto which the role is to be assigned
@@ -376,7 +376,7 @@ class RoleAssignmentItem(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[str] role_uid: the role UID onto which to assign an actor
         :param pulumi.Input[str] service_account_id: the service account onto which the role is to be assigned
         :param pulumi.Input[str] team_id: the team onto which the role is to be assigned
@@ -397,7 +397,7 @@ class RoleAssignmentItem(pulumi.CustomResource):
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Output[str]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 

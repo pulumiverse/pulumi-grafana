@@ -52,6 +52,37 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('cloudApiUrl') or _utilities.get_env('GRAFANA_CLOUD_API_URL')
 
     @property
+    def cloud_provider_access_token(self) -> Optional[str]:
+        """
+        A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+        environment variable.
+        """
+        return __config__.get('cloudProviderAccessToken')
+
+    @property
+    def cloud_provider_url(self) -> Optional[str]:
+        """
+        A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+        variable.
+        """
+        return __config__.get('cloudProviderUrl')
+
+    @property
+    def connections_api_access_token(self) -> Optional[str]:
+        """
+        A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+        environment variable.
+        """
+        return __config__.get('connectionsApiAccessToken')
+
+    @property
+    def connections_api_url(self) -> Optional[str]:
+        """
+        A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+        """
+        return __config__.get('connectionsApiUrl')
+
+    @property
     def insecure_skip_verify(self) -> Optional[bool]:
         """
         Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

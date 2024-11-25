@@ -99,7 +99,7 @@ namespace Pulumiverse.Grafana.OnCall
         /// </summary>
         public readonly string Email;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of the user.
         /// </summary>
         public readonly string Id;
         /// <summary>

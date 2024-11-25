@@ -6875,8 +6875,10 @@ type OncallIntegrationTemplates struct {
 	Email *OncallIntegrationTemplatesEmail `pulumi:"email"`
 	// Template for the key by which alerts are grouped.
 	GroupingKey *string `pulumi:"groupingKey"`
-	// Templates for Microsoft Teams.
+	// Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
 	MicrosoftTeams *OncallIntegrationTemplatesMicrosoftTeams `pulumi:"microsoftTeams"`
+	// Templates for Mobile app push notifications.
+	MobileApp *OncallIntegrationTemplatesMobileApp `pulumi:"mobileApp"`
 	// Templates for Phone Call.
 	PhoneCall *OncallIntegrationTemplatesPhoneCall `pulumi:"phoneCall"`
 	// Template for sending a signal to resolve the Incident.
@@ -6911,8 +6913,10 @@ type OncallIntegrationTemplatesArgs struct {
 	Email OncallIntegrationTemplatesEmailPtrInput `pulumi:"email"`
 	// Template for the key by which alerts are grouped.
 	GroupingKey pulumi.StringPtrInput `pulumi:"groupingKey"`
-	// Templates for Microsoft Teams.
+	// Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
 	MicrosoftTeams OncallIntegrationTemplatesMicrosoftTeamsPtrInput `pulumi:"microsoftTeams"`
+	// Templates for Mobile app push notifications.
+	MobileApp OncallIntegrationTemplatesMobileAppPtrInput `pulumi:"mobileApp"`
 	// Templates for Phone Call.
 	PhoneCall OncallIntegrationTemplatesPhoneCallPtrInput `pulumi:"phoneCall"`
 	// Template for sending a signal to resolve the Incident.
@@ -7021,9 +7025,14 @@ func (o OncallIntegrationTemplatesOutput) GroupingKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OncallIntegrationTemplates) *string { return v.GroupingKey }).(pulumi.StringPtrOutput)
 }
 
-// Templates for Microsoft Teams.
+// Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
 func (o OncallIntegrationTemplatesOutput) MicrosoftTeams() OncallIntegrationTemplatesMicrosoftTeamsPtrOutput {
 	return o.ApplyT(func(v OncallIntegrationTemplates) *OncallIntegrationTemplatesMicrosoftTeams { return v.MicrosoftTeams }).(OncallIntegrationTemplatesMicrosoftTeamsPtrOutput)
+}
+
+// Templates for Mobile app push notifications.
+func (o OncallIntegrationTemplatesOutput) MobileApp() OncallIntegrationTemplatesMobileAppPtrOutput {
+	return o.ApplyT(func(v OncallIntegrationTemplates) *OncallIntegrationTemplatesMobileApp { return v.MobileApp }).(OncallIntegrationTemplatesMobileAppPtrOutput)
 }
 
 // Templates for Phone Call.
@@ -7115,7 +7124,7 @@ func (o OncallIntegrationTemplatesPtrOutput) GroupingKey() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Templates for Microsoft Teams.
+// Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
 func (o OncallIntegrationTemplatesPtrOutput) MicrosoftTeams() OncallIntegrationTemplatesMicrosoftTeamsPtrOutput {
 	return o.ApplyT(func(v *OncallIntegrationTemplates) *OncallIntegrationTemplatesMicrosoftTeams {
 		if v == nil {
@@ -7123,6 +7132,16 @@ func (o OncallIntegrationTemplatesPtrOutput) MicrosoftTeams() OncallIntegrationT
 		}
 		return v.MicrosoftTeams
 	}).(OncallIntegrationTemplatesMicrosoftTeamsPtrOutput)
+}
+
+// Templates for Mobile app push notifications.
+func (o OncallIntegrationTemplatesPtrOutput) MobileApp() OncallIntegrationTemplatesMobileAppPtrOutput {
+	return o.ApplyT(func(v *OncallIntegrationTemplates) *OncallIntegrationTemplatesMobileApp {
+		if v == nil {
+			return nil
+		}
+		return v.MobileApp
+	}).(OncallIntegrationTemplatesMobileAppPtrOutput)
 }
 
 // Templates for Phone Call.
@@ -7519,6 +7538,162 @@ func (o OncallIntegrationTemplatesMicrosoftTeamsPtrOutput) Message() pulumi.Stri
 // Template for Alert title.
 func (o OncallIntegrationTemplatesMicrosoftTeamsPtrOutput) Title() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallIntegrationTemplatesMicrosoftTeams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Title
+	}).(pulumi.StringPtrOutput)
+}
+
+type OncallIntegrationTemplatesMobileApp struct {
+	// Template for Alert message.
+	Message *string `pulumi:"message"`
+	// Template for Alert title.
+	Title *string `pulumi:"title"`
+}
+
+// OncallIntegrationTemplatesMobileAppInput is an input type that accepts OncallIntegrationTemplatesMobileAppArgs and OncallIntegrationTemplatesMobileAppOutput values.
+// You can construct a concrete instance of `OncallIntegrationTemplatesMobileAppInput` via:
+//
+//	OncallIntegrationTemplatesMobileAppArgs{...}
+type OncallIntegrationTemplatesMobileAppInput interface {
+	pulumi.Input
+
+	ToOncallIntegrationTemplatesMobileAppOutput() OncallIntegrationTemplatesMobileAppOutput
+	ToOncallIntegrationTemplatesMobileAppOutputWithContext(context.Context) OncallIntegrationTemplatesMobileAppOutput
+}
+
+type OncallIntegrationTemplatesMobileAppArgs struct {
+	// Template for Alert message.
+	Message pulumi.StringPtrInput `pulumi:"message"`
+	// Template for Alert title.
+	Title pulumi.StringPtrInput `pulumi:"title"`
+}
+
+func (OncallIntegrationTemplatesMobileAppArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OncallIntegrationTemplatesMobileApp)(nil)).Elem()
+}
+
+func (i OncallIntegrationTemplatesMobileAppArgs) ToOncallIntegrationTemplatesMobileAppOutput() OncallIntegrationTemplatesMobileAppOutput {
+	return i.ToOncallIntegrationTemplatesMobileAppOutputWithContext(context.Background())
+}
+
+func (i OncallIntegrationTemplatesMobileAppArgs) ToOncallIntegrationTemplatesMobileAppOutputWithContext(ctx context.Context) OncallIntegrationTemplatesMobileAppOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OncallIntegrationTemplatesMobileAppOutput)
+}
+
+func (i OncallIntegrationTemplatesMobileAppArgs) ToOncallIntegrationTemplatesMobileAppPtrOutput() OncallIntegrationTemplatesMobileAppPtrOutput {
+	return i.ToOncallIntegrationTemplatesMobileAppPtrOutputWithContext(context.Background())
+}
+
+func (i OncallIntegrationTemplatesMobileAppArgs) ToOncallIntegrationTemplatesMobileAppPtrOutputWithContext(ctx context.Context) OncallIntegrationTemplatesMobileAppPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OncallIntegrationTemplatesMobileAppOutput).ToOncallIntegrationTemplatesMobileAppPtrOutputWithContext(ctx)
+}
+
+// OncallIntegrationTemplatesMobileAppPtrInput is an input type that accepts OncallIntegrationTemplatesMobileAppArgs, OncallIntegrationTemplatesMobileAppPtr and OncallIntegrationTemplatesMobileAppPtrOutput values.
+// You can construct a concrete instance of `OncallIntegrationTemplatesMobileAppPtrInput` via:
+//
+//	        OncallIntegrationTemplatesMobileAppArgs{...}
+//
+//	or:
+//
+//	        nil
+type OncallIntegrationTemplatesMobileAppPtrInput interface {
+	pulumi.Input
+
+	ToOncallIntegrationTemplatesMobileAppPtrOutput() OncallIntegrationTemplatesMobileAppPtrOutput
+	ToOncallIntegrationTemplatesMobileAppPtrOutputWithContext(context.Context) OncallIntegrationTemplatesMobileAppPtrOutput
+}
+
+type oncallIntegrationTemplatesMobileAppPtrType OncallIntegrationTemplatesMobileAppArgs
+
+func OncallIntegrationTemplatesMobileAppPtr(v *OncallIntegrationTemplatesMobileAppArgs) OncallIntegrationTemplatesMobileAppPtrInput {
+	return (*oncallIntegrationTemplatesMobileAppPtrType)(v)
+}
+
+func (*oncallIntegrationTemplatesMobileAppPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**OncallIntegrationTemplatesMobileApp)(nil)).Elem()
+}
+
+func (i *oncallIntegrationTemplatesMobileAppPtrType) ToOncallIntegrationTemplatesMobileAppPtrOutput() OncallIntegrationTemplatesMobileAppPtrOutput {
+	return i.ToOncallIntegrationTemplatesMobileAppPtrOutputWithContext(context.Background())
+}
+
+func (i *oncallIntegrationTemplatesMobileAppPtrType) ToOncallIntegrationTemplatesMobileAppPtrOutputWithContext(ctx context.Context) OncallIntegrationTemplatesMobileAppPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OncallIntegrationTemplatesMobileAppPtrOutput)
+}
+
+type OncallIntegrationTemplatesMobileAppOutput struct{ *pulumi.OutputState }
+
+func (OncallIntegrationTemplatesMobileAppOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OncallIntegrationTemplatesMobileApp)(nil)).Elem()
+}
+
+func (o OncallIntegrationTemplatesMobileAppOutput) ToOncallIntegrationTemplatesMobileAppOutput() OncallIntegrationTemplatesMobileAppOutput {
+	return o
+}
+
+func (o OncallIntegrationTemplatesMobileAppOutput) ToOncallIntegrationTemplatesMobileAppOutputWithContext(ctx context.Context) OncallIntegrationTemplatesMobileAppOutput {
+	return o
+}
+
+func (o OncallIntegrationTemplatesMobileAppOutput) ToOncallIntegrationTemplatesMobileAppPtrOutput() OncallIntegrationTemplatesMobileAppPtrOutput {
+	return o.ToOncallIntegrationTemplatesMobileAppPtrOutputWithContext(context.Background())
+}
+
+func (o OncallIntegrationTemplatesMobileAppOutput) ToOncallIntegrationTemplatesMobileAppPtrOutputWithContext(ctx context.Context) OncallIntegrationTemplatesMobileAppPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v OncallIntegrationTemplatesMobileApp) *OncallIntegrationTemplatesMobileApp {
+		return &v
+	}).(OncallIntegrationTemplatesMobileAppPtrOutput)
+}
+
+// Template for Alert message.
+func (o OncallIntegrationTemplatesMobileAppOutput) Message() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OncallIntegrationTemplatesMobileApp) *string { return v.Message }).(pulumi.StringPtrOutput)
+}
+
+// Template for Alert title.
+func (o OncallIntegrationTemplatesMobileAppOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OncallIntegrationTemplatesMobileApp) *string { return v.Title }).(pulumi.StringPtrOutput)
+}
+
+type OncallIntegrationTemplatesMobileAppPtrOutput struct{ *pulumi.OutputState }
+
+func (OncallIntegrationTemplatesMobileAppPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OncallIntegrationTemplatesMobileApp)(nil)).Elem()
+}
+
+func (o OncallIntegrationTemplatesMobileAppPtrOutput) ToOncallIntegrationTemplatesMobileAppPtrOutput() OncallIntegrationTemplatesMobileAppPtrOutput {
+	return o
+}
+
+func (o OncallIntegrationTemplatesMobileAppPtrOutput) ToOncallIntegrationTemplatesMobileAppPtrOutputWithContext(ctx context.Context) OncallIntegrationTemplatesMobileAppPtrOutput {
+	return o
+}
+
+func (o OncallIntegrationTemplatesMobileAppPtrOutput) Elem() OncallIntegrationTemplatesMobileAppOutput {
+	return o.ApplyT(func(v *OncallIntegrationTemplatesMobileApp) OncallIntegrationTemplatesMobileApp {
+		if v != nil {
+			return *v
+		}
+		var ret OncallIntegrationTemplatesMobileApp
+		return ret
+	}).(OncallIntegrationTemplatesMobileAppOutput)
+}
+
+// Template for Alert message.
+func (o OncallIntegrationTemplatesMobileAppPtrOutput) Message() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OncallIntegrationTemplatesMobileApp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Message
+	}).(pulumi.StringPtrOutput)
+}
+
+// Template for Alert title.
+func (o OncallIntegrationTemplatesMobileAppPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OncallIntegrationTemplatesMobileApp) *string {
 		if v == nil {
 			return nil
 		}
@@ -9700,7 +9875,7 @@ func (o RolePermissionArrayOutput) Index(i pulumi.IntInput) RolePermissionOutput
 }
 
 type RuleGroupRule struct {
-	// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
 	Annotations map[string]string `pulumi:"annotations"`
 	// The `refId` of the query node in the `data` field to use as the alert condition.
 	Condition string `pulumi:"condition"`
@@ -9718,8 +9893,10 @@ type RuleGroupRule struct {
 	Name string `pulumi:"name"`
 	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
 	NoDataState *string `pulumi:"noDataState"`
-	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
 	NotificationSettings *RuleGroupRuleNotificationSettings `pulumi:"notificationSettings"`
+	// Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
+	Record *RuleGroupRuleRecord `pulumi:"record"`
 	// The unique identifier of the alert rule.
 	Uid *string `pulumi:"uid"`
 }
@@ -9736,7 +9913,7 @@ type RuleGroupRuleInput interface {
 }
 
 type RuleGroupRuleArgs struct {
-	// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The `refId` of the query node in the `data` field to use as the alert condition.
 	Condition pulumi.StringInput `pulumi:"condition"`
@@ -9754,8 +9931,10 @@ type RuleGroupRuleArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
 	NoDataState pulumi.StringPtrInput `pulumi:"noDataState"`
-	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
 	NotificationSettings RuleGroupRuleNotificationSettingsPtrInput `pulumi:"notificationSettings"`
+	// Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
+	Record RuleGroupRuleRecordPtrInput `pulumi:"record"`
 	// The unique identifier of the alert rule.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
 }
@@ -9811,7 +9990,7 @@ func (o RuleGroupRuleOutput) ToRuleGroupRuleOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
 func (o RuleGroupRuleOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v RuleGroupRule) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
@@ -9856,9 +10035,14 @@ func (o RuleGroupRuleOutput) NoDataState() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *string { return v.NoDataState }).(pulumi.StringPtrOutput)
 }
 
-// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
 func (o RuleGroupRuleOutput) NotificationSettings() RuleGroupRuleNotificationSettingsPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *RuleGroupRuleNotificationSettings { return v.NotificationSettings }).(RuleGroupRuleNotificationSettingsPtrOutput)
+}
+
+// Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
+func (o RuleGroupRuleOutput) Record() RuleGroupRuleRecordPtrOutput {
+	return o.ApplyT(func(v RuleGroupRule) *RuleGroupRuleRecord { return v.Record }).(RuleGroupRuleRecordPtrOutput)
 }
 
 // The unique identifier of the alert rule.
@@ -10312,6 +10496,162 @@ func (o RuleGroupRuleNotificationSettingsPtrOutput) RepeatInterval() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+type RuleGroupRuleRecord struct {
+	// The ref id of the query node in the data field to use as the source of the metric.
+	From string `pulumi:"from"`
+	// The name of the metric to write to.
+	Metric string `pulumi:"metric"`
+}
+
+// RuleGroupRuleRecordInput is an input type that accepts RuleGroupRuleRecordArgs and RuleGroupRuleRecordOutput values.
+// You can construct a concrete instance of `RuleGroupRuleRecordInput` via:
+//
+//	RuleGroupRuleRecordArgs{...}
+type RuleGroupRuleRecordInput interface {
+	pulumi.Input
+
+	ToRuleGroupRuleRecordOutput() RuleGroupRuleRecordOutput
+	ToRuleGroupRuleRecordOutputWithContext(context.Context) RuleGroupRuleRecordOutput
+}
+
+type RuleGroupRuleRecordArgs struct {
+	// The ref id of the query node in the data field to use as the source of the metric.
+	From pulumi.StringInput `pulumi:"from"`
+	// The name of the metric to write to.
+	Metric pulumi.StringInput `pulumi:"metric"`
+}
+
+func (RuleGroupRuleRecordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleGroupRuleRecord)(nil)).Elem()
+}
+
+func (i RuleGroupRuleRecordArgs) ToRuleGroupRuleRecordOutput() RuleGroupRuleRecordOutput {
+	return i.ToRuleGroupRuleRecordOutputWithContext(context.Background())
+}
+
+func (i RuleGroupRuleRecordArgs) ToRuleGroupRuleRecordOutputWithContext(ctx context.Context) RuleGroupRuleRecordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleGroupRuleRecordOutput)
+}
+
+func (i RuleGroupRuleRecordArgs) ToRuleGroupRuleRecordPtrOutput() RuleGroupRuleRecordPtrOutput {
+	return i.ToRuleGroupRuleRecordPtrOutputWithContext(context.Background())
+}
+
+func (i RuleGroupRuleRecordArgs) ToRuleGroupRuleRecordPtrOutputWithContext(ctx context.Context) RuleGroupRuleRecordPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleGroupRuleRecordOutput).ToRuleGroupRuleRecordPtrOutputWithContext(ctx)
+}
+
+// RuleGroupRuleRecordPtrInput is an input type that accepts RuleGroupRuleRecordArgs, RuleGroupRuleRecordPtr and RuleGroupRuleRecordPtrOutput values.
+// You can construct a concrete instance of `RuleGroupRuleRecordPtrInput` via:
+//
+//	        RuleGroupRuleRecordArgs{...}
+//
+//	or:
+//
+//	        nil
+type RuleGroupRuleRecordPtrInput interface {
+	pulumi.Input
+
+	ToRuleGroupRuleRecordPtrOutput() RuleGroupRuleRecordPtrOutput
+	ToRuleGroupRuleRecordPtrOutputWithContext(context.Context) RuleGroupRuleRecordPtrOutput
+}
+
+type ruleGroupRuleRecordPtrType RuleGroupRuleRecordArgs
+
+func RuleGroupRuleRecordPtr(v *RuleGroupRuleRecordArgs) RuleGroupRuleRecordPtrInput {
+	return (*ruleGroupRuleRecordPtrType)(v)
+}
+
+func (*ruleGroupRuleRecordPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleGroupRuleRecord)(nil)).Elem()
+}
+
+func (i *ruleGroupRuleRecordPtrType) ToRuleGroupRuleRecordPtrOutput() RuleGroupRuleRecordPtrOutput {
+	return i.ToRuleGroupRuleRecordPtrOutputWithContext(context.Background())
+}
+
+func (i *ruleGroupRuleRecordPtrType) ToRuleGroupRuleRecordPtrOutputWithContext(ctx context.Context) RuleGroupRuleRecordPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleGroupRuleRecordPtrOutput)
+}
+
+type RuleGroupRuleRecordOutput struct{ *pulumi.OutputState }
+
+func (RuleGroupRuleRecordOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleGroupRuleRecord)(nil)).Elem()
+}
+
+func (o RuleGroupRuleRecordOutput) ToRuleGroupRuleRecordOutput() RuleGroupRuleRecordOutput {
+	return o
+}
+
+func (o RuleGroupRuleRecordOutput) ToRuleGroupRuleRecordOutputWithContext(ctx context.Context) RuleGroupRuleRecordOutput {
+	return o
+}
+
+func (o RuleGroupRuleRecordOutput) ToRuleGroupRuleRecordPtrOutput() RuleGroupRuleRecordPtrOutput {
+	return o.ToRuleGroupRuleRecordPtrOutputWithContext(context.Background())
+}
+
+func (o RuleGroupRuleRecordOutput) ToRuleGroupRuleRecordPtrOutputWithContext(ctx context.Context) RuleGroupRuleRecordPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RuleGroupRuleRecord) *RuleGroupRuleRecord {
+		return &v
+	}).(RuleGroupRuleRecordPtrOutput)
+}
+
+// The ref id of the query node in the data field to use as the source of the metric.
+func (o RuleGroupRuleRecordOutput) From() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleGroupRuleRecord) string { return v.From }).(pulumi.StringOutput)
+}
+
+// The name of the metric to write to.
+func (o RuleGroupRuleRecordOutput) Metric() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleGroupRuleRecord) string { return v.Metric }).(pulumi.StringOutput)
+}
+
+type RuleGroupRuleRecordPtrOutput struct{ *pulumi.OutputState }
+
+func (RuleGroupRuleRecordPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RuleGroupRuleRecord)(nil)).Elem()
+}
+
+func (o RuleGroupRuleRecordPtrOutput) ToRuleGroupRuleRecordPtrOutput() RuleGroupRuleRecordPtrOutput {
+	return o
+}
+
+func (o RuleGroupRuleRecordPtrOutput) ToRuleGroupRuleRecordPtrOutputWithContext(ctx context.Context) RuleGroupRuleRecordPtrOutput {
+	return o
+}
+
+func (o RuleGroupRuleRecordPtrOutput) Elem() RuleGroupRuleRecordOutput {
+	return o.ApplyT(func(v *RuleGroupRuleRecord) RuleGroupRuleRecord {
+		if v != nil {
+			return *v
+		}
+		var ret RuleGroupRuleRecord
+		return ret
+	}).(RuleGroupRuleRecordOutput)
+}
+
+// The ref id of the query node in the data field to use as the source of the metric.
+func (o RuleGroupRuleRecordPtrOutput) From() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleGroupRuleRecord) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.From
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the metric to write to.
+func (o RuleGroupRuleRecordPtrOutput) Metric() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleGroupRuleRecord) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Metric
+	}).(pulumi.StringPtrOutput)
+}
+
 type SLOAlerting struct {
 	// Advanced Options for Alert Rules
 	AdvancedOptions *SLOAlertingAdvancedOptions `pulumi:"advancedOptions"`
@@ -10583,7 +10923,9 @@ func (o SLOAlertingAdvancedOptionsPtrOutput) MinFailures() pulumi.IntPtrOutput {
 }
 
 type SLOAlertingAnnotation struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -10599,7 +10941,9 @@ type SLOAlertingAnnotationInput interface {
 }
 
 type SLOAlertingAnnotationArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -10654,10 +10998,12 @@ func (o SLOAlertingAnnotationOutput) ToSLOAlertingAnnotationOutputWithContext(ct
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOAlertingAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOAlertingAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -10789,7 +11135,9 @@ func (o SLOAlertingFastburnArrayOutput) Index(i pulumi.IntInput) SLOAlertingFast
 }
 
 type SLOAlertingFastburnAnnotation struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -10805,7 +11153,9 @@ type SLOAlertingFastburnAnnotationInput interface {
 }
 
 type SLOAlertingFastburnAnnotationArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -10860,10 +11210,12 @@ func (o SLOAlertingFastburnAnnotationOutput) ToSLOAlertingFastburnAnnotationOutp
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOAlertingFastburnAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingFastburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOAlertingFastburnAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingFastburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -10889,7 +11241,9 @@ func (o SLOAlertingFastburnAnnotationArrayOutput) Index(i pulumi.IntInput) SLOAl
 }
 
 type SLOAlertingFastburnLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -10905,7 +11259,9 @@ type SLOAlertingFastburnLabelInput interface {
 }
 
 type SLOAlertingFastburnLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -10960,10 +11316,12 @@ func (o SLOAlertingFastburnLabelOutput) ToSLOAlertingFastburnLabelOutputWithCont
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOAlertingFastburnLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingFastburnLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOAlertingFastburnLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingFastburnLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -10989,7 +11347,9 @@ func (o SLOAlertingFastburnLabelArrayOutput) Index(i pulumi.IntInput) SLOAlertin
 }
 
 type SLOAlertingLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -11005,7 +11365,9 @@ type SLOAlertingLabelInput interface {
 }
 
 type SLOAlertingLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -11060,10 +11422,12 @@ func (o SLOAlertingLabelOutput) ToSLOAlertingLabelOutputWithContext(ctx context.
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOAlertingLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOAlertingLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -11195,7 +11559,9 @@ func (o SLOAlertingSlowburnArrayOutput) Index(i pulumi.IntInput) SLOAlertingSlow
 }
 
 type SLOAlertingSlowburnAnnotation struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -11211,7 +11577,9 @@ type SLOAlertingSlowburnAnnotationInput interface {
 }
 
 type SLOAlertingSlowburnAnnotationArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -11266,10 +11634,12 @@ func (o SLOAlertingSlowburnAnnotationOutput) ToSLOAlertingSlowburnAnnotationOutp
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOAlertingSlowburnAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingSlowburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOAlertingSlowburnAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingSlowburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -11295,7 +11665,9 @@ func (o SLOAlertingSlowburnAnnotationArrayOutput) Index(i pulumi.IntInput) SLOAl
 }
 
 type SLOAlertingSlowburnLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -11311,7 +11683,9 @@ type SLOAlertingSlowburnLabelInput interface {
 }
 
 type SLOAlertingSlowburnLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -11366,10 +11740,12 @@ func (o SLOAlertingSlowburnLabelOutput) ToSLOAlertingSlowburnLabelOutputWithCont
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOAlertingSlowburnLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingSlowburnLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOAlertingSlowburnLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingSlowburnLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -11395,8 +11771,8 @@ func (o SLOAlertingSlowburnLabelArrayOutput) Index(i pulumi.IntInput) SLOAlertin
 }
 
 type SLODestinationDatasource struct {
-	// UID for the Mimir Datasource
-	Uid *string `pulumi:"uid"`
+	// UID for the Datasource
+	Uid string `pulumi:"uid"`
 }
 
 // SLODestinationDatasourceInput is an input type that accepts SLODestinationDatasourceArgs and SLODestinationDatasourceOutput values.
@@ -11411,8 +11787,8 @@ type SLODestinationDatasourceInput interface {
 }
 
 type SLODestinationDatasourceArgs struct {
-	// UID for the Mimir Datasource
-	Uid pulumi.StringPtrInput `pulumi:"uid"`
+	// UID for the Datasource
+	Uid pulumi.StringInput `pulumi:"uid"`
 }
 
 func (SLODestinationDatasourceArgs) ElementType() reflect.Type {
@@ -11492,9 +11868,9 @@ func (o SLODestinationDatasourceOutput) ToSLODestinationDatasourcePtrOutputWithC
 	}).(SLODestinationDatasourcePtrOutput)
 }
 
-// UID for the Mimir Datasource
-func (o SLODestinationDatasourceOutput) Uid() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SLODestinationDatasource) *string { return v.Uid }).(pulumi.StringPtrOutput)
+// UID for the Datasource
+func (o SLODestinationDatasourceOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v SLODestinationDatasource) string { return v.Uid }).(pulumi.StringOutput)
 }
 
 type SLODestinationDatasourcePtrOutput struct{ *pulumi.OutputState }
@@ -11521,18 +11897,20 @@ func (o SLODestinationDatasourcePtrOutput) Elem() SLODestinationDatasourceOutput
 	}).(SLODestinationDatasourceOutput)
 }
 
-// UID for the Mimir Datasource
+// UID for the Datasource
 func (o SLODestinationDatasourcePtrOutput) Uid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SLODestinationDatasource) *string {
 		if v == nil {
 			return nil
 		}
-		return v.Uid
+		return &v.Uid
 	}).(pulumi.StringPtrOutput)
 }
 
 type SLOLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -11548,7 +11926,9 @@ type SLOLabelInput interface {
 }
 
 type SLOLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -11603,10 +11983,12 @@ func (o SLOLabelOutput) ToSLOLabelOutputWithContext(ctx context.Context) SLOLabe
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -12273,6 +12655,758 @@ func (o ServiceAccountPermissionPermissionArrayOutput) Index(i pulumi.IntInput) 
 	}).(ServiceAccountPermissionPermissionOutput)
 }
 
+type SsoSettingsLdapSettings struct {
+	// Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+	AllowSignUp *bool `pulumi:"allowSignUp"`
+	// The LDAP configuration.
+	Config SsoSettingsLdapSettingsConfig `pulumi:"config"`
+	// Define whether this configuration is enabled for LDAP. Defaults to `true`.
+	Enabled *bool `pulumi:"enabled"`
+	// Prevent synchronizing users’ organization roles from LDAP.
+	SkipOrgRoleSync *bool `pulumi:"skipOrgRoleSync"`
+}
+
+// SsoSettingsLdapSettingsInput is an input type that accepts SsoSettingsLdapSettingsArgs and SsoSettingsLdapSettingsOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsInput` via:
+//
+//	SsoSettingsLdapSettingsArgs{...}
+type SsoSettingsLdapSettingsInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsOutput() SsoSettingsLdapSettingsOutput
+	ToSsoSettingsLdapSettingsOutputWithContext(context.Context) SsoSettingsLdapSettingsOutput
+}
+
+type SsoSettingsLdapSettingsArgs struct {
+	// Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+	AllowSignUp pulumi.BoolPtrInput `pulumi:"allowSignUp"`
+	// The LDAP configuration.
+	Config SsoSettingsLdapSettingsConfigInput `pulumi:"config"`
+	// Define whether this configuration is enabled for LDAP. Defaults to `true`.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Prevent synchronizing users’ organization roles from LDAP.
+	SkipOrgRoleSync pulumi.BoolPtrInput `pulumi:"skipOrgRoleSync"`
+}
+
+func (SsoSettingsLdapSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettings)(nil)).Elem()
+}
+
+func (i SsoSettingsLdapSettingsArgs) ToSsoSettingsLdapSettingsOutput() SsoSettingsLdapSettingsOutput {
+	return i.ToSsoSettingsLdapSettingsOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsArgs) ToSsoSettingsLdapSettingsOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsOutput)
+}
+
+func (i SsoSettingsLdapSettingsArgs) ToSsoSettingsLdapSettingsPtrOutput() SsoSettingsLdapSettingsPtrOutput {
+	return i.ToSsoSettingsLdapSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsArgs) ToSsoSettingsLdapSettingsPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsOutput).ToSsoSettingsLdapSettingsPtrOutputWithContext(ctx)
+}
+
+// SsoSettingsLdapSettingsPtrInput is an input type that accepts SsoSettingsLdapSettingsArgs, SsoSettingsLdapSettingsPtr and SsoSettingsLdapSettingsPtrOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsPtrInput` via:
+//
+//	        SsoSettingsLdapSettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SsoSettingsLdapSettingsPtrInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsPtrOutput() SsoSettingsLdapSettingsPtrOutput
+	ToSsoSettingsLdapSettingsPtrOutputWithContext(context.Context) SsoSettingsLdapSettingsPtrOutput
+}
+
+type ssoSettingsLdapSettingsPtrType SsoSettingsLdapSettingsArgs
+
+func SsoSettingsLdapSettingsPtr(v *SsoSettingsLdapSettingsArgs) SsoSettingsLdapSettingsPtrInput {
+	return (*ssoSettingsLdapSettingsPtrType)(v)
+}
+
+func (*ssoSettingsLdapSettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsLdapSettings)(nil)).Elem()
+}
+
+func (i *ssoSettingsLdapSettingsPtrType) ToSsoSettingsLdapSettingsPtrOutput() SsoSettingsLdapSettingsPtrOutput {
+	return i.ToSsoSettingsLdapSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *ssoSettingsLdapSettingsPtrType) ToSsoSettingsLdapSettingsPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsPtrOutput)
+}
+
+type SsoSettingsLdapSettingsOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettings)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsOutput) ToSsoSettingsLdapSettingsOutput() SsoSettingsLdapSettingsOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsOutput) ToSsoSettingsLdapSettingsOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsOutput) ToSsoSettingsLdapSettingsPtrOutput() SsoSettingsLdapSettingsPtrOutput {
+	return o.ToSsoSettingsLdapSettingsPtrOutputWithContext(context.Background())
+}
+
+func (o SsoSettingsLdapSettingsOutput) ToSsoSettingsLdapSettingsPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SsoSettingsLdapSettings) *SsoSettingsLdapSettings {
+		return &v
+	}).(SsoSettingsLdapSettingsPtrOutput)
+}
+
+// Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+func (o SsoSettingsLdapSettingsOutput) AllowSignUp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettings) *bool { return v.AllowSignUp }).(pulumi.BoolPtrOutput)
+}
+
+// The LDAP configuration.
+func (o SsoSettingsLdapSettingsOutput) Config() SsoSettingsLdapSettingsConfigOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettings) SsoSettingsLdapSettingsConfig { return v.Config }).(SsoSettingsLdapSettingsConfigOutput)
+}
+
+// Define whether this configuration is enabled for LDAP. Defaults to `true`.
+func (o SsoSettingsLdapSettingsOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Prevent synchronizing users’ organization roles from LDAP.
+func (o SsoSettingsLdapSettingsOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettings) *bool { return v.SkipOrgRoleSync }).(pulumi.BoolPtrOutput)
+}
+
+type SsoSettingsLdapSettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsLdapSettings)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsPtrOutput) ToSsoSettingsLdapSettingsPtrOutput() SsoSettingsLdapSettingsPtrOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsPtrOutput) ToSsoSettingsLdapSettingsPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsPtrOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsPtrOutput) Elem() SsoSettingsLdapSettingsOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettings) SsoSettingsLdapSettings {
+		if v != nil {
+			return *v
+		}
+		var ret SsoSettingsLdapSettings
+		return ret
+	}).(SsoSettingsLdapSettingsOutput)
+}
+
+// Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+func (o SsoSettingsLdapSettingsPtrOutput) AllowSignUp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowSignUp
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The LDAP configuration.
+func (o SsoSettingsLdapSettingsPtrOutput) Config() SsoSettingsLdapSettingsConfigPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettings) *SsoSettingsLdapSettingsConfig {
+		if v == nil {
+			return nil
+		}
+		return &v.Config
+	}).(SsoSettingsLdapSettingsConfigPtrOutput)
+}
+
+// Define whether this configuration is enabled for LDAP. Defaults to `true`.
+func (o SsoSettingsLdapSettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Prevent synchronizing users’ organization roles from LDAP.
+func (o SsoSettingsLdapSettingsPtrOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SkipOrgRoleSync
+	}).(pulumi.BoolPtrOutput)
+}
+
+type SsoSettingsLdapSettingsConfig struct {
+	// The LDAP servers configuration.
+	Servers []SsoSettingsLdapSettingsConfigServer `pulumi:"servers"`
+}
+
+// SsoSettingsLdapSettingsConfigInput is an input type that accepts SsoSettingsLdapSettingsConfigArgs and SsoSettingsLdapSettingsConfigOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsConfigInput` via:
+//
+//	SsoSettingsLdapSettingsConfigArgs{...}
+type SsoSettingsLdapSettingsConfigInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsConfigOutput() SsoSettingsLdapSettingsConfigOutput
+	ToSsoSettingsLdapSettingsConfigOutputWithContext(context.Context) SsoSettingsLdapSettingsConfigOutput
+}
+
+type SsoSettingsLdapSettingsConfigArgs struct {
+	// The LDAP servers configuration.
+	Servers SsoSettingsLdapSettingsConfigServerArrayInput `pulumi:"servers"`
+}
+
+func (SsoSettingsLdapSettingsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettingsConfig)(nil)).Elem()
+}
+
+func (i SsoSettingsLdapSettingsConfigArgs) ToSsoSettingsLdapSettingsConfigOutput() SsoSettingsLdapSettingsConfigOutput {
+	return i.ToSsoSettingsLdapSettingsConfigOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsConfigArgs) ToSsoSettingsLdapSettingsConfigOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigOutput)
+}
+
+func (i SsoSettingsLdapSettingsConfigArgs) ToSsoSettingsLdapSettingsConfigPtrOutput() SsoSettingsLdapSettingsConfigPtrOutput {
+	return i.ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsConfigArgs) ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigOutput).ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(ctx)
+}
+
+// SsoSettingsLdapSettingsConfigPtrInput is an input type that accepts SsoSettingsLdapSettingsConfigArgs, SsoSettingsLdapSettingsConfigPtr and SsoSettingsLdapSettingsConfigPtrOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsConfigPtrInput` via:
+//
+//	        SsoSettingsLdapSettingsConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type SsoSettingsLdapSettingsConfigPtrInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsConfigPtrOutput() SsoSettingsLdapSettingsConfigPtrOutput
+	ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(context.Context) SsoSettingsLdapSettingsConfigPtrOutput
+}
+
+type ssoSettingsLdapSettingsConfigPtrType SsoSettingsLdapSettingsConfigArgs
+
+func SsoSettingsLdapSettingsConfigPtr(v *SsoSettingsLdapSettingsConfigArgs) SsoSettingsLdapSettingsConfigPtrInput {
+	return (*ssoSettingsLdapSettingsConfigPtrType)(v)
+}
+
+func (*ssoSettingsLdapSettingsConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsLdapSettingsConfig)(nil)).Elem()
+}
+
+func (i *ssoSettingsLdapSettingsConfigPtrType) ToSsoSettingsLdapSettingsConfigPtrOutput() SsoSettingsLdapSettingsConfigPtrOutput {
+	return i.ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ssoSettingsLdapSettingsConfigPtrType) ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigPtrOutput)
+}
+
+type SsoSettingsLdapSettingsConfigOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettingsConfig)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsConfigOutput) ToSsoSettingsLdapSettingsConfigOutput() SsoSettingsLdapSettingsConfigOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigOutput) ToSsoSettingsLdapSettingsConfigOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigOutput) ToSsoSettingsLdapSettingsConfigPtrOutput() SsoSettingsLdapSettingsConfigPtrOutput {
+	return o.ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(context.Background())
+}
+
+func (o SsoSettingsLdapSettingsConfigOutput) ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SsoSettingsLdapSettingsConfig) *SsoSettingsLdapSettingsConfig {
+		return &v
+	}).(SsoSettingsLdapSettingsConfigPtrOutput)
+}
+
+// The LDAP servers configuration.
+func (o SsoSettingsLdapSettingsConfigOutput) Servers() SsoSettingsLdapSettingsConfigServerArrayOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfig) []SsoSettingsLdapSettingsConfigServer { return v.Servers }).(SsoSettingsLdapSettingsConfigServerArrayOutput)
+}
+
+type SsoSettingsLdapSettingsConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SsoSettingsLdapSettingsConfig)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsConfigPtrOutput) ToSsoSettingsLdapSettingsConfigPtrOutput() SsoSettingsLdapSettingsConfigPtrOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigPtrOutput) ToSsoSettingsLdapSettingsConfigPtrOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigPtrOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigPtrOutput) Elem() SsoSettingsLdapSettingsConfigOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettingsConfig) SsoSettingsLdapSettingsConfig {
+		if v != nil {
+			return *v
+		}
+		var ret SsoSettingsLdapSettingsConfig
+		return ret
+	}).(SsoSettingsLdapSettingsConfigOutput)
+}
+
+// The LDAP servers configuration.
+func (o SsoSettingsLdapSettingsConfigPtrOutput) Servers() SsoSettingsLdapSettingsConfigServerArrayOutput {
+	return o.ApplyT(func(v *SsoSettingsLdapSettingsConfig) []SsoSettingsLdapSettingsConfigServer {
+		if v == nil {
+			return nil
+		}
+		return v.Servers
+	}).(SsoSettingsLdapSettingsConfigServerArrayOutput)
+}
+
+type SsoSettingsLdapSettingsConfigServer struct {
+	// The LDAP server attributes. The following attributes can be configured: email, member_of, name, surname, username.
+	Attributes map[string]string `pulumi:"attributes"`
+	// The search user bind DN.
+	BindDn *string `pulumi:"bindDn"`
+	// The search user bind password.
+	BindPassword *string `pulumi:"bindPassword"`
+	// The path to the client certificate.
+	ClientCert *string `pulumi:"clientCert"`
+	// The Base64 encoded value of the client certificate.
+	ClientCertValue *string `pulumi:"clientCertValue"`
+	// The path to the client private key.
+	ClientKey *string `pulumi:"clientKey"`
+	// The Base64 encoded value of the client private key.
+	ClientKeyValue *string `pulumi:"clientKeyValue"`
+	// For mapping an LDAP group to a Grafana organization and role.
+	GroupMappings []SsoSettingsLdapSettingsConfigServerGroupMapping `pulumi:"groupMappings"`
+	// An array of the base DNs to search through for groups. Typically uses ou=groups.
+	GroupSearchBaseDns []string `pulumi:"groupSearchBaseDns"`
+	// Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available).
+	GroupSearchFilter *string `pulumi:"groupSearchFilter"`
+	// The %s in the search filter will be replaced with the attribute defined in this field.
+	GroupSearchFilterUserAttribute *string `pulumi:"groupSearchFilterUserAttribute"`
+	// The LDAP server host.
+	Host string `pulumi:"host"`
+	// Minimum TLS version allowed. Accepted values are: TLS1.2, TLS1.3.
+	MinTlsVersion *string `pulumi:"minTlsVersion"`
+	// The LDAP server port.
+	Port *int `pulumi:"port"`
+	// The path to the root CA certificate.
+	RootCaCert *string `pulumi:"rootCaCert"`
+	// The Base64 encoded values of the root CA certificates.
+	RootCaCertValues []string `pulumi:"rootCaCertValues"`
+	// An array of base DNs to search through.
+	SearchBaseDns []string `pulumi:"searchBaseDns"`
+	// The user search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)".
+	SearchFilter string `pulumi:"searchFilter"`
+	// If set to true, the SSL cert validation will be skipped.
+	SslSkipVerify *bool `pulumi:"sslSkipVerify"`
+	// If set to true, use LDAP with STARTTLS instead of LDAPS.
+	StartTls *bool `pulumi:"startTls"`
+	// The timeout in seconds for connecting to the LDAP host.
+	Timeout *int `pulumi:"timeout"`
+	// Accepted TLS ciphers. For a complete list of supported ciphers, refer to: https://go.dev/src/crypto/tls/cipher_suites.go.
+	TlsCiphers []string `pulumi:"tlsCiphers"`
+	// Set to true if LDAP server should use an encrypted TLS connection (either with STARTTLS or LDAPS).
+	UseSsl *bool `pulumi:"useSsl"`
+}
+
+// SsoSettingsLdapSettingsConfigServerInput is an input type that accepts SsoSettingsLdapSettingsConfigServerArgs and SsoSettingsLdapSettingsConfigServerOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsConfigServerInput` via:
+//
+//	SsoSettingsLdapSettingsConfigServerArgs{...}
+type SsoSettingsLdapSettingsConfigServerInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsConfigServerOutput() SsoSettingsLdapSettingsConfigServerOutput
+	ToSsoSettingsLdapSettingsConfigServerOutputWithContext(context.Context) SsoSettingsLdapSettingsConfigServerOutput
+}
+
+type SsoSettingsLdapSettingsConfigServerArgs struct {
+	// The LDAP server attributes. The following attributes can be configured: email, member_of, name, surname, username.
+	Attributes pulumi.StringMapInput `pulumi:"attributes"`
+	// The search user bind DN.
+	BindDn pulumi.StringPtrInput `pulumi:"bindDn"`
+	// The search user bind password.
+	BindPassword pulumi.StringPtrInput `pulumi:"bindPassword"`
+	// The path to the client certificate.
+	ClientCert pulumi.StringPtrInput `pulumi:"clientCert"`
+	// The Base64 encoded value of the client certificate.
+	ClientCertValue pulumi.StringPtrInput `pulumi:"clientCertValue"`
+	// The path to the client private key.
+	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
+	// The Base64 encoded value of the client private key.
+	ClientKeyValue pulumi.StringPtrInput `pulumi:"clientKeyValue"`
+	// For mapping an LDAP group to a Grafana organization and role.
+	GroupMappings SsoSettingsLdapSettingsConfigServerGroupMappingArrayInput `pulumi:"groupMappings"`
+	// An array of the base DNs to search through for groups. Typically uses ou=groups.
+	GroupSearchBaseDns pulumi.StringArrayInput `pulumi:"groupSearchBaseDns"`
+	// Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available).
+	GroupSearchFilter pulumi.StringPtrInput `pulumi:"groupSearchFilter"`
+	// The %s in the search filter will be replaced with the attribute defined in this field.
+	GroupSearchFilterUserAttribute pulumi.StringPtrInput `pulumi:"groupSearchFilterUserAttribute"`
+	// The LDAP server host.
+	Host pulumi.StringInput `pulumi:"host"`
+	// Minimum TLS version allowed. Accepted values are: TLS1.2, TLS1.3.
+	MinTlsVersion pulumi.StringPtrInput `pulumi:"minTlsVersion"`
+	// The LDAP server port.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The path to the root CA certificate.
+	RootCaCert pulumi.StringPtrInput `pulumi:"rootCaCert"`
+	// The Base64 encoded values of the root CA certificates.
+	RootCaCertValues pulumi.StringArrayInput `pulumi:"rootCaCertValues"`
+	// An array of base DNs to search through.
+	SearchBaseDns pulumi.StringArrayInput `pulumi:"searchBaseDns"`
+	// The user search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)".
+	SearchFilter pulumi.StringInput `pulumi:"searchFilter"`
+	// If set to true, the SSL cert validation will be skipped.
+	SslSkipVerify pulumi.BoolPtrInput `pulumi:"sslSkipVerify"`
+	// If set to true, use LDAP with STARTTLS instead of LDAPS.
+	StartTls pulumi.BoolPtrInput `pulumi:"startTls"`
+	// The timeout in seconds for connecting to the LDAP host.
+	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
+	// Accepted TLS ciphers. For a complete list of supported ciphers, refer to: https://go.dev/src/crypto/tls/cipher_suites.go.
+	TlsCiphers pulumi.StringArrayInput `pulumi:"tlsCiphers"`
+	// Set to true if LDAP server should use an encrypted TLS connection (either with STARTTLS or LDAPS).
+	UseSsl pulumi.BoolPtrInput `pulumi:"useSsl"`
+}
+
+func (SsoSettingsLdapSettingsConfigServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettingsConfigServer)(nil)).Elem()
+}
+
+func (i SsoSettingsLdapSettingsConfigServerArgs) ToSsoSettingsLdapSettingsConfigServerOutput() SsoSettingsLdapSettingsConfigServerOutput {
+	return i.ToSsoSettingsLdapSettingsConfigServerOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsConfigServerArgs) ToSsoSettingsLdapSettingsConfigServerOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigServerOutput)
+}
+
+// SsoSettingsLdapSettingsConfigServerArrayInput is an input type that accepts SsoSettingsLdapSettingsConfigServerArray and SsoSettingsLdapSettingsConfigServerArrayOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsConfigServerArrayInput` via:
+//
+//	SsoSettingsLdapSettingsConfigServerArray{ SsoSettingsLdapSettingsConfigServerArgs{...} }
+type SsoSettingsLdapSettingsConfigServerArrayInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsConfigServerArrayOutput() SsoSettingsLdapSettingsConfigServerArrayOutput
+	ToSsoSettingsLdapSettingsConfigServerArrayOutputWithContext(context.Context) SsoSettingsLdapSettingsConfigServerArrayOutput
+}
+
+type SsoSettingsLdapSettingsConfigServerArray []SsoSettingsLdapSettingsConfigServerInput
+
+func (SsoSettingsLdapSettingsConfigServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SsoSettingsLdapSettingsConfigServer)(nil)).Elem()
+}
+
+func (i SsoSettingsLdapSettingsConfigServerArray) ToSsoSettingsLdapSettingsConfigServerArrayOutput() SsoSettingsLdapSettingsConfigServerArrayOutput {
+	return i.ToSsoSettingsLdapSettingsConfigServerArrayOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsConfigServerArray) ToSsoSettingsLdapSettingsConfigServerArrayOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigServerArrayOutput)
+}
+
+type SsoSettingsLdapSettingsConfigServerOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsConfigServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettingsConfigServer)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsConfigServerOutput) ToSsoSettingsLdapSettingsConfigServerOutput() SsoSettingsLdapSettingsConfigServerOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigServerOutput) ToSsoSettingsLdapSettingsConfigServerOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerOutput {
+	return o
+}
+
+// The LDAP server attributes. The following attributes can be configured: email, member_of, name, surname, username.
+func (o SsoSettingsLdapSettingsConfigServerOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
+}
+
+// The search user bind DN.
+func (o SsoSettingsLdapSettingsConfigServerOutput) BindDn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.BindDn }).(pulumi.StringPtrOutput)
+}
+
+// The search user bind password.
+func (o SsoSettingsLdapSettingsConfigServerOutput) BindPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.BindPassword }).(pulumi.StringPtrOutput)
+}
+
+// The path to the client certificate.
+func (o SsoSettingsLdapSettingsConfigServerOutput) ClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.ClientCert }).(pulumi.StringPtrOutput)
+}
+
+// The Base64 encoded value of the client certificate.
+func (o SsoSettingsLdapSettingsConfigServerOutput) ClientCertValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.ClientCertValue }).(pulumi.StringPtrOutput)
+}
+
+// The path to the client private key.
+func (o SsoSettingsLdapSettingsConfigServerOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
+}
+
+// The Base64 encoded value of the client private key.
+func (o SsoSettingsLdapSettingsConfigServerOutput) ClientKeyValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.ClientKeyValue }).(pulumi.StringPtrOutput)
+}
+
+// For mapping an LDAP group to a Grafana organization and role.
+func (o SsoSettingsLdapSettingsConfigServerOutput) GroupMappings() SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) []SsoSettingsLdapSettingsConfigServerGroupMapping {
+		return v.GroupMappings
+	}).(SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput)
+}
+
+// An array of the base DNs to search through for groups. Typically uses ou=groups.
+func (o SsoSettingsLdapSettingsConfigServerOutput) GroupSearchBaseDns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) []string { return v.GroupSearchBaseDns }).(pulumi.StringArrayOutput)
+}
+
+// Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available).
+func (o SsoSettingsLdapSettingsConfigServerOutput) GroupSearchFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.GroupSearchFilter }).(pulumi.StringPtrOutput)
+}
+
+// The %s in the search filter will be replaced with the attribute defined in this field.
+func (o SsoSettingsLdapSettingsConfigServerOutput) GroupSearchFilterUserAttribute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.GroupSearchFilterUserAttribute }).(pulumi.StringPtrOutput)
+}
+
+// The LDAP server host.
+func (o SsoSettingsLdapSettingsConfigServerOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Minimum TLS version allowed. Accepted values are: TLS1.2, TLS1.3.
+func (o SsoSettingsLdapSettingsConfigServerOutput) MinTlsVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.MinTlsVersion }).(pulumi.StringPtrOutput)
+}
+
+// The LDAP server port.
+func (o SsoSettingsLdapSettingsConfigServerOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The path to the root CA certificate.
+func (o SsoSettingsLdapSettingsConfigServerOutput) RootCaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *string { return v.RootCaCert }).(pulumi.StringPtrOutput)
+}
+
+// The Base64 encoded values of the root CA certificates.
+func (o SsoSettingsLdapSettingsConfigServerOutput) RootCaCertValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) []string { return v.RootCaCertValues }).(pulumi.StringArrayOutput)
+}
+
+// An array of base DNs to search through.
+func (o SsoSettingsLdapSettingsConfigServerOutput) SearchBaseDns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) []string { return v.SearchBaseDns }).(pulumi.StringArrayOutput)
+}
+
+// The user search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)".
+func (o SsoSettingsLdapSettingsConfigServerOutput) SearchFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) string { return v.SearchFilter }).(pulumi.StringOutput)
+}
+
+// If set to true, the SSL cert validation will be skipped.
+func (o SsoSettingsLdapSettingsConfigServerOutput) SslSkipVerify() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *bool { return v.SslSkipVerify }).(pulumi.BoolPtrOutput)
+}
+
+// If set to true, use LDAP with STARTTLS instead of LDAPS.
+func (o SsoSettingsLdapSettingsConfigServerOutput) StartTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *bool { return v.StartTls }).(pulumi.BoolPtrOutput)
+}
+
+// The timeout in seconds for connecting to the LDAP host.
+func (o SsoSettingsLdapSettingsConfigServerOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *int { return v.Timeout }).(pulumi.IntPtrOutput)
+}
+
+// Accepted TLS ciphers. For a complete list of supported ciphers, refer to: https://go.dev/src/crypto/tls/cipher_suites.go.
+func (o SsoSettingsLdapSettingsConfigServerOutput) TlsCiphers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) []string { return v.TlsCiphers }).(pulumi.StringArrayOutput)
+}
+
+// Set to true if LDAP server should use an encrypted TLS connection (either with STARTTLS or LDAPS).
+func (o SsoSettingsLdapSettingsConfigServerOutput) UseSsl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServer) *bool { return v.UseSsl }).(pulumi.BoolPtrOutput)
+}
+
+type SsoSettingsLdapSettingsConfigServerArrayOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsConfigServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SsoSettingsLdapSettingsConfigServer)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsConfigServerArrayOutput) ToSsoSettingsLdapSettingsConfigServerArrayOutput() SsoSettingsLdapSettingsConfigServerArrayOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigServerArrayOutput) ToSsoSettingsLdapSettingsConfigServerArrayOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerArrayOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigServerArrayOutput) Index(i pulumi.IntInput) SsoSettingsLdapSettingsConfigServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SsoSettingsLdapSettingsConfigServer {
+		return vs[0].([]SsoSettingsLdapSettingsConfigServer)[vs[1].(int)]
+	}).(SsoSettingsLdapSettingsConfigServerOutput)
+}
+
+type SsoSettingsLdapSettingsConfigServerGroupMapping struct {
+	// If set to true, it makes the user of groupDn Grafana server admin.
+	GrafanaAdmin *bool `pulumi:"grafanaAdmin"`
+	// LDAP distinguished name (DN) of LDAP group. If you want to match all (or no LDAP groups) then you can use wildcard ("*").
+	GroupDn string `pulumi:"groupDn"`
+	// The Grafana organization database id.
+	OrgId *int `pulumi:"orgId"`
+	// Assign users of groupDn the organization role Admin, Editor, or Viewer.
+	OrgRole string `pulumi:"orgRole"`
+}
+
+// SsoSettingsLdapSettingsConfigServerGroupMappingInput is an input type that accepts SsoSettingsLdapSettingsConfigServerGroupMappingArgs and SsoSettingsLdapSettingsConfigServerGroupMappingOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsConfigServerGroupMappingInput` via:
+//
+//	SsoSettingsLdapSettingsConfigServerGroupMappingArgs{...}
+type SsoSettingsLdapSettingsConfigServerGroupMappingInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsConfigServerGroupMappingOutput() SsoSettingsLdapSettingsConfigServerGroupMappingOutput
+	ToSsoSettingsLdapSettingsConfigServerGroupMappingOutputWithContext(context.Context) SsoSettingsLdapSettingsConfigServerGroupMappingOutput
+}
+
+type SsoSettingsLdapSettingsConfigServerGroupMappingArgs struct {
+	// If set to true, it makes the user of groupDn Grafana server admin.
+	GrafanaAdmin pulumi.BoolPtrInput `pulumi:"grafanaAdmin"`
+	// LDAP distinguished name (DN) of LDAP group. If you want to match all (or no LDAP groups) then you can use wildcard ("*").
+	GroupDn pulumi.StringInput `pulumi:"groupDn"`
+	// The Grafana organization database id.
+	OrgId pulumi.IntPtrInput `pulumi:"orgId"`
+	// Assign users of groupDn the organization role Admin, Editor, or Viewer.
+	OrgRole pulumi.StringInput `pulumi:"orgRole"`
+}
+
+func (SsoSettingsLdapSettingsConfigServerGroupMappingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettingsConfigServerGroupMapping)(nil)).Elem()
+}
+
+func (i SsoSettingsLdapSettingsConfigServerGroupMappingArgs) ToSsoSettingsLdapSettingsConfigServerGroupMappingOutput() SsoSettingsLdapSettingsConfigServerGroupMappingOutput {
+	return i.ToSsoSettingsLdapSettingsConfigServerGroupMappingOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsConfigServerGroupMappingArgs) ToSsoSettingsLdapSettingsConfigServerGroupMappingOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerGroupMappingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigServerGroupMappingOutput)
+}
+
+// SsoSettingsLdapSettingsConfigServerGroupMappingArrayInput is an input type that accepts SsoSettingsLdapSettingsConfigServerGroupMappingArray and SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput values.
+// You can construct a concrete instance of `SsoSettingsLdapSettingsConfigServerGroupMappingArrayInput` via:
+//
+//	SsoSettingsLdapSettingsConfigServerGroupMappingArray{ SsoSettingsLdapSettingsConfigServerGroupMappingArgs{...} }
+type SsoSettingsLdapSettingsConfigServerGroupMappingArrayInput interface {
+	pulumi.Input
+
+	ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput() SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput
+	ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutputWithContext(context.Context) SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput
+}
+
+type SsoSettingsLdapSettingsConfigServerGroupMappingArray []SsoSettingsLdapSettingsConfigServerGroupMappingInput
+
+func (SsoSettingsLdapSettingsConfigServerGroupMappingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SsoSettingsLdapSettingsConfigServerGroupMapping)(nil)).Elem()
+}
+
+func (i SsoSettingsLdapSettingsConfigServerGroupMappingArray) ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput() SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput {
+	return i.ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutputWithContext(context.Background())
+}
+
+func (i SsoSettingsLdapSettingsConfigServerGroupMappingArray) ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput)
+}
+
+type SsoSettingsLdapSettingsConfigServerGroupMappingOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsConfigServerGroupMappingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsoSettingsLdapSettingsConfigServerGroupMapping)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingOutput) ToSsoSettingsLdapSettingsConfigServerGroupMappingOutput() SsoSettingsLdapSettingsConfigServerGroupMappingOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingOutput) ToSsoSettingsLdapSettingsConfigServerGroupMappingOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerGroupMappingOutput {
+	return o
+}
+
+// If set to true, it makes the user of groupDn Grafana server admin.
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingOutput) GrafanaAdmin() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServerGroupMapping) *bool { return v.GrafanaAdmin }).(pulumi.BoolPtrOutput)
+}
+
+// LDAP distinguished name (DN) of LDAP group. If you want to match all (or no LDAP groups) then you can use wildcard ("*").
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingOutput) GroupDn() pulumi.StringOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServerGroupMapping) string { return v.GroupDn }).(pulumi.StringOutput)
+}
+
+// The Grafana organization database id.
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingOutput) OrgId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServerGroupMapping) *int { return v.OrgId }).(pulumi.IntPtrOutput)
+}
+
+// Assign users of groupDn the organization role Admin, Editor, or Viewer.
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingOutput) OrgRole() pulumi.StringOutput {
+	return o.ApplyT(func(v SsoSettingsLdapSettingsConfigServerGroupMapping) string { return v.OrgRole }).(pulumi.StringOutput)
+}
+
+type SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput struct{ *pulumi.OutputState }
+
+func (SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SsoSettingsLdapSettingsConfigServerGroupMapping)(nil)).Elem()
+}
+
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput) ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput() SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput) ToSsoSettingsLdapSettingsConfigServerGroupMappingArrayOutputWithContext(ctx context.Context) SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput {
+	return o
+}
+
+func (o SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput) Index(i pulumi.IntInput) SsoSettingsLdapSettingsConfigServerGroupMappingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SsoSettingsLdapSettingsConfigServerGroupMapping {
+		return vs[0].([]SsoSettingsLdapSettingsConfigServerGroupMapping)[vs[1].(int)]
+	}).(SsoSettingsLdapSettingsConfigServerGroupMappingOutput)
+}
+
 type SsoSettingsOauth2Settings struct {
 	// If enabled, it will automatically sync the Grafana server administrator role.
 	AllowAssignGrafanaAdmin *bool `pulumi:"allowAssignGrafanaAdmin"`
@@ -12320,6 +13454,10 @@ type SsoSettingsOauth2Settings struct {
 	Name *string `pulumi:"name"`
 	// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
 	NameAttributePath *string `pulumi:"nameAttributePath"`
+	// JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "orgMapping"). Only applicable to Generic OAuth and Okta.
+	OrgAttributePath *string `pulumi:"orgAttributePath"`
+	// List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+	OrgMapping *string `pulumi:"orgMapping"`
 	// JMESPath expression to use for Grafana role lookup.
 	RoleAttributePath *string `pulumi:"roleAttributePath"`
 	// If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
@@ -12410,6 +13548,10 @@ type SsoSettingsOauth2SettingsArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
 	NameAttributePath pulumi.StringPtrInput `pulumi:"nameAttributePath"`
+	// JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "orgMapping"). Only applicable to Generic OAuth and Okta.
+	OrgAttributePath pulumi.StringPtrInput `pulumi:"orgAttributePath"`
+	// List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+	OrgMapping pulumi.StringPtrInput `pulumi:"orgMapping"`
 	// JMESPath expression to use for Grafana role lookup.
 	RoleAttributePath pulumi.StringPtrInput `pulumi:"roleAttributePath"`
 	// If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
@@ -12632,6 +13774,16 @@ func (o SsoSettingsOauth2SettingsOutput) Name() pulumi.StringPtrOutput {
 // JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
 func (o SsoSettingsOauth2SettingsOutput) NameAttributePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.NameAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "orgMapping"). Only applicable to Generic OAuth and Okta.
+func (o SsoSettingsOauth2SettingsOutput) OrgAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.OrgAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+func (o SsoSettingsOauth2SettingsOutput) OrgMapping() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.OrgMapping }).(pulumi.StringPtrOutput)
 }
 
 // JMESPath expression to use for Grafana role lookup.
@@ -12963,6 +14115,26 @@ func (o SsoSettingsOauth2SettingsPtrOutput) NameAttributePath() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "orgMapping"). Only applicable to Generic OAuth and Okta.
+func (o SsoSettingsOauth2SettingsPtrOutput) OrgAttributePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OrgAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+func (o SsoSettingsOauth2SettingsPtrOutput) OrgMapping() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OrgMapping
+	}).(pulumi.StringPtrOutput)
+}
+
 // JMESPath expression to use for Grafana role lookup.
 func (o SsoSettingsOauth2SettingsPtrOutput) RoleAttributePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
@@ -13138,8 +14310,16 @@ type SsoSettingsSamlSettings struct {
 	Certificate *string `pulumi:"certificate"`
 	// Path for the SP X.509 certificate.
 	CertificatePath *string `pulumi:"certificatePath"`
+	// The client Id of your OAuth2 app.
+	ClientId *string `pulumi:"clientId"`
+	// The client secret of your OAuth2 app.
+	ClientSecret *string `pulumi:"clientSecret"`
 	// Define whether this configuration is enabled for SAML. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+	EntityId *string `pulumi:"entityId"`
+	// If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+	ForceUseGraphApi *bool `pulumi:"forceUseGraphApi"`
 	// Base64-encoded string for the IdP SAML metadata XML.
 	IdpMetadata *string `pulumi:"idpMetadata"`
 	// Path for the IdP SAML metadata XML.
@@ -13178,6 +14358,8 @@ type SsoSettingsSamlSettings struct {
 	SingleLogout *bool `pulumi:"singleLogout"`
 	// Prevent synchronizing users’ organization roles from your IdP.
 	SkipOrgRoleSync *bool `pulumi:"skipOrgRoleSync"`
+	// The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+	TokenUrl *string `pulumi:"tokenUrl"`
 }
 
 // SsoSettingsSamlSettingsInput is an input type that accepts SsoSettingsSamlSettingsArgs and SsoSettingsSamlSettingsOutput values.
@@ -13216,8 +14398,16 @@ type SsoSettingsSamlSettingsArgs struct {
 	Certificate pulumi.StringPtrInput `pulumi:"certificate"`
 	// Path for the SP X.509 certificate.
 	CertificatePath pulumi.StringPtrInput `pulumi:"certificatePath"`
+	// The client Id of your OAuth2 app.
+	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
+	// The client secret of your OAuth2 app.
+	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
 	// Define whether this configuration is enabled for SAML. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+	EntityId pulumi.StringPtrInput `pulumi:"entityId"`
+	// If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+	ForceUseGraphApi pulumi.BoolPtrInput `pulumi:"forceUseGraphApi"`
 	// Base64-encoded string for the IdP SAML metadata XML.
 	IdpMetadata pulumi.StringPtrInput `pulumi:"idpMetadata"`
 	// Path for the IdP SAML metadata XML.
@@ -13256,6 +14446,8 @@ type SsoSettingsSamlSettingsArgs struct {
 	SingleLogout pulumi.BoolPtrInput `pulumi:"singleLogout"`
 	// Prevent synchronizing users’ organization roles from your IdP.
 	SkipOrgRoleSync pulumi.BoolPtrInput `pulumi:"skipOrgRoleSync"`
+	// The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+	TokenUrl pulumi.StringPtrInput `pulumi:"tokenUrl"`
 }
 
 func (SsoSettingsSamlSettingsArgs) ElementType() reflect.Type {
@@ -13395,9 +14587,29 @@ func (o SsoSettingsSamlSettingsOutput) CertificatePath() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.CertificatePath }).(pulumi.StringPtrOutput)
 }
 
+// The client Id of your OAuth2 app.
+func (o SsoSettingsSamlSettingsOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client secret of your OAuth2 app.
+func (o SsoSettingsSamlSettingsOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
 // Define whether this configuration is enabled for SAML. Defaults to `true`.
 func (o SsoSettingsSamlSettingsOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SsoSettingsSamlSettings) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+func (o SsoSettingsSamlSettingsOutput) EntityId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.EntityId }).(pulumi.StringPtrOutput)
+}
+
+// If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+func (o SsoSettingsSamlSettingsOutput) ForceUseGraphApi() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *bool { return v.ForceUseGraphApi }).(pulumi.BoolPtrOutput)
 }
 
 // Base64-encoded string for the IdP SAML metadata XML.
@@ -13493,6 +14705,11 @@ func (o SsoSettingsSamlSettingsOutput) SingleLogout() pulumi.BoolPtrOutput {
 // Prevent synchronizing users’ organization roles from your IdP.
 func (o SsoSettingsSamlSettingsOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SsoSettingsSamlSettings) *bool { return v.SkipOrgRoleSync }).(pulumi.BoolPtrOutput)
+}
+
+// The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+func (o SsoSettingsSamlSettingsOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.TokenUrl }).(pulumi.StringPtrOutput)
 }
 
 type SsoSettingsSamlSettingsPtrOutput struct{ *pulumi.OutputState }
@@ -13639,6 +14856,26 @@ func (o SsoSettingsSamlSettingsPtrOutput) CertificatePath() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+// The client Id of your OAuth2 app.
+func (o SsoSettingsSamlSettingsPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The client secret of your OAuth2 app.
+func (o SsoSettingsSamlSettingsPtrOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientSecret
+	}).(pulumi.StringPtrOutput)
+}
+
 // Define whether this configuration is enabled for SAML. Defaults to `true`.
 func (o SsoSettingsSamlSettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SsoSettingsSamlSettings) *bool {
@@ -13646,6 +14883,26 @@ func (o SsoSettingsSamlSettingsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 			return nil
 		}
 		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+func (o SsoSettingsSamlSettingsPtrOutput) EntityId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EntityId
+	}).(pulumi.StringPtrOutput)
+}
+
+// If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+func (o SsoSettingsSamlSettingsPtrOutput) ForceUseGraphApi() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ForceUseGraphApi
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -13837,6 +15094,16 @@ func (o SsoSettingsSamlSettingsPtrOutput) SkipOrgRoleSync() pulumi.BoolPtrOutput
 		}
 		return v.SkipOrgRoleSync
 	}).(pulumi.BoolPtrOutput)
+}
+
+// The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+func (o SsoSettingsSamlSettingsPtrOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TokenUrl
+	}).(pulumi.StringPtrOutput)
 }
 
 type SyntheticMonitoringCheckSettings struct {
@@ -19013,6 +20280,124 @@ func (o GetFoldersFolderArrayOutput) Index(i pulumi.IntInput) GetFoldersFolderOu
 	}).(GetFoldersFolderOutput)
 }
 
+type GetLibraryPanelsPanel struct {
+	Description string `pulumi:"description"`
+	FolderUid   string `pulumi:"folderUid"`
+	ModelJson   string `pulumi:"modelJson"`
+	Name        string `pulumi:"name"`
+	Uid         string `pulumi:"uid"`
+}
+
+// GetLibraryPanelsPanelInput is an input type that accepts GetLibraryPanelsPanelArgs and GetLibraryPanelsPanelOutput values.
+// You can construct a concrete instance of `GetLibraryPanelsPanelInput` via:
+//
+//	GetLibraryPanelsPanelArgs{...}
+type GetLibraryPanelsPanelInput interface {
+	pulumi.Input
+
+	ToGetLibraryPanelsPanelOutput() GetLibraryPanelsPanelOutput
+	ToGetLibraryPanelsPanelOutputWithContext(context.Context) GetLibraryPanelsPanelOutput
+}
+
+type GetLibraryPanelsPanelArgs struct {
+	Description pulumi.StringInput `pulumi:"description"`
+	FolderUid   pulumi.StringInput `pulumi:"folderUid"`
+	ModelJson   pulumi.StringInput `pulumi:"modelJson"`
+	Name        pulumi.StringInput `pulumi:"name"`
+	Uid         pulumi.StringInput `pulumi:"uid"`
+}
+
+func (GetLibraryPanelsPanelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLibraryPanelsPanel)(nil)).Elem()
+}
+
+func (i GetLibraryPanelsPanelArgs) ToGetLibraryPanelsPanelOutput() GetLibraryPanelsPanelOutput {
+	return i.ToGetLibraryPanelsPanelOutputWithContext(context.Background())
+}
+
+func (i GetLibraryPanelsPanelArgs) ToGetLibraryPanelsPanelOutputWithContext(ctx context.Context) GetLibraryPanelsPanelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLibraryPanelsPanelOutput)
+}
+
+// GetLibraryPanelsPanelArrayInput is an input type that accepts GetLibraryPanelsPanelArray and GetLibraryPanelsPanelArrayOutput values.
+// You can construct a concrete instance of `GetLibraryPanelsPanelArrayInput` via:
+//
+//	GetLibraryPanelsPanelArray{ GetLibraryPanelsPanelArgs{...} }
+type GetLibraryPanelsPanelArrayInput interface {
+	pulumi.Input
+
+	ToGetLibraryPanelsPanelArrayOutput() GetLibraryPanelsPanelArrayOutput
+	ToGetLibraryPanelsPanelArrayOutputWithContext(context.Context) GetLibraryPanelsPanelArrayOutput
+}
+
+type GetLibraryPanelsPanelArray []GetLibraryPanelsPanelInput
+
+func (GetLibraryPanelsPanelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLibraryPanelsPanel)(nil)).Elem()
+}
+
+func (i GetLibraryPanelsPanelArray) ToGetLibraryPanelsPanelArrayOutput() GetLibraryPanelsPanelArrayOutput {
+	return i.ToGetLibraryPanelsPanelArrayOutputWithContext(context.Background())
+}
+
+func (i GetLibraryPanelsPanelArray) ToGetLibraryPanelsPanelArrayOutputWithContext(ctx context.Context) GetLibraryPanelsPanelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLibraryPanelsPanelArrayOutput)
+}
+
+type GetLibraryPanelsPanelOutput struct{ *pulumi.OutputState }
+
+func (GetLibraryPanelsPanelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLibraryPanelsPanel)(nil)).Elem()
+}
+
+func (o GetLibraryPanelsPanelOutput) ToGetLibraryPanelsPanelOutput() GetLibraryPanelsPanelOutput {
+	return o
+}
+
+func (o GetLibraryPanelsPanelOutput) ToGetLibraryPanelsPanelOutputWithContext(ctx context.Context) GetLibraryPanelsPanelOutput {
+	return o
+}
+
+func (o GetLibraryPanelsPanelOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLibraryPanelsPanel) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o GetLibraryPanelsPanelOutput) FolderUid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLibraryPanelsPanel) string { return v.FolderUid }).(pulumi.StringOutput)
+}
+
+func (o GetLibraryPanelsPanelOutput) ModelJson() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLibraryPanelsPanel) string { return v.ModelJson }).(pulumi.StringOutput)
+}
+
+func (o GetLibraryPanelsPanelOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLibraryPanelsPanel) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetLibraryPanelsPanelOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLibraryPanelsPanel) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+type GetLibraryPanelsPanelArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLibraryPanelsPanelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLibraryPanelsPanel)(nil)).Elem()
+}
+
+func (o GetLibraryPanelsPanelArrayOutput) ToGetLibraryPanelsPanelArrayOutput() GetLibraryPanelsPanelArrayOutput {
+	return o
+}
+
+func (o GetLibraryPanelsPanelArrayOutput) ToGetLibraryPanelsPanelArrayOutputWithContext(ctx context.Context) GetLibraryPanelsPanelArrayOutput {
+	return o
+}
+
+func (o GetLibraryPanelsPanelArrayOutput) Index(i pulumi.IntInput) GetLibraryPanelsPanelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLibraryPanelsPanel {
+		return vs[0].([]GetLibraryPanelsPanel)[vs[1].(int)]
+	}).(GetLibraryPanelsPanelOutput)
+}
+
 type GetRolePermission struct {
 	// Specific action users granted with the role will be allowed to perform (for example: `users:read`)
 	Action string `pulumi:"action"`
@@ -19140,6 +20525,8 @@ type GetSlosSlo struct {
 	Objectives []GetSlosSloObjective `pulumi:"objectives"`
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries []GetSlosSloQuery `pulumi:"queries"`
+	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+	SearchExpression string `pulumi:"searchExpression"`
 	// A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
 	Uuid string `pulumi:"uuid"`
 }
@@ -19176,6 +20563,8 @@ type GetSlosSloArgs struct {
 	Objectives GetSlosSloObjectiveArrayInput `pulumi:"objectives"`
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries GetSlosSloQueryArrayInput `pulumi:"queries"`
+	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+	SearchExpression pulumi.StringInput `pulumi:"searchExpression"`
 	// A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
 	Uuid pulumi.StringInput `pulumi:"uuid"`
 }
@@ -19274,6 +20663,11 @@ func (o GetSlosSloOutput) Objectives() GetSlosSloObjectiveArrayOutput {
 // Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 func (o GetSlosSloOutput) Queries() GetSlosSloQueryArrayOutput {
 	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloQuery { return v.Queries }).(GetSlosSloQueryArrayOutput)
+}
+
+// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+func (o GetSlosSloOutput) SearchExpression() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSlo) string { return v.SearchExpression }).(pulumi.StringOutput)
 }
 
 // A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
@@ -19572,7 +20966,9 @@ func (o GetSlosSloAlertingAdvancedOptionsPtrOutput) MinFailures() pulumi.IntPtrO
 }
 
 type GetSlosSloAlertingAnnotation struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -19588,7 +20984,9 @@ type GetSlosSloAlertingAnnotationInput interface {
 }
 
 type GetSlosSloAlertingAnnotationArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -19643,10 +21041,12 @@ func (o GetSlosSloAlertingAnnotationOutput) ToGetSlosSloAlertingAnnotationOutput
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloAlertingAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloAlertingAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -19828,7 +21228,9 @@ func (o GetSlosSloAlertingFastburnPtrOutput) Labels() GetSlosSloAlertingFastburn
 }
 
 type GetSlosSloAlertingFastburnAnnotation struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -19844,7 +21246,9 @@ type GetSlosSloAlertingFastburnAnnotationInput interface {
 }
 
 type GetSlosSloAlertingFastburnAnnotationArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -19899,10 +21303,12 @@ func (o GetSlosSloAlertingFastburnAnnotationOutput) ToGetSlosSloAlertingFastburn
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloAlertingFastburnAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloAlertingFastburnAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -19928,7 +21334,9 @@ func (o GetSlosSloAlertingFastburnAnnotationArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetSlosSloAlertingFastburnLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -19944,7 +21352,9 @@ type GetSlosSloAlertingFastburnLabelInput interface {
 }
 
 type GetSlosSloAlertingFastburnLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -19999,10 +21409,12 @@ func (o GetSlosSloAlertingFastburnLabelOutput) ToGetSlosSloAlertingFastburnLabel
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloAlertingFastburnLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburnLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloAlertingFastburnLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburnLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -20028,7 +21440,9 @@ func (o GetSlosSloAlertingFastburnLabelArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetSlosSloAlertingLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -20044,7 +21458,9 @@ type GetSlosSloAlertingLabelInput interface {
 }
 
 type GetSlosSloAlertingLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -20099,10 +21515,12 @@ func (o GetSlosSloAlertingLabelOutput) ToGetSlosSloAlertingLabelOutputWithContex
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloAlertingLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloAlertingLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -20284,7 +21702,9 @@ func (o GetSlosSloAlertingSlowburnPtrOutput) Labels() GetSlosSloAlertingSlowburn
 }
 
 type GetSlosSloAlertingSlowburnAnnotation struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -20300,7 +21720,9 @@ type GetSlosSloAlertingSlowburnAnnotationInput interface {
 }
 
 type GetSlosSloAlertingSlowburnAnnotationArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -20355,10 +21777,12 @@ func (o GetSlosSloAlertingSlowburnAnnotationOutput) ToGetSlosSloAlertingSlowburn
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloAlertingSlowburnAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloAlertingSlowburnAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -20384,7 +21808,9 @@ func (o GetSlosSloAlertingSlowburnAnnotationArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetSlosSloAlertingSlowburnLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -20400,7 +21826,9 @@ type GetSlosSloAlertingSlowburnLabelInput interface {
 }
 
 type GetSlosSloAlertingSlowburnLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -20455,10 +21883,12 @@ func (o GetSlosSloAlertingSlowburnLabelOutput) ToGetSlosSloAlertingSlowburnLabel
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloAlertingSlowburnLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburnLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloAlertingSlowburnLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburnLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -20484,8 +21914,8 @@ func (o GetSlosSloAlertingSlowburnLabelArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetSlosSloDestinationDatasource struct {
-	// UID for the Mimir Datasource
-	Uid *string `pulumi:"uid"`
+	// UID for the Datasource
+	Uid string `pulumi:"uid"`
 }
 
 // GetSlosSloDestinationDatasourceInput is an input type that accepts GetSlosSloDestinationDatasourceArgs and GetSlosSloDestinationDatasourceOutput values.
@@ -20500,8 +21930,8 @@ type GetSlosSloDestinationDatasourceInput interface {
 }
 
 type GetSlosSloDestinationDatasourceArgs struct {
-	// UID for the Mimir Datasource
-	Uid pulumi.StringPtrInput `pulumi:"uid"`
+	// UID for the Datasource
+	Uid pulumi.StringInput `pulumi:"uid"`
 }
 
 func (GetSlosSloDestinationDatasourceArgs) ElementType() reflect.Type {
@@ -20555,9 +21985,9 @@ func (o GetSlosSloDestinationDatasourceOutput) ToGetSlosSloDestinationDatasource
 	return o
 }
 
-// UID for the Mimir Datasource
-func (o GetSlosSloDestinationDatasourceOutput) Uid() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetSlosSloDestinationDatasource) *string { return v.Uid }).(pulumi.StringPtrOutput)
+// UID for the Datasource
+func (o GetSlosSloDestinationDatasourceOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloDestinationDatasource) string { return v.Uid }).(pulumi.StringOutput)
 }
 
 type GetSlosSloDestinationDatasourceArrayOutput struct{ *pulumi.OutputState }
@@ -20581,7 +22011,9 @@ func (o GetSlosSloDestinationDatasourceArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetSlosSloLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -20597,7 +22029,9 @@ type GetSlosSloLabelInput interface {
 }
 
 type GetSlosSloLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -20652,10 +22086,12 @@ func (o GetSlosSloLabelOutput) ToGetSlosSloLabelOutputWithContext(ctx context.Co
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -21653,6 +23089,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OncallIntegrationTemplatesEmailPtrInput)(nil)).Elem(), OncallIntegrationTemplatesEmailArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OncallIntegrationTemplatesMicrosoftTeamsInput)(nil)).Elem(), OncallIntegrationTemplatesMicrosoftTeamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OncallIntegrationTemplatesMicrosoftTeamsPtrInput)(nil)).Elem(), OncallIntegrationTemplatesMicrosoftTeamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OncallIntegrationTemplatesMobileAppInput)(nil)).Elem(), OncallIntegrationTemplatesMobileAppArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OncallIntegrationTemplatesMobileAppPtrInput)(nil)).Elem(), OncallIntegrationTemplatesMobileAppArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OncallIntegrationTemplatesPhoneCallInput)(nil)).Elem(), OncallIntegrationTemplatesPhoneCallArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OncallIntegrationTemplatesPhoneCallPtrInput)(nil)).Elem(), OncallIntegrationTemplatesPhoneCallArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OncallIntegrationTemplatesSlackInput)(nil)).Elem(), OncallIntegrationTemplatesSlackArgs{})
@@ -21688,6 +23126,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleDataRelativeTimeRangeInput)(nil)).Elem(), RuleGroupRuleDataRelativeTimeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleNotificationSettingsInput)(nil)).Elem(), RuleGroupRuleNotificationSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleNotificationSettingsPtrInput)(nil)).Elem(), RuleGroupRuleNotificationSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleRecordInput)(nil)).Elem(), RuleGroupRuleRecordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleRecordPtrInput)(nil)).Elem(), RuleGroupRuleRecordArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingInput)(nil)).Elem(), SLOAlertingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingArrayInput)(nil)).Elem(), SLOAlertingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingAdvancedOptionsInput)(nil)).Elem(), SLOAlertingAdvancedOptionsArgs{})
@@ -21722,6 +23162,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOQueryRatioPtrInput)(nil)).Elem(), SLOQueryRatioArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountPermissionPermissionInput)(nil)).Elem(), ServiceAccountPermissionPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountPermissionPermissionArrayInput)(nil)).Elem(), ServiceAccountPermissionPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsInput)(nil)).Elem(), SsoSettingsLdapSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsPtrInput)(nil)).Elem(), SsoSettingsLdapSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsConfigInput)(nil)).Elem(), SsoSettingsLdapSettingsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsConfigPtrInput)(nil)).Elem(), SsoSettingsLdapSettingsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsConfigServerInput)(nil)).Elem(), SsoSettingsLdapSettingsConfigServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsConfigServerArrayInput)(nil)).Elem(), SsoSettingsLdapSettingsConfigServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsConfigServerGroupMappingInput)(nil)).Elem(), SsoSettingsLdapSettingsConfigServerGroupMappingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsLdapSettingsConfigServerGroupMappingArrayInput)(nil)).Elem(), SsoSettingsLdapSettingsConfigServerGroupMappingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsOauth2SettingsInput)(nil)).Elem(), SsoSettingsOauth2SettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsOauth2SettingsPtrInput)(nil)).Elem(), SsoSettingsOauth2SettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsSamlSettingsInput)(nil)).Elem(), SsoSettingsSamlSettingsArgs{})
@@ -21786,6 +23234,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDashboardsDashboardArrayInput)(nil)).Elem(), GetDashboardsDashboardArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFoldersFolderInput)(nil)).Elem(), GetFoldersFolderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFoldersFolderArrayInput)(nil)).Elem(), GetFoldersFolderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLibraryPanelsPanelInput)(nil)).Elem(), GetLibraryPanelsPanelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLibraryPanelsPanelArrayInput)(nil)).Elem(), GetLibraryPanelsPanelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRolePermissionInput)(nil)).Elem(), GetRolePermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRolePermissionArrayInput)(nil)).Elem(), GetRolePermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloInput)(nil)).Elem(), GetSlosSloArgs{})
@@ -21922,6 +23372,8 @@ func init() {
 	pulumi.RegisterOutputType(OncallIntegrationTemplatesEmailPtrOutput{})
 	pulumi.RegisterOutputType(OncallIntegrationTemplatesMicrosoftTeamsOutput{})
 	pulumi.RegisterOutputType(OncallIntegrationTemplatesMicrosoftTeamsPtrOutput{})
+	pulumi.RegisterOutputType(OncallIntegrationTemplatesMobileAppOutput{})
+	pulumi.RegisterOutputType(OncallIntegrationTemplatesMobileAppPtrOutput{})
 	pulumi.RegisterOutputType(OncallIntegrationTemplatesPhoneCallOutput{})
 	pulumi.RegisterOutputType(OncallIntegrationTemplatesPhoneCallPtrOutput{})
 	pulumi.RegisterOutputType(OncallIntegrationTemplatesSlackOutput{})
@@ -21957,6 +23409,8 @@ func init() {
 	pulumi.RegisterOutputType(RuleGroupRuleDataRelativeTimeRangeOutput{})
 	pulumi.RegisterOutputType(RuleGroupRuleNotificationSettingsOutput{})
 	pulumi.RegisterOutputType(RuleGroupRuleNotificationSettingsPtrOutput{})
+	pulumi.RegisterOutputType(RuleGroupRuleRecordOutput{})
+	pulumi.RegisterOutputType(RuleGroupRuleRecordPtrOutput{})
 	pulumi.RegisterOutputType(SLOAlertingOutput{})
 	pulumi.RegisterOutputType(SLOAlertingArrayOutput{})
 	pulumi.RegisterOutputType(SLOAlertingAdvancedOptionsOutput{})
@@ -21991,6 +23445,14 @@ func init() {
 	pulumi.RegisterOutputType(SLOQueryRatioPtrOutput{})
 	pulumi.RegisterOutputType(ServiceAccountPermissionPermissionOutput{})
 	pulumi.RegisterOutputType(ServiceAccountPermissionPermissionArrayOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsPtrOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsConfigOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsConfigPtrOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsConfigServerOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsConfigServerArrayOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsConfigServerGroupMappingOutput{})
+	pulumi.RegisterOutputType(SsoSettingsLdapSettingsConfigServerGroupMappingArrayOutput{})
 	pulumi.RegisterOutputType(SsoSettingsOauth2SettingsOutput{})
 	pulumi.RegisterOutputType(SsoSettingsOauth2SettingsPtrOutput{})
 	pulumi.RegisterOutputType(SsoSettingsSamlSettingsOutput{})
@@ -22055,6 +23517,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDashboardsDashboardArrayOutput{})
 	pulumi.RegisterOutputType(GetFoldersFolderOutput{})
 	pulumi.RegisterOutputType(GetFoldersFolderArrayOutput{})
+	pulumi.RegisterOutputType(GetLibraryPanelsPanelOutput{})
+	pulumi.RegisterOutputType(GetLibraryPanelsPanelArrayOutput{})
 	pulumi.RegisterOutputType(GetRolePermissionOutput{})
 	pulumi.RegisterOutputType(GetRolePermissionArrayOutput{})
 	pulumi.RegisterOutputType(GetSlosSloOutput{})

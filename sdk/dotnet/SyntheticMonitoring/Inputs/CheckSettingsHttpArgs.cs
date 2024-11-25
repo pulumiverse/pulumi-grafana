@@ -19,11 +19,21 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         [Input("basicAuth")]
         public Input<Inputs.CheckSettingsHttpBasicAuthArgs>? BasicAuth { get; set; }
 
+        [Input("bearerToken")]
+        private Input<string>? _bearerToken;
+
         /// <summary>
         /// Token for use with bearer authorization header.
         /// </summary>
-        [Input("bearerToken")]
-        public Input<string>? BearerToken { get; set; }
+        public Input<string>? BearerToken
+        {
+            get => _bearerToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bearerToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The body of the HTTP request used in probe.

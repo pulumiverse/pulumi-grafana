@@ -31,14 +31,15 @@ class OncallEscalationArgs:
                  notify_on_call_from_schedule: Optional[pulumi.Input[str]] = None,
                  notify_to_team_members: Optional[pulumi.Input[str]] = None,
                  persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 severity: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a OncallEscalation resource.
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[int] position: The position of the escalation step (starts from 0).
-        :param pulumi.Input[str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+        :param pulumi.Input[str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
         :param pulumi.Input[str] action_to_trigger: The ID of an Action for trigger_webhook type step.
-        :param pulumi.Input[int] duration: The duration of delay for wait type step.
+        :param pulumi.Input[int] duration: The duration of delay for wait type step. (60-86400) seconds
         :param pulumi.Input[str] group_to_notify: The ID of a User Group for notify*user*group type step.
         :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
         :param pulumi.Input[str] notify_if_time_from: The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
@@ -47,6 +48,7 @@ class OncallEscalationArgs:
         :param pulumi.Input[str] notify_to_team_members: The ID of a Team for a notify*team*members type step.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notifies: The list of ID's of users for notify_persons type step.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notify_next_each_times: The list of ID's of users for notify*person*next*each*time type step.
+        :param pulumi.Input[str] severity: The severity of the incident for declare_incident type step.
         """
         pulumi.set(__self__, "escalation_chain_id", escalation_chain_id)
         pulumi.set(__self__, "position", position)
@@ -71,6 +73,8 @@ class OncallEscalationArgs:
             pulumi.set(__self__, "persons_to_notifies", persons_to_notifies)
         if persons_to_notify_next_each_times is not None:
             pulumi.set(__self__, "persons_to_notify_next_each_times", persons_to_notify_next_each_times)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
 
     @property
     @pulumi.getter(name="escalationChainId")
@@ -100,7 +104,7 @@ class OncallEscalationArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+        The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
         """
         return pulumi.get(self, "type")
 
@@ -124,7 +128,7 @@ class OncallEscalationArgs:
     @pulumi.getter
     def duration(self) -> Optional[pulumi.Input[int]]:
         """
-        The duration of delay for wait type step.
+        The duration of delay for wait type step. (60-86400) seconds
         """
         return pulumi.get(self, "duration")
 
@@ -228,6 +232,18 @@ class OncallEscalationArgs:
     def persons_to_notify_next_each_times(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "persons_to_notify_next_each_times", value)
 
+    @property
+    @pulumi.getter
+    def severity(self) -> Optional[pulumi.Input[str]]:
+        """
+        The severity of the incident for declare_incident type step.
+        """
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "severity", value)
+
 
 @pulumi.input_type
 class _OncallEscalationState:
@@ -244,11 +260,12 @@ class _OncallEscalationState:
                  persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  position: Optional[pulumi.Input[int]] = None,
+                 severity: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering OncallEscalation resources.
         :param pulumi.Input[str] action_to_trigger: The ID of an Action for trigger_webhook type step.
-        :param pulumi.Input[int] duration: The duration of delay for wait type step.
+        :param pulumi.Input[int] duration: The duration of delay for wait type step. (60-86400) seconds
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[str] group_to_notify: The ID of a User Group for notify*user*group type step.
         :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
@@ -259,7 +276,8 @@ class _OncallEscalationState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notifies: The list of ID's of users for notify_persons type step.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notify_next_each_times: The list of ID's of users for notify*person*next*each*time type step.
         :param pulumi.Input[int] position: The position of the escalation step (starts from 0).
-        :param pulumi.Input[str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+        :param pulumi.Input[str] severity: The severity of the incident for declare_incident type step.
+        :param pulumi.Input[str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
         """
         if action_to_trigger is not None:
             pulumi.set(__self__, "action_to_trigger", action_to_trigger)
@@ -285,6 +303,8 @@ class _OncallEscalationState:
             pulumi.set(__self__, "persons_to_notify_next_each_times", persons_to_notify_next_each_times)
         if position is not None:
             pulumi.set(__self__, "position", position)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -304,7 +324,7 @@ class _OncallEscalationState:
     @pulumi.getter
     def duration(self) -> Optional[pulumi.Input[int]]:
         """
-        The duration of delay for wait type step.
+        The duration of delay for wait type step. (60-86400) seconds
         """
         return pulumi.get(self, "duration")
 
@@ -434,9 +454,21 @@ class _OncallEscalationState:
 
     @property
     @pulumi.getter
+    def severity(self) -> Optional[pulumi.Input[str]]:
+        """
+        The severity of the incident for declare_incident type step.
+        """
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "severity", value)
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+        The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
         """
         return pulumi.get(self, "type")
 
@@ -467,6 +499,7 @@ class OncallEscalation(pulumi.CustomResource):
                  persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  position: Optional[pulumi.Input[int]] = None,
+                 severity: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -482,7 +515,7 @@ class OncallEscalation(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] action_to_trigger: The ID of an Action for trigger_webhook type step.
-        :param pulumi.Input[int] duration: The duration of delay for wait type step.
+        :param pulumi.Input[int] duration: The duration of delay for wait type step. (60-86400) seconds
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[str] group_to_notify: The ID of a User Group for notify*user*group type step.
         :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
@@ -493,7 +526,8 @@ class OncallEscalation(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notifies: The list of ID's of users for notify_persons type step.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notify_next_each_times: The list of ID's of users for notify*person*next*each*time type step.
         :param pulumi.Input[int] position: The position of the escalation step (starts from 0).
-        :param pulumi.Input[str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+        :param pulumi.Input[str] severity: The severity of the incident for declare_incident type step.
+        :param pulumi.Input[str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
         """
         ...
     @overload
@@ -538,6 +572,7 @@ class OncallEscalation(pulumi.CustomResource):
                  persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  position: Optional[pulumi.Input[int]] = None,
+                 severity: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         pulumi.log.warn("""OncallEscalation is deprecated: grafana.index/oncallescalation.OncallEscalation has been deprecated in favor of grafana.oncall/escalation.Escalation""")
@@ -565,6 +600,7 @@ class OncallEscalation(pulumi.CustomResource):
             if position is None and not opts.urn:
                 raise TypeError("Missing required property 'position'")
             __props__.__dict__["position"] = position
+            __props__.__dict__["severity"] = severity
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
@@ -590,6 +626,7 @@ class OncallEscalation(pulumi.CustomResource):
             persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             position: Optional[pulumi.Input[int]] = None,
+            severity: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'OncallEscalation':
         """
         Get an existing OncallEscalation resource's state with the given name, id, and optional extra
@@ -599,7 +636,7 @@ class OncallEscalation(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] action_to_trigger: The ID of an Action for trigger_webhook type step.
-        :param pulumi.Input[int] duration: The duration of delay for wait type step.
+        :param pulumi.Input[int] duration: The duration of delay for wait type step. (60-86400) seconds
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[str] group_to_notify: The ID of a User Group for notify*user*group type step.
         :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
@@ -610,7 +647,8 @@ class OncallEscalation(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notifies: The list of ID's of users for notify_persons type step.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] persons_to_notify_next_each_times: The list of ID's of users for notify*person*next*each*time type step.
         :param pulumi.Input[int] position: The position of the escalation step (starts from 0).
-        :param pulumi.Input[str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+        :param pulumi.Input[str] severity: The severity of the incident for declare_incident type step.
+        :param pulumi.Input[str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -628,6 +666,7 @@ class OncallEscalation(pulumi.CustomResource):
         __props__.__dict__["persons_to_notifies"] = persons_to_notifies
         __props__.__dict__["persons_to_notify_next_each_times"] = persons_to_notify_next_each_times
         __props__.__dict__["position"] = position
+        __props__.__dict__["severity"] = severity
         __props__.__dict__["type"] = type
         return OncallEscalation(resource_name, opts=opts, __props__=__props__)
 
@@ -643,7 +682,7 @@ class OncallEscalation(pulumi.CustomResource):
     @pulumi.getter
     def duration(self) -> pulumi.Output[Optional[int]]:
         """
-        The duration of delay for wait type step.
+        The duration of delay for wait type step. (60-86400) seconds
         """
         return pulumi.get(self, "duration")
 
@@ -729,9 +768,17 @@ class OncallEscalation(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def severity(self) -> pulumi.Output[Optional[str]]:
+        """
+        The severity of the incident for declare_incident type step.
+        """
+        return pulumi.get(self, "severity")
+
+    @property
+    @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+        The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
         """
         return pulumi.get(self, "type")
 

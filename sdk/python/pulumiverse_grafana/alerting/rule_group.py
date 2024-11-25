@@ -230,7 +230,7 @@ class RuleGroup(pulumi.CustomResource):
         """
         Manages Grafana Alerting rule groups.
 
-        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/)
+        * Official documentation
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
 
         This resource requires Grafana 9.1.0 or later.
@@ -274,9 +274,9 @@ class RuleGroup(pulumi.CustomResource):
                         "datasource_uid": "PD8C576611E62080A",
                         "model": json.dumps({
                             "hide": False,
-                            "interval_ms": 1000,
-                            "max_data_points": 43200,
-                            "ref_id": "A",
+                            "intervalMs": 1000,
+                            "maxDataPoints": 43200,
+                            "refId": "A",
                         }),
                     },
                     {
@@ -354,7 +354,7 @@ class RuleGroup(pulumi.CustomResource):
         """
         Manages Grafana Alerting rule groups.
 
-        * [Official documentation](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/)
+        * Official documentation
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#alert-rules)
 
         This resource requires Grafana 9.1.0 or later.
@@ -398,9 +398,9 @@ class RuleGroup(pulumi.CustomResource):
                         "datasource_uid": "PD8C576611E62080A",
                         "model": json.dumps({
                             "hide": False,
-                            "interval_ms": 1000,
-                            "max_data_points": 43200,
-                            "ref_id": "A",
+                            "intervalMs": 1000,
+                            "maxDataPoints": 43200,
+                            "refId": "A",
                         }),
                     },
                     {

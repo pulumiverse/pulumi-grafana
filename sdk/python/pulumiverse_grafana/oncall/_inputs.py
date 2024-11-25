@@ -29,6 +29,8 @@ __all__ = [
     'IntegrationTemplatesEmailArgsDict',
     'IntegrationTemplatesMicrosoftTeamsArgs',
     'IntegrationTemplatesMicrosoftTeamsArgsDict',
+    'IntegrationTemplatesMobileAppArgs',
+    'IntegrationTemplatesMobileAppArgsDict',
     'IntegrationTemplatesPhoneCallArgs',
     'IntegrationTemplatesPhoneCallArgsDict',
     'IntegrationTemplatesSlackArgs',
@@ -328,7 +330,11 @@ if not MYPY:
         """
         microsoft_teams: NotRequired[pulumi.Input['IntegrationTemplatesMicrosoftTeamsArgsDict']]
         """
-        Templates for Microsoft Teams.
+        Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
+        """
+        mobile_app: NotRequired[pulumi.Input['IntegrationTemplatesMobileAppArgsDict']]
+        """
+        Templates for Mobile app push notifications.
         """
         phone_call: NotRequired[pulumi.Input['IntegrationTemplatesPhoneCallArgsDict']]
         """
@@ -368,6 +374,7 @@ class IntegrationTemplatesArgs:
                  email: Optional[pulumi.Input['IntegrationTemplatesEmailArgs']] = None,
                  grouping_key: Optional[pulumi.Input[str]] = None,
                  microsoft_teams: Optional[pulumi.Input['IntegrationTemplatesMicrosoftTeamsArgs']] = None,
+                 mobile_app: Optional[pulumi.Input['IntegrationTemplatesMobileAppArgs']] = None,
                  phone_call: Optional[pulumi.Input['IntegrationTemplatesPhoneCallArgs']] = None,
                  resolve_signal: Optional[pulumi.Input[str]] = None,
                  slack: Optional[pulumi.Input['IntegrationTemplatesSlackArgs']] = None,
@@ -379,7 +386,8 @@ class IntegrationTemplatesArgs:
         :param pulumi.Input[str] acknowledge_signal: Template for sending a signal to acknowledge the Incident.
         :param pulumi.Input['IntegrationTemplatesEmailArgs'] email: Templates for Email.
         :param pulumi.Input[str] grouping_key: Template for the key by which alerts are grouped.
-        :param pulumi.Input['IntegrationTemplatesMicrosoftTeamsArgs'] microsoft_teams: Templates for Microsoft Teams.
+        :param pulumi.Input['IntegrationTemplatesMicrosoftTeamsArgs'] microsoft_teams: Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
+        :param pulumi.Input['IntegrationTemplatesMobileAppArgs'] mobile_app: Templates for Mobile app push notifications.
         :param pulumi.Input['IntegrationTemplatesPhoneCallArgs'] phone_call: Templates for Phone Call.
         :param pulumi.Input[str] resolve_signal: Template for sending a signal to resolve the Incident.
         :param pulumi.Input['IntegrationTemplatesSlackArgs'] slack: Templates for Slack.
@@ -396,6 +404,8 @@ class IntegrationTemplatesArgs:
             pulumi.set(__self__, "grouping_key", grouping_key)
         if microsoft_teams is not None:
             pulumi.set(__self__, "microsoft_teams", microsoft_teams)
+        if mobile_app is not None:
+            pulumi.set(__self__, "mobile_app", mobile_app)
         if phone_call is not None:
             pulumi.set(__self__, "phone_call", phone_call)
         if resolve_signal is not None:
@@ -451,13 +461,25 @@ class IntegrationTemplatesArgs:
     @pulumi.getter(name="microsoftTeams")
     def microsoft_teams(self) -> Optional[pulumi.Input['IntegrationTemplatesMicrosoftTeamsArgs']]:
         """
-        Templates for Microsoft Teams.
+        Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
         """
         return pulumi.get(self, "microsoft_teams")
 
     @microsoft_teams.setter
     def microsoft_teams(self, value: Optional[pulumi.Input['IntegrationTemplatesMicrosoftTeamsArgs']]):
         pulumi.set(self, "microsoft_teams", value)
+
+    @property
+    @pulumi.getter(name="mobileApp")
+    def mobile_app(self) -> Optional[pulumi.Input['IntegrationTemplatesMobileAppArgs']]:
+        """
+        Templates for Mobile app push notifications.
+        """
+        return pulumi.get(self, "mobile_app")
+
+    @mobile_app.setter
+    def mobile_app(self, value: Optional[pulumi.Input['IntegrationTemplatesMobileAppArgs']]):
+        pulumi.set(self, "mobile_app", value)
 
     @property
     @pulumi.getter(name="phoneCall")
@@ -642,6 +664,58 @@ class IntegrationTemplatesMicrosoftTeamsArgs:
     @image_url.setter
     def image_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "image_url", value)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert message.
+        """
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert title.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+
+if not MYPY:
+    class IntegrationTemplatesMobileAppArgsDict(TypedDict):
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert message.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    IntegrationTemplatesMobileAppArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class IntegrationTemplatesMobileAppArgs:
+    def __init__(__self__, *,
+                 message: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] message: Template for Alert message.
+        :param pulumi.Input[str] title: Template for Alert title.
+        """
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
 
     @property
     @pulumi.getter

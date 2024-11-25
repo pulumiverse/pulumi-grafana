@@ -17,7 +17,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         private InputMap<string>? _annotations;
 
         /// <summary>
-        /// Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+        /// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
         /// </summary>
         public InputMap<string> Annotations
         {
@@ -86,10 +86,16 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<string>? NoDataState { get; set; }
 
         /// <summary>
-        /// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+        /// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
         /// </summary>
         [Input("notificationSettings")]
         public Input<Inputs.RuleGroupRuleNotificationSettingsGetArgs>? NotificationSettings { get; set; }
+
+        /// <summary>
+        /// Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
+        /// </summary>
+        [Input("record")]
+        public Input<Inputs.RuleGroupRuleRecordGetArgs>? Record { get; set; }
 
         /// <summary>
         /// The unique identifier of the alert rule.

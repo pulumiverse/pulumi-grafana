@@ -96,10 +96,34 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? CertificatePath { get; set; }
 
         /// <summary>
+        /// The client Id of your OAuth2 app.
+        /// </summary>
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
+
+        /// <summary>
+        /// The client secret of your OAuth2 app.
+        /// </summary>
+        [Input("clientSecret")]
+        public Input<string>? ClientSecret { get; set; }
+
+        /// <summary>
         /// Define whether this configuration is enabled for SAML. Defaults to `true`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
+        /// The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+        /// </summary>
+        [Input("entityId")]
+        public Input<string>? EntityId { get; set; }
+
+        /// <summary>
+        /// If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+        /// </summary>
+        [Input("forceUseGraphApi")]
+        public Input<bool>? ForceUseGraphApi { get; set; }
 
         /// <summary>
         /// Base64-encoded string for the IdP SAML metadata XML.
@@ -224,6 +248,12 @@ namespace Pulumiverse.Grafana.Inputs
         /// </summary>
         [Input("skipOrgRoleSync")]
         public Input<bool>? SkipOrgRoleSync { get; set; }
+
+        /// <summary>
+        /// The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+        /// </summary>
+        [Input("tokenUrl")]
+        public Input<string>? TokenUrl { get; set; }
 
         public SsoSettingsSamlSettingsArgs()
         {

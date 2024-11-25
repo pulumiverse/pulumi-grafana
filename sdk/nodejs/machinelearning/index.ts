@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AlertArgs, AlertState } from "./alert";
+export type Alert = import("./alert").Alert;
+export const Alert: typeof import("./alert").Alert = null as any;
+utilities.lazyLoad(exports, ["Alert"], () => require("./alert"));
+
 export { HolidayArgs, HolidayState } from "./holiday";
 export type Holiday = import("./holiday").Holiday;
 export const Holiday: typeof import("./holiday").Holiday = null as any;
@@ -25,6 +30,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "grafana:machineLearning/alert:Alert":
+                return new Alert(name, <any>undefined, { urn })
             case "grafana:machineLearning/holiday:Holiday":
                 return new Holiday(name, <any>undefined, { urn })
             case "grafana:machineLearning/job:Job":
@@ -36,6 +43,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("grafana", "machineLearning/alert", _module)
 pulumi.runtime.registerResourceModule("grafana", "machineLearning/holiday", _module)
 pulumi.runtime.registerResourceModule("grafana", "machineLearning/job", _module)
 pulumi.runtime.registerResourceModule("grafana", "machineLearning/outlierDetector", _module)

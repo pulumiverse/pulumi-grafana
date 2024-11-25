@@ -50,6 +50,8 @@ type OnCallShift struct {
 	TimeZone pulumi.StringPtrOutput `pulumi:"timeZone"`
 	// The shift's type. Can be rolling*users, recurrent*event, single_event
 	Type pulumi.StringOutput `pulumi:"type"`
+	// The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+	Until pulumi.StringPtrOutput `pulumi:"until"`
 	// The list of on-call users (for single*event and recurrent*event event type).
 	Users pulumi.StringArrayOutput `pulumi:"users"`
 	// Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
@@ -129,6 +131,8 @@ type onCallShiftState struct {
 	TimeZone *string `pulumi:"timeZone"`
 	// The shift's type. Can be rolling*users, recurrent*event, single_event
 	Type *string `pulumi:"type"`
+	// The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+	Until *string `pulumi:"until"`
 	// The list of on-call users (for single*event and recurrent*event event type).
 	Users []string `pulumi:"users"`
 	// Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
@@ -164,6 +168,8 @@ type OnCallShiftState struct {
 	TimeZone pulumi.StringPtrInput
 	// The shift's type. Can be rolling*users, recurrent*event, single_event
 	Type pulumi.StringPtrInput
+	// The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+	Until pulumi.StringPtrInput
 	// The list of on-call users (for single*event and recurrent*event event type).
 	Users pulumi.StringArrayInput
 	// Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
@@ -203,6 +209,8 @@ type onCallShiftArgs struct {
 	TimeZone *string `pulumi:"timeZone"`
 	// The shift's type. Can be rolling*users, recurrent*event, single_event
 	Type string `pulumi:"type"`
+	// The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+	Until *string `pulumi:"until"`
 	// The list of on-call users (for single*event and recurrent*event event type).
 	Users []string `pulumi:"users"`
 	// Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
@@ -239,6 +247,8 @@ type OnCallShiftArgs struct {
 	TimeZone pulumi.StringPtrInput
 	// The shift's type. Can be rolling*users, recurrent*event, single_event
 	Type pulumi.StringInput
+	// The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+	Until pulumi.StringPtrInput
 	// The list of on-call users (for single*event and recurrent*event event type).
 	Users pulumi.StringArrayInput
 	// Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
@@ -400,6 +410,11 @@ func (o OnCallShiftOutput) TimeZone() pulumi.StringPtrOutput {
 // The shift's type. Can be rolling*users, recurrent*event, single_event
 func (o OnCallShiftOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *OnCallShift) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+func (o OnCallShiftOutput) Until() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OnCallShift) pulumi.StringPtrOutput { return v.Until }).(pulumi.StringPtrOutput)
 }
 
 // The list of on-call users (for single*event and recurrent*event event type).

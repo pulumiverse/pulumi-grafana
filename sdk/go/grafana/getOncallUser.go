@@ -60,7 +60,7 @@ type GetOncallUserArgs struct {
 type GetOncallUserResult struct {
 	// The email of the user.
 	Email string `pulumi:"email"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of the user.
 	Id string `pulumi:"id"`
 	// The role of the user.
 	Role string `pulumi:"role"`
@@ -117,7 +117,7 @@ func (o GetOncallUserResultOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOncallUserResult) string { return v.Email }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of the user.
 func (o GetOncallUserResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOncallUserResult) string { return v.Id }).(pulumi.StringOutput)
 }

@@ -29,6 +29,17 @@ type Provider struct {
 	CloudAccessPolicyToken pulumi.StringPtrOutput `pulumi:"cloudAccessPolicyToken"`
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl pulumi.StringPtrOutput `pulumi:"cloudApiUrl"`
+	// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+	// environment variable.
+	CloudProviderAccessToken pulumi.StringPtrOutput `pulumi:"cloudProviderAccessToken"`
+	// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+	// variable.
+	CloudProviderUrl pulumi.StringPtrOutput `pulumi:"cloudProviderUrl"`
+	// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+	// environment variable.
+	ConnectionsApiAccessToken pulumi.StringPtrOutput `pulumi:"connectionsApiAccessToken"`
+	// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+	ConnectionsApiUrl pulumi.StringPtrOutput `pulumi:"connectionsApiUrl"`
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
 	OncallAccessToken pulumi.StringPtrOutput `pulumi:"oncallAccessToken"`
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -134,6 +145,12 @@ func NewProvider(ctx *pulumi.Context,
 	if args.CloudAccessPolicyToken != nil {
 		args.CloudAccessPolicyToken = pulumi.ToSecret(args.CloudAccessPolicyToken).(pulumi.StringPtrInput)
 	}
+	if args.CloudProviderAccessToken != nil {
+		args.CloudProviderAccessToken = pulumi.ToSecret(args.CloudProviderAccessToken).(pulumi.StringPtrInput)
+	}
+	if args.ConnectionsApiAccessToken != nil {
+		args.ConnectionsApiAccessToken = pulumi.ToSecret(args.ConnectionsApiAccessToken).(pulumi.StringPtrInput)
+	}
 	if args.OncallAccessToken != nil {
 		args.OncallAccessToken = pulumi.ToSecret(args.OncallAccessToken).(pulumi.StringPtrInput)
 	}
@@ -146,6 +163,8 @@ func NewProvider(ctx *pulumi.Context,
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"auth",
 		"cloudAccessPolicyToken",
+		"cloudProviderAccessToken",
+		"connectionsApiAccessToken",
 		"oncallAccessToken",
 		"smAccessToken",
 		"tlsKey",
@@ -172,6 +191,17 @@ type providerArgs struct {
 	CloudAccessPolicyToken *string `pulumi:"cloudAccessPolicyToken"`
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl *string `pulumi:"cloudApiUrl"`
+	// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+	// environment variable.
+	CloudProviderAccessToken *string `pulumi:"cloudProviderAccessToken"`
+	// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+	// variable.
+	CloudProviderUrl *string `pulumi:"cloudProviderUrl"`
+	// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+	// environment variable.
+	ConnectionsApiAccessToken *string `pulumi:"connectionsApiAccessToken"`
+	// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+	ConnectionsApiUrl *string `pulumi:"connectionsApiUrl"`
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 	InsecureSkipVerify *bool `pulumi:"insecureSkipVerify"`
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
@@ -215,6 +245,17 @@ type ProviderArgs struct {
 	CloudAccessPolicyToken pulumi.StringPtrInput
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl pulumi.StringPtrInput
+	// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+	// environment variable.
+	CloudProviderAccessToken pulumi.StringPtrInput
+	// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+	// variable.
+	CloudProviderUrl pulumi.StringPtrInput
+	// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+	// environment variable.
+	ConnectionsApiAccessToken pulumi.StringPtrInput
+	// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+	ConnectionsApiUrl pulumi.StringPtrInput
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 	InsecureSkipVerify pulumi.BoolPtrInput
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
@@ -303,6 +344,29 @@ func (o ProviderOutput) CloudAccessPolicyToken() pulumi.StringPtrOutput {
 // Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 func (o ProviderOutput) CloudApiUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudApiUrl }).(pulumi.StringPtrOutput)
+}
+
+// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+// environment variable.
+func (o ProviderOutput) CloudProviderAccessToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudProviderAccessToken }).(pulumi.StringPtrOutput)
+}
+
+// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+// variable.
+func (o ProviderOutput) CloudProviderUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudProviderUrl }).(pulumi.StringPtrOutput)
+}
+
+// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+// environment variable.
+func (o ProviderOutput) ConnectionsApiAccessToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ConnectionsApiAccessToken }).(pulumi.StringPtrOutput)
+}
+
+// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+func (o ProviderOutput) ConnectionsApiUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ConnectionsApiUrl }).(pulumi.StringPtrOutput)
 }
 
 // A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.

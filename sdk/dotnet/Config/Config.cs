@@ -75,6 +75,49 @@ namespace Pulumiverse.Grafana
             set => _cloudApiUrl.Set(value);
         }
 
+        private static readonly __Value<string?> _cloudProviderAccessToken = new __Value<string?>(() => __config.Get("cloudProviderAccessToken"));
+        /// <summary>
+        /// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+        /// environment variable.
+        /// </summary>
+        public static string? CloudProviderAccessToken
+        {
+            get => _cloudProviderAccessToken.Get();
+            set => _cloudProviderAccessToken.Set(value);
+        }
+
+        private static readonly __Value<string?> _cloudProviderUrl = new __Value<string?>(() => __config.Get("cloudProviderUrl"));
+        /// <summary>
+        /// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+        /// variable.
+        /// </summary>
+        public static string? CloudProviderUrl
+        {
+            get => _cloudProviderUrl.Get();
+            set => _cloudProviderUrl.Set(value);
+        }
+
+        private static readonly __Value<string?> _connectionsApiAccessToken = new __Value<string?>(() => __config.Get("connectionsApiAccessToken"));
+        /// <summary>
+        /// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+        /// environment variable.
+        /// </summary>
+        public static string? ConnectionsApiAccessToken
+        {
+            get => _connectionsApiAccessToken.Get();
+            set => _connectionsApiAccessToken.Set(value);
+        }
+
+        private static readonly __Value<string?> _connectionsApiUrl = new __Value<string?>(() => __config.Get("connectionsApiUrl"));
+        /// <summary>
+        /// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+        /// </summary>
+        public static string? ConnectionsApiUrl
+        {
+            get => _connectionsApiUrl.Get();
+            set => _connectionsApiUrl.Set(value);
+        }
+
         private static readonly __Value<bool?> _insecureSkipVerify = new __Value<bool?>(() => __config.GetBoolean("insecureSkipVerify") ?? Utilities.GetEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY"));
         /// <summary>
         /// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

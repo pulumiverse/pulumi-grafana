@@ -57,6 +57,15 @@ import * as utilities from "../utilities";
  *         secretKey: "456",
  *     }),
  * });
+ * const cloudwatchAssumeARN = new grafana.oss.DataSource("cloudwatch_assumeARN", {
+ *     type: "cloudwatch",
+ *     name: "cw-assumeARN-example",
+ *     jsonDataEncoded: JSON.stringify({
+ *         defaultRegion: "us-east-1",
+ *         authType: "grafana_assume_role",
+ *         assumeRoleArn: "arn:aws:iam::123456789012:root",
+ *     }),
+ * });
  * const prometheus = new grafana.oss.DataSource("prometheus", {
  *     type: "prometheus",
  *     name: "mimir",

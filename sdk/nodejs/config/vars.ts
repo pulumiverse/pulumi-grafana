@@ -55,6 +55,53 @@ Object.defineProperty(exports, "cloudApiUrl", {
 });
 
 /**
+ * A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
+ * environment variable.
+ */
+export declare const cloudProviderAccessToken: string | undefined;
+Object.defineProperty(exports, "cloudProviderAccessToken", {
+    get() {
+        return __config.get("cloudProviderAccessToken");
+    },
+    enumerable: true,
+});
+
+/**
+ * A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
+ * variable.
+ */
+export declare const cloudProviderUrl: string | undefined;
+Object.defineProperty(exports, "cloudProviderUrl", {
+    get() {
+        return __config.get("cloudProviderUrl");
+    },
+    enumerable: true,
+});
+
+/**
+ * A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
+ * environment variable.
+ */
+export declare const connectionsApiAccessToken: string | undefined;
+Object.defineProperty(exports, "connectionsApiAccessToken", {
+    get() {
+        return __config.get("connectionsApiAccessToken");
+    },
+    enumerable: true,
+});
+
+/**
+ * A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+ */
+export declare const connectionsApiUrl: string | undefined;
+Object.defineProperty(exports, "connectionsApiUrl", {
+    get() {
+        return __config.get("connectionsApiUrl");
+    },
+    enumerable: true,
+});
+
+/**
  * Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
  */
 export declare const insecureSkipVerify: boolean | undefined;

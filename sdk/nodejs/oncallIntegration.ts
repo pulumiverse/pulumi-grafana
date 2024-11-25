@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
+ * * [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
  *
  * ## Example Usage

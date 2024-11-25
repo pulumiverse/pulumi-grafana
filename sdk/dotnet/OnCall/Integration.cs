@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana.OnCall
 {
     /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
+    /// * [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)
     /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
     /// 
     /// ## Example Usage

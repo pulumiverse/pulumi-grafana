@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// * [Official documentation](https://grafana.com/docs/oncall/latest/integrations/)
+// * [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
 //
 // ## Example Usage

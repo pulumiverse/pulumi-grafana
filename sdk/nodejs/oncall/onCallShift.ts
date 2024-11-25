@@ -98,6 +98,10 @@ export class OnCallShift extends pulumi.CustomResource {
      */
     public readonly type!: pulumi.Output<string>;
     /**
+     * The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+     */
+    public readonly until!: pulumi.Output<string | undefined>;
+    /**
      * The list of on-call users (for single*event and recurrent*event event type).
      */
     public readonly users!: pulumi.Output<string[] | undefined>;
@@ -133,6 +137,7 @@ export class OnCallShift extends pulumi.CustomResource {
             resourceInputs["teamId"] = state ? state.teamId : undefined;
             resourceInputs["timeZone"] = state ? state.timeZone : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["until"] = state ? state.until : undefined;
             resourceInputs["users"] = state ? state.users : undefined;
             resourceInputs["weekStart"] = state ? state.weekStart : undefined;
         } else {
@@ -160,6 +165,7 @@ export class OnCallShift extends pulumi.CustomResource {
             resourceInputs["teamId"] = args ? args.teamId : undefined;
             resourceInputs["timeZone"] = args ? args.timeZone : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["until"] = args ? args.until : undefined;
             resourceInputs["users"] = args ? args.users : undefined;
             resourceInputs["weekStart"] = args ? args.weekStart : undefined;
         }
@@ -231,6 +237,10 @@ export interface OnCallShiftState {
      */
     type?: pulumi.Input<string>;
     /**
+     * The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+     */
+    until?: pulumi.Input<string>;
+    /**
      * The list of on-call users (for single*event and recurrent*event event type).
      */
     users?: pulumi.Input<pulumi.Input<string>[]>;
@@ -300,6 +310,10 @@ export interface OnCallShiftArgs {
      * The shift's type. Can be rolling*users, recurrent*event, single_event
      */
     type: pulumi.Input<string>;
+    /**
+     * The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
+     */
+    until?: pulumi.Input<string>;
     /**
      * The list of on-call users (for single*event and recurrent*event event type).
      */

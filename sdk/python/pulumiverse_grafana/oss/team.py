@@ -146,7 +146,8 @@ class _TeamState:
                  org_id: Optional[pulumi.Input[str]] = None,
                  preferences: Optional[pulumi.Input['TeamPreferencesArgs']] = None,
                  team_id: Optional[pulumi.Input[int]] = None,
-                 team_sync: Optional[pulumi.Input['TeamTeamSyncArgs']] = None):
+                 team_sync: Optional[pulumi.Input['TeamTeamSyncArgs']] = None,
+                 team_uid: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Team resources.
         :param pulumi.Input[str] email: An email address for the team.
@@ -158,6 +159,7 @@ class _TeamState:
         :param pulumi.Input['TeamTeamSyncArgs'] team_sync: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
                documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
                API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+        :param pulumi.Input[str] team_uid: The team uid assigned to this team by Grafana.
         """
         if email is not None:
             pulumi.set(__self__, "email", email)
@@ -175,6 +177,8 @@ class _TeamState:
             pulumi.set(__self__, "team_id", team_id)
         if team_sync is not None:
             pulumi.set(__self__, "team_sync", team_sync)
+        if team_uid is not None:
+            pulumi.set(__self__, "team_uid", team_uid)
 
     @property
     @pulumi.getter
@@ -268,6 +272,18 @@ class _TeamState:
     @team_sync.setter
     def team_sync(self, value: Optional[pulumi.Input['TeamTeamSyncArgs']]):
         pulumi.set(self, "team_sync", value)
+
+    @property
+    @pulumi.getter(name="teamUid")
+    def team_uid(self) -> Optional[pulumi.Input[str]]:
+        """
+        The team uid assigned to this team by Grafana.
+        """
+        return pulumi.get(self, "team_uid")
+
+    @team_uid.setter
+    def team_uid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "team_uid", value)
 
 
 class Team(pulumi.CustomResource):
@@ -401,6 +417,7 @@ class Team(pulumi.CustomResource):
             __props__.__dict__["preferences"] = preferences
             __props__.__dict__["team_sync"] = team_sync
             __props__.__dict__["team_id"] = None
+            __props__.__dict__["team_uid"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/team:Team")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Team, __self__).__init__(
@@ -420,7 +437,8 @@ class Team(pulumi.CustomResource):
             org_id: Optional[pulumi.Input[str]] = None,
             preferences: Optional[pulumi.Input[Union['TeamPreferencesArgs', 'TeamPreferencesArgsDict']]] = None,
             team_id: Optional[pulumi.Input[int]] = None,
-            team_sync: Optional[pulumi.Input[Union['TeamTeamSyncArgs', 'TeamTeamSyncArgsDict']]] = None) -> 'Team':
+            team_sync: Optional[pulumi.Input[Union['TeamTeamSyncArgs', 'TeamTeamSyncArgsDict']]] = None,
+            team_uid: Optional[pulumi.Input[str]] = None) -> 'Team':
         """
         Get an existing Team resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -437,6 +455,7 @@ class Team(pulumi.CustomResource):
         :param pulumi.Input[Union['TeamTeamSyncArgs', 'TeamTeamSyncArgsDict']] team_sync: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
                documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
                API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+        :param pulumi.Input[str] team_uid: The team uid assigned to this team by Grafana.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -450,6 +469,7 @@ class Team(pulumi.CustomResource):
         __props__.__dict__["preferences"] = preferences
         __props__.__dict__["team_id"] = team_id
         __props__.__dict__["team_sync"] = team_sync
+        __props__.__dict__["team_uid"] = team_uid
         return Team(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -512,4 +532,12 @@ class Team(pulumi.CustomResource):
         API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
         """
         return pulumi.get(self, "team_sync")
+
+    @property
+    @pulumi.getter(name="teamUid")
+    def team_uid(self) -> pulumi.Output[str]:
+        """
+        The team uid assigned to this team by Grafana.
+        """
+        return pulumi.get(self, "team_uid")
 

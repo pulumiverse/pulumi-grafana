@@ -284,7 +284,9 @@ func (o SLOAlertingAdvancedOptionsPtrOutput) MinFailures() pulumi.IntPtrOutput {
 }
 
 type SLOAlertingAnnotation struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -300,7 +302,9 @@ type SLOAlertingAnnotationInput interface {
 }
 
 type SLOAlertingAnnotationArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -355,10 +359,12 @@ func (o SLOAlertingAnnotationOutput) ToSLOAlertingAnnotationOutputWithContext(ct
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOAlertingAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOAlertingAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -490,7 +496,9 @@ func (o SLOAlertingFastburnArrayOutput) Index(i pulumi.IntInput) SLOAlertingFast
 }
 
 type SLOAlertingFastburnAnnotation struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -506,7 +514,9 @@ type SLOAlertingFastburnAnnotationInput interface {
 }
 
 type SLOAlertingFastburnAnnotationArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -561,10 +571,12 @@ func (o SLOAlertingFastburnAnnotationOutput) ToSLOAlertingFastburnAnnotationOutp
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOAlertingFastburnAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingFastburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOAlertingFastburnAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingFastburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -590,7 +602,9 @@ func (o SLOAlertingFastburnAnnotationArrayOutput) Index(i pulumi.IntInput) SLOAl
 }
 
 type SLOAlertingFastburnLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -606,7 +620,9 @@ type SLOAlertingFastburnLabelInput interface {
 }
 
 type SLOAlertingFastburnLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -661,10 +677,12 @@ func (o SLOAlertingFastburnLabelOutput) ToSLOAlertingFastburnLabelOutputWithCont
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOAlertingFastburnLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingFastburnLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOAlertingFastburnLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingFastburnLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -690,7 +708,9 @@ func (o SLOAlertingFastburnLabelArrayOutput) Index(i pulumi.IntInput) SLOAlertin
 }
 
 type SLOAlertingLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -706,7 +726,9 @@ type SLOAlertingLabelInput interface {
 }
 
 type SLOAlertingLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -761,10 +783,12 @@ func (o SLOAlertingLabelOutput) ToSLOAlertingLabelOutputWithContext(ctx context.
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOAlertingLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOAlertingLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -896,7 +920,9 @@ func (o SLOAlertingSlowburnArrayOutput) Index(i pulumi.IntInput) SLOAlertingSlow
 }
 
 type SLOAlertingSlowburnAnnotation struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -912,7 +938,9 @@ type SLOAlertingSlowburnAnnotationInput interface {
 }
 
 type SLOAlertingSlowburnAnnotationArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -967,10 +995,12 @@ func (o SLOAlertingSlowburnAnnotationOutput) ToSLOAlertingSlowburnAnnotationOutp
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOAlertingSlowburnAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingSlowburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOAlertingSlowburnAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingSlowburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -996,7 +1026,9 @@ func (o SLOAlertingSlowburnAnnotationArrayOutput) Index(i pulumi.IntInput) SLOAl
 }
 
 type SLOAlertingSlowburnLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -1012,7 +1044,9 @@ type SLOAlertingSlowburnLabelInput interface {
 }
 
 type SLOAlertingSlowburnLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -1067,10 +1101,12 @@ func (o SLOAlertingSlowburnLabelOutput) ToSLOAlertingSlowburnLabelOutputWithCont
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOAlertingSlowburnLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingSlowburnLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOAlertingSlowburnLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOAlertingSlowburnLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -1096,8 +1132,8 @@ func (o SLOAlertingSlowburnLabelArrayOutput) Index(i pulumi.IntInput) SLOAlertin
 }
 
 type SLODestinationDatasource struct {
-	// UID for the Mimir Datasource
-	Uid *string `pulumi:"uid"`
+	// UID for the Datasource
+	Uid string `pulumi:"uid"`
 }
 
 // SLODestinationDatasourceInput is an input type that accepts SLODestinationDatasourceArgs and SLODestinationDatasourceOutput values.
@@ -1112,8 +1148,8 @@ type SLODestinationDatasourceInput interface {
 }
 
 type SLODestinationDatasourceArgs struct {
-	// UID for the Mimir Datasource
-	Uid pulumi.StringPtrInput `pulumi:"uid"`
+	// UID for the Datasource
+	Uid pulumi.StringInput `pulumi:"uid"`
 }
 
 func (SLODestinationDatasourceArgs) ElementType() reflect.Type {
@@ -1193,9 +1229,9 @@ func (o SLODestinationDatasourceOutput) ToSLODestinationDatasourcePtrOutputWithC
 	}).(SLODestinationDatasourcePtrOutput)
 }
 
-// UID for the Mimir Datasource
-func (o SLODestinationDatasourceOutput) Uid() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SLODestinationDatasource) *string { return v.Uid }).(pulumi.StringPtrOutput)
+// UID for the Datasource
+func (o SLODestinationDatasourceOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v SLODestinationDatasource) string { return v.Uid }).(pulumi.StringOutput)
 }
 
 type SLODestinationDatasourcePtrOutput struct{ *pulumi.OutputState }
@@ -1222,18 +1258,20 @@ func (o SLODestinationDatasourcePtrOutput) Elem() SLODestinationDatasourceOutput
 	}).(SLODestinationDatasourceOutput)
 }
 
-// UID for the Mimir Datasource
+// UID for the Datasource
 func (o SLODestinationDatasourcePtrOutput) Uid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SLODestinationDatasource) *string {
 		if v == nil {
 			return nil
 		}
-		return v.Uid
+		return &v.Uid
 	}).(pulumi.StringPtrOutput)
 }
 
 type SLOLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -1249,7 +1287,9 @@ type SLOLabelInput interface {
 }
 
 type SLOLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -1304,10 +1344,12 @@ func (o SLOLabelOutput) ToSLOLabelOutputWithContext(ctx context.Context) SLOLabe
 	return o
 }
 
+// Key for filtering and identification
 func (o SLOLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o SLOLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -1880,6 +1922,8 @@ type GetSlosSlo struct {
 	Objectives []GetSlosSloObjective `pulumi:"objectives"`
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries []GetSlosSloQuery `pulumi:"queries"`
+	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+	SearchExpression string `pulumi:"searchExpression"`
 	// A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
 	Uuid string `pulumi:"uuid"`
 }
@@ -1916,6 +1960,8 @@ type GetSlosSloArgs struct {
 	Objectives GetSlosSloObjectiveArrayInput `pulumi:"objectives"`
 	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries GetSlosSloQueryArrayInput `pulumi:"queries"`
+	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+	SearchExpression pulumi.StringInput `pulumi:"searchExpression"`
 	// A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
 	Uuid pulumi.StringInput `pulumi:"uuid"`
 }
@@ -2014,6 +2060,11 @@ func (o GetSlosSloOutput) Objectives() GetSlosSloObjectiveArrayOutput {
 // Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 func (o GetSlosSloOutput) Queries() GetSlosSloQueryArrayOutput {
 	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloQuery { return v.Queries }).(GetSlosSloQueryArrayOutput)
+}
+
+// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+func (o GetSlosSloOutput) SearchExpression() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSlo) string { return v.SearchExpression }).(pulumi.StringOutput)
 }
 
 // A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
@@ -2312,7 +2363,9 @@ func (o GetSlosSloAlertingAdvancedOptionsPtrOutput) MinFailures() pulumi.IntPtrO
 }
 
 type GetSlosSloAlertingAnnotation struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -2328,7 +2381,9 @@ type GetSlosSloAlertingAnnotationInput interface {
 }
 
 type GetSlosSloAlertingAnnotationArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -2383,10 +2438,12 @@ func (o GetSlosSloAlertingAnnotationOutput) ToGetSlosSloAlertingAnnotationOutput
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloAlertingAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloAlertingAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -2518,7 +2575,9 @@ func (o GetSlosSloAlertingFastburnArrayOutput) Index(i pulumi.IntInput) GetSlosS
 }
 
 type GetSlosSloAlertingFastburnAnnotation struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -2534,7 +2593,9 @@ type GetSlosSloAlertingFastburnAnnotationInput interface {
 }
 
 type GetSlosSloAlertingFastburnAnnotationArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -2589,10 +2650,12 @@ func (o GetSlosSloAlertingFastburnAnnotationOutput) ToGetSlosSloAlertingFastburn
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloAlertingFastburnAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloAlertingFastburnAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -2618,7 +2681,9 @@ func (o GetSlosSloAlertingFastburnAnnotationArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetSlosSloAlertingFastburnLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -2634,7 +2699,9 @@ type GetSlosSloAlertingFastburnLabelInput interface {
 }
 
 type GetSlosSloAlertingFastburnLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -2689,10 +2756,12 @@ func (o GetSlosSloAlertingFastburnLabelOutput) ToGetSlosSloAlertingFastburnLabel
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloAlertingFastburnLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburnLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloAlertingFastburnLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburnLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -2718,7 +2787,9 @@ func (o GetSlosSloAlertingFastburnLabelArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetSlosSloAlertingLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -2734,7 +2805,9 @@ type GetSlosSloAlertingLabelInput interface {
 }
 
 type GetSlosSloAlertingLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -2789,10 +2862,12 @@ func (o GetSlosSloAlertingLabelOutput) ToGetSlosSloAlertingLabelOutputWithContex
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloAlertingLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloAlertingLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -2924,7 +2999,9 @@ func (o GetSlosSloAlertingSlowburnArrayOutput) Index(i pulumi.IntInput) GetSlosS
 }
 
 type GetSlosSloAlertingSlowburnAnnotation struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -2940,7 +3017,9 @@ type GetSlosSloAlertingSlowburnAnnotationInput interface {
 }
 
 type GetSlosSloAlertingSlowburnAnnotationArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -2995,10 +3074,12 @@ func (o GetSlosSloAlertingSlowburnAnnotationOutput) ToGetSlosSloAlertingSlowburn
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloAlertingSlowburnAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloAlertingSlowburnAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -3024,7 +3105,9 @@ func (o GetSlosSloAlertingSlowburnAnnotationArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetSlosSloAlertingSlowburnLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -3040,7 +3123,9 @@ type GetSlosSloAlertingSlowburnLabelInput interface {
 }
 
 type GetSlosSloAlertingSlowburnLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -3095,10 +3180,12 @@ func (o GetSlosSloAlertingSlowburnLabelOutput) ToGetSlosSloAlertingSlowburnLabel
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloAlertingSlowburnLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburnLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloAlertingSlowburnLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburnLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -3124,8 +3211,8 @@ func (o GetSlosSloAlertingSlowburnLabelArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetSlosSloDestinationDatasource struct {
-	// UID for the Mimir Datasource
-	Uid *string `pulumi:"uid"`
+	// UID for the Datasource
+	Uid string `pulumi:"uid"`
 }
 
 // GetSlosSloDestinationDatasourceInput is an input type that accepts GetSlosSloDestinationDatasourceArgs and GetSlosSloDestinationDatasourceOutput values.
@@ -3140,8 +3227,8 @@ type GetSlosSloDestinationDatasourceInput interface {
 }
 
 type GetSlosSloDestinationDatasourceArgs struct {
-	// UID for the Mimir Datasource
-	Uid pulumi.StringPtrInput `pulumi:"uid"`
+	// UID for the Datasource
+	Uid pulumi.StringInput `pulumi:"uid"`
 }
 
 func (GetSlosSloDestinationDatasourceArgs) ElementType() reflect.Type {
@@ -3195,9 +3282,9 @@ func (o GetSlosSloDestinationDatasourceOutput) ToGetSlosSloDestinationDatasource
 	return o
 }
 
-// UID for the Mimir Datasource
-func (o GetSlosSloDestinationDatasourceOutput) Uid() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetSlosSloDestinationDatasource) *string { return v.Uid }).(pulumi.StringPtrOutput)
+// UID for the Datasource
+func (o GetSlosSloDestinationDatasourceOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloDestinationDatasource) string { return v.Uid }).(pulumi.StringOutput)
 }
 
 type GetSlosSloDestinationDatasourceArrayOutput struct{ *pulumi.OutputState }
@@ -3221,7 +3308,9 @@ func (o GetSlosSloDestinationDatasourceArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetSlosSloLabel struct {
-	Key   string `pulumi:"key"`
+	// Key for filtering and identification
+	Key string `pulumi:"key"`
+	// Templatable value
 	Value string `pulumi:"value"`
 }
 
@@ -3237,7 +3326,9 @@ type GetSlosSloLabelInput interface {
 }
 
 type GetSlosSloLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// Key for filtering and identification
+	Key pulumi.StringInput `pulumi:"key"`
+	// Templatable value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -3292,10 +3383,12 @@ func (o GetSlosSloLabelOutput) ToGetSlosSloLabelOutputWithContext(ctx context.Co
 	return o
 }
 
+// Key for filtering and identification
 func (o GetSlosSloLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// Templatable value
 func (o GetSlosSloLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloLabel) string { return v.Value }).(pulumi.StringOutput)
 }

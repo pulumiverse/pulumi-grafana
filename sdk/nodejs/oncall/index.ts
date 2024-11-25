@@ -55,6 +55,11 @@ export const getUserGroup: typeof import("./getUserGroup").getUserGroup = null a
 export const getUserGroupOutput: typeof import("./getUserGroup").getUserGroupOutput = null as any;
 utilities.lazyLoad(exports, ["getUserGroup","getUserGroupOutput"], () => require("./getUserGroup"));
 
+export { GetUsersResult } from "./getUsers";
+export const getUsers: typeof import("./getUsers").getUsers = null as any;
+export const getUsersOutput: typeof import("./getUsers").getUsersOutput = null as any;
+utilities.lazyLoad(exports, ["getUsers","getUsersOutput"], () => require("./getUsers"));
+
 export { IntegrationArgs, IntegrationState } from "./integration";
 export type Integration = import("./integration").Integration;
 export const Integration: typeof import("./integration").Integration = null as any;

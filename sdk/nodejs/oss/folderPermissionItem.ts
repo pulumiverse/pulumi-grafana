@@ -82,7 +82,7 @@ export class FolderPermissionItem extends pulumi.CustomResource {
      */
     public readonly folderUid!: pulumi.Output<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     public readonly orgId!: pulumi.Output<string>;
     /**
@@ -152,7 +152,7 @@ export interface FolderPermissionItemState {
      */
     folderUid?: pulumi.Input<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     /**
@@ -182,7 +182,7 @@ export interface FolderPermissionItemArgs {
      */
     folderUid: pulumi.Input<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     /**

@@ -109,6 +109,8 @@ __all__ = [
     'OncallIntegrationTemplatesEmailArgsDict',
     'OncallIntegrationTemplatesMicrosoftTeamsArgs',
     'OncallIntegrationTemplatesMicrosoftTeamsArgsDict',
+    'OncallIntegrationTemplatesMobileAppArgs',
+    'OncallIntegrationTemplatesMobileAppArgsDict',
     'OncallIntegrationTemplatesPhoneCallArgs',
     'OncallIntegrationTemplatesPhoneCallArgsDict',
     'OncallIntegrationTemplatesSlackArgs',
@@ -145,6 +147,8 @@ __all__ = [
     'RuleGroupRuleDataRelativeTimeRangeArgsDict',
     'RuleGroupRuleNotificationSettingsArgs',
     'RuleGroupRuleNotificationSettingsArgsDict',
+    'RuleGroupRuleRecordArgs',
+    'RuleGroupRuleRecordArgsDict',
     'SLOAlertingArgs',
     'SLOAlertingArgsDict',
     'SLOAlertingAdvancedOptionsArgs',
@@ -179,6 +183,14 @@ __all__ = [
     'SLOQueryRatioArgsDict',
     'ServiceAccountPermissionPermissionArgs',
     'ServiceAccountPermissionPermissionArgsDict',
+    'SsoSettingsLdapSettingsArgs',
+    'SsoSettingsLdapSettingsArgsDict',
+    'SsoSettingsLdapSettingsConfigArgs',
+    'SsoSettingsLdapSettingsConfigArgsDict',
+    'SsoSettingsLdapSettingsConfigServerArgs',
+    'SsoSettingsLdapSettingsConfigServerArgsDict',
+    'SsoSettingsLdapSettingsConfigServerGroupMappingArgs',
+    'SsoSettingsLdapSettingsConfigServerGroupMappingArgsDict',
     'SsoSettingsOauth2SettingsArgs',
     'SsoSettingsOauth2SettingsArgsDict',
     'SsoSettingsSamlSettingsArgs',
@@ -6614,7 +6626,11 @@ if not MYPY:
         """
         microsoft_teams: NotRequired[pulumi.Input['OncallIntegrationTemplatesMicrosoftTeamsArgsDict']]
         """
-        Templates for Microsoft Teams.
+        Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
+        """
+        mobile_app: NotRequired[pulumi.Input['OncallIntegrationTemplatesMobileAppArgsDict']]
+        """
+        Templates for Mobile app push notifications.
         """
         phone_call: NotRequired[pulumi.Input['OncallIntegrationTemplatesPhoneCallArgsDict']]
         """
@@ -6654,6 +6670,7 @@ class OncallIntegrationTemplatesArgs:
                  email: Optional[pulumi.Input['OncallIntegrationTemplatesEmailArgs']] = None,
                  grouping_key: Optional[pulumi.Input[str]] = None,
                  microsoft_teams: Optional[pulumi.Input['OncallIntegrationTemplatesMicrosoftTeamsArgs']] = None,
+                 mobile_app: Optional[pulumi.Input['OncallIntegrationTemplatesMobileAppArgs']] = None,
                  phone_call: Optional[pulumi.Input['OncallIntegrationTemplatesPhoneCallArgs']] = None,
                  resolve_signal: Optional[pulumi.Input[str]] = None,
                  slack: Optional[pulumi.Input['OncallIntegrationTemplatesSlackArgs']] = None,
@@ -6665,7 +6682,8 @@ class OncallIntegrationTemplatesArgs:
         :param pulumi.Input[str] acknowledge_signal: Template for sending a signal to acknowledge the Incident.
         :param pulumi.Input['OncallIntegrationTemplatesEmailArgs'] email: Templates for Email.
         :param pulumi.Input[str] grouping_key: Template for the key by which alerts are grouped.
-        :param pulumi.Input['OncallIntegrationTemplatesMicrosoftTeamsArgs'] microsoft_teams: Templates for Microsoft Teams.
+        :param pulumi.Input['OncallIntegrationTemplatesMicrosoftTeamsArgs'] microsoft_teams: Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
+        :param pulumi.Input['OncallIntegrationTemplatesMobileAppArgs'] mobile_app: Templates for Mobile app push notifications.
         :param pulumi.Input['OncallIntegrationTemplatesPhoneCallArgs'] phone_call: Templates for Phone Call.
         :param pulumi.Input[str] resolve_signal: Template for sending a signal to resolve the Incident.
         :param pulumi.Input['OncallIntegrationTemplatesSlackArgs'] slack: Templates for Slack.
@@ -6682,6 +6700,8 @@ class OncallIntegrationTemplatesArgs:
             pulumi.set(__self__, "grouping_key", grouping_key)
         if microsoft_teams is not None:
             pulumi.set(__self__, "microsoft_teams", microsoft_teams)
+        if mobile_app is not None:
+            pulumi.set(__self__, "mobile_app", mobile_app)
         if phone_call is not None:
             pulumi.set(__self__, "phone_call", phone_call)
         if resolve_signal is not None:
@@ -6737,13 +6757,25 @@ class OncallIntegrationTemplatesArgs:
     @pulumi.getter(name="microsoftTeams")
     def microsoft_teams(self) -> Optional[pulumi.Input['OncallIntegrationTemplatesMicrosoftTeamsArgs']]:
         """
-        Templates for Microsoft Teams.
+        Templates for Microsoft Teams. **NOTE**: Microsoft Teams templates are only available on Grafana Cloud.
         """
         return pulumi.get(self, "microsoft_teams")
 
     @microsoft_teams.setter
     def microsoft_teams(self, value: Optional[pulumi.Input['OncallIntegrationTemplatesMicrosoftTeamsArgs']]):
         pulumi.set(self, "microsoft_teams", value)
+
+    @property
+    @pulumi.getter(name="mobileApp")
+    def mobile_app(self) -> Optional[pulumi.Input['OncallIntegrationTemplatesMobileAppArgs']]:
+        """
+        Templates for Mobile app push notifications.
+        """
+        return pulumi.get(self, "mobile_app")
+
+    @mobile_app.setter
+    def mobile_app(self, value: Optional[pulumi.Input['OncallIntegrationTemplatesMobileAppArgs']]):
+        pulumi.set(self, "mobile_app", value)
 
     @property
     @pulumi.getter(name="phoneCall")
@@ -6928,6 +6960,58 @@ class OncallIntegrationTemplatesMicrosoftTeamsArgs:
     @image_url.setter
     def image_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "image_url", value)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert message.
+        """
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template for Alert title.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+
+if not MYPY:
+    class OncallIntegrationTemplatesMobileAppArgsDict(TypedDict):
+        message: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert message.
+        """
+        title: NotRequired[pulumi.Input[str]]
+        """
+        Template for Alert title.
+        """
+elif False:
+    OncallIntegrationTemplatesMobileAppArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class OncallIntegrationTemplatesMobileAppArgs:
+    def __init__(__self__, *,
+                 message: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] message: Template for Alert message.
+        :param pulumi.Input[str] title: Template for Alert title.
+        """
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
 
     @property
     @pulumi.getter
@@ -7859,7 +7943,7 @@ if not MYPY:
         """
         annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
-        Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+        Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
         """
         exec_err_state: NotRequired[pulumi.Input[str]]
         """
@@ -7883,7 +7967,11 @@ if not MYPY:
         """
         notification_settings: NotRequired[pulumi.Input['RuleGroupRuleNotificationSettingsArgsDict']]
         """
-        Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+        Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
+        """
+        record: NotRequired[pulumi.Input['RuleGroupRuleRecordArgsDict']]
+        """
+        Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
         """
         uid: NotRequired[pulumi.Input[str]]
         """
@@ -7905,18 +7993,20 @@ class RuleGroupRuleArgs:
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  no_data_state: Optional[pulumi.Input[str]] = None,
                  notification_settings: Optional[pulumi.Input['RuleGroupRuleNotificationSettingsArgs']] = None,
+                 record: Optional[pulumi.Input['RuleGroupRuleRecordArgs']] = None,
                  uid: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] condition: The `ref_id` of the query node in the `data` field to use as the alert condition.
         :param pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleDataArgs']]] datas: A sequence of stages that describe the contents of the rule.
         :param pulumi.Input[str] name: The name of the alert rule.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
         :param pulumi.Input[str] exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
         :param pulumi.Input[str] for_: The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
         :param pulumi.Input[bool] is_paused: Sets whether the alert should be paused or not. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
         :param pulumi.Input[str] no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
-        :param pulumi.Input['RuleGroupRuleNotificationSettingsArgs'] notification_settings: Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+        :param pulumi.Input['RuleGroupRuleNotificationSettingsArgs'] notification_settings: Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
+        :param pulumi.Input['RuleGroupRuleRecordArgs'] record: Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
         :param pulumi.Input[str] uid: The unique identifier of the alert rule.
         """
         pulumi.set(__self__, "condition", condition)
@@ -7936,6 +8026,8 @@ class RuleGroupRuleArgs:
             pulumi.set(__self__, "no_data_state", no_data_state)
         if notification_settings is not None:
             pulumi.set(__self__, "notification_settings", notification_settings)
+        if record is not None:
+            pulumi.set(__self__, "record", record)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -7979,7 +8071,7 @@ class RuleGroupRuleArgs:
     @pulumi.getter
     def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Key-value pairs of metadata to attach to the alert rule that may add user-defined context, but cannot be used for matching, grouping, or routing. Defaults to `map[]`.
+        Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
         """
         return pulumi.get(self, "annotations")
 
@@ -8051,13 +8143,25 @@ class RuleGroupRuleArgs:
     @pulumi.getter(name="notificationSettings")
     def notification_settings(self) -> Optional[pulumi.Input['RuleGroupRuleNotificationSettingsArgs']]:
         """
-        Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' enabled.
+        Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
         """
         return pulumi.get(self, "notification_settings")
 
     @notification_settings.setter
     def notification_settings(self, value: Optional[pulumi.Input['RuleGroupRuleNotificationSettingsArgs']]):
         pulumi.set(self, "notification_settings", value)
+
+    @property
+    @pulumi.getter
+    def record(self) -> Optional[pulumi.Input['RuleGroupRuleRecordArgs']]:
+        """
+        Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
+        """
+        return pulumi.get(self, "record")
+
+    @record.setter
+    def record(self, value: Optional[pulumi.Input['RuleGroupRuleRecordArgs']]):
+        pulumi.set(self, "record", value)
 
     @property
     @pulumi.getter
@@ -8362,6 +8466,56 @@ class RuleGroupRuleNotificationSettingsArgs:
 
 
 if not MYPY:
+    class RuleGroupRuleRecordArgsDict(TypedDict):
+        from_: pulumi.Input[str]
+        """
+        The ref id of the query node in the data field to use as the source of the metric.
+        """
+        metric: pulumi.Input[str]
+        """
+        The name of the metric to write to.
+        """
+elif False:
+    RuleGroupRuleRecordArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RuleGroupRuleRecordArgs:
+    def __init__(__self__, *,
+                 from_: pulumi.Input[str],
+                 metric: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] from_: The ref id of the query node in the data field to use as the source of the metric.
+        :param pulumi.Input[str] metric: The name of the metric to write to.
+        """
+        pulumi.set(__self__, "from_", from_)
+        pulumi.set(__self__, "metric", metric)
+
+    @property
+    @pulumi.getter(name="from")
+    def from_(self) -> pulumi.Input[str]:
+        """
+        The ref id of the query node in the data field to use as the source of the metric.
+        """
+        return pulumi.get(self, "from_")
+
+    @from_.setter
+    def from_(self, value: pulumi.Input[str]):
+        pulumi.set(self, "from_", value)
+
+    @property
+    @pulumi.getter
+    def metric(self) -> pulumi.Input[str]:
+        """
+        The name of the metric to write to.
+        """
+        return pulumi.get(self, "metric")
+
+    @metric.setter
+    def metric(self, value: pulumi.Input[str]):
+        pulumi.set(self, "metric", value)
+
+
+if not MYPY:
     class SLOAlertingArgsDict(TypedDict):
         advanced_options: NotRequired[pulumi.Input['SLOAlertingAdvancedOptionsArgsDict']]
         """
@@ -8508,7 +8662,13 @@ class SLOAlertingAdvancedOptionsArgs:
 if not MYPY:
     class SLOAlertingAnnotationArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOAlertingAnnotationArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -8517,12 +8677,19 @@ class SLOAlertingAnnotationArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -8532,6 +8699,9 @@ class SLOAlertingAnnotationArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -8594,7 +8764,13 @@ class SLOAlertingFastburnArgs:
 if not MYPY:
     class SLOAlertingFastburnAnnotationArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOAlertingFastburnAnnotationArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -8603,12 +8779,19 @@ class SLOAlertingFastburnAnnotationArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -8618,6 +8801,9 @@ class SLOAlertingFastburnAnnotationArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -8628,7 +8814,13 @@ class SLOAlertingFastburnAnnotationArgs:
 if not MYPY:
     class SLOAlertingFastburnLabelArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOAlertingFastburnLabelArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -8637,12 +8829,19 @@ class SLOAlertingFastburnLabelArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -8652,6 +8851,9 @@ class SLOAlertingFastburnLabelArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -8662,7 +8864,13 @@ class SLOAlertingFastburnLabelArgs:
 if not MYPY:
     class SLOAlertingLabelArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOAlertingLabelArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -8671,12 +8879,19 @@ class SLOAlertingLabelArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -8686,6 +8901,9 @@ class SLOAlertingLabelArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -8748,7 +8966,13 @@ class SLOAlertingSlowburnArgs:
 if not MYPY:
     class SLOAlertingSlowburnAnnotationArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOAlertingSlowburnAnnotationArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -8757,12 +8981,19 @@ class SLOAlertingSlowburnAnnotationArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -8772,6 +9003,9 @@ class SLOAlertingSlowburnAnnotationArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -8782,7 +9016,13 @@ class SLOAlertingSlowburnAnnotationArgs:
 if not MYPY:
     class SLOAlertingSlowburnLabelArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOAlertingSlowburnLabelArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -8791,12 +9031,19 @@ class SLOAlertingSlowburnLabelArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -8806,6 +9053,9 @@ class SLOAlertingSlowburnLabelArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -8815,9 +9065,9 @@ class SLOAlertingSlowburnLabelArgs:
 
 if not MYPY:
     class SLODestinationDatasourceArgsDict(TypedDict):
-        uid: NotRequired[pulumi.Input[str]]
+        uid: pulumi.Input[str]
         """
-        UID for the Mimir Datasource
+        UID for the Datasource
         """
 elif False:
     SLODestinationDatasourceArgsDict: TypeAlias = Mapping[str, Any]
@@ -8825,30 +9075,35 @@ elif False:
 @pulumi.input_type
 class SLODestinationDatasourceArgs:
     def __init__(__self__, *,
-                 uid: Optional[pulumi.Input[str]] = None):
+                 uid: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] uid: UID for the Mimir Datasource
+        :param pulumi.Input[str] uid: UID for the Datasource
         """
-        if uid is not None:
-            pulumi.set(__self__, "uid", uid)
+        pulumi.set(__self__, "uid", uid)
 
     @property
     @pulumi.getter
-    def uid(self) -> Optional[pulumi.Input[str]]:
+    def uid(self) -> pulumi.Input[str]:
         """
-        UID for the Mimir Datasource
+        UID for the Datasource
         """
         return pulumi.get(self, "uid")
 
     @uid.setter
-    def uid(self, value: Optional[pulumi.Input[str]]):
+    def uid(self, value: pulumi.Input[str]):
         pulumi.set(self, "uid", value)
 
 
 if not MYPY:
     class SLOLabelArgsDict(TypedDict):
         key: pulumi.Input[str]
+        """
+        Key for filtering and identification
+        """
         value: pulumi.Input[str]
+        """
+        Templatable value
+        """
 elif False:
     SLOLabelArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -8857,12 +9112,19 @@ class SLOLabelArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: Key for filtering and identification
+        :param pulumi.Input[str] value: Templatable value
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key for filtering and identification
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -8872,6 +9134,9 @@ class SLOLabelArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        Templatable value
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -9159,6 +9424,687 @@ class ServiceAccountPermissionPermissionArgs:
 
 
 if not MYPY:
+    class SsoSettingsLdapSettingsArgsDict(TypedDict):
+        config: pulumi.Input['SsoSettingsLdapSettingsConfigArgsDict']
+        """
+        The LDAP configuration.
+        """
+        allow_sign_up: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+        """
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Define whether this configuration is enabled for LDAP. Defaults to `true`.
+        """
+        skip_org_role_sync: NotRequired[pulumi.Input[bool]]
+        """
+        Prevent synchronizing users’ organization roles from LDAP.
+        """
+elif False:
+    SsoSettingsLdapSettingsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SsoSettingsLdapSettingsArgs:
+    def __init__(__self__, *,
+                 config: pulumi.Input['SsoSettingsLdapSettingsConfigArgs'],
+                 allow_sign_up: Optional[pulumi.Input[bool]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 skip_org_role_sync: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input['SsoSettingsLdapSettingsConfigArgs'] config: The LDAP configuration.
+        :param pulumi.Input[bool] allow_sign_up: Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+        :param pulumi.Input[bool] enabled: Define whether this configuration is enabled for LDAP. Defaults to `true`.
+        :param pulumi.Input[bool] skip_org_role_sync: Prevent synchronizing users’ organization roles from LDAP.
+        """
+        pulumi.set(__self__, "config", config)
+        if allow_sign_up is not None:
+            pulumi.set(__self__, "allow_sign_up", allow_sign_up)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if skip_org_role_sync is not None:
+            pulumi.set(__self__, "skip_org_role_sync", skip_org_role_sync)
+
+    @property
+    @pulumi.getter
+    def config(self) -> pulumi.Input['SsoSettingsLdapSettingsConfigArgs']:
+        """
+        The LDAP configuration.
+        """
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input['SsoSettingsLdapSettingsConfigArgs']):
+        pulumi.set(self, "config", value)
+
+    @property
+    @pulumi.getter(name="allowSignUp")
+    def allow_sign_up(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to allow new Grafana user creation through LDAP login. If set to false, then only existing Grafana users can log in with LDAP.
+        """
+        return pulumi.get(self, "allow_sign_up")
+
+    @allow_sign_up.setter
+    def allow_sign_up(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_sign_up", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Define whether this configuration is enabled for LDAP. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="skipOrgRoleSync")
+    def skip_org_role_sync(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Prevent synchronizing users’ organization roles from LDAP.
+        """
+        return pulumi.get(self, "skip_org_role_sync")
+
+    @skip_org_role_sync.setter
+    def skip_org_role_sync(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_org_role_sync", value)
+
+
+if not MYPY:
+    class SsoSettingsLdapSettingsConfigArgsDict(TypedDict):
+        servers: pulumi.Input[Sequence[pulumi.Input['SsoSettingsLdapSettingsConfigServerArgsDict']]]
+        """
+        The LDAP servers configuration.
+        """
+elif False:
+    SsoSettingsLdapSettingsConfigArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SsoSettingsLdapSettingsConfigArgs:
+    def __init__(__self__, *,
+                 servers: pulumi.Input[Sequence[pulumi.Input['SsoSettingsLdapSettingsConfigServerArgs']]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['SsoSettingsLdapSettingsConfigServerArgs']]] servers: The LDAP servers configuration.
+        """
+        pulumi.set(__self__, "servers", servers)
+
+    @property
+    @pulumi.getter
+    def servers(self) -> pulumi.Input[Sequence[pulumi.Input['SsoSettingsLdapSettingsConfigServerArgs']]]:
+        """
+        The LDAP servers configuration.
+        """
+        return pulumi.get(self, "servers")
+
+    @servers.setter
+    def servers(self, value: pulumi.Input[Sequence[pulumi.Input['SsoSettingsLdapSettingsConfigServerArgs']]]):
+        pulumi.set(self, "servers", value)
+
+
+if not MYPY:
+    class SsoSettingsLdapSettingsConfigServerArgsDict(TypedDict):
+        host: pulumi.Input[str]
+        """
+        The LDAP server host.
+        """
+        search_base_dns: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        An array of base DNs to search through.
+        """
+        search_filter: pulumi.Input[str]
+        """
+        The user search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)".
+        """
+        attributes: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        The LDAP server attributes. The following attributes can be configured: email, member_of, name, surname, username.
+        """
+        bind_dn: NotRequired[pulumi.Input[str]]
+        """
+        The search user bind DN.
+        """
+        bind_password: NotRequired[pulumi.Input[str]]
+        """
+        The search user bind password.
+        """
+        client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The path to the client certificate.
+        """
+        client_cert_value: NotRequired[pulumi.Input[str]]
+        """
+        The Base64 encoded value of the client certificate.
+        """
+        client_key: NotRequired[pulumi.Input[str]]
+        """
+        The path to the client private key.
+        """
+        client_key_value: NotRequired[pulumi.Input[str]]
+        """
+        The Base64 encoded value of the client private key.
+        """
+        group_mappings: NotRequired[pulumi.Input[Sequence[pulumi.Input['SsoSettingsLdapSettingsConfigServerGroupMappingArgsDict']]]]
+        """
+        For mapping an LDAP group to a Grafana organization and role.
+        """
+        group_search_base_dns: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        An array of the base DNs to search through for groups. Typically uses ou=groups.
+        """
+        group_search_filter: NotRequired[pulumi.Input[str]]
+        """
+        Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available).
+        """
+        group_search_filter_user_attribute: NotRequired[pulumi.Input[str]]
+        """
+        The %s in the search filter will be replaced with the attribute defined in this field.
+        """
+        min_tls_version: NotRequired[pulumi.Input[str]]
+        """
+        Minimum TLS version allowed. Accepted values are: TLS1.2, TLS1.3.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The LDAP server port.
+        """
+        root_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        The path to the root CA certificate.
+        """
+        root_ca_cert_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The Base64 encoded values of the root CA certificates.
+        """
+        ssl_skip_verify: NotRequired[pulumi.Input[bool]]
+        """
+        If set to true, the SSL cert validation will be skipped.
+        """
+        start_tls: NotRequired[pulumi.Input[bool]]
+        """
+        If set to true, use LDAP with STARTTLS instead of LDAPS.
+        """
+        timeout: NotRequired[pulumi.Input[int]]
+        """
+        The timeout in seconds for connecting to the LDAP host.
+        """
+        tls_ciphers: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Accepted TLS ciphers. For a complete list of supported ciphers, refer to: https://go.dev/src/crypto/tls/cipher_suites.go.
+        """
+        use_ssl: NotRequired[pulumi.Input[bool]]
+        """
+        Set to true if LDAP server should use an encrypted TLS connection (either with STARTTLS or LDAPS).
+        """
+elif False:
+    SsoSettingsLdapSettingsConfigServerArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SsoSettingsLdapSettingsConfigServerArgs:
+    def __init__(__self__, *,
+                 host: pulumi.Input[str],
+                 search_base_dns: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 search_filter: pulumi.Input[str],
+                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 bind_dn: Optional[pulumi.Input[str]] = None,
+                 bind_password: Optional[pulumi.Input[str]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
+                 client_cert_value: Optional[pulumi.Input[str]] = None,
+                 client_key: Optional[pulumi.Input[str]] = None,
+                 client_key_value: Optional[pulumi.Input[str]] = None,
+                 group_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['SsoSettingsLdapSettingsConfigServerGroupMappingArgs']]]] = None,
+                 group_search_base_dns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 group_search_filter: Optional[pulumi.Input[str]] = None,
+                 group_search_filter_user_attribute: Optional[pulumi.Input[str]] = None,
+                 min_tls_version: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 root_ca_cert: Optional[pulumi.Input[str]] = None,
+                 root_ca_cert_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ssl_skip_verify: Optional[pulumi.Input[bool]] = None,
+                 start_tls: Optional[pulumi.Input[bool]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
+                 tls_ciphers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 use_ssl: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] host: The LDAP server host.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] search_base_dns: An array of base DNs to search through.
+        :param pulumi.Input[str] search_filter: The user search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)".
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: The LDAP server attributes. The following attributes can be configured: email, member_of, name, surname, username.
+        :param pulumi.Input[str] bind_dn: The search user bind DN.
+        :param pulumi.Input[str] bind_password: The search user bind password.
+        :param pulumi.Input[str] client_cert: The path to the client certificate.
+        :param pulumi.Input[str] client_cert_value: The Base64 encoded value of the client certificate.
+        :param pulumi.Input[str] client_key: The path to the client private key.
+        :param pulumi.Input[str] client_key_value: The Base64 encoded value of the client private key.
+        :param pulumi.Input[Sequence[pulumi.Input['SsoSettingsLdapSettingsConfigServerGroupMappingArgs']]] group_mappings: For mapping an LDAP group to a Grafana organization and role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_search_base_dns: An array of the base DNs to search through for groups. Typically uses ou=groups.
+        :param pulumi.Input[str] group_search_filter: Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available).
+        :param pulumi.Input[str] group_search_filter_user_attribute: The %s in the search filter will be replaced with the attribute defined in this field.
+        :param pulumi.Input[str] min_tls_version: Minimum TLS version allowed. Accepted values are: TLS1.2, TLS1.3.
+        :param pulumi.Input[int] port: The LDAP server port.
+        :param pulumi.Input[str] root_ca_cert: The path to the root CA certificate.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] root_ca_cert_values: The Base64 encoded values of the root CA certificates.
+        :param pulumi.Input[bool] ssl_skip_verify: If set to true, the SSL cert validation will be skipped.
+        :param pulumi.Input[bool] start_tls: If set to true, use LDAP with STARTTLS instead of LDAPS.
+        :param pulumi.Input[int] timeout: The timeout in seconds for connecting to the LDAP host.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_ciphers: Accepted TLS ciphers. For a complete list of supported ciphers, refer to: https://go.dev/src/crypto/tls/cipher_suites.go.
+        :param pulumi.Input[bool] use_ssl: Set to true if LDAP server should use an encrypted TLS connection (either with STARTTLS or LDAPS).
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "search_base_dns", search_base_dns)
+        pulumi.set(__self__, "search_filter", search_filter)
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if bind_dn is not None:
+            pulumi.set(__self__, "bind_dn", bind_dn)
+        if bind_password is not None:
+            pulumi.set(__self__, "bind_password", bind_password)
+        if client_cert is not None:
+            pulumi.set(__self__, "client_cert", client_cert)
+        if client_cert_value is not None:
+            pulumi.set(__self__, "client_cert_value", client_cert_value)
+        if client_key is not None:
+            pulumi.set(__self__, "client_key", client_key)
+        if client_key_value is not None:
+            pulumi.set(__self__, "client_key_value", client_key_value)
+        if group_mappings is not None:
+            pulumi.set(__self__, "group_mappings", group_mappings)
+        if group_search_base_dns is not None:
+            pulumi.set(__self__, "group_search_base_dns", group_search_base_dns)
+        if group_search_filter is not None:
+            pulumi.set(__self__, "group_search_filter", group_search_filter)
+        if group_search_filter_user_attribute is not None:
+            pulumi.set(__self__, "group_search_filter_user_attribute", group_search_filter_user_attribute)
+        if min_tls_version is not None:
+            pulumi.set(__self__, "min_tls_version", min_tls_version)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if root_ca_cert is not None:
+            pulumi.set(__self__, "root_ca_cert", root_ca_cert)
+        if root_ca_cert_values is not None:
+            pulumi.set(__self__, "root_ca_cert_values", root_ca_cert_values)
+        if ssl_skip_verify is not None:
+            pulumi.set(__self__, "ssl_skip_verify", ssl_skip_verify)
+        if start_tls is not None:
+            pulumi.set(__self__, "start_tls", start_tls)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+        if tls_ciphers is not None:
+            pulumi.set(__self__, "tls_ciphers", tls_ciphers)
+        if use_ssl is not None:
+            pulumi.set(__self__, "use_ssl", use_ssl)
+
+    @property
+    @pulumi.getter
+    def host(self) -> pulumi.Input[str]:
+        """
+        The LDAP server host.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: pulumi.Input[str]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter(name="searchBaseDns")
+    def search_base_dns(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        An array of base DNs to search through.
+        """
+        return pulumi.get(self, "search_base_dns")
+
+    @search_base_dns.setter
+    def search_base_dns(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "search_base_dns", value)
+
+    @property
+    @pulumi.getter(name="searchFilter")
+    def search_filter(self) -> pulumi.Input[str]:
+        """
+        The user search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)".
+        """
+        return pulumi.get(self, "search_filter")
+
+    @search_filter.setter
+    def search_filter(self, value: pulumi.Input[str]):
+        pulumi.set(self, "search_filter", value)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        The LDAP server attributes. The following attributes can be configured: email, member_of, name, surname, username.
+        """
+        return pulumi.get(self, "attributes")
+
+    @attributes.setter
+    def attributes(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "attributes", value)
+
+    @property
+    @pulumi.getter(name="bindDn")
+    def bind_dn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The search user bind DN.
+        """
+        return pulumi.get(self, "bind_dn")
+
+    @bind_dn.setter
+    def bind_dn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bind_dn", value)
+
+    @property
+    @pulumi.getter(name="bindPassword")
+    def bind_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The search user bind password.
+        """
+        return pulumi.get(self, "bind_password")
+
+    @bind_password.setter
+    def bind_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bind_password", value)
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to the client certificate.
+        """
+        return pulumi.get(self, "client_cert")
+
+    @client_cert.setter
+    def client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_cert", value)
+
+    @property
+    @pulumi.getter(name="clientCertValue")
+    def client_cert_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Base64 encoded value of the client certificate.
+        """
+        return pulumi.get(self, "client_cert_value")
+
+    @client_cert_value.setter
+    def client_cert_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_cert_value", value)
+
+    @property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to the client private key.
+        """
+        return pulumi.get(self, "client_key")
+
+    @client_key.setter
+    def client_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_key", value)
+
+    @property
+    @pulumi.getter(name="clientKeyValue")
+    def client_key_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Base64 encoded value of the client private key.
+        """
+        return pulumi.get(self, "client_key_value")
+
+    @client_key_value.setter
+    def client_key_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_key_value", value)
+
+    @property
+    @pulumi.getter(name="groupMappings")
+    def group_mappings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SsoSettingsLdapSettingsConfigServerGroupMappingArgs']]]]:
+        """
+        For mapping an LDAP group to a Grafana organization and role.
+        """
+        return pulumi.get(self, "group_mappings")
+
+    @group_mappings.setter
+    def group_mappings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SsoSettingsLdapSettingsConfigServerGroupMappingArgs']]]]):
+        pulumi.set(self, "group_mappings", value)
+
+    @property
+    @pulumi.getter(name="groupSearchBaseDns")
+    def group_search_base_dns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        An array of the base DNs to search through for groups. Typically uses ou=groups.
+        """
+        return pulumi.get(self, "group_search_base_dns")
+
+    @group_search_base_dns.setter
+    def group_search_base_dns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "group_search_base_dns", value)
+
+    @property
+    @pulumi.getter(name="groupSearchFilter")
+    def group_search_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available).
+        """
+        return pulumi.get(self, "group_search_filter")
+
+    @group_search_filter.setter
+    def group_search_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group_search_filter", value)
+
+    @property
+    @pulumi.getter(name="groupSearchFilterUserAttribute")
+    def group_search_filter_user_attribute(self) -> Optional[pulumi.Input[str]]:
+        """
+        The %s in the search filter will be replaced with the attribute defined in this field.
+        """
+        return pulumi.get(self, "group_search_filter_user_attribute")
+
+    @group_search_filter_user_attribute.setter
+    def group_search_filter_user_attribute(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group_search_filter_user_attribute", value)
+
+    @property
+    @pulumi.getter(name="minTlsVersion")
+    def min_tls_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum TLS version allowed. Accepted values are: TLS1.2, TLS1.3.
+        """
+        return pulumi.get(self, "min_tls_version")
+
+    @min_tls_version.setter
+    def min_tls_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "min_tls_version", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The LDAP server port.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter(name="rootCaCert")
+    def root_ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to the root CA certificate.
+        """
+        return pulumi.get(self, "root_ca_cert")
+
+    @root_ca_cert.setter
+    def root_ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "root_ca_cert", value)
+
+    @property
+    @pulumi.getter(name="rootCaCertValues")
+    def root_ca_cert_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The Base64 encoded values of the root CA certificates.
+        """
+        return pulumi.get(self, "root_ca_cert_values")
+
+    @root_ca_cert_values.setter
+    def root_ca_cert_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "root_ca_cert_values", value)
+
+    @property
+    @pulumi.getter(name="sslSkipVerify")
+    def ssl_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, the SSL cert validation will be skipped.
+        """
+        return pulumi.get(self, "ssl_skip_verify")
+
+    @ssl_skip_verify.setter
+    def ssl_skip_verify(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ssl_skip_verify", value)
+
+    @property
+    @pulumi.getter(name="startTls")
+    def start_tls(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, use LDAP with STARTTLS instead of LDAPS.
+        """
+        return pulumi.get(self, "start_tls")
+
+    @start_tls.setter
+    def start_tls(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "start_tls", value)
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The timeout in seconds for connecting to the LDAP host.
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
+
+    @property
+    @pulumi.getter(name="tlsCiphers")
+    def tls_ciphers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Accepted TLS ciphers. For a complete list of supported ciphers, refer to: https://go.dev/src/crypto/tls/cipher_suites.go.
+        """
+        return pulumi.get(self, "tls_ciphers")
+
+    @tls_ciphers.setter
+    def tls_ciphers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tls_ciphers", value)
+
+    @property
+    @pulumi.getter(name="useSsl")
+    def use_ssl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to true if LDAP server should use an encrypted TLS connection (either with STARTTLS or LDAPS).
+        """
+        return pulumi.get(self, "use_ssl")
+
+    @use_ssl.setter
+    def use_ssl(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_ssl", value)
+
+
+if not MYPY:
+    class SsoSettingsLdapSettingsConfigServerGroupMappingArgsDict(TypedDict):
+        group_dn: pulumi.Input[str]
+        """
+        LDAP distinguished name (DN) of LDAP group. If you want to match all (or no LDAP groups) then you can use wildcard ("*").
+        """
+        org_role: pulumi.Input[str]
+        """
+        Assign users of group_dn the organization role Admin, Editor, or Viewer.
+        """
+        grafana_admin: NotRequired[pulumi.Input[bool]]
+        """
+        If set to true, it makes the user of group_dn Grafana server admin.
+        """
+        org_id: NotRequired[pulumi.Input[int]]
+        """
+        The Grafana organization database id.
+        """
+elif False:
+    SsoSettingsLdapSettingsConfigServerGroupMappingArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SsoSettingsLdapSettingsConfigServerGroupMappingArgs:
+    def __init__(__self__, *,
+                 group_dn: pulumi.Input[str],
+                 org_role: pulumi.Input[str],
+                 grafana_admin: Optional[pulumi.Input[bool]] = None,
+                 org_id: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] group_dn: LDAP distinguished name (DN) of LDAP group. If you want to match all (or no LDAP groups) then you can use wildcard ("*").
+        :param pulumi.Input[str] org_role: Assign users of group_dn the organization role Admin, Editor, or Viewer.
+        :param pulumi.Input[bool] grafana_admin: If set to true, it makes the user of group_dn Grafana server admin.
+        :param pulumi.Input[int] org_id: The Grafana organization database id.
+        """
+        pulumi.set(__self__, "group_dn", group_dn)
+        pulumi.set(__self__, "org_role", org_role)
+        if grafana_admin is not None:
+            pulumi.set(__self__, "grafana_admin", grafana_admin)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
+
+    @property
+    @pulumi.getter(name="groupDn")
+    def group_dn(self) -> pulumi.Input[str]:
+        """
+        LDAP distinguished name (DN) of LDAP group. If you want to match all (or no LDAP groups) then you can use wildcard ("*").
+        """
+        return pulumi.get(self, "group_dn")
+
+    @group_dn.setter
+    def group_dn(self, value: pulumi.Input[str]):
+        pulumi.set(self, "group_dn", value)
+
+    @property
+    @pulumi.getter(name="orgRole")
+    def org_role(self) -> pulumi.Input[str]:
+        """
+        Assign users of group_dn the organization role Admin, Editor, or Viewer.
+        """
+        return pulumi.get(self, "org_role")
+
+    @org_role.setter
+    def org_role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "org_role", value)
+
+    @property
+    @pulumi.getter(name="grafanaAdmin")
+    def grafana_admin(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, it makes the user of group_dn Grafana server admin.
+        """
+        return pulumi.get(self, "grafana_admin")
+
+    @grafana_admin.setter
+    def grafana_admin(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "grafana_admin", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The Grafana organization database id.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "org_id", value)
+
+
+if not MYPY:
     class SsoSettingsOauth2SettingsArgsDict(TypedDict):
         client_id: pulumi.Input[str]
         """
@@ -9252,6 +10198,14 @@ if not MYPY:
         """
         JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
         """
+        org_attribute_path: NotRequired[pulumi.Input[str]]
+        """
+        JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "org_mapping"). Only applicable to Generic OAuth and Okta.
+        """
+        org_mapping: NotRequired[pulumi.Input[str]]
+        """
+        List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+        """
         role_attribute_path: NotRequired[pulumi.Input[str]]
         """
         JMESPath expression to use for Grafana role lookup.
@@ -9341,6 +10295,8 @@ class SsoSettingsOauth2SettingsArgs:
                  login_attribute_path: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  name_attribute_path: Optional[pulumi.Input[str]] = None,
+                 org_attribute_path: Optional[pulumi.Input[str]] = None,
+                 org_mapping: Optional[pulumi.Input[str]] = None,
                  role_attribute_path: Optional[pulumi.Input[str]] = None,
                  role_attribute_strict: Optional[pulumi.Input[bool]] = None,
                  scopes: Optional[pulumi.Input[str]] = None,
@@ -9380,6 +10336,8 @@ class SsoSettingsOauth2SettingsArgs:
         :param pulumi.Input[str] login_attribute_path: JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
         :param pulumi.Input[str] name: Helpful if you use more than one identity providers or SSO protocols.
         :param pulumi.Input[str] name_attribute_path: JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
+        :param pulumi.Input[str] org_attribute_path: JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "org_mapping"). Only applicable to Generic OAuth and Okta.
+        :param pulumi.Input[str] org_mapping: List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
         :param pulumi.Input[str] role_attribute_path: JMESPath expression to use for Grafana role lookup.
         :param pulumi.Input[bool] role_attribute_strict: If enabled, denies user login if the Grafana role cannot be extracted using Role attribute path.
         :param pulumi.Input[str] scopes: List of comma- or space-separated OAuth2 scopes.
@@ -9441,6 +10399,10 @@ class SsoSettingsOauth2SettingsArgs:
             pulumi.set(__self__, "name", name)
         if name_attribute_path is not None:
             pulumi.set(__self__, "name_attribute_path", name_attribute_path)
+        if org_attribute_path is not None:
+            pulumi.set(__self__, "org_attribute_path", org_attribute_path)
+        if org_mapping is not None:
+            pulumi.set(__self__, "org_mapping", org_mapping)
         if role_attribute_path is not None:
             pulumi.set(__self__, "role_attribute_path", role_attribute_path)
         if role_attribute_strict is not None:
@@ -9749,6 +10711,30 @@ class SsoSettingsOauth2SettingsArgs:
         pulumi.set(self, "name_attribute_path", value)
 
     @property
+    @pulumi.getter(name="orgAttributePath")
+    def org_attribute_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "org_mapping"). Only applicable to Generic OAuth and Okta.
+        """
+        return pulumi.get(self, "org_attribute_path")
+
+    @org_attribute_path.setter
+    def org_attribute_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_attribute_path", value)
+
+    @property
+    @pulumi.getter(name="orgMapping")
+    def org_mapping(self) -> Optional[pulumi.Input[str]]:
+        """
+        List of comma- or space-separated Organization:OrgIdOrOrgName:Role mappings. Organization can be * meaning “All users”. Role is optional and can have the following values: None, Viewer, Editor or Admin.
+        """
+        return pulumi.get(self, "org_mapping")
+
+    @org_mapping.setter
+    def org_mapping(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_mapping", value)
+
+    @property
     @pulumi.getter(name="roleAttributePath")
     def role_attribute_path(self) -> Optional[pulumi.Input[str]]:
         """
@@ -9979,9 +10965,25 @@ if not MYPY:
         """
         Path for the SP X.509 certificate.
         """
+        client_id: NotRequired[pulumi.Input[str]]
+        """
+        The client Id of your OAuth2 app.
+        """
+        client_secret: NotRequired[pulumi.Input[str]]
+        """
+        The client secret of your OAuth2 app.
+        """
         enabled: NotRequired[pulumi.Input[bool]]
         """
         Define whether this configuration is enabled for SAML. Defaults to `true`.
+        """
+        entity_id: NotRequired[pulumi.Input[str]]
+        """
+        The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+        """
+        force_use_graph_api: NotRequired[pulumi.Input[bool]]
+        """
+        If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
         """
         idp_metadata: NotRequired[pulumi.Input[str]]
         """
@@ -10059,6 +11061,10 @@ if not MYPY:
         """
         Prevent synchronizing users’ organization roles from your IdP.
         """
+        token_url: NotRequired[pulumi.Input[str]]
+        """
+        The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+        """
 elif False:
     SsoSettingsSamlSettingsArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -10077,7 +11083,11 @@ class SsoSettingsSamlSettingsArgs:
                  auto_login: Optional[pulumi.Input[bool]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  certificate_path: Optional[pulumi.Input[str]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_secret: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 entity_id: Optional[pulumi.Input[str]] = None,
+                 force_use_graph_api: Optional[pulumi.Input[bool]] = None,
                  idp_metadata: Optional[pulumi.Input[str]] = None,
                  idp_metadata_path: Optional[pulumi.Input[str]] = None,
                  idp_metadata_url: Optional[pulumi.Input[str]] = None,
@@ -10096,7 +11106,8 @@ class SsoSettingsSamlSettingsArgs:
                  role_values_viewer: Optional[pulumi.Input[str]] = None,
                  signature_algorithm: Optional[pulumi.Input[str]] = None,
                  single_logout: Optional[pulumi.Input[bool]] = None,
-                 skip_org_role_sync: Optional[pulumi.Input[bool]] = None):
+                 skip_org_role_sync: Optional[pulumi.Input[bool]] = None,
+                 token_url: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[bool] allow_idp_initiated: Whether SAML IdP-initiated login is allowed.
         :param pulumi.Input[bool] allow_sign_up: Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
@@ -10110,7 +11121,11 @@ class SsoSettingsSamlSettingsArgs:
         :param pulumi.Input[bool] auto_login: Whether SAML auto login is enabled.
         :param pulumi.Input[str] certificate: Base64-encoded string for the SP X.509 certificate.
         :param pulumi.Input[str] certificate_path: Path for the SP X.509 certificate.
+        :param pulumi.Input[str] client_id: The client Id of your OAuth2 app.
+        :param pulumi.Input[str] client_secret: The client secret of your OAuth2 app.
         :param pulumi.Input[bool] enabled: Define whether this configuration is enabled for SAML. Defaults to `true`.
+        :param pulumi.Input[str] entity_id: The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+        :param pulumi.Input[bool] force_use_graph_api: If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
         :param pulumi.Input[str] idp_metadata: Base64-encoded string for the IdP SAML metadata XML.
         :param pulumi.Input[str] idp_metadata_path: Path for the IdP SAML metadata XML.
         :param pulumi.Input[str] idp_metadata_url: URL for the IdP SAML metadata XML.
@@ -10130,6 +11145,7 @@ class SsoSettingsSamlSettingsArgs:
         :param pulumi.Input[str] signature_algorithm: Signature algorithm used for signing requests to the IdP. Supported values are rsa-sha1, rsa-sha256, rsa-sha512.
         :param pulumi.Input[bool] single_logout: Whether SAML Single Logout is enabled.
         :param pulumi.Input[bool] skip_org_role_sync: Prevent synchronizing users’ organization roles from your IdP.
+        :param pulumi.Input[str] token_url: The token endpoint of your OAuth2 provider. Required for Azure AD providers.
         """
         if allow_idp_initiated is not None:
             pulumi.set(__self__, "allow_idp_initiated", allow_idp_initiated)
@@ -10155,8 +11171,16 @@ class SsoSettingsSamlSettingsArgs:
             pulumi.set(__self__, "certificate", certificate)
         if certificate_path is not None:
             pulumi.set(__self__, "certificate_path", certificate_path)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if entity_id is not None:
+            pulumi.set(__self__, "entity_id", entity_id)
+        if force_use_graph_api is not None:
+            pulumi.set(__self__, "force_use_graph_api", force_use_graph_api)
         if idp_metadata is not None:
             pulumi.set(__self__, "idp_metadata", idp_metadata)
         if idp_metadata_path is not None:
@@ -10195,6 +11219,8 @@ class SsoSettingsSamlSettingsArgs:
             pulumi.set(__self__, "single_logout", single_logout)
         if skip_org_role_sync is not None:
             pulumi.set(__self__, "skip_org_role_sync", skip_org_role_sync)
+        if token_url is not None:
+            pulumi.set(__self__, "token_url", token_url)
 
     @property
     @pulumi.getter(name="allowIdpInitiated")
@@ -10341,6 +11367,30 @@ class SsoSettingsSamlSettingsArgs:
         pulumi.set(self, "certificate_path", value)
 
     @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client Id of your OAuth2 app.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client secret of your OAuth2 app.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @client_secret.setter
+    def client_secret(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_secret", value)
+
+    @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -10351,6 +11401,30 @@ class SsoSettingsSamlSettingsArgs:
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The entity ID is a globally unique identifier for the service provider. It is used to identify the service provider to the identity provider. Defaults to the URL of the Grafana instance if not set.
+        """
+        return pulumi.get(self, "entity_id")
+
+    @entity_id.setter
+    def entity_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "entity_id", value)
+
+    @property
+    @pulumi.getter(name="forceUseGraphApi")
+    def force_use_graph_api(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If enabled, Grafana will fetch groups from Microsoft Graph API instead of using the groups claim from the ID token.
+        """
+        return pulumi.get(self, "force_use_graph_api")
+
+    @force_use_graph_api.setter
+    def force_use_graph_api(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_use_graph_api", value)
 
     @property
     @pulumi.getter(name="idpMetadata")
@@ -10579,6 +11653,18 @@ class SsoSettingsSamlSettingsArgs:
     @skip_org_role_sync.setter
     def skip_org_role_sync(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "skip_org_role_sync", value)
+
+    @property
+    @pulumi.getter(name="tokenUrl")
+    def token_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The token endpoint of your OAuth2 provider. Required for Azure AD providers.
+        """
+        return pulumi.get(self, "token_url")
+
+    @token_url.setter
+    def token_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token_url", value)
 
 
 if not MYPY:

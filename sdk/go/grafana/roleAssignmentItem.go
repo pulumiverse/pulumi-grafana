@@ -106,7 +106,7 @@ import (
 type RoleAssignmentItem struct {
 	pulumi.CustomResourceState
 
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// the role UID onto which to assign an actor
 	RoleUid pulumi.StringOutput `pulumi:"roleUid"`
@@ -157,7 +157,7 @@ func GetRoleAssignmentItem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RoleAssignmentItem resources.
 type roleAssignmentItemState struct {
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// the role UID onto which to assign an actor
 	RoleUid *string `pulumi:"roleUid"`
@@ -170,7 +170,7 @@ type roleAssignmentItemState struct {
 }
 
 type RoleAssignmentItemState struct {
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// the role UID onto which to assign an actor
 	RoleUid pulumi.StringPtrInput
@@ -187,7 +187,7 @@ func (RoleAssignmentItemState) ElementType() reflect.Type {
 }
 
 type roleAssignmentItemArgs struct {
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// the role UID onto which to assign an actor
 	RoleUid string `pulumi:"roleUid"`
@@ -201,7 +201,7 @@ type roleAssignmentItemArgs struct {
 
 // The set of arguments for constructing a RoleAssignmentItem resource.
 type RoleAssignmentItemArgs struct {
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// the role UID onto which to assign an actor
 	RoleUid pulumi.StringInput
@@ -300,7 +300,7 @@ func (o RoleAssignmentItemOutput) ToRoleAssignmentItemOutputWithContext(ctx cont
 	return o
 }
 
-// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 func (o RoleAssignmentItemOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RoleAssignmentItem) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }

@@ -222,13 +222,2110 @@ func (o AccessPolicyRealmLabelPolicyArrayOutput) Index(i pulumi.IntInput) Access
 	}).(AccessPolicyRealmLabelPolicyOutput)
 }
 
+type ProviderAwsCloudwatchScrapeJobCustomNamespace struct {
+	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	Metrics []ProviderAwsCloudwatchScrapeJobCustomNamespaceMetric `pulumi:"metrics"`
+	// The name of the custom namespace to scrape.
+	Name string `pulumi:"name"`
+	// The interval in seconds to scrape the custom namespace.
+	ScrapeIntervalSeconds *int `pulumi:"scrapeIntervalSeconds"`
+}
+
+// ProviderAwsCloudwatchScrapeJobCustomNamespaceInput is an input type that accepts ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs and ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput values.
+// You can construct a concrete instance of `ProviderAwsCloudwatchScrapeJobCustomNamespaceInput` via:
+//
+//	ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs{...}
+type ProviderAwsCloudwatchScrapeJobCustomNamespaceInput interface {
+	pulumi.Input
+
+	ToProviderAwsCloudwatchScrapeJobCustomNamespaceOutput() ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput
+	ToProviderAwsCloudwatchScrapeJobCustomNamespaceOutputWithContext(context.Context) ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput
+}
+
+type ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs struct {
+	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	Metrics ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayInput `pulumi:"metrics"`
+	// The name of the custom namespace to scrape.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The interval in seconds to scrape the custom namespace.
+	ScrapeIntervalSeconds pulumi.IntPtrInput `pulumi:"scrapeIntervalSeconds"`
+}
+
+func (ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobCustomNamespace)(nil)).Elem()
+}
+
+func (i ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs) ToProviderAwsCloudwatchScrapeJobCustomNamespaceOutput() ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput {
+	return i.ToProviderAwsCloudwatchScrapeJobCustomNamespaceOutputWithContext(context.Background())
+}
+
+func (i ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs) ToProviderAwsCloudwatchScrapeJobCustomNamespaceOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput)
+}
+
+// ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayInput is an input type that accepts ProviderAwsCloudwatchScrapeJobCustomNamespaceArray and ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput values.
+// You can construct a concrete instance of `ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayInput` via:
+//
+//	ProviderAwsCloudwatchScrapeJobCustomNamespaceArray{ ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs{...} }
+type ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayInput interface {
+	pulumi.Input
+
+	ToProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput() ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput
+	ToProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutputWithContext(context.Context) ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput
+}
+
+type ProviderAwsCloudwatchScrapeJobCustomNamespaceArray []ProviderAwsCloudwatchScrapeJobCustomNamespaceInput
+
+func (ProviderAwsCloudwatchScrapeJobCustomNamespaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAwsCloudwatchScrapeJobCustomNamespace)(nil)).Elem()
+}
+
+func (i ProviderAwsCloudwatchScrapeJobCustomNamespaceArray) ToProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput() ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput {
+	return i.ToProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderAwsCloudwatchScrapeJobCustomNamespaceArray) ToProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput struct{ *pulumi.OutputState }
+
+func (ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobCustomNamespace)(nil)).Elem()
+}
+
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput) ToProviderAwsCloudwatchScrapeJobCustomNamespaceOutput() ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput) ToProviderAwsCloudwatchScrapeJobCustomNamespaceOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput {
+	return o
+}
+
+// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput) Metrics() ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobCustomNamespace) []ProviderAwsCloudwatchScrapeJobCustomNamespaceMetric {
+		return v.Metrics
+	}).(ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput)
+}
+
+// The name of the custom namespace to scrape.
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobCustomNamespace) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The interval in seconds to scrape the custom namespace.
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput) ScrapeIntervalSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobCustomNamespace) *int { return v.ScrapeIntervalSeconds }).(pulumi.IntPtrOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAwsCloudwatchScrapeJobCustomNamespace)(nil)).Elem()
+}
+
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput) ToProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput() ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput) ToProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput) Index(i pulumi.IntInput) ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderAwsCloudwatchScrapeJobCustomNamespace {
+		return vs[0].([]ProviderAwsCloudwatchScrapeJobCustomNamespace)[vs[1].(int)]
+	}).(ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobCustomNamespaceMetric struct {
+	// The name of the metric to scrape.
+	Name string `pulumi:"name"`
+	// A set of statistics to scrape.
+	Statistics []string `pulumi:"statistics"`
+}
+
+// ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricInput is an input type that accepts ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs and ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput values.
+// You can construct a concrete instance of `ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricInput` via:
+//
+//	ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs{...}
+type ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricInput interface {
+	pulumi.Input
+
+	ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput() ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput
+	ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutputWithContext(context.Context) ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput
+}
+
+type ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs struct {
+	// The name of the metric to scrape.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A set of statistics to scrape.
+	Statistics pulumi.StringArrayInput `pulumi:"statistics"`
+}
+
+func (ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobCustomNamespaceMetric)(nil)).Elem()
+}
+
+func (i ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs) ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput() ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput {
+	return i.ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutputWithContext(context.Background())
+}
+
+func (i ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs) ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput)
+}
+
+// ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayInput is an input type that accepts ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray and ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput values.
+// You can construct a concrete instance of `ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayInput` via:
+//
+//	ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray{ ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs{...} }
+type ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayInput interface {
+	pulumi.Input
+
+	ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput() ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput
+	ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutputWithContext(context.Context) ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput
+}
+
+type ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray []ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricInput
+
+func (ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAwsCloudwatchScrapeJobCustomNamespaceMetric)(nil)).Elem()
+}
+
+func (i ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray) ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput() ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput {
+	return i.ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray) ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput struct{ *pulumi.OutputState }
+
+func (ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobCustomNamespaceMetric)(nil)).Elem()
+}
+
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput) ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput() ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput) ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput {
+	return o
+}
+
+// The name of the metric to scrape.
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobCustomNamespaceMetric) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A set of statistics to scrape.
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput) Statistics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobCustomNamespaceMetric) []string { return v.Statistics }).(pulumi.StringArrayOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAwsCloudwatchScrapeJobCustomNamespaceMetric)(nil)).Elem()
+}
+
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput) ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput() ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput) ToProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput) Index(i pulumi.IntInput) ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderAwsCloudwatchScrapeJobCustomNamespaceMetric {
+		return vs[0].([]ProviderAwsCloudwatchScrapeJobCustomNamespaceMetric)[vs[1].(int)]
+	}).(ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobService struct {
+	// One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	Metrics []ProviderAwsCloudwatchScrapeJobServiceMetric `pulumi:"metrics"`
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+	Name string `pulumi:"name"`
+	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+	ResourceDiscoveryTagFilters []ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	ScrapeIntervalSeconds *int `pulumi:"scrapeIntervalSeconds"`
+	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+	TagsToAddToMetrics []string `pulumi:"tagsToAddToMetrics"`
+}
+
+// ProviderAwsCloudwatchScrapeJobServiceInput is an input type that accepts ProviderAwsCloudwatchScrapeJobServiceArgs and ProviderAwsCloudwatchScrapeJobServiceOutput values.
+// You can construct a concrete instance of `ProviderAwsCloudwatchScrapeJobServiceInput` via:
+//
+//	ProviderAwsCloudwatchScrapeJobServiceArgs{...}
+type ProviderAwsCloudwatchScrapeJobServiceInput interface {
+	pulumi.Input
+
+	ToProviderAwsCloudwatchScrapeJobServiceOutput() ProviderAwsCloudwatchScrapeJobServiceOutput
+	ToProviderAwsCloudwatchScrapeJobServiceOutputWithContext(context.Context) ProviderAwsCloudwatchScrapeJobServiceOutput
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceArgs struct {
+	// One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	Metrics ProviderAwsCloudwatchScrapeJobServiceMetricArrayInput `pulumi:"metrics"`
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+	Name pulumi.StringInput `pulumi:"name"`
+	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+	ResourceDiscoveryTagFilters ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput `pulumi:"resourceDiscoveryTagFilters"`
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	ScrapeIntervalSeconds pulumi.IntPtrInput `pulumi:"scrapeIntervalSeconds"`
+	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+	TagsToAddToMetrics pulumi.StringArrayInput `pulumi:"tagsToAddToMetrics"`
+}
+
+func (ProviderAwsCloudwatchScrapeJobServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobService)(nil)).Elem()
+}
+
+func (i ProviderAwsCloudwatchScrapeJobServiceArgs) ToProviderAwsCloudwatchScrapeJobServiceOutput() ProviderAwsCloudwatchScrapeJobServiceOutput {
+	return i.ToProviderAwsCloudwatchScrapeJobServiceOutputWithContext(context.Background())
+}
+
+func (i ProviderAwsCloudwatchScrapeJobServiceArgs) ToProviderAwsCloudwatchScrapeJobServiceOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAwsCloudwatchScrapeJobServiceOutput)
+}
+
+// ProviderAwsCloudwatchScrapeJobServiceArrayInput is an input type that accepts ProviderAwsCloudwatchScrapeJobServiceArray and ProviderAwsCloudwatchScrapeJobServiceArrayOutput values.
+// You can construct a concrete instance of `ProviderAwsCloudwatchScrapeJobServiceArrayInput` via:
+//
+//	ProviderAwsCloudwatchScrapeJobServiceArray{ ProviderAwsCloudwatchScrapeJobServiceArgs{...} }
+type ProviderAwsCloudwatchScrapeJobServiceArrayInput interface {
+	pulumi.Input
+
+	ToProviderAwsCloudwatchScrapeJobServiceArrayOutput() ProviderAwsCloudwatchScrapeJobServiceArrayOutput
+	ToProviderAwsCloudwatchScrapeJobServiceArrayOutputWithContext(context.Context) ProviderAwsCloudwatchScrapeJobServiceArrayOutput
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceArray []ProviderAwsCloudwatchScrapeJobServiceInput
+
+func (ProviderAwsCloudwatchScrapeJobServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAwsCloudwatchScrapeJobService)(nil)).Elem()
+}
+
+func (i ProviderAwsCloudwatchScrapeJobServiceArray) ToProviderAwsCloudwatchScrapeJobServiceArrayOutput() ProviderAwsCloudwatchScrapeJobServiceArrayOutput {
+	return i.ToProviderAwsCloudwatchScrapeJobServiceArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderAwsCloudwatchScrapeJobServiceArray) ToProviderAwsCloudwatchScrapeJobServiceArrayOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAwsCloudwatchScrapeJobServiceArrayOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceOutput struct{ *pulumi.OutputState }
+
+func (ProviderAwsCloudwatchScrapeJobServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobService)(nil)).Elem()
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceOutput) ToProviderAwsCloudwatchScrapeJobServiceOutput() ProviderAwsCloudwatchScrapeJobServiceOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceOutput) ToProviderAwsCloudwatchScrapeJobServiceOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobServiceOutput {
+	return o
+}
+
+// One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+func (o ProviderAwsCloudwatchScrapeJobServiceOutput) Metrics() ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobService) []ProviderAwsCloudwatchScrapeJobServiceMetric {
+		return v.Metrics
+	}).(ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput)
+}
+
+// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+func (o ProviderAwsCloudwatchScrapeJobServiceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobService) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+func (o ProviderAwsCloudwatchScrapeJobServiceOutput) ResourceDiscoveryTagFilters() ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobService) []ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter {
+		return v.ResourceDiscoveryTagFilters
+	}).(ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput)
+}
+
+// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+func (o ProviderAwsCloudwatchScrapeJobServiceOutput) ScrapeIntervalSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobService) *int { return v.ScrapeIntervalSeconds }).(pulumi.IntPtrOutput)
+}
+
+// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+func (o ProviderAwsCloudwatchScrapeJobServiceOutput) TagsToAddToMetrics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobService) []string { return v.TagsToAddToMetrics }).(pulumi.StringArrayOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderAwsCloudwatchScrapeJobServiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAwsCloudwatchScrapeJobService)(nil)).Elem()
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceArrayOutput) ToProviderAwsCloudwatchScrapeJobServiceArrayOutput() ProviderAwsCloudwatchScrapeJobServiceArrayOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceArrayOutput) ToProviderAwsCloudwatchScrapeJobServiceArrayOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobServiceArrayOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceArrayOutput) Index(i pulumi.IntInput) ProviderAwsCloudwatchScrapeJobServiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderAwsCloudwatchScrapeJobService {
+		return vs[0].([]ProviderAwsCloudwatchScrapeJobService)[vs[1].(int)]
+	}).(ProviderAwsCloudwatchScrapeJobServiceOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceMetric struct {
+	// The name of the metric to scrape.
+	Name string `pulumi:"name"`
+	// A set of statistics to scrape.
+	Statistics []string `pulumi:"statistics"`
+}
+
+// ProviderAwsCloudwatchScrapeJobServiceMetricInput is an input type that accepts ProviderAwsCloudwatchScrapeJobServiceMetricArgs and ProviderAwsCloudwatchScrapeJobServiceMetricOutput values.
+// You can construct a concrete instance of `ProviderAwsCloudwatchScrapeJobServiceMetricInput` via:
+//
+//	ProviderAwsCloudwatchScrapeJobServiceMetricArgs{...}
+type ProviderAwsCloudwatchScrapeJobServiceMetricInput interface {
+	pulumi.Input
+
+	ToProviderAwsCloudwatchScrapeJobServiceMetricOutput() ProviderAwsCloudwatchScrapeJobServiceMetricOutput
+	ToProviderAwsCloudwatchScrapeJobServiceMetricOutputWithContext(context.Context) ProviderAwsCloudwatchScrapeJobServiceMetricOutput
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceMetricArgs struct {
+	// The name of the metric to scrape.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A set of statistics to scrape.
+	Statistics pulumi.StringArrayInput `pulumi:"statistics"`
+}
+
+func (ProviderAwsCloudwatchScrapeJobServiceMetricArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceMetric)(nil)).Elem()
+}
+
+func (i ProviderAwsCloudwatchScrapeJobServiceMetricArgs) ToProviderAwsCloudwatchScrapeJobServiceMetricOutput() ProviderAwsCloudwatchScrapeJobServiceMetricOutput {
+	return i.ToProviderAwsCloudwatchScrapeJobServiceMetricOutputWithContext(context.Background())
+}
+
+func (i ProviderAwsCloudwatchScrapeJobServiceMetricArgs) ToProviderAwsCloudwatchScrapeJobServiceMetricOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobServiceMetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAwsCloudwatchScrapeJobServiceMetricOutput)
+}
+
+// ProviderAwsCloudwatchScrapeJobServiceMetricArrayInput is an input type that accepts ProviderAwsCloudwatchScrapeJobServiceMetricArray and ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput values.
+// You can construct a concrete instance of `ProviderAwsCloudwatchScrapeJobServiceMetricArrayInput` via:
+//
+//	ProviderAwsCloudwatchScrapeJobServiceMetricArray{ ProviderAwsCloudwatchScrapeJobServiceMetricArgs{...} }
+type ProviderAwsCloudwatchScrapeJobServiceMetricArrayInput interface {
+	pulumi.Input
+
+	ToProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput() ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput
+	ToProviderAwsCloudwatchScrapeJobServiceMetricArrayOutputWithContext(context.Context) ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceMetricArray []ProviderAwsCloudwatchScrapeJobServiceMetricInput
+
+func (ProviderAwsCloudwatchScrapeJobServiceMetricArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAwsCloudwatchScrapeJobServiceMetric)(nil)).Elem()
+}
+
+func (i ProviderAwsCloudwatchScrapeJobServiceMetricArray) ToProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput() ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput {
+	return i.ToProviderAwsCloudwatchScrapeJobServiceMetricArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderAwsCloudwatchScrapeJobServiceMetricArray) ToProviderAwsCloudwatchScrapeJobServiceMetricArrayOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceMetricOutput struct{ *pulumi.OutputState }
+
+func (ProviderAwsCloudwatchScrapeJobServiceMetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceMetric)(nil)).Elem()
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceMetricOutput) ToProviderAwsCloudwatchScrapeJobServiceMetricOutput() ProviderAwsCloudwatchScrapeJobServiceMetricOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceMetricOutput) ToProviderAwsCloudwatchScrapeJobServiceMetricOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobServiceMetricOutput {
+	return o
+}
+
+// The name of the metric to scrape.
+func (o ProviderAwsCloudwatchScrapeJobServiceMetricOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobServiceMetric) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A set of statistics to scrape.
+func (o ProviderAwsCloudwatchScrapeJobServiceMetricOutput) Statistics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobServiceMetric) []string { return v.Statistics }).(pulumi.StringArrayOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAwsCloudwatchScrapeJobServiceMetric)(nil)).Elem()
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput) ToProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput() ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput) ToProviderAwsCloudwatchScrapeJobServiceMetricArrayOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput) Index(i pulumi.IntInput) ProviderAwsCloudwatchScrapeJobServiceMetricOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderAwsCloudwatchScrapeJobServiceMetric {
+		return vs[0].([]ProviderAwsCloudwatchScrapeJobServiceMetric)[vs[1].(int)]
+	}).(ProviderAwsCloudwatchScrapeJobServiceMetricOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter struct {
+	// The key of the tag filter.
+	Key string `pulumi:"key"`
+	// The value of the tag filter.
+	Value string `pulumi:"value"`
+}
+
+// ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput is an input type that accepts ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs and ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput values.
+// You can construct a concrete instance of `ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput` via:
+//
+//	ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{...}
+type ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput interface {
+	pulumi.Input
+
+	ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput() ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput
+	ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(context.Context) ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs struct {
+	// The key of the tag filter.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the tag filter.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (i ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs) ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput() ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return i.ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(context.Background())
+}
+
+func (i ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs) ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput)
+}
+
+// ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput is an input type that accepts ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray and ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput values.
+// You can construct a concrete instance of `ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput` via:
+//
+//	ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray{ ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{...} }
+type ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput() ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput
+	ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(context.Context) ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray []ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput
+
+func (ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (i ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray) ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput() ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return i.ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray) ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput struct{ *pulumi.OutputState }
+
+func (ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput) ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput() ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput) ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return o
+}
+
+// The key of the tag filter.
+func (o ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of the tag filter.
+func (o ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput() ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) ToProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(ctx context.Context) ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return o
+}
+
+func (o ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) Index(i pulumi.IntInput) ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter {
+		return vs[0].([]ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter)[vs[1].(int)]
+	}).(ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput)
+}
+
+type GetAccessPoliciesAccessPolicy struct {
+	DisplayName string `pulumi:"displayName"`
+	Id          string `pulumi:"id"`
+	Name        string `pulumi:"name"`
+	Region      string `pulumi:"region"`
+	Status      string `pulumi:"status"`
+}
+
+// GetAccessPoliciesAccessPolicyInput is an input type that accepts GetAccessPoliciesAccessPolicyArgs and GetAccessPoliciesAccessPolicyOutput values.
+// You can construct a concrete instance of `GetAccessPoliciesAccessPolicyInput` via:
+//
+//	GetAccessPoliciesAccessPolicyArgs{...}
+type GetAccessPoliciesAccessPolicyInput interface {
+	pulumi.Input
+
+	ToGetAccessPoliciesAccessPolicyOutput() GetAccessPoliciesAccessPolicyOutput
+	ToGetAccessPoliciesAccessPolicyOutputWithContext(context.Context) GetAccessPoliciesAccessPolicyOutput
+}
+
+type GetAccessPoliciesAccessPolicyArgs struct {
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	Id          pulumi.StringInput `pulumi:"id"`
+	Name        pulumi.StringInput `pulumi:"name"`
+	Region      pulumi.StringInput `pulumi:"region"`
+	Status      pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetAccessPoliciesAccessPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessPoliciesAccessPolicy)(nil)).Elem()
+}
+
+func (i GetAccessPoliciesAccessPolicyArgs) ToGetAccessPoliciesAccessPolicyOutput() GetAccessPoliciesAccessPolicyOutput {
+	return i.ToGetAccessPoliciesAccessPolicyOutputWithContext(context.Background())
+}
+
+func (i GetAccessPoliciesAccessPolicyArgs) ToGetAccessPoliciesAccessPolicyOutputWithContext(ctx context.Context) GetAccessPoliciesAccessPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccessPoliciesAccessPolicyOutput)
+}
+
+// GetAccessPoliciesAccessPolicyArrayInput is an input type that accepts GetAccessPoliciesAccessPolicyArray and GetAccessPoliciesAccessPolicyArrayOutput values.
+// You can construct a concrete instance of `GetAccessPoliciesAccessPolicyArrayInput` via:
+//
+//	GetAccessPoliciesAccessPolicyArray{ GetAccessPoliciesAccessPolicyArgs{...} }
+type GetAccessPoliciesAccessPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetAccessPoliciesAccessPolicyArrayOutput() GetAccessPoliciesAccessPolicyArrayOutput
+	ToGetAccessPoliciesAccessPolicyArrayOutputWithContext(context.Context) GetAccessPoliciesAccessPolicyArrayOutput
+}
+
+type GetAccessPoliciesAccessPolicyArray []GetAccessPoliciesAccessPolicyInput
+
+func (GetAccessPoliciesAccessPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccessPoliciesAccessPolicy)(nil)).Elem()
+}
+
+func (i GetAccessPoliciesAccessPolicyArray) ToGetAccessPoliciesAccessPolicyArrayOutput() GetAccessPoliciesAccessPolicyArrayOutput {
+	return i.ToGetAccessPoliciesAccessPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccessPoliciesAccessPolicyArray) ToGetAccessPoliciesAccessPolicyArrayOutputWithContext(ctx context.Context) GetAccessPoliciesAccessPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccessPoliciesAccessPolicyArrayOutput)
+}
+
+type GetAccessPoliciesAccessPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetAccessPoliciesAccessPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessPoliciesAccessPolicy)(nil)).Elem()
+}
+
+func (o GetAccessPoliciesAccessPolicyOutput) ToGetAccessPoliciesAccessPolicyOutput() GetAccessPoliciesAccessPolicyOutput {
+	return o
+}
+
+func (o GetAccessPoliciesAccessPolicyOutput) ToGetAccessPoliciesAccessPolicyOutputWithContext(ctx context.Context) GetAccessPoliciesAccessPolicyOutput {
+	return o
+}
+
+func (o GetAccessPoliciesAccessPolicyOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessPoliciesAccessPolicy) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+func (o GetAccessPoliciesAccessPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessPoliciesAccessPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAccessPoliciesAccessPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessPoliciesAccessPolicy) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetAccessPoliciesAccessPolicyOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessPoliciesAccessPolicy) string { return v.Region }).(pulumi.StringOutput)
+}
+
+func (o GetAccessPoliciesAccessPolicyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessPoliciesAccessPolicy) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetAccessPoliciesAccessPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccessPoliciesAccessPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccessPoliciesAccessPolicy)(nil)).Elem()
+}
+
+func (o GetAccessPoliciesAccessPolicyArrayOutput) ToGetAccessPoliciesAccessPolicyArrayOutput() GetAccessPoliciesAccessPolicyArrayOutput {
+	return o
+}
+
+func (o GetAccessPoliciesAccessPolicyArrayOutput) ToGetAccessPoliciesAccessPolicyArrayOutputWithContext(ctx context.Context) GetAccessPoliciesAccessPolicyArrayOutput {
+	return o
+}
+
+func (o GetAccessPoliciesAccessPolicyArrayOutput) Index(i pulumi.IntInput) GetAccessPoliciesAccessPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccessPoliciesAccessPolicy {
+		return vs[0].([]GetAccessPoliciesAccessPolicy)[vs[1].(int)]
+	}).(GetAccessPoliciesAccessPolicyOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobCustomNamespace struct {
+	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	Metrics []GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric `pulumi:"metrics"`
+	// The name of the custom namespace to scrape.
+	Name string `pulumi:"name"`
+	// The interval in seconds to scrape the custom namespace.
+	ScrapeIntervalSeconds int `pulumi:"scrapeIntervalSeconds"`
+}
+
+// GetProviderAwsCloudwatchScrapeJobCustomNamespaceInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs and GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobCustomNamespaceInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs{...}
+type GetProviderAwsCloudwatchScrapeJobCustomNamespaceInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput() GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput
+	ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs struct {
+	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	Metrics GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayInput `pulumi:"metrics"`
+	// The name of the custom namespace to scrape.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The interval in seconds to scrape the custom namespace.
+	ScrapeIntervalSeconds pulumi.IntInput `pulumi:"scrapeIntervalSeconds"`
+}
+
+func (GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobCustomNamespace)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput() GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput)
+}
+
+// GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobCustomNamespaceArray and GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobCustomNamespaceArray{ GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs{...} }
+type GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput() GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput
+	ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobCustomNamespaceArray []GetProviderAwsCloudwatchScrapeJobCustomNamespaceInput
+
+func (GetProviderAwsCloudwatchScrapeJobCustomNamespaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobCustomNamespace)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobCustomNamespaceArray) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput() GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobCustomNamespaceArray) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobCustomNamespace)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput() GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput {
+	return o
+}
+
+// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput) Metrics() GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobCustomNamespace) []GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric {
+		return v.Metrics
+	}).(GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput)
+}
+
+// The name of the custom namespace to scrape.
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobCustomNamespace) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The interval in seconds to scrape the custom namespace.
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput) ScrapeIntervalSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobCustomNamespace) int { return v.ScrapeIntervalSeconds }).(pulumi.IntOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobCustomNamespace)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput() GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput) Index(i pulumi.IntInput) GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAwsCloudwatchScrapeJobCustomNamespace {
+		return vs[0].([]GetProviderAwsCloudwatchScrapeJobCustomNamespace)[vs[1].(int)]
+	}).(GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric struct {
+	// The name of the metric to scrape.
+	Name string `pulumi:"name"`
+	// A set of statistics to scrape.
+	Statistics []string `pulumi:"statistics"`
+}
+
+// GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs and GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs{...}
+type GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput() GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput
+	ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs struct {
+	// The name of the metric to scrape.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A set of statistics to scrape.
+	Statistics pulumi.StringArrayInput `pulumi:"statistics"`
+}
+
+func (GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput() GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput)
+}
+
+// GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray and GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray{ GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs{...} }
+type GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput() GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput
+	ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray []GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricInput
+
+func (GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput() GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput() GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput {
+	return o
+}
+
+// The name of the metric to scrape.
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A set of statistics to scrape.
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput) Statistics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric) []string { return v.Statistics }).(pulumi.StringArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput() GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput) ToGetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput) Index(i pulumi.IntInput) GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric {
+		return vs[0].([]GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric)[vs[1].(int)]
+	}).(GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobService struct {
+	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	Metrics []GetProviderAwsCloudwatchScrapeJobServiceMetric `pulumi:"metrics"`
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+	Name string `pulumi:"name"`
+	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+	ResourceDiscoveryTagFilters []GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	ScrapeIntervalSeconds int `pulumi:"scrapeIntervalSeconds"`
+	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+	TagsToAddToMetrics []string `pulumi:"tagsToAddToMetrics"`
+}
+
+// GetProviderAwsCloudwatchScrapeJobServiceInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobServiceArgs and GetProviderAwsCloudwatchScrapeJobServiceOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobServiceInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobServiceArgs{...}
+type GetProviderAwsCloudwatchScrapeJobServiceInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobServiceOutput() GetProviderAwsCloudwatchScrapeJobServiceOutput
+	ToGetProviderAwsCloudwatchScrapeJobServiceOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobServiceOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceArgs struct {
+	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	Metrics GetProviderAwsCloudwatchScrapeJobServiceMetricArrayInput `pulumi:"metrics"`
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+	Name pulumi.StringInput `pulumi:"name"`
+	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+	ResourceDiscoveryTagFilters GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput `pulumi:"resourceDiscoveryTagFilters"`
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	ScrapeIntervalSeconds pulumi.IntInput `pulumi:"scrapeIntervalSeconds"`
+	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+	TagsToAddToMetrics pulumi.StringArrayInput `pulumi:"tagsToAddToMetrics"`
+}
+
+func (GetProviderAwsCloudwatchScrapeJobServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobService)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobServiceArgs) ToGetProviderAwsCloudwatchScrapeJobServiceOutput() GetProviderAwsCloudwatchScrapeJobServiceOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobServiceOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobServiceArgs) ToGetProviderAwsCloudwatchScrapeJobServiceOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobServiceOutput)
+}
+
+// GetProviderAwsCloudwatchScrapeJobServiceArrayInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobServiceArray and GetProviderAwsCloudwatchScrapeJobServiceArrayOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobServiceArrayInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobServiceArray{ GetProviderAwsCloudwatchScrapeJobServiceArgs{...} }
+type GetProviderAwsCloudwatchScrapeJobServiceArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobServiceArrayOutput() GetProviderAwsCloudwatchScrapeJobServiceArrayOutput
+	ToGetProviderAwsCloudwatchScrapeJobServiceArrayOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobServiceArrayOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceArray []GetProviderAwsCloudwatchScrapeJobServiceInput
+
+func (GetProviderAwsCloudwatchScrapeJobServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobService)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobServiceArray) ToGetProviderAwsCloudwatchScrapeJobServiceArrayOutput() GetProviderAwsCloudwatchScrapeJobServiceArrayOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobServiceArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobServiceArray) ToGetProviderAwsCloudwatchScrapeJobServiceArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobServiceArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobService)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceOutput) ToGetProviderAwsCloudwatchScrapeJobServiceOutput() GetProviderAwsCloudwatchScrapeJobServiceOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceOutput) ToGetProviderAwsCloudwatchScrapeJobServiceOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobServiceOutput {
+	return o
+}
+
+// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+func (o GetProviderAwsCloudwatchScrapeJobServiceOutput) Metrics() GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobService) []GetProviderAwsCloudwatchScrapeJobServiceMetric {
+		return v.Metrics
+	}).(GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput)
+}
+
+// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+func (o GetProviderAwsCloudwatchScrapeJobServiceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobService) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+func (o GetProviderAwsCloudwatchScrapeJobServiceOutput) ResourceDiscoveryTagFilters() GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobService) []GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter {
+		return v.ResourceDiscoveryTagFilters
+	}).(GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput)
+}
+
+// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+func (o GetProviderAwsCloudwatchScrapeJobServiceOutput) ScrapeIntervalSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobService) int { return v.ScrapeIntervalSeconds }).(pulumi.IntOutput)
+}
+
+// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+func (o GetProviderAwsCloudwatchScrapeJobServiceOutput) TagsToAddToMetrics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobService) []string { return v.TagsToAddToMetrics }).(pulumi.StringArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobServiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobService)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceArrayOutput) ToGetProviderAwsCloudwatchScrapeJobServiceArrayOutput() GetProviderAwsCloudwatchScrapeJobServiceArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceArrayOutput) ToGetProviderAwsCloudwatchScrapeJobServiceArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobServiceArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceArrayOutput) Index(i pulumi.IntInput) GetProviderAwsCloudwatchScrapeJobServiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAwsCloudwatchScrapeJobService {
+		return vs[0].([]GetProviderAwsCloudwatchScrapeJobService)[vs[1].(int)]
+	}).(GetProviderAwsCloudwatchScrapeJobServiceOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceMetric struct {
+	// The name of the metric to scrape.
+	Name string `pulumi:"name"`
+	// A set of statistics to scrape.
+	Statistics []string `pulumi:"statistics"`
+}
+
+// GetProviderAwsCloudwatchScrapeJobServiceMetricInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobServiceMetricArgs and GetProviderAwsCloudwatchScrapeJobServiceMetricOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobServiceMetricInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobServiceMetricArgs{...}
+type GetProviderAwsCloudwatchScrapeJobServiceMetricInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobServiceMetricOutput() GetProviderAwsCloudwatchScrapeJobServiceMetricOutput
+	ToGetProviderAwsCloudwatchScrapeJobServiceMetricOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobServiceMetricOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceMetricArgs struct {
+	// The name of the metric to scrape.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A set of statistics to scrape.
+	Statistics pulumi.StringArrayInput `pulumi:"statistics"`
+}
+
+func (GetProviderAwsCloudwatchScrapeJobServiceMetricArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobServiceMetric)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobServiceMetricArgs) ToGetProviderAwsCloudwatchScrapeJobServiceMetricOutput() GetProviderAwsCloudwatchScrapeJobServiceMetricOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobServiceMetricOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobServiceMetricArgs) ToGetProviderAwsCloudwatchScrapeJobServiceMetricOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobServiceMetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobServiceMetricOutput)
+}
+
+// GetProviderAwsCloudwatchScrapeJobServiceMetricArrayInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobServiceMetricArray and GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobServiceMetricArrayInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobServiceMetricArray{ GetProviderAwsCloudwatchScrapeJobServiceMetricArgs{...} }
+type GetProviderAwsCloudwatchScrapeJobServiceMetricArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput() GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput
+	ToGetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceMetricArray []GetProviderAwsCloudwatchScrapeJobServiceMetricInput
+
+func (GetProviderAwsCloudwatchScrapeJobServiceMetricArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobServiceMetric)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobServiceMetricArray) ToGetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput() GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobServiceMetricArray) ToGetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceMetricOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobServiceMetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobServiceMetric)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceMetricOutput) ToGetProviderAwsCloudwatchScrapeJobServiceMetricOutput() GetProviderAwsCloudwatchScrapeJobServiceMetricOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceMetricOutput) ToGetProviderAwsCloudwatchScrapeJobServiceMetricOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobServiceMetricOutput {
+	return o
+}
+
+// The name of the metric to scrape.
+func (o GetProviderAwsCloudwatchScrapeJobServiceMetricOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobServiceMetric) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A set of statistics to scrape.
+func (o GetProviderAwsCloudwatchScrapeJobServiceMetricOutput) Statistics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobServiceMetric) []string { return v.Statistics }).(pulumi.StringArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobServiceMetric)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput) ToGetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput() GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput) ToGetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput) Index(i pulumi.IntInput) GetProviderAwsCloudwatchScrapeJobServiceMetricOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAwsCloudwatchScrapeJobServiceMetric {
+		return vs[0].([]GetProviderAwsCloudwatchScrapeJobServiceMetric)[vs[1].(int)]
+	}).(GetProviderAwsCloudwatchScrapeJobServiceMetricOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter struct {
+	// The key of the tag filter.
+	Key string `pulumi:"key"`
+	// The value of the tag filter.
+	Value string `pulumi:"value"`
+}
+
+// GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs and GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{...}
+type GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput() GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput
+	ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs struct {
+	// The key of the tag filter.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the tag filter.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs) ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput() GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs) ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput)
+}
+
+// GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray and GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray{ GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{...} }
+type GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput() GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput
+	ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray []GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput
+
+func (GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray) ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput() GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray) ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput) ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput() GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput) ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return o
+}
+
+// The key of the tag filter.
+func (o GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of the tag filter.
+func (o GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput() GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) ToGetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) Index(i pulumi.IntInput) GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter {
+		return vs[0].([]GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter)[vs[1].(int)]
+	}).(GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJob struct {
+	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloud.ProviderAwsAccount` resource.
+	AwsAccountResourceId string `pulumi:"awsAccountResourceId"`
+	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	CustomNamespaces []GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace `pulumi:"customNamespaces"`
+	// When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+	DisabledReason string `pulumi:"disabledReason"`
+	// Whether the CloudWatch Scrape Job is enabled or not.
+	Enabled bool `pulumi:"enabled"`
+	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+	ExportTags bool   `pulumi:"exportTags"`
+	Id         string `pulumi:"id"`
+	Name       string `pulumi:"name"`
+	// The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
+	Regions []string `pulumi:"regions"`
+	// When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
+	RegionsSubsetOverrideUsed bool `pulumi:"regionsSubsetOverrideUsed"`
+	// The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+	RoleArn string `pulumi:"roleArn"`
+	// One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	Services []GetProviderAwsCloudwatchScrapeJobsScrapeJobService `pulumi:"services"`
+	StackId  string                                               `pulumi:"stackId"`
+}
+
+// GetProviderAwsCloudwatchScrapeJobsScrapeJobInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobsScrapeJobArgs and GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobsScrapeJobInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobsScrapeJobArgs{...}
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobArgs struct {
+	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloud.ProviderAwsAccount` resource.
+	AwsAccountResourceId pulumi.StringInput `pulumi:"awsAccountResourceId"`
+	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	CustomNamespaces GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayInput `pulumi:"customNamespaces"`
+	// When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+	DisabledReason pulumi.StringInput `pulumi:"disabledReason"`
+	// Whether the CloudWatch Scrape Job is enabled or not.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+	ExportTags pulumi.BoolInput   `pulumi:"exportTags"`
+	Id         pulumi.StringInput `pulumi:"id"`
+	Name       pulumi.StringInput `pulumi:"name"`
+	// The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
+	Regions pulumi.StringArrayInput `pulumi:"regions"`
+	// When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
+	RegionsSubsetOverrideUsed pulumi.BoolInput `pulumi:"regionsSubsetOverrideUsed"`
+	// The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+	RoleArn pulumi.StringInput `pulumi:"roleArn"`
+	// One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	Services GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayInput `pulumi:"services"`
+	StackId  pulumi.StringInput                                           `pulumi:"stackId"`
+}
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJob)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobArgs) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobsScrapeJobOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobArgs) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput)
+}
+
+// GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobsScrapeJobArray and GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobsScrapeJobArray{ GetProviderAwsCloudwatchScrapeJobsScrapeJobArgs{...} }
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobArray []GetProviderAwsCloudwatchScrapeJobsScrapeJobInput
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobsScrapeJob)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobArray) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobArray) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJob)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput {
+	return o
+}
+
+// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloud.ProviderAwsAccount` resource.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) AwsAccountResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJob) string { return v.AwsAccountResourceId }).(pulumi.StringOutput)
+}
+
+// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) CustomNamespaces() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJob) []GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace {
+		return v.CustomNamespaces
+	}).(GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput)
+}
+
+// When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) DisabledReason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJob) string { return v.DisabledReason }).(pulumi.StringOutput)
+}
+
+// Whether the CloudWatch Scrape Job is enabled or not.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJob) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) ExportTags() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJob) bool { return v.ExportTags }).(pulumi.BoolOutput)
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJob) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJob) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) Regions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJob) []string { return v.Regions }).(pulumi.StringArrayOutput)
+}
+
+// When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) RegionsSubsetOverrideUsed() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJob) bool { return v.RegionsSubsetOverrideUsed }).(pulumi.BoolOutput)
+}
+
+// The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) RoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJob) string { return v.RoleArn }).(pulumi.StringOutput)
+}
+
+// One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) Services() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJob) []GetProviderAwsCloudwatchScrapeJobsScrapeJobService {
+		return v.Services
+	}).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput)
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput) StackId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJob) string { return v.StackId }).(pulumi.StringOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobsScrapeJob)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput) Index(i pulumi.IntInput) GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAwsCloudwatchScrapeJobsScrapeJob {
+		return vs[0].([]GetProviderAwsCloudwatchScrapeJobsScrapeJob)[vs[1].(int)]
+	}).(GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace struct {
+	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	Metrics []GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric `pulumi:"metrics"`
+	// The name of the custom namespace to scrape.
+	Name string `pulumi:"name"`
+	// The interval in seconds to scrape the custom namespace.
+	ScrapeIntervalSeconds int `pulumi:"scrapeIntervalSeconds"`
+}
+
+// GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs and GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs{...}
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs struct {
+	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	Metrics GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayInput `pulumi:"metrics"`
+	// The name of the custom namespace to scrape.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The interval in seconds to scrape the custom namespace.
+	ScrapeIntervalSeconds pulumi.IntInput `pulumi:"scrapeIntervalSeconds"`
+}
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput)
+}
+
+// GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArray and GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArray{ GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs{...} }
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArray []GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceInput
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArray) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArray) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput {
+	return o
+}
+
+// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput) Metrics() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace) []GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric {
+		return v.Metrics
+	}).(GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput)
+}
+
+// The name of the custom namespace to scrape.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The interval in seconds to scrape the custom namespace.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput) ScrapeIntervalSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace) int { return v.ScrapeIntervalSeconds }).(pulumi.IntOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput) Index(i pulumi.IntInput) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace {
+		return vs[0].([]GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace)[vs[1].(int)]
+	}).(GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric struct {
+	// The name of the metric to scrape.
+	Name string `pulumi:"name"`
+	// A set of statistics to scrape.
+	Statistics []string `pulumi:"statistics"`
+}
+
+// GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgs and GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgs{...}
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgs struct {
+	// The name of the metric to scrape.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A set of statistics to scrape.
+	Statistics pulumi.StringArrayInput `pulumi:"statistics"`
+}
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgs) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgs) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput)
+}
+
+// GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArray and GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArray{ GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgs{...} }
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArray []GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricInput
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArray) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArray) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput {
+	return o
+}
+
+// The name of the metric to scrape.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A set of statistics to scrape.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput) Statistics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric) []string { return v.Statistics }).(pulumi.StringArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput) Index(i pulumi.IntInput) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric {
+		return vs[0].([]GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric)[vs[1].(int)]
+	}).(GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobService struct {
+	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	Metrics []GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric `pulumi:"metrics"`
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+	Name string `pulumi:"name"`
+	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+	ResourceDiscoveryTagFilters []GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	ScrapeIntervalSeconds int `pulumi:"scrapeIntervalSeconds"`
+	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+	TagsToAddToMetrics []string `pulumi:"tagsToAddToMetrics"`
+}
+
+// GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArgs and GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArgs{...}
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArgs struct {
+	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+	Metrics GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayInput `pulumi:"metrics"`
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+	Name pulumi.StringInput `pulumi:"name"`
+	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+	ResourceDiscoveryTagFilters GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayInput `pulumi:"resourceDiscoveryTagFilters"`
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	ScrapeIntervalSeconds pulumi.IntInput `pulumi:"scrapeIntervalSeconds"`
+	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+	TagsToAddToMetrics pulumi.StringArrayInput `pulumi:"tagsToAddToMetrics"`
+}
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobService)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArgs) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArgs) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput)
+}
+
+// GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArray and GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArray{ GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArgs{...} }
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArray []GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceInput
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobsScrapeJobService)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArray) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArray) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobService)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput {
+	return o
+}
+
+// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput) Metrics() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobService) []GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric {
+		return v.Metrics
+	}).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput)
+}
+
+// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobService) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput) ResourceDiscoveryTagFilters() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobService) []GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter {
+		return v.ResourceDiscoveryTagFilters
+	}).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput)
+}
+
+// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput) ScrapeIntervalSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobService) int { return v.ScrapeIntervalSeconds }).(pulumi.IntOutput)
+}
+
+// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput) TagsToAddToMetrics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobService) []string { return v.TagsToAddToMetrics }).(pulumi.StringArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobsScrapeJobService)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput) Index(i pulumi.IntInput) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAwsCloudwatchScrapeJobsScrapeJobService {
+		return vs[0].([]GetProviderAwsCloudwatchScrapeJobsScrapeJobService)[vs[1].(int)]
+	}).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric struct {
+	// The name of the metric to scrape.
+	Name string `pulumi:"name"`
+	// A set of statistics to scrape.
+	Statistics []string `pulumi:"statistics"`
+}
+
+// GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs and GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs{...}
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs struct {
+	// The name of the metric to scrape.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A set of statistics to scrape.
+	Statistics pulumi.StringArrayInput `pulumi:"statistics"`
+}
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput)
+}
+
+// GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArray and GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArray{ GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs{...} }
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArray []GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricInput
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArray) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArray) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput {
+	return o
+}
+
+// The name of the metric to scrape.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A set of statistics to scrape.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput) Statistics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric) []string { return v.Statistics }).(pulumi.StringArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput) Index(i pulumi.IntInput) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric {
+		return vs[0].([]GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric)[vs[1].(int)]
+	}).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter struct {
+	// The key of the tag filter.
+	Key string `pulumi:"key"`
+	// The value of the tag filter.
+	Value string `pulumi:"value"`
+}
+
+// GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs and GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs{...}
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs struct {
+	// The key of the tag filter.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the tag filter.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput)
+}
+
+// GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayInput is an input type that accepts GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArray and GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput values.
+// You can construct a concrete instance of `GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayInput` via:
+//
+//	GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArray{ GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs{...} }
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput
+	ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArray []GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterInput
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArray) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return i.ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArray) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return o
+}
+
+// The key of the tag filter.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter) string {
+		return v.Key
+	}).(pulumi.StringOutput)
+}
+
+// The value of the tag filter.
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter) string {
+		return v.Value
+	}).(pulumi.StringOutput)
+}
+
+type GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput() GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) ToGetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(ctx context.Context) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return o
+}
+
+func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) Index(i pulumi.IntInput) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter {
+		return vs[0].([]GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter)[vs[1].(int)]
+	}).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessPolicyRealmInput)(nil)).Elem(), AccessPolicyRealmArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessPolicyRealmArrayInput)(nil)).Elem(), AccessPolicyRealmArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessPolicyRealmLabelPolicyInput)(nil)).Elem(), AccessPolicyRealmLabelPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessPolicyRealmLabelPolicyArrayInput)(nil)).Elem(), AccessPolicyRealmLabelPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobCustomNamespaceInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobCustomNamespaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceArrayInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceMetricInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobServiceMetricArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceMetricArrayInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobServiceMetricArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessPoliciesAccessPolicyInput)(nil)).Elem(), GetAccessPoliciesAccessPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessPoliciesAccessPolicyArrayInput)(nil)).Elem(), GetAccessPoliciesAccessPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobCustomNamespaceInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobCustomNamespaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobServiceInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobServiceArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobServiceMetricInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobServiceMetricArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobServiceMetricArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobServiceMetricArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArray{})
 	pulumi.RegisterOutputType(AccessPolicyRealmOutput{})
 	pulumi.RegisterOutputType(AccessPolicyRealmArrayOutput{})
 	pulumi.RegisterOutputType(AccessPolicyRealmLabelPolicyOutput{})
 	pulumi.RegisterOutputType(AccessPolicyRealmLabelPolicyArrayOutput{})
+	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobCustomNamespaceOutput{})
+	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput{})
+	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput{})
+	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput{})
+	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobServiceOutput{})
+	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobServiceArrayOutput{})
+	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobServiceMetricOutput{})
+	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput{})
+	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput{})
+	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetAccessPoliciesAccessPolicyOutput{})
+	pulumi.RegisterOutputType(GetAccessPoliciesAccessPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobServiceOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobServiceArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobServiceMetricOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput{})
+	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput{})
 }

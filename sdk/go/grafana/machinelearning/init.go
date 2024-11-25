@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "grafana:machineLearning/alert:Alert":
+		r = &Alert{}
 	case "grafana:machineLearning/holiday:Holiday":
 		r = &Holiday{}
 	case "grafana:machineLearning/job:Job":
@@ -40,6 +42,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"machineLearning/alert",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"machineLearning/holiday",

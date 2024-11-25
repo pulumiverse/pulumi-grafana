@@ -79,6 +79,18 @@ namespace Pulumiverse.Grafana
     ///         }),
     ///     });
     /// 
+    ///     var cloudwatchAssumeARN = new Grafana.Oss.DataSource("cloudwatch_assumeARN", new()
+    ///     {
+    ///         Type = "cloudwatch",
+    ///         Name = "cw-assumeARN-example",
+    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["defaultRegion"] = "us-east-1",
+    ///             ["authType"] = "grafana_assume_role",
+    ///             ["assumeRoleArn"] = "arn:aws:iam::123456789012:root",
+    ///         }),
+    ///     });
+    /// 
     ///     var prometheus = new Grafana.Oss.DataSource("prometheus", new()
     ///     {
     ///         Type = "prometheus",

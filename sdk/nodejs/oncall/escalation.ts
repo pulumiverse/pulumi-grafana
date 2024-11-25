@@ -47,7 +47,7 @@ export class Escalation extends pulumi.CustomResource {
      */
     public readonly actionToTrigger!: pulumi.Output<string | undefined>;
     /**
-     * The duration of delay for wait type step.
+     * The duration of delay for wait type step. (60-86400) seconds
      */
     public readonly duration!: pulumi.Output<number | undefined>;
     /**
@@ -91,7 +91,11 @@ export class Escalation extends pulumi.CustomResource {
      */
     public readonly position!: pulumi.Output<number>;
     /**
-     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+     * The severity of the incident for declareIncident type step.
+     */
+    public readonly severity!: pulumi.Output<string | undefined>;
+    /**
+     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
      */
     public readonly type!: pulumi.Output<string>;
 
@@ -120,6 +124,7 @@ export class Escalation extends pulumi.CustomResource {
             resourceInputs["personsToNotifies"] = state ? state.personsToNotifies : undefined;
             resourceInputs["personsToNotifyNextEachTimes"] = state ? state.personsToNotifyNextEachTimes : undefined;
             resourceInputs["position"] = state ? state.position : undefined;
+            resourceInputs["severity"] = state ? state.severity : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as EscalationArgs | undefined;
@@ -144,6 +149,7 @@ export class Escalation extends pulumi.CustomResource {
             resourceInputs["personsToNotifies"] = args ? args.personsToNotifies : undefined;
             resourceInputs["personsToNotifyNextEachTimes"] = args ? args.personsToNotifyNextEachTimes : undefined;
             resourceInputs["position"] = args ? args.position : undefined;
+            resourceInputs["severity"] = args ? args.severity : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -162,7 +168,7 @@ export interface EscalationState {
      */
     actionToTrigger?: pulumi.Input<string>;
     /**
-     * The duration of delay for wait type step.
+     * The duration of delay for wait type step. (60-86400) seconds
      */
     duration?: pulumi.Input<number>;
     /**
@@ -206,7 +212,11 @@ export interface EscalationState {
      */
     position?: pulumi.Input<number>;
     /**
-     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+     * The severity of the incident for declareIncident type step.
+     */
+    severity?: pulumi.Input<string>;
+    /**
+     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
      */
     type?: pulumi.Input<string>;
 }
@@ -220,7 +230,7 @@ export interface EscalationArgs {
      */
     actionToTrigger?: pulumi.Input<string>;
     /**
-     * The duration of delay for wait type step.
+     * The duration of delay for wait type step. (60-86400) seconds
      */
     duration?: pulumi.Input<number>;
     /**
@@ -264,7 +274,11 @@ export interface EscalationArgs {
      */
     position: pulumi.Input<number>;
     /**
-     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team_members
+     * The severity of the incident for declareIncident type step.
+     */
+    severity?: pulumi.Input<string>;
+    /**
+     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
      */
     type: pulumi.Input<string>;
 }

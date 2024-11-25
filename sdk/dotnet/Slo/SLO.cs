@@ -258,7 +258,7 @@ namespace Pulumiverse.Grafana.Slo
         /// Destination Datasource sets the datasource defined for an SLO
         /// </summary>
         [Output("destinationDatasource")]
-        public Output<Outputs.SLODestinationDatasource?> DestinationDatasource { get; private set; } = null!;
+        public Output<Outputs.SLODestinationDatasource> DestinationDatasource { get; private set; } = null!;
 
         /// <summary>
         /// UID for the SLO folder
@@ -289,6 +289,12 @@ namespace Pulumiverse.Grafana.Slo
         /// </summary>
         [Output("queries")]
         public Output<ImmutableArray<Outputs.SLOQuery>> Queries { get; private set; } = null!;
+
+        /// <summary>
+        /// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        /// </summary>
+        [Output("searchExpression")]
+        public Output<string?> SearchExpression { get; private set; } = null!;
 
 
         /// <summary>
@@ -366,8 +372,8 @@ namespace Pulumiverse.Grafana.Slo
         /// <summary>
         /// Destination Datasource sets the datasource defined for an SLO
         /// </summary>
-        [Input("destinationDatasource")]
-        public Input<Inputs.SLODestinationDatasourceArgs>? DestinationDatasource { get; set; }
+        [Input("destinationDatasource", required: true)]
+        public Input<Inputs.SLODestinationDatasourceArgs> DestinationDatasource { get; set; } = null!;
 
         /// <summary>
         /// UID for the SLO folder
@@ -416,6 +422,12 @@ namespace Pulumiverse.Grafana.Slo
             get => _queries ?? (_queries = new InputList<Inputs.SLOQueryArgs>());
             set => _queries = value;
         }
+
+        /// <summary>
+        /// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        /// </summary>
+        [Input("searchExpression")]
+        public Input<string>? SearchExpression { get; set; }
 
         public SLOArgs()
         {
@@ -500,6 +512,12 @@ namespace Pulumiverse.Grafana.Slo
             get => _queries ?? (_queries = new InputList<Inputs.SLOQueryGetArgs>());
             set => _queries = value;
         }
+
+        /// <summary>
+        /// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        /// </summary>
+        [Input("searchExpression")]
+        public Input<string>? SearchExpression { get; set; }
 
         public SLOState()
         {

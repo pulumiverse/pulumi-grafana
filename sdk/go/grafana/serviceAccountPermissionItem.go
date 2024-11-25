@@ -87,7 +87,7 @@ import (
 type ServiceAccountPermissionItem struct {
 	pulumi.CustomResourceState
 
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// the permission to be assigned
 	Permission pulumi.StringOutput `pulumi:"permission"`
@@ -141,7 +141,7 @@ func GetServiceAccountPermissionItem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServiceAccountPermissionItem resources.
 type serviceAccountPermissionItemState struct {
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// the permission to be assigned
 	Permission *string `pulumi:"permission"`
@@ -154,7 +154,7 @@ type serviceAccountPermissionItemState struct {
 }
 
 type ServiceAccountPermissionItemState struct {
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// the permission to be assigned
 	Permission pulumi.StringPtrInput
@@ -171,7 +171,7 @@ func (ServiceAccountPermissionItemState) ElementType() reflect.Type {
 }
 
 type serviceAccountPermissionItemArgs struct {
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// the permission to be assigned
 	Permission string `pulumi:"permission"`
@@ -185,7 +185,7 @@ type serviceAccountPermissionItemArgs struct {
 
 // The set of arguments for constructing a ServiceAccountPermissionItem resource.
 type ServiceAccountPermissionItemArgs struct {
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// the permission to be assigned
 	Permission pulumi.StringInput
@@ -284,7 +284,7 @@ func (o ServiceAccountPermissionItemOutput) ToServiceAccountPermissionItemOutput
 	return o
 }
 
-// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 func (o ServiceAccountPermissionItemOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceAccountPermissionItem) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }

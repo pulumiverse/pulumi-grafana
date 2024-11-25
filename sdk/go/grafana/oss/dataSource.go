@@ -106,6 +106,23 @@ import (
 //				return err
 //			}
 //			tmpJSON5, err := json.Marshal(map[string]interface{}{
+//				"defaultRegion": "us-east-1",
+//				"authType":      "grafana_assume_role",
+//				"assumeRoleArn": "arn:aws:iam::123456789012:root",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json5 := string(tmpJSON5)
+//			_, err = oss.NewDataSource(ctx, "cloudwatch_assumeARN", &oss.DataSourceArgs{
+//				Type:            pulumi.String("cloudwatch"),
+//				Name:            pulumi.String("cw-assumeARN-example"),
+//				JsonDataEncoded: pulumi.String(json5),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON6, err := json.Marshal(map[string]interface{}{
 //				"httpMethod":        "POST",
 //				"prometheusType":    "Mimir",
 //				"prometheusVersion": "2.4.0",
@@ -113,22 +130,22 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			json5 := string(tmpJSON5)
-//			tmpJSON6, err := json.Marshal(map[string]interface{}{
+//			json6 := string(tmpJSON6)
+//			tmpJSON7, err := json.Marshal(map[string]interface{}{
 //				"basicAuthPassword": "password",
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			json6 := string(tmpJSON6)
+//			json7 := string(tmpJSON7)
 //			_, err = oss.NewDataSource(ctx, "prometheus", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("prometheus"),
 //				Name:                  pulumi.String("mimir"),
 //				Url:                   pulumi.String("https://my-instances.com"),
 //				BasicAuthEnabled:      pulumi.Bool(true),
 //				BasicAuthUsername:     pulumi.String("username"),
-//				JsonDataEncoded:       pulumi.String(json5),
-//				SecureJsonDataEncoded: pulumi.String(json6),
+//				JsonDataEncoded:       pulumi.String(json6),
+//				SecureJsonDataEncoded: pulumi.String(json7),
 //			})
 //			if err != nil {
 //				return err

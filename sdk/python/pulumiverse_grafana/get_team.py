@@ -29,7 +29,7 @@ class GetTeamResult:
     """
     A collection of values returned by getTeam.
     """
-    def __init__(__self__, email=None, id=None, members=None, name=None, org_id=None, preferences=None, read_team_sync=None, team_id=None, team_syncs=None):
+    def __init__(__self__, email=None, id=None, members=None, name=None, org_id=None, preferences=None, read_team_sync=None, team_id=None, team_syncs=None, team_uid=None):
         if email and not isinstance(email, str):
             raise TypeError("Expected argument 'email' to be a str")
         pulumi.set(__self__, "email", email)
@@ -57,6 +57,9 @@ class GetTeamResult:
         if team_syncs and not isinstance(team_syncs, list):
             raise TypeError("Expected argument 'team_syncs' to be a list")
         pulumi.set(__self__, "team_syncs", team_syncs)
+        if team_uid and not isinstance(team_uid, str):
+            raise TypeError("Expected argument 'team_uid' to be a str")
+        pulumi.set(__self__, "team_uid", team_uid)
 
     @property
     @pulumi.getter
@@ -106,6 +109,11 @@ class GetTeamResult:
     def team_syncs(self) -> Sequence['outputs.GetTeamTeamSyncResult']:
         return pulumi.get(self, "team_syncs")
 
+    @property
+    @pulumi.getter(name="teamUid")
+    def team_uid(self) -> str:
+        return pulumi.get(self, "team_uid")
+
 
 class AwaitableGetTeamResult(GetTeamResult):
     # pylint: disable=using-constant-test
@@ -121,7 +129,8 @@ class AwaitableGetTeamResult(GetTeamResult):
             preferences=self.preferences,
             read_team_sync=self.read_team_sync,
             team_id=self.team_id,
-            team_syncs=self.team_syncs)
+            team_syncs=self.team_syncs,
+            team_uid=self.team_uid)
 
 
 def get_team(name: Optional[str] = None,
@@ -166,7 +175,8 @@ def get_team(name: Optional[str] = None,
         preferences=pulumi.get(__ret__, 'preferences'),
         read_team_sync=pulumi.get(__ret__, 'read_team_sync'),
         team_id=pulumi.get(__ret__, 'team_id'),
-        team_syncs=pulumi.get(__ret__, 'team_syncs'))
+        team_syncs=pulumi.get(__ret__, 'team_syncs'),
+        team_uid=pulumi.get(__ret__, 'team_uid'))
 def get_team_output(name: Optional[pulumi.Input[str]] = None,
                     org_id: Optional[pulumi.Input[Optional[str]]] = None,
                     read_team_sync: Optional[pulumi.Input[Optional[bool]]] = None,
@@ -208,4 +218,5 @@ def get_team_output(name: Optional[pulumi.Input[str]] = None,
         preferences=pulumi.get(__response__, 'preferences'),
         read_team_sync=pulumi.get(__response__, 'read_team_sync'),
         team_id=pulumi.get(__response__, 'team_id'),
-        team_syncs=pulumi.get(__response__, 'team_syncs')))
+        team_syncs=pulumi.get(__response__, 'team_syncs'),
+        team_uid=pulumi.get(__response__, 'team_uid')))

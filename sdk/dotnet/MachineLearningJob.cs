@@ -13,6 +13,181 @@ namespace Pulumiverse.Grafana
     /// <summary>
     /// A job defines the queries and model parameters for a machine learning task.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ### Basic Forecast
+    /// 
+    /// This forecast uses a Prometheus datasource, where the source query is defined in the `expr` field of the `query_params` attribute.
+    /// 
+    /// Other datasources are supported, but the structure `query_params` may differ.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var foo = new Grafana.Oss.DataSource("foo", new()
+    ///     {
+    ///         Type = "prometheus",
+    ///         Name = "prometheus-ds-test",
+    ///         Uid = "prometheus-ds-test-uid",
+    ///         Url = "https://my-instance.com",
+    ///         BasicAuthEnabled = true,
+    ///         BasicAuthUsername = "username",
+    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["httpMethod"] = "POST",
+    ///             ["prometheusType"] = "Mimir",
+    ///             ["prometheusVersion"] = "2.4.0",
+    ///         }),
+    ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["basicAuthPassword"] = "password",
+    ///         }),
+    ///     });
+    /// 
+    ///     var testJob = new Grafana.MachineLearning.Job("test_job", new()
+    ///     {
+    ///         Name = "Test Job",
+    ///         Metric = "tf_test_job",
+    ///         DatasourceType = "prometheus",
+    ///         DatasourceUid = foo.Uid,
+    ///         QueryParams = 
+    ///         {
+    ///             { "expr", "grafanacloud_grafana_instance_active_user_count" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Tuned Forecast
+    /// 
+    /// This forecast has tuned hyperparameters to improve the accuracy of the model.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var foo = new Grafana.Oss.DataSource("foo", new()
+    ///     {
+    ///         Type = "prometheus",
+    ///         Name = "prometheus-ds-test",
+    ///         Uid = "prometheus-ds-test-uid",
+    ///         Url = "https://my-instance.com",
+    ///         BasicAuthEnabled = true,
+    ///         BasicAuthUsername = "username",
+    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["httpMethod"] = "POST",
+    ///             ["prometheusType"] = "Mimir",
+    ///             ["prometheusVersion"] = "2.4.0",
+    ///         }),
+    ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["basicAuthPassword"] = "password",
+    ///         }),
+    ///     });
+    /// 
+    ///     var testJob = new Grafana.MachineLearning.Job("test_job", new()
+    ///     {
+    ///         Name = "Test Job",
+    ///         Metric = "tf_test_job",
+    ///         DatasourceType = "prometheus",
+    ///         DatasourceUid = foo.Uid,
+    ///         QueryParams = 
+    ///         {
+    ///             { "expr", "grafanacloud_grafana_instance_active_user_count" },
+    ///         },
+    ///         HyperParams = 
+    ///         {
+    ///             { "daily_seasonality", "15" },
+    ///             { "weekly_seasonality", "10" },
+    ///         },
+    ///         CustomLabels = 
+    ///         {
+    ///             { "example_label", "example_value" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Forecast with Holidays
+    /// 
+    /// This forecast has holidays which will be taken into account when training the model.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var foo = new Grafana.Oss.DataSource("foo", new()
+    ///     {
+    ///         Type = "prometheus",
+    ///         Name = "prometheus-ds-test",
+    ///         Uid = "prometheus-ds-test-uid",
+    ///         Url = "https://my-instance.com",
+    ///         BasicAuthEnabled = true,
+    ///         BasicAuthUsername = "username",
+    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["httpMethod"] = "POST",
+    ///             ["prometheusType"] = "Mimir",
+    ///             ["prometheusVersion"] = "2.4.0",
+    ///         }),
+    ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["basicAuthPassword"] = "password",
+    ///         }),
+    ///     });
+    /// 
+    ///     var testHoliday = new Grafana.MachineLearning.Holiday("test_holiday", new()
+    ///     {
+    ///         Name = "Test Holiday",
+    ///         CustomPeriods = new[]
+    ///         {
+    ///             new Grafana.MachineLearning.Inputs.HolidayCustomPeriodArgs
+    ///             {
+    ///                 Name = "First of January",
+    ///                 StartTime = "2023-01-01T00:00:00Z",
+    ///                 EndTime = "2023-01-02T00:00:00Z",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var testJob = new Grafana.MachineLearning.Job("test_job", new()
+    ///     {
+    ///         Name = "Test Job",
+    ///         Metric = "tf_test_job",
+    ///         DatasourceType = "prometheus",
+    ///         DatasourceUid = foo.Uid,
+    ///         QueryParams = 
+    ///         {
+    ///             { "expr", "grafanacloud_grafana_instance_active_user_count" },
+    ///         },
+    ///         Holidays = new[]
+    ///         {
+    ///             testHoliday.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// ```sh
@@ -54,13 +229,14 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableArray<string>> Holidays { get; private set; } = null!;
 
         /// <summary>
-        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+        /// for the full list of available hyperparameters.
         /// </summary>
         [Output("hyperParams")]
         public Output<ImmutableDictionary<string, string>?> HyperParams { get; private set; } = null!;
 
         /// <summary>
-        /// The data interval in seconds to train the data on. Defaults to `300`.
+        /// The data interval in seconds to train the data on.
         /// </summary>
         [Output("interval")]
         public Output<int?> Interval { get; private set; } = null!;
@@ -84,7 +260,7 @@ namespace Pulumiverse.Grafana
         public Output<ImmutableDictionary<string, string>> QueryParams { get; private set; } = null!;
 
         /// <summary>
-        /// The data interval in seconds to train the data on. Defaults to `7776000`.
+        /// The data interval in seconds to train the data on.
         /// </summary>
         [Output("trainingWindow")]
         public Output<int?> TrainingWindow { get; private set; } = null!;
@@ -182,7 +358,8 @@ namespace Pulumiverse.Grafana
         private InputMap<string>? _hyperParams;
 
         /// <summary>
-        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+        /// for the full list of available hyperparameters.
         /// </summary>
         public InputMap<string> HyperParams
         {
@@ -191,7 +368,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The data interval in seconds to train the data on. Defaults to `300`.
+        /// The data interval in seconds to train the data on.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
@@ -221,7 +398,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The data interval in seconds to train the data on. Defaults to `7776000`.
+        /// The data interval in seconds to train the data on.
         /// </summary>
         [Input("trainingWindow")]
         public Input<int>? TrainingWindow { get; set; }
@@ -280,7 +457,8 @@ namespace Pulumiverse.Grafana
         private InputMap<string>? _hyperParams;
 
         /// <summary>
-        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/ for the full list of available hyperparameters. Defaults to `map[]`.
+        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
+        /// for the full list of available hyperparameters.
         /// </summary>
         public InputMap<string> HyperParams
         {
@@ -289,7 +467,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The data interval in seconds to train the data on. Defaults to `300`.
+        /// The data interval in seconds to train the data on.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
@@ -319,7 +497,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The data interval in seconds to train the data on. Defaults to `7776000`.
+        /// The data interval in seconds to train the data on.
         /// </summary>
         [Input("trainingWindow")]
         public Input<int>? TrainingWindow { get; set; }

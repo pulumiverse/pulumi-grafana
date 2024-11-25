@@ -22,16 +22,18 @@ __all__ = ['SLOArgs', 'SLO']
 class SLOArgs:
     def __init__(__self__, *,
                  description: pulumi.Input[str],
+                 destination_datasource: pulumi.Input['SLODestinationDatasourceArgs'],
                  objectives: pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]],
                  queries: pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]],
                  alertings: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]]] = None,
-                 destination_datasource: Optional[pulumi.Input['SLODestinationDatasourceArgs']] = None,
                  folder_uid: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 search_expression: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SLO resource.
         :param pulumi.Input[str] description: Description is a free-text field that can provide more context to an SLO.
+        :param pulumi.Input['SLODestinationDatasourceArgs'] destination_datasource: Destination Datasource sets the datasource defined for an SLO
         :param pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
         :param pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]] alertings: Configures the alerting rules that will be generated for each
@@ -39,24 +41,25 @@ class SLOArgs:
                			alerts when the short-term error budget burn is very high, the
                			long-term error budget burn rate is high, or when the remaining
                			error budget is below a certain threshold. Annotations and Labels support templating.
-        :param pulumi.Input['SLODestinationDatasourceArgs'] destination_datasource: Destination Datasource sets the datasource defined for an SLO
         :param pulumi.Input[str] folder_uid: UID for the SLO folder
         :param pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]] labels: Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
+        :param pulumi.Input[str] search_expression: The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
         """
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination_datasource", destination_datasource)
         pulumi.set(__self__, "objectives", objectives)
         pulumi.set(__self__, "queries", queries)
         if alertings is not None:
             pulumi.set(__self__, "alertings", alertings)
-        if destination_datasource is not None:
-            pulumi.set(__self__, "destination_datasource", destination_datasource)
         if folder_uid is not None:
             pulumi.set(__self__, "folder_uid", folder_uid)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if search_expression is not None:
+            pulumi.set(__self__, "search_expression", search_expression)
 
     @property
     @pulumi.getter
@@ -69,6 +72,18 @@ class SLOArgs:
     @description.setter
     def description(self, value: pulumi.Input[str]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="destinationDatasource")
+    def destination_datasource(self) -> pulumi.Input['SLODestinationDatasourceArgs']:
+        """
+        Destination Datasource sets the datasource defined for an SLO
+        """
+        return pulumi.get(self, "destination_datasource")
+
+    @destination_datasource.setter
+    def destination_datasource(self, value: pulumi.Input['SLODestinationDatasourceArgs']):
+        pulumi.set(self, "destination_datasource", value)
 
     @property
     @pulumi.getter
@@ -111,18 +126,6 @@ class SLOArgs:
         pulumi.set(self, "alertings", value)
 
     @property
-    @pulumi.getter(name="destinationDatasource")
-    def destination_datasource(self) -> Optional[pulumi.Input['SLODestinationDatasourceArgs']]:
-        """
-        Destination Datasource sets the datasource defined for an SLO
-        """
-        return pulumi.get(self, "destination_datasource")
-
-    @destination_datasource.setter
-    def destination_datasource(self, value: Optional[pulumi.Input['SLODestinationDatasourceArgs']]):
-        pulumi.set(self, "destination_datasource", value)
-
-    @property
     @pulumi.getter(name="folderUid")
     def folder_uid(self) -> Optional[pulumi.Input[str]]:
         """
@@ -158,6 +161,18 @@ class SLOArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter(name="searchExpression")
+    def search_expression(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        """
+        return pulumi.get(self, "search_expression")
+
+    @search_expression.setter
+    def search_expression(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "search_expression", value)
+
 
 @pulumi.input_type
 class _SLOState:
@@ -169,7 +184,8 @@ class _SLOState:
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  objectives: Optional[pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]]] = None,
-                 queries: Optional[pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]]] = None):
+                 queries: Optional[pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]]] = None,
+                 search_expression: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SLO resources.
         :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]] alertings: Configures the alerting rules that will be generated for each
@@ -184,6 +200,7 @@ class _SLOState:
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
         :param pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
         :param pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        :param pulumi.Input[str] search_expression: The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
         """
         if alertings is not None:
             pulumi.set(__self__, "alertings", alertings)
@@ -201,6 +218,8 @@ class _SLOState:
             pulumi.set(__self__, "objectives", objectives)
         if queries is not None:
             pulumi.set(__self__, "queries", queries)
+        if search_expression is not None:
+            pulumi.set(__self__, "search_expression", search_expression)
 
     @property
     @pulumi.getter
@@ -302,6 +321,18 @@ class _SLOState:
     def queries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]]]):
         pulumi.set(self, "queries", value)
 
+    @property
+    @pulumi.getter(name="searchExpression")
+    def search_expression(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        """
+        return pulumi.get(self, "search_expression")
+
+    @search_expression.setter
+    def search_expression(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "search_expression", value)
+
 
 warnings.warn("""grafana.index/slo.SLO has been deprecated in favor of grafana.slo/slo.SLO""", DeprecationWarning)
 
@@ -321,6 +352,7 @@ class SLO(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  objectives: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOObjectiveArgs', 'SLOObjectiveArgsDict']]]]] = None,
                  queries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOQueryArgs', 'SLOQueryArgsDict']]]]] = None,
+                 search_expression: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Resource manages Grafana SLOs.
@@ -472,6 +504,7 @@ class SLO(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
         :param pulumi.Input[Sequence[pulumi.Input[Union['SLOObjectiveArgs', 'SLOObjectiveArgsDict']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SLOQueryArgs', 'SLOQueryArgsDict']]]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        :param pulumi.Input[str] search_expression: The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
         """
         ...
     @overload
@@ -638,6 +671,7 @@ class SLO(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  objectives: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOObjectiveArgs', 'SLOObjectiveArgsDict']]]]] = None,
                  queries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOQueryArgs', 'SLOQueryArgsDict']]]]] = None,
+                 search_expression: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         pulumi.log.warn("""SLO is deprecated: grafana.index/slo.SLO has been deprecated in favor of grafana.slo/slo.SLO""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -652,6 +686,8 @@ class SLO(pulumi.CustomResource):
             if description is None and not opts.urn:
                 raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
+            if destination_datasource is None and not opts.urn:
+                raise TypeError("Missing required property 'destination_datasource'")
             __props__.__dict__["destination_datasource"] = destination_datasource
             __props__.__dict__["folder_uid"] = folder_uid
             __props__.__dict__["labels"] = labels
@@ -662,6 +698,7 @@ class SLO(pulumi.CustomResource):
             if queries is None and not opts.urn:
                 raise TypeError("Missing required property 'queries'")
             __props__.__dict__["queries"] = queries
+            __props__.__dict__["search_expression"] = search_expression
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/sLO:SLO")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(SLO, __self__).__init__(
@@ -681,7 +718,8 @@ class SLO(pulumi.CustomResource):
             labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOLabelArgs', 'SLOLabelArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             objectives: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOObjectiveArgs', 'SLOObjectiveArgsDict']]]]] = None,
-            queries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOQueryArgs', 'SLOQueryArgsDict']]]]] = None) -> 'SLO':
+            queries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOQueryArgs', 'SLOQueryArgsDict']]]]] = None,
+            search_expression: Optional[pulumi.Input[str]] = None) -> 'SLO':
         """
         Get an existing SLO resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -701,6 +739,7 @@ class SLO(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name should be a short description of your indicator. Consider names like "API Availability"
         :param pulumi.Input[Sequence[pulumi.Input[Union['SLOObjectiveArgs', 'SLOObjectiveArgsDict']]]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SLOQueryArgs', 'SLOQueryArgsDict']]]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        :param pulumi.Input[str] search_expression: The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -714,6 +753,7 @@ class SLO(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["objectives"] = objectives
         __props__.__dict__["queries"] = queries
+        __props__.__dict__["search_expression"] = search_expression
         return SLO(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -738,7 +778,7 @@ class SLO(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="destinationDatasource")
-    def destination_datasource(self) -> pulumi.Output[Optional['outputs.SLODestinationDatasource']]:
+    def destination_datasource(self) -> pulumi.Output['outputs.SLODestinationDatasource']:
         """
         Destination Datasource sets the datasource defined for an SLO
         """
@@ -783,4 +823,12 @@ class SLO(pulumi.CustomResource):
         Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         """
         return pulumi.get(self, "queries")
+
+    @property
+    @pulumi.getter(name="searchExpression")
+    def search_expression(self) -> pulumi.Output[Optional[str]]:
+        """
+        The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        """
+        return pulumi.get(self, "search_expression")
 

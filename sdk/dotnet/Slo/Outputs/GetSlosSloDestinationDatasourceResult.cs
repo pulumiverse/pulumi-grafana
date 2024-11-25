@@ -15,12 +15,12 @@ namespace Pulumiverse.Grafana.Slo.Outputs
     public sealed class GetSlosSloDestinationDatasourceResult
     {
         /// <summary>
-        /// UID for the Mimir Datasource
+        /// UID for the Datasource
         /// </summary>
-        public readonly string? Uid;
+        public readonly string Uid;
 
         [OutputConstructor]
-        private GetSlosSloDestinationDatasourceResult(string? uid)
+        private GetSlosSloDestinationDatasourceResult(string uid)
         {
             Uid = uid;
         }

@@ -18,6 +18,91 @@ import (
 //
 // Visit https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for more details.
 //
+// ## Example Usage
+//
+// ### DBSCAN Outlier Detector
+//
+// This outlier detector uses the DBSCAN algorithm to detect outliers.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := machineLearning.NewOutlierDetector(ctx, "my_dbscan_outlier_detector", &machineLearning.OutlierDetectorArgs{
+//				Name:           pulumi.String("My DBSCAN outlier detector"),
+//				Description:    pulumi.String("My DBSCAN Outlier Detector"),
+//				Metric:         pulumi.String("tf_test_dbscan_job"),
+//				DatasourceType: pulumi.String("prometheus"),
+//				DatasourceUid:  pulumi.String("AbCd12345"),
+//				QueryParams: pulumi.StringMap{
+//					"expr": pulumi.String("grafanacloud_grafana_instance_active_user_count"),
+//				},
+//				Interval: pulumi.Int(300),
+//				Algorithm: &machinelearning.OutlierDetectorAlgorithmArgs{
+//					Name:        pulumi.String("dbscan"),
+//					Sensitivity: pulumi.Float64(0.5),
+//					Config: &machinelearning.OutlierDetectorAlgorithmConfigArgs{
+//						Epsilon: pulumi.Float64(1),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### MAD Outlier Detector
+//
+// This outlier detector uses the Median Absolute Deviation (MAD) algorithm to detect outliers.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := machineLearning.NewOutlierDetector(ctx, "my_mad_outlier_detector", &machineLearning.OutlierDetectorArgs{
+//				Name:           pulumi.String("My MAD outlier detector"),
+//				Description:    pulumi.String("My MAD Outlier Detector"),
+//				Metric:         pulumi.String("tf_test_mad_job"),
+//				DatasourceType: pulumi.String("prometheus"),
+//				DatasourceUid:  pulumi.String("AbCd12345"),
+//				QueryParams: pulumi.StringMap{
+//					"expr": pulumi.String("grafanacloud_grafana_instance_active_user_count"),
+//				},
+//				Interval: pulumi.Int(300),
+//				Algorithm: &machinelearning.OutlierDetectorAlgorithmArgs{
+//					Name:        pulumi.String("mad"),
+//					Sensitivity: pulumi.Float64(0.7),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // ```sh
@@ -26,7 +111,8 @@ import (
 type OutlierDetector struct {
 	pulumi.CustomResourceState
 
-	// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+	// The algorithm to use and its configuration. See
+	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm OutlierDetectorAlgorithmOutput `pulumi:"algorithm"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringOutput `pulumi:"datasourceType"`
@@ -34,7 +120,7 @@ type OutlierDetector struct {
 	DatasourceUid pulumi.StringOutput `pulumi:"datasourceUid"`
 	// A description of the outlier detector.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The data interval in seconds to monitor. Defaults to `300`.
+	// The data interval in seconds to monitor.
 	Interval pulumi.IntPtrOutput `pulumi:"interval"`
 	// The metric used to query the outlier detector results.
 	Metric pulumi.StringOutput `pulumi:"metric"`
@@ -95,7 +181,8 @@ func GetOutlierDetector(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OutlierDetector resources.
 type outlierDetectorState struct {
-	// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+	// The algorithm to use and its configuration. See
+	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm *OutlierDetectorAlgorithm `pulumi:"algorithm"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType *string `pulumi:"datasourceType"`
@@ -103,7 +190,7 @@ type outlierDetectorState struct {
 	DatasourceUid *string `pulumi:"datasourceUid"`
 	// A description of the outlier detector.
 	Description *string `pulumi:"description"`
-	// The data interval in seconds to monitor. Defaults to `300`.
+	// The data interval in seconds to monitor.
 	Interval *int `pulumi:"interval"`
 	// The metric used to query the outlier detector results.
 	Metric *string `pulumi:"metric"`
@@ -114,7 +201,8 @@ type outlierDetectorState struct {
 }
 
 type OutlierDetectorState struct {
-	// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+	// The algorithm to use and its configuration. See
+	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm OutlierDetectorAlgorithmPtrInput
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringPtrInput
@@ -122,7 +210,7 @@ type OutlierDetectorState struct {
 	DatasourceUid pulumi.StringPtrInput
 	// A description of the outlier detector.
 	Description pulumi.StringPtrInput
-	// The data interval in seconds to monitor. Defaults to `300`.
+	// The data interval in seconds to monitor.
 	Interval pulumi.IntPtrInput
 	// The metric used to query the outlier detector results.
 	Metric pulumi.StringPtrInput
@@ -137,7 +225,8 @@ func (OutlierDetectorState) ElementType() reflect.Type {
 }
 
 type outlierDetectorArgs struct {
-	// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+	// The algorithm to use and its configuration. See
+	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm OutlierDetectorAlgorithm `pulumi:"algorithm"`
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType string `pulumi:"datasourceType"`
@@ -145,7 +234,7 @@ type outlierDetectorArgs struct {
 	DatasourceUid string `pulumi:"datasourceUid"`
 	// A description of the outlier detector.
 	Description *string `pulumi:"description"`
-	// The data interval in seconds to monitor. Defaults to `300`.
+	// The data interval in seconds to monitor.
 	Interval *int `pulumi:"interval"`
 	// The metric used to query the outlier detector results.
 	Metric string `pulumi:"metric"`
@@ -157,7 +246,8 @@ type outlierDetectorArgs struct {
 
 // The set of arguments for constructing a OutlierDetector resource.
 type OutlierDetectorArgs struct {
-	// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+	// The algorithm to use and its configuration. See
+	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm OutlierDetectorAlgorithmInput
 	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
 	DatasourceType pulumi.StringInput
@@ -165,7 +255,7 @@ type OutlierDetectorArgs struct {
 	DatasourceUid pulumi.StringInput
 	// A description of the outlier detector.
 	Description pulumi.StringPtrInput
-	// The data interval in seconds to monitor. Defaults to `300`.
+	// The data interval in seconds to monitor.
 	Interval pulumi.IntPtrInput
 	// The metric used to query the outlier detector results.
 	Metric pulumi.StringInput
@@ -262,7 +352,8 @@ func (o OutlierDetectorOutput) ToOutlierDetectorOutputWithContext(ctx context.Co
 	return o
 }
 
-// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+// The algorithm to use and its configuration. See
+// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 func (o OutlierDetectorOutput) Algorithm() OutlierDetectorAlgorithmOutput {
 	return o.ApplyT(func(v *OutlierDetector) OutlierDetectorAlgorithmOutput { return v.Algorithm }).(OutlierDetectorAlgorithmOutput)
 }
@@ -282,7 +373,7 @@ func (o OutlierDetectorOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OutlierDetector) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The data interval in seconds to monitor. Defaults to `300`.
+// The data interval in seconds to monitor.
 func (o OutlierDetectorOutput) Interval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *OutlierDetector) pulumi.IntPtrOutput { return v.Interval }).(pulumi.IntPtrOutput)
 }
