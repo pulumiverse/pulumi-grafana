@@ -47,6 +47,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         [Input("cacheBustingQueryParamName")]
         public Input<string>? CacheBustingQueryParamName { get; set; }
 
+        /// <summary>
+        /// Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+        /// </summary>
+        [Input("compression")]
+        public Input<string>? Compression { get; set; }
+
         [Input("failIfBodyMatchesRegexps")]
         private InputList<string>? _failIfBodyMatchesRegexps;
 

@@ -214,6 +214,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///                 ProxyUrl = "https://almost-there",
     ///                 FailIfSsl = true,
     ///                 FailIfNotSsl = true,
+    ///                 Compression = "deflate",
     ///                 CacheBustingQueryParamName = "pineapple",
     ///                 TlsConfig = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsHttpTlsConfigArgs
     ///                 {

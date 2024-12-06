@@ -515,6 +515,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                     "proxy_url": "https://almost-there",
                     "fail_if_ssl": True,
                     "fail_if_not_ssl": True,
+                    "compression": "deflate",
                     "cache_busting_query_param_name": "pineapple",
                     "tls_config": {
                         "server_name": "grafana.org",
@@ -917,6 +918,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
                     "proxy_url": "https://almost-there",
                     "fail_if_ssl": True,
                     "fail_if_not_ssl": True,
+                    "compression": "deflate",
                     "cache_busting_query_param_name": "pineapple",
                     "tls_config": {
                         "server_name": "grafana.org",

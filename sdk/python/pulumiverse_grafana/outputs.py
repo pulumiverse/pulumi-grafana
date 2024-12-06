@@ -107,6 +107,7 @@ __all__ = [
     'SsoSettingsOauth2Settings',
     'SsoSettingsSamlSettings',
     'SyntheticMonitoringCheckSettings',
+    'SyntheticMonitoringCheckSettingsBrowser',
     'SyntheticMonitoringCheckSettingsDns',
     'SyntheticMonitoringCheckSettingsDnsValidateAdditionalRr',
     'SyntheticMonitoringCheckSettingsDnsValidateAnswerRrs',
@@ -8342,6 +8343,7 @@ class SsoSettingsSamlSettings(dict):
 @pulumi.output_type
 class SyntheticMonitoringCheckSettings(dict):
     def __init__(__self__, *,
+                 browser: Optional['outputs.SyntheticMonitoringCheckSettingsBrowser'] = None,
                  dns: Optional['outputs.SyntheticMonitoringCheckSettingsDns'] = None,
                  grpc: Optional['outputs.SyntheticMonitoringCheckSettingsGrpc'] = None,
                  http: Optional['outputs.SyntheticMonitoringCheckSettingsHttp'] = None,
@@ -8351,6 +8353,7 @@ class SyntheticMonitoringCheckSettings(dict):
                  tcp: Optional['outputs.SyntheticMonitoringCheckSettingsTcp'] = None,
                  traceroute: Optional['outputs.SyntheticMonitoringCheckSettingsTraceroute'] = None):
         """
+        :param 'SyntheticMonitoringCheckSettingsBrowserArgs' browser: Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
         :param 'SyntheticMonitoringCheckSettingsDnsArgs' dns: Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
         :param 'SyntheticMonitoringCheckSettingsGrpcArgs' grpc: Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
         :param 'SyntheticMonitoringCheckSettingsHttpArgs' http: Settings for HTTP check. The target must be a URL (http or https).
@@ -8360,6 +8363,8 @@ class SyntheticMonitoringCheckSettings(dict):
         :param 'SyntheticMonitoringCheckSettingsTcpArgs' tcp: Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
         :param 'SyntheticMonitoringCheckSettingsTracerouteArgs' traceroute: Settings for traceroute check. The target must be a valid hostname or IP address
         """
+        if browser is not None:
+            pulumi.set(__self__, "browser", browser)
         if dns is not None:
             pulumi.set(__self__, "dns", dns)
         if grpc is not None:
@@ -8376,6 +8381,14 @@ class SyntheticMonitoringCheckSettings(dict):
             pulumi.set(__self__, "tcp", tcp)
         if traceroute is not None:
             pulumi.set(__self__, "traceroute", traceroute)
+
+    @property
+    @pulumi.getter
+    def browser(self) -> Optional['outputs.SyntheticMonitoringCheckSettingsBrowser']:
+        """
+        Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+        """
+        return pulumi.get(self, "browser")
 
     @property
     @pulumi.getter
@@ -8440,6 +8453,18 @@ class SyntheticMonitoringCheckSettings(dict):
         Settings for traceroute check. The target must be a valid hostname or IP address
         """
         return pulumi.get(self, "traceroute")
+
+
+@pulumi.output_type
+class SyntheticMonitoringCheckSettingsBrowser(dict):
+    def __init__(__self__, *,
+                 script: str):
+        pulumi.set(__self__, "script", script)
+
+    @property
+    @pulumi.getter
+    def script(self) -> str:
+        return pulumi.get(self, "script")
 
 
 @pulumi.output_type
@@ -8968,6 +8993,7 @@ class SyntheticMonitoringCheckSettingsHttp(dict):
                  bearer_token: Optional[str] = None,
                  body: Optional[str] = None,
                  cache_busting_query_param_name: Optional[str] = None,
+                 compression: Optional[str] = None,
                  fail_if_body_matches_regexps: Optional[Sequence[str]] = None,
                  fail_if_body_not_matches_regexps: Optional[Sequence[str]] = None,
                  fail_if_header_matches_regexps: Optional[Sequence['outputs.SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexp']] = None,
@@ -8988,6 +9014,7 @@ class SyntheticMonitoringCheckSettingsHttp(dict):
         :param str bearer_token: Token for use with bearer authorization header.
         :param str body: The body of the HTTP request used in probe.
         :param str cache_busting_query_param_name: The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
+        :param str compression: Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
         :param Sequence[str] fail_if_body_matches_regexps: List of regexes. If any match the response body, the check will fail.
         :param Sequence[str] fail_if_body_not_matches_regexps: List of regexes. If any do not match the response body, the check will fail.
         :param Sequence['SyntheticMonitoringCheckSettingsHttpFailIfHeaderMatchesRegexpArgs'] fail_if_header_matches_regexps: Check fails if headers match.
@@ -9012,6 +9039,8 @@ class SyntheticMonitoringCheckSettingsHttp(dict):
             pulumi.set(__self__, "body", body)
         if cache_busting_query_param_name is not None:
             pulumi.set(__self__, "cache_busting_query_param_name", cache_busting_query_param_name)
+        if compression is not None:
+            pulumi.set(__self__, "compression", compression)
         if fail_if_body_matches_regexps is not None:
             pulumi.set(__self__, "fail_if_body_matches_regexps", fail_if_body_matches_regexps)
         if fail_if_body_not_matches_regexps is not None:
@@ -9074,6 +9103,14 @@ class SyntheticMonitoringCheckSettingsHttp(dict):
         The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
         """
         return pulumi.get(self, "cache_busting_query_param_name")
+
+    @property
+    @pulumi.getter
+    def compression(self) -> Optional[str]:
+        """
+        Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+        """
+        return pulumi.get(self, "compression")
 
     @property
     @pulumi.getter(name="failIfBodyMatchesRegexps")

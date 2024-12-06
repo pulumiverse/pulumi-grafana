@@ -21,6 +21,7 @@ from .dashboard_permission_item import *
 from .dashboard_public import *
 from .data_source import *
 from .data_source_config import *
+from .data_source_config_lbac_rules import *
 from .data_source_permission import *
 from .data_source_permission_item import *
 from .folder import *
@@ -422,6 +423,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana",
   "classes": {
    "grafana:index/dataSourceConfig:DataSourceConfig": "DataSourceConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/dataSourceConfigLbacRules",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/dataSourceConfigLbacRules:DataSourceConfigLbacRules": "DataSourceConfigLbacRules"
   }
  },
  {

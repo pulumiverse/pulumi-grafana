@@ -53,6 +53,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DataSource{}
 	case "grafana:index/dataSourceConfig:DataSourceConfig":
 		r = &DataSourceConfig{}
+	case "grafana:index/dataSourceConfigLbacRules:DataSourceConfigLbacRules":
+		r = &DataSourceConfigLbacRules{}
 	case "grafana:index/dataSourcePermission:DataSourcePermission":
 		r = &DataSourcePermission{}
 	case "grafana:index/dataSourcePermissionItem:DataSourcePermissionItem":
@@ -242,6 +244,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"index/dataSourceConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/dataSourceConfigLbacRules",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

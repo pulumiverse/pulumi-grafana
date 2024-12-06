@@ -54,6 +54,7 @@
         "dashboardPublic.ts",
         "dataSource.ts",
         "dataSourceConfig.ts",
+        "dataSourceConfigLbacRules.ts",
         "dataSourcePermission.ts",
         "dataSourcePermissionItem.ts",
         "enterprise/dataSourcePermission.ts",
