@@ -137,6 +137,7 @@ import * as utilities from "./utilities";
  *             proxyUrl: "https://almost-there",
  *             failIfSsl: true,
  *             failIfNotSsl: true,
+ *             compression: "deflate",
  *             cacheBustingQueryParamName: "pineapple",
  *             tlsConfig: {
  *                 serverName: "grafana.org",

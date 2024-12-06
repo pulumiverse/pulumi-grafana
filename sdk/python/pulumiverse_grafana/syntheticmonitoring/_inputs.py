@@ -17,6 +17,8 @@ from .. import _utilities
 __all__ = [
     'CheckSettingsArgs',
     'CheckSettingsArgsDict',
+    'CheckSettingsBrowserArgs',
+    'CheckSettingsBrowserArgsDict',
     'CheckSettingsDnsArgs',
     'CheckSettingsDnsArgsDict',
     'CheckSettingsDnsValidateAdditionalRrArgs',
@@ -73,6 +75,10 @@ MYPY = False
 
 if not MYPY:
     class CheckSettingsArgsDict(TypedDict):
+        browser: NotRequired[pulumi.Input['CheckSettingsBrowserArgsDict']]
+        """
+        Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+        """
         dns: NotRequired[pulumi.Input['CheckSettingsDnsArgsDict']]
         """
         Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
@@ -111,6 +117,7 @@ elif False:
 @pulumi.input_type
 class CheckSettingsArgs:
     def __init__(__self__, *,
+                 browser: Optional[pulumi.Input['CheckSettingsBrowserArgs']] = None,
                  dns: Optional[pulumi.Input['CheckSettingsDnsArgs']] = None,
                  grpc: Optional[pulumi.Input['CheckSettingsGrpcArgs']] = None,
                  http: Optional[pulumi.Input['CheckSettingsHttpArgs']] = None,
@@ -120,6 +127,7 @@ class CheckSettingsArgs:
                  tcp: Optional[pulumi.Input['CheckSettingsTcpArgs']] = None,
                  traceroute: Optional[pulumi.Input['CheckSettingsTracerouteArgs']] = None):
         """
+        :param pulumi.Input['CheckSettingsBrowserArgs'] browser: Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
         :param pulumi.Input['CheckSettingsDnsArgs'] dns: Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
         :param pulumi.Input['CheckSettingsGrpcArgs'] grpc: Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
         :param pulumi.Input['CheckSettingsHttpArgs'] http: Settings for HTTP check. The target must be a URL (http or https).
@@ -129,6 +137,8 @@ class CheckSettingsArgs:
         :param pulumi.Input['CheckSettingsTcpArgs'] tcp: Settings for TCP check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
         :param pulumi.Input['CheckSettingsTracerouteArgs'] traceroute: Settings for traceroute check. The target must be a valid hostname or IP address
         """
+        if browser is not None:
+            pulumi.set(__self__, "browser", browser)
         if dns is not None:
             pulumi.set(__self__, "dns", dns)
         if grpc is not None:
@@ -145,6 +155,18 @@ class CheckSettingsArgs:
             pulumi.set(__self__, "tcp", tcp)
         if traceroute is not None:
             pulumi.set(__self__, "traceroute", traceroute)
+
+    @property
+    @pulumi.getter
+    def browser(self) -> Optional[pulumi.Input['CheckSettingsBrowserArgs']]:
+        """
+        Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+        """
+        return pulumi.get(self, "browser")
+
+    @browser.setter
+    def browser(self, value: Optional[pulumi.Input['CheckSettingsBrowserArgs']]):
+        pulumi.set(self, "browser", value)
 
     @property
     @pulumi.getter
@@ -241,6 +263,28 @@ class CheckSettingsArgs:
     @traceroute.setter
     def traceroute(self, value: Optional[pulumi.Input['CheckSettingsTracerouteArgs']]):
         pulumi.set(self, "traceroute", value)
+
+
+if not MYPY:
+    class CheckSettingsBrowserArgsDict(TypedDict):
+        script: pulumi.Input[str]
+elif False:
+    CheckSettingsBrowserArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CheckSettingsBrowserArgs:
+    def __init__(__self__, *,
+                 script: pulumi.Input[str]):
+        pulumi.set(__self__, "script", script)
+
+    @property
+    @pulumi.getter
+    def script(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "script")
+
+    @script.setter
+    def script(self, value: pulumi.Input[str]):
+        pulumi.set(self, "script", value)
 
 
 if not MYPY:
@@ -833,6 +877,10 @@ if not MYPY:
         """
         The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
         """
+        compression: NotRequired[pulumi.Input[str]]
+        """
+        Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+        """
         fail_if_body_matches_regexps: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         List of regexes. If any match the response body, the check will fail.
@@ -903,6 +951,7 @@ class CheckSettingsHttpArgs:
                  bearer_token: Optional[pulumi.Input[str]] = None,
                  body: Optional[pulumi.Input[str]] = None,
                  cache_busting_query_param_name: Optional[pulumi.Input[str]] = None,
+                 compression: Optional[pulumi.Input[str]] = None,
                  fail_if_body_matches_regexps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  fail_if_body_not_matches_regexps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  fail_if_header_matches_regexps: Optional[pulumi.Input[Sequence[pulumi.Input['CheckSettingsHttpFailIfHeaderMatchesRegexpArgs']]]] = None,
@@ -923,6 +972,7 @@ class CheckSettingsHttpArgs:
         :param pulumi.Input[str] bearer_token: Token for use with bearer authorization header.
         :param pulumi.Input[str] body: The body of the HTTP request used in probe.
         :param pulumi.Input[str] cache_busting_query_param_name: The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
+        :param pulumi.Input[str] compression: Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] fail_if_body_matches_regexps: List of regexes. If any match the response body, the check will fail.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] fail_if_body_not_matches_regexps: List of regexes. If any do not match the response body, the check will fail.
         :param pulumi.Input[Sequence[pulumi.Input['CheckSettingsHttpFailIfHeaderMatchesRegexpArgs']]] fail_if_header_matches_regexps: Check fails if headers match.
@@ -947,6 +997,8 @@ class CheckSettingsHttpArgs:
             pulumi.set(__self__, "body", body)
         if cache_busting_query_param_name is not None:
             pulumi.set(__self__, "cache_busting_query_param_name", cache_busting_query_param_name)
+        if compression is not None:
+            pulumi.set(__self__, "compression", compression)
         if fail_if_body_matches_regexps is not None:
             pulumi.set(__self__, "fail_if_body_matches_regexps", fail_if_body_matches_regexps)
         if fail_if_body_not_matches_regexps is not None:
@@ -1025,6 +1077,18 @@ class CheckSettingsHttpArgs:
     @cache_busting_query_param_name.setter
     def cache_busting_query_param_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cache_busting_query_param_name", value)
+
+    @property
+    @pulumi.getter
+    def compression(self) -> Optional[pulumi.Input[str]]:
+        """
+        Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+        """
+        return pulumi.get(self, "compression")
+
+    @compression.setter
+    def compression(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "compression", value)
 
     @property
     @pulumi.getter(name="failIfBodyMatchesRegexps")

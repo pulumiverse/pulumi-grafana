@@ -14,6 +14,9 @@ import (
 
 // A job defines the queries and model parameters for a machine learning task.
 //
+// See [the Grafana Cloud docs](https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/) for more information
+// on available hyperparameters for use in the `hyperParams` field.
+//
 // ## Example Usage
 //
 // ### Basic Forecast
@@ -259,8 +262,9 @@ type MachineLearningJob struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayOutput `pulumi:"holidays"`
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-	// for the full list of available hyperparameters.
+	// The hyperparameters used to fine tune the algorithm. See
+	// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+	// available hyperparameters.
 	HyperParams pulumi.StringMapOutput `pulumi:"hyperParams"`
 	// The data interval in seconds to train the data on.
 	Interval pulumi.IntPtrOutput `pulumi:"interval"`
@@ -326,8 +330,9 @@ type machineLearningJobState struct {
 	Description *string `pulumi:"description"`
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays []string `pulumi:"holidays"`
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-	// for the full list of available hyperparameters.
+	// The hyperparameters used to fine tune the algorithm. See
+	// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+	// available hyperparameters.
 	HyperParams map[string]string `pulumi:"hyperParams"`
 	// The data interval in seconds to train the data on.
 	Interval *int `pulumi:"interval"`
@@ -352,8 +357,9 @@ type MachineLearningJobState struct {
 	Description pulumi.StringPtrInput
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayInput
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-	// for the full list of available hyperparameters.
+	// The hyperparameters used to fine tune the algorithm. See
+	// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+	// available hyperparameters.
 	HyperParams pulumi.StringMapInput
 	// The data interval in seconds to train the data on.
 	Interval pulumi.IntPtrInput
@@ -382,8 +388,9 @@ type machineLearningJobArgs struct {
 	Description *string `pulumi:"description"`
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays []string `pulumi:"holidays"`
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-	// for the full list of available hyperparameters.
+	// The hyperparameters used to fine tune the algorithm. See
+	// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+	// available hyperparameters.
 	HyperParams map[string]string `pulumi:"hyperParams"`
 	// The data interval in seconds to train the data on.
 	Interval *int `pulumi:"interval"`
@@ -409,8 +416,9 @@ type MachineLearningJobArgs struct {
 	Description pulumi.StringPtrInput
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayInput
-	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-	// for the full list of available hyperparameters.
+	// The hyperparameters used to fine tune the algorithm. See
+	// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+	// available hyperparameters.
 	HyperParams pulumi.StringMapInput
 	// The data interval in seconds to train the data on.
 	Interval pulumi.IntPtrInput
@@ -536,8 +544,9 @@ func (o MachineLearningJobOutput) Holidays() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.StringArrayOutput { return v.Holidays }).(pulumi.StringArrayOutput)
 }
 
-// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-// for the full list of available hyperparameters.
+// The hyperparameters used to fine tune the algorithm. See
+// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+// available hyperparameters.
 func (o MachineLearningJobOutput) HyperParams() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *MachineLearningJob) pulumi.StringMapOutput { return v.HyperParams }).(pulumi.StringMapOutput)
 }

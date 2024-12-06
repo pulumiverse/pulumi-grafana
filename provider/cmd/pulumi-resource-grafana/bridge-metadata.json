@@ -314,6 +314,9 @@
                     }
                 ]
             },
+            "grafana_data_source_config_lbac_rules": {
+                "current": "grafana:index/dataSourceConfigLbacRules:DataSourceConfigLbacRules"
+            },
             "grafana_data_source_permission": {
                 "current": "grafana:enterprise/dataSourcePermission:DataSourcePermission",
                 "past": [
@@ -1123,6 +1126,9 @@
                         "maxItemsOne": true,
                         "elem": {
                             "fields": {
+                                "browser": {
+                                    "maxItemsOne": true
+                                },
                                 "dns": {
                                     "maxItemsOne": true,
                                     "elem": {
@@ -2389,6 +2395,7 @@
             "grafana:index/dashboardPublic:DashboardPublic": 0,
             "grafana:index/dataSource:DataSource": 0,
             "grafana:index/dataSourceConfig:DataSourceConfig": 0,
+            "grafana:index/dataSourceConfigLbacRules:DataSourceConfigLbacRules": 1,
             "grafana:index/dataSourcePermission:DataSourcePermission": 0,
             "grafana:index/dataSourcePermissionItem:DataSourcePermissionItem": 1,
             "grafana:index/folder:Folder": 0,

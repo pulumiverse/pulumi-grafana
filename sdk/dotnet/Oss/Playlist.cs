@@ -40,9 +40,9 @@ namespace Pulumiverse.Grafana.Oss
     ///             new Grafana.Oss.Inputs.PlaylistItemArgs
     ///             {
     ///                 Order = 1,
-    ///                 Title = "Terraform Dashboard By ID",
-    ///                 Type = "dashboard_by_id",
-    ///                 Value = "3",
+    ///                 Title = "Terraform Dashboard By UID",
+    ///                 Type = "dashboard_by_uid",
+    ///                 Value = "cIBgcSjkk",
     ///             },
     ///         },
     ///     });

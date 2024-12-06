@@ -39,8 +39,9 @@ class JobArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_labels: An object representing the custom labels added on the forecast.
         :param pulumi.Input[str] description: A description of the job.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-               for the full list of available hyperparameters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See
+               https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+               available hyperparameters.
         :param pulumi.Input[int] interval: The data interval in seconds to train the data on.
         :param pulumi.Input[str] name: The name of the job.
         :param pulumi.Input[int] training_window: The data interval in seconds to train the data on.
@@ -152,8 +153,9 @@ class JobArgs:
     @pulumi.getter(name="hyperParams")
     def hyper_params(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-        for the full list of available hyperparameters.
+        The hyperparameters used to fine tune the algorithm. See
+        https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+        available hyperparameters.
         """
         return pulumi.get(self, "hyper_params")
 
@@ -219,8 +221,9 @@ class _JobState:
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-               for the full list of available hyperparameters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See
+               https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+               available hyperparameters.
         :param pulumi.Input[int] interval: The data interval in seconds to train the data on.
         :param pulumi.Input[str] metric: The metric used to query the job results.
         :param pulumi.Input[str] name: The name of the job.
@@ -314,8 +317,9 @@ class _JobState:
     @pulumi.getter(name="hyperParams")
     def hyper_params(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-        for the full list of available hyperparameters.
+        The hyperparameters used to fine tune the algorithm. See
+        https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+        available hyperparameters.
         """
         return pulumi.get(self, "hyper_params")
 
@@ -403,6 +407,9 @@ class Job(pulumi.CustomResource):
                  __props__=None):
         """
         A job defines the queries and model parameters for a machine learning task.
+
+        See [the Grafana Cloud docs](https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/) for more information
+        on available hyperparameters for use in the `hyper_params` field.
 
         ## Example Usage
 
@@ -538,8 +545,9 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-               for the full list of available hyperparameters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See
+               https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+               available hyperparameters.
         :param pulumi.Input[int] interval: The data interval in seconds to train the data on.
         :param pulumi.Input[str] metric: The metric used to query the job results.
         :param pulumi.Input[str] name: The name of the job.
@@ -554,6 +562,9 @@ class Job(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         A job defines the queries and model parameters for a machine learning task.
+
+        See [the Grafana Cloud docs](https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/) for more information
+        on available hyperparameters for use in the `hyper_params` field.
 
         ## Example Usage
 
@@ -771,8 +782,9 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[str] description: A description of the job.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] holidays: A list of holiday IDs or names to take into account when training the model.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-               for the full list of available hyperparameters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] hyper_params: The hyperparameters used to fine tune the algorithm. See
+               https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+               available hyperparameters.
         :param pulumi.Input[int] interval: The data interval in seconds to train the data on.
         :param pulumi.Input[str] metric: The metric used to query the job results.
         :param pulumi.Input[str] name: The name of the job.
@@ -840,8 +852,9 @@ class Job(pulumi.CustomResource):
     @pulumi.getter(name="hyperParams")
     def hyper_params(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-        for the full list of available hyperparameters.
+        The hyperparameters used to fine tune the algorithm. See
+        https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+        available hyperparameters.
         """
         return pulumi.get(self, "hyper_params")
 
