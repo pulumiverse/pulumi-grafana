@@ -15107,6 +15107,8 @@ func (o SsoSettingsSamlSettingsPtrOutput) TokenUrl() pulumi.StringPtrOutput {
 }
 
 type SyntheticMonitoringCheckSettings struct {
+	// Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+	Browser *SyntheticMonitoringCheckSettingsBrowser `pulumi:"browser"`
 	// Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
 	Dns *SyntheticMonitoringCheckSettingsDns `pulumi:"dns"`
 	// Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
@@ -15137,6 +15139,8 @@ type SyntheticMonitoringCheckSettingsInput interface {
 }
 
 type SyntheticMonitoringCheckSettingsArgs struct {
+	// Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+	Browser SyntheticMonitoringCheckSettingsBrowserPtrInput `pulumi:"browser"`
 	// Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
 	Dns SyntheticMonitoringCheckSettingsDnsPtrInput `pulumi:"dns"`
 	// Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
@@ -15232,6 +15236,11 @@ func (o SyntheticMonitoringCheckSettingsOutput) ToSyntheticMonitoringCheckSettin
 	}).(SyntheticMonitoringCheckSettingsPtrOutput)
 }
 
+// Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+func (o SyntheticMonitoringCheckSettingsOutput) Browser() SyntheticMonitoringCheckSettingsBrowserPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettings) *SyntheticMonitoringCheckSettingsBrowser { return v.Browser }).(SyntheticMonitoringCheckSettingsBrowserPtrOutput)
+}
+
 // Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
 func (o SyntheticMonitoringCheckSettingsOutput) Dns() SyntheticMonitoringCheckSettingsDnsPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettings) *SyntheticMonitoringCheckSettingsDns { return v.Dns }).(SyntheticMonitoringCheckSettingsDnsPtrOutput)
@@ -15298,6 +15307,16 @@ func (o SyntheticMonitoringCheckSettingsPtrOutput) Elem() SyntheticMonitoringChe
 		var ret SyntheticMonitoringCheckSettings
 		return ret
 	}).(SyntheticMonitoringCheckSettingsOutput)
+}
+
+// Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+func (o SyntheticMonitoringCheckSettingsPtrOutput) Browser() SyntheticMonitoringCheckSettingsBrowserPtrOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettings) *SyntheticMonitoringCheckSettingsBrowser {
+		if v == nil {
+			return nil
+		}
+		return v.Browser
+	}).(SyntheticMonitoringCheckSettingsBrowserPtrOutput)
 }
 
 // Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
@@ -15378,6 +15397,139 @@ func (o SyntheticMonitoringCheckSettingsPtrOutput) Traceroute() SyntheticMonitor
 		}
 		return v.Traceroute
 	}).(SyntheticMonitoringCheckSettingsTraceroutePtrOutput)
+}
+
+type SyntheticMonitoringCheckSettingsBrowser struct {
+	Script string `pulumi:"script"`
+}
+
+// SyntheticMonitoringCheckSettingsBrowserInput is an input type that accepts SyntheticMonitoringCheckSettingsBrowserArgs and SyntheticMonitoringCheckSettingsBrowserOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsBrowserInput` via:
+//
+//	SyntheticMonitoringCheckSettingsBrowserArgs{...}
+type SyntheticMonitoringCheckSettingsBrowserInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsBrowserOutput() SyntheticMonitoringCheckSettingsBrowserOutput
+	ToSyntheticMonitoringCheckSettingsBrowserOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsBrowserOutput
+}
+
+type SyntheticMonitoringCheckSettingsBrowserArgs struct {
+	Script pulumi.StringInput `pulumi:"script"`
+}
+
+func (SyntheticMonitoringCheckSettingsBrowserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsBrowser)(nil)).Elem()
+}
+
+func (i SyntheticMonitoringCheckSettingsBrowserArgs) ToSyntheticMonitoringCheckSettingsBrowserOutput() SyntheticMonitoringCheckSettingsBrowserOutput {
+	return i.ToSyntheticMonitoringCheckSettingsBrowserOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsBrowserArgs) ToSyntheticMonitoringCheckSettingsBrowserOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsBrowserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsBrowserOutput)
+}
+
+func (i SyntheticMonitoringCheckSettingsBrowserArgs) ToSyntheticMonitoringCheckSettingsBrowserPtrOutput() SyntheticMonitoringCheckSettingsBrowserPtrOutput {
+	return i.ToSyntheticMonitoringCheckSettingsBrowserPtrOutputWithContext(context.Background())
+}
+
+func (i SyntheticMonitoringCheckSettingsBrowserArgs) ToSyntheticMonitoringCheckSettingsBrowserPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsBrowserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsBrowserOutput).ToSyntheticMonitoringCheckSettingsBrowserPtrOutputWithContext(ctx)
+}
+
+// SyntheticMonitoringCheckSettingsBrowserPtrInput is an input type that accepts SyntheticMonitoringCheckSettingsBrowserArgs, SyntheticMonitoringCheckSettingsBrowserPtr and SyntheticMonitoringCheckSettingsBrowserPtrOutput values.
+// You can construct a concrete instance of `SyntheticMonitoringCheckSettingsBrowserPtrInput` via:
+//
+//	        SyntheticMonitoringCheckSettingsBrowserArgs{...}
+//
+//	or:
+//
+//	        nil
+type SyntheticMonitoringCheckSettingsBrowserPtrInput interface {
+	pulumi.Input
+
+	ToSyntheticMonitoringCheckSettingsBrowserPtrOutput() SyntheticMonitoringCheckSettingsBrowserPtrOutput
+	ToSyntheticMonitoringCheckSettingsBrowserPtrOutputWithContext(context.Context) SyntheticMonitoringCheckSettingsBrowserPtrOutput
+}
+
+type syntheticMonitoringCheckSettingsBrowserPtrType SyntheticMonitoringCheckSettingsBrowserArgs
+
+func SyntheticMonitoringCheckSettingsBrowserPtr(v *SyntheticMonitoringCheckSettingsBrowserArgs) SyntheticMonitoringCheckSettingsBrowserPtrInput {
+	return (*syntheticMonitoringCheckSettingsBrowserPtrType)(v)
+}
+
+func (*syntheticMonitoringCheckSettingsBrowserPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticMonitoringCheckSettingsBrowser)(nil)).Elem()
+}
+
+func (i *syntheticMonitoringCheckSettingsBrowserPtrType) ToSyntheticMonitoringCheckSettingsBrowserPtrOutput() SyntheticMonitoringCheckSettingsBrowserPtrOutput {
+	return i.ToSyntheticMonitoringCheckSettingsBrowserPtrOutputWithContext(context.Background())
+}
+
+func (i *syntheticMonitoringCheckSettingsBrowserPtrType) ToSyntheticMonitoringCheckSettingsBrowserPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsBrowserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticMonitoringCheckSettingsBrowserPtrOutput)
+}
+
+type SyntheticMonitoringCheckSettingsBrowserOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsBrowserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticMonitoringCheckSettingsBrowser)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsBrowserOutput) ToSyntheticMonitoringCheckSettingsBrowserOutput() SyntheticMonitoringCheckSettingsBrowserOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsBrowserOutput) ToSyntheticMonitoringCheckSettingsBrowserOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsBrowserOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsBrowserOutput) ToSyntheticMonitoringCheckSettingsBrowserPtrOutput() SyntheticMonitoringCheckSettingsBrowserPtrOutput {
+	return o.ToSyntheticMonitoringCheckSettingsBrowserPtrOutputWithContext(context.Background())
+}
+
+func (o SyntheticMonitoringCheckSettingsBrowserOutput) ToSyntheticMonitoringCheckSettingsBrowserPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsBrowserPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyntheticMonitoringCheckSettingsBrowser) *SyntheticMonitoringCheckSettingsBrowser {
+		return &v
+	}).(SyntheticMonitoringCheckSettingsBrowserPtrOutput)
+}
+
+func (o SyntheticMonitoringCheckSettingsBrowserOutput) Script() pulumi.StringOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsBrowser) string { return v.Script }).(pulumi.StringOutput)
+}
+
+type SyntheticMonitoringCheckSettingsBrowserPtrOutput struct{ *pulumi.OutputState }
+
+func (SyntheticMonitoringCheckSettingsBrowserPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticMonitoringCheckSettingsBrowser)(nil)).Elem()
+}
+
+func (o SyntheticMonitoringCheckSettingsBrowserPtrOutput) ToSyntheticMonitoringCheckSettingsBrowserPtrOutput() SyntheticMonitoringCheckSettingsBrowserPtrOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsBrowserPtrOutput) ToSyntheticMonitoringCheckSettingsBrowserPtrOutputWithContext(ctx context.Context) SyntheticMonitoringCheckSettingsBrowserPtrOutput {
+	return o
+}
+
+func (o SyntheticMonitoringCheckSettingsBrowserPtrOutput) Elem() SyntheticMonitoringCheckSettingsBrowserOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsBrowser) SyntheticMonitoringCheckSettingsBrowser {
+		if v != nil {
+			return *v
+		}
+		var ret SyntheticMonitoringCheckSettingsBrowser
+		return ret
+	}).(SyntheticMonitoringCheckSettingsBrowserOutput)
+}
+
+func (o SyntheticMonitoringCheckSettingsBrowserPtrOutput) Script() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsBrowser) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Script
+	}).(pulumi.StringPtrOutput)
 }
 
 type SyntheticMonitoringCheckSettingsDns struct {
@@ -16540,6 +16692,8 @@ type SyntheticMonitoringCheckSettingsHttp struct {
 	Body *string `pulumi:"body"`
 	// The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
 	CacheBustingQueryParamName *string `pulumi:"cacheBustingQueryParamName"`
+	// Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+	Compression *string `pulumi:"compression"`
 	// List of regexes. If any match the response body, the check will fail.
 	FailIfBodyMatchesRegexps []string `pulumi:"failIfBodyMatchesRegexps"`
 	// List of regexes. If any do not match the response body, the check will fail.
@@ -16592,6 +16746,8 @@ type SyntheticMonitoringCheckSettingsHttpArgs struct {
 	Body pulumi.StringPtrInput `pulumi:"body"`
 	// The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
 	CacheBustingQueryParamName pulumi.StringPtrInput `pulumi:"cacheBustingQueryParamName"`
+	// Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+	Compression pulumi.StringPtrInput `pulumi:"compression"`
 	// List of regexes. If any match the response body, the check will fail.
 	FailIfBodyMatchesRegexps pulumi.StringArrayInput `pulumi:"failIfBodyMatchesRegexps"`
 	// List of regexes. If any do not match the response body, the check will fail.
@@ -16721,6 +16877,11 @@ func (o SyntheticMonitoringCheckSettingsHttpOutput) Body() pulumi.StringPtrOutpu
 // The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
 func (o SyntheticMonitoringCheckSettingsHttpOutput) CacheBustingQueryParamName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttp) *string { return v.CacheBustingQueryParamName }).(pulumi.StringPtrOutput)
+}
+
+// Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+func (o SyntheticMonitoringCheckSettingsHttpOutput) Compression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticMonitoringCheckSettingsHttp) *string { return v.Compression }).(pulumi.StringPtrOutput)
 }
 
 // List of regexes. If any match the response body, the check will fail.
@@ -16865,6 +17026,16 @@ func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) CacheBustingQueryParamNam
 			return nil
 		}
 		return v.CacheBustingQueryParamName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+func (o SyntheticMonitoringCheckSettingsHttpPtrOutput) Compression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringCheckSettingsHttp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Compression
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -23176,6 +23347,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SsoSettingsSamlSettingsPtrInput)(nil)).Elem(), SsoSettingsSamlSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsBrowserInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsBrowserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsBrowserPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsBrowserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsDnsInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsDnsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsDnsPtrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsDnsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrInput)(nil)).Elem(), SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrArgs{})
@@ -23459,6 +23632,8 @@ func init() {
 	pulumi.RegisterOutputType(SsoSettingsSamlSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsPtrOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsBrowserOutput{})
+	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsBrowserPtrOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsDnsOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsDnsPtrOutput{})
 	pulumi.RegisterOutputType(SyntheticMonitoringCheckSettingsDnsValidateAdditionalRrOutput{})

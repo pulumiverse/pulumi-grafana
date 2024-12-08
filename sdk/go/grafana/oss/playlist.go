@@ -41,9 +41,9 @@ import (
 //					},
 //					&oss.PlaylistItemArgs{
 //						Order: pulumi.Int(1),
-//						Title: pulumi.String("Terraform Dashboard By ID"),
-//						Type:  pulumi.String("dashboard_by_id"),
-//						Value: pulumi.String("3"),
+//						Title: pulumi.String("Terraform Dashboard By UID"),
+//						Type:  pulumi.String("dashboard_by_uid"),
+//						Value: pulumi.String("cIBgcSjkk"),
 //					},
 //				},
 //			})

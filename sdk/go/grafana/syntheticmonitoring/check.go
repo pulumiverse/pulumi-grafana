@@ -221,6 +221,7 @@ import (
 //						ProxyUrl:                   pulumi.String("https://almost-there"),
 //						FailIfSsl:                  pulumi.Bool(true),
 //						FailIfNotSsl:               pulumi.Bool(true),
+//						Compression:                pulumi.String("deflate"),
 //						CacheBustingQueryParamName: pulumi.String("pineapple"),
 //						TlsConfig: &syntheticmonitoring.CheckSettingsHttpTlsConfigArgs{
 //							ServerName: pulumi.String("grafana.org"),

@@ -2658,6 +2658,10 @@ export interface SsoSettingsSamlSettings {
 
 export interface SyntheticMonitoringCheckSettings {
     /**
+     * Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+     */
+    browser?: outputs.SyntheticMonitoringCheckSettingsBrowser;
+    /**
      * Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
      */
     dns?: outputs.SyntheticMonitoringCheckSettingsDns;
@@ -2689,6 +2693,10 @@ export interface SyntheticMonitoringCheckSettings {
      * Settings for traceroute check. The target must be a valid hostname or IP address
      */
     traceroute?: outputs.SyntheticMonitoringCheckSettingsTraceroute;
+}
+
+export interface SyntheticMonitoringCheckSettingsBrowser {
+    script: string;
 }
 
 export interface SyntheticMonitoringCheckSettingsDns {
@@ -2826,6 +2834,10 @@ export interface SyntheticMonitoringCheckSettingsHttp {
      * The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
      */
     cacheBustingQueryParamName?: string;
+    /**
+     * Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+     */
+    compression?: string;
     /**
      * List of regexes. If any match the response body, the check will fail.
      */
@@ -6155,6 +6167,10 @@ export namespace slo {
 export namespace syntheticMonitoring {
     export interface CheckSettings {
         /**
+         * Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+         */
+        browser?: outputs.syntheticMonitoring.CheckSettingsBrowser;
+        /**
          * Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
          */
         dns?: outputs.syntheticMonitoring.CheckSettingsDns;
@@ -6186,6 +6202,10 @@ export namespace syntheticMonitoring {
          * Settings for traceroute check. The target must be a valid hostname or IP address
          */
         traceroute?: outputs.syntheticMonitoring.CheckSettingsTraceroute;
+    }
+
+    export interface CheckSettingsBrowser {
+        script: string;
     }
 
     export interface CheckSettingsDns {
@@ -6323,6 +6343,10 @@ export namespace syntheticMonitoring {
          * The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
          */
         cacheBustingQueryParamName?: string;
+        /**
+         * Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+         */
+        compression?: string;
         /**
          * List of regexes. If any match the response body, the check will fail.
          */
