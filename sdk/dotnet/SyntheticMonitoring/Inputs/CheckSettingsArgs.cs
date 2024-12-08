@@ -14,6 +14,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
     public sealed class CheckSettingsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+        /// </summary>
+        [Input("browser")]
+        public Input<Inputs.CheckSettingsBrowserArgs>? Browser { get; set; }
+
+        /// <summary>
         /// Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
         /// </summary>
         [Input("dns")]

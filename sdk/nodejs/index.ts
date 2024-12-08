@@ -85,6 +85,11 @@ export type DataSourceConfig = import("./dataSourceConfig").DataSourceConfig;
 export const DataSourceConfig: typeof import("./dataSourceConfig").DataSourceConfig = null as any;
 utilities.lazyLoad(exports, ["DataSourceConfig"], () => require("./dataSourceConfig"));
 
+export { DataSourceConfigLbacRulesArgs, DataSourceConfigLbacRulesState } from "./dataSourceConfigLbacRules";
+export type DataSourceConfigLbacRules = import("./dataSourceConfigLbacRules").DataSourceConfigLbacRules;
+export const DataSourceConfigLbacRules: typeof import("./dataSourceConfigLbacRules").DataSourceConfigLbacRules = null as any;
+utilities.lazyLoad(exports, ["DataSourceConfigLbacRules"], () => require("./dataSourceConfigLbacRules"));
+
 export { DataSourcePermissionArgs, DataSourcePermissionState } from "./dataSourcePermission";
 export type DataSourcePermission = import("./dataSourcePermission").DataSourcePermission;
 export const DataSourcePermission: typeof import("./dataSourcePermission").DataSourcePermission = null as any;
@@ -497,6 +502,8 @@ const _module = {
                 return new DataSource(name, <any>undefined, { urn })
             case "grafana:index/dataSourceConfig:DataSourceConfig":
                 return new DataSourceConfig(name, <any>undefined, { urn })
+            case "grafana:index/dataSourceConfigLbacRules:DataSourceConfigLbacRules":
+                return new DataSourceConfigLbacRules(name, <any>undefined, { urn })
             case "grafana:index/dataSourcePermission:DataSourcePermission":
                 return new DataSourcePermission(name, <any>undefined, { urn })
             case "grafana:index/dataSourcePermissionItem:DataSourcePermissionItem":
@@ -598,6 +605,7 @@ pulumi.runtime.registerResourceModule("grafana", "index/dashboardPermissionItem"
 pulumi.runtime.registerResourceModule("grafana", "index/dashboardPublic", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dataSource", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dataSourceConfig", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/dataSourceConfigLbacRules", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dataSourcePermission", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/dataSourcePermissionItem", _module)
 pulumi.runtime.registerResourceModule("grafana", "index/folder", _module)

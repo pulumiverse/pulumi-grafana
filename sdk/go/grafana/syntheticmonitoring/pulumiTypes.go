@@ -14,6 +14,8 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type CheckSettings struct {
+	// Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+	Browser *CheckSettingsBrowser `pulumi:"browser"`
 	// Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
 	Dns *CheckSettingsDns `pulumi:"dns"`
 	// Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
@@ -44,6 +46,8 @@ type CheckSettingsInput interface {
 }
 
 type CheckSettingsArgs struct {
+	// Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+	Browser CheckSettingsBrowserPtrInput `pulumi:"browser"`
 	// Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
 	Dns CheckSettingsDnsPtrInput `pulumi:"dns"`
 	// Settings for gRPC Health check. The target must be of the form `<host>:<port>`, where the host portion must be a valid hostname or IP address.
@@ -139,6 +143,11 @@ func (o CheckSettingsOutput) ToCheckSettingsPtrOutputWithContext(ctx context.Con
 	}).(CheckSettingsPtrOutput)
 }
 
+// Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+func (o CheckSettingsOutput) Browser() CheckSettingsBrowserPtrOutput {
+	return o.ApplyT(func(v CheckSettings) *CheckSettingsBrowser { return v.Browser }).(CheckSettingsBrowserPtrOutput)
+}
+
 // Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
 func (o CheckSettingsOutput) Dns() CheckSettingsDnsPtrOutput {
 	return o.ApplyT(func(v CheckSettings) *CheckSettingsDns { return v.Dns }).(CheckSettingsDnsPtrOutput)
@@ -201,6 +210,16 @@ func (o CheckSettingsPtrOutput) Elem() CheckSettingsOutput {
 		var ret CheckSettings
 		return ret
 	}).(CheckSettingsOutput)
+}
+
+// Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+func (o CheckSettingsPtrOutput) Browser() CheckSettingsBrowserPtrOutput {
+	return o.ApplyT(func(v *CheckSettings) *CheckSettingsBrowser {
+		if v == nil {
+			return nil
+		}
+		return v.Browser
+	}).(CheckSettingsBrowserPtrOutput)
 }
 
 // Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
@@ -281,6 +300,139 @@ func (o CheckSettingsPtrOutput) Traceroute() CheckSettingsTraceroutePtrOutput {
 		}
 		return v.Traceroute
 	}).(CheckSettingsTraceroutePtrOutput)
+}
+
+type CheckSettingsBrowser struct {
+	Script string `pulumi:"script"`
+}
+
+// CheckSettingsBrowserInput is an input type that accepts CheckSettingsBrowserArgs and CheckSettingsBrowserOutput values.
+// You can construct a concrete instance of `CheckSettingsBrowserInput` via:
+//
+//	CheckSettingsBrowserArgs{...}
+type CheckSettingsBrowserInput interface {
+	pulumi.Input
+
+	ToCheckSettingsBrowserOutput() CheckSettingsBrowserOutput
+	ToCheckSettingsBrowserOutputWithContext(context.Context) CheckSettingsBrowserOutput
+}
+
+type CheckSettingsBrowserArgs struct {
+	Script pulumi.StringInput `pulumi:"script"`
+}
+
+func (CheckSettingsBrowserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckSettingsBrowser)(nil)).Elem()
+}
+
+func (i CheckSettingsBrowserArgs) ToCheckSettingsBrowserOutput() CheckSettingsBrowserOutput {
+	return i.ToCheckSettingsBrowserOutputWithContext(context.Background())
+}
+
+func (i CheckSettingsBrowserArgs) ToCheckSettingsBrowserOutputWithContext(ctx context.Context) CheckSettingsBrowserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckSettingsBrowserOutput)
+}
+
+func (i CheckSettingsBrowserArgs) ToCheckSettingsBrowserPtrOutput() CheckSettingsBrowserPtrOutput {
+	return i.ToCheckSettingsBrowserPtrOutputWithContext(context.Background())
+}
+
+func (i CheckSettingsBrowserArgs) ToCheckSettingsBrowserPtrOutputWithContext(ctx context.Context) CheckSettingsBrowserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckSettingsBrowserOutput).ToCheckSettingsBrowserPtrOutputWithContext(ctx)
+}
+
+// CheckSettingsBrowserPtrInput is an input type that accepts CheckSettingsBrowserArgs, CheckSettingsBrowserPtr and CheckSettingsBrowserPtrOutput values.
+// You can construct a concrete instance of `CheckSettingsBrowserPtrInput` via:
+//
+//	        CheckSettingsBrowserArgs{...}
+//
+//	or:
+//
+//	        nil
+type CheckSettingsBrowserPtrInput interface {
+	pulumi.Input
+
+	ToCheckSettingsBrowserPtrOutput() CheckSettingsBrowserPtrOutput
+	ToCheckSettingsBrowserPtrOutputWithContext(context.Context) CheckSettingsBrowserPtrOutput
+}
+
+type checkSettingsBrowserPtrType CheckSettingsBrowserArgs
+
+func CheckSettingsBrowserPtr(v *CheckSettingsBrowserArgs) CheckSettingsBrowserPtrInput {
+	return (*checkSettingsBrowserPtrType)(v)
+}
+
+func (*checkSettingsBrowserPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CheckSettingsBrowser)(nil)).Elem()
+}
+
+func (i *checkSettingsBrowserPtrType) ToCheckSettingsBrowserPtrOutput() CheckSettingsBrowserPtrOutput {
+	return i.ToCheckSettingsBrowserPtrOutputWithContext(context.Background())
+}
+
+func (i *checkSettingsBrowserPtrType) ToCheckSettingsBrowserPtrOutputWithContext(ctx context.Context) CheckSettingsBrowserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckSettingsBrowserPtrOutput)
+}
+
+type CheckSettingsBrowserOutput struct{ *pulumi.OutputState }
+
+func (CheckSettingsBrowserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckSettingsBrowser)(nil)).Elem()
+}
+
+func (o CheckSettingsBrowserOutput) ToCheckSettingsBrowserOutput() CheckSettingsBrowserOutput {
+	return o
+}
+
+func (o CheckSettingsBrowserOutput) ToCheckSettingsBrowserOutputWithContext(ctx context.Context) CheckSettingsBrowserOutput {
+	return o
+}
+
+func (o CheckSettingsBrowserOutput) ToCheckSettingsBrowserPtrOutput() CheckSettingsBrowserPtrOutput {
+	return o.ToCheckSettingsBrowserPtrOutputWithContext(context.Background())
+}
+
+func (o CheckSettingsBrowserOutput) ToCheckSettingsBrowserPtrOutputWithContext(ctx context.Context) CheckSettingsBrowserPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CheckSettingsBrowser) *CheckSettingsBrowser {
+		return &v
+	}).(CheckSettingsBrowserPtrOutput)
+}
+
+func (o CheckSettingsBrowserOutput) Script() pulumi.StringOutput {
+	return o.ApplyT(func(v CheckSettingsBrowser) string { return v.Script }).(pulumi.StringOutput)
+}
+
+type CheckSettingsBrowserPtrOutput struct{ *pulumi.OutputState }
+
+func (CheckSettingsBrowserPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CheckSettingsBrowser)(nil)).Elem()
+}
+
+func (o CheckSettingsBrowserPtrOutput) ToCheckSettingsBrowserPtrOutput() CheckSettingsBrowserPtrOutput {
+	return o
+}
+
+func (o CheckSettingsBrowserPtrOutput) ToCheckSettingsBrowserPtrOutputWithContext(ctx context.Context) CheckSettingsBrowserPtrOutput {
+	return o
+}
+
+func (o CheckSettingsBrowserPtrOutput) Elem() CheckSettingsBrowserOutput {
+	return o.ApplyT(func(v *CheckSettingsBrowser) CheckSettingsBrowser {
+		if v != nil {
+			return *v
+		}
+		var ret CheckSettingsBrowser
+		return ret
+	}).(CheckSettingsBrowserOutput)
+}
+
+func (o CheckSettingsBrowserPtrOutput) Script() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CheckSettingsBrowser) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Script
+	}).(pulumi.StringPtrOutput)
 }
 
 type CheckSettingsDns struct {
@@ -1425,6 +1577,8 @@ type CheckSettingsHttp struct {
 	Body *string `pulumi:"body"`
 	// The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
 	CacheBustingQueryParamName *string `pulumi:"cacheBustingQueryParamName"`
+	// Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+	Compression *string `pulumi:"compression"`
 	// List of regexes. If any match the response body, the check will fail.
 	FailIfBodyMatchesRegexps []string `pulumi:"failIfBodyMatchesRegexps"`
 	// List of regexes. If any do not match the response body, the check will fail.
@@ -1477,6 +1631,8 @@ type CheckSettingsHttpArgs struct {
 	Body pulumi.StringPtrInput `pulumi:"body"`
 	// The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
 	CacheBustingQueryParamName pulumi.StringPtrInput `pulumi:"cacheBustingQueryParamName"`
+	// Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+	Compression pulumi.StringPtrInput `pulumi:"compression"`
 	// List of regexes. If any match the response body, the check will fail.
 	FailIfBodyMatchesRegexps pulumi.StringArrayInput `pulumi:"failIfBodyMatchesRegexps"`
 	// List of regexes. If any do not match the response body, the check will fail.
@@ -1604,6 +1760,11 @@ func (o CheckSettingsHttpOutput) Body() pulumi.StringPtrOutput {
 // The name of the query parameter used to prevent the server from using a cached response. Each probe will assign a random value to this parameter each time a request is made.
 func (o CheckSettingsHttpOutput) CacheBustingQueryParamName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckSettingsHttp) *string { return v.CacheBustingQueryParamName }).(pulumi.StringPtrOutput)
+}
+
+// Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+func (o CheckSettingsHttpOutput) Compression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CheckSettingsHttp) *string { return v.Compression }).(pulumi.StringPtrOutput)
 }
 
 // List of regexes. If any match the response body, the check will fail.
@@ -1746,6 +1907,16 @@ func (o CheckSettingsHttpPtrOutput) CacheBustingQueryParamName() pulumi.StringPt
 			return nil
 		}
 		return v.CacheBustingQueryParamName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+func (o CheckSettingsHttpPtrOutput) Compression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CheckSettingsHttp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Compression
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -4593,6 +4764,8 @@ func (o CheckSettingsTraceroutePtrOutput) PtrLookup() pulumi.BoolPtrOutput {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsInput)(nil)).Elem(), CheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsPtrInput)(nil)).Elem(), CheckSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsBrowserInput)(nil)).Elem(), CheckSettingsBrowserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsBrowserPtrInput)(nil)).Elem(), CheckSettingsBrowserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsDnsInput)(nil)).Elem(), CheckSettingsDnsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsDnsPtrInput)(nil)).Elem(), CheckSettingsDnsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsDnsValidateAdditionalRrInput)(nil)).Elem(), CheckSettingsDnsValidateAdditionalRrArgs{})
@@ -4645,6 +4818,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsTraceroutePtrInput)(nil)).Elem(), CheckSettingsTracerouteArgs{})
 	pulumi.RegisterOutputType(CheckSettingsOutput{})
 	pulumi.RegisterOutputType(CheckSettingsPtrOutput{})
+	pulumi.RegisterOutputType(CheckSettingsBrowserOutput{})
+	pulumi.RegisterOutputType(CheckSettingsBrowserPtrOutput{})
 	pulumi.RegisterOutputType(CheckSettingsDnsOutput{})
 	pulumi.RegisterOutputType(CheckSettingsDnsPtrOutput{})
 	pulumi.RegisterOutputType(CheckSettingsDnsValidateAdditionalRrOutput{})
