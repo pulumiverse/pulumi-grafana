@@ -31,6 +31,10 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         /// </summary>
         public readonly string? CacheBustingQueryParamName;
         /// <summary>
+        /// Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+        /// </summary>
+        public readonly string? Compression;
+        /// <summary>
         /// List of regexes. If any match the response body, the check will fail.
         /// </summary>
         public readonly ImmutableArray<string> FailIfBodyMatchesRegexps;
@@ -101,6 +105,8 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
 
             string? cacheBustingQueryParamName,
 
+            string? compression,
+
             ImmutableArray<string> failIfBodyMatchesRegexps,
 
             ImmutableArray<string> failIfBodyNotMatchesRegexps,
@@ -135,6 +141,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
             BearerToken = bearerToken;
             Body = body;
             CacheBustingQueryParamName = cacheBustingQueryParamName;
+            Compression = compression;
             FailIfBodyMatchesRegexps = failIfBodyMatchesRegexps;
             FailIfBodyNotMatchesRegexps = failIfBodyNotMatchesRegexps;
             FailIfHeaderMatchesRegexps = failIfHeaderMatchesRegexps;

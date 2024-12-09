@@ -7,6 +7,9 @@ import * as utilities from "../utilities";
 /**
  * A job defines the queries and model parameters for a machine learning task.
  *
+ * See [the Grafana Cloud docs](https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/) for more information
+ * on available hyperparameters for use in the `hyperParams` field.
+ *
  * ## Example Usage
  *
  * ### Basic Forecast
@@ -187,8 +190,9 @@ export class Job extends pulumi.CustomResource {
      */
     public readonly holidays!: pulumi.Output<string[] | undefined>;
     /**
-     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-     * for the full list of available hyperparameters.
+     * The hyperparameters used to fine tune the algorithm. See
+     * https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+     * available hyperparameters.
      */
     public readonly hyperParams!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -294,8 +298,9 @@ export interface JobState {
      */
     holidays?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-     * for the full list of available hyperparameters.
+     * The hyperparameters used to fine tune the algorithm. See
+     * https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+     * available hyperparameters.
      */
     hyperParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -345,8 +350,9 @@ export interface JobArgs {
      */
     holidays?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/machine-learning/models/
-     * for the full list of available hyperparameters.
+     * The hyperparameters used to fine tune the algorithm. See
+     * https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
+     * available hyperparameters.
      */
     hyperParams?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

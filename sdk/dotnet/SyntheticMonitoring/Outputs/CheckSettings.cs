@@ -15,6 +15,10 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
     public sealed class CheckSettings
     {
         /// <summary>
+        /// Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
+        /// </summary>
+        public readonly Outputs.CheckSettingsBrowser? Browser;
+        /// <summary>
         /// Settings for DNS check. The target must be a valid hostname (or IP address for `PTR` records).
         /// </summary>
         public readonly Outputs.CheckSettingsDns? Dns;
@@ -49,6 +53,8 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
 
         [OutputConstructor]
         private CheckSettings(
+            Outputs.CheckSettingsBrowser? browser,
+
             Outputs.CheckSettingsDns? dns,
 
             Outputs.CheckSettingsGrpc? grpc,
@@ -65,6 +71,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
 
             Outputs.CheckSettingsTraceroute? traceroute)
         {
+            Browser = browser;
             Dns = dns;
             Grpc = grpc;
             Http = http;
