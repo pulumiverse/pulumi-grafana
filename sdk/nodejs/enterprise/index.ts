@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { DataSourceConfigLbacRulesArgs, DataSourceConfigLbacRulesState } from "./dataSourceConfigLbacRules";
+export type DataSourceConfigLbacRules = import("./dataSourceConfigLbacRules").DataSourceConfigLbacRules;
+export const DataSourceConfigLbacRules: typeof import("./dataSourceConfigLbacRules").DataSourceConfigLbacRules = null as any;
+utilities.lazyLoad(exports, ["DataSourceConfigLbacRules"], () => require("./dataSourceConfigLbacRules"));
+
 export { DataSourcePermissionArgs, DataSourcePermissionState } from "./dataSourcePermission";
 export type DataSourcePermission = import("./dataSourcePermission").DataSourcePermission;
 export const DataSourcePermission: typeof import("./dataSourcePermission").DataSourcePermission = null as any;
@@ -50,6 +55,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules":
+                return new DataSourceConfigLbacRules(name, <any>undefined, { urn })
             case "grafana:enterprise/dataSourcePermission:DataSourcePermission":
                 return new DataSourcePermission(name, <any>undefined, { urn })
             case "grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem":
@@ -69,6 +76,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("grafana", "enterprise/dataSourceConfigLbacRules", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/dataSourcePermission", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/dataSourcePermissionItem", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/report", _module)

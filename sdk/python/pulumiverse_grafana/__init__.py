@@ -242,6 +242,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "enterprise/dataSourceConfigLbacRules",
+  "fqn": "pulumiverse_grafana.enterprise",
+  "classes": {
+   "grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules": "DataSourceConfigLbacRules"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "enterprise/dataSourcePermission",
   "fqn": "pulumiverse_grafana.enterprise",
   "classes": {

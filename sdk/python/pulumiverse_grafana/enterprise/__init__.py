@@ -5,6 +5,7 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .data_source_config_lbac_rules import *
 from .data_source_permission import *
 from .data_source_permission_item import *
 from .get_role import *
