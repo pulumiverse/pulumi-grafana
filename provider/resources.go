@@ -261,6 +261,12 @@ func Provider() tfbridge.ProviderInfo {
 			},
 
 			// Enterprise
+			"grafana_data_source_config_lbac_rules": {
+				Tok: grafanaResource(enterpriseMod, "DataSourceConfigLbacRules"),
+				Docs: &tfbridge.DocInfo{
+					Source: "data_source_config_lbac_rules.md",
+				},
+			},
 			"grafana_data_source_permission": {
 				Tok: grafanaResource(enterpriseMod, "DataSourcePermission"),
 				Aliases: []tfbridge.AliasInfo{

@@ -5,8 +5,7 @@ go 1.23
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240520223432-0c0bf0d65f10
 
 require (
-	github.com/grafana/terraform-provider-grafana/v3 v3.13.2
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.49.0
+	github.com/grafana/terraform-provider-grafana/v3 v3.14.1
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.96.0
 	github.com/pulumi/pulumi/sdk/v3 v3.140.0
 )
@@ -20,7 +19,7 @@ require (
 	github.com/BurntSushi/toml v1.4.0 // indirect
 	github.com/Masterminds/goutils v1.1.1 // indirect
 	github.com/Masterminds/semver v1.5.0 // indirect
-	github.com/Masterminds/semver/v3 v3.3.0 // indirect
+	github.com/Masterminds/semver/v3 v3.3.1 // indirect
 	github.com/Masterminds/sprig/v3 v3.2.3 // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/ProtonMail/go-crypto v1.1.0-alpha.2 // indirect
@@ -58,6 +57,7 @@ require (
 	github.com/ettle/strcase v0.1.1 // indirect
 	github.com/fatih/color v1.18.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
+	github.com/frankban/quicktest v1.14.4 // indirect
 	github.com/getkin/kin-openapi v0.124.0 // indirect
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
 	github.com/go-git/go-billy/v5 v5.5.0 // indirect
@@ -88,16 +88,16 @@ require (
 	github.com/googleapis/enterprise-certificate-proxy v0.3.2 // indirect
 	github.com/googleapis/gax-go/v2 v2.12.2 // indirect
 	github.com/gorilla/mux v1.8.1 // indirect
-	github.com/grafana/amixr-api-go-client v0.0.16 // indirect
+	github.com/grafana/amixr-api-go-client v0.0.18 // indirect
 	github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20240807172819-ac10800522a3 // indirect
-	github.com/grafana/grafana-openapi-client-go v0.0.0-20240723170622-ae2c94b7c9a3 // indirect
+	github.com/grafana/grafana-openapi-client-go v0.0.0-20241113095943-9cb2bbfeb8a3 // indirect
 	github.com/grafana/grafana-plugin-sdk-go v0.250.0 // indirect
 	github.com/grafana/machine-learning-go-client v0.8.2 // indirect
 	github.com/grafana/otel-profiling-go v0.5.1 // indirect
 	github.com/grafana/pyroscope-go/godeltaprof v0.1.8 // indirect
 	github.com/grafana/slo-openapi-client/go/slo v0.0.0-20240807172758-1b7d00838fc7 // indirect
-	github.com/grafana/synthetic-monitoring-agent v0.29.3 // indirect
-	github.com/grafana/synthetic-monitoring-api-go-client v0.8.0 // indirect
+	github.com/grafana/synthetic-monitoring-agent v0.29.8 // indirect
+	github.com/grafana/synthetic-monitoring-api-go-client v0.9.1 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.0.1 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.1.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0 // indirect
@@ -114,7 +114,7 @@ require (
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/hashicorp/go-version v1.7.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
-	github.com/hashicorp/hcl/v2 v2.22.0 // indirect
+	github.com/hashicorp/hcl/v2 v2.23.0 // indirect
 	github.com/hashicorp/hil v0.0.0-20190212132231-97b3a9cdfa93 // indirect
 	github.com/hashicorp/logutils v1.0.0 // indirect
 	github.com/hashicorp/terraform-plugin-framework v1.13.0 // indirect
@@ -179,7 +179,7 @@ require (
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/prometheus/client_golang v1.20.5 // indirect
 	github.com/prometheus/client_model v0.6.1 // indirect
-	github.com/prometheus/common v0.60.1 // indirect
+	github.com/prometheus/common v0.61.0 // indirect
 	github.com/prometheus/procfs v0.15.1 // indirect
 	github.com/pulumi/appdash v0.0.0-20231130102222-75f619a67231 // indirect
 	github.com/pulumi/esc v0.10.0 // indirect
@@ -217,7 +217,7 @@ require (
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
 	github.com/yuin/goldmark v1.7.7 // indirect
-	github.com/zclconf/go-cty v1.15.0 // indirect
+	github.com/zclconf/go-cty v1.15.1 // indirect
 	github.com/zeebo/xxh3 v1.0.2 // indirect
 	go.mongodb.org/mongo-driver v1.14.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
@@ -234,25 +234,25 @@ require (
 	go.opentelemetry.io/otel/trace v1.29.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.3.1 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
-	golang.org/x/crypto v0.28.0 // indirect
-	golang.org/x/exp v0.0.0-20241004190924-225e2abe05e6 // indirect
+	golang.org/x/crypto v0.30.0 // indirect
+	golang.org/x/exp v0.0.0-20241009180824-f66d83c29e7c // indirect
 	golang.org/x/mod v0.21.0 // indirect
-	golang.org/x/net v0.30.0 // indirect
-	golang.org/x/oauth2 v0.23.0 // indirect
-	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/sys v0.26.0 // indirect
-	golang.org/x/term v0.25.0 // indirect
-	golang.org/x/text v0.19.0 // indirect
+	golang.org/x/net v0.32.0 // indirect
+	golang.org/x/oauth2 v0.24.0 // indirect
+	golang.org/x/sync v0.10.0 // indirect
+	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/term v0.27.0 // indirect
+	golang.org/x/text v0.21.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	golang.org/x/tools v0.26.0 // indirect
 	golang.org/x/xerrors v0.0.0-20231012003039-104605ab7028 // indirect
 	google.golang.org/api v0.169.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/genproto v0.0.0-20240311173647-c811ad7063a7 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240822170219-fc7c04adadcd // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20240903143218-8af14fe29dc1 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240903143218-8af14fe29dc1 // indirect
-	google.golang.org/grpc v1.67.1 // indirect
-	google.golang.org/protobuf v1.35.1 // indirect
+	google.golang.org/grpc v1.68.0 // indirect
+	google.golang.org/protobuf v1.35.2 // indirect
 	gopkg.in/fsnotify/fsnotify.v1 v1.4.7 // indirect
 	gopkg.in/validator.v2 v2.0.1 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect

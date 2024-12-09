@@ -314,6 +314,9 @@
                     }
                 ]
             },
+            "grafana_data_source_config_lbac_rules": {
+                "current": "grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules"
+            },
             "grafana_data_source_permission": {
                 "current": "grafana:enterprise/dataSourcePermission:DataSourcePermission",
                 "past": [
@@ -1123,6 +1126,9 @@
                         "maxItemsOne": true,
                         "elem": {
                             "fields": {
+                                "browser": {
+                                    "maxItemsOne": true
+                                },
                                 "dns": {
                                     "maxItemsOne": true,
                                     "elem": {
@@ -2366,6 +2372,7 @@
             "grafana:cloud/stack:Stack": 0,
             "grafana:cloud/stackServiceAccount:StackServiceAccount": 0,
             "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": 0,
+            "grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules": 1,
             "grafana:enterprise/dataSourcePermission:DataSourcePermission": 0,
             "grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem": 1,
             "grafana:enterprise/report:Report": 0,
