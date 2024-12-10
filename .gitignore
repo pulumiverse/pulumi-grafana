@@ -27,3 +27,7 @@ provider/**/schema-embed.json
 **/venv
 
 go.work*
+
+
+# Ignore local build tracking directory
+.make
