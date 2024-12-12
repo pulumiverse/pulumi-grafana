@@ -102,7 +102,7 @@ export interface GetLibraryPanelResult {
  * Data source for retrieving a single library panel by name or uid.
  */
 /** @deprecated grafana.index/getlibrarypanel.getLibraryPanel has been deprecated in favor of grafana.oss/getlibrarypanel.getLibraryPanel */
-export function getLibraryPanelOutput(args?: GetLibraryPanelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLibraryPanelResult> {
+export function getLibraryPanelOutput(args?: GetLibraryPanelOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLibraryPanelResult> {
     pulumi.log.warn("getLibraryPanel is deprecated: grafana.index/getlibrarypanel.getLibraryPanel has been deprecated in favor of grafana.oss/getlibrarypanel.getLibraryPanel")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

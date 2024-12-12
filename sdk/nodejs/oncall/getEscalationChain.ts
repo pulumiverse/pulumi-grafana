@@ -62,7 +62,7 @@ export interface GetEscalationChainResult {
  * });
  * ```
  */
-export function getEscalationChainOutput(args: GetEscalationChainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEscalationChainResult> {
+export function getEscalationChainOutput(args: GetEscalationChainOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEscalationChainResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:onCall/getEscalationChain:getEscalationChain", {
         "name": args.name,

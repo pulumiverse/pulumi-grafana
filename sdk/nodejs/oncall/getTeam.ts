@@ -60,7 +60,7 @@ export interface GetTeamResult {
  * });
  * ```
  */
-export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamResult> {
+export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTeamResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:onCall/getTeam:getTeam", {
         "name": args.name,

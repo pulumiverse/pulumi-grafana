@@ -65,7 +65,7 @@ export interface GetOncallIntegrationResult {
  * ```
  */
 /** @deprecated grafana.index/getoncallintegration.getOncallIntegration has been deprecated in favor of grafana.oncall/getintegration.getIntegration */
-export function getOncallIntegrationOutput(args: GetOncallIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallIntegrationResult> {
+export function getOncallIntegrationOutput(args: GetOncallIntegrationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOncallIntegrationResult> {
     pulumi.log.warn("getOncallIntegration is deprecated: grafana.index/getoncallintegration.getOncallIntegration has been deprecated in favor of grafana.oncall/getintegration.getIntegration")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getOncallIntegration:getOncallIntegration", {

@@ -90,7 +90,7 @@ export interface GetProbeResult {
  * });
  * ```
  */
-export function getProbeOutput(args: GetProbeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProbeResult> {
+export function getProbeOutput(args: GetProbeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProbeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:syntheticMonitoring/getProbe:getProbe", {
         "name": args.name,

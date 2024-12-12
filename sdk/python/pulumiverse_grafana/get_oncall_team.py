@@ -108,7 +108,7 @@ def get_oncall_team(name: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'))
 def get_oncall_team_output(name: Optional[pulumi.Input[str]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallTeamResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOncallTeamResult]:
     """
     ## Example Usage
 
@@ -125,7 +125,7 @@ def get_oncall_team_output(name: Optional[pulumi.Input[str]] = None,
     pulumi.log.warn("""get_oncall_team is deprecated: grafana.index/getoncallteam.getOncallTeam has been deprecated in favor of grafana.oncall/getteam.getTeam""")
     __args__ = dict()
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getOncallTeam:getOncallTeam', __args__, opts=opts, typ=GetOncallTeamResult)
     return __ret__.apply(lambda __response__: GetOncallTeamResult(
         avatar_url=pulumi.get(__response__, 'avatar_url'),

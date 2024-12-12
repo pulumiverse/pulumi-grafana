@@ -65,7 +65,7 @@ export interface GetOncallEscalationChainResult {
  * ```
  */
 /** @deprecated grafana.index/getoncallescalationchain.getOncallEscalationChain has been deprecated in favor of grafana.oncall/getescalationchain.getEscalationChain */
-export function getOncallEscalationChainOutput(args: GetOncallEscalationChainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallEscalationChainResult> {
+export function getOncallEscalationChainOutput(args: GetOncallEscalationChainOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOncallEscalationChainResult> {
     pulumi.log.warn("getOncallEscalationChain is deprecated: grafana.index/getoncallescalationchain.getOncallEscalationChain has been deprecated in favor of grafana.oncall/getescalationchain.getEscalationChain")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getOncallEscalationChain:getOncallEscalationChain", {

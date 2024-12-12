@@ -144,7 +144,7 @@ def get_dashboards_output(folder_uids: Optional[pulumi.Input[Optional[Sequence[s
                           limit: Optional[pulumi.Input[Optional[int]]] = None,
                           org_id: Optional[pulumi.Input[Optional[str]]] = None,
                           tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDashboardsResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDashboardsResult]:
     """
     Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
 
@@ -163,7 +163,7 @@ def get_dashboards_output(folder_uids: Optional[pulumi.Input[Optional[Sequence[s
     __args__['limit'] = limit
     __args__['orgId'] = org_id
     __args__['tags'] = tags
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:oss/getDashboards:getDashboards', __args__, opts=opts, typ=GetDashboardsResult)
     return __ret__.apply(lambda __response__: GetDashboardsResult(
         dashboards=pulumi.get(__response__, 'dashboards'),

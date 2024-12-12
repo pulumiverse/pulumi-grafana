@@ -133,7 +133,7 @@ def get_ips(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpsResul
         hosted_metrics=pulumi.get(__ret__, 'hosted_metrics'),
         hosted_traces=pulumi.get(__ret__, 'hosted_traces'),
         id=pulumi.get(__ret__, 'id'))
-def get_ips_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIpsResult]:
+def get_ips_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpsResult]:
     """
     Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
 
@@ -147,7 +147,7 @@ def get_ips_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:cloud/getIps:getIps', __args__, opts=opts, typ=GetIpsResult)
     return __ret__.apply(lambda __response__: GetIpsResult(
         hosted_alerts=pulumi.get(__response__, 'hosted_alerts'),

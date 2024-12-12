@@ -79,7 +79,7 @@ export interface GetDashboardsResult {
  * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
  * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
  */
-export function getDashboardsOutput(args?: GetDashboardsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDashboardsResult> {
+export function getDashboardsOutput(args?: GetDashboardsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDashboardsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:oss/getDashboards:getDashboards", {

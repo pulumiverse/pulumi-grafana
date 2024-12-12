@@ -151,7 +151,7 @@ def get_folder(org_id: Optional[str] = None,
         url=pulumi.get(__ret__, 'url'))
 def get_folder_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
                       title: Optional[pulumi.Input[str]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFolderResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFolderResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
     * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
@@ -177,7 +177,7 @@ def get_folder_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
     __args__ = dict()
     __args__['orgId'] = org_id
     __args__['title'] = title
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getFolder:getFolder', __args__, opts=opts, typ=GetFolderResult)
     return __ret__.apply(lambda __response__: GetFolderResult(
         id=pulumi.get(__response__, 'id'),

@@ -103,7 +103,7 @@ def get_synthetic_monitoring_probes(filter_deprecated: Optional[bool] = None,
         id=pulumi.get(__ret__, 'id'),
         probes=pulumi.get(__ret__, 'probes'))
 def get_synthetic_monitoring_probes_output(filter_deprecated: Optional[pulumi.Input[Optional[bool]]] = None,
-                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSyntheticMonitoringProbesResult]:
+                                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSyntheticMonitoringProbesResult]:
     """
     Data source for retrieving all probes.
 
@@ -122,7 +122,7 @@ def get_synthetic_monitoring_probes_output(filter_deprecated: Optional[pulumi.In
     pulumi.log.warn("""get_synthetic_monitoring_probes is deprecated: grafana.index/getsyntheticmonitoringprobes.getSyntheticMonitoringProbes has been deprecated in favor of grafana.syntheticmonitoring/getprobes.getProbes""")
     __args__ = dict()
     __args__['filterDeprecated'] = filter_deprecated
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getSyntheticMonitoringProbes:getSyntheticMonitoringProbes', __args__, opts=opts, typ=GetSyntheticMonitoringProbesResult)
     return __ret__.apply(lambda __response__: GetSyntheticMonitoringProbesResult(
         filter_deprecated=pulumi.get(__response__, 'filter_deprecated'),

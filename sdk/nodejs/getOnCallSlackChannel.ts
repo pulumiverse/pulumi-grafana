@@ -69,7 +69,7 @@ export interface GetOnCallSlackChannelResult {
  * ```
  */
 /** @deprecated grafana.index/getoncallslackchannel.getOnCallSlackChannel has been deprecated in favor of grafana.oncall/getslackchannel.getSlackChannel */
-export function getOnCallSlackChannelOutput(args: GetOnCallSlackChannelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOnCallSlackChannelResult> {
+export function getOnCallSlackChannelOutput(args: GetOnCallSlackChannelOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOnCallSlackChannelResult> {
     pulumi.log.warn("getOnCallSlackChannel is deprecated: grafana.index/getoncallslackchannel.getOnCallSlackChannel has been deprecated in favor of grafana.oncall/getslackchannel.getSlackChannel")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getOnCallSlackChannel:getOnCallSlackChannel", {

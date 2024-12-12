@@ -123,7 +123,7 @@ def get_library_panels(org_id: Optional[str] = None,
         org_id=pulumi.get(__ret__, 'org_id'),
         panels=pulumi.get(__ret__, 'panels'))
 def get_library_panels_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLibraryPanelsResult]:
+                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLibraryPanelsResult]:
     """
     ## Example Usage
 
@@ -166,7 +166,7 @@ def get_library_panels_output(org_id: Optional[pulumi.Input[Optional[str]]] = No
     """
     __args__ = dict()
     __args__['orgId'] = org_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getLibraryPanels:getLibraryPanels', __args__, opts=opts, typ=GetLibraryPanelsResult)
     return __ret__.apply(lambda __response__: GetLibraryPanelsResult(
         id=pulumi.get(__response__, 'id'),

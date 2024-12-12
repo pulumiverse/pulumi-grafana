@@ -85,7 +85,7 @@ export interface GetFoldersResult {
  * const test = grafana.oss.getFolders({});
  * ```
  */
-export function getFoldersOutput(args?: GetFoldersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFoldersResult> {
+export function getFoldersOutput(args?: GetFoldersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFoldersResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:oss/getFolders:getFolders", {

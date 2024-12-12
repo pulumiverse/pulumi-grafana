@@ -71,7 +71,7 @@ export interface GetOncallScheduleResult {
  * ```
  */
 /** @deprecated grafana.index/getoncallschedule.getOncallSchedule has been deprecated in favor of grafana.oncall/getschedule.getSchedule */
-export function getOncallScheduleOutput(args: GetOncallScheduleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallScheduleResult> {
+export function getOncallScheduleOutput(args: GetOncallScheduleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOncallScheduleResult> {
     pulumi.log.warn("getOncallSchedule is deprecated: grafana.index/getoncallschedule.getOncallSchedule has been deprecated in favor of grafana.oncall/getschedule.getSchedule")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getOncallSchedule:getOncallSchedule", {

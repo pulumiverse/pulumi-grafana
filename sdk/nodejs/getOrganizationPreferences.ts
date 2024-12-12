@@ -80,7 +80,7 @@ export interface GetOrganizationPreferencesResult {
  * ```
  */
 /** @deprecated grafana.index/getorganizationpreferences.getOrganizationPreferences has been deprecated in favor of grafana.oss/getorganizationpreferences.getOrganizationPreferences */
-export function getOrganizationPreferencesOutput(args?: GetOrganizationPreferencesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationPreferencesResult> {
+export function getOrganizationPreferencesOutput(args?: GetOrganizationPreferencesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOrganizationPreferencesResult> {
     pulumi.log.warn("getOrganizationPreferences is deprecated: grafana.index/getorganizationpreferences.getOrganizationPreferences has been deprecated in favor of grafana.oss/getorganizationpreferences.getOrganizationPreferences")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

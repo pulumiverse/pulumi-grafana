@@ -98,7 +98,7 @@ def get_provider_aws_cloudwatch_scrape_jobs(scrape_jobs: Optional[Sequence[Union
         stack_id=pulumi.get(__ret__, 'stack_id'))
 def get_provider_aws_cloudwatch_scrape_jobs_output(scrape_jobs: Optional[pulumi.Input[Optional[Sequence[Union['GetProviderAwsCloudwatchScrapeJobsScrapeJobArgs', 'GetProviderAwsCloudwatchScrapeJobsScrapeJobArgsDict']]]]] = None,
                                                    stack_id: Optional[pulumi.Input[str]] = None,
-                                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProviderAwsCloudwatchScrapeJobsResult]:
+                                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProviderAwsCloudwatchScrapeJobsResult]:
     """
     ## Example Usage
 
@@ -116,7 +116,7 @@ def get_provider_aws_cloudwatch_scrape_jobs_output(scrape_jobs: Optional[pulumi.
     __args__ = dict()
     __args__['scrapeJobs'] = scrape_jobs
     __args__['stackId'] = stack_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs', __args__, opts=opts, typ=GetProviderAwsCloudwatchScrapeJobsResult)
     return __ret__.apply(lambda __response__: GetProviderAwsCloudwatchScrapeJobsResult(
         id=pulumi.get(__response__, 'id'),

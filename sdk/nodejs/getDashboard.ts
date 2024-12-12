@@ -138,7 +138,7 @@ export interface GetDashboardResult {
  * ```
  */
 /** @deprecated grafana.index/getdashboard.getDashboard has been deprecated in favor of grafana.oss/getdashboard.getDashboard */
-export function getDashboardOutput(args?: GetDashboardOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDashboardResult> {
+export function getDashboardOutput(args?: GetDashboardOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDashboardResult> {
     pulumi.log.warn("getDashboard is deprecated: grafana.index/getdashboard.getDashboard has been deprecated in favor of grafana.oss/getdashboard.getDashboard")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

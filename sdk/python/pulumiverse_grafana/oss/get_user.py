@@ -161,7 +161,7 @@ def get_user(email: Optional[str] = None,
 def get_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
                     login: Optional[pulumi.Input[Optional[str]]] = None,
                     user_id: Optional[pulumi.Input[Optional[int]]] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUserResult]:
+                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
     * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
@@ -197,7 +197,7 @@ def get_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['email'] = email
     __args__['login'] = login
     __args__['userId'] = user_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:oss/getUser:getUser', __args__, opts=opts, typ=GetUserResult)
     return __ret__.apply(lambda __response__: GetUserResult(
         email=pulumi.get(__response__, 'email'),

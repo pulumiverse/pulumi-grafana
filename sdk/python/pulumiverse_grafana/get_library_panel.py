@@ -245,7 +245,7 @@ def get_library_panel(name: Optional[str] = None,
 def get_library_panel_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                              org_id: Optional[pulumi.Input[Optional[str]]] = None,
                              uid: Optional[pulumi.Input[Optional[str]]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLibraryPanelResult]:
+                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLibraryPanelResult]:
     """
     Data source for retrieving a single library panel by name or uid.
 
@@ -259,7 +259,7 @@ def get_library_panel_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['name'] = name
     __args__['orgId'] = org_id
     __args__['uid'] = uid
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getLibraryPanel:getLibraryPanel', __args__, opts=opts, typ=GetLibraryPanelResult)
     return __ret__.apply(lambda __response__: GetLibraryPanelResult(
         created=pulumi.get(__response__, 'created'),

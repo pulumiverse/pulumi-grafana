@@ -87,7 +87,7 @@ def get_escalation_chain(name: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'))
 def get_escalation_chain_output(name: Optional[pulumi.Input[str]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEscalationChainResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEscalationChainResult]:
     """
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
 
@@ -105,7 +105,7 @@ def get_escalation_chain_output(name: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:onCall/getEscalationChain:getEscalationChain', __args__, opts=opts, typ=GetEscalationChainResult)
     return __ret__.apply(lambda __response__: GetEscalationChainResult(
         id=pulumi.get(__response__, 'id'),

@@ -100,7 +100,7 @@ def get_slack_channel(name: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         slack_id=pulumi.get(__ret__, 'slack_id'))
 def get_slack_channel_output(name: Optional[pulumi.Input[str]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSlackChannelResult]:
+                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSlackChannelResult]:
     """
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
 
@@ -118,7 +118,7 @@ def get_slack_channel_output(name: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:onCall/getSlackChannel:getSlackChannel', __args__, opts=opts, typ=GetSlackChannelResult)
     return __ret__.apply(lambda __response__: GetSlackChannelResult(
         id=pulumi.get(__response__, 'id'),

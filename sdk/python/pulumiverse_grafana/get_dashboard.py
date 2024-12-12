@@ -229,7 +229,7 @@ def get_dashboard(dashboard_id: Optional[int] = None,
 def get_dashboard_output(dashboard_id: Optional[pulumi.Input[Optional[int]]] = None,
                          org_id: Optional[pulumi.Input[Optional[str]]] = None,
                          uid: Optional[pulumi.Input[Optional[str]]] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDashboardResult]:
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDashboardResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
     * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
@@ -266,7 +266,7 @@ def get_dashboard_output(dashboard_id: Optional[pulumi.Input[Optional[int]]] = N
     __args__['dashboardId'] = dashboard_id
     __args__['orgId'] = org_id
     __args__['uid'] = uid
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getDashboard:getDashboard', __args__, opts=opts, typ=GetDashboardResult)
     return __ret__.apply(lambda __response__: GetDashboardResult(
         config_json=pulumi.get(__response__, 'config_json'),

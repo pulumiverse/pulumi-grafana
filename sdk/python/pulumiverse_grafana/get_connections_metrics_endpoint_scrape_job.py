@@ -181,7 +181,7 @@ def get_connections_metrics_endpoint_scrape_job(name: Optional[str] = None,
         url=pulumi.get(__ret__, 'url'))
 def get_connections_metrics_endpoint_scrape_job_output(name: Optional[pulumi.Input[str]] = None,
                                                        stack_id: Optional[pulumi.Input[str]] = None,
-                                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetConnectionsMetricsEndpointScrapeJobResult]:
+                                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetConnectionsMetricsEndpointScrapeJobResult]:
     """
     ## Example Usage
 
@@ -196,7 +196,7 @@ def get_connections_metrics_endpoint_scrape_job_output(name: Optional[pulumi.Inp
     __args__ = dict()
     __args__['name'] = name
     __args__['stackId'] = stack_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getConnectionsMetricsEndpointScrapeJob:getConnectionsMetricsEndpointScrapeJob', __args__, opts=opts, typ=GetConnectionsMetricsEndpointScrapeJobResult)
     return __ret__.apply(lambda __response__: GetConnectionsMetricsEndpointScrapeJobResult(
         authentication_basic_password=pulumi.get(__response__, 'authentication_basic_password'),

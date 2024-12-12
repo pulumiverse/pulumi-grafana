@@ -181,7 +181,7 @@ def get_synthetic_monitoring_probe(name: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         tenant_id=pulumi.get(__ret__, 'tenant_id'))
 def get_synthetic_monitoring_probe_output(name: Optional[pulumi.Input[str]] = None,
-                                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSyntheticMonitoringProbeResult]:
+                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSyntheticMonitoringProbeResult]:
     """
     Data source for retrieving a single probe by name.
 
@@ -200,7 +200,7 @@ def get_synthetic_monitoring_probe_output(name: Optional[pulumi.Input[str]] = No
     pulumi.log.warn("""get_synthetic_monitoring_probe is deprecated: grafana.index/getsyntheticmonitoringprobe.getSyntheticMonitoringProbe has been deprecated in favor of grafana.syntheticmonitoring/getprobe.getProbe""")
     __args__ = dict()
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe', __args__, opts=opts, typ=GetSyntheticMonitoringProbeResult)
     return __ret__.apply(lambda __response__: GetSyntheticMonitoringProbeResult(
         disable_scripted_checks=pulumi.get(__response__, 'disable_scripted_checks'),

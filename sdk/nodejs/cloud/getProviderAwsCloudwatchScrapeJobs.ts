@@ -66,7 +66,7 @@ export interface GetProviderAwsCloudwatchScrapeJobsResult {
  * }));
  * ```
  */
-export function getProviderAwsCloudwatchScrapeJobsOutput(args: GetProviderAwsCloudwatchScrapeJobsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProviderAwsCloudwatchScrapeJobsResult> {
+export function getProviderAwsCloudwatchScrapeJobsOutput(args: GetProviderAwsCloudwatchScrapeJobsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProviderAwsCloudwatchScrapeJobsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs", {
         "scrapeJobs": args.scrapeJobs,

@@ -131,7 +131,7 @@ def get_provider_aws_account(resource_id: Optional[str] = None,
         stack_id=pulumi.get(__ret__, 'stack_id'))
 def get_provider_aws_account_output(resource_id: Optional[pulumi.Input[str]] = None,
                                     stack_id: Optional[pulumi.Input[str]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProviderAwsAccountResult]:
+                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProviderAwsAccountResult]:
     """
     ## Example Usage
 
@@ -158,7 +158,7 @@ def get_provider_aws_account_output(resource_id: Optional[pulumi.Input[str]] = N
     __args__ = dict()
     __args__['resourceId'] = resource_id
     __args__['stackId'] = stack_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:cloud/getProviderAwsAccount:getProviderAwsAccount', __args__, opts=opts, typ=GetProviderAwsAccountResult)
     return __ret__.apply(lambda __response__: GetProviderAwsAccountResult(
         id=pulumi.get(__response__, 'id'),

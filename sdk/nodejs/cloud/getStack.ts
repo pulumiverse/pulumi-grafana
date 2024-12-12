@@ -181,7 +181,7 @@ export interface GetStackResult {
  * });
  * ```
  */
-export function getStackOutput(args: GetStackOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStackResult> {
+export function getStackOutput(args: GetStackOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStackResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:cloud/getStack:getStack", {
         "slug": args.slug,

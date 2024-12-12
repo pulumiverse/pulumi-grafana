@@ -60,7 +60,7 @@ export interface GetOncallUserGroupResult {
  * ```
  */
 /** @deprecated grafana.index/getoncallusergroup.getOncallUserGroup has been deprecated in favor of grafana.oncall/getusergroup.getUserGroup */
-export function getOncallUserGroupOutput(args: GetOncallUserGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallUserGroupResult> {
+export function getOncallUserGroupOutput(args: GetOncallUserGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOncallUserGroupResult> {
     pulumi.log.warn("getOncallUserGroup is deprecated: grafana.index/getoncallusergroup.getOncallUserGroup has been deprecated in favor of grafana.oncall/getusergroup.getUserGroup")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getOncallUserGroup:getOncallUserGroup", {

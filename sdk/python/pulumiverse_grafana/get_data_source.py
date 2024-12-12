@@ -251,7 +251,7 @@ def get_data_source(name: Optional[str] = None,
 def get_data_source_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                            org_id: Optional[pulumi.Input[Optional[str]]] = None,
                            uid: Optional[pulumi.Input[Optional[str]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataSourceResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDataSourceResult]:
     """
     Get details about a Grafana Datasource querying by either name, uid or ID
 
@@ -290,7 +290,7 @@ def get_data_source_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['name'] = name
     __args__['orgId'] = org_id
     __args__['uid'] = uid
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getDataSource:getDataSource', __args__, opts=opts, typ=GetDataSourceResult)
     return __ret__.apply(lambda __response__: GetDataSourceResult(
         access_mode=pulumi.get(__response__, 'access_mode'),

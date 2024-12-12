@@ -82,7 +82,7 @@ export interface GetConnectionsMetricsEndpointScrapeJobResult {
  * });
  * ```
  */
-export function getConnectionsMetricsEndpointScrapeJobOutput(args: GetConnectionsMetricsEndpointScrapeJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetConnectionsMetricsEndpointScrapeJobResult> {
+export function getConnectionsMetricsEndpointScrapeJobOutput(args: GetConnectionsMetricsEndpointScrapeJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetConnectionsMetricsEndpointScrapeJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getConnectionsMetricsEndpointScrapeJob:getConnectionsMetricsEndpointScrapeJob", {
         "name": args.name,

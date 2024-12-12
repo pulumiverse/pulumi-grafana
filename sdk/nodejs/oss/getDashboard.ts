@@ -135,7 +135,7 @@ export interface GetDashboardResult {
  * });
  * ```
  */
-export function getDashboardOutput(args?: GetDashboardOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDashboardResult> {
+export function getDashboardOutput(args?: GetDashboardOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDashboardResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:oss/getDashboard:getDashboard", {

@@ -145,7 +145,7 @@ export interface GetSlosResult {
  * const slos = grafana.slo.getSlos({});
  * ```
  */
-export function getSlosOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSlosResult> {
+export function getSlosOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSlosResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:slo/getSlos:getSlos", {
     }, opts);

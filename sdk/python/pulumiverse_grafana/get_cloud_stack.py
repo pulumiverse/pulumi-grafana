@@ -534,7 +534,7 @@ def get_cloud_stack(slug: Optional[str] = None,
         traces_user_id=pulumi.get(__ret__, 'traces_user_id'),
         url=pulumi.get(__ret__, 'url'))
 def get_cloud_stack_output(slug: Optional[pulumi.Input[str]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudStackResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudStackResult]:
     """
     Data source for Grafana Stack
 
@@ -560,7 +560,7 @@ def get_cloud_stack_output(slug: Optional[pulumi.Input[str]] = None,
     pulumi.log.warn("""get_cloud_stack is deprecated: grafana.index/getcloudstack.getCloudStack has been deprecated in favor of grafana.cloud/getstack.getStack""")
     __args__ = dict()
     __args__['slug'] = slug
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getCloudStack:getCloudStack', __args__, opts=opts, typ=GetCloudStackResult)
     return __ret__.apply(lambda __response__: GetCloudStackResult(
         alertmanager_name=pulumi.get(__response__, 'alertmanager_name'),

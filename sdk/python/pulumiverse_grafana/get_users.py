@@ -96,7 +96,7 @@ def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersR
     return AwaitableGetUsersResult(
         id=pulumi.get(__ret__, 'id'),
         users=pulumi.get(__ret__, 'users'))
-def get_users_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUsersResult]:
+def get_users_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUsersResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
     * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
@@ -122,7 +122,7 @@ def get_users_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Outp
     """
     pulumi.log.warn("""get_users is deprecated: grafana.index/getusers.getUsers has been deprecated in favor of grafana.oss/getusers.getUsers""")
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult)
     return __ret__.apply(lambda __response__: GetUsersResult(
         id=pulumi.get(__response__, 'id'),

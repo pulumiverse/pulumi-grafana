@@ -55,7 +55,7 @@ export interface GetAccessPoliciesResult {
  *
  * * accesspolicies:read
  */
-export function getAccessPoliciesOutput(args?: GetAccessPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccessPoliciesResult> {
+export function getAccessPoliciesOutput(args?: GetAccessPoliciesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccessPoliciesResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:cloud/getAccessPolicies:getAccessPolicies", {
