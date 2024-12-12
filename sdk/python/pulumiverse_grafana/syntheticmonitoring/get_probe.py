@@ -178,7 +178,7 @@ def get_probe(name: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         tenant_id=pulumi.get(__ret__, 'tenant_id'))
 def get_probe_output(name: Optional[pulumi.Input[str]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProbeResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProbeResult]:
     """
     Data source for retrieving a single probe by name.
 
@@ -196,7 +196,7 @@ def get_probe_output(name: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:syntheticMonitoring/getProbe:getProbe', __args__, opts=opts, typ=GetProbeResult)
     return __ret__.apply(lambda __response__: GetProbeResult(
         disable_scripted_checks=pulumi.get(__response__, 'disable_scripted_checks'),

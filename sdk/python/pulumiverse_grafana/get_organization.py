@@ -139,7 +139,7 @@ def get_organization(name: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         viewers=pulumi.get(__ret__, 'viewers'))
 def get_organization_output(name: Optional[pulumi.Input[str]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
     * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
@@ -168,7 +168,7 @@ def get_organization_output(name: Optional[pulumi.Input[str]] = None,
     pulumi.log.warn("""get_organization is deprecated: grafana.index/getorganization.getOrganization has been deprecated in favor of grafana.oss/getorganization.getOrganization""")
     __args__ = dict()
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult)
     return __ret__.apply(lambda __response__: GetOrganizationResult(
         admins=pulumi.get(__response__, 'admins'),

@@ -103,7 +103,7 @@ def get_access_policies(name_filter: Optional[str] = None,
         region_filter=pulumi.get(__ret__, 'region_filter'))
 def get_access_policies_output(name_filter: Optional[pulumi.Input[Optional[str]]] = None,
                                region_filter: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccessPoliciesResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccessPoliciesResult]:
     """
     Fetches access policies from Grafana Cloud.
 
@@ -117,7 +117,7 @@ def get_access_policies_output(name_filter: Optional[pulumi.Input[Optional[str]]
     __args__ = dict()
     __args__['nameFilter'] = name_filter
     __args__['regionFilter'] = region_filter
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:cloud/getAccessPolicies:getAccessPolicies', __args__, opts=opts, typ=GetAccessPoliciesResult)
     return __ret__.apply(lambda __response__: GetAccessPoliciesResult(
         access_policies=pulumi.get(__response__, 'access_policies'),

@@ -148,7 +148,7 @@ export interface GetSlosResult {
  * ```
  */
 /** @deprecated grafana.index/getslos.getSlos has been deprecated in favor of grafana.slo/getslos.getSlos */
-export function getSlosOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSlosResult> {
+export function getSlosOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSlosResult> {
     pulumi.log.warn("getSlos is deprecated: grafana.index/getslos.getSlos has been deprecated in favor of grafana.slo/getslos.getSlos")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getSlos:getSlos", {

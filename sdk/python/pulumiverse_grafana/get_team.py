@@ -180,7 +180,7 @@ def get_team(name: Optional[str] = None,
 def get_team_output(name: Optional[pulumi.Input[str]] = None,
                     org_id: Optional[pulumi.Input[Optional[str]]] = None,
                     read_team_sync: Optional[pulumi.Input[Optional[bool]]] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTeamResult]:
+                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTeamResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
     * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
@@ -207,7 +207,7 @@ def get_team_output(name: Optional[pulumi.Input[str]] = None,
     __args__['name'] = name
     __args__['orgId'] = org_id
     __args__['readTeamSync'] = read_team_sync
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getTeam:getTeam', __args__, opts=opts, typ=GetTeamResult)
     return __ret__.apply(lambda __response__: GetTeamResult(
         email=pulumi.get(__response__, 'email'),

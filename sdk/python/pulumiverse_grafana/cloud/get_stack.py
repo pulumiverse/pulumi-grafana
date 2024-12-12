@@ -531,7 +531,7 @@ def get_stack(slug: Optional[str] = None,
         traces_user_id=pulumi.get(__ret__, 'traces_user_id'),
         url=pulumi.get(__ret__, 'url'))
 def get_stack_output(slug: Optional[pulumi.Input[str]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStackResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStackResult]:
     """
     Data source for Grafana Stack
 
@@ -556,7 +556,7 @@ def get_stack_output(slug: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['slug'] = slug
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:cloud/getStack:getStack', __args__, opts=opts, typ=GetStackResult)
     return __ret__.apply(lambda __response__: GetStackResult(
         alertmanager_name=pulumi.get(__response__, 'alertmanager_name'),

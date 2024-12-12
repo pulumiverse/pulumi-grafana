@@ -77,7 +77,7 @@ export interface GetOrganizationPreferencesResult {
  * const test = grafana.oss.getOrganizationPreferences({});
  * ```
  */
-export function getOrganizationPreferencesOutput(args?: GetOrganizationPreferencesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationPreferencesResult> {
+export function getOrganizationPreferencesOutput(args?: GetOrganizationPreferencesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOrganizationPreferencesResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:oss/getOrganizationPreferences:getOrganizationPreferences", {

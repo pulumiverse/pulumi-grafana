@@ -63,7 +63,7 @@ export interface GetIpsResult {
  * const test = grafana.cloud.getIps({});
  * ```
  */
-export function getIpsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetIpsResult> {
+export function getIpsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIpsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:cloud/getIps:getIps", {
     }, opts);

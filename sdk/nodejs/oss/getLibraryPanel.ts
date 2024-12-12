@@ -99,7 +99,7 @@ export interface GetLibraryPanelResult {
 /**
  * Data source for retrieving a single library panel by name or uid.
  */
-export function getLibraryPanelOutput(args?: GetLibraryPanelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLibraryPanelResult> {
+export function getLibraryPanelOutput(args?: GetLibraryPanelOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLibraryPanelResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:oss/getLibraryPanel:getLibraryPanel", {

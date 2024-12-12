@@ -90,7 +90,7 @@ def get_oncall_escalation_chain(name: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'))
 def get_oncall_escalation_chain_output(name: Optional[pulumi.Input[str]] = None,
-                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallEscalationChainResult]:
+                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOncallEscalationChainResult]:
     """
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)
 
@@ -109,7 +109,7 @@ def get_oncall_escalation_chain_output(name: Optional[pulumi.Input[str]] = None,
     pulumi.log.warn("""get_oncall_escalation_chain is deprecated: grafana.index/getoncallescalationchain.getOncallEscalationChain has been deprecated in favor of grafana.oncall/getescalationchain.getEscalationChain""")
     __args__ = dict()
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getOncallEscalationChain:getOncallEscalationChain', __args__, opts=opts, typ=GetOncallEscalationChainResult)
     return __ret__.apply(lambda __response__: GetOncallEscalationChainResult(
         id=pulumi.get(__response__, 'id'),

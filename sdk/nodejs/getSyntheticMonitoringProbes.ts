@@ -66,7 +66,7 @@ export interface GetSyntheticMonitoringProbesResult {
  * ```
  */
 /** @deprecated grafana.index/getsyntheticmonitoringprobes.getSyntheticMonitoringProbes has been deprecated in favor of grafana.syntheticmonitoring/getprobes.getProbes */
-export function getSyntheticMonitoringProbesOutput(args?: GetSyntheticMonitoringProbesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSyntheticMonitoringProbesResult> {
+export function getSyntheticMonitoringProbesOutput(args?: GetSyntheticMonitoringProbesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSyntheticMonitoringProbesResult> {
     pulumi.log.warn("getSyntheticMonitoringProbes is deprecated: grafana.index/getsyntheticmonitoringprobes.getSyntheticMonitoringProbes has been deprecated in favor of grafana.syntheticmonitoring/getprobes.getProbes")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

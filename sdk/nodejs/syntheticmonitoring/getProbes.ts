@@ -63,7 +63,7 @@ export interface GetProbesResult {
  * const main = grafana.syntheticMonitoring.getProbes({});
  * ```
  */
-export function getProbesOutput(args?: GetProbesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProbesResult> {
+export function getProbesOutput(args?: GetProbesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProbesResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:syntheticMonitoring/getProbes:getProbes", {

@@ -91,7 +91,7 @@ def get_user_group(slack_handle: Optional[str] = None,
         slack_handle=pulumi.get(__ret__, 'slack_handle'),
         slack_id=pulumi.get(__ret__, 'slack_id'))
 def get_user_group_output(slack_handle: Optional[pulumi.Input[str]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUserGroupResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserGroupResult]:
     """
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/user_groups/)
 
@@ -106,7 +106,7 @@ def get_user_group_output(slack_handle: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['slackHandle'] = slack_handle
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:onCall/getUserGroup:getUserGroup', __args__, opts=opts, typ=GetUserGroupResult)
     return __ret__.apply(lambda __response__: GetUserGroupResult(
         id=pulumi.get(__response__, 'id'),

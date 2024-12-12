@@ -65,7 +65,7 @@ export interface GetOncallOutgoingWebhookResult {
  * ```
  */
 /** @deprecated grafana.index/getoncalloutgoingwebhook.getOncallOutgoingWebhook has been deprecated in favor of grafana.oncall/getoutgoingwebhook.getOutgoingWebhook */
-export function getOncallOutgoingWebhookOutput(args: GetOncallOutgoingWebhookOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallOutgoingWebhookResult> {
+export function getOncallOutgoingWebhookOutput(args: GetOncallOutgoingWebhookOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOncallOutgoingWebhookResult> {
     pulumi.log.warn("getOncallOutgoingWebhook is deprecated: grafana.index/getoncalloutgoingwebhook.getOncallOutgoingWebhook has been deprecated in favor of grafana.oncall/getoutgoingwebhook.getOutgoingWebhook")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook", {

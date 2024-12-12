@@ -112,7 +112,7 @@ def get_folders(org_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         org_id=pulumi.get(__ret__, 'org_id'))
 def get_folders_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFoldersResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFoldersResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
     * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
@@ -139,7 +139,7 @@ def get_folders_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
     pulumi.log.warn("""get_folders is deprecated: grafana.index/getfolders.getFolders has been deprecated in favor of grafana.oss/getfolders.getFolders""")
     __args__ = dict()
     __args__['orgId'] = org_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getFolders:getFolders', __args__, opts=opts, typ=GetFoldersResult)
     return __ret__.apply(lambda __response__: GetFoldersResult(
         folders=pulumi.get(__response__, 'folders'),

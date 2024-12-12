@@ -92,7 +92,7 @@ export interface GetProviderAwsAccountResult {
  * }));
  * ```
  */
-export function getProviderAwsAccountOutput(args: GetProviderAwsAccountOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProviderAwsAccountResult> {
+export function getProviderAwsAccountOutput(args: GetProviderAwsAccountOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProviderAwsAccountResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:cloud/getProviderAwsAccount:getProviderAwsAccount", {
         "resourceId": args.resourceId,

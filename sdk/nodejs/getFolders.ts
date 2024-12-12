@@ -88,7 +88,7 @@ export interface GetFoldersResult {
  * ```
  */
 /** @deprecated grafana.index/getfolders.getFolders has been deprecated in favor of grafana.oss/getfolders.getFolders */
-export function getFoldersOutput(args?: GetFoldersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFoldersResult> {
+export function getFoldersOutput(args?: GetFoldersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFoldersResult> {
     pulumi.log.warn("getFolders is deprecated: grafana.index/getfolders.getFolders has been deprecated in favor of grafana.oss/getfolders.getFolders")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

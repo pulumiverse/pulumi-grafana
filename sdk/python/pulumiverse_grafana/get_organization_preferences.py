@@ -143,7 +143,7 @@ def get_organization_preferences(org_id: Optional[str] = None,
         timezone=pulumi.get(__ret__, 'timezone'),
         week_start=pulumi.get(__ret__, 'week_start'))
 def get_organization_preferences_output(org_id: Optional[pulumi.Input[Optional[str]]] = None,
-                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationPreferencesResult]:
+                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationPreferencesResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
     * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
@@ -163,7 +163,7 @@ def get_organization_preferences_output(org_id: Optional[pulumi.Input[Optional[s
     pulumi.log.warn("""get_organization_preferences is deprecated: grafana.index/getorganizationpreferences.getOrganizationPreferences has been deprecated in favor of grafana.oss/getorganizationpreferences.getOrganizationPreferences""")
     __args__ = dict()
     __args__['orgId'] = org_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getOrganizationPreferences:getOrganizationPreferences', __args__, opts=opts, typ=GetOrganizationPreferencesResult)
     return __ret__.apply(lambda __response__: GetOrganizationPreferencesResult(
         home_dashboard_uid=pulumi.get(__response__, 'home_dashboard_uid'),

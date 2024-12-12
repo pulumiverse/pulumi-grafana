@@ -93,7 +93,7 @@ export interface GetTeamResult {
  * ```
  */
 /** @deprecated grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam */
-export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamResult> {
+export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTeamResult> {
     pulumi.log.warn("getTeam is deprecated: grafana.index/getteam.getTeam has been deprecated in favor of grafana.oss/getteam.getTeam")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getTeam:getTeam", {

@@ -155,7 +155,7 @@ export interface GetRoleResult {
  * ```
  */
 /** @deprecated grafana.index/getrole.getRole has been deprecated in favor of grafana.enterprise/getrole.getRole */
-export function getRoleOutput(args: GetRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRoleResult> {
+export function getRoleOutput(args: GetRoleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRoleResult> {
     pulumi.log.warn("getRole is deprecated: grafana.index/getrole.getRole has been deprecated in favor of grafana.enterprise/getrole.getRole")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getRole:getRole", {

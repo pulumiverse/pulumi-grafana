@@ -62,7 +62,7 @@ export interface GetOutgoingWebhookResult {
  * });
  * ```
  */
-export function getOutgoingWebhookOutput(args: GetOutgoingWebhookOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOutgoingWebhookResult> {
+export function getOutgoingWebhookOutput(args: GetOutgoingWebhookOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOutgoingWebhookResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:onCall/getOutgoingWebhook:getOutgoingWebhook", {
         "name": args.name,

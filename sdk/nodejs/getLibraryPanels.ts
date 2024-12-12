@@ -116,7 +116,7 @@ export interface GetLibraryPanelsResult {
  * const all = grafana.getLibraryPanels({});
  * ```
  */
-export function getLibraryPanelsOutput(args?: GetLibraryPanelsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLibraryPanelsResult> {
+export function getLibraryPanelsOutput(args?: GetLibraryPanelsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLibraryPanelsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getLibraryPanels:getLibraryPanels", {

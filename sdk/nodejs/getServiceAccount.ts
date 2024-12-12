@@ -96,7 +96,7 @@ export interface GetServiceAccountResult {
  * ```
  */
 /** @deprecated grafana.index/getserviceaccount.getServiceAccount has been deprecated in favor of grafana.oss/getserviceaccount.getServiceAccount */
-export function getServiceAccountOutput(args: GetServiceAccountOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceAccountResult> {
+export function getServiceAccountOutput(args: GetServiceAccountOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServiceAccountResult> {
     pulumi.log.warn("getServiceAccount is deprecated: grafana.index/getserviceaccount.getServiceAccount has been deprecated in favor of grafana.oss/getserviceaccount.getServiceAccount")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getServiceAccount:getServiceAccount", {

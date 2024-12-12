@@ -130,7 +130,7 @@ export interface GetUserResult {
  * ```
  */
 /** @deprecated grafana.index/getuser.getUser has been deprecated in favor of grafana.oss/getuser.getUser */
-export function getUserOutput(args?: GetUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserResult> {
+export function getUserOutput(args?: GetUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUserResult> {
     pulumi.log.warn("getUser is deprecated: grafana.index/getuser.getUser has been deprecated in favor of grafana.oss/getuser.getUser")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

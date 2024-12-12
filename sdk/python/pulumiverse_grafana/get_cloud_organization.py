@@ -128,7 +128,7 @@ def get_cloud_organization(id: Optional[str] = None,
         url=pulumi.get(__ret__, 'url'))
 def get_cloud_organization_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                                   slug: Optional[pulumi.Input[Optional[str]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudOrganizationResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudOrganizationResult]:
     """
     ## Example Usage
 
@@ -146,7 +146,7 @@ def get_cloud_organization_output(id: Optional[pulumi.Input[Optional[str]]] = No
     __args__ = dict()
     __args__['id'] = id
     __args__['slug'] = slug
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getCloudOrganization:getCloudOrganization', __args__, opts=opts, typ=GetCloudOrganizationResult)
     return __ret__.apply(lambda __response__: GetCloudOrganizationResult(
         created_at=pulumi.get(__response__, 'created_at'),

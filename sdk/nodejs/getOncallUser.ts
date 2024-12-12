@@ -73,7 +73,7 @@ export interface GetOncallUserResult {
  * ```
  */
 /** @deprecated grafana.index/getoncalluser.getOncallUser has been deprecated in favor of grafana.oncall/getuser.getUser */
-export function getOncallUserOutput(args: GetOncallUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOncallUserResult> {
+export function getOncallUserOutput(args: GetOncallUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOncallUserResult> {
     pulumi.log.warn("getOncallUser is deprecated: grafana.index/getoncalluser.getOncallUser has been deprecated in favor of grafana.oncall/getuser.getUser")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getOncallUser:getOncallUser", {

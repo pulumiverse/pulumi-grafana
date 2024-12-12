@@ -148,7 +148,7 @@ export interface GetDataSourceResult {
  * ```
  */
 /** @deprecated grafana.index/getdatasource.getDataSource has been deprecated in favor of grafana.oss/getdatasource.getDataSource */
-export function getDataSourceOutput(args?: GetDataSourceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDataSourceResult> {
+export function getDataSourceOutput(args?: GetDataSourceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDataSourceResult> {
     pulumi.log.warn("getDataSource is deprecated: grafana.index/getdatasource.getDataSource has been deprecated in favor of grafana.oss/getdatasource.getDataSource")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

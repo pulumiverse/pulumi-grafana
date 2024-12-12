@@ -136,7 +136,7 @@ def get_service_account(name: Optional[str] = None,
         role=pulumi.get(__ret__, 'role'))
 def get_service_account_output(name: Optional[pulumi.Input[str]] = None,
                                org_id: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceAccountResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceAccountResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
             * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
@@ -162,7 +162,7 @@ def get_service_account_output(name: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['orgId'] = org_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:oss/getServiceAccount:getServiceAccount', __args__, opts=opts, typ=GetServiceAccountResult)
     return __ret__.apply(lambda __response__: GetServiceAccountResult(
         id=pulumi.get(__response__, 'id'),

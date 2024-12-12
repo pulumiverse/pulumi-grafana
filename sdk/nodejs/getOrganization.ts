@@ -99,7 +99,7 @@ export interface GetOrganizationResult {
  * ```
  */
 /** @deprecated grafana.index/getorganization.getOrganization has been deprecated in favor of grafana.oss/getorganization.getOrganization */
-export function getOrganizationOutput(args: GetOrganizationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationResult> {
+export function getOrganizationOutput(args: GetOrganizationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOrganizationResult> {
     pulumi.log.warn("getOrganization is deprecated: grafana.index/getorganization.getOrganization has been deprecated in favor of grafana.oss/getorganization.getOrganization")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getOrganization:getOrganization", {

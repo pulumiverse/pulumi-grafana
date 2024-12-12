@@ -66,7 +66,7 @@ export interface GetSlackChannelResult {
  * });
  * ```
  */
-export function getSlackChannelOutput(args: GetSlackChannelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSlackChannelResult> {
+export function getSlackChannelOutput(args: GetSlackChannelOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSlackChannelResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:onCall/getSlackChannel:getSlackChannel", {
         "name": args.name,

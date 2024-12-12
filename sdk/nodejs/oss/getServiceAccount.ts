@@ -93,7 +93,7 @@ export interface GetServiceAccountResult {
  * });
  * ```
  */
-export function getServiceAccountOutput(args: GetServiceAccountOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceAccountResult> {
+export function getServiceAccountOutput(args: GetServiceAccountOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServiceAccountResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:oss/getServiceAccount:getServiceAccount", {
         "name": args.name,

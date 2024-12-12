@@ -65,7 +65,7 @@ export interface GetCloudOrganizationResult {
  * ```
  */
 /** @deprecated grafana.index/getcloudorganization.getCloudOrganization has been deprecated in favor of grafana.cloud/getorganization.getOrganization */
-export function getCloudOrganizationOutput(args?: GetCloudOrganizationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudOrganizationResult> {
+export function getCloudOrganizationOutput(args?: GetCloudOrganizationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCloudOrganizationResult> {
     pulumi.log.warn("getCloudOrganization is deprecated: grafana.index/getcloudorganization.getCloudOrganization has been deprecated in favor of grafana.cloud/getorganization.getOrganization")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

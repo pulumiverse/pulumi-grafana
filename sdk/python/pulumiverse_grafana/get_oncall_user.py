@@ -116,7 +116,7 @@ def get_oncall_user(username: Optional[str] = None,
         role=pulumi.get(__ret__, 'role'),
         username=pulumi.get(__ret__, 'username'))
 def get_oncall_user_output(username: Optional[pulumi.Input[str]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOncallUserResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOncallUserResult]:
     """
     * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
 
@@ -135,7 +135,7 @@ def get_oncall_user_output(username: Optional[pulumi.Input[str]] = None,
     pulumi.log.warn("""get_oncall_user is deprecated: grafana.index/getoncalluser.getOncallUser has been deprecated in favor of grafana.oncall/getuser.getUser""")
     __args__ = dict()
     __args__['username'] = username
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getOncallUser:getOncallUser', __args__, opts=opts, typ=GetOncallUserResult)
     return __ret__.apply(lambda __response__: GetOncallUserResult(
         email=pulumi.get(__response__, 'email'),

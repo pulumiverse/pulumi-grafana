@@ -132,7 +132,7 @@ def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosRes
     return AwaitableGetSlosResult(
         id=pulumi.get(__ret__, 'id'),
         slos=pulumi.get(__ret__, 'slos'))
-def get_slos_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSlosResult]:
+def get_slos_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSlosResult]:
     """
     Datasource for retrieving all SLOs.
 
@@ -194,7 +194,7 @@ def get_slos_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Outpu
     """
     pulumi.log.warn("""get_slos is deprecated: grafana.index/getslos.getSlos has been deprecated in favor of grafana.slo/getslos.getSlos""")
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getSlos:getSlos', __args__, opts=opts, typ=GetSlosResult)
     return __ret__.apply(lambda __response__: GetSlosResult(
         id=pulumi.get(__response__, 'id'),
