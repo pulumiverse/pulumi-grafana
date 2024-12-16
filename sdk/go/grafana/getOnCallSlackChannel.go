@@ -67,21 +67,11 @@ type GetOnCallSlackChannelResult struct {
 }
 
 func GetOnCallSlackChannelOutput(ctx *pulumi.Context, args GetOnCallSlackChannelOutputArgs, opts ...pulumi.InvokeOption) GetOnCallSlackChannelResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetOnCallSlackChannelResultOutput, error) {
 			args := v.(GetOnCallSlackChannelArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetOnCallSlackChannelResult
-			secret, err := ctx.InvokePackageRaw("grafana:index/getOnCallSlackChannel:getOnCallSlackChannel", args, &rv, "", opts...)
-			if err != nil {
-				return GetOnCallSlackChannelResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetOnCallSlackChannelResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetOnCallSlackChannelResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:index/getOnCallSlackChannel:getOnCallSlackChannel", args, GetOnCallSlackChannelResultOutput{}, options).(GetOnCallSlackChannelResultOutput), nil
 		}).(GetOnCallSlackChannelResultOutput)
 }
 

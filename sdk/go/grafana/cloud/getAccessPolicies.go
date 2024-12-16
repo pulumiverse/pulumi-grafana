@@ -45,21 +45,11 @@ type GetAccessPoliciesResult struct {
 }
 
 func GetAccessPoliciesOutput(ctx *pulumi.Context, args GetAccessPoliciesOutputArgs, opts ...pulumi.InvokeOption) GetAccessPoliciesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetAccessPoliciesResultOutput, error) {
 			args := v.(GetAccessPoliciesArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetAccessPoliciesResult
-			secret, err := ctx.InvokePackageRaw("grafana:cloud/getAccessPolicies:getAccessPolicies", args, &rv, "", opts...)
-			if err != nil {
-				return GetAccessPoliciesResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetAccessPoliciesResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetAccessPoliciesResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:cloud/getAccessPolicies:getAccessPolicies", args, GetAccessPoliciesResultOutput{}, options).(GetAccessPoliciesResultOutput), nil
 		}).(GetAccessPoliciesResultOutput)
 }
 

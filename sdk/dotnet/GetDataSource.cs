@@ -114,6 +114,57 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetDataSourceResult> Invoke(GetDataSourceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataSourceResult>("grafana:index/getDataSource:getDataSource", args ?? new GetDataSourceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Get details about a Grafana Datasource querying by either name, uid or ID
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var prometheus = new Grafana.Oss.DataSource("prometheus", new()
+        ///     {
+        ///         Type = "prometheus",
+        ///         Name = "prometheus-ds-test",
+        ///         Uid = "prometheus-ds-test-uid",
+        ///         Url = "https://my-instance.com",
+        ///         BasicAuthEnabled = true,
+        ///         BasicAuthUsername = "username",
+        ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["httpMethod"] = "POST",
+        ///             ["prometheusType"] = "Mimir",
+        ///             ["prometheusVersion"] = "2.4.0",
+        ///         }),
+        ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["basicAuthPassword"] = "password",
+        ///         }),
+        ///     });
+        /// 
+        ///     var fromName = Grafana.Oss.GetDataSource.Invoke(new()
+        ///     {
+        ///         Name = prometheus.Name,
+        ///     });
+        /// 
+        ///     var fromUid = Grafana.Oss.GetDataSource.Invoke(new()
+        ///     {
+        ///         Uid = prometheus.Uid,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDataSourceResult> Invoke(GetDataSourceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDataSourceResult>("grafana:index/getDataSource:getDataSource", args ?? new GetDataSourceInvokeArgs(), options.WithDefaults());
     }
 
 

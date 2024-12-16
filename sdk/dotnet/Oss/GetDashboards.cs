@@ -31,6 +31,16 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public static Output<GetDashboardsResult> Invoke(GetDashboardsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDashboardsResult>("grafana:oss/getDashboards:getDashboards", args ?? new GetDashboardsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Datasource for retrieving all dashboards. Specify list of folder IDs to search in for dashboards.
+        /// 
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
+        /// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+        /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+        /// </summary>
+        public static Output<GetDashboardsResult> Invoke(GetDashboardsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDashboardsResult>("grafana:oss/getDashboards:getDashboards", args ?? new GetDashboardsInvokeArgs(), options.WithDefaults());
     }
 
 

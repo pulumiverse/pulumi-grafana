@@ -55,6 +55,28 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public static Output<GetOrganizationPreferencesResult> Invoke(GetOrganizationPreferencesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationPreferencesResult>("grafana:oss/getOrganizationPreferences:getOrganizationPreferences", args ?? new GetOrganizationPreferencesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Grafana.Oss.GetOrganizationPreferences.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetOrganizationPreferencesResult> Invoke(GetOrganizationPreferencesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationPreferencesResult>("grafana:oss/getOrganizationPreferences:getOrganizationPreferences", args ?? new GetOrganizationPreferencesInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -79,21 +79,11 @@ type LookupServiceAccountResult struct {
 }
 
 func LookupServiceAccountOutput(ctx *pulumi.Context, args LookupServiceAccountOutputArgs, opts ...pulumi.InvokeOption) LookupServiceAccountResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupServiceAccountResultOutput, error) {
 			args := v.(LookupServiceAccountArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupServiceAccountResult
-			secret, err := ctx.InvokePackageRaw("grafana:index/getServiceAccount:getServiceAccount", args, &rv, "", opts...)
-			if err != nil {
-				return LookupServiceAccountResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupServiceAccountResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupServiceAccountResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:index/getServiceAccount:getServiceAccount", args, LookupServiceAccountResultOutput{}, options).(LookupServiceAccountResultOutput), nil
 		}).(LookupServiceAccountResultOutput)
 }
 

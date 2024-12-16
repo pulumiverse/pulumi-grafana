@@ -132,21 +132,11 @@ type LookupCloudStackResult struct {
 }
 
 func LookupCloudStackOutput(ctx *pulumi.Context, args LookupCloudStackOutputArgs, opts ...pulumi.InvokeOption) LookupCloudStackResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupCloudStackResultOutput, error) {
 			args := v.(LookupCloudStackArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupCloudStackResult
-			secret, err := ctx.InvokePackageRaw("grafana:index/getCloudStack:getCloudStack", args, &rv, "", opts...)
-			if err != nil {
-				return LookupCloudStackResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupCloudStackResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupCloudStackResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:index/getCloudStack:getCloudStack", args, LookupCloudStackResultOutput{}, options).(LookupCloudStackResultOutput), nil
 		}).(LookupCloudStackResultOutput)
 }
 

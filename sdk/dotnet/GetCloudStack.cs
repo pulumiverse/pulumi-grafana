@@ -78,6 +78,39 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetCloudStackResult> Invoke(GetCloudStackInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudStackResult>("grafana:index/getCloudStack:getCloudStack", args ?? new GetCloudStackInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Data source for Grafana Stack
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testStack = new Grafana.Cloud.Stack("test", new()
+        ///     {
+        ///         Name = "gcloudstacktest",
+        ///         Slug = "gcloudstacktest",
+        ///         RegionSlug = "eu",
+        ///         Description = "Test Grafana Cloud Stack",
+        ///     });
+        /// 
+        ///     var test = Grafana.Cloud.GetStack.Invoke(new()
+        ///     {
+        ///         Slug = testStack.Slug,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetCloudStackResult> Invoke(GetCloudStackInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetCloudStackResult>("grafana:index/getCloudStack:getCloudStack", args ?? new GetCloudStackInvokeArgs(), options.WithDefaults());
     }
 
 

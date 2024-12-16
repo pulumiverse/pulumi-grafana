@@ -56,6 +56,28 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetOncallTeamResult> Invoke(GetOncallTeamInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOncallTeamResult>("grafana:index/getOncallTeam:getOncallTeam", args ?? new GetOncallTeamInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleTeam = Grafana.OnCall.GetTeam.Invoke(new()
+        ///     {
+        ///         Name = "example_team",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetOncallTeamResult> Invoke(GetOncallTeamInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetOncallTeamResult>("grafana:index/getOncallTeam:getOncallTeam", args ?? new GetOncallTeamInvokeArgs(), options.WithDefaults());
     }
 
 

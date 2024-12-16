@@ -87,6 +87,44 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public static Output<GetOrganizationResult> Invoke(GetOrganizationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationResult>("grafana:oss/getOrganization:getOrganization", args ?? new GetOrganizationInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Grafana.Oss.Organization("test", new()
+        ///     {
+        ///         Name = "test-org",
+        ///         AdminUser = "admin",
+        ///         CreateUsers = true,
+        ///         Viewers = new[]
+        ///         {
+        ///             "viewer-01@example.com",
+        ///             "viewer-02@example.com",
+        ///         },
+        ///     });
+        /// 
+        ///     var fromName = Grafana.Oss.GetOrganization.Invoke(new()
+        ///     {
+        ///         Name = test.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetOrganizationResult> Invoke(GetOrganizationInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationResult>("grafana:oss/getOrganization:getOrganization", args ?? new GetOrganizationInvokeArgs(), options.WithDefaults());
     }
 
 

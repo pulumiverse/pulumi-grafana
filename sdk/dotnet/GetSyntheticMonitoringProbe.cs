@@ -60,6 +60,30 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetSyntheticMonitoringProbeResult> Invoke(GetSyntheticMonitoringProbeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSyntheticMonitoringProbeResult>("grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe", args ?? new GetSyntheticMonitoringProbeInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Data source for retrieving a single probe by name.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var atlanta = Grafana.SyntheticMonitoring.GetProbe.Invoke(new()
+        ///     {
+        ///         Name = "Atlanta",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetSyntheticMonitoringProbeResult> Invoke(GetSyntheticMonitoringProbeInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSyntheticMonitoringProbeResult>("grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe", args ?? new GetSyntheticMonitoringProbeInvokeArgs(), options.WithDefaults());
     }
 
 

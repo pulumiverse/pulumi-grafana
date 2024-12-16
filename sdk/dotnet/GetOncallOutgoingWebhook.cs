@@ -60,6 +60,30 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetOncallOutgoingWebhookResult> Invoke(GetOncallOutgoingWebhookInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOncallOutgoingWebhookResult>("grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook", args ?? new GetOncallOutgoingWebhookInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleOutgoingWebhook = Grafana.OnCall.GetOutgoingWebhook.Invoke(new()
+        ///     {
+        ///         Name = "example_outgoing_webhook",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetOncallOutgoingWebhookResult> Invoke(GetOncallOutgoingWebhookInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetOncallOutgoingWebhookResult>("grafana:index/getOncallOutgoingWebhook:getOncallOutgoingWebhook", args ?? new GetOncallOutgoingWebhookInvokeArgs(), options.WithDefaults());
     }
 
 

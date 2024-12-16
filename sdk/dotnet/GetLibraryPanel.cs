@@ -24,6 +24,12 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetLibraryPanelResult> Invoke(GetLibraryPanelInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLibraryPanelResult>("grafana:index/getLibraryPanel:getLibraryPanel", args ?? new GetLibraryPanelInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Data source for retrieving a single library panel by name or uid.
+        /// </summary>
+        public static Output<GetLibraryPanelResult> Invoke(GetLibraryPanelInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLibraryPanelResult>("grafana:index/getLibraryPanel:getLibraryPanel", args ?? new GetLibraryPanelInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -127,6 +127,64 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetLibraryPanelsResult> Invoke(GetLibraryPanelsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLibraryPanelsResult>("grafana:index/getLibraryPanels:getLibraryPanels", args ?? new GetLibraryPanelsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Grafana.Oss.LibraryPanel("test", new()
+        ///     {
+        ///         Name = "panelname",
+        ///         ModelJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["title"] = "test name",
+        ///             ["type"] = "text",
+        ///             ["version"] = 0,
+        ///             ["description"] = "test description",
+        ///         }),
+        ///     });
+        /// 
+        ///     var testFolder = new Grafana.Oss.Folder("test", new()
+        ///     {
+        ///         Title = "Panel Folder",
+        ///         Uid = "panelname-folder",
+        ///     });
+        /// 
+        ///     var folder = new Grafana.Oss.LibraryPanel("folder", new()
+        ///     {
+        ///         Name = "panelname In Folder",
+        ///         FolderUid = testFolder.Uid,
+        ///         ModelJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["gridPos"] = new Dictionary&lt;string, object?&gt;
+        ///             {
+        ///                 ["x"] = 0,
+        ///                 ["y"] = 0,
+        ///                 ["h"] = 10,
+        ///                 ["w"] = 10,
+        ///             },
+        ///             ["title"] = "panel",
+        ///             ["type"] = "text",
+        ///             ["version"] = 0,
+        ///         }),
+        ///     });
+        /// 
+        ///     var all = Grafana.GetLibraryPanels.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetLibraryPanelsResult> Invoke(GetLibraryPanelsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLibraryPanelsResult>("grafana:index/getLibraryPanels:getLibraryPanels", args ?? new GetLibraryPanelsInvokeArgs(), options.WithDefaults());
     }
 
 

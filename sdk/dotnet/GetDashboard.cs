@@ -104,6 +104,52 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetDashboardResult> Invoke(GetDashboardInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDashboardResult>("grafana:index/getDashboard:getDashboard", args ?? new GetDashboardInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
+        /// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
+        /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Grafana.Oss.Dashboard("test", new()
+        ///     {
+        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["id"] = 12345,
+        ///             ["uid"] = "test-ds-dashboard-uid",
+        ///             ["title"] = "Production Overview",
+        ///             ["tags"] = new[]
+        ///             {
+        ///                 "templated",
+        ///             },
+        ///             ["timezone"] = "browser",
+        ///             ["schemaVersion"] = 16,
+        ///             ["version"] = 0,
+        ///             ["refresh"] = "25s",
+        ///         }),
+        ///     });
+        /// 
+        ///     var fromUid = Grafana.Oss.GetDashboard.Invoke(new()
+        ///     {
+        ///         Uid = "test-ds-dashboard-uid",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDashboardResult> Invoke(GetDashboardInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDashboardResult>("grafana:index/getDashboard:getDashboard", args ?? new GetDashboardInvokeArgs(), options.WithDefaults());
     }
 
 

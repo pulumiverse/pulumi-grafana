@@ -75,21 +75,11 @@ type LookupConnectionsMetricsEndpointScrapeJobResult struct {
 }
 
 func LookupConnectionsMetricsEndpointScrapeJobOutput(ctx *pulumi.Context, args LookupConnectionsMetricsEndpointScrapeJobOutputArgs, opts ...pulumi.InvokeOption) LookupConnectionsMetricsEndpointScrapeJobResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupConnectionsMetricsEndpointScrapeJobResultOutput, error) {
 			args := v.(LookupConnectionsMetricsEndpointScrapeJobArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupConnectionsMetricsEndpointScrapeJobResult
-			secret, err := ctx.InvokePackageRaw("grafana:index/getConnectionsMetricsEndpointScrapeJob:getConnectionsMetricsEndpointScrapeJob", args, &rv, "", opts...)
-			if err != nil {
-				return LookupConnectionsMetricsEndpointScrapeJobResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupConnectionsMetricsEndpointScrapeJobResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupConnectionsMetricsEndpointScrapeJobResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:index/getConnectionsMetricsEndpointScrapeJob:getConnectionsMetricsEndpointScrapeJob", args, LookupConnectionsMetricsEndpointScrapeJobResultOutput{}, options).(LookupConnectionsMetricsEndpointScrapeJobResultOutput), nil
 		}).(LookupConnectionsMetricsEndpointScrapeJobResultOutput)
 }
 

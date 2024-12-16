@@ -62,6 +62,31 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetOncallScheduleResult> Invoke(GetOncallScheduleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOncallScheduleResult>("grafana:index/getOncallSchedule:getOncallSchedule", args ?? new GetOncallScheduleInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// * [Official documentation](https://grafana.com/docs/oncall/latest/manage/on-call-schedules/)
+        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/schedules/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var schedule = Grafana.OnCall.GetSchedule.Invoke(new()
+        ///     {
+        ///         Name = "example_schedule",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetOncallScheduleResult> Invoke(GetOncallScheduleInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetOncallScheduleResult>("grafana:index/getOncallSchedule:getOncallSchedule", args ?? new GetOncallScheduleInvokeArgs(), options.WithDefaults());
     }
 
 
