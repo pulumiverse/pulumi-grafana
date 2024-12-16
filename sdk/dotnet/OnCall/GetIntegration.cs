@@ -59,6 +59,30 @@ namespace Pulumiverse.Grafana.OnCall
         /// </summary>
         public static Output<GetIntegrationResult> Invoke(GetIntegrationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIntegrationResult>("grafana:onCall/getIntegration:getIntegration", args ?? new GetIntegrationInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/integrations/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleIntegration = Grafana.OnCall.GetIntegration.Invoke(new()
+        ///     {
+        ///         Id = "CEXAMPLEID123",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetIntegrationResult> Invoke(GetIntegrationInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIntegrationResult>("grafana:onCall/getIntegration:getIntegration", args ?? new GetIntegrationInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -110,21 +110,11 @@ type GetLibraryPanelsResult struct {
 }
 
 func GetLibraryPanelsOutput(ctx *pulumi.Context, args GetLibraryPanelsOutputArgs, opts ...pulumi.InvokeOption) GetLibraryPanelsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetLibraryPanelsResultOutput, error) {
 			args := v.(GetLibraryPanelsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetLibraryPanelsResult
-			secret, err := ctx.InvokePackageRaw("grafana:index/getLibraryPanels:getLibraryPanels", args, &rv, "", opts...)
-			if err != nil {
-				return GetLibraryPanelsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetLibraryPanelsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetLibraryPanelsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:index/getLibraryPanels:getLibraryPanels", args, GetLibraryPanelsResultOutput{}, options).(GetLibraryPanelsResultOutput), nil
 		}).(GetLibraryPanelsResultOutput)
 }
 

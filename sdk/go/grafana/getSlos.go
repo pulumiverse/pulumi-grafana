@@ -128,18 +128,8 @@ type GetSlosResult struct {
 
 func GetSlosOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetSlosResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetSlosResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetSlosResult
-		secret, err := ctx.InvokePackageRaw("grafana:index/getSlos:getSlos", nil, &rv, "", opts...)
-		if err != nil {
-			return GetSlosResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetSlosResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetSlosResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("grafana:index/getSlos:getSlos", nil, GetSlosResultOutput{}, options).(GetSlosResultOutput), nil
 	}).(GetSlosResultOutput)
 }
 

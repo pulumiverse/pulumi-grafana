@@ -110,6 +110,55 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetUserResult> Invoke(GetUserInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("grafana:index/getUser:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
+        /// 
+        /// This data source uses Grafana's admin APIs for reading users which
+        /// does not currently work with API Tokens. You must use basic auth.
+        /// This data source is also not compatible with Grafana Cloud, as it does not allow basic auth.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Grafana.Oss.User("test", new()
+        ///     {
+        ///         Email = "test.datasource@example.com",
+        ///         Name = "Testing Datasource",
+        ///         Login = "test-datasource",
+        ///         Password = "my-password",
+        ///         IsAdmin = true,
+        ///     });
+        /// 
+        ///     var fromId = Grafana.Oss.GetUser.Invoke(new()
+        ///     {
+        ///         UserId = test.UserId,
+        ///     });
+        /// 
+        ///     var fromEmail = Grafana.Oss.GetUser.Invoke(new()
+        ///     {
+        ///         Email = test.Email,
+        ///     });
+        /// 
+        ///     var fromLogin = Grafana.Oss.GetUser.Invoke(new()
+        ///     {
+        ///         Login = test.Login,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetUserResult> Invoke(GetUserInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("grafana:index/getUser:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());
     }
 
 

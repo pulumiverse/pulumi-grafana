@@ -81,6 +81,41 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public static Output<GetFoldersResult> Invoke(GetFoldersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFoldersResult>("grafana:oss/getFolders:getFolders", args ?? new GetFoldersInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testA = new Grafana.Oss.Folder("test_a", new()
+        ///     {
+        ///         Title = "test-folder-a",
+        ///         Uid = "test-ds-folder-uid-a",
+        ///     });
+        /// 
+        ///     var testB = new Grafana.Oss.Folder("test_b", new()
+        ///     {
+        ///         Title = "test-folder-b",
+        ///         Uid = "test-ds-folder-uid-b",
+        ///     });
+        /// 
+        ///     var test = Grafana.Oss.GetFolders.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetFoldersResult> Invoke(GetFoldersInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetFoldersResult>("grafana:oss/getFolders:getFolders", args ?? new GetFoldersInvokeArgs(), options.WithDefaults());
     }
 
 

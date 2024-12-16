@@ -81,6 +81,41 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public static Output<GetUsersResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("grafana:oss/getUsers:getUsers", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
+        /// 		
+        /// This data source uses Grafana's admin APIs for reading users which
+        /// does not currently work with API Tokens. You must use basic auth.
+        /// This data source is also not compatible with Grafana Cloud, as it does not allow basic auth.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testAllUsers = new Grafana.Oss.User("test_all_users", new()
+        ///     {
+        ///         Email = "all_users@example.com",
+        ///         Name = "Testing grafana_users",
+        ///         Login = "test-grafana-users",
+        ///         Password = "my-password",
+        ///     });
+        /// 
+        ///     var allUsers = Grafana.Oss.GetUsers.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetUsersResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("grafana:oss/getUsers:getUsers", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

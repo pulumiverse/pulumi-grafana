@@ -23,6 +23,12 @@ namespace Pulumiverse.Grafana.OnCall
         /// </summary>
         public static Output<GetUsersResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("grafana:onCall/getUsers:getUsers", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+        /// </summary>
+        public static Output<GetUsersResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("grafana:onCall/getUsers:getUsers", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

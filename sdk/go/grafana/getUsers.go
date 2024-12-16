@@ -72,18 +72,8 @@ type GetUsersResult struct {
 
 func GetUsersOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetUsersResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetUsersResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetUsersResult
-		secret, err := ctx.InvokePackageRaw("grafana:index/getUsers:getUsers", nil, &rv, "", opts...)
-		if err != nil {
-			return GetUsersResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetUsersResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetUsersResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("grafana:index/getUsers:getUsers", nil, GetUsersResultOutput{}, options).(GetUsersResultOutput), nil
 	}).(GetUsersResultOutput)
 }
 

@@ -160,21 +160,11 @@ type LookupProviderAwsCloudwatchScrapeJobResult struct {
 }
 
 func LookupProviderAwsCloudwatchScrapeJobOutput(ctx *pulumi.Context, args LookupProviderAwsCloudwatchScrapeJobOutputArgs, opts ...pulumi.InvokeOption) LookupProviderAwsCloudwatchScrapeJobResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupProviderAwsCloudwatchScrapeJobResultOutput, error) {
 			args := v.(LookupProviderAwsCloudwatchScrapeJobArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupProviderAwsCloudwatchScrapeJobResult
-			secret, err := ctx.InvokePackageRaw("grafana:cloud/getProviderAwsCloudwatchScrapeJob:getProviderAwsCloudwatchScrapeJob", args, &rv, "", opts...)
-			if err != nil {
-				return LookupProviderAwsCloudwatchScrapeJobResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupProviderAwsCloudwatchScrapeJobResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupProviderAwsCloudwatchScrapeJobResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:cloud/getProviderAwsCloudwatchScrapeJob:getProviderAwsCloudwatchScrapeJob", args, LookupProviderAwsCloudwatchScrapeJobResultOutput{}, options).(LookupProviderAwsCloudwatchScrapeJobResultOutput), nil
 		}).(LookupProviderAwsCloudwatchScrapeJobResultOutput)
 }
 

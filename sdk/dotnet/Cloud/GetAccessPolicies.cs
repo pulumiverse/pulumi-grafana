@@ -37,6 +37,19 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public static Output<GetAccessPoliciesResult> Invoke(GetAccessPoliciesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccessPoliciesResult>("grafana:cloud/getAccessPolicies:getAccessPolicies", args ?? new GetAccessPoliciesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Fetches access policies from Grafana Cloud.
+        /// 
+        /// * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+        /// * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-access-policies)
+        /// 
+        /// Required access policy scopes:
+        /// 
+        /// * accesspolicies:read
+        /// </summary>
+        public static Output<GetAccessPoliciesResult> Invoke(GetAccessPoliciesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAccessPoliciesResult>("grafana:cloud/getAccessPolicies:getAccessPolicies", args ?? new GetAccessPoliciesInvokeArgs(), options.WithDefaults());
     }
 
 

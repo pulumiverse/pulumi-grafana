@@ -67,21 +67,11 @@ type GetCloudOrganizationResult struct {
 }
 
 func GetCloudOrganizationOutput(ctx *pulumi.Context, args GetCloudOrganizationOutputArgs, opts ...pulumi.InvokeOption) GetCloudOrganizationResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetCloudOrganizationResultOutput, error) {
 			args := v.(GetCloudOrganizationArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetCloudOrganizationResult
-			secret, err := ctx.InvokePackageRaw("grafana:index/getCloudOrganization:getCloudOrganization", args, &rv, "", opts...)
-			if err != nil {
-				return GetCloudOrganizationResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetCloudOrganizationResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetCloudOrganizationResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:index/getCloudOrganization:getCloudOrganization", args, GetCloudOrganizationResultOutput{}, options).(GetCloudOrganizationResultOutput), nil
 		}).(GetCloudOrganizationResultOutput)
 }
 

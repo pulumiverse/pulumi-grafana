@@ -53,6 +53,27 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public static Output<GetIpsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIpsResult>("grafana:cloud/getIps:getIps", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Grafana.Cloud.GetIps.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetIpsResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIpsResult>("grafana:cloud/getIps:getIps", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

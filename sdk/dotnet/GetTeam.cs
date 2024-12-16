@@ -86,6 +86,43 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetTeamResult> Invoke(GetTeamInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTeamResult>("grafana:index/getTeam:getTeam", args ?? new GetTeamInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Grafana.Oss.Team("test", new()
+        ///     {
+        ///         Name = "test-team",
+        ///         Email = "test-team-email@test.com",
+        ///         Preferences = new Grafana.Oss.Inputs.TeamPreferencesArgs
+        ///         {
+        ///             Theme = "dark",
+        ///             Timezone = "utc",
+        ///         },
+        ///     });
+        /// 
+        ///     var fromName = Grafana.Oss.GetTeam.Invoke(new()
+        ///     {
+        ///         Name = test.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetTeamResult> Invoke(GetTeamInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTeamResult>("grafana:index/getTeam:getTeam", args ?? new GetTeamInvokeArgs(), options.WithDefaults());
     }
 
 

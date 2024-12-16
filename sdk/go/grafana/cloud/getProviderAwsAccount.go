@@ -83,21 +83,11 @@ type LookupProviderAwsAccountResult struct {
 }
 
 func LookupProviderAwsAccountOutput(ctx *pulumi.Context, args LookupProviderAwsAccountOutputArgs, opts ...pulumi.InvokeOption) LookupProviderAwsAccountResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupProviderAwsAccountResultOutput, error) {
 			args := v.(LookupProviderAwsAccountArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupProviderAwsAccountResult
-			secret, err := ctx.InvokePackageRaw("grafana:cloud/getProviderAwsAccount:getProviderAwsAccount", args, &rv, "", opts...)
-			if err != nil {
-				return LookupProviderAwsAccountResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupProviderAwsAccountResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupProviderAwsAccountResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:cloud/getProviderAwsAccount:getProviderAwsAccount", args, LookupProviderAwsAccountResultOutput{}, options).(LookupProviderAwsAccountResultOutput), nil
 		}).(LookupProviderAwsAccountResultOutput)
 }
 

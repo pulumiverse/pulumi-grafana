@@ -65,6 +65,33 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public static Output<GetProviderAwsCloudwatchScrapeJobsResult> Invoke(GetProviderAwsCloudwatchScrapeJobsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProviderAwsCloudwatchScrapeJobsResult>("grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs", args ?? new GetProviderAwsCloudwatchScrapeJobsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Grafana.Cloud.GetStack.Invoke(new()
+        ///     {
+        ///         Slug = "gcloudstacktest",
+        ///     });
+        /// 
+        ///     var testGetProviderAwsCloudwatchScrapeJobs = Grafana.Cloud.GetProviderAwsCloudwatchScrapeJobs.Invoke(new()
+        ///     {
+        ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetProviderAwsCloudwatchScrapeJobsResult> Invoke(GetProviderAwsCloudwatchScrapeJobsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetProviderAwsCloudwatchScrapeJobsResult>("grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs", args ?? new GetProviderAwsCloudwatchScrapeJobsInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -56,6 +56,28 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetCloudOrganizationResult> Invoke(GetCloudOrganizationInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudOrganizationResult>("grafana:index/getCloudOrganization:getCloudOrganization", args ?? new GetCloudOrganizationInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Grafana.Cloud.GetOrganization.Invoke(new()
+        ///     {
+        ///         Slug = "my-org",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetCloudOrganizationResult> Invoke(GetCloudOrganizationInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetCloudOrganizationResult>("grafana:index/getCloudOrganization:getCloudOrganization", args ?? new GetCloudOrganizationInvokeArgs(), options.WithDefaults());
     }
 
 

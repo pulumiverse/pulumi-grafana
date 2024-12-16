@@ -59,6 +59,30 @@ namespace Pulumiverse.Grafana.OnCall
         /// </summary>
         public static Output<GetUserResult> Invoke(GetUserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("grafana:onCall/getUser:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/users/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var alex = Grafana.OnCall.GetUser.Invoke(new()
+        ///     {
+        ///         Username = "alex",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetUserResult> Invoke(GetUserInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("grafana:onCall/getUser:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());
     }
 
 

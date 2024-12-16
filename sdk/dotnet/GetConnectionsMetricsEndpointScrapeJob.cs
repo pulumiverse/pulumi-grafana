@@ -57,6 +57,29 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetConnectionsMetricsEndpointScrapeJobResult> Invoke(GetConnectionsMetricsEndpointScrapeJobInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetConnectionsMetricsEndpointScrapeJobResult>("grafana:index/getConnectionsMetricsEndpointScrapeJob:getConnectionsMetricsEndpointScrapeJob", args ?? new GetConnectionsMetricsEndpointScrapeJobInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var dsTest = Grafana.GetConnectionsMetricsEndpointScrapeJob.Invoke(new()
+        ///     {
+        ///         StackId = "1",
+        ///         Name = "my-scrape-job",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetConnectionsMetricsEndpointScrapeJobResult> Invoke(GetConnectionsMetricsEndpointScrapeJobInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetConnectionsMetricsEndpointScrapeJobResult>("grafana:index/getConnectionsMetricsEndpointScrapeJob:getConnectionsMetricsEndpointScrapeJob", args ?? new GetConnectionsMetricsEndpointScrapeJobInvokeArgs(), options.WithDefaults());
     }
 
 

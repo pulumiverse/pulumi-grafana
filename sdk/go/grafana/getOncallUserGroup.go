@@ -64,21 +64,11 @@ type GetOncallUserGroupResult struct {
 }
 
 func GetOncallUserGroupOutput(ctx *pulumi.Context, args GetOncallUserGroupOutputArgs, opts ...pulumi.InvokeOption) GetOncallUserGroupResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetOncallUserGroupResultOutput, error) {
 			args := v.(GetOncallUserGroupArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetOncallUserGroupResult
-			secret, err := ctx.InvokePackageRaw("grafana:index/getOncallUserGroup:getOncallUserGroup", args, &rv, "", opts...)
-			if err != nil {
-				return GetOncallUserGroupResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetOncallUserGroupResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetOncallUserGroupResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:index/getOncallUserGroup:getOncallUserGroup", args, GetOncallUserGroupResultOutput{}, options).(GetOncallUserGroupResultOutput), nil
 		}).(GetOncallUserGroupResultOutput)
 }
 

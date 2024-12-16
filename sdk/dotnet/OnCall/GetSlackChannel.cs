@@ -59,6 +59,30 @@ namespace Pulumiverse.Grafana.OnCall
         /// </summary>
         public static Output<GetSlackChannelResult> Invoke(GetSlackChannelInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSlackChannelResult>("grafana:onCall/getSlackChannel:getSlackChannel", args ?? new GetSlackChannelInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/slack_channels/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleSlackChannel = Grafana.OnCall.GetSlackChannel.Invoke(new()
+        ///     {
+        ///         Name = "example_slack_channel",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetSlackChannelResult> Invoke(GetSlackChannelInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSlackChannelResult>("grafana:onCall/getSlackChannel:getSlackChannel", args ?? new GetSlackChannelInvokeArgs(), options.WithDefaults());
     }
 
 

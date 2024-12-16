@@ -124,6 +124,62 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public static Output<GetRoleResult> Invoke(GetRoleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRoleResult>("grafana:index/getRole:getRole", args ?? new GetRoleInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// **Note:** This resource is available only with Grafana Enterprise 8.+.
+        /// 
+        /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Grafana.Enterprise.Role("test", new()
+        ///     {
+        ///         Name = "test-role",
+        ///         Description = "test-role description",
+        ///         Uid = "test-ds-role-uid",
+        ///         Version = 1,
+        ///         Global = true,
+        ///         Hidden = false,
+        ///         Permissions = new[]
+        ///         {
+        ///             new Grafana.Enterprise.Inputs.RolePermissionArgs
+        ///             {
+        ///                 Action = "org.users:add",
+        ///                 Scope = "users:*",
+        ///             },
+        ///             new Grafana.Enterprise.Inputs.RolePermissionArgs
+        ///             {
+        ///                 Action = "org.users:write",
+        ///                 Scope = "users:*",
+        ///             },
+        ///             new Grafana.Enterprise.Inputs.RolePermissionArgs
+        ///             {
+        ///                 Action = "org.users:read",
+        ///                 Scope = "users:*",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fromName = Grafana.Enterprise.GetRole.Invoke(new()
+        ///     {
+        ///         Name = test.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetRoleResult> Invoke(GetRoleInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRoleResult>("grafana:index/getRole:getRole", args ?? new GetRoleInvokeArgs(), options.WithDefaults());
     }
 
 

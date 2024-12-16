@@ -91,6 +91,46 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public static Output<GetProviderAwsAccountResult> Invoke(GetProviderAwsAccountInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProviderAwsAccountResult>("grafana:cloud/getProviderAwsAccount:getProviderAwsAccount", args ?? new GetProviderAwsAccountInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Grafana.Cloud.GetStack.Invoke(new()
+        ///     {
+        ///         Slug = "gcloudstacktest",
+        ///     });
+        /// 
+        ///     var testProviderAwsAccount = new Grafana.Cloud.ProviderAwsAccount("test", new()
+        ///     {
+        ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
+        ///         RoleArn = testAwsIamRole.Arn,
+        ///         Regions = new[]
+        ///         {
+        ///             "us-east-2",
+        ///             "eu-west-3",
+        ///         },
+        ///     });
+        /// 
+        ///     var testGetProviderAwsAccount = Grafana.Cloud.GetProviderAwsAccount.Invoke(new()
+        ///     {
+        ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
+        ///         ResourceId = testProviderAwsAccount.ResourceId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetProviderAwsAccountResult> Invoke(GetProviderAwsAccountInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetProviderAwsAccountResult>("grafana:cloud/getProviderAwsAccount:getProviderAwsAccount", args ?? new GetProviderAwsAccountInvokeArgs(), options.WithDefaults());
     }
 
 

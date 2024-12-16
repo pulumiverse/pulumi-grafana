@@ -63,21 +63,11 @@ type LookupOutgoingWebhookResult struct {
 }
 
 func LookupOutgoingWebhookOutput(ctx *pulumi.Context, args LookupOutgoingWebhookOutputArgs, opts ...pulumi.InvokeOption) LookupOutgoingWebhookResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupOutgoingWebhookResultOutput, error) {
 			args := v.(LookupOutgoingWebhookArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupOutgoingWebhookResult
-			secret, err := ctx.InvokePackageRaw("grafana:onCall/getOutgoingWebhook:getOutgoingWebhook", args, &rv, "", opts...)
-			if err != nil {
-				return LookupOutgoingWebhookResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupOutgoingWebhookResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupOutgoingWebhookResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:onCall/getOutgoingWebhook:getOutgoingWebhook", args, LookupOutgoingWebhookResultOutput{}, options).(LookupOutgoingWebhookResultOutput), nil
 		}).(LookupOutgoingWebhookResultOutput)
 }
 

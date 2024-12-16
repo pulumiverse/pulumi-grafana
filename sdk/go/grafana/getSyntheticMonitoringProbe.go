@@ -79,21 +79,11 @@ type LookupSyntheticMonitoringProbeResult struct {
 }
 
 func LookupSyntheticMonitoringProbeOutput(ctx *pulumi.Context, args LookupSyntheticMonitoringProbeOutputArgs, opts ...pulumi.InvokeOption) LookupSyntheticMonitoringProbeResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupSyntheticMonitoringProbeResultOutput, error) {
 			args := v.(LookupSyntheticMonitoringProbeArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupSyntheticMonitoringProbeResult
-			secret, err := ctx.InvokePackageRaw("grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe", args, &rv, "", opts...)
-			if err != nil {
-				return LookupSyntheticMonitoringProbeResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupSyntheticMonitoringProbeResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupSyntheticMonitoringProbeResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe", args, LookupSyntheticMonitoringProbeResultOutput{}, options).(LookupSyntheticMonitoringProbeResultOutput), nil
 		}).(LookupSyntheticMonitoringProbeResultOutput)
 }
 
