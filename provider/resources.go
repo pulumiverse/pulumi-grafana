@@ -685,9 +685,6 @@ func Provider() tfbridge.ProviderInfo {
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@pulumiverse/grafana",
 			// List any npm dependencies and their versions
-			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^3.0.0",
-			},
 			DevDependencies: map[string]string{
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
@@ -700,10 +697,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
-			PackageName: "pulumiverse_grafana",
-			Requires: map[string]string{
-				"pulumi": ">=3.0.0,<4.0.0",
-			},
+			PackageName:          "pulumiverse_grafana",
 			PyProject:            struct{ Enabled bool }{true},
 			RespectSchemaVersion: true,
 		},
@@ -718,10 +712,7 @@ func Provider() tfbridge.ProviderInfo {
 			RespectSchemaVersion:           true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
-			RootNamespace: "Pulumiverse",
-			PackageReferences: map[string]string{
-				"Pulumi": "3.*",
-			},
+			RootNamespace:        "Pulumiverse",
 			RespectSchemaVersion: true,
 		},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
