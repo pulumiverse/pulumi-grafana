@@ -23,6 +23,7 @@ __all__ = [
     'ProviderAwsCloudwatchScrapeJobService',
     'ProviderAwsCloudwatchScrapeJobServiceMetric',
     'ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter',
+    'ProviderAzureCredentialResourceDiscoveryTagFilter',
     'GetAccessPoliciesAccessPolicyResult',
     'GetProviderAwsCloudwatchScrapeJobCustomNamespaceResult',
     'GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricResult',
@@ -35,6 +36,7 @@ __all__ = [
     'GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResult',
     'GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricResult',
     'GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterResult',
+    'GetProviderAzureCredentialResourceDiscoveryTagFilterResult',
 ]
 
 @pulumi.output_type
@@ -315,6 +317,35 @@ class ProviderAwsCloudwatchScrapeJobServiceMetric(dict):
 
 @pulumi.output_type
 class ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key of the tag filter.
+        :param str value: The value of the tag filter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag filter.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the tag filter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ProviderAzureCredentialResourceDiscoveryTagFilter(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
@@ -868,6 +899,35 @@ class GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricResult(dict):
 
 @pulumi.output_type
 class GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key of the tag filter.
+        :param str value: The value of the tag filter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag filter.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the tag filter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetProviderAzureCredentialResourceDiscoveryTagFilterResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):

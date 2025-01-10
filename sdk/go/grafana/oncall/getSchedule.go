@@ -22,13 +22,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := onCall.GetSchedule(ctx, &oncall.GetScheduleArgs{
+//			_, err := oncall.GetSchedule(ctx, &oncall.GetScheduleArgs{
 //				Name: "example_schedule",
 //			}, nil)
 //			if err != nil {

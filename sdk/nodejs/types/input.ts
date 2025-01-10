@@ -4542,6 +4542,28 @@ export namespace cloud {
         value?: pulumi.Input<string>;
     }
 
+    export interface GetProviderAzureCredentialResourceDiscoveryTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key?: string;
+        /**
+         * The value of the tag filter.
+         */
+        value?: string;
+    }
+
+    export interface GetProviderAzureCredentialResourceDiscoveryTagFilterArgs {
+        /**
+         * The key of the tag filter.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The value of the tag filter.
+         */
+        value?: pulumi.Input<string>;
+    }
+
     export interface ProviderAwsCloudwatchScrapeJobCustomNamespace {
         /**
          * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
@@ -4603,6 +4625,17 @@ export namespace cloud {
     }
 
     export interface ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The value of the tag filter.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ProviderAzureCredentialResourceDiscoveryTagFilter {
         /**
          * The key of the tag filter.
          */

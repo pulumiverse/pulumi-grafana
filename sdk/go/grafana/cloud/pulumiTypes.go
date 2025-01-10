@@ -794,6 +794,112 @@ func (o ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutp
 	}).(ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput)
 }
 
+type ProviderAzureCredentialResourceDiscoveryTagFilter struct {
+	// The key of the tag filter.
+	Key string `pulumi:"key"`
+	// The value of the tag filter.
+	Value string `pulumi:"value"`
+}
+
+// ProviderAzureCredentialResourceDiscoveryTagFilterInput is an input type that accepts ProviderAzureCredentialResourceDiscoveryTagFilterArgs and ProviderAzureCredentialResourceDiscoveryTagFilterOutput values.
+// You can construct a concrete instance of `ProviderAzureCredentialResourceDiscoveryTagFilterInput` via:
+//
+//	ProviderAzureCredentialResourceDiscoveryTagFilterArgs{...}
+type ProviderAzureCredentialResourceDiscoveryTagFilterInput interface {
+	pulumi.Input
+
+	ToProviderAzureCredentialResourceDiscoveryTagFilterOutput() ProviderAzureCredentialResourceDiscoveryTagFilterOutput
+	ToProviderAzureCredentialResourceDiscoveryTagFilterOutputWithContext(context.Context) ProviderAzureCredentialResourceDiscoveryTagFilterOutput
+}
+
+type ProviderAzureCredentialResourceDiscoveryTagFilterArgs struct {
+	// The key of the tag filter.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the tag filter.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ProviderAzureCredentialResourceDiscoveryTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAzureCredentialResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (i ProviderAzureCredentialResourceDiscoveryTagFilterArgs) ToProviderAzureCredentialResourceDiscoveryTagFilterOutput() ProviderAzureCredentialResourceDiscoveryTagFilterOutput {
+	return i.ToProviderAzureCredentialResourceDiscoveryTagFilterOutputWithContext(context.Background())
+}
+
+func (i ProviderAzureCredentialResourceDiscoveryTagFilterArgs) ToProviderAzureCredentialResourceDiscoveryTagFilterOutputWithContext(ctx context.Context) ProviderAzureCredentialResourceDiscoveryTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAzureCredentialResourceDiscoveryTagFilterOutput)
+}
+
+// ProviderAzureCredentialResourceDiscoveryTagFilterArrayInput is an input type that accepts ProviderAzureCredentialResourceDiscoveryTagFilterArray and ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput values.
+// You can construct a concrete instance of `ProviderAzureCredentialResourceDiscoveryTagFilterArrayInput` via:
+//
+//	ProviderAzureCredentialResourceDiscoveryTagFilterArray{ ProviderAzureCredentialResourceDiscoveryTagFilterArgs{...} }
+type ProviderAzureCredentialResourceDiscoveryTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput() ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput
+	ToProviderAzureCredentialResourceDiscoveryTagFilterArrayOutputWithContext(context.Context) ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput
+}
+
+type ProviderAzureCredentialResourceDiscoveryTagFilterArray []ProviderAzureCredentialResourceDiscoveryTagFilterInput
+
+func (ProviderAzureCredentialResourceDiscoveryTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAzureCredentialResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (i ProviderAzureCredentialResourceDiscoveryTagFilterArray) ToProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput() ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput {
+	return i.ToProviderAzureCredentialResourceDiscoveryTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderAzureCredentialResourceDiscoveryTagFilterArray) ToProviderAzureCredentialResourceDiscoveryTagFilterArrayOutputWithContext(ctx context.Context) ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput)
+}
+
+type ProviderAzureCredentialResourceDiscoveryTagFilterOutput struct{ *pulumi.OutputState }
+
+func (ProviderAzureCredentialResourceDiscoveryTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAzureCredentialResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (o ProviderAzureCredentialResourceDiscoveryTagFilterOutput) ToProviderAzureCredentialResourceDiscoveryTagFilterOutput() ProviderAzureCredentialResourceDiscoveryTagFilterOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialResourceDiscoveryTagFilterOutput) ToProviderAzureCredentialResourceDiscoveryTagFilterOutputWithContext(ctx context.Context) ProviderAzureCredentialResourceDiscoveryTagFilterOutput {
+	return o
+}
+
+// The key of the tag filter.
+func (o ProviderAzureCredentialResourceDiscoveryTagFilterOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAzureCredentialResourceDiscoveryTagFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of the tag filter.
+func (o ProviderAzureCredentialResourceDiscoveryTagFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAzureCredentialResourceDiscoveryTagFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAzureCredentialResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (o ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput) ToProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput() ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput) ToProviderAzureCredentialResourceDiscoveryTagFilterArrayOutputWithContext(ctx context.Context) ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput) Index(i pulumi.IntInput) ProviderAzureCredentialResourceDiscoveryTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderAzureCredentialResourceDiscoveryTagFilter {
+		return vs[0].([]ProviderAzureCredentialResourceDiscoveryTagFilter)[vs[1].(int)]
+	}).(ProviderAzureCredentialResourceDiscoveryTagFilterOutput)
+}
+
 type GetAccessPoliciesAccessPolicy struct {
 	DisplayName string `pulumi:"displayName"`
 	Id          string `pulumi:"id"`
@@ -2251,6 +2357,112 @@ func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFi
 	}).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput)
 }
 
+type GetProviderAzureCredentialResourceDiscoveryTagFilter struct {
+	// The key of the tag filter.
+	Key string `pulumi:"key"`
+	// The value of the tag filter.
+	Value string `pulumi:"value"`
+}
+
+// GetProviderAzureCredentialResourceDiscoveryTagFilterInput is an input type that accepts GetProviderAzureCredentialResourceDiscoveryTagFilterArgs and GetProviderAzureCredentialResourceDiscoveryTagFilterOutput values.
+// You can construct a concrete instance of `GetProviderAzureCredentialResourceDiscoveryTagFilterInput` via:
+//
+//	GetProviderAzureCredentialResourceDiscoveryTagFilterArgs{...}
+type GetProviderAzureCredentialResourceDiscoveryTagFilterInput interface {
+	pulumi.Input
+
+	ToGetProviderAzureCredentialResourceDiscoveryTagFilterOutput() GetProviderAzureCredentialResourceDiscoveryTagFilterOutput
+	ToGetProviderAzureCredentialResourceDiscoveryTagFilterOutputWithContext(context.Context) GetProviderAzureCredentialResourceDiscoveryTagFilterOutput
+}
+
+type GetProviderAzureCredentialResourceDiscoveryTagFilterArgs struct {
+	// The key of the tag filter.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the tag filter.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetProviderAzureCredentialResourceDiscoveryTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAzureCredentialResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (i GetProviderAzureCredentialResourceDiscoveryTagFilterArgs) ToGetProviderAzureCredentialResourceDiscoveryTagFilterOutput() GetProviderAzureCredentialResourceDiscoveryTagFilterOutput {
+	return i.ToGetProviderAzureCredentialResourceDiscoveryTagFilterOutputWithContext(context.Background())
+}
+
+func (i GetProviderAzureCredentialResourceDiscoveryTagFilterArgs) ToGetProviderAzureCredentialResourceDiscoveryTagFilterOutputWithContext(ctx context.Context) GetProviderAzureCredentialResourceDiscoveryTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAzureCredentialResourceDiscoveryTagFilterOutput)
+}
+
+// GetProviderAzureCredentialResourceDiscoveryTagFilterArrayInput is an input type that accepts GetProviderAzureCredentialResourceDiscoveryTagFilterArray and GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput values.
+// You can construct a concrete instance of `GetProviderAzureCredentialResourceDiscoveryTagFilterArrayInput` via:
+//
+//	GetProviderAzureCredentialResourceDiscoveryTagFilterArray{ GetProviderAzureCredentialResourceDiscoveryTagFilterArgs{...} }
+type GetProviderAzureCredentialResourceDiscoveryTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput() GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput
+	ToGetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutputWithContext(context.Context) GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput
+}
+
+type GetProviderAzureCredentialResourceDiscoveryTagFilterArray []GetProviderAzureCredentialResourceDiscoveryTagFilterInput
+
+func (GetProviderAzureCredentialResourceDiscoveryTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAzureCredentialResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (i GetProviderAzureCredentialResourceDiscoveryTagFilterArray) ToGetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput() GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput {
+	return i.ToGetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAzureCredentialResourceDiscoveryTagFilterArray) ToGetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutputWithContext(ctx context.Context) GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput)
+}
+
+type GetProviderAzureCredentialResourceDiscoveryTagFilterOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAzureCredentialResourceDiscoveryTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAzureCredentialResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (o GetProviderAzureCredentialResourceDiscoveryTagFilterOutput) ToGetProviderAzureCredentialResourceDiscoveryTagFilterOutput() GetProviderAzureCredentialResourceDiscoveryTagFilterOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialResourceDiscoveryTagFilterOutput) ToGetProviderAzureCredentialResourceDiscoveryTagFilterOutputWithContext(ctx context.Context) GetProviderAzureCredentialResourceDiscoveryTagFilterOutput {
+	return o
+}
+
+// The key of the tag filter.
+func (o GetProviderAzureCredentialResourceDiscoveryTagFilterOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAzureCredentialResourceDiscoveryTagFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of the tag filter.
+func (o GetProviderAzureCredentialResourceDiscoveryTagFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAzureCredentialResourceDiscoveryTagFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAzureCredentialResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (o GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput) ToGetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput() GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput) ToGetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutputWithContext(ctx context.Context) GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput) Index(i pulumi.IntInput) GetProviderAzureCredentialResourceDiscoveryTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAzureCredentialResourceDiscoveryTagFilter {
+		return vs[0].([]GetProviderAzureCredentialResourceDiscoveryTagFilter)[vs[1].(int)]
+	}).(GetProviderAzureCredentialResourceDiscoveryTagFilterOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessPolicyRealmInput)(nil)).Elem(), AccessPolicyRealmArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessPolicyRealmArrayInput)(nil)).Elem(), AccessPolicyRealmArray{})
@@ -2266,6 +2478,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceMetricArrayInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobServiceMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAzureCredentialResourceDiscoveryTagFilterInput)(nil)).Elem(), ProviderAzureCredentialResourceDiscoveryTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAzureCredentialResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), ProviderAzureCredentialResourceDiscoveryTagFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessPoliciesAccessPolicyInput)(nil)).Elem(), GetAccessPoliciesAccessPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessPoliciesAccessPolicyArrayInput)(nil)).Elem(), GetAccessPoliciesAccessPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobCustomNamespaceInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs{})
@@ -2290,6 +2504,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAzureCredentialResourceDiscoveryTagFilterInput)(nil)).Elem(), GetProviderAzureCredentialResourceDiscoveryTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAzureCredentialResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), GetProviderAzureCredentialResourceDiscoveryTagFilterArray{})
 	pulumi.RegisterOutputType(AccessPolicyRealmOutput{})
 	pulumi.RegisterOutputType(AccessPolicyRealmArrayOutput{})
 	pulumi.RegisterOutputType(AccessPolicyRealmLabelPolicyOutput{})
@@ -2304,6 +2520,8 @@ func init() {
 	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput{})
 	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput{})
 	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput{})
+	pulumi.RegisterOutputType(ProviderAzureCredentialResourceDiscoveryTagFilterOutput{})
+	pulumi.RegisterOutputType(ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetAccessPoliciesAccessPolicyOutput{})
 	pulumi.RegisterOutputType(GetAccessPoliciesAccessPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput{})
@@ -2328,4 +2546,6 @@ func init() {
 	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput{})
 	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput{})
 	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAzureCredentialResourceDiscoveryTagFilterOutput{})
+	pulumi.RegisterOutputType(GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput{})
 }

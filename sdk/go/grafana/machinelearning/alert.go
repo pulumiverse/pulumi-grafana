@@ -24,13 +24,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testAlertJob, err := machineLearning.NewJob(ctx, "test_alert_job", &machineLearning.JobArgs{
+//			testAlertJob, err := machinelearning.NewJob(ctx, "test_alert_job", &machinelearning.JobArgs{
 //				Name:           pulumi.String("Test Job"),
 //				Metric:         pulumi.String("tf_test_alert_job"),
 //				DatasourceType: pulumi.String("prometheus"),
@@ -42,7 +42,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = machineLearning.NewAlert(ctx, "test_job_alert", &machineLearning.AlertArgs{
+//			_, err = machinelearning.NewAlert(ctx, "test_job_alert", &machinelearning.AlertArgs{
 //				JobId:            testAlertJob.ID(),
 //				Title:            pulumi.String("Test Alert"),
 //				AnomalyCondition: pulumi.String("any"),
@@ -69,13 +69,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testAlertOutlierDetector, err := machineLearning.NewOutlierDetector(ctx, "test_alert_outlier_detector", &machineLearning.OutlierDetectorArgs{
+//			testAlertOutlierDetector, err := machinelearning.NewOutlierDetector(ctx, "test_alert_outlier_detector", &machinelearning.OutlierDetectorArgs{
 //				Name:           pulumi.String("Test Outlier"),
 //				Metric:         pulumi.String("tf_test_alert_outlier"),
 //				DatasourceType: pulumi.String("prometheus"),
@@ -95,7 +95,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = machineLearning.NewAlert(ctx, "test_outlier_alert", &machineLearning.AlertArgs{
+//			_, err = machinelearning.NewAlert(ctx, "test_outlier_alert", &machinelearning.AlertArgs{
 //				OutlierId: testAlertOutlierDetector.ID(),
 //				Title:     pulumi.String("Test Alert"),
 //				Window:    pulumi.String("1h"),

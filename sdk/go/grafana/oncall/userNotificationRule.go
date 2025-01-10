@@ -24,19 +24,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myUser, err := onCall.GetUser(ctx, &oncall.GetUserArgs{
+//			myUser, err := oncall.GetUser(ctx, &oncall.GetUserArgs{
 //				Username: "my_username",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = onCall.NewUserNotificationRule(ctx, "my_user_step_1", &onCall.UserNotificationRuleArgs{
+//			_, err = oncall.NewUserNotificationRule(ctx, "my_user_step_1", &oncall.UserNotificationRuleArgs{
 //				UserId:   pulumi.String(myUser.Id),
 //				Position: pulumi.Int(0),
 //				Type:     pulumi.String("notify_by_mobile_app"),
@@ -44,7 +44,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = onCall.NewUserNotificationRule(ctx, "my_user_step_2", &onCall.UserNotificationRuleArgs{
+//			_, err = oncall.NewUserNotificationRule(ctx, "my_user_step_2", &oncall.UserNotificationRuleArgs{
 //				UserId:   pulumi.String(myUser.Id),
 //				Position: pulumi.Int(1),
 //				Duration: pulumi.Int(600),
@@ -53,7 +53,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = onCall.NewUserNotificationRule(ctx, "my_user_step_3", &onCall.UserNotificationRuleArgs{
+//			_, err = oncall.NewUserNotificationRule(ctx, "my_user_step_3", &oncall.UserNotificationRuleArgs{
 //				UserId:   pulumi.String(myUser.Id),
 //				Position: pulumi.Int(2),
 //				Type:     pulumi.String("notify_by_phone_call"),
@@ -61,7 +61,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = onCall.NewUserNotificationRule(ctx, "my_user_step_4", &onCall.UserNotificationRuleArgs{
+//			_, err = oncall.NewUserNotificationRule(ctx, "my_user_step_4", &oncall.UserNotificationRuleArgs{
 //				UserId:   pulumi.String(myUser.Id),
 //				Position: pulumi.Int(3),
 //				Duration: pulumi.Int(300),
@@ -70,7 +70,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = onCall.NewUserNotificationRule(ctx, "my_user_step_5", &onCall.UserNotificationRuleArgs{
+//			_, err = oncall.NewUserNotificationRule(ctx, "my_user_step_5", &oncall.UserNotificationRuleArgs{
 //				UserId:   pulumi.String(myUser.Id),
 //				Position: pulumi.Int(4),
 //				Type:     pulumi.String("notify_by_slack"),
@@ -78,7 +78,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = onCall.NewUserNotificationRule(ctx, "my_user_important_step_1", &onCall.UserNotificationRuleArgs{
+//			_, err = oncall.NewUserNotificationRule(ctx, "my_user_important_step_1", &oncall.UserNotificationRuleArgs{
 //				UserId:    pulumi.String(myUser.Id),
 //				Important: pulumi.Bool(true),
 //				Position:  pulumi.Int(0),
@@ -87,7 +87,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = onCall.NewUserNotificationRule(ctx, "my_user_important_step_2", &onCall.UserNotificationRuleArgs{
+//			_, err = oncall.NewUserNotificationRule(ctx, "my_user_important_step_2", &oncall.UserNotificationRuleArgs{
 //				UserId:    pulumi.String(myUser.Id),
 //				Important: pulumi.Bool(true),
 //				Position:  pulumi.Int(1),
@@ -97,7 +97,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = onCall.NewUserNotificationRule(ctx, "my_user_important_step_3", &onCall.UserNotificationRuleArgs{
+//			_, err = oncall.NewUserNotificationRule(ctx, "my_user_important_step_3", &oncall.UserNotificationRuleArgs{
 //				UserId:    pulumi.String(myUser.Id),
 //				Important: pulumi.Bool(true),
 //				Position:  pulumi.Int(2),

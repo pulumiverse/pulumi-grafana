@@ -127,6 +127,14 @@
                     }
                 }
             },
+            "grafana_cloud_provider_azure_credential": {
+                "current": "grafana:cloud/providerAzureCredential:ProviderAzureCredential",
+                "fields": {
+                    "resource_discovery_tag_filter": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "grafana_cloud_stack": {
                 "current": "grafana:cloud/stack:Stack",
                 "past": [
@@ -1519,6 +1527,14 @@
                     }
                 }
             },
+            "grafana_cloud_provider_azure_credential": {
+                "current": "grafana:cloud/getProviderAzureCredential:getProviderAzureCredential",
+                "fields": {
+                    "resource_discovery_tag_filter": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "grafana_cloud_stack": {
                 "current": "grafana:cloud/getStack:getStack",
                 "past": [
@@ -2369,6 +2385,7 @@
             "grafana:cloud/pluginInstallation:PluginInstallation": 0,
             "grafana:cloud/providerAwsAccount:ProviderAwsAccount": 1,
             "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob": 1,
+            "grafana:cloud/providerAzureCredential:ProviderAzureCredential": 1,
             "grafana:cloud/stack:Stack": 0,
             "grafana:cloud/stackServiceAccount:StackServiceAccount": 0,
             "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": 0,
@@ -2481,6 +2498,7 @@
             "grafana:cloud/getProviderAwsAccount:getProviderAwsAccount": 1,
             "grafana:cloud/getProviderAwsCloudwatchScrapeJob:getProviderAwsCloudwatchScrapeJob": 1,
             "grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs": 1,
+            "grafana:cloud/getProviderAzureCredential:getProviderAzureCredential": 1,
             "grafana:cloud/getStack:getStack": 0,
             "grafana:enterprise/getRole:getRole": 0,
             "grafana:index/getCloudIps:getCloudIps": 0,

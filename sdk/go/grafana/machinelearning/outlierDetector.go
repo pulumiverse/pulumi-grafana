@@ -30,13 +30,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := machineLearning.NewOutlierDetector(ctx, "my_dbscan_outlier_detector", &machineLearning.OutlierDetectorArgs{
+//			_, err := machinelearning.NewOutlierDetector(ctx, "my_dbscan_outlier_detector", &machinelearning.OutlierDetectorArgs{
 //				Name:           pulumi.String("My DBSCAN outlier detector"),
 //				Description:    pulumi.String("My DBSCAN Outlier Detector"),
 //				Metric:         pulumi.String("tf_test_dbscan_job"),
@@ -73,13 +73,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := machineLearning.NewOutlierDetector(ctx, "my_mad_outlier_detector", &machineLearning.OutlierDetectorArgs{
+//			_, err := machinelearning.NewOutlierDetector(ctx, "my_mad_outlier_detector", &machinelearning.OutlierDetectorArgs{
 //				Name:           pulumi.String("My MAD outlier detector"),
 //				Description:    pulumi.String("My MAD Outlier Detector"),
 //				Metric:         pulumi.String("tf_test_mad_job"),

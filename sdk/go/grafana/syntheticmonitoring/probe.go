@@ -27,13 +27,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := syntheticMonitoring.NewProbe(ctx, "main", &syntheticMonitoring.ProbeArgs{
+//			_, err := syntheticmonitoring.NewProbe(ctx, "main", &syntheticmonitoring.ProbeArgs{
 //				Name:      pulumi.String("Mount Everest"),
 //				Latitude:  pulumi.Float64(27.98606),
 //				Longitude: pulumi.Float64(86.92262),
