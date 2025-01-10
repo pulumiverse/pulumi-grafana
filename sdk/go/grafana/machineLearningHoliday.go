@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := machineLearning.NewHoliday(ctx, "ical", &machineLearning.HolidayArgs{
+//			_, err := machinelearning.NewHoliday(ctx, "ical", &machinelearning.HolidayArgs{
 //				Name:         pulumi.String("My iCal holiday"),
 //				Description:  pulumi.String("My Holiday"),
 //				IcalUrl:      pulumi.String("https://calendar.google.com/calendar/ical/en.uk%23holiday%40group.v.calendar.google.com/public/basic.ics"),
@@ -56,13 +56,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := machineLearning.NewHoliday(ctx, "custom_periods", &machineLearning.HolidayArgs{
+//			_, err := machinelearning.NewHoliday(ctx, "custom_periods", &machinelearning.HolidayArgs{
 //				Name:        pulumi.String("My custom periods holiday"),
 //				Description: pulumi.String("My Holiday"),
 //				CustomPeriods: machinelearning.HolidayCustomPeriodArray{

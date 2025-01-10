@@ -21,13 +21,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := onCall.GetSlackChannel(ctx, &oncall.GetSlackChannelArgs{
+//			_, err := oncall.GetSlackChannel(ctx, &oncall.GetSlackChannelArgs{
 //				Name: "example_slack_channel",
 //			}, nil)
 //			if err != nil {

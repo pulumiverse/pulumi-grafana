@@ -35,7 +35,7 @@ import (
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
 //
 // )
 //
@@ -85,14 +85,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = syntheticMonitoring.NewInstallation(ctx, "sm_stack", &syntheticMonitoring.InstallationArgs{
+//			_, err = syntheticmonitoring.NewInstallation(ctx, "sm_stack", &syntheticmonitoring.InstallationArgs{
 //				StackId:             smStack.ID(),
 //				MetricsPublisherKey: smMetricsPublishAccessPolicyToken.Token,
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
+//			_, err = syntheticmonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}

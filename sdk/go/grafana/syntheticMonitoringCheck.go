@@ -30,17 +30,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
+//			main, err := syntheticmonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = syntheticMonitoring.NewCheck(ctx, "dns", &syntheticMonitoring.CheckArgs{
+//			_, err = syntheticmonitoring.NewCheck(ctx, "dns", &syntheticmonitoring.CheckArgs{
 //				Job:     pulumi.String("DNS Defaults"),
 //				Target:  pulumi.String("grafana.com"),
 //				Enabled: pulumi.Bool(false),
@@ -71,17 +71,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
+//			main, err := syntheticmonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = syntheticMonitoring.NewCheck(ctx, "dns", &syntheticMonitoring.CheckArgs{
+//			_, err = syntheticmonitoring.NewCheck(ctx, "dns", &syntheticmonitoring.CheckArgs{
 //				Job:     pulumi.String("DNS Updated"),
 //				Target:  pulumi.String("grafana.net"),
 //				Enabled: pulumi.Bool(false),
@@ -149,17 +149,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
+//			main, err := syntheticmonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = syntheticMonitoring.NewCheck(ctx, "http", &syntheticMonitoring.CheckArgs{
+//			_, err = syntheticmonitoring.NewCheck(ctx, "http", &syntheticmonitoring.CheckArgs{
 //				Job:     pulumi.String("HTTP Defaults"),
 //				Target:  pulumi.String("https://grafana.com"),
 //				Enabled: pulumi.Bool(false),
@@ -190,17 +190,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
+//			main, err := syntheticmonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = syntheticMonitoring.NewCheck(ctx, "http", &syntheticMonitoring.CheckArgs{
+//			_, err = syntheticmonitoring.NewCheck(ctx, "http", &syntheticmonitoring.CheckArgs{
 //				Job:     pulumi.String("HTTP Defaults"),
 //				Target:  pulumi.String("https://grafana.org"),
 //				Enabled: pulumi.Bool(false),
@@ -305,17 +305,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
+//			main, err := syntheticmonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = syntheticMonitoring.NewCheck(ctx, "ping", &syntheticMonitoring.CheckArgs{
+//			_, err = syntheticmonitoring.NewCheck(ctx, "ping", &syntheticmonitoring.CheckArgs{
 //				Job:     pulumi.String("Ping Defaults"),
 //				Target:  pulumi.String("grafana.com"),
 //				Enabled: pulumi.Bool(false),
@@ -346,17 +346,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
+//			main, err := syntheticmonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = syntheticMonitoring.NewCheck(ctx, "ping", &syntheticMonitoring.CheckArgs{
+//			_, err = syntheticmonitoring.NewCheck(ctx, "ping", &syntheticmonitoring.CheckArgs{
 //				Job:     pulumi.String("Ping Updated"),
 //				Target:  pulumi.String("grafana.net"),
 //				Enabled: pulumi.Bool(false),
@@ -392,17 +392,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
+//			main, err := syntheticmonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = syntheticMonitoring.NewCheck(ctx, "tcp", &syntheticMonitoring.CheckArgs{
+//			_, err = syntheticmonitoring.NewCheck(ctx, "tcp", &syntheticmonitoring.CheckArgs{
 //				Job:     pulumi.String("TCP Defaults"),
 //				Target:  pulumi.String("grafana.com:80"),
 //				Enabled: pulumi.Bool(false),
@@ -433,17 +433,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
+//			main, err := syntheticmonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = syntheticMonitoring.NewCheck(ctx, "tcp", &syntheticMonitoring.CheckArgs{
+//			_, err = syntheticmonitoring.NewCheck(ctx, "tcp", &syntheticmonitoring.CheckArgs{
 //				Job:     pulumi.String("TCP Defaults"),
 //				Target:  pulumi.String("grafana.com:443"),
 //				Enabled: pulumi.Bool(false),
@@ -522,17 +522,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
+//			main, err := syntheticmonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = syntheticMonitoring.NewCheck(ctx, "traceroute", &syntheticMonitoring.CheckArgs{
+//			_, err = syntheticmonitoring.NewCheck(ctx, "traceroute", &syntheticmonitoring.CheckArgs{
 //				Job:       pulumi.String("Traceroute defaults"),
 //				Target:    pulumi.String("grafana.com"),
 //				Enabled:   pulumi.Bool(false),
@@ -565,17 +565,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticMonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := syntheticMonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
+//			main, err := syntheticmonitoring.GetProbes(ctx, &syntheticmonitoring.GetProbesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = syntheticMonitoring.NewCheck(ctx, "traceroute", &syntheticMonitoring.CheckArgs{
+//			_, err = syntheticmonitoring.NewCheck(ctx, "traceroute", &syntheticmonitoring.CheckArgs{
 //				Job:       pulumi.String("Traceroute complex"),
 //				Target:    pulumi.String("grafana.net"),
 //				Enabled:   pulumi.Bool(false),

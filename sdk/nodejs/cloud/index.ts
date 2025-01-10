@@ -45,6 +45,11 @@ export const getProviderAwsCloudwatchScrapeJobs: typeof import("./getProviderAws
 export const getProviderAwsCloudwatchScrapeJobsOutput: typeof import("./getProviderAwsCloudwatchScrapeJobs").getProviderAwsCloudwatchScrapeJobsOutput = null as any;
 utilities.lazyLoad(exports, ["getProviderAwsCloudwatchScrapeJobs","getProviderAwsCloudwatchScrapeJobsOutput"], () => require("./getProviderAwsCloudwatchScrapeJobs"));
 
+export { GetProviderAzureCredentialArgs, GetProviderAzureCredentialResult, GetProviderAzureCredentialOutputArgs } from "./getProviderAzureCredential";
+export const getProviderAzureCredential: typeof import("./getProviderAzureCredential").getProviderAzureCredential = null as any;
+export const getProviderAzureCredentialOutput: typeof import("./getProviderAzureCredential").getProviderAzureCredentialOutput = null as any;
+utilities.lazyLoad(exports, ["getProviderAzureCredential","getProviderAzureCredentialOutput"], () => require("./getProviderAzureCredential"));
+
 export { GetStackArgs, GetStackResult, GetStackOutputArgs } from "./getStack";
 export const getStack: typeof import("./getStack").getStack = null as any;
 export const getStackOutput: typeof import("./getStack").getStackOutput = null as any;
@@ -69,6 +74,11 @@ export { ProviderAwsCloudwatchScrapeJobArgs, ProviderAwsCloudwatchScrapeJobState
 export type ProviderAwsCloudwatchScrapeJob = import("./providerAwsCloudwatchScrapeJob").ProviderAwsCloudwatchScrapeJob;
 export const ProviderAwsCloudwatchScrapeJob: typeof import("./providerAwsCloudwatchScrapeJob").ProviderAwsCloudwatchScrapeJob = null as any;
 utilities.lazyLoad(exports, ["ProviderAwsCloudwatchScrapeJob"], () => require("./providerAwsCloudwatchScrapeJob"));
+
+export { ProviderAzureCredentialArgs, ProviderAzureCredentialState } from "./providerAzureCredential";
+export type ProviderAzureCredential = import("./providerAzureCredential").ProviderAzureCredential;
+export const ProviderAzureCredential: typeof import("./providerAzureCredential").ProviderAzureCredential = null as any;
+utilities.lazyLoad(exports, ["ProviderAzureCredential"], () => require("./providerAzureCredential"));
 
 export { StackArgs, StackState } from "./stack";
 export type Stack = import("./stack").Stack;
@@ -102,6 +112,8 @@ const _module = {
                 return new ProviderAwsAccount(name, <any>undefined, { urn })
             case "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob":
                 return new ProviderAwsCloudwatchScrapeJob(name, <any>undefined, { urn })
+            case "grafana:cloud/providerAzureCredential:ProviderAzureCredential":
+                return new ProviderAzureCredential(name, <any>undefined, { urn })
             case "grafana:cloud/stack:Stack":
                 return new Stack(name, <any>undefined, { urn })
             case "grafana:cloud/stackServiceAccount:StackServiceAccount":
@@ -119,6 +131,7 @@ pulumi.runtime.registerResourceModule("grafana", "cloud/orgMember", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/pluginInstallation", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/providerAwsAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/providerAwsCloudwatchScrapeJob", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloud/providerAzureCredential", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stack", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stackServiceAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stackServiceAccountToken", _module)

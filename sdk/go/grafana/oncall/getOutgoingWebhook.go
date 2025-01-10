@@ -21,13 +21,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := onCall.GetOutgoingWebhook(ctx, &oncall.GetOutgoingWebhookArgs{
+//			_, err := oncall.GetOutgoingWebhook(ctx, &oncall.GetOutgoingWebhookArgs{
 //				Name: "example_outgoing_webhook",
 //			}, nil)
 //			if err != nil {

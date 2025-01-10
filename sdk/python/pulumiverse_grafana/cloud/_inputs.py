@@ -29,6 +29,8 @@ __all__ = [
     'ProviderAwsCloudwatchScrapeJobServiceMetricArgsDict',
     'ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs',
     'ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgsDict',
+    'ProviderAzureCredentialResourceDiscoveryTagFilterArgs',
+    'ProviderAzureCredentialResourceDiscoveryTagFilterArgsDict',
     'GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs',
     'GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgsDict',
     'GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs',
@@ -51,6 +53,8 @@ __all__ = [
     'GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgsDict',
     'GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs',
     'GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgsDict',
+    'GetProviderAzureCredentialResourceDiscoveryTagFilterArgs',
+    'GetProviderAzureCredentialResourceDiscoveryTagFilterArgsDict',
 ]
 
 MYPY = False
@@ -446,6 +450,56 @@ elif False:
 
 @pulumi.input_type
 class ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The key of the tag filter.
+        :param pulumi.Input[str] value: The value of the tag filter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The key of the tag filter.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The value of the tag filter.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class ProviderAzureCredentialResourceDiscoveryTagFilterArgsDict(TypedDict):
+        key: pulumi.Input[str]
+        """
+        The key of the tag filter.
+        """
+        value: pulumi.Input[str]
+        """
+        The value of the tag filter.
+        """
+elif False:
+    ProviderAzureCredentialResourceDiscoveryTagFilterArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ProviderAzureCredentialResourceDiscoveryTagFilterArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value: pulumi.Input[str]):
@@ -1325,6 +1379,56 @@ elif False:
 
 @pulumi.input_type
 class GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key of the tag filter.
+        :param str value: The value of the tag filter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the tag filter.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the tag filter.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class GetProviderAzureCredentialResourceDiscoveryTagFilterArgsDict(TypedDict):
+        key: str
+        """
+        The key of the tag filter.
+        """
+        value: str
+        """
+        The value of the tag filter.
+        """
+elif False:
+    GetProviderAzureCredentialResourceDiscoveryTagFilterArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetProviderAzureCredentialResourceDiscoveryTagFilterArgs:
     def __init__(__self__, *,
                  key: str,
                  value: str):

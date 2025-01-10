@@ -218,6 +218,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloud/providerAzureCredential",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/providerAzureCredential:ProviderAzureCredential": "ProviderAzureCredential"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloud/stack",
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {

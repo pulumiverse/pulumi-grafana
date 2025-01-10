@@ -4683,6 +4683,17 @@ export namespace cloud {
         value: string;
     }
 
+    export interface GetProviderAzureCredentialResourceDiscoveryTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The value of the tag filter.
+         */
+        value: string;
+    }
+
     export interface ProviderAwsCloudwatchScrapeJobCustomNamespace {
         /**
          * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
@@ -4744,6 +4755,17 @@ export namespace cloud {
     }
 
     export interface ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The value of the tag filter.
+         */
+        value: string;
+    }
+
+    export interface ProviderAzureCredentialResourceDiscoveryTagFilter {
         /**
          * The key of the tag filter.
          */

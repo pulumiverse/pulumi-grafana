@@ -21,13 +21,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := onCall.GetUser(ctx, &oncall.GetUserArgs{
+//			_, err := oncall.GetUser(ctx, &oncall.GetUserArgs{
 //				Username: "alex",
 //			}, nil)
 //			if err != nil {

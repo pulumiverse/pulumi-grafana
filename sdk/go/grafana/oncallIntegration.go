@@ -23,13 +23,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/onCall"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := onCall.NewIntegration(ctx, "test-acc-integration", &onCall.IntegrationArgs{
+//			_, err := oncall.NewIntegration(ctx, "test-acc-integration", &oncall.IntegrationArgs{
 //				Name:         pulumi.String("my integration"),
 //				Type:         pulumi.String("grafana"),
 //				DefaultRoute: &oncall.IntegrationDefaultRouteArgs{},
@@ -39,7 +39,7 @@ import (
 //			}
 //			// Also it's possible to manage integration templates.
 //			// Check docs to see all available templates.
-//			_, err = onCall.NewIntegration(ctx, "integration_with_templates", &onCall.IntegrationArgs{
+//			_, err = oncall.NewIntegration(ctx, "integration_with_templates", &oncall.IntegrationArgs{
 //				Name:         pulumi.String("integration_with_templates"),
 //				Type:         pulumi.String("webhook"),
 //				DefaultRoute: &oncall.IntegrationDefaultRouteArgs{},

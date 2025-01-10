@@ -33,7 +33,7 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
 //
 // )
@@ -69,7 +69,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = machineLearning.NewJob(ctx, "test_job", &machineLearning.JobArgs{
+//			_, err = machinelearning.NewJob(ctx, "test_job", &machinelearning.JobArgs{
 //				Name:           pulumi.String("Test Job"),
 //				Metric:         pulumi.String("tf_test_job"),
 //				DatasourceType: pulumi.String("prometheus"),
@@ -99,7 +99,7 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
 //
 // )
@@ -135,7 +135,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = machineLearning.NewJob(ctx, "test_job", &machineLearning.JobArgs{
+//			_, err = machinelearning.NewJob(ctx, "test_job", &machinelearning.JobArgs{
 //				Name:           pulumi.String("Test Job"),
 //				Metric:         pulumi.String("tf_test_job"),
 //				DatasourceType: pulumi.String("prometheus"),
@@ -172,7 +172,7 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machineLearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
 //
 // )
@@ -208,7 +208,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testHoliday, err := machineLearning.NewHoliday(ctx, "test_holiday", &machineLearning.HolidayArgs{
+//			testHoliday, err := machinelearning.NewHoliday(ctx, "test_holiday", &machinelearning.HolidayArgs{
 //				Name: pulumi.String("Test Holiday"),
 //				CustomPeriods: machinelearning.HolidayCustomPeriodArray{
 //					&machinelearning.HolidayCustomPeriodArgs{
@@ -221,7 +221,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = machineLearning.NewJob(ctx, "test_job", &machineLearning.JobArgs{
+//			_, err = machinelearning.NewJob(ctx, "test_job", &machinelearning.JobArgs{
 //				Name:           pulumi.String("Test Job"),
 //				Metric:         pulumi.String("tf_test_job"),
 //				DatasourceType: pulumi.String("prometheus"),
