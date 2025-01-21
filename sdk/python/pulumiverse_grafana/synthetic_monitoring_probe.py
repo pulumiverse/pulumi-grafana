@@ -22,6 +22,7 @@ class SyntheticMonitoringProbeArgs:
                  latitude: pulumi.Input[float],
                  longitude: pulumi.Input[float],
                  region: pulumi.Input[str],
+                 disable_browser_checks: Optional[pulumi.Input[bool]] = None,
                  disable_scripted_checks: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -31,6 +32,7 @@ class SyntheticMonitoringProbeArgs:
         :param pulumi.Input[float] latitude: Latitude coordinates.
         :param pulumi.Input[float] longitude: Longitude coordinates.
         :param pulumi.Input[str] region: Region of the probe.
+        :param pulumi.Input[bool] disable_browser_checks: Disables browser checks for this probe. Defaults to `false`.
         :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[str] name: Name of the probe.
@@ -39,6 +41,8 @@ class SyntheticMonitoringProbeArgs:
         pulumi.set(__self__, "latitude", latitude)
         pulumi.set(__self__, "longitude", longitude)
         pulumi.set(__self__, "region", region)
+        if disable_browser_checks is not None:
+            pulumi.set(__self__, "disable_browser_checks", disable_browser_checks)
         if disable_scripted_checks is not None:
             pulumi.set(__self__, "disable_scripted_checks", disable_scripted_checks)
         if labels is not None:
@@ -83,6 +87,18 @@ class SyntheticMonitoringProbeArgs:
     @region.setter
     def region(self, value: pulumi.Input[str]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="disableBrowserChecks")
+    def disable_browser_checks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disables browser checks for this probe. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_browser_checks")
+
+    @disable_browser_checks.setter
+    def disable_browser_checks(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_browser_checks", value)
 
     @property
     @pulumi.getter(name="disableScriptedChecks")
@@ -137,6 +153,7 @@ class SyntheticMonitoringProbeArgs:
 class _SyntheticMonitoringProbeState:
     def __init__(__self__, *,
                  auth_token: Optional[pulumi.Input[str]] = None,
+                 disable_browser_checks: Optional[pulumi.Input[bool]] = None,
                  disable_scripted_checks: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  latitude: Optional[pulumi.Input[float]] = None,
@@ -148,6 +165,7 @@ class _SyntheticMonitoringProbeState:
         """
         Input properties used for looking up and filtering SyntheticMonitoringProbe resources.
         :param pulumi.Input[str] auth_token: The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
+        :param pulumi.Input[bool] disable_browser_checks: Disables browser checks for this probe. Defaults to `false`.
         :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[float] latitude: Latitude coordinates.
@@ -159,6 +177,8 @@ class _SyntheticMonitoringProbeState:
         """
         if auth_token is not None:
             pulumi.set(__self__, "auth_token", auth_token)
+        if disable_browser_checks is not None:
+            pulumi.set(__self__, "disable_browser_checks", disable_browser_checks)
         if disable_scripted_checks is not None:
             pulumi.set(__self__, "disable_scripted_checks", disable_scripted_checks)
         if labels is not None:
@@ -187,6 +207,18 @@ class _SyntheticMonitoringProbeState:
     @auth_token.setter
     def auth_token(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auth_token", value)
+
+    @property
+    @pulumi.getter(name="disableBrowserChecks")
+    def disable_browser_checks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disables browser checks for this probe. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_browser_checks")
+
+    @disable_browser_checks.setter
+    def disable_browser_checks(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_browser_checks", value)
 
     @property
     @pulumi.getter(name="disableScriptedChecks")
@@ -295,6 +327,7 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 disable_browser_checks: Optional[pulumi.Input[bool]] = None,
                  disable_scripted_checks: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  latitude: Optional[pulumi.Input[float]] = None,
@@ -339,6 +372,7 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] disable_browser_checks: Disables browser checks for this probe. Defaults to `false`.
         :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[float] latitude: Latitude coordinates.
@@ -402,6 +436,7 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 disable_browser_checks: Optional[pulumi.Input[bool]] = None,
                  disable_scripted_checks: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  latitude: Optional[pulumi.Input[float]] = None,
@@ -419,6 +454,7 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SyntheticMonitoringProbeArgs.__new__(SyntheticMonitoringProbeArgs)
 
+            __props__.__dict__["disable_browser_checks"] = disable_browser_checks
             __props__.__dict__["disable_scripted_checks"] = disable_scripted_checks
             __props__.__dict__["labels"] = labels
             if latitude is None and not opts.urn:
@@ -447,6 +483,7 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             auth_token: Optional[pulumi.Input[str]] = None,
+            disable_browser_checks: Optional[pulumi.Input[bool]] = None,
             disable_scripted_checks: Optional[pulumi.Input[bool]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             latitude: Optional[pulumi.Input[float]] = None,
@@ -463,6 +500,7 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auth_token: The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
+        :param pulumi.Input[bool] disable_browser_checks: Disables browser checks for this probe. Defaults to `false`.
         :param pulumi.Input[bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Custom labels to be included with collected metrics and logs.
         :param pulumi.Input[float] latitude: Latitude coordinates.
@@ -477,6 +515,7 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
         __props__ = _SyntheticMonitoringProbeState.__new__(_SyntheticMonitoringProbeState)
 
         __props__.__dict__["auth_token"] = auth_token
+        __props__.__dict__["disable_browser_checks"] = disable_browser_checks
         __props__.__dict__["disable_scripted_checks"] = disable_scripted_checks
         __props__.__dict__["labels"] = labels
         __props__.__dict__["latitude"] = latitude
@@ -494,6 +533,14 @@ class SyntheticMonitoringProbe(pulumi.CustomResource):
         The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
         """
         return pulumi.get(self, "auth_token")
+
+    @property
+    @pulumi.getter(name="disableBrowserChecks")
+    def disable_browser_checks(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Disables browser checks for this probe. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_browser_checks")
 
     @property
     @pulumi.getter(name="disableScriptedChecks")

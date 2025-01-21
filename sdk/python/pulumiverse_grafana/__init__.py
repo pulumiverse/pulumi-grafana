@@ -202,6 +202,22 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloud/privateDataSourceConnectNetwork",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/privateDataSourceConnectNetwork:PrivateDataSourceConnectNetwork": "PrivateDataSourceConnectNetwork"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/privateDataSourceConnectNetworkToken",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken": "PrivateDataSourceConnectNetworkToken"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloud/providerAwsAccount",
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {

@@ -186,6 +186,8 @@ type DataSource struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	// (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+	PrivateDataSourceConnectNetworkId pulumi.StringPtrOutput `pulumi:"privateDataSourceConnectNetworkId"`
 	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded pulumi.StringPtrOutput `pulumi:"secureJsonDataEncoded"`
 	// The data source type. Must be one of the supported data source keywords.
@@ -266,6 +268,8 @@ type dataSourceState struct {
 	Name *string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
+	// (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+	PrivateDataSourceConnectNetworkId *string `pulumi:"privateDataSourceConnectNetworkId"`
 	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded *string `pulumi:"secureJsonDataEncoded"`
 	// The data source type. Must be one of the supported data source keywords.
@@ -297,6 +301,8 @@ type DataSourceState struct {
 	Name pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
+	// (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+	PrivateDataSourceConnectNetworkId pulumi.StringPtrInput
 	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded pulumi.StringPtrInput
 	// The data source type. Must be one of the supported data source keywords.
@@ -332,6 +338,8 @@ type dataSourceArgs struct {
 	Name *string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
+	// (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+	PrivateDataSourceConnectNetworkId *string `pulumi:"privateDataSourceConnectNetworkId"`
 	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded *string `pulumi:"secureJsonDataEncoded"`
 	// The data source type. Must be one of the supported data source keywords.
@@ -364,6 +372,8 @@ type DataSourceArgs struct {
 	Name pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
+	// (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+	PrivateDataSourceConnectNetworkId pulumi.StringPtrInput
 	// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
 	SecureJsonDataEncoded pulumi.StringPtrInput
 	// The data source type. Must be one of the supported data source keywords.
@@ -506,6 +516,11 @@ func (o DataSourceOutput) Name() pulumi.StringOutput {
 // The Organization ID. If not set, the Org ID defined in the provider block will be used.
 func (o DataSourceOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DataSource) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+}
+
+// (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to “.
+func (o DataSourceOutput) PrivateDataSourceConnectNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataSource) pulumi.StringPtrOutput { return v.PrivateDataSourceConnectNetworkId }).(pulumi.StringPtrOutput)
 }
 
 // Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.

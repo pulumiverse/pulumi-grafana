@@ -67,6 +67,8 @@ type SyntheticMonitoringProbe struct {
 
 	// The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
 	AuthToken pulumi.StringOutput `pulumi:"authToken"`
+	// Disables browser checks for this probe. Defaults to `false`.
+	DisableBrowserChecks pulumi.BoolPtrOutput `pulumi:"disableBrowserChecks"`
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks pulumi.BoolPtrOutput `pulumi:"disableScriptedChecks"`
 	// Custom labels to be included with collected metrics and logs.
@@ -130,6 +132,8 @@ func GetSyntheticMonitoringProbe(ctx *pulumi.Context,
 type syntheticMonitoringProbeState struct {
 	// The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
 	AuthToken *string `pulumi:"authToken"`
+	// Disables browser checks for this probe. Defaults to `false`.
+	DisableBrowserChecks *bool `pulumi:"disableBrowserChecks"`
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks *bool `pulumi:"disableScriptedChecks"`
 	// Custom labels to be included with collected metrics and logs.
@@ -151,6 +155,8 @@ type syntheticMonitoringProbeState struct {
 type SyntheticMonitoringProbeState struct {
 	// The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
 	AuthToken pulumi.StringPtrInput
+	// Disables browser checks for this probe. Defaults to `false`.
+	DisableBrowserChecks pulumi.BoolPtrInput
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks pulumi.BoolPtrInput
 	// Custom labels to be included with collected metrics and logs.
@@ -174,6 +180,8 @@ func (SyntheticMonitoringProbeState) ElementType() reflect.Type {
 }
 
 type syntheticMonitoringProbeArgs struct {
+	// Disables browser checks for this probe. Defaults to `false`.
+	DisableBrowserChecks *bool `pulumi:"disableBrowserChecks"`
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks *bool `pulumi:"disableScriptedChecks"`
 	// Custom labels to be included with collected metrics and logs.
@@ -192,6 +200,8 @@ type syntheticMonitoringProbeArgs struct {
 
 // The set of arguments for constructing a SyntheticMonitoringProbe resource.
 type SyntheticMonitoringProbeArgs struct {
+	// Disables browser checks for this probe. Defaults to `false`.
+	DisableBrowserChecks pulumi.BoolPtrInput
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks pulumi.BoolPtrInput
 	// Custom labels to be included with collected metrics and logs.
@@ -298,6 +308,11 @@ func (o SyntheticMonitoringProbeOutput) ToSyntheticMonitoringProbeOutputWithCont
 // The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
 func (o SyntheticMonitoringProbeOutput) AuthToken() pulumi.StringOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringProbe) pulumi.StringOutput { return v.AuthToken }).(pulumi.StringOutput)
+}
+
+// Disables browser checks for this probe. Defaults to `false`.
+func (o SyntheticMonitoringProbeOutput) DisableBrowserChecks() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SyntheticMonitoringProbe) pulumi.BoolPtrOutput { return v.DisableBrowserChecks }).(pulumi.BoolPtrOutput)
 }
 
 // Disables scripted checks for this probe. Defaults to `false`.

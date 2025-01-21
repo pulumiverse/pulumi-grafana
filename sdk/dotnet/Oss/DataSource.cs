@@ -181,6 +181,12 @@ namespace Pulumiverse.Grafana.Oss
         public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
+        /// (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+        /// </summary>
+        [Output("privateDataSourceConnectNetworkId")]
+        public Output<string?> PrivateDataSourceConnectNetworkId { get; private set; } = null!;
+
+        /// <summary>
         /// Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         /// </summary>
         [Output("secureJsonDataEncoded")]
@@ -330,6 +336,12 @@ namespace Pulumiverse.Grafana.Oss
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 
+        /// <summary>
+        /// (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+        /// </summary>
+        [Input("privateDataSourceConnectNetworkId")]
+        public Input<string>? PrivateDataSourceConnectNetworkId { get; set; }
+
         [Input("secureJsonDataEncoded")]
         private Input<string>? _secureJsonDataEncoded;
 
@@ -441,6 +453,12 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
+
+        /// <summary>
+        /// (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+        /// </summary>
+        [Input("privateDataSourceConnectNetworkId")]
+        public Input<string>? PrivateDataSourceConnectNetworkId { get; set; }
 
         [Input("secureJsonDataEncoded")]
         private Input<string>? _secureJsonDataEncoded;

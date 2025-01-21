@@ -29,6 +29,7 @@ class DataSourceArgs:
                  json_data_encoded: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
+                 private_data_source_connect_network_id: Optional[pulumi.Input[str]] = None,
                  secure_json_data_encoded: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -45,6 +46,7 @@ class DataSourceArgs:
         :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] name: A unique name for the data source.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[str] private_data_source_connect_network_id: (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
         :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
         :param pulumi.Input[str] url: The URL for the data source. The type of URL required varies depending on the chosen data source type.
@@ -69,6 +71,8 @@ class DataSourceArgs:
             pulumi.set(__self__, "name", name)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
+        if private_data_source_connect_network_id is not None:
+            pulumi.set(__self__, "private_data_source_connect_network_id", private_data_source_connect_network_id)
         if secure_json_data_encoded is not None:
             pulumi.set(__self__, "secure_json_data_encoded", secure_json_data_encoded)
         if uid is not None:
@@ -199,6 +203,18 @@ class DataSourceArgs:
         pulumi.set(self, "org_id", value)
 
     @property
+    @pulumi.getter(name="privateDataSourceConnectNetworkId")
+    def private_data_source_connect_network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+        """
+        return pulumi.get(self, "private_data_source_connect_network_id")
+
+    @private_data_source_connect_network_id.setter
+    def private_data_source_connect_network_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_data_source_connect_network_id", value)
+
+    @property
     @pulumi.getter(name="secureJsonDataEncoded")
     def secure_json_data_encoded(self) -> Optional[pulumi.Input[str]]:
         """
@@ -259,6 +275,7 @@ class _DataSourceState:
                  json_data_encoded: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
+                 private_data_source_connect_network_id: Optional[pulumi.Input[str]] = None,
                  secure_json_data_encoded: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
@@ -275,6 +292,7 @@ class _DataSourceState:
         :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] name: A unique name for the data source.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[str] private_data_source_connect_network_id: (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
         :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] type: The data source type. Must be one of the supported data source keywords.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
@@ -299,6 +317,8 @@ class _DataSourceState:
             pulumi.set(__self__, "name", name)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
+        if private_data_source_connect_network_id is not None:
+            pulumi.set(__self__, "private_data_source_connect_network_id", private_data_source_connect_network_id)
         if secure_json_data_encoded is not None:
             pulumi.set(__self__, "secure_json_data_encoded", secure_json_data_encoded)
         if type is not None:
@@ -419,6 +439,18 @@ class _DataSourceState:
         pulumi.set(self, "org_id", value)
 
     @property
+    @pulumi.getter(name="privateDataSourceConnectNetworkId")
+    def private_data_source_connect_network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+        """
+        return pulumi.get(self, "private_data_source_connect_network_id")
+
+    @private_data_source_connect_network_id.setter
+    def private_data_source_connect_network_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_data_source_connect_network_id", value)
+
+    @property
     @pulumi.getter(name="secureJsonDataEncoded")
     def secure_json_data_encoded(self) -> Optional[pulumi.Input[str]]:
         """
@@ -498,6 +530,7 @@ class DataSource(pulumi.CustomResource):
                  json_data_encoded: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
+                 private_data_source_connect_network_id: Optional[pulumi.Input[str]] = None,
                  secure_json_data_encoded: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
@@ -600,6 +633,7 @@ class DataSource(pulumi.CustomResource):
         :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] name: A unique name for the data source.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[str] private_data_source_connect_network_id: (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
         :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] type: The data source type. Must be one of the supported data source keywords.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
@@ -721,6 +755,7 @@ class DataSource(pulumi.CustomResource):
                  json_data_encoded: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
+                 private_data_source_connect_network_id: Optional[pulumi.Input[str]] = None,
                  secure_json_data_encoded: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
@@ -745,6 +780,7 @@ class DataSource(pulumi.CustomResource):
             __props__.__dict__["json_data_encoded"] = json_data_encoded
             __props__.__dict__["name"] = name
             __props__.__dict__["org_id"] = org_id
+            __props__.__dict__["private_data_source_connect_network_id"] = private_data_source_connect_network_id
             __props__.__dict__["secure_json_data_encoded"] = None if secure_json_data_encoded is None else pulumi.Output.secret(secure_json_data_encoded)
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
@@ -775,6 +811,7 @@ class DataSource(pulumi.CustomResource):
             json_data_encoded: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
+            private_data_source_connect_network_id: Optional[pulumi.Input[str]] = None,
             secure_json_data_encoded: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             uid: Optional[pulumi.Input[str]] = None,
@@ -796,6 +833,7 @@ class DataSource(pulumi.CustomResource):
         :param pulumi.Input[str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] name: A unique name for the data source.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[str] private_data_source_connect_network_id: (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
         :param pulumi.Input[str] secure_json_data_encoded: Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[str] type: The data source type. Must be one of the supported data source keywords.
         :param pulumi.Input[str] uid: Unique identifier. If unset, this will be automatically generated.
@@ -815,6 +853,7 @@ class DataSource(pulumi.CustomResource):
         __props__.__dict__["json_data_encoded"] = json_data_encoded
         __props__.__dict__["name"] = name
         __props__.__dict__["org_id"] = org_id
+        __props__.__dict__["private_data_source_connect_network_id"] = private_data_source_connect_network_id
         __props__.__dict__["secure_json_data_encoded"] = secure_json_data_encoded
         __props__.__dict__["type"] = type
         __props__.__dict__["uid"] = uid
@@ -893,6 +932,14 @@ class DataSource(pulumi.CustomResource):
         The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter(name="privateDataSourceConnectNetworkId")
+    def private_data_source_connect_network_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+        """
+        return pulumi.get(self, "private_data_source_connect_network_id")
 
     @property
     @pulumi.getter(name="secureJsonDataEncoded")

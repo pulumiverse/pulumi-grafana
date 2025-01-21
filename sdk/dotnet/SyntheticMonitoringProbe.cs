@@ -64,6 +64,12 @@ namespace Pulumiverse.Grafana
         public Output<string> AuthToken { get; private set; } = null!;
 
         /// <summary>
+        /// Disables browser checks for this probe. Defaults to `false`.
+        /// </summary>
+        [Output("disableBrowserChecks")]
+        public Output<bool?> DisableBrowserChecks { get; private set; } = null!;
+
+        /// <summary>
         /// Disables scripted checks for this probe. Defaults to `false`.
         /// </summary>
         [Output("disableScriptedChecks")]
@@ -163,6 +169,12 @@ namespace Pulumiverse.Grafana
     public sealed class SyntheticMonitoringProbeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Disables browser checks for this probe. Defaults to `false`.
+        /// </summary>
+        [Input("disableBrowserChecks")]
+        public Input<bool>? DisableBrowserChecks { get; set; }
+
+        /// <summary>
         /// Disables scripted checks for this probe. Defaults to `false`.
         /// </summary>
         [Input("disableScriptedChecks")]
@@ -233,6 +245,12 @@ namespace Pulumiverse.Grafana
                 _authToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Disables browser checks for this probe. Defaults to `false`.
+        /// </summary>
+        [Input("disableBrowserChecks")]
+        public Input<bool>? DisableBrowserChecks { get; set; }
 
         /// <summary>
         /// Disables scripted checks for this probe. Defaults to `false`.

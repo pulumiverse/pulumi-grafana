@@ -25,6 +25,7 @@ __all__ = [
     'ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter',
     'ProviderAzureCredentialResourceDiscoveryTagFilter',
     'GetAccessPoliciesAccessPolicyResult',
+    'GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkResult',
     'GetProviderAwsCloudwatchScrapeJobCustomNamespaceResult',
     'GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricResult',
     'GetProviderAwsCloudwatchScrapeJobServiceResult',
@@ -375,6 +376,46 @@ class ProviderAzureCredentialResourceDiscoveryTagFilter(dict):
 
 @pulumi.output_type
 class GetAccessPoliciesAccessPolicyResult(dict):
+    def __init__(__self__, *,
+                 display_name: str,
+                 id: str,
+                 name: str,
+                 region: str,
+                 status: str):
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkResult(dict):
     def __init__(__self__, *,
                  display_name: str,
                  id: str,

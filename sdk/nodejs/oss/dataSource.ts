@@ -158,6 +158,10 @@ export class DataSource extends pulumi.CustomResource {
      */
     public readonly orgId!: pulumi.Output<string | undefined>;
     /**
+     * (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+     */
+    public readonly privateDataSourceConnectNetworkId!: pulumi.Output<string | undefined>;
+    /**
      * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
     public readonly secureJsonDataEncoded!: pulumi.Output<string | undefined>;
@@ -200,6 +204,7 @@ export class DataSource extends pulumi.CustomResource {
             resourceInputs["jsonDataEncoded"] = state ? state.jsonDataEncoded : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
+            resourceInputs["privateDataSourceConnectNetworkId"] = state ? state.privateDataSourceConnectNetworkId : undefined;
             resourceInputs["secureJsonDataEncoded"] = state ? state.secureJsonDataEncoded : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["uid"] = state ? state.uid : undefined;
@@ -219,6 +224,7 @@ export class DataSource extends pulumi.CustomResource {
             resourceInputs["jsonDataEncoded"] = args ? args.jsonDataEncoded : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
+            resourceInputs["privateDataSourceConnectNetworkId"] = args ? args.privateDataSourceConnectNetworkId : undefined;
             resourceInputs["secureJsonDataEncoded"] = args?.secureJsonDataEncoded ? pulumi.secret(args.secureJsonDataEncoded) : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["uid"] = args ? args.uid : undefined;
@@ -274,6 +280,10 @@ export interface DataSourceState {
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
     orgId?: pulumi.Input<string>;
+    /**
+     * (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+     */
+    privateDataSourceConnectNetworkId?: pulumi.Input<string>;
     /**
      * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
@@ -336,6 +346,10 @@ export interface DataSourceArgs {
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
     orgId?: pulumi.Input<string>;
+    /**
+     * (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
+     */
+    privateDataSourceConnectNetworkId?: pulumi.Input<string>;
     /**
      * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */

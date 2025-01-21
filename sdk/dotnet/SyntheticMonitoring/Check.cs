@@ -41,7 +41,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Enabled = false,
     ///         Probes = new[]
     ///         {
-    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Atlanta),
+    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Ohio),
     ///         },
     ///         Labels = 
     ///         {
@@ -160,7 +160,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Enabled = false,
     ///         Probes = new[]
     ///         {
-    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Atlanta),
+    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Ohio),
     ///         },
     ///         Labels = 
     ///         {
@@ -195,7 +195,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Enabled = false,
     ///         Probes = new[]
     ///         {
-    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Bangalore),
+    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Mumbai),
     ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Mumbai),
     ///         },
     ///         Labels = 
@@ -312,7 +312,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Enabled = false,
     ///         Probes = new[]
     ///         {
-    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Atlanta),
+    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Ohio),
     ///         },
     ///         Labels = 
     ///         {
@@ -388,7 +388,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Enabled = false,
     ///         Probes = new[]
     ///         {
-    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Atlanta),
+    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Ohio),
     ///         },
     ///         Labels = 
     ///         {
@@ -511,7 +511,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///         Timeout = 30000,
     ///         Probes = new[]
     ///         {
-    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Atlanta),
+    ///             main.Apply(getProbesResult =&gt; getProbesResult.Probes?.Ohio),
     ///         },
     ///         Labels = 
     ///         {

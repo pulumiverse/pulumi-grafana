@@ -29,6 +29,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &OrgMember{}
 	case "grafana:cloud/pluginInstallation:PluginInstallation":
 		r = &PluginInstallation{}
+	case "grafana:cloud/privateDataSourceConnectNetwork:PrivateDataSourceConnectNetwork":
+		r = &PrivateDataSourceConnectNetwork{}
+	case "grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken":
+		r = &PrivateDataSourceConnectNetworkToken{}
 	case "grafana:cloud/providerAwsAccount:ProviderAwsAccount":
 		r = &ProviderAwsAccount{}
 	case "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob":
@@ -72,6 +76,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"cloud/pluginInstallation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"cloud/privateDataSourceConnectNetwork",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"cloud/privateDataSourceConnectNetworkToken",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

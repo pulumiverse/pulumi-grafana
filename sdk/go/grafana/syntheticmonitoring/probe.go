@@ -65,6 +65,8 @@ type Probe struct {
 
 	// The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
 	AuthToken pulumi.StringOutput `pulumi:"authToken"`
+	// Disables browser checks for this probe. Defaults to `false`.
+	DisableBrowserChecks pulumi.BoolPtrOutput `pulumi:"disableBrowserChecks"`
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks pulumi.BoolPtrOutput `pulumi:"disableScriptedChecks"`
 	// Custom labels to be included with collected metrics and logs.
@@ -134,6 +136,8 @@ func GetProbe(ctx *pulumi.Context,
 type probeState struct {
 	// The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
 	AuthToken *string `pulumi:"authToken"`
+	// Disables browser checks for this probe. Defaults to `false`.
+	DisableBrowserChecks *bool `pulumi:"disableBrowserChecks"`
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks *bool `pulumi:"disableScriptedChecks"`
 	// Custom labels to be included with collected metrics and logs.
@@ -155,6 +159,8 @@ type probeState struct {
 type ProbeState struct {
 	// The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
 	AuthToken pulumi.StringPtrInput
+	// Disables browser checks for this probe. Defaults to `false`.
+	DisableBrowserChecks pulumi.BoolPtrInput
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks pulumi.BoolPtrInput
 	// Custom labels to be included with collected metrics and logs.
@@ -178,6 +184,8 @@ func (ProbeState) ElementType() reflect.Type {
 }
 
 type probeArgs struct {
+	// Disables browser checks for this probe. Defaults to `false`.
+	DisableBrowserChecks *bool `pulumi:"disableBrowserChecks"`
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks *bool `pulumi:"disableScriptedChecks"`
 	// Custom labels to be included with collected metrics and logs.
@@ -196,6 +204,8 @@ type probeArgs struct {
 
 // The set of arguments for constructing a Probe resource.
 type ProbeArgs struct {
+	// Disables browser checks for this probe. Defaults to `false`.
+	DisableBrowserChecks pulumi.BoolPtrInput
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks pulumi.BoolPtrInput
 	// Custom labels to be included with collected metrics and logs.
@@ -302,6 +312,11 @@ func (o ProbeOutput) ToProbeOutputWithContext(ctx context.Context) ProbeOutput {
 // The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
 func (o ProbeOutput) AuthToken() pulumi.StringOutput {
 	return o.ApplyT(func(v *Probe) pulumi.StringOutput { return v.AuthToken }).(pulumi.StringOutput)
+}
+
+// Disables browser checks for this probe. Defaults to `false`.
+func (o ProbeOutput) DisableBrowserChecks() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Probe) pulumi.BoolPtrOutput { return v.DisableBrowserChecks }).(pulumi.BoolPtrOutput)
 }
 
 // Disables scripted checks for this probe. Defaults to `false`.

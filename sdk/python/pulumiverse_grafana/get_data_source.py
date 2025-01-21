@@ -28,7 +28,7 @@ class GetDataSourceResult:
     """
     A collection of values returned by getDataSource.
     """
-    def __init__(__self__, access_mode=None, basic_auth_enabled=None, basic_auth_username=None, database_name=None, id=None, is_default=None, json_data_encoded=None, name=None, org_id=None, type=None, uid=None, url=None, username=None):
+    def __init__(__self__, access_mode=None, basic_auth_enabled=None, basic_auth_username=None, database_name=None, id=None, is_default=None, json_data_encoded=None, name=None, org_id=None, private_data_source_connect_network_id=None, type=None, uid=None, url=None, username=None):
         if access_mode and not isinstance(access_mode, str):
             raise TypeError("Expected argument 'access_mode' to be a str")
         pulumi.set(__self__, "access_mode", access_mode)
@@ -56,6 +56,9 @@ class GetDataSourceResult:
         if org_id and not isinstance(org_id, str):
             raise TypeError("Expected argument 'org_id' to be a str")
         pulumi.set(__self__, "org_id", org_id)
+        if private_data_source_connect_network_id and not isinstance(private_data_source_connect_network_id, str):
+            raise TypeError("Expected argument 'private_data_source_connect_network_id' to be a str")
+        pulumi.set(__self__, "private_data_source_connect_network_id", private_data_source_connect_network_id)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
@@ -139,6 +142,14 @@ class GetDataSourceResult:
         return pulumi.get(self, "org_id")
 
     @property
+    @pulumi.getter(name="privateDataSourceConnectNetworkId")
+    def private_data_source_connect_network_id(self) -> str:
+        """
+        (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source.
+        """
+        return pulumi.get(self, "private_data_source_connect_network_id")
+
+    @property
     @pulumi.getter
     def type(self) -> str:
         """
@@ -183,6 +194,7 @@ class AwaitableGetDataSourceResult(GetDataSourceResult):
             json_data_encoded=self.json_data_encoded,
             name=self.name,
             org_id=self.org_id,
+            private_data_source_connect_network_id=self.private_data_source_connect_network_id,
             type=self.type,
             uid=self.uid,
             url=self.url,
@@ -244,6 +256,7 @@ def get_data_source(name: Optional[str] = None,
         json_data_encoded=pulumi.get(__ret__, 'json_data_encoded'),
         name=pulumi.get(__ret__, 'name'),
         org_id=pulumi.get(__ret__, 'org_id'),
+        private_data_source_connect_network_id=pulumi.get(__ret__, 'private_data_source_connect_network_id'),
         type=pulumi.get(__ret__, 'type'),
         uid=pulumi.get(__ret__, 'uid'),
         url=pulumi.get(__ret__, 'url'),
@@ -302,6 +315,7 @@ def get_data_source_output(name: Optional[pulumi.Input[Optional[str]]] = None,
         json_data_encoded=pulumi.get(__response__, 'json_data_encoded'),
         name=pulumi.get(__response__, 'name'),
         org_id=pulumi.get(__response__, 'org_id'),
+        private_data_source_connect_network_id=pulumi.get(__response__, 'private_data_source_connect_network_id'),
         type=pulumi.get(__response__, 'type'),
         uid=pulumi.get(__response__, 'uid'),
         url=pulumi.get(__response__, 'url'),

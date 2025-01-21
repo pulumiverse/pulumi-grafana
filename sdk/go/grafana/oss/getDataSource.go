@@ -106,6 +106,8 @@ type LookupDataSourceResult struct {
 	Name            string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
+	// (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source.
+	PrivateDataSourceConnectNetworkId string `pulumi:"privateDataSourceConnectNetworkId"`
 	// The data source type. Must be one of the supported data source keywords.
 	Type string `pulumi:"type"`
 	Uid  string `pulumi:"uid"`
@@ -193,6 +195,11 @@ func (o LookupDataSourceResultOutput) Name() pulumi.StringOutput {
 // The Organization ID. If not set, the Org ID defined in the provider block will be used.
 func (o LookupDataSourceResultOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDataSourceResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
+}
+
+// (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source.
+func (o LookupDataSourceResultOutput) PrivateDataSourceConnectNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDataSourceResult) string { return v.PrivateDataSourceConnectNetworkId }).(pulumi.StringOutput)
 }
 
 // The data source type. Must be one of the supported data source keywords.
