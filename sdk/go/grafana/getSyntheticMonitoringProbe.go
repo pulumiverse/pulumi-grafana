@@ -28,7 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := syntheticmonitoring.GetProbe(ctx, &syntheticmonitoring.GetProbeArgs{
-//				Name: "Atlanta",
+//				Name: "Ohio",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -58,6 +58,8 @@ type LookupSyntheticMonitoringProbeArgs struct {
 
 // A collection of values returned by getSyntheticMonitoringProbe.
 type LookupSyntheticMonitoringProbeResult struct {
+	// Disables browser checks for this probe.
+	DisableBrowserChecks bool `pulumi:"disableBrowserChecks"`
 	// Disables scripted checks for this probe.
 	DisableScriptedChecks bool `pulumi:"disableScriptedChecks"`
 	// The ID of the probe.
@@ -110,6 +112,11 @@ func (o LookupSyntheticMonitoringProbeResultOutput) ToLookupSyntheticMonitoringP
 
 func (o LookupSyntheticMonitoringProbeResultOutput) ToLookupSyntheticMonitoringProbeResultOutputWithContext(ctx context.Context) LookupSyntheticMonitoringProbeResultOutput {
 	return o
+}
+
+// Disables browser checks for this probe.
+func (o LookupSyntheticMonitoringProbeResultOutput) DisableBrowserChecks() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupSyntheticMonitoringProbeResult) bool { return v.DisableBrowserChecks }).(pulumi.BoolOutput)
 }
 
 // Disables scripted checks for this probe.

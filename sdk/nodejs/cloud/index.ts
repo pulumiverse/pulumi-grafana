@@ -30,6 +30,11 @@ export const getOrganization: typeof import("./getOrganization").getOrganization
 export const getOrganizationOutput: typeof import("./getOrganization").getOrganizationOutput = null as any;
 utilities.lazyLoad(exports, ["getOrganization","getOrganizationOutput"], () => require("./getOrganization"));
 
+export { GetPrivateDataSourceConnectNetworksArgs, GetPrivateDataSourceConnectNetworksResult, GetPrivateDataSourceConnectNetworksOutputArgs } from "./getPrivateDataSourceConnectNetworks";
+export const getPrivateDataSourceConnectNetworks: typeof import("./getPrivateDataSourceConnectNetworks").getPrivateDataSourceConnectNetworks = null as any;
+export const getPrivateDataSourceConnectNetworksOutput: typeof import("./getPrivateDataSourceConnectNetworks").getPrivateDataSourceConnectNetworksOutput = null as any;
+utilities.lazyLoad(exports, ["getPrivateDataSourceConnectNetworks","getPrivateDataSourceConnectNetworksOutput"], () => require("./getPrivateDataSourceConnectNetworks"));
+
 export { GetProviderAwsAccountArgs, GetProviderAwsAccountResult, GetProviderAwsAccountOutputArgs } from "./getProviderAwsAccount";
 export const getProviderAwsAccount: typeof import("./getProviderAwsAccount").getProviderAwsAccount = null as any;
 export const getProviderAwsAccountOutput: typeof import("./getProviderAwsAccount").getProviderAwsAccountOutput = null as any;
@@ -64,6 +69,16 @@ export { PluginInstallationArgs, PluginInstallationState } from "./pluginInstall
 export type PluginInstallation = import("./pluginInstallation").PluginInstallation;
 export const PluginInstallation: typeof import("./pluginInstallation").PluginInstallation = null as any;
 utilities.lazyLoad(exports, ["PluginInstallation"], () => require("./pluginInstallation"));
+
+export { PrivateDataSourceConnectNetworkArgs, PrivateDataSourceConnectNetworkState } from "./privateDataSourceConnectNetwork";
+export type PrivateDataSourceConnectNetwork = import("./privateDataSourceConnectNetwork").PrivateDataSourceConnectNetwork;
+export const PrivateDataSourceConnectNetwork: typeof import("./privateDataSourceConnectNetwork").PrivateDataSourceConnectNetwork = null as any;
+utilities.lazyLoad(exports, ["PrivateDataSourceConnectNetwork"], () => require("./privateDataSourceConnectNetwork"));
+
+export { PrivateDataSourceConnectNetworkTokenArgs, PrivateDataSourceConnectNetworkTokenState } from "./privateDataSourceConnectNetworkToken";
+export type PrivateDataSourceConnectNetworkToken = import("./privateDataSourceConnectNetworkToken").PrivateDataSourceConnectNetworkToken;
+export const PrivateDataSourceConnectNetworkToken: typeof import("./privateDataSourceConnectNetworkToken").PrivateDataSourceConnectNetworkToken = null as any;
+utilities.lazyLoad(exports, ["PrivateDataSourceConnectNetworkToken"], () => require("./privateDataSourceConnectNetworkToken"));
 
 export { ProviderAwsAccountArgs, ProviderAwsAccountState } from "./providerAwsAccount";
 export type ProviderAwsAccount = import("./providerAwsAccount").ProviderAwsAccount;
@@ -108,6 +123,10 @@ const _module = {
                 return new OrgMember(name, <any>undefined, { urn })
             case "grafana:cloud/pluginInstallation:PluginInstallation":
                 return new PluginInstallation(name, <any>undefined, { urn })
+            case "grafana:cloud/privateDataSourceConnectNetwork:PrivateDataSourceConnectNetwork":
+                return new PrivateDataSourceConnectNetwork(name, <any>undefined, { urn })
+            case "grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken":
+                return new PrivateDataSourceConnectNetworkToken(name, <any>undefined, { urn })
             case "grafana:cloud/providerAwsAccount:ProviderAwsAccount":
                 return new ProviderAwsAccount(name, <any>undefined, { urn })
             case "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob":
@@ -129,6 +148,8 @@ pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicy", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicyToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/orgMember", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/pluginInstallation", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloud/privateDataSourceConnectNetwork", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloud/privateDataSourceConnectNetworkToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/providerAwsAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/providerAwsCloudwatchScrapeJob", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/providerAzureCredential", _module)

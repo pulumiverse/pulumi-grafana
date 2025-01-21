@@ -72,6 +72,10 @@ export class Probe extends pulumi.CustomResource {
      */
     public /*out*/ readonly authToken!: pulumi.Output<string>;
     /**
+     * Disables browser checks for this probe. Defaults to `false`.
+     */
+    public readonly disableBrowserChecks!: pulumi.Output<boolean | undefined>;
+    /**
      * Disables scripted checks for this probe. Defaults to `false`.
      */
     public readonly disableScriptedChecks!: pulumi.Output<boolean | undefined>;
@@ -118,6 +122,7 @@ export class Probe extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ProbeState | undefined;
             resourceInputs["authToken"] = state ? state.authToken : undefined;
+            resourceInputs["disableBrowserChecks"] = state ? state.disableBrowserChecks : undefined;
             resourceInputs["disableScriptedChecks"] = state ? state.disableScriptedChecks : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["latitude"] = state ? state.latitude : undefined;
@@ -137,6 +142,7 @@ export class Probe extends pulumi.CustomResource {
             if ((!args || args.region === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
+            resourceInputs["disableBrowserChecks"] = args ? args.disableBrowserChecks : undefined;
             resourceInputs["disableScriptedChecks"] = args ? args.disableScriptedChecks : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["latitude"] = args ? args.latitude : undefined;
@@ -164,6 +170,10 @@ export interface ProbeState {
      * The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
      */
     authToken?: pulumi.Input<string>;
+    /**
+     * Disables browser checks for this probe. Defaults to `false`.
+     */
+    disableBrowserChecks?: pulumi.Input<boolean>;
     /**
      * Disables scripted checks for this probe. Defaults to `false`.
      */
@@ -202,6 +212,10 @@ export interface ProbeState {
  * The set of arguments for constructing a Probe resource.
  */
 export interface ProbeArgs {
+    /**
+     * Disables browser checks for this probe. Defaults to `false`.
+     */
+    disableBrowserChecks?: pulumi.Input<boolean>;
     /**
      * Disables scripted checks for this probe. Defaults to `false`.
      */

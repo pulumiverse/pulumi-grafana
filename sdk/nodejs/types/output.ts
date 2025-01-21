@@ -4499,6 +4499,14 @@ export namespace cloud {
         status: string;
     }
 
+    export interface GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork {
+        displayName: string;
+        id: string;
+        name: string;
+        region: string;
+        status: string;
+    }
+
     export interface GetProviderAwsCloudwatchScrapeJobCustomNamespace {
         /**
          * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.

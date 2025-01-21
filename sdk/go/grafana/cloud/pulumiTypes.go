@@ -1018,6 +1018,126 @@ func (o GetAccessPoliciesAccessPolicyArrayOutput) Index(i pulumi.IntInput) GetAc
 	}).(GetAccessPoliciesAccessPolicyOutput)
 }
 
+type GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork struct {
+	DisplayName string `pulumi:"displayName"`
+	Id          string `pulumi:"id"`
+	Name        string `pulumi:"name"`
+	Region      string `pulumi:"region"`
+	Status      string `pulumi:"status"`
+}
+
+// GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkInput is an input type that accepts GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArgs and GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput values.
+// You can construct a concrete instance of `GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkInput` via:
+//
+//	GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArgs{...}
+type GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkInput interface {
+	pulumi.Input
+
+	ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput() GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput
+	ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutputWithContext(context.Context) GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput
+}
+
+type GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArgs struct {
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	Id          pulumi.StringInput `pulumi:"id"`
+	Name        pulumi.StringInput `pulumi:"name"`
+	Region      pulumi.StringInput `pulumi:"region"`
+	Status      pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork)(nil)).Elem()
+}
+
+func (i GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArgs) ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput() GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput {
+	return i.ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutputWithContext(context.Background())
+}
+
+func (i GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArgs) ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutputWithContext(ctx context.Context) GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput)
+}
+
+// GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayInput is an input type that accepts GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArray and GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput values.
+// You can construct a concrete instance of `GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayInput` via:
+//
+//	GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArray{ GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArgs{...} }
+type GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput() GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput
+	ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutputWithContext(context.Context) GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput
+}
+
+type GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArray []GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkInput
+
+func (GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork)(nil)).Elem()
+}
+
+func (i GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArray) ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput() GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput {
+	return i.ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArray) ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutputWithContext(ctx context.Context) GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput)
+}
+
+type GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork)(nil)).Elem()
+}
+
+func (o GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput) ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput() GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput {
+	return o
+}
+
+func (o GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput) ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutputWithContext(ctx context.Context) GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput {
+	return o
+}
+
+func (o GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork) string {
+		return v.DisplayName
+	}).(pulumi.StringOutput)
+}
+
+func (o GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork) string { return v.Region }).(pulumi.StringOutput)
+}
+
+func (o GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork)(nil)).Elem()
+}
+
+func (o GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput) ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput() GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput {
+	return o
+}
+
+func (o GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput) ToGetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutputWithContext(ctx context.Context) GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput {
+	return o
+}
+
+func (o GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput) Index(i pulumi.IntInput) GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork {
+		return vs[0].([]GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork)[vs[1].(int)]
+	}).(GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput)
+}
+
 type GetProviderAwsCloudwatchScrapeJobCustomNamespace struct {
 	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
 	Metrics []GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetric `pulumi:"metrics"`
@@ -2482,6 +2602,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAzureCredentialResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), ProviderAzureCredentialResourceDiscoveryTagFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessPoliciesAccessPolicyInput)(nil)).Elem(), GetAccessPoliciesAccessPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessPoliciesAccessPolicyArrayInput)(nil)).Elem(), GetAccessPoliciesAccessPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkInput)(nil)).Elem(), GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayInput)(nil)).Elem(), GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobCustomNamespaceInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobCustomNamespaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs{})
@@ -2524,6 +2646,8 @@ func init() {
 	pulumi.RegisterOutputType(ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetAccessPoliciesAccessPolicyOutput{})
 	pulumi.RegisterOutputType(GetAccessPoliciesAccessPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput{})
+	pulumi.RegisterOutputType(GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobCustomNamespaceOutput{})
 	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput{})
 	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobCustomNamespaceMetricOutput{})

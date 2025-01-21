@@ -26,9 +26,9 @@ namespace Pulumiverse.Grafana
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var atlanta = Grafana.SyntheticMonitoring.GetProbe.Invoke(new()
+        ///     var ohio = Grafana.SyntheticMonitoring.GetProbe.Invoke(new()
         ///     {
-        ///         Name = "Atlanta",
+        ///         Name = "Ohio",
         ///     });
         /// 
         /// });
@@ -50,9 +50,9 @@ namespace Pulumiverse.Grafana
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var atlanta = Grafana.SyntheticMonitoring.GetProbe.Invoke(new()
+        ///     var ohio = Grafana.SyntheticMonitoring.GetProbe.Invoke(new()
         ///     {
-        ///         Name = "Atlanta",
+        ///         Name = "Ohio",
         ///     });
         /// 
         /// });
@@ -74,9 +74,9 @@ namespace Pulumiverse.Grafana
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var atlanta = Grafana.SyntheticMonitoring.GetProbe.Invoke(new()
+        ///     var ohio = Grafana.SyntheticMonitoring.GetProbe.Invoke(new()
         ///     {
-        ///         Name = "Atlanta",
+        ///         Name = "Ohio",
         ///     });
         /// 
         /// });
@@ -120,6 +120,10 @@ namespace Pulumiverse.Grafana
     public sealed class GetSyntheticMonitoringProbeResult
     {
         /// <summary>
+        /// Disables browser checks for this probe.
+        /// </summary>
+        public readonly bool DisableBrowserChecks;
+        /// <summary>
         /// Disables scripted checks for this probe.
         /// </summary>
         public readonly bool DisableScriptedChecks;
@@ -158,6 +162,8 @@ namespace Pulumiverse.Grafana
 
         [OutputConstructor]
         private GetSyntheticMonitoringProbeResult(
+            bool disableBrowserChecks,
+
             bool disableScriptedChecks,
 
             string id,
@@ -176,6 +182,7 @@ namespace Pulumiverse.Grafana
 
             int tenantId)
         {
+            DisableBrowserChecks = disableBrowserChecks;
             DisableScriptedChecks = disableScriptedChecks;
             Id = id;
             Labels = labels;

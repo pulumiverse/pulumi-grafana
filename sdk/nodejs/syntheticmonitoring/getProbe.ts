@@ -13,8 +13,8 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const atlanta = grafana.syntheticMonitoring.getProbe({
- *     name: "Atlanta",
+ * const ohio = grafana.syntheticMonitoring.getProbe({
+ *     name: "Ohio",
  * });
  * ```
  */
@@ -39,6 +39,10 @@ export interface GetProbeArgs {
  * A collection of values returned by getProbe.
  */
 export interface GetProbeResult {
+    /**
+     * Disables browser checks for this probe.
+     */
+    readonly disableBrowserChecks: boolean;
     /**
      * Disables scripted checks for this probe.
      */
@@ -85,8 +89,8 @@ export interface GetProbeResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const atlanta = grafana.syntheticMonitoring.getProbe({
- *     name: "Atlanta",
+ * const ohio = grafana.syntheticMonitoring.getProbe({
+ *     name: "Ohio",
  * });
  * ```
  */

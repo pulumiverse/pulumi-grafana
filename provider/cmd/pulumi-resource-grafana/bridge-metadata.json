@@ -71,6 +71,12 @@
                     }
                 ]
             },
+            "grafana_cloud_private_data_source_connect_network": {
+                "current": "grafana:cloud/privateDataSourceConnectNetwork:PrivateDataSourceConnectNetwork"
+            },
+            "grafana_cloud_private_data_source_connect_network_token": {
+                "current": "grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken"
+            },
             "grafana_cloud_provider_aws_account": {
                 "current": "grafana:cloud/providerAwsAccount:ProviderAwsAccount",
                 "fields": {
@@ -1416,6 +1422,14 @@
                     }
                 ]
             },
+            "grafana_cloud_private_data_source_connect_networks": {
+                "current": "grafana:cloud/getPrivateDataSourceConnectNetworks:getPrivateDataSourceConnectNetworks",
+                "fields": {
+                    "private_data_source_connect_networks": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "grafana_cloud_provider_aws_account": {
                 "current": "grafana:cloud/getProviderAwsAccount:getProviderAwsAccount",
                 "fields": {
@@ -2383,6 +2397,8 @@
             "grafana:cloud/accessPolicyToken:AccessPolicyToken": 0,
             "grafana:cloud/orgMember:OrgMember": 1,
             "grafana:cloud/pluginInstallation:PluginInstallation": 0,
+            "grafana:cloud/privateDataSourceConnectNetwork:PrivateDataSourceConnectNetwork": 0,
+            "grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken": 0,
             "grafana:cloud/providerAwsAccount:ProviderAwsAccount": 1,
             "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob": 1,
             "grafana:cloud/providerAzureCredential:ProviderAzureCredential": 1,
@@ -2495,6 +2511,7 @@
             "grafana:cloud/getAccessPolicies:getAccessPolicies": 1,
             "grafana:cloud/getIps:getIps": 0,
             "grafana:cloud/getOrganization:getOrganization": 0,
+            "grafana:cloud/getPrivateDataSourceConnectNetworks:getPrivateDataSourceConnectNetworks": 1,
             "grafana:cloud/getProviderAwsAccount:getProviderAwsAccount": 1,
             "grafana:cloud/getProviderAwsCloudwatchScrapeJob:getProviderAwsCloudwatchScrapeJob": 1,
             "grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs": 1,

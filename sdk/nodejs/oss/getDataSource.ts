@@ -98,6 +98,10 @@ export interface GetDataSourceResult {
      */
     readonly orgId?: string;
     /**
+     * (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source.
+     */
+    readonly privateDataSourceConnectNetworkId: string;
+    /**
      * The data source type. Must be one of the supported data source keywords.
      */
     readonly type: string;

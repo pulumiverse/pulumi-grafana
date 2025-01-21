@@ -28,7 +28,10 @@ class GetSyntheticMonitoringProbeResult:
     """
     A collection of values returned by getSyntheticMonitoringProbe.
     """
-    def __init__(__self__, disable_scripted_checks=None, id=None, labels=None, latitude=None, longitude=None, name=None, public=None, region=None, tenant_id=None):
+    def __init__(__self__, disable_browser_checks=None, disable_scripted_checks=None, id=None, labels=None, latitude=None, longitude=None, name=None, public=None, region=None, tenant_id=None):
+        if disable_browser_checks and not isinstance(disable_browser_checks, bool):
+            raise TypeError("Expected argument 'disable_browser_checks' to be a bool")
+        pulumi.set(__self__, "disable_browser_checks", disable_browser_checks)
         if disable_scripted_checks and not isinstance(disable_scripted_checks, bool):
             raise TypeError("Expected argument 'disable_scripted_checks' to be a bool")
         pulumi.set(__self__, "disable_scripted_checks", disable_scripted_checks)
@@ -56,6 +59,14 @@ class GetSyntheticMonitoringProbeResult:
         if tenant_id and not isinstance(tenant_id, int):
             raise TypeError("Expected argument 'tenant_id' to be a int")
         pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="disableBrowserChecks")
+    def disable_browser_checks(self) -> bool:
+        """
+        Disables browser checks for this probe.
+        """
+        return pulumi.get(self, "disable_browser_checks")
 
     @property
     @pulumi.getter(name="disableScriptedChecks")
@@ -136,6 +147,7 @@ class AwaitableGetSyntheticMonitoringProbeResult(GetSyntheticMonitoringProbeResu
         if False:
             yield self
         return GetSyntheticMonitoringProbeResult(
+            disable_browser_checks=self.disable_browser_checks,
             disable_scripted_checks=self.disable_scripted_checks,
             id=self.id,
             labels=self.labels,
@@ -158,7 +170,7 @@ def get_synthetic_monitoring_probe(name: Optional[str] = None,
     import pulumi
     import pulumi_grafana as grafana
 
-    atlanta = grafana.syntheticMonitoring.get_probe(name="Atlanta")
+    ohio = grafana.syntheticMonitoring.get_probe(name="Ohio")
     ```
 
 
@@ -171,6 +183,7 @@ def get_synthetic_monitoring_probe(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe', __args__, opts=opts, typ=GetSyntheticMonitoringProbeResult).value
 
     return AwaitableGetSyntheticMonitoringProbeResult(
+        disable_browser_checks=pulumi.get(__ret__, 'disable_browser_checks'),
         disable_scripted_checks=pulumi.get(__ret__, 'disable_scripted_checks'),
         id=pulumi.get(__ret__, 'id'),
         labels=pulumi.get(__ret__, 'labels'),
@@ -191,7 +204,7 @@ def get_synthetic_monitoring_probe_output(name: Optional[pulumi.Input[str]] = No
     import pulumi
     import pulumi_grafana as grafana
 
-    atlanta = grafana.syntheticMonitoring.get_probe(name="Atlanta")
+    ohio = grafana.syntheticMonitoring.get_probe(name="Ohio")
     ```
 
 
@@ -203,6 +216,7 @@ def get_synthetic_monitoring_probe_output(name: Optional[pulumi.Input[str]] = No
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getSyntheticMonitoringProbe:getSyntheticMonitoringProbe', __args__, opts=opts, typ=GetSyntheticMonitoringProbeResult)
     return __ret__.apply(lambda __response__: GetSyntheticMonitoringProbeResult(
+        disable_browser_checks=pulumi.get(__response__, 'disable_browser_checks'),
         disable_scripted_checks=pulumi.get(__response__, 'disable_scripted_checks'),
         id=pulumi.get(__response__, 'id'),
         labels=pulumi.get(__response__, 'labels'),

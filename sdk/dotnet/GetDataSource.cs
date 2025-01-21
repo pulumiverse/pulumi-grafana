@@ -246,6 +246,10 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public readonly string? OrgId;
         /// <summary>
+        /// (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source.
+        /// </summary>
+        public readonly string PrivateDataSourceConnectNetworkId;
+        /// <summary>
         /// The data source type. Must be one of the supported data source keywords.
         /// </summary>
         public readonly string Type;
@@ -279,6 +283,8 @@ namespace Pulumiverse.Grafana
 
             string? orgId,
 
+            string privateDataSourceConnectNetworkId,
+
             string type,
 
             string uid,
@@ -296,6 +302,7 @@ namespace Pulumiverse.Grafana
             JsonDataEncoded = jsonDataEncoded;
             Name = name;
             OrgId = orgId;
+            PrivateDataSourceConnectNetworkId = privateDataSourceConnectNetworkId;
             Type = type;
             Uid = uid;
             Url = url;
