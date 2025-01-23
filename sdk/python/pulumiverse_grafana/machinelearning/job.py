@@ -408,7 +408,7 @@ class Job(pulumi.CustomResource):
         """
         A job defines the queries and model parameters for a machine learning task.
 
-        See [the Grafana Cloud docs](https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/) for more information
+        See [the Grafana Cloud docs](https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/dynamic-alerting/forecasting/config/) for more information
         on available hyperparameters for use in the `hyper_params` field.
 
         ## Example Usage
@@ -563,7 +563,7 @@ class Job(pulumi.CustomResource):
         """
         A job defines the queries and model parameters for a machine learning task.
 
-        See [the Grafana Cloud docs](https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/) for more information
+        See [the Grafana Cloud docs](https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/dynamic-alerting/forecasting/config/) for more information
         on available hyperparameters for use in the `hyper_params` field.
 
         ## Example Usage
