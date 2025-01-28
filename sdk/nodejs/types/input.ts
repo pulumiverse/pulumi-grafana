@@ -4542,6 +4542,50 @@ export namespace cloud {
         value?: pulumi.Input<string>;
     }
 
+    export interface GetProviderAzureCredentialAutoDiscoveryConfiguration {
+        /**
+         * The list of resource type configurations.
+         */
+        resourceTypeConfigurations?: inputs.cloud.GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration[];
+        /**
+         * The subscription ID of the Azure account.
+         */
+        subscriptionId?: string;
+    }
+
+    export interface GetProviderAzureCredentialAutoDiscoveryConfigurationArgs {
+        /**
+         * The list of resource type configurations.
+         */
+        resourceTypeConfigurations?: pulumi.Input<pulumi.Input<inputs.cloud.GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs>[]>;
+        /**
+         * The subscription ID of the Azure account.
+         */
+        subscriptionId?: pulumi.Input<string>;
+    }
+
+    export interface GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration {
+        metricConfigurations: inputs.cloud.GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration[];
+        resourceTypeName: string;
+    }
+
+    export interface GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs {
+        metricConfigurations: pulumi.Input<pulumi.Input<inputs.cloud.GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs>[]>;
+        resourceTypeName: pulumi.Input<string>;
+    }
+
+    export interface GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration {
+        aggregations: string[];
+        dimensions: string[];
+        name: string;
+    }
+
+    export interface GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs {
+        aggregations: pulumi.Input<pulumi.Input<string>[]>;
+        dimensions: pulumi.Input<pulumi.Input<string>[]>;
+        name: pulumi.Input<string>;
+    }
+
     export interface GetProviderAzureCredentialResourceDiscoveryTagFilter {
         /**
          * The key of the tag filter.
@@ -4633,6 +4677,28 @@ export namespace cloud {
          * The value of the tag filter.
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface ProviderAzureCredentialAutoDiscoveryConfiguration {
+        /**
+         * The list of resource type configurations.
+         */
+        resourceTypeConfigurations: pulumi.Input<pulumi.Input<inputs.cloud.ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration>[]>;
+        /**
+         * The subscription ID of the Azure account.
+         */
+        subscriptionId: pulumi.Input<string>;
+    }
+
+    export interface ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration {
+        metricConfigurations: pulumi.Input<pulumi.Input<inputs.cloud.ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration>[]>;
+        resourceTypeName: pulumi.Input<string>;
+    }
+
+    export interface ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration {
+        aggregations: pulumi.Input<pulumi.Input<string>[]>;
+        dimensions: pulumi.Input<pulumi.Input<string>[]>;
+        name: pulumi.Input<string>;
     }
 
     export interface ProviderAzureCredentialResourceDiscoveryTagFilter {

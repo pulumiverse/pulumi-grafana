@@ -26,10 +26,13 @@ class GetProviderAwsAccountResult:
     """
     A collection of values returned by getProviderAwsAccount.
     """
-    def __init__(__self__, id=None, regions=None, resource_id=None, role_arn=None, stack_id=None):
+    def __init__(__self__, id=None, name=None, regions=None, resource_id=None, role_arn=None, stack_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
         if regions and not isinstance(regions, list):
             raise TypeError("Expected argument 'regions' to be a list")
         pulumi.set(__self__, "regions", regions)
@@ -47,6 +50,14 @@ class GetProviderAwsAccountResult:
     @pulumi.getter
     def id(self) -> str:
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        An optional human-readable name for this AWS Account resource.
+        """
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -85,6 +96,7 @@ class AwaitableGetProviderAwsAccountResult(GetProviderAwsAccountResult):
             yield self
         return GetProviderAwsAccountResult(
             id=self.id,
+            name=self.name,
             regions=self.regions,
             resource_id=self.resource_id,
             role_arn=self.role_arn,
@@ -125,6 +137,7 @@ def get_provider_aws_account(resource_id: Optional[str] = None,
 
     return AwaitableGetProviderAwsAccountResult(
         id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
         regions=pulumi.get(__ret__, 'regions'),
         resource_id=pulumi.get(__ret__, 'resource_id'),
         role_arn=pulumi.get(__ret__, 'role_arn'),
@@ -162,6 +175,7 @@ def get_provider_aws_account_output(resource_id: Optional[pulumi.Input[str]] = N
     __ret__ = pulumi.runtime.invoke_output('grafana:cloud/getProviderAwsAccount:getProviderAwsAccount', __args__, opts=opts, typ=GetProviderAwsAccountResult)
     return __ret__.apply(lambda __response__: GetProviderAwsAccountResult(
         id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
         regions=pulumi.get(__response__, 'regions'),
         resource_id=pulumi.get(__response__, 'resource_id'),
         role_arn=pulumi.get(__response__, 'role_arn'),

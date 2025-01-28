@@ -174,6 +174,10 @@ namespace Pulumiverse.Grafana.Cloud
     {
         public readonly string Id;
         /// <summary>
+        /// An optional human-readable name for this AWS Account resource.
+        /// </summary>
+        public readonly string Name;
+        /// <summary>
         /// A set of regions that this AWS Account resource applies to.
         /// </summary>
         public readonly ImmutableArray<string> Regions;
@@ -191,6 +195,8 @@ namespace Pulumiverse.Grafana.Cloud
         private GetProviderAwsAccountResult(
             string id,
 
+            string name,
+
             ImmutableArray<string> regions,
 
             string resourceId,
@@ -200,6 +206,7 @@ namespace Pulumiverse.Grafana.Cloud
             string stackId)
         {
             Id = id;
+            Name = name;
             Regions = regions;
             ResourceId = resourceId;
             RoleArn = roleArn;

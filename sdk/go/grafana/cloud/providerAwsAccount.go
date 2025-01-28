@@ -65,6 +65,8 @@ import (
 type ProviderAwsAccount struct {
 	pulumi.CustomResourceState
 
+	// An optional human-readable name for this AWS Account resource.
+	Name pulumi.StringOutput `pulumi:"name"`
 	// A set of regions that this AWS Account resource applies to.
 	Regions pulumi.StringArrayOutput `pulumi:"regions"`
 	// The ID given by the Grafana Cloud Provider API to this AWS Account resource.
@@ -113,6 +115,8 @@ func GetProviderAwsAccount(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ProviderAwsAccount resources.
 type providerAwsAccountState struct {
+	// An optional human-readable name for this AWS Account resource.
+	Name *string `pulumi:"name"`
 	// A set of regions that this AWS Account resource applies to.
 	Regions []string `pulumi:"regions"`
 	// The ID given by the Grafana Cloud Provider API to this AWS Account resource.
@@ -123,6 +127,8 @@ type providerAwsAccountState struct {
 }
 
 type ProviderAwsAccountState struct {
+	// An optional human-readable name for this AWS Account resource.
+	Name pulumi.StringPtrInput
 	// A set of regions that this AWS Account resource applies to.
 	Regions pulumi.StringArrayInput
 	// The ID given by the Grafana Cloud Provider API to this AWS Account resource.
@@ -137,6 +143,8 @@ func (ProviderAwsAccountState) ElementType() reflect.Type {
 }
 
 type providerAwsAccountArgs struct {
+	// An optional human-readable name for this AWS Account resource.
+	Name *string `pulumi:"name"`
 	// A set of regions that this AWS Account resource applies to.
 	Regions []string `pulumi:"regions"`
 	// An IAM Role ARN string to represent with this AWS Account resource.
@@ -146,6 +154,8 @@ type providerAwsAccountArgs struct {
 
 // The set of arguments for constructing a ProviderAwsAccount resource.
 type ProviderAwsAccountArgs struct {
+	// An optional human-readable name for this AWS Account resource.
+	Name pulumi.StringPtrInput
 	// A set of regions that this AWS Account resource applies to.
 	Regions pulumi.StringArrayInput
 	// An IAM Role ARN string to represent with this AWS Account resource.
@@ -238,6 +248,11 @@ func (o ProviderAwsAccountOutput) ToProviderAwsAccountOutput() ProviderAwsAccoun
 
 func (o ProviderAwsAccountOutput) ToProviderAwsAccountOutputWithContext(ctx context.Context) ProviderAwsAccountOutput {
 	return o
+}
+
+// An optional human-readable name for this AWS Account resource.
+func (o ProviderAwsAccountOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ProviderAwsAccount) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 // A set of regions that this AWS Account resource applies to.

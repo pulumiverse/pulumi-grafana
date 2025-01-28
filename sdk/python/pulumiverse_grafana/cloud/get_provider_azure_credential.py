@@ -28,7 +28,10 @@ class GetProviderAzureCredentialResult:
     """
     A collection of values returned by getProviderAzureCredential.
     """
-    def __init__(__self__, client_id=None, client_secret=None, id=None, name=None, resource_discovery_tag_filters=None, resource_id=None, stack_id=None, tenant_id=None):
+    def __init__(__self__, auto_discovery_configurations=None, client_id=None, client_secret=None, id=None, name=None, resource_discovery_tag_filters=None, resource_id=None, stack_id=None, tenant_id=None):
+        if auto_discovery_configurations and not isinstance(auto_discovery_configurations, list):
+            raise TypeError("Expected argument 'auto_discovery_configurations' to be a list")
+        pulumi.set(__self__, "auto_discovery_configurations", auto_discovery_configurations)
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
@@ -53,6 +56,14 @@ class GetProviderAzureCredentialResult:
         if tenant_id and not isinstance(tenant_id, str):
             raise TypeError("Expected argument 'tenant_id' to be a str")
         pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="autoDiscoveryConfigurations")
+    def auto_discovery_configurations(self) -> Optional[Sequence['outputs.GetProviderAzureCredentialAutoDiscoveryConfigurationResult']]:
+        """
+        The list of auto discovery configurations.
+        """
+        return pulumi.get(self, "auto_discovery_configurations")
 
     @property
     @pulumi.getter(name="clientId")
@@ -119,6 +130,7 @@ class AwaitableGetProviderAzureCredentialResult(GetProviderAzureCredentialResult
         if False:
             yield self
         return GetProviderAzureCredentialResult(
+            auto_discovery_configurations=self.auto_discovery_configurations,
             client_id=self.client_id,
             client_secret=self.client_secret,
             id=self.id,
@@ -129,43 +141,21 @@ class AwaitableGetProviderAzureCredentialResult(GetProviderAzureCredentialResult
             tenant_id=self.tenant_id)
 
 
-def get_provider_azure_credential(resource_discovery_tag_filters: Optional[Sequence[Union['GetProviderAzureCredentialResourceDiscoveryTagFilterArgs', 'GetProviderAzureCredentialResourceDiscoveryTagFilterArgsDict']]] = None,
+def get_provider_azure_credential(auto_discovery_configurations: Optional[Sequence[Union['GetProviderAzureCredentialAutoDiscoveryConfigurationArgs', 'GetProviderAzureCredentialAutoDiscoveryConfigurationArgsDict']]] = None,
+                                  resource_discovery_tag_filters: Optional[Sequence[Union['GetProviderAzureCredentialResourceDiscoveryTagFilterArgs', 'GetProviderAzureCredentialResourceDiscoveryTagFilterArgsDict']]] = None,
                                   resource_id: Optional[str] = None,
                                   stack_id: Optional[str] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProviderAzureCredentialResult:
     """
     ## Example Usage
 
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
 
-    test_provider_azure_credential = grafana.cloud.ProviderAzureCredential("test",
-        stack_id="1",
-        name="test-name",
-        client_id="my-client-id",
-        client_secret="my-client-secret",
-        tenant_id="my-tenant-id",
-        resource_discovery_tag_filters=[
-            {
-                "key": "key-1",
-                "value": "value-1",
-            },
-            {
-                "key": "key-2",
-                "value": "value-2",
-            },
-        ])
-    test = grafana.cloud.get_provider_azure_credential_output(stack_id=test_provider_azure_credential.stack_id,
-        resource_id=test_provider_azure_credential.resource_id)
-    ```
-
-
+    :param Sequence[Union['GetProviderAzureCredentialAutoDiscoveryConfigurationArgs', 'GetProviderAzureCredentialAutoDiscoveryConfigurationArgsDict']] auto_discovery_configurations: The list of auto discovery configurations.
     :param Sequence[Union['GetProviderAzureCredentialResourceDiscoveryTagFilterArgs', 'GetProviderAzureCredentialResourceDiscoveryTagFilterArgsDict']] resource_discovery_tag_filters: The list of tag filters to apply to resources.
     :param str resource_id: The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
     """
     __args__ = dict()
+    __args__['autoDiscoveryConfigurations'] = auto_discovery_configurations
     __args__['resourceDiscoveryTagFilters'] = resource_discovery_tag_filters
     __args__['resourceId'] = resource_id
     __args__['stackId'] = stack_id
@@ -173,6 +163,7 @@ def get_provider_azure_credential(resource_discovery_tag_filters: Optional[Seque
     __ret__ = pulumi.runtime.invoke('grafana:cloud/getProviderAzureCredential:getProviderAzureCredential', __args__, opts=opts, typ=GetProviderAzureCredentialResult).value
 
     return AwaitableGetProviderAzureCredentialResult(
+        auto_discovery_configurations=pulumi.get(__ret__, 'auto_discovery_configurations'),
         client_id=pulumi.get(__ret__, 'client_id'),
         client_secret=pulumi.get(__ret__, 'client_secret'),
         id=pulumi.get(__ret__, 'id'),
@@ -181,49 +172,28 @@ def get_provider_azure_credential(resource_discovery_tag_filters: Optional[Seque
         resource_id=pulumi.get(__ret__, 'resource_id'),
         stack_id=pulumi.get(__ret__, 'stack_id'),
         tenant_id=pulumi.get(__ret__, 'tenant_id'))
-def get_provider_azure_credential_output(resource_discovery_tag_filters: Optional[pulumi.Input[Optional[Sequence[Union['GetProviderAzureCredentialResourceDiscoveryTagFilterArgs', 'GetProviderAzureCredentialResourceDiscoveryTagFilterArgsDict']]]]] = None,
+def get_provider_azure_credential_output(auto_discovery_configurations: Optional[pulumi.Input[Optional[Sequence[Union['GetProviderAzureCredentialAutoDiscoveryConfigurationArgs', 'GetProviderAzureCredentialAutoDiscoveryConfigurationArgsDict']]]]] = None,
+                                         resource_discovery_tag_filters: Optional[pulumi.Input[Optional[Sequence[Union['GetProviderAzureCredentialResourceDiscoveryTagFilterArgs', 'GetProviderAzureCredentialResourceDiscoveryTagFilterArgsDict']]]]] = None,
                                          resource_id: Optional[pulumi.Input[str]] = None,
                                          stack_id: Optional[pulumi.Input[str]] = None,
                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProviderAzureCredentialResult]:
     """
     ## Example Usage
 
-    ```python
-    import pulumi
-    import pulumi_grafana as grafana
-    import pulumiverse_grafana as grafana
 
-    test_provider_azure_credential = grafana.cloud.ProviderAzureCredential("test",
-        stack_id="1",
-        name="test-name",
-        client_id="my-client-id",
-        client_secret="my-client-secret",
-        tenant_id="my-tenant-id",
-        resource_discovery_tag_filters=[
-            {
-                "key": "key-1",
-                "value": "value-1",
-            },
-            {
-                "key": "key-2",
-                "value": "value-2",
-            },
-        ])
-    test = grafana.cloud.get_provider_azure_credential_output(stack_id=test_provider_azure_credential.stack_id,
-        resource_id=test_provider_azure_credential.resource_id)
-    ```
-
-
+    :param Sequence[Union['GetProviderAzureCredentialAutoDiscoveryConfigurationArgs', 'GetProviderAzureCredentialAutoDiscoveryConfigurationArgsDict']] auto_discovery_configurations: The list of auto discovery configurations.
     :param Sequence[Union['GetProviderAzureCredentialResourceDiscoveryTagFilterArgs', 'GetProviderAzureCredentialResourceDiscoveryTagFilterArgsDict']] resource_discovery_tag_filters: The list of tag filters to apply to resources.
     :param str resource_id: The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
     """
     __args__ = dict()
+    __args__['autoDiscoveryConfigurations'] = auto_discovery_configurations
     __args__['resourceDiscoveryTagFilters'] = resource_discovery_tag_filters
     __args__['resourceId'] = resource_id
     __args__['stackId'] = stack_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:cloud/getProviderAzureCredential:getProviderAzureCredential', __args__, opts=opts, typ=GetProviderAzureCredentialResult)
     return __ret__.apply(lambda __response__: GetProviderAzureCredentialResult(
+        auto_discovery_configurations=pulumi.get(__response__, 'auto_discovery_configurations'),
         client_id=pulumi.get(__response__, 'client_id'),
         client_secret=pulumi.get(__response__, 'client_secret'),
         id=pulumi.get(__response__, 'id'),

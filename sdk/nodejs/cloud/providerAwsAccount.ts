@@ -65,6 +65,10 @@ export class ProviderAwsAccount extends pulumi.CustomResource {
     }
 
     /**
+     * An optional human-readable name for this AWS Account resource.
+     */
+    public readonly name!: pulumi.Output<string>;
+    /**
      * A set of regions that this AWS Account resource applies to.
      */
     public readonly regions!: pulumi.Output<string[]>;
@@ -91,6 +95,7 @@ export class ProviderAwsAccount extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProviderAwsAccountState | undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["regions"] = state ? state.regions : undefined;
             resourceInputs["resourceId"] = state ? state.resourceId : undefined;
             resourceInputs["roleArn"] = state ? state.roleArn : undefined;
@@ -106,6 +111,7 @@ export class ProviderAwsAccount extends pulumi.CustomResource {
             if ((!args || args.stackId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'stackId'");
             }
+            resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["regions"] = args ? args.regions : undefined;
             resourceInputs["roleArn"] = args ? args.roleArn : undefined;
             resourceInputs["stackId"] = args ? args.stackId : undefined;
@@ -120,6 +126,10 @@ export class ProviderAwsAccount extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ProviderAwsAccount resources.
  */
 export interface ProviderAwsAccountState {
+    /**
+     * An optional human-readable name for this AWS Account resource.
+     */
+    name?: pulumi.Input<string>;
     /**
      * A set of regions that this AWS Account resource applies to.
      */
@@ -139,6 +149,10 @@ export interface ProviderAwsAccountState {
  * The set of arguments for constructing a ProviderAwsAccount resource.
  */
 export interface ProviderAwsAccountArgs {
+    /**
+     * An optional human-readable name for this AWS Account resource.
+     */
+    name?: pulumi.Input<string>;
     /**
      * A set of regions that this AWS Account resource applies to.
      */

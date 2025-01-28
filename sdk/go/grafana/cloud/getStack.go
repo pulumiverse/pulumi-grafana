@@ -71,6 +71,8 @@ type LookupStackResult struct {
 	AlertmanagerUrl string `pulumi:"alertmanagerUrl"`
 	// User ID of the Alertmanager instance configured for this stack.
 	AlertmanagerUserId int `pulumi:"alertmanagerUserId"`
+	// Slug of the cluster where this stack resides.
+	ClusterSlug string `pulumi:"clusterSlug"`
 	// Description of stack.
 	Description    string `pulumi:"description"`
 	GraphiteName   string `pulumi:"graphiteName"`
@@ -182,6 +184,11 @@ func (o LookupStackResultOutput) AlertmanagerUrl() pulumi.StringOutput {
 // User ID of the Alertmanager instance configured for this stack.
 func (o LookupStackResultOutput) AlertmanagerUserId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupStackResult) int { return v.AlertmanagerUserId }).(pulumi.IntOutput)
+}
+
+// Slug of the cluster where this stack resides.
+func (o LookupStackResultOutput) ClusterSlug() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.ClusterSlug }).(pulumi.StringOutput)
 }
 
 // Description of stack.

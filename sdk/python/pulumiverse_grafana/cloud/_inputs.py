@@ -29,6 +29,12 @@ __all__ = [
     'ProviderAwsCloudwatchScrapeJobServiceMetricArgsDict',
     'ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs',
     'ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgsDict',
+    'ProviderAzureCredentialAutoDiscoveryConfigurationArgs',
+    'ProviderAzureCredentialAutoDiscoveryConfigurationArgsDict',
+    'ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs',
+    'ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict',
+    'ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs',
+    'ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict',
     'ProviderAzureCredentialResourceDiscoveryTagFilterArgs',
     'ProviderAzureCredentialResourceDiscoveryTagFilterArgsDict',
     'GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs',
@@ -53,6 +59,12 @@ __all__ = [
     'GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgsDict',
     'GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs',
     'GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgsDict',
+    'GetProviderAzureCredentialAutoDiscoveryConfigurationArgs',
+    'GetProviderAzureCredentialAutoDiscoveryConfigurationArgsDict',
+    'GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs',
+    'GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict',
+    'GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs',
+    'GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict',
     'GetProviderAzureCredentialResourceDiscoveryTagFilterArgs',
     'GetProviderAzureCredentialResourceDiscoveryTagFilterArgsDict',
 ]
@@ -483,6 +495,136 @@ class ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs:
     @value.setter
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class ProviderAzureCredentialAutoDiscoveryConfigurationArgsDict(TypedDict):
+        resource_type_configurations: pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict']]]
+        """
+        The list of resource type configurations.
+        """
+        subscription_id: pulumi.Input[str]
+        """
+        The subscription ID of the Azure account.
+        """
+elif False:
+    ProviderAzureCredentialAutoDiscoveryConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ProviderAzureCredentialAutoDiscoveryConfigurationArgs:
+    def __init__(__self__, *,
+                 resource_type_configurations: pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs']]],
+                 subscription_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs']]] resource_type_configurations: The list of resource type configurations.
+        :param pulumi.Input[str] subscription_id: The subscription ID of the Azure account.
+        """
+        pulumi.set(__self__, "resource_type_configurations", resource_type_configurations)
+        pulumi.set(__self__, "subscription_id", subscription_id)
+
+    @property
+    @pulumi.getter(name="resourceTypeConfigurations")
+    def resource_type_configurations(self) -> pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs']]]:
+        """
+        The list of resource type configurations.
+        """
+        return pulumi.get(self, "resource_type_configurations")
+
+    @resource_type_configurations.setter
+    def resource_type_configurations(self, value: pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs']]]):
+        pulumi.set(self, "resource_type_configurations", value)
+
+    @property
+    @pulumi.getter(name="subscriptionId")
+    def subscription_id(self) -> pulumi.Input[str]:
+        """
+        The subscription ID of the Azure account.
+        """
+        return pulumi.get(self, "subscription_id")
+
+    @subscription_id.setter
+    def subscription_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "subscription_id", value)
+
+
+if not MYPY:
+    class ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict(TypedDict):
+        metric_configurations: pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict']]]
+        resource_type_name: pulumi.Input[str]
+elif False:
+    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs:
+    def __init__(__self__, *,
+                 metric_configurations: pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs']]],
+                 resource_type_name: pulumi.Input[str]):
+        pulumi.set(__self__, "metric_configurations", metric_configurations)
+        pulumi.set(__self__, "resource_type_name", resource_type_name)
+
+    @property
+    @pulumi.getter(name="metricConfigurations")
+    def metric_configurations(self) -> pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs']]]:
+        return pulumi.get(self, "metric_configurations")
+
+    @metric_configurations.setter
+    def metric_configurations(self, value: pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs']]]):
+        pulumi.set(self, "metric_configurations", value)
+
+    @property
+    @pulumi.getter(name="resourceTypeName")
+    def resource_type_name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "resource_type_name")
+
+    @resource_type_name.setter
+    def resource_type_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "resource_type_name", value)
+
+
+if not MYPY:
+    class ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict(TypedDict):
+        aggregations: pulumi.Input[Sequence[pulumi.Input[str]]]
+        dimensions: pulumi.Input[Sequence[pulumi.Input[str]]]
+        name: pulumi.Input[str]
+elif False:
+    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs:
+    def __init__(__self__, *,
+                 aggregations: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 dimensions: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 name: pulumi.Input[str]):
+        pulumi.set(__self__, "aggregations", aggregations)
+        pulumi.set(__self__, "dimensions", dimensions)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def aggregations(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        return pulumi.get(self, "aggregations")
+
+    @aggregations.setter
+    def aggregations(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "aggregations", value)
+
+    @property
+    @pulumi.getter
+    def dimensions(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        return pulumi.get(self, "dimensions")
+
+    @dimensions.setter
+    def dimensions(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "dimensions", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
 
 if not MYPY:
@@ -1412,6 +1554,136 @@ class GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilt
     @value.setter
     def value(self, value: str):
         pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class GetProviderAzureCredentialAutoDiscoveryConfigurationArgsDict(TypedDict):
+        resource_type_configurations: Sequence['GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict']
+        """
+        The list of resource type configurations.
+        """
+        subscription_id: str
+        """
+        The subscription ID of the Azure account.
+        """
+elif False:
+    GetProviderAzureCredentialAutoDiscoveryConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetProviderAzureCredentialAutoDiscoveryConfigurationArgs:
+    def __init__(__self__, *,
+                 resource_type_configurations: Sequence['GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs'],
+                 subscription_id: str):
+        """
+        :param Sequence['GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs'] resource_type_configurations: The list of resource type configurations.
+        :param str subscription_id: The subscription ID of the Azure account.
+        """
+        pulumi.set(__self__, "resource_type_configurations", resource_type_configurations)
+        pulumi.set(__self__, "subscription_id", subscription_id)
+
+    @property
+    @pulumi.getter(name="resourceTypeConfigurations")
+    def resource_type_configurations(self) -> Sequence['GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs']:
+        """
+        The list of resource type configurations.
+        """
+        return pulumi.get(self, "resource_type_configurations")
+
+    @resource_type_configurations.setter
+    def resource_type_configurations(self, value: Sequence['GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs']):
+        pulumi.set(self, "resource_type_configurations", value)
+
+    @property
+    @pulumi.getter(name="subscriptionId")
+    def subscription_id(self) -> str:
+        """
+        The subscription ID of the Azure account.
+        """
+        return pulumi.get(self, "subscription_id")
+
+    @subscription_id.setter
+    def subscription_id(self, value: str):
+        pulumi.set(self, "subscription_id", value)
+
+
+if not MYPY:
+    class GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict(TypedDict):
+        metric_configurations: Sequence['GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict']
+        resource_type_name: str
+elif False:
+    GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs:
+    def __init__(__self__, *,
+                 metric_configurations: Sequence['GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs'],
+                 resource_type_name: str):
+        pulumi.set(__self__, "metric_configurations", metric_configurations)
+        pulumi.set(__self__, "resource_type_name", resource_type_name)
+
+    @property
+    @pulumi.getter(name="metricConfigurations")
+    def metric_configurations(self) -> Sequence['GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs']:
+        return pulumi.get(self, "metric_configurations")
+
+    @metric_configurations.setter
+    def metric_configurations(self, value: Sequence['GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs']):
+        pulumi.set(self, "metric_configurations", value)
+
+    @property
+    @pulumi.getter(name="resourceTypeName")
+    def resource_type_name(self) -> str:
+        return pulumi.get(self, "resource_type_name")
+
+    @resource_type_name.setter
+    def resource_type_name(self, value: str):
+        pulumi.set(self, "resource_type_name", value)
+
+
+if not MYPY:
+    class GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict(TypedDict):
+        aggregations: Sequence[str]
+        dimensions: Sequence[str]
+        name: str
+elif False:
+    GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs:
+    def __init__(__self__, *,
+                 aggregations: Sequence[str],
+                 dimensions: Sequence[str],
+                 name: str):
+        pulumi.set(__self__, "aggregations", aggregations)
+        pulumi.set(__self__, "dimensions", dimensions)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def aggregations(self) -> Sequence[str]:
+        return pulumi.get(self, "aggregations")
+
+    @aggregations.setter
+    def aggregations(self, value: Sequence[str]):
+        pulumi.set(self, "aggregations", value)
+
+    @property
+    @pulumi.getter
+    def dimensions(self) -> Sequence[str]:
+        return pulumi.get(self, "dimensions")
+
+    @dimensions.setter
+    def dimensions(self, value: Sequence[str]):
+        pulumi.set(self, "dimensions", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: str):
+        pulumi.set(self, "name", value)
 
 
 if not MYPY:

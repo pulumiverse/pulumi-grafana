@@ -67,6 +67,8 @@ type CloudStack struct {
 	AlertmanagerUrl pulumi.StringOutput `pulumi:"alertmanagerUrl"`
 	// User ID of the Alertmanager instance configured for this stack.
 	AlertmanagerUserId pulumi.IntOutput `pulumi:"alertmanagerUserId"`
+	// Slug of the cluster where this stack resides.
+	ClusterSlug pulumi.StringOutput `pulumi:"clusterSlug"`
 	// Description of stack.
 	Description    pulumi.StringPtrOutput `pulumi:"description"`
 	GraphiteName   pulumi.StringOutput    `pulumi:"graphiteName"`
@@ -167,6 +169,8 @@ type cloudStackState struct {
 	AlertmanagerUrl *string `pulumi:"alertmanagerUrl"`
 	// User ID of the Alertmanager instance configured for this stack.
 	AlertmanagerUserId *int `pulumi:"alertmanagerUserId"`
+	// Slug of the cluster where this stack resides.
+	ClusterSlug *string `pulumi:"clusterSlug"`
 	// Description of stack.
 	Description    *string `pulumi:"description"`
 	GraphiteName   *string `pulumi:"graphiteName"`
@@ -235,6 +239,8 @@ type CloudStackState struct {
 	AlertmanagerUrl pulumi.StringPtrInput
 	// User ID of the Alertmanager instance configured for this stack.
 	AlertmanagerUserId pulumi.IntPtrInput
+	// Slug of the cluster where this stack resides.
+	ClusterSlug pulumi.StringPtrInput
 	// Description of stack.
 	Description    pulumi.StringPtrInput
 	GraphiteName   pulumi.StringPtrInput
@@ -442,6 +448,11 @@ func (o CloudStackOutput) AlertmanagerUrl() pulumi.StringOutput {
 // User ID of the Alertmanager instance configured for this stack.
 func (o CloudStackOutput) AlertmanagerUserId() pulumi.IntOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.IntOutput { return v.AlertmanagerUserId }).(pulumi.IntOutput)
+}
+
+// Slug of the cluster where this stack resides.
+func (o CloudStackOutput) ClusterSlug() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.ClusterSlug }).(pulumi.StringOutput)
 }
 
 // Description of stack.

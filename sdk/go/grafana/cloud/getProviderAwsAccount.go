@@ -73,6 +73,8 @@ type LookupProviderAwsAccountArgs struct {
 // A collection of values returned by getProviderAwsAccount.
 type LookupProviderAwsAccountResult struct {
 	Id string `pulumi:"id"`
+	// An optional human-readable name for this AWS Account resource.
+	Name string `pulumi:"name"`
 	// A set of regions that this AWS Account resource applies to.
 	Regions []string `pulumi:"regions"`
 	// The ID given by the Grafana Cloud Provider API to this AWS Account resource.
@@ -119,6 +121,11 @@ func (o LookupProviderAwsAccountResultOutput) ToLookupProviderAwsAccountResultOu
 
 func (o LookupProviderAwsAccountResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProviderAwsAccountResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// An optional human-readable name for this AWS Account resource.
+func (o LookupProviderAwsAccountResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProviderAwsAccountResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // A set of regions that this AWS Account resource applies to.

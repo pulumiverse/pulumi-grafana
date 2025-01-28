@@ -8,38 +8,11 @@ import * as utilities from "../utilities";
 
 /**
  * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const testProviderAzureCredential = new grafana.cloud.ProviderAzureCredential("test", {
- *     stackId: "1",
- *     name: "test-name",
- *     clientId: "my-client-id",
- *     clientSecret: "my-client-secret",
- *     tenantId: "my-tenant-id",
- *     resourceDiscoveryTagFilters: [
- *         {
- *             key: "key-1",
- *             value: "value-1",
- *         },
- *         {
- *             key: "key-2",
- *             value: "value-2",
- *         },
- *     ],
- * });
- * const test = grafana.cloud.getProviderAzureCredentialOutput({
- *     stackId: testProviderAzureCredential.stackId,
- *     resourceId: testProviderAzureCredential.resourceId,
- * });
- * ```
  */
 export function getProviderAzureCredential(args: GetProviderAzureCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetProviderAzureCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:cloud/getProviderAzureCredential:getProviderAzureCredential", {
+        "autoDiscoveryConfigurations": args.autoDiscoveryConfigurations,
         "resourceDiscoveryTagFilters": args.resourceDiscoveryTagFilters,
         "resourceId": args.resourceId,
         "stackId": args.stackId,
@@ -50,6 +23,10 @@ export function getProviderAzureCredential(args: GetProviderAzureCredentialArgs,
  * A collection of arguments for invoking getProviderAzureCredential.
  */
 export interface GetProviderAzureCredentialArgs {
+    /**
+     * The list of auto discovery configurations.
+     */
+    autoDiscoveryConfigurations?: inputs.cloud.GetProviderAzureCredentialAutoDiscoveryConfiguration[];
     /**
      * The list of tag filters to apply to resources.
      */
@@ -65,6 +42,10 @@ export interface GetProviderAzureCredentialArgs {
  * A collection of values returned by getProviderAzureCredential.
  */
 export interface GetProviderAzureCredentialResult {
+    /**
+     * The list of auto discovery configurations.
+     */
+    readonly autoDiscoveryConfigurations?: outputs.cloud.GetProviderAzureCredentialAutoDiscoveryConfiguration[];
     /**
      * The client ID of the Azure Credential.
      */
@@ -94,38 +75,11 @@ export interface GetProviderAzureCredentialResult {
 }
 /**
  * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumi/grafana";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const testProviderAzureCredential = new grafana.cloud.ProviderAzureCredential("test", {
- *     stackId: "1",
- *     name: "test-name",
- *     clientId: "my-client-id",
- *     clientSecret: "my-client-secret",
- *     tenantId: "my-tenant-id",
- *     resourceDiscoveryTagFilters: [
- *         {
- *             key: "key-1",
- *             value: "value-1",
- *         },
- *         {
- *             key: "key-2",
- *             value: "value-2",
- *         },
- *     ],
- * });
- * const test = grafana.cloud.getProviderAzureCredentialOutput({
- *     stackId: testProviderAzureCredential.stackId,
- *     resourceId: testProviderAzureCredential.resourceId,
- * });
- * ```
  */
 export function getProviderAzureCredentialOutput(args: GetProviderAzureCredentialOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProviderAzureCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:cloud/getProviderAzureCredential:getProviderAzureCredential", {
+        "autoDiscoveryConfigurations": args.autoDiscoveryConfigurations,
         "resourceDiscoveryTagFilters": args.resourceDiscoveryTagFilters,
         "resourceId": args.resourceId,
         "stackId": args.stackId,
@@ -136,6 +90,10 @@ export function getProviderAzureCredentialOutput(args: GetProviderAzureCredentia
  * A collection of arguments for invoking getProviderAzureCredential.
  */
 export interface GetProviderAzureCredentialOutputArgs {
+    /**
+     * The list of auto discovery configurations.
+     */
+    autoDiscoveryConfigurations?: pulumi.Input<pulumi.Input<inputs.cloud.GetProviderAzureCredentialAutoDiscoveryConfigurationArgs>[]>;
     /**
      * The list of tag filters to apply to resources.
      */
