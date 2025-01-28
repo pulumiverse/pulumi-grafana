@@ -12,48 +12,6 @@ import (
 )
 
 // ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testProviderAzureCredential, err := cloud.NewProviderAzureCredential(ctx, "test", &cloud.ProviderAzureCredentialArgs{
-//				StackId:      pulumi.String("1"),
-//				Name:         pulumi.String("test-name"),
-//				ClientId:     pulumi.String("my-client-id"),
-//				ClientSecret: pulumi.String("my-client-secret"),
-//				TenantId:     pulumi.String("my-tenant-id"),
-//				ResourceDiscoveryTagFilters: cloud.ProviderAzureCredentialResourceDiscoveryTagFilterArray{
-//					&cloud.ProviderAzureCredentialResourceDiscoveryTagFilterArgs{
-//						Key:   pulumi.String("key-1"),
-//						Value: pulumi.String("value-1"),
-//					},
-//					&cloud.ProviderAzureCredentialResourceDiscoveryTagFilterArgs{
-//						Key:   pulumi.String("key-2"),
-//						Value: pulumi.String("value-2"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = cloud.LookupProviderAzureCredentialOutput(ctx, cloud.GetProviderAzureCredentialOutputArgs{
-//				StackId:    testProviderAzureCredential.StackId,
-//				ResourceId: testProviderAzureCredential.ResourceId,
-//			}, nil)
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupProviderAzureCredential(ctx *pulumi.Context, args *LookupProviderAzureCredentialArgs, opts ...pulumi.InvokeOption) (*LookupProviderAzureCredentialResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProviderAzureCredentialResult
@@ -66,6 +24,8 @@ func LookupProviderAzureCredential(ctx *pulumi.Context, args *LookupProviderAzur
 
 // A collection of arguments for invoking getProviderAzureCredential.
 type LookupProviderAzureCredentialArgs struct {
+	// The list of auto discovery configurations.
+	AutoDiscoveryConfigurations []GetProviderAzureCredentialAutoDiscoveryConfiguration `pulumi:"autoDiscoveryConfigurations"`
 	// The list of tag filters to apply to resources.
 	ResourceDiscoveryTagFilters []GetProviderAzureCredentialResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
 	// The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
@@ -75,6 +35,8 @@ type LookupProviderAzureCredentialArgs struct {
 
 // A collection of values returned by getProviderAzureCredential.
 type LookupProviderAzureCredentialResult struct {
+	// The list of auto discovery configurations.
+	AutoDiscoveryConfigurations []GetProviderAzureCredentialAutoDiscoveryConfiguration `pulumi:"autoDiscoveryConfigurations"`
 	// The client ID of the Azure Credential.
 	ClientId string `pulumi:"clientId"`
 	// The client secret of the Azure Credential.
@@ -102,6 +64,8 @@ func LookupProviderAzureCredentialOutput(ctx *pulumi.Context, args LookupProvide
 
 // A collection of arguments for invoking getProviderAzureCredential.
 type LookupProviderAzureCredentialOutputArgs struct {
+	// The list of auto discovery configurations.
+	AutoDiscoveryConfigurations GetProviderAzureCredentialAutoDiscoveryConfigurationArrayInput `pulumi:"autoDiscoveryConfigurations"`
 	// The list of tag filters to apply to resources.
 	ResourceDiscoveryTagFilters GetProviderAzureCredentialResourceDiscoveryTagFilterArrayInput `pulumi:"resourceDiscoveryTagFilters"`
 	// The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
@@ -126,6 +90,13 @@ func (o LookupProviderAzureCredentialResultOutput) ToLookupProviderAzureCredenti
 
 func (o LookupProviderAzureCredentialResultOutput) ToLookupProviderAzureCredentialResultOutputWithContext(ctx context.Context) LookupProviderAzureCredentialResultOutput {
 	return o
+}
+
+// The list of auto discovery configurations.
+func (o LookupProviderAzureCredentialResultOutput) AutoDiscoveryConfigurations() GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput {
+	return o.ApplyT(func(v LookupProviderAzureCredentialResult) []GetProviderAzureCredentialAutoDiscoveryConfiguration {
+		return v.AutoDiscoveryConfigurations
+	}).(GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput)
 }
 
 // The client ID of the Azure Credential.

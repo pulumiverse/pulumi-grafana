@@ -58,6 +58,12 @@ namespace Pulumiverse.Grafana.Cloud
     public partial class ProviderAwsAccount : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// An optional human-readable name for this AWS Account resource.
+        /// </summary>
+        [Output("name")]
+        public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
         /// A set of regions that this AWS Account resource applies to.
         /// </summary>
         [Output("regions")]
@@ -125,6 +131,12 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class ProviderAwsAccountArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// An optional human-readable name for this AWS Account resource.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
         [Input("regions", required: true)]
         private InputList<string>? _regions;
 
@@ -154,6 +166,12 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class ProviderAwsAccountState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// An optional human-readable name for this AWS Account resource.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
         [Input("regions")]
         private InputList<string>? _regions;
 

@@ -54,6 +54,10 @@ export interface GetProviderAwsAccountArgs {
 export interface GetProviderAwsAccountResult {
     readonly id: string;
     /**
+     * An optional human-readable name for this AWS Account resource.
+     */
+    readonly name: string;
+    /**
      * A set of regions that this AWS Account resource applies to.
      */
     readonly regions: string[];

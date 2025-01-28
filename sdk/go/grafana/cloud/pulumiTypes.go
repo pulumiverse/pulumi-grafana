@@ -794,6 +794,330 @@ func (o ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutp
 	}).(ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput)
 }
 
+type ProviderAzureCredentialAutoDiscoveryConfiguration struct {
+	// The list of resource type configurations.
+	ResourceTypeConfigurations []ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration `pulumi:"resourceTypeConfigurations"`
+	// The subscription ID of the Azure account.
+	SubscriptionId string `pulumi:"subscriptionId"`
+}
+
+// ProviderAzureCredentialAutoDiscoveryConfigurationInput is an input type that accepts ProviderAzureCredentialAutoDiscoveryConfigurationArgs and ProviderAzureCredentialAutoDiscoveryConfigurationOutput values.
+// You can construct a concrete instance of `ProviderAzureCredentialAutoDiscoveryConfigurationInput` via:
+//
+//	ProviderAzureCredentialAutoDiscoveryConfigurationArgs{...}
+type ProviderAzureCredentialAutoDiscoveryConfigurationInput interface {
+	pulumi.Input
+
+	ToProviderAzureCredentialAutoDiscoveryConfigurationOutput() ProviderAzureCredentialAutoDiscoveryConfigurationOutput
+	ToProviderAzureCredentialAutoDiscoveryConfigurationOutputWithContext(context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationOutput
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationArgs struct {
+	// The list of resource type configurations.
+	ResourceTypeConfigurations ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayInput `pulumi:"resourceTypeConfigurations"`
+	// The subscription ID of the Azure account.
+	SubscriptionId pulumi.StringInput `pulumi:"subscriptionId"`
+}
+
+func (ProviderAzureCredentialAutoDiscoveryConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAzureCredentialAutoDiscoveryConfiguration)(nil)).Elem()
+}
+
+func (i ProviderAzureCredentialAutoDiscoveryConfigurationArgs) ToProviderAzureCredentialAutoDiscoveryConfigurationOutput() ProviderAzureCredentialAutoDiscoveryConfigurationOutput {
+	return i.ToProviderAzureCredentialAutoDiscoveryConfigurationOutputWithContext(context.Background())
+}
+
+func (i ProviderAzureCredentialAutoDiscoveryConfigurationArgs) ToProviderAzureCredentialAutoDiscoveryConfigurationOutputWithContext(ctx context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAzureCredentialAutoDiscoveryConfigurationOutput)
+}
+
+// ProviderAzureCredentialAutoDiscoveryConfigurationArrayInput is an input type that accepts ProviderAzureCredentialAutoDiscoveryConfigurationArray and ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput values.
+// You can construct a concrete instance of `ProviderAzureCredentialAutoDiscoveryConfigurationArrayInput` via:
+//
+//	ProviderAzureCredentialAutoDiscoveryConfigurationArray{ ProviderAzureCredentialAutoDiscoveryConfigurationArgs{...} }
+type ProviderAzureCredentialAutoDiscoveryConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput() ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput
+	ToProviderAzureCredentialAutoDiscoveryConfigurationArrayOutputWithContext(context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationArray []ProviderAzureCredentialAutoDiscoveryConfigurationInput
+
+func (ProviderAzureCredentialAutoDiscoveryConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAzureCredentialAutoDiscoveryConfiguration)(nil)).Elem()
+}
+
+func (i ProviderAzureCredentialAutoDiscoveryConfigurationArray) ToProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput() ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput {
+	return i.ToProviderAzureCredentialAutoDiscoveryConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderAzureCredentialAutoDiscoveryConfigurationArray) ToProviderAzureCredentialAutoDiscoveryConfigurationArrayOutputWithContext(ctx context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput)
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationOutput struct{ *pulumi.OutputState }
+
+func (ProviderAzureCredentialAutoDiscoveryConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAzureCredentialAutoDiscoveryConfiguration)(nil)).Elem()
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationOutput) ToProviderAzureCredentialAutoDiscoveryConfigurationOutput() ProviderAzureCredentialAutoDiscoveryConfigurationOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationOutput) ToProviderAzureCredentialAutoDiscoveryConfigurationOutputWithContext(ctx context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationOutput {
+	return o
+}
+
+// The list of resource type configurations.
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationOutput) ResourceTypeConfigurations() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput {
+	return o.ApplyT(func(v ProviderAzureCredentialAutoDiscoveryConfiguration) []ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration {
+		return v.ResourceTypeConfigurations
+	}).(ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput)
+}
+
+// The subscription ID of the Azure account.
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationOutput) SubscriptionId() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAzureCredentialAutoDiscoveryConfiguration) string { return v.SubscriptionId }).(pulumi.StringOutput)
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAzureCredentialAutoDiscoveryConfiguration)(nil)).Elem()
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput) ToProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput() ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput) ToProviderAzureCredentialAutoDiscoveryConfigurationArrayOutputWithContext(ctx context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput) Index(i pulumi.IntInput) ProviderAzureCredentialAutoDiscoveryConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderAzureCredentialAutoDiscoveryConfiguration {
+		return vs[0].([]ProviderAzureCredentialAutoDiscoveryConfiguration)[vs[1].(int)]
+	}).(ProviderAzureCredentialAutoDiscoveryConfigurationOutput)
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration struct {
+	MetricConfigurations []ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration `pulumi:"metricConfigurations"`
+	ResourceTypeName     string                                                                                          `pulumi:"resourceTypeName"`
+}
+
+// ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationInput is an input type that accepts ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs and ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput values.
+// You can construct a concrete instance of `ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationInput` via:
+//
+//	ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs{...}
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationInput interface {
+	pulumi.Input
+
+	ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput
+	ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutputWithContext(context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs struct {
+	MetricConfigurations ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayInput `pulumi:"metricConfigurations"`
+	ResourceTypeName     pulumi.StringInput                                                                                      `pulumi:"resourceTypeName"`
+}
+
+func (ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration)(nil)).Elem()
+}
+
+func (i ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput {
+	return i.ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutputWithContext(context.Background())
+}
+
+func (i ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutputWithContext(ctx context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput)
+}
+
+// ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayInput is an input type that accepts ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray and ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput values.
+// You can construct a concrete instance of `ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayInput` via:
+//
+//	ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray{ ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs{...} }
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput
+	ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutputWithContext(context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray []ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationInput
+
+func (ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration)(nil)).Elem()
+}
+
+func (i ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput {
+	return i.ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutputWithContext(ctx context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput)
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput struct{ *pulumi.OutputState }
+
+func (ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration)(nil)).Elem()
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutputWithContext(ctx context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput) MetricConfigurations() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput {
+	return o.ApplyT(func(v ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration) []ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration {
+		return v.MetricConfigurations
+	}).(ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput)
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput) ResourceTypeName() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration) string {
+		return v.ResourceTypeName
+	}).(pulumi.StringOutput)
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration)(nil)).Elem()
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutputWithContext(ctx context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput) Index(i pulumi.IntInput) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration {
+		return vs[0].([]ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration)[vs[1].(int)]
+	}).(ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput)
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration struct {
+	Aggregations []string `pulumi:"aggregations"`
+	Dimensions   []string `pulumi:"dimensions"`
+	Name         string   `pulumi:"name"`
+}
+
+// ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationInput is an input type that accepts ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs and ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput values.
+// You can construct a concrete instance of `ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationInput` via:
+//
+//	ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs{...}
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationInput interface {
+	pulumi.Input
+
+	ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput
+	ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutputWithContext(context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs struct {
+	Aggregations pulumi.StringArrayInput `pulumi:"aggregations"`
+	Dimensions   pulumi.StringArrayInput `pulumi:"dimensions"`
+	Name         pulumi.StringInput      `pulumi:"name"`
+}
+
+func (ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration)(nil)).Elem()
+}
+
+func (i ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput {
+	return i.ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutputWithContext(context.Background())
+}
+
+func (i ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutputWithContext(ctx context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput)
+}
+
+// ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayInput is an input type that accepts ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray and ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput values.
+// You can construct a concrete instance of `ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayInput` via:
+//
+//	ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray{ ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs{...} }
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput
+	ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutputWithContext(context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray []ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationInput
+
+func (ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration)(nil)).Elem()
+}
+
+func (i ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput {
+	return i.ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutputWithContext(ctx context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput)
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput struct{ *pulumi.OutputState }
+
+func (ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration)(nil)).Elem()
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutputWithContext(ctx context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput) Aggregations() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration) []string {
+		return v.Aggregations
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput) Dimensions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration) []string {
+		return v.Dimensions
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration) string {
+		return v.Name
+	}).(pulumi.StringOutput)
+}
+
+type ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration)(nil)).Elem()
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput() ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput) ToProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutputWithContext(ctx context.Context) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput {
+	return o
+}
+
+func (o ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput) Index(i pulumi.IntInput) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration {
+		return vs[0].([]ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration)[vs[1].(int)]
+	}).(ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput)
+}
+
 type ProviderAzureCredentialResourceDiscoveryTagFilter struct {
 	// The key of the tag filter.
 	Key string `pulumi:"key"`
@@ -2477,6 +2801,330 @@ func (o GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFi
 	}).(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput)
 }
 
+type GetProviderAzureCredentialAutoDiscoveryConfiguration struct {
+	// The list of resource type configurations.
+	ResourceTypeConfigurations []GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration `pulumi:"resourceTypeConfigurations"`
+	// The subscription ID of the Azure account.
+	SubscriptionId string `pulumi:"subscriptionId"`
+}
+
+// GetProviderAzureCredentialAutoDiscoveryConfigurationInput is an input type that accepts GetProviderAzureCredentialAutoDiscoveryConfigurationArgs and GetProviderAzureCredentialAutoDiscoveryConfigurationOutput values.
+// You can construct a concrete instance of `GetProviderAzureCredentialAutoDiscoveryConfigurationInput` via:
+//
+//	GetProviderAzureCredentialAutoDiscoveryConfigurationArgs{...}
+type GetProviderAzureCredentialAutoDiscoveryConfigurationInput interface {
+	pulumi.Input
+
+	ToGetProviderAzureCredentialAutoDiscoveryConfigurationOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationOutput
+	ToGetProviderAzureCredentialAutoDiscoveryConfigurationOutputWithContext(context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationOutput
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationArgs struct {
+	// The list of resource type configurations.
+	ResourceTypeConfigurations GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayInput `pulumi:"resourceTypeConfigurations"`
+	// The subscription ID of the Azure account.
+	SubscriptionId pulumi.StringInput `pulumi:"subscriptionId"`
+}
+
+func (GetProviderAzureCredentialAutoDiscoveryConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAzureCredentialAutoDiscoveryConfiguration)(nil)).Elem()
+}
+
+func (i GetProviderAzureCredentialAutoDiscoveryConfigurationArgs) ToGetProviderAzureCredentialAutoDiscoveryConfigurationOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationOutput {
+	return i.ToGetProviderAzureCredentialAutoDiscoveryConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetProviderAzureCredentialAutoDiscoveryConfigurationArgs) ToGetProviderAzureCredentialAutoDiscoveryConfigurationOutputWithContext(ctx context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAzureCredentialAutoDiscoveryConfigurationOutput)
+}
+
+// GetProviderAzureCredentialAutoDiscoveryConfigurationArrayInput is an input type that accepts GetProviderAzureCredentialAutoDiscoveryConfigurationArray and GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput values.
+// You can construct a concrete instance of `GetProviderAzureCredentialAutoDiscoveryConfigurationArrayInput` via:
+//
+//	GetProviderAzureCredentialAutoDiscoveryConfigurationArray{ GetProviderAzureCredentialAutoDiscoveryConfigurationArgs{...} }
+type GetProviderAzureCredentialAutoDiscoveryConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput
+	ToGetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutputWithContext(context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationArray []GetProviderAzureCredentialAutoDiscoveryConfigurationInput
+
+func (GetProviderAzureCredentialAutoDiscoveryConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAzureCredentialAutoDiscoveryConfiguration)(nil)).Elem()
+}
+
+func (i GetProviderAzureCredentialAutoDiscoveryConfigurationArray) ToGetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput {
+	return i.ToGetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAzureCredentialAutoDiscoveryConfigurationArray) ToGetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutputWithContext(ctx context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput)
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAzureCredentialAutoDiscoveryConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAzureCredentialAutoDiscoveryConfiguration)(nil)).Elem()
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationOutput) ToGetProviderAzureCredentialAutoDiscoveryConfigurationOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationOutput) ToGetProviderAzureCredentialAutoDiscoveryConfigurationOutputWithContext(ctx context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationOutput {
+	return o
+}
+
+// The list of resource type configurations.
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationOutput) ResourceTypeConfigurations() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput {
+	return o.ApplyT(func(v GetProviderAzureCredentialAutoDiscoveryConfiguration) []GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration {
+		return v.ResourceTypeConfigurations
+	}).(GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput)
+}
+
+// The subscription ID of the Azure account.
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationOutput) SubscriptionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAzureCredentialAutoDiscoveryConfiguration) string { return v.SubscriptionId }).(pulumi.StringOutput)
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAzureCredentialAutoDiscoveryConfiguration)(nil)).Elem()
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput) ToGetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput) ToGetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutputWithContext(ctx context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput) Index(i pulumi.IntInput) GetProviderAzureCredentialAutoDiscoveryConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAzureCredentialAutoDiscoveryConfiguration {
+		return vs[0].([]GetProviderAzureCredentialAutoDiscoveryConfiguration)[vs[1].(int)]
+	}).(GetProviderAzureCredentialAutoDiscoveryConfigurationOutput)
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration struct {
+	MetricConfigurations []GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration `pulumi:"metricConfigurations"`
+	ResourceTypeName     string                                                                                             `pulumi:"resourceTypeName"`
+}
+
+// GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationInput is an input type that accepts GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs and GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput values.
+// You can construct a concrete instance of `GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationInput` via:
+//
+//	GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs{...}
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationInput interface {
+	pulumi.Input
+
+	ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput
+	ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutputWithContext(context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs struct {
+	MetricConfigurations GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayInput `pulumi:"metricConfigurations"`
+	ResourceTypeName     pulumi.StringInput                                                                                         `pulumi:"resourceTypeName"`
+}
+
+func (GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration)(nil)).Elem()
+}
+
+func (i GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput {
+	return i.ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutputWithContext(ctx context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput)
+}
+
+// GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayInput is an input type that accepts GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray and GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput values.
+// You can construct a concrete instance of `GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayInput` via:
+//
+//	GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray{ GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs{...} }
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput
+	ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutputWithContext(context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray []GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationInput
+
+func (GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration)(nil)).Elem()
+}
+
+func (i GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput {
+	return i.ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutputWithContext(ctx context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput)
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration)(nil)).Elem()
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutputWithContext(ctx context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput) MetricConfigurations() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput {
+	return o.ApplyT(func(v GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration) []GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration {
+		return v.MetricConfigurations
+	}).(GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput)
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput) ResourceTypeName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration) string {
+		return v.ResourceTypeName
+	}).(pulumi.StringOutput)
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration)(nil)).Elem()
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutputWithContext(ctx context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput) Index(i pulumi.IntInput) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration {
+		return vs[0].([]GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration)[vs[1].(int)]
+	}).(GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput)
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration struct {
+	Aggregations []string `pulumi:"aggregations"`
+	Dimensions   []string `pulumi:"dimensions"`
+	Name         string   `pulumi:"name"`
+}
+
+// GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationInput is an input type that accepts GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs and GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput values.
+// You can construct a concrete instance of `GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationInput` via:
+//
+//	GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs{...}
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationInput interface {
+	pulumi.Input
+
+	ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput
+	ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutputWithContext(context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs struct {
+	Aggregations pulumi.StringArrayInput `pulumi:"aggregations"`
+	Dimensions   pulumi.StringArrayInput `pulumi:"dimensions"`
+	Name         pulumi.StringInput      `pulumi:"name"`
+}
+
+func (GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration)(nil)).Elem()
+}
+
+func (i GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput {
+	return i.ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutputWithContext(ctx context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput)
+}
+
+// GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayInput is an input type that accepts GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray and GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput values.
+// You can construct a concrete instance of `GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayInput` via:
+//
+//	GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray{ GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs{...} }
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput
+	ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutputWithContext(context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray []GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationInput
+
+func (GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration)(nil)).Elem()
+}
+
+func (i GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput {
+	return i.ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutputWithContext(ctx context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput)
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration)(nil)).Elem()
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutputWithContext(ctx context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput) Aggregations() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration) []string {
+		return v.Aggregations
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput) Dimensions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration) []string {
+		return v.Dimensions
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration) string {
+		return v.Name
+	}).(pulumi.StringOutput)
+}
+
+type GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration)(nil)).Elem()
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput() GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput) ToGetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutputWithContext(ctx context.Context) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput {
+	return o
+}
+
+func (o GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput) Index(i pulumi.IntInput) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration {
+		return vs[0].([]GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration)[vs[1].(int)]
+	}).(GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput)
+}
+
 type GetProviderAzureCredentialResourceDiscoveryTagFilter struct {
 	// The key of the tag filter.
 	Key string `pulumi:"key"`
@@ -2598,6 +3246,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceMetricArrayInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobServiceMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAzureCredentialAutoDiscoveryConfigurationInput)(nil)).Elem(), ProviderAzureCredentialAutoDiscoveryConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAzureCredentialAutoDiscoveryConfigurationArrayInput)(nil)).Elem(), ProviderAzureCredentialAutoDiscoveryConfigurationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationInput)(nil)).Elem(), ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayInput)(nil)).Elem(), ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationInput)(nil)).Elem(), ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayInput)(nil)).Elem(), ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAzureCredentialResourceDiscoveryTagFilterInput)(nil)).Elem(), ProviderAzureCredentialResourceDiscoveryTagFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAzureCredentialResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), ProviderAzureCredentialResourceDiscoveryTagFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessPoliciesAccessPolicyInput)(nil)).Elem(), GetAccessPoliciesAccessPolicyArgs{})
@@ -2626,6 +3280,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAzureCredentialAutoDiscoveryConfigurationInput)(nil)).Elem(), GetProviderAzureCredentialAutoDiscoveryConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAzureCredentialAutoDiscoveryConfigurationArrayInput)(nil)).Elem(), GetProviderAzureCredentialAutoDiscoveryConfigurationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationInput)(nil)).Elem(), GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayInput)(nil)).Elem(), GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationInput)(nil)).Elem(), GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayInput)(nil)).Elem(), GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAzureCredentialResourceDiscoveryTagFilterInput)(nil)).Elem(), GetProviderAzureCredentialResourceDiscoveryTagFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProviderAzureCredentialResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), GetProviderAzureCredentialResourceDiscoveryTagFilterArray{})
 	pulumi.RegisterOutputType(AccessPolicyRealmOutput{})
@@ -2642,6 +3302,12 @@ func init() {
 	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobServiceMetricArrayOutput{})
 	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput{})
 	pulumi.RegisterOutputType(ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput{})
+	pulumi.RegisterOutputType(ProviderAzureCredentialAutoDiscoveryConfigurationOutput{})
+	pulumi.RegisterOutputType(ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput{})
+	pulumi.RegisterOutputType(ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput{})
+	pulumi.RegisterOutputType(ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput{})
+	pulumi.RegisterOutputType(ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput{})
+	pulumi.RegisterOutputType(ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput{})
 	pulumi.RegisterOutputType(ProviderAzureCredentialResourceDiscoveryTagFilterOutput{})
 	pulumi.RegisterOutputType(ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetAccessPoliciesAccessPolicyOutput{})
@@ -2670,6 +3336,12 @@ func init() {
 	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput{})
 	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterOutput{})
 	pulumi.RegisterOutputType(GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAzureCredentialAutoDiscoveryConfigurationOutput{})
+	pulumi.RegisterOutputType(GetProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput{})
+	pulumi.RegisterOutputType(GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArrayOutput{})
+	pulumi.RegisterOutputType(GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationOutput{})
+	pulumi.RegisterOutputType(GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArrayOutput{})
 	pulumi.RegisterOutputType(GetProviderAzureCredentialResourceDiscoveryTagFilterOutput{})
 	pulumi.RegisterOutputType(GetProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput{})
 }

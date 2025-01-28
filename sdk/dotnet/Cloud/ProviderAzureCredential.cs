@@ -13,39 +13,6 @@ namespace Pulumiverse.Grafana.Cloud
     /// <summary>
     /// ## Example Usage
     /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Grafana.Cloud.ProviderAzureCredential("test", new()
-    ///     {
-    ///         StackId = "1",
-    ///         Name = "test-name",
-    ///         ClientId = "my-client-id",
-    ///         ClientSecret = "my-client-secret",
-    ///         TenantId = "my-tenant-id",
-    ///         ResourceDiscoveryTagFilters = new[]
-    ///         {
-    ///             new Grafana.Cloud.Inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs
-    ///             {
-    ///                 Key = "key-1",
-    ///                 Value = "value-1",
-    ///             },
-    ///             new Grafana.Cloud.Inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs
-    ///             {
-    ///                 Key = "key-2",
-    ///                 Value = "value-2",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// ```sh
@@ -55,6 +22,12 @@ namespace Pulumiverse.Grafana.Cloud
     [GrafanaResourceType("grafana:cloud/providerAzureCredential:ProviderAzureCredential")]
     public partial class ProviderAzureCredential : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The list of auto discovery configurations.
+        /// </summary>
+        [Output("autoDiscoveryConfigurations")]
+        public Output<ImmutableArray<Outputs.ProviderAzureCredentialAutoDiscoveryConfiguration>> AutoDiscoveryConfigurations { get; private set; } = null!;
+
         /// <summary>
         /// The client ID of the Azure Credential.
         /// </summary>
@@ -145,6 +118,18 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class ProviderAzureCredentialArgs : global::Pulumi.ResourceArgs
     {
+        [Input("autoDiscoveryConfigurations")]
+        private InputList<Inputs.ProviderAzureCredentialAutoDiscoveryConfigurationArgs>? _autoDiscoveryConfigurations;
+
+        /// <summary>
+        /// The list of auto discovery configurations.
+        /// </summary>
+        public InputList<Inputs.ProviderAzureCredentialAutoDiscoveryConfigurationArgs> AutoDiscoveryConfigurations
+        {
+            get => _autoDiscoveryConfigurations ?? (_autoDiscoveryConfigurations = new InputList<Inputs.ProviderAzureCredentialAutoDiscoveryConfigurationArgs>());
+            set => _autoDiscoveryConfigurations = value;
+        }
+
         /// <summary>
         /// The client ID of the Azure Credential.
         /// </summary>
@@ -202,6 +187,18 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class ProviderAzureCredentialState : global::Pulumi.ResourceArgs
     {
+        [Input("autoDiscoveryConfigurations")]
+        private InputList<Inputs.ProviderAzureCredentialAutoDiscoveryConfigurationGetArgs>? _autoDiscoveryConfigurations;
+
+        /// <summary>
+        /// The list of auto discovery configurations.
+        /// </summary>
+        public InputList<Inputs.ProviderAzureCredentialAutoDiscoveryConfigurationGetArgs> AutoDiscoveryConfigurations
+        {
+            get => _autoDiscoveryConfigurations ?? (_autoDiscoveryConfigurations = new InputList<Inputs.ProviderAzureCredentialAutoDiscoveryConfigurationGetArgs>());
+            set => _autoDiscoveryConfigurations = value;
+        }
+
         /// <summary>
         /// The client ID of the Azure Credential.
         /// </summary>

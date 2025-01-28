@@ -14,44 +14,6 @@ import (
 
 // ## Example Usage
 //
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud.NewProviderAzureCredential(ctx, "test", &cloud.ProviderAzureCredentialArgs{
-//				StackId:      pulumi.String("1"),
-//				Name:         pulumi.String("test-name"),
-//				ClientId:     pulumi.String("my-client-id"),
-//				ClientSecret: pulumi.String("my-client-secret"),
-//				TenantId:     pulumi.String("my-tenant-id"),
-//				ResourceDiscoveryTagFilters: cloud.ProviderAzureCredentialResourceDiscoveryTagFilterArray{
-//					&cloud.ProviderAzureCredentialResourceDiscoveryTagFilterArgs{
-//						Key:   pulumi.String("key-1"),
-//						Value: pulumi.String("value-1"),
-//					},
-//					&cloud.ProviderAzureCredentialResourceDiscoveryTagFilterArgs{
-//						Key:   pulumi.String("key-2"),
-//						Value: pulumi.String("value-2"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // ```sh
@@ -60,6 +22,8 @@ import (
 type ProviderAzureCredential struct {
 	pulumi.CustomResourceState
 
+	// The list of auto discovery configurations.
+	AutoDiscoveryConfigurations ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput `pulumi:"autoDiscoveryConfigurations"`
 	// The client ID of the Azure Credential.
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
 	// The client secret of the Azure Credential.
@@ -124,6 +88,8 @@ func GetProviderAzureCredential(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ProviderAzureCredential resources.
 type providerAzureCredentialState struct {
+	// The list of auto discovery configurations.
+	AutoDiscoveryConfigurations []ProviderAzureCredentialAutoDiscoveryConfiguration `pulumi:"autoDiscoveryConfigurations"`
 	// The client ID of the Azure Credential.
 	ClientId *string `pulumi:"clientId"`
 	// The client secret of the Azure Credential.
@@ -140,6 +106,8 @@ type providerAzureCredentialState struct {
 }
 
 type ProviderAzureCredentialState struct {
+	// The list of auto discovery configurations.
+	AutoDiscoveryConfigurations ProviderAzureCredentialAutoDiscoveryConfigurationArrayInput
 	// The client ID of the Azure Credential.
 	ClientId pulumi.StringPtrInput
 	// The client secret of the Azure Credential.
@@ -160,6 +128,8 @@ func (ProviderAzureCredentialState) ElementType() reflect.Type {
 }
 
 type providerAzureCredentialArgs struct {
+	// The list of auto discovery configurations.
+	AutoDiscoveryConfigurations []ProviderAzureCredentialAutoDiscoveryConfiguration `pulumi:"autoDiscoveryConfigurations"`
 	// The client ID of the Azure Credential.
 	ClientId string `pulumi:"clientId"`
 	// The client secret of the Azure Credential.
@@ -175,6 +145,8 @@ type providerAzureCredentialArgs struct {
 
 // The set of arguments for constructing a ProviderAzureCredential resource.
 type ProviderAzureCredentialArgs struct {
+	// The list of auto discovery configurations.
+	AutoDiscoveryConfigurations ProviderAzureCredentialAutoDiscoveryConfigurationArrayInput
 	// The client ID of the Azure Credential.
 	ClientId pulumi.StringInput
 	// The client secret of the Azure Credential.
@@ -273,6 +245,13 @@ func (o ProviderAzureCredentialOutput) ToProviderAzureCredentialOutput() Provide
 
 func (o ProviderAzureCredentialOutput) ToProviderAzureCredentialOutputWithContext(ctx context.Context) ProviderAzureCredentialOutput {
 	return o
+}
+
+// The list of auto discovery configurations.
+func (o ProviderAzureCredentialOutput) AutoDiscoveryConfigurations() ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput {
+	return o.ApplyT(func(v *ProviderAzureCredential) ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput {
+		return v.AutoDiscoveryConfigurations
+	}).(ProviderAzureCredentialAutoDiscoveryConfigurationArrayOutput)
 }
 
 // The client ID of the Azure Credential.

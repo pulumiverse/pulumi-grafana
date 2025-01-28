@@ -158,6 +158,7 @@ class _StackState:
                  alertmanager_status: Optional[pulumi.Input[str]] = None,
                  alertmanager_url: Optional[pulumi.Input[str]] = None,
                  alertmanager_user_id: Optional[pulumi.Input[int]] = None,
+                 cluster_slug: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  graphite_name: Optional[pulumi.Input[str]] = None,
                  graphite_status: Optional[pulumi.Input[str]] = None,
@@ -200,6 +201,7 @@ class _StackState:
         :param pulumi.Input[str] alertmanager_status: Status of the Alertmanager instance configured for this stack.
         :param pulumi.Input[str] alertmanager_url: Base URL of the Alertmanager instance configured for this stack.
         :param pulumi.Input[int] alertmanager_user_id: User ID of the Alertmanager instance configured for this stack.
+        :param pulumi.Input[str] cluster_slug: Slug of the cluster where this stack resides.
         :param pulumi.Input[str] description: Description of stack.
         :param pulumi.Input[str] influx_url: Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
@@ -230,6 +232,8 @@ class _StackState:
             pulumi.set(__self__, "alertmanager_url", alertmanager_url)
         if alertmanager_user_id is not None:
             pulumi.set(__self__, "alertmanager_user_id", alertmanager_user_id)
+        if cluster_slug is not None:
+            pulumi.set(__self__, "cluster_slug", cluster_slug)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if graphite_name is not None:
@@ -350,6 +354,18 @@ class _StackState:
     @alertmanager_user_id.setter
     def alertmanager_user_id(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "alertmanager_user_id", value)
+
+    @property
+    @pulumi.getter(name="clusterSlug")
+    def cluster_slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slug of the cluster where this stack resides.
+        """
+        return pulumi.get(self, "cluster_slug")
+
+    @cluster_slug.setter
+    def cluster_slug(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_slug", value)
 
     @property
     @pulumi.getter
@@ -872,6 +888,7 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["alertmanager_status"] = None
             __props__.__dict__["alertmanager_url"] = None
             __props__.__dict__["alertmanager_user_id"] = None
+            __props__.__dict__["cluster_slug"] = None
             __props__.__dict__["graphite_name"] = None
             __props__.__dict__["graphite_status"] = None
             __props__.__dict__["graphite_url"] = None
@@ -916,6 +933,7 @@ class Stack(pulumi.CustomResource):
             alertmanager_status: Optional[pulumi.Input[str]] = None,
             alertmanager_url: Optional[pulumi.Input[str]] = None,
             alertmanager_user_id: Optional[pulumi.Input[int]] = None,
+            cluster_slug: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             graphite_name: Optional[pulumi.Input[str]] = None,
             graphite_status: Optional[pulumi.Input[str]] = None,
@@ -963,6 +981,7 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[str] alertmanager_status: Status of the Alertmanager instance configured for this stack.
         :param pulumi.Input[str] alertmanager_url: Base URL of the Alertmanager instance configured for this stack.
         :param pulumi.Input[int] alertmanager_user_id: User ID of the Alertmanager instance configured for this stack.
+        :param pulumi.Input[str] cluster_slug: Slug of the cluster where this stack resides.
         :param pulumi.Input[str] description: Description of stack.
         :param pulumi.Input[str] influx_url: Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
@@ -993,6 +1012,7 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["alertmanager_status"] = alertmanager_status
         __props__.__dict__["alertmanager_url"] = alertmanager_url
         __props__.__dict__["alertmanager_user_id"] = alertmanager_user_id
+        __props__.__dict__["cluster_slug"] = cluster_slug
         __props__.__dict__["description"] = description
         __props__.__dict__["graphite_name"] = graphite_name
         __props__.__dict__["graphite_status"] = graphite_status
@@ -1062,6 +1082,14 @@ class Stack(pulumi.CustomResource):
         User ID of the Alertmanager instance configured for this stack.
         """
         return pulumi.get(self, "alertmanager_user_id")
+
+    @property
+    @pulumi.getter(name="clusterSlug")
+    def cluster_slug(self) -> pulumi.Output[str]:
+        """
+        Slug of the cluster where this stack resides.
+        """
+        return pulumi.get(self, "cluster_slug")
 
     @property
     @pulumi.getter

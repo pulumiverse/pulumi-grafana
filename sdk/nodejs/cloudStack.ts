@@ -81,6 +81,10 @@ export class CloudStack extends pulumi.CustomResource {
      */
     public /*out*/ readonly alertmanagerUserId!: pulumi.Output<number>;
     /**
+     * Slug of the cluster where this stack resides.
+     */
+    public /*out*/ readonly clusterSlug!: pulumi.Output<string>;
+    /**
      * Description of stack.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -200,6 +204,7 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["alertmanagerStatus"] = state ? state.alertmanagerStatus : undefined;
             resourceInputs["alertmanagerUrl"] = state ? state.alertmanagerUrl : undefined;
             resourceInputs["alertmanagerUserId"] = state ? state.alertmanagerUserId : undefined;
+            resourceInputs["clusterSlug"] = state ? state.clusterSlug : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["graphiteName"] = state ? state.graphiteName : undefined;
             resourceInputs["graphiteStatus"] = state ? state.graphiteStatus : undefined;
@@ -253,6 +258,7 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["alertmanagerStatus"] = undefined /*out*/;
             resourceInputs["alertmanagerUrl"] = undefined /*out*/;
             resourceInputs["alertmanagerUserId"] = undefined /*out*/;
+            resourceInputs["clusterSlug"] = undefined /*out*/;
             resourceInputs["graphiteName"] = undefined /*out*/;
             resourceInputs["graphiteStatus"] = undefined /*out*/;
             resourceInputs["graphiteUrl"] = undefined /*out*/;
@@ -307,6 +313,10 @@ export interface CloudStackState {
      * User ID of the Alertmanager instance configured for this stack.
      */
     alertmanagerUserId?: pulumi.Input<number>;
+    /**
+     * Slug of the cluster where this stack resides.
+     */
+    clusterSlug?: pulumi.Input<string>;
     /**
      * Description of stack.
      */

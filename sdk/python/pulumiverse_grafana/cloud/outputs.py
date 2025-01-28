@@ -23,6 +23,9 @@ __all__ = [
     'ProviderAwsCloudwatchScrapeJobService',
     'ProviderAwsCloudwatchScrapeJobServiceMetric',
     'ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter',
+    'ProviderAzureCredentialAutoDiscoveryConfiguration',
+    'ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration',
+    'ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration',
     'ProviderAzureCredentialResourceDiscoveryTagFilter',
     'GetAccessPoliciesAccessPolicyResult',
     'GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkResult',
@@ -37,6 +40,9 @@ __all__ = [
     'GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResult',
     'GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricResult',
     'GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterResult',
+    'GetProviderAzureCredentialAutoDiscoveryConfigurationResult',
+    'GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationResult',
+    'GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationResult',
     'GetProviderAzureCredentialResourceDiscoveryTagFilterResult',
 ]
 
@@ -343,6 +349,118 @@ class ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter(dict):
         The value of the tag filter.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ProviderAzureCredentialAutoDiscoveryConfiguration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "resourceTypeConfigurations":
+            suggest = "resource_type_configurations"
+        elif key == "subscriptionId":
+            suggest = "subscription_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProviderAzureCredentialAutoDiscoveryConfiguration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProviderAzureCredentialAutoDiscoveryConfiguration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProviderAzureCredentialAutoDiscoveryConfiguration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 resource_type_configurations: Sequence['outputs.ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration'],
+                 subscription_id: str):
+        """
+        :param Sequence['ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs'] resource_type_configurations: The list of resource type configurations.
+        :param str subscription_id: The subscription ID of the Azure account.
+        """
+        pulumi.set(__self__, "resource_type_configurations", resource_type_configurations)
+        pulumi.set(__self__, "subscription_id", subscription_id)
+
+    @property
+    @pulumi.getter(name="resourceTypeConfigurations")
+    def resource_type_configurations(self) -> Sequence['outputs.ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration']:
+        """
+        The list of resource type configurations.
+        """
+        return pulumi.get(self, "resource_type_configurations")
+
+    @property
+    @pulumi.getter(name="subscriptionId")
+    def subscription_id(self) -> str:
+        """
+        The subscription ID of the Azure account.
+        """
+        return pulumi.get(self, "subscription_id")
+
+
+@pulumi.output_type
+class ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "metricConfigurations":
+            suggest = "metric_configurations"
+        elif key == "resourceTypeName":
+            suggest = "resource_type_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 metric_configurations: Sequence['outputs.ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration'],
+                 resource_type_name: str):
+        pulumi.set(__self__, "metric_configurations", metric_configurations)
+        pulumi.set(__self__, "resource_type_name", resource_type_name)
+
+    @property
+    @pulumi.getter(name="metricConfigurations")
+    def metric_configurations(self) -> Sequence['outputs.ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration']:
+        return pulumi.get(self, "metric_configurations")
+
+    @property
+    @pulumi.getter(name="resourceTypeName")
+    def resource_type_name(self) -> str:
+        return pulumi.get(self, "resource_type_name")
+
+
+@pulumi.output_type
+class ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration(dict):
+    def __init__(__self__, *,
+                 aggregations: Sequence[str],
+                 dimensions: Sequence[str],
+                 name: str):
+        pulumi.set(__self__, "aggregations", aggregations)
+        pulumi.set(__self__, "dimensions", dimensions)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def aggregations(self) -> Sequence[str]:
+        return pulumi.get(self, "aggregations")
+
+    @property
+    @pulumi.getter
+    def dimensions(self) -> Sequence[str]:
+        return pulumi.get(self, "dimensions")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -965,6 +1083,80 @@ class GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilt
         The value of the tag filter.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetProviderAzureCredentialAutoDiscoveryConfigurationResult(dict):
+    def __init__(__self__, *,
+                 resource_type_configurations: Sequence['outputs.GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationResult'],
+                 subscription_id: str):
+        """
+        :param Sequence['GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs'] resource_type_configurations: The list of resource type configurations.
+        :param str subscription_id: The subscription ID of the Azure account.
+        """
+        pulumi.set(__self__, "resource_type_configurations", resource_type_configurations)
+        pulumi.set(__self__, "subscription_id", subscription_id)
+
+    @property
+    @pulumi.getter(name="resourceTypeConfigurations")
+    def resource_type_configurations(self) -> Sequence['outputs.GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationResult']:
+        """
+        The list of resource type configurations.
+        """
+        return pulumi.get(self, "resource_type_configurations")
+
+    @property
+    @pulumi.getter(name="subscriptionId")
+    def subscription_id(self) -> str:
+        """
+        The subscription ID of the Azure account.
+        """
+        return pulumi.get(self, "subscription_id")
+
+
+@pulumi.output_type
+class GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationResult(dict):
+    def __init__(__self__, *,
+                 metric_configurations: Sequence['outputs.GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationResult'],
+                 resource_type_name: str):
+        pulumi.set(__self__, "metric_configurations", metric_configurations)
+        pulumi.set(__self__, "resource_type_name", resource_type_name)
+
+    @property
+    @pulumi.getter(name="metricConfigurations")
+    def metric_configurations(self) -> Sequence['outputs.GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationResult']:
+        return pulumi.get(self, "metric_configurations")
+
+    @property
+    @pulumi.getter(name="resourceTypeName")
+    def resource_type_name(self) -> str:
+        return pulumi.get(self, "resource_type_name")
+
+
+@pulumi.output_type
+class GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationResult(dict):
+    def __init__(__self__, *,
+                 aggregations: Sequence[str],
+                 dimensions: Sequence[str],
+                 name: str):
+        pulumi.set(__self__, "aggregations", aggregations)
+        pulumi.set(__self__, "dimensions", dimensions)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def aggregations(self) -> Sequence[str]:
+        return pulumi.get(self, "aggregations")
+
+    @property
+    @pulumi.getter
+    def dimensions(self) -> Sequence[str]:
+        return pulumi.get(self, "dimensions")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type

@@ -165,6 +165,10 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public readonly int AlertmanagerUserId;
         /// <summary>
+        /// Slug of the cluster where this stack resides.
+        /// </summary>
+        public readonly string ClusterSlug;
+        /// <summary>
         /// Description of stack.
         /// </summary>
         public readonly string Description;
@@ -271,6 +275,8 @@ namespace Pulumiverse.Grafana
 
             int alertmanagerUserId,
 
+            string clusterSlug,
+
             string description,
 
             string graphiteName,
@@ -345,6 +351,7 @@ namespace Pulumiverse.Grafana
             AlertmanagerStatus = alertmanagerStatus;
             AlertmanagerUrl = alertmanagerUrl;
             AlertmanagerUserId = alertmanagerUserId;
+            ClusterSlug = clusterSlug;
             Description = description;
             GraphiteName = graphiteName;
             GraphiteStatus = graphiteStatus;

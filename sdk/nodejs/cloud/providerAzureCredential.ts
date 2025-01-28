@@ -9,29 +9,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.cloud.ProviderAzureCredential("test", {
- *     stackId: "1",
- *     name: "test-name",
- *     clientId: "my-client-id",
- *     clientSecret: "my-client-secret",
- *     tenantId: "my-tenant-id",
- *     resourceDiscoveryTagFilters: [
- *         {
- *             key: "key-1",
- *             value: "value-1",
- *         },
- *         {
- *             key: "key-2",
- *             value: "value-2",
- *         },
- *     ],
- * });
- * ```
- *
  * ## Import
  *
  * ```sh
@@ -66,6 +43,10 @@ export class ProviderAzureCredential extends pulumi.CustomResource {
         return obj['__pulumiType'] === ProviderAzureCredential.__pulumiType;
     }
 
+    /**
+     * The list of auto discovery configurations.
+     */
+    public readonly autoDiscoveryConfigurations!: pulumi.Output<outputs.cloud.ProviderAzureCredentialAutoDiscoveryConfiguration[] | undefined>;
     /**
      * The client ID of the Azure Credential.
      */
@@ -105,6 +86,7 @@ export class ProviderAzureCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProviderAzureCredentialState | undefined;
+            resourceInputs["autoDiscoveryConfigurations"] = state ? state.autoDiscoveryConfigurations : undefined;
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -126,6 +108,7 @@ export class ProviderAzureCredential extends pulumi.CustomResource {
             if ((!args || args.tenantId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'tenantId'");
             }
+            resourceInputs["autoDiscoveryConfigurations"] = args ? args.autoDiscoveryConfigurations : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -145,6 +128,10 @@ export class ProviderAzureCredential extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ProviderAzureCredential resources.
  */
 export interface ProviderAzureCredentialState {
+    /**
+     * The list of auto discovery configurations.
+     */
+    autoDiscoveryConfigurations?: pulumi.Input<pulumi.Input<inputs.cloud.ProviderAzureCredentialAutoDiscoveryConfiguration>[]>;
     /**
      * The client ID of the Azure Credential.
      */
@@ -176,6 +163,10 @@ export interface ProviderAzureCredentialState {
  * The set of arguments for constructing a ProviderAzureCredential resource.
  */
 export interface ProviderAzureCredentialArgs {
+    /**
+     * The list of auto discovery configurations.
+     */
+    autoDiscoveryConfigurations?: pulumi.Input<pulumi.Input<inputs.cloud.ProviderAzureCredentialAutoDiscoveryConfiguration>[]>;
     /**
      * The client ID of the Azure Credential.
      */

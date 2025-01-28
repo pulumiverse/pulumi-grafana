@@ -25,6 +25,7 @@ class ProviderAzureCredentialArgs:
                  client_secret: pulumi.Input[str],
                  stack_id: pulumi.Input[str],
                  tenant_id: pulumi.Input[str],
+                 auto_discovery_configurations: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialResourceDiscoveryTagFilterArgs']]]] = None):
         """
@@ -32,6 +33,7 @@ class ProviderAzureCredentialArgs:
         :param pulumi.Input[str] client_id: The client ID of the Azure Credential.
         :param pulumi.Input[str] client_secret: The client secret of the Azure Credential.
         :param pulumi.Input[str] tenant_id: The tenant ID of the Azure Credential.
+        :param pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationArgs']]] auto_discovery_configurations: The list of auto discovery configurations.
         :param pulumi.Input[str] name: The name of the Azure Credential.
         :param pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialResourceDiscoveryTagFilterArgs']]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
         """
@@ -39,6 +41,8 @@ class ProviderAzureCredentialArgs:
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "stack_id", stack_id)
         pulumi.set(__self__, "tenant_id", tenant_id)
+        if auto_discovery_configurations is not None:
+            pulumi.set(__self__, "auto_discovery_configurations", auto_discovery_configurations)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if resource_discovery_tag_filters is not None:
@@ -90,6 +94,18 @@ class ProviderAzureCredentialArgs:
         pulumi.set(self, "tenant_id", value)
 
     @property
+    @pulumi.getter(name="autoDiscoveryConfigurations")
+    def auto_discovery_configurations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationArgs']]]]:
+        """
+        The list of auto discovery configurations.
+        """
+        return pulumi.get(self, "auto_discovery_configurations")
+
+    @auto_discovery_configurations.setter
+    def auto_discovery_configurations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationArgs']]]]):
+        pulumi.set(self, "auto_discovery_configurations", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -117,6 +133,7 @@ class ProviderAzureCredentialArgs:
 @pulumi.input_type
 class _ProviderAzureCredentialState:
     def __init__(__self__, *,
+                 auto_discovery_configurations: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationArgs']]]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -126,6 +143,7 @@ class _ProviderAzureCredentialState:
                  tenant_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ProviderAzureCredential resources.
+        :param pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationArgs']]] auto_discovery_configurations: The list of auto discovery configurations.
         :param pulumi.Input[str] client_id: The client ID of the Azure Credential.
         :param pulumi.Input[str] client_secret: The client secret of the Azure Credential.
         :param pulumi.Input[str] name: The name of the Azure Credential.
@@ -133,6 +151,8 @@ class _ProviderAzureCredentialState:
         :param pulumi.Input[str] resource_id: The ID given by the Grafana Cloud Provider API to this AWS Account resource.
         :param pulumi.Input[str] tenant_id: The tenant ID of the Azure Credential.
         """
+        if auto_discovery_configurations is not None:
+            pulumi.set(__self__, "auto_discovery_configurations", auto_discovery_configurations)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
@@ -147,6 +167,18 @@ class _ProviderAzureCredentialState:
             pulumi.set(__self__, "stack_id", stack_id)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="autoDiscoveryConfigurations")
+    def auto_discovery_configurations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationArgs']]]]:
+        """
+        The list of auto discovery configurations.
+        """
+        return pulumi.get(self, "auto_discovery_configurations")
+
+    @auto_discovery_configurations.setter
+    def auto_discovery_configurations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationArgs']]]]):
+        pulumi.set(self, "auto_discovery_configurations", value)
 
     @property
     @pulumi.getter(name="clientId")
@@ -235,6 +267,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_discovery_configurations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderAzureCredentialAutoDiscoveryConfigurationArgs', 'ProviderAzureCredentialAutoDiscoveryConfigurationArgsDict']]]]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -245,28 +278,6 @@ class ProviderAzureCredential(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.cloud.ProviderAzureCredential("test",
-            stack_id="1",
-            name="test-name",
-            client_id="my-client-id",
-            client_secret="my-client-secret",
-            tenant_id="my-tenant-id",
-            resource_discovery_tag_filters=[
-                {
-                    "key": "key-1",
-                    "value": "value-1",
-                },
-                {
-                    "key": "key-2",
-                    "value": "value-2",
-                },
-            ])
-        ```
-
         ## Import
 
         ```sh
@@ -275,6 +286,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderAzureCredentialAutoDiscoveryConfigurationArgs', 'ProviderAzureCredentialAutoDiscoveryConfigurationArgsDict']]]] auto_discovery_configurations: The list of auto discovery configurations.
         :param pulumi.Input[str] client_id: The client ID of the Azure Credential.
         :param pulumi.Input[str] client_secret: The client secret of the Azure Credential.
         :param pulumi.Input[str] name: The name of the Azure Credential.
@@ -289,28 +301,6 @@ class ProviderAzureCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test = grafana.cloud.ProviderAzureCredential("test",
-            stack_id="1",
-            name="test-name",
-            client_id="my-client-id",
-            client_secret="my-client-secret",
-            tenant_id="my-tenant-id",
-            resource_discovery_tag_filters=[
-                {
-                    "key": "key-1",
-                    "value": "value-1",
-                },
-                {
-                    "key": "key-2",
-                    "value": "value-2",
-                },
-            ])
-        ```
 
         ## Import
 
@@ -333,6 +323,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_discovery_configurations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderAzureCredentialAutoDiscoveryConfigurationArgs', 'ProviderAzureCredentialAutoDiscoveryConfigurationArgsDict']]]]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -348,6 +339,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderAzureCredentialArgs.__new__(ProviderAzureCredentialArgs)
 
+            __props__.__dict__["auto_discovery_configurations"] = auto_discovery_configurations
             if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
             __props__.__dict__["client_id"] = client_id
@@ -375,6 +367,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            auto_discovery_configurations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderAzureCredentialAutoDiscoveryConfigurationArgs', 'ProviderAzureCredentialAutoDiscoveryConfigurationArgsDict']]]]] = None,
             client_id: Optional[pulumi.Input[str]] = None,
             client_secret: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -389,6 +382,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderAzureCredentialAutoDiscoveryConfigurationArgs', 'ProviderAzureCredentialAutoDiscoveryConfigurationArgsDict']]]] auto_discovery_configurations: The list of auto discovery configurations.
         :param pulumi.Input[str] client_id: The client ID of the Azure Credential.
         :param pulumi.Input[str] client_secret: The client secret of the Azure Credential.
         :param pulumi.Input[str] name: The name of the Azure Credential.
@@ -400,6 +394,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
 
         __props__ = _ProviderAzureCredentialState.__new__(_ProviderAzureCredentialState)
 
+        __props__.__dict__["auto_discovery_configurations"] = auto_discovery_configurations
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
         __props__.__dict__["name"] = name
@@ -408,6 +403,14 @@ class ProviderAzureCredential(pulumi.CustomResource):
         __props__.__dict__["stack_id"] = stack_id
         __props__.__dict__["tenant_id"] = tenant_id
         return ProviderAzureCredential(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="autoDiscoveryConfigurations")
+    def auto_discovery_configurations(self) -> pulumi.Output[Optional[Sequence['outputs.ProviderAzureCredentialAutoDiscoveryConfiguration']]]:
+        """
+        The list of auto discovery configurations.
+        """
+        return pulumi.get(self, "auto_discovery_configurations")
 
     @property
     @pulumi.getter(name="clientId")

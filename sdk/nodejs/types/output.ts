@@ -4691,6 +4691,28 @@ export namespace cloud {
         value: string;
     }
 
+    export interface GetProviderAzureCredentialAutoDiscoveryConfiguration {
+        /**
+         * The list of resource type configurations.
+         */
+        resourceTypeConfigurations: outputs.cloud.GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration[];
+        /**
+         * The subscription ID of the Azure account.
+         */
+        subscriptionId: string;
+    }
+
+    export interface GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration {
+        metricConfigurations: outputs.cloud.GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration[];
+        resourceTypeName: string;
+    }
+
+    export interface GetProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration {
+        aggregations: string[];
+        dimensions: string[];
+        name: string;
+    }
+
     export interface GetProviderAzureCredentialResourceDiscoveryTagFilter {
         /**
          * The key of the tag filter.
@@ -4771,6 +4793,28 @@ export namespace cloud {
          * The value of the tag filter.
          */
         value: string;
+    }
+
+    export interface ProviderAzureCredentialAutoDiscoveryConfiguration {
+        /**
+         * The list of resource type configurations.
+         */
+        resourceTypeConfigurations: outputs.cloud.ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration[];
+        /**
+         * The subscription ID of the Azure account.
+         */
+        subscriptionId: string;
+    }
+
+    export interface ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration {
+        metricConfigurations: outputs.cloud.ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration[];
+        resourceTypeName: string;
+    }
+
+    export interface ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration {
+        aggregations: string[];
+        dimensions: string[];
+        name: string;
     }
 
     export interface ProviderAzureCredentialResourceDiscoveryTagFilter {

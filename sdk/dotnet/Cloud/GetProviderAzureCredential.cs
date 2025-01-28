@@ -14,138 +14,18 @@ namespace Pulumiverse.Grafana.Cloud
     {
         /// <summary>
         /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testProviderAzureCredential = new Grafana.Cloud.ProviderAzureCredential("test", new()
-        ///     {
-        ///         StackId = "1",
-        ///         Name = "test-name",
-        ///         ClientId = "my-client-id",
-        ///         ClientSecret = "my-client-secret",
-        ///         TenantId = "my-tenant-id",
-        ///         ResourceDiscoveryTagFilters = new[]
-        ///         {
-        ///             new Grafana.Cloud.Inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs
-        ///             {
-        ///                 Key = "key-1",
-        ///                 Value = "value-1",
-        ///             },
-        ///             new Grafana.Cloud.Inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs
-        ///             {
-        ///                 Key = "key-2",
-        ///                 Value = "value-2",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        ///     var test = Grafana.Cloud.GetProviderAzureCredential.Invoke(new()
-        ///     {
-        ///         StackId = testProviderAzureCredential.StackId,
-        ///         ResourceId = testProviderAzureCredential.ResourceId,
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetProviderAzureCredentialResult> InvokeAsync(GetProviderAzureCredentialArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProviderAzureCredentialResult>("grafana:cloud/getProviderAzureCredential:getProviderAzureCredential", args ?? new GetProviderAzureCredentialArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testProviderAzureCredential = new Grafana.Cloud.ProviderAzureCredential("test", new()
-        ///     {
-        ///         StackId = "1",
-        ///         Name = "test-name",
-        ///         ClientId = "my-client-id",
-        ///         ClientSecret = "my-client-secret",
-        ///         TenantId = "my-tenant-id",
-        ///         ResourceDiscoveryTagFilters = new[]
-        ///         {
-        ///             new Grafana.Cloud.Inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs
-        ///             {
-        ///                 Key = "key-1",
-        ///                 Value = "value-1",
-        ///             },
-        ///             new Grafana.Cloud.Inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs
-        ///             {
-        ///                 Key = "key-2",
-        ///                 Value = "value-2",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        ///     var test = Grafana.Cloud.GetProviderAzureCredential.Invoke(new()
-        ///     {
-        ///         StackId = testProviderAzureCredential.StackId,
-        ///         ResourceId = testProviderAzureCredential.ResourceId,
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetProviderAzureCredentialResult> Invoke(GetProviderAzureCredentialInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProviderAzureCredentialResult>("grafana:cloud/getProviderAzureCredential:getProviderAzureCredential", args ?? new GetProviderAzureCredentialInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
-        /// using Grafana = Pulumiverse.Grafana;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var testProviderAzureCredential = new Grafana.Cloud.ProviderAzureCredential("test", new()
-        ///     {
-        ///         StackId = "1",
-        ///         Name = "test-name",
-        ///         ClientId = "my-client-id",
-        ///         ClientSecret = "my-client-secret",
-        ///         TenantId = "my-tenant-id",
-        ///         ResourceDiscoveryTagFilters = new[]
-        ///         {
-        ///             new Grafana.Cloud.Inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs
-        ///             {
-        ///                 Key = "key-1",
-        ///                 Value = "value-1",
-        ///             },
-        ///             new Grafana.Cloud.Inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs
-        ///             {
-        ///                 Key = "key-2",
-        ///                 Value = "value-2",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        ///     var test = Grafana.Cloud.GetProviderAzureCredential.Invoke(new()
-        ///     {
-        ///         StackId = testProviderAzureCredential.StackId,
-        ///         ResourceId = testProviderAzureCredential.ResourceId,
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetProviderAzureCredentialResult> Invoke(GetProviderAzureCredentialInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetProviderAzureCredentialResult>("grafana:cloud/getProviderAzureCredential:getProviderAzureCredential", args ?? new GetProviderAzureCredentialInvokeArgs(), options.WithDefaults());
@@ -154,6 +34,18 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class GetProviderAzureCredentialArgs : global::Pulumi.InvokeArgs
     {
+        [Input("autoDiscoveryConfigurations")]
+        private List<Inputs.GetProviderAzureCredentialAutoDiscoveryConfigurationArgs>? _autoDiscoveryConfigurations;
+
+        /// <summary>
+        /// The list of auto discovery configurations.
+        /// </summary>
+        public List<Inputs.GetProviderAzureCredentialAutoDiscoveryConfigurationArgs> AutoDiscoveryConfigurations
+        {
+            get => _autoDiscoveryConfigurations ?? (_autoDiscoveryConfigurations = new List<Inputs.GetProviderAzureCredentialAutoDiscoveryConfigurationArgs>());
+            set => _autoDiscoveryConfigurations = value;
+        }
+
         [Input("resourceDiscoveryTagFilters")]
         private List<Inputs.GetProviderAzureCredentialResourceDiscoveryTagFilterArgs>? _resourceDiscoveryTagFilters;
 
@@ -183,6 +75,18 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class GetProviderAzureCredentialInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("autoDiscoveryConfigurations")]
+        private InputList<Inputs.GetProviderAzureCredentialAutoDiscoveryConfigurationInputArgs>? _autoDiscoveryConfigurations;
+
+        /// <summary>
+        /// The list of auto discovery configurations.
+        /// </summary>
+        public InputList<Inputs.GetProviderAzureCredentialAutoDiscoveryConfigurationInputArgs> AutoDiscoveryConfigurations
+        {
+            get => _autoDiscoveryConfigurations ?? (_autoDiscoveryConfigurations = new InputList<Inputs.GetProviderAzureCredentialAutoDiscoveryConfigurationInputArgs>());
+            set => _autoDiscoveryConfigurations = value;
+        }
+
         [Input("resourceDiscoveryTagFilters")]
         private InputList<Inputs.GetProviderAzureCredentialResourceDiscoveryTagFilterInputArgs>? _resourceDiscoveryTagFilters;
 
@@ -215,6 +119,10 @@ namespace Pulumiverse.Grafana.Cloud
     public sealed class GetProviderAzureCredentialResult
     {
         /// <summary>
+        /// The list of auto discovery configurations.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetProviderAzureCredentialAutoDiscoveryConfigurationResult> AutoDiscoveryConfigurations;
+        /// <summary>
         /// The client ID of the Azure Credential.
         /// </summary>
         public readonly string ClientId;
@@ -243,6 +151,8 @@ namespace Pulumiverse.Grafana.Cloud
 
         [OutputConstructor]
         private GetProviderAzureCredentialResult(
+            ImmutableArray<Outputs.GetProviderAzureCredentialAutoDiscoveryConfigurationResult> autoDiscoveryConfigurations,
+
             string clientId,
 
             string clientSecret,
@@ -259,6 +169,7 @@ namespace Pulumiverse.Grafana.Cloud
 
             string tenantId)
         {
+            AutoDiscoveryConfigurations = autoDiscoveryConfigurations;
             ClientId = clientId;
             ClientSecret = clientSecret;
             Id = id;
