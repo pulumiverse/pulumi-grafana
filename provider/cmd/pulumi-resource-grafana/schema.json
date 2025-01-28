@@ -2214,6 +2214,69 @@
                 "value"
             ]
         },
+        "grafana:cloud/ProviderAzureCredentialAutoDiscoveryConfiguration:ProviderAzureCredentialAutoDiscoveryConfiguration": {
+            "properties": {
+                "resourceTypeConfigurations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:cloud/ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration:ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration"
+                    },
+                    "description": "The list of resource type configurations.\n"
+                },
+                "subscriptionId": {
+                    "type": "string",
+                    "description": "The subscription ID of the Azure account.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "resourceTypeConfigurations",
+                "subscriptionId"
+            ]
+        },
+        "grafana:cloud/ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration:ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration": {
+            "properties": {
+                "metricConfigurations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:cloud/ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration:ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration"
+                    }
+                },
+                "resourceTypeName": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "metricConfigurations",
+                "resourceTypeName"
+            ]
+        },
+        "grafana:cloud/ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration:ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration": {
+            "properties": {
+                "aggregations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "dimensions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "aggregations",
+                "dimensions",
+                "name"
+            ]
+        },
         "grafana:cloud/ProviderAzureCredentialResourceDiscoveryTagFilter:ProviderAzureCredentialResourceDiscoveryTagFilter": {
             "properties": {
                 "key": {
@@ -2660,6 +2723,74 @@
                     "requiredInputs": []
                 }
             }
+        },
+        "grafana:cloud/getProviderAzureCredentialAutoDiscoveryConfiguration:getProviderAzureCredentialAutoDiscoveryConfiguration": {
+            "properties": {
+                "resourceTypeConfigurations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:cloud/getProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration:getProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration"
+                    },
+                    "description": "The list of resource type configurations.\n"
+                },
+                "subscriptionId": {
+                    "type": "string",
+                    "description": "The subscription ID of the Azure account.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "resourceTypeConfigurations",
+                "subscriptionId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "grafana:cloud/getProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration:getProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration": {
+            "properties": {
+                "metricConfigurations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:cloud/getProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration:getProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration"
+                    }
+                },
+                "resourceTypeName": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "metricConfigurations",
+                "resourceTypeName"
+            ]
+        },
+        "grafana:cloud/getProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration:getProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration": {
+            "properties": {
+                "aggregations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "dimensions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "aggregations",
+                "dimensions",
+                "name"
+            ]
         },
         "grafana:cloud/getProviderAzureCredentialResourceDiscoveryTagFilter:getProviderAzureCredentialResourceDiscoveryTagFilter": {
             "properties": {
@@ -11704,6 +11835,10 @@
         "grafana:cloud/providerAwsAccount:ProviderAwsAccount": {
             "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = grafana.cloud.getStack({\n    slug: \"gcloudstacktest\",\n});\nconst testGetRole = aws.iam.getRole({\n    name: \"my-role\",\n});\nconst testProviderAwsAccount = new grafana.cloud.ProviderAwsAccount(\"test\", {\n    stackId: test.then(test =\u003e test.id),\n    roleArn: testGetRole.then(testGetRole =\u003e testGetRole.arn),\n    regions: [\n        \"us-east-1\",\n        \"us-east-2\",\n        \"us-west-1\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest = grafana.cloud.get_stack(slug=\"gcloudstacktest\")\ntest_get_role = aws.iam.get_role(name=\"my-role\")\ntest_provider_aws_account = grafana.cloud.ProviderAwsAccount(\"test\",\n    stack_id=test.id,\n    role_arn=test_get_role.arn,\n    regions=[\n        \"us-east-1\",\n        \"us-east-2\",\n        \"us-west-1\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = Grafana.Cloud.GetStack.Invoke(new()\n    {\n        Slug = \"gcloudstacktest\",\n    });\n\n    var testGetRole = Aws.Iam.GetRole.Invoke(new()\n    {\n        Name = \"my-role\",\n    });\n\n    var testProviderAwsAccount = new Grafana.Cloud.ProviderAwsAccount(\"test\", new()\n    {\n        StackId = test.Apply(getStackResult =\u003e getStackResult.Id),\n        RoleArn = testGetRole.Apply(getRoleResult =\u003e getRoleResult.Arn),\n        Regions = new[]\n        {\n            \"us-east-1\",\n            \"us-east-2\",\n            \"us-west-1\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := cloud.LookupStack(ctx, \u0026cloud.LookupStackArgs{\n\t\t\tSlug: \"gcloudstacktest\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestGetRole, err := iam.LookupRole(ctx, \u0026iam.LookupRoleArgs{\n\t\t\tName: \"my-role\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloud.NewProviderAwsAccount(ctx, \"test\", \u0026cloud.ProviderAwsAccountArgs{\n\t\t\tStackId: pulumi.String(test.Id),\n\t\t\tRoleArn: pulumi.String(testGetRole.Arn),\n\t\t\tRegions: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"us-east-1\"),\n\t\t\t\tpulumi.String(\"us-east-2\"),\n\t\t\t\tpulumi.String(\"us-west-1\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetStackArgs;\nimport com.pulumi.aws.iam.IamFunctions;\nimport com.pulumi.aws.iam.inputs.GetRoleArgs;\nimport com.pulumi.grafana.cloud.ProviderAwsAccount;\nimport com.pulumi.grafana.cloud.ProviderAwsAccountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = CloudFunctions.getStack(GetStackArgs.builder()\n            .slug(\"gcloudstacktest\")\n            .build());\n\n        final var testGetRole = IamFunctions.getRole(GetRoleArgs.builder()\n            .name(\"my-role\")\n            .build());\n\n        var testProviderAwsAccount = new ProviderAwsAccount(\"testProviderAwsAccount\", ProviderAwsAccountArgs.builder()\n            .stackId(test.applyValue(getStackResult -\u003e getStackResult.id()))\n            .roleArn(testGetRole.applyValue(getRoleResult -\u003e getRoleResult.arn()))\n            .regions(            \n                \"us-east-1\",\n                \"us-east-2\",\n                \"us-west-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testProviderAwsAccount:\n    type: grafana:cloud:ProviderAwsAccount\n    name: test\n    properties:\n      stackId: ${test.id}\n      roleArn: ${testGetRole.arn}\n      regions:\n        - us-east-1\n        - us-east-2\n        - us-west-1\nvariables:\n  test:\n    fn::invoke:\n      function: grafana:cloud:getStack\n      arguments:\n        slug: gcloudstacktest\n  testGetRole:\n    fn::invoke:\n      function: aws:iam:getRole\n      arguments:\n        name: my-role\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:cloud/providerAwsAccount:ProviderAwsAccount name \"{{ stack_id }}:{{ resource_id }}\"\n```\n\n",
             "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "An optional human-readable name for this AWS Account resource.\n"
+                },
                 "regions": {
                     "type": "array",
                     "items": {
@@ -11724,12 +11859,17 @@
                 }
             },
             "required": [
+                "name",
                 "regions",
                 "resourceId",
                 "roleArn",
                 "stackId"
             ],
             "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "An optional human-readable name for this AWS Account resource.\n"
+                },
                 "regions": {
                     "type": "array",
                     "items": {
@@ -11753,6 +11893,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ProviderAwsAccount resources.\n",
                 "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "An optional human-readable name for this AWS Account resource.\n"
+                    },
                     "regions": {
                         "type": "array",
                         "items": {
@@ -11927,8 +12071,15 @@
             }
         },
         "grafana:cloud/providerAzureCredential:ProviderAzureCredential": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.cloud.ProviderAzureCredential(\"test\", {\n    stackId: \"1\",\n    name: \"test-name\",\n    clientId: \"my-client-id\",\n    clientSecret: \"my-client-secret\",\n    tenantId: \"my-tenant-id\",\n    resourceDiscoveryTagFilters: [\n        {\n            key: \"key-1\",\n            value: \"value-1\",\n        },\n        {\n            key: \"key-2\",\n            value: \"value-2\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest = grafana.cloud.ProviderAzureCredential(\"test\",\n    stack_id=\"1\",\n    name=\"test-name\",\n    client_id=\"my-client-id\",\n    client_secret=\"my-client-secret\",\n    tenant_id=\"my-tenant-id\",\n    resource_discovery_tag_filters=[\n        {\n            \"key\": \"key-1\",\n            \"value\": \"value-1\",\n        },\n        {\n            \"key\": \"key-2\",\n            \"value\": \"value-2\",\n        },\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Cloud.ProviderAzureCredential(\"test\", new()\n    {\n        StackId = \"1\",\n        Name = \"test-name\",\n        ClientId = \"my-client-id\",\n        ClientSecret = \"my-client-secret\",\n        TenantId = \"my-tenant-id\",\n        ResourceDiscoveryTagFilters = new[]\n        {\n            new Grafana.Cloud.Inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs\n            {\n                Key = \"key-1\",\n                Value = \"value-1\",\n            },\n            new Grafana.Cloud.Inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs\n            {\n                Key = \"key-2\",\n                Value = \"value-2\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloud.NewProviderAzureCredential(ctx, \"test\", \u0026cloud.ProviderAzureCredentialArgs{\n\t\t\tStackId:      pulumi.String(\"1\"),\n\t\t\tName:         pulumi.String(\"test-name\"),\n\t\t\tClientId:     pulumi.String(\"my-client-id\"),\n\t\t\tClientSecret: pulumi.String(\"my-client-secret\"),\n\t\t\tTenantId:     pulumi.String(\"my-tenant-id\"),\n\t\t\tResourceDiscoveryTagFilters: cloud.ProviderAzureCredentialResourceDiscoveryTagFilterArray{\n\t\t\t\t\u0026cloud.ProviderAzureCredentialResourceDiscoveryTagFilterArgs{\n\t\t\t\t\tKey:   pulumi.String(\"key-1\"),\n\t\t\t\t\tValue: pulumi.String(\"value-1\"),\n\t\t\t\t},\n\t\t\t\t\u0026cloud.ProviderAzureCredentialResourceDiscoveryTagFilterArgs{\n\t\t\t\t\tKey:   pulumi.String(\"key-2\"),\n\t\t\t\t\tValue: pulumi.String(\"value-2\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.ProviderAzureCredential;\nimport com.pulumi.grafana.cloud.ProviderAzureCredentialArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new ProviderAzureCredential(\"test\", ProviderAzureCredentialArgs.builder()\n            .stackId(\"1\")\n            .name(\"test-name\")\n            .clientId(\"my-client-id\")\n            .clientSecret(\"my-client-secret\")\n            .tenantId(\"my-tenant-id\")\n            .resourceDiscoveryTagFilters(            \n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-1\")\n                    .value(\"value-1\")\n                    .build(),\n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-2\")\n                    .value(\"value-2\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:ProviderAzureCredential\n    properties:\n      stackId: '1'\n      name: test-name\n      clientId: my-client-id\n      clientSecret: my-client-secret\n      tenantId: my-tenant-id\n      resourceDiscoveryTagFilters:\n        - key: key-1\n          value: value-1\n        - key: key-2\n          value: value-2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:cloud/providerAzureCredential:ProviderAzureCredential name \"{{ stack_id }}:{{ resource_id }}\"\n```\n\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.ProviderAzureCredential;\nimport com.pulumi.grafana.cloud.ProviderAzureCredentialArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialAutoDiscoveryConfigurationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new ProviderAzureCredential(\"test\", ProviderAzureCredentialArgs.builder()\n            .stackId(\"1\")\n            .name(\"test-name\")\n            .clientId(\"my-client-id\")\n            .clientSecret(\"my-client-secret\")\n            .tenantId(\"my-tenant-id\")\n            .resourceDiscoveryTagFilters(            \n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-1\")\n                    .value(\"value-1\")\n                    .build(),\n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-2\")\n                    .value(\"value-2\")\n                    .build())\n            .autoDiscoveryConfigurations(ProviderAzureCredentialAutoDiscoveryConfigurationArgs.builder()\n                .subscriptionId(\"my-subscription_id\")\n                .resourceTypeConfigurations(                \n                    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs.builder()\n                        .resourceTypeName(\"Microsoft.App/containerApps\")\n                        .metricConfiguration(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n                        .build(),\n                    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs.builder()\n                        .resourceTypeName(\"Microsoft.Storage/storageAccounts/tableServices\")\n                        .metricConfiguration(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n                        .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:ProviderAzureCredential\n    properties:\n      stackId: '1'\n      name: test-name\n      clientId: my-client-id\n      clientSecret: my-client-secret\n      tenantId: my-tenant-id\n      resourceDiscoveryTagFilters:\n        - key: key-1\n          value: value-1\n        - key: key-2\n          value: value-2\n      autoDiscoveryConfigurations:\n        - subscriptionId: my-subscription_id\n          resourceTypeConfigurations:\n            - resourceTypeName: Microsoft.App/containerApps\n              metricConfiguration:\n                - name: TotalCoresQuotaUsed\n            - resourceTypeName: Microsoft.Storage/storageAccounts/tableServices\n              metricConfiguration:\n                - name: Availability\n                  dimensions:\n                    - GeoType\n                    - ApiName\n                  aggregations:\n                    - Average\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:cloud/providerAzureCredential:ProviderAzureCredential name \"{{ stack_id }}:{{ resource_id }}\"\n```\n\n",
             "properties": {
+                "autoDiscoveryConfigurations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:cloud/ProviderAzureCredentialAutoDiscoveryConfiguration:ProviderAzureCredentialAutoDiscoveryConfiguration"
+                    },
+                    "description": "The list of auto discovery configurations.\n"
+                },
                 "clientId": {
                     "type": "string",
                     "description": "The client ID of the Azure Credential.\n"
@@ -11970,6 +12121,13 @@
                 "tenantId"
             ],
             "inputProperties": {
+                "autoDiscoveryConfigurations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:cloud/ProviderAzureCredentialAutoDiscoveryConfiguration:ProviderAzureCredentialAutoDiscoveryConfiguration"
+                    },
+                    "description": "The list of auto discovery configurations.\n"
+                },
                 "clientId": {
                     "type": "string",
                     "description": "The client ID of the Azure Credential.\n"
@@ -12007,6 +12165,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ProviderAzureCredential resources.\n",
                 "properties": {
+                    "autoDiscoveryConfigurations": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:cloud/ProviderAzureCredentialAutoDiscoveryConfiguration:ProviderAzureCredentialAutoDiscoveryConfiguration"
+                        },
+                        "description": "The list of auto discovery configurations.\n"
+                    },
                     "clientId": {
                         "type": "string",
                         "description": "The client ID of the Azure Credential.\n"
@@ -12060,6 +12225,10 @@
                 "alertmanagerUserId": {
                     "type": "integer",
                     "description": "User ID of the Alertmanager instance configured for this stack.\n"
+                },
+                "clusterSlug": {
+                    "type": "string",
+                    "description": "Slug of the cluster where this stack resides.\n"
                 },
                 "description": {
                     "type": "string",
@@ -12199,6 +12368,7 @@
                 "alertmanagerStatus",
                 "alertmanagerUrl",
                 "alertmanagerUserId",
+                "clusterSlug",
                 "graphiteName",
                 "graphiteStatus",
                 "graphiteUrl",
@@ -12289,6 +12459,10 @@
                     "alertmanagerUserId": {
                         "type": "integer",
                         "description": "User ID of the Alertmanager instance configured for this stack.\n"
+                    },
+                    "clusterSlug": {
+                        "type": "string",
+                        "description": "Slug of the cluster where this stack resides.\n"
                     },
                     "description": {
                         "type": "string",
@@ -13986,6 +14160,10 @@
                     "type": "integer",
                     "description": "User ID of the Alertmanager instance configured for this stack.\n"
                 },
+                "clusterSlug": {
+                    "type": "string",
+                    "description": "Slug of the cluster where this stack resides.\n"
+                },
                 "description": {
                     "type": "string",
                     "description": "Description of stack.\n"
@@ -14124,6 +14302,7 @@
                 "alertmanagerStatus",
                 "alertmanagerUrl",
                 "alertmanagerUserId",
+                "clusterSlug",
                 "graphiteName",
                 "graphiteStatus",
                 "graphiteUrl",
@@ -14214,6 +14393,10 @@
                     "alertmanagerUserId": {
                         "type": "integer",
                         "description": "User ID of the Alertmanager instance configured for this stack.\n"
+                    },
+                    "clusterSlug": {
+                        "type": "string",
+                        "description": "Slug of the cluster where this stack resides.\n"
                     },
                     "description": {
                         "type": "string",
@@ -25528,6 +25711,10 @@
                     "id": {
                         "type": "string"
                     },
+                    "name": {
+                        "description": "An optional human-readable name for this AWS Account resource.\n",
+                        "type": "string"
+                    },
                     "regions": {
                         "description": "A set of regions that this AWS Account resource applies to.\n",
                         "items": {
@@ -25549,6 +25736,7 @@
                 },
                 "required": [
                     "id",
+                    "name",
                     "regions",
                     "resourceId",
                     "roleArn",
@@ -25708,10 +25896,17 @@
             }
         },
         "grafana:cloud/getProviderAzureCredential:getProviderAzureCredential": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst testProviderAzureCredential = new grafana.cloud.ProviderAzureCredential(\"test\", {\n    stackId: \"1\",\n    name: \"test-name\",\n    clientId: \"my-client-id\",\n    clientSecret: \"my-client-secret\",\n    tenantId: \"my-tenant-id\",\n    resourceDiscoveryTagFilters: [\n        {\n            key: \"key-1\",\n            value: \"value-1\",\n        },\n        {\n            key: \"key-2\",\n            value: \"value-2\",\n        },\n    ],\n});\nconst test = grafana.cloud.getProviderAzureCredentialOutput({\n    stackId: testProviderAzureCredential.stackId,\n    resourceId: testProviderAzureCredential.resourceId,\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest_provider_azure_credential = grafana.cloud.ProviderAzureCredential(\"test\",\n    stack_id=\"1\",\n    name=\"test-name\",\n    client_id=\"my-client-id\",\n    client_secret=\"my-client-secret\",\n    tenant_id=\"my-tenant-id\",\n    resource_discovery_tag_filters=[\n        {\n            \"key\": \"key-1\",\n            \"value\": \"value-1\",\n        },\n        {\n            \"key\": \"key-2\",\n            \"value\": \"value-2\",\n        },\n    ])\ntest = grafana.cloud.get_provider_azure_credential_output(stack_id=test_provider_azure_credential.stack_id,\n    resource_id=test_provider_azure_credential.resource_id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testProviderAzureCredential = new Grafana.Cloud.ProviderAzureCredential(\"test\", new()\n    {\n        StackId = \"1\",\n        Name = \"test-name\",\n        ClientId = \"my-client-id\",\n        ClientSecret = \"my-client-secret\",\n        TenantId = \"my-tenant-id\",\n        ResourceDiscoveryTagFilters = new[]\n        {\n            new Grafana.Cloud.Inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs\n            {\n                Key = \"key-1\",\n                Value = \"value-1\",\n            },\n            new Grafana.Cloud.Inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs\n            {\n                Key = \"key-2\",\n                Value = \"value-2\",\n            },\n        },\n    });\n\n    var test = Grafana.Cloud.GetProviderAzureCredential.Invoke(new()\n    {\n        StackId = testProviderAzureCredential.StackId,\n        ResourceId = testProviderAzureCredential.ResourceId,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestProviderAzureCredential, err := cloud.NewProviderAzureCredential(ctx, \"test\", \u0026cloud.ProviderAzureCredentialArgs{\n\t\t\tStackId:      pulumi.String(\"1\"),\n\t\t\tName:         pulumi.String(\"test-name\"),\n\t\t\tClientId:     pulumi.String(\"my-client-id\"),\n\t\t\tClientSecret: pulumi.String(\"my-client-secret\"),\n\t\t\tTenantId:     pulumi.String(\"my-tenant-id\"),\n\t\t\tResourceDiscoveryTagFilters: cloud.ProviderAzureCredentialResourceDiscoveryTagFilterArray{\n\t\t\t\t\u0026cloud.ProviderAzureCredentialResourceDiscoveryTagFilterArgs{\n\t\t\t\t\tKey:   pulumi.String(\"key-1\"),\n\t\t\t\t\tValue: pulumi.String(\"value-1\"),\n\t\t\t\t},\n\t\t\t\t\u0026cloud.ProviderAzureCredentialResourceDiscoveryTagFilterArgs{\n\t\t\t\t\tKey:   pulumi.String(\"key-2\"),\n\t\t\t\t\tValue: pulumi.String(\"value-2\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = cloud.LookupProviderAzureCredentialOutput(ctx, cloud.GetProviderAzureCredentialOutputArgs{\n\t\t\tStackId:    testProviderAzureCredential.StackId,\n\t\t\tResourceId: testProviderAzureCredential.ResourceId,\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.ProviderAzureCredential;\nimport com.pulumi.grafana.cloud.ProviderAzureCredentialArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetProviderAzureCredentialArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testProviderAzureCredential = new ProviderAzureCredential(\"testProviderAzureCredential\", ProviderAzureCredentialArgs.builder()\n            .stackId(\"1\")\n            .name(\"test-name\")\n            .clientId(\"my-client-id\")\n            .clientSecret(\"my-client-secret\")\n            .tenantId(\"my-tenant-id\")\n            .resourceDiscoveryTagFilters(            \n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-1\")\n                    .value(\"value-1\")\n                    .build(),\n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-2\")\n                    .value(\"value-2\")\n                    .build())\n            .build());\n\n        final var test = CloudFunctions.getProviderAzureCredential(GetProviderAzureCredentialArgs.builder()\n            .stackId(testProviderAzureCredential.stackId())\n            .resourceId(testProviderAzureCredential.resourceId())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testProviderAzureCredential:\n    type: grafana:cloud:ProviderAzureCredential\n    name: test\n    properties:\n      stackId: '1'\n      name: test-name\n      clientId: my-client-id\n      clientSecret: my-client-secret\n      tenantId: my-tenant-id\n      resourceDiscoveryTagFilters:\n        - key: key-1\n          value: value-1\n        - key: key-2\n          value: value-2\nvariables:\n  test:\n    fn::invoke:\n      function: grafana:cloud:getProviderAzureCredential\n      arguments:\n        stackId: ${testProviderAzureCredential.stackId}\n        resourceId: ${testProviderAzureCredential.resourceId}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.ProviderAzureCredential;\nimport com.pulumi.grafana.cloud.ProviderAzureCredentialArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialAutoDiscoveryConfigurationArgs;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetProviderAzureCredentialArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testProviderAzureCredential = new ProviderAzureCredential(\"testProviderAzureCredential\", ProviderAzureCredentialArgs.builder()\n            .stackId(\"1\")\n            .name(\"test-name\")\n            .clientId(\"my-client-id\")\n            .clientSecret(\"my-client-secret\")\n            .tenantId(\"my-tenant-id\")\n            .resourceDiscoveryTagFilters(            \n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-1\")\n                    .value(\"value-1\")\n                    .build(),\n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-2\")\n                    .value(\"value-2\")\n                    .build())\n            .autoDiscoveryConfigurations(ProviderAzureCredentialAutoDiscoveryConfigurationArgs.builder()\n                .subscriptionId(\"my-subscription_id\")\n                .resourceTypeConfigurations(                \n                    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs.builder()\n                        .resourceTypeName(\"Microsoft.App/containerApps\")\n                        .metricConfiguration(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n                        .build(),\n                    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs.builder()\n                        .resourceTypeName(\"Microsoft.Storage/storageAccounts/tableServices\")\n                        .metricConfiguration(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n                        .build())\n                .build())\n            .build());\n\n        final var test = CloudFunctions.getProviderAzureCredential(GetProviderAzureCredentialArgs.builder()\n            .stackId(testProviderAzureCredential.stackId())\n            .resourceId(testProviderAzureCredential.resourceId())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testProviderAzureCredential:\n    type: grafana:cloud:ProviderAzureCredential\n    name: test\n    properties:\n      stackId: '1'\n      name: test-name\n      clientId: my-client-id\n      clientSecret: my-client-secret\n      tenantId: my-tenant-id\n      resourceDiscoveryTagFilters:\n        - key: key-1\n          value: value-1\n        - key: key-2\n          value: value-2\n      autoDiscoveryConfigurations:\n        - subscriptionId: my-subscription_id\n          resourceTypeConfigurations:\n            - resourceTypeName: Microsoft.App/containerApps\n              metricConfiguration:\n                - name: TotalCoresQuotaUsed\n            - resourceTypeName: Microsoft.Storage/storageAccounts/tableServices\n              metricConfiguration:\n                - name: Availability\n                  dimensions:\n                    - GeoType\n                    - ApiName\n                  aggregations:\n                    - Average\nvariables:\n  test:\n    fn::invoke:\n      function: grafana:cloud:getProviderAzureCredential\n      arguments:\n        stackId: ${testProviderAzureCredential.stackId}\n        resourceId: ${testProviderAzureCredential.resourceId}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getProviderAzureCredential.\n",
                 "properties": {
+                    "autoDiscoveryConfigurations": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:cloud/getProviderAzureCredentialAutoDiscoveryConfiguration:getProviderAzureCredentialAutoDiscoveryConfiguration"
+                        },
+                        "description": "The list of auto discovery configurations.\n"
+                    },
                     "resourceDiscoveryTagFilters": {
                         "type": "array",
                         "items": {
@@ -25736,6 +25931,13 @@
             "outputs": {
                 "description": "A collection of values returned by getProviderAzureCredential.\n",
                 "properties": {
+                    "autoDiscoveryConfigurations": {
+                        "description": "The list of auto discovery configurations.\n",
+                        "items": {
+                            "$ref": "#/types/grafana:cloud/getProviderAzureCredentialAutoDiscoveryConfiguration:getProviderAzureCredentialAutoDiscoveryConfiguration"
+                        },
+                        "type": "array"
+                    },
                     "clientId": {
                         "description": "The client ID of the Azure Credential.\n",
                         "type": "string"
@@ -25816,6 +26018,10 @@
                     "alertmanagerUserId": {
                         "description": "User ID of the Alertmanager instance configured for this stack.\n",
                         "type": "integer"
+                    },
+                    "clusterSlug": {
+                        "description": "Slug of the cluster where this stack resides.\n",
+                        "type": "string"
                     },
                     "description": {
                         "description": "Description of stack.\n",
@@ -25951,6 +26157,7 @@
                     "alertmanagerStatus",
                     "alertmanagerUrl",
                     "alertmanagerUserId",
+                    "clusterSlug",
                     "description",
                     "graphiteName",
                     "graphiteStatus",
@@ -26214,6 +26421,10 @@
                         "description": "User ID of the Alertmanager instance configured for this stack.\n",
                         "type": "integer"
                     },
+                    "clusterSlug": {
+                        "description": "Slug of the cluster where this stack resides.\n",
+                        "type": "string"
+                    },
                     "description": {
                         "description": "Description of stack.\n",
                         "type": "string"
@@ -26348,6 +26559,7 @@
                     "alertmanagerStatus",
                     "alertmanagerUrl",
                     "alertmanagerUserId",
+                    "clusterSlug",
                     "description",
                     "graphiteName",
                     "graphiteStatus",

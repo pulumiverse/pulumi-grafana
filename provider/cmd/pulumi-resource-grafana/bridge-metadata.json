@@ -136,6 +136,33 @@
             "grafana_cloud_provider_azure_credential": {
                 "current": "grafana:cloud/providerAzureCredential:ProviderAzureCredential",
                 "fields": {
+                    "auto_discovery_configuration": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "resource_type_configurations": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "metric_configuration": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "aggregations": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "dimensions": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "resource_discovery_tag_filter": {
                         "maxItemsOne": false
                     }
@@ -1544,6 +1571,33 @@
             "grafana_cloud_provider_azure_credential": {
                 "current": "grafana:cloud/getProviderAzureCredential:getProviderAzureCredential",
                 "fields": {
+                    "auto_discovery_configuration": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "resource_type_configurations": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "metric_configuration": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "aggregations": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "dimensions": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "resource_discovery_tag_filter": {
                         "maxItemsOne": false
                     }
