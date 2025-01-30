@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Oss
     /// 
     /// **Note:** This resource is available only with Grafana 10.2+.
     /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/dashboard-public/)
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/share-dashboards-panels/shared-dashboards/)
     /// * [HTTP API](https://grafana.com/docs/grafana/next/developers/http_api/dashboard_public/)
     /// 
     /// ## Example Usage
