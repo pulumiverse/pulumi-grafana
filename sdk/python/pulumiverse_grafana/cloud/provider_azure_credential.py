@@ -27,7 +27,8 @@ class ProviderAzureCredentialArgs:
                  tenant_id: pulumi.Input[str],
                  auto_discovery_configurations: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialResourceDiscoveryTagFilterArgs']]]] = None):
+                 resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialResourceDiscoveryTagFilterArgs']]]] = None,
+                 resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a ProviderAzureCredential resource.
         :param pulumi.Input[str] client_id: The client ID of the Azure Credential.
@@ -36,6 +37,7 @@ class ProviderAzureCredentialArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialAutoDiscoveryConfigurationArgs']]] auto_discovery_configurations: The list of auto discovery configurations.
         :param pulumi.Input[str] name: The name of the Azure Credential.
         :param pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialResourceDiscoveryTagFilterArgs']]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resource_tags_to_add_to_metrics: A set of regions that this AWS Account resource applies to.
         """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
@@ -47,6 +49,8 @@ class ProviderAzureCredentialArgs:
             pulumi.set(__self__, "name", name)
         if resource_discovery_tag_filters is not None:
             pulumi.set(__self__, "resource_discovery_tag_filters", resource_discovery_tag_filters)
+        if resource_tags_to_add_to_metrics is not None:
+            pulumi.set(__self__, "resource_tags_to_add_to_metrics", resource_tags_to_add_to_metrics)
 
     @property
     @pulumi.getter(name="clientId")
@@ -129,6 +133,18 @@ class ProviderAzureCredentialArgs:
     def resource_discovery_tag_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialResourceDiscoveryTagFilterArgs']]]]):
         pulumi.set(self, "resource_discovery_tag_filters", value)
 
+    @property
+    @pulumi.getter(name="resourceTagsToAddToMetrics")
+    def resource_tags_to_add_to_metrics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of regions that this AWS Account resource applies to.
+        """
+        return pulumi.get(self, "resource_tags_to_add_to_metrics")
+
+    @resource_tags_to_add_to_metrics.setter
+    def resource_tags_to_add_to_metrics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "resource_tags_to_add_to_metrics", value)
+
 
 @pulumi.input_type
 class _ProviderAzureCredentialState:
@@ -139,6 +155,7 @@ class _ProviderAzureCredentialState:
                  name: Optional[pulumi.Input[str]] = None,
                  resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialResourceDiscoveryTagFilterArgs']]]] = None,
                  resource_id: Optional[pulumi.Input[str]] = None,
+                 resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None):
         """
@@ -149,6 +166,7 @@ class _ProviderAzureCredentialState:
         :param pulumi.Input[str] name: The name of the Azure Credential.
         :param pulumi.Input[Sequence[pulumi.Input['ProviderAzureCredentialResourceDiscoveryTagFilterArgs']]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
         :param pulumi.Input[str] resource_id: The ID given by the Grafana Cloud Provider API to this AWS Account resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resource_tags_to_add_to_metrics: A set of regions that this AWS Account resource applies to.
         :param pulumi.Input[str] tenant_id: The tenant ID of the Azure Credential.
         """
         if auto_discovery_configurations is not None:
@@ -163,6 +181,8 @@ class _ProviderAzureCredentialState:
             pulumi.set(__self__, "resource_discovery_tag_filters", resource_discovery_tag_filters)
         if resource_id is not None:
             pulumi.set(__self__, "resource_id", resource_id)
+        if resource_tags_to_add_to_metrics is not None:
+            pulumi.set(__self__, "resource_tags_to_add_to_metrics", resource_tags_to_add_to_metrics)
         if stack_id is not None:
             pulumi.set(__self__, "stack_id", stack_id)
         if tenant_id is not None:
@@ -241,6 +261,18 @@ class _ProviderAzureCredentialState:
         pulumi.set(self, "resource_id", value)
 
     @property
+    @pulumi.getter(name="resourceTagsToAddToMetrics")
+    def resource_tags_to_add_to_metrics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of regions that this AWS Account resource applies to.
+        """
+        return pulumi.get(self, "resource_tags_to_add_to_metrics")
+
+    @resource_tags_to_add_to_metrics.setter
+    def resource_tags_to_add_to_metrics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "resource_tags_to_add_to_metrics", value)
+
+    @property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "stack_id")
@@ -272,6 +304,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
                  client_secret: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderAzureCredentialResourceDiscoveryTagFilterArgs', 'ProviderAzureCredentialResourceDiscoveryTagFilterArgsDict']]]]] = None,
+                 resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -291,6 +324,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
         :param pulumi.Input[str] client_secret: The client secret of the Azure Credential.
         :param pulumi.Input[str] name: The name of the Azure Credential.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderAzureCredentialResourceDiscoveryTagFilterArgs', 'ProviderAzureCredentialResourceDiscoveryTagFilterArgsDict']]]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resource_tags_to_add_to_metrics: A set of regions that this AWS Account resource applies to.
         :param pulumi.Input[str] tenant_id: The tenant ID of the Azure Credential.
         """
         ...
@@ -328,6 +362,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
                  client_secret: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderAzureCredentialResourceDiscoveryTagFilterArgs', 'ProviderAzureCredentialResourceDiscoveryTagFilterArgsDict']]]]] = None,
+                 resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -348,6 +383,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
             __props__.__dict__["name"] = name
             __props__.__dict__["resource_discovery_tag_filters"] = resource_discovery_tag_filters
+            __props__.__dict__["resource_tags_to_add_to_metrics"] = resource_tags_to_add_to_metrics
             if stack_id is None and not opts.urn:
                 raise TypeError("Missing required property 'stack_id'")
             __props__.__dict__["stack_id"] = stack_id
@@ -373,6 +409,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderAzureCredentialResourceDiscoveryTagFilterArgs', 'ProviderAzureCredentialResourceDiscoveryTagFilterArgsDict']]]]] = None,
             resource_id: Optional[pulumi.Input[str]] = None,
+            resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             stack_id: Optional[pulumi.Input[str]] = None,
             tenant_id: Optional[pulumi.Input[str]] = None) -> 'ProviderAzureCredential':
         """
@@ -388,6 +425,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the Azure Credential.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderAzureCredentialResourceDiscoveryTagFilterArgs', 'ProviderAzureCredentialResourceDiscoveryTagFilterArgsDict']]]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
         :param pulumi.Input[str] resource_id: The ID given by the Grafana Cloud Provider API to this AWS Account resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resource_tags_to_add_to_metrics: A set of regions that this AWS Account resource applies to.
         :param pulumi.Input[str] tenant_id: The tenant ID of the Azure Credential.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -400,6 +438,7 @@ class ProviderAzureCredential(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["resource_discovery_tag_filters"] = resource_discovery_tag_filters
         __props__.__dict__["resource_id"] = resource_id
+        __props__.__dict__["resource_tags_to_add_to_metrics"] = resource_tags_to_add_to_metrics
         __props__.__dict__["stack_id"] = stack_id
         __props__.__dict__["tenant_id"] = tenant_id
         return ProviderAzureCredential(resource_name, opts=opts, __props__=__props__)
@@ -451,6 +490,14 @@ class ProviderAzureCredential(pulumi.CustomResource):
         The ID given by the Grafana Cloud Provider API to this AWS Account resource.
         """
         return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="resourceTagsToAddToMetrics")
+    def resource_tags_to_add_to_metrics(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A set of regions that this AWS Account resource applies to.
+        """
+        return pulumi.get(self, "resource_tags_to_add_to_metrics")
 
     @property
     @pulumi.getter(name="stackId")

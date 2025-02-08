@@ -67,6 +67,10 @@ export class ProviderAzureCredential extends pulumi.CustomResource {
      * The ID given by the Grafana Cloud Provider API to this AWS Account resource.
      */
     public /*out*/ readonly resourceId!: pulumi.Output<string>;
+    /**
+     * A set of regions that this AWS Account resource applies to.
+     */
+    public readonly resourceTagsToAddToMetrics!: pulumi.Output<string[] | undefined>;
     public readonly stackId!: pulumi.Output<string>;
     /**
      * The tenant ID of the Azure Credential.
@@ -92,6 +96,7 @@ export class ProviderAzureCredential extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["resourceDiscoveryTagFilters"] = state ? state.resourceDiscoveryTagFilters : undefined;
             resourceInputs["resourceId"] = state ? state.resourceId : undefined;
+            resourceInputs["resourceTagsToAddToMetrics"] = state ? state.resourceTagsToAddToMetrics : undefined;
             resourceInputs["stackId"] = state ? state.stackId : undefined;
             resourceInputs["tenantId"] = state ? state.tenantId : undefined;
         } else {
@@ -113,6 +118,7 @@ export class ProviderAzureCredential extends pulumi.CustomResource {
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["resourceDiscoveryTagFilters"] = args ? args.resourceDiscoveryTagFilters : undefined;
+            resourceInputs["resourceTagsToAddToMetrics"] = args ? args.resourceTagsToAddToMetrics : undefined;
             resourceInputs["stackId"] = args ? args.stackId : undefined;
             resourceInputs["tenantId"] = args ? args.tenantId : undefined;
             resourceInputs["resourceId"] = undefined /*out*/;
@@ -152,6 +158,10 @@ export interface ProviderAzureCredentialState {
      * The ID given by the Grafana Cloud Provider API to this AWS Account resource.
      */
     resourceId?: pulumi.Input<string>;
+    /**
+     * A set of regions that this AWS Account resource applies to.
+     */
+    resourceTagsToAddToMetrics?: pulumi.Input<pulumi.Input<string>[]>;
     stackId?: pulumi.Input<string>;
     /**
      * The tenant ID of the Azure Credential.
@@ -183,6 +193,10 @@ export interface ProviderAzureCredentialArgs {
      * The list of tag filters to apply to resources.
      */
     resourceDiscoveryTagFilters?: pulumi.Input<pulumi.Input<inputs.cloud.ProviderAzureCredentialResourceDiscoveryTagFilter>[]>;
+    /**
+     * A set of regions that this AWS Account resource applies to.
+     */
+    resourceTagsToAddToMetrics?: pulumi.Input<pulumi.Input<string>[]>;
     stackId: pulumi.Input<string>;
     /**
      * The tenant ID of the Azure Credential.

@@ -2211,6 +2211,8 @@ func (o ContactPointSensugoArrayOutput) Index(i pulumi.IntInput) ContactPointSen
 }
 
 type ContactPointSlack struct {
+	// Templated color of the slack message.
+	Color *string `pulumi:"color"`
 	// Whether to disable sending resolve messages. Defaults to `false`.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
 	// Use this to override the Slack API endpoint URL to send requests to.
@@ -2255,6 +2257,8 @@ type ContactPointSlackInput interface {
 }
 
 type ContactPointSlackArgs struct {
+	// Templated color of the slack message.
+	Color pulumi.StringPtrInput `pulumi:"color"`
 	// Whether to disable sending resolve messages. Defaults to `false`.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
 	// Use this to override the Slack API endpoint URL to send requests to.
@@ -2336,6 +2340,11 @@ func (o ContactPointSlackOutput) ToContactPointSlackOutput() ContactPointSlackOu
 
 func (o ContactPointSlackOutput) ToContactPointSlackOutputWithContext(ctx context.Context) ContactPointSlackOutput {
 	return o
+}
+
+// Templated color of the slack message.
+func (o ContactPointSlackOutput) Color() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointSlack) *string { return v.Color }).(pulumi.StringPtrOutput)
 }
 
 // Whether to disable sending resolve messages. Defaults to `false`.

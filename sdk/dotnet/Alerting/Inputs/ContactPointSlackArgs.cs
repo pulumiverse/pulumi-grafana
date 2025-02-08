@@ -14,6 +14,12 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
     public sealed class ContactPointSlackArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Templated color of the slack message.
+        /// </summary>
+        [Input("color")]
+        public Input<string>? Color { get; set; }
+
+        /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         [Input("disableResolveMessage")]

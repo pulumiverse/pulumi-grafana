@@ -2004,6 +2004,7 @@ class ContactPointSlack(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 color: Optional[str] = None,
                  disable_resolve_message: Optional[bool] = None,
                  endpoint_url: Optional[str] = None,
                  icon_emoji: Optional[str] = None,
@@ -2020,6 +2021,7 @@ class ContactPointSlack(dict):
                  url: Optional[str] = None,
                  username: Optional[str] = None):
         """
+        :param str color: Templated color of the slack message.
         :param bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param str endpoint_url: Use this to override the Slack API endpoint URL to send requests to.
         :param str icon_emoji: The name of a Slack workspace emoji to use as the bot icon.
@@ -2036,6 +2038,8 @@ class ContactPointSlack(dict):
         :param str url: A Slack webhook URL,for sending messages via the webhook method.
         :param str username: Username for the bot to use.
         """
+        if color is not None:
+            pulumi.set(__self__, "color", color)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
         if endpoint_url is not None:
@@ -2066,6 +2070,14 @@ class ContactPointSlack(dict):
             pulumi.set(__self__, "url", url)
         if username is not None:
             pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def color(self) -> Optional[str]:
+        """
+        Templated color of the slack message.
+        """
+        return pulumi.get(self, "color")
 
     @property
     @pulumi.getter(name="disableResolveMessage")

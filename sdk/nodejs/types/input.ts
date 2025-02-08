@@ -533,6 +533,10 @@ export interface ContactPointSensugo {
 
 export interface ContactPointSlack {
     /**
+     * Templated color of the slack message.
+     */
+    color?: pulumi.Input<string>;
+    /**
      * Whether to disable sending resolve messages. Defaults to `false`.
      */
     disableResolveMessage?: pulumi.Input<boolean>;
@@ -3400,6 +3404,10 @@ export namespace alerting {
     }
 
     export interface ContactPointSlack {
+        /**
+         * Templated color of the slack message.
+         */
+        color?: pulumi.Input<string>;
         /**
          * Whether to disable sending resolve messages. Defaults to `false`.
          */
