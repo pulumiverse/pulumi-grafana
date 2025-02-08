@@ -966,6 +966,10 @@
         },
         "grafana:alerting/ContactPointSlack:ContactPointSlack": {
             "properties": {
+                "color": {
+                    "type": "string",
+                    "description": "Templated color of the slack message.\n"
+                },
                 "disableResolveMessage": {
                     "type": "boolean",
                     "description": "Whether to disable sending resolve messages. Defaults to `false`.\n"
@@ -3728,6 +3732,10 @@
         },
         "grafana:index/ContactPointSlack:ContactPointSlack": {
             "properties": {
+                "color": {
+                    "type": "string",
+                    "description": "Templated color of the slack message.\n"
+                },
                 "disableResolveMessage": {
                     "type": "boolean",
                     "description": "Whether to disable sending resolve messages. Defaults to `false`.\n"
@@ -12071,7 +12079,7 @@
             }
         },
         "grafana:cloud/providerAzureCredential:ProviderAzureCredential": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.ProviderAzureCredential;\nimport com.pulumi.grafana.cloud.ProviderAzureCredentialArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialAutoDiscoveryConfigurationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new ProviderAzureCredential(\"test\", ProviderAzureCredentialArgs.builder()\n            .stackId(\"1\")\n            .name(\"test-name\")\n            .clientId(\"my-client-id\")\n            .clientSecret(\"my-client-secret\")\n            .tenantId(\"my-tenant-id\")\n            .resourceDiscoveryTagFilters(            \n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-1\")\n                    .value(\"value-1\")\n                    .build(),\n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-2\")\n                    .value(\"value-2\")\n                    .build())\n            .autoDiscoveryConfigurations(ProviderAzureCredentialAutoDiscoveryConfigurationArgs.builder()\n                .subscriptionId(\"my-subscription_id\")\n                .resourceTypeConfigurations(                \n                    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs.builder()\n                        .resourceTypeName(\"Microsoft.App/containerApps\")\n                        .metricConfiguration(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n                        .build(),\n                    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs.builder()\n                        .resourceTypeName(\"Microsoft.Storage/storageAccounts/tableServices\")\n                        .metricConfiguration(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n                        .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:ProviderAzureCredential\n    properties:\n      stackId: '1'\n      name: test-name\n      clientId: my-client-id\n      clientSecret: my-client-secret\n      tenantId: my-tenant-id\n      resourceDiscoveryTagFilters:\n        - key: key-1\n          value: value-1\n        - key: key-2\n          value: value-2\n      autoDiscoveryConfigurations:\n        - subscriptionId: my-subscription_id\n          resourceTypeConfigurations:\n            - resourceTypeName: Microsoft.App/containerApps\n              metricConfiguration:\n                - name: TotalCoresQuotaUsed\n            - resourceTypeName: Microsoft.Storage/storageAccounts/tableServices\n              metricConfiguration:\n                - name: Availability\n                  dimensions:\n                    - GeoType\n                    - ApiName\n                  aggregations:\n                    - Average\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:cloud/providerAzureCredential:ProviderAzureCredential name \"{{ stack_id }}:{{ resource_id }}\"\n```\n\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.ProviderAzureCredential;\nimport com.pulumi.grafana.cloud.ProviderAzureCredentialArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialAutoDiscoveryConfigurationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new ProviderAzureCredential(\"test\", ProviderAzureCredentialArgs.builder()\n            .stackId(\"1\")\n            .name(\"test-name\")\n            .clientId(\"my-client-id\")\n            .clientSecret(\"my-client-secret\")\n            .tenantId(\"my-tenant-id\")\n            .resourceTagsToAddToMetrics(            \n                \"tag1\",\n                \"tag2\")\n            .resourceDiscoveryTagFilters(            \n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-1\")\n                    .value(\"value-1\")\n                    .build(),\n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-2\")\n                    .value(\"value-2\")\n                    .build())\n            .autoDiscoveryConfigurations(ProviderAzureCredentialAutoDiscoveryConfigurationArgs.builder()\n                .subscriptionId(\"my-subscription_id\")\n                .resourceTypeConfigurations(                \n                    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs.builder()\n                        .resourceTypeName(\"Microsoft.App/containerApps\")\n                        .metricConfiguration(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n                        .build(),\n                    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs.builder()\n                        .resourceTypeName(\"Microsoft.Storage/storageAccounts/tableServices\")\n                        .metricConfiguration(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n                        .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:ProviderAzureCredential\n    properties:\n      stackId: '1'\n      name: test-name\n      clientId: my-client-id\n      clientSecret: my-client-secret\n      tenantId: my-tenant-id\n      resourceTagsToAddToMetrics:\n        - tag1\n        - tag2\n      resourceDiscoveryTagFilters:\n        - key: key-1\n          value: value-1\n        - key: key-2\n          value: value-2\n      autoDiscoveryConfigurations:\n        - subscriptionId: my-subscription_id\n          resourceTypeConfigurations:\n            - resourceTypeName: Microsoft.App/containerApps\n              metricConfiguration:\n                - name: TotalCoresQuotaUsed\n            - resourceTypeName: Microsoft.Storage/storageAccounts/tableServices\n              metricConfiguration:\n                - name: Availability\n                  dimensions:\n                    - GeoType\n                    - ApiName\n                  aggregations:\n                    - Average\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:cloud/providerAzureCredential:ProviderAzureCredential name \"{{ stack_id }}:{{ resource_id }}\"\n```\n\n",
             "properties": {
                 "autoDiscoveryConfigurations": {
                     "type": "array",
@@ -12103,6 +12111,13 @@
                 "resourceId": {
                     "type": "string",
                     "description": "The ID given by the Grafana Cloud Provider API to this AWS Account resource.\n"
+                },
+                "resourceTagsToAddToMetrics": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of regions that this AWS Account resource applies to.\n"
                 },
                 "stackId": {
                     "type": "string"
@@ -12147,6 +12162,13 @@
                         "$ref": "#/types/grafana:cloud/ProviderAzureCredentialResourceDiscoveryTagFilter:ProviderAzureCredentialResourceDiscoveryTagFilter"
                     },
                     "description": "The list of tag filters to apply to resources.\n"
+                },
+                "resourceTagsToAddToMetrics": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of regions that this AWS Account resource applies to.\n"
                 },
                 "stackId": {
                     "type": "string"
@@ -12195,6 +12217,13 @@
                     "resourceId": {
                         "type": "string",
                         "description": "The ID given by the Grafana Cloud Provider API to this AWS Account resource.\n"
+                    },
+                    "resourceTagsToAddToMetrics": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A set of regions that this AWS Account resource applies to.\n"
                     },
                     "stackId": {
                         "type": "string"
@@ -25896,7 +25925,7 @@
             }
         },
         "grafana:cloud/getProviderAzureCredential:getProviderAzureCredential": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.ProviderAzureCredential;\nimport com.pulumi.grafana.cloud.ProviderAzureCredentialArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialAutoDiscoveryConfigurationArgs;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetProviderAzureCredentialArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testProviderAzureCredential = new ProviderAzureCredential(\"testProviderAzureCredential\", ProviderAzureCredentialArgs.builder()\n            .stackId(\"1\")\n            .name(\"test-name\")\n            .clientId(\"my-client-id\")\n            .clientSecret(\"my-client-secret\")\n            .tenantId(\"my-tenant-id\")\n            .resourceDiscoveryTagFilters(            \n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-1\")\n                    .value(\"value-1\")\n                    .build(),\n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-2\")\n                    .value(\"value-2\")\n                    .build())\n            .autoDiscoveryConfigurations(ProviderAzureCredentialAutoDiscoveryConfigurationArgs.builder()\n                .subscriptionId(\"my-subscription_id\")\n                .resourceTypeConfigurations(                \n                    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs.builder()\n                        .resourceTypeName(\"Microsoft.App/containerApps\")\n                        .metricConfiguration(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n                        .build(),\n                    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs.builder()\n                        .resourceTypeName(\"Microsoft.Storage/storageAccounts/tableServices\")\n                        .metricConfiguration(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n                        .build())\n                .build())\n            .build());\n\n        final var test = CloudFunctions.getProviderAzureCredential(GetProviderAzureCredentialArgs.builder()\n            .stackId(testProviderAzureCredential.stackId())\n            .resourceId(testProviderAzureCredential.resourceId())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testProviderAzureCredential:\n    type: grafana:cloud:ProviderAzureCredential\n    name: test\n    properties:\n      stackId: '1'\n      name: test-name\n      clientId: my-client-id\n      clientSecret: my-client-secret\n      tenantId: my-tenant-id\n      resourceDiscoveryTagFilters:\n        - key: key-1\n          value: value-1\n        - key: key-2\n          value: value-2\n      autoDiscoveryConfigurations:\n        - subscriptionId: my-subscription_id\n          resourceTypeConfigurations:\n            - resourceTypeName: Microsoft.App/containerApps\n              metricConfiguration:\n                - name: TotalCoresQuotaUsed\n            - resourceTypeName: Microsoft.Storage/storageAccounts/tableServices\n              metricConfiguration:\n                - name: Availability\n                  dimensions:\n                    - GeoType\n                    - ApiName\n                  aggregations:\n                    - Average\nvariables:\n  test:\n    fn::invoke:\n      function: grafana:cloud:getProviderAzureCredential\n      arguments:\n        stackId: ${testProviderAzureCredential.stackId}\n        resourceId: ${testProviderAzureCredential.resourceId}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.ProviderAzureCredential;\nimport com.pulumi.grafana.cloud.ProviderAzureCredentialArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialResourceDiscoveryTagFilterArgs;\nimport com.pulumi.grafana.cloud.inputs.ProviderAzureCredentialAutoDiscoveryConfigurationArgs;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetProviderAzureCredentialArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testProviderAzureCredential = new ProviderAzureCredential(\"testProviderAzureCredential\", ProviderAzureCredentialArgs.builder()\n            .stackId(\"1\")\n            .name(\"test-name\")\n            .clientId(\"my-client-id\")\n            .clientSecret(\"my-client-secret\")\n            .tenantId(\"my-tenant-id\")\n            .resourceTagsToAddToMetrics(            \n                \"tag1\",\n                \"tag2\")\n            .resourceDiscoveryTagFilters(            \n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-1\")\n                    .value(\"value-1\")\n                    .build(),\n                ProviderAzureCredentialResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"key-2\")\n                    .value(\"value-2\")\n                    .build())\n            .autoDiscoveryConfigurations(ProviderAzureCredentialAutoDiscoveryConfigurationArgs.builder()\n                .subscriptionId(\"my-subscription_id\")\n                .resourceTypeConfigurations(                \n                    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs.builder()\n                        .resourceTypeName(\"Microsoft.App/containerApps\")\n                        .metricConfiguration(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n                        .build(),\n                    ProviderAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs.builder()\n                        .resourceTypeName(\"Microsoft.Storage/storageAccounts/tableServices\")\n                        .metricConfiguration(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n                        .build())\n                .build())\n            .build());\n\n        final var test = CloudFunctions.getProviderAzureCredential(GetProviderAzureCredentialArgs.builder()\n            .stackId(testProviderAzureCredential.stackId())\n            .resourceId(testProviderAzureCredential.resourceId())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testProviderAzureCredential:\n    type: grafana:cloud:ProviderAzureCredential\n    name: test\n    properties:\n      stackId: '1'\n      name: test-name\n      clientId: my-client-id\n      clientSecret: my-client-secret\n      tenantId: my-tenant-id\n      resourceTagsToAddToMetrics:\n        - tag1\n        - tag2\n      resourceDiscoveryTagFilters:\n        - key: key-1\n          value: value-1\n        - key: key-2\n          value: value-2\n      autoDiscoveryConfigurations:\n        - subscriptionId: my-subscription_id\n          resourceTypeConfigurations:\n            - resourceTypeName: Microsoft.App/containerApps\n              metricConfiguration:\n                - name: TotalCoresQuotaUsed\n            - resourceTypeName: Microsoft.Storage/storageAccounts/tableServices\n              metricConfiguration:\n                - name: Availability\n                  dimensions:\n                    - GeoType\n                    - ApiName\n                  aggregations:\n                    - Average\nvariables:\n  test:\n    fn::invoke:\n      function: grafana:cloud:getProviderAzureCredential\n      arguments:\n        stackId: ${testProviderAzureCredential.stackId}\n        resourceId: ${testProviderAzureCredential.resourceId}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getProviderAzureCredential.\n",
                 "properties": {
@@ -25965,6 +25994,13 @@
                         "description": "The ID given by the Grafana Cloud Provider API to this Azure Credential resource.\n",
                         "type": "string"
                     },
+                    "resourceTagsToAddToMetrics": {
+                        "description": "A set of regions that this AWS Account resource applies to.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
                     "stackId": {
                         "type": "string"
                     },
@@ -25979,6 +26015,7 @@
                     "id",
                     "name",
                     "resourceId",
+                    "resourceTagsToAddToMetrics",
                     "stackId",
                     "tenantId"
                 ],
