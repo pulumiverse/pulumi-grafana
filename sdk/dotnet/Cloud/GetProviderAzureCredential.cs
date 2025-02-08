@@ -143,6 +143,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
         /// </summary>
         public readonly string ResourceId;
+        /// <summary>
+        /// A set of regions that this AWS Account resource applies to.
+        /// </summary>
+        public readonly ImmutableArray<string> ResourceTagsToAddToMetrics;
         public readonly string StackId;
         /// <summary>
         /// The tenant ID of the Azure Credential.
@@ -165,6 +169,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             string resourceId,
 
+            ImmutableArray<string> resourceTagsToAddToMetrics,
+
             string stackId,
 
             string tenantId)
@@ -176,6 +182,7 @@ namespace Pulumiverse.Grafana.Cloud
             Name = name;
             ResourceDiscoveryTagFilters = resourceDiscoveryTagFilters;
             ResourceId = resourceId;
+            ResourceTagsToAddToMetrics = resourceTagsToAddToMetrics;
             StackId = stackId;
             TenantId = tenantId;
         }

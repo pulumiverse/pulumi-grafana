@@ -28,7 +28,7 @@ class GetProviderAzureCredentialResult:
     """
     A collection of values returned by getProviderAzureCredential.
     """
-    def __init__(__self__, auto_discovery_configurations=None, client_id=None, client_secret=None, id=None, name=None, resource_discovery_tag_filters=None, resource_id=None, stack_id=None, tenant_id=None):
+    def __init__(__self__, auto_discovery_configurations=None, client_id=None, client_secret=None, id=None, name=None, resource_discovery_tag_filters=None, resource_id=None, resource_tags_to_add_to_metrics=None, stack_id=None, tenant_id=None):
         if auto_discovery_configurations and not isinstance(auto_discovery_configurations, list):
             raise TypeError("Expected argument 'auto_discovery_configurations' to be a list")
         pulumi.set(__self__, "auto_discovery_configurations", auto_discovery_configurations)
@@ -50,6 +50,9 @@ class GetProviderAzureCredentialResult:
         if resource_id and not isinstance(resource_id, str):
             raise TypeError("Expected argument 'resource_id' to be a str")
         pulumi.set(__self__, "resource_id", resource_id)
+        if resource_tags_to_add_to_metrics and not isinstance(resource_tags_to_add_to_metrics, list):
+            raise TypeError("Expected argument 'resource_tags_to_add_to_metrics' to be a list")
+        pulumi.set(__self__, "resource_tags_to_add_to_metrics", resource_tags_to_add_to_metrics)
         if stack_id and not isinstance(stack_id, str):
             raise TypeError("Expected argument 'stack_id' to be a str")
         pulumi.set(__self__, "stack_id", stack_id)
@@ -111,6 +114,14 @@ class GetProviderAzureCredentialResult:
         return pulumi.get(self, "resource_id")
 
     @property
+    @pulumi.getter(name="resourceTagsToAddToMetrics")
+    def resource_tags_to_add_to_metrics(self) -> Sequence[str]:
+        """
+        A set of regions that this AWS Account resource applies to.
+        """
+        return pulumi.get(self, "resource_tags_to_add_to_metrics")
+
+    @property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> str:
         return pulumi.get(self, "stack_id")
@@ -137,6 +148,7 @@ class AwaitableGetProviderAzureCredentialResult(GetProviderAzureCredentialResult
             name=self.name,
             resource_discovery_tag_filters=self.resource_discovery_tag_filters,
             resource_id=self.resource_id,
+            resource_tags_to_add_to_metrics=self.resource_tags_to_add_to_metrics,
             stack_id=self.stack_id,
             tenant_id=self.tenant_id)
 
@@ -170,6 +182,7 @@ def get_provider_azure_credential(auto_discovery_configurations: Optional[Sequen
         name=pulumi.get(__ret__, 'name'),
         resource_discovery_tag_filters=pulumi.get(__ret__, 'resource_discovery_tag_filters'),
         resource_id=pulumi.get(__ret__, 'resource_id'),
+        resource_tags_to_add_to_metrics=pulumi.get(__ret__, 'resource_tags_to_add_to_metrics'),
         stack_id=pulumi.get(__ret__, 'stack_id'),
         tenant_id=pulumi.get(__ret__, 'tenant_id'))
 def get_provider_azure_credential_output(auto_discovery_configurations: Optional[pulumi.Input[Optional[Sequence[Union['GetProviderAzureCredentialAutoDiscoveryConfigurationArgs', 'GetProviderAzureCredentialAutoDiscoveryConfigurationArgsDict']]]]] = None,
@@ -200,5 +213,6 @@ def get_provider_azure_credential_output(auto_discovery_configurations: Optional
         name=pulumi.get(__response__, 'name'),
         resource_discovery_tag_filters=pulumi.get(__response__, 'resource_discovery_tag_filters'),
         resource_id=pulumi.get(__response__, 'resource_id'),
+        resource_tags_to_add_to_metrics=pulumi.get(__response__, 'resource_tags_to_add_to_metrics'),
         stack_id=pulumi.get(__response__, 'stack_id'),
         tenant_id=pulumi.get(__response__, 'tenant_id')))

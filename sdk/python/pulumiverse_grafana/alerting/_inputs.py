@@ -2575,6 +2575,10 @@ class ContactPointSensugoArgs:
 
 if not MYPY:
     class ContactPointSlackArgsDict(TypedDict):
+        color: NotRequired[pulumi.Input[str]]
+        """
+        Templated color of the slack message.
+        """
         disable_resolve_message: NotRequired[pulumi.Input[bool]]
         """
         Whether to disable sending resolve messages. Defaults to `false`.
@@ -2641,6 +2645,7 @@ elif False:
 @pulumi.input_type
 class ContactPointSlackArgs:
     def __init__(__self__, *,
+                 color: Optional[pulumi.Input[str]] = None,
                  disable_resolve_message: Optional[pulumi.Input[bool]] = None,
                  endpoint_url: Optional[pulumi.Input[str]] = None,
                  icon_emoji: Optional[pulumi.Input[str]] = None,
@@ -2657,6 +2662,7 @@ class ContactPointSlackArgs:
                  url: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[str] color: Templated color of the slack message.
         :param pulumi.Input[bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param pulumi.Input[str] endpoint_url: Use this to override the Slack API endpoint URL to send requests to.
         :param pulumi.Input[str] icon_emoji: The name of a Slack workspace emoji to use as the bot icon.
@@ -2673,6 +2679,8 @@ class ContactPointSlackArgs:
         :param pulumi.Input[str] url: A Slack webhook URL,for sending messages via the webhook method.
         :param pulumi.Input[str] username: Username for the bot to use.
         """
+        if color is not None:
+            pulumi.set(__self__, "color", color)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
         if endpoint_url is not None:
@@ -2703,6 +2711,18 @@ class ContactPointSlackArgs:
             pulumi.set(__self__, "url", url)
         if username is not None:
             pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def color(self) -> Optional[pulumi.Input[str]]:
+        """
+        Templated color of the slack message.
+        """
+        return pulumi.get(self, "color")
+
+    @color.setter
+    def color(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "color", value)
 
     @property
     @pulumi.getter(name="disableResolveMessage")

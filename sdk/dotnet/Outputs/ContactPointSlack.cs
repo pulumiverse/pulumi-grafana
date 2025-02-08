@@ -15,6 +15,10 @@ namespace Pulumiverse.Grafana.Outputs
     public sealed class ContactPointSlack
     {
         /// <summary>
+        /// Templated color of the slack message.
+        /// </summary>
+        public readonly string? Color;
+        /// <summary>
         /// Whether to disable sending resolve messages. Defaults to `false`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
@@ -77,6 +81,8 @@ namespace Pulumiverse.Grafana.Outputs
 
         [OutputConstructor]
         private ContactPointSlack(
+            string? color,
+
             bool? disableResolveMessage,
 
             string? endpointUrl,
@@ -107,6 +113,7 @@ namespace Pulumiverse.Grafana.Outputs
 
             string? username)
         {
+            Color = color;
             DisableResolveMessage = disableResolveMessage;
             EndpointUrl = endpointUrl;
             IconEmoji = iconEmoji;

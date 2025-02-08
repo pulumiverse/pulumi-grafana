@@ -58,6 +58,12 @@ namespace Pulumiverse.Grafana.Cloud
         [Output("resourceId")]
         public Output<string> ResourceId { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of regions that this AWS Account resource applies to.
+        /// </summary>
+        [Output("resourceTagsToAddToMetrics")]
+        public Output<ImmutableArray<string>> ResourceTagsToAddToMetrics { get; private set; } = null!;
+
         [Output("stackId")]
         public Output<string> StackId { get; private set; } = null!;
 
@@ -170,6 +176,18 @@ namespace Pulumiverse.Grafana.Cloud
             set => _resourceDiscoveryTagFilters = value;
         }
 
+        [Input("resourceTagsToAddToMetrics")]
+        private InputList<string>? _resourceTagsToAddToMetrics;
+
+        /// <summary>
+        /// A set of regions that this AWS Account resource applies to.
+        /// </summary>
+        public InputList<string> ResourceTagsToAddToMetrics
+        {
+            get => _resourceTagsToAddToMetrics ?? (_resourceTagsToAddToMetrics = new InputList<string>());
+            set => _resourceTagsToAddToMetrics = value;
+        }
+
         [Input("stackId", required: true)]
         public Input<string> StackId { get; set; } = null!;
 
@@ -244,6 +262,18 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Input("resourceId")]
         public Input<string>? ResourceId { get; set; }
+
+        [Input("resourceTagsToAddToMetrics")]
+        private InputList<string>? _resourceTagsToAddToMetrics;
+
+        /// <summary>
+        /// A set of regions that this AWS Account resource applies to.
+        /// </summary>
+        public InputList<string> ResourceTagsToAddToMetrics
+        {
+            get => _resourceTagsToAddToMetrics ?? (_resourceTagsToAddToMetrics = new InputList<string>());
+            set => _resourceTagsToAddToMetrics = value;
+        }
 
         [Input("stackId")]
         public Input<string>? StackId { get; set; }

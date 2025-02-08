@@ -67,6 +67,10 @@ export interface GetProviderAzureCredentialResult {
      * The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
      */
     readonly resourceId: string;
+    /**
+     * A set of regions that this AWS Account resource applies to.
+     */
+    readonly resourceTagsToAddToMetrics: string[];
     readonly stackId: string;
     /**
      * The tenant ID of the Azure Credential.

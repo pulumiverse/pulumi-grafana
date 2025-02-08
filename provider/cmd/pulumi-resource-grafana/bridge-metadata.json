@@ -165,6 +165,9 @@
                     },
                     "resource_discovery_tag_filter": {
                         "maxItemsOne": false
+                    },
+                    "resource_tags_to_add_to_metrics": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -1599,6 +1602,9 @@
                         }
                     },
                     "resource_discovery_tag_filter": {
+                        "maxItemsOne": false
+                    },
+                    "resource_tags_to_add_to_metrics": {
                         "maxItemsOne": false
                     }
                 }
