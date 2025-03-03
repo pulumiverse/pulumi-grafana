@@ -5,93 +5,8 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .annotation import *
-from .cloud_access_policy import *
-from .cloud_access_policy_token import *
-from .cloud_org_member import *
-from .cloud_plugin_installation import *
-from .cloud_stack import *
-from .cloud_stack_service_account import *
-from .cloud_stack_service_account_token import *
-from .connections_metrics_endpoint_scrape_job import *
-from .contact_point import *
-from .dashboard import *
-from .dashboard_permission import *
-from .dashboard_permission_item import *
-from .dashboard_public import *
-from .data_source import *
-from .data_source_config import *
-from .data_source_permission import *
-from .data_source_permission_item import *
-from .folder import *
-from .folder_permission import *
-from .folder_permission_item import *
-from .get_cloud_ips import *
-from .get_cloud_organization import *
-from .get_cloud_stack import *
-from .get_connections_metrics_endpoint_scrape_job import *
-from .get_dashboard import *
-from .get_dashboards import *
-from .get_data_source import *
-from .get_folder import *
-from .get_folders import *
-from .get_library_panel import *
 from .get_library_panels import *
-from .get_on_call_slack_channel import *
-from .get_oncall_escalation_chain import *
-from .get_oncall_integration import *
-from .get_oncall_outgoing_webhook import *
-from .get_oncall_schedule import *
-from .get_oncall_team import *
-from .get_oncall_user import *
-from .get_oncall_user_group import *
-from .get_organization import *
-from .get_organization_preferences import *
-from .get_role import *
-from .get_service_account import *
-from .get_slos import *
-from .get_synthetic_monitoring_probe import *
-from .get_synthetic_monitoring_probes import *
-from .get_team import *
-from .get_user import *
-from .get_users import *
-from .library_panel import *
-from .machine_learning_holiday import *
-from .machine_learning_job import *
-from .machine_learning_outlier_detector import *
-from .message_template import *
-from .mute_timing import *
-from .notification_policy import *
-from .oncall_escalation import *
-from .oncall_escalation_chain import *
-from .oncall_integration import *
-from .oncall_on_call_shift import *
-from .oncall_outgoing_webhook import *
-from .oncall_route import *
-from .oncall_schedule import *
-from .oncall_user_notification_rule import *
-from .organization import *
-from .organization_preferences import *
-from .playlist import *
 from .provider import *
-from .report import *
-from .role import *
-from .role_assignment import *
-from .role_assignment_item import *
-from .rule_group import *
-from .service_account import *
-from .service_account_permission import *
-from .service_account_permission_item import *
-from .service_account_token import *
-from .slo import *
-from .sso_settings import *
-from .synthetic_monitoring_check import *
-from .synthetic_monitoring_installation import *
-from .synthetic_monitoring_probe import *
-from .team import *
-from .team_external_group import *
-from .user import *
-from ._inputs import *
 from . import outputs
 
 # Make subpackages available:
@@ -100,10 +15,16 @@ if typing.TYPE_CHECKING:
     alerting = __alerting
     import pulumiverse_grafana.cloud as __cloud
     cloud = __cloud
+    import pulumiverse_grafana.cloudprovider as __cloudprovider
+    cloudprovider = __cloudprovider
     import pulumiverse_grafana.config as __config
     config = __config
+    import pulumiverse_grafana.connections as __connections
+    connections = __connections
     import pulumiverse_grafana.enterprise as __enterprise
     enterprise = __enterprise
+    import pulumiverse_grafana.fleetmanagement as __fleetmanagement
+    fleetmanagement = __fleetmanagement
     import pulumiverse_grafana.machinelearning as __machinelearning
     machinelearning = __machinelearning
     import pulumiverse_grafana.oncall as __oncall
@@ -117,8 +38,11 @@ if typing.TYPE_CHECKING:
 else:
     alerting = _utilities.lazy_import('pulumiverse_grafana.alerting')
     cloud = _utilities.lazy_import('pulumiverse_grafana.cloud')
+    cloudprovider = _utilities.lazy_import('pulumiverse_grafana.cloudprovider')
     config = _utilities.lazy_import('pulumiverse_grafana.config')
+    connections = _utilities.lazy_import('pulumiverse_grafana.connections')
     enterprise = _utilities.lazy_import('pulumiverse_grafana.enterprise')
+    fleetmanagement = _utilities.lazy_import('pulumiverse_grafana.fleetmanagement')
     machinelearning = _utilities.lazy_import('pulumiverse_grafana.machinelearning')
     oncall = _utilities.lazy_import('pulumiverse_grafana.oncall')
     oss = _utilities.lazy_import('pulumiverse_grafana.oss')
@@ -218,30 +142,6 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
-  "mod": "cloud/providerAwsAccount",
-  "fqn": "pulumiverse_grafana.cloud",
-  "classes": {
-   "grafana:cloud/providerAwsAccount:ProviderAwsAccount": "ProviderAwsAccount"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "cloud/providerAwsCloudwatchScrapeJob",
-  "fqn": "pulumiverse_grafana.cloud",
-  "classes": {
-   "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob": "ProviderAwsCloudwatchScrapeJob"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "cloud/providerAzureCredential",
-  "fqn": "pulumiverse_grafana.cloud",
-  "classes": {
-   "grafana:cloud/providerAzureCredential:ProviderAzureCredential": "ProviderAzureCredential"
-  }
- },
- {
-  "pkg": "grafana",
   "mod": "cloud/stack",
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {
@@ -262,6 +162,38 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {
    "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": "StackServiceAccountToken"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloudProvider/awsAccount",
+  "fqn": "pulumiverse_grafana.cloudprovider",
+  "classes": {
+   "grafana:cloudProvider/awsAccount:AwsAccount": "AwsAccount"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloudProvider/awsCloudwatchScrapeJob",
+  "fqn": "pulumiverse_grafana.cloudprovider",
+  "classes": {
+   "grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob": "AwsCloudwatchScrapeJob"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloudProvider/azureCredential",
+  "fqn": "pulumiverse_grafana.cloudprovider",
+  "classes": {
+   "grafana:cloudProvider/azureCredential:AzureCredential": "AzureCredential"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "connections/metricsEndpointScrapeJob",
+  "fqn": "pulumiverse_grafana.connections",
+  "classes": {
+   "grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob": "MetricsEndpointScrapeJob"
   }
  },
  {
@@ -330,450 +262,18 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
-  "mod": "index/annotation",
-  "fqn": "pulumiverse_grafana",
+  "mod": "fleetManagement/collector",
+  "fqn": "pulumiverse_grafana.fleetmanagement",
   "classes": {
-   "grafana:index/annotation:Annotation": "Annotation"
+   "grafana:fleetManagement/collector:Collector": "Collector"
   }
  },
  {
   "pkg": "grafana",
-  "mod": "index/cloudAccessPolicy",
-  "fqn": "pulumiverse_grafana",
+  "mod": "fleetManagement/pipeline",
+  "fqn": "pulumiverse_grafana.fleetmanagement",
   "classes": {
-   "grafana:index/cloudAccessPolicy:CloudAccessPolicy": "CloudAccessPolicy"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/cloudAccessPolicyToken",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken": "CloudAccessPolicyToken"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/cloudOrgMember",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/cloudOrgMember:CloudOrgMember": "CloudOrgMember"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/cloudPluginInstallation",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/cloudPluginInstallation:CloudPluginInstallation": "CloudPluginInstallation"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/cloudStack",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/cloudStack:CloudStack": "CloudStack"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/cloudStackServiceAccount",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/cloudStackServiceAccount:CloudStackServiceAccount": "CloudStackServiceAccount"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/cloudStackServiceAccountToken",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken": "CloudStackServiceAccountToken"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/connectionsMetricsEndpointScrapeJob",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob": "ConnectionsMetricsEndpointScrapeJob"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/contactPoint",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/contactPoint:ContactPoint": "ContactPoint"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/dashboard",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/dashboard:Dashboard": "Dashboard"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/dashboardPermission",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/dashboardPermission:DashboardPermission": "DashboardPermission"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/dashboardPermissionItem",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/dashboardPermissionItem:DashboardPermissionItem": "DashboardPermissionItem"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/dashboardPublic",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/dashboardPublic:DashboardPublic": "DashboardPublic"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/dataSource",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/dataSource:DataSource": "DataSource"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/dataSourceConfig",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/dataSourceConfig:DataSourceConfig": "DataSourceConfig"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/dataSourcePermission",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/dataSourcePermission:DataSourcePermission": "DataSourcePermission"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/dataSourcePermissionItem",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/dataSourcePermissionItem:DataSourcePermissionItem": "DataSourcePermissionItem"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/folder",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/folder:Folder": "Folder"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/folderPermission",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/folderPermission:FolderPermission": "FolderPermission"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/folderPermissionItem",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/folderPermissionItem:FolderPermissionItem": "FolderPermissionItem"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/libraryPanel",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/libraryPanel:LibraryPanel": "LibraryPanel"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/machineLearningHoliday",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/machineLearningHoliday:MachineLearningHoliday": "MachineLearningHoliday"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/machineLearningJob",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/machineLearningJob:MachineLearningJob": "MachineLearningJob"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/machineLearningOutlierDetector",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector": "MachineLearningOutlierDetector"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/messageTemplate",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/messageTemplate:MessageTemplate": "MessageTemplate"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/muteTiming",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/muteTiming:MuteTiming": "MuteTiming"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/notificationPolicy",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/notificationPolicy:NotificationPolicy": "NotificationPolicy"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/oncallEscalation",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/oncallEscalation:OncallEscalation": "OncallEscalation"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/oncallEscalationChain",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/oncallEscalationChain:OncallEscalationChain": "OncallEscalationChain"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/oncallIntegration",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/oncallIntegration:OncallIntegration": "OncallIntegration"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/oncallOnCallShift",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/oncallOnCallShift:OncallOnCallShift": "OncallOnCallShift"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/oncallOutgoingWebhook",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook": "OncallOutgoingWebhook"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/oncallRoute",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/oncallRoute:OncallRoute": "OncallRoute"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/oncallSchedule",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/oncallSchedule:OncallSchedule": "OncallSchedule"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/oncallUserNotificationRule",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/oncallUserNotificationRule:OncallUserNotificationRule": "OncallUserNotificationRule"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/organization",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/organization:Organization": "Organization"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/organizationPreferences",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/organizationPreferences:OrganizationPreferences": "OrganizationPreferences"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/playlist",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/playlist:Playlist": "Playlist"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/report",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/report:Report": "Report"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/role",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/role:Role": "Role"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/roleAssignment",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/roleAssignment:RoleAssignment": "RoleAssignment"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/roleAssignmentItem",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/roleAssignmentItem:RoleAssignmentItem": "RoleAssignmentItem"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/ruleGroup",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/ruleGroup:RuleGroup": "RuleGroup"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/sLO",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/sLO:SLO": "SLO"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/serviceAccount",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/serviceAccount:ServiceAccount": "ServiceAccount"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/serviceAccountPermission",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/serviceAccountPermission:ServiceAccountPermission": "ServiceAccountPermission"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/serviceAccountPermissionItem",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem": "ServiceAccountPermissionItem"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/serviceAccountToken",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/serviceAccountToken:ServiceAccountToken": "ServiceAccountToken"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/ssoSettings",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/ssoSettings:SsoSettings": "SsoSettings"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/syntheticMonitoringCheck",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck": "SyntheticMonitoringCheck"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/syntheticMonitoringInstallation",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation": "SyntheticMonitoringInstallation"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/syntheticMonitoringProbe",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe": "SyntheticMonitoringProbe"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/team",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/team:Team": "Team"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/teamExternalGroup",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/teamExternalGroup:TeamExternalGroup": "TeamExternalGroup"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/user",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/user:User": "User"
+   "grafana:fleetManagement/pipeline:Pipeline": "Pipeline"
   }
  },
  {

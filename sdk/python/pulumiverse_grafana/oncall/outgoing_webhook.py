@@ -616,8 +616,6 @@ class OutgoingWebhook(pulumi.CustomResource):
                 raise TypeError("Missing required property 'url'")
             __props__.__dict__["url"] = url
             __props__.__dict__["user"] = user
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["authorizationHeader", "password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(OutgoingWebhook, __self__).__init__(

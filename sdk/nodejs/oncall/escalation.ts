@@ -153,8 +153,6 @@ export class Escalation extends pulumi.CustomResource {
             resourceInputs["type"] = args ? args.type : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/oncallEscalation:OncallEscalation" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Escalation.__pulumiType, name, resourceInputs, opts);
     }
 }

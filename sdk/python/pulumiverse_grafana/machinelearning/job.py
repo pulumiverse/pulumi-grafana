@@ -490,6 +490,43 @@ class Job(pulumi.CustomResource):
             })
         ```
 
+        ### Rescaled Forecast
+
+        This forecast has had the data transformed using a power transformation in order to avoid negative lower predictions.
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        foo = grafana.oss.DataSource("foo",
+            type="prometheus",
+            name="prometheus-ds-test",
+            uid="prometheus-ds-test-uid",
+            url="https://my-instance.com",
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            json_data_encoded=json.dumps({
+                "httpMethod": "POST",
+                "prometheusType": "Mimir",
+                "prometheusVersion": "2.4.0",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "basicAuthPassword": "password",
+            }))
+        test_job = grafana.machine_learning.Job("test_job",
+            name="Test Job",
+            metric="tf_test_job",
+            datasource_type="prometheus",
+            datasource_uid=foo.uid,
+            query_params={
+                "expr": "grafanacloud_grafana_instance_active_user_count",
+            },
+            hyper_params={
+                "transformation_id": "power",
+            })
+        ```
+
         ### Forecast with Holidays
 
         This forecast has holidays which will be taken into account when training the model.
@@ -645,6 +682,43 @@ class Job(pulumi.CustomResource):
             })
         ```
 
+        ### Rescaled Forecast
+
+        This forecast has had the data transformed using a power transformation in order to avoid negative lower predictions.
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        foo = grafana.oss.DataSource("foo",
+            type="prometheus",
+            name="prometheus-ds-test",
+            uid="prometheus-ds-test-uid",
+            url="https://my-instance.com",
+            basic_auth_enabled=True,
+            basic_auth_username="username",
+            json_data_encoded=json.dumps({
+                "httpMethod": "POST",
+                "prometheusType": "Mimir",
+                "prometheusVersion": "2.4.0",
+            }),
+            secure_json_data_encoded=json.dumps({
+                "basicAuthPassword": "password",
+            }))
+        test_job = grafana.machine_learning.Job("test_job",
+            name="Test Job",
+            metric="tf_test_job",
+            datasource_type="prometheus",
+            datasource_uid=foo.uid,
+            query_params={
+                "expr": "grafanacloud_grafana_instance_active_user_count",
+            },
+            hyper_params={
+                "transformation_id": "power",
+            })
+        ```
+
         ### Forecast with Holidays
 
         This forecast has holidays which will be taken into account when training the model.
@@ -747,8 +821,6 @@ class Job(pulumi.CustomResource):
                 raise TypeError("Missing required property 'query_params'")
             __props__.__dict__["query_params"] = query_params
             __props__.__dict__["training_window"] = training_window
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/machineLearningJob:MachineLearningJob")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Job, __self__).__init__(
             'grafana:machineLearning/job:Job',
             resource_name,

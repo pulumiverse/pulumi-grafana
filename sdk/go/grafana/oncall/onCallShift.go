@@ -74,12 +74,6 @@ func NewOnCallShift(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/oncallOnCallShift:OncallOnCallShift"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource OnCallShift
 	err := ctx.RegisterResource("grafana:onCall/onCallShift:OnCallShift", name, args, &resource, opts...)

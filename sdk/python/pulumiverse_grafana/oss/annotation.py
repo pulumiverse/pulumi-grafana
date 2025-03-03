@@ -370,8 +370,6 @@ class Annotation(pulumi.CustomResource):
             __props__.__dict__["text"] = text
             __props__.__dict__["time"] = time
             __props__.__dict__["time_end"] = time_end
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/annotation:Annotation")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Annotation, __self__).__init__(
             'grafana:oss/annotation:Annotation',
             resource_name,

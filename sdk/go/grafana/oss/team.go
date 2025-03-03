@@ -93,12 +93,6 @@ func NewTeam(ctx *pulumi.Context,
 		args = &TeamArgs{}
 	}
 
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/team:Team"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Team
 	err := ctx.RegisterResource("grafana:oss/team:Team", name, args, &resource, opts...)

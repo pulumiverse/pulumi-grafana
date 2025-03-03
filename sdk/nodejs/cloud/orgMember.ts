@@ -92,8 +92,6 @@ export class OrgMember extends pulumi.CustomResource {
             resourceInputs["user"] = args ? args.user : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/cloudOrgMember:CloudOrgMember" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(OrgMember.__pulumiType, name, resourceInputs, opts);
     }
 }

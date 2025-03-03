@@ -143,8 +143,6 @@ export class DataSourceConfig extends pulumi.CustomResource {
             resourceInputs["uid"] = args ? args.uid : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/dataSourceConfig:DataSourceConfig" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["httpHeaders", "secureJsonDataEncoded"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(DataSourceConfig.__pulumiType, name, resourceInputs, opts);

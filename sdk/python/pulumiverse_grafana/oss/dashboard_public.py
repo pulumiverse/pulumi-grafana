@@ -482,8 +482,6 @@ class DashboardPublic(pulumi.CustomResource):
             __props__.__dict__["share"] = share
             __props__.__dict__["time_selection_enabled"] = time_selection_enabled
             __props__.__dict__["uid"] = uid
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/dashboardPublic:DashboardPublic")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(DashboardPublic, __self__).__init__(
             'grafana:oss/dashboardPublic:DashboardPublic',
             resource_name,

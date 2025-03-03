@@ -96,12 +96,6 @@ func NewIntegration(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/oncallIntegration:OncallIntegration"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Integration
 	err := ctx.RegisterResource("grafana:onCall/integration:Integration", name, args, &resource, opts...)

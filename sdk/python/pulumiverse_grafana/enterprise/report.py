@@ -587,8 +587,6 @@ class Report(pulumi.CustomResource):
             if schedule is None and not opts.urn:
                 raise TypeError("Missing required property 'schedule'")
             __props__.__dict__["schedule"] = schedule
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/report:Report")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Report, __self__).__init__(
             'grafana:enterprise/report:Report',
             resource_name,

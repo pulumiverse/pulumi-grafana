@@ -464,8 +464,6 @@ class Probe(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["auth_token"] = None
             __props__.__dict__["tenant_id"] = None
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["authToken"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Probe, __self__).__init__(

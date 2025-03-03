@@ -34,7 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oncall.NewEscalationChain(ctx, "default", &oncall.EscalationChainArgs{
+//			_default, err := oncall.NewEscalationChain(ctx, "default", &oncall.EscalationChainArgs{
 //				Name: pulumi.String("default"),
 //			})
 //			if err != nil {
@@ -120,12 +120,6 @@ func NewRoute(ctx *pulumi.Context,
 	if args.RoutingRegex == nil {
 		return nil, errors.New("invalid value for required argument 'RoutingRegex'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/oncallRoute:OncallRoute"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Route
 	err := ctx.RegisterResource("grafana:onCall/route:Route", name, args, &resource, opts...)

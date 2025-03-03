@@ -503,8 +503,6 @@ class RuleGroup(pulumi.CustomResource):
             if rules is None and not opts.urn:
                 raise TypeError("Missing required property 'rules'")
             __props__.__dict__["rules"] = rules
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/ruleGroup:RuleGroup")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(RuleGroup, __self__).__init__(
             'grafana:alerting/ruleGroup:RuleGroup',
             resource_name,

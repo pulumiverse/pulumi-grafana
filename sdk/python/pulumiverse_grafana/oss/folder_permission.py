@@ -272,8 +272,6 @@ class FolderPermission(pulumi.CustomResource):
             __props__.__dict__["folder_uid"] = folder_uid
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["permissions"] = permissions
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/folderPermission:FolderPermission")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(FolderPermission, __self__).__init__(
             'grafana:oss/folderPermission:FolderPermission',
             resource_name,

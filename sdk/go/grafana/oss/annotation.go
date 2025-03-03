@@ -79,12 +79,6 @@ func NewAnnotation(ctx *pulumi.Context,
 	if args.Text == nil {
 		return nil, errors.New("invalid value for required argument 'Text'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/annotation:Annotation"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Annotation
 	err := ctx.RegisterResource("grafana:oss/annotation:Annotation", name, args, &resource, opts...)

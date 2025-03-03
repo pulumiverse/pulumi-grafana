@@ -104,12 +104,6 @@ func NewOrganization(ctx *pulumi.Context,
 		args = &OrganizationArgs{}
 	}
 
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/organization:Organization"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Organization
 	err := ctx.RegisterResource("grafana:oss/organization:Organization", name, args, &resource, opts...)

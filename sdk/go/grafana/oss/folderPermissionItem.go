@@ -119,12 +119,6 @@ func NewFolderPermissionItem(ctx *pulumi.Context,
 	if args.Permission == nil {
 		return nil, errors.New("invalid value for required argument 'Permission'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/folderPermissionItem:FolderPermissionItem"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FolderPermissionItem
 	err := ctx.RegisterResource("grafana:oss/folderPermissionItem:FolderPermissionItem", name, args, &resource, opts...)

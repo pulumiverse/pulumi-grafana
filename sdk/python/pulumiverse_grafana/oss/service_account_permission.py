@@ -274,8 +274,6 @@ class ServiceAccountPermission(pulumi.CustomResource):
             if service_account_id is None and not opts.urn:
                 raise TypeError("Missing required property 'service_account_id'")
             __props__.__dict__["service_account_id"] = service_account_id
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/serviceAccountPermission:ServiceAccountPermission")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(ServiceAccountPermission, __self__).__init__(
             'grafana:oss/serviceAccountPermission:ServiceAccountPermission',
             resource_name,

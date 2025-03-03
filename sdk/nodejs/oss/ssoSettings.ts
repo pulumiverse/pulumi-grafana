@@ -189,8 +189,6 @@ export class SsoSettings extends pulumi.CustomResource {
             resourceInputs["samlSettings"] = args ? args.samlSettings : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/ssoSettings:SsoSettings" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(SsoSettings.__pulumiType, name, resourceInputs, opts);
     }
 }

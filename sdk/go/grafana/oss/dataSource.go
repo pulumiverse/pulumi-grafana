@@ -210,12 +210,6 @@ func NewDataSource(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/dataSource:DataSource"),
-		},
-	})
-	opts = append(opts, aliases)
 	if args.HttpHeaders != nil {
 		args.HttpHeaders = pulumi.ToSecret(args.HttpHeaders).(pulumi.StringMapInput)
 	}

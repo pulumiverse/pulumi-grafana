@@ -430,8 +430,6 @@ class SsoSettings(pulumi.CustomResource):
                 raise TypeError("Missing required property 'provider_name'")
             __props__.__dict__["provider_name"] = provider_name
             __props__.__dict__["saml_settings"] = saml_settings
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/ssoSettings:SsoSettings")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(SsoSettings, __self__).__init__(
             'grafana:oss/ssoSettings:SsoSettings',
             resource_name,

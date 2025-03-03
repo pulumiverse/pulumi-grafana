@@ -392,8 +392,6 @@ class AccessPolicy(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["policy_id"] = None
             __props__.__dict__["updated_at"] = None
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/cloudAccessPolicy:CloudAccessPolicy")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(AccessPolicy, __self__).__init__(
             'grafana:cloud/accessPolicy:AccessPolicy',
             resource_name,

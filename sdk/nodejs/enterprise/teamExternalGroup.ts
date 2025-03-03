@@ -97,8 +97,6 @@ export class TeamExternalGroup extends pulumi.CustomResource {
             resourceInputs["teamId"] = args ? args.teamId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/teamExternalGroup:TeamExternalGroup" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(TeamExternalGroup.__pulumiType, name, resourceInputs, opts);
     }
 }

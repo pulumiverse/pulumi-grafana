@@ -152,8 +152,6 @@ export class AccessPolicyToken extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["token"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(AccessPolicyToken.__pulumiType, name, resourceInputs, opts);

@@ -21,13 +21,13 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// <summary>
         /// The `ref_id` of the query node in the `data` field to use as the alert condition.
         /// </summary>
-        public readonly string Condition;
+        public readonly string? Condition;
         /// <summary>
         /// A sequence of stages that describe the contents of the rule.
         /// </summary>
         public readonly ImmutableArray<Outputs.RuleGroupRuleData> Datas;
         /// <summary>
-        /// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+        /// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.  Defaults to Alerting if not set.
         /// </summary>
         public readonly string? ExecErrState;
         /// <summary>
@@ -47,7 +47,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+        /// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
         /// </summary>
         public readonly string? NoDataState;
         /// <summary>
@@ -67,7 +67,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         private RuleGroupRule(
             ImmutableDictionary<string, string>? annotations,
 
-            string condition,
+            string? condition,
 
             ImmutableArray<Outputs.RuleGroupRuleData> datas,
 

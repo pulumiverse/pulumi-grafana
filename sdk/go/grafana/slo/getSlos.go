@@ -57,38 +57,32 @@ import (
 //						Value: pulumi.String("value"),
 //					},
 //				},
-//				Alertings: slo.SLOAlertingArray{
-//					&slo.SLOAlertingArgs{
-//						Fastburns: slo.SLOAlertingFastburnArray{
-//							&slo.SLOAlertingFastburnArgs{
-//								Annotations: slo.SLOAlertingFastburnAnnotationArray{
-//									&slo.SLOAlertingFastburnAnnotationArgs{
-//										Key:   pulumi.String("name"),
-//										Value: pulumi.String("Critical - SLO Burn Rate Alert"),
-//									},
-//								},
-//								Labels: slo.SLOAlertingFastburnLabelArray{
-//									&slo.SLOAlertingFastburnLabelArgs{
-//										Key:   pulumi.String("type"),
-//										Value: pulumi.String("slo"),
-//									},
-//								},
+//				Alerting: &slo.SLOAlertingArgs{
+//					Fastburn: &slo.SLOAlertingFastburnArgs{
+//						Annotations: slo.SLOAlertingFastburnAnnotationArray{
+//							&slo.SLOAlertingFastburnAnnotationArgs{
+//								Key:   pulumi.String("name"),
+//								Value: pulumi.String("Critical - SLO Burn Rate Alert"),
 //							},
 //						},
-//						Slowburns: slo.SLOAlertingSlowburnArray{
-//							&slo.SLOAlertingSlowburnArgs{
-//								Annotations: slo.SLOAlertingSlowburnAnnotationArray{
-//									&slo.SLOAlertingSlowburnAnnotationArgs{
-//										Key:   pulumi.String("name"),
-//										Value: pulumi.String("Warning - SLO Burn Rate Alert"),
-//									},
-//								},
-//								Labels: slo.SLOAlertingSlowburnLabelArray{
-//									&slo.SLOAlertingSlowburnLabelArgs{
-//										Key:   pulumi.String("type"),
-//										Value: pulumi.String("slo"),
-//									},
-//								},
+//						Labels: slo.SLOAlertingFastburnLabelArray{
+//							&slo.SLOAlertingFastburnLabelArgs{
+//								Key:   pulumi.String("type"),
+//								Value: pulumi.String("slo"),
+//							},
+//						},
+//					},
+//					Slowburn: &slo.SLOAlertingSlowburnArgs{
+//						Annotations: slo.SLOAlertingSlowburnAnnotationArray{
+//							&slo.SLOAlertingSlowburnAnnotationArgs{
+//								Key:   pulumi.String("name"),
+//								Value: pulumi.String("Warning - SLO Burn Rate Alert"),
+//							},
+//						},
+//						Labels: slo.SLOAlertingSlowburnLabelArray{
+//							&slo.SLOAlertingSlowburnLabelArgs{
+//								Key:   pulumi.String("type"),
+//								Value: pulumi.String("slo"),
 //							},
 //						},
 //					},

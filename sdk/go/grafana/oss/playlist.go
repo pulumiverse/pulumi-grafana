@@ -89,12 +89,6 @@ func NewPlaylist(ctx *pulumi.Context,
 	if args.Items == nil {
 		return nil, errors.New("invalid value for required argument 'Items'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/playlist:Playlist"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Playlist
 	err := ctx.RegisterResource("grafana:oss/playlist:Playlist", name, args, &resource, opts...)

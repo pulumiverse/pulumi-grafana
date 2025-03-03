@@ -473,8 +473,6 @@ class Organization(pulumi.CustomResource):
             __props__.__dict__["users_without_accesses"] = users_without_accesses
             __props__.__dict__["viewers"] = viewers
             __props__.__dict__["org_id"] = None
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/organization:Organization")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Organization, __self__).__init__(
             'grafana:oss/organization:Organization',
             resource_name,

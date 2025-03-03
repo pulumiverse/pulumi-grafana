@@ -310,8 +310,6 @@ class Installation(pulumi.CustomResource):
             __props__.__dict__["stack_id"] = stack_id
             __props__.__dict__["stack_sm_api_url"] = stack_sm_api_url
             __props__.__dict__["sm_access_token"] = None
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["metricsPublisherKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Installation, __self__).__init__(

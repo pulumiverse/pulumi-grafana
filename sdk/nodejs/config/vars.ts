@@ -102,6 +102,30 @@ Object.defineProperty(exports, "connectionsApiUrl", {
 });
 
 /**
+ * A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+ * `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+ */
+export declare const fleetManagementAuth: string | undefined;
+Object.defineProperty(exports, "fleetManagementAuth", {
+    get() {
+        return __config.get("fleetManagementAuth");
+    },
+    enumerable: true,
+});
+
+/**
+ * A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+ * variable.
+ */
+export declare const fleetManagementUrl: string | undefined;
+Object.defineProperty(exports, "fleetManagementUrl", {
+    get() {
+        return __config.get("fleetManagementUrl");
+    },
+    enumerable: true,
+});
+
+/**
  * Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
  */
 export declare const insecureSkipVerify: boolean | undefined;

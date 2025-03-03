@@ -111,12 +111,6 @@ func NewLibraryPanel(ctx *pulumi.Context,
 	if args.ModelJson == nil {
 		return nil, errors.New("invalid value for required argument 'ModelJson'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/libraryPanel:LibraryPanel"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LibraryPanel
 	err := ctx.RegisterResource("grafana:oss/libraryPanel:LibraryPanel", name, args, &resource, opts...)

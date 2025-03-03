@@ -155,8 +155,6 @@ export class UserNotificationRule extends pulumi.CustomResource {
             resourceInputs["userId"] = args ? args.userId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/oncallUserNotificationRule:OncallUserNotificationRule" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(UserNotificationRule.__pulumiType, name, resourceInputs, opts);
     }
 }

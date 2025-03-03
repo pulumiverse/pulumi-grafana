@@ -139,12 +139,6 @@ func NewDataSourcePermission(ctx *pulumi.Context,
 	if args.DatasourceUid == nil {
 		return nil, errors.New("invalid value for required argument 'DatasourceUid'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/dataSourcePermission:DataSourcePermission"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DataSourcePermission
 	err := ctx.RegisterResource("grafana:enterprise/dataSourcePermission:DataSourcePermission", name, args, &resource, opts...)

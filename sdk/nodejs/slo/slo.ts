@@ -41,8 +41,8 @@ import * as utilities from "../utilities";
  *         key: "slo",
  *         value: "terraform",
  *     }],
- *     alertings: [{
- *         fastburns: [{
+ *     alerting: {
+ *         fastburn: {
  *             annotations: [
  *                 {
  *                     key: "name",
@@ -53,8 +53,8 @@ import * as utilities from "../utilities";
  *                     value: "Error budget is burning too fast",
  *                 },
  *             ],
- *         }],
- *         slowburns: [{
+ *         },
+ *         slowburn: {
  *             annotations: [
  *                 {
  *                     key: "name",
@@ -65,8 +65,8 @@ import * as utilities from "../utilities";
  *                     value: "Error budget is burning too fast",
  *                 },
  *             ],
- *         }],
- *     }],
+ *         },
+ *     },
  * });
  * ```
  *
@@ -101,8 +101,8 @@ import * as utilities from "../utilities";
  *         key: "slo",
  *         value: "terraform",
  *     }],
- *     alertings: [{
- *         fastburns: [{
+ *     alerting: {
+ *         fastburn: {
  *             annotations: [
  *                 {
  *                     key: "name",
@@ -117,8 +117,8 @@ import * as utilities from "../utilities";
  *                 key: "type",
  *                 value: "slo",
  *             }],
- *         }],
- *         slowburns: [{
+ *         },
+ *         slowburn: {
  *             annotations: [
  *                 {
  *                     key: "name",
@@ -133,8 +133,8 @@ import * as utilities from "../utilities";
  *                 key: "type",
  *                 value: "slo",
  *             }],
- *         }],
- *     }],
+ *         },
+ *     },
  * });
  * ```
  *
@@ -179,7 +179,7 @@ export class SLO extends pulumi.CustomResource {
      * 			long-term error budget burn rate is high, or when the remaining
      * 			error budget is below a certain threshold. Annotations and Labels support templating.
      */
-    public readonly alertings!: pulumi.Output<outputs.slo.SLOAlerting[] | undefined>;
+    public readonly alerting!: pulumi.Output<outputs.slo.SLOAlerting | undefined>;
     /**
      * Description is a free-text field that can provide more context to an SLO.
      */
@@ -226,7 +226,7 @@ export class SLO extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SLOState | undefined;
-            resourceInputs["alertings"] = state ? state.alertings : undefined;
+            resourceInputs["alerting"] = state ? state.alerting : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["destinationDatasource"] = state ? state.destinationDatasource : undefined;
             resourceInputs["folderUid"] = state ? state.folderUid : undefined;
@@ -249,7 +249,7 @@ export class SLO extends pulumi.CustomResource {
             if ((!args || args.queries === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'queries'");
             }
-            resourceInputs["alertings"] = args ? args.alertings : undefined;
+            resourceInputs["alerting"] = args ? args.alerting : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["destinationDatasource"] = args ? args.destinationDatasource : undefined;
             resourceInputs["folderUid"] = args ? args.folderUid : undefined;
@@ -260,8 +260,6 @@ export class SLO extends pulumi.CustomResource {
             resourceInputs["searchExpression"] = args ? args.searchExpression : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/sLO:SLO" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(SLO.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -277,7 +275,7 @@ export interface SLOState {
      * 			long-term error budget burn rate is high, or when the remaining
      * 			error budget is below a certain threshold. Annotations and Labels support templating.
      */
-    alertings?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlerting>[]>;
+    alerting?: pulumi.Input<inputs.slo.SLOAlerting>;
     /**
      * Description is a free-text field that can provide more context to an SLO.
      */
@@ -323,7 +321,7 @@ export interface SLOArgs {
      * 			long-term error budget burn rate is high, or when the remaining
      * 			error budget is below a certain threshold. Annotations and Labels support templating.
      */
-    alertings?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlerting>[]>;
+    alerting?: pulumi.Input<inputs.slo.SLOAlerting>;
     /**
      * Description is a free-text field that can provide more context to an SLO.
      */

@@ -103,12 +103,6 @@ func NewDashboard(ctx *pulumi.Context,
 	if args.ConfigJson == nil {
 		return nil, errors.New("invalid value for required argument 'ConfigJson'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/dashboard:Dashboard"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Dashboard
 	err := ctx.RegisterResource("grafana:oss/dashboard:Dashboard", name, args, &resource, opts...)

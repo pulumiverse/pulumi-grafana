@@ -106,8 +106,6 @@ export class ServiceAccount extends pulumi.CustomResource {
             resourceInputs["role"] = args ? args.role : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/serviceAccount:ServiceAccount" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(ServiceAccount.__pulumiType, name, resourceInputs, opts);
     }
 }

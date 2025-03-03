@@ -140,10 +140,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
-                Aliases =
-                {
-                    new global::Pulumi.Alias { Type = "grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe" },
-                },
                 AdditionalSecretOutputs =
                 {
                     "authToken",

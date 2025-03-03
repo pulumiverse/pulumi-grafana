@@ -99,12 +99,6 @@ func NewMuteTiming(ctx *pulumi.Context,
 		args = &MuteTimingArgs{}
 	}
 
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/muteTiming:MuteTiming"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MuteTiming
 	err := ctx.RegisterResource("grafana:alerting/muteTiming:MuteTiming", name, args, &resource, opts...)

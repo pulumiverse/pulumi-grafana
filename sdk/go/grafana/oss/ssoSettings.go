@@ -171,12 +171,6 @@ func NewSsoSettings(ctx *pulumi.Context,
 	if args.ProviderName == nil {
 		return nil, errors.New("invalid value for required argument 'ProviderName'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/ssoSettings:SsoSettings"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SsoSettings
 	err := ctx.RegisterResource("grafana:oss/ssoSettings:SsoSettings", name, args, &resource, opts...)

@@ -145,12 +145,6 @@ func NewUserNotificationRule(ctx *pulumi.Context,
 	if args.UserId == nil {
 		return nil, errors.New("invalid value for required argument 'UserId'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/oncallUserNotificationRule:OncallUserNotificationRule"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserNotificationRule
 	err := ctx.RegisterResource("grafana:onCall/userNotificationRule:UserNotificationRule", name, args, &resource, opts...)

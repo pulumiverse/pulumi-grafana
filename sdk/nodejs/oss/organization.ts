@@ -146,8 +146,6 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["orgId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/organization:Organization" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Organization.__pulumiType, name, resourceInputs, opts);
     }
 }

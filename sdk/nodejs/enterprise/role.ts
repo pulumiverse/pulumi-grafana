@@ -163,8 +163,6 @@ export class Role extends pulumi.CustomResource {
             resourceInputs["version"] = args ? args.version : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/role:Role" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Role.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -180,12 +180,6 @@ func NewNotificationPolicy(ctx *pulumi.Context,
 	if args.GroupBies == nil {
 		return nil, errors.New("invalid value for required argument 'GroupBies'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/notificationPolicy:NotificationPolicy"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource NotificationPolicy
 	err := ctx.RegisterResource("grafana:alerting/notificationPolicy:NotificationPolicy", name, args, &resource, opts...)

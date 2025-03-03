@@ -60,34 +60,28 @@ import (
 //						Value: pulumi.String("terraform"),
 //					},
 //				},
-//				Alertings: slo.SLOAlertingArray{
-//					&slo.SLOAlertingArgs{
-//						Fastburns: slo.SLOAlertingFastburnArray{
-//							&slo.SLOAlertingFastburnArgs{
-//								Annotations: slo.SLOAlertingFastburnAnnotationArray{
-//									&slo.SLOAlertingFastburnAnnotationArgs{
-//										Key:   pulumi.String("name"),
-//										Value: pulumi.String("SLO Burn Rate Very High"),
-//									},
-//									&slo.SLOAlertingFastburnAnnotationArgs{
-//										Key:   pulumi.String("description"),
-//										Value: pulumi.String("Error budget is burning too fast"),
-//									},
-//								},
+//				Alerting: &slo.SLOAlertingArgs{
+//					Fastburn: &slo.SLOAlertingFastburnArgs{
+//						Annotations: slo.SLOAlertingFastburnAnnotationArray{
+//							&slo.SLOAlertingFastburnAnnotationArgs{
+//								Key:   pulumi.String("name"),
+//								Value: pulumi.String("SLO Burn Rate Very High"),
+//							},
+//							&slo.SLOAlertingFastburnAnnotationArgs{
+//								Key:   pulumi.String("description"),
+//								Value: pulumi.String("Error budget is burning too fast"),
 //							},
 //						},
-//						Slowburns: slo.SLOAlertingSlowburnArray{
-//							&slo.SLOAlertingSlowburnArgs{
-//								Annotations: slo.SLOAlertingSlowburnAnnotationArray{
-//									&slo.SLOAlertingSlowburnAnnotationArgs{
-//										Key:   pulumi.String("name"),
-//										Value: pulumi.String("SLO Burn Rate High"),
-//									},
-//									&slo.SLOAlertingSlowburnAnnotationArgs{
-//										Key:   pulumi.String("description"),
-//										Value: pulumi.String("Error budget is burning too fast"),
-//									},
-//								},
+//					},
+//					Slowburn: &slo.SLOAlertingSlowburnArgs{
+//						Annotations: slo.SLOAlertingSlowburnAnnotationArray{
+//							&slo.SLOAlertingSlowburnAnnotationArgs{
+//								Key:   pulumi.String("name"),
+//								Value: pulumi.String("SLO Burn Rate High"),
+//							},
+//							&slo.SLOAlertingSlowburnAnnotationArgs{
+//								Key:   pulumi.String("description"),
+//								Value: pulumi.String("Error budget is burning too fast"),
 //							},
 //						},
 //					},
@@ -147,46 +141,40 @@ import (
 //						Value: pulumi.String("terraform"),
 //					},
 //				},
-//				Alertings: slo.SLOAlertingArray{
-//					&slo.SLOAlertingArgs{
-//						Fastburns: slo.SLOAlertingFastburnArray{
-//							&slo.SLOAlertingFastburnArgs{
-//								Annotations: slo.SLOAlertingFastburnAnnotationArray{
-//									&slo.SLOAlertingFastburnAnnotationArgs{
-//										Key:   pulumi.String("name"),
-//										Value: pulumi.String("SLO Burn Rate Very High"),
-//									},
-//									&slo.SLOAlertingFastburnAnnotationArgs{
-//										Key:   pulumi.String("description"),
-//										Value: pulumi.String("Error budget is burning too fast"),
-//									},
-//								},
-//								Labels: slo.SLOAlertingFastburnLabelArray{
-//									&slo.SLOAlertingFastburnLabelArgs{
-//										Key:   pulumi.String("type"),
-//										Value: pulumi.String("slo"),
-//									},
-//								},
+//				Alerting: &slo.SLOAlertingArgs{
+//					Fastburn: &slo.SLOAlertingFastburnArgs{
+//						Annotations: slo.SLOAlertingFastburnAnnotationArray{
+//							&slo.SLOAlertingFastburnAnnotationArgs{
+//								Key:   pulumi.String("name"),
+//								Value: pulumi.String("SLO Burn Rate Very High"),
+//							},
+//							&slo.SLOAlertingFastburnAnnotationArgs{
+//								Key:   pulumi.String("description"),
+//								Value: pulumi.String("Error budget is burning too fast"),
 //							},
 //						},
-//						Slowburns: slo.SLOAlertingSlowburnArray{
-//							&slo.SLOAlertingSlowburnArgs{
-//								Annotations: slo.SLOAlertingSlowburnAnnotationArray{
-//									&slo.SLOAlertingSlowburnAnnotationArgs{
-//										Key:   pulumi.String("name"),
-//										Value: pulumi.String("SLO Burn Rate High"),
-//									},
-//									&slo.SLOAlertingSlowburnAnnotationArgs{
-//										Key:   pulumi.String("description"),
-//										Value: pulumi.String("Error budget is burning too fast"),
-//									},
-//								},
-//								Labels: slo.SLOAlertingSlowburnLabelArray{
-//									&slo.SLOAlertingSlowburnLabelArgs{
-//										Key:   pulumi.String("type"),
-//										Value: pulumi.String("slo"),
-//									},
-//								},
+//						Labels: slo.SLOAlertingFastburnLabelArray{
+//							&slo.SLOAlertingFastburnLabelArgs{
+//								Key:   pulumi.String("type"),
+//								Value: pulumi.String("slo"),
+//							},
+//						},
+//					},
+//					Slowburn: &slo.SLOAlertingSlowburnArgs{
+//						Annotations: slo.SLOAlertingSlowburnAnnotationArray{
+//							&slo.SLOAlertingSlowburnAnnotationArgs{
+//								Key:   pulumi.String("name"),
+//								Value: pulumi.String("SLO Burn Rate High"),
+//							},
+//							&slo.SLOAlertingSlowburnAnnotationArgs{
+//								Key:   pulumi.String("description"),
+//								Value: pulumi.String("Error budget is burning too fast"),
+//							},
+//						},
+//						Labels: slo.SLOAlertingSlowburnLabelArray{
+//							&slo.SLOAlertingSlowburnLabelArgs{
+//								Key:   pulumi.String("type"),
+//								Value: pulumi.String("slo"),
 //							},
 //						},
 //					},
@@ -214,7 +202,7 @@ type SLO struct {
 	// 			alerts when the short-term error budget burn is very high, the
 	// 			long-term error budget burn rate is high, or when the remaining
 	// 			error budget is below a certain threshold. Annotations and Labels support templating.
-	Alertings SLOAlertingArrayOutput `pulumi:"alertings"`
+	Alerting SLOAlertingPtrOutput `pulumi:"alerting"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
@@ -252,12 +240,6 @@ func NewSLO(ctx *pulumi.Context,
 	if args.Queries == nil {
 		return nil, errors.New("invalid value for required argument 'Queries'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/sLO:SLO"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SLO
 	err := ctx.RegisterResource("grafana:slo/sLO:SLO", name, args, &resource, opts...)
@@ -286,7 +268,7 @@ type sloState struct {
 	// 			alerts when the short-term error budget burn is very high, the
 	// 			long-term error budget burn rate is high, or when the remaining
 	// 			error budget is below a certain threshold. Annotations and Labels support templating.
-	Alertings []SLOAlerting `pulumi:"alertings"`
+	Alerting *SLOAlerting `pulumi:"alerting"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description *string `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
@@ -311,7 +293,7 @@ type SLOState struct {
 	// 			alerts when the short-term error budget burn is very high, the
 	// 			long-term error budget burn rate is high, or when the remaining
 	// 			error budget is below a certain threshold. Annotations and Labels support templating.
-	Alertings SLOAlertingArrayInput
+	Alerting SLOAlertingPtrInput
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringPtrInput
 	// Destination Datasource sets the datasource defined for an SLO
@@ -340,7 +322,7 @@ type sloArgs struct {
 	// 			alerts when the short-term error budget burn is very high, the
 	// 			long-term error budget burn rate is high, or when the remaining
 	// 			error budget is below a certain threshold. Annotations and Labels support templating.
-	Alertings []SLOAlerting `pulumi:"alertings"`
+	Alerting *SLOAlerting `pulumi:"alerting"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description string `pulumi:"description"`
 	// Destination Datasource sets the datasource defined for an SLO
@@ -366,7 +348,7 @@ type SLOArgs struct {
 	// 			alerts when the short-term error budget burn is very high, the
 	// 			long-term error budget burn rate is high, or when the remaining
 	// 			error budget is below a certain threshold. Annotations and Labels support templating.
-	Alertings SLOAlertingArrayInput
+	Alerting SLOAlertingPtrInput
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringInput
 	// Destination Datasource sets the datasource defined for an SLO
@@ -478,8 +460,8 @@ func (o SLOOutput) ToSLOOutputWithContext(ctx context.Context) SLOOutput {
 //	alerts when the short-term error budget burn is very high, the
 //	long-term error budget burn rate is high, or when the remaining
 //	error budget is below a certain threshold. Annotations and Labels support templating.
-func (o SLOOutput) Alertings() SLOAlertingArrayOutput {
-	return o.ApplyT(func(v *SLO) SLOAlertingArrayOutput { return v.Alertings }).(SLOAlertingArrayOutput)
+func (o SLOOutput) Alerting() SLOAlertingPtrOutput {
+	return o.ApplyT(func(v *SLO) SLOAlertingPtrOutput { return v.Alerting }).(SLOAlertingPtrOutput)
 }
 
 // Description is a free-text field that can provide more context to an SLO.

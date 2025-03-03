@@ -110,12 +110,6 @@ func NewServiceAccountPermissionItem(ctx *pulumi.Context,
 	if args.ServiceAccountId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceAccountId'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceAccountPermissionItem
 	err := ctx.RegisterResource("grafana:oss/serviceAccountPermissionItem:ServiceAccountPermissionItem", name, args, &resource, opts...)

@@ -160,6 +160,10 @@ class _StackState:
                  alertmanager_user_id: Optional[pulumi.Input[int]] = None,
                  cluster_slug: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 fleet_management_name: Optional[pulumi.Input[str]] = None,
+                 fleet_management_status: Optional[pulumi.Input[str]] = None,
+                 fleet_management_url: Optional[pulumi.Input[str]] = None,
+                 fleet_management_user_id: Optional[pulumi.Input[int]] = None,
                  graphite_name: Optional[pulumi.Input[str]] = None,
                  graphite_status: Optional[pulumi.Input[str]] = None,
                  graphite_url: Optional[pulumi.Input[str]] = None,
@@ -203,6 +207,10 @@ class _StackState:
         :param pulumi.Input[int] alertmanager_user_id: User ID of the Alertmanager instance configured for this stack.
         :param pulumi.Input[str] cluster_slug: Slug of the cluster where this stack resides.
         :param pulumi.Input[str] description: Description of stack.
+        :param pulumi.Input[str] fleet_management_name: Name of the Fleet Management instance configured for this stack.
+        :param pulumi.Input[str] fleet_management_status: Status of the Fleet Management instance configured for this stack.
+        :param pulumi.Input[str] fleet_management_url: Base URL of the Fleet Management instance configured for this stack.
+        :param pulumi.Input[int] fleet_management_user_id: User ID of the Fleet Management instance configured for this stack.
         :param pulumi.Input[str] influx_url: Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
         :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
@@ -236,6 +244,14 @@ class _StackState:
             pulumi.set(__self__, "cluster_slug", cluster_slug)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if fleet_management_name is not None:
+            pulumi.set(__self__, "fleet_management_name", fleet_management_name)
+        if fleet_management_status is not None:
+            pulumi.set(__self__, "fleet_management_status", fleet_management_status)
+        if fleet_management_url is not None:
+            pulumi.set(__self__, "fleet_management_url", fleet_management_url)
+        if fleet_management_user_id is not None:
+            pulumi.set(__self__, "fleet_management_user_id", fleet_management_user_id)
         if graphite_name is not None:
             pulumi.set(__self__, "graphite_name", graphite_name)
         if graphite_status is not None:
@@ -378,6 +394,54 @@ class _StackState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="fleetManagementName")
+    def fleet_management_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Fleet Management instance configured for this stack.
+        """
+        return pulumi.get(self, "fleet_management_name")
+
+    @fleet_management_name.setter
+    def fleet_management_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fleet_management_name", value)
+
+    @property
+    @pulumi.getter(name="fleetManagementStatus")
+    def fleet_management_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the Fleet Management instance configured for this stack.
+        """
+        return pulumi.get(self, "fleet_management_status")
+
+    @fleet_management_status.setter
+    def fleet_management_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fleet_management_status", value)
+
+    @property
+    @pulumi.getter(name="fleetManagementUrl")
+    def fleet_management_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Base URL of the Fleet Management instance configured for this stack.
+        """
+        return pulumi.get(self, "fleet_management_url")
+
+    @fleet_management_url.setter
+    def fleet_management_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fleet_management_url", value)
+
+    @property
+    @pulumi.getter(name="fleetManagementUserId")
+    def fleet_management_user_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        User ID of the Fleet Management instance configured for this stack.
+        """
+        return pulumi.get(self, "fleet_management_user_id")
+
+    @fleet_management_user_id.setter
+    def fleet_management_user_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fleet_management_user_id", value)
 
     @property
     @pulumi.getter(name="graphiteName")
@@ -889,6 +953,10 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["alertmanager_url"] = None
             __props__.__dict__["alertmanager_user_id"] = None
             __props__.__dict__["cluster_slug"] = None
+            __props__.__dict__["fleet_management_name"] = None
+            __props__.__dict__["fleet_management_status"] = None
+            __props__.__dict__["fleet_management_url"] = None
+            __props__.__dict__["fleet_management_user_id"] = None
             __props__.__dict__["graphite_name"] = None
             __props__.__dict__["graphite_status"] = None
             __props__.__dict__["graphite_url"] = None
@@ -917,8 +985,6 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["traces_status"] = None
             __props__.__dict__["traces_url"] = None
             __props__.__dict__["traces_user_id"] = None
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/cloudStack:CloudStack")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Stack, __self__).__init__(
             'grafana:cloud/stack:Stack',
             resource_name,
@@ -935,6 +1001,10 @@ class Stack(pulumi.CustomResource):
             alertmanager_user_id: Optional[pulumi.Input[int]] = None,
             cluster_slug: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            fleet_management_name: Optional[pulumi.Input[str]] = None,
+            fleet_management_status: Optional[pulumi.Input[str]] = None,
+            fleet_management_url: Optional[pulumi.Input[str]] = None,
+            fleet_management_user_id: Optional[pulumi.Input[int]] = None,
             graphite_name: Optional[pulumi.Input[str]] = None,
             graphite_status: Optional[pulumi.Input[str]] = None,
             graphite_url: Optional[pulumi.Input[str]] = None,
@@ -983,6 +1053,10 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[int] alertmanager_user_id: User ID of the Alertmanager instance configured for this stack.
         :param pulumi.Input[str] cluster_slug: Slug of the cluster where this stack resides.
         :param pulumi.Input[str] description: Description of stack.
+        :param pulumi.Input[str] fleet_management_name: Name of the Fleet Management instance configured for this stack.
+        :param pulumi.Input[str] fleet_management_status: Status of the Fleet Management instance configured for this stack.
+        :param pulumi.Input[str] fleet_management_url: Base URL of the Fleet Management instance configured for this stack.
+        :param pulumi.Input[int] fleet_management_user_id: User ID of the Fleet Management instance configured for this stack.
         :param pulumi.Input[str] influx_url: Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
         :param pulumi.Input[str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
@@ -1014,6 +1088,10 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["alertmanager_user_id"] = alertmanager_user_id
         __props__.__dict__["cluster_slug"] = cluster_slug
         __props__.__dict__["description"] = description
+        __props__.__dict__["fleet_management_name"] = fleet_management_name
+        __props__.__dict__["fleet_management_status"] = fleet_management_status
+        __props__.__dict__["fleet_management_url"] = fleet_management_url
+        __props__.__dict__["fleet_management_user_id"] = fleet_management_user_id
         __props__.__dict__["graphite_name"] = graphite_name
         __props__.__dict__["graphite_status"] = graphite_status
         __props__.__dict__["graphite_url"] = graphite_url
@@ -1098,6 +1176,38 @@ class Stack(pulumi.CustomResource):
         Description of stack.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="fleetManagementName")
+    def fleet_management_name(self) -> pulumi.Output[str]:
+        """
+        Name of the Fleet Management instance configured for this stack.
+        """
+        return pulumi.get(self, "fleet_management_name")
+
+    @property
+    @pulumi.getter(name="fleetManagementStatus")
+    def fleet_management_status(self) -> pulumi.Output[str]:
+        """
+        Status of the Fleet Management instance configured for this stack.
+        """
+        return pulumi.get(self, "fleet_management_status")
+
+    @property
+    @pulumi.getter(name="fleetManagementUrl")
+    def fleet_management_url(self) -> pulumi.Output[str]:
+        """
+        Base URL of the Fleet Management instance configured for this stack.
+        """
+        return pulumi.get(self, "fleet_management_url")
+
+    @property
+    @pulumi.getter(name="fleetManagementUserId")
+    def fleet_management_user_id(self) -> pulumi.Output[int]:
+        """
+        User ID of the Fleet Management instance configured for this stack.
+        """
+        return pulumi.get(self, "fleet_management_user_id")
 
     @property
     @pulumi.getter(name="graphiteName")

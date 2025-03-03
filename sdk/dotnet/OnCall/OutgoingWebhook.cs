@@ -149,10 +149,6 @@ namespace Pulumiverse.Grafana.OnCall
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
-                Aliases =
-                {
-                    new global::Pulumi.Alias { Type = "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook" },
-                },
                 AdditionalSecretOutputs =
                 {
                     "authorizationHeader",

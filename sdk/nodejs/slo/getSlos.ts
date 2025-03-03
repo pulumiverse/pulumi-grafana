@@ -40,8 +40,8 @@ import * as utilities from "../utilities";
  *         key: "custom",
  *         value: "value",
  *     }],
- *     alertings: [{
- *         fastburns: [{
+ *     alerting: {
+ *         fastburn: {
  *             annotations: [{
  *                 key: "name",
  *                 value: "Critical - SLO Burn Rate Alert",
@@ -50,8 +50,8 @@ import * as utilities from "../utilities";
  *                 key: "type",
  *                 value: "slo",
  *             }],
- *         }],
- *         slowburns: [{
+ *         },
+ *         slowburn: {
  *             annotations: [{
  *                 key: "name",
  *                 value: "Warning - SLO Burn Rate Alert",
@@ -60,8 +60,8 @@ import * as utilities from "../utilities";
  *                 key: "type",
  *                 value: "slo",
  *             }],
- *         }],
- *     }],
+ *         },
+ *     },
  * });
  * const slos = grafana.slo.getSlos({});
  * ```
@@ -119,8 +119,8 @@ export interface GetSlosResult {
  *         key: "custom",
  *         value: "value",
  *     }],
- *     alertings: [{
- *         fastburns: [{
+ *     alerting: {
+ *         fastburn: {
  *             annotations: [{
  *                 key: "name",
  *                 value: "Critical - SLO Burn Rate Alert",
@@ -129,8 +129,8 @@ export interface GetSlosResult {
  *                 key: "type",
  *                 value: "slo",
  *             }],
- *         }],
- *         slowburns: [{
+ *         },
+ *         slowburn: {
  *             annotations: [{
  *                 key: "name",
  *                 value: "Warning - SLO Burn Rate Alert",
@@ -139,8 +139,8 @@ export interface GetSlosResult {
  *                 key: "type",
  *                 value: "slo",
  *             }],
- *         }],
- *     }],
+ *         },
+ *     },
  * });
  * const slos = grafana.slo.getSlos({});
  * ```

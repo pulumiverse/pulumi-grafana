@@ -155,12 +155,6 @@ func NewDashboardPublic(ctx *pulumi.Context,
 	if args.DashboardUid == nil {
 		return nil, errors.New("invalid value for required argument 'DashboardUid'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/dashboardPublic:DashboardPublic"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DashboardPublic
 	err := ctx.RegisterResource("grafana:oss/dashboardPublic:DashboardPublic", name, args, &resource, opts...)

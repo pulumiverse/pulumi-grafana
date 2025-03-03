@@ -123,12 +123,6 @@ func NewRoleAssignment(ctx *pulumi.Context,
 	if args.RoleUid == nil {
 		return nil, errors.New("invalid value for required argument 'RoleUid'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/roleAssignment:RoleAssignment"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RoleAssignment
 	err := ctx.RegisterResource("grafana:enterprise/roleAssignment:RoleAssignment", name, args, &resource, opts...)

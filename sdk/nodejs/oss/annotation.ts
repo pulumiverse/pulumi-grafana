@@ -118,8 +118,6 @@ export class Annotation extends pulumi.CustomResource {
             resourceInputs["timeEnd"] = args ? args.timeEnd : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/annotation:Annotation" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Annotation.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -120,8 +120,6 @@ export class FolderPermission extends pulumi.CustomResource {
             resourceInputs["permissions"] = args ? args.permissions : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/folderPermission:FolderPermission" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(FolderPermission.__pulumiType, name, resourceInputs, opts);
     }
 }

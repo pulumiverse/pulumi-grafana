@@ -112,12 +112,6 @@ func NewDashboardPermission(ctx *pulumi.Context,
 		args = &DashboardPermissionArgs{}
 	}
 
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/dashboardPermission:DashboardPermission"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DashboardPermission
 	err := ctx.RegisterResource("grafana:oss/dashboardPermission:DashboardPermission", name, args, &resource, opts...)

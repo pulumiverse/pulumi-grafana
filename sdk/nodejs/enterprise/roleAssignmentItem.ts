@@ -136,8 +136,6 @@ export class RoleAssignmentItem extends pulumi.CustomResource {
             resourceInputs["userId"] = args ? args.userId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/roleAssignmentItem:RoleAssignmentItem" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(RoleAssignmentItem.__pulumiType, name, resourceInputs, opts);
     }
 }

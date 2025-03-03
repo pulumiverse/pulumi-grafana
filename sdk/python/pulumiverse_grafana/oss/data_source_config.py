@@ -371,8 +371,6 @@ class DataSourceConfig(pulumi.CustomResource):
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["secure_json_data_encoded"] = None if secure_json_data_encoded is None else pulumi.Output.secret(secure_json_data_encoded)
             __props__.__dict__["uid"] = uid
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/dataSourceConfig:DataSourceConfig")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["httpHeaders", "secureJsonDataEncoded"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(DataSourceConfig, __self__).__init__(

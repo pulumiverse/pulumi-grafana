@@ -91,12 +91,6 @@ func NewFolder(ctx *pulumi.Context,
 	if args.Title == nil {
 		return nil, errors.New("invalid value for required argument 'Title'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/folder:Folder"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Folder
 	err := ctx.RegisterResource("grafana:oss/folder:Folder", name, args, &resource, opts...)

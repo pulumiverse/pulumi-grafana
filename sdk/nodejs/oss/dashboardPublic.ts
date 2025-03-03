@@ -166,8 +166,6 @@ export class DashboardPublic extends pulumi.CustomResource {
             resourceInputs["uid"] = args ? args.uid : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/dashboardPublic:DashboardPublic" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(DashboardPublic.__pulumiType, name, resourceInputs, opts);
     }
 }

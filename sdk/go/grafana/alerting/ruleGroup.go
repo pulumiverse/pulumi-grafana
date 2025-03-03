@@ -184,12 +184,6 @@ func NewRuleGroup(ctx *pulumi.Context,
 	if args.Rules == nil {
 		return nil, errors.New("invalid value for required argument 'Rules'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/ruleGroup:RuleGroup"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RuleGroup
 	err := ctx.RegisterResource("grafana:alerting/ruleGroup:RuleGroup", name, args, &resource, opts...)

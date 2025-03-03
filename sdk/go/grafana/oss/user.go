@@ -85,12 +85,6 @@ func NewUser(ctx *pulumi.Context,
 	if args.Password == nil {
 		return nil, errors.New("invalid value for required argument 'Password'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/user:User"),
-		},
-	})
-	opts = append(opts, aliases)
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringInput)
 	}

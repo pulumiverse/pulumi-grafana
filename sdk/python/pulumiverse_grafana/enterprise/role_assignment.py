@@ -344,8 +344,6 @@ class RoleAssignment(pulumi.CustomResource):
             __props__.__dict__["service_accounts"] = service_accounts
             __props__.__dict__["teams"] = teams
             __props__.__dict__["users"] = users
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/roleAssignment:RoleAssignment")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(RoleAssignment, __self__).__init__(
             'grafana:enterprise/roleAssignment:RoleAssignment',
             resource_name,

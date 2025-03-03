@@ -1004,8 +1004,6 @@ class ContactPoint(pulumi.CustomResource):
             __props__.__dict__["webexes"] = webexes
             __props__.__dict__["webhooks"] = webhooks
             __props__.__dict__["wecoms"] = wecoms
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/contactPoint:ContactPoint")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(ContactPoint, __self__).__init__(
             'grafana:alerting/contactPoint:ContactPoint',
             resource_name,

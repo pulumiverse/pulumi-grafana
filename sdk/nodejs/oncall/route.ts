@@ -157,8 +157,6 @@ export class Route extends pulumi.CustomResource {
             resourceInputs["telegram"] = args ? args.telegram : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/oncallRoute:OncallRoute" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Route.__pulumiType, name, resourceInputs, opts);
     }
 }

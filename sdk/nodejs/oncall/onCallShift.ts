@@ -170,8 +170,6 @@ export class OnCallShift extends pulumi.CustomResource {
             resourceInputs["weekStart"] = args ? args.weekStart : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/oncallOnCallShift:OncallOnCallShift" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(OnCallShift.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -201,8 +201,6 @@ class TeamExternalGroup(pulumi.CustomResource):
             if team_id is None and not opts.urn:
                 raise TypeError("Missing required property 'team_id'")
             __props__.__dict__["team_id"] = team_id
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/teamExternalGroup:TeamExternalGroup")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(TeamExternalGroup, __self__).__init__(
             'grafana:enterprise/teamExternalGroup:TeamExternalGroup',
             resource_name,

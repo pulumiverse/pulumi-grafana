@@ -232,8 +232,6 @@ export class ContactPoint extends pulumi.CustomResource {
             resourceInputs["wecoms"] = args ? args.wecoms : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/contactPoint:ContactPoint" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(ContactPoint.__pulumiType, name, resourceInputs, opts);
     }
 }

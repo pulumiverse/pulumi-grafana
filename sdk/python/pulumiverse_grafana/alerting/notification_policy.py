@@ -540,8 +540,6 @@ class NotificationPolicy(pulumi.CustomResource):
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["policies"] = policies
             __props__.__dict__["repeat_interval"] = repeat_interval
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/notificationPolicy:NotificationPolicy")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(NotificationPolicy, __self__).__init__(
             'grafana:alerting/notificationPolicy:NotificationPolicy',
             resource_name,

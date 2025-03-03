@@ -204,8 +204,6 @@ export class RuleGroup extends pulumi.CustomResource {
             resourceInputs["rules"] = args ? args.rules : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/ruleGroup:RuleGroup" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(RuleGroup.__pulumiType, name, resourceInputs, opts);
     }
 }

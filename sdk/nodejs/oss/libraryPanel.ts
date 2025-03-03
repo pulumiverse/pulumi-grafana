@@ -169,8 +169,6 @@ export class LibraryPanel extends pulumi.CustomResource {
             resourceInputs["version"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/libraryPanel:LibraryPanel" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(LibraryPanel.__pulumiType, name, resourceInputs, opts);
     }
 }

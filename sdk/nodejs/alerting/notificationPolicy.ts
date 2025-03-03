@@ -199,8 +199,6 @@ export class NotificationPolicy extends pulumi.CustomResource {
             resourceInputs["repeatInterval"] = args ? args.repeatInterval : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/notificationPolicy:NotificationPolicy" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(NotificationPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }

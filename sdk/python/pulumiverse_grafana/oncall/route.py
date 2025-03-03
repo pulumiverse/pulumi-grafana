@@ -447,8 +447,6 @@ class Route(pulumi.CustomResource):
             __props__.__dict__["routing_type"] = routing_type
             __props__.__dict__["slack"] = slack
             __props__.__dict__["telegram"] = telegram
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/oncallRoute:OncallRoute")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Route, __self__).__init__(
             'grafana:onCall/route:Route',
             resource_name,

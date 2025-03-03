@@ -89,12 +89,6 @@ func NewOutgoingWebhook(ctx *pulumi.Context,
 	if args.Url == nil {
 		return nil, errors.New("invalid value for required argument 'Url'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook"),
-		},
-	})
-	opts = append(opts, aliases)
 	if args.AuthorizationHeader != nil {
 		args.AuthorizationHeader = pulumi.ToSecret(args.AuthorizationHeader).(pulumi.StringPtrInput)
 	}

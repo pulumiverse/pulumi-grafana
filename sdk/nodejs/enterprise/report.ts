@@ -172,8 +172,6 @@ export class Report extends pulumi.CustomResource {
             resourceInputs["schedule"] = args ? args.schedule : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/report:Report" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Report.__pulumiType, name, resourceInputs, opts);
     }
 }

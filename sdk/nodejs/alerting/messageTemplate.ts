@@ -106,8 +106,6 @@ export class MessageTemplate extends pulumi.CustomResource {
             resourceInputs["template"] = args ? args.template : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/messageTemplate:MessageTemplate" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(MessageTemplate.__pulumiType, name, resourceInputs, opts);
     }
 }

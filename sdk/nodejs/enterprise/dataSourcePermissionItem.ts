@@ -156,8 +156,6 @@ export class DataSourcePermissionItem extends pulumi.CustomResource {
             resourceInputs["user"] = args ? args.user : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/dataSourcePermissionItem:DataSourcePermissionItem" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(DataSourcePermissionItem.__pulumiType, name, resourceInputs, opts);
     }
 }

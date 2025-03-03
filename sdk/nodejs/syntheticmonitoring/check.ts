@@ -524,8 +524,6 @@ export class Check extends pulumi.CustomResource {
             resourceInputs["tenantId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Check.__pulumiType, name, resourceInputs, opts);
     }
 }

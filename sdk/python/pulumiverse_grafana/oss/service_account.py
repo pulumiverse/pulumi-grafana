@@ -272,8 +272,6 @@ class ServiceAccount(pulumi.CustomResource):
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/serviceAccount:ServiceAccount")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(ServiceAccount, __self__).__init__(
             'grafana:oss/serviceAccount:ServiceAccount',
             resource_name,

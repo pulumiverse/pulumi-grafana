@@ -127,12 +127,6 @@ func NewInstallation(ctx *pulumi.Context,
 	if args.StackId == nil {
 		return nil, errors.New("invalid value for required argument 'StackId'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation"),
-		},
-	})
-	opts = append(opts, aliases)
 	if args.MetricsPublisherKey != nil {
 		args.MetricsPublisherKey = pulumi.ToSecret(args.MetricsPublisherKey).(pulumi.StringInput)
 	}

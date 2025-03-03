@@ -310,8 +310,6 @@ class MuteTiming(pulumi.CustomResource):
             __props__.__dict__["intervals"] = intervals
             __props__.__dict__["name"] = name
             __props__.__dict__["org_id"] = org_id
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/muteTiming:MuteTiming")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(MuteTiming, __self__).__init__(
             'grafana:alerting/muteTiming:MuteTiming',
             resource_name,

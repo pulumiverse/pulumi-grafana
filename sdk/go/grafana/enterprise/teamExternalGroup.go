@@ -82,12 +82,6 @@ func NewTeamExternalGroup(ctx *pulumi.Context,
 	if args.TeamId == nil {
 		return nil, errors.New("invalid value for required argument 'TeamId'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/teamExternalGroup:TeamExternalGroup"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource TeamExternalGroup
 	err := ctx.RegisterResource("grafana:enterprise/teamExternalGroup:TeamExternalGroup", name, args, &resource, opts...)

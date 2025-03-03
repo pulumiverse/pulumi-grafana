@@ -116,8 +116,6 @@ export class Playlist extends pulumi.CustomResource {
             resourceInputs["orgId"] = args ? args.orgId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/playlist:Playlist" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Playlist.__pulumiType, name, resourceInputs, opts);
     }
 }

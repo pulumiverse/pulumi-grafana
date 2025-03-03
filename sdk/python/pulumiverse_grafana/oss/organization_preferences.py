@@ -295,8 +295,6 @@ class OrganizationPreferences(pulumi.CustomResource):
             __props__.__dict__["theme"] = theme
             __props__.__dict__["timezone"] = timezone
             __props__.__dict__["week_start"] = week_start
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/organizationPreferences:OrganizationPreferences")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(OrganizationPreferences, __self__).__init__(
             'grafana:oss/organizationPreferences:OrganizationPreferences',
             resource_name,

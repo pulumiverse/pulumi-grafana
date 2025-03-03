@@ -388,8 +388,6 @@ class Dashboard(pulumi.CustomResource):
             __props__.__dict__["uid"] = None
             __props__.__dict__["url"] = None
             __props__.__dict__["version"] = None
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/dashboard:Dashboard")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Dashboard, __self__).__init__(
             'grafana:oss/dashboard:Dashboard',
             resource_name,

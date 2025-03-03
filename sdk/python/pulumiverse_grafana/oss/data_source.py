@@ -782,8 +782,6 @@ class DataSource(pulumi.CustomResource):
             __props__.__dict__["uid"] = uid
             __props__.__dict__["url"] = url
             __props__.__dict__["username"] = username
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/dataSource:DataSource")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["httpHeaders", "secureJsonDataEncoded"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(DataSource, __self__).__init__(

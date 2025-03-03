@@ -125,8 +125,6 @@ export class MuteTiming extends pulumi.CustomResource {
             resourceInputs["orgId"] = args ? args.orgId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/muteTiming:MuteTiming" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(MuteTiming.__pulumiType, name, resourceInputs, opts);
     }
 }

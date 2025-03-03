@@ -375,8 +375,6 @@ class DashboardPermissionItem(pulumi.CustomResource):
             __props__.__dict__["role"] = role
             __props__.__dict__["team"] = team
             __props__.__dict__["user"] = user
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/dashboardPermissionItem:DashboardPermissionItem")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(DashboardPermissionItem, __self__).__init__(
             'grafana:oss/dashboardPermissionItem:DashboardPermissionItem',
             resource_name,

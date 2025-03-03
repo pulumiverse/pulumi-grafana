@@ -138,8 +138,6 @@ export class DashboardPermissionItem extends pulumi.CustomResource {
             resourceInputs["user"] = args ? args.user : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/dashboardPermissionItem:DashboardPermissionItem" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(DashboardPermissionItem.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -103,12 +103,6 @@ func NewRole(ctx *pulumi.Context,
 		args = &RoleArgs{}
 	}
 
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/role:Role"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Role
 	err := ctx.RegisterResource("grafana:enterprise/role:Role", name, args, &resource, opts...)

@@ -405,8 +405,6 @@ class DataSourcePermissionItem(pulumi.CustomResource):
             __props__.__dict__["role"] = role
             __props__.__dict__["team"] = team
             __props__.__dict__["user"] = user
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/dataSourcePermissionItem:DataSourcePermissionItem")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(DataSourcePermissionItem, __self__).__init__(
             'grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem',
             resource_name,

@@ -179,8 +179,6 @@ class EscalationChain(pulumi.CustomResource):
 
             __props__.__dict__["name"] = name
             __props__.__dict__["team_id"] = team_id
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/oncallEscalationChain:OncallEscalationChain")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(EscalationChain, __self__).__init__(
             'grafana:onCall/escalationChain:EscalationChain',
             resource_name,

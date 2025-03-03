@@ -155,12 +155,6 @@ func NewDataSourcePermissionItem(ctx *pulumi.Context,
 	if args.Permission == nil {
 		return nil, errors.New("invalid value for required argument 'Permission'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/dataSourcePermissionItem:DataSourcePermissionItem"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DataSourcePermissionItem
 	err := ctx.RegisterResource("grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem", name, args, &resource, opts...)

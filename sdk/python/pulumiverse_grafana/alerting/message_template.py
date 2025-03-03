@@ -269,8 +269,6 @@ class MessageTemplate(pulumi.CustomResource):
             if template is None and not opts.urn:
                 raise TypeError("Missing required property 'template'")
             __props__.__dict__["template"] = template
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/messageTemplate:MessageTemplate")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(MessageTemplate, __self__).__init__(
             'grafana:alerting/messageTemplate:MessageTemplate',
             resource_name,

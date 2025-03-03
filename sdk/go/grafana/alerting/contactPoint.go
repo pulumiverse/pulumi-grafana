@@ -124,12 +124,6 @@ func NewContactPoint(ctx *pulumi.Context,
 		args = &ContactPointArgs{}
 	}
 
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/contactPoint:ContactPoint"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ContactPoint
 	err := ctx.RegisterResource("grafana:alerting/contactPoint:ContactPoint", name, args, &resource, opts...)

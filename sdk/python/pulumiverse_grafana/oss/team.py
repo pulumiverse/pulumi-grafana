@@ -418,8 +418,6 @@ class Team(pulumi.CustomResource):
             __props__.__dict__["team_sync"] = team_sync
             __props__.__dict__["team_id"] = None
             __props__.__dict__["team_uid"] = None
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/team:Team")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Team, __self__).__init__(
             'grafana:oss/team:Team',
             resource_name,

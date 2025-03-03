@@ -136,8 +136,6 @@ export class Team extends pulumi.CustomResource {
             resourceInputs["teamUid"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/team:Team" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Team.__pulumiType, name, resourceInputs, opts);
     }
 }

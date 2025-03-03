@@ -138,12 +138,6 @@ func NewDataSourceConfig(ctx *pulumi.Context,
 		args = &DataSourceConfigArgs{}
 	}
 
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/dataSourceConfig:DataSourceConfig"),
-		},
-	})
-	opts = append(opts, aliases)
 	if args.HttpHeaders != nil {
 		args.HttpHeaders = pulumi.ToSecret(args.HttpHeaders).(pulumi.StringMapInput)
 	}

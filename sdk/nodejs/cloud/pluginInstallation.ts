@@ -107,8 +107,6 @@ export class PluginInstallation extends pulumi.CustomResource {
             resourceInputs["version"] = args ? args.version : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/cloudPluginInstallation:CloudPluginInstallation" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(PluginInstallation.__pulumiType, name, resourceInputs, opts);
     }
 }

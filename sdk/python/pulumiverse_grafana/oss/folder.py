@@ -335,8 +335,6 @@ class Folder(pulumi.CustomResource):
             __props__.__dict__["title"] = title
             __props__.__dict__["uid"] = uid
             __props__.__dict__["url"] = None
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/folder:Folder")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Folder, __self__).__init__(
             'grafana:oss/folder:Folder',
             resource_name,

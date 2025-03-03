@@ -308,8 +308,6 @@ class DataSourcePermission(pulumi.CustomResource):
             __props__.__dict__["datasource_uid"] = datasource_uid
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["permissions"] = permissions
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/dataSourcePermission:DataSourcePermission")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(DataSourcePermission, __self__).__init__(
             'grafana:enterprise/dataSourcePermission:DataSourcePermission',
             resource_name,

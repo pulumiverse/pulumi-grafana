@@ -124,8 +124,6 @@ export class Folder extends pulumi.CustomResource {
             resourceInputs["url"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/folder:Folder" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Folder.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -127,12 +127,6 @@ func NewDashboardPermissionItem(ctx *pulumi.Context,
 	if args.Permission == nil {
 		return nil, errors.New("invalid value for required argument 'Permission'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/dashboardPermissionItem:DashboardPermissionItem"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DashboardPermissionItem
 	err := ctx.RegisterResource("grafana:oss/dashboardPermissionItem:DashboardPermissionItem", name, args, &resource, opts...)

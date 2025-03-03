@@ -77,12 +77,6 @@ func NewMessageTemplate(ctx *pulumi.Context,
 	if args.Template == nil {
 		return nil, errors.New("invalid value for required argument 'Template'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/messageTemplate:MessageTemplate"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MessageTemplate
 	err := ctx.RegisterResource("grafana:alerting/messageTemplate:MessageTemplate", name, args, &resource, opts...)

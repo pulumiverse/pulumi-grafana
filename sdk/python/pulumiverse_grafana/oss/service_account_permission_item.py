@@ -331,8 +331,6 @@ class ServiceAccountPermissionItem(pulumi.CustomResource):
             __props__.__dict__["service_account_id"] = service_account_id
             __props__.__dict__["team"] = team
             __props__.__dict__["user"] = user
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(ServiceAccountPermissionItem, __self__).__init__(
             'grafana:oss/serviceAccountPermissionItem:ServiceAccountPermissionItem',
             resource_name,

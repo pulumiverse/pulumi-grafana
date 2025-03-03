@@ -103,8 +103,6 @@ export class OrganizationPreferences extends pulumi.CustomResource {
             resourceInputs["weekStart"] = args ? args.weekStart : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/organizationPreferences:OrganizationPreferences" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(OrganizationPreferences.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -557,8 +557,6 @@ class Role(pulumi.CustomResource):
             __props__.__dict__["permissions"] = permissions
             __props__.__dict__["uid"] = uid
             __props__.__dict__["version"] = version
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/role:Role")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Role, __self__).__init__(
             'grafana:enterprise/role:Role',
             resource_name,
