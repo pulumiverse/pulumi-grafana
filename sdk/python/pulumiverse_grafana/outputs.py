@@ -5710,10 +5710,10 @@ class RuleGroupRule(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 condition: str,
                  datas: Sequence['outputs.RuleGroupRuleData'],
                  name: str,
                  annotations: Optional[Mapping[str, str]] = None,
+                 condition: Optional[str] = None,
                  exec_err_state: Optional[str] = None,
                  for_: Optional[str] = None,
                  is_paused: Optional[bool] = None,
@@ -5723,24 +5723,25 @@ class RuleGroupRule(dict):
                  record: Optional['outputs.RuleGroupRuleRecord'] = None,
                  uid: Optional[str] = None):
         """
-        :param str condition: The `ref_id` of the query node in the `data` field to use as the alert condition.
         :param Sequence['RuleGroupRuleDataArgs'] datas: A sequence of stages that describe the contents of the rule.
         :param str name: The name of the alert rule.
         :param Mapping[str, str] annotations: Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
-        :param str exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+        :param str condition: The `ref_id` of the query node in the `data` field to use as the alert condition.
+        :param str exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.  Defaults to Alerting if not set.
         :param str for_: The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
         :param bool is_paused: Sets whether the alert should be paused or not. Defaults to `false`.
         :param Mapping[str, str] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
-        :param str no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+        :param str no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
         :param 'RuleGroupRuleNotificationSettingsArgs' notification_settings: Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
         :param 'RuleGroupRuleRecordArgs' record: Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
         :param str uid: The unique identifier of the alert rule.
         """
-        pulumi.set(__self__, "condition", condition)
         pulumi.set(__self__, "datas", datas)
         pulumi.set(__self__, "name", name)
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
+        if condition is not None:
+            pulumi.set(__self__, "condition", condition)
         if exec_err_state is not None:
             pulumi.set(__self__, "exec_err_state", exec_err_state)
         if for_ is not None:
@@ -5757,14 +5758,6 @@ class RuleGroupRule(dict):
             pulumi.set(__self__, "record", record)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
-
-    @property
-    @pulumi.getter
-    def condition(self) -> str:
-        """
-        The `ref_id` of the query node in the `data` field to use as the alert condition.
-        """
-        return pulumi.get(self, "condition")
 
     @property
     @pulumi.getter
@@ -5791,10 +5784,18 @@ class RuleGroupRule(dict):
         return pulumi.get(self, "annotations")
 
     @property
+    @pulumi.getter
+    def condition(self) -> Optional[str]:
+        """
+        The `ref_id` of the query node in the `data` field to use as the alert condition.
+        """
+        return pulumi.get(self, "condition")
+
+    @property
     @pulumi.getter(name="execErrState")
     def exec_err_state(self) -> Optional[str]:
         """
-        Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+        Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.  Defaults to Alerting if not set.
         """
         return pulumi.get(self, "exec_err_state")
 
@@ -5826,7 +5827,7 @@ class RuleGroupRule(dict):
     @pulumi.getter(name="noDataState")
     def no_data_state(self) -> Optional[str]:
         """
-        Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+        Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
         """
         return pulumi.get(self, "no_data_state")
 

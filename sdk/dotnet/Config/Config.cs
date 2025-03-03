@@ -118,6 +118,28 @@ namespace Pulumiverse.Grafana
             set => _connectionsApiUrl.Set(value);
         }
 
+        private static readonly __Value<string?> _fleetManagementAuth = new __Value<string?>(() => __config.Get("fleetManagementAuth"));
+        /// <summary>
+        /// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+        /// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+        /// </summary>
+        public static string? FleetManagementAuth
+        {
+            get => _fleetManagementAuth.Get();
+            set => _fleetManagementAuth.Set(value);
+        }
+
+        private static readonly __Value<string?> _fleetManagementUrl = new __Value<string?>(() => __config.Get("fleetManagementUrl"));
+        /// <summary>
+        /// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+        /// variable.
+        /// </summary>
+        public static string? FleetManagementUrl
+        {
+            get => _fleetManagementUrl.Get();
+            set => _fleetManagementUrl.Set(value);
+        }
+
         private static readonly __Value<bool?> _insecureSkipVerify = new __Value<bool?>(() => __config.GetBoolean("insecureSkipVerify") ?? Utilities.GetEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY"));
         /// <summary>
         /// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

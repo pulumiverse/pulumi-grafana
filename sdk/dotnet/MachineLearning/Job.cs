@@ -125,6 +125,58 @@ namespace Pulumiverse.Grafana.MachineLearning
     /// });
     /// ```
     /// 
+    /// ### Rescaled Forecast
+    /// 
+    /// This forecast has had the data transformed using a power transformation in order to avoid negative lower predictions.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var foo = new Grafana.Oss.DataSource("foo", new()
+    ///     {
+    ///         Type = "prometheus",
+    ///         Name = "prometheus-ds-test",
+    ///         Uid = "prometheus-ds-test-uid",
+    ///         Url = "https://my-instance.com",
+    ///         BasicAuthEnabled = true,
+    ///         BasicAuthUsername = "username",
+    ///         JsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["httpMethod"] = "POST",
+    ///             ["prometheusType"] = "Mimir",
+    ///             ["prometheusVersion"] = "2.4.0",
+    ///         }),
+    ///         SecureJsonDataEncoded = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["basicAuthPassword"] = "password",
+    ///         }),
+    ///     });
+    /// 
+    ///     var testJob = new Grafana.MachineLearning.Job("test_job", new()
+    ///     {
+    ///         Name = "Test Job",
+    ///         Metric = "tf_test_job",
+    ///         DatasourceType = "prometheus",
+    ///         DatasourceUid = foo.Uid,
+    ///         QueryParams = 
+    ///         {
+    ///             { "expr", "grafanacloud_grafana_instance_active_user_count" },
+    ///         },
+    ///         HyperParams = 
+    ///         {
+    ///             { "transformation_id", "power" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Forecast with Holidays
     /// 
     /// This forecast has holidays which will be taken into account when training the model.

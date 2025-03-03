@@ -60,6 +60,18 @@ connectionsApiUrl: Optional[str]
 A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
 """
 
+fleetManagementAuth: Optional[str]
+"""
+A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+`GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+"""
+
+fleetManagementUrl: Optional[str]
+"""
+A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+variable.
+"""
+
 insecureSkipVerify: Optional[bool]
 """
 Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

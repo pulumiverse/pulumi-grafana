@@ -26,7 +26,7 @@ class GetStackResult:
     """
     A collection of values returned by getStack.
     """
-    def __init__(__self__, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, cluster_slug=None, description=None, graphite_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, influx_url=None, labels=None, logs_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, org_id=None, org_name=None, org_slug=None, otlp_url=None, profiles_name=None, profiles_status=None, profiles_url=None, profiles_user_id=None, prometheus_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, status=None, traces_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
+    def __init__(__self__, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, cluster_slug=None, description=None, fleet_management_name=None, fleet_management_status=None, fleet_management_url=None, fleet_management_user_id=None, graphite_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, influx_url=None, labels=None, logs_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, org_id=None, org_name=None, org_slug=None, otlp_url=None, profiles_name=None, profiles_status=None, profiles_url=None, profiles_user_id=None, prometheus_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, status=None, traces_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
         if alertmanager_name and not isinstance(alertmanager_name, str):
             raise TypeError("Expected argument 'alertmanager_name' to be a str")
         pulumi.set(__self__, "alertmanager_name", alertmanager_name)
@@ -45,6 +45,18 @@ class GetStackResult:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if fleet_management_name and not isinstance(fleet_management_name, str):
+            raise TypeError("Expected argument 'fleet_management_name' to be a str")
+        pulumi.set(__self__, "fleet_management_name", fleet_management_name)
+        if fleet_management_status and not isinstance(fleet_management_status, str):
+            raise TypeError("Expected argument 'fleet_management_status' to be a str")
+        pulumi.set(__self__, "fleet_management_status", fleet_management_status)
+        if fleet_management_url and not isinstance(fleet_management_url, str):
+            raise TypeError("Expected argument 'fleet_management_url' to be a str")
+        pulumi.set(__self__, "fleet_management_url", fleet_management_url)
+        if fleet_management_user_id and not isinstance(fleet_management_user_id, int):
+            raise TypeError("Expected argument 'fleet_management_user_id' to be a int")
+        pulumi.set(__self__, "fleet_management_user_id", fleet_management_user_id)
         if graphite_name and not isinstance(graphite_name, str):
             raise TypeError("Expected argument 'graphite_name' to be a str")
         pulumi.set(__self__, "graphite_name", graphite_name)
@@ -195,6 +207,38 @@ class GetStackResult:
         Description of stack.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="fleetManagementName")
+    def fleet_management_name(self) -> str:
+        """
+        Name of the Fleet Management instance configured for this stack.
+        """
+        return pulumi.get(self, "fleet_management_name")
+
+    @property
+    @pulumi.getter(name="fleetManagementStatus")
+    def fleet_management_status(self) -> str:
+        """
+        Status of the Fleet Management instance configured for this stack.
+        """
+        return pulumi.get(self, "fleet_management_status")
+
+    @property
+    @pulumi.getter(name="fleetManagementUrl")
+    def fleet_management_url(self) -> str:
+        """
+        Base URL of the Fleet Management instance configured for this stack.
+        """
+        return pulumi.get(self, "fleet_management_url")
+
+    @property
+    @pulumi.getter(name="fleetManagementUserId")
+    def fleet_management_user_id(self) -> int:
+        """
+        User ID of the Fleet Management instance configured for this stack.
+        """
+        return pulumi.get(self, "fleet_management_user_id")
 
     @property
     @pulumi.getter(name="graphiteName")
@@ -437,6 +481,10 @@ class AwaitableGetStackResult(GetStackResult):
             alertmanager_user_id=self.alertmanager_user_id,
             cluster_slug=self.cluster_slug,
             description=self.description,
+            fleet_management_name=self.fleet_management_name,
+            fleet_management_status=self.fleet_management_status,
+            fleet_management_url=self.fleet_management_url,
+            fleet_management_user_id=self.fleet_management_user_id,
             graphite_name=self.graphite_name,
             graphite_status=self.graphite_status,
             graphite_url=self.graphite_url,
@@ -509,6 +557,10 @@ def get_stack(slug: Optional[str] = None,
         alertmanager_user_id=pulumi.get(__ret__, 'alertmanager_user_id'),
         cluster_slug=pulumi.get(__ret__, 'cluster_slug'),
         description=pulumi.get(__ret__, 'description'),
+        fleet_management_name=pulumi.get(__ret__, 'fleet_management_name'),
+        fleet_management_status=pulumi.get(__ret__, 'fleet_management_status'),
+        fleet_management_url=pulumi.get(__ret__, 'fleet_management_url'),
+        fleet_management_user_id=pulumi.get(__ret__, 'fleet_management_user_id'),
         graphite_name=pulumi.get(__ret__, 'graphite_name'),
         graphite_status=pulumi.get(__ret__, 'graphite_status'),
         graphite_url=pulumi.get(__ret__, 'graphite_url'),
@@ -578,6 +630,10 @@ def get_stack_output(slug: Optional[pulumi.Input[str]] = None,
         alertmanager_user_id=pulumi.get(__response__, 'alertmanager_user_id'),
         cluster_slug=pulumi.get(__response__, 'cluster_slug'),
         description=pulumi.get(__response__, 'description'),
+        fleet_management_name=pulumi.get(__response__, 'fleet_management_name'),
+        fleet_management_status=pulumi.get(__response__, 'fleet_management_status'),
+        fleet_management_url=pulumi.get(__response__, 'fleet_management_url'),
+        fleet_management_user_id=pulumi.get(__response__, 'fleet_management_user_id'),
         graphite_name=pulumi.get(__response__, 'graphite_name'),
         graphite_status=pulumi.get(__response__, 'graphite_status'),
         graphite_url=pulumi.get(__response__, 'graphite_url'),

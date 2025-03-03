@@ -27,6 +27,8 @@ class ProviderArgs:
                  cloud_provider_url: Optional[pulumi.Input[str]] = None,
                  connections_api_access_token: Optional[pulumi.Input[str]] = None,
                  connections_api_url: Optional[pulumi.Input[str]] = None,
+                 fleet_management_auth: Optional[pulumi.Input[str]] = None,
+                 fleet_management_url: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
@@ -55,6 +57,10 @@ class ProviderArgs:
         :param pulumi.Input[str] connections_api_access_token: A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
                environment variable.
         :param pulumi.Input[str] connections_api_url: A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+        :param pulumi.Input[str] fleet_management_auth: A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+               `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+        :param pulumi.Input[str] fleet_management_url: A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+               variable.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -96,6 +102,10 @@ class ProviderArgs:
             pulumi.set(__self__, "connections_api_access_token", connections_api_access_token)
         if connections_api_url is not None:
             pulumi.set(__self__, "connections_api_url", connections_api_url)
+        if fleet_management_auth is not None:
+            pulumi.set(__self__, "fleet_management_auth", fleet_management_auth)
+        if fleet_management_url is not None:
+            pulumi.set(__self__, "fleet_management_url", fleet_management_url)
         if insecure_skip_verify is None:
             insecure_skip_verify = _utilities.get_env_bool('GRAFANA_INSECURE_SKIP_VERIFY')
         if insecure_skip_verify is not None:
@@ -244,6 +254,32 @@ class ProviderArgs:
     @connections_api_url.setter
     def connections_api_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "connections_api_url", value)
+
+    @property
+    @pulumi.getter(name="fleetManagementAuth")
+    def fleet_management_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+        `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+        """
+        return pulumi.get(self, "fleet_management_auth")
+
+    @fleet_management_auth.setter
+    def fleet_management_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fleet_management_auth", value)
+
+    @property
+    @pulumi.getter(name="fleetManagementUrl")
+    def fleet_management_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+        variable.
+        """
+        return pulumi.get(self, "fleet_management_url")
+
+    @fleet_management_url.setter
+    def fleet_management_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fleet_management_url", value)
 
     @property
     @pulumi.getter(name="insecureSkipVerify")
@@ -405,6 +441,8 @@ class Provider(pulumi.ProviderResource):
                  cloud_provider_url: Optional[pulumi.Input[str]] = None,
                  connections_api_access_token: Optional[pulumi.Input[str]] = None,
                  connections_api_url: Optional[pulumi.Input[str]] = None,
+                 fleet_management_auth: Optional[pulumi.Input[str]] = None,
+                 fleet_management_url: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
@@ -440,6 +478,10 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[str] connections_api_access_token: A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
                environment variable.
         :param pulumi.Input[str] connections_api_url: A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
+        :param pulumi.Input[str] fleet_management_auth: A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+               `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+        :param pulumi.Input[str] fleet_management_url: A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+               variable.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -492,6 +534,8 @@ class Provider(pulumi.ProviderResource):
                  cloud_provider_url: Optional[pulumi.Input[str]] = None,
                  connections_api_access_token: Optional[pulumi.Input[str]] = None,
                  connections_api_url: Optional[pulumi.Input[str]] = None,
+                 fleet_management_auth: Optional[pulumi.Input[str]] = None,
+                 fleet_management_url: Optional[pulumi.Input[str]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
@@ -529,6 +573,8 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["cloud_provider_url"] = cloud_provider_url
             __props__.__dict__["connections_api_access_token"] = None if connections_api_access_token is None else pulumi.Output.secret(connections_api_access_token)
             __props__.__dict__["connections_api_url"] = connections_api_url
+            __props__.__dict__["fleet_management_auth"] = None if fleet_management_auth is None else pulumi.Output.secret(fleet_management_auth)
+            __props__.__dict__["fleet_management_url"] = fleet_management_url
             if insecure_skip_verify is None:
                 insecure_skip_verify = _utilities.get_env_bool('GRAFANA_INSECURE_SKIP_VERIFY')
             __props__.__dict__["insecure_skip_verify"] = pulumi.Output.from_input(insecure_skip_verify).apply(pulumi.runtime.to_json) if insecure_skip_verify is not None else None
@@ -563,7 +609,7 @@ class Provider(pulumi.ProviderResource):
             if url is None:
                 url = _utilities.get_env('GRAFANA_URL')
             __props__.__dict__["url"] = url
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "oncallAccessToken", "smAccessToken", "tlsKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "fleetManagementAuth", "oncallAccessToken", "smAccessToken", "tlsKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'grafana',
@@ -640,6 +686,24 @@ class Provider(pulumi.ProviderResource):
         A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
         """
         return pulumi.get(self, "connections_api_url")
+
+    @property
+    @pulumi.getter(name="fleetManagementAuth")
+    def fleet_management_auth(self) -> pulumi.Output[Optional[str]]:
+        """
+        A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+        `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+        """
+        return pulumi.get(self, "fleet_management_auth")
+
+    @property
+    @pulumi.getter(name="fleetManagementUrl")
+    def fleet_management_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+        variable.
+        """
+        return pulumi.get(self, "fleet_management_url")
 
     @property
     @pulumi.getter(name="oncallAccessToken")

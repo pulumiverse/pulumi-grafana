@@ -91,6 +91,44 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Rescaled Forecast
+ *
+ * This forecast has had the data transformed using a power transformation in order to avoid negative lower predictions.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const foo = new grafana.oss.DataSource("foo", {
+ *     type: "prometheus",
+ *     name: "prometheus-ds-test",
+ *     uid: "prometheus-ds-test-uid",
+ *     url: "https://my-instance.com",
+ *     basicAuthEnabled: true,
+ *     basicAuthUsername: "username",
+ *     jsonDataEncoded: JSON.stringify({
+ *         httpMethod: "POST",
+ *         prometheusType: "Mimir",
+ *         prometheusVersion: "2.4.0",
+ *     }),
+ *     secureJsonDataEncoded: JSON.stringify({
+ *         basicAuthPassword: "password",
+ *     }),
+ * });
+ * const testJob = new grafana.machinelearning.Job("test_job", {
+ *     name: "Test Job",
+ *     metric: "tf_test_job",
+ *     datasourceType: "prometheus",
+ *     datasourceUid: foo.uid,
+ *     queryParams: {
+ *         expr: "grafanacloud_grafana_instance_active_user_count",
+ *     },
+ *     hyperParams: {
+ *         transformation_id: "power",
+ *     },
+ * });
+ * ```
+ *
  * ### Forecast with Holidays
  *
  * This forecast has holidays which will be taken into account when training the model.

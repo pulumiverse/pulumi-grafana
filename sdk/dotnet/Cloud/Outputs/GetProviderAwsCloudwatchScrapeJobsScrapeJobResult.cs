@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Cloud.Outputs
     public sealed class GetProviderAwsCloudwatchScrapeJobsScrapeJobResult
     {
         /// <summary>
-        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloud.ProviderAwsAccount` resource.
+        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.
         /// </summary>
         public readonly string AwsAccountResourceId;
         /// <summary>
@@ -53,6 +53,10 @@ namespace Pulumiverse.Grafana.Cloud.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResult> Services;
         public readonly string StackId;
+        /// <summary>
+        /// A set of static labels to add to all metrics exported by this scrape job.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string> StaticLabels;
 
         [OutputConstructor]
         private GetProviderAwsCloudwatchScrapeJobsScrapeJobResult(
@@ -78,7 +82,9 @@ namespace Pulumiverse.Grafana.Cloud.Outputs
 
             ImmutableArray<Outputs.GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResult> services,
 
-            string stackId)
+            string stackId,
+
+            ImmutableDictionary<string, string> staticLabels)
         {
             AwsAccountResourceId = awsAccountResourceId;
             CustomNamespaces = customNamespaces;
@@ -92,6 +98,7 @@ namespace Pulumiverse.Grafana.Cloud.Outputs
             RoleArn = roleArn;
             Services = services;
             StackId = stackId;
+            StaticLabels = staticLabels;
         }
     }
 }

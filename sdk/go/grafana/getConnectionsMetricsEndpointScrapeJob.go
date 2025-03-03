@@ -19,13 +19,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/connections"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.LookupConnectionsMetricsEndpointScrapeJob(ctx, &grafana.LookupConnectionsMetricsEndpointScrapeJobArgs{
+//			_, err := connections.LookupMetricsEndpointScrapeJob(ctx, &connections.LookupMetricsEndpointScrapeJobArgs{
 //				StackId: "1",
 //				Name:    "my-scrape-job",
 //			}, nil)
@@ -37,6 +37,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: grafana.index/getconnectionsmetricsendpointscrapejob.getConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/getmetricsendpointscrapejob.getMetricsEndpointScrapeJob
 func LookupConnectionsMetricsEndpointScrapeJob(ctx *pulumi.Context, args *LookupConnectionsMetricsEndpointScrapeJobArgs, opts ...pulumi.InvokeOption) (*LookupConnectionsMetricsEndpointScrapeJobResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupConnectionsMetricsEndpointScrapeJobResult

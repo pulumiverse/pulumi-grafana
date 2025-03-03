@@ -11,13 +11,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const dsTest = grafana.getConnectionsMetricsEndpointScrapeJob({
+ * const dsTest = grafana.connections.getMetricsEndpointScrapeJob({
  *     stackId: "1",
  *     name: "my-scrape-job",
  * });
  * ```
  */
+/** @deprecated grafana.index/getconnectionsmetricsendpointscrapejob.getConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/getmetricsendpointscrapejob.getMetricsEndpointScrapeJob */
 export function getConnectionsMetricsEndpointScrapeJob(args: GetConnectionsMetricsEndpointScrapeJobArgs, opts?: pulumi.InvokeOptions): Promise<GetConnectionsMetricsEndpointScrapeJobResult> {
+    pulumi.log.warn("getConnectionsMetricsEndpointScrapeJob is deprecated: grafana.index/getconnectionsmetricsendpointscrapejob.getConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/getmetricsendpointscrapejob.getMetricsEndpointScrapeJob")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:index/getConnectionsMetricsEndpointScrapeJob:getConnectionsMetricsEndpointScrapeJob", {
         "name": args.name,
@@ -76,13 +78,15 @@ export interface GetConnectionsMetricsEndpointScrapeJobResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const dsTest = grafana.getConnectionsMetricsEndpointScrapeJob({
+ * const dsTest = grafana.connections.getMetricsEndpointScrapeJob({
  *     stackId: "1",
  *     name: "my-scrape-job",
  * });
  * ```
  */
+/** @deprecated grafana.index/getconnectionsmetricsendpointscrapejob.getConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/getmetricsendpointscrapejob.getMetricsEndpointScrapeJob */
 export function getConnectionsMetricsEndpointScrapeJobOutput(args: GetConnectionsMetricsEndpointScrapeJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetConnectionsMetricsEndpointScrapeJobResult> {
+    pulumi.log.warn("getConnectionsMetricsEndpointScrapeJob is deprecated: grafana.index/getconnectionsmetricsendpointscrapejob.getConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/getmetricsendpointscrapejob.getMetricsEndpointScrapeJob")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:index/getConnectionsMetricsEndpointScrapeJob:getConnectionsMetricsEndpointScrapeJob", {
         "name": args.name,

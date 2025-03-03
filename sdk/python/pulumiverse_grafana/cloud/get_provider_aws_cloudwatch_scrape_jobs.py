@@ -23,6 +23,8 @@ __all__ = [
     'get_provider_aws_cloudwatch_scrape_jobs_output',
 ]
 
+warnings.warn("""grafana.cloud/getproviderawscloudwatchscrapejobs.getProviderAwsCloudwatchScrapeJobs has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejobs.getAwsCloudwatchScrapeJobs""", DeprecationWarning)
+
 @pulumi.output_type
 class GetProviderAwsCloudwatchScrapeJobsResult:
     """
@@ -80,12 +82,13 @@ def get_provider_aws_cloudwatch_scrape_jobs(scrape_jobs: Optional[Sequence[Union
     import pulumi_grafana as grafana
 
     test = grafana.cloud.get_stack(slug="gcloudstacktest")
-    test_get_provider_aws_cloudwatch_scrape_jobs = grafana.cloud.get_provider_aws_cloudwatch_scrape_jobs(stack_id=test.id)
+    test_get_aws_cloudwatch_scrape_jobs = grafana.cloudProvider.get_aws_cloudwatch_scrape_jobs(stack_id=test.id)
     ```
 
 
     :param Sequence[Union['GetProviderAwsCloudwatchScrapeJobsScrapeJobArgs', 'GetProviderAwsCloudwatchScrapeJobsScrapeJobArgsDict']] scrape_jobs: A list of AWS CloudWatch Scrape Job objects associated with the given StackID.
     """
+    pulumi.log.warn("""get_provider_aws_cloudwatch_scrape_jobs is deprecated: grafana.cloud/getproviderawscloudwatchscrapejobs.getProviderAwsCloudwatchScrapeJobs has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejobs.getAwsCloudwatchScrapeJobs""")
     __args__ = dict()
     __args__['scrapeJobs'] = scrape_jobs
     __args__['stackId'] = stack_id
@@ -107,12 +110,13 @@ def get_provider_aws_cloudwatch_scrape_jobs_output(scrape_jobs: Optional[pulumi.
     import pulumi_grafana as grafana
 
     test = grafana.cloud.get_stack(slug="gcloudstacktest")
-    test_get_provider_aws_cloudwatch_scrape_jobs = grafana.cloud.get_provider_aws_cloudwatch_scrape_jobs(stack_id=test.id)
+    test_get_aws_cloudwatch_scrape_jobs = grafana.cloudProvider.get_aws_cloudwatch_scrape_jobs(stack_id=test.id)
     ```
 
 
     :param Sequence[Union['GetProviderAwsCloudwatchScrapeJobsScrapeJobArgs', 'GetProviderAwsCloudwatchScrapeJobsScrapeJobArgsDict']] scrape_jobs: A list of AWS CloudWatch Scrape Job objects associated with the given StackID.
     """
+    pulumi.log.warn("""get_provider_aws_cloudwatch_scrape_jobs is deprecated: grafana.cloud/getproviderawscloudwatchscrapejobs.getProviderAwsCloudwatchScrapeJobs has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejobs.getAwsCloudwatchScrapeJobs""")
     __args__ = dict()
     __args__['scrapeJobs'] = scrape_jobs
     __args__['stackId'] = stack_id

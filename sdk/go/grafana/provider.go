@@ -40,6 +40,12 @@ type Provider struct {
 	ConnectionsApiAccessToken pulumi.StringPtrOutput `pulumi:"connectionsApiAccessToken"`
 	// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
 	ConnectionsApiUrl pulumi.StringPtrOutput `pulumi:"connectionsApiUrl"`
+	// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+	// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+	FleetManagementAuth pulumi.StringPtrOutput `pulumi:"fleetManagementAuth"`
+	// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+	// variable.
+	FleetManagementUrl pulumi.StringPtrOutput `pulumi:"fleetManagementUrl"`
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
 	OncallAccessToken pulumi.StringPtrOutput `pulumi:"oncallAccessToken"`
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -151,6 +157,9 @@ func NewProvider(ctx *pulumi.Context,
 	if args.ConnectionsApiAccessToken != nil {
 		args.ConnectionsApiAccessToken = pulumi.ToSecret(args.ConnectionsApiAccessToken).(pulumi.StringPtrInput)
 	}
+	if args.FleetManagementAuth != nil {
+		args.FleetManagementAuth = pulumi.ToSecret(args.FleetManagementAuth).(pulumi.StringPtrInput)
+	}
 	if args.OncallAccessToken != nil {
 		args.OncallAccessToken = pulumi.ToSecret(args.OncallAccessToken).(pulumi.StringPtrInput)
 	}
@@ -165,6 +174,7 @@ func NewProvider(ctx *pulumi.Context,
 		"cloudAccessPolicyToken",
 		"cloudProviderAccessToken",
 		"connectionsApiAccessToken",
+		"fleetManagementAuth",
 		"oncallAccessToken",
 		"smAccessToken",
 		"tlsKey",
@@ -202,6 +212,12 @@ type providerArgs struct {
 	ConnectionsApiAccessToken *string `pulumi:"connectionsApiAccessToken"`
 	// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
 	ConnectionsApiUrl *string `pulumi:"connectionsApiUrl"`
+	// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+	// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+	FleetManagementAuth *string `pulumi:"fleetManagementAuth"`
+	// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+	// variable.
+	FleetManagementUrl *string `pulumi:"fleetManagementUrl"`
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 	InsecureSkipVerify *bool `pulumi:"insecureSkipVerify"`
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
@@ -256,6 +272,12 @@ type ProviderArgs struct {
 	ConnectionsApiAccessToken pulumi.StringPtrInput
 	// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
 	ConnectionsApiUrl pulumi.StringPtrInput
+	// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+	// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+	FleetManagementAuth pulumi.StringPtrInput
+	// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+	// variable.
+	FleetManagementUrl pulumi.StringPtrInput
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 	InsecureSkipVerify pulumi.BoolPtrInput
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
@@ -367,6 +389,18 @@ func (o ProviderOutput) ConnectionsApiAccessToken() pulumi.StringPtrOutput {
 // A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
 func (o ProviderOutput) ConnectionsApiUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ConnectionsApiUrl }).(pulumi.StringPtrOutput)
+}
+
+// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+func (o ProviderOutput) FleetManagementAuth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.FleetManagementAuth }).(pulumi.StringPtrOutput)
+}
+
+// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+// variable.
+func (o ProviderOutput) FleetManagementUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.FleetManagementUrl }).(pulumi.StringPtrOutput)
 }
 
 // A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.

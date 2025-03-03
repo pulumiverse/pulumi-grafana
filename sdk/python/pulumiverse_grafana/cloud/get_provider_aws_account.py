@@ -21,6 +21,8 @@ __all__ = [
     'get_provider_aws_account_output',
 ]
 
+warnings.warn("""grafana.cloud/getproviderawsaccount.getProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/getawsaccount.getAwsAccount""", DeprecationWarning)
+
 @pulumi.output_type
 class GetProviderAwsAccountResult:
     """
@@ -115,20 +117,21 @@ def get_provider_aws_account(resource_id: Optional[str] = None,
     import pulumiverse_grafana as grafana
 
     test = grafana.cloud.get_stack(slug="gcloudstacktest")
-    test_provider_aws_account = grafana.cloud.ProviderAwsAccount("test",
+    test_aws_account = grafana.cloud_provider.AwsAccount("test",
         stack_id=test.id,
         role_arn=test_aws_iam_role["arn"],
         regions=[
             "us-east-2",
             "eu-west-3",
         ])
-    test_get_provider_aws_account = test_provider_aws_account.resource_id.apply(lambda resource_id: grafana.cloud.get_provider_aws_account_output(stack_id=test.id,
+    test_get_aws_account = test_aws_account.resource_id.apply(lambda resource_id: grafana.cloudProvider.get_aws_account_output(stack_id=test.id,
         resource_id=resource_id))
     ```
 
 
     :param str resource_id: The ID given by the Grafana Cloud Provider API to this AWS Account resource.
     """
+    pulumi.log.warn("""get_provider_aws_account is deprecated: grafana.cloud/getproviderawsaccount.getProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/getawsaccount.getAwsAccount""")
     __args__ = dict()
     __args__['resourceId'] = resource_id
     __args__['stackId'] = stack_id
@@ -154,20 +157,21 @@ def get_provider_aws_account_output(resource_id: Optional[pulumi.Input[str]] = N
     import pulumiverse_grafana as grafana
 
     test = grafana.cloud.get_stack(slug="gcloudstacktest")
-    test_provider_aws_account = grafana.cloud.ProviderAwsAccount("test",
+    test_aws_account = grafana.cloud_provider.AwsAccount("test",
         stack_id=test.id,
         role_arn=test_aws_iam_role["arn"],
         regions=[
             "us-east-2",
             "eu-west-3",
         ])
-    test_get_provider_aws_account = test_provider_aws_account.resource_id.apply(lambda resource_id: grafana.cloud.get_provider_aws_account_output(stack_id=test.id,
+    test_get_aws_account = test_aws_account.resource_id.apply(lambda resource_id: grafana.cloudProvider.get_aws_account_output(stack_id=test.id,
         resource_id=resource_id))
     ```
 
 
     :param str resource_id: The ID given by the Grafana Cloud Provider API to this AWS Account resource.
     """
+    pulumi.log.warn("""get_provider_aws_account is deprecated: grafana.cloud/getproviderawsaccount.getProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/getawsaccount.getAwsAccount""")
     __args__ = dict()
     __args__['resourceId'] = resource_id
     __args__['stackId'] = stack_id

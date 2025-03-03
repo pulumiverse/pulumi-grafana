@@ -85,6 +85,30 @@ namespace Pulumiverse.Grafana.Cloud
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the Fleet Management instance configured for this stack.
+        /// </summary>
+        [Output("fleetManagementName")]
+        public Output<string> FleetManagementName { get; private set; } = null!;
+
+        /// <summary>
+        /// Status of the Fleet Management instance configured for this stack.
+        /// </summary>
+        [Output("fleetManagementStatus")]
+        public Output<string> FleetManagementStatus { get; private set; } = null!;
+
+        /// <summary>
+        /// Base URL of the Fleet Management instance configured for this stack.
+        /// </summary>
+        [Output("fleetManagementUrl")]
+        public Output<string> FleetManagementUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// User ID of the Fleet Management instance configured for this stack.
+        /// </summary>
+        [Output("fleetManagementUserId")]
+        public Output<int> FleetManagementUserId { get; private set; } = null!;
+
         [Output("graphiteName")]
         public Output<string> GraphiteName { get; private set; } = null!;
 
@@ -398,6 +422,30 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Name of the Fleet Management instance configured for this stack.
+        /// </summary>
+        [Input("fleetManagementName")]
+        public Input<string>? FleetManagementName { get; set; }
+
+        /// <summary>
+        /// Status of the Fleet Management instance configured for this stack.
+        /// </summary>
+        [Input("fleetManagementStatus")]
+        public Input<string>? FleetManagementStatus { get; set; }
+
+        /// <summary>
+        /// Base URL of the Fleet Management instance configured for this stack.
+        /// </summary>
+        [Input("fleetManagementUrl")]
+        public Input<string>? FleetManagementUrl { get; set; }
+
+        /// <summary>
+        /// User ID of the Fleet Management instance configured for this stack.
+        /// </summary>
+        [Input("fleetManagementUserId")]
+        public Input<int>? FleetManagementUserId { get; set; }
 
         [Input("graphiteName")]
         public Input<string>? GraphiteName { get; set; }

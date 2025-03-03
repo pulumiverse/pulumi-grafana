@@ -19,6 +19,7 @@ namespace Pulumiverse.Grafana.Cloud
     /// $ pulumi import grafana:cloud/providerAzureCredential:ProviderAzureCredential name "{{ stack_id }}:{{ resource_id }}"
     /// ```
     /// </summary>
+    [Obsolete(@"grafana.cloud/providerazurecredential.ProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/azurecredential.AzureCredential")]
     [GrafanaResourceType("grafana:cloud/providerAzureCredential:ProviderAzureCredential")]
     public partial class ProviderAzureCredential : global::Pulumi.CustomResource
     {

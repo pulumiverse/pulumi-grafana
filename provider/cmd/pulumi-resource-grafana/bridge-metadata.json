@@ -78,7 +78,14 @@
                 "current": "grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken"
             },
             "grafana_cloud_provider_aws_account": {
-                "current": "grafana:cloud/providerAwsAccount:ProviderAwsAccount",
+                "current": "grafana:cloudProvider/awsAccount:AwsAccount",
+                "past": [
+                    {
+                        "name": "grafana:cloud/providerAwsAccount:ProviderAwsAccount",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "regions": {
                         "maxItemsOne": false
@@ -86,7 +93,14 @@
                 }
             },
             "grafana_cloud_provider_aws_cloudwatch_scrape_job": {
-                "current": "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob",
+                "current": "grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob",
+                "past": [
+                    {
+                        "name": "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "custom_namespace": {
                         "maxItemsOne": false,
@@ -134,7 +148,14 @@
                 }
             },
             "grafana_cloud_provider_azure_credential": {
-                "current": "grafana:cloud/providerAzureCredential:ProviderAzureCredential",
+                "current": "grafana:cloudProvider/azureCredential:AzureCredential",
+                "past": [
+                    {
+                        "name": "grafana:cloud/providerAzureCredential:ProviderAzureCredential",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "auto_discovery_configuration": {
                         "maxItemsOne": false,
@@ -202,7 +223,14 @@
                 ]
             },
             "grafana_connections_metrics_endpoint_scrape_job": {
-                "current": "grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob"
+                "current": "grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob",
+                "past": [
+                    {
+                        "name": "grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_contact_point": {
                 "current": "grafana:alerting/contactPoint:ContactPoint",
@@ -385,6 +413,17 @@
                         "majorVersion": 0
                     }
                 ]
+            },
+            "grafana_fleet_management_collector": {
+                "current": "grafana:fleetManagement/collector:Collector"
+            },
+            "grafana_fleet_management_pipeline": {
+                "current": "grafana:fleetManagement/pipeline:Pipeline",
+                "fields": {
+                    "matchers": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "grafana_folder": {
                 "current": "grafana:oss/folder:Folder",
@@ -1461,7 +1500,14 @@
                 }
             },
             "grafana_cloud_provider_aws_account": {
-                "current": "grafana:cloud/getProviderAwsAccount:getProviderAwsAccount",
+                "current": "grafana:cloudProvider/getAwsAccount:getAwsAccount",
+                "past": [
+                    {
+                        "name": "grafana:cloud/getProviderAwsAccount:getProviderAwsAccount",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "regions": {
                         "maxItemsOne": false
@@ -1469,7 +1515,14 @@
                 }
             },
             "grafana_cloud_provider_aws_cloudwatch_scrape_job": {
-                "current": "grafana:cloud/getProviderAwsCloudwatchScrapeJob:getProviderAwsCloudwatchScrapeJob",
+                "current": "grafana:cloudProvider/getAwsCloudwatchScrapeJob:getAwsCloudwatchScrapeJob",
+                "past": [
+                    {
+                        "name": "grafana:cloud/getProviderAwsCloudwatchScrapeJob:getProviderAwsCloudwatchScrapeJob",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "custom_namespace": {
                         "maxItemsOne": false,
@@ -1517,7 +1570,14 @@
                 }
             },
             "grafana_cloud_provider_aws_cloudwatch_scrape_jobs": {
-                "current": "grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs",
+                "current": "grafana:cloudProvider/getAwsCloudwatchScrapeJobs:getAwsCloudwatchScrapeJobs",
+                "past": [
+                    {
+                        "name": "grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "scrape_job": {
                         "maxItemsOne": false,
@@ -1572,7 +1632,14 @@
                 }
             },
             "grafana_cloud_provider_azure_credential": {
-                "current": "grafana:cloud/getProviderAzureCredential:getProviderAzureCredential",
+                "current": "grafana:cloudProvider/getAzureCredential:getAzureCredential",
+                "past": [
+                    {
+                        "name": "grafana:cloud/getProviderAzureCredential:getProviderAzureCredential",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "auto_discovery_configuration": {
                         "maxItemsOne": false,
@@ -1620,7 +1687,14 @@
                 ]
             },
             "grafana_connections_metrics_endpoint_scrape_job": {
-                "current": "grafana:index/getConnectionsMetricsEndpointScrapeJob:getConnectionsMetricsEndpointScrapeJob"
+                "current": "grafana:connections/getMetricsEndpointScrapeJob:getMetricsEndpointScrapeJob",
+                "past": [
+                    {
+                        "name": "grafana:index/getConnectionsMetricsEndpointScrapeJob:getConnectionsMetricsEndpointScrapeJob",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
             },
             "grafana_dashboard": {
                 "current": "grafana:oss/getDashboard:getDashboard",
@@ -2047,6 +2121,21 @@
                     "grafana:index/cloudPluginInstallation:CloudPluginInstallation"
                 ]
             },
+            "grafana_cloud_provider_aws_account": {
+                "aliases": [
+                    "grafana:cloud/providerAwsAccount:ProviderAwsAccount"
+                ]
+            },
+            "grafana_cloud_provider_aws_cloudwatch_scrape_job": {
+                "aliases": [
+                    "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob"
+                ]
+            },
+            "grafana_cloud_provider_azure_credential": {
+                "aliases": [
+                    "grafana:cloud/providerAzureCredential:ProviderAzureCredential"
+                ]
+            },
             "grafana_cloud_stack": {
                 "aliases": [
                     "grafana:index/cloudStack:CloudStack"
@@ -2060,6 +2149,11 @@
             "grafana_cloud_stack_service_account_token": {
                 "aliases": [
                     "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken"
+                ]
+            },
+            "grafana_connections_metrics_endpoint_scrape_job": {
+                "aliases": [
+                    "grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob"
                 ]
             },
             "grafana_contact_point": {
@@ -2315,9 +2409,34 @@
                     "grafana:index/getCloudOrganization:getCloudOrganization"
                 ]
             },
+            "grafana_cloud_provider_aws_account": {
+                "renames": [
+                    "grafana:cloud/getProviderAwsAccount:getProviderAwsAccount"
+                ]
+            },
+            "grafana_cloud_provider_aws_cloudwatch_scrape_job": {
+                "renames": [
+                    "grafana:cloud/getProviderAwsCloudwatchScrapeJob:getProviderAwsCloudwatchScrapeJob"
+                ]
+            },
+            "grafana_cloud_provider_aws_cloudwatch_scrape_jobs": {
+                "renames": [
+                    "grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs"
+                ]
+            },
+            "grafana_cloud_provider_azure_credential": {
+                "renames": [
+                    "grafana:cloud/getProviderAzureCredential:getProviderAzureCredential"
+                ]
+            },
             "grafana_cloud_stack": {
                 "renames": [
                     "grafana:index/getCloudStack:getCloudStack"
+                ]
+            },
+            "grafana_connections_metrics_endpoint_scrape_job": {
+                "renames": [
+                    "grafana:index/getConnectionsMetricsEndpointScrapeJob:getConnectionsMetricsEndpointScrapeJob"
                 ]
             },
             "grafana_dashboard": {
@@ -2465,6 +2584,10 @@
             "grafana:cloud/stack:Stack": 0,
             "grafana:cloud/stackServiceAccount:StackServiceAccount": 0,
             "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": 0,
+            "grafana:cloudProvider/awsAccount:AwsAccount": 1,
+            "grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob": 1,
+            "grafana:cloudProvider/azureCredential:AzureCredential": 1,
+            "grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob": 1,
             "grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules": 1,
             "grafana:enterprise/dataSourcePermission:DataSourcePermission": 0,
             "grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem": 1,
@@ -2473,6 +2596,8 @@
             "grafana:enterprise/roleAssignment:RoleAssignment": 0,
             "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem": 1,
             "grafana:enterprise/teamExternalGroup:TeamExternalGroup": 0,
+            "grafana:fleetManagement/collector:Collector": 1,
+            "grafana:fleetManagement/pipeline:Pipeline": 1,
             "grafana:index/annotation:Annotation": 0,
             "grafana:index/cloudAccessPolicy:CloudAccessPolicy": 0,
             "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken": 0,
@@ -2577,6 +2702,11 @@
             "grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs": 1,
             "grafana:cloud/getProviderAzureCredential:getProviderAzureCredential": 1,
             "grafana:cloud/getStack:getStack": 0,
+            "grafana:cloudProvider/getAwsAccount:getAwsAccount": 1,
+            "grafana:cloudProvider/getAwsCloudwatchScrapeJob:getAwsCloudwatchScrapeJob": 1,
+            "grafana:cloudProvider/getAwsCloudwatchScrapeJobs:getAwsCloudwatchScrapeJobs": 1,
+            "grafana:cloudProvider/getAzureCredential:getAzureCredential": 1,
+            "grafana:connections/getMetricsEndpointScrapeJob:getMetricsEndpointScrapeJob": 1,
             "grafana:enterprise/getRole:getRole": 0,
             "grafana:index/getCloudIps:getCloudIps": 0,
             "grafana:index/getCloudOrganization:getCloudOrganization": 0,

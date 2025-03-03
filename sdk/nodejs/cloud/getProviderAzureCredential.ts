@@ -9,7 +9,9 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  */
+/** @deprecated grafana.cloud/getproviderazurecredential.getProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/getazurecredential.getAzureCredential */
 export function getProviderAzureCredential(args: GetProviderAzureCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetProviderAzureCredentialResult> {
+    pulumi.log.warn("getProviderAzureCredential is deprecated: grafana.cloud/getproviderazurecredential.getProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/getazurecredential.getAzureCredential")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:cloud/getProviderAzureCredential:getProviderAzureCredential", {
         "autoDiscoveryConfigurations": args.autoDiscoveryConfigurations,
@@ -80,7 +82,9 @@ export interface GetProviderAzureCredentialResult {
 /**
  * ## Example Usage
  */
+/** @deprecated grafana.cloud/getproviderazurecredential.getProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/getazurecredential.getAzureCredential */
 export function getProviderAzureCredentialOutput(args: GetProviderAzureCredentialOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProviderAzureCredentialResult> {
+    pulumi.log.warn("getProviderAzureCredential is deprecated: grafana.cloud/getproviderazurecredential.getProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/getazurecredential.getAzureCredential")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:cloud/getProviderAzureCredential:getProviderAzureCredential", {
         "autoDiscoveryConfigurations": args.autoDiscoveryConfigurations,

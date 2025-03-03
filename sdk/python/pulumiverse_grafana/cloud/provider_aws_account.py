@@ -165,7 +165,12 @@ class _ProviderAwsAccountState:
         pulumi.set(self, "stack_id", value)
 
 
+warnings.warn("""grafana.cloud/providerawsaccount.ProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/awsaccount.AwsAccount""", DeprecationWarning)
+
+
 class ProviderAwsAccount(pulumi.CustomResource):
+    warnings.warn("""grafana.cloud/providerawsaccount.ProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/awsaccount.AwsAccount""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -186,7 +191,7 @@ class ProviderAwsAccount(pulumi.CustomResource):
 
         test = grafana.cloud.get_stack(slug="gcloudstacktest")
         test_get_role = aws.iam.get_role(name="my-role")
-        test_provider_aws_account = grafana.cloud.ProviderAwsAccount("test",
+        test_aws_account = grafana.cloud_provider.AwsAccount("test",
             stack_id=test.id,
             role_arn=test_get_role.arn,
             regions=[
@@ -225,7 +230,7 @@ class ProviderAwsAccount(pulumi.CustomResource):
 
         test = grafana.cloud.get_stack(slug="gcloudstacktest")
         test_get_role = aws.iam.get_role(name="my-role")
-        test_provider_aws_account = grafana.cloud.ProviderAwsAccount("test",
+        test_aws_account = grafana.cloud_provider.AwsAccount("test",
             stack_id=test.id,
             role_arn=test_get_role.arn,
             regions=[
@@ -261,6 +266,7 @@ class ProviderAwsAccount(pulumi.CustomResource):
                  role_arn: Optional[pulumi.Input[str]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""ProviderAwsAccount is deprecated: grafana.cloud/providerawsaccount.ProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/awsaccount.AwsAccount""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

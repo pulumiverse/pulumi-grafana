@@ -19,6 +19,8 @@ import (
 // ```sh
 // $ pulumi import grafana:cloud/providerAzureCredential:ProviderAzureCredential name "{{ stack_id }}:{{ resource_id }}"
 // ```
+//
+// Deprecated: grafana.cloud/providerazurecredential.ProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/azurecredential.AzureCredential
 type ProviderAzureCredential struct {
 	pulumi.CustomResourceState
 

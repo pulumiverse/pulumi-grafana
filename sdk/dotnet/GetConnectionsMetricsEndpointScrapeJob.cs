@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana
 {
+    [Obsolete(@"grafana.index/getconnectionsmetricsendpointscrapejob.getConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/getmetricsendpointscrapejob.getMetricsEndpointScrapeJob")]
     public static class GetConnectionsMetricsEndpointScrapeJob
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var dsTest = Grafana.GetConnectionsMetricsEndpointScrapeJob.Invoke(new()
+        ///     var dsTest = Grafana.Connections.GetMetricsEndpointScrapeJob.Invoke(new()
         ///     {
         ///         StackId = "1",
         ///         Name = "my-scrape-job",
@@ -46,7 +47,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var dsTest = Grafana.GetConnectionsMetricsEndpointScrapeJob.Invoke(new()
+        ///     var dsTest = Grafana.Connections.GetMetricsEndpointScrapeJob.Invoke(new()
         ///     {
         ///         StackId = "1",
         ///         Name = "my-scrape-job",
@@ -69,7 +70,7 @@ namespace Pulumiverse.Grafana
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var dsTest = Grafana.GetConnectionsMetricsEndpointScrapeJob.Invoke(new()
+        ///     var dsTest = Grafana.Connections.GetMetricsEndpointScrapeJob.Invoke(new()
         ///     {
         ///         StackId = "1",
         ///         Name = "my-scrape-job",

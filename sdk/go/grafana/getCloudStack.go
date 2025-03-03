@@ -76,11 +76,19 @@ type LookupCloudStackResult struct {
 	// Slug of the cluster where this stack resides.
 	ClusterSlug string `pulumi:"clusterSlug"`
 	// Description of stack.
-	Description    string `pulumi:"description"`
-	GraphiteName   string `pulumi:"graphiteName"`
-	GraphiteStatus string `pulumi:"graphiteStatus"`
-	GraphiteUrl    string `pulumi:"graphiteUrl"`
-	GraphiteUserId int    `pulumi:"graphiteUserId"`
+	Description string `pulumi:"description"`
+	// Name of the Fleet Management instance configured for this stack.
+	FleetManagementName string `pulumi:"fleetManagementName"`
+	// Status of the Fleet Management instance configured for this stack.
+	FleetManagementStatus string `pulumi:"fleetManagementStatus"`
+	// Base URL of the Fleet Management instance configured for this stack.
+	FleetManagementUrl string `pulumi:"fleetManagementUrl"`
+	// User ID of the Fleet Management instance configured for this stack.
+	FleetManagementUserId int    `pulumi:"fleetManagementUserId"`
+	GraphiteName          string `pulumi:"graphiteName"`
+	GraphiteStatus        string `pulumi:"graphiteStatus"`
+	GraphiteUrl           string `pulumi:"graphiteUrl"`
+	GraphiteUserId        int    `pulumi:"graphiteUserId"`
 	// The stack id assigned to this stack by Grafana.
 	Id string `pulumi:"id"`
 	// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
@@ -196,6 +204,26 @@ func (o LookupCloudStackResultOutput) ClusterSlug() pulumi.StringOutput {
 // Description of stack.
 func (o LookupCloudStackResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudStackResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Name of the Fleet Management instance configured for this stack.
+func (o LookupCloudStackResultOutput) FleetManagementName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudStackResult) string { return v.FleetManagementName }).(pulumi.StringOutput)
+}
+
+// Status of the Fleet Management instance configured for this stack.
+func (o LookupCloudStackResultOutput) FleetManagementStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudStackResult) string { return v.FleetManagementStatus }).(pulumi.StringOutput)
+}
+
+// Base URL of the Fleet Management instance configured for this stack.
+func (o LookupCloudStackResultOutput) FleetManagementUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudStackResult) string { return v.FleetManagementUrl }).(pulumi.StringOutput)
+}
+
+// User ID of the Fleet Management instance configured for this stack.
+func (o LookupCloudStackResultOutput) FleetManagementUserId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupCloudStackResult) int { return v.FleetManagementUserId }).(pulumi.IntOutput)
 }
 
 func (o LookupCloudStackResultOutput) GraphiteName() pulumi.StringOutput {

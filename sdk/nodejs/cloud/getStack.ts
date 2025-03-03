@@ -71,6 +71,22 @@ export interface GetStackResult {
      * Description of stack.
      */
     readonly description: string;
+    /**
+     * Name of the Fleet Management instance configured for this stack.
+     */
+    readonly fleetManagementName: string;
+    /**
+     * Status of the Fleet Management instance configured for this stack.
+     */
+    readonly fleetManagementStatus: string;
+    /**
+     * Base URL of the Fleet Management instance configured for this stack.
+     */
+    readonly fleetManagementUrl: string;
+    /**
+     * User ID of the Fleet Management instance configured for this stack.
+     */
+    readonly fleetManagementUserId: number;
     readonly graphiteName: string;
     readonly graphiteStatus: string;
     readonly graphiteUrl: string;

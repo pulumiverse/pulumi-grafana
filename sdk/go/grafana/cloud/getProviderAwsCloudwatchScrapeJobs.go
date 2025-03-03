@@ -20,6 +20,7 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloudprovider"
 //
 // )
 //
@@ -31,7 +32,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloud.GetProviderAwsCloudwatchScrapeJobs(ctx, &cloud.GetProviderAwsCloudwatchScrapeJobsArgs{
+//			_, err = cloudprovider.GetAwsCloudwatchScrapeJobs(ctx, &cloudprovider.GetAwsCloudwatchScrapeJobsArgs{
 //				StackId: test.Id,
 //			}, nil)
 //			if err != nil {
@@ -42,6 +43,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: grafana.cloud/getproviderawscloudwatchscrapejobs.getProviderAwsCloudwatchScrapeJobs has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejobs.getAwsCloudwatchScrapeJobs
 func GetProviderAwsCloudwatchScrapeJobs(ctx *pulumi.Context, args *GetProviderAwsCloudwatchScrapeJobsArgs, opts ...pulumi.InvokeOption) (*GetProviderAwsCloudwatchScrapeJobsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetProviderAwsCloudwatchScrapeJobsResult

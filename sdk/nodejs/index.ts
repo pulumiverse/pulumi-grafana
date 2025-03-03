@@ -439,8 +439,11 @@ utilities.lazyLoad(exports, ["User"], () => require("./user"));
 // Export sub-modules:
 import * as alerting from "./alerting";
 import * as cloud from "./cloud";
+import * as cloudprovider from "./cloudprovider";
 import * as config from "./config";
+import * as connections from "./connections";
 import * as enterprise from "./enterprise";
+import * as fleetmanagement from "./fleetmanagement";
 import * as machinelearning from "./machinelearning";
 import * as oncall from "./oncall";
 import * as oss from "./oss";
@@ -451,8 +454,11 @@ import * as types from "./types";
 export {
     alerting,
     cloud,
+    cloudprovider,
     config,
+    connections,
     enterprise,
+    fleetmanagement,
     machinelearning,
     oncall,
     oss,

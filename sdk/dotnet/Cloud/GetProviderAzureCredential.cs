@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana.Cloud
 {
+    [Obsolete(@"grafana.cloud/getproviderazurecredential.getProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/getazurecredential.getAzureCredential")]
     public static class GetProviderAzureCredential
     {
         /// <summary>

@@ -23,6 +23,8 @@ __all__ = [
     'get_provider_azure_credential_output',
 ]
 
+warnings.warn("""grafana.cloud/getproviderazurecredential.getProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/getazurecredential.getAzureCredential""", DeprecationWarning)
+
 @pulumi.output_type
 class GetProviderAzureCredentialResult:
     """
@@ -166,6 +168,7 @@ def get_provider_azure_credential(auto_discovery_configurations: Optional[Sequen
     :param Sequence[Union['GetProviderAzureCredentialResourceDiscoveryTagFilterArgs', 'GetProviderAzureCredentialResourceDiscoveryTagFilterArgsDict']] resource_discovery_tag_filters: The list of tag filters to apply to resources.
     :param str resource_id: The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
     """
+    pulumi.log.warn("""get_provider_azure_credential is deprecated: grafana.cloud/getproviderazurecredential.getProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/getazurecredential.getAzureCredential""")
     __args__ = dict()
     __args__['autoDiscoveryConfigurations'] = auto_discovery_configurations
     __args__['resourceDiscoveryTagFilters'] = resource_discovery_tag_filters
@@ -198,6 +201,7 @@ def get_provider_azure_credential_output(auto_discovery_configurations: Optional
     :param Sequence[Union['GetProviderAzureCredentialResourceDiscoveryTagFilterArgs', 'GetProviderAzureCredentialResourceDiscoveryTagFilterArgsDict']] resource_discovery_tag_filters: The list of tag filters to apply to resources.
     :param str resource_id: The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
     """
+    pulumi.log.warn("""get_provider_azure_credential is deprecated: grafana.cloud/getproviderazurecredential.getProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/getazurecredential.getAzureCredential""")
     __args__ = dict()
     __args__['autoDiscoveryConfigurations'] = auto_discovery_configurations
     __args__['resourceDiscoveryTagFilters'] = resource_discovery_tag_filters

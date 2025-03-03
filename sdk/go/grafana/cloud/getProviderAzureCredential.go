@@ -12,6 +12,8 @@ import (
 )
 
 // ## Example Usage
+//
+// Deprecated: grafana.cloud/getproviderazurecredential.getProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/getazurecredential.getAzureCredential
 func LookupProviderAzureCredential(ctx *pulumi.Context, args *LookupProviderAzureCredentialArgs, opts ...pulumi.InvokeOption) (*LookupProviderAzureCredentialResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProviderAzureCredentialResult

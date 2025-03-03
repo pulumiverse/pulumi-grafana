@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  * const testGetRole = aws.iam.getRole({
  *     name: "my-role",
  * });
- * const testProviderAwsAccount = new grafana.cloud.ProviderAwsAccount("test", {
+ * const testAwsAccount = new grafana.cloudprovider.AwsAccount("test", {
  *     stackId: test.then(test => test.id),
  *     roleArn: testGetRole.then(testGetRole => testGetRole.arn),
  *     regions: [
@@ -35,6 +35,8 @@ import * as utilities from "../utilities";
  * ```sh
  * $ pulumi import grafana:cloud/providerAwsAccount:ProviderAwsAccount name "{{ stack_id }}:{{ resource_id }}"
  * ```
+ *
+ * @deprecated grafana.cloud/providerawsaccount.ProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/awsaccount.AwsAccount
  */
 export class ProviderAwsAccount extends pulumi.CustomResource {
     /**
@@ -47,6 +49,7 @@ export class ProviderAwsAccount extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ProviderAwsAccountState, opts?: pulumi.CustomResourceOptions): ProviderAwsAccount {
+        pulumi.log.warn("ProviderAwsAccount is deprecated: grafana.cloud/providerawsaccount.ProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/awsaccount.AwsAccount")
         return new ProviderAwsAccount(name, <any>state, { ...opts, id: id });
     }
 
@@ -89,8 +92,11 @@ export class ProviderAwsAccount extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.cloud/providerawsaccount.ProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/awsaccount.AwsAccount */
     constructor(name: string, args: ProviderAwsAccountArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.cloud/providerawsaccount.ProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/awsaccount.AwsAccount */
     constructor(name: string, argsOrState?: ProviderAwsAccountArgs | ProviderAwsAccountState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ProviderAwsAccount is deprecated: grafana.cloud/providerawsaccount.ProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/awsaccount.AwsAccount")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

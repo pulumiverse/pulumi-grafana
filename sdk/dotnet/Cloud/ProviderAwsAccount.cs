@@ -33,7 +33,7 @@ namespace Pulumiverse.Grafana.Cloud
     ///         Name = "my-role",
     ///     });
     /// 
-    ///     var testProviderAwsAccount = new Grafana.Cloud.ProviderAwsAccount("test", new()
+    ///     var testAwsAccount = new Grafana.CloudProvider.AwsAccount("test", new()
     ///     {
     ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
     ///         RoleArn = testGetRole.Apply(getRoleResult =&gt; getRoleResult.Arn),
@@ -54,6 +54,7 @@ namespace Pulumiverse.Grafana.Cloud
     /// $ pulumi import grafana:cloud/providerAwsAccount:ProviderAwsAccount name "{{ stack_id }}:{{ resource_id }}"
     /// ```
     /// </summary>
+    [Obsolete(@"grafana.cloud/providerawsaccount.ProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/awsaccount.AwsAccount")]
     [GrafanaResourceType("grafana:cloud/providerAwsAccount:ProviderAwsAccount")]
     public partial class ProviderAwsAccount : global::Pulumi.CustomResource
     {

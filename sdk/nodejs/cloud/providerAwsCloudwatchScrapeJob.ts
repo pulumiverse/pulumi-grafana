@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  * const testGetRole = aws.iam.getRole({
  *     name: "my-role",
  * });
- * const testProviderAwsAccount = new grafana.cloud.ProviderAwsAccount("test", {
+ * const testAwsAccount = new grafana.cloudprovider.AwsAccount("test", {
  *     stackId: test.then(test => test.id),
  *     roleArn: testGetRole.then(testGetRole => testGetRole.arn),
  *     regions: [
@@ -30,10 +30,10 @@ import * as utilities from "../utilities";
  *         "us-west-1",
  *     ],
  * });
- * const testProviderAwsCloudwatchScrapeJob = new grafana.cloud.ProviderAwsCloudwatchScrapeJob("test", {
+ * const testAwsCloudwatchScrapeJob = new grafana.cloudprovider.AwsCloudwatchScrapeJob("test", {
  *     stackId: test.then(test => test.id),
  *     name: "my-cloudwatch-scrape-job",
- *     awsAccountResourceId: testProviderAwsAccount.resourceId,
+ *     awsAccountResourceId: testAwsAccount.resourceId,
  *     exportTags: true,
  *     services: [{
  *         name: "AWS/EC2",
@@ -65,6 +65,10 @@ import * as utilities from "../utilities";
  *         }],
  *         scrapeIntervalSeconds: 300,
  *     }],
+ *     staticLabels: {
+ *         label1: "value1",
+ *         label2: "value2",
+ *     },
  * });
  * ```
  *
@@ -73,6 +77,8 @@ import * as utilities from "../utilities";
  * ```sh
  * $ pulumi import grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob name "{{ stack_id }}:{{ name }}"
  * ```
+ *
+ * @deprecated grafana.cloud/providerawscloudwatchscrapejob.ProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/awscloudwatchscrapejob.AwsCloudwatchScrapeJob
  */
 export class ProviderAwsCloudwatchScrapeJob extends pulumi.CustomResource {
     /**
@@ -85,6 +91,7 @@ export class ProviderAwsCloudwatchScrapeJob extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ProviderAwsCloudwatchScrapeJobState, opts?: pulumi.CustomResourceOptions): ProviderAwsCloudwatchScrapeJob {
+        pulumi.log.warn("ProviderAwsCloudwatchScrapeJob is deprecated: grafana.cloud/providerawscloudwatchscrapejob.ProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/awscloudwatchscrapejob.AwsCloudwatchScrapeJob")
         return new ProviderAwsCloudwatchScrapeJob(name, <any>state, { ...opts, id: id });
     }
 
@@ -103,7 +110,7 @@ export class ProviderAwsCloudwatchScrapeJob extends pulumi.CustomResource {
     }
 
     /**
-     * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloud.ProviderAwsAccount` resource.
+     * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
      */
     public readonly awsAccountResourceId!: pulumi.Output<string>;
     /**
@@ -132,6 +139,10 @@ export class ProviderAwsCloudwatchScrapeJob extends pulumi.CustomResource {
      */
     public readonly services!: pulumi.Output<outputs.cloud.ProviderAwsCloudwatchScrapeJobService[] | undefined>;
     public readonly stackId!: pulumi.Output<string>;
+    /**
+     * A set of static labels to add to all metrics exported by this scrape job.
+     */
+    public readonly staticLabels!: pulumi.Output<{[key: string]: string}>;
 
     /**
      * Create a ProviderAwsCloudwatchScrapeJob resource with the given unique name, arguments, and options.
@@ -140,8 +151,11 @@ export class ProviderAwsCloudwatchScrapeJob extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.cloud/providerawscloudwatchscrapejob.ProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/awscloudwatchscrapejob.AwsCloudwatchScrapeJob */
     constructor(name: string, args: ProviderAwsCloudwatchScrapeJobArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.cloud/providerawscloudwatchscrapejob.ProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/awscloudwatchscrapejob.AwsCloudwatchScrapeJob */
     constructor(name: string, argsOrState?: ProviderAwsCloudwatchScrapeJobArgs | ProviderAwsCloudwatchScrapeJobState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ProviderAwsCloudwatchScrapeJob is deprecated: grafana.cloud/providerawscloudwatchscrapejob.ProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/awscloudwatchscrapejob.AwsCloudwatchScrapeJob")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -155,6 +169,7 @@ export class ProviderAwsCloudwatchScrapeJob extends pulumi.CustomResource {
             resourceInputs["regionsSubsetOverrides"] = state ? state.regionsSubsetOverrides : undefined;
             resourceInputs["services"] = state ? state.services : undefined;
             resourceInputs["stackId"] = state ? state.stackId : undefined;
+            resourceInputs["staticLabels"] = state ? state.staticLabels : undefined;
         } else {
             const args = argsOrState as ProviderAwsCloudwatchScrapeJobArgs | undefined;
             if ((!args || args.awsAccountResourceId === undefined) && !opts.urn) {
@@ -171,6 +186,7 @@ export class ProviderAwsCloudwatchScrapeJob extends pulumi.CustomResource {
             resourceInputs["regionsSubsetOverrides"] = args ? args.regionsSubsetOverrides : undefined;
             resourceInputs["services"] = args ? args.services : undefined;
             resourceInputs["stackId"] = args ? args.stackId : undefined;
+            resourceInputs["staticLabels"] = args ? args.staticLabels : undefined;
             resourceInputs["disabledReason"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -183,7 +199,7 @@ export class ProviderAwsCloudwatchScrapeJob extends pulumi.CustomResource {
  */
 export interface ProviderAwsCloudwatchScrapeJobState {
     /**
-     * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloud.ProviderAwsAccount` resource.
+     * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
      */
     awsAccountResourceId?: pulumi.Input<string>;
     /**
@@ -212,6 +228,10 @@ export interface ProviderAwsCloudwatchScrapeJobState {
      */
     services?: pulumi.Input<pulumi.Input<inputs.cloud.ProviderAwsCloudwatchScrapeJobService>[]>;
     stackId?: pulumi.Input<string>;
+    /**
+     * A set of static labels to add to all metrics exported by this scrape job.
+     */
+    staticLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 /**
@@ -219,7 +239,7 @@ export interface ProviderAwsCloudwatchScrapeJobState {
  */
 export interface ProviderAwsCloudwatchScrapeJobArgs {
     /**
-     * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloud.ProviderAwsAccount` resource.
+     * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
      */
     awsAccountResourceId: pulumi.Input<string>;
     /**
@@ -244,4 +264,8 @@ export interface ProviderAwsCloudwatchScrapeJobArgs {
      */
     services?: pulumi.Input<pulumi.Input<inputs.cloud.ProviderAwsCloudwatchScrapeJobService>[]>;
     stackId: pulumi.Input<string>;
+    /**
+     * A set of static labels to add to all metrics exported by this scrape job.
+     */
+    staticLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

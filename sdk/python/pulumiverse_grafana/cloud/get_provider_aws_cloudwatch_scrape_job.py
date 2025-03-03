@@ -23,12 +23,14 @@ __all__ = [
     'get_provider_aws_cloudwatch_scrape_job_output',
 ]
 
+warnings.warn("""grafana.cloud/getproviderawscloudwatchscrapejob.getProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejob.getAwsCloudwatchScrapeJob""", DeprecationWarning)
+
 @pulumi.output_type
 class GetProviderAwsCloudwatchScrapeJobResult:
     """
     A collection of values returned by getProviderAwsCloudwatchScrapeJob.
     """
-    def __init__(__self__, aws_account_resource_id=None, custom_namespaces=None, disabled_reason=None, enabled=None, export_tags=None, id=None, name=None, regions=None, regions_subset_override_used=None, role_arn=None, services=None, stack_id=None):
+    def __init__(__self__, aws_account_resource_id=None, custom_namespaces=None, disabled_reason=None, enabled=None, export_tags=None, id=None, name=None, regions=None, regions_subset_override_used=None, role_arn=None, services=None, stack_id=None, static_labels=None):
         if aws_account_resource_id and not isinstance(aws_account_resource_id, str):
             raise TypeError("Expected argument 'aws_account_resource_id' to be a str")
         pulumi.set(__self__, "aws_account_resource_id", aws_account_resource_id)
@@ -65,12 +67,15 @@ class GetProviderAwsCloudwatchScrapeJobResult:
         if stack_id and not isinstance(stack_id, str):
             raise TypeError("Expected argument 'stack_id' to be a str")
         pulumi.set(__self__, "stack_id", stack_id)
+        if static_labels and not isinstance(static_labels, dict):
+            raise TypeError("Expected argument 'static_labels' to be a dict")
+        pulumi.set(__self__, "static_labels", static_labels)
 
     @property
     @pulumi.getter(name="awsAccountResourceId")
     def aws_account_resource_id(self) -> str:
         """
-        The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloud.ProviderAwsAccount` resource.
+        The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         """
         return pulumi.get(self, "aws_account_resource_id")
 
@@ -153,6 +158,14 @@ class GetProviderAwsCloudwatchScrapeJobResult:
     def stack_id(self) -> str:
         return pulumi.get(self, "stack_id")
 
+    @property
+    @pulumi.getter(name="staticLabels")
+    def static_labels(self) -> Mapping[str, str]:
+        """
+        A set of static labels to add to all metrics exported by this scrape job.
+        """
+        return pulumi.get(self, "static_labels")
+
 
 class AwaitableGetProviderAwsCloudwatchScrapeJobResult(GetProviderAwsCloudwatchScrapeJobResult):
     # pylint: disable=using-constant-test
@@ -171,7 +184,8 @@ class AwaitableGetProviderAwsCloudwatchScrapeJobResult(GetProviderAwsCloudwatchS
             regions_subset_override_used=self.regions_subset_override_used,
             role_arn=self.role_arn,
             services=self.services,
-            stack_id=self.stack_id)
+            stack_id=self.stack_id,
+            static_labels=self.static_labels)
 
 
 def get_provider_aws_cloudwatch_scrape_job(custom_namespaces: Optional[Sequence[Union['GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs', 'GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgsDict']]] = None,
@@ -190,7 +204,7 @@ def get_provider_aws_cloudwatch_scrape_job(custom_namespaces: Optional[Sequence[
 
     test = grafana.cloud.get_stack(slug="gcloudstacktest")
     test_get_role = aws.iam.get_role(name="my-role")
-    test_provider_aws_account = grafana.cloud.ProviderAwsAccount("test",
+    test_aws_account = grafana.cloud_provider.AwsAccount("test",
         stack_id=test.id,
         role_arn=test_get_role.arn,
         regions=[
@@ -198,10 +212,10 @@ def get_provider_aws_cloudwatch_scrape_job(custom_namespaces: Optional[Sequence[
             "us-east-2",
             "us-west-1",
         ])
-    test_provider_aws_cloudwatch_scrape_job = grafana.cloud.ProviderAwsCloudwatchScrapeJob("test",
+    test_aws_cloudwatch_scrape_job = grafana.cloud_provider.AwsCloudwatchScrapeJob("test",
         stack_id=test.id,
         name="my-cloudwatch-scrape-job",
-        aws_account_resource_id=test_provider_aws_account.resource_id,
+        aws_account_resource_id=test_aws_account.resource_id,
         export_tags=True,
         services=[{
             "name": "AWS/EC2",
@@ -232,8 +246,12 @@ def get_provider_aws_cloudwatch_scrape_job(custom_namespaces: Optional[Sequence[
                 ],
             }],
             "scrape_interval_seconds": 300,
-        }])
-    test_get_provider_aws_cloudwatch_scrape_job = test_provider_aws_cloudwatch_scrape_job.name.apply(lambda name: grafana.cloud.get_provider_aws_cloudwatch_scrape_job_output(stack_id=test.id,
+        }],
+        static_labels={
+            "label1": "value1",
+            "label2": "value2",
+        })
+    test_get_aws_cloudwatch_scrape_job = test_aws_cloudwatch_scrape_job.name.apply(lambda name: grafana.cloudProvider.get_aws_cloudwatch_scrape_job_output(stack_id=test.id,
         name=name))
     ```
 
@@ -241,6 +259,7 @@ def get_provider_aws_cloudwatch_scrape_job(custom_namespaces: Optional[Sequence[
     :param Sequence[Union['GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs', 'GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgsDict']] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
     :param Sequence[Union['GetProviderAwsCloudwatchScrapeJobServiceArgs', 'GetProviderAwsCloudwatchScrapeJobServiceArgsDict']] services: One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
     """
+    pulumi.log.warn("""get_provider_aws_cloudwatch_scrape_job is deprecated: grafana.cloud/getproviderawscloudwatchscrapejob.getProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejob.getAwsCloudwatchScrapeJob""")
     __args__ = dict()
     __args__['customNamespaces'] = custom_namespaces
     __args__['name'] = name
@@ -261,7 +280,8 @@ def get_provider_aws_cloudwatch_scrape_job(custom_namespaces: Optional[Sequence[
         regions_subset_override_used=pulumi.get(__ret__, 'regions_subset_override_used'),
         role_arn=pulumi.get(__ret__, 'role_arn'),
         services=pulumi.get(__ret__, 'services'),
-        stack_id=pulumi.get(__ret__, 'stack_id'))
+        stack_id=pulumi.get(__ret__, 'stack_id'),
+        static_labels=pulumi.get(__ret__, 'static_labels'))
 def get_provider_aws_cloudwatch_scrape_job_output(custom_namespaces: Optional[pulumi.Input[Optional[Sequence[Union['GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs', 'GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgsDict']]]]] = None,
                                                   name: Optional[pulumi.Input[str]] = None,
                                                   services: Optional[pulumi.Input[Optional[Sequence[Union['GetProviderAwsCloudwatchScrapeJobServiceArgs', 'GetProviderAwsCloudwatchScrapeJobServiceArgsDict']]]]] = None,
@@ -278,7 +298,7 @@ def get_provider_aws_cloudwatch_scrape_job_output(custom_namespaces: Optional[pu
 
     test = grafana.cloud.get_stack(slug="gcloudstacktest")
     test_get_role = aws.iam.get_role(name="my-role")
-    test_provider_aws_account = grafana.cloud.ProviderAwsAccount("test",
+    test_aws_account = grafana.cloud_provider.AwsAccount("test",
         stack_id=test.id,
         role_arn=test_get_role.arn,
         regions=[
@@ -286,10 +306,10 @@ def get_provider_aws_cloudwatch_scrape_job_output(custom_namespaces: Optional[pu
             "us-east-2",
             "us-west-1",
         ])
-    test_provider_aws_cloudwatch_scrape_job = grafana.cloud.ProviderAwsCloudwatchScrapeJob("test",
+    test_aws_cloudwatch_scrape_job = grafana.cloud_provider.AwsCloudwatchScrapeJob("test",
         stack_id=test.id,
         name="my-cloudwatch-scrape-job",
-        aws_account_resource_id=test_provider_aws_account.resource_id,
+        aws_account_resource_id=test_aws_account.resource_id,
         export_tags=True,
         services=[{
             "name": "AWS/EC2",
@@ -320,8 +340,12 @@ def get_provider_aws_cloudwatch_scrape_job_output(custom_namespaces: Optional[pu
                 ],
             }],
             "scrape_interval_seconds": 300,
-        }])
-    test_get_provider_aws_cloudwatch_scrape_job = test_provider_aws_cloudwatch_scrape_job.name.apply(lambda name: grafana.cloud.get_provider_aws_cloudwatch_scrape_job_output(stack_id=test.id,
+        }],
+        static_labels={
+            "label1": "value1",
+            "label2": "value2",
+        })
+    test_get_aws_cloudwatch_scrape_job = test_aws_cloudwatch_scrape_job.name.apply(lambda name: grafana.cloudProvider.get_aws_cloudwatch_scrape_job_output(stack_id=test.id,
         name=name))
     ```
 
@@ -329,6 +353,7 @@ def get_provider_aws_cloudwatch_scrape_job_output(custom_namespaces: Optional[pu
     :param Sequence[Union['GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs', 'GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgsDict']] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
     :param Sequence[Union['GetProviderAwsCloudwatchScrapeJobServiceArgs', 'GetProviderAwsCloudwatchScrapeJobServiceArgsDict']] services: One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
     """
+    pulumi.log.warn("""get_provider_aws_cloudwatch_scrape_job is deprecated: grafana.cloud/getproviderawscloudwatchscrapejob.getProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejob.getAwsCloudwatchScrapeJob""")
     __args__ = dict()
     __args__['customNamespaces'] = custom_namespaces
     __args__['name'] = name
@@ -348,4 +373,5 @@ def get_provider_aws_cloudwatch_scrape_job_output(custom_namespaces: Optional[pu
         regions_subset_override_used=pulumi.get(__response__, 'regions_subset_override_used'),
         role_arn=pulumi.get(__response__, 'role_arn'),
         services=pulumi.get(__response__, 'services'),
-        stack_id=pulumi.get(__response__, 'stack_id')))
+        stack_id=pulumi.get(__response__, 'stack_id'),
+        static_labels=pulumi.get(__response__, 'static_labels')))

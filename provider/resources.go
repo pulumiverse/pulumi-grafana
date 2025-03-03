@@ -33,7 +33,10 @@ const (
 	// https://registry.terraform.io/providers/grafana/grafana/latest/docs
 	alertingMod            = "alerting"
 	cloudMod               = "cloud"
+	cloudProviderMod       = "cloudProvider"
+	connectionsMod         = "connections"
 	enterpriseMod          = "enterprise"
+	fleetManagementMod     = "fleetManagement"
 	mlMod                  = "machineLearning"
 	oncallMod              = "onCall"
 	ossMod                 = "oss"
@@ -343,6 +346,11 @@ func Provider() tfbridge.ProviderInfo {
 				Docs: &tfbridge.DocInfo{
 					Source: "team_external_group.md",
 				},
+			},
+
+			// Fleet Management
+			"grafana_fleet_management_collector": {
+				ComputeID: tfbridge.DelegateIDField("id", "grafana", "https://github.com/pulumiverse/pulumi-grafana"),
 			},
 
 			// OSS
@@ -725,7 +733,10 @@ func Provider() tfbridge.ProviderInfo {
 			map[string]string{
 				"alerting":             alertingMod,
 				"cloud":                cloudMod,
+				"cloud_provider":       cloudProviderMod,
+				"connections":          connectionsMod,
 				"enterprise":           enterpriseMod,
+				"fleet_management":     fleetManagementMod,
 				"machine_learning":     mlMod,
 				"oncall":               oncallMod,
 				"oss":                  ossMod,

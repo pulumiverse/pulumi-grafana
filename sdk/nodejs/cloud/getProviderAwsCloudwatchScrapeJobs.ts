@@ -16,12 +16,14 @@ import * as utilities from "../utilities";
  * const test = grafana.cloud.getStack({
  *     slug: "gcloudstacktest",
  * });
- * const testGetProviderAwsCloudwatchScrapeJobs = test.then(test => grafana.cloud.getProviderAwsCloudwatchScrapeJobs({
+ * const testGetAwsCloudwatchScrapeJobs = test.then(test => grafana.cloudProvider.getAwsCloudwatchScrapeJobs({
  *     stackId: test.id,
  * }));
  * ```
  */
+/** @deprecated grafana.cloud/getproviderawscloudwatchscrapejobs.getProviderAwsCloudwatchScrapeJobs has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejobs.getAwsCloudwatchScrapeJobs */
 export function getProviderAwsCloudwatchScrapeJobs(args: GetProviderAwsCloudwatchScrapeJobsArgs, opts?: pulumi.InvokeOptions): Promise<GetProviderAwsCloudwatchScrapeJobsResult> {
+    pulumi.log.warn("getProviderAwsCloudwatchScrapeJobs is deprecated: grafana.cloud/getproviderawscloudwatchscrapejobs.getProviderAwsCloudwatchScrapeJobs has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejobs.getAwsCloudwatchScrapeJobs")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs", {
         "scrapeJobs": args.scrapeJobs,
@@ -61,12 +63,14 @@ export interface GetProviderAwsCloudwatchScrapeJobsResult {
  * const test = grafana.cloud.getStack({
  *     slug: "gcloudstacktest",
  * });
- * const testGetProviderAwsCloudwatchScrapeJobs = test.then(test => grafana.cloud.getProviderAwsCloudwatchScrapeJobs({
+ * const testGetAwsCloudwatchScrapeJobs = test.then(test => grafana.cloudProvider.getAwsCloudwatchScrapeJobs({
  *     stackId: test.id,
  * }));
  * ```
  */
+/** @deprecated grafana.cloud/getproviderawscloudwatchscrapejobs.getProviderAwsCloudwatchScrapeJobs has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejobs.getAwsCloudwatchScrapeJobs */
 export function getProviderAwsCloudwatchScrapeJobsOutput(args: GetProviderAwsCloudwatchScrapeJobsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProviderAwsCloudwatchScrapeJobsResult> {
+    pulumi.log.warn("getProviderAwsCloudwatchScrapeJobs is deprecated: grafana.cloud/getproviderawscloudwatchscrapejobs.getProviderAwsCloudwatchScrapeJobs has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejobs.getAwsCloudwatchScrapeJobs")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:cloud/getProviderAwsCloudwatchScrapeJobs:getProviderAwsCloudwatchScrapeJobs", {
         "scrapeJobs": args.scrapeJobs,

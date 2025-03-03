@@ -100,10 +100,16 @@ if typing.TYPE_CHECKING:
     alerting = __alerting
     import pulumiverse_grafana.cloud as __cloud
     cloud = __cloud
+    import pulumiverse_grafana.cloudprovider as __cloudprovider
+    cloudprovider = __cloudprovider
     import pulumiverse_grafana.config as __config
     config = __config
+    import pulumiverse_grafana.connections as __connections
+    connections = __connections
     import pulumiverse_grafana.enterprise as __enterprise
     enterprise = __enterprise
+    import pulumiverse_grafana.fleetmanagement as __fleetmanagement
+    fleetmanagement = __fleetmanagement
     import pulumiverse_grafana.machinelearning as __machinelearning
     machinelearning = __machinelearning
     import pulumiverse_grafana.oncall as __oncall
@@ -117,8 +123,11 @@ if typing.TYPE_CHECKING:
 else:
     alerting = _utilities.lazy_import('pulumiverse_grafana.alerting')
     cloud = _utilities.lazy_import('pulumiverse_grafana.cloud')
+    cloudprovider = _utilities.lazy_import('pulumiverse_grafana.cloudprovider')
     config = _utilities.lazy_import('pulumiverse_grafana.config')
+    connections = _utilities.lazy_import('pulumiverse_grafana.connections')
     enterprise = _utilities.lazy_import('pulumiverse_grafana.enterprise')
+    fleetmanagement = _utilities.lazy_import('pulumiverse_grafana.fleetmanagement')
     machinelearning = _utilities.lazy_import('pulumiverse_grafana.machinelearning')
     oncall = _utilities.lazy_import('pulumiverse_grafana.oncall')
     oss = _utilities.lazy_import('pulumiverse_grafana.oss')
@@ -266,6 +275,38 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloudProvider/awsAccount",
+  "fqn": "pulumiverse_grafana.cloudprovider",
+  "classes": {
+   "grafana:cloudProvider/awsAccount:AwsAccount": "AwsAccount"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloudProvider/awsCloudwatchScrapeJob",
+  "fqn": "pulumiverse_grafana.cloudprovider",
+  "classes": {
+   "grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob": "AwsCloudwatchScrapeJob"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloudProvider/azureCredential",
+  "fqn": "pulumiverse_grafana.cloudprovider",
+  "classes": {
+   "grafana:cloudProvider/azureCredential:AzureCredential": "AzureCredential"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "connections/metricsEndpointScrapeJob",
+  "fqn": "pulumiverse_grafana.connections",
+  "classes": {
+   "grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob": "MetricsEndpointScrapeJob"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "enterprise/dataSourceConfigLbacRules",
   "fqn": "pulumiverse_grafana.enterprise",
   "classes": {
@@ -326,6 +367,22 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.enterprise",
   "classes": {
    "grafana:enterprise/teamExternalGroup:TeamExternalGroup": "TeamExternalGroup"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "fleetManagement/collector",
+  "fqn": "pulumiverse_grafana.fleetmanagement",
+  "classes": {
+   "grafana:fleetManagement/collector:Collector": "Collector"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "fleetManagement/pipeline",
+  "fqn": "pulumiverse_grafana.fleetmanagement",
+  "classes": {
+   "grafana:fleetManagement/pipeline:Pipeline": "Pipeline"
   }
  },
  {
