@@ -28,12 +28,15 @@ const (
 	// registries for nodejs and python:
 	grafanaPkg = "grafana"
 	// modules:
-	grafanaMod = "index" // the toplevel module
+	// grafanaMod = "index" // the toplevel module
 	// further modules follow the grouping of the upstream TF provider
 	// https://registry.terraform.io/providers/grafana/grafana/latest/docs
 	alertingMod            = "alerting"
 	cloudMod               = "cloud"
+	cloudProviderMod       = "cloudProvider"
+	connectionsMod         = "connections"
 	enterpriseMod          = "enterprise"
+	fleetManagementMod     = "fleetManagement"
 	mlMod                  = "machineLearning"
 	oncallMod              = "onCall"
 	ossMod                 = "oss"
@@ -206,480 +209,168 @@ func Provider() tfbridge.ProviderInfo {
 			// Alerting
 			"grafana_contact_point": {
 				Tok: grafanaResource(alertingMod, "ContactPoint"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "ContactPoint"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "contact_point.md",
-				},
 			},
 			"grafana_message_template": {
 				Tok: grafanaResource(alertingMod, "MessageTemplate"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "MessageTemplate"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "message_template.md",
-				},
 			},
 			"grafana_mute_timing": {
 				Tok: grafanaResource(alertingMod, "MuteTiming"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "MuteTiming"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "mute_timing.md",
-				},
 			},
 			"grafana_notification_policy": {
 				Tok: grafanaResource(alertingMod, "NotificationPolicy"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "NotificationPolicy"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "notification_policy.md",
-				},
 			},
 			"grafana_rule_group": {
 				Tok: grafanaResource(alertingMod, "RuleGroup"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "RuleGroup"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "rule_group.md",
-				},
 			},
 
 			// Enterprise
 			"grafana_data_source_config_lbac_rules": {
 				Tok: grafanaResource(enterpriseMod, "DataSourceConfigLbacRules"),
-				Docs: &tfbridge.DocInfo{
-					Source: "data_source_config_lbac_rules.md",
-				},
 			},
 			"grafana_data_source_permission": {
 				Tok: grafanaResource(enterpriseMod, "DataSourcePermission"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "DataSourcePermission"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "data_source_permission.md",
-				},
 			},
 			"grafana_data_source_permission_item": {
 				Tok: grafanaResource(enterpriseMod, "DataSourcePermissionItem"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "DataSourcePermissionItem"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "data_source_permission_item.md",
-				},
 			},
 			"grafana_report": {
 				Tok: grafanaResource(enterpriseMod, "Report"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "Report"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "report.md",
-				},
 			},
 			"grafana_role": {
 				Tok: grafanaResource(enterpriseMod, "Role"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "Role"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "role.md",
-				},
 			},
 			"grafana_role_assignment": {
 				Tok: grafanaResource(enterpriseMod, "RoleAssignment"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "RoleAssignment"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "role_assignment.md",
-				},
 			},
 			"grafana_role_assignment_item": {
 				Tok: grafanaResource(enterpriseMod, "RoleAssignmentItem"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "RoleAssignmentItem"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "role_assignment_item.md",
-				},
 			},
 			"grafana_team_external_group": {
 				Tok: grafanaResource(enterpriseMod, "TeamExternalGroup"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "TeamExternalGroup"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "team_external_group.md",
-				},
+			},
+
+			// Fleet Management
+			"grafana_fleet_management_collector": {
+				ComputeID: tfbridge.DelegateIDField("id", "grafana", "https://github.com/pulumiveerse/pulumi-grafana"),
 			},
 
 			// OSS
 			"grafana_annotation": {
 				Tok: grafanaResource(ossMod, "Annotation"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "Annotation"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "annotation.md",
-				},
 			},
 			"grafana_dashboard": {
 				Tok: grafanaResource(ossMod, "Dashboard"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "Dashboard"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "dashboard.md",
-				},
 			},
 			"grafana_dashboard_permission": {
 				Tok: grafanaResource(ossMod, "DashboardPermission"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "DashboardPermission"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "dashboard_permission.md",
-				},
 			},
 			"grafana_dashboard_permission_item": {
 				Tok: grafanaResource(ossMod, "DashboardPermissionItem"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "DashboardPermissionItem"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "dashboard_permission_item.md",
-				},
 			},
 			"grafana_dashboard_public": {
 				Tok: grafanaResource(ossMod, "DashboardPublic"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "DashboardPublic"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "dashboard_public.md",
-				},
 			},
 			"grafana_data_source": {
 				Tok: grafanaResource(ossMod, "DataSource"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "DataSource"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "data_source.md",
-				},
 			},
 			"grafana_data_source_config": {
 				Tok: grafanaResource(ossMod, "DataSourceConfig"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "DataSourceConfig"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "data_source_config.md",
-				},
 			},
 			"grafana_folder": {
 				Tok: grafanaResource(ossMod, "Folder"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "Folder"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "folder.md",
-				},
 			},
 			"grafana_folder_permission": {
 				Tok: grafanaResource(ossMod, "FolderPermission"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "FolderPermission"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "folder_permission.md",
-				},
 			},
 			"grafana_folder_permission_item": {
 				Tok: grafanaResource(ossMod, "FolderPermissionItem"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "FolderPermissionItem"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "folder_permission_item.md",
-				},
 			},
 			"grafana_library_panel": {
 				Tok: grafanaResource(ossMod, "LibraryPanel"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "LibraryPanel"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "library_panel.md",
-				},
 			},
 			"grafana_organization": {
 				Tok: grafanaResource(ossMod, "Organization"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "Organization"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "organization.md",
-				},
 			},
 			"grafana_organization_preferences": {
 				Tok: grafanaResource(ossMod, "OrganizationPreferences"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "OrganizationPreferences"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "organization_preferences.md",
-				},
 			},
 			"grafana_playlist": {
 				Tok: grafanaResource(ossMod, "Playlist"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "Playlist"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "playlist.md",
-				},
 			},
 			"grafana_service_account": {
 				Tok: grafanaResource(ossMod, "ServiceAccount"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "ServiceAccount"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "service_account.md",
-				},
 			},
 			"grafana_service_account_permission": {
 				Tok: grafanaResource(ossMod, "ServiceAccountPermission"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "ServiceAccountPermission"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "service_account_permission.md",
-				},
 			},
 			"grafana_service_account_permission_item": {
 				Tok: grafanaResource(ossMod, "ServiceAccountPermissionItem"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "ServiceAccountPermissionItem"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "service_account_permission_item.md",
-				},
 			},
 			"grafana_service_account_token": {
 				Tok: grafanaResource(ossMod, "ServiceAccountToken"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "ServiceAccountToken"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "service_account.md",
-				},
 			},
 			"grafana_sso_settings": {
 				Tok: grafanaResource(ossMod, "SsoSettings"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "SsoSettings"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "sso_settings.md",
-				},
 			},
 			"grafana_team": {
 				Tok: grafanaResource(ossMod, "Team"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "Team"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "team.md",
-				},
 			},
 			"grafana_user": {
 				Tok: grafanaResource(ossMod, "User"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "User"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "user.md",
-				},
 			},
 
 			// SLO
 			"grafana_slo": {
 				Tok: grafanaResource(sloMod, "SLO"),
-				Aliases: []tfbridge.AliasInfo{
-					{
-						Type: grafanaResourceAlias(grafanaMod, "SLO"),
-					},
-				},
-				Docs: &tfbridge.DocInfo{
-					Source: "slo.md",
-				},
 			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Enterprise
 			"grafana_role": {
 				Tok: grafanaDataSource(enterpriseMod, "getRole"),
-				Docs: &tfbridge.DocInfo{
-					Source: "role.md",
-				},
 			},
 
 			// OSS
 			"grafana_dashboard": {
 				Tok: grafanaDataSource(ossMod, "getDashboard"),
-				Docs: &tfbridge.DocInfo{
-					Source: "dashboard.md",
-				},
 			},
 			"grafana_dashboards": {
 				Tok: grafanaDataSource(ossMod, "getDashboards"),
-				Docs: &tfbridge.DocInfo{
-					Source: "dashboards.md",
-				},
 			},
 			"grafana_data_source": {
 				Tok: grafanaDataSource(ossMod, "getDataSource"),
-				Docs: &tfbridge.DocInfo{
-					Source: "data_source.md",
-				},
 			},
 			"grafana_folder": {
 				Tok: grafanaDataSource(ossMod, "getFolder"),
-				Docs: &tfbridge.DocInfo{
-					Source: "folder.md",
-				},
 			},
 			"grafana_folders": {
 				Tok: grafanaDataSource(ossMod, "getFolders"),
-				Docs: &tfbridge.DocInfo{
-					Source: "folders.md",
-				},
 			},
 			"grafana_library_panel": {
 				Tok: grafanaDataSource(ossMod, "getLibraryPanel"),
-				Docs: &tfbridge.DocInfo{
-					Source: "library_panel.md",
-				},
 			},
 			"grafana_organization": {
 				Tok: grafanaDataSource(ossMod, "getOrganization"),
-				Docs: &tfbridge.DocInfo{
-					Source: "organization.md",
-				},
 			},
 			"grafana_organization_preferences": {
 				Tok: grafanaDataSource(ossMod, "getOrganizationPreferences"),
-				Docs: &tfbridge.DocInfo{
-					Source: "organization_preferences.md",
-				},
 			},
 			"grafana_service_account": {
 				Tok: grafanaDataSource(ossMod, "getServiceAccount"),
-				Docs: &tfbridge.DocInfo{
-					Source: "service_account.md",
-				},
 			},
 			"grafana_team": {
 				Tok: grafanaDataSource(ossMod, "getTeam"),
-				Docs: &tfbridge.DocInfo{
-					Source: "team.md",
-				},
 			},
 			"grafana_user": {
 				Tok: grafanaDataSource(ossMod, "getUser"),
-				Docs: &tfbridge.DocInfo{
-					Source: "user.md",
-				},
 			},
 			"grafana_users": {
 				Tok: grafanaDataSource(ossMod, "getUsers"),
-				Docs: &tfbridge.DocInfo{
-					Source: "users.md",
-				},
 			},
 
 			// SLO
 			"grafana_slos": {
 				Tok: grafanaDataSource(sloMod, "getSlos"),
-				Docs: &tfbridge.DocInfo{
-					Source: "slos.md",
-				},
 			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
@@ -725,7 +416,10 @@ func Provider() tfbridge.ProviderInfo {
 			map[string]string{
 				"alerting":             alertingMod,
 				"cloud":                cloudMod,
+				"cloud_provider":       cloudProviderMod,
+				"connections":          connectionsMod,
 				"enterprise":           enterpriseMod,
+				"fleet_management":     fleetManagementMod,
 				"machine_learning":     mlMod,
 				"oncall":               oncallMod,
 				"oss":                  ossMod,
