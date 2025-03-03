@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana.Cloud
 {
+    [Obsolete(@"grafana.cloud/getproviderawsaccount.getProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/getawsaccount.getAwsAccount")]
     public static class GetProviderAwsAccount
     {
         /// <summary>
@@ -29,7 +30,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///         Slug = "gcloudstacktest",
         ///     });
         /// 
-        ///     var testProviderAwsAccount = new Grafana.Cloud.ProviderAwsAccount("test", new()
+        ///     var testAwsAccount = new Grafana.CloudProvider.AwsAccount("test", new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
         ///         RoleArn = testAwsIamRole.Arn,
@@ -40,10 +41,10 @@ namespace Pulumiverse.Grafana.Cloud
         ///         },
         ///     });
         /// 
-        ///     var testGetProviderAwsAccount = Grafana.Cloud.GetProviderAwsAccount.Invoke(new()
+        ///     var testGetAwsAccount = Grafana.CloudProvider.GetAwsAccount.Invoke(new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
-        ///         ResourceId = testProviderAwsAccount.ResourceId,
+        ///         ResourceId = testAwsAccount.ResourceId,
         ///     });
         /// 
         /// });
@@ -69,7 +70,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///         Slug = "gcloudstacktest",
         ///     });
         /// 
-        ///     var testProviderAwsAccount = new Grafana.Cloud.ProviderAwsAccount("test", new()
+        ///     var testAwsAccount = new Grafana.CloudProvider.AwsAccount("test", new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
         ///         RoleArn = testAwsIamRole.Arn,
@@ -80,10 +81,10 @@ namespace Pulumiverse.Grafana.Cloud
         ///         },
         ///     });
         /// 
-        ///     var testGetProviderAwsAccount = Grafana.Cloud.GetProviderAwsAccount.Invoke(new()
+        ///     var testGetAwsAccount = Grafana.CloudProvider.GetAwsAccount.Invoke(new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
-        ///         ResourceId = testProviderAwsAccount.ResourceId,
+        ///         ResourceId = testAwsAccount.ResourceId,
         ///     });
         /// 
         /// });
@@ -109,7 +110,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///         Slug = "gcloudstacktest",
         ///     });
         /// 
-        ///     var testProviderAwsAccount = new Grafana.Cloud.ProviderAwsAccount("test", new()
+        ///     var testAwsAccount = new Grafana.CloudProvider.AwsAccount("test", new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
         ///         RoleArn = testAwsIamRole.Arn,
@@ -120,10 +121,10 @@ namespace Pulumiverse.Grafana.Cloud
         ///         },
         ///     });
         /// 
-        ///     var testGetProviderAwsAccount = Grafana.Cloud.GetProviderAwsAccount.Invoke(new()
+        ///     var testGetAwsAccount = Grafana.CloudProvider.GetAwsAccount.Invoke(new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
-        ///         ResourceId = testProviderAwsAccount.ResourceId,
+        ///         ResourceId = testAwsAccount.ResourceId,
         ///     });
         /// 
         /// });

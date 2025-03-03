@@ -28,15 +28,17 @@ class ProviderAwsCloudwatchScrapeJobArgs:
                  export_tags: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  regions_subset_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 services: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAwsCloudwatchScrapeJobServiceArgs']]]] = None):
+                 services: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAwsCloudwatchScrapeJobServiceArgs']]]] = None,
+                 static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a ProviderAwsCloudwatchScrapeJob resource.
-        :param pulumi.Input[str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloud.ProviderAwsAccount` resource.
+        :param pulumi.Input[str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[Sequence[pulumi.Input['ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs']]] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[bool] enabled: Whether the CloudWatch Scrape Job is enabled or not.
         :param pulumi.Input[bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input['ProviderAwsCloudwatchScrapeJobServiceArgs']]] services: One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
         """
         pulumi.set(__self__, "aws_account_resource_id", aws_account_resource_id)
         pulumi.set(__self__, "stack_id", stack_id)
@@ -52,12 +54,14 @@ class ProviderAwsCloudwatchScrapeJobArgs:
             pulumi.set(__self__, "regions_subset_overrides", regions_subset_overrides)
         if services is not None:
             pulumi.set(__self__, "services", services)
+        if static_labels is not None:
+            pulumi.set(__self__, "static_labels", static_labels)
 
     @property
     @pulumi.getter(name="awsAccountResourceId")
     def aws_account_resource_id(self) -> pulumi.Input[str]:
         """
-        The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloud.ProviderAwsAccount` resource.
+        The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         """
         return pulumi.get(self, "aws_account_resource_id")
 
@@ -143,6 +147,18 @@ class ProviderAwsCloudwatchScrapeJobArgs:
     def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAwsCloudwatchScrapeJobServiceArgs']]]]):
         pulumi.set(self, "services", value)
 
+    @property
+    @pulumi.getter(name="staticLabels")
+    def static_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of static labels to add to all metrics exported by this scrape job.
+        """
+        return pulumi.get(self, "static_labels")
+
+    @static_labels.setter
+    def static_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "static_labels", value)
+
 
 @pulumi.input_type
 class _ProviderAwsCloudwatchScrapeJobState:
@@ -155,16 +171,18 @@ class _ProviderAwsCloudwatchScrapeJobState:
                  name: Optional[pulumi.Input[str]] = None,
                  regions_subset_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAwsCloudwatchScrapeJobServiceArgs']]]] = None,
-                 stack_id: Optional[pulumi.Input[str]] = None):
+                 stack_id: Optional[pulumi.Input[str]] = None,
+                 static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering ProviderAwsCloudwatchScrapeJob resources.
-        :param pulumi.Input[str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloud.ProviderAwsAccount` resource.
+        :param pulumi.Input[str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[Sequence[pulumi.Input['ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs']]] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[str] disabled_reason: When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
         :param pulumi.Input[bool] enabled: Whether the CloudWatch Scrape Job is enabled or not.
         :param pulumi.Input[bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input['ProviderAwsCloudwatchScrapeJobServiceArgs']]] services: One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
         """
         if aws_account_resource_id is not None:
             pulumi.set(__self__, "aws_account_resource_id", aws_account_resource_id)
@@ -184,12 +202,14 @@ class _ProviderAwsCloudwatchScrapeJobState:
             pulumi.set(__self__, "services", services)
         if stack_id is not None:
             pulumi.set(__self__, "stack_id", stack_id)
+        if static_labels is not None:
+            pulumi.set(__self__, "static_labels", static_labels)
 
     @property
     @pulumi.getter(name="awsAccountResourceId")
     def aws_account_resource_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloud.ProviderAwsAccount` resource.
+        The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         """
         return pulumi.get(self, "aws_account_resource_id")
 
@@ -287,8 +307,25 @@ class _ProviderAwsCloudwatchScrapeJobState:
     def stack_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "stack_id", value)
 
+    @property
+    @pulumi.getter(name="staticLabels")
+    def static_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of static labels to add to all metrics exported by this scrape job.
+        """
+        return pulumi.get(self, "static_labels")
+
+    @static_labels.setter
+    def static_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "static_labels", value)
+
+
+warnings.warn("""grafana.cloud/providerawscloudwatchscrapejob.ProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/awscloudwatchscrapejob.AwsCloudwatchScrapeJob""", DeprecationWarning)
+
 
 class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
+    warnings.warn("""grafana.cloud/providerawscloudwatchscrapejob.ProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/awscloudwatchscrapejob.AwsCloudwatchScrapeJob""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -301,6 +338,7 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
                  regions_subset_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderAwsCloudwatchScrapeJobServiceArgs', 'ProviderAwsCloudwatchScrapeJobServiceArgsDict']]]]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
+                 static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -313,7 +351,7 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
 
         test = grafana.cloud.get_stack(slug="gcloudstacktest")
         test_get_role = aws.iam.get_role(name="my-role")
-        test_provider_aws_account = grafana.cloud.ProviderAwsAccount("test",
+        test_aws_account = grafana.cloud_provider.AwsAccount("test",
             stack_id=test.id,
             role_arn=test_get_role.arn,
             regions=[
@@ -321,10 +359,10 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
                 "us-east-2",
                 "us-west-1",
             ])
-        test_provider_aws_cloudwatch_scrape_job = grafana.cloud.ProviderAwsCloudwatchScrapeJob("test",
+        test_aws_cloudwatch_scrape_job = grafana.cloud_provider.AwsCloudwatchScrapeJob("test",
             stack_id=test.id,
             name="my-cloudwatch-scrape-job",
-            aws_account_resource_id=test_provider_aws_account.resource_id,
+            aws_account_resource_id=test_aws_account.resource_id,
             export_tags=True,
             services=[{
                 "name": "AWS/EC2",
@@ -355,7 +393,11 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
                     ],
                 }],
                 "scrape_interval_seconds": 300,
-            }])
+            }],
+            static_labels={
+                "label1": "value1",
+                "label2": "value2",
+            })
         ```
 
         ## Import
@@ -366,12 +408,13 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloud.ProviderAwsAccount` resource.
+        :param pulumi.Input[str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs', 'ProviderAwsCloudwatchScrapeJobCustomNamespaceArgsDict']]]] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[bool] enabled: Whether the CloudWatch Scrape Job is enabled or not.
         :param pulumi.Input[bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderAwsCloudwatchScrapeJobServiceArgs', 'ProviderAwsCloudwatchScrapeJobServiceArgsDict']]]] services: One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
         """
         ...
     @overload
@@ -390,7 +433,7 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
 
         test = grafana.cloud.get_stack(slug="gcloudstacktest")
         test_get_role = aws.iam.get_role(name="my-role")
-        test_provider_aws_account = grafana.cloud.ProviderAwsAccount("test",
+        test_aws_account = grafana.cloud_provider.AwsAccount("test",
             stack_id=test.id,
             role_arn=test_get_role.arn,
             regions=[
@@ -398,10 +441,10 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
                 "us-east-2",
                 "us-west-1",
             ])
-        test_provider_aws_cloudwatch_scrape_job = grafana.cloud.ProviderAwsCloudwatchScrapeJob("test",
+        test_aws_cloudwatch_scrape_job = grafana.cloud_provider.AwsCloudwatchScrapeJob("test",
             stack_id=test.id,
             name="my-cloudwatch-scrape-job",
-            aws_account_resource_id=test_provider_aws_account.resource_id,
+            aws_account_resource_id=test_aws_account.resource_id,
             export_tags=True,
             services=[{
                 "name": "AWS/EC2",
@@ -432,7 +475,11 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
                     ],
                 }],
                 "scrape_interval_seconds": 300,
-            }])
+            }],
+            static_labels={
+                "label1": "value1",
+                "label2": "value2",
+            })
         ```
 
         ## Import
@@ -464,7 +511,9 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
                  regions_subset_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderAwsCloudwatchScrapeJobServiceArgs', 'ProviderAwsCloudwatchScrapeJobServiceArgsDict']]]]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
+                 static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""ProviderAwsCloudwatchScrapeJob is deprecated: grafana.cloud/providerawscloudwatchscrapejob.ProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/awscloudwatchscrapejob.AwsCloudwatchScrapeJob""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -485,6 +534,7 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
             if stack_id is None and not opts.urn:
                 raise TypeError("Missing required property 'stack_id'")
             __props__.__dict__["stack_id"] = stack_id
+            __props__.__dict__["static_labels"] = static_labels
             __props__.__dict__["disabled_reason"] = None
         super(ProviderAwsCloudwatchScrapeJob, __self__).__init__(
             'grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob',
@@ -504,7 +554,8 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             regions_subset_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             services: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderAwsCloudwatchScrapeJobServiceArgs', 'ProviderAwsCloudwatchScrapeJobServiceArgsDict']]]]] = None,
-            stack_id: Optional[pulumi.Input[str]] = None) -> 'ProviderAwsCloudwatchScrapeJob':
+            stack_id: Optional[pulumi.Input[str]] = None,
+            static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'ProviderAwsCloudwatchScrapeJob':
         """
         Get an existing ProviderAwsCloudwatchScrapeJob resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -512,13 +563,14 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloud.ProviderAwsAccount` resource.
+        :param pulumi.Input[str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs', 'ProviderAwsCloudwatchScrapeJobCustomNamespaceArgsDict']]]] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[str] disabled_reason: When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
         :param pulumi.Input[bool] enabled: Whether the CloudWatch Scrape Job is enabled or not.
         :param pulumi.Input[bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderAwsCloudwatchScrapeJobServiceArgs', 'ProviderAwsCloudwatchScrapeJobServiceArgsDict']]]] services: One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -533,13 +585,14 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
         __props__.__dict__["regions_subset_overrides"] = regions_subset_overrides
         __props__.__dict__["services"] = services
         __props__.__dict__["stack_id"] = stack_id
+        __props__.__dict__["static_labels"] = static_labels
         return ProviderAwsCloudwatchScrapeJob(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="awsAccountResourceId")
     def aws_account_resource_id(self) -> pulumi.Output[str]:
         """
-        The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloud.ProviderAwsAccount` resource.
+        The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         """
         return pulumi.get(self, "aws_account_resource_id")
 
@@ -600,4 +653,12 @@ class ProviderAwsCloudwatchScrapeJob(pulumi.CustomResource):
     @pulumi.getter(name="stackId")
     def stack_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "stack_id")
+
+    @property
+    @pulumi.getter(name="staticLabels")
+    def static_labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        A set of static labels to add to all metrics exported by this scrape job.
+        """
+        return pulumi.get(self, "static_labels")
 

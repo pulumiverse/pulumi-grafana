@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana.Cloud
 {
+    [Obsolete(@"grafana.cloud/getproviderawscloudwatchscrapejobs.getProviderAwsCloudwatchScrapeJobs has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejobs.getAwsCloudwatchScrapeJobs")]
     public static class GetProviderAwsCloudwatchScrapeJobs
     {
         /// <summary>
@@ -28,7 +29,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///         Slug = "gcloudstacktest",
         ///     });
         /// 
-        ///     var testGetProviderAwsCloudwatchScrapeJobs = Grafana.Cloud.GetProviderAwsCloudwatchScrapeJobs.Invoke(new()
+        ///     var testGetAwsCloudwatchScrapeJobs = Grafana.CloudProvider.GetAwsCloudwatchScrapeJobs.Invoke(new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
         ///     });
@@ -55,7 +56,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///         Slug = "gcloudstacktest",
         ///     });
         /// 
-        ///     var testGetProviderAwsCloudwatchScrapeJobs = Grafana.Cloud.GetProviderAwsCloudwatchScrapeJobs.Invoke(new()
+        ///     var testGetAwsCloudwatchScrapeJobs = Grafana.CloudProvider.GetAwsCloudwatchScrapeJobs.Invoke(new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
         ///     });
@@ -82,7 +83,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///         Slug = "gcloudstacktest",
         ///     });
         /// 
-        ///     var testGetProviderAwsCloudwatchScrapeJobs = Grafana.Cloud.GetProviderAwsCloudwatchScrapeJobs.Invoke(new()
+        ///     var testGetAwsCloudwatchScrapeJobs = Grafana.CloudProvider.GetAwsCloudwatchScrapeJobs.Invoke(new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
         ///     });

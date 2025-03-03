@@ -5685,10 +5685,6 @@ class NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs:
 
 if not MYPY:
     class RuleGroupRuleArgsDict(TypedDict):
-        condition: pulumi.Input[str]
-        """
-        The `ref_id` of the query node in the `data` field to use as the alert condition.
-        """
         datas: pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleDataArgsDict']]]
         """
         A sequence of stages that describe the contents of the rule.
@@ -5701,9 +5697,13 @@ if not MYPY:
         """
         Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
         """
+        condition: NotRequired[pulumi.Input[str]]
+        """
+        The `ref_id` of the query node in the `data` field to use as the alert condition.
+        """
         exec_err_state: NotRequired[pulumi.Input[str]]
         """
-        Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+        Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.  Defaults to Alerting if not set.
         """
         for_: NotRequired[pulumi.Input[str]]
         """
@@ -5719,7 +5719,7 @@ if not MYPY:
         """
         no_data_state: NotRequired[pulumi.Input[str]]
         """
-        Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+        Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
         """
         notification_settings: NotRequired[pulumi.Input['RuleGroupRuleNotificationSettingsArgsDict']]
         """
@@ -5739,10 +5739,10 @@ elif False:
 @pulumi.input_type
 class RuleGroupRuleArgs:
     def __init__(__self__, *,
-                 condition: pulumi.Input[str],
                  datas: pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleDataArgs']]],
                  name: pulumi.Input[str],
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 condition: Optional[pulumi.Input[str]] = None,
                  exec_err_state: Optional[pulumi.Input[str]] = None,
                  for_: Optional[pulumi.Input[str]] = None,
                  is_paused: Optional[pulumi.Input[bool]] = None,
@@ -5752,24 +5752,25 @@ class RuleGroupRuleArgs:
                  record: Optional[pulumi.Input['RuleGroupRuleRecordArgs']] = None,
                  uid: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] condition: The `ref_id` of the query node in the `data` field to use as the alert condition.
         :param pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleDataArgs']]] datas: A sequence of stages that describe the contents of the rule.
         :param pulumi.Input[str] name: The name of the alert rule.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
-        :param pulumi.Input[str] exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+        :param pulumi.Input[str] condition: The `ref_id` of the query node in the `data` field to use as the alert condition.
+        :param pulumi.Input[str] exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.  Defaults to Alerting if not set.
         :param pulumi.Input[str] for_: The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
         :param pulumi.Input[bool] is_paused: Sets whether the alert should be paused or not. Defaults to `false`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
-        :param pulumi.Input[str] no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+        :param pulumi.Input[str] no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
         :param pulumi.Input['RuleGroupRuleNotificationSettingsArgs'] notification_settings: Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
         :param pulumi.Input['RuleGroupRuleRecordArgs'] record: Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
         :param pulumi.Input[str] uid: The unique identifier of the alert rule.
         """
-        pulumi.set(__self__, "condition", condition)
         pulumi.set(__self__, "datas", datas)
         pulumi.set(__self__, "name", name)
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
+        if condition is not None:
+            pulumi.set(__self__, "condition", condition)
         if exec_err_state is not None:
             pulumi.set(__self__, "exec_err_state", exec_err_state)
         if for_ is not None:
@@ -5786,18 +5787,6 @@ class RuleGroupRuleArgs:
             pulumi.set(__self__, "record", record)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
-
-    @property
-    @pulumi.getter
-    def condition(self) -> pulumi.Input[str]:
-        """
-        The `ref_id` of the query node in the `data` field to use as the alert condition.
-        """
-        return pulumi.get(self, "condition")
-
-    @condition.setter
-    def condition(self, value: pulumi.Input[str]):
-        pulumi.set(self, "condition", value)
 
     @property
     @pulumi.getter
@@ -5836,10 +5825,22 @@ class RuleGroupRuleArgs:
         pulumi.set(self, "annotations", value)
 
     @property
+    @pulumi.getter
+    def condition(self) -> Optional[pulumi.Input[str]]:
+        """
+        The `ref_id` of the query node in the `data` field to use as the alert condition.
+        """
+        return pulumi.get(self, "condition")
+
+    @condition.setter
+    def condition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "condition", value)
+
+    @property
     @pulumi.getter(name="execErrState")
     def exec_err_state(self) -> Optional[pulumi.Input[str]]:
         """
-        Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+        Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.  Defaults to Alerting if not set.
         """
         return pulumi.get(self, "exec_err_state")
 
@@ -5887,7 +5888,7 @@ class RuleGroupRuleArgs:
     @pulumi.getter(name="noDataState")
     def no_data_state(self) -> Optional[pulumi.Input[str]]:
         """
-        Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+        Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
         """
         return pulumi.get(self, "no_data_state")
 

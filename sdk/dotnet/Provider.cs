@@ -74,6 +74,20 @@ namespace Pulumiverse.Grafana
         public Output<string?> ConnectionsApiUrl { get; private set; } = null!;
 
         /// <summary>
+        /// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+        /// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+        /// </summary>
+        [Output("fleetManagementAuth")]
+        public Output<string?> FleetManagementAuth { get; private set; } = null!;
+
+        /// <summary>
+        /// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+        /// variable.
+        /// </summary>
+        [Output("fleetManagementUrl")]
+        public Output<string?> FleetManagementUrl { get; private set; } = null!;
+
+        /// <summary>
         /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         /// </summary>
         [Output("oncallAccessToken")]
@@ -139,6 +153,7 @@ namespace Pulumiverse.Grafana
                     "cloudAccessPolicyToken",
                     "cloudProviderAccessToken",
                     "connectionsApiAccessToken",
+                    "fleetManagementAuth",
                     "oncallAccessToken",
                     "smAccessToken",
                     "tlsKey",
@@ -246,6 +261,30 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("connectionsApiUrl")]
         public Input<string>? ConnectionsApiUrl { get; set; }
+
+        [Input("fleetManagementAuth")]
+        private Input<string>? _fleetManagementAuth;
+
+        /// <summary>
+        /// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+        /// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+        /// </summary>
+        public Input<string>? FleetManagementAuth
+        {
+            get => _fleetManagementAuth;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _fleetManagementAuth = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+        /// variable.
+        /// </summary>
+        [Input("fleetManagementUrl")]
+        public Input<string>? FleetManagementUrl { get; set; }
 
         /// <summary>
         /// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

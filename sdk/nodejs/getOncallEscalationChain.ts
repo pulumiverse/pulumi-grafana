@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const default = grafana.onCall.getEscalationChain({
+ * const _default = grafana.onCall.getEscalationChain({
  *     name: "default",
  * });
  * ```
@@ -59,7 +59,7 @@ export interface GetOncallEscalationChainResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumi/grafana";
  *
- * const default = grafana.onCall.getEscalationChain({
+ * const _default = grafana.onCall.getEscalationChain({
  *     name: "default",
  * });
  * ```

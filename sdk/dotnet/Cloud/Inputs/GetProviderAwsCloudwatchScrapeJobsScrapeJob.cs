@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Cloud.Inputs
     public sealed class GetProviderAwsCloudwatchScrapeJobsScrapeJobArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloud.ProviderAwsAccount` resource.
+        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.
         /// </summary>
         [Input("awsAccountResourceId", required: true)]
         public string AwsAccountResourceId { get; set; } = null!;
@@ -93,6 +93,18 @@ namespace Pulumiverse.Grafana.Cloud.Inputs
 
         [Input("stackId", required: true)]
         public string StackId { get; set; } = null!;
+
+        [Input("staticLabels", required: true)]
+        private Dictionary<string, string>? _staticLabels;
+
+        /// <summary>
+        /// A set of static labels to add to all metrics exported by this scrape job.
+        /// </summary>
+        public Dictionary<string, string> StaticLabels
+        {
+            get => _staticLabels ?? (_staticLabels = new Dictionary<string, string>());
+            set => _staticLabels = value;
+        }
 
         public GetProviderAwsCloudwatchScrapeJobsScrapeJobArgs()
         {

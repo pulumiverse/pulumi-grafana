@@ -20,6 +20,7 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloudprovider"
 //
 // )
 //
@@ -31,7 +32,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testProviderAwsAccount, err := cloud.NewProviderAwsAccount(ctx, "test", &cloud.ProviderAwsAccountArgs{
+//			testAwsAccount, err := cloudprovider.NewAwsAccount(ctx, "test", &cloudprovider.AwsAccountArgs{
 //				StackId: pulumi.String(test.Id),
 //				RoleArn: pulumi.Any(testAwsIamRole.Arn),
 //				Regions: pulumi.StringArray{
@@ -42,17 +43,19 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = testProviderAwsAccount.ResourceId.ApplyT(func(resourceId string) (cloud.GetProviderAwsAccountResult, error) {
-//				return cloud.GetProviderAwsAccountResult(interface{}(cloud.LookupProviderAwsAccountOutput(ctx, cloud.GetProviderAwsAccountOutputArgs{
+//			_ = testAwsAccount.ResourceId.ApplyT(func(resourceId string) (cloudprovider.GetAwsAccountResult, error) {
+//				return cloudprovider.GetAwsAccountResult(interface{}(cloudprovider.GetAwsAccountOutput(ctx, cloudprovider.GetAwsAccountOutputArgs{
 //					StackId:    test.Id,
 //					ResourceId: resourceId,
 //				}, nil))), nil
-//			}).(cloud.GetProviderAwsAccountResultOutput)
+//			}).(cloudprovider.GetAwsAccountResultOutput)
 //			return nil
 //		})
 //	}
 //
 // ```
+//
+// Deprecated: grafana.cloud/getproviderawsaccount.getProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/getawsaccount.getAwsAccount
 func LookupProviderAwsAccount(ctx *pulumi.Context, args *LookupProviderAwsAccountArgs, opts ...pulumi.InvokeOption) (*LookupProviderAwsAccountResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProviderAwsAccountResult

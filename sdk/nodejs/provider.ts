@@ -64,6 +64,16 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly connectionsApiUrl!: pulumi.Output<string | undefined>;
     /**
+     * A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+     * `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+     */
+    public readonly fleetManagementAuth!: pulumi.Output<string | undefined>;
+    /**
+     * A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+     * variable.
+     */
+    public readonly fleetManagementUrl!: pulumi.Output<string | undefined>;
+    /**
      * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
      */
     public readonly oncallAccessToken!: pulumi.Output<string | undefined>;
@@ -110,6 +120,8 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["cloudProviderUrl"] = args ? args.cloudProviderUrl : undefined;
             resourceInputs["connectionsApiAccessToken"] = args?.connectionsApiAccessToken ? pulumi.secret(args.connectionsApiAccessToken) : undefined;
             resourceInputs["connectionsApiUrl"] = args ? args.connectionsApiUrl : undefined;
+            resourceInputs["fleetManagementAuth"] = args?.fleetManagementAuth ? pulumi.secret(args.fleetManagementAuth) : undefined;
+            resourceInputs["fleetManagementUrl"] = args ? args.fleetManagementUrl : undefined;
             resourceInputs["insecureSkipVerify"] = pulumi.output((args ? args.insecureSkipVerify : undefined) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
             resourceInputs["oncallAccessToken"] = (args?.oncallAccessToken ? pulumi.secret(args.oncallAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             resourceInputs["oncallUrl"] = (args ? args.oncallUrl : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
@@ -124,7 +136,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["url"] = (args ? args.url : undefined) ?? utilities.getEnv("GRAFANA_URL");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "oncallAccessToken", "smAccessToken", "tlsKey"] };
+        const secretOpts = { additionalSecretOutputs: ["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "fleetManagementAuth", "oncallAccessToken", "smAccessToken", "tlsKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
@@ -172,6 +184,16 @@ export interface ProviderArgs {
      * A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
      */
     connectionsApiUrl?: pulumi.Input<string>;
+    /**
+     * A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+     * `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+     */
+    fleetManagementAuth?: pulumi.Input<string>;
+    /**
+     * A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+     * variable.
+     */
+    fleetManagementUrl?: pulumi.Input<string>;
     /**
      * Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
      */

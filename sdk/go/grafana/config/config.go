@@ -89,6 +89,18 @@ func GetConnectionsApiUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:connectionsApiUrl")
 }
 
+// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+func GetFleetManagementAuth(ctx *pulumi.Context) string {
+	return config.Get(ctx, "grafana:fleetManagementAuth")
+}
+
+// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+// variable.
+func GetFleetManagementUrl(ctx *pulumi.Context) string {
+	return config.Get(ctx, "grafana:fleetManagementUrl")
+}
+
 // Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 func GetInsecureSkipVerify(ctx *pulumi.Context) bool {
 	v, err := config.TryBool(ctx, "grafana:insecureSkipVerify")

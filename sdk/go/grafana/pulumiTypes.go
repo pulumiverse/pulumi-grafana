@@ -9887,10 +9887,10 @@ type RuleGroupRule struct {
 	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
 	Annotations map[string]string `pulumi:"annotations"`
 	// The `refId` of the query node in the `data` field to use as the alert condition.
-	Condition string `pulumi:"condition"`
+	Condition *string `pulumi:"condition"`
 	// A sequence of stages that describe the contents of the rule.
 	Datas []RuleGroupRuleData `pulumi:"datas"`
-	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.  Defaults to Alerting if not set.
 	ExecErrState *string `pulumi:"execErrState"`
 	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
 	For *string `pulumi:"for"`
@@ -9900,7 +9900,7 @@ type RuleGroupRule struct {
 	Labels map[string]string `pulumi:"labels"`
 	// The name of the alert rule.
 	Name string `pulumi:"name"`
-	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
 	NoDataState *string `pulumi:"noDataState"`
 	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
 	NotificationSettings *RuleGroupRuleNotificationSettings `pulumi:"notificationSettings"`
@@ -9925,10 +9925,10 @@ type RuleGroupRuleArgs struct {
 	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The `refId` of the query node in the `data` field to use as the alert condition.
-	Condition pulumi.StringInput `pulumi:"condition"`
+	Condition pulumi.StringPtrInput `pulumi:"condition"`
 	// A sequence of stages that describe the contents of the rule.
 	Datas RuleGroupRuleDataArrayInput `pulumi:"datas"`
-	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.  Defaults to Alerting if not set.
 	ExecErrState pulumi.StringPtrInput `pulumi:"execErrState"`
 	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.
 	For pulumi.StringPtrInput `pulumi:"for"`
@@ -9938,7 +9938,7 @@ type RuleGroupRuleArgs struct {
 	Labels pulumi.StringMapInput `pulumi:"labels"`
 	// The name of the alert rule.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
 	NoDataState pulumi.StringPtrInput `pulumi:"noDataState"`
 	// Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
 	NotificationSettings RuleGroupRuleNotificationSettingsPtrInput `pulumi:"notificationSettings"`
@@ -10005,8 +10005,8 @@ func (o RuleGroupRuleOutput) Annotations() pulumi.StringMapOutput {
 }
 
 // The `refId` of the query node in the `data` field to use as the alert condition.
-func (o RuleGroupRuleOutput) Condition() pulumi.StringOutput {
-	return o.ApplyT(func(v RuleGroupRule) string { return v.Condition }).(pulumi.StringOutput)
+func (o RuleGroupRuleOutput) Condition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleGroupRule) *string { return v.Condition }).(pulumi.StringPtrOutput)
 }
 
 // A sequence of stages that describe the contents of the rule.
@@ -10014,7 +10014,7 @@ func (o RuleGroupRuleOutput) Datas() RuleGroupRuleDataArrayOutput {
 	return o.ApplyT(func(v RuleGroupRule) []RuleGroupRuleData { return v.Datas }).(RuleGroupRuleDataArrayOutput)
 }
 
-// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.  Defaults to Alerting if not set.
 func (o RuleGroupRuleOutput) ExecErrState() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *string { return v.ExecErrState }).(pulumi.StringPtrOutput)
 }
@@ -10039,7 +10039,7 @@ func (o RuleGroupRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v RuleGroupRule) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
 func (o RuleGroupRuleOutput) NoDataState() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleGroupRule) *string { return v.NoDataState }).(pulumi.StringPtrOutput)
 }

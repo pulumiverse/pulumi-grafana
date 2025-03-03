@@ -21,6 +21,8 @@ __all__ = [
     'get_connections_metrics_endpoint_scrape_job_output',
 ]
 
+warnings.warn("""grafana.index/getconnectionsmetricsendpointscrapejob.getConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/getmetricsendpointscrapejob.getMetricsEndpointScrapeJob""", DeprecationWarning)
+
 @pulumi.output_type
 class GetConnectionsMetricsEndpointScrapeJobResult:
     """
@@ -158,10 +160,11 @@ def get_connections_metrics_endpoint_scrape_job(name: Optional[str] = None,
     import pulumi
     import pulumi_grafana as grafana
 
-    ds_test = grafana.get_connections_metrics_endpoint_scrape_job(stack_id="1",
+    ds_test = grafana.connections.get_metrics_endpoint_scrape_job(stack_id="1",
         name="my-scrape-job")
     ```
     """
+    pulumi.log.warn("""get_connections_metrics_endpoint_scrape_job is deprecated: grafana.index/getconnectionsmetricsendpointscrapejob.getConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/getmetricsendpointscrapejob.getMetricsEndpointScrapeJob""")
     __args__ = dict()
     __args__['name'] = name
     __args__['stackId'] = stack_id
@@ -189,10 +192,11 @@ def get_connections_metrics_endpoint_scrape_job_output(name: Optional[pulumi.Inp
     import pulumi
     import pulumi_grafana as grafana
 
-    ds_test = grafana.get_connections_metrics_endpoint_scrape_job(stack_id="1",
+    ds_test = grafana.connections.get_metrics_endpoint_scrape_job(stack_id="1",
         name="my-scrape-job")
     ```
     """
+    pulumi.log.warn("""get_connections_metrics_endpoint_scrape_job is deprecated: grafana.index/getconnectionsmetricsendpointscrapejob.getConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/getmetricsendpointscrapejob.getMetricsEndpointScrapeJob""")
     __args__ = dict()
     __args__['name'] = name
     __args__['stackId'] = stack_id
