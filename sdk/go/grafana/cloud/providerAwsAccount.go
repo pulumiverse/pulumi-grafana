@@ -22,6 +22,7 @@ import (
 //	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloudprovider"
 //
 // )
 //
@@ -39,7 +40,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloud.NewProviderAwsAccount(ctx, "test", &cloud.ProviderAwsAccountArgs{
+//			_, err = cloudprovider.NewAwsAccount(ctx, "test", &cloudprovider.AwsAccountArgs{
 //				StackId: pulumi.String(test.Id),
 //				RoleArn: pulumi.String(testGetRole.Arn),
 //				Regions: pulumi.StringArray{
@@ -62,6 +63,8 @@ import (
 // ```sh
 // $ pulumi import grafana:cloud/providerAwsAccount:ProviderAwsAccount name "{{ stack_id }}:{{ resource_id }}"
 // ```
+//
+// Deprecated: grafana.cloud/providerawsaccount.ProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/awsaccount.AwsAccount
 type ProviderAwsAccount struct {
 	pulumi.CustomResourceState
 

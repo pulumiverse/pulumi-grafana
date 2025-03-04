@@ -21,7 +21,7 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Grafana.ConnectionsMetricsEndpointScrapeJob("test", new()
+    ///     var test = new Grafana.Connections.MetricsEndpointScrapeJob("test", new()
     ///     {
     ///         StackId = "1",
     ///         Name = "my-scrape-job",
@@ -42,6 +42,7 @@ namespace Pulumiverse.Grafana
     /// $ pulumi import grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob name "{{ stack_id }}:{{ name }}"
     /// ```
     /// </summary>
+    [Obsolete(@"grafana.index/connectionsmetricsendpointscrapejob.ConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/metricsendpointscrapejob.MetricsEndpointScrapeJob")]
     [GrafanaResourceType("grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob")]
     public partial class ConnectionsMetricsEndpointScrapeJob : global::Pulumi.CustomResource
     {

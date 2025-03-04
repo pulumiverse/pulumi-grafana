@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  * const testGetRole = aws.iam.getRole({
  *     name: "my-role",
  * });
- * const testProviderAwsAccount = new grafana.cloud.ProviderAwsAccount("test", {
+ * const testAwsAccount = new grafana.cloudprovider.AwsAccount("test", {
  *     stackId: test.then(test => test.id),
  *     roleArn: testGetRole.then(testGetRole => testGetRole.arn),
  *     regions: [
@@ -30,10 +30,10 @@ import * as utilities from "../utilities";
  *         "us-west-1",
  *     ],
  * });
- * const testProviderAwsCloudwatchScrapeJob = new grafana.cloud.ProviderAwsCloudwatchScrapeJob("test", {
+ * const testAwsCloudwatchScrapeJob = new grafana.cloudprovider.AwsCloudwatchScrapeJob("test", {
  *     stackId: test.then(test => test.id),
  *     name: "my-cloudwatch-scrape-job",
- *     awsAccountResourceId: testProviderAwsAccount.resourceId,
+ *     awsAccountResourceId: testAwsAccount.resourceId,
  *     exportTags: true,
  *     services: [{
  *         name: "AWS/EC2",
@@ -65,14 +65,20 @@ import * as utilities from "../utilities";
  *         }],
  *         scrapeIntervalSeconds: 300,
  *     }],
+ *     staticLabels: {
+ *         label1: "value1",
+ *         label2: "value2",
+ *     },
  * });
- * const testGetProviderAwsCloudwatchScrapeJob = pulumi.all([test, testProviderAwsCloudwatchScrapeJob.name]).apply(([test, name]) => grafana.cloud.getProviderAwsCloudwatchScrapeJobOutput({
+ * const testGetAwsCloudwatchScrapeJob = pulumi.all([test, testAwsCloudwatchScrapeJob.name]).apply(([test, name]) => grafana.cloudProvider.getAwsCloudwatchScrapeJobOutput({
  *     stackId: test.id,
  *     name: name,
  * }));
  * ```
  */
+/** @deprecated grafana.cloud/getproviderawscloudwatchscrapejob.getProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejob.getAwsCloudwatchScrapeJob */
 export function getProviderAwsCloudwatchScrapeJob(args: GetProviderAwsCloudwatchScrapeJobArgs, opts?: pulumi.InvokeOptions): Promise<GetProviderAwsCloudwatchScrapeJobResult> {
+    pulumi.log.warn("getProviderAwsCloudwatchScrapeJob is deprecated: grafana.cloud/getproviderawscloudwatchscrapejob.getProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejob.getAwsCloudwatchScrapeJob")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:cloud/getProviderAwsCloudwatchScrapeJob:getProviderAwsCloudwatchScrapeJob", {
         "customNamespaces": args.customNamespaces,
@@ -103,7 +109,7 @@ export interface GetProviderAwsCloudwatchScrapeJobArgs {
  */
 export interface GetProviderAwsCloudwatchScrapeJobResult {
     /**
-     * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloud.ProviderAwsAccount` resource.
+     * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
      */
     readonly awsAccountResourceId: string;
     /**
@@ -141,6 +147,10 @@ export interface GetProviderAwsCloudwatchScrapeJobResult {
      */
     readonly services?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobService[];
     readonly stackId: string;
+    /**
+     * A set of static labels to add to all metrics exported by this scrape job.
+     */
+    readonly staticLabels: {[key: string]: string};
 }
 /**
  * ## Example Usage
@@ -157,7 +167,7 @@ export interface GetProviderAwsCloudwatchScrapeJobResult {
  * const testGetRole = aws.iam.getRole({
  *     name: "my-role",
  * });
- * const testProviderAwsAccount = new grafana.cloud.ProviderAwsAccount("test", {
+ * const testAwsAccount = new grafana.cloudprovider.AwsAccount("test", {
  *     stackId: test.then(test => test.id),
  *     roleArn: testGetRole.then(testGetRole => testGetRole.arn),
  *     regions: [
@@ -166,10 +176,10 @@ export interface GetProviderAwsCloudwatchScrapeJobResult {
  *         "us-west-1",
  *     ],
  * });
- * const testProviderAwsCloudwatchScrapeJob = new grafana.cloud.ProviderAwsCloudwatchScrapeJob("test", {
+ * const testAwsCloudwatchScrapeJob = new grafana.cloudprovider.AwsCloudwatchScrapeJob("test", {
  *     stackId: test.then(test => test.id),
  *     name: "my-cloudwatch-scrape-job",
- *     awsAccountResourceId: testProviderAwsAccount.resourceId,
+ *     awsAccountResourceId: testAwsAccount.resourceId,
  *     exportTags: true,
  *     services: [{
  *         name: "AWS/EC2",
@@ -201,14 +211,20 @@ export interface GetProviderAwsCloudwatchScrapeJobResult {
  *         }],
  *         scrapeIntervalSeconds: 300,
  *     }],
+ *     staticLabels: {
+ *         label1: "value1",
+ *         label2: "value2",
+ *     },
  * });
- * const testGetProviderAwsCloudwatchScrapeJob = pulumi.all([test, testProviderAwsCloudwatchScrapeJob.name]).apply(([test, name]) => grafana.cloud.getProviderAwsCloudwatchScrapeJobOutput({
+ * const testGetAwsCloudwatchScrapeJob = pulumi.all([test, testAwsCloudwatchScrapeJob.name]).apply(([test, name]) => grafana.cloudProvider.getAwsCloudwatchScrapeJobOutput({
  *     stackId: test.id,
  *     name: name,
  * }));
  * ```
  */
+/** @deprecated grafana.cloud/getproviderawscloudwatchscrapejob.getProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejob.getAwsCloudwatchScrapeJob */
 export function getProviderAwsCloudwatchScrapeJobOutput(args: GetProviderAwsCloudwatchScrapeJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProviderAwsCloudwatchScrapeJobResult> {
+    pulumi.log.warn("getProviderAwsCloudwatchScrapeJob is deprecated: grafana.cloud/getproviderawscloudwatchscrapejob.getProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejob.getAwsCloudwatchScrapeJob")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:cloud/getProviderAwsCloudwatchScrapeJob:getProviderAwsCloudwatchScrapeJob", {
         "customNamespaces": args.customNamespaces,

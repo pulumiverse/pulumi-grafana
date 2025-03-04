@@ -70,11 +70,19 @@ type CloudStack struct {
 	// Slug of the cluster where this stack resides.
 	ClusterSlug pulumi.StringOutput `pulumi:"clusterSlug"`
 	// Description of stack.
-	Description    pulumi.StringPtrOutput `pulumi:"description"`
-	GraphiteName   pulumi.StringOutput    `pulumi:"graphiteName"`
-	GraphiteStatus pulumi.StringOutput    `pulumi:"graphiteStatus"`
-	GraphiteUrl    pulumi.StringOutput    `pulumi:"graphiteUrl"`
-	GraphiteUserId pulumi.IntOutput       `pulumi:"graphiteUserId"`
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Name of the Fleet Management instance configured for this stack.
+	FleetManagementName pulumi.StringOutput `pulumi:"fleetManagementName"`
+	// Status of the Fleet Management instance configured for this stack.
+	FleetManagementStatus pulumi.StringOutput `pulumi:"fleetManagementStatus"`
+	// Base URL of the Fleet Management instance configured for this stack.
+	FleetManagementUrl pulumi.StringOutput `pulumi:"fleetManagementUrl"`
+	// User ID of the Fleet Management instance configured for this stack.
+	FleetManagementUserId pulumi.IntOutput    `pulumi:"fleetManagementUserId"`
+	GraphiteName          pulumi.StringOutput `pulumi:"graphiteName"`
+	GraphiteStatus        pulumi.StringOutput `pulumi:"graphiteStatus"`
+	GraphiteUrl           pulumi.StringOutput `pulumi:"graphiteUrl"`
+	GraphiteUserId        pulumi.IntOutput    `pulumi:"graphiteUserId"`
 	// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
 	InfluxUrl pulumi.StringOutput `pulumi:"influxUrl"`
 	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
@@ -172,11 +180,19 @@ type cloudStackState struct {
 	// Slug of the cluster where this stack resides.
 	ClusterSlug *string `pulumi:"clusterSlug"`
 	// Description of stack.
-	Description    *string `pulumi:"description"`
-	GraphiteName   *string `pulumi:"graphiteName"`
-	GraphiteStatus *string `pulumi:"graphiteStatus"`
-	GraphiteUrl    *string `pulumi:"graphiteUrl"`
-	GraphiteUserId *int    `pulumi:"graphiteUserId"`
+	Description *string `pulumi:"description"`
+	// Name of the Fleet Management instance configured for this stack.
+	FleetManagementName *string `pulumi:"fleetManagementName"`
+	// Status of the Fleet Management instance configured for this stack.
+	FleetManagementStatus *string `pulumi:"fleetManagementStatus"`
+	// Base URL of the Fleet Management instance configured for this stack.
+	FleetManagementUrl *string `pulumi:"fleetManagementUrl"`
+	// User ID of the Fleet Management instance configured for this stack.
+	FleetManagementUserId *int    `pulumi:"fleetManagementUserId"`
+	GraphiteName          *string `pulumi:"graphiteName"`
+	GraphiteStatus        *string `pulumi:"graphiteStatus"`
+	GraphiteUrl           *string `pulumi:"graphiteUrl"`
+	GraphiteUserId        *int    `pulumi:"graphiteUserId"`
 	// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
 	InfluxUrl *string `pulumi:"influxUrl"`
 	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
@@ -242,11 +258,19 @@ type CloudStackState struct {
 	// Slug of the cluster where this stack resides.
 	ClusterSlug pulumi.StringPtrInput
 	// Description of stack.
-	Description    pulumi.StringPtrInput
-	GraphiteName   pulumi.StringPtrInput
-	GraphiteStatus pulumi.StringPtrInput
-	GraphiteUrl    pulumi.StringPtrInput
-	GraphiteUserId pulumi.IntPtrInput
+	Description pulumi.StringPtrInput
+	// Name of the Fleet Management instance configured for this stack.
+	FleetManagementName pulumi.StringPtrInput
+	// Status of the Fleet Management instance configured for this stack.
+	FleetManagementStatus pulumi.StringPtrInput
+	// Base URL of the Fleet Management instance configured for this stack.
+	FleetManagementUrl pulumi.StringPtrInput
+	// User ID of the Fleet Management instance configured for this stack.
+	FleetManagementUserId pulumi.IntPtrInput
+	GraphiteName          pulumi.StringPtrInput
+	GraphiteStatus        pulumi.StringPtrInput
+	GraphiteUrl           pulumi.StringPtrInput
+	GraphiteUserId        pulumi.IntPtrInput
 	// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
 	InfluxUrl pulumi.StringPtrInput
 	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
@@ -458,6 +482,26 @@ func (o CloudStackOutput) ClusterSlug() pulumi.StringOutput {
 // Description of stack.
 func (o CloudStackOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Name of the Fleet Management instance configured for this stack.
+func (o CloudStackOutput) FleetManagementName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.FleetManagementName }).(pulumi.StringOutput)
+}
+
+// Status of the Fleet Management instance configured for this stack.
+func (o CloudStackOutput) FleetManagementStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.FleetManagementStatus }).(pulumi.StringOutput)
+}
+
+// Base URL of the Fleet Management instance configured for this stack.
+func (o CloudStackOutput) FleetManagementUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.FleetManagementUrl }).(pulumi.StringOutput)
+}
+
+// User ID of the Fleet Management instance configured for this stack.
+func (o CloudStackOutput) FleetManagementUserId() pulumi.IntOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.IntOutput { return v.FleetManagementUserId }).(pulumi.IntOutput)
 }
 
 func (o CloudStackOutput) GraphiteName() pulumi.StringOutput {

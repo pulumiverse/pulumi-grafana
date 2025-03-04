@@ -22,6 +22,7 @@ import (
 //	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloudprovider"
 //
 // )
 //
@@ -39,7 +40,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testProviderAwsAccount, err := cloud.NewProviderAwsAccount(ctx, "test", &cloud.ProviderAwsAccountArgs{
+//			testAwsAccount, err := cloudprovider.NewAwsAccount(ctx, "test", &cloudprovider.AwsAccountArgs{
 //				StackId: pulumi.String(test.Id),
 //				RoleArn: pulumi.String(testGetRole.Arn),
 //				Regions: pulumi.StringArray{
@@ -51,22 +52,22 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloud.NewProviderAwsCloudwatchScrapeJob(ctx, "test", &cloud.ProviderAwsCloudwatchScrapeJobArgs{
+//			_, err = cloudprovider.NewAwsCloudwatchScrapeJob(ctx, "test", &cloudprovider.AwsCloudwatchScrapeJobArgs{
 //				StackId:              pulumi.String(test.Id),
 //				Name:                 pulumi.String("my-cloudwatch-scrape-job"),
-//				AwsAccountResourceId: testProviderAwsAccount.ResourceId,
+//				AwsAccountResourceId: testAwsAccount.ResourceId,
 //				ExportTags:           pulumi.Bool(true),
-//				Services: cloud.ProviderAwsCloudwatchScrapeJobServiceArray{
-//					&cloud.ProviderAwsCloudwatchScrapeJobServiceArgs{
+//				Services: cloudprovider.AwsCloudwatchScrapeJobServiceArray{
+//					&cloudprovider.AwsCloudwatchScrapeJobServiceArgs{
 //						Name: pulumi.String("AWS/EC2"),
-//						Metrics: cloud.ProviderAwsCloudwatchScrapeJobServiceMetricArray{
-//							&cloud.ProviderAwsCloudwatchScrapeJobServiceMetricArgs{
+//						Metrics: cloudprovider.AwsCloudwatchScrapeJobServiceMetricArray{
+//							&cloudprovider.AwsCloudwatchScrapeJobServiceMetricArgs{
 //								Name: pulumi.String("CPUUtilization"),
 //								Statistics: pulumi.StringArray{
 //									pulumi.String("Average"),
 //								},
 //							},
-//							&cloud.ProviderAwsCloudwatchScrapeJobServiceMetricArgs{
+//							&cloudprovider.AwsCloudwatchScrapeJobServiceMetricArgs{
 //								Name: pulumi.String("StatusCheckFailed"),
 //								Statistics: pulumi.StringArray{
 //									pulumi.String("Maximum"),
@@ -74,8 +75,8 @@ import (
 //							},
 //						},
 //						ScrapeIntervalSeconds: pulumi.Int(300),
-//						ResourceDiscoveryTagFilters: cloud.ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray{
-//							&cloud.ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{
+//						ResourceDiscoveryTagFilters: cloudprovider.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray{
+//							&cloudprovider.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{
 //								Key:   pulumi.String("k8s.io/cluster-autoscaler/enabled"),
 //								Value: pulumi.String("true"),
 //							},
@@ -85,11 +86,11 @@ import (
 //						},
 //					},
 //				},
-//				CustomNamespaces: cloud.ProviderAwsCloudwatchScrapeJobCustomNamespaceArray{
-//					&cloud.ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs{
+//				CustomNamespaces: cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceArray{
+//					&cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceArgs{
 //						Name: pulumi.String("CoolApp"),
-//						Metrics: cloud.ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArray{
-//							&cloud.ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs{
+//						Metrics: cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceMetricArray{
+//							&cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceMetricArgs{
 //								Name: pulumi.String("CoolMetric"),
 //								Statistics: pulumi.StringArray{
 //									pulumi.String("Maximum"),
@@ -99,6 +100,10 @@ import (
 //						},
 //						ScrapeIntervalSeconds: pulumi.Int(300),
 //					},
+//				},
+//				StaticLabels: pulumi.StringMap{
+//					"label1": pulumi.String("value1"),
+//					"label2": pulumi.String("value2"),
 //				},
 //			})
 //			if err != nil {
@@ -115,10 +120,12 @@ import (
 // ```sh
 // $ pulumi import grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob name "{{ stack_id }}:{{ name }}"
 // ```
+//
+// Deprecated: grafana.cloud/providerawscloudwatchscrapejob.ProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/awscloudwatchscrapejob.AwsCloudwatchScrapeJob
 type ProviderAwsCloudwatchScrapeJob struct {
 	pulumi.CustomResourceState
 
-	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloud.ProviderAwsAccount` resource.
+	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId pulumi.StringOutput `pulumi:"awsAccountResourceId"`
 	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput `pulumi:"customNamespaces"`
@@ -134,6 +141,8 @@ type ProviderAwsCloudwatchScrapeJob struct {
 	// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services ProviderAwsCloudwatchScrapeJobServiceArrayOutput `pulumi:"services"`
 	StackId  pulumi.StringOutput                              `pulumi:"stackId"`
+	// A set of static labels to add to all metrics exported by this scrape job.
+	StaticLabels pulumi.StringMapOutput `pulumi:"staticLabels"`
 }
 
 // NewProviderAwsCloudwatchScrapeJob registers a new resource with the given unique name, arguments, and options.
@@ -172,7 +181,7 @@ func GetProviderAwsCloudwatchScrapeJob(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ProviderAwsCloudwatchScrapeJob resources.
 type providerAwsCloudwatchScrapeJobState struct {
-	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloud.ProviderAwsAccount` resource.
+	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId *string `pulumi:"awsAccountResourceId"`
 	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces []ProviderAwsCloudwatchScrapeJobCustomNamespace `pulumi:"customNamespaces"`
@@ -188,10 +197,12 @@ type providerAwsCloudwatchScrapeJobState struct {
 	// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services []ProviderAwsCloudwatchScrapeJobService `pulumi:"services"`
 	StackId  *string                                 `pulumi:"stackId"`
+	// A set of static labels to add to all metrics exported by this scrape job.
+	StaticLabels map[string]string `pulumi:"staticLabels"`
 }
 
 type ProviderAwsCloudwatchScrapeJobState struct {
-	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloud.ProviderAwsAccount` resource.
+	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId pulumi.StringPtrInput
 	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayInput
@@ -207,6 +218,8 @@ type ProviderAwsCloudwatchScrapeJobState struct {
 	// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services ProviderAwsCloudwatchScrapeJobServiceArrayInput
 	StackId  pulumi.StringPtrInput
+	// A set of static labels to add to all metrics exported by this scrape job.
+	StaticLabels pulumi.StringMapInput
 }
 
 func (ProviderAwsCloudwatchScrapeJobState) ElementType() reflect.Type {
@@ -214,7 +227,7 @@ func (ProviderAwsCloudwatchScrapeJobState) ElementType() reflect.Type {
 }
 
 type providerAwsCloudwatchScrapeJobArgs struct {
-	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloud.ProviderAwsAccount` resource.
+	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId string `pulumi:"awsAccountResourceId"`
 	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces []ProviderAwsCloudwatchScrapeJobCustomNamespace `pulumi:"customNamespaces"`
@@ -228,11 +241,13 @@ type providerAwsCloudwatchScrapeJobArgs struct {
 	// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services []ProviderAwsCloudwatchScrapeJobService `pulumi:"services"`
 	StackId  string                                  `pulumi:"stackId"`
+	// A set of static labels to add to all metrics exported by this scrape job.
+	StaticLabels map[string]string `pulumi:"staticLabels"`
 }
 
 // The set of arguments for constructing a ProviderAwsCloudwatchScrapeJob resource.
 type ProviderAwsCloudwatchScrapeJobArgs struct {
-	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloud.ProviderAwsAccount` resource.
+	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId pulumi.StringInput
 	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayInput
@@ -246,6 +261,8 @@ type ProviderAwsCloudwatchScrapeJobArgs struct {
 	// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services ProviderAwsCloudwatchScrapeJobServiceArrayInput
 	StackId  pulumi.StringInput
+	// A set of static labels to add to all metrics exported by this scrape job.
+	StaticLabels pulumi.StringMapInput
 }
 
 func (ProviderAwsCloudwatchScrapeJobArgs) ElementType() reflect.Type {
@@ -335,7 +352,7 @@ func (o ProviderAwsCloudwatchScrapeJobOutput) ToProviderAwsCloudwatchScrapeJobOu
 	return o
 }
 
-// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloud.ProviderAwsAccount` resource.
+// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 func (o ProviderAwsCloudwatchScrapeJobOutput) AwsAccountResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProviderAwsCloudwatchScrapeJob) pulumi.StringOutput { return v.AwsAccountResourceId }).(pulumi.StringOutput)
 }
@@ -380,6 +397,11 @@ func (o ProviderAwsCloudwatchScrapeJobOutput) Services() ProviderAwsCloudwatchSc
 
 func (o ProviderAwsCloudwatchScrapeJobOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProviderAwsCloudwatchScrapeJob) pulumi.StringOutput { return v.StackId }).(pulumi.StringOutput)
+}
+
+// A set of static labels to add to all metrics exported by this scrape job.
+func (o ProviderAwsCloudwatchScrapeJobOutput) StaticLabels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ProviderAwsCloudwatchScrapeJob) pulumi.StringMapOutput { return v.StaticLabels }).(pulumi.StringMapOutput)
 }
 
 type ProviderAwsCloudwatchScrapeJobArrayOutput struct{ *pulumi.OutputState }

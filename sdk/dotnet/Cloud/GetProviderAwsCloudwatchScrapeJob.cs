@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Grafana.Cloud
 {
+    [Obsolete(@"grafana.cloud/getproviderawscloudwatchscrapejob.getProviderAwsCloudwatchScrapeJob has been deprecated in favor of grafana.cloudprovider/getawscloudwatchscrapejob.getAwsCloudwatchScrapeJob")]
     public static class GetProviderAwsCloudwatchScrapeJob
     {
         /// <summary>
@@ -35,7 +36,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///         Name = "my-role",
         ///     });
         /// 
-        ///     var testProviderAwsAccount = new Grafana.Cloud.ProviderAwsAccount("test", new()
+        ///     var testAwsAccount = new Grafana.CloudProvider.AwsAccount("test", new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
         ///         RoleArn = testGetRole.Apply(getRoleResult =&gt; getRoleResult.Arn),
@@ -47,20 +48,20 @@ namespace Pulumiverse.Grafana.Cloud
         ///         },
         ///     });
         /// 
-        ///     var testProviderAwsCloudwatchScrapeJob = new Grafana.Cloud.ProviderAwsCloudwatchScrapeJob("test", new()
+        ///     var testAwsCloudwatchScrapeJob = new Grafana.CloudProvider.AwsCloudwatchScrapeJob("test", new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
         ///         Name = "my-cloudwatch-scrape-job",
-        ///         AwsAccountResourceId = testProviderAwsAccount.ResourceId,
+        ///         AwsAccountResourceId = testAwsAccount.ResourceId,
         ///         ExportTags = true,
         ///         Services = new[]
         ///         {
-        ///             new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobServiceArgs
+        ///             new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceArgs
         ///             {
         ///                 Name = "AWS/EC2",
         ///                 Metrics = new[]
         ///                 {
-        ///                     new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobServiceMetricArgs
+        ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceMetricArgs
         ///                     {
         ///                         Name = "CPUUtilization",
         ///                         Statistics = new[]
@@ -68,7 +69,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///                             "Average",
         ///                         },
         ///                     },
-        ///                     new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobServiceMetricArgs
+        ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceMetricArgs
         ///                     {
         ///                         Name = "StatusCheckFailed",
         ///                         Statistics = new[]
@@ -80,7 +81,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///                 ScrapeIntervalSeconds = 300,
         ///                 ResourceDiscoveryTagFilters = new[]
         ///                 {
-        ///                     new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs
+        ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs
         ///                     {
         ///                         Key = "k8s.io/cluster-autoscaler/enabled",
         ///                         Value = "true",
@@ -94,12 +95,12 @@ namespace Pulumiverse.Grafana.Cloud
         ///         },
         ///         CustomNamespaces = new[]
         ///         {
-        ///             new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs
+        ///             new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobCustomNamespaceArgs
         ///             {
         ///                 Name = "CoolApp",
         ///                 Metrics = new[]
         ///                 {
-        ///                     new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs
+        ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobCustomNamespaceMetricArgs
         ///                     {
         ///                         Name = "CoolMetric",
         ///                         Statistics = new[]
@@ -112,12 +113,17 @@ namespace Pulumiverse.Grafana.Cloud
         ///                 ScrapeIntervalSeconds = 300,
         ///             },
         ///         },
+        ///         StaticLabels = 
+        ///         {
+        ///             { "label1", "value1" },
+        ///             { "label2", "value2" },
+        ///         },
         ///     });
         /// 
-        ///     var testGetProviderAwsCloudwatchScrapeJob = Grafana.Cloud.GetProviderAwsCloudwatchScrapeJob.Invoke(new()
+        ///     var testGetAwsCloudwatchScrapeJob = Grafana.CloudProvider.GetAwsCloudwatchScrapeJob.Invoke(new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
-        ///         Name = testProviderAwsCloudwatchScrapeJob.Name,
+        ///         Name = testAwsCloudwatchScrapeJob.Name,
         ///     });
         /// 
         /// });
@@ -149,7 +155,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///         Name = "my-role",
         ///     });
         /// 
-        ///     var testProviderAwsAccount = new Grafana.Cloud.ProviderAwsAccount("test", new()
+        ///     var testAwsAccount = new Grafana.CloudProvider.AwsAccount("test", new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
         ///         RoleArn = testGetRole.Apply(getRoleResult =&gt; getRoleResult.Arn),
@@ -161,20 +167,20 @@ namespace Pulumiverse.Grafana.Cloud
         ///         },
         ///     });
         /// 
-        ///     var testProviderAwsCloudwatchScrapeJob = new Grafana.Cloud.ProviderAwsCloudwatchScrapeJob("test", new()
+        ///     var testAwsCloudwatchScrapeJob = new Grafana.CloudProvider.AwsCloudwatchScrapeJob("test", new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
         ///         Name = "my-cloudwatch-scrape-job",
-        ///         AwsAccountResourceId = testProviderAwsAccount.ResourceId,
+        ///         AwsAccountResourceId = testAwsAccount.ResourceId,
         ///         ExportTags = true,
         ///         Services = new[]
         ///         {
-        ///             new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobServiceArgs
+        ///             new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceArgs
         ///             {
         ///                 Name = "AWS/EC2",
         ///                 Metrics = new[]
         ///                 {
-        ///                     new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobServiceMetricArgs
+        ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceMetricArgs
         ///                     {
         ///                         Name = "CPUUtilization",
         ///                         Statistics = new[]
@@ -182,7 +188,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///                             "Average",
         ///                         },
         ///                     },
-        ///                     new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobServiceMetricArgs
+        ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceMetricArgs
         ///                     {
         ///                         Name = "StatusCheckFailed",
         ///                         Statistics = new[]
@@ -194,7 +200,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///                 ScrapeIntervalSeconds = 300,
         ///                 ResourceDiscoveryTagFilters = new[]
         ///                 {
-        ///                     new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs
+        ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs
         ///                     {
         ///                         Key = "k8s.io/cluster-autoscaler/enabled",
         ///                         Value = "true",
@@ -208,12 +214,12 @@ namespace Pulumiverse.Grafana.Cloud
         ///         },
         ///         CustomNamespaces = new[]
         ///         {
-        ///             new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs
+        ///             new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobCustomNamespaceArgs
         ///             {
         ///                 Name = "CoolApp",
         ///                 Metrics = new[]
         ///                 {
-        ///                     new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs
+        ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobCustomNamespaceMetricArgs
         ///                     {
         ///                         Name = "CoolMetric",
         ///                         Statistics = new[]
@@ -226,12 +232,17 @@ namespace Pulumiverse.Grafana.Cloud
         ///                 ScrapeIntervalSeconds = 300,
         ///             },
         ///         },
+        ///         StaticLabels = 
+        ///         {
+        ///             { "label1", "value1" },
+        ///             { "label2", "value2" },
+        ///         },
         ///     });
         /// 
-        ///     var testGetProviderAwsCloudwatchScrapeJob = Grafana.Cloud.GetProviderAwsCloudwatchScrapeJob.Invoke(new()
+        ///     var testGetAwsCloudwatchScrapeJob = Grafana.CloudProvider.GetAwsCloudwatchScrapeJob.Invoke(new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
-        ///         Name = testProviderAwsCloudwatchScrapeJob.Name,
+        ///         Name = testAwsCloudwatchScrapeJob.Name,
         ///     });
         /// 
         /// });
@@ -263,7 +274,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///         Name = "my-role",
         ///     });
         /// 
-        ///     var testProviderAwsAccount = new Grafana.Cloud.ProviderAwsAccount("test", new()
+        ///     var testAwsAccount = new Grafana.CloudProvider.AwsAccount("test", new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
         ///         RoleArn = testGetRole.Apply(getRoleResult =&gt; getRoleResult.Arn),
@@ -275,20 +286,20 @@ namespace Pulumiverse.Grafana.Cloud
         ///         },
         ///     });
         /// 
-        ///     var testProviderAwsCloudwatchScrapeJob = new Grafana.Cloud.ProviderAwsCloudwatchScrapeJob("test", new()
+        ///     var testAwsCloudwatchScrapeJob = new Grafana.CloudProvider.AwsCloudwatchScrapeJob("test", new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
         ///         Name = "my-cloudwatch-scrape-job",
-        ///         AwsAccountResourceId = testProviderAwsAccount.ResourceId,
+        ///         AwsAccountResourceId = testAwsAccount.ResourceId,
         ///         ExportTags = true,
         ///         Services = new[]
         ///         {
-        ///             new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobServiceArgs
+        ///             new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceArgs
         ///             {
         ///                 Name = "AWS/EC2",
         ///                 Metrics = new[]
         ///                 {
-        ///                     new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobServiceMetricArgs
+        ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceMetricArgs
         ///                     {
         ///                         Name = "CPUUtilization",
         ///                         Statistics = new[]
@@ -296,7 +307,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///                             "Average",
         ///                         },
         ///                     },
-        ///                     new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobServiceMetricArgs
+        ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceMetricArgs
         ///                     {
         ///                         Name = "StatusCheckFailed",
         ///                         Statistics = new[]
@@ -308,7 +319,7 @@ namespace Pulumiverse.Grafana.Cloud
         ///                 ScrapeIntervalSeconds = 300,
         ///                 ResourceDiscoveryTagFilters = new[]
         ///                 {
-        ///                     new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs
+        ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs
         ///                     {
         ///                         Key = "k8s.io/cluster-autoscaler/enabled",
         ///                         Value = "true",
@@ -322,12 +333,12 @@ namespace Pulumiverse.Grafana.Cloud
         ///         },
         ///         CustomNamespaces = new[]
         ///         {
-        ///             new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs
+        ///             new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobCustomNamespaceArgs
         ///             {
         ///                 Name = "CoolApp",
         ///                 Metrics = new[]
         ///                 {
-        ///                     new Grafana.Cloud.Inputs.ProviderAwsCloudwatchScrapeJobCustomNamespaceMetricArgs
+        ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobCustomNamespaceMetricArgs
         ///                     {
         ///                         Name = "CoolMetric",
         ///                         Statistics = new[]
@@ -340,12 +351,17 @@ namespace Pulumiverse.Grafana.Cloud
         ///                 ScrapeIntervalSeconds = 300,
         ///             },
         ///         },
+        ///         StaticLabels = 
+        ///         {
+        ///             { "label1", "value1" },
+        ///             { "label2", "value2" },
+        ///         },
         ///     });
         /// 
-        ///     var testGetProviderAwsCloudwatchScrapeJob = Grafana.Cloud.GetProviderAwsCloudwatchScrapeJob.Invoke(new()
+        ///     var testGetAwsCloudwatchScrapeJob = Grafana.CloudProvider.GetAwsCloudwatchScrapeJob.Invoke(new()
         ///     {
         ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
-        ///         Name = testProviderAwsCloudwatchScrapeJob.Name,
+        ///         Name = testAwsCloudwatchScrapeJob.Name,
         ///     });
         /// 
         /// });
@@ -437,7 +453,7 @@ namespace Pulumiverse.Grafana.Cloud
     public sealed class GetProviderAwsCloudwatchScrapeJobResult
     {
         /// <summary>
-        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloud.ProviderAwsAccount` resource.
+        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.
         /// </summary>
         public readonly string AwsAccountResourceId;
         /// <summary>
@@ -475,6 +491,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly ImmutableArray<Outputs.GetProviderAwsCloudwatchScrapeJobServiceResult> Services;
         public readonly string StackId;
+        /// <summary>
+        /// A set of static labels to add to all metrics exported by this scrape job.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string> StaticLabels;
 
         [OutputConstructor]
         private GetProviderAwsCloudwatchScrapeJobResult(
@@ -500,7 +520,9 @@ namespace Pulumiverse.Grafana.Cloud
 
             ImmutableArray<Outputs.GetProviderAwsCloudwatchScrapeJobServiceResult> services,
 
-            string stackId)
+            string stackId,
+
+            ImmutableDictionary<string, string> staticLabels)
         {
             AwsAccountResourceId = awsAccountResourceId;
             CustomNamespaces = customNamespaces;
@@ -514,6 +536,7 @@ namespace Pulumiverse.Grafana.Cloud
             RoleArn = roleArn;
             Services = services;
             StackId = stackId;
+            StaticLabels = staticLabels;
         }
     }
 }

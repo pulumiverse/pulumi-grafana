@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * const test = grafana.cloud.getStack({
  *     slug: "gcloudstacktest",
  * });
- * const testProviderAwsAccount = new grafana.cloud.ProviderAwsAccount("test", {
+ * const testAwsAccount = new grafana.cloudprovider.AwsAccount("test", {
  *     stackId: test.then(test => test.id),
  *     roleArn: testAwsIamRole.arn,
  *     regions: [
@@ -23,13 +23,15 @@ import * as utilities from "../utilities";
  *         "eu-west-3",
  *     ],
  * });
- * const testGetProviderAwsAccount = pulumi.all([test, testProviderAwsAccount.resourceId]).apply(([test, resourceId]) => grafana.cloud.getProviderAwsAccountOutput({
+ * const testGetAwsAccount = pulumi.all([test, testAwsAccount.resourceId]).apply(([test, resourceId]) => grafana.cloudProvider.getAwsAccountOutput({
  *     stackId: test.id,
  *     resourceId: resourceId,
  * }));
  * ```
  */
+/** @deprecated grafana.cloud/getproviderawsaccount.getProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/getawsaccount.getAwsAccount */
 export function getProviderAwsAccount(args: GetProviderAwsAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetProviderAwsAccountResult> {
+    pulumi.log.warn("getProviderAwsAccount is deprecated: grafana.cloud/getproviderawsaccount.getProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/getawsaccount.getAwsAccount")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:cloud/getProviderAwsAccount:getProviderAwsAccount", {
         "resourceId": args.resourceId,
@@ -82,7 +84,7 @@ export interface GetProviderAwsAccountResult {
  * const test = grafana.cloud.getStack({
  *     slug: "gcloudstacktest",
  * });
- * const testProviderAwsAccount = new grafana.cloud.ProviderAwsAccount("test", {
+ * const testAwsAccount = new grafana.cloudprovider.AwsAccount("test", {
  *     stackId: test.then(test => test.id),
  *     roleArn: testAwsIamRole.arn,
  *     regions: [
@@ -90,13 +92,15 @@ export interface GetProviderAwsAccountResult {
  *         "eu-west-3",
  *     ],
  * });
- * const testGetProviderAwsAccount = pulumi.all([test, testProviderAwsAccount.resourceId]).apply(([test, resourceId]) => grafana.cloud.getProviderAwsAccountOutput({
+ * const testGetAwsAccount = pulumi.all([test, testAwsAccount.resourceId]).apply(([test, resourceId]) => grafana.cloudProvider.getAwsAccountOutput({
  *     stackId: test.id,
  *     resourceId: resourceId,
  * }));
  * ```
  */
+/** @deprecated grafana.cloud/getproviderawsaccount.getProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/getawsaccount.getAwsAccount */
 export function getProviderAwsAccountOutput(args: GetProviderAwsAccountOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProviderAwsAccountResult> {
+    pulumi.log.warn("getProviderAwsAccount is deprecated: grafana.cloud/getproviderawsaccount.getProviderAwsAccount has been deprecated in favor of grafana.cloudprovider/getawsaccount.getAwsAccount")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:cloud/getProviderAwsAccount:getProviderAwsAccount", {
         "resourceId": args.resourceId,

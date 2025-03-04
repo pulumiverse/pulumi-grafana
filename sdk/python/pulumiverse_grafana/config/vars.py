@@ -83,6 +83,22 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('connectionsApiUrl')
 
     @property
+    def fleet_management_auth(self) -> Optional[str]:
+        """
+        A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
+        `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+        """
+        return __config__.get('fleetManagementAuth')
+
+    @property
+    def fleet_management_url(self) -> Optional[str]:
+        """
+        A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
+        variable.
+        """
+        return __config__.get('fleetManagementUrl')
+
+    @property
     def insecure_skip_verify(self) -> Optional[bool]:
         """
         Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

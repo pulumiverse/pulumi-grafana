@@ -1898,13 +1898,13 @@ export interface RuleGroupRule {
     /**
      * The `refId` of the query node in the `data` field to use as the alert condition.
      */
-    condition: string;
+    condition?: string;
     /**
      * A sequence of stages that describe the contents of the rule.
      */
     datas: outputs.RuleGroupRuleData[];
     /**
-     * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+     * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.  Defaults to Alerting if not set.
      */
     execErrState?: string;
     /**
@@ -1924,7 +1924,7 @@ export interface RuleGroupRule {
      */
     name: string;
     /**
-     * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+     * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
      */
     noDataState?: string;
     /**
@@ -4362,13 +4362,13 @@ export namespace alerting {
         /**
          * The `refId` of the query node in the `data` field to use as the alert condition.
          */
-        condition: string;
+        condition?: string;
         /**
          * A sequence of stages that describe the contents of the rule.
          */
         datas: outputs.alerting.RuleGroupRuleData[];
         /**
-         * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting. Defaults to `Alerting`.
+         * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.  Defaults to Alerting if not set.
          */
         execErrState?: string;
         /**
@@ -4388,7 +4388,7 @@ export namespace alerting {
          */
         name: string;
         /**
-         * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to `NoData`.
+         * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
          */
         noDataState?: string;
         /**
@@ -4588,7 +4588,7 @@ export namespace cloud {
 
     export interface GetProviderAwsCloudwatchScrapeJobsScrapeJob {
         /**
-         * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloud.ProviderAwsAccount` resource.
+         * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
          */
         awsAccountResourceId: string;
         /**
@@ -4626,6 +4626,10 @@ export namespace cloud {
          */
         services?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobService[];
         stackId: string;
+        /**
+         * A set of static labels to add to all metrics exported by this scrape job.
+         */
+        staticLabels: {[key: string]: string};
     }
 
     export interface GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace {
@@ -4826,6 +4830,334 @@ export namespace cloud {
     }
 
     export interface ProviderAzureCredentialResourceDiscoveryTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The value of the tag filter.
+         */
+        value: string;
+    }
+
+}
+
+export namespace cloudProvider {
+    export interface AwsCloudwatchScrapeJobCustomNamespace {
+        /**
+         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         */
+        metrics?: outputs.cloudProvider.AwsCloudwatchScrapeJobCustomNamespaceMetric[];
+        /**
+         * The name of the custom namespace to scrape.
+         */
+        name: string;
+        /**
+         * The interval in seconds to scrape the custom namespace.
+         */
+        scrapeIntervalSeconds: number;
+    }
+
+    export interface AwsCloudwatchScrapeJobCustomNamespaceMetric {
+        /**
+         * The name of the metric to scrape.
+         */
+        name: string;
+        /**
+         * A set of statistics to scrape.
+         */
+        statistics: string[];
+    }
+
+    export interface AwsCloudwatchScrapeJobService {
+        /**
+         * One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         */
+        metrics?: outputs.cloudProvider.AwsCloudwatchScrapeJobServiceMetric[];
+        /**
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+         */
+        name: string;
+        /**
+         * One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+         */
+        resourceDiscoveryTagFilters?: outputs.cloudProvider.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter[];
+        /**
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         */
+        scrapeIntervalSeconds: number;
+        /**
+         * A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+         */
+        tagsToAddToMetrics: string[];
+    }
+
+    export interface AwsCloudwatchScrapeJobServiceMetric {
+        /**
+         * The name of the metric to scrape.
+         */
+        name: string;
+        /**
+         * A set of statistics to scrape.
+         */
+        statistics: string[];
+    }
+
+    export interface AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The value of the tag filter.
+         */
+        value: string;
+    }
+
+    export interface AzureCredentialAutoDiscoveryConfiguration {
+        /**
+         * The list of resource type configurations.
+         */
+        resourceTypeConfigurations: outputs.cloudProvider.AzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration[];
+        /**
+         * The subscription ID of the Azure account.
+         */
+        subscriptionId: string;
+    }
+
+    export interface AzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration {
+        metricConfigurations: outputs.cloudProvider.AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration[];
+        resourceTypeName: string;
+    }
+
+    export interface AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration {
+        aggregations: string[];
+        dimensions: string[];
+        name: string;
+    }
+
+    export interface AzureCredentialResourceDiscoveryTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The value of the tag filter.
+         */
+        value: string;
+    }
+
+    export interface GetAwsCloudwatchScrapeJobCustomNamespace {
+        /**
+         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         */
+        metrics?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobCustomNamespaceMetric[];
+        /**
+         * The name of the custom namespace to scrape.
+         */
+        name: string;
+        /**
+         * The interval in seconds to scrape the custom namespace.
+         */
+        scrapeIntervalSeconds: number;
+    }
+
+    export interface GetAwsCloudwatchScrapeJobCustomNamespaceMetric {
+        /**
+         * The name of the metric to scrape.
+         */
+        name: string;
+        /**
+         * A set of statistics to scrape.
+         */
+        statistics: string[];
+    }
+
+    export interface GetAwsCloudwatchScrapeJobService {
+        /**
+         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         */
+        metrics?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobServiceMetric[];
+        /**
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         */
+        name: string;
+        /**
+         * One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+         */
+        resourceDiscoveryTagFilters?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter[];
+        /**
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         */
+        scrapeIntervalSeconds: number;
+        /**
+         * A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+         */
+        tagsToAddToMetrics: string[];
+    }
+
+    export interface GetAwsCloudwatchScrapeJobServiceMetric {
+        /**
+         * The name of the metric to scrape.
+         */
+        name: string;
+        /**
+         * A set of statistics to scrape.
+         */
+        statistics: string[];
+    }
+
+    export interface GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The value of the tag filter.
+         */
+        value: string;
+    }
+
+    export interface GetAwsCloudwatchScrapeJobsScrapeJob {
+        /**
+         * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
+         */
+        awsAccountResourceId: string;
+        /**
+         * Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+         */
+        customNamespaces?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespace[];
+        /**
+         * When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+         */
+        disabledReason: string;
+        /**
+         * Whether the CloudWatch Scrape Job is enabled or not.
+         */
+        enabled: boolean;
+        /**
+         * When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+         */
+        exportTags: boolean;
+        id: string;
+        name: string;
+        /**
+         * The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
+         */
+        regions: string[];
+        /**
+         * When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
+         */
+        regionsSubsetOverrideUsed: boolean;
+        /**
+         * The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+         */
+        roleArn: string;
+        /**
+         * One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+         */
+        services?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobService[];
+        stackId: string;
+        /**
+         * A set of static labels to add to all metrics exported by this scrape job.
+         */
+        staticLabels: {[key: string]: string};
+    }
+
+    export interface GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespace {
+        /**
+         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         */
+        metrics?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric[];
+        /**
+         * The name of the custom namespace to scrape.
+         */
+        name: string;
+        /**
+         * The interval in seconds to scrape the custom namespace.
+         */
+        scrapeIntervalSeconds: number;
+    }
+
+    export interface GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetric {
+        /**
+         * The name of the metric to scrape.
+         */
+        name: string;
+        /**
+         * A set of statistics to scrape.
+         */
+        statistics: string[];
+    }
+
+    export interface GetAwsCloudwatchScrapeJobsScrapeJobService {
+        /**
+         * One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+         */
+        metrics?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobServiceMetric[];
+        /**
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         */
+        name: string;
+        /**
+         * One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+         */
+        resourceDiscoveryTagFilters?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter[];
+        /**
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         */
+        scrapeIntervalSeconds: number;
+        /**
+         * A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+         */
+        tagsToAddToMetrics: string[];
+    }
+
+    export interface GetAwsCloudwatchScrapeJobsScrapeJobServiceMetric {
+        /**
+         * The name of the metric to scrape.
+         */
+        name: string;
+        /**
+         * A set of statistics to scrape.
+         */
+        statistics: string[];
+    }
+
+    export interface GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The value of the tag filter.
+         */
+        value: string;
+    }
+
+    export interface GetAzureCredentialAutoDiscoveryConfiguration {
+        /**
+         * The list of resource type configurations.
+         */
+        resourceTypeConfigurations: outputs.cloudProvider.GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration[];
+        /**
+         * The subscription ID of the Azure account.
+         */
+        subscriptionId: string;
+    }
+
+    export interface GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration {
+        metricConfigurations: outputs.cloudProvider.GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration[];
+        resourceTypeName: string;
+    }
+
+    export interface GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfiguration {
+        aggregations: string[];
+        dimensions: string[];
+        name: string;
+    }
+
+    export interface GetAzureCredentialResourceDiscoveryTagFilter {
         /**
          * The key of the tag filter.
          */

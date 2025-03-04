@@ -171,6 +171,22 @@ namespace Pulumiverse.Grafana.Cloud
         /// Description of stack.
         /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Name of the Fleet Management instance configured for this stack.
+        /// </summary>
+        public readonly string FleetManagementName;
+        /// <summary>
+        /// Status of the Fleet Management instance configured for this stack.
+        /// </summary>
+        public readonly string FleetManagementStatus;
+        /// <summary>
+        /// Base URL of the Fleet Management instance configured for this stack.
+        /// </summary>
+        public readonly string FleetManagementUrl;
+        /// <summary>
+        /// User ID of the Fleet Management instance configured for this stack.
+        /// </summary>
+        public readonly int FleetManagementUserId;
         public readonly string GraphiteName;
         public readonly string GraphiteStatus;
         public readonly string GraphiteUrl;
@@ -278,6 +294,14 @@ namespace Pulumiverse.Grafana.Cloud
 
             string description,
 
+            string fleetManagementName,
+
+            string fleetManagementStatus,
+
+            string fleetManagementUrl,
+
+            int fleetManagementUserId,
+
             string graphiteName,
 
             string graphiteStatus,
@@ -352,6 +376,10 @@ namespace Pulumiverse.Grafana.Cloud
             AlertmanagerUserId = alertmanagerUserId;
             ClusterSlug = clusterSlug;
             Description = description;
+            FleetManagementName = fleetManagementName;
+            FleetManagementStatus = fleetManagementStatus;
+            FleetManagementUrl = fleetManagementUrl;
+            FleetManagementUserId = fleetManagementUserId;
             GraphiteName = graphiteName;
             GraphiteStatus = graphiteStatus;
             GraphiteUrl = graphiteUrl;

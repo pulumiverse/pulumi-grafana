@@ -14,6 +14,8 @@ import * as utilities from "../utilities";
  * ```sh
  * $ pulumi import grafana:cloud/providerAzureCredential:ProviderAzureCredential name "{{ stack_id }}:{{ resource_id }}"
  * ```
+ *
+ * @deprecated grafana.cloud/providerazurecredential.ProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/azurecredential.AzureCredential
  */
 export class ProviderAzureCredential extends pulumi.CustomResource {
     /**
@@ -26,6 +28,7 @@ export class ProviderAzureCredential extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ProviderAzureCredentialState, opts?: pulumi.CustomResourceOptions): ProviderAzureCredential {
+        pulumi.log.warn("ProviderAzureCredential is deprecated: grafana.cloud/providerazurecredential.ProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/azurecredential.AzureCredential")
         return new ProviderAzureCredential(name, <any>state, { ...opts, id: id });
     }
 
@@ -84,8 +87,11 @@ export class ProviderAzureCredential extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.cloud/providerazurecredential.ProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/azurecredential.AzureCredential */
     constructor(name: string, args: ProviderAzureCredentialArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.cloud/providerazurecredential.ProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/azurecredential.AzureCredential */
     constructor(name: string, argsOrState?: ProviderAzureCredentialArgs | ProviderAzureCredentialState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ProviderAzureCredential is deprecated: grafana.cloud/providerazurecredential.ProviderAzureCredential has been deprecated in favor of grafana.cloudprovider/azurecredential.AzureCredential")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

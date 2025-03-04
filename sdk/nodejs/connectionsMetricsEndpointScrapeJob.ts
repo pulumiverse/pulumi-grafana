@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const test = new grafana.ConnectionsMetricsEndpointScrapeJob("test", {
+ * const test = new grafana.connections.MetricsEndpointScrapeJob("test", {
  *     stackId: "1",
  *     name: "my-scrape-job",
  *     enabled: true,
@@ -28,6 +28,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob name "{{ stack_id }}:{{ name }}"
  * ```
+ *
+ * @deprecated grafana.index/connectionsmetricsendpointscrapejob.ConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/metricsendpointscrapejob.MetricsEndpointScrapeJob
  */
 export class ConnectionsMetricsEndpointScrapeJob extends pulumi.CustomResource {
     /**
@@ -40,6 +42,7 @@ export class ConnectionsMetricsEndpointScrapeJob extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ConnectionsMetricsEndpointScrapeJobState, opts?: pulumi.CustomResourceOptions): ConnectionsMetricsEndpointScrapeJob {
+        pulumi.log.warn("ConnectionsMetricsEndpointScrapeJob is deprecated: grafana.index/connectionsmetricsendpointscrapejob.ConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/metricsendpointscrapejob.MetricsEndpointScrapeJob")
         return new ConnectionsMetricsEndpointScrapeJob(name, <any>state, { ...opts, id: id });
     }
 
@@ -95,8 +98,11 @@ export class ConnectionsMetricsEndpointScrapeJob extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.index/connectionsmetricsendpointscrapejob.ConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/metricsendpointscrapejob.MetricsEndpointScrapeJob */
     constructor(name: string, args: ConnectionsMetricsEndpointScrapeJobArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.index/connectionsmetricsendpointscrapejob.ConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/metricsendpointscrapejob.MetricsEndpointScrapeJob */
     constructor(name: string, argsOrState?: ConnectionsMetricsEndpointScrapeJobArgs | ConnectionsMetricsEndpointScrapeJobState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ConnectionsMetricsEndpointScrapeJob is deprecated: grafana.index/connectionsmetricsendpointscrapejob.ConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/metricsendpointscrapejob.MetricsEndpointScrapeJob")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

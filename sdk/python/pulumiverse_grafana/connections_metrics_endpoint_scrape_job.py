@@ -301,7 +301,12 @@ class _ConnectionsMetricsEndpointScrapeJobState:
         pulumi.set(self, "url", value)
 
 
+warnings.warn("""grafana.index/connectionsmetricsendpointscrapejob.ConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/metricsendpointscrapejob.MetricsEndpointScrapeJob""", DeprecationWarning)
+
+
 class ConnectionsMetricsEndpointScrapeJob(pulumi.CustomResource):
+    warnings.warn("""grafana.index/connectionsmetricsendpointscrapejob.ConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/metricsendpointscrapejob.MetricsEndpointScrapeJob""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -323,7 +328,7 @@ class ConnectionsMetricsEndpointScrapeJob(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test = grafana.ConnectionsMetricsEndpointScrapeJob("test",
+        test = grafana.connections.MetricsEndpointScrapeJob("test",
             stack_id="1",
             name="my-scrape-job",
             enabled=True,
@@ -363,7 +368,7 @@ class ConnectionsMetricsEndpointScrapeJob(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        test = grafana.ConnectionsMetricsEndpointScrapeJob("test",
+        test = grafana.connections.MetricsEndpointScrapeJob("test",
             stack_id="1",
             name="my-scrape-job",
             enabled=True,
@@ -405,6 +410,7 @@ class ConnectionsMetricsEndpointScrapeJob(pulumi.CustomResource):
                  stack_id: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""ConnectionsMetricsEndpointScrapeJob is deprecated: grafana.index/connectionsmetricsendpointscrapejob.ConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/metricsendpointscrapejob.MetricsEndpointScrapeJob""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

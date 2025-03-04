@@ -88,6 +88,22 @@ export class CloudStack extends pulumi.CustomResource {
      * Description of stack.
      */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Name of the Fleet Management instance configured for this stack.
+     */
+    public /*out*/ readonly fleetManagementName!: pulumi.Output<string>;
+    /**
+     * Status of the Fleet Management instance configured for this stack.
+     */
+    public /*out*/ readonly fleetManagementStatus!: pulumi.Output<string>;
+    /**
+     * Base URL of the Fleet Management instance configured for this stack.
+     */
+    public /*out*/ readonly fleetManagementUrl!: pulumi.Output<string>;
+    /**
+     * User ID of the Fleet Management instance configured for this stack.
+     */
+    public /*out*/ readonly fleetManagementUserId!: pulumi.Output<number>;
     public /*out*/ readonly graphiteName!: pulumi.Output<string>;
     public /*out*/ readonly graphiteStatus!: pulumi.Output<string>;
     public /*out*/ readonly graphiteUrl!: pulumi.Output<string>;
@@ -206,6 +222,10 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["alertmanagerUserId"] = state ? state.alertmanagerUserId : undefined;
             resourceInputs["clusterSlug"] = state ? state.clusterSlug : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["fleetManagementName"] = state ? state.fleetManagementName : undefined;
+            resourceInputs["fleetManagementStatus"] = state ? state.fleetManagementStatus : undefined;
+            resourceInputs["fleetManagementUrl"] = state ? state.fleetManagementUrl : undefined;
+            resourceInputs["fleetManagementUserId"] = state ? state.fleetManagementUserId : undefined;
             resourceInputs["graphiteName"] = state ? state.graphiteName : undefined;
             resourceInputs["graphiteStatus"] = state ? state.graphiteStatus : undefined;
             resourceInputs["graphiteUrl"] = state ? state.graphiteUrl : undefined;
@@ -259,6 +279,10 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["alertmanagerUrl"] = undefined /*out*/;
             resourceInputs["alertmanagerUserId"] = undefined /*out*/;
             resourceInputs["clusterSlug"] = undefined /*out*/;
+            resourceInputs["fleetManagementName"] = undefined /*out*/;
+            resourceInputs["fleetManagementStatus"] = undefined /*out*/;
+            resourceInputs["fleetManagementUrl"] = undefined /*out*/;
+            resourceInputs["fleetManagementUserId"] = undefined /*out*/;
             resourceInputs["graphiteName"] = undefined /*out*/;
             resourceInputs["graphiteStatus"] = undefined /*out*/;
             resourceInputs["graphiteUrl"] = undefined /*out*/;
@@ -321,6 +345,22 @@ export interface CloudStackState {
      * Description of stack.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Name of the Fleet Management instance configured for this stack.
+     */
+    fleetManagementName?: pulumi.Input<string>;
+    /**
+     * Status of the Fleet Management instance configured for this stack.
+     */
+    fleetManagementStatus?: pulumi.Input<string>;
+    /**
+     * Base URL of the Fleet Management instance configured for this stack.
+     */
+    fleetManagementUrl?: pulumi.Input<string>;
+    /**
+     * User ID of the Fleet Management instance configured for this stack.
+     */
+    fleetManagementUserId?: pulumi.Input<number>;
     graphiteName?: pulumi.Input<string>;
     graphiteStatus?: pulumi.Input<string>;
     graphiteUrl?: pulumi.Input<string>;

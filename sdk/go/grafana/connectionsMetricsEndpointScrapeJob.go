@@ -20,13 +20,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/connections"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := grafana.NewConnectionsMetricsEndpointScrapeJob(ctx, "test", &grafana.ConnectionsMetricsEndpointScrapeJobArgs{
+//			_, err := connections.NewMetricsEndpointScrapeJob(ctx, "test", &connections.MetricsEndpointScrapeJobArgs{
 //				StackId:                     pulumi.String("1"),
 //				Name:                        pulumi.String("my-scrape-job"),
 //				Enabled:                     pulumi.Bool(true),
@@ -50,6 +50,8 @@ import (
 // ```sh
 // $ pulumi import grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob name "{{ stack_id }}:{{ name }}"
 // ```
+//
+// Deprecated: grafana.index/connectionsmetricsendpointscrapejob.ConnectionsMetricsEndpointScrapeJob has been deprecated in favor of grafana.connections/metricsendpointscrapejob.MetricsEndpointScrapeJob
 type ConnectionsMetricsEndpointScrapeJob struct {
 	pulumi.CustomResourceState
 

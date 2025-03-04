@@ -160,6 +160,75 @@ import (
 //
 // ```
 //
+// ### Rescaled Forecast
+//
+// This forecast has had the data transformed using a power transformation in order to avoid negative lower predictions.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"httpMethod":        "POST",
+//				"prometheusType":    "Mimir",
+//				"prometheusVersion": "2.4.0",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"basicAuthPassword": "password",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
+//			foo, err := oss.NewDataSource(ctx, "foo", &oss.DataSourceArgs{
+//				Type:                  pulumi.String("prometheus"),
+//				Name:                  pulumi.String("prometheus-ds-test"),
+//				Uid:                   pulumi.String("prometheus-ds-test-uid"),
+//				Url:                   pulumi.String("https://my-instance.com"),
+//				BasicAuthEnabled:      pulumi.Bool(true),
+//				BasicAuthUsername:     pulumi.String("username"),
+//				JsonDataEncoded:       pulumi.String(json0),
+//				SecureJsonDataEncoded: pulumi.String(json1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = machinelearning.NewJob(ctx, "test_job", &machinelearning.JobArgs{
+//				Name:           pulumi.String("Test Job"),
+//				Metric:         pulumi.String("tf_test_job"),
+//				DatasourceType: pulumi.String("prometheus"),
+//				DatasourceUid:  foo.Uid,
+//				QueryParams: pulumi.StringMap{
+//					"expr": pulumi.String("grafanacloud_grafana_instance_active_user_count"),
+//				},
+//				HyperParams: pulumi.StringMap{
+//					"transformation_id": pulumi.String("power"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Forecast with Holidays
 //
 // This forecast has holidays which will be taken into account when training the model.

@@ -34,7 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oncall.NewEscalationChain(ctx, "default", &oncall.EscalationChainArgs{
+//			_default, err := oncall.NewEscalationChain(ctx, "default", &oncall.EscalationChainArgs{
 //				Name: pulumi.String("default"),
 //			})
 //			if err != nil {
