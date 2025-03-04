@@ -444,6 +444,7 @@ import * as config from "./config";
 import * as connections from "./connections";
 import * as enterprise from "./enterprise";
 import * as fleetmanagement from "./fleetmanagement";
+import * as frontendobservability from "./frontendobservability";
 import * as machinelearning from "./machinelearning";
 import * as oncall from "./oncall";
 import * as oss from "./oss";
@@ -459,6 +460,7 @@ export {
     connections,
     enterprise,
     fleetmanagement,
+    frontendobservability,
     machinelearning,
     oncall,
     oss,

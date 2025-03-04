@@ -50,6 +50,10 @@ export interface GetCloudStackArgs {
  */
 export interface GetCloudStackResult {
     /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
+     */
+    readonly alertmanagerIpAllowListCname: string;
+    /**
      * Name of the Alertmanager instance configured for this stack.
      */
     readonly alertmanagerName: string;
@@ -89,7 +93,23 @@ export interface GetCloudStackResult {
      * User ID of the Fleet Management instance configured for this stack.
      */
     readonly fleetManagementUserId: number;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
+     */
+    readonly grafanasIpAllowListCname: string;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
+     */
+    readonly graphiteIpAllowListCname: string;
     readonly graphiteName: string;
+    /**
+     * Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly graphitePrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly graphitePrivateConnectivityInfoServiceName: string;
     readonly graphiteStatus: string;
     readonly graphiteUrl: string;
     readonly graphiteUserId: number;
@@ -105,7 +125,19 @@ export interface GetCloudStackResult {
      * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
      */
     readonly labels: {[key: string]: string};
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
+     */
+    readonly logsIpAllowListCname: string;
     readonly logsName: string;
+    /**
+     * Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly logsPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly logsPrivateConnectivityInfoServiceName: string;
     readonly logsStatus: string;
     readonly logsUrl: string;
     readonly logsUserId: number;
@@ -126,17 +158,65 @@ export interface GetCloudStackResult {
      */
     readonly orgSlug: string;
     /**
+     * Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly otlpPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly otlpPrivateConnectivityInfoServiceName: string;
+    /**
      * Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
      */
     readonly otlpUrl: string;
+    /**
+     * Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly pdcApiPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly pdcApiPrivateConnectivityInfoServiceName: string;
+    /**
+     * Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly pdcGatewayPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly pdcGatewayPrivateConnectivityInfoServiceName: string;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
+     */
+    readonly profilesIpAllowListCname: string;
     readonly profilesName: string;
+    /**
+     * Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly profilesPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly profilesPrivateConnectivityInfoServiceName: string;
     readonly profilesStatus: string;
     readonly profilesUrl: string;
     readonly profilesUserId: number;
     /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
+     */
+    readonly prometheusIpAllowListCname: string;
+    /**
      * Prometheus name for this instance.
      */
     readonly prometheusName: string;
+    /**
+     * Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly prometheusPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly prometheusPrivateConnectivityInfoServiceName: string;
     /**
      * Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
      */
@@ -170,7 +250,19 @@ export interface GetCloudStackResult {
      * Status of the stack.
      */
     readonly status: string;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
+     */
+    readonly tracesIpAllowListCname: string;
     readonly tracesName: string;
+    /**
+     * Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly tracesPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly tracesPrivateConnectivityInfoServiceName: string;
     readonly tracesStatus: string;
     /**
      * Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.

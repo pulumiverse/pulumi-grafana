@@ -126,6 +126,18 @@ Object.defineProperty(exports, "fleetManagementUrl", {
 });
 
 /**
+ * A Grafana Frontend Observability API access token. May alternatively be set via the
+ * `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+ */
+export declare const frontendO11yApiAccessToken: string | undefined;
+Object.defineProperty(exports, "frontendO11yApiAccessToken", {
+    get() {
+        return __config.get("frontendO11yApiAccessToken");
+    },
+    enumerable: true,
+});
+
+/**
  * Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
  */
 export declare const insecureSkipVerify: boolean | undefined;

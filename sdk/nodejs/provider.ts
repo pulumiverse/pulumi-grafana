@@ -74,6 +74,11 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly fleetManagementUrl!: pulumi.Output<string | undefined>;
     /**
+     * A Grafana Frontend Observability API access token. May alternatively be set via the
+     * `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+     */
+    public readonly frontendO11yApiAccessToken!: pulumi.Output<string | undefined>;
+    /**
      * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
      */
     public readonly oncallAccessToken!: pulumi.Output<string | undefined>;
@@ -122,6 +127,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["connectionsApiUrl"] = args ? args.connectionsApiUrl : undefined;
             resourceInputs["fleetManagementAuth"] = args?.fleetManagementAuth ? pulumi.secret(args.fleetManagementAuth) : undefined;
             resourceInputs["fleetManagementUrl"] = args ? args.fleetManagementUrl : undefined;
+            resourceInputs["frontendO11yApiAccessToken"] = args?.frontendO11yApiAccessToken ? pulumi.secret(args.frontendO11yApiAccessToken) : undefined;
             resourceInputs["insecureSkipVerify"] = pulumi.output((args ? args.insecureSkipVerify : undefined) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
             resourceInputs["oncallAccessToken"] = (args?.oncallAccessToken ? pulumi.secret(args.oncallAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             resourceInputs["oncallUrl"] = (args ? args.oncallUrl : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
@@ -136,7 +142,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["url"] = (args ? args.url : undefined) ?? utilities.getEnv("GRAFANA_URL");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "fleetManagementAuth", "oncallAccessToken", "smAccessToken", "tlsKey"] };
+        const secretOpts = { additionalSecretOutputs: ["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "fleetManagementAuth", "frontendO11yApiAccessToken", "oncallAccessToken", "smAccessToken", "tlsKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
@@ -194,6 +200,11 @@ export interface ProviderArgs {
      * variable.
      */
     fleetManagementUrl?: pulumi.Input<string>;
+    /**
+     * A Grafana Frontend Observability API access token. May alternatively be set via the
+     * `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+     */
+    frontendO11yApiAccessToken?: pulumi.Input<string>;
     /**
      * Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
      */

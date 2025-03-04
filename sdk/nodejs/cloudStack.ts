@@ -65,6 +65,10 @@ export class CloudStack extends pulumi.CustomResource {
     }
 
     /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
+     */
+    public /*out*/ readonly alertmanagerIpAllowListCname!: pulumi.Output<string>;
+    /**
      * Name of the Alertmanager instance configured for this stack.
      */
     public /*out*/ readonly alertmanagerName!: pulumi.Output<string>;
@@ -104,7 +108,23 @@ export class CloudStack extends pulumi.CustomResource {
      * User ID of the Fleet Management instance configured for this stack.
      */
     public /*out*/ readonly fleetManagementUserId!: pulumi.Output<number>;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
+     */
+    public /*out*/ readonly grafanasIpAllowListCname!: pulumi.Output<string>;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
+     */
+    public /*out*/ readonly graphiteIpAllowListCname!: pulumi.Output<string>;
     public /*out*/ readonly graphiteName!: pulumi.Output<string>;
+    /**
+     * Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly graphitePrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    /**
+     * Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly graphitePrivateConnectivityInfoServiceName!: pulumi.Output<string>;
     public /*out*/ readonly graphiteStatus!: pulumi.Output<string>;
     public /*out*/ readonly graphiteUrl!: pulumi.Output<string>;
     public /*out*/ readonly graphiteUserId!: pulumi.Output<number>;
@@ -116,7 +136,19 @@ export class CloudStack extends pulumi.CustomResource {
      * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
+     */
+    public /*out*/ readonly logsIpAllowListCname!: pulumi.Output<string>;
     public /*out*/ readonly logsName!: pulumi.Output<string>;
+    /**
+     * Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly logsPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    /**
+     * Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly logsPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
     public /*out*/ readonly logsStatus!: pulumi.Output<string>;
     public /*out*/ readonly logsUrl!: pulumi.Output<string>;
     public /*out*/ readonly logsUserId!: pulumi.Output<number>;
@@ -137,17 +169,65 @@ export class CloudStack extends pulumi.CustomResource {
      */
     public /*out*/ readonly orgSlug!: pulumi.Output<string>;
     /**
+     * Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly otlpPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    /**
+     * Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly otlpPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
+    /**
      * Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
      */
     public /*out*/ readonly otlpUrl!: pulumi.Output<string>;
+    /**
+     * Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly pdcApiPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    /**
+     * Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly pdcApiPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
+    /**
+     * Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly pdcGatewayPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    /**
+     * Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly pdcGatewayPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
+     */
+    public /*out*/ readonly profilesIpAllowListCname!: pulumi.Output<string>;
     public /*out*/ readonly profilesName!: pulumi.Output<string>;
+    /**
+     * Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly profilesPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    /**
+     * Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly profilesPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
     public /*out*/ readonly profilesStatus!: pulumi.Output<string>;
     public /*out*/ readonly profilesUrl!: pulumi.Output<string>;
     public /*out*/ readonly profilesUserId!: pulumi.Output<number>;
     /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
+     */
+    public /*out*/ readonly prometheusIpAllowListCname!: pulumi.Output<string>;
+    /**
      * Prometheus name for this instance.
      */
     public /*out*/ readonly prometheusName!: pulumi.Output<string>;
+    /**
+     * Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly prometheusPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    /**
+     * Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly prometheusPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
     /**
      * Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
      */
@@ -180,7 +260,19 @@ export class CloudStack extends pulumi.CustomResource {
      * Status of the stack.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
+     */
+    public /*out*/ readonly tracesIpAllowListCname!: pulumi.Output<string>;
     public /*out*/ readonly tracesName!: pulumi.Output<string>;
+    /**
+     * Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly tracesPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    /**
+     * Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly tracesPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
     public /*out*/ readonly tracesStatus!: pulumi.Output<string>;
     /**
      * Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
@@ -216,6 +308,7 @@ export class CloudStack extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudStackState | undefined;
+            resourceInputs["alertmanagerIpAllowListCname"] = state ? state.alertmanagerIpAllowListCname : undefined;
             resourceInputs["alertmanagerName"] = state ? state.alertmanagerName : undefined;
             resourceInputs["alertmanagerStatus"] = state ? state.alertmanagerStatus : undefined;
             resourceInputs["alertmanagerUrl"] = state ? state.alertmanagerUrl : undefined;
@@ -226,13 +319,20 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["fleetManagementStatus"] = state ? state.fleetManagementStatus : undefined;
             resourceInputs["fleetManagementUrl"] = state ? state.fleetManagementUrl : undefined;
             resourceInputs["fleetManagementUserId"] = state ? state.fleetManagementUserId : undefined;
+            resourceInputs["grafanasIpAllowListCname"] = state ? state.grafanasIpAllowListCname : undefined;
+            resourceInputs["graphiteIpAllowListCname"] = state ? state.graphiteIpAllowListCname : undefined;
             resourceInputs["graphiteName"] = state ? state.graphiteName : undefined;
+            resourceInputs["graphitePrivateConnectivityInfoPrivateDns"] = state ? state.graphitePrivateConnectivityInfoPrivateDns : undefined;
+            resourceInputs["graphitePrivateConnectivityInfoServiceName"] = state ? state.graphitePrivateConnectivityInfoServiceName : undefined;
             resourceInputs["graphiteStatus"] = state ? state.graphiteStatus : undefined;
             resourceInputs["graphiteUrl"] = state ? state.graphiteUrl : undefined;
             resourceInputs["graphiteUserId"] = state ? state.graphiteUserId : undefined;
             resourceInputs["influxUrl"] = state ? state.influxUrl : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
+            resourceInputs["logsIpAllowListCname"] = state ? state.logsIpAllowListCname : undefined;
             resourceInputs["logsName"] = state ? state.logsName : undefined;
+            resourceInputs["logsPrivateConnectivityInfoPrivateDns"] = state ? state.logsPrivateConnectivityInfoPrivateDns : undefined;
+            resourceInputs["logsPrivateConnectivityInfoServiceName"] = state ? state.logsPrivateConnectivityInfoServiceName : undefined;
             resourceInputs["logsStatus"] = state ? state.logsStatus : undefined;
             resourceInputs["logsUrl"] = state ? state.logsUrl : undefined;
             resourceInputs["logsUserId"] = state ? state.logsUserId : undefined;
@@ -240,12 +340,24 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["orgName"] = state ? state.orgName : undefined;
             resourceInputs["orgSlug"] = state ? state.orgSlug : undefined;
+            resourceInputs["otlpPrivateConnectivityInfoPrivateDns"] = state ? state.otlpPrivateConnectivityInfoPrivateDns : undefined;
+            resourceInputs["otlpPrivateConnectivityInfoServiceName"] = state ? state.otlpPrivateConnectivityInfoServiceName : undefined;
             resourceInputs["otlpUrl"] = state ? state.otlpUrl : undefined;
+            resourceInputs["pdcApiPrivateConnectivityInfoPrivateDns"] = state ? state.pdcApiPrivateConnectivityInfoPrivateDns : undefined;
+            resourceInputs["pdcApiPrivateConnectivityInfoServiceName"] = state ? state.pdcApiPrivateConnectivityInfoServiceName : undefined;
+            resourceInputs["pdcGatewayPrivateConnectivityInfoPrivateDns"] = state ? state.pdcGatewayPrivateConnectivityInfoPrivateDns : undefined;
+            resourceInputs["pdcGatewayPrivateConnectivityInfoServiceName"] = state ? state.pdcGatewayPrivateConnectivityInfoServiceName : undefined;
+            resourceInputs["profilesIpAllowListCname"] = state ? state.profilesIpAllowListCname : undefined;
             resourceInputs["profilesName"] = state ? state.profilesName : undefined;
+            resourceInputs["profilesPrivateConnectivityInfoPrivateDns"] = state ? state.profilesPrivateConnectivityInfoPrivateDns : undefined;
+            resourceInputs["profilesPrivateConnectivityInfoServiceName"] = state ? state.profilesPrivateConnectivityInfoServiceName : undefined;
             resourceInputs["profilesStatus"] = state ? state.profilesStatus : undefined;
             resourceInputs["profilesUrl"] = state ? state.profilesUrl : undefined;
             resourceInputs["profilesUserId"] = state ? state.profilesUserId : undefined;
+            resourceInputs["prometheusIpAllowListCname"] = state ? state.prometheusIpAllowListCname : undefined;
             resourceInputs["prometheusName"] = state ? state.prometheusName : undefined;
+            resourceInputs["prometheusPrivateConnectivityInfoPrivateDns"] = state ? state.prometheusPrivateConnectivityInfoPrivateDns : undefined;
+            resourceInputs["prometheusPrivateConnectivityInfoServiceName"] = state ? state.prometheusPrivateConnectivityInfoServiceName : undefined;
             resourceInputs["prometheusRemoteEndpoint"] = state ? state.prometheusRemoteEndpoint : undefined;
             resourceInputs["prometheusRemoteWriteEndpoint"] = state ? state.prometheusRemoteWriteEndpoint : undefined;
             resourceInputs["prometheusStatus"] = state ? state.prometheusStatus : undefined;
@@ -254,7 +366,10 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["regionSlug"] = state ? state.regionSlug : undefined;
             resourceInputs["slug"] = state ? state.slug : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tracesIpAllowListCname"] = state ? state.tracesIpAllowListCname : undefined;
             resourceInputs["tracesName"] = state ? state.tracesName : undefined;
+            resourceInputs["tracesPrivateConnectivityInfoPrivateDns"] = state ? state.tracesPrivateConnectivityInfoPrivateDns : undefined;
+            resourceInputs["tracesPrivateConnectivityInfoServiceName"] = state ? state.tracesPrivateConnectivityInfoServiceName : undefined;
             resourceInputs["tracesStatus"] = state ? state.tracesStatus : undefined;
             resourceInputs["tracesUrl"] = state ? state.tracesUrl : undefined;
             resourceInputs["tracesUserId"] = state ? state.tracesUserId : undefined;
@@ -274,6 +389,7 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["url"] = args ? args.url : undefined;
             resourceInputs["waitForReadiness"] = args ? args.waitForReadiness : undefined;
             resourceInputs["waitForReadinessTimeout"] = args ? args.waitForReadinessTimeout : undefined;
+            resourceInputs["alertmanagerIpAllowListCname"] = undefined /*out*/;
             resourceInputs["alertmanagerName"] = undefined /*out*/;
             resourceInputs["alertmanagerStatus"] = undefined /*out*/;
             resourceInputs["alertmanagerUrl"] = undefined /*out*/;
@@ -283,31 +399,53 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["fleetManagementStatus"] = undefined /*out*/;
             resourceInputs["fleetManagementUrl"] = undefined /*out*/;
             resourceInputs["fleetManagementUserId"] = undefined /*out*/;
+            resourceInputs["grafanasIpAllowListCname"] = undefined /*out*/;
+            resourceInputs["graphiteIpAllowListCname"] = undefined /*out*/;
             resourceInputs["graphiteName"] = undefined /*out*/;
+            resourceInputs["graphitePrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["graphitePrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["graphiteStatus"] = undefined /*out*/;
             resourceInputs["graphiteUrl"] = undefined /*out*/;
             resourceInputs["graphiteUserId"] = undefined /*out*/;
             resourceInputs["influxUrl"] = undefined /*out*/;
+            resourceInputs["logsIpAllowListCname"] = undefined /*out*/;
             resourceInputs["logsName"] = undefined /*out*/;
+            resourceInputs["logsPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["logsPrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["logsStatus"] = undefined /*out*/;
             resourceInputs["logsUrl"] = undefined /*out*/;
             resourceInputs["logsUserId"] = undefined /*out*/;
             resourceInputs["orgId"] = undefined /*out*/;
             resourceInputs["orgName"] = undefined /*out*/;
             resourceInputs["orgSlug"] = undefined /*out*/;
+            resourceInputs["otlpPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["otlpPrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["otlpUrl"] = undefined /*out*/;
+            resourceInputs["pdcApiPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["pdcApiPrivateConnectivityInfoServiceName"] = undefined /*out*/;
+            resourceInputs["pdcGatewayPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["pdcGatewayPrivateConnectivityInfoServiceName"] = undefined /*out*/;
+            resourceInputs["profilesIpAllowListCname"] = undefined /*out*/;
             resourceInputs["profilesName"] = undefined /*out*/;
+            resourceInputs["profilesPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["profilesPrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["profilesStatus"] = undefined /*out*/;
             resourceInputs["profilesUrl"] = undefined /*out*/;
             resourceInputs["profilesUserId"] = undefined /*out*/;
+            resourceInputs["prometheusIpAllowListCname"] = undefined /*out*/;
             resourceInputs["prometheusName"] = undefined /*out*/;
+            resourceInputs["prometheusPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["prometheusPrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["prometheusRemoteEndpoint"] = undefined /*out*/;
             resourceInputs["prometheusRemoteWriteEndpoint"] = undefined /*out*/;
             resourceInputs["prometheusStatus"] = undefined /*out*/;
             resourceInputs["prometheusUrl"] = undefined /*out*/;
             resourceInputs["prometheusUserId"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["tracesIpAllowListCname"] = undefined /*out*/;
             resourceInputs["tracesName"] = undefined /*out*/;
+            resourceInputs["tracesPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["tracesPrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["tracesStatus"] = undefined /*out*/;
             resourceInputs["tracesUrl"] = undefined /*out*/;
             resourceInputs["tracesUserId"] = undefined /*out*/;
@@ -321,6 +459,10 @@ export class CloudStack extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CloudStack resources.
  */
 export interface CloudStackState {
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
+     */
+    alertmanagerIpAllowListCname?: pulumi.Input<string>;
     /**
      * Name of the Alertmanager instance configured for this stack.
      */
@@ -361,7 +503,23 @@ export interface CloudStackState {
      * User ID of the Fleet Management instance configured for this stack.
      */
     fleetManagementUserId?: pulumi.Input<number>;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
+     */
+    grafanasIpAllowListCname?: pulumi.Input<string>;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
+     */
+    graphiteIpAllowListCname?: pulumi.Input<string>;
     graphiteName?: pulumi.Input<string>;
+    /**
+     * Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
+     */
+    graphitePrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
+     */
+    graphitePrivateConnectivityInfoServiceName?: pulumi.Input<string>;
     graphiteStatus?: pulumi.Input<string>;
     graphiteUrl?: pulumi.Input<string>;
     graphiteUserId?: pulumi.Input<number>;
@@ -373,7 +531,19 @@ export interface CloudStackState {
      * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
+     */
+    logsIpAllowListCname?: pulumi.Input<string>;
     logsName?: pulumi.Input<string>;
+    /**
+     * Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
+     */
+    logsPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
+     */
+    logsPrivateConnectivityInfoServiceName?: pulumi.Input<string>;
     logsStatus?: pulumi.Input<string>;
     logsUrl?: pulumi.Input<string>;
     logsUserId?: pulumi.Input<number>;
@@ -394,17 +564,65 @@ export interface CloudStackState {
      */
     orgSlug?: pulumi.Input<string>;
     /**
+     * Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
+     */
+    otlpPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
+     */
+    otlpPrivateConnectivityInfoServiceName?: pulumi.Input<string>;
+    /**
      * Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
      */
     otlpUrl?: pulumi.Input<string>;
+    /**
+     * Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
+     */
+    pdcApiPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
+     */
+    pdcApiPrivateConnectivityInfoServiceName?: pulumi.Input<string>;
+    /**
+     * Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+     */
+    pdcGatewayPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+     */
+    pdcGatewayPrivateConnectivityInfoServiceName?: pulumi.Input<string>;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
+     */
+    profilesIpAllowListCname?: pulumi.Input<string>;
     profilesName?: pulumi.Input<string>;
+    /**
+     * Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
+     */
+    profilesPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
+     */
+    profilesPrivateConnectivityInfoServiceName?: pulumi.Input<string>;
     profilesStatus?: pulumi.Input<string>;
     profilesUrl?: pulumi.Input<string>;
     profilesUserId?: pulumi.Input<number>;
     /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
+     */
+    prometheusIpAllowListCname?: pulumi.Input<string>;
+    /**
      * Prometheus name for this instance.
      */
     prometheusName?: pulumi.Input<string>;
+    /**
+     * Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
+     */
+    prometheusPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
+     */
+    prometheusPrivateConnectivityInfoServiceName?: pulumi.Input<string>;
     /**
      * Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
      */
@@ -437,7 +655,19 @@ export interface CloudStackState {
      * Status of the stack.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
+     */
+    tracesIpAllowListCname?: pulumi.Input<string>;
     tracesName?: pulumi.Input<string>;
+    /**
+     * Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
+     */
+    tracesPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
+     */
+    tracesPrivateConnectivityInfoServiceName?: pulumi.Input<string>;
     tracesStatus?: pulumi.Input<string>;
     /**
      * Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.

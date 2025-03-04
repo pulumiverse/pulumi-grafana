@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  *     slug: "<your org slug>",
  * });
  * const test = new grafana.cloud.AccessPolicy("test", {
- *     region: "us",
+ *     region: "prod-us-east-0",
  *     name: "my-policy",
  *     displayName: "My Policy",
  *     scopes: [
@@ -43,7 +43,7 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * const testAccessPolicyToken = new grafana.cloud.AccessPolicyToken("test", {
- *     region: "us",
+ *     region: "prod-us-east-0",
  *     accessPolicyId: test.policyId,
  *     name: "my-policy-token",
  *     displayName: "My Policy Token",

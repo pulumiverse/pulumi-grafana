@@ -11,10 +11,10 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Alerting
 {
     /// <summary>
-    /// Manages Grafana Alerting message templates.
+    /// Manages Grafana Alerting notification template groups, including notification templates.
     /// 
     /// * Official documentation
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#templates)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#notification-template-groups)
     /// 
     /// This resource requires Grafana 9.1.0 or later.
     /// 
@@ -30,8 +30,8 @@ namespace Pulumiverse.Grafana.Alerting
     /// {
     ///     var myTemplate = new Grafana.Alerting.MessageTemplate("my_template", new()
     ///     {
-    ///         Name = "My Reusable Template",
-    ///         Template = @"{{define ""My Reusable Template"" }}
+    ///         Name = "My Notification Template Group",
+    ///         Template = @"{{define ""custom.message"" }}
     ///  template content
     /// {{ end }}",
     ///     });
@@ -56,7 +56,7 @@ namespace Pulumiverse.Grafana.Alerting
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the message template.
+        /// The name of the notification template group.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -68,7 +68,7 @@ namespace Pulumiverse.Grafana.Alerting
         public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// The content of the message template.
+        /// The content of the notification template group.
         /// </summary>
         [Output("template")]
         public Output<string> Template { get; private set; } = null!;
@@ -128,7 +128,7 @@ namespace Pulumiverse.Grafana.Alerting
         public Input<bool>? DisableProvenance { get; set; }
 
         /// <summary>
-        /// The name of the message template.
+        /// The name of the notification template group.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -140,7 +140,7 @@ namespace Pulumiverse.Grafana.Alerting
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// The content of the message template.
+        /// The content of the notification template group.
         /// </summary>
         [Input("template", required: true)]
         public Input<string> Template { get; set; } = null!;
@@ -157,7 +157,7 @@ namespace Pulumiverse.Grafana.Alerting
         public Input<bool>? DisableProvenance { get; set; }
 
         /// <summary>
-        /// The name of the message template.
+        /// The name of the notification template group.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -169,7 +169,7 @@ namespace Pulumiverse.Grafana.Alerting
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// The content of the message template.
+        /// The content of the notification template group.
         /// </summary>
         [Input("template")]
         public Input<string>? Template { get; set; }

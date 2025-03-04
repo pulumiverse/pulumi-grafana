@@ -101,6 +101,12 @@ func GetFleetManagementUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:fleetManagementUrl")
 }
 
+// A Grafana Frontend Observability API access token. May alternatively be set via the
+// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+func GetFrontendO11yApiAccessToken(ctx *pulumi.Context) string {
+	return config.Get(ctx, "grafana:frontendO11yApiAccessToken")
+}
+
 // Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 func GetInsecureSkipVerify(ctx *pulumi.Context) bool {
 	v, err := config.TryBool(ctx, "grafana:insecureSkipVerify")

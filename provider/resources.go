@@ -31,17 +31,18 @@ const (
 	grafanaMod = "index" // the toplevel module
 	// further modules follow the grouping of the upstream TF provider
 	// https://registry.terraform.io/providers/grafana/grafana/latest/docs
-	alertingMod            = "alerting"
-	cloudMod               = "cloud"
-	cloudProviderMod       = "cloudProvider"
-	connectionsMod         = "connections"
-	enterpriseMod          = "enterprise"
-	fleetManagementMod     = "fleetManagement"
-	mlMod                  = "machineLearning"
-	oncallMod              = "onCall"
-	ossMod                 = "oss"
-	sloMod                 = "slo"
-	syntheticMonitoringMod = "syntheticMonitoring"
+	alertingMod              = "alerting"
+	cloudMod                 = "cloud"
+	cloudProviderMod         = "cloudProvider"
+	connectionsMod           = "connections"
+	enterpriseMod            = "enterprise"
+	fleetManagementMod       = "fleetManagement"
+	frontendObservabilityMod = "frontendObservability"
+	mlMod                    = "machineLearning"
+	oncallMod                = "onCall"
+	ossMod                   = "oss"
+	sloMod                   = "slo"
+	syntheticMonitoringMod   = "syntheticMonitoring"
 )
 
 // grafanaMember manufactures a type token for the grafana package and the given module and type.
@@ -351,6 +352,13 @@ func Provider() tfbridge.ProviderInfo {
 			// Fleet Management
 			"grafana_fleet_management_collector": {
 				ComputeID: tfbridge.DelegateIDField("id", "grafana", "https://github.com/pulumiverse/pulumi-grafana"),
+			},
+
+			// Frontend Observability
+			"grafana_frontend_o11y_app": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"id": {Type: "string"},
+				},
 			},
 
 			// OSS
@@ -737,6 +745,7 @@ func Provider() tfbridge.ProviderInfo {
 				"connections":          connectionsMod,
 				"enterprise":           enterpriseMod,
 				"fleet_management":     fleetManagementMod,
+				"frontend_o11y":        frontendObservabilityMod,
 				"machine_learning":     mlMod,
 				"oncall":               oncallMod,
 				"oss":                  ossMod,

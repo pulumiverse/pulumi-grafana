@@ -235,7 +235,7 @@ class PrivateDataSourceConnectNetwork(pulumi.CustomResource):
 
         current = grafana.cloud.get_stack(slug="<your slug>")
         test = grafana.cloud.PrivateDataSourceConnectNetwork("test",
-            region="us",
+            region="prod-us-east-0",
             name="my-pdc",
             display_name="My PDC",
             stack_identifier=current.id)
@@ -284,7 +284,7 @@ class PrivateDataSourceConnectNetwork(pulumi.CustomResource):
 
         current = grafana.cloud.get_stack(slug="<your slug>")
         test = grafana.cloud.PrivateDataSourceConnectNetwork("test",
-            region="us",
+            region="prod-us-east-0",
             name="my-pdc",
             display_name="My PDC",
             stack_identifier=current.id)

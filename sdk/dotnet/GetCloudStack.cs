@@ -149,6 +149,10 @@ namespace Pulumiverse.Grafana
     public sealed class GetCloudStackResult
     {
         /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
+        /// </summary>
+        public readonly string AlertmanagerIpAllowListCname;
+        /// <summary>
         /// Name of the Alertmanager instance configured for this stack.
         /// </summary>
         public readonly string AlertmanagerName;
@@ -188,7 +192,23 @@ namespace Pulumiverse.Grafana
         /// User ID of the Fleet Management instance configured for this stack.
         /// </summary>
         public readonly int FleetManagementUserId;
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
+        /// </summary>
+        public readonly string GrafanasIpAllowListCname;
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
+        /// </summary>
+        public readonly string GraphiteIpAllowListCname;
         public readonly string GraphiteName;
+        /// <summary>
+        /// Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string GraphitePrivateConnectivityInfoPrivateDns;
+        /// <summary>
+        /// Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string GraphitePrivateConnectivityInfoServiceName;
         public readonly string GraphiteStatus;
         public readonly string GraphiteUrl;
         public readonly int GraphiteUserId;
@@ -204,7 +224,19 @@ namespace Pulumiverse.Grafana
         /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
         /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
+        /// </summary>
+        public readonly string LogsIpAllowListCname;
         public readonly string LogsName;
+        /// <summary>
+        /// Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string LogsPrivateConnectivityInfoPrivateDns;
+        /// <summary>
+        /// Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string LogsPrivateConnectivityInfoServiceName;
         public readonly string LogsStatus;
         public readonly string LogsUrl;
         public readonly int LogsUserId;
@@ -225,17 +257,65 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public readonly string OrgSlug;
         /// <summary>
+        /// Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string OtlpPrivateConnectivityInfoPrivateDns;
+        /// <summary>
+        /// Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string OtlpPrivateConnectivityInfoServiceName;
+        /// <summary>
         /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         /// </summary>
         public readonly string OtlpUrl;
+        /// <summary>
+        /// Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string PdcApiPrivateConnectivityInfoPrivateDns;
+        /// <summary>
+        /// Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string PdcApiPrivateConnectivityInfoServiceName;
+        /// <summary>
+        /// Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string PdcGatewayPrivateConnectivityInfoPrivateDns;
+        /// <summary>
+        /// Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string PdcGatewayPrivateConnectivityInfoServiceName;
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
+        /// </summary>
+        public readonly string ProfilesIpAllowListCname;
         public readonly string ProfilesName;
+        /// <summary>
+        /// Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string ProfilesPrivateConnectivityInfoPrivateDns;
+        /// <summary>
+        /// Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string ProfilesPrivateConnectivityInfoServiceName;
         public readonly string ProfilesStatus;
         public readonly string ProfilesUrl;
         public readonly int ProfilesUserId;
         /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
+        /// </summary>
+        public readonly string PrometheusIpAllowListCname;
+        /// <summary>
         /// Prometheus name for this instance.
         /// </summary>
         public readonly string PrometheusName;
+        /// <summary>
+        /// Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string PrometheusPrivateConnectivityInfoPrivateDns;
+        /// <summary>
+        /// Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string PrometheusPrivateConnectivityInfoServiceName;
         /// <summary>
         /// Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
         /// </summary>
@@ -269,7 +349,19 @@ namespace Pulumiverse.Grafana
         /// Status of the stack.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
+        /// </summary>
+        public readonly string TracesIpAllowListCname;
         public readonly string TracesName;
+        /// <summary>
+        /// Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string TracesPrivateConnectivityInfoPrivateDns;
+        /// <summary>
+        /// Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string TracesPrivateConnectivityInfoServiceName;
         public readonly string TracesStatus;
         /// <summary>
         /// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
@@ -283,6 +375,8 @@ namespace Pulumiverse.Grafana
 
         [OutputConstructor]
         private GetCloudStackResult(
+            string alertmanagerIpAllowListCname,
+
             string alertmanagerName,
 
             string alertmanagerStatus,
@@ -303,7 +397,15 @@ namespace Pulumiverse.Grafana
 
             int fleetManagementUserId,
 
+            string grafanasIpAllowListCname,
+
+            string graphiteIpAllowListCname,
+
             string graphiteName,
+
+            string graphitePrivateConnectivityInfoPrivateDns,
+
+            string graphitePrivateConnectivityInfoServiceName,
 
             string graphiteStatus,
 
@@ -317,7 +419,13 @@ namespace Pulumiverse.Grafana
 
             ImmutableDictionary<string, string> labels,
 
+            string logsIpAllowListCname,
+
             string logsName,
+
+            string logsPrivateConnectivityInfoPrivateDns,
+
+            string logsPrivateConnectivityInfoServiceName,
 
             string logsStatus,
 
@@ -333,9 +441,27 @@ namespace Pulumiverse.Grafana
 
             string orgSlug,
 
+            string otlpPrivateConnectivityInfoPrivateDns,
+
+            string otlpPrivateConnectivityInfoServiceName,
+
             string otlpUrl,
 
+            string pdcApiPrivateConnectivityInfoPrivateDns,
+
+            string pdcApiPrivateConnectivityInfoServiceName,
+
+            string pdcGatewayPrivateConnectivityInfoPrivateDns,
+
+            string pdcGatewayPrivateConnectivityInfoServiceName,
+
+            string profilesIpAllowListCname,
+
             string profilesName,
+
+            string profilesPrivateConnectivityInfoPrivateDns,
+
+            string profilesPrivateConnectivityInfoServiceName,
 
             string profilesStatus,
 
@@ -343,7 +469,13 @@ namespace Pulumiverse.Grafana
 
             int profilesUserId,
 
+            string prometheusIpAllowListCname,
+
             string prometheusName,
+
+            string prometheusPrivateConnectivityInfoPrivateDns,
+
+            string prometheusPrivateConnectivityInfoServiceName,
 
             string prometheusRemoteEndpoint,
 
@@ -361,7 +493,13 @@ namespace Pulumiverse.Grafana
 
             string status,
 
+            string tracesIpAllowListCname,
+
             string tracesName,
+
+            string tracesPrivateConnectivityInfoPrivateDns,
+
+            string tracesPrivateConnectivityInfoServiceName,
 
             string tracesStatus,
 
@@ -371,6 +509,7 @@ namespace Pulumiverse.Grafana
 
             string url)
         {
+            AlertmanagerIpAllowListCname = alertmanagerIpAllowListCname;
             AlertmanagerName = alertmanagerName;
             AlertmanagerStatus = alertmanagerStatus;
             AlertmanagerUrl = alertmanagerUrl;
@@ -381,14 +520,21 @@ namespace Pulumiverse.Grafana
             FleetManagementStatus = fleetManagementStatus;
             FleetManagementUrl = fleetManagementUrl;
             FleetManagementUserId = fleetManagementUserId;
+            GrafanasIpAllowListCname = grafanasIpAllowListCname;
+            GraphiteIpAllowListCname = graphiteIpAllowListCname;
             GraphiteName = graphiteName;
+            GraphitePrivateConnectivityInfoPrivateDns = graphitePrivateConnectivityInfoPrivateDns;
+            GraphitePrivateConnectivityInfoServiceName = graphitePrivateConnectivityInfoServiceName;
             GraphiteStatus = graphiteStatus;
             GraphiteUrl = graphiteUrl;
             GraphiteUserId = graphiteUserId;
             Id = id;
             InfluxUrl = influxUrl;
             Labels = labels;
+            LogsIpAllowListCname = logsIpAllowListCname;
             LogsName = logsName;
+            LogsPrivateConnectivityInfoPrivateDns = logsPrivateConnectivityInfoPrivateDns;
+            LogsPrivateConnectivityInfoServiceName = logsPrivateConnectivityInfoServiceName;
             LogsStatus = logsStatus;
             LogsUrl = logsUrl;
             LogsUserId = logsUserId;
@@ -396,12 +542,24 @@ namespace Pulumiverse.Grafana
             OrgId = orgId;
             OrgName = orgName;
             OrgSlug = orgSlug;
+            OtlpPrivateConnectivityInfoPrivateDns = otlpPrivateConnectivityInfoPrivateDns;
+            OtlpPrivateConnectivityInfoServiceName = otlpPrivateConnectivityInfoServiceName;
             OtlpUrl = otlpUrl;
+            PdcApiPrivateConnectivityInfoPrivateDns = pdcApiPrivateConnectivityInfoPrivateDns;
+            PdcApiPrivateConnectivityInfoServiceName = pdcApiPrivateConnectivityInfoServiceName;
+            PdcGatewayPrivateConnectivityInfoPrivateDns = pdcGatewayPrivateConnectivityInfoPrivateDns;
+            PdcGatewayPrivateConnectivityInfoServiceName = pdcGatewayPrivateConnectivityInfoServiceName;
+            ProfilesIpAllowListCname = profilesIpAllowListCname;
             ProfilesName = profilesName;
+            ProfilesPrivateConnectivityInfoPrivateDns = profilesPrivateConnectivityInfoPrivateDns;
+            ProfilesPrivateConnectivityInfoServiceName = profilesPrivateConnectivityInfoServiceName;
             ProfilesStatus = profilesStatus;
             ProfilesUrl = profilesUrl;
             ProfilesUserId = profilesUserId;
+            PrometheusIpAllowListCname = prometheusIpAllowListCname;
             PrometheusName = prometheusName;
+            PrometheusPrivateConnectivityInfoPrivateDns = prometheusPrivateConnectivityInfoPrivateDns;
+            PrometheusPrivateConnectivityInfoServiceName = prometheusPrivateConnectivityInfoServiceName;
             PrometheusRemoteEndpoint = prometheusRemoteEndpoint;
             PrometheusRemoteWriteEndpoint = prometheusRemoteWriteEndpoint;
             PrometheusStatus = prometheusStatus;
@@ -410,7 +568,10 @@ namespace Pulumiverse.Grafana
             RegionSlug = regionSlug;
             Slug = slug;
             Status = status;
+            TracesIpAllowListCname = tracesIpAllowListCname;
             TracesName = tracesName;
+            TracesPrivateConnectivityInfoPrivateDns = tracesPrivateConnectivityInfoPrivateDns;
+            TracesPrivateConnectivityInfoServiceName = tracesPrivateConnectivityInfoServiceName;
             TracesStatus = tracesStatus;
             TracesUrl = tracesUrl;
             TracesUserId = tracesUserId;

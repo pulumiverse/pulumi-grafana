@@ -39,7 +39,7 @@ namespace Pulumiverse.Grafana
     ///     // Cloud Access Policy token for Grafana Cloud with the following scopes: accesspolicies:read|write|delete, stacks:read|write|delete
     ///     var cloudAccessPolicyToken = config.RequireObject&lt;dynamic&gt;("cloudAccessPolicyToken");
     ///     var stackSlug = config.RequireObject&lt;dynamic&gt;("stackSlug");
-    ///     var cloudRegion = config.Get("cloudRegion") ?? "us";
+    ///     var cloudRegion = config.Get("cloudRegion") ?? "prod-us-east-0";
     ///     var smStack = new Grafana.Cloud.Stack("sm_stack", new()
     ///     {
     ///         Name = stackSlug,

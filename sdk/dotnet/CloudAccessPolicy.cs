@@ -38,7 +38,7 @@ namespace Pulumiverse.Grafana
     /// 
     ///     var test = new Grafana.Cloud.AccessPolicy("test", new()
     ///     {
-    ///         Region = "us",
+    ///         Region = "prod-us-east-0",
     ///         Name = "my-policy",
     ///         DisplayName = "My Policy",
     ///         Scopes = new[]
@@ -65,7 +65,7 @@ namespace Pulumiverse.Grafana
     /// 
     ///     var testAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken("test", new()
     ///     {
-    ///         Region = "us",
+    ///         Region = "prod-us-east-0",
     ///         AccessPolicyId = test.PolicyId,
     ///         Name = "my-policy-token",
     ///         DisplayName = "My Policy Token",

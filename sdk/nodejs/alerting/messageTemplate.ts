@@ -5,10 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages Grafana Alerting message templates.
+ * Manages Grafana Alerting notification template groups, including notification templates.
  *
  * * Official documentation
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#templates)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#notification-template-groups)
  *
  * This resource requires Grafana 9.1.0 or later.
  *
@@ -19,8 +19,8 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const myTemplate = new grafana.alerting.MessageTemplate("my_template", {
- *     name: "My Reusable Template",
- *     template: `{{define "My Reusable Template" }}
+ *     name: "My Notification Template Group",
+ *     template: `{{define "custom.message" }}
  *  template content
  * {{ end }}`,
  * });
@@ -66,7 +66,7 @@ export class MessageTemplate extends pulumi.CustomResource {
 
     public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
     /**
-     * The name of the message template.
+     * The name of the notification template group.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -74,7 +74,7 @@ export class MessageTemplate extends pulumi.CustomResource {
      */
     public readonly orgId!: pulumi.Output<string | undefined>;
     /**
-     * The content of the message template.
+     * The content of the notification template group.
      */
     public readonly template!: pulumi.Output<string>;
 
@@ -118,7 +118,7 @@ export class MessageTemplate extends pulumi.CustomResource {
 export interface MessageTemplateState {
     disableProvenance?: pulumi.Input<boolean>;
     /**
-     * The name of the message template.
+     * The name of the notification template group.
      */
     name?: pulumi.Input<string>;
     /**
@@ -126,7 +126,7 @@ export interface MessageTemplateState {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * The content of the message template.
+     * The content of the notification template group.
      */
     template?: pulumi.Input<string>;
 }
@@ -137,7 +137,7 @@ export interface MessageTemplateState {
 export interface MessageTemplateArgs {
     disableProvenance?: pulumi.Input<boolean>;
     /**
-     * The name of the message template.
+     * The name of the notification template group.
      */
     name?: pulumi.Input<string>;
     /**
@@ -145,7 +145,7 @@ export interface MessageTemplateArgs {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * The content of the message template.
+     * The content of the notification template group.
      */
     template: pulumi.Input<string>;
 }

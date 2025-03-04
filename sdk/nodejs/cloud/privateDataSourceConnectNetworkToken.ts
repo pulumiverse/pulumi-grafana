@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  *     slug: "<your slug>",
  * });
  * const test = new grafana.cloud.PrivateDataSourceConnectNetwork("test", {
- *     region: "us",
+ *     region: "prod-us-east-0",
  *     name: "my-pdc",
  *     displayName: "My PDC",
  *     stackIdentifier: current.then(current => current.id),

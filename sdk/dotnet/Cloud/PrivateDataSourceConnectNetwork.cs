@@ -38,7 +38,7 @@ namespace Pulumiverse.Grafana.Cloud
     /// 
     ///     var test = new Grafana.Cloud.PrivateDataSourceConnectNetwork("test", new()
     ///     {
-    ///         Region = "us",
+    ///         Region = "prod-us-east-0",
     ///         Name = "my-pdc",
     ///         DisplayName = "My PDC",
     ///         StackIdentifier = current.Apply(getStackResult =&gt; getStackResult.Id),

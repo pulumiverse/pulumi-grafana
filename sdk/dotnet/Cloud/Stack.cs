@@ -50,6 +50,12 @@ namespace Pulumiverse.Grafana.Cloud
     public partial class Stack : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
+        /// </summary>
+        [Output("alertmanagerIpAllowListCname")]
+        public Output<string> AlertmanagerIpAllowListCname { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the Alertmanager instance configured for this stack.
         /// </summary>
         [Output("alertmanagerName")]
@@ -109,8 +115,32 @@ namespace Pulumiverse.Grafana.Cloud
         [Output("fleetManagementUserId")]
         public Output<int> FleetManagementUserId { get; private set; } = null!;
 
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
+        /// </summary>
+        [Output("grafanasIpAllowListCname")]
+        public Output<string> GrafanasIpAllowListCname { get; private set; } = null!;
+
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
+        /// </summary>
+        [Output("graphiteIpAllowListCname")]
+        public Output<string> GraphiteIpAllowListCname { get; private set; } = null!;
+
         [Output("graphiteName")]
         public Output<string> GraphiteName { get; private set; } = null!;
+
+        /// <summary>
+        /// Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("graphitePrivateConnectivityInfoPrivateDns")]
+        public Output<string> GraphitePrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("graphitePrivateConnectivityInfoServiceName")]
+        public Output<string> GraphitePrivateConnectivityInfoServiceName { get; private set; } = null!;
 
         [Output("graphiteStatus")]
         public Output<string> GraphiteStatus { get; private set; } = null!;
@@ -133,8 +163,26 @@ namespace Pulumiverse.Grafana.Cloud
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
+        /// </summary>
+        [Output("logsIpAllowListCname")]
+        public Output<string> LogsIpAllowListCname { get; private set; } = null!;
+
         [Output("logsName")]
         public Output<string> LogsName { get; private set; } = null!;
+
+        /// <summary>
+        /// Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("logsPrivateConnectivityInfoPrivateDns")]
+        public Output<string> LogsPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("logsPrivateConnectivityInfoServiceName")]
+        public Output<string> LogsPrivateConnectivityInfoServiceName { get; private set; } = null!;
 
         [Output("logsStatus")]
         public Output<string> LogsStatus { get; private set; } = null!;
@@ -170,13 +218,67 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> OrgSlug { get; private set; } = null!;
 
         /// <summary>
+        /// Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("otlpPrivateConnectivityInfoPrivateDns")]
+        public Output<string> OtlpPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("otlpPrivateConnectivityInfoServiceName")]
+        public Output<string> OtlpPrivateConnectivityInfoServiceName { get; private set; } = null!;
+
+        /// <summary>
         /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         /// </summary>
         [Output("otlpUrl")]
         public Output<string> OtlpUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("pdcApiPrivateConnectivityInfoPrivateDns")]
+        public Output<string> PdcApiPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("pdcApiPrivateConnectivityInfoServiceName")]
+        public Output<string> PdcApiPrivateConnectivityInfoServiceName { get; private set; } = null!;
+
+        /// <summary>
+        /// Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("pdcGatewayPrivateConnectivityInfoPrivateDns")]
+        public Output<string> PdcGatewayPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("pdcGatewayPrivateConnectivityInfoServiceName")]
+        public Output<string> PdcGatewayPrivateConnectivityInfoServiceName { get; private set; } = null!;
+
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
+        /// </summary>
+        [Output("profilesIpAllowListCname")]
+        public Output<string> ProfilesIpAllowListCname { get; private set; } = null!;
+
         [Output("profilesName")]
         public Output<string> ProfilesName { get; private set; } = null!;
+
+        /// <summary>
+        /// Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("profilesPrivateConnectivityInfoPrivateDns")]
+        public Output<string> ProfilesPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("profilesPrivateConnectivityInfoServiceName")]
+        public Output<string> ProfilesPrivateConnectivityInfoServiceName { get; private set; } = null!;
 
         [Output("profilesStatus")]
         public Output<string> ProfilesStatus { get; private set; } = null!;
@@ -188,10 +290,28 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<int> ProfilesUserId { get; private set; } = null!;
 
         /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
+        /// </summary>
+        [Output("prometheusIpAllowListCname")]
+        public Output<string> PrometheusIpAllowListCname { get; private set; } = null!;
+
+        /// <summary>
         /// Prometheus name for this instance.
         /// </summary>
         [Output("prometheusName")]
         public Output<string> PrometheusName { get; private set; } = null!;
+
+        /// <summary>
+        /// Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("prometheusPrivateConnectivityInfoPrivateDns")]
+        public Output<string> PrometheusPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("prometheusPrivateConnectivityInfoServiceName")]
+        public Output<string> PrometheusPrivateConnectivityInfoServiceName { get; private set; } = null!;
 
         /// <summary>
         /// Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
@@ -241,8 +361,26 @@ namespace Pulumiverse.Grafana.Cloud
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
+        /// </summary>
+        [Output("tracesIpAllowListCname")]
+        public Output<string> TracesIpAllowListCname { get; private set; } = null!;
+
         [Output("tracesName")]
         public Output<string> TracesName { get; private set; } = null!;
+
+        /// <summary>
+        /// Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("tracesPrivateConnectivityInfoPrivateDns")]
+        public Output<string> TracesPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("tracesPrivateConnectivityInfoServiceName")]
+        public Output<string> TracesPrivateConnectivityInfoServiceName { get; private set; } = null!;
 
         [Output("tracesStatus")]
         public Output<string> TracesStatus { get; private set; } = null!;
@@ -388,6 +526,12 @@ namespace Pulumiverse.Grafana.Cloud
     public sealed class StackState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
+        /// </summary>
+        [Input("alertmanagerIpAllowListCname")]
+        public Input<string>? AlertmanagerIpAllowListCname { get; set; }
+
+        /// <summary>
         /// Name of the Alertmanager instance configured for this stack.
         /// </summary>
         [Input("alertmanagerName")]
@@ -447,8 +591,32 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("fleetManagementUserId")]
         public Input<int>? FleetManagementUserId { get; set; }
 
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
+        /// </summary>
+        [Input("grafanasIpAllowListCname")]
+        public Input<string>? GrafanasIpAllowListCname { get; set; }
+
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
+        /// </summary>
+        [Input("graphiteIpAllowListCname")]
+        public Input<string>? GraphiteIpAllowListCname { get; set; }
+
         [Input("graphiteName")]
         public Input<string>? GraphiteName { get; set; }
+
+        /// <summary>
+        /// Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("graphitePrivateConnectivityInfoPrivateDns")]
+        public Input<string>? GraphitePrivateConnectivityInfoPrivateDns { get; set; }
+
+        /// <summary>
+        /// Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("graphitePrivateConnectivityInfoServiceName")]
+        public Input<string>? GraphitePrivateConnectivityInfoServiceName { get; set; }
 
         [Input("graphiteStatus")]
         public Input<string>? GraphiteStatus { get; set; }
@@ -477,8 +645,26 @@ namespace Pulumiverse.Grafana.Cloud
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
+        /// </summary>
+        [Input("logsIpAllowListCname")]
+        public Input<string>? LogsIpAllowListCname { get; set; }
+
         [Input("logsName")]
         public Input<string>? LogsName { get; set; }
+
+        /// <summary>
+        /// Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("logsPrivateConnectivityInfoPrivateDns")]
+        public Input<string>? LogsPrivateConnectivityInfoPrivateDns { get; set; }
+
+        /// <summary>
+        /// Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("logsPrivateConnectivityInfoServiceName")]
+        public Input<string>? LogsPrivateConnectivityInfoServiceName { get; set; }
 
         [Input("logsStatus")]
         public Input<string>? LogsStatus { get; set; }
@@ -514,13 +700,67 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<string>? OrgSlug { get; set; }
 
         /// <summary>
+        /// Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("otlpPrivateConnectivityInfoPrivateDns")]
+        public Input<string>? OtlpPrivateConnectivityInfoPrivateDns { get; set; }
+
+        /// <summary>
+        /// Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("otlpPrivateConnectivityInfoServiceName")]
+        public Input<string>? OtlpPrivateConnectivityInfoServiceName { get; set; }
+
+        /// <summary>
         /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         /// </summary>
         [Input("otlpUrl")]
         public Input<string>? OtlpUrl { get; set; }
 
+        /// <summary>
+        /// Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("pdcApiPrivateConnectivityInfoPrivateDns")]
+        public Input<string>? PdcApiPrivateConnectivityInfoPrivateDns { get; set; }
+
+        /// <summary>
+        /// Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("pdcApiPrivateConnectivityInfoServiceName")]
+        public Input<string>? PdcApiPrivateConnectivityInfoServiceName { get; set; }
+
+        /// <summary>
+        /// Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("pdcGatewayPrivateConnectivityInfoPrivateDns")]
+        public Input<string>? PdcGatewayPrivateConnectivityInfoPrivateDns { get; set; }
+
+        /// <summary>
+        /// Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("pdcGatewayPrivateConnectivityInfoServiceName")]
+        public Input<string>? PdcGatewayPrivateConnectivityInfoServiceName { get; set; }
+
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
+        /// </summary>
+        [Input("profilesIpAllowListCname")]
+        public Input<string>? ProfilesIpAllowListCname { get; set; }
+
         [Input("profilesName")]
         public Input<string>? ProfilesName { get; set; }
+
+        /// <summary>
+        /// Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("profilesPrivateConnectivityInfoPrivateDns")]
+        public Input<string>? ProfilesPrivateConnectivityInfoPrivateDns { get; set; }
+
+        /// <summary>
+        /// Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("profilesPrivateConnectivityInfoServiceName")]
+        public Input<string>? ProfilesPrivateConnectivityInfoServiceName { get; set; }
 
         [Input("profilesStatus")]
         public Input<string>? ProfilesStatus { get; set; }
@@ -532,10 +772,28 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<int>? ProfilesUserId { get; set; }
 
         /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
+        /// </summary>
+        [Input("prometheusIpAllowListCname")]
+        public Input<string>? PrometheusIpAllowListCname { get; set; }
+
+        /// <summary>
         /// Prometheus name for this instance.
         /// </summary>
         [Input("prometheusName")]
         public Input<string>? PrometheusName { get; set; }
+
+        /// <summary>
+        /// Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("prometheusPrivateConnectivityInfoPrivateDns")]
+        public Input<string>? PrometheusPrivateConnectivityInfoPrivateDns { get; set; }
+
+        /// <summary>
+        /// Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("prometheusPrivateConnectivityInfoServiceName")]
+        public Input<string>? PrometheusPrivateConnectivityInfoServiceName { get; set; }
 
         /// <summary>
         /// Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
@@ -585,8 +843,26 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("status")]
         public Input<string>? Status { get; set; }
 
+        /// <summary>
+        /// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
+        /// </summary>
+        [Input("tracesIpAllowListCname")]
+        public Input<string>? TracesIpAllowListCname { get; set; }
+
         [Input("tracesName")]
         public Input<string>? TracesName { get; set; }
+
+        /// <summary>
+        /// Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("tracesPrivateConnectivityInfoPrivateDns")]
+        public Input<string>? TracesPrivateConnectivityInfoPrivateDns { get; set; }
+
+        /// <summary>
+        /// Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("tracesPrivateConnectivityInfoServiceName")]
+        public Input<string>? TracesPrivateConnectivityInfoServiceName { get; set; }
 
         [Input("tracesStatus")]
         public Input<string>? TracesStatus { get; set; }
