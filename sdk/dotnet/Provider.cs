@@ -88,6 +88,13 @@ namespace Pulumiverse.Grafana
         public Output<string?> FleetManagementUrl { get; private set; } = null!;
 
         /// <summary>
+        /// A Grafana Frontend Observability API access token. May alternatively be set via the
+        /// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+        /// </summary>
+        [Output("frontendO11yApiAccessToken")]
+        public Output<string?> FrontendO11yApiAccessToken { get; private set; } = null!;
+
+        /// <summary>
         /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         /// </summary>
         [Output("oncallAccessToken")]
@@ -154,6 +161,7 @@ namespace Pulumiverse.Grafana
                     "cloudProviderAccessToken",
                     "connectionsApiAccessToken",
                     "fleetManagementAuth",
+                    "frontendO11yApiAccessToken",
                     "oncallAccessToken",
                     "smAccessToken",
                     "tlsKey",
@@ -285,6 +293,23 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("fleetManagementUrl")]
         public Input<string>? FleetManagementUrl { get; set; }
+
+        [Input("frontendO11yApiAccessToken")]
+        private Input<string>? _frontendO11yApiAccessToken;
+
+        /// <summary>
+        /// A Grafana Frontend Observability API access token. May alternatively be set via the
+        /// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+        /// </summary>
+        public Input<string>? FrontendO11yApiAccessToken
+        {
+            get => _frontendO11yApiAccessToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _frontendO11yApiAccessToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

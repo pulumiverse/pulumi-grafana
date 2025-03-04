@@ -63,6 +63,8 @@ type LookupStackArgs struct {
 
 // A collection of values returned by getStack.
 type LookupStackResult struct {
+	// Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
+	AlertmanagerIpAllowListCname string `pulumi:"alertmanagerIpAllowListCname"`
 	// Name of the Alertmanager instance configured for this stack.
 	AlertmanagerName string `pulumi:"alertmanagerName"`
 	// Status of the Alertmanager instance configured for this stack.
@@ -82,21 +84,35 @@ type LookupStackResult struct {
 	// Base URL of the Fleet Management instance configured for this stack.
 	FleetManagementUrl string `pulumi:"fleetManagementUrl"`
 	// User ID of the Fleet Management instance configured for this stack.
-	FleetManagementUserId int    `pulumi:"fleetManagementUserId"`
-	GraphiteName          string `pulumi:"graphiteName"`
-	GraphiteStatus        string `pulumi:"graphiteStatus"`
-	GraphiteUrl           string `pulumi:"graphiteUrl"`
-	GraphiteUserId        int    `pulumi:"graphiteUserId"`
+	FleetManagementUserId int `pulumi:"fleetManagementUserId"`
+	// Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
+	GrafanasIpAllowListCname string `pulumi:"grafanasIpAllowListCname"`
+	// Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
+	GraphiteIpAllowListCname string `pulumi:"graphiteIpAllowListCname"`
+	GraphiteName             string `pulumi:"graphiteName"`
+	// Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
+	GraphitePrivateConnectivityInfoPrivateDns string `pulumi:"graphitePrivateConnectivityInfoPrivateDns"`
+	// Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
+	GraphitePrivateConnectivityInfoServiceName string `pulumi:"graphitePrivateConnectivityInfoServiceName"`
+	GraphiteStatus                             string `pulumi:"graphiteStatus"`
+	GraphiteUrl                                string `pulumi:"graphiteUrl"`
+	GraphiteUserId                             int    `pulumi:"graphiteUserId"`
 	// The stack id assigned to this stack by Grafana.
 	Id string `pulumi:"id"`
 	// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
 	InfluxUrl string `pulumi:"influxUrl"`
 	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
-	Labels     map[string]string `pulumi:"labels"`
-	LogsName   string            `pulumi:"logsName"`
-	LogsStatus string            `pulumi:"logsStatus"`
-	LogsUrl    string            `pulumi:"logsUrl"`
-	LogsUserId int               `pulumi:"logsUserId"`
+	Labels map[string]string `pulumi:"labels"`
+	// Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
+	LogsIpAllowListCname string `pulumi:"logsIpAllowListCname"`
+	LogsName             string `pulumi:"logsName"`
+	// Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
+	LogsPrivateConnectivityInfoPrivateDns string `pulumi:"logsPrivateConnectivityInfoPrivateDns"`
+	// Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
+	LogsPrivateConnectivityInfoServiceName string `pulumi:"logsPrivateConnectivityInfoServiceName"`
+	LogsStatus                             string `pulumi:"logsStatus"`
+	LogsUrl                                string `pulumi:"logsUrl"`
+	LogsUserId                             int    `pulumi:"logsUserId"`
 	// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 	Name string `pulumi:"name"`
 	// Organization id to assign to this stack.
@@ -105,14 +121,38 @@ type LookupStackResult struct {
 	OrgName string `pulumi:"orgName"`
 	// Organization slug to assign to this stack.
 	OrgSlug string `pulumi:"orgSlug"`
+	// Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
+	OtlpPrivateConnectivityInfoPrivateDns string `pulumi:"otlpPrivateConnectivityInfoPrivateDns"`
+	// Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
+	OtlpPrivateConnectivityInfoServiceName string `pulumi:"otlpPrivateConnectivityInfoServiceName"`
 	// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
-	OtlpUrl        string `pulumi:"otlpUrl"`
-	ProfilesName   string `pulumi:"profilesName"`
-	ProfilesStatus string `pulumi:"profilesStatus"`
-	ProfilesUrl    string `pulumi:"profilesUrl"`
-	ProfilesUserId int    `pulumi:"profilesUserId"`
+	OtlpUrl string `pulumi:"otlpUrl"`
+	// Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
+	PdcApiPrivateConnectivityInfoPrivateDns string `pulumi:"pdcApiPrivateConnectivityInfoPrivateDns"`
+	// Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
+	PdcApiPrivateConnectivityInfoServiceName string `pulumi:"pdcApiPrivateConnectivityInfoServiceName"`
+	// Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+	PdcGatewayPrivateConnectivityInfoPrivateDns string `pulumi:"pdcGatewayPrivateConnectivityInfoPrivateDns"`
+	// Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+	PdcGatewayPrivateConnectivityInfoServiceName string `pulumi:"pdcGatewayPrivateConnectivityInfoServiceName"`
+	// Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
+	ProfilesIpAllowListCname string `pulumi:"profilesIpAllowListCname"`
+	ProfilesName             string `pulumi:"profilesName"`
+	// Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
+	ProfilesPrivateConnectivityInfoPrivateDns string `pulumi:"profilesPrivateConnectivityInfoPrivateDns"`
+	// Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
+	ProfilesPrivateConnectivityInfoServiceName string `pulumi:"profilesPrivateConnectivityInfoServiceName"`
+	ProfilesStatus                             string `pulumi:"profilesStatus"`
+	ProfilesUrl                                string `pulumi:"profilesUrl"`
+	ProfilesUserId                             int    `pulumi:"profilesUserId"`
+	// Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
+	PrometheusIpAllowListCname string `pulumi:"prometheusIpAllowListCname"`
 	// Prometheus name for this instance.
 	PrometheusName string `pulumi:"prometheusName"`
+	// Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
+	PrometheusPrivateConnectivityInfoPrivateDns string `pulumi:"prometheusPrivateConnectivityInfoPrivateDns"`
+	// Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
+	PrometheusPrivateConnectivityInfoServiceName string `pulumi:"prometheusPrivateConnectivityInfoServiceName"`
 	// Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
 	PrometheusRemoteEndpoint string `pulumi:"prometheusRemoteEndpoint"`
 	// Use this URL to send prometheus metrics to Grafana cloud
@@ -129,9 +169,15 @@ type LookupStackResult struct {
 	// available at “https://\n\n.grafana.net".
 	Slug string `pulumi:"slug"`
 	// Status of the stack.
-	Status       string `pulumi:"status"`
-	TracesName   string `pulumi:"tracesName"`
-	TracesStatus string `pulumi:"tracesStatus"`
+	Status string `pulumi:"status"`
+	// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
+	TracesIpAllowListCname string `pulumi:"tracesIpAllowListCname"`
+	TracesName             string `pulumi:"tracesName"`
+	// Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
+	TracesPrivateConnectivityInfoPrivateDns string `pulumi:"tracesPrivateConnectivityInfoPrivateDns"`
+	// Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
+	TracesPrivateConnectivityInfoServiceName string `pulumi:"tracesPrivateConnectivityInfoServiceName"`
+	TracesStatus                             string `pulumi:"tracesStatus"`
 	// Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
 	TracesUrl    string `pulumi:"tracesUrl"`
 	TracesUserId int    `pulumi:"tracesUserId"`
@@ -172,6 +218,11 @@ func (o LookupStackResultOutput) ToLookupStackResultOutput() LookupStackResultOu
 
 func (o LookupStackResultOutput) ToLookupStackResultOutputWithContext(ctx context.Context) LookupStackResultOutput {
 	return o
+}
+
+// Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
+func (o LookupStackResultOutput) AlertmanagerIpAllowListCname() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.AlertmanagerIpAllowListCname }).(pulumi.StringOutput)
 }
 
 // Name of the Alertmanager instance configured for this stack.
@@ -224,8 +275,28 @@ func (o LookupStackResultOutput) FleetManagementUserId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupStackResult) int { return v.FleetManagementUserId }).(pulumi.IntOutput)
 }
 
+// Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
+func (o LookupStackResultOutput) GrafanasIpAllowListCname() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.GrafanasIpAllowListCname }).(pulumi.StringOutput)
+}
+
+// Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
+func (o LookupStackResultOutput) GraphiteIpAllowListCname() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.GraphiteIpAllowListCname }).(pulumi.StringOutput)
+}
+
 func (o LookupStackResultOutput) GraphiteName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.GraphiteName }).(pulumi.StringOutput)
+}
+
+// Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) GraphitePrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.GraphitePrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) GraphitePrivateConnectivityInfoServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.GraphitePrivateConnectivityInfoServiceName }).(pulumi.StringOutput)
 }
 
 func (o LookupStackResultOutput) GraphiteStatus() pulumi.StringOutput {
@@ -255,8 +326,23 @@ func (o LookupStackResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupStackResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
+func (o LookupStackResultOutput) LogsIpAllowListCname() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.LogsIpAllowListCname }).(pulumi.StringOutput)
+}
+
 func (o LookupStackResultOutput) LogsName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.LogsName }).(pulumi.StringOutput)
+}
+
+// Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) LogsPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.LogsPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) LogsPrivateConnectivityInfoServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.LogsPrivateConnectivityInfoServiceName }).(pulumi.StringOutput)
 }
 
 func (o LookupStackResultOutput) LogsStatus() pulumi.StringOutput {
@@ -291,13 +377,58 @@ func (o LookupStackResultOutput) OrgSlug() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.OrgSlug }).(pulumi.StringOutput)
 }
 
+// Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) OtlpPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.OtlpPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) OtlpPrivateConnectivityInfoServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.OtlpPrivateConnectivityInfoServiceName }).(pulumi.StringOutput)
+}
+
 // Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
 func (o LookupStackResultOutput) OtlpUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.OtlpUrl }).(pulumi.StringOutput)
 }
 
+// Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) PdcApiPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.PdcApiPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) PdcApiPrivateConnectivityInfoServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.PdcApiPrivateConnectivityInfoServiceName }).(pulumi.StringOutput)
+}
+
+// Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) PdcGatewayPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.PdcGatewayPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) PdcGatewayPrivateConnectivityInfoServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.PdcGatewayPrivateConnectivityInfoServiceName }).(pulumi.StringOutput)
+}
+
+// Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
+func (o LookupStackResultOutput) ProfilesIpAllowListCname() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.ProfilesIpAllowListCname }).(pulumi.StringOutput)
+}
+
 func (o LookupStackResultOutput) ProfilesName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.ProfilesName }).(pulumi.StringOutput)
+}
+
+// Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) ProfilesPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.ProfilesPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) ProfilesPrivateConnectivityInfoServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.ProfilesPrivateConnectivityInfoServiceName }).(pulumi.StringOutput)
 }
 
 func (o LookupStackResultOutput) ProfilesStatus() pulumi.StringOutput {
@@ -312,9 +443,24 @@ func (o LookupStackResultOutput) ProfilesUserId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupStackResult) int { return v.ProfilesUserId }).(pulumi.IntOutput)
 }
 
+// Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
+func (o LookupStackResultOutput) PrometheusIpAllowListCname() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.PrometheusIpAllowListCname }).(pulumi.StringOutput)
+}
+
 // Prometheus name for this instance.
 func (o LookupStackResultOutput) PrometheusName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.PrometheusName }).(pulumi.StringOutput)
+}
+
+// Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) PrometheusPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.PrometheusPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) PrometheusPrivateConnectivityInfoServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.PrometheusPrivateConnectivityInfoServiceName }).(pulumi.StringOutput)
 }
 
 // Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
@@ -358,8 +504,23 @@ func (o LookupStackResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
+func (o LookupStackResultOutput) TracesIpAllowListCname() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.TracesIpAllowListCname }).(pulumi.StringOutput)
+}
+
 func (o LookupStackResultOutput) TracesName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.TracesName }).(pulumi.StringOutput)
+}
+
+// Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) TracesPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.TracesPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) TracesPrivateConnectivityInfoServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.TracesPrivateConnectivityInfoServiceName }).(pulumi.StringOutput)
 }
 
 func (o LookupStackResultOutput) TracesStatus() pulumi.StringOutput {

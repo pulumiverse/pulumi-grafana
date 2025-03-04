@@ -72,6 +72,12 @@ A Grafana Fleet Management API address. May alternatively be set via the `GRAFAN
 variable.
 """
 
+frontendO11yApiAccessToken: Optional[str]
+"""
+A Grafana Frontend Observability API access token. May alternatively be set via the
+`GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+"""
+
 insecureSkipVerify: Optional[bool]
 """
 Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

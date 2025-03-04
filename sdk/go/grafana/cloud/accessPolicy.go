@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			test, err := cloud.NewAccessPolicy(ctx, "test", &cloud.AccessPolicyArgs{
-//				Region:      pulumi.String("us"),
+//				Region:      pulumi.String("prod-us-east-0"),
 //				Name:        pulumi.String("my-policy"),
 //				DisplayName: pulumi.String("My Policy"),
 //				Scopes: pulumi.StringArray{
@@ -65,7 +65,7 @@ import (
 //				return err
 //			}
 //			_, err = cloud.NewAccessPolicyToken(ctx, "test", &cloud.AccessPolicyTokenArgs{
-//				Region:         pulumi.String("us"),
+//				Region:         pulumi.String("prod-us-east-0"),
 //				AccessPolicyId: test.PolicyId,
 //				Name:           pulumi.String("my-policy-token"),
 //				DisplayName:    pulumi.String("My Policy Token"),

@@ -140,6 +140,17 @@ namespace Pulumiverse.Grafana
             set => _fleetManagementUrl.Set(value);
         }
 
+        private static readonly __Value<string?> _frontendO11yApiAccessToken = new __Value<string?>(() => __config.Get("frontendO11yApiAccessToken"));
+        /// <summary>
+        /// A Grafana Frontend Observability API access token. May alternatively be set via the
+        /// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+        /// </summary>
+        public static string? FrontendO11yApiAccessToken
+        {
+            get => _frontendO11yApiAccessToken.Get();
+            set => _frontendO11yApiAccessToken.Set(value);
+        }
+
         private static readonly __Value<bool?> _insecureSkipVerify = new __Value<bool?>(() => __config.GetBoolean("insecureSkipVerify") ?? Utilities.GetEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY"));
         /// <summary>
         /// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

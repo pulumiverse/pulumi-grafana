@@ -25,8 +25,8 @@ class MessageTemplateArgs:
                  org_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MessageTemplate resource.
-        :param pulumi.Input[str] template: The content of the message template.
-        :param pulumi.Input[str] name: The name of the message template.
+        :param pulumi.Input[str] template: The content of the notification template group.
+        :param pulumi.Input[str] name: The name of the notification template group.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         pulumi.set(__self__, "template", template)
@@ -41,7 +41,7 @@ class MessageTemplateArgs:
     @pulumi.getter
     def template(self) -> pulumi.Input[str]:
         """
-        The content of the message template.
+        The content of the notification template group.
         """
         return pulumi.get(self, "template")
 
@@ -62,7 +62,7 @@ class MessageTemplateArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the message template.
+        The name of the notification template group.
         """
         return pulumi.get(self, "name")
 
@@ -92,9 +92,9 @@ class _MessageTemplateState:
                  template: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MessageTemplate resources.
-        :param pulumi.Input[str] name: The name of the message template.
+        :param pulumi.Input[str] name: The name of the notification template group.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] template: The content of the message template.
+        :param pulumi.Input[str] template: The content of the notification template group.
         """
         if disable_provenance is not None:
             pulumi.set(__self__, "disable_provenance", disable_provenance)
@@ -118,7 +118,7 @@ class _MessageTemplateState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the message template.
+        The name of the notification template group.
         """
         return pulumi.get(self, "name")
 
@@ -142,7 +142,7 @@ class _MessageTemplateState:
     @pulumi.getter
     def template(self) -> Optional[pulumi.Input[str]]:
         """
-        The content of the message template.
+        The content of the notification template group.
         """
         return pulumi.get(self, "template")
 
@@ -167,10 +167,10 @@ class MessageTemplate(pulumi.CustomResource):
                  template: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages Grafana Alerting message templates.
+        Manages Grafana Alerting notification template groups, including notification templates.
 
         * Official documentation
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#templates)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#notification-template-groups)
 
         This resource requires Grafana 9.1.0 or later.
 
@@ -181,8 +181,8 @@ class MessageTemplate(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         my_template = grafana.alerting.MessageTemplate("my_template",
-            name="My Reusable Template",
-            template=\"\"\"{{define "My Reusable Template" }}
+            name="My Notification Template Group",
+            template=\"\"\"{{define "custom.message" }}
          template content
         {{ end }}\"\"\")
         ```
@@ -199,9 +199,9 @@ class MessageTemplate(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the message template.
+        :param pulumi.Input[str] name: The name of the notification template group.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] template: The content of the message template.
+        :param pulumi.Input[str] template: The content of the notification template group.
         """
         ...
     @overload
@@ -210,10 +210,10 @@ class MessageTemplate(pulumi.CustomResource):
                  args: MessageTemplateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Grafana Alerting message templates.
+        Manages Grafana Alerting notification template groups, including notification templates.
 
         * Official documentation
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#templates)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#notification-template-groups)
 
         This resource requires Grafana 9.1.0 or later.
 
@@ -224,8 +224,8 @@ class MessageTemplate(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         my_template = grafana.alerting.MessageTemplate("my_template",
-            name="My Reusable Template",
-            template=\"\"\"{{define "My Reusable Template" }}
+            name="My Notification Template Group",
+            template=\"\"\"{{define "custom.message" }}
          template content
         {{ end }}\"\"\")
         ```
@@ -298,9 +298,9 @@ class MessageTemplate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the message template.
+        :param pulumi.Input[str] name: The name of the notification template group.
         :param pulumi.Input[str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[str] template: The content of the message template.
+        :param pulumi.Input[str] template: The content of the notification template group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -321,7 +321,7 @@ class MessageTemplate(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the message template.
+        The name of the notification template group.
         """
         return pulumi.get(self, "name")
 
@@ -337,7 +337,7 @@ class MessageTemplate(pulumi.CustomResource):
     @pulumi.getter
     def template(self) -> pulumi.Output[str]:
         """
-        The content of the message template.
+        The content of the notification template group.
         """
         return pulumi.get(self, "template")
 

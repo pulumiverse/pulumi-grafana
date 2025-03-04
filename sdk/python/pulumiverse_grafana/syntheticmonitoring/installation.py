@@ -178,7 +178,7 @@ class Installation(pulumi.CustomResource):
         stack_slug = config.require_object("stackSlug")
         cloud_region = config.get("cloudRegion")
         if cloud_region is None:
-            cloud_region = "us"
+            cloud_region = "prod-us-east-0"
         sm_stack = grafana.cloud.Stack("sm_stack",
             name=stack_slug,
             slug=stack_slug,
@@ -246,7 +246,7 @@ class Installation(pulumi.CustomResource):
         stack_slug = config.require_object("stackSlug")
         cloud_region = config.get("cloudRegion")
         if cloud_region is None:
-            cloud_region = "us"
+            cloud_region = "prod-us-east-0"
         sm_stack = grafana.cloud.Stack("sm_stack",
             name=stack_slug,
             slug=stack_slug,

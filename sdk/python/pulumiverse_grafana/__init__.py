@@ -110,6 +110,8 @@ if typing.TYPE_CHECKING:
     enterprise = __enterprise
     import pulumiverse_grafana.fleetmanagement as __fleetmanagement
     fleetmanagement = __fleetmanagement
+    import pulumiverse_grafana.frontendobservability as __frontendobservability
+    frontendobservability = __frontendobservability
     import pulumiverse_grafana.machinelearning as __machinelearning
     machinelearning = __machinelearning
     import pulumiverse_grafana.oncall as __oncall
@@ -128,6 +130,7 @@ else:
     connections = _utilities.lazy_import('pulumiverse_grafana.connections')
     enterprise = _utilities.lazy_import('pulumiverse_grafana.enterprise')
     fleetmanagement = _utilities.lazy_import('pulumiverse_grafana.fleetmanagement')
+    frontendobservability = _utilities.lazy_import('pulumiverse_grafana.frontendobservability')
     machinelearning = _utilities.lazy_import('pulumiverse_grafana.machinelearning')
     oncall = _utilities.lazy_import('pulumiverse_grafana.oncall')
     oss = _utilities.lazy_import('pulumiverse_grafana.oss')
@@ -383,6 +386,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.fleetmanagement",
   "classes": {
    "grafana:fleetManagement/pipeline:Pipeline": "Pipeline"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "frontendObservability/app",
+  "fqn": "pulumiverse_grafana.frontendobservability",
+  "classes": {
+   "grafana:frontendObservability/app:App": "App"
   }
  },
  {

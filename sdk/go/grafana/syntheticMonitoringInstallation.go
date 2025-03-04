@@ -45,7 +45,7 @@ import (
 //			// Cloud Access Policy token for Grafana Cloud with the following scopes: accesspolicies:read|write|delete, stacks:read|write|delete
 //			cloudAccessPolicyToken := cfg.RequireObject("cloudAccessPolicyToken")
 //			stackSlug := cfg.RequireObject("stackSlug")
-//			cloudRegion := "us"
+//			cloudRegion := "prod-us-east-0"
 //			if param := cfg.Get("cloudRegion"); param != "" {
 //				cloudRegion = param
 //			}

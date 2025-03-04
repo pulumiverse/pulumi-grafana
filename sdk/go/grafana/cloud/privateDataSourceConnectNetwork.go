@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			test, err := cloud.NewPrivateDataSourceConnectNetwork(ctx, "test", &cloud.PrivateDataSourceConnectNetworkArgs{
-//				Region:          pulumi.String("us"),
+//				Region:          pulumi.String("prod-us-east-0"),
 //				Name:            pulumi.String("my-pdc"),
 //				DisplayName:     pulumi.String("My PDC"),
 //				StackIdentifier: pulumi.String(current.Id),

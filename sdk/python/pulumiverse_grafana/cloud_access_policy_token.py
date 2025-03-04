@@ -269,7 +269,7 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
 
         current = grafana.cloud.get_organization(slug="<your org slug>")
         test = grafana.cloud.AccessPolicy("test",
-            region="us",
+            region="prod-us-east-0",
             name="my-policy",
             display_name="My Policy",
             scopes=[
@@ -284,7 +284,7 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
                 }],
             }])
         test_access_policy_token = grafana.cloud.AccessPolicyToken("test",
-            region="us",
+            region="prod-us-east-0",
             access_policy_id=test.policy_id,
             name="my-policy-token",
             display_name="My Policy Token",
@@ -330,7 +330,7 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
 
         current = grafana.cloud.get_organization(slug="<your org slug>")
         test = grafana.cloud.AccessPolicy("test",
-            region="us",
+            region="prod-us-east-0",
             name="my-policy",
             display_name="My Policy",
             scopes=[
@@ -345,7 +345,7 @@ class CloudAccessPolicyToken(pulumi.CustomResource):
                 }],
             }])
         test_access_policy_token = grafana.cloud.AccessPolicyToken("test",
-            region="us",
+            region="prod-us-east-0",
             access_policy_id=test.policy_id,
             name="my-policy-token",
             display_name="My Policy Token",

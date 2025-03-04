@@ -99,6 +99,14 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('fleetManagementUrl')
 
     @property
+    def frontend_o11y_api_access_token(self) -> Optional[str]:
+        """
+        A Grafana Frontend Observability API access token. May alternatively be set via the
+        `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+        """
+        return __config__.get('frontendO11yApiAccessToken')
+
+    @property
     def insecure_skip_verify(self) -> Optional[bool]:
         """
         Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

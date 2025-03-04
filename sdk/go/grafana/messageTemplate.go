@@ -12,10 +12,10 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages Grafana Alerting message templates.
+// Manages Grafana Alerting notification template groups, including notification templates.
 //
 // * Official documentation
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#templates)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#notification-template-groups)
 //
 // This resource requires Grafana 9.1.0 or later.
 //
@@ -34,8 +34,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := alerting.NewMessageTemplate(ctx, "my_template", &alerting.MessageTemplateArgs{
-//				Name:     pulumi.String("My Reusable Template"),
-//				Template: pulumi.String("{{define \"My Reusable Template\" }}\n template content\n{{ end }}"),
+//				Name:     pulumi.String("My Notification Template Group"),
+//				Template: pulumi.String("{{define \"custom.message\" }}\n template content\n{{ end }}"),
 //			})
 //			if err != nil {
 //				return err
@@ -61,11 +61,11 @@ type MessageTemplate struct {
 	pulumi.CustomResourceState
 
 	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
-	// The name of the message template.
+	// The name of the notification template group.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
-	// The content of the message template.
+	// The content of the notification template group.
 	Template pulumi.StringOutput `pulumi:"template"`
 }
 
@@ -109,21 +109,21 @@ func GetMessageTemplate(ctx *pulumi.Context,
 // Input properties used for looking up and filtering MessageTemplate resources.
 type messageTemplateState struct {
 	DisableProvenance *bool `pulumi:"disableProvenance"`
-	// The name of the message template.
+	// The name of the notification template group.
 	Name *string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// The content of the message template.
+	// The content of the notification template group.
 	Template *string `pulumi:"template"`
 }
 
 type MessageTemplateState struct {
 	DisableProvenance pulumi.BoolPtrInput
-	// The name of the message template.
+	// The name of the notification template group.
 	Name pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
-	// The content of the message template.
+	// The content of the notification template group.
 	Template pulumi.StringPtrInput
 }
 
@@ -133,22 +133,22 @@ func (MessageTemplateState) ElementType() reflect.Type {
 
 type messageTemplateArgs struct {
 	DisableProvenance *bool `pulumi:"disableProvenance"`
-	// The name of the message template.
+	// The name of the notification template group.
 	Name *string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// The content of the message template.
+	// The content of the notification template group.
 	Template string `pulumi:"template"`
 }
 
 // The set of arguments for constructing a MessageTemplate resource.
 type MessageTemplateArgs struct {
 	DisableProvenance pulumi.BoolPtrInput
-	// The name of the message template.
+	// The name of the notification template group.
 	Name pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
-	// The content of the message template.
+	// The content of the notification template group.
 	Template pulumi.StringInput
 }
 
@@ -243,7 +243,7 @@ func (o MessageTemplateOutput) DisableProvenance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MessageTemplate) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
 }
 
-// The name of the message template.
+// The name of the notification template group.
 func (o MessageTemplateOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MessageTemplate) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -253,7 +253,7 @@ func (o MessageTemplateOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MessageTemplate) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
-// The content of the message template.
+// The content of the notification template group.
 func (o MessageTemplateOutput) Template() pulumi.StringOutput {
 	return o.ApplyT(func(v *MessageTemplate) pulumi.StringOutput { return v.Template }).(pulumi.StringOutput)
 }
