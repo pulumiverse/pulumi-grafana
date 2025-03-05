@@ -117,7 +117,7 @@ class GetAzureCredentialResult:
     @pulumi.getter(name="resourceTagsToAddToMetrics")
     def resource_tags_to_add_to_metrics(self) -> Sequence[str]:
         """
-        A set of regions that this AWS Account resource applies to.
+        The list of resource tags to add to metrics.
         """
         return pulumi.get(self, "resource_tags_to_add_to_metrics")
 

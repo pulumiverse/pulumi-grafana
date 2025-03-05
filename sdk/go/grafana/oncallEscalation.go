@@ -33,7 +33,7 @@ type OncallEscalation struct {
 	EscalationChainId pulumi.StringOutput `pulumi:"escalationChainId"`
 	// The ID of a User Group for notify*user*group type step.
 	GroupToNotify pulumi.StringPtrOutput `pulumi:"groupToNotify"`
-	// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+	// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
 	Important pulumi.BoolPtrOutput `pulumi:"important"`
 	// The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
 	NotifyIfTimeFrom pulumi.StringPtrOutput `pulumi:"notifyIfTimeFrom"`
@@ -102,7 +102,7 @@ type oncallEscalationState struct {
 	EscalationChainId *string `pulumi:"escalationChainId"`
 	// The ID of a User Group for notify*user*group type step.
 	GroupToNotify *string `pulumi:"groupToNotify"`
-	// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+	// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
 	Important *bool `pulumi:"important"`
 	// The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
 	NotifyIfTimeFrom *string `pulumi:"notifyIfTimeFrom"`
@@ -133,7 +133,7 @@ type OncallEscalationState struct {
 	EscalationChainId pulumi.StringPtrInput
 	// The ID of a User Group for notify*user*group type step.
 	GroupToNotify pulumi.StringPtrInput
-	// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+	// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
 	Important pulumi.BoolPtrInput
 	// The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
 	NotifyIfTimeFrom pulumi.StringPtrInput
@@ -168,7 +168,7 @@ type oncallEscalationArgs struct {
 	EscalationChainId string `pulumi:"escalationChainId"`
 	// The ID of a User Group for notify*user*group type step.
 	GroupToNotify *string `pulumi:"groupToNotify"`
-	// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+	// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
 	Important *bool `pulumi:"important"`
 	// The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
 	NotifyIfTimeFrom *string `pulumi:"notifyIfTimeFrom"`
@@ -200,7 +200,7 @@ type OncallEscalationArgs struct {
 	EscalationChainId pulumi.StringInput
 	// The ID of a User Group for notify*user*group type step.
 	GroupToNotify pulumi.StringPtrInput
-	// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+	// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
 	Important pulumi.BoolPtrInput
 	// The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
 	NotifyIfTimeFrom pulumi.StringPtrInput
@@ -329,7 +329,7 @@ func (o OncallEscalationOutput) GroupToNotify() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallEscalation) pulumi.StringPtrOutput { return v.GroupToNotify }).(pulumi.StringPtrOutput)
 }
 
-// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
 func (o OncallEscalationOutput) Important() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OncallEscalation) pulumi.BoolPtrOutput { return v.Important }).(pulumi.BoolPtrOutput)
 }

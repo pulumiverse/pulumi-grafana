@@ -5,6 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface CloudAccessPolicyCondition {
+    /**
+     * Conditions that apply to the access policy,such as IP Allow lists.
+     */
+    allowedSubnets: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface CloudAccessPolicyRealm {
     /**
      * The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
@@ -4163,6 +4170,13 @@ export namespace alerting {
 }
 
 export namespace cloud {
+    export interface AccessPolicyCondition {
+        /**
+         * Conditions that apply to the access policy,such as IP Allow lists.
+         */
+        allowedSubnets: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
     export interface AccessPolicyRealm {
         /**
          * The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
@@ -4240,7 +4254,7 @@ export namespace cloud {
          */
         metrics?: inputs.cloud.GetProviderAwsCloudwatchScrapeJobServiceMetric[];
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
          */
         name?: string;
         /**
@@ -4248,7 +4262,7 @@ export namespace cloud {
          */
         resourceDiscoveryTagFilters?: inputs.cloud.GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter[];
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds?: number;
         /**
@@ -4263,7 +4277,7 @@ export namespace cloud {
          */
         metrics?: pulumi.Input<pulumi.Input<inputs.cloud.GetProviderAwsCloudwatchScrapeJobServiceMetricArgs>[]>;
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
          */
         name?: pulumi.Input<string>;
         /**
@@ -4271,7 +4285,7 @@ export namespace cloud {
          */
         resourceDiscoveryTagFilters?: pulumi.Input<pulumi.Input<inputs.cloud.GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs>[]>;
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds?: pulumi.Input<number>;
         /**
@@ -4474,7 +4488,7 @@ export namespace cloud {
          */
         metrics?: inputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric[];
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
          */
         name?: string;
         /**
@@ -4482,7 +4496,7 @@ export namespace cloud {
          */
         resourceDiscoveryTagFilters?: inputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter[];
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds?: number;
         /**
@@ -4497,7 +4511,7 @@ export namespace cloud {
          */
         metrics?: pulumi.Input<pulumi.Input<inputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs>[]>;
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
          */
         name?: pulumi.Input<string>;
         /**
@@ -4505,7 +4519,7 @@ export namespace cloud {
          */
         resourceDiscoveryTagFilters?: pulumi.Input<pulumi.Input<inputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs>[]>;
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds?: pulumi.Input<number>;
         /**
@@ -4656,7 +4670,7 @@ export namespace cloud {
          */
         metrics?: pulumi.Input<pulumi.Input<inputs.cloud.ProviderAwsCloudwatchScrapeJobServiceMetric>[]>;
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
          */
         name: pulumi.Input<string>;
         /**
@@ -4664,7 +4678,7 @@ export namespace cloud {
          */
         resourceDiscoveryTagFilters?: pulumi.Input<pulumi.Input<inputs.cloud.ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter>[]>;
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds?: pulumi.Input<number>;
         /**
@@ -4762,7 +4776,7 @@ export namespace cloudProvider {
          */
         metrics?: pulumi.Input<pulumi.Input<inputs.cloudProvider.AwsCloudwatchScrapeJobServiceMetric>[]>;
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
          */
         name: pulumi.Input<string>;
         /**
@@ -4770,7 +4784,7 @@ export namespace cloudProvider {
          */
         resourceDiscoveryTagFilters?: pulumi.Input<pulumi.Input<inputs.cloudProvider.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter>[]>;
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds?: pulumi.Input<number>;
         /**
@@ -4892,7 +4906,7 @@ export namespace cloudProvider {
          */
         metrics?: inputs.cloudProvider.GetAwsCloudwatchScrapeJobServiceMetric[];
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
          */
         name?: string;
         /**
@@ -4900,7 +4914,7 @@ export namespace cloudProvider {
          */
         resourceDiscoveryTagFilters?: inputs.cloudProvider.GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter[];
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds?: number;
         /**
@@ -4915,7 +4929,7 @@ export namespace cloudProvider {
          */
         metrics?: pulumi.Input<pulumi.Input<inputs.cloudProvider.GetAwsCloudwatchScrapeJobServiceMetricArgs>[]>;
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
          */
         name?: pulumi.Input<string>;
         /**
@@ -4923,7 +4937,7 @@ export namespace cloudProvider {
          */
         resourceDiscoveryTagFilters?: pulumi.Input<pulumi.Input<inputs.cloudProvider.GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs>[]>;
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds?: pulumi.Input<number>;
         /**
@@ -5126,7 +5140,7 @@ export namespace cloudProvider {
          */
         metrics?: inputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobServiceMetric[];
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
          */
         name?: string;
         /**
@@ -5134,7 +5148,7 @@ export namespace cloudProvider {
          */
         resourceDiscoveryTagFilters?: inputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter[];
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds?: number;
         /**
@@ -5149,7 +5163,7 @@ export namespace cloudProvider {
          */
         metrics?: pulumi.Input<pulumi.Input<inputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs>[]>;
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
          */
         name?: pulumi.Input<string>;
         /**
@@ -5157,7 +5171,7 @@ export namespace cloudProvider {
          */
         resourceDiscoveryTagFilters?: pulumi.Input<pulumi.Input<inputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs>[]>;
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds?: pulumi.Input<number>;
         /**

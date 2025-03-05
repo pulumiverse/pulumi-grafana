@@ -54,13 +54,13 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<ImmutableArray<Outputs.ProviderAzureCredentialResourceDiscoveryTagFilter>> ResourceDiscoveryTagFilters { get; private set; } = null!;
 
         /// <summary>
-        /// The ID given by the Grafana Cloud Provider API to this AWS Account resource.
+        /// The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
         /// </summary>
         [Output("resourceId")]
         public Output<string> ResourceId { get; private set; } = null!;
 
         /// <summary>
-        /// A set of regions that this AWS Account resource applies to.
+        /// The list of resource tags to add to metrics.
         /// </summary>
         [Output("resourceTagsToAddToMetrics")]
         public Output<ImmutableArray<string>> ResourceTagsToAddToMetrics { get; private set; } = null!;
@@ -181,7 +181,7 @@ namespace Pulumiverse.Grafana.Cloud
         private InputList<string>? _resourceTagsToAddToMetrics;
 
         /// <summary>
-        /// A set of regions that this AWS Account resource applies to.
+        /// The list of resource tags to add to metrics.
         /// </summary>
         public InputList<string> ResourceTagsToAddToMetrics
         {
@@ -259,7 +259,7 @@ namespace Pulumiverse.Grafana.Cloud
         }
 
         /// <summary>
-        /// The ID given by the Grafana Cloud Provider API to this AWS Account resource.
+        /// The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
         /// </summary>
         [Input("resourceId")]
         public Input<string>? ResourceId { get; set; }
@@ -268,7 +268,7 @@ namespace Pulumiverse.Grafana.Cloud
         private InputList<string>? _resourceTagsToAddToMetrics;
 
         /// <summary>
-        /// A set of regions that this AWS Account resource applies to.
+        /// The list of resource tags to add to metrics.
         /// </summary>
         public InputList<string> ResourceTagsToAddToMetrics
         {

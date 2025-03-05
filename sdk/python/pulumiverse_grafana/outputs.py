@@ -16,6 +16,7 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'CloudAccessPolicyCondition',
     'CloudAccessPolicyRealm',
     'CloudAccessPolicyRealmLabelPolicy',
     'ContactPointAlertmanager',
@@ -160,6 +161,41 @@ __all__ = [
     'GetTeamTeamSyncResult',
     'GetUsersUserResult',
 ]
+
+@pulumi.output_type
+class CloudAccessPolicyCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedSubnets":
+            suggest = "allowed_subnets"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudAccessPolicyCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudAccessPolicyCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudAccessPolicyCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 allowed_subnets: Sequence[str]):
+        """
+        :param Sequence[str] allowed_subnets: Conditions that apply to the access policy,such as IP Allow lists.
+        """
+        pulumi.set(__self__, "allowed_subnets", allowed_subnets)
+
+    @property
+    @pulumi.getter(name="allowedSubnets")
+    def allowed_subnets(self) -> Sequence[str]:
+        """
+        Conditions that apply to the access policy,such as IP Allow lists.
+        """
+        return pulumi.get(self, "allowed_subnets")
+
 
 @pulumi.output_type
 class CloudAccessPolicyRealm(dict):

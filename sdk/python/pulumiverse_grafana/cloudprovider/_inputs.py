@@ -192,7 +192,7 @@ if not MYPY:
     class AwsCloudwatchScrapeJobServiceArgsDict(TypedDict):
         name: pulumi.Input[str]
         """
-        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
         """
         metrics: NotRequired[pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobServiceMetricArgsDict']]]]
         """
@@ -204,7 +204,7 @@ if not MYPY:
         """
         scrape_interval_seconds: NotRequired[pulumi.Input[int]]
         """
-        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
         """
         tags_to_add_to_metrics: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
@@ -222,10 +222,10 @@ class AwsCloudwatchScrapeJobServiceArgs:
                  scrape_interval_seconds: Optional[pulumi.Input[int]] = None,
                  tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[str] name: The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+        :param pulumi.Input[str] name: The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
         :param pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobServiceMetricArgs']]] metrics: One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs']]] resource_discovery_tag_filters: One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
-        :param pulumi.Input[int] scrape_interval_seconds: The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        :param pulumi.Input[int] scrape_interval_seconds: The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags_to_add_to_metrics: A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
         """
         pulumi.set(__self__, "name", name)
@@ -242,7 +242,7 @@ class AwsCloudwatchScrapeJobServiceArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
         """
         return pulumi.get(self, "name")
 
@@ -278,7 +278,7 @@ class AwsCloudwatchScrapeJobServiceArgs:
     @pulumi.getter(name="scrapeIntervalSeconds")
     def scrape_interval_seconds(self) -> Optional[pulumi.Input[int]]:
         """
-        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
         """
         return pulumi.get(self, "scrape_interval_seconds")
 
@@ -703,11 +703,11 @@ if not MYPY:
     class GetAwsCloudwatchScrapeJobServiceArgsDict(TypedDict):
         name: str
         """
-        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
         """
         scrape_interval_seconds: int
         """
-        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
         """
         tags_to_add_to_metrics: Sequence[str]
         """
@@ -733,8 +733,8 @@ class GetAwsCloudwatchScrapeJobServiceArgs:
                  metrics: Optional[Sequence['GetAwsCloudwatchScrapeJobServiceMetricArgs']] = None,
                  resource_discovery_tag_filters: Optional[Sequence['GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs']] = None):
         """
-        :param str name: The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
-        :param int scrape_interval_seconds: The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        :param str name: The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+        :param int scrape_interval_seconds: The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
         :param Sequence[str] tags_to_add_to_metrics: A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
         :param Sequence['GetAwsCloudwatchScrapeJobServiceMetricArgs'] metrics: One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
         :param Sequence['GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs'] resource_discovery_tag_filters: One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
@@ -751,7 +751,7 @@ class GetAwsCloudwatchScrapeJobServiceArgs:
     @pulumi.getter
     def name(self) -> str:
         """
-        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
         """
         return pulumi.get(self, "name")
 
@@ -763,7 +763,7 @@ class GetAwsCloudwatchScrapeJobServiceArgs:
     @pulumi.getter(name="scrapeIntervalSeconds")
     def scrape_interval_seconds(self) -> int:
         """
-        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
         """
         return pulumi.get(self, "scrape_interval_seconds")
 
@@ -1272,11 +1272,11 @@ if not MYPY:
     class GetAwsCloudwatchScrapeJobsScrapeJobServiceArgsDict(TypedDict):
         name: str
         """
-        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
         """
         scrape_interval_seconds: int
         """
-        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
         """
         tags_to_add_to_metrics: Sequence[str]
         """
@@ -1302,8 +1302,8 @@ class GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs:
                  metrics: Optional[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs']] = None,
                  resource_discovery_tag_filters: Optional[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs']] = None):
         """
-        :param str name: The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
-        :param int scrape_interval_seconds: The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        :param str name: The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+        :param int scrape_interval_seconds: The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
         :param Sequence[str] tags_to_add_to_metrics: A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
         :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs'] metrics: One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
         :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs'] resource_discovery_tag_filters: One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
@@ -1320,7 +1320,7 @@ class GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs:
     @pulumi.getter
     def name(self) -> str:
         """
-        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
         """
         return pulumi.get(self, "name")
 
@@ -1332,7 +1332,7 @@ class GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs:
     @pulumi.getter(name="scrapeIntervalSeconds")
     def scrape_interval_seconds(self) -> int:
         """
-        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
         """
         return pulumi.get(self, "scrape_interval_seconds")
 

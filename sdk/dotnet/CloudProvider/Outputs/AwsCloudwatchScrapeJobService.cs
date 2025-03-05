@@ -19,7 +19,7 @@ namespace Pulumiverse.Grafana.CloudProvider.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.AwsCloudwatchScrapeJobServiceMetric> Metrics;
         /// <summary>
-        /// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+        /// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana.CloudProvider.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter> ResourceDiscoveryTagFilters;
         /// <summary>
-        /// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        /// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
         /// </summary>
         public readonly int? ScrapeIntervalSeconds;
         /// <summary>

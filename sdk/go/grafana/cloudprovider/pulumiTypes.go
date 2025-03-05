@@ -239,11 +239,11 @@ func (o AwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput) Index(i pulumi.I
 type AwsCloudwatchScrapeJobService struct {
 	// One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
 	Metrics []AwsCloudwatchScrapeJobServiceMetric `pulumi:"metrics"`
-	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
 	Name string `pulumi:"name"`
 	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
 	ResourceDiscoveryTagFilters []AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
-	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
 	ScrapeIntervalSeconds *int `pulumi:"scrapeIntervalSeconds"`
 	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
 	TagsToAddToMetrics []string `pulumi:"tagsToAddToMetrics"`
@@ -263,11 +263,11 @@ type AwsCloudwatchScrapeJobServiceInput interface {
 type AwsCloudwatchScrapeJobServiceArgs struct {
 	// One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
 	Metrics AwsCloudwatchScrapeJobServiceMetricArrayInput `pulumi:"metrics"`
-	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
 	Name pulumi.StringInput `pulumi:"name"`
 	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
 	ResourceDiscoveryTagFilters AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput `pulumi:"resourceDiscoveryTagFilters"`
-	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
 	ScrapeIntervalSeconds pulumi.IntPtrInput `pulumi:"scrapeIntervalSeconds"`
 	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
 	TagsToAddToMetrics pulumi.StringArrayInput `pulumi:"tagsToAddToMetrics"`
@@ -329,7 +329,7 @@ func (o AwsCloudwatchScrapeJobServiceOutput) Metrics() AwsCloudwatchScrapeJobSer
 	return o.ApplyT(func(v AwsCloudwatchScrapeJobService) []AwsCloudwatchScrapeJobServiceMetric { return v.Metrics }).(AwsCloudwatchScrapeJobServiceMetricArrayOutput)
 }
 
-// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
 func (o AwsCloudwatchScrapeJobServiceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v AwsCloudwatchScrapeJobService) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -341,7 +341,7 @@ func (o AwsCloudwatchScrapeJobServiceOutput) ResourceDiscoveryTagFilters() AwsCl
 	}).(AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput)
 }
 
-// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
 func (o AwsCloudwatchScrapeJobServiceOutput) ScrapeIntervalSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AwsCloudwatchScrapeJobService) *int { return v.ScrapeIntervalSeconds }).(pulumi.IntPtrOutput)
 }
@@ -1239,11 +1239,11 @@ func (o GetAwsCloudwatchScrapeJobCustomNamespaceMetricArrayOutput) Index(i pulum
 type GetAwsCloudwatchScrapeJobService struct {
 	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
 	Metrics []GetAwsCloudwatchScrapeJobServiceMetric `pulumi:"metrics"`
-	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
 	Name string `pulumi:"name"`
 	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
 	ResourceDiscoveryTagFilters []GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
-	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
 	ScrapeIntervalSeconds int `pulumi:"scrapeIntervalSeconds"`
 	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
 	TagsToAddToMetrics []string `pulumi:"tagsToAddToMetrics"`
@@ -1263,11 +1263,11 @@ type GetAwsCloudwatchScrapeJobServiceInput interface {
 type GetAwsCloudwatchScrapeJobServiceArgs struct {
 	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
 	Metrics GetAwsCloudwatchScrapeJobServiceMetricArrayInput `pulumi:"metrics"`
-	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
 	Name pulumi.StringInput `pulumi:"name"`
 	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
 	ResourceDiscoveryTagFilters GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput `pulumi:"resourceDiscoveryTagFilters"`
-	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
 	ScrapeIntervalSeconds pulumi.IntInput `pulumi:"scrapeIntervalSeconds"`
 	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
 	TagsToAddToMetrics pulumi.StringArrayInput `pulumi:"tagsToAddToMetrics"`
@@ -1329,7 +1329,7 @@ func (o GetAwsCloudwatchScrapeJobServiceOutput) Metrics() GetAwsCloudwatchScrape
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobService) []GetAwsCloudwatchScrapeJobServiceMetric { return v.Metrics }).(GetAwsCloudwatchScrapeJobServiceMetricArrayOutput)
 }
 
-// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
 func (o GetAwsCloudwatchScrapeJobServiceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobService) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1341,7 +1341,7 @@ func (o GetAwsCloudwatchScrapeJobServiceOutput) ResourceDiscoveryTagFilters() Ge
 	}).(GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput)
 }
 
-// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
 func (o GetAwsCloudwatchScrapeJobServiceOutput) ScrapeIntervalSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobService) int { return v.ScrapeIntervalSeconds }).(pulumi.IntOutput)
 }
@@ -2009,11 +2009,11 @@ func (o GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArrayOutput) Ind
 type GetAwsCloudwatchScrapeJobsScrapeJobService struct {
 	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
 	Metrics []GetAwsCloudwatchScrapeJobsScrapeJobServiceMetric `pulumi:"metrics"`
-	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
 	Name string `pulumi:"name"`
 	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
 	ResourceDiscoveryTagFilters []GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
-	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
 	ScrapeIntervalSeconds int `pulumi:"scrapeIntervalSeconds"`
 	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
 	TagsToAddToMetrics []string `pulumi:"tagsToAddToMetrics"`
@@ -2033,11 +2033,11 @@ type GetAwsCloudwatchScrapeJobsScrapeJobServiceInput interface {
 type GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs struct {
 	// One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
 	Metrics GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayInput `pulumi:"metrics"`
-	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
 	Name pulumi.StringInput `pulumi:"name"`
 	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
 	ResourceDiscoveryTagFilters GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayInput `pulumi:"resourceDiscoveryTagFilters"`
-	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
 	ScrapeIntervalSeconds pulumi.IntInput `pulumi:"scrapeIntervalSeconds"`
 	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
 	TagsToAddToMetrics pulumi.StringArrayInput `pulumi:"tagsToAddToMetrics"`
@@ -2101,7 +2101,7 @@ func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceOutput) Metrics() GetAwsCloudw
 	}).(GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArrayOutput)
 }
 
-// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
 func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJobService) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2113,7 +2113,7 @@ func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceOutput) ResourceDiscoveryTagFi
 	}).(GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArrayOutput)
 }
 
-// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
 func (o GetAwsCloudwatchScrapeJobsScrapeJobServiceOutput) ScrapeIntervalSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJobService) int { return v.ScrapeIntervalSeconds }).(pulumi.IntOutput)
 }

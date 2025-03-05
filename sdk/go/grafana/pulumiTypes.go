@@ -13,6 +13,103 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type CloudAccessPolicyCondition struct {
+	// Conditions that apply to the access policy,such as IP Allow lists.
+	AllowedSubnets []string `pulumi:"allowedSubnets"`
+}
+
+// CloudAccessPolicyConditionInput is an input type that accepts CloudAccessPolicyConditionArgs and CloudAccessPolicyConditionOutput values.
+// You can construct a concrete instance of `CloudAccessPolicyConditionInput` via:
+//
+//	CloudAccessPolicyConditionArgs{...}
+type CloudAccessPolicyConditionInput interface {
+	pulumi.Input
+
+	ToCloudAccessPolicyConditionOutput() CloudAccessPolicyConditionOutput
+	ToCloudAccessPolicyConditionOutputWithContext(context.Context) CloudAccessPolicyConditionOutput
+}
+
+type CloudAccessPolicyConditionArgs struct {
+	// Conditions that apply to the access policy,such as IP Allow lists.
+	AllowedSubnets pulumi.StringArrayInput `pulumi:"allowedSubnets"`
+}
+
+func (CloudAccessPolicyConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudAccessPolicyCondition)(nil)).Elem()
+}
+
+func (i CloudAccessPolicyConditionArgs) ToCloudAccessPolicyConditionOutput() CloudAccessPolicyConditionOutput {
+	return i.ToCloudAccessPolicyConditionOutputWithContext(context.Background())
+}
+
+func (i CloudAccessPolicyConditionArgs) ToCloudAccessPolicyConditionOutputWithContext(ctx context.Context) CloudAccessPolicyConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudAccessPolicyConditionOutput)
+}
+
+// CloudAccessPolicyConditionArrayInput is an input type that accepts CloudAccessPolicyConditionArray and CloudAccessPolicyConditionArrayOutput values.
+// You can construct a concrete instance of `CloudAccessPolicyConditionArrayInput` via:
+//
+//	CloudAccessPolicyConditionArray{ CloudAccessPolicyConditionArgs{...} }
+type CloudAccessPolicyConditionArrayInput interface {
+	pulumi.Input
+
+	ToCloudAccessPolicyConditionArrayOutput() CloudAccessPolicyConditionArrayOutput
+	ToCloudAccessPolicyConditionArrayOutputWithContext(context.Context) CloudAccessPolicyConditionArrayOutput
+}
+
+type CloudAccessPolicyConditionArray []CloudAccessPolicyConditionInput
+
+func (CloudAccessPolicyConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudAccessPolicyCondition)(nil)).Elem()
+}
+
+func (i CloudAccessPolicyConditionArray) ToCloudAccessPolicyConditionArrayOutput() CloudAccessPolicyConditionArrayOutput {
+	return i.ToCloudAccessPolicyConditionArrayOutputWithContext(context.Background())
+}
+
+func (i CloudAccessPolicyConditionArray) ToCloudAccessPolicyConditionArrayOutputWithContext(ctx context.Context) CloudAccessPolicyConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudAccessPolicyConditionArrayOutput)
+}
+
+type CloudAccessPolicyConditionOutput struct{ *pulumi.OutputState }
+
+func (CloudAccessPolicyConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudAccessPolicyCondition)(nil)).Elem()
+}
+
+func (o CloudAccessPolicyConditionOutput) ToCloudAccessPolicyConditionOutput() CloudAccessPolicyConditionOutput {
+	return o
+}
+
+func (o CloudAccessPolicyConditionOutput) ToCloudAccessPolicyConditionOutputWithContext(ctx context.Context) CloudAccessPolicyConditionOutput {
+	return o
+}
+
+// Conditions that apply to the access policy,such as IP Allow lists.
+func (o CloudAccessPolicyConditionOutput) AllowedSubnets() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v CloudAccessPolicyCondition) []string { return v.AllowedSubnets }).(pulumi.StringArrayOutput)
+}
+
+type CloudAccessPolicyConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudAccessPolicyConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudAccessPolicyCondition)(nil)).Elem()
+}
+
+func (o CloudAccessPolicyConditionArrayOutput) ToCloudAccessPolicyConditionArrayOutput() CloudAccessPolicyConditionArrayOutput {
+	return o
+}
+
+func (o CloudAccessPolicyConditionArrayOutput) ToCloudAccessPolicyConditionArrayOutputWithContext(ctx context.Context) CloudAccessPolicyConditionArrayOutput {
+	return o
+}
+
+func (o CloudAccessPolicyConditionArrayOutput) Index(i pulumi.IntInput) CloudAccessPolicyConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudAccessPolicyCondition {
+		return vs[0].([]CloudAccessPolicyCondition)[vs[1].(int)]
+	}).(CloudAccessPolicyConditionOutput)
+}
+
 type CloudAccessPolicyRealm struct {
 	// The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
 	Identifier    string                              `pulumi:"identifier"`
@@ -23175,6 +23272,8 @@ func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudAccessPolicyConditionInput)(nil)).Elem(), CloudAccessPolicyConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudAccessPolicyConditionArrayInput)(nil)).Elem(), CloudAccessPolicyConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudAccessPolicyRealmInput)(nil)).Elem(), CloudAccessPolicyRealmArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudAccessPolicyRealmArrayInput)(nil)).Elem(), CloudAccessPolicyRealmArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudAccessPolicyRealmLabelPolicyInput)(nil)).Elem(), CloudAccessPolicyRealmLabelPolicyArgs{})
@@ -23460,6 +23559,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamTeamSyncArrayInput)(nil)).Elem(), GetTeamTeamSyncArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
+	pulumi.RegisterOutputType(CloudAccessPolicyConditionOutput{})
+	pulumi.RegisterOutputType(CloudAccessPolicyConditionArrayOutput{})
 	pulumi.RegisterOutputType(CloudAccessPolicyRealmOutput{})
 	pulumi.RegisterOutputType(CloudAccessPolicyRealmArrayOutput{})
 	pulumi.RegisterOutputType(CloudAccessPolicyRealmLabelPolicyOutput{})

@@ -106,7 +106,7 @@ import (
 type SyntheticMonitoringInstallation struct {
 	pulumi.CustomResourceState
 
-	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
+	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
 	MetricsPublisherKey pulumi.StringOutput `pulumi:"metricsPublisherKey"`
 	// Generated token to access the SM API.
 	SmAccessToken pulumi.StringOutput `pulumi:"smAccessToken"`
@@ -159,7 +159,7 @@ func GetSyntheticMonitoringInstallation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SyntheticMonitoringInstallation resources.
 type syntheticMonitoringInstallationState struct {
-	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
+	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
 	MetricsPublisherKey *string `pulumi:"metricsPublisherKey"`
 	// Generated token to access the SM API.
 	SmAccessToken *string `pulumi:"smAccessToken"`
@@ -170,7 +170,7 @@ type syntheticMonitoringInstallationState struct {
 }
 
 type SyntheticMonitoringInstallationState struct {
-	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
+	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
 	MetricsPublisherKey pulumi.StringPtrInput
 	// Generated token to access the SM API.
 	SmAccessToken pulumi.StringPtrInput
@@ -185,7 +185,7 @@ func (SyntheticMonitoringInstallationState) ElementType() reflect.Type {
 }
 
 type syntheticMonitoringInstallationArgs struct {
-	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
+	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
 	MetricsPublisherKey string `pulumi:"metricsPublisherKey"`
 	// The ID or slug of the stack to install SM on.
 	StackId string `pulumi:"stackId"`
@@ -195,7 +195,7 @@ type syntheticMonitoringInstallationArgs struct {
 
 // The set of arguments for constructing a SyntheticMonitoringInstallation resource.
 type SyntheticMonitoringInstallationArgs struct {
-	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
+	// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
 	MetricsPublisherKey pulumi.StringInput
 	// The ID or slug of the stack to install SM on.
 	StackId pulumi.StringInput
@@ -290,7 +290,7 @@ func (o SyntheticMonitoringInstallationOutput) ToSyntheticMonitoringInstallation
 	return o
 }
 
-// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
+// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
 func (o SyntheticMonitoringInstallationOutput) MetricsPublisherKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringInstallation) pulumi.StringOutput { return v.MetricsPublisherKey }).(pulumi.StringOutput)
 }

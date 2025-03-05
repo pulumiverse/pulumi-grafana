@@ -59,7 +59,7 @@ export class Escalation extends pulumi.CustomResource {
      */
     public readonly groupToNotify!: pulumi.Output<string | undefined>;
     /**
-     * Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+     * Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
      */
     public readonly important!: pulumi.Output<boolean | undefined>;
     /**
@@ -180,7 +180,7 @@ export interface EscalationState {
      */
     groupToNotify?: pulumi.Input<string>;
     /**
-     * Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+     * Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
      */
     important?: pulumi.Input<boolean>;
     /**
@@ -242,7 +242,7 @@ export interface EscalationArgs {
      */
     groupToNotify?: pulumi.Input<string>;
     /**
-     * Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+     * Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
      */
     important?: pulumi.Input<boolean>;
     /**

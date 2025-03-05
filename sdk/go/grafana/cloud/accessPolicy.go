@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+// * [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)
 // * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)
 //
 // Required access policy scopes:
@@ -88,6 +88,8 @@ import (
 type AccessPolicy struct {
 	pulumi.CustomResourceState
 
+	// Conditions for the access policy.
+	Conditions AccessPolicyConditionArrayOutput `pulumi:"conditions"`
 	// Creation date of the access policy.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Display name of the access policy. Defaults to the name.
@@ -99,7 +101,7 @@ type AccessPolicy struct {
 	Realms   AccessPolicyRealmArrayOutput `pulumi:"realms"`
 	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
 	Scopes pulumi.StringArrayOutput `pulumi:"scopes"`
 	// Last update date of the access policy.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
@@ -150,6 +152,8 @@ func GetAccessPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AccessPolicy resources.
 type accessPolicyState struct {
+	// Conditions for the access policy.
+	Conditions []AccessPolicyCondition `pulumi:"conditions"`
 	// Creation date of the access policy.
 	CreatedAt *string `pulumi:"createdAt"`
 	// Display name of the access policy. Defaults to the name.
@@ -161,13 +165,15 @@ type accessPolicyState struct {
 	Realms   []AccessPolicyRealm `pulumi:"realms"`
 	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region *string `pulumi:"region"`
-	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
 	Scopes []string `pulumi:"scopes"`
 	// Last update date of the access policy.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type AccessPolicyState struct {
+	// Conditions for the access policy.
+	Conditions AccessPolicyConditionArrayInput
 	// Creation date of the access policy.
 	CreatedAt pulumi.StringPtrInput
 	// Display name of the access policy. Defaults to the name.
@@ -179,7 +185,7 @@ type AccessPolicyState struct {
 	Realms   AccessPolicyRealmArrayInput
 	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region pulumi.StringPtrInput
-	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
 	Scopes pulumi.StringArrayInput
 	// Last update date of the access policy.
 	UpdatedAt pulumi.StringPtrInput
@@ -190,6 +196,8 @@ func (AccessPolicyState) ElementType() reflect.Type {
 }
 
 type accessPolicyArgs struct {
+	// Conditions for the access policy.
+	Conditions []AccessPolicyCondition `pulumi:"conditions"`
 	// Display name of the access policy. Defaults to the name.
 	DisplayName *string `pulumi:"displayName"`
 	// Name of the access policy.
@@ -197,12 +205,14 @@ type accessPolicyArgs struct {
 	Realms []AccessPolicyRealm `pulumi:"realms"`
 	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region string `pulumi:"region"`
-	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
 	Scopes []string `pulumi:"scopes"`
 }
 
 // The set of arguments for constructing a AccessPolicy resource.
 type AccessPolicyArgs struct {
+	// Conditions for the access policy.
+	Conditions AccessPolicyConditionArrayInput
 	// Display name of the access policy. Defaults to the name.
 	DisplayName pulumi.StringPtrInput
 	// Name of the access policy.
@@ -210,7 +220,7 @@ type AccessPolicyArgs struct {
 	Realms AccessPolicyRealmArrayInput
 	// Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
 	Region pulumi.StringInput
-	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+	// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
 	Scopes pulumi.StringArrayInput
 }
 
@@ -301,6 +311,11 @@ func (o AccessPolicyOutput) ToAccessPolicyOutputWithContext(ctx context.Context)
 	return o
 }
 
+// Conditions for the access policy.
+func (o AccessPolicyOutput) Conditions() AccessPolicyConditionArrayOutput {
+	return o.ApplyT(func(v *AccessPolicy) AccessPolicyConditionArrayOutput { return v.Conditions }).(AccessPolicyConditionArrayOutput)
+}
+
 // Creation date of the access policy.
 func (o AccessPolicyOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccessPolicy) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
@@ -330,7 +345,7 @@ func (o AccessPolicyOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccessPolicy) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
 func (o AccessPolicyOutput) Scopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AccessPolicy) pulumi.StringArrayOutput { return v.Scopes }).(pulumi.StringArrayOutput)
 }

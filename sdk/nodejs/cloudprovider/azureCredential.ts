@@ -64,11 +64,11 @@ export class AzureCredential extends pulumi.CustomResource {
      */
     public readonly resourceDiscoveryTagFilters!: pulumi.Output<outputs.cloudProvider.AzureCredentialResourceDiscoveryTagFilter[] | undefined>;
     /**
-     * The ID given by the Grafana Cloud Provider API to this AWS Account resource.
+     * The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
      */
     public /*out*/ readonly resourceId!: pulumi.Output<string>;
     /**
-     * A set of regions that this AWS Account resource applies to.
+     * The list of resource tags to add to metrics.
      */
     public readonly resourceTagsToAddToMetrics!: pulumi.Output<string[] | undefined>;
     public readonly stackId!: pulumi.Output<string>;
@@ -157,11 +157,11 @@ export interface AzureCredentialState {
      */
     resourceDiscoveryTagFilters?: pulumi.Input<pulumi.Input<inputs.cloudProvider.AzureCredentialResourceDiscoveryTagFilter>[]>;
     /**
-     * The ID given by the Grafana Cloud Provider API to this AWS Account resource.
+     * The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
      */
     resourceId?: pulumi.Input<string>;
     /**
-     * A set of regions that this AWS Account resource applies to.
+     * The list of resource tags to add to metrics.
      */
     resourceTagsToAddToMetrics?: pulumi.Input<pulumi.Input<string>[]>;
     stackId?: pulumi.Input<string>;
@@ -196,7 +196,7 @@ export interface AzureCredentialArgs {
      */
     resourceDiscoveryTagFilters?: pulumi.Input<pulumi.Input<inputs.cloudProvider.AzureCredentialResourceDiscoveryTagFilter>[]>;
     /**
-     * A set of regions that this AWS Account resource applies to.
+     * The list of resource tags to add to metrics.
      */
     resourceTagsToAddToMetrics?: pulumi.Input<pulumi.Input<string>[]>;
     stackId: pulumi.Input<string>;

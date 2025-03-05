@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)
  * * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)
  *
  * Required access policy scopes:
@@ -89,6 +89,10 @@ export class CloudAccessPolicy extends pulumi.CustomResource {
     }
 
     /**
+     * Conditions for the access policy.
+     */
+    public readonly conditions!: pulumi.Output<outputs.CloudAccessPolicyCondition[] | undefined>;
+    /**
      * Creation date of the access policy.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
@@ -110,7 +114,7 @@ export class CloudAccessPolicy extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
      */
     public readonly scopes!: pulumi.Output<string[]>;
     /**
@@ -134,6 +138,7 @@ export class CloudAccessPolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudAccessPolicyState | undefined;
+            resourceInputs["conditions"] = state ? state.conditions : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["displayName"] = state ? state.displayName : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -153,6 +158,7 @@ export class CloudAccessPolicy extends pulumi.CustomResource {
             if ((!args || args.scopes === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'scopes'");
             }
+            resourceInputs["conditions"] = args ? args.conditions : undefined;
             resourceInputs["displayName"] = args ? args.displayName : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["realms"] = args ? args.realms : undefined;
@@ -171,6 +177,10 @@ export class CloudAccessPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CloudAccessPolicy resources.
  */
 export interface CloudAccessPolicyState {
+    /**
+     * Conditions for the access policy.
+     */
+    conditions?: pulumi.Input<pulumi.Input<inputs.CloudAccessPolicyCondition>[]>;
     /**
      * Creation date of the access policy.
      */
@@ -193,7 +203,7 @@ export interface CloudAccessPolicyState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
      */
     scopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -206,6 +216,10 @@ export interface CloudAccessPolicyState {
  * The set of arguments for constructing a CloudAccessPolicy resource.
  */
 export interface CloudAccessPolicyArgs {
+    /**
+     * Conditions for the access policy.
+     */
+    conditions?: pulumi.Input<pulumi.Input<inputs.CloudAccessPolicyCondition>[]>;
     /**
      * Display name of the access policy. Defaults to the name.
      */
@@ -220,7 +234,7 @@ export interface CloudAccessPolicyArgs {
      */
     region: pulumi.Input<string>;
     /**
-     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+     * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
      */
     scopes: pulumi.Input<pulumi.Input<string>[]>;
 }

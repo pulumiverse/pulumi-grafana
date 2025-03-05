@@ -41,7 +41,7 @@ class EscalationArgs:
         :param pulumi.Input[str] action_to_trigger: The ID of an Action for trigger_webhook type step.
         :param pulumi.Input[int] duration: The duration of delay for wait type step. (60-86400) seconds
         :param pulumi.Input[str] group_to_notify: The ID of a User Group for notify*user*group type step.
-        :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+        :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
         :param pulumi.Input[str] notify_if_time_from: The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
         :param pulumi.Input[str] notify_if_time_to: The end of the time interval for notify*if*time*from*to type step in UTC (for example 18:00:00Z).
         :param pulumi.Input[str] notify_on_call_from_schedule: ID of a Schedule for notify*on*call*from*schedule type step.
@@ -152,7 +152,7 @@ class EscalationArgs:
     @pulumi.getter
     def important(self) -> Optional[pulumi.Input[bool]]:
         """
-        Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+        Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
         """
         return pulumi.get(self, "important")
 
@@ -268,7 +268,7 @@ class _EscalationState:
         :param pulumi.Input[int] duration: The duration of delay for wait type step. (60-86400) seconds
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[str] group_to_notify: The ID of a User Group for notify*user*group type step.
-        :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+        :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
         :param pulumi.Input[str] notify_if_time_from: The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
         :param pulumi.Input[str] notify_if_time_to: The end of the time interval for notify*if*time*from*to type step in UTC (for example 18:00:00Z).
         :param pulumi.Input[str] notify_on_call_from_schedule: ID of a Schedule for notify*on*call*from*schedule type step.
@@ -360,7 +360,7 @@ class _EscalationState:
     @pulumi.getter
     def important(self) -> Optional[pulumi.Input[bool]]:
         """
-        Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+        Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
         """
         return pulumi.get(self, "important")
 
@@ -513,7 +513,7 @@ class Escalation(pulumi.CustomResource):
         :param pulumi.Input[int] duration: The duration of delay for wait type step. (60-86400) seconds
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[str] group_to_notify: The ID of a User Group for notify*user*group type step.
-        :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+        :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
         :param pulumi.Input[str] notify_if_time_from: The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
         :param pulumi.Input[str] notify_if_time_to: The end of the time interval for notify*if*time*from*to type step in UTC (for example 18:00:00Z).
         :param pulumi.Input[str] notify_on_call_from_schedule: ID of a Schedule for notify*on*call*from*schedule type step.
@@ -635,7 +635,7 @@ class Escalation(pulumi.CustomResource):
         :param pulumi.Input[int] duration: The duration of delay for wait type step. (60-86400) seconds
         :param pulumi.Input[str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[str] group_to_notify: The ID of a User Group for notify*user*group type step.
-        :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+        :param pulumi.Input[bool] important: Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
         :param pulumi.Input[str] notify_if_time_from: The beginning of the time interval for notify*if*time*from*to type step in UTC (for example 08:00:00Z).
         :param pulumi.Input[str] notify_if_time_to: The end of the time interval for notify*if*time*from*to type step in UTC (for example 18:00:00Z).
         :param pulumi.Input[str] notify_on_call_from_schedule: ID of a Schedule for notify*on*call*from*schedule type step.
@@ -702,7 +702,7 @@ class Escalation(pulumi.CustomResource):
     @pulumi.getter
     def important(self) -> pulumi.Output[Optional[bool]]:
         """
-        Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+        Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
         """
         return pulumi.get(self, "important")
 

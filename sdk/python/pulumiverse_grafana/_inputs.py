@@ -15,6 +15,8 @@ else:
 from . import _utilities
 
 __all__ = [
+    'CloudAccessPolicyConditionArgs',
+    'CloudAccessPolicyConditionArgsDict',
     'CloudAccessPolicyRealmArgs',
     'CloudAccessPolicyRealmArgsDict',
     'CloudAccessPolicyRealmLabelPolicyArgs',
@@ -256,6 +258,37 @@ __all__ = [
 ]
 
 MYPY = False
+
+if not MYPY:
+    class CloudAccessPolicyConditionArgsDict(TypedDict):
+        allowed_subnets: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        Conditions that apply to the access policy,such as IP Allow lists.
+        """
+elif False:
+    CloudAccessPolicyConditionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CloudAccessPolicyConditionArgs:
+    def __init__(__self__, *,
+                 allowed_subnets: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_subnets: Conditions that apply to the access policy,such as IP Allow lists.
+        """
+        pulumi.set(__self__, "allowed_subnets", allowed_subnets)
+
+    @property
+    @pulumi.getter(name="allowedSubnets")
+    def allowed_subnets(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Conditions that apply to the access policy,such as IP Allow lists.
+        """
+        return pulumi.get(self, "allowed_subnets")
+
+    @allowed_subnets.setter
+    def allowed_subnets(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "allowed_subnets", value)
+
 
 if not MYPY:
     class CloudAccessPolicyRealmArgsDict(TypedDict):

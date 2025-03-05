@@ -83,7 +83,7 @@ def get_access_policies(name_filter: Optional[str] = None,
     """
     Fetches access policies from Grafana Cloud.
 
-    * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+    * [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)
     * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-access-policies)
 
     Required access policy scopes:
@@ -107,7 +107,7 @@ def get_access_policies_output(name_filter: Optional[pulumi.Input[Optional[str]]
     """
     Fetches access policies from Grafana Cloud.
 
-    * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+    * [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)
     * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-access-policies)
 
     Required access policy scopes:

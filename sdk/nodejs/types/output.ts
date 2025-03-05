@@ -5,6 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface CloudAccessPolicyCondition {
+    /**
+     * Conditions that apply to the access policy,such as IP Allow lists.
+     */
+    allowedSubnets: string[];
+}
+
 export interface CloudAccessPolicyRealm {
     /**
      * The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
@@ -4480,6 +4487,13 @@ export namespace alerting {
 }
 
 export namespace cloud {
+    export interface AccessPolicyCondition {
+        /**
+         * Conditions that apply to the access policy,such as IP Allow lists.
+         */
+        allowedSubnets: string[];
+    }
+
     export interface AccessPolicyRealm {
         /**
          * The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
@@ -4547,7 +4561,7 @@ export namespace cloud {
          */
         metrics?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobServiceMetric[];
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
          */
         name: string;
         /**
@@ -4555,7 +4569,7 @@ export namespace cloud {
          */
         resourceDiscoveryTagFilters?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter[];
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds: number;
         /**
@@ -4664,7 +4678,7 @@ export namespace cloud {
          */
         metrics?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceMetric[];
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
          */
         name: string;
         /**
@@ -4672,7 +4686,7 @@ export namespace cloud {
          */
         resourceDiscoveryTagFilters?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter[];
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds: number;
         /**
@@ -4768,7 +4782,7 @@ export namespace cloud {
          */
         metrics?: outputs.cloud.ProviderAwsCloudwatchScrapeJobServiceMetric[];
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
          */
         name: string;
         /**
@@ -4776,7 +4790,7 @@ export namespace cloud {
          */
         resourceDiscoveryTagFilters?: outputs.cloud.ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter[];
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds: number;
         /**
@@ -4875,7 +4889,7 @@ export namespace cloudProvider {
          */
         metrics?: outputs.cloudProvider.AwsCloudwatchScrapeJobServiceMetric[];
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
          */
         name: string;
         /**
@@ -4883,7 +4897,7 @@ export namespace cloudProvider {
          */
         resourceDiscoveryTagFilters?: outputs.cloudProvider.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter[];
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds: number;
         /**
@@ -4979,7 +4993,7 @@ export namespace cloudProvider {
          */
         metrics?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobServiceMetric[];
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
          */
         name: string;
         /**
@@ -4987,7 +5001,7 @@ export namespace cloudProvider {
          */
         resourceDiscoveryTagFilters?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter[];
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds: number;
         /**
@@ -5096,7 +5110,7 @@ export namespace cloudProvider {
          */
         metrics?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobServiceMetric[];
         /**
-         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
          */
         name: string;
         /**
@@ -5104,7 +5118,7 @@ export namespace cloudProvider {
          */
         resourceDiscoveryTagFilters?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilter[];
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
          */
         scrapeIntervalSeconds: number;
         /**
