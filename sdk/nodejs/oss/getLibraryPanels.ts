@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * ## Example Usage
@@ -45,12 +45,10 @@ import * as utilities from "./utilities";
  * const all = grafana.oss.getLibraryPanels({});
  * ```
  */
-/** @deprecated grafana.index/getlibrarypanels.getLibraryPanels has been deprecated in favor of grafana.oss/getlibrarypanels.getLibraryPanels */
 export function getLibraryPanels(args?: GetLibraryPanelsArgs, opts?: pulumi.InvokeOptions): Promise<GetLibraryPanelsResult> {
-    pulumi.log.warn("getLibraryPanels is deprecated: grafana.index/getlibrarypanels.getLibraryPanels has been deprecated in favor of grafana.oss/getlibrarypanels.getLibraryPanels")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("grafana:index/getLibraryPanels:getLibraryPanels", {
+    return pulumi.runtime.invoke("grafana:oss/getLibraryPanels:getLibraryPanels", {
         "orgId": args.orgId,
     }, opts);
 }
@@ -77,7 +75,7 @@ export interface GetLibraryPanelsResult {
      * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     readonly orgId: string;
-    readonly panels: outputs.GetLibraryPanelsPanel[];
+    readonly panels: outputs.oss.GetLibraryPanelsPanel[];
 }
 /**
  * ## Example Usage
@@ -118,12 +116,10 @@ export interface GetLibraryPanelsResult {
  * const all = grafana.oss.getLibraryPanels({});
  * ```
  */
-/** @deprecated grafana.index/getlibrarypanels.getLibraryPanels has been deprecated in favor of grafana.oss/getlibrarypanels.getLibraryPanels */
 export function getLibraryPanelsOutput(args?: GetLibraryPanelsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLibraryPanelsResult> {
-    pulumi.log.warn("getLibraryPanels is deprecated: grafana.index/getlibrarypanels.getLibraryPanels has been deprecated in favor of grafana.oss/getlibrarypanels.getLibraryPanels")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("grafana:index/getLibraryPanels:getLibraryPanels", {
+    return pulumi.runtime.invokeOutput("grafana:oss/getLibraryPanels:getLibraryPanels", {
         "orgId": args.orgId,
     }, opts);
 }

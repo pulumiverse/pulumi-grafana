@@ -177,6 +177,7 @@
         "oss/getFolder.ts",
         "oss/getFolders.ts",
         "oss/getLibraryPanel.ts",
+        "oss/getLibraryPanels.ts",
         "oss/getOrganization.ts",
         "oss/getOrganizationPreferences.ts",
         "oss/getServiceAccount.ts",

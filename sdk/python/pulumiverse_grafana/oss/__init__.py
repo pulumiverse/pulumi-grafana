@@ -21,6 +21,7 @@ from .get_data_source import *
 from .get_folder import *
 from .get_folders import *
 from .get_library_panel import *
+from .get_library_panels import *
 from .get_organization import *
 from .get_organization_preferences import *
 from .get_service_account import *

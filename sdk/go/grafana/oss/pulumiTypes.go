@@ -3502,6 +3502,124 @@ func (o GetFoldersFolderArrayOutput) Index(i pulumi.IntInput) GetFoldersFolderOu
 	}).(GetFoldersFolderOutput)
 }
 
+type GetLibraryPanelsPanel struct {
+	Description string `pulumi:"description"`
+	FolderUid   string `pulumi:"folderUid"`
+	ModelJson   string `pulumi:"modelJson"`
+	Name        string `pulumi:"name"`
+	Uid         string `pulumi:"uid"`
+}
+
+// GetLibraryPanelsPanelInput is an input type that accepts GetLibraryPanelsPanelArgs and GetLibraryPanelsPanelOutput values.
+// You can construct a concrete instance of `GetLibraryPanelsPanelInput` via:
+//
+//	GetLibraryPanelsPanelArgs{...}
+type GetLibraryPanelsPanelInput interface {
+	pulumi.Input
+
+	ToGetLibraryPanelsPanelOutput() GetLibraryPanelsPanelOutput
+	ToGetLibraryPanelsPanelOutputWithContext(context.Context) GetLibraryPanelsPanelOutput
+}
+
+type GetLibraryPanelsPanelArgs struct {
+	Description pulumi.StringInput `pulumi:"description"`
+	FolderUid   pulumi.StringInput `pulumi:"folderUid"`
+	ModelJson   pulumi.StringInput `pulumi:"modelJson"`
+	Name        pulumi.StringInput `pulumi:"name"`
+	Uid         pulumi.StringInput `pulumi:"uid"`
+}
+
+func (GetLibraryPanelsPanelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLibraryPanelsPanel)(nil)).Elem()
+}
+
+func (i GetLibraryPanelsPanelArgs) ToGetLibraryPanelsPanelOutput() GetLibraryPanelsPanelOutput {
+	return i.ToGetLibraryPanelsPanelOutputWithContext(context.Background())
+}
+
+func (i GetLibraryPanelsPanelArgs) ToGetLibraryPanelsPanelOutputWithContext(ctx context.Context) GetLibraryPanelsPanelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLibraryPanelsPanelOutput)
+}
+
+// GetLibraryPanelsPanelArrayInput is an input type that accepts GetLibraryPanelsPanelArray and GetLibraryPanelsPanelArrayOutput values.
+// You can construct a concrete instance of `GetLibraryPanelsPanelArrayInput` via:
+//
+//	GetLibraryPanelsPanelArray{ GetLibraryPanelsPanelArgs{...} }
+type GetLibraryPanelsPanelArrayInput interface {
+	pulumi.Input
+
+	ToGetLibraryPanelsPanelArrayOutput() GetLibraryPanelsPanelArrayOutput
+	ToGetLibraryPanelsPanelArrayOutputWithContext(context.Context) GetLibraryPanelsPanelArrayOutput
+}
+
+type GetLibraryPanelsPanelArray []GetLibraryPanelsPanelInput
+
+func (GetLibraryPanelsPanelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLibraryPanelsPanel)(nil)).Elem()
+}
+
+func (i GetLibraryPanelsPanelArray) ToGetLibraryPanelsPanelArrayOutput() GetLibraryPanelsPanelArrayOutput {
+	return i.ToGetLibraryPanelsPanelArrayOutputWithContext(context.Background())
+}
+
+func (i GetLibraryPanelsPanelArray) ToGetLibraryPanelsPanelArrayOutputWithContext(ctx context.Context) GetLibraryPanelsPanelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLibraryPanelsPanelArrayOutput)
+}
+
+type GetLibraryPanelsPanelOutput struct{ *pulumi.OutputState }
+
+func (GetLibraryPanelsPanelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLibraryPanelsPanel)(nil)).Elem()
+}
+
+func (o GetLibraryPanelsPanelOutput) ToGetLibraryPanelsPanelOutput() GetLibraryPanelsPanelOutput {
+	return o
+}
+
+func (o GetLibraryPanelsPanelOutput) ToGetLibraryPanelsPanelOutputWithContext(ctx context.Context) GetLibraryPanelsPanelOutput {
+	return o
+}
+
+func (o GetLibraryPanelsPanelOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLibraryPanelsPanel) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o GetLibraryPanelsPanelOutput) FolderUid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLibraryPanelsPanel) string { return v.FolderUid }).(pulumi.StringOutput)
+}
+
+func (o GetLibraryPanelsPanelOutput) ModelJson() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLibraryPanelsPanel) string { return v.ModelJson }).(pulumi.StringOutput)
+}
+
+func (o GetLibraryPanelsPanelOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLibraryPanelsPanel) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetLibraryPanelsPanelOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLibraryPanelsPanel) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+type GetLibraryPanelsPanelArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLibraryPanelsPanelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLibraryPanelsPanel)(nil)).Elem()
+}
+
+func (o GetLibraryPanelsPanelArrayOutput) ToGetLibraryPanelsPanelArrayOutput() GetLibraryPanelsPanelArrayOutput {
+	return o
+}
+
+func (o GetLibraryPanelsPanelArrayOutput) ToGetLibraryPanelsPanelArrayOutputWithContext(ctx context.Context) GetLibraryPanelsPanelArrayOutput {
+	return o
+}
+
+func (o GetLibraryPanelsPanelArrayOutput) Index(i pulumi.IntInput) GetLibraryPanelsPanelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLibraryPanelsPanel {
+		return vs[0].([]GetLibraryPanelsPanel)[vs[1].(int)]
+	}).(GetLibraryPanelsPanelOutput)
+}
+
 type GetTeamPreference struct {
 	// The UID of the dashboard to display when a team member logs in.
 	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
@@ -3882,6 +4000,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDashboardsDashboardArrayInput)(nil)).Elem(), GetDashboardsDashboardArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFoldersFolderInput)(nil)).Elem(), GetFoldersFolderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFoldersFolderArrayInput)(nil)).Elem(), GetFoldersFolderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLibraryPanelsPanelInput)(nil)).Elem(), GetLibraryPanelsPanelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLibraryPanelsPanelArrayInput)(nil)).Elem(), GetLibraryPanelsPanelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamPreferenceInput)(nil)).Elem(), GetTeamPreferenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamPreferenceArrayInput)(nil)).Elem(), GetTeamPreferenceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamTeamSyncInput)(nil)).Elem(), GetTeamTeamSyncArgs{})
@@ -3916,6 +4036,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDashboardsDashboardArrayOutput{})
 	pulumi.RegisterOutputType(GetFoldersFolderOutput{})
 	pulumi.RegisterOutputType(GetFoldersFolderArrayOutput{})
+	pulumi.RegisterOutputType(GetLibraryPanelsPanelOutput{})
+	pulumi.RegisterOutputType(GetLibraryPanelsPanelArrayOutput{})
 	pulumi.RegisterOutputType(GetTeamPreferenceOutput{})
 	pulumi.RegisterOutputType(GetTeamPreferenceArrayOutput{})
 	pulumi.RegisterOutputType(GetTeamTeamSyncOutput{})

@@ -30,6 +30,7 @@ __all__ = [
     'TeamTeamSync',
     'GetDashboardsDashboardResult',
     'GetFoldersFolderResult',
+    'GetLibraryPanelsPanelResult',
     'GetTeamPreferenceResult',
     'GetTeamTeamSyncResult',
     'GetUsersUserResult',
@@ -2054,6 +2055,46 @@ class GetFoldersFolderResult(dict):
         The folder's URL
         """
         return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetLibraryPanelsPanelResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 folder_uid: str,
+                 model_json: str,
+                 name: str,
+                 uid: str):
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "folder_uid", folder_uid)
+        pulumi.set(__self__, "model_json", model_json)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "uid", uid)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> str:
+        return pulumi.get(self, "folder_uid")
+
+    @property
+    @pulumi.getter(name="modelJson")
+    def model_json(self) -> str:
+        return pulumi.get(self, "model_json")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def uid(self) -> str:
+        return pulumi.get(self, "uid")
 
 
 @pulumi.output_type

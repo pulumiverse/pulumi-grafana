@@ -5638,6 +5638,14 @@ export namespace oss {
         url: string;
     }
 
+    export interface GetLibraryPanelsPanel {
+        description: string;
+        folderUid: string;
+        modelJson: string;
+        name: string;
+        uid: string;
+    }
+
     export interface GetTeamPreference {
         /**
          * The UID of the dashboard to display when a team member logs in.
