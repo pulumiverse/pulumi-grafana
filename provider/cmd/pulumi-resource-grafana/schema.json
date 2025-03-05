@@ -2061,6 +2061,21 @@
                 "metric"
             ]
         },
+        "grafana:cloud/AccessPolicyCondition:AccessPolicyCondition": {
+            "properties": {
+                "allowedSubnets": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Conditions that apply to the access policy,such as IP Allow lists.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "allowedSubnets"
+            ]
+        },
         "grafana:cloud/AccessPolicyRealm:AccessPolicyRealm": {
             "properties": {
                 "identifier": {
@@ -2158,7 +2173,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.\n"
+                    "description": "The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.\n"
                 },
                 "resourceDiscoveryTagFilters": {
                     "type": "array",
@@ -2169,7 +2184,7 @@
                 },
                 "scrapeIntervalSeconds": {
                     "type": "integer",
-                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
+                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
                 },
                 "tagsToAddToMetrics": {
                     "type": "array",
@@ -2439,7 +2454,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.\n"
+                    "description": "The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.\n"
                 },
                 "resourceDiscoveryTagFilters": {
                     "type": "array",
@@ -2450,7 +2465,7 @@
                 },
                 "scrapeIntervalSeconds": {
                     "type": "integer",
-                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
+                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
                 },
                 "tagsToAddToMetrics": {
                     "type": "array",
@@ -2668,7 +2683,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.\n"
+                    "description": "The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.\n"
                 },
                 "resourceDiscoveryTagFilters": {
                     "type": "array",
@@ -2679,7 +2694,7 @@
                 },
                 "scrapeIntervalSeconds": {
                     "type": "integer",
-                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
+                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
                 },
                 "tagsToAddToMetrics": {
                     "type": "array",
@@ -2900,7 +2915,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services.\n"
+                    "description": "The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.\n"
                 },
                 "resourceDiscoveryTagFilters": {
                     "type": "array",
@@ -2911,7 +2926,7 @@
                 },
                 "scrapeIntervalSeconds": {
                     "type": "integer",
-                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
+                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
                 },
                 "tagsToAddToMetrics": {
                     "type": "array",
@@ -3117,7 +3132,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.\n"
+                    "description": "The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.\n"
                 },
                 "resourceDiscoveryTagFilters": {
                     "type": "array",
@@ -3128,7 +3143,7 @@
                 },
                 "scrapeIntervalSeconds": {
                     "type": "integer",
-                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
+                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
                 },
                 "tagsToAddToMetrics": {
                     "type": "array",
@@ -3346,7 +3361,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.\n"
+                    "description": "The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.\n"
                 },
                 "resourceDiscoveryTagFilters": {
                     "type": "array",
@@ -3357,7 +3372,7 @@
                 },
                 "scrapeIntervalSeconds": {
                     "type": "integer",
-                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
+                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
                 },
                 "tagsToAddToMetrics": {
                     "type": "array",
@@ -3648,6 +3663,21 @@
                     "requiredInputs": []
                 }
             }
+        },
+        "grafana:index/CloudAccessPolicyCondition:CloudAccessPolicyCondition": {
+            "properties": {
+                "allowedSubnets": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Conditions that apply to the access policy,such as IP Allow lists.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "allowedSubnets"
+            ]
         },
         "grafana:index/CloudAccessPolicyRealm:CloudAccessPolicyRealm": {
             "properties": {
@@ -11943,8 +11973,15 @@
             ]
         },
         "grafana:cloud/accessPolicy:AccessPolicy": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)\n\nRequired access policy scopes:\n\n* accesspolicies:read\n* accesspolicies:write\n* accesspolicies:delete\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst current = grafana.cloud.getOrganization({\n    slug: \"\u003cyour org slug\u003e\",\n});\nconst test = new grafana.cloud.AccessPolicy(\"test\", {\n    region: \"prod-us-east-0\",\n    name: \"my-policy\",\n    displayName: \"My Policy\",\n    scopes: [\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms: [{\n        type: \"org\",\n        identifier: current.then(current =\u003e current.id),\n        labelPolicies: [{\n            selector: \"{namespace=\\\"default\\\"}\",\n        }],\n    }],\n});\nconst testAccessPolicyToken = new grafana.cloud.AccessPolicyToken(\"test\", {\n    region: \"prod-us-east-0\",\n    accessPolicyId: test.policyId,\n    name: \"my-policy-token\",\n    displayName: \"My Policy Token\",\n    expiresAt: \"2023-01-01T00:00:00Z\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ncurrent = grafana.cloud.get_organization(slug=\"\u003cyour org slug\u003e\")\ntest = grafana.cloud.AccessPolicy(\"test\",\n    region=\"prod-us-east-0\",\n    name=\"my-policy\",\n    display_name=\"My Policy\",\n    scopes=[\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms=[{\n        \"type\": \"org\",\n        \"identifier\": current.id,\n        \"label_policies\": [{\n            \"selector\": \"{namespace=\\\"default\\\"}\",\n        }],\n    }])\ntest_access_policy_token = grafana.cloud.AccessPolicyToken(\"test\",\n    region=\"prod-us-east-0\",\n    access_policy_id=test.policy_id,\n    name=\"my-policy-token\",\n    display_name=\"My Policy Token\",\n    expires_at=\"2023-01-01T00:00:00Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Grafana.Cloud.GetOrganization.Invoke(new()\n    {\n        Slug = \"\u003cyour org slug\u003e\",\n    });\n\n    var test = new Grafana.Cloud.AccessPolicy(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        Name = \"my-policy\",\n        DisplayName = \"My Policy\",\n        Scopes = new[]\n        {\n            \"metrics:read\",\n            \"logs:read\",\n        },\n        Realms = new[]\n        {\n            new Grafana.Cloud.Inputs.AccessPolicyRealmArgs\n            {\n                Type = \"org\",\n                Identifier = current.Apply(getOrganizationResult =\u003e getOrganizationResult.Id),\n                LabelPolicies = new[]\n                {\n                    new Grafana.Cloud.Inputs.AccessPolicyRealmLabelPolicyArgs\n                    {\n                        Selector = \"{namespace=\\\"default\\\"}\",\n                    },\n                },\n            },\n        },\n    });\n\n    var testAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        AccessPolicyId = test.PolicyId,\n        Name = \"my-policy-token\",\n        DisplayName = \"My Policy Token\",\n        ExpiresAt = \"2023-01-01T00:00:00Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := cloud.GetOrganization(ctx, \u0026cloud.GetOrganizationArgs{\n\t\t\tSlug: pulumi.StringRef(\"\u003cyour org slug\u003e\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest, err := cloud.NewAccessPolicy(ctx, \"test\", \u0026cloud.AccessPolicyArgs{\n\t\t\tRegion:      pulumi.String(\"prod-us-east-0\"),\n\t\t\tName:        pulumi.String(\"my-policy\"),\n\t\t\tDisplayName: pulumi.String(\"My Policy\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"metrics:read\"),\n\t\t\t\tpulumi.String(\"logs:read\"),\n\t\t\t},\n\t\t\tRealms: cloud.AccessPolicyRealmArray{\n\t\t\t\t\u0026cloud.AccessPolicyRealmArgs{\n\t\t\t\t\tType:       pulumi.String(\"org\"),\n\t\t\t\t\tIdentifier: pulumi.String(current.Id),\n\t\t\t\t\tLabelPolicies: cloud.AccessPolicyRealmLabelPolicyArray{\n\t\t\t\t\t\t\u0026cloud.AccessPolicyRealmLabelPolicyArgs{\n\t\t\t\t\t\t\tSelector: pulumi.String(\"{namespace=\\\"default\\\"}\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloud.NewAccessPolicyToken(ctx, \"test\", \u0026cloud.AccessPolicyTokenArgs{\n\t\t\tRegion:         pulumi.String(\"prod-us-east-0\"),\n\t\t\tAccessPolicyId: test.PolicyId,\n\t\t\tName:           pulumi.String(\"my-policy-token\"),\n\t\t\tDisplayName:    pulumi.String(\"My Policy Token\"),\n\t\t\tExpiresAt:      pulumi.String(\"2023-01-01T00:00:00Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetOrganizationArgs;\nimport com.pulumi.grafana.cloud.AccessPolicy;\nimport com.pulumi.grafana.cloud.AccessPolicyArgs;\nimport com.pulumi.grafana.cloud.inputs.AccessPolicyRealmArgs;\nimport com.pulumi.grafana.cloud.AccessPolicyToken;\nimport com.pulumi.grafana.cloud.AccessPolicyTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = CloudFunctions.getOrganization(GetOrganizationArgs.builder()\n            .slug(\"\u003cyour org slug\u003e\")\n            .build());\n\n        var test = new AccessPolicy(\"test\", AccessPolicyArgs.builder()\n            .region(\"prod-us-east-0\")\n            .name(\"my-policy\")\n            .displayName(\"My Policy\")\n            .scopes(            \n                \"metrics:read\",\n                \"logs:read\")\n            .realms(AccessPolicyRealmArgs.builder()\n                .type(\"org\")\n                .identifier(current.applyValue(getOrganizationResult -\u003e getOrganizationResult.id()))\n                .labelPolicies(AccessPolicyRealmLabelPolicyArgs.builder()\n                    .selector(\"{namespace=\\\"default\\\"}\")\n                    .build())\n                .build())\n            .build());\n\n        var testAccessPolicyToken = new AccessPolicyToken(\"testAccessPolicyToken\", AccessPolicyTokenArgs.builder()\n            .region(\"prod-us-east-0\")\n            .accessPolicyId(test.policyId())\n            .name(\"my-policy-token\")\n            .displayName(\"My Policy Token\")\n            .expiresAt(\"2023-01-01T00:00:00Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:AccessPolicy\n    properties:\n      region: prod-us-east-0\n      name: my-policy\n      displayName: My Policy\n      scopes:\n        - metrics:read\n        - logs:read\n      realms:\n        - type: org\n          identifier: ${current.id}\n          labelPolicies:\n            - selector: '{namespace=\"default\"}'\n  testAccessPolicyToken:\n    type: grafana:cloud:AccessPolicyToken\n    name: test\n    properties:\n      region: prod-us-east-0\n      accessPolicyId: ${test.policyId}\n      name: my-policy-token\n      displayName: My Policy Token\n      expiresAt: 2023-01-01T00:00:00Z\nvariables:\n  current:\n    fn::invoke:\n      function: grafana:cloud:getOrganization\n      arguments:\n        slug: \u003cyour org slug\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:cloud/accessPolicy:AccessPolicy name \"{{ region }}:{{ policyId }}\"\n```\n\n",
+            "description": "* [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)\n\nRequired access policy scopes:\n\n* accesspolicies:read\n* accesspolicies:write\n* accesspolicies:delete\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst current = grafana.cloud.getOrganization({\n    slug: \"\u003cyour org slug\u003e\",\n});\nconst test = new grafana.cloud.AccessPolicy(\"test\", {\n    region: \"prod-us-east-0\",\n    name: \"my-policy\",\n    displayName: \"My Policy\",\n    scopes: [\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms: [{\n        type: \"org\",\n        identifier: current.then(current =\u003e current.id),\n        labelPolicies: [{\n            selector: \"{namespace=\\\"default\\\"}\",\n        }],\n    }],\n});\nconst testAccessPolicyToken = new grafana.cloud.AccessPolicyToken(\"test\", {\n    region: \"prod-us-east-0\",\n    accessPolicyId: test.policyId,\n    name: \"my-policy-token\",\n    displayName: \"My Policy Token\",\n    expiresAt: \"2023-01-01T00:00:00Z\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ncurrent = grafana.cloud.get_organization(slug=\"\u003cyour org slug\u003e\")\ntest = grafana.cloud.AccessPolicy(\"test\",\n    region=\"prod-us-east-0\",\n    name=\"my-policy\",\n    display_name=\"My Policy\",\n    scopes=[\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms=[{\n        \"type\": \"org\",\n        \"identifier\": current.id,\n        \"label_policies\": [{\n            \"selector\": \"{namespace=\\\"default\\\"}\",\n        }],\n    }])\ntest_access_policy_token = grafana.cloud.AccessPolicyToken(\"test\",\n    region=\"prod-us-east-0\",\n    access_policy_id=test.policy_id,\n    name=\"my-policy-token\",\n    display_name=\"My Policy Token\",\n    expires_at=\"2023-01-01T00:00:00Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Grafana.Cloud.GetOrganization.Invoke(new()\n    {\n        Slug = \"\u003cyour org slug\u003e\",\n    });\n\n    var test = new Grafana.Cloud.AccessPolicy(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        Name = \"my-policy\",\n        DisplayName = \"My Policy\",\n        Scopes = new[]\n        {\n            \"metrics:read\",\n            \"logs:read\",\n        },\n        Realms = new[]\n        {\n            new Grafana.Cloud.Inputs.AccessPolicyRealmArgs\n            {\n                Type = \"org\",\n                Identifier = current.Apply(getOrganizationResult =\u003e getOrganizationResult.Id),\n                LabelPolicies = new[]\n                {\n                    new Grafana.Cloud.Inputs.AccessPolicyRealmLabelPolicyArgs\n                    {\n                        Selector = \"{namespace=\\\"default\\\"}\",\n                    },\n                },\n            },\n        },\n    });\n\n    var testAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        AccessPolicyId = test.PolicyId,\n        Name = \"my-policy-token\",\n        DisplayName = \"My Policy Token\",\n        ExpiresAt = \"2023-01-01T00:00:00Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := cloud.GetOrganization(ctx, \u0026cloud.GetOrganizationArgs{\n\t\t\tSlug: pulumi.StringRef(\"\u003cyour org slug\u003e\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest, err := cloud.NewAccessPolicy(ctx, \"test\", \u0026cloud.AccessPolicyArgs{\n\t\t\tRegion:      pulumi.String(\"prod-us-east-0\"),\n\t\t\tName:        pulumi.String(\"my-policy\"),\n\t\t\tDisplayName: pulumi.String(\"My Policy\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"metrics:read\"),\n\t\t\t\tpulumi.String(\"logs:read\"),\n\t\t\t},\n\t\t\tRealms: cloud.AccessPolicyRealmArray{\n\t\t\t\t\u0026cloud.AccessPolicyRealmArgs{\n\t\t\t\t\tType:       pulumi.String(\"org\"),\n\t\t\t\t\tIdentifier: pulumi.String(current.Id),\n\t\t\t\t\tLabelPolicies: cloud.AccessPolicyRealmLabelPolicyArray{\n\t\t\t\t\t\t\u0026cloud.AccessPolicyRealmLabelPolicyArgs{\n\t\t\t\t\t\t\tSelector: pulumi.String(\"{namespace=\\\"default\\\"}\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloud.NewAccessPolicyToken(ctx, \"test\", \u0026cloud.AccessPolicyTokenArgs{\n\t\t\tRegion:         pulumi.String(\"prod-us-east-0\"),\n\t\t\tAccessPolicyId: test.PolicyId,\n\t\t\tName:           pulumi.String(\"my-policy-token\"),\n\t\t\tDisplayName:    pulumi.String(\"My Policy Token\"),\n\t\t\tExpiresAt:      pulumi.String(\"2023-01-01T00:00:00Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetOrganizationArgs;\nimport com.pulumi.grafana.cloud.AccessPolicy;\nimport com.pulumi.grafana.cloud.AccessPolicyArgs;\nimport com.pulumi.grafana.cloud.inputs.AccessPolicyRealmArgs;\nimport com.pulumi.grafana.cloud.AccessPolicyToken;\nimport com.pulumi.grafana.cloud.AccessPolicyTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = CloudFunctions.getOrganization(GetOrganizationArgs.builder()\n            .slug(\"\u003cyour org slug\u003e\")\n            .build());\n\n        var test = new AccessPolicy(\"test\", AccessPolicyArgs.builder()\n            .region(\"prod-us-east-0\")\n            .name(\"my-policy\")\n            .displayName(\"My Policy\")\n            .scopes(            \n                \"metrics:read\",\n                \"logs:read\")\n            .realms(AccessPolicyRealmArgs.builder()\n                .type(\"org\")\n                .identifier(current.applyValue(getOrganizationResult -\u003e getOrganizationResult.id()))\n                .labelPolicies(AccessPolicyRealmLabelPolicyArgs.builder()\n                    .selector(\"{namespace=\\\"default\\\"}\")\n                    .build())\n                .build())\n            .build());\n\n        var testAccessPolicyToken = new AccessPolicyToken(\"testAccessPolicyToken\", AccessPolicyTokenArgs.builder()\n            .region(\"prod-us-east-0\")\n            .accessPolicyId(test.policyId())\n            .name(\"my-policy-token\")\n            .displayName(\"My Policy Token\")\n            .expiresAt(\"2023-01-01T00:00:00Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:AccessPolicy\n    properties:\n      region: prod-us-east-0\n      name: my-policy\n      displayName: My Policy\n      scopes:\n        - metrics:read\n        - logs:read\n      realms:\n        - type: org\n          identifier: ${current.id}\n          labelPolicies:\n            - selector: '{namespace=\"default\"}'\n  testAccessPolicyToken:\n    type: grafana:cloud:AccessPolicyToken\n    name: test\n    properties:\n      region: prod-us-east-0\n      accessPolicyId: ${test.policyId}\n      name: my-policy-token\n      displayName: My Policy Token\n      expiresAt: 2023-01-01T00:00:00Z\nvariables:\n  current:\n    fn::invoke:\n      function: grafana:cloud:getOrganization\n      arguments:\n        slug: \u003cyour org slug\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:cloud/accessPolicy:AccessPolicy name \"{{ region }}:{{ policyId }}\"\n```\n\n",
             "properties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:cloud/AccessPolicyCondition:AccessPolicyCondition"
+                    },
+                    "description": "Conditions for the access policy.\n"
+                },
                 "createdAt": {
                     "type": "string",
                     "description": "Creation date of the access policy.\n"
@@ -11976,7 +12013,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.\n"
+                    "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.\n"
                 },
                 "updatedAt": {
                     "type": "string",
@@ -11993,6 +12030,13 @@
                 "updatedAt"
             ],
             "inputProperties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:cloud/AccessPolicyCondition:AccessPolicyCondition"
+                    },
+                    "description": "Conditions for the access policy.\n"
+                },
                 "displayName": {
                     "type": "string",
                     "description": "Display name of the access policy. Defaults to the name.\n"
@@ -12018,7 +12062,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.\n"
+                    "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.\n"
                 }
             },
             "requiredInputs": [
@@ -12029,6 +12073,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AccessPolicy resources.\n",
                 "properties": {
+                    "conditions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:cloud/AccessPolicyCondition:AccessPolicyCondition"
+                        },
+                        "description": "Conditions for the access policy.\n"
+                    },
                     "createdAt": {
                         "type": "string",
                         "description": "Creation date of the access policy.\n"
@@ -12062,7 +12113,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.\n"
+                        "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.\n"
                     },
                     "updatedAt": {
                         "type": "string",
@@ -12078,7 +12129,7 @@
             ]
         },
         "grafana:cloud/accessPolicyToken:AccessPolicyToken": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)\n\nRequired access policy scopes:\n\n* accesspolicies:read\n* accesspolicies:write\n* accesspolicies:delete\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst current = grafana.cloud.getOrganization({\n    slug: \"\u003cyour org slug\u003e\",\n});\nconst test = new grafana.cloud.AccessPolicy(\"test\", {\n    region: \"prod-us-east-0\",\n    name: \"my-policy\",\n    displayName: \"My Policy\",\n    scopes: [\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms: [{\n        type: \"org\",\n        identifier: current.then(current =\u003e current.id),\n        labelPolicies: [{\n            selector: \"{namespace=\\\"default\\\"}\",\n        }],\n    }],\n});\nconst testAccessPolicyToken = new grafana.cloud.AccessPolicyToken(\"test\", {\n    region: \"prod-us-east-0\",\n    accessPolicyId: test.policyId,\n    name: \"my-policy-token\",\n    displayName: \"My Policy Token\",\n    expiresAt: \"2023-01-01T00:00:00Z\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ncurrent = grafana.cloud.get_organization(slug=\"\u003cyour org slug\u003e\")\ntest = grafana.cloud.AccessPolicy(\"test\",\n    region=\"prod-us-east-0\",\n    name=\"my-policy\",\n    display_name=\"My Policy\",\n    scopes=[\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms=[{\n        \"type\": \"org\",\n        \"identifier\": current.id,\n        \"label_policies\": [{\n            \"selector\": \"{namespace=\\\"default\\\"}\",\n        }],\n    }])\ntest_access_policy_token = grafana.cloud.AccessPolicyToken(\"test\",\n    region=\"prod-us-east-0\",\n    access_policy_id=test.policy_id,\n    name=\"my-policy-token\",\n    display_name=\"My Policy Token\",\n    expires_at=\"2023-01-01T00:00:00Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Grafana.Cloud.GetOrganization.Invoke(new()\n    {\n        Slug = \"\u003cyour org slug\u003e\",\n    });\n\n    var test = new Grafana.Cloud.AccessPolicy(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        Name = \"my-policy\",\n        DisplayName = \"My Policy\",\n        Scopes = new[]\n        {\n            \"metrics:read\",\n            \"logs:read\",\n        },\n        Realms = new[]\n        {\n            new Grafana.Cloud.Inputs.AccessPolicyRealmArgs\n            {\n                Type = \"org\",\n                Identifier = current.Apply(getOrganizationResult =\u003e getOrganizationResult.Id),\n                LabelPolicies = new[]\n                {\n                    new Grafana.Cloud.Inputs.AccessPolicyRealmLabelPolicyArgs\n                    {\n                        Selector = \"{namespace=\\\"default\\\"}\",\n                    },\n                },\n            },\n        },\n    });\n\n    var testAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        AccessPolicyId = test.PolicyId,\n        Name = \"my-policy-token\",\n        DisplayName = \"My Policy Token\",\n        ExpiresAt = \"2023-01-01T00:00:00Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := cloud.GetOrganization(ctx, \u0026cloud.GetOrganizationArgs{\n\t\t\tSlug: pulumi.StringRef(\"\u003cyour org slug\u003e\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest, err := cloud.NewAccessPolicy(ctx, \"test\", \u0026cloud.AccessPolicyArgs{\n\t\t\tRegion:      pulumi.String(\"prod-us-east-0\"),\n\t\t\tName:        pulumi.String(\"my-policy\"),\n\t\t\tDisplayName: pulumi.String(\"My Policy\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"metrics:read\"),\n\t\t\t\tpulumi.String(\"logs:read\"),\n\t\t\t},\n\t\t\tRealms: cloud.AccessPolicyRealmArray{\n\t\t\t\t\u0026cloud.AccessPolicyRealmArgs{\n\t\t\t\t\tType:       pulumi.String(\"org\"),\n\t\t\t\t\tIdentifier: pulumi.String(current.Id),\n\t\t\t\t\tLabelPolicies: cloud.AccessPolicyRealmLabelPolicyArray{\n\t\t\t\t\t\t\u0026cloud.AccessPolicyRealmLabelPolicyArgs{\n\t\t\t\t\t\t\tSelector: pulumi.String(\"{namespace=\\\"default\\\"}\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloud.NewAccessPolicyToken(ctx, \"test\", \u0026cloud.AccessPolicyTokenArgs{\n\t\t\tRegion:         pulumi.String(\"prod-us-east-0\"),\n\t\t\tAccessPolicyId: test.PolicyId,\n\t\t\tName:           pulumi.String(\"my-policy-token\"),\n\t\t\tDisplayName:    pulumi.String(\"My Policy Token\"),\n\t\t\tExpiresAt:      pulumi.String(\"2023-01-01T00:00:00Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetOrganizationArgs;\nimport com.pulumi.grafana.cloud.AccessPolicy;\nimport com.pulumi.grafana.cloud.AccessPolicyArgs;\nimport com.pulumi.grafana.cloud.inputs.AccessPolicyRealmArgs;\nimport com.pulumi.grafana.cloud.AccessPolicyToken;\nimport com.pulumi.grafana.cloud.AccessPolicyTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = CloudFunctions.getOrganization(GetOrganizationArgs.builder()\n            .slug(\"\u003cyour org slug\u003e\")\n            .build());\n\n        var test = new AccessPolicy(\"test\", AccessPolicyArgs.builder()\n            .region(\"prod-us-east-0\")\n            .name(\"my-policy\")\n            .displayName(\"My Policy\")\n            .scopes(            \n                \"metrics:read\",\n                \"logs:read\")\n            .realms(AccessPolicyRealmArgs.builder()\n                .type(\"org\")\n                .identifier(current.applyValue(getOrganizationResult -\u003e getOrganizationResult.id()))\n                .labelPolicies(AccessPolicyRealmLabelPolicyArgs.builder()\n                    .selector(\"{namespace=\\\"default\\\"}\")\n                    .build())\n                .build())\n            .build());\n\n        var testAccessPolicyToken = new AccessPolicyToken(\"testAccessPolicyToken\", AccessPolicyTokenArgs.builder()\n            .region(\"prod-us-east-0\")\n            .accessPolicyId(test.policyId())\n            .name(\"my-policy-token\")\n            .displayName(\"My Policy Token\")\n            .expiresAt(\"2023-01-01T00:00:00Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:AccessPolicy\n    properties:\n      region: prod-us-east-0\n      name: my-policy\n      displayName: My Policy\n      scopes:\n        - metrics:read\n        - logs:read\n      realms:\n        - type: org\n          identifier: ${current.id}\n          labelPolicies:\n            - selector: '{namespace=\"default\"}'\n  testAccessPolicyToken:\n    type: grafana:cloud:AccessPolicyToken\n    name: test\n    properties:\n      region: prod-us-east-0\n      accessPolicyId: ${test.policyId}\n      name: my-policy-token\n      displayName: My Policy Token\n      expiresAt: 2023-01-01T00:00:00Z\nvariables:\n  current:\n    fn::invoke:\n      function: grafana:cloud:getOrganization\n      arguments:\n        slug: \u003cyour org slug\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:cloud/accessPolicyToken:AccessPolicyToken name \"{{ region }}:{{ tokenId }}\"\n```\n\n",
+            "description": "* [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)\n\nRequired access policy scopes:\n\n* accesspolicies:read\n* accesspolicies:write\n* accesspolicies:delete\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst current = grafana.cloud.getOrganization({\n    slug: \"\u003cyour org slug\u003e\",\n});\nconst test = new grafana.cloud.AccessPolicy(\"test\", {\n    region: \"prod-us-east-0\",\n    name: \"my-policy\",\n    displayName: \"My Policy\",\n    scopes: [\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms: [{\n        type: \"org\",\n        identifier: current.then(current =\u003e current.id),\n        labelPolicies: [{\n            selector: \"{namespace=\\\"default\\\"}\",\n        }],\n    }],\n});\nconst testAccessPolicyToken = new grafana.cloud.AccessPolicyToken(\"test\", {\n    region: \"prod-us-east-0\",\n    accessPolicyId: test.policyId,\n    name: \"my-policy-token\",\n    displayName: \"My Policy Token\",\n    expiresAt: \"2023-01-01T00:00:00Z\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ncurrent = grafana.cloud.get_organization(slug=\"\u003cyour org slug\u003e\")\ntest = grafana.cloud.AccessPolicy(\"test\",\n    region=\"prod-us-east-0\",\n    name=\"my-policy\",\n    display_name=\"My Policy\",\n    scopes=[\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms=[{\n        \"type\": \"org\",\n        \"identifier\": current.id,\n        \"label_policies\": [{\n            \"selector\": \"{namespace=\\\"default\\\"}\",\n        }],\n    }])\ntest_access_policy_token = grafana.cloud.AccessPolicyToken(\"test\",\n    region=\"prod-us-east-0\",\n    access_policy_id=test.policy_id,\n    name=\"my-policy-token\",\n    display_name=\"My Policy Token\",\n    expires_at=\"2023-01-01T00:00:00Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Grafana.Cloud.GetOrganization.Invoke(new()\n    {\n        Slug = \"\u003cyour org slug\u003e\",\n    });\n\n    var test = new Grafana.Cloud.AccessPolicy(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        Name = \"my-policy\",\n        DisplayName = \"My Policy\",\n        Scopes = new[]\n        {\n            \"metrics:read\",\n            \"logs:read\",\n        },\n        Realms = new[]\n        {\n            new Grafana.Cloud.Inputs.AccessPolicyRealmArgs\n            {\n                Type = \"org\",\n                Identifier = current.Apply(getOrganizationResult =\u003e getOrganizationResult.Id),\n                LabelPolicies = new[]\n                {\n                    new Grafana.Cloud.Inputs.AccessPolicyRealmLabelPolicyArgs\n                    {\n                        Selector = \"{namespace=\\\"default\\\"}\",\n                    },\n                },\n            },\n        },\n    });\n\n    var testAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        AccessPolicyId = test.PolicyId,\n        Name = \"my-policy-token\",\n        DisplayName = \"My Policy Token\",\n        ExpiresAt = \"2023-01-01T00:00:00Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := cloud.GetOrganization(ctx, \u0026cloud.GetOrganizationArgs{\n\t\t\tSlug: pulumi.StringRef(\"\u003cyour org slug\u003e\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest, err := cloud.NewAccessPolicy(ctx, \"test\", \u0026cloud.AccessPolicyArgs{\n\t\t\tRegion:      pulumi.String(\"prod-us-east-0\"),\n\t\t\tName:        pulumi.String(\"my-policy\"),\n\t\t\tDisplayName: pulumi.String(\"My Policy\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"metrics:read\"),\n\t\t\t\tpulumi.String(\"logs:read\"),\n\t\t\t},\n\t\t\tRealms: cloud.AccessPolicyRealmArray{\n\t\t\t\t\u0026cloud.AccessPolicyRealmArgs{\n\t\t\t\t\tType:       pulumi.String(\"org\"),\n\t\t\t\t\tIdentifier: pulumi.String(current.Id),\n\t\t\t\t\tLabelPolicies: cloud.AccessPolicyRealmLabelPolicyArray{\n\t\t\t\t\t\t\u0026cloud.AccessPolicyRealmLabelPolicyArgs{\n\t\t\t\t\t\t\tSelector: pulumi.String(\"{namespace=\\\"default\\\"}\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloud.NewAccessPolicyToken(ctx, \"test\", \u0026cloud.AccessPolicyTokenArgs{\n\t\t\tRegion:         pulumi.String(\"prod-us-east-0\"),\n\t\t\tAccessPolicyId: test.PolicyId,\n\t\t\tName:           pulumi.String(\"my-policy-token\"),\n\t\t\tDisplayName:    pulumi.String(\"My Policy Token\"),\n\t\t\tExpiresAt:      pulumi.String(\"2023-01-01T00:00:00Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetOrganizationArgs;\nimport com.pulumi.grafana.cloud.AccessPolicy;\nimport com.pulumi.grafana.cloud.AccessPolicyArgs;\nimport com.pulumi.grafana.cloud.inputs.AccessPolicyRealmArgs;\nimport com.pulumi.grafana.cloud.AccessPolicyToken;\nimport com.pulumi.grafana.cloud.AccessPolicyTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = CloudFunctions.getOrganization(GetOrganizationArgs.builder()\n            .slug(\"\u003cyour org slug\u003e\")\n            .build());\n\n        var test = new AccessPolicy(\"test\", AccessPolicyArgs.builder()\n            .region(\"prod-us-east-0\")\n            .name(\"my-policy\")\n            .displayName(\"My Policy\")\n            .scopes(            \n                \"metrics:read\",\n                \"logs:read\")\n            .realms(AccessPolicyRealmArgs.builder()\n                .type(\"org\")\n                .identifier(current.applyValue(getOrganizationResult -\u003e getOrganizationResult.id()))\n                .labelPolicies(AccessPolicyRealmLabelPolicyArgs.builder()\n                    .selector(\"{namespace=\\\"default\\\"}\")\n                    .build())\n                .build())\n            .build());\n\n        var testAccessPolicyToken = new AccessPolicyToken(\"testAccessPolicyToken\", AccessPolicyTokenArgs.builder()\n            .region(\"prod-us-east-0\")\n            .accessPolicyId(test.policyId())\n            .name(\"my-policy-token\")\n            .displayName(\"My Policy Token\")\n            .expiresAt(\"2023-01-01T00:00:00Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:AccessPolicy\n    properties:\n      region: prod-us-east-0\n      name: my-policy\n      displayName: My Policy\n      scopes:\n        - metrics:read\n        - logs:read\n      realms:\n        - type: org\n          identifier: ${current.id}\n          labelPolicies:\n            - selector: '{namespace=\"default\"}'\n  testAccessPolicyToken:\n    type: grafana:cloud:AccessPolicyToken\n    name: test\n    properties:\n      region: prod-us-east-0\n      accessPolicyId: ${test.policyId}\n      name: my-policy-token\n      displayName: My Policy Token\n      expiresAt: 2023-01-01T00:00:00Z\nvariables:\n  current:\n    fn::invoke:\n      function: grafana:cloud:getOrganization\n      arguments:\n        slug: \u003cyour org slug\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:cloud/accessPolicyToken:AccessPolicyToken name \"{{ region }}:{{ tokenId }}\"\n```\n\n",
             "properties": {
                 "accessPolicyId": {
                     "type": "string",
@@ -12858,14 +12909,14 @@
                 },
                 "resourceId": {
                     "type": "string",
-                    "description": "The ID given by the Grafana Cloud Provider API to this AWS Account resource.\n"
+                    "description": "The ID given by the Grafana Cloud Provider API to this Azure Credential resource.\n"
                 },
                 "resourceTagsToAddToMetrics": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "A set of regions that this AWS Account resource applies to.\n"
+                    "description": "The list of resource tags to add to metrics.\n"
                 },
                 "stackId": {
                     "type": "string"
@@ -12916,7 +12967,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "A set of regions that this AWS Account resource applies to.\n"
+                    "description": "The list of resource tags to add to metrics.\n"
                 },
                 "stackId": {
                     "type": "string"
@@ -12964,14 +13015,14 @@
                     },
                     "resourceId": {
                         "type": "string",
-                        "description": "The ID given by the Grafana Cloud Provider API to this AWS Account resource.\n"
+                        "description": "The ID given by the Grafana Cloud Provider API to this Azure Credential resource.\n"
                     },
                     "resourceTagsToAddToMetrics": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "A set of regions that this AWS Account resource applies to.\n"
+                        "description": "The list of resource tags to add to metrics.\n"
                     },
                     "stackId": {
                         "type": "string"
@@ -14103,14 +14154,14 @@
                 },
                 "resourceId": {
                     "type": "string",
-                    "description": "The ID given by the Grafana Cloud Provider API to this AWS Account resource.\n"
+                    "description": "The ID given by the Grafana Cloud Provider API to this Azure Credential resource.\n"
                 },
                 "resourceTagsToAddToMetrics": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "A set of regions that this AWS Account resource applies to.\n"
+                    "description": "The list of resource tags to add to metrics.\n"
                 },
                 "stackId": {
                     "type": "string"
@@ -14161,7 +14212,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "A set of regions that this AWS Account resource applies to.\n"
+                    "description": "The list of resource tags to add to metrics.\n"
                 },
                 "stackId": {
                     "type": "string"
@@ -14209,14 +14260,14 @@
                     },
                     "resourceId": {
                         "type": "string",
-                        "description": "The ID given by the Grafana Cloud Provider API to this AWS Account resource.\n"
+                        "description": "The ID given by the Grafana Cloud Provider API to this Azure Credential resource.\n"
                     },
                     "resourceTagsToAddToMetrics": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "A set of regions that this AWS Account resource applies to.\n"
+                        "description": "The list of resource tags to add to metrics.\n"
                     },
                     "stackId": {
                         "type": "string"
@@ -15583,8 +15634,15 @@
             "deprecationMessage": "grafana.index/annotation.Annotation has been deprecated in favor of grafana.oss/annotation.Annotation"
         },
         "grafana:index/cloudAccessPolicy:CloudAccessPolicy": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)\n\nRequired access policy scopes:\n\n* accesspolicies:read\n* accesspolicies:write\n* accesspolicies:delete\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst current = grafana.cloud.getOrganization({\n    slug: \"\u003cyour org slug\u003e\",\n});\nconst test = new grafana.cloud.AccessPolicy(\"test\", {\n    region: \"prod-us-east-0\",\n    name: \"my-policy\",\n    displayName: \"My Policy\",\n    scopes: [\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms: [{\n        type: \"org\",\n        identifier: current.then(current =\u003e current.id),\n        labelPolicies: [{\n            selector: \"{namespace=\\\"default\\\"}\",\n        }],\n    }],\n});\nconst testAccessPolicyToken = new grafana.cloud.AccessPolicyToken(\"test\", {\n    region: \"prod-us-east-0\",\n    accessPolicyId: test.policyId,\n    name: \"my-policy-token\",\n    displayName: \"My Policy Token\",\n    expiresAt: \"2023-01-01T00:00:00Z\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ncurrent = grafana.cloud.get_organization(slug=\"\u003cyour org slug\u003e\")\ntest = grafana.cloud.AccessPolicy(\"test\",\n    region=\"prod-us-east-0\",\n    name=\"my-policy\",\n    display_name=\"My Policy\",\n    scopes=[\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms=[{\n        \"type\": \"org\",\n        \"identifier\": current.id,\n        \"label_policies\": [{\n            \"selector\": \"{namespace=\\\"default\\\"}\",\n        }],\n    }])\ntest_access_policy_token = grafana.cloud.AccessPolicyToken(\"test\",\n    region=\"prod-us-east-0\",\n    access_policy_id=test.policy_id,\n    name=\"my-policy-token\",\n    display_name=\"My Policy Token\",\n    expires_at=\"2023-01-01T00:00:00Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Grafana.Cloud.GetOrganization.Invoke(new()\n    {\n        Slug = \"\u003cyour org slug\u003e\",\n    });\n\n    var test = new Grafana.Cloud.AccessPolicy(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        Name = \"my-policy\",\n        DisplayName = \"My Policy\",\n        Scopes = new[]\n        {\n            \"metrics:read\",\n            \"logs:read\",\n        },\n        Realms = new[]\n        {\n            new Grafana.Cloud.Inputs.AccessPolicyRealmArgs\n            {\n                Type = \"org\",\n                Identifier = current.Apply(getOrganizationResult =\u003e getOrganizationResult.Id),\n                LabelPolicies = new[]\n                {\n                    new Grafana.Cloud.Inputs.AccessPolicyRealmLabelPolicyArgs\n                    {\n                        Selector = \"{namespace=\\\"default\\\"}\",\n                    },\n                },\n            },\n        },\n    });\n\n    var testAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        AccessPolicyId = test.PolicyId,\n        Name = \"my-policy-token\",\n        DisplayName = \"My Policy Token\",\n        ExpiresAt = \"2023-01-01T00:00:00Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := cloud.GetOrganization(ctx, \u0026cloud.GetOrganizationArgs{\n\t\t\tSlug: pulumi.StringRef(\"\u003cyour org slug\u003e\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest, err := cloud.NewAccessPolicy(ctx, \"test\", \u0026cloud.AccessPolicyArgs{\n\t\t\tRegion:      pulumi.String(\"prod-us-east-0\"),\n\t\t\tName:        pulumi.String(\"my-policy\"),\n\t\t\tDisplayName: pulumi.String(\"My Policy\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"metrics:read\"),\n\t\t\t\tpulumi.String(\"logs:read\"),\n\t\t\t},\n\t\t\tRealms: cloud.AccessPolicyRealmArray{\n\t\t\t\t\u0026cloud.AccessPolicyRealmArgs{\n\t\t\t\t\tType:       pulumi.String(\"org\"),\n\t\t\t\t\tIdentifier: pulumi.String(current.Id),\n\t\t\t\t\tLabelPolicies: cloud.AccessPolicyRealmLabelPolicyArray{\n\t\t\t\t\t\t\u0026cloud.AccessPolicyRealmLabelPolicyArgs{\n\t\t\t\t\t\t\tSelector: pulumi.String(\"{namespace=\\\"default\\\"}\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloud.NewAccessPolicyToken(ctx, \"test\", \u0026cloud.AccessPolicyTokenArgs{\n\t\t\tRegion:         pulumi.String(\"prod-us-east-0\"),\n\t\t\tAccessPolicyId: test.PolicyId,\n\t\t\tName:           pulumi.String(\"my-policy-token\"),\n\t\t\tDisplayName:    pulumi.String(\"My Policy Token\"),\n\t\t\tExpiresAt:      pulumi.String(\"2023-01-01T00:00:00Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetOrganizationArgs;\nimport com.pulumi.grafana.cloud.AccessPolicy;\nimport com.pulumi.grafana.cloud.AccessPolicyArgs;\nimport com.pulumi.grafana.cloud.inputs.AccessPolicyRealmArgs;\nimport com.pulumi.grafana.cloud.AccessPolicyToken;\nimport com.pulumi.grafana.cloud.AccessPolicyTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = CloudFunctions.getOrganization(GetOrganizationArgs.builder()\n            .slug(\"\u003cyour org slug\u003e\")\n            .build());\n\n        var test = new AccessPolicy(\"test\", AccessPolicyArgs.builder()\n            .region(\"prod-us-east-0\")\n            .name(\"my-policy\")\n            .displayName(\"My Policy\")\n            .scopes(            \n                \"metrics:read\",\n                \"logs:read\")\n            .realms(AccessPolicyRealmArgs.builder()\n                .type(\"org\")\n                .identifier(current.applyValue(getOrganizationResult -\u003e getOrganizationResult.id()))\n                .labelPolicies(AccessPolicyRealmLabelPolicyArgs.builder()\n                    .selector(\"{namespace=\\\"default\\\"}\")\n                    .build())\n                .build())\n            .build());\n\n        var testAccessPolicyToken = new AccessPolicyToken(\"testAccessPolicyToken\", AccessPolicyTokenArgs.builder()\n            .region(\"prod-us-east-0\")\n            .accessPolicyId(test.policyId())\n            .name(\"my-policy-token\")\n            .displayName(\"My Policy Token\")\n            .expiresAt(\"2023-01-01T00:00:00Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:AccessPolicy\n    properties:\n      region: prod-us-east-0\n      name: my-policy\n      displayName: My Policy\n      scopes:\n        - metrics:read\n        - logs:read\n      realms:\n        - type: org\n          identifier: ${current.id}\n          labelPolicies:\n            - selector: '{namespace=\"default\"}'\n  testAccessPolicyToken:\n    type: grafana:cloud:AccessPolicyToken\n    name: test\n    properties:\n      region: prod-us-east-0\n      accessPolicyId: ${test.policyId}\n      name: my-policy-token\n      displayName: My Policy Token\n      expiresAt: 2023-01-01T00:00:00Z\nvariables:\n  current:\n    fn::invoke:\n      function: grafana:cloud:getOrganization\n      arguments:\n        slug: \u003cyour org slug\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy name \"{{ region }}:{{ policyId }}\"\n```\n\n",
+            "description": "* [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)\n\nRequired access policy scopes:\n\n* accesspolicies:read\n* accesspolicies:write\n* accesspolicies:delete\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst current = grafana.cloud.getOrganization({\n    slug: \"\u003cyour org slug\u003e\",\n});\nconst test = new grafana.cloud.AccessPolicy(\"test\", {\n    region: \"prod-us-east-0\",\n    name: \"my-policy\",\n    displayName: \"My Policy\",\n    scopes: [\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms: [{\n        type: \"org\",\n        identifier: current.then(current =\u003e current.id),\n        labelPolicies: [{\n            selector: \"{namespace=\\\"default\\\"}\",\n        }],\n    }],\n});\nconst testAccessPolicyToken = new grafana.cloud.AccessPolicyToken(\"test\", {\n    region: \"prod-us-east-0\",\n    accessPolicyId: test.policyId,\n    name: \"my-policy-token\",\n    displayName: \"My Policy Token\",\n    expiresAt: \"2023-01-01T00:00:00Z\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ncurrent = grafana.cloud.get_organization(slug=\"\u003cyour org slug\u003e\")\ntest = grafana.cloud.AccessPolicy(\"test\",\n    region=\"prod-us-east-0\",\n    name=\"my-policy\",\n    display_name=\"My Policy\",\n    scopes=[\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms=[{\n        \"type\": \"org\",\n        \"identifier\": current.id,\n        \"label_policies\": [{\n            \"selector\": \"{namespace=\\\"default\\\"}\",\n        }],\n    }])\ntest_access_policy_token = grafana.cloud.AccessPolicyToken(\"test\",\n    region=\"prod-us-east-0\",\n    access_policy_id=test.policy_id,\n    name=\"my-policy-token\",\n    display_name=\"My Policy Token\",\n    expires_at=\"2023-01-01T00:00:00Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Grafana.Cloud.GetOrganization.Invoke(new()\n    {\n        Slug = \"\u003cyour org slug\u003e\",\n    });\n\n    var test = new Grafana.Cloud.AccessPolicy(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        Name = \"my-policy\",\n        DisplayName = \"My Policy\",\n        Scopes = new[]\n        {\n            \"metrics:read\",\n            \"logs:read\",\n        },\n        Realms = new[]\n        {\n            new Grafana.Cloud.Inputs.AccessPolicyRealmArgs\n            {\n                Type = \"org\",\n                Identifier = current.Apply(getOrganizationResult =\u003e getOrganizationResult.Id),\n                LabelPolicies = new[]\n                {\n                    new Grafana.Cloud.Inputs.AccessPolicyRealmLabelPolicyArgs\n                    {\n                        Selector = \"{namespace=\\\"default\\\"}\",\n                    },\n                },\n            },\n        },\n    });\n\n    var testAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        AccessPolicyId = test.PolicyId,\n        Name = \"my-policy-token\",\n        DisplayName = \"My Policy Token\",\n        ExpiresAt = \"2023-01-01T00:00:00Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := cloud.GetOrganization(ctx, \u0026cloud.GetOrganizationArgs{\n\t\t\tSlug: pulumi.StringRef(\"\u003cyour org slug\u003e\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest, err := cloud.NewAccessPolicy(ctx, \"test\", \u0026cloud.AccessPolicyArgs{\n\t\t\tRegion:      pulumi.String(\"prod-us-east-0\"),\n\t\t\tName:        pulumi.String(\"my-policy\"),\n\t\t\tDisplayName: pulumi.String(\"My Policy\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"metrics:read\"),\n\t\t\t\tpulumi.String(\"logs:read\"),\n\t\t\t},\n\t\t\tRealms: cloud.AccessPolicyRealmArray{\n\t\t\t\t\u0026cloud.AccessPolicyRealmArgs{\n\t\t\t\t\tType:       pulumi.String(\"org\"),\n\t\t\t\t\tIdentifier: pulumi.String(current.Id),\n\t\t\t\t\tLabelPolicies: cloud.AccessPolicyRealmLabelPolicyArray{\n\t\t\t\t\t\t\u0026cloud.AccessPolicyRealmLabelPolicyArgs{\n\t\t\t\t\t\t\tSelector: pulumi.String(\"{namespace=\\\"default\\\"}\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloud.NewAccessPolicyToken(ctx, \"test\", \u0026cloud.AccessPolicyTokenArgs{\n\t\t\tRegion:         pulumi.String(\"prod-us-east-0\"),\n\t\t\tAccessPolicyId: test.PolicyId,\n\t\t\tName:           pulumi.String(\"my-policy-token\"),\n\t\t\tDisplayName:    pulumi.String(\"My Policy Token\"),\n\t\t\tExpiresAt:      pulumi.String(\"2023-01-01T00:00:00Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetOrganizationArgs;\nimport com.pulumi.grafana.cloud.AccessPolicy;\nimport com.pulumi.grafana.cloud.AccessPolicyArgs;\nimport com.pulumi.grafana.cloud.inputs.AccessPolicyRealmArgs;\nimport com.pulumi.grafana.cloud.AccessPolicyToken;\nimport com.pulumi.grafana.cloud.AccessPolicyTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = CloudFunctions.getOrganization(GetOrganizationArgs.builder()\n            .slug(\"\u003cyour org slug\u003e\")\n            .build());\n\n        var test = new AccessPolicy(\"test\", AccessPolicyArgs.builder()\n            .region(\"prod-us-east-0\")\n            .name(\"my-policy\")\n            .displayName(\"My Policy\")\n            .scopes(            \n                \"metrics:read\",\n                \"logs:read\")\n            .realms(AccessPolicyRealmArgs.builder()\n                .type(\"org\")\n                .identifier(current.applyValue(getOrganizationResult -\u003e getOrganizationResult.id()))\n                .labelPolicies(AccessPolicyRealmLabelPolicyArgs.builder()\n                    .selector(\"{namespace=\\\"default\\\"}\")\n                    .build())\n                .build())\n            .build());\n\n        var testAccessPolicyToken = new AccessPolicyToken(\"testAccessPolicyToken\", AccessPolicyTokenArgs.builder()\n            .region(\"prod-us-east-0\")\n            .accessPolicyId(test.policyId())\n            .name(\"my-policy-token\")\n            .displayName(\"My Policy Token\")\n            .expiresAt(\"2023-01-01T00:00:00Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:AccessPolicy\n    properties:\n      region: prod-us-east-0\n      name: my-policy\n      displayName: My Policy\n      scopes:\n        - metrics:read\n        - logs:read\n      realms:\n        - type: org\n          identifier: ${current.id}\n          labelPolicies:\n            - selector: '{namespace=\"default\"}'\n  testAccessPolicyToken:\n    type: grafana:cloud:AccessPolicyToken\n    name: test\n    properties:\n      region: prod-us-east-0\n      accessPolicyId: ${test.policyId}\n      name: my-policy-token\n      displayName: My Policy Token\n      expiresAt: 2023-01-01T00:00:00Z\nvariables:\n  current:\n    fn::invoke:\n      function: grafana:cloud:getOrganization\n      arguments:\n        slug: \u003cyour org slug\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:index/cloudAccessPolicy:CloudAccessPolicy name \"{{ region }}:{{ policyId }}\"\n```\n\n",
             "properties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:index/CloudAccessPolicyCondition:CloudAccessPolicyCondition"
+                    },
+                    "description": "Conditions for the access policy.\n"
+                },
                 "createdAt": {
                     "type": "string",
                     "description": "Creation date of the access policy.\n"
@@ -15616,7 +15674,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.\n"
+                    "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.\n"
                 },
                 "updatedAt": {
                     "type": "string",
@@ -15633,6 +15691,13 @@
                 "updatedAt"
             ],
             "inputProperties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:index/CloudAccessPolicyCondition:CloudAccessPolicyCondition"
+                    },
+                    "description": "Conditions for the access policy.\n"
+                },
                 "displayName": {
                     "type": "string",
                     "description": "Display name of the access policy. Defaults to the name.\n"
@@ -15658,7 +15723,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.\n"
+                    "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.\n"
                 }
             },
             "requiredInputs": [
@@ -15669,6 +15734,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering CloudAccessPolicy resources.\n",
                 "properties": {
+                    "conditions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:index/CloudAccessPolicyCondition:CloudAccessPolicyCondition"
+                        },
+                        "description": "Conditions for the access policy.\n"
+                    },
                     "createdAt": {
                         "type": "string",
                         "description": "Creation date of the access policy.\n"
@@ -15702,7 +15774,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.\n"
+                        "description": "Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.\n"
                     },
                     "updatedAt": {
                         "type": "string",
@@ -15714,7 +15786,7 @@
             "deprecationMessage": "grafana.index/cloudaccesspolicy.CloudAccessPolicy has been deprecated in favor of grafana.cloud/accesspolicy.AccessPolicy"
         },
         "grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)\n\nRequired access policy scopes:\n\n* accesspolicies:read\n* accesspolicies:write\n* accesspolicies:delete\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst current = grafana.cloud.getOrganization({\n    slug: \"\u003cyour org slug\u003e\",\n});\nconst test = new grafana.cloud.AccessPolicy(\"test\", {\n    region: \"prod-us-east-0\",\n    name: \"my-policy\",\n    displayName: \"My Policy\",\n    scopes: [\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms: [{\n        type: \"org\",\n        identifier: current.then(current =\u003e current.id),\n        labelPolicies: [{\n            selector: \"{namespace=\\\"default\\\"}\",\n        }],\n    }],\n});\nconst testAccessPolicyToken = new grafana.cloud.AccessPolicyToken(\"test\", {\n    region: \"prod-us-east-0\",\n    accessPolicyId: test.policyId,\n    name: \"my-policy-token\",\n    displayName: \"My Policy Token\",\n    expiresAt: \"2023-01-01T00:00:00Z\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ncurrent = grafana.cloud.get_organization(slug=\"\u003cyour org slug\u003e\")\ntest = grafana.cloud.AccessPolicy(\"test\",\n    region=\"prod-us-east-0\",\n    name=\"my-policy\",\n    display_name=\"My Policy\",\n    scopes=[\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms=[{\n        \"type\": \"org\",\n        \"identifier\": current.id,\n        \"label_policies\": [{\n            \"selector\": \"{namespace=\\\"default\\\"}\",\n        }],\n    }])\ntest_access_policy_token = grafana.cloud.AccessPolicyToken(\"test\",\n    region=\"prod-us-east-0\",\n    access_policy_id=test.policy_id,\n    name=\"my-policy-token\",\n    display_name=\"My Policy Token\",\n    expires_at=\"2023-01-01T00:00:00Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Grafana.Cloud.GetOrganization.Invoke(new()\n    {\n        Slug = \"\u003cyour org slug\u003e\",\n    });\n\n    var test = new Grafana.Cloud.AccessPolicy(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        Name = \"my-policy\",\n        DisplayName = \"My Policy\",\n        Scopes = new[]\n        {\n            \"metrics:read\",\n            \"logs:read\",\n        },\n        Realms = new[]\n        {\n            new Grafana.Cloud.Inputs.AccessPolicyRealmArgs\n            {\n                Type = \"org\",\n                Identifier = current.Apply(getOrganizationResult =\u003e getOrganizationResult.Id),\n                LabelPolicies = new[]\n                {\n                    new Grafana.Cloud.Inputs.AccessPolicyRealmLabelPolicyArgs\n                    {\n                        Selector = \"{namespace=\\\"default\\\"}\",\n                    },\n                },\n            },\n        },\n    });\n\n    var testAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        AccessPolicyId = test.PolicyId,\n        Name = \"my-policy-token\",\n        DisplayName = \"My Policy Token\",\n        ExpiresAt = \"2023-01-01T00:00:00Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := cloud.GetOrganization(ctx, \u0026cloud.GetOrganizationArgs{\n\t\t\tSlug: pulumi.StringRef(\"\u003cyour org slug\u003e\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest, err := cloud.NewAccessPolicy(ctx, \"test\", \u0026cloud.AccessPolicyArgs{\n\t\t\tRegion:      pulumi.String(\"prod-us-east-0\"),\n\t\t\tName:        pulumi.String(\"my-policy\"),\n\t\t\tDisplayName: pulumi.String(\"My Policy\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"metrics:read\"),\n\t\t\t\tpulumi.String(\"logs:read\"),\n\t\t\t},\n\t\t\tRealms: cloud.AccessPolicyRealmArray{\n\t\t\t\t\u0026cloud.AccessPolicyRealmArgs{\n\t\t\t\t\tType:       pulumi.String(\"org\"),\n\t\t\t\t\tIdentifier: pulumi.String(current.Id),\n\t\t\t\t\tLabelPolicies: cloud.AccessPolicyRealmLabelPolicyArray{\n\t\t\t\t\t\t\u0026cloud.AccessPolicyRealmLabelPolicyArgs{\n\t\t\t\t\t\t\tSelector: pulumi.String(\"{namespace=\\\"default\\\"}\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloud.NewAccessPolicyToken(ctx, \"test\", \u0026cloud.AccessPolicyTokenArgs{\n\t\t\tRegion:         pulumi.String(\"prod-us-east-0\"),\n\t\t\tAccessPolicyId: test.PolicyId,\n\t\t\tName:           pulumi.String(\"my-policy-token\"),\n\t\t\tDisplayName:    pulumi.String(\"My Policy Token\"),\n\t\t\tExpiresAt:      pulumi.String(\"2023-01-01T00:00:00Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetOrganizationArgs;\nimport com.pulumi.grafana.cloud.AccessPolicy;\nimport com.pulumi.grafana.cloud.AccessPolicyArgs;\nimport com.pulumi.grafana.cloud.inputs.AccessPolicyRealmArgs;\nimport com.pulumi.grafana.cloud.AccessPolicyToken;\nimport com.pulumi.grafana.cloud.AccessPolicyTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = CloudFunctions.getOrganization(GetOrganizationArgs.builder()\n            .slug(\"\u003cyour org slug\u003e\")\n            .build());\n\n        var test = new AccessPolicy(\"test\", AccessPolicyArgs.builder()\n            .region(\"prod-us-east-0\")\n            .name(\"my-policy\")\n            .displayName(\"My Policy\")\n            .scopes(            \n                \"metrics:read\",\n                \"logs:read\")\n            .realms(AccessPolicyRealmArgs.builder()\n                .type(\"org\")\n                .identifier(current.applyValue(getOrganizationResult -\u003e getOrganizationResult.id()))\n                .labelPolicies(AccessPolicyRealmLabelPolicyArgs.builder()\n                    .selector(\"{namespace=\\\"default\\\"}\")\n                    .build())\n                .build())\n            .build());\n\n        var testAccessPolicyToken = new AccessPolicyToken(\"testAccessPolicyToken\", AccessPolicyTokenArgs.builder()\n            .region(\"prod-us-east-0\")\n            .accessPolicyId(test.policyId())\n            .name(\"my-policy-token\")\n            .displayName(\"My Policy Token\")\n            .expiresAt(\"2023-01-01T00:00:00Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:AccessPolicy\n    properties:\n      region: prod-us-east-0\n      name: my-policy\n      displayName: My Policy\n      scopes:\n        - metrics:read\n        - logs:read\n      realms:\n        - type: org\n          identifier: ${current.id}\n          labelPolicies:\n            - selector: '{namespace=\"default\"}'\n  testAccessPolicyToken:\n    type: grafana:cloud:AccessPolicyToken\n    name: test\n    properties:\n      region: prod-us-east-0\n      accessPolicyId: ${test.policyId}\n      name: my-policy-token\n      displayName: My Policy Token\n      expiresAt: 2023-01-01T00:00:00Z\nvariables:\n  current:\n    fn::invoke:\n      function: grafana:cloud:getOrganization\n      arguments:\n        slug: \u003cyour org slug\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken name \"{{ region }}:{{ tokenId }}\"\n```\n\n",
+            "description": "* [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-a-token)\n\nRequired access policy scopes:\n\n* accesspolicies:read\n* accesspolicies:write\n* accesspolicies:delete\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst current = grafana.cloud.getOrganization({\n    slug: \"\u003cyour org slug\u003e\",\n});\nconst test = new grafana.cloud.AccessPolicy(\"test\", {\n    region: \"prod-us-east-0\",\n    name: \"my-policy\",\n    displayName: \"My Policy\",\n    scopes: [\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms: [{\n        type: \"org\",\n        identifier: current.then(current =\u003e current.id),\n        labelPolicies: [{\n            selector: \"{namespace=\\\"default\\\"}\",\n        }],\n    }],\n});\nconst testAccessPolicyToken = new grafana.cloud.AccessPolicyToken(\"test\", {\n    region: \"prod-us-east-0\",\n    accessPolicyId: test.policyId,\n    name: \"my-policy-token\",\n    displayName: \"My Policy Token\",\n    expiresAt: \"2023-01-01T00:00:00Z\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ncurrent = grafana.cloud.get_organization(slug=\"\u003cyour org slug\u003e\")\ntest = grafana.cloud.AccessPolicy(\"test\",\n    region=\"prod-us-east-0\",\n    name=\"my-policy\",\n    display_name=\"My Policy\",\n    scopes=[\n        \"metrics:read\",\n        \"logs:read\",\n    ],\n    realms=[{\n        \"type\": \"org\",\n        \"identifier\": current.id,\n        \"label_policies\": [{\n            \"selector\": \"{namespace=\\\"default\\\"}\",\n        }],\n    }])\ntest_access_policy_token = grafana.cloud.AccessPolicyToken(\"test\",\n    region=\"prod-us-east-0\",\n    access_policy_id=test.policy_id,\n    name=\"my-policy-token\",\n    display_name=\"My Policy Token\",\n    expires_at=\"2023-01-01T00:00:00Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Grafana.Cloud.GetOrganization.Invoke(new()\n    {\n        Slug = \"\u003cyour org slug\u003e\",\n    });\n\n    var test = new Grafana.Cloud.AccessPolicy(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        Name = \"my-policy\",\n        DisplayName = \"My Policy\",\n        Scopes = new[]\n        {\n            \"metrics:read\",\n            \"logs:read\",\n        },\n        Realms = new[]\n        {\n            new Grafana.Cloud.Inputs.AccessPolicyRealmArgs\n            {\n                Type = \"org\",\n                Identifier = current.Apply(getOrganizationResult =\u003e getOrganizationResult.Id),\n                LabelPolicies = new[]\n                {\n                    new Grafana.Cloud.Inputs.AccessPolicyRealmLabelPolicyArgs\n                    {\n                        Selector = \"{namespace=\\\"default\\\"}\",\n                    },\n                },\n            },\n        },\n    });\n\n    var testAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken(\"test\", new()\n    {\n        Region = \"prod-us-east-0\",\n        AccessPolicyId = test.PolicyId,\n        Name = \"my-policy-token\",\n        DisplayName = \"My Policy Token\",\n        ExpiresAt = \"2023-01-01T00:00:00Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := cloud.GetOrganization(ctx, \u0026cloud.GetOrganizationArgs{\n\t\t\tSlug: pulumi.StringRef(\"\u003cyour org slug\u003e\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest, err := cloud.NewAccessPolicy(ctx, \"test\", \u0026cloud.AccessPolicyArgs{\n\t\t\tRegion:      pulumi.String(\"prod-us-east-0\"),\n\t\t\tName:        pulumi.String(\"my-policy\"),\n\t\t\tDisplayName: pulumi.String(\"My Policy\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"metrics:read\"),\n\t\t\t\tpulumi.String(\"logs:read\"),\n\t\t\t},\n\t\t\tRealms: cloud.AccessPolicyRealmArray{\n\t\t\t\t\u0026cloud.AccessPolicyRealmArgs{\n\t\t\t\t\tType:       pulumi.String(\"org\"),\n\t\t\t\t\tIdentifier: pulumi.String(current.Id),\n\t\t\t\t\tLabelPolicies: cloud.AccessPolicyRealmLabelPolicyArray{\n\t\t\t\t\t\t\u0026cloud.AccessPolicyRealmLabelPolicyArgs{\n\t\t\t\t\t\t\tSelector: pulumi.String(\"{namespace=\\\"default\\\"}\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloud.NewAccessPolicyToken(ctx, \"test\", \u0026cloud.AccessPolicyTokenArgs{\n\t\t\tRegion:         pulumi.String(\"prod-us-east-0\"),\n\t\t\tAccessPolicyId: test.PolicyId,\n\t\t\tName:           pulumi.String(\"my-policy-token\"),\n\t\t\tDisplayName:    pulumi.String(\"My Policy Token\"),\n\t\t\tExpiresAt:      pulumi.String(\"2023-01-01T00:00:00Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetOrganizationArgs;\nimport com.pulumi.grafana.cloud.AccessPolicy;\nimport com.pulumi.grafana.cloud.AccessPolicyArgs;\nimport com.pulumi.grafana.cloud.inputs.AccessPolicyRealmArgs;\nimport com.pulumi.grafana.cloud.AccessPolicyToken;\nimport com.pulumi.grafana.cloud.AccessPolicyTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = CloudFunctions.getOrganization(GetOrganizationArgs.builder()\n            .slug(\"\u003cyour org slug\u003e\")\n            .build());\n\n        var test = new AccessPolicy(\"test\", AccessPolicyArgs.builder()\n            .region(\"prod-us-east-0\")\n            .name(\"my-policy\")\n            .displayName(\"My Policy\")\n            .scopes(            \n                \"metrics:read\",\n                \"logs:read\")\n            .realms(AccessPolicyRealmArgs.builder()\n                .type(\"org\")\n                .identifier(current.applyValue(getOrganizationResult -\u003e getOrganizationResult.id()))\n                .labelPolicies(AccessPolicyRealmLabelPolicyArgs.builder()\n                    .selector(\"{namespace=\\\"default\\\"}\")\n                    .build())\n                .build())\n            .build());\n\n        var testAccessPolicyToken = new AccessPolicyToken(\"testAccessPolicyToken\", AccessPolicyTokenArgs.builder()\n            .region(\"prod-us-east-0\")\n            .accessPolicyId(test.policyId())\n            .name(\"my-policy-token\")\n            .displayName(\"My Policy Token\")\n            .expiresAt(\"2023-01-01T00:00:00Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:AccessPolicy\n    properties:\n      region: prod-us-east-0\n      name: my-policy\n      displayName: My Policy\n      scopes:\n        - metrics:read\n        - logs:read\n      realms:\n        - type: org\n          identifier: ${current.id}\n          labelPolicies:\n            - selector: '{namespace=\"default\"}'\n  testAccessPolicyToken:\n    type: grafana:cloud:AccessPolicyToken\n    name: test\n    properties:\n      region: prod-us-east-0\n      accessPolicyId: ${test.policyId}\n      name: my-policy-token\n      displayName: My Policy Token\n      expiresAt: 2023-01-01T00:00:00Z\nvariables:\n  current:\n    fn::invoke:\n      function: grafana:cloud:getOrganization\n      arguments:\n        slug: \u003cyour org slug\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:index/cloudAccessPolicyToken:CloudAccessPolicyToken name \"{{ region }}:{{ tokenId }}\"\n```\n\n",
             "properties": {
                 "accessPolicyId": {
                     "type": "string",
@@ -19508,7 +19580,7 @@
                 },
                 "important": {
                     "type": "boolean",
-                    "description": "Will activate \"important\" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members\n"
+                    "description": "Will activate \"important\" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members\n"
                 },
                 "notifyIfTimeFrom": {
                     "type": "string",
@@ -19578,7 +19650,7 @@
                 },
                 "important": {
                     "type": "boolean",
-                    "description": "Will activate \"important\" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members\n"
+                    "description": "Will activate \"important\" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members\n"
                 },
                 "notifyIfTimeFrom": {
                     "type": "string",
@@ -19650,7 +19722,7 @@
                     },
                     "important": {
                         "type": "boolean",
-                        "description": "Will activate \"important\" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members\n"
+                        "description": "Will activate \"important\" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members\n"
                     },
                     "notifyIfTimeFrom": {
                         "type": "string",
@@ -19765,7 +19837,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.\n"
+                    "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.\n"
                 }
             },
             "required": [
@@ -19793,7 +19865,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.\n",
+                    "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -19826,7 +19898,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.\n",
+                        "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -22429,7 +22501,7 @@
             "properties": {
                 "metricsPublisherKey": {
                     "type": "string",
-                    "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.\n",
+                    "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.\n",
                     "secret": true
                 },
                 "smAccessToken": {
@@ -22454,7 +22526,7 @@
             "inputProperties": {
                 "metricsPublisherKey": {
                     "type": "string",
-                    "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.\n",
+                    "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.\n",
                     "secret": true,
                     "willReplaceOnChanges": true
                 },
@@ -22478,7 +22550,7 @@
                 "properties": {
                     "metricsPublisherKey": {
                         "type": "string",
-                        "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.\n",
+                        "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.\n",
                         "secret": true,
                         "willReplaceOnChanges": true
                     },
@@ -23549,7 +23621,7 @@
                 },
                 "important": {
                     "type": "boolean",
-                    "description": "Will activate \"important\" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members\n"
+                    "description": "Will activate \"important\" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members\n"
                 },
                 "notifyIfTimeFrom": {
                     "type": "string",
@@ -23619,7 +23691,7 @@
                 },
                 "important": {
                     "type": "boolean",
-                    "description": "Will activate \"important\" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members\n"
+                    "description": "Will activate \"important\" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members\n"
                 },
                 "notifyIfTimeFrom": {
                     "type": "string",
@@ -23691,7 +23763,7 @@
                     },
                     "important": {
                         "type": "boolean",
-                        "description": "Will activate \"important\" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members\n"
+                        "description": "Will activate \"important\" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members\n"
                     },
                     "notifyIfTimeFrom": {
                         "type": "string",
@@ -23814,7 +23886,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.\n"
+                    "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.\n"
                 }
             },
             "required": [
@@ -23842,7 +23914,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.\n",
+                    "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -23875,7 +23947,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira.\n",
+                        "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -27340,7 +27412,7 @@
             "properties": {
                 "metricsPublisherKey": {
                     "type": "string",
-                    "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.\n",
+                    "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.\n",
                     "secret": true
                 },
                 "smAccessToken": {
@@ -27365,7 +27437,7 @@
             "inputProperties": {
                 "metricsPublisherKey": {
                     "type": "string",
-                    "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.\n",
+                    "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.\n",
                     "secret": true,
                     "willReplaceOnChanges": true
                 },
@@ -27389,7 +27461,7 @@
                 "properties": {
                     "metricsPublisherKey": {
                         "type": "string",
-                        "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.\n",
+                        "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.\n",
                         "secret": true,
                         "willReplaceOnChanges": true
                     },
@@ -27573,7 +27645,7 @@
     },
     "functions": {
         "grafana:cloud/getAccessPolicies:getAccessPolicies": {
-            "description": "Fetches access policies from Grafana Cloud.\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-access-policies)\n\nRequired access policy scopes:\n\n* accesspolicies:read\n",
+            "description": "Fetches access policies from Grafana Cloud.\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-access-policies)\n\nRequired access policy scopes:\n\n* accesspolicies:read\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getAccessPolicies.\n",
                 "properties": {
@@ -27719,7 +27791,7 @@
             }
         },
         "grafana:cloud/getPrivateDataSourceConnectNetworks:getPrivateDataSourceConnectNetworks": {
-            "description": "Fetches Private Data source Connect networks from Grafana Cloud.\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-access-policies)\n\nRequired access policy scopes:\n\n* accesspolicies:read\n",
+            "description": "Fetches Private Data source Connect networks from Grafana Cloud.\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-access-policies)\n\nRequired access policy scopes:\n\n* accesspolicies:read\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getPrivateDataSourceConnectNetworks.\n",
                 "properties": {
@@ -28051,7 +28123,7 @@
                         "type": "string"
                     },
                     "resourceTagsToAddToMetrics": {
-                        "description": "A set of regions that this AWS Account resource applies to.\n",
+                        "description": "The list of resource tags to add to metrics.\n",
                         "items": {
                             "type": "string"
                         },
@@ -28713,7 +28785,7 @@
                         "type": "string"
                     },
                     "resourceTagsToAddToMetrics": {
-                        "description": "A set of regions that this AWS Account resource applies to.\n",
+                        "description": "The list of resource tags to add to metrics.\n",
                         "items": {
                             "type": "string"
                         },
