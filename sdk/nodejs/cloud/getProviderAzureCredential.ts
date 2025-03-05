@@ -70,7 +70,7 @@ export interface GetProviderAzureCredentialResult {
      */
     readonly resourceId: string;
     /**
-     * A set of regions that this AWS Account resource applies to.
+     * The list of resource tags to add to metrics.
      */
     readonly resourceTagsToAddToMetrics: string[];
     readonly stackId: string;

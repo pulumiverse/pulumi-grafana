@@ -92,7 +92,7 @@ namespace Pulumiverse.Grafana
     public partial class SyntheticMonitoringInstallation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
+        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
         /// </summary>
         [Output("metricsPublisherKey")]
         public Output<string> MetricsPublisherKey { get; private set; } = null!;
@@ -170,7 +170,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _metricsPublisherKey;
 
         /// <summary>
-        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
+        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
         /// </summary>
         public Input<string>? MetricsPublisherKey
         {
@@ -206,7 +206,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _metricsPublisherKey;
 
         /// <summary>
-        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
+        /// The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
         /// </summary>
         public Input<string>? MetricsPublisherKey
         {

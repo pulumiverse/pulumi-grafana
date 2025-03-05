@@ -34,9 +34,9 @@ type ProviderAzureCredential struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The list of tag filters to apply to resources.
 	ResourceDiscoveryTagFilters ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput `pulumi:"resourceDiscoveryTagFilters"`
-	// The ID given by the Grafana Cloud Provider API to this AWS Account resource.
+	// The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
 	ResourceId pulumi.StringOutput `pulumi:"resourceId"`
-	// A set of regions that this AWS Account resource applies to.
+	// The list of resource tags to add to metrics.
 	ResourceTagsToAddToMetrics pulumi.StringArrayOutput `pulumi:"resourceTagsToAddToMetrics"`
 	StackId                    pulumi.StringOutput      `pulumi:"stackId"`
 	// The tenant ID of the Azure Credential.
@@ -102,9 +102,9 @@ type providerAzureCredentialState struct {
 	Name *string `pulumi:"name"`
 	// The list of tag filters to apply to resources.
 	ResourceDiscoveryTagFilters []ProviderAzureCredentialResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
-	// The ID given by the Grafana Cloud Provider API to this AWS Account resource.
+	// The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
 	ResourceId *string `pulumi:"resourceId"`
-	// A set of regions that this AWS Account resource applies to.
+	// The list of resource tags to add to metrics.
 	ResourceTagsToAddToMetrics []string `pulumi:"resourceTagsToAddToMetrics"`
 	StackId                    *string  `pulumi:"stackId"`
 	// The tenant ID of the Azure Credential.
@@ -122,9 +122,9 @@ type ProviderAzureCredentialState struct {
 	Name pulumi.StringPtrInput
 	// The list of tag filters to apply to resources.
 	ResourceDiscoveryTagFilters ProviderAzureCredentialResourceDiscoveryTagFilterArrayInput
-	// The ID given by the Grafana Cloud Provider API to this AWS Account resource.
+	// The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
 	ResourceId pulumi.StringPtrInput
-	// A set of regions that this AWS Account resource applies to.
+	// The list of resource tags to add to metrics.
 	ResourceTagsToAddToMetrics pulumi.StringArrayInput
 	StackId                    pulumi.StringPtrInput
 	// The tenant ID of the Azure Credential.
@@ -146,7 +146,7 @@ type providerAzureCredentialArgs struct {
 	Name *string `pulumi:"name"`
 	// The list of tag filters to apply to resources.
 	ResourceDiscoveryTagFilters []ProviderAzureCredentialResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
-	// A set of regions that this AWS Account resource applies to.
+	// The list of resource tags to add to metrics.
 	ResourceTagsToAddToMetrics []string `pulumi:"resourceTagsToAddToMetrics"`
 	StackId                    string   `pulumi:"stackId"`
 	// The tenant ID of the Azure Credential.
@@ -165,7 +165,7 @@ type ProviderAzureCredentialArgs struct {
 	Name pulumi.StringPtrInput
 	// The list of tag filters to apply to resources.
 	ResourceDiscoveryTagFilters ProviderAzureCredentialResourceDiscoveryTagFilterArrayInput
-	// A set of regions that this AWS Account resource applies to.
+	// The list of resource tags to add to metrics.
 	ResourceTagsToAddToMetrics pulumi.StringArrayInput
 	StackId                    pulumi.StringInput
 	// The tenant ID of the Azure Credential.
@@ -288,12 +288,12 @@ func (o ProviderAzureCredentialOutput) ResourceDiscoveryTagFilters() ProviderAzu
 	}).(ProviderAzureCredentialResourceDiscoveryTagFilterArrayOutput)
 }
 
-// The ID given by the Grafana Cloud Provider API to this AWS Account resource.
+// The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
 func (o ProviderAzureCredentialOutput) ResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProviderAzureCredential) pulumi.StringOutput { return v.ResourceId }).(pulumi.StringOutput)
 }
 
-// A set of regions that this AWS Account resource applies to.
+// The list of resource tags to add to metrics.
 func (o ProviderAzureCredentialOutput) ResourceTagsToAddToMetrics() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ProviderAzureCredential) pulumi.StringArrayOutput { return v.ResourceTagsToAddToMetrics }).(pulumi.StringArrayOutput)
 }

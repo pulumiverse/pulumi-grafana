@@ -26,6 +26,16 @@
                     }
                 ],
                 "fields": {
+                    "conditions": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "allowed_subnets": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "realm": {
                         "maxItemsOne": false,
                         "elem": {

@@ -50,7 +50,7 @@ type LookupProviderAzureCredentialResult struct {
 	ResourceDiscoveryTagFilters []GetProviderAzureCredentialResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
 	// The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
 	ResourceId string `pulumi:"resourceId"`
-	// A set of regions that this AWS Account resource applies to.
+	// The list of resource tags to add to metrics.
 	ResourceTagsToAddToMetrics []string `pulumi:"resourceTagsToAddToMetrics"`
 	StackId                    string   `pulumi:"stackId"`
 	// The tenant ID of the Azure Credential.
@@ -134,7 +134,7 @@ func (o LookupProviderAzureCredentialResultOutput) ResourceId() pulumi.StringOut
 	return o.ApplyT(func(v LookupProviderAzureCredentialResult) string { return v.ResourceId }).(pulumi.StringOutput)
 }
 
-// A set of regions that this AWS Account resource applies to.
+// The list of resource tags to add to metrics.
 func (o LookupProviderAzureCredentialResultOutput) ResourceTagsToAddToMetrics() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupProviderAzureCredentialResult) []string { return v.ResourceTagsToAddToMetrics }).(pulumi.StringArrayOutput)
 }

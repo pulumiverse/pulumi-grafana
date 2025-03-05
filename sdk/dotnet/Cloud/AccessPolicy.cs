@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Cloud
 {
     /// <summary>
-    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+    /// * [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)
     /// * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)
     /// 
     /// Required access policy scopes:
@@ -85,6 +85,12 @@ namespace Pulumiverse.Grafana.Cloud
     public partial class AccessPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Conditions for the access policy.
+        /// </summary>
+        [Output("conditions")]
+        public Output<ImmutableArray<Outputs.AccessPolicyCondition>> Conditions { get; private set; } = null!;
+
+        /// <summary>
         /// Creation date of the access policy.
         /// </summary>
         [Output("createdAt")]
@@ -118,7 +124,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+        /// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         /// </summary>
         [Output("scopes")]
         public Output<ImmutableArray<string>> Scopes { get; private set; } = null!;
@@ -180,6 +186,18 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class AccessPolicyArgs : global::Pulumi.ResourceArgs
     {
+        [Input("conditions")]
+        private InputList<Inputs.AccessPolicyConditionArgs>? _conditions;
+
+        /// <summary>
+        /// Conditions for the access policy.
+        /// </summary>
+        public InputList<Inputs.AccessPolicyConditionArgs> Conditions
+        {
+            get => _conditions ?? (_conditions = new InputList<Inputs.AccessPolicyConditionArgs>());
+            set => _conditions = value;
+        }
+
         /// <summary>
         /// Display name of the access policy. Defaults to the name.
         /// </summary>
@@ -210,7 +228,7 @@ namespace Pulumiverse.Grafana.Cloud
         private InputList<string>? _scopes;
 
         /// <summary>
-        /// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+        /// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         /// </summary>
         public InputList<string> Scopes
         {
@@ -226,6 +244,18 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class AccessPolicyState : global::Pulumi.ResourceArgs
     {
+        [Input("conditions")]
+        private InputList<Inputs.AccessPolicyConditionGetArgs>? _conditions;
+
+        /// <summary>
+        /// Conditions for the access policy.
+        /// </summary>
+        public InputList<Inputs.AccessPolicyConditionGetArgs> Conditions
+        {
+            get => _conditions ?? (_conditions = new InputList<Inputs.AccessPolicyConditionGetArgs>());
+            set => _conditions = value;
+        }
+
         /// <summary>
         /// Creation date of the access policy.
         /// </summary>
@@ -268,7 +298,7 @@ namespace Pulumiverse.Grafana.Cloud
         private InputList<string>? _scopes;
 
         /// <summary>
-        /// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+        /// Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         /// </summary>
         public InputList<string> Scopes
         {

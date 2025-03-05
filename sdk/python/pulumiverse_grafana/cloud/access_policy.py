@@ -24,18 +24,22 @@ class AccessPolicyArgs:
                  realms: pulumi.Input[Sequence[pulumi.Input['AccessPolicyRealmArgs']]],
                  region: pulumi.Input[str],
                  scopes: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['AccessPolicyConditionArgs']]]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AccessPolicy resource.
         :param pulumi.Input[str] region: Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+        :param pulumi.Input[Sequence[pulumi.Input['AccessPolicyConditionArgs']]] conditions: Conditions for the access policy.
         :param pulumi.Input[str] display_name: Display name of the access policy. Defaults to the name.
         :param pulumi.Input[str] name: Name of the access policy.
         """
         pulumi.set(__self__, "realms", realms)
         pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "scopes", scopes)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
         if name is not None:
@@ -66,13 +70,25 @@ class AccessPolicyArgs:
     @pulumi.getter
     def scopes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+        Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         """
         return pulumi.get(self, "scopes")
 
     @scopes.setter
     def scopes(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "scopes", value)
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AccessPolicyConditionArgs']]]]:
+        """
+        Conditions for the access policy.
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AccessPolicyConditionArgs']]]]):
+        pulumi.set(self, "conditions", value)
 
     @property
     @pulumi.getter(name="displayName")
@@ -102,6 +118,7 @@ class AccessPolicyArgs:
 @pulumi.input_type
 class _AccessPolicyState:
     def __init__(__self__, *,
+                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['AccessPolicyConditionArgs']]]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -112,14 +129,17 @@ class _AccessPolicyState:
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AccessPolicy resources.
+        :param pulumi.Input[Sequence[pulumi.Input['AccessPolicyConditionArgs']]] conditions: Conditions for the access policy.
         :param pulumi.Input[str] created_at: Creation date of the access policy.
         :param pulumi.Input[str] display_name: Display name of the access policy. Defaults to the name.
         :param pulumi.Input[str] name: Name of the access policy.
         :param pulumi.Input[str] policy_id: ID of the access policy.
         :param pulumi.Input[str] region: Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         :param pulumi.Input[str] updated_at: Last update date of the access policy.
         """
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if display_name is not None:
@@ -136,6 +156,18 @@ class _AccessPolicyState:
             pulumi.set(__self__, "scopes", scopes)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AccessPolicyConditionArgs']]]]:
+        """
+        Conditions for the access policy.
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AccessPolicyConditionArgs']]]]):
+        pulumi.set(self, "conditions", value)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -210,7 +242,7 @@ class _AccessPolicyState:
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+        Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         """
         return pulumi.get(self, "scopes")
 
@@ -236,6 +268,7 @@ class AccessPolicy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AccessPolicyConditionArgs', 'AccessPolicyConditionArgsDict']]]]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AccessPolicyRealmArgs', 'AccessPolicyRealmArgsDict']]]]] = None,
@@ -243,7 +276,7 @@ class AccessPolicy(pulumi.CustomResource):
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+        * [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)
 
         Required access policy scopes:
@@ -291,10 +324,11 @@ class AccessPolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AccessPolicyConditionArgs', 'AccessPolicyConditionArgsDict']]]] conditions: Conditions for the access policy.
         :param pulumi.Input[str] display_name: Display name of the access policy. Defaults to the name.
         :param pulumi.Input[str] name: Name of the access policy.
         :param pulumi.Input[str] region: Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         """
         ...
     @overload
@@ -303,7 +337,7 @@ class AccessPolicy(pulumi.CustomResource):
                  args: AccessPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        * [Official documentation](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/)
+        * [Official documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#create-an-access-policy)
 
         Required access policy scopes:
@@ -364,6 +398,7 @@ class AccessPolicy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AccessPolicyConditionArgs', 'AccessPolicyConditionArgsDict']]]]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AccessPolicyRealmArgs', 'AccessPolicyRealmArgsDict']]]]] = None,
@@ -378,6 +413,7 @@ class AccessPolicy(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AccessPolicyArgs.__new__(AccessPolicyArgs)
 
+            __props__.__dict__["conditions"] = conditions
             __props__.__dict__["display_name"] = display_name
             __props__.__dict__["name"] = name
             if realms is None and not opts.urn:
@@ -404,6 +440,7 @@ class AccessPolicy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AccessPolicyConditionArgs', 'AccessPolicyConditionArgsDict']]]]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -419,18 +456,20 @@ class AccessPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AccessPolicyConditionArgs', 'AccessPolicyConditionArgsDict']]]] conditions: Conditions for the access policy.
         :param pulumi.Input[str] created_at: Creation date of the access policy.
         :param pulumi.Input[str] display_name: Display name of the access policy. Defaults to the name.
         :param pulumi.Input[str] name: Name of the access policy.
         :param pulumi.Input[str] policy_id: ID of the access policy.
         :param pulumi.Input[str] region: Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         :param pulumi.Input[str] updated_at: Last update date of the access policy.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AccessPolicyState.__new__(_AccessPolicyState)
 
+        __props__.__dict__["conditions"] = conditions
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["display_name"] = display_name
         __props__.__dict__["name"] = name
@@ -440,6 +479,14 @@ class AccessPolicy(pulumi.CustomResource):
         __props__.__dict__["scopes"] = scopes
         __props__.__dict__["updated_at"] = updated_at
         return AccessPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> pulumi.Output[Optional[Sequence['outputs.AccessPolicyCondition']]]:
+        """
+        Conditions for the access policy.
+        """
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -490,7 +537,7 @@ class AccessPolicy(pulumi.CustomResource):
     @pulumi.getter
     def scopes(self) -> pulumi.Output[Sequence[str]]:
         """
-        Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/#scopes for possible values.
+        Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         """
         return pulumi.get(self, "scopes")
 

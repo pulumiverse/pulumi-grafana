@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana.Cloud.Inputs
         }
 
         /// <summary>
-        /// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+        /// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
         /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
@@ -44,7 +44,7 @@ namespace Pulumiverse.Grafana.Cloud.Inputs
         }
 
         /// <summary>
-        /// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        /// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
         /// </summary>
         [Input("scrapeIntervalSeconds", required: true)]
         public int ScrapeIntervalSeconds { get; set; }

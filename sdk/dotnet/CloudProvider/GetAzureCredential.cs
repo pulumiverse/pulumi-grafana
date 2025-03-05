@@ -144,7 +144,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         /// </summary>
         public readonly string ResourceId;
         /// <summary>
-        /// A set of regions that this AWS Account resource applies to.
+        /// The list of resource tags to add to metrics.
         /// </summary>
         public readonly ImmutableArray<string> ResourceTagsToAddToMetrics;
         public readonly string StackId;

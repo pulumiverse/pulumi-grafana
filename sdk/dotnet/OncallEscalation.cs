@@ -49,7 +49,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> GroupToNotify { get; private set; } = null!;
 
         /// <summary>
-        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
         /// </summary>
         [Output("important")]
         public Output<bool?> Important { get; private set; } = null!;
@@ -180,7 +180,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? GroupToNotify { get; set; }
 
         /// <summary>
-        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
         /// </summary>
         [Input("important")]
         public Input<bool>? Important { get; set; }
@@ -284,7 +284,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? GroupToNotify { get; set; }
 
         /// <summary>
-        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*on*call*from*schedule and notify*user*group,notify*team_members
+        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
         /// </summary>
         [Input("important")]
         public Input<bool>? Important { get; set; }
