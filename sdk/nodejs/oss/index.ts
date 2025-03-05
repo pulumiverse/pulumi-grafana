@@ -85,6 +85,11 @@ export const getLibraryPanel: typeof import("./getLibraryPanel").getLibraryPanel
 export const getLibraryPanelOutput: typeof import("./getLibraryPanel").getLibraryPanelOutput = null as any;
 utilities.lazyLoad(exports, ["getLibraryPanel","getLibraryPanelOutput"], () => require("./getLibraryPanel"));
 
+export { GetLibraryPanelsArgs, GetLibraryPanelsResult, GetLibraryPanelsOutputArgs } from "./getLibraryPanels";
+export const getLibraryPanels: typeof import("./getLibraryPanels").getLibraryPanels = null as any;
+export const getLibraryPanelsOutput: typeof import("./getLibraryPanels").getLibraryPanelsOutput = null as any;
+utilities.lazyLoad(exports, ["getLibraryPanels","getLibraryPanelsOutput"], () => require("./getLibraryPanels"));
+
 export { GetOrganizationArgs, GetOrganizationResult, GetOrganizationOutputArgs } from "./getOrganization";
 export const getOrganization: typeof import("./getOrganization").getOrganization = null as any;
 export const getOrganizationOutput: typeof import("./getOrganization").getOrganizationOutput = null as any;

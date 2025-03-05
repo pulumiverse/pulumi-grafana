@@ -1804,7 +1804,14 @@
                 }
             },
             "grafana_library_panels": {
-                "current": "grafana:index/getLibraryPanels:getLibraryPanels",
+                "current": "grafana:oss/getLibraryPanels:getLibraryPanels",
+                "past": [
+                    {
+                        "name": "grafana:index/getLibraryPanels:getLibraryPanels",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "panels": {
                         "maxItemsOne": false
@@ -2495,6 +2502,11 @@
                     "grafana:index/getLibraryPanel:getLibraryPanel"
                 ]
             },
+            "grafana_library_panels": {
+                "renames": [
+                    "grafana:index/getLibraryPanels:getLibraryPanels"
+                ]
+            },
             "grafana_oncall_escalation_chain": {
                 "renames": [
                     "grafana:index/getOncallEscalationChain:getOncallEscalationChain"
@@ -2780,6 +2792,7 @@
             "grafana:oss/getFolder:getFolder": 0,
             "grafana:oss/getFolders:getFolders": 0,
             "grafana:oss/getLibraryPanel:getLibraryPanel": 0,
+            "grafana:oss/getLibraryPanels:getLibraryPanels": 1,
             "grafana:oss/getOrganization:getOrganization": 0,
             "grafana:oss/getOrganizationPreferences:getOrganizationPreferences": 0,
             "grafana:oss/getServiceAccount:getServiceAccount": 0,

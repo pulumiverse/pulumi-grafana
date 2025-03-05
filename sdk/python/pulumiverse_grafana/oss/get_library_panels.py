@@ -12,7 +12,7 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 from . import outputs
 
 __all__ = [
@@ -21,8 +21,6 @@ __all__ = [
     'get_library_panels',
     'get_library_panels_output',
 ]
-
-warnings.warn("""grafana.index/getlibrarypanels.getLibraryPanels has been deprecated in favor of grafana.oss/getlibrarypanels.getLibraryPanels""", DeprecationWarning)
 
 @pulumi.output_type
 class GetLibraryPanelsResult:
@@ -115,11 +113,10 @@ def get_library_panels(org_id: Optional[str] = None,
 
     :param str org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
     """
-    pulumi.log.warn("""get_library_panels is deprecated: grafana.index/getlibrarypanels.getLibraryPanels has been deprecated in favor of grafana.oss/getlibrarypanels.getLibraryPanels""")
     __args__ = dict()
     __args__['orgId'] = org_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('grafana:index/getLibraryPanels:getLibraryPanels', __args__, opts=opts, typ=GetLibraryPanelsResult).value
+    __ret__ = pulumi.runtime.invoke('grafana:oss/getLibraryPanels:getLibraryPanels', __args__, opts=opts, typ=GetLibraryPanelsResult).value
 
     return AwaitableGetLibraryPanelsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -167,11 +164,10 @@ def get_library_panels_output(org_id: Optional[pulumi.Input[Optional[str]]] = No
 
     :param str org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
     """
-    pulumi.log.warn("""get_library_panels is deprecated: grafana.index/getlibrarypanels.getLibraryPanels has been deprecated in favor of grafana.oss/getlibrarypanels.getLibraryPanels""")
     __args__ = dict()
     __args__['orgId'] = org_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('grafana:index/getLibraryPanels:getLibraryPanels', __args__, opts=opts, typ=GetLibraryPanelsResult)
+    __ret__ = pulumi.runtime.invoke_output('grafana:oss/getLibraryPanels:getLibraryPanels', __args__, opts=opts, typ=GetLibraryPanelsResult)
     return __ret__.apply(lambda __response__: GetLibraryPanelsResult(
         id=pulumi.get(__response__, 'id'),
         org_id=pulumi.get(__response__, 'org_id'),

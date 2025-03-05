@@ -653,6 +653,12 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "library_panel.md",
 				},
 			},
+			"grafana_library_panels": {
+				Tok: grafanaDataSource(ossMod, "getLibraryPanels"),
+				Docs: &tfbridge.DocInfo{
+					Source: "library_panels.md",
+				},
+			},
 			"grafana_organization": {
 				Tok: grafanaDataSource(ossMod, "getOrganization"),
 				Docs: &tfbridge.DocInfo{

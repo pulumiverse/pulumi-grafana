@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Oss
 {
-    [Obsolete(@"grafana.index/getlibrarypanels.getLibraryPanels has been deprecated in favor of grafana.oss/getlibrarypanels.getLibraryPanels")]
     public static class GetLibraryPanels
     {
         /// <summary>
@@ -69,7 +68,7 @@ namespace Pulumiverse.Grafana
         /// ```
         /// </summary>
         public static Task<GetLibraryPanelsResult> InvokeAsync(GetLibraryPanelsArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetLibraryPanelsResult>("grafana:index/getLibraryPanels:getLibraryPanels", args ?? new GetLibraryPanelsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetLibraryPanelsResult>("grafana:oss/getLibraryPanels:getLibraryPanels", args ?? new GetLibraryPanelsArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
@@ -127,7 +126,7 @@ namespace Pulumiverse.Grafana
         /// ```
         /// </summary>
         public static Output<GetLibraryPanelsResult> Invoke(GetLibraryPanelsInvokeArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetLibraryPanelsResult>("grafana:index/getLibraryPanels:getLibraryPanels", args ?? new GetLibraryPanelsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetLibraryPanelsResult>("grafana:oss/getLibraryPanels:getLibraryPanels", args ?? new GetLibraryPanelsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
@@ -185,7 +184,7 @@ namespace Pulumiverse.Grafana
         /// ```
         /// </summary>
         public static Output<GetLibraryPanelsResult> Invoke(GetLibraryPanelsInvokeArgs args, InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<GetLibraryPanelsResult>("grafana:index/getLibraryPanels:getLibraryPanels", args ?? new GetLibraryPanelsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetLibraryPanelsResult>("grafana:oss/getLibraryPanels:getLibraryPanels", args ?? new GetLibraryPanelsInvokeArgs(), options.WithDefaults());
     }
 
 
