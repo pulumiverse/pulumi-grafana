@@ -107,6 +107,12 @@ func GetFrontendO11yApiAccessToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:frontendO11yApiAccessToken")
 }
 
+// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+// be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+func GetHttpHeaders(ctx *pulumi.Context) string {
+	return config.Get(ctx, "grafana:httpHeaders")
+}
+
 // Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 func GetInsecureSkipVerify(ctx *pulumi.Context) bool {
 	v, err := config.TryBool(ctx, "grafana:insecureSkipVerify")

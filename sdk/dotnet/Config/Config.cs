@@ -151,6 +151,17 @@ namespace Pulumiverse.Grafana
             set => _frontendO11yApiAccessToken.Set(value);
         }
 
+        private static readonly __Value<ImmutableDictionary<string, string>?> _httpHeaders = new __Value<ImmutableDictionary<string, string>?>(() => __config.GetObject<ImmutableDictionary<string, string>>("httpHeaders"));
+        /// <summary>
+        /// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+        /// be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+        /// </summary>
+        public static ImmutableDictionary<string, string>? HttpHeaders
+        {
+            get => _httpHeaders.Get();
+            set => _httpHeaders.Set(value);
+        }
+
         private static readonly __Value<bool?> _insecureSkipVerify = new __Value<bool?>(() => __config.GetBoolean("insecureSkipVerify") ?? Utilities.GetEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY"));
         /// <summary>
         /// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

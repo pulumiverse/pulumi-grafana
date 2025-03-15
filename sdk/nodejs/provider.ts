@@ -128,6 +128,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["fleetManagementAuth"] = args?.fleetManagementAuth ? pulumi.secret(args.fleetManagementAuth) : undefined;
             resourceInputs["fleetManagementUrl"] = args ? args.fleetManagementUrl : undefined;
             resourceInputs["frontendO11yApiAccessToken"] = args?.frontendO11yApiAccessToken ? pulumi.secret(args.frontendO11yApiAccessToken) : undefined;
+            resourceInputs["httpHeaders"] = pulumi.output(args?.httpHeaders ? pulumi.secret(args.httpHeaders) : undefined).apply(JSON.stringify);
             resourceInputs["insecureSkipVerify"] = pulumi.output((args ? args.insecureSkipVerify : undefined) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
             resourceInputs["oncallAccessToken"] = (args?.oncallAccessToken ? pulumi.secret(args.oncallAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             resourceInputs["oncallUrl"] = (args ? args.oncallUrl : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
@@ -205,6 +206,11 @@ export interface ProviderArgs {
      * `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
      */
     frontendO11yApiAccessToken?: pulumi.Input<string>;
+    /**
+     * Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+     * be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+     */
+    httpHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
      */

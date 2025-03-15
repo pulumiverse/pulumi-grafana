@@ -123,6 +123,14 @@
                 "description": "A Grafana Frontend Observability API access token. May alternatively be set via the\n`GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.\n",
                 "secret": true
             },
+            "httpHeaders": {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "string"
+                },
+                "description": "Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively\nbe set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.\n",
+                "secret": true
+            },
             "insecureSkipVerify": {
                 "type": "boolean",
                 "description": "Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.\n",
@@ -10932,6 +10940,14 @@
                 "description": "A Grafana Frontend Observability API access token. May alternatively be set via the\n`GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.\n",
                 "secret": true
             },
+            "httpHeaders": {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "string"
+                },
+                "description": "Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively\nbe set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.\n",
+                "secret": true
+            },
             "insecureSkipVerify": {
                 "type": "boolean",
                 "description": "Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.\n"
@@ -11055,6 +11071,14 @@
             "frontendO11yApiAccessToken": {
                 "type": "string",
                 "description": "A Grafana Frontend Observability API access token. May alternatively be set via the\n`GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.\n",
+                "secret": true
+            },
+            "httpHeaders": {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "string"
+                },
+                "description": "Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively\nbe set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.\n",
                 "secret": true
             },
             "insecureSkipVerify": {

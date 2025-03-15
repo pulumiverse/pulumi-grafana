@@ -166,6 +166,9 @@ func NewProvider(ctx *pulumi.Context,
 	if args.FrontendO11yApiAccessToken != nil {
 		args.FrontendO11yApiAccessToken = pulumi.ToSecret(args.FrontendO11yApiAccessToken).(pulumi.StringPtrInput)
 	}
+	if args.HttpHeaders != nil {
+		args.HttpHeaders = pulumi.ToSecret(args.HttpHeaders).(pulumi.StringMapInput)
+	}
 	if args.OncallAccessToken != nil {
 		args.OncallAccessToken = pulumi.ToSecret(args.OncallAccessToken).(pulumi.StringPtrInput)
 	}
@@ -228,6 +231,9 @@ type providerArgs struct {
 	// A Grafana Frontend Observability API access token. May alternatively be set via the
 	// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 	FrontendO11yApiAccessToken *string `pulumi:"frontendO11yApiAccessToken"`
+	// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+	// be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+	HttpHeaders map[string]string `pulumi:"httpHeaders"`
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 	InsecureSkipVerify *bool `pulumi:"insecureSkipVerify"`
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
@@ -291,6 +297,9 @@ type ProviderArgs struct {
 	// A Grafana Frontend Observability API access token. May alternatively be set via the
 	// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 	FrontendO11yApiAccessToken pulumi.StringPtrInput
+	// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+	// be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+	HttpHeaders pulumi.StringMapInput
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 	InsecureSkipVerify pulumi.BoolPtrInput
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.

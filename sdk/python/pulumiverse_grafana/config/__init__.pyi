@@ -78,6 +78,12 @@ A Grafana Frontend Observability API access token. May alternatively be set via 
 `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 """
 
+httpHeaders: Optional[str]
+"""
+Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+"""
+
 insecureSkipVerify: Optional[bool]
 """
 Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

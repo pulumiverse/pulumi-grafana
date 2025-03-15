@@ -136,10 +136,7 @@ func Provider() tfbridge.ProviderInfo {
 					EnvVars: []string{"GRAFANA_CLOUD_API_URL"},
 				},
 			},
-			"http_headers": {
-				SuppressEmptyMapElements: boolRef(true),
-				Omit:                     true,
-			},
+			"http_headers": {},
 			"insecure_skip_verify": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GRAFANA_INSECURE_SKIP_VERIFY"},

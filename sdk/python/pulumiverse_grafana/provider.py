@@ -30,6 +30,7 @@ class ProviderArgs:
                  fleet_management_auth: Optional[pulumi.Input[str]] = None,
                  fleet_management_url: Optional[pulumi.Input[str]] = None,
                  frontend_o11y_api_access_token: Optional[pulumi.Input[str]] = None,
+                 http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
@@ -64,6 +65,8 @@ class ProviderArgs:
                variable.
         :param pulumi.Input[str] frontend_o11y_api_access_token: A Grafana Frontend Observability API access token. May alternatively be set via the
                `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] http_headers: Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+               be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -111,6 +114,8 @@ class ProviderArgs:
             pulumi.set(__self__, "fleet_management_url", fleet_management_url)
         if frontend_o11y_api_access_token is not None:
             pulumi.set(__self__, "frontend_o11y_api_access_token", frontend_o11y_api_access_token)
+        if http_headers is not None:
+            pulumi.set(__self__, "http_headers", http_headers)
         if insecure_skip_verify is None:
             insecure_skip_verify = _utilities.get_env_bool('GRAFANA_INSECURE_SKIP_VERIFY')
         if insecure_skip_verify is not None:
@@ -300,6 +305,19 @@ class ProviderArgs:
         pulumi.set(self, "frontend_o11y_api_access_token", value)
 
     @property
+    @pulumi.getter(name="httpHeaders")
+    def http_headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+        be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+        """
+        return pulumi.get(self, "http_headers")
+
+    @http_headers.setter
+    def http_headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "http_headers", value)
+
+    @property
     @pulumi.getter(name="insecureSkipVerify")
     def insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -462,6 +480,7 @@ class Provider(pulumi.ProviderResource):
                  fleet_management_auth: Optional[pulumi.Input[str]] = None,
                  fleet_management_url: Optional[pulumi.Input[str]] = None,
                  frontend_o11y_api_access_token: Optional[pulumi.Input[str]] = None,
+                 http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
@@ -503,6 +522,8 @@ class Provider(pulumi.ProviderResource):
                variable.
         :param pulumi.Input[str] frontend_o11y_api_access_token: A Grafana Frontend Observability API access token. May alternatively be set via the
                `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] http_headers: Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+               be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
         :param pulumi.Input[bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -558,6 +579,7 @@ class Provider(pulumi.ProviderResource):
                  fleet_management_auth: Optional[pulumi.Input[str]] = None,
                  fleet_management_url: Optional[pulumi.Input[str]] = None,
                  frontend_o11y_api_access_token: Optional[pulumi.Input[str]] = None,
+                 http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  oncall_access_token: Optional[pulumi.Input[str]] = None,
                  oncall_url: Optional[pulumi.Input[str]] = None,
@@ -598,6 +620,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["fleet_management_auth"] = None if fleet_management_auth is None else pulumi.Output.secret(fleet_management_auth)
             __props__.__dict__["fleet_management_url"] = fleet_management_url
             __props__.__dict__["frontend_o11y_api_access_token"] = None if frontend_o11y_api_access_token is None else pulumi.Output.secret(frontend_o11y_api_access_token)
+            __props__.__dict__["http_headers"] = pulumi.Output.secret(http_headers).apply(pulumi.runtime.to_json) if http_headers is not None else None
             if insecure_skip_verify is None:
                 insecure_skip_verify = _utilities.get_env_bool('GRAFANA_INSECURE_SKIP_VERIFY')
             __props__.__dict__["insecure_skip_verify"] = pulumi.Output.from_input(insecure_skip_verify).apply(pulumi.runtime.to_json) if insecure_skip_verify is not None else None

@@ -138,6 +138,18 @@ Object.defineProperty(exports, "frontendO11yApiAccessToken", {
 });
 
 /**
+ * Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+ * be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+ */
+export declare const httpHeaders: {[key: string]: string} | undefined;
+Object.defineProperty(exports, "httpHeaders", {
+    get() {
+        return __config.getObject<{[key: string]: string}>("httpHeaders");
+    },
+    enumerable: true,
+});
+
+/**
  * Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
  */
 export declare const insecureSkipVerify: boolean | undefined;

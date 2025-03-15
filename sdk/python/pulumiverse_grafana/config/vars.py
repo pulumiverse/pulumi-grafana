@@ -107,6 +107,14 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('frontendO11yApiAccessToken')
 
     @property
+    def http_headers(self) -> Optional[str]:
+        """
+        Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+        be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+        """
+        return __config__.get('httpHeaders')
+
+    @property
     def insecure_skip_verify(self) -> Optional[bool]:
         """
         Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.

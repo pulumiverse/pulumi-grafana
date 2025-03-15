@@ -311,6 +311,23 @@ namespace Pulumiverse.Grafana
             }
         }
 
+        [Input("httpHeaders", json: true)]
+        private InputMap<string>? _httpHeaders;
+
+        /// <summary>
+        /// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
+        /// be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+        /// </summary>
+        public InputMap<string> HttpHeaders
+        {
+            get => _httpHeaders ?? (_httpHeaders = new InputMap<string>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _httpHeaders = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
+        }
+
         /// <summary>
         /// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         /// </summary>
