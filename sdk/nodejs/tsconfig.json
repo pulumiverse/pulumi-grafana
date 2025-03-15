@@ -112,6 +112,7 @@
         "getOncallUserGroup.ts",
         "getOrganization.ts",
         "getOrganizationPreferences.ts",
+        "getOrganizationUser.ts",
         "getRole.ts",
         "getServiceAccount.ts",
         "getSlos.ts",

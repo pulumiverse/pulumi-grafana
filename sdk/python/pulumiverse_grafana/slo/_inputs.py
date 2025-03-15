@@ -45,6 +45,8 @@ __all__ = [
     'SLOQueryArgsDict',
     'SLOQueryFreeformArgs',
     'SLOQueryFreeformArgsDict',
+    'SLOQueryGrafanaQueriesArgs',
+    'SLOQueryGrafanaQueriesArgsDict',
     'SLOQueryRatioArgs',
     'SLOQueryRatioArgsDict',
 ]
@@ -734,9 +736,13 @@ if not MYPY:
     class SLOQueryArgsDict(TypedDict):
         type: pulumi.Input[str]
         """
-        Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        Query type must be one of: "freeform", "query", "ratio", "grafana_queries" or "threshold"
         """
         freeform: NotRequired[pulumi.Input['SLOQueryFreeformArgsDict']]
+        grafana_queries: NotRequired[pulumi.Input['SLOQueryGrafanaQueriesArgsDict']]
+        """
+        Array for holding a set of grafana queries
+        """
         ratio: NotRequired[pulumi.Input['SLOQueryRatioArgsDict']]
 elif False:
     SLOQueryArgsDict: TypeAlias = Mapping[str, Any]
@@ -746,13 +752,17 @@ class SLOQueryArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
                  freeform: Optional[pulumi.Input['SLOQueryFreeformArgs']] = None,
+                 grafana_queries: Optional[pulumi.Input['SLOQueryGrafanaQueriesArgs']] = None,
                  ratio: Optional[pulumi.Input['SLOQueryRatioArgs']] = None):
         """
-        :param pulumi.Input[str] type: Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        :param pulumi.Input[str] type: Query type must be one of: "freeform", "query", "ratio", "grafana_queries" or "threshold"
+        :param pulumi.Input['SLOQueryGrafanaQueriesArgs'] grafana_queries: Array for holding a set of grafana queries
         """
         pulumi.set(__self__, "type", type)
         if freeform is not None:
             pulumi.set(__self__, "freeform", freeform)
+        if grafana_queries is not None:
+            pulumi.set(__self__, "grafana_queries", grafana_queries)
         if ratio is not None:
             pulumi.set(__self__, "ratio", ratio)
 
@@ -760,7 +770,7 @@ class SLOQueryArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        Query type must be one of: "freeform", "query", "ratio", "grafana_queries" or "threshold"
         """
         return pulumi.get(self, "type")
 
@@ -778,6 +788,18 @@ class SLOQueryArgs:
         pulumi.set(self, "freeform", value)
 
     @property
+    @pulumi.getter(name="grafanaQueries")
+    def grafana_queries(self) -> Optional[pulumi.Input['SLOQueryGrafanaQueriesArgs']]:
+        """
+        Array for holding a set of grafana queries
+        """
+        return pulumi.get(self, "grafana_queries")
+
+    @grafana_queries.setter
+    def grafana_queries(self, value: Optional[pulumi.Input['SLOQueryGrafanaQueriesArgs']]):
+        pulumi.set(self, "grafana_queries", value)
+
+    @property
     @pulumi.getter
     def ratio(self) -> Optional[pulumi.Input['SLOQueryRatioArgs']]:
         return pulumi.get(self, "ratio")
@@ -791,7 +813,7 @@ if not MYPY:
     class SLOQueryFreeformArgsDict(TypedDict):
         query: pulumi.Input[str]
         """
-        Freeform Query Field
+        Freeform Query Field - valid promQl
         """
 elif False:
     SLOQueryFreeformArgsDict: TypeAlias = Mapping[str, Any]
@@ -801,7 +823,7 @@ class SLOQueryFreeformArgs:
     def __init__(__self__, *,
                  query: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] query: Freeform Query Field
+        :param pulumi.Input[str] query: Freeform Query Field - valid promQl
         """
         pulumi.set(__self__, "query", query)
 
@@ -809,13 +831,44 @@ class SLOQueryFreeformArgs:
     @pulumi.getter
     def query(self) -> pulumi.Input[str]:
         """
-        Freeform Query Field
+        Freeform Query Field - valid promQl
         """
         return pulumi.get(self, "query")
 
     @query.setter
     def query(self, value: pulumi.Input[str]):
         pulumi.set(self, "query", value)
+
+
+if not MYPY:
+    class SLOQueryGrafanaQueriesArgsDict(TypedDict):
+        grafana_queries: pulumi.Input[str]
+        """
+        Query Object - Array of Grafana Query JSON objects
+        """
+elif False:
+    SLOQueryGrafanaQueriesArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SLOQueryGrafanaQueriesArgs:
+    def __init__(__self__, *,
+                 grafana_queries: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] grafana_queries: Query Object - Array of Grafana Query JSON objects
+        """
+        pulumi.set(__self__, "grafana_queries", grafana_queries)
+
+    @property
+    @pulumi.getter(name="grafanaQueries")
+    def grafana_queries(self) -> pulumi.Input[str]:
+        """
+        Query Object - Array of Grafana Query JSON objects
+        """
+        return pulumi.get(self, "grafana_queries")
+
+    @grafana_queries.setter
+    def grafana_queries(self, value: pulumi.Input[str]):
+        pulumi.set(self, "grafana_queries", value)
 
 
 if not MYPY:

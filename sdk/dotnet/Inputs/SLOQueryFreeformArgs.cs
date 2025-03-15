@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Inputs
     public sealed class SLOQueryFreeformArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Freeform Query Field
+        /// Freeform Query Field - valid promQl
         /// </summary>
         [Input("query", required: true)]
         public Input<string> Query { get; set; } = null!;

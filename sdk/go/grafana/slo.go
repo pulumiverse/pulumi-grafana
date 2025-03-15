@@ -20,7 +20,94 @@ import (
 //
 // ## Example Usage
 //
-// ### Basic
+// ### Ratio
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/slo"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := slo.NewSLO(ctx, "ratio", &slo.SLOArgs{
+//				Name:        pulumi.String("Terraform Testing - Ratio Query"),
+//				Description: pulumi.String("Terraform Description - Ratio Query"),
+//				Queries: slo.SLOQueryArray{
+//					&slo.SLOQueryArgs{
+//						Ratio: &slo.SLOQueryRatioArgs{
+//							SuccessMetric: pulumi.String("kubelet_http_requests_total{status!~\"5..\"}"),
+//							TotalMetric:   pulumi.String("kubelet_http_requests_total"),
+//							GroupByLabels: pulumi.StringArray{
+//								pulumi.String("job"),
+//								pulumi.String("instance"),
+//							},
+//						},
+//						Type: pulumi.String("ratio"),
+//					},
+//				},
+//				Objectives: slo.SLOObjectiveArray{
+//					&slo.SLOObjectiveArgs{
+//						Value:  pulumi.Float64(0.995),
+//						Window: pulumi.String("30d"),
+//					},
+//				},
+//				DestinationDatasource: &slo.SLODestinationDatasourceArgs{
+//					Uid: pulumi.String("grafanacloud-prom"),
+//				},
+//				Labels: slo.SLOLabelArray{
+//					&slo.SLOLabelArgs{
+//						Key:   pulumi.String("slo"),
+//						Value: pulumi.String("terraform"),
+//					},
+//				},
+//				Alertings: slo.SLOAlertingArray{
+//					&slo.SLOAlertingArgs{
+//						Fastburns: slo.SLOAlertingFastburnArray{
+//							&slo.SLOAlertingFastburnArgs{
+//								Annotations: slo.SLOAlertingFastburnAnnotationArray{
+//									&slo.SLOAlertingFastburnAnnotationArgs{
+//										Key:   pulumi.String("name"),
+//										Value: pulumi.String("SLO Burn Rate Very High"),
+//									},
+//									&slo.SLOAlertingFastburnAnnotationArgs{
+//										Key:   pulumi.String("description"),
+//										Value: pulumi.String("Error budget is burning too fast"),
+//									},
+//								},
+//							},
+//						},
+//						Slowburns: slo.SLOAlertingSlowburnArray{
+//							&slo.SLOAlertingSlowburnArgs{
+//								Annotations: slo.SLOAlertingSlowburnAnnotationArray{
+//									&slo.SLOAlertingSlowburnAnnotationArgs{
+//										Key:   pulumi.String("name"),
+//										Value: pulumi.String("SLO Burn Rate High"),
+//									},
+//									&slo.SLOAlertingSlowburnAnnotationArgs{
+//										Key:   pulumi.String("description"),
+//										Value: pulumi.String("Error budget is burning too fast"),
+//									},
+//								},
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Advanced
 //
 // ```go
 // package main
@@ -102,12 +189,16 @@ import (
 //
 // ```
 //
-// ### Advanced
+// ### Grafana Queries - Any supported datasource
+//
+// Grafana Queries use the grafanaQueries field. It expects a JSON string list of valid grafana query JSON objects, the same as you'll find assigned to a Grafana Dashboard panel `targets` field.
 //
 // ```go
 // package main
 //
 // import (
+//
+//	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/slo"
@@ -116,30 +207,56 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := slo.NewSLO(ctx, "test", &slo.SLOArgs{
-//				Name:        pulumi.String("Complex Resource - Terraform Ratio Query Example"),
-//				Description: pulumi.String("Complex Resource - Terraform Ratio Query Description"),
+//			tmpJSON0, err := json.Marshal([]interface{}{
+//				map[string]interface{}{
+//					"datasource": map[string]interface{}{
+//						"type": "graphite",
+//						"uid":  "datasource-uid",
+//					},
+//					"refId":  "Success",
+//					"target": "groupByNode(perSecond(web.*.http.2xx_success.*.*), 3, 'avg')",
+//				},
+//				map[string]interface{}{
+//					"datasource": map[string]interface{}{
+//						"type": "graphite",
+//						"uid":  "datasource-uid",
+//					},
+//					"refId":  "Total",
+//					"target": "groupByNode(perSecond(web.*.http.5xx_errors.*.*), 3, 'avg')",
+//				},
+//				map[string]interface{}{
+//					"datasource": map[string]interface{}{
+//						"type": "__expr__",
+//						"uid":  "__expr__",
+//					},
+//					"expression": "$Success / $Total",
+//					"refId":      "Expression",
+//					"type":       "math",
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = slo.NewSLO(ctx, "test", &slo.SLOArgs{
+//				Name:        pulumi.String("Terraform Testing"),
+//				Description: pulumi.String("Terraform Description"),
 //				Queries: slo.SLOQueryArray{
 //					&slo.SLOQueryArgs{
-//						Ratio: &slo.SLOQueryRatioArgs{
-//							SuccessMetric: pulumi.String("kubelet_http_requests_total{status!~\"5..\"}"),
-//							TotalMetric:   pulumi.String("kubelet_http_requests_total"),
-//							GroupByLabels: pulumi.StringArray{
-//								pulumi.String("job"),
-//								pulumi.String("instance"),
-//							},
+//						GrafanaQueries: &slo.SLOQueryGrafanaQueriesArgs{
+//							GrafanaQueries: pulumi.String(json0),
 //						},
-//						Type: pulumi.String("ratio"),
+//						Type: pulumi.String("grafana_queries"),
 //					},
+//				},
+//				DestinationDatasource: &slo.SLODestinationDatasourceArgs{
+//					Uid: pulumi.String("grafanacloud-prom"),
 //				},
 //				Objectives: slo.SLOObjectiveArray{
 //					&slo.SLOObjectiveArgs{
 //						Value:  pulumi.Float64(0.995),
 //						Window: pulumi.String("30d"),
 //					},
-//				},
-//				DestinationDatasource: &slo.SLODestinationDatasourceArgs{
-//					Uid: pulumi.String("grafanacloud-prom"),
 //				},
 //				Labels: slo.SLOLabelArray{
 //					&slo.SLOLabelArgs{
@@ -161,12 +278,6 @@ import (
 //										Value: pulumi.String("Error budget is burning too fast"),
 //									},
 //								},
-//								Labels: slo.SLOAlertingFastburnLabelArray{
-//									&slo.SLOAlertingFastburnLabelArgs{
-//										Key:   pulumi.String("type"),
-//										Value: pulumi.String("slo"),
-//									},
-//								},
 //							},
 //						},
 //						Slowburns: slo.SLOAlertingSlowburnArray{
@@ -179,12 +290,6 @@ import (
 //									&slo.SLOAlertingSlowburnAnnotationArgs{
 //										Key:   pulumi.String("description"),
 //										Value: pulumi.String("Error budget is burning too fast"),
-//									},
-//								},
-//								Labels: slo.SLOAlertingSlowburnLabelArray{
-//									&slo.SLOAlertingSlowburnLabelArgs{
-//										Key:   pulumi.String("type"),
-//										Value: pulumi.String("slo"),
 //									},
 //								},
 //							},
@@ -200,6 +305,10 @@ import (
 //	}
 //
 // ```
+//
+// For a complete list, see [supported data sources](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/set-up/additionaldatasources/#supported-data-sources).
+//
+// For additional help with SLOs, view our [documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/).
 //
 // ## Import
 //

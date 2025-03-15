@@ -12227,8 +12227,10 @@ func (o SLOObjectiveArrayOutput) Index(i pulumi.IntInput) SLOObjectiveOutput {
 
 type SLOQuery struct {
 	Freeform *SLOQueryFreeform `pulumi:"freeform"`
-	Ratio    *SLOQueryRatio    `pulumi:"ratio"`
-	// Query type must be one of: "freeform", "query", "ratio", or "threshold"
+	// Array for holding a set of grafana queries
+	GrafanaQueries *SLOQueryGrafanaQueries `pulumi:"grafanaQueries"`
+	Ratio          *SLOQueryRatio          `pulumi:"ratio"`
+	// Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
 	Type string `pulumi:"type"`
 }
 
@@ -12245,8 +12247,10 @@ type SLOQueryInput interface {
 
 type SLOQueryArgs struct {
 	Freeform SLOQueryFreeformPtrInput `pulumi:"freeform"`
-	Ratio    SLOQueryRatioPtrInput    `pulumi:"ratio"`
-	// Query type must be one of: "freeform", "query", "ratio", or "threshold"
+	// Array for holding a set of grafana queries
+	GrafanaQueries SLOQueryGrafanaQueriesPtrInput `pulumi:"grafanaQueries"`
+	Ratio          SLOQueryRatioPtrInput          `pulumi:"ratio"`
+	// Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -12305,11 +12309,16 @@ func (o SLOQueryOutput) Freeform() SLOQueryFreeformPtrOutput {
 	return o.ApplyT(func(v SLOQuery) *SLOQueryFreeform { return v.Freeform }).(SLOQueryFreeformPtrOutput)
 }
 
+// Array for holding a set of grafana queries
+func (o SLOQueryOutput) GrafanaQueries() SLOQueryGrafanaQueriesPtrOutput {
+	return o.ApplyT(func(v SLOQuery) *SLOQueryGrafanaQueries { return v.GrafanaQueries }).(SLOQueryGrafanaQueriesPtrOutput)
+}
+
 func (o SLOQueryOutput) Ratio() SLOQueryRatioPtrOutput {
 	return o.ApplyT(func(v SLOQuery) *SLOQueryRatio { return v.Ratio }).(SLOQueryRatioPtrOutput)
 }
 
-// Query type must be one of: "freeform", "query", "ratio", or "threshold"
+// Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
 func (o SLOQueryOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOQuery) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -12335,7 +12344,7 @@ func (o SLOQueryArrayOutput) Index(i pulumi.IntInput) SLOQueryOutput {
 }
 
 type SLOQueryFreeform struct {
-	// Freeform Query Field
+	// Freeform Query Field - valid promQl
 	Query string `pulumi:"query"`
 }
 
@@ -12351,7 +12360,7 @@ type SLOQueryFreeformInput interface {
 }
 
 type SLOQueryFreeformArgs struct {
-	// Freeform Query Field
+	// Freeform Query Field - valid promQl
 	Query pulumi.StringInput `pulumi:"query"`
 }
 
@@ -12432,7 +12441,7 @@ func (o SLOQueryFreeformOutput) ToSLOQueryFreeformPtrOutputWithContext(ctx conte
 	}).(SLOQueryFreeformPtrOutput)
 }
 
-// Freeform Query Field
+// Freeform Query Field - valid promQl
 func (o SLOQueryFreeformOutput) Query() pulumi.StringOutput {
 	return o.ApplyT(func(v SLOQueryFreeform) string { return v.Query }).(pulumi.StringOutput)
 }
@@ -12461,13 +12470,150 @@ func (o SLOQueryFreeformPtrOutput) Elem() SLOQueryFreeformOutput {
 	}).(SLOQueryFreeformOutput)
 }
 
-// Freeform Query Field
+// Freeform Query Field - valid promQl
 func (o SLOQueryFreeformPtrOutput) Query() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SLOQueryFreeform) *string {
 		if v == nil {
 			return nil
 		}
 		return &v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
+type SLOQueryGrafanaQueries struct {
+	// Query Object - Array of Grafana Query JSON objects
+	GrafanaQueries string `pulumi:"grafanaQueries"`
+}
+
+// SLOQueryGrafanaQueriesInput is an input type that accepts SLOQueryGrafanaQueriesArgs and SLOQueryGrafanaQueriesOutput values.
+// You can construct a concrete instance of `SLOQueryGrafanaQueriesInput` via:
+//
+//	SLOQueryGrafanaQueriesArgs{...}
+type SLOQueryGrafanaQueriesInput interface {
+	pulumi.Input
+
+	ToSLOQueryGrafanaQueriesOutput() SLOQueryGrafanaQueriesOutput
+	ToSLOQueryGrafanaQueriesOutputWithContext(context.Context) SLOQueryGrafanaQueriesOutput
+}
+
+type SLOQueryGrafanaQueriesArgs struct {
+	// Query Object - Array of Grafana Query JSON objects
+	GrafanaQueries pulumi.StringInput `pulumi:"grafanaQueries"`
+}
+
+func (SLOQueryGrafanaQueriesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOQueryGrafanaQueries)(nil)).Elem()
+}
+
+func (i SLOQueryGrafanaQueriesArgs) ToSLOQueryGrafanaQueriesOutput() SLOQueryGrafanaQueriesOutput {
+	return i.ToSLOQueryGrafanaQueriesOutputWithContext(context.Background())
+}
+
+func (i SLOQueryGrafanaQueriesArgs) ToSLOQueryGrafanaQueriesOutputWithContext(ctx context.Context) SLOQueryGrafanaQueriesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOQueryGrafanaQueriesOutput)
+}
+
+func (i SLOQueryGrafanaQueriesArgs) ToSLOQueryGrafanaQueriesPtrOutput() SLOQueryGrafanaQueriesPtrOutput {
+	return i.ToSLOQueryGrafanaQueriesPtrOutputWithContext(context.Background())
+}
+
+func (i SLOQueryGrafanaQueriesArgs) ToSLOQueryGrafanaQueriesPtrOutputWithContext(ctx context.Context) SLOQueryGrafanaQueriesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOQueryGrafanaQueriesOutput).ToSLOQueryGrafanaQueriesPtrOutputWithContext(ctx)
+}
+
+// SLOQueryGrafanaQueriesPtrInput is an input type that accepts SLOQueryGrafanaQueriesArgs, SLOQueryGrafanaQueriesPtr and SLOQueryGrafanaQueriesPtrOutput values.
+// You can construct a concrete instance of `SLOQueryGrafanaQueriesPtrInput` via:
+//
+//	        SLOQueryGrafanaQueriesArgs{...}
+//
+//	or:
+//
+//	        nil
+type SLOQueryGrafanaQueriesPtrInput interface {
+	pulumi.Input
+
+	ToSLOQueryGrafanaQueriesPtrOutput() SLOQueryGrafanaQueriesPtrOutput
+	ToSLOQueryGrafanaQueriesPtrOutputWithContext(context.Context) SLOQueryGrafanaQueriesPtrOutput
+}
+
+type sloqueryGrafanaQueriesPtrType SLOQueryGrafanaQueriesArgs
+
+func SLOQueryGrafanaQueriesPtr(v *SLOQueryGrafanaQueriesArgs) SLOQueryGrafanaQueriesPtrInput {
+	return (*sloqueryGrafanaQueriesPtrType)(v)
+}
+
+func (*sloqueryGrafanaQueriesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLOQueryGrafanaQueries)(nil)).Elem()
+}
+
+func (i *sloqueryGrafanaQueriesPtrType) ToSLOQueryGrafanaQueriesPtrOutput() SLOQueryGrafanaQueriesPtrOutput {
+	return i.ToSLOQueryGrafanaQueriesPtrOutputWithContext(context.Background())
+}
+
+func (i *sloqueryGrafanaQueriesPtrType) ToSLOQueryGrafanaQueriesPtrOutputWithContext(ctx context.Context) SLOQueryGrafanaQueriesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOQueryGrafanaQueriesPtrOutput)
+}
+
+type SLOQueryGrafanaQueriesOutput struct{ *pulumi.OutputState }
+
+func (SLOQueryGrafanaQueriesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOQueryGrafanaQueries)(nil)).Elem()
+}
+
+func (o SLOQueryGrafanaQueriesOutput) ToSLOQueryGrafanaQueriesOutput() SLOQueryGrafanaQueriesOutput {
+	return o
+}
+
+func (o SLOQueryGrafanaQueriesOutput) ToSLOQueryGrafanaQueriesOutputWithContext(ctx context.Context) SLOQueryGrafanaQueriesOutput {
+	return o
+}
+
+func (o SLOQueryGrafanaQueriesOutput) ToSLOQueryGrafanaQueriesPtrOutput() SLOQueryGrafanaQueriesPtrOutput {
+	return o.ToSLOQueryGrafanaQueriesPtrOutputWithContext(context.Background())
+}
+
+func (o SLOQueryGrafanaQueriesOutput) ToSLOQueryGrafanaQueriesPtrOutputWithContext(ctx context.Context) SLOQueryGrafanaQueriesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SLOQueryGrafanaQueries) *SLOQueryGrafanaQueries {
+		return &v
+	}).(SLOQueryGrafanaQueriesPtrOutput)
+}
+
+// Query Object - Array of Grafana Query JSON objects
+func (o SLOQueryGrafanaQueriesOutput) GrafanaQueries() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOQueryGrafanaQueries) string { return v.GrafanaQueries }).(pulumi.StringOutput)
+}
+
+type SLOQueryGrafanaQueriesPtrOutput struct{ *pulumi.OutputState }
+
+func (SLOQueryGrafanaQueriesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLOQueryGrafanaQueries)(nil)).Elem()
+}
+
+func (o SLOQueryGrafanaQueriesPtrOutput) ToSLOQueryGrafanaQueriesPtrOutput() SLOQueryGrafanaQueriesPtrOutput {
+	return o
+}
+
+func (o SLOQueryGrafanaQueriesPtrOutput) ToSLOQueryGrafanaQueriesPtrOutputWithContext(ctx context.Context) SLOQueryGrafanaQueriesPtrOutput {
+	return o
+}
+
+func (o SLOQueryGrafanaQueriesPtrOutput) Elem() SLOQueryGrafanaQueriesOutput {
+	return o.ApplyT(func(v *SLOQueryGrafanaQueries) SLOQueryGrafanaQueries {
+		if v != nil {
+			return *v
+		}
+		var ret SLOQueryGrafanaQueries
+		return ret
+	}).(SLOQueryGrafanaQueriesOutput)
+}
+
+// Query Object - Array of Grafana Query JSON objects
+func (o SLOQueryGrafanaQueriesPtrOutput) GrafanaQueries() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SLOQueryGrafanaQueries) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.GrafanaQueries
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -22501,8 +22647,10 @@ func (o GetSlosSloObjectiveArrayOutput) Index(i pulumi.IntInput) GetSlosSloObjec
 
 type GetSlosSloQuery struct {
 	Freeform *GetSlosSloQueryFreeform `pulumi:"freeform"`
-	Ratio    *GetSlosSloQueryRatio    `pulumi:"ratio"`
-	// Query type must be one of: "freeform", "query", "ratio", or "threshold"
+	// Array for holding a set of grafana queries
+	GrafanaQueries *GetSlosSloQueryGrafanaQueries `pulumi:"grafanaQueries"`
+	Ratio          *GetSlosSloQueryRatio          `pulumi:"ratio"`
+	// Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
 	Type string `pulumi:"type"`
 }
 
@@ -22519,8 +22667,10 @@ type GetSlosSloQueryInput interface {
 
 type GetSlosSloQueryArgs struct {
 	Freeform GetSlosSloQueryFreeformPtrInput `pulumi:"freeform"`
-	Ratio    GetSlosSloQueryRatioPtrInput    `pulumi:"ratio"`
-	// Query type must be one of: "freeform", "query", "ratio", or "threshold"
+	// Array for holding a set of grafana queries
+	GrafanaQueries GetSlosSloQueryGrafanaQueriesPtrInput `pulumi:"grafanaQueries"`
+	Ratio          GetSlosSloQueryRatioPtrInput          `pulumi:"ratio"`
+	// Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -22579,11 +22729,16 @@ func (o GetSlosSloQueryOutput) Freeform() GetSlosSloQueryFreeformPtrOutput {
 	return o.ApplyT(func(v GetSlosSloQuery) *GetSlosSloQueryFreeform { return v.Freeform }).(GetSlosSloQueryFreeformPtrOutput)
 }
 
+// Array for holding a set of grafana queries
+func (o GetSlosSloQueryOutput) GrafanaQueries() GetSlosSloQueryGrafanaQueriesPtrOutput {
+	return o.ApplyT(func(v GetSlosSloQuery) *GetSlosSloQueryGrafanaQueries { return v.GrafanaQueries }).(GetSlosSloQueryGrafanaQueriesPtrOutput)
+}
+
 func (o GetSlosSloQueryOutput) Ratio() GetSlosSloQueryRatioPtrOutput {
 	return o.ApplyT(func(v GetSlosSloQuery) *GetSlosSloQueryRatio { return v.Ratio }).(GetSlosSloQueryRatioPtrOutput)
 }
 
-// Query type must be one of: "freeform", "query", "ratio", or "threshold"
+// Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
 func (o GetSlosSloQueryOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloQuery) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -22609,7 +22764,7 @@ func (o GetSlosSloQueryArrayOutput) Index(i pulumi.IntInput) GetSlosSloQueryOutp
 }
 
 type GetSlosSloQueryFreeform struct {
-	// Freeform Query Field
+	// Freeform Query Field - valid promQl
 	Query string `pulumi:"query"`
 }
 
@@ -22625,7 +22780,7 @@ type GetSlosSloQueryFreeformInput interface {
 }
 
 type GetSlosSloQueryFreeformArgs struct {
-	// Freeform Query Field
+	// Freeform Query Field - valid promQl
 	Query pulumi.StringInput `pulumi:"query"`
 }
 
@@ -22706,7 +22861,7 @@ func (o GetSlosSloQueryFreeformOutput) ToGetSlosSloQueryFreeformPtrOutputWithCon
 	}).(GetSlosSloQueryFreeformPtrOutput)
 }
 
-// Freeform Query Field
+// Freeform Query Field - valid promQl
 func (o GetSlosSloQueryFreeformOutput) Query() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloQueryFreeform) string { return v.Query }).(pulumi.StringOutput)
 }
@@ -22735,13 +22890,150 @@ func (o GetSlosSloQueryFreeformPtrOutput) Elem() GetSlosSloQueryFreeformOutput {
 	}).(GetSlosSloQueryFreeformOutput)
 }
 
-// Freeform Query Field
+// Freeform Query Field - valid promQl
 func (o GetSlosSloQueryFreeformPtrOutput) Query() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetSlosSloQueryFreeform) *string {
 		if v == nil {
 			return nil
 		}
 		return &v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
+type GetSlosSloQueryGrafanaQueries struct {
+	// Query Object - Array of Grafana Query JSON objects
+	GrafanaQueries string `pulumi:"grafanaQueries"`
+}
+
+// GetSlosSloQueryGrafanaQueriesInput is an input type that accepts GetSlosSloQueryGrafanaQueriesArgs and GetSlosSloQueryGrafanaQueriesOutput values.
+// You can construct a concrete instance of `GetSlosSloQueryGrafanaQueriesInput` via:
+//
+//	GetSlosSloQueryGrafanaQueriesArgs{...}
+type GetSlosSloQueryGrafanaQueriesInput interface {
+	pulumi.Input
+
+	ToGetSlosSloQueryGrafanaQueriesOutput() GetSlosSloQueryGrafanaQueriesOutput
+	ToGetSlosSloQueryGrafanaQueriesOutputWithContext(context.Context) GetSlosSloQueryGrafanaQueriesOutput
+}
+
+type GetSlosSloQueryGrafanaQueriesArgs struct {
+	// Query Object - Array of Grafana Query JSON objects
+	GrafanaQueries pulumi.StringInput `pulumi:"grafanaQueries"`
+}
+
+func (GetSlosSloQueryGrafanaQueriesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloQueryGrafanaQueries)(nil)).Elem()
+}
+
+func (i GetSlosSloQueryGrafanaQueriesArgs) ToGetSlosSloQueryGrafanaQueriesOutput() GetSlosSloQueryGrafanaQueriesOutput {
+	return i.ToGetSlosSloQueryGrafanaQueriesOutputWithContext(context.Background())
+}
+
+func (i GetSlosSloQueryGrafanaQueriesArgs) ToGetSlosSloQueryGrafanaQueriesOutputWithContext(ctx context.Context) GetSlosSloQueryGrafanaQueriesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloQueryGrafanaQueriesOutput)
+}
+
+func (i GetSlosSloQueryGrafanaQueriesArgs) ToGetSlosSloQueryGrafanaQueriesPtrOutput() GetSlosSloQueryGrafanaQueriesPtrOutput {
+	return i.ToGetSlosSloQueryGrafanaQueriesPtrOutputWithContext(context.Background())
+}
+
+func (i GetSlosSloQueryGrafanaQueriesArgs) ToGetSlosSloQueryGrafanaQueriesPtrOutputWithContext(ctx context.Context) GetSlosSloQueryGrafanaQueriesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloQueryGrafanaQueriesOutput).ToGetSlosSloQueryGrafanaQueriesPtrOutputWithContext(ctx)
+}
+
+// GetSlosSloQueryGrafanaQueriesPtrInput is an input type that accepts GetSlosSloQueryGrafanaQueriesArgs, GetSlosSloQueryGrafanaQueriesPtr and GetSlosSloQueryGrafanaQueriesPtrOutput values.
+// You can construct a concrete instance of `GetSlosSloQueryGrafanaQueriesPtrInput` via:
+//
+//	        GetSlosSloQueryGrafanaQueriesArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetSlosSloQueryGrafanaQueriesPtrInput interface {
+	pulumi.Input
+
+	ToGetSlosSloQueryGrafanaQueriesPtrOutput() GetSlosSloQueryGrafanaQueriesPtrOutput
+	ToGetSlosSloQueryGrafanaQueriesPtrOutputWithContext(context.Context) GetSlosSloQueryGrafanaQueriesPtrOutput
+}
+
+type getSlosSloQueryGrafanaQueriesPtrType GetSlosSloQueryGrafanaQueriesArgs
+
+func GetSlosSloQueryGrafanaQueriesPtr(v *GetSlosSloQueryGrafanaQueriesArgs) GetSlosSloQueryGrafanaQueriesPtrInput {
+	return (*getSlosSloQueryGrafanaQueriesPtrType)(v)
+}
+
+func (*getSlosSloQueryGrafanaQueriesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetSlosSloQueryGrafanaQueries)(nil)).Elem()
+}
+
+func (i *getSlosSloQueryGrafanaQueriesPtrType) ToGetSlosSloQueryGrafanaQueriesPtrOutput() GetSlosSloQueryGrafanaQueriesPtrOutput {
+	return i.ToGetSlosSloQueryGrafanaQueriesPtrOutputWithContext(context.Background())
+}
+
+func (i *getSlosSloQueryGrafanaQueriesPtrType) ToGetSlosSloQueryGrafanaQueriesPtrOutputWithContext(ctx context.Context) GetSlosSloQueryGrafanaQueriesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloQueryGrafanaQueriesPtrOutput)
+}
+
+type GetSlosSloQueryGrafanaQueriesOutput struct{ *pulumi.OutputState }
+
+func (GetSlosSloQueryGrafanaQueriesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloQueryGrafanaQueries)(nil)).Elem()
+}
+
+func (o GetSlosSloQueryGrafanaQueriesOutput) ToGetSlosSloQueryGrafanaQueriesOutput() GetSlosSloQueryGrafanaQueriesOutput {
+	return o
+}
+
+func (o GetSlosSloQueryGrafanaQueriesOutput) ToGetSlosSloQueryGrafanaQueriesOutputWithContext(ctx context.Context) GetSlosSloQueryGrafanaQueriesOutput {
+	return o
+}
+
+func (o GetSlosSloQueryGrafanaQueriesOutput) ToGetSlosSloQueryGrafanaQueriesPtrOutput() GetSlosSloQueryGrafanaQueriesPtrOutput {
+	return o.ToGetSlosSloQueryGrafanaQueriesPtrOutputWithContext(context.Background())
+}
+
+func (o GetSlosSloQueryGrafanaQueriesOutput) ToGetSlosSloQueryGrafanaQueriesPtrOutputWithContext(ctx context.Context) GetSlosSloQueryGrafanaQueriesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetSlosSloQueryGrafanaQueries) *GetSlosSloQueryGrafanaQueries {
+		return &v
+	}).(GetSlosSloQueryGrafanaQueriesPtrOutput)
+}
+
+// Query Object - Array of Grafana Query JSON objects
+func (o GetSlosSloQueryGrafanaQueriesOutput) GrafanaQueries() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloQueryGrafanaQueries) string { return v.GrafanaQueries }).(pulumi.StringOutput)
+}
+
+type GetSlosSloQueryGrafanaQueriesPtrOutput struct{ *pulumi.OutputState }
+
+func (GetSlosSloQueryGrafanaQueriesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetSlosSloQueryGrafanaQueries)(nil)).Elem()
+}
+
+func (o GetSlosSloQueryGrafanaQueriesPtrOutput) ToGetSlosSloQueryGrafanaQueriesPtrOutput() GetSlosSloQueryGrafanaQueriesPtrOutput {
+	return o
+}
+
+func (o GetSlosSloQueryGrafanaQueriesPtrOutput) ToGetSlosSloQueryGrafanaQueriesPtrOutputWithContext(ctx context.Context) GetSlosSloQueryGrafanaQueriesPtrOutput {
+	return o
+}
+
+func (o GetSlosSloQueryGrafanaQueriesPtrOutput) Elem() GetSlosSloQueryGrafanaQueriesOutput {
+	return o.ApplyT(func(v *GetSlosSloQueryGrafanaQueries) GetSlosSloQueryGrafanaQueries {
+		if v != nil {
+			return *v
+		}
+		var ret GetSlosSloQueryGrafanaQueries
+		return ret
+	}).(GetSlosSloQueryGrafanaQueriesOutput)
+}
+
+// Query Object - Array of Grafana Query JSON objects
+func (o GetSlosSloQueryGrafanaQueriesPtrOutput) GrafanaQueries() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetSlosSloQueryGrafanaQueries) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.GrafanaQueries
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -23437,6 +23729,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOQueryArrayInput)(nil)).Elem(), SLOQueryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOQueryFreeformInput)(nil)).Elem(), SLOQueryFreeformArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOQueryFreeformPtrInput)(nil)).Elem(), SLOQueryFreeformArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOQueryGrafanaQueriesInput)(nil)).Elem(), SLOQueryGrafanaQueriesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOQueryGrafanaQueriesPtrInput)(nil)).Elem(), SLOQueryGrafanaQueriesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOQueryRatioInput)(nil)).Elem(), SLOQueryRatioArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOQueryRatioPtrInput)(nil)).Elem(), SLOQueryRatioArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountPermissionPermissionInput)(nil)).Elem(), ServiceAccountPermissionPermissionArgs{})
@@ -23551,6 +23845,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloQueryArrayInput)(nil)).Elem(), GetSlosSloQueryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloQueryFreeformInput)(nil)).Elem(), GetSlosSloQueryFreeformArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloQueryFreeformPtrInput)(nil)).Elem(), GetSlosSloQueryFreeformArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloQueryGrafanaQueriesInput)(nil)).Elem(), GetSlosSloQueryGrafanaQueriesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloQueryGrafanaQueriesPtrInput)(nil)).Elem(), GetSlosSloQueryGrafanaQueriesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloQueryRatioInput)(nil)).Elem(), GetSlosSloQueryRatioArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloQueryRatioPtrInput)(nil)).Elem(), GetSlosSloQueryRatioArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamPreferenceInput)(nil)).Elem(), GetTeamPreferenceArgs{})
@@ -23724,6 +24020,8 @@ func init() {
 	pulumi.RegisterOutputType(SLOQueryArrayOutput{})
 	pulumi.RegisterOutputType(SLOQueryFreeformOutput{})
 	pulumi.RegisterOutputType(SLOQueryFreeformPtrOutput{})
+	pulumi.RegisterOutputType(SLOQueryGrafanaQueriesOutput{})
+	pulumi.RegisterOutputType(SLOQueryGrafanaQueriesPtrOutput{})
 	pulumi.RegisterOutputType(SLOQueryRatioOutput{})
 	pulumi.RegisterOutputType(SLOQueryRatioPtrOutput{})
 	pulumi.RegisterOutputType(ServiceAccountPermissionPermissionOutput{})
@@ -23838,6 +24136,8 @@ func init() {
 	pulumi.RegisterOutputType(GetSlosSloQueryArrayOutput{})
 	pulumi.RegisterOutputType(GetSlosSloQueryFreeformOutput{})
 	pulumi.RegisterOutputType(GetSlosSloQueryFreeformPtrOutput{})
+	pulumi.RegisterOutputType(GetSlosSloQueryGrafanaQueriesOutput{})
+	pulumi.RegisterOutputType(GetSlosSloQueryGrafanaQueriesPtrOutput{})
 	pulumi.RegisterOutputType(GetSlosSloQueryRatioOutput{})
 	pulumi.RegisterOutputType(GetSlosSloQueryRatioPtrOutput{})
 	pulumi.RegisterOutputType(GetTeamPreferenceOutput{})

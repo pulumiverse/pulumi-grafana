@@ -363,7 +363,66 @@ class SLO(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
+        ### Ratio
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        ratio = grafana.slo.SLO("ratio",
+            name="Terraform Testing - Ratio Query",
+            description="Terraform Description - Ratio Query",
+            queries=[{
+                "ratio": {
+                    "success_metric": "kubelet_http_requests_total{status!~\\"5..\\"}",
+                    "total_metric": "kubelet_http_requests_total",
+                    "group_by_labels": [
+                        "job",
+                        "instance",
+                    ],
+                },
+                "type": "ratio",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            alertings=[{
+                "fastburns": [{
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate Very High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
+                    ],
+                }],
+                "slowburns": [{
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
+                    ],
+                }],
+            }])
+        ```
+
+        ### Advanced
 
         ```python
         import pulumi
@@ -417,33 +476,57 @@ class SLO(pulumi.CustomResource):
             }])
         ```
 
-        ### Advanced
+        ### Grafana Queries - Any supported datasource
+
+        Grafana Queries use the grafana_queries field. It expects a JSON string list of valid grafana query JSON objects, the same as you'll find assigned to a Grafana Dashboard panel `targets` field.
 
         ```python
         import pulumi
+        import json
         import pulumiverse_grafana as grafana
 
         test = grafana.slo.SLO("test",
-            name="Complex Resource - Terraform Ratio Query Example",
-            description="Complex Resource - Terraform Ratio Query Description",
+            name="Terraform Testing",
+            description="Terraform Description",
             queries=[{
-                "ratio": {
-                    "success_metric": "kubelet_http_requests_total{status!~\\"5..\\"}",
-                    "total_metric": "kubelet_http_requests_total",
-                    "group_by_labels": [
-                        "job",
-                        "instance",
-                    ],
+                "grafana_queries": {
+                    "grafana_queries": json.dumps([
+                        {
+                            "datasource": {
+                                "type": "graphite",
+                                "uid": "datasource-uid",
+                            },
+                            "refId": "Success",
+                            "target": "groupByNode(perSecond(web.*.http.2xx_success.*.*), 3, 'avg')",
+                        },
+                        {
+                            "datasource": {
+                                "type": "graphite",
+                                "uid": "datasource-uid",
+                            },
+                            "refId": "Total",
+                            "target": "groupByNode(perSecond(web.*.http.5xx_errors.*.*), 3, 'avg')",
+                        },
+                        {
+                            "datasource": {
+                                "type": "__expr__",
+                                "uid": "__expr__",
+                            },
+                            "expression": "$Success / $Total",
+                            "refId": "Expression",
+                            "type": "math",
+                        },
+                    ]),
                 },
-                "type": "ratio",
-            }],
-            objectives=[{
-                "value": 0.995,
-                "window": "30d",
+                "type": "grafana_queries",
             }],
             destination_datasource={
                 "uid": "grafanacloud-prom",
             },
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
             labels=[{
                 "key": "slo",
                 "value": "terraform",
@@ -460,10 +543,6 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                    "labels": [{
-                        "key": "type",
-                        "value": "slo",
-                    }],
                 }],
                 "slowburns": [{
                     "annotations": [
@@ -476,13 +555,13 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                    "labels": [{
-                        "key": "type",
-                        "value": "slo",
-                    }],
                 }],
             }])
         ```
+
+        For a complete list, see [supported data sources](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/set-up/additionaldatasources/#supported-data-sources).
+
+        For additional help with SLOs, view our [documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/).
 
         ## Import
 
@@ -521,7 +600,66 @@ class SLO(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
+        ### Ratio
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        ratio = grafana.slo.SLO("ratio",
+            name="Terraform Testing - Ratio Query",
+            description="Terraform Description - Ratio Query",
+            queries=[{
+                "ratio": {
+                    "success_metric": "kubelet_http_requests_total{status!~\\"5..\\"}",
+                    "total_metric": "kubelet_http_requests_total",
+                    "group_by_labels": [
+                        "job",
+                        "instance",
+                    ],
+                },
+                "type": "ratio",
+            }],
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
+            destination_datasource={
+                "uid": "grafanacloud-prom",
+            },
+            labels=[{
+                "key": "slo",
+                "value": "terraform",
+            }],
+            alertings=[{
+                "fastburns": [{
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate Very High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
+                    ],
+                }],
+                "slowburns": [{
+                    "annotations": [
+                        {
+                            "key": "name",
+                            "value": "SLO Burn Rate High",
+                        },
+                        {
+                            "key": "description",
+                            "value": "Error budget is burning too fast",
+                        },
+                    ],
+                }],
+            }])
+        ```
+
+        ### Advanced
 
         ```python
         import pulumi
@@ -575,33 +713,57 @@ class SLO(pulumi.CustomResource):
             }])
         ```
 
-        ### Advanced
+        ### Grafana Queries - Any supported datasource
+
+        Grafana Queries use the grafana_queries field. It expects a JSON string list of valid grafana query JSON objects, the same as you'll find assigned to a Grafana Dashboard panel `targets` field.
 
         ```python
         import pulumi
+        import json
         import pulumiverse_grafana as grafana
 
         test = grafana.slo.SLO("test",
-            name="Complex Resource - Terraform Ratio Query Example",
-            description="Complex Resource - Terraform Ratio Query Description",
+            name="Terraform Testing",
+            description="Terraform Description",
             queries=[{
-                "ratio": {
-                    "success_metric": "kubelet_http_requests_total{status!~\\"5..\\"}",
-                    "total_metric": "kubelet_http_requests_total",
-                    "group_by_labels": [
-                        "job",
-                        "instance",
-                    ],
+                "grafana_queries": {
+                    "grafana_queries": json.dumps([
+                        {
+                            "datasource": {
+                                "type": "graphite",
+                                "uid": "datasource-uid",
+                            },
+                            "refId": "Success",
+                            "target": "groupByNode(perSecond(web.*.http.2xx_success.*.*), 3, 'avg')",
+                        },
+                        {
+                            "datasource": {
+                                "type": "graphite",
+                                "uid": "datasource-uid",
+                            },
+                            "refId": "Total",
+                            "target": "groupByNode(perSecond(web.*.http.5xx_errors.*.*), 3, 'avg')",
+                        },
+                        {
+                            "datasource": {
+                                "type": "__expr__",
+                                "uid": "__expr__",
+                            },
+                            "expression": "$Success / $Total",
+                            "refId": "Expression",
+                            "type": "math",
+                        },
+                    ]),
                 },
-                "type": "ratio",
-            }],
-            objectives=[{
-                "value": 0.995,
-                "window": "30d",
+                "type": "grafana_queries",
             }],
             destination_datasource={
                 "uid": "grafanacloud-prom",
             },
+            objectives=[{
+                "value": 0.995,
+                "window": "30d",
+            }],
             labels=[{
                 "key": "slo",
                 "value": "terraform",
@@ -618,10 +780,6 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                    "labels": [{
-                        "key": "type",
-                        "value": "slo",
-                    }],
                 }],
                 "slowburns": [{
                     "annotations": [
@@ -634,13 +792,13 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                    "labels": [{
-                        "key": "type",
-                        "value": "slo",
-                    }],
                 }],
             }])
         ```
+
+        For a complete list, see [supported data sources](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/set-up/additionaldatasources/#supported-data-sources).
+
+        For additional help with SLOs, view our [documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/).
 
         ## Import
 

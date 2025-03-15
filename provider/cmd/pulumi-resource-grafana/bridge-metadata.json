@@ -1141,6 +1141,9 @@
                                 "freeform": {
                                     "maxItemsOne": true
                                 },
+                                "grafana_queries": {
+                                    "maxItemsOne": true
+                                },
                                 "ratio": {
                                     "maxItemsOne": true,
                                     "elem": {
@@ -1937,6 +1940,9 @@
                     }
                 ]
             },
+            "grafana_organization_user": {
+                "current": "grafana:index/getOrganizationUser:getOrganizationUser"
+            },
             "grafana_role": {
                 "current": "grafana:enterprise/getRole:getRole",
                 "past": [
@@ -2032,6 +2038,9 @@
                                     "elem": {
                                         "fields": {
                                             "freeform": {
+                                                "maxItemsOne": true
+                                            },
+                                            "grafana_queries": {
                                                 "maxItemsOne": true
                                             },
                                             "ratio": {
@@ -2769,6 +2778,7 @@
             "grafana:index/getOncallUserGroup:getOncallUserGroup": 0,
             "grafana:index/getOrganization:getOrganization": 0,
             "grafana:index/getOrganizationPreferences:getOrganizationPreferences": 0,
+            "grafana:index/getOrganizationUser:getOrganizationUser": 0,
             "grafana:index/getRole:getRole": 0,
             "grafana:index/getServiceAccount:getServiceAccount": 0,
             "grafana:index/getSlos:getSlos": 0,

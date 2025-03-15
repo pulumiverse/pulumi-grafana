@@ -15,7 +15,67 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### Basic
+ * ### Ratio
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const ratio = new grafana.slo.SLO("ratio", {
+ *     name: "Terraform Testing - Ratio Query",
+ *     description: "Terraform Description - Ratio Query",
+ *     queries: [{
+ *         ratio: {
+ *             successMetric: "kubelet_http_requests_total{status!~\"5..\"}",
+ *             totalMetric: "kubelet_http_requests_total",
+ *             groupByLabels: [
+ *                 "job",
+ *                 "instance",
+ *             ],
+ *         },
+ *         type: "ratio",
+ *     }],
+ *     objectives: [{
+ *         value: 0.995,
+ *         window: "30d",
+ *     }],
+ *     destinationDatasource: {
+ *         uid: "grafanacloud-prom",
+ *     },
+ *     labels: [{
+ *         key: "slo",
+ *         value: "terraform",
+ *     }],
+ *     alertings: [{
+ *         fastburns: [{
+ *             annotations: [
+ *                 {
+ *                     key: "name",
+ *                     value: "SLO Burn Rate Very High",
+ *                 },
+ *                 {
+ *                     key: "description",
+ *                     value: "Error budget is burning too fast",
+ *                 },
+ *             ],
+ *         }],
+ *         slowburns: [{
+ *             annotations: [
+ *                 {
+ *                     key: "name",
+ *                     value: "SLO Burn Rate High",
+ *                 },
+ *                 {
+ *                     key: "description",
+ *                     value: "Error budget is burning too fast",
+ *                 },
+ *             ],
+ *         }],
+ *     }],
+ * });
+ * ```
+ *
+ * ### Advanced
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -70,33 +130,56 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Advanced
+ * ### Grafana Queries - Any supported datasource
+ *
+ * Grafana Queries use the grafanaQueries field. It expects a JSON string list of valid grafana query JSON objects, the same as you'll find assigned to a Grafana Dashboard panel `targets` field.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.slo.SLO("test", {
- *     name: "Complex Resource - Terraform Ratio Query Example",
- *     description: "Complex Resource - Terraform Ratio Query Description",
+ *     name: "Terraform Testing",
+ *     description: "Terraform Description",
  *     queries: [{
- *         ratio: {
- *             successMetric: "kubelet_http_requests_total{status!~\"5..\"}",
- *             totalMetric: "kubelet_http_requests_total",
- *             groupByLabels: [
- *                 "job",
- *                 "instance",
- *             ],
+ *         grafanaQueries: {
+ *             grafanaQueries: JSON.stringify([
+ *                 {
+ *                     datasource: {
+ *                         type: "graphite",
+ *                         uid: "datasource-uid",
+ *                     },
+ *                     refId: "Success",
+ *                     target: "groupByNode(perSecond(web.*.http.2xx_success.*.*), 3, 'avg')",
+ *                 },
+ *                 {
+ *                     datasource: {
+ *                         type: "graphite",
+ *                         uid: "datasource-uid",
+ *                     },
+ *                     refId: "Total",
+ *                     target: "groupByNode(perSecond(web.*.http.5xx_errors.*.*), 3, 'avg')",
+ *                 },
+ *                 {
+ *                     datasource: {
+ *                         type: "__expr__",
+ *                         uid: "__expr__",
+ *                     },
+ *                     expression: "$Success / $Total",
+ *                     refId: "Expression",
+ *                     type: "math",
+ *                 },
+ *             ]),
  *         },
- *         type: "ratio",
- *     }],
- *     objectives: [{
- *         value: 0.995,
- *         window: "30d",
+ *         type: "grafana_queries",
  *     }],
  *     destinationDatasource: {
  *         uid: "grafanacloud-prom",
  *     },
+ *     objectives: [{
+ *         value: 0.995,
+ *         window: "30d",
+ *     }],
  *     labels: [{
  *         key: "slo",
  *         value: "terraform",
@@ -113,10 +196,6 @@ import * as utilities from "./utilities";
  *                     value: "Error budget is burning too fast",
  *                 },
  *             ],
- *             labels: [{
- *                 key: "type",
- *                 value: "slo",
- *             }],
  *         }],
  *         slowburns: [{
  *             annotations: [
@@ -129,14 +208,14 @@ import * as utilities from "./utilities";
  *                     value: "Error budget is burning too fast",
  *                 },
  *             ],
- *             labels: [{
- *                 key: "type",
- *                 value: "slo",
- *             }],
  *         }],
  *     }],
  * });
  * ```
+ *
+ * For a complete list, see [supported data sources](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/set-up/additionaldatasources/#supported-data-sources).
+ *
+ * For additional help with SLOs, view our [documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/).
  *
  * ## Import
  *
