@@ -11,17 +11,17 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Inputs
 {
 
-    public sealed class SLOQueryFreeformGetArgs : global::Pulumi.ResourceArgs
+    public sealed class SLOQueryGrafanaQueriesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Freeform Query Field - valid promQl
+        /// Query Object - Array of Grafana Query JSON objects
         /// </summary>
-        [Input("query", required: true)]
-        public Input<string> Query { get; set; } = null!;
+        [Input("grafanaQueries", required: true)]
+        public Input<string> GrafanaQueries { get; set; } = null!;
 
-        public SLOQueryFreeformGetArgs()
+        public SLOQueryGrafanaQueriesArgs()
         {
         }
-        public static new SLOQueryFreeformGetArgs Empty => new SLOQueryFreeformGetArgs();
+        public static new SLOQueryGrafanaQueriesArgs Empty => new SLOQueryGrafanaQueriesArgs();
     }
 }

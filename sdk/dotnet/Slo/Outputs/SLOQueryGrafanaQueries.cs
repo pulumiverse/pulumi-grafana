@@ -12,17 +12,17 @@ namespace Pulumiverse.Grafana.Slo.Outputs
 {
 
     [OutputType]
-    public sealed class GetSlosSloQueryFreeformResult
+    public sealed class SLOQueryGrafanaQueries
     {
         /// <summary>
-        /// Freeform Query Field - valid promQl
+        /// Query Object - Array of Grafana Query JSON objects
         /// </summary>
-        public readonly string Query;
+        public readonly string GrafanaQueries;
 
         [OutputConstructor]
-        private GetSlosSloQueryFreeformResult(string query)
+        private SLOQueryGrafanaQueries(string grafanaQueries)
         {
-            Query = query;
+            GrafanaQueries = grafanaQueries;
         }
     }
 }

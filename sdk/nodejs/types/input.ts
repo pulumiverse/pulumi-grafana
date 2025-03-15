@@ -1854,18 +1854,29 @@ export interface SLOObjective {
 
 export interface SLOQuery {
     freeform?: pulumi.Input<inputs.SLOQueryFreeform>;
+    /**
+     * Array for holding a set of grafana queries
+     */
+    grafanaQueries?: pulumi.Input<inputs.SLOQueryGrafanaQueries>;
     ratio?: pulumi.Input<inputs.SLOQueryRatio>;
     /**
-     * Query type must be one of: "freeform", "query", "ratio", or "threshold"
+     * Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
      */
     type: pulumi.Input<string>;
 }
 
 export interface SLOQueryFreeform {
     /**
-     * Freeform Query Field
+     * Freeform Query Field - valid promQl
      */
     query: pulumi.Input<string>;
+}
+
+export interface SLOQueryGrafanaQueries {
+    /**
+     * Query Object - Array of Grafana Query JSON objects
+     */
+    grafanaQueries: pulumi.Input<string>;
 }
 
 export interface SLOQueryRatio {
@@ -6350,18 +6361,29 @@ export namespace slo {
 
     export interface SLOQuery {
         freeform?: pulumi.Input<inputs.slo.SLOQueryFreeform>;
+        /**
+         * Array for holding a set of grafana queries
+         */
+        grafanaQueries?: pulumi.Input<inputs.slo.SLOQueryGrafanaQueries>;
         ratio?: pulumi.Input<inputs.slo.SLOQueryRatio>;
         /**
-         * Query type must be one of: "freeform", "query", "ratio", or "threshold"
+         * Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
          */
         type: pulumi.Input<string>;
     }
 
     export interface SLOQueryFreeform {
         /**
-         * Freeform Query Field
+         * Freeform Query Field - valid promQl
          */
         query: pulumi.Input<string>;
+    }
+
+    export interface SLOQueryGrafanaQueries {
+        /**
+         * Query Object - Array of Grafana Query JSON objects
+         */
+        grafanaQueries: pulumi.Input<string>;
     }
 
     export interface SLOQueryRatio {

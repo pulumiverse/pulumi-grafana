@@ -16,11 +16,17 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("freeform")]
         public Input<Inputs.SLOQueryFreeformArgs>? Freeform { get; set; }
 
+        /// <summary>
+        /// Array for holding a set of grafana queries
+        /// </summary>
+        [Input("grafanaQueries")]
+        public Input<Inputs.SLOQueryGrafanaQueriesArgs>? GrafanaQueries { get; set; }
+
         [Input("ratio")]
         public Input<Inputs.SLOQueryRatioArgs>? Ratio { get; set; }
 
         /// <summary>
-        /// Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        /// Query type must be one of: "freeform", "query", "ratio", "grafana_queries" or "threshold"
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
