@@ -19,7 +19,107 @@ namespace Pulumiverse.Grafana.Slo
     /// 
     /// ## Example Usage
     /// 
-    /// ### Basic
+    /// ### Ratio
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var ratio = new Grafana.Slo.SLO("ratio", new()
+    ///     {
+    ///         Name = "Terraform Testing - Ratio Query",
+    ///         Description = "Terraform Description - Ratio Query",
+    ///         Queries = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOQueryArgs
+    ///             {
+    ///                 Ratio = new Grafana.Slo.Inputs.SLOQueryRatioArgs
+    ///                 {
+    ///                     SuccessMetric = "kubelet_http_requests_total{status!~\"5..\"}",
+    ///                     TotalMetric = "kubelet_http_requests_total",
+    ///                     GroupByLabels = new[]
+    ///                     {
+    ///                         "job",
+    ///                         "instance",
+    ///                     },
+    ///                 },
+    ///                 Type = "ratio",
+    ///             },
+    ///         },
+    ///         Objectives = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOObjectiveArgs
+    ///             {
+    ///                 Value = 0.995,
+    ///                 Window = "30d",
+    ///             },
+    ///         },
+    ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
+    ///         {
+    ///             Uid = "grafanacloud-prom",
+    ///         },
+    ///         Labels = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOLabelArgs
+    ///             {
+    ///                 Key = "slo",
+    ///                 Value = "terraform",
+    ///             },
+    ///         },
+    ///         Alertings = new[]
+    ///         {
+    ///             new Grafana.Slo.Inputs.SLOAlertingArgs
+    ///             {
+    ///                 Fastburns = new[]
+    ///                 {
+    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
+    ///                     {
+    ///                         Annotations = new[]
+    ///                         {
+    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
+    ///                             {
+    ///                                 Key = "name",
+    ///                                 Value = "SLO Burn Rate Very High",
+    ///                             },
+    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
+    ///                             {
+    ///                                 Key = "description",
+    ///                                 Value = "Error budget is burning too fast",
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Slowburns = new[]
+    ///                 {
+    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+    ///                     {
+    ///                         Annotations = new[]
+    ///                         {
+    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+    ///                             {
+    ///                                 Key = "name",
+    ///                                 Value = "SLO Burn Rate High",
+    ///                             },
+    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+    ///                             {
+    ///                                 Key = "description",
+    ///                                 Value = "Error budget is burning too fast",
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Advanced
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -113,11 +213,14 @@ namespace Pulumiverse.Grafana.Slo
     /// });
     /// ```
     /// 
-    /// ### Advanced
+    /// ### Grafana Queries - Any supported datasource
+    /// 
+    /// Grafana Queries use the grafana_queries field. It expects a JSON string list of valid grafana query JSON objects, the same as you'll find assigned to a Grafana Dashboard panel `targets` field.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
+    /// using System.Text.Json;
     /// using Pulumi;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
@@ -125,24 +228,55 @@ namespace Pulumiverse.Grafana.Slo
     /// {
     ///     var test = new Grafana.Slo.SLO("test", new()
     ///     {
-    ///         Name = "Complex Resource - Terraform Ratio Query Example",
-    ///         Description = "Complex Resource - Terraform Ratio Query Description",
+    ///         Name = "Terraform Testing",
+    ///         Description = "Terraform Description",
     ///         Queries = new[]
     ///         {
     ///             new Grafana.Slo.Inputs.SLOQueryArgs
     ///             {
-    ///                 Ratio = new Grafana.Slo.Inputs.SLOQueryRatioArgs
+    ///                 GrafanaQueries = new Grafana.Slo.Inputs.SLOQueryGrafanaQueriesArgs
     ///                 {
-    ///                     SuccessMetric = "kubelet_http_requests_total{status!~\"5..\"}",
-    ///                     TotalMetric = "kubelet_http_requests_total",
-    ///                     GroupByLabels = new[]
+    ///                     GrafanaQueries = JsonSerializer.Serialize(new[]
     ///                     {
-    ///                         "job",
-    ///                         "instance",
-    ///                     },
+    ///                         new Dictionary&lt;string, object?&gt;
+    ///                         {
+    ///                             ["datasource"] = new Dictionary&lt;string, object?&gt;
+    ///                             {
+    ///                                 ["type"] = "graphite",
+    ///                                 ["uid"] = "datasource-uid",
+    ///                             },
+    ///                             ["refId"] = "Success",
+    ///                             ["target"] = "groupByNode(perSecond(web.*.http.2xx_success.*.*), 3, 'avg')",
+    ///                         },
+    ///                         new Dictionary&lt;string, object?&gt;
+    ///                         {
+    ///                             ["datasource"] = new Dictionary&lt;string, object?&gt;
+    ///                             {
+    ///                                 ["type"] = "graphite",
+    ///                                 ["uid"] = "datasource-uid",
+    ///                             },
+    ///                             ["refId"] = "Total",
+    ///                             ["target"] = "groupByNode(perSecond(web.*.http.5xx_errors.*.*), 3, 'avg')",
+    ///                         },
+    ///                         new Dictionary&lt;string, object?&gt;
+    ///                         {
+    ///                             ["datasource"] = new Dictionary&lt;string, object?&gt;
+    ///                             {
+    ///                                 ["type"] = "__expr__",
+    ///                                 ["uid"] = "__expr__",
+    ///                             },
+    ///                             ["expression"] = "$Success / $Total",
+    ///                             ["refId"] = "Expression",
+    ///                             ["type"] = "math",
+    ///                         },
+    ///                     }),
     ///                 },
-    ///                 Type = "ratio",
+    ///                 Type = "grafana_queries",
     ///             },
+    ///         },
+    ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
+    ///         {
+    ///             Uid = "grafanacloud-prom",
     ///         },
     ///         Objectives = new[]
     ///         {
@@ -151,10 +285,6 @@ namespace Pulumiverse.Grafana.Slo
     ///                 Value = 0.995,
     ///                 Window = "30d",
     ///             },
-    ///         },
-    ///         DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs
-    ///         {
-    ///             Uid = "grafanacloud-prom",
     ///         },
     ///         Labels = new[]
     ///         {
@@ -185,14 +315,6 @@ namespace Pulumiverse.Grafana.Slo
     ///                                 Value = "Error budget is burning too fast",
     ///                             },
     ///                         },
-    ///                         Labels = new[]
-    ///                         {
-    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnLabelArgs
-    ///                             {
-    ///                                 Key = "type",
-    ///                                 Value = "slo",
-    ///                             },
-    ///                         },
     ///                     },
     ///                 },
     ///                 Slowburns = new[]
@@ -212,14 +334,6 @@ namespace Pulumiverse.Grafana.Slo
     ///                                 Value = "Error budget is burning too fast",
     ///                             },
     ///                         },
-    ///                         Labels = new[]
-    ///                         {
-    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnLabelArgs
-    ///                             {
-    ///                                 Key = "type",
-    ///                                 Value = "slo",
-    ///                             },
-    ///                         },
     ///                     },
     ///                 },
     ///             },
@@ -228,6 +342,10 @@ namespace Pulumiverse.Grafana.Slo
     /// 
     /// });
     /// ```
+    /// 
+    /// For a complete list, see [supported data sources](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/set-up/additionaldatasources/#supported-data-sources).
+    /// 
+    /// For additional help with SLOs, view our [documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/).
     /// 
     /// ## Import
     /// 

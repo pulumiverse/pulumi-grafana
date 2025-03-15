@@ -15,9 +15,13 @@ namespace Pulumiverse.Grafana.Slo.Outputs
     public sealed class GetSlosSloQueryResult
     {
         public readonly Outputs.GetSlosSloQueryFreeformResult? Freeform;
+        /// <summary>
+        /// Array for holding a set of grafana queries
+        /// </summary>
+        public readonly Outputs.GetSlosSloQueryGrafanaQueriesResult? GrafanaQueries;
         public readonly Outputs.GetSlosSloQueryRatioResult? Ratio;
         /// <summary>
-        /// Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        /// Query type must be one of: "freeform", "query", "ratio", "grafana_queries" or "threshold"
         /// </summary>
         public readonly string Type;
 
@@ -25,11 +29,14 @@ namespace Pulumiverse.Grafana.Slo.Outputs
         private GetSlosSloQueryResult(
             Outputs.GetSlosSloQueryFreeformResult? freeform,
 
+            Outputs.GetSlosSloQueryGrafanaQueriesResult? grafanaQueries,
+
             Outputs.GetSlosSloQueryRatioResult? ratio,
 
             string type)
         {
             Freeform = freeform;
+            GrafanaQueries = grafanaQueries;
             Ratio = ratio;
             Type = type;
         }

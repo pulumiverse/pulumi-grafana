@@ -5,9 +5,9 @@ go 1.23
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250221232320-8d4cfd37a3cd
 
 require (
-	github.com/grafana/terraform-provider-grafana/v3 v3.21.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.104.0
-	github.com/pulumi/pulumi/sdk/v3 v3.153.1
+	github.com/grafana/terraform-provider-grafana/v3 v3.22.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.105.0
+	github.com/pulumi/pulumi/sdk/v3 v3.156.0
 )
 
 require (
@@ -101,7 +101,7 @@ require (
 	github.com/googleapis/gax-go/v2 v2.14.1 // indirect
 	github.com/gorilla/mux v1.8.1 // indirect
 	github.com/grafana/amixr-api-go-client v0.0.19 // indirect
-	github.com/grafana/fleet-management-api v0.2.0 // indirect
+	github.com/grafana/fleet-management-api v1.0.0 // indirect
 	github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20250214150112-a52892176c26 // indirect
 	github.com/grafana/grafana-openapi-client-go v0.0.0-20241113095943-9cb2bbfeb8a3 // indirect
 	github.com/grafana/grafana-plugin-sdk-go v0.250.0 // indirect
@@ -109,7 +109,7 @@ require (
 	github.com/grafana/otel-profiling-go v0.5.1 // indirect
 	github.com/grafana/pyroscope-go/godeltaprof v0.1.8 // indirect
 	github.com/grafana/river v0.3.0 // indirect
-	github.com/grafana/slo-openapi-client/go/slo v0.0.0-20240807172758-1b7d00838fc7 // indirect
+	github.com/grafana/slo-openapi-client/go/slo v0.0.0-20250218172929-ab9cae090da6 // indirect
 	github.com/grafana/synthetic-monitoring-agent v0.34.2 // indirect
 	github.com/grafana/synthetic-monitoring-api-go-client v0.11.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.0.1 // indirect
@@ -203,7 +203,7 @@ require (
 	github.com/pulumi/inflector v0.1.1 // indirect
 	github.com/pulumi/pulumi-java/pkg v0.19.0 // indirect
 	github.com/pulumi/pulumi-yaml v1.12.0 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.153.1 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.156.0 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.2 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect

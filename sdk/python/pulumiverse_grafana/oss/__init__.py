@@ -24,6 +24,7 @@ from .get_library_panel import *
 from .get_library_panels import *
 from .get_organization import *
 from .get_organization_preferences import *
+from .get_organization_user import *
 from .get_service_account import *
 from .get_team import *
 from .get_user import *

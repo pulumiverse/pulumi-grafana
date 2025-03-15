@@ -1220,18 +1220,29 @@ export interface GetSlosSloObjective {
 
 export interface GetSlosSloQuery {
     freeform?: outputs.GetSlosSloQueryFreeform;
+    /**
+     * Array for holding a set of grafana queries
+     */
+    grafanaQueries?: outputs.GetSlosSloQueryGrafanaQueries;
     ratio?: outputs.GetSlosSloQueryRatio;
     /**
-     * Query type must be one of: "freeform", "query", "ratio", or "threshold"
+     * Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
      */
     type: string;
 }
 
 export interface GetSlosSloQueryFreeform {
     /**
-     * Freeform Query Field
+     * Freeform Query Field - valid promQl
      */
     query: string;
+}
+
+export interface GetSlosSloQueryGrafanaQueries {
+    /**
+     * Query Object - Array of Grafana Query JSON objects
+     */
+    grafanaQueries: string;
 }
 
 export interface GetSlosSloQueryRatio {
@@ -2169,18 +2180,29 @@ export interface SLOObjective {
 
 export interface SLOQuery {
     freeform?: outputs.SLOQueryFreeform;
+    /**
+     * Array for holding a set of grafana queries
+     */
+    grafanaQueries?: outputs.SLOQueryGrafanaQueries;
     ratio?: outputs.SLOQueryRatio;
     /**
-     * Query type must be one of: "freeform", "query", "ratio", or "threshold"
+     * Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
      */
     type: string;
 }
 
 export interface SLOQueryFreeform {
     /**
-     * Freeform Query Field
+     * Freeform Query Field - valid promQl
      */
     query: string;
+}
+
+export interface SLOQueryGrafanaQueries {
+    /**
+     * Query Object - Array of Grafana Query JSON objects
+     */
+    grafanaQueries: string;
 }
 
 export interface SLOQueryRatio {
@@ -6391,18 +6413,29 @@ export namespace slo {
 
     export interface GetSlosSloQuery {
         freeform?: outputs.slo.GetSlosSloQueryFreeform;
+        /**
+         * Array for holding a set of grafana queries
+         */
+        grafanaQueries?: outputs.slo.GetSlosSloQueryGrafanaQueries;
         ratio?: outputs.slo.GetSlosSloQueryRatio;
         /**
-         * Query type must be one of: "freeform", "query", "ratio", or "threshold"
+         * Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
          */
         type: string;
     }
 
     export interface GetSlosSloQueryFreeform {
         /**
-         * Freeform Query Field
+         * Freeform Query Field - valid promQl
          */
         query: string;
+    }
+
+    export interface GetSlosSloQueryGrafanaQueries {
+        /**
+         * Query Object - Array of Grafana Query JSON objects
+         */
+        grafanaQueries: string;
     }
 
     export interface GetSlosSloQueryRatio {
@@ -6569,18 +6602,29 @@ export namespace slo {
 
     export interface SLOQuery {
         freeform?: outputs.slo.SLOQueryFreeform;
+        /**
+         * Array for holding a set of grafana queries
+         */
+        grafanaQueries?: outputs.slo.SLOQueryGrafanaQueries;
         ratio?: outputs.slo.SLOQueryRatio;
         /**
-         * Query type must be one of: "freeform", "query", "ratio", or "threshold"
+         * Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
          */
         type: string;
     }
 
     export interface SLOQueryFreeform {
         /**
-         * Freeform Query Field
+         * Freeform Query Field - valid promQl
          */
         query: string;
+    }
+
+    export interface SLOQueryGrafanaQueries {
+        /**
+         * Query Object - Array of Grafana Query JSON objects
+         */
+        grafanaQueries: string;
     }
 
     export interface SLOQueryRatio {

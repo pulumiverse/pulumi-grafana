@@ -180,6 +180,7 @@
         "oss/getLibraryPanels.ts",
         "oss/getOrganization.ts",
         "oss/getOrganizationPreferences.ts",
+        "oss/getOrganizationUser.ts",
         "oss/getServiceAccount.ts",
         "oss/getTeam.ts",
         "oss/getUser.ts",

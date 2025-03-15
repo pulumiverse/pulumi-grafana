@@ -100,6 +100,11 @@ export const getOrganizationPreferences: typeof import("./getOrganizationPrefere
 export const getOrganizationPreferencesOutput: typeof import("./getOrganizationPreferences").getOrganizationPreferencesOutput = null as any;
 utilities.lazyLoad(exports, ["getOrganizationPreferences","getOrganizationPreferencesOutput"], () => require("./getOrganizationPreferences"));
 
+export { GetOrganizationUserArgs, GetOrganizationUserResult, GetOrganizationUserOutputArgs } from "./getOrganizationUser";
+export const getOrganizationUser: typeof import("./getOrganizationUser").getOrganizationUser = null as any;
+export const getOrganizationUserOutput: typeof import("./getOrganizationUser").getOrganizationUserOutput = null as any;
+utilities.lazyLoad(exports, ["getOrganizationUser","getOrganizationUserOutput"], () => require("./getOrganizationUser"));
+
 export { GetServiceAccountArgs, GetServiceAccountResult, GetServiceAccountOutputArgs } from "./getServiceAccount";
 export const getServiceAccount: typeof import("./getServiceAccount").getServiceAccount = null as any;
 export const getServiceAccountOutput: typeof import("./getServiceAccount").getServiceAccountOutput = null as any;

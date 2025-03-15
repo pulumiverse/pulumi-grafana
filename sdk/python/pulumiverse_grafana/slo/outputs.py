@@ -31,6 +31,7 @@ __all__ = [
     'SLOObjective',
     'SLOQuery',
     'SLOQueryFreeform',
+    'SLOQueryGrafanaQueries',
     'SLOQueryRatio',
     'GetSlosSloResult',
     'GetSlosSloAlertingResult',
@@ -48,6 +49,7 @@ __all__ = [
     'GetSlosSloObjectiveResult',
     'GetSlosSloQueryResult',
     'GetSlosSloQueryFreeformResult',
+    'GetSlosSloQueryGrafanaQueriesResult',
     'GetSlosSloQueryRatioResult',
 ]
 
@@ -485,16 +487,37 @@ class SLOObjective(dict):
 
 @pulumi.output_type
 class SLOQuery(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "grafanaQueries":
+            suggest = "grafana_queries"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SLOQuery. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SLOQuery.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SLOQuery.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  type: str,
                  freeform: Optional['outputs.SLOQueryFreeform'] = None,
+                 grafana_queries: Optional['outputs.SLOQueryGrafanaQueries'] = None,
                  ratio: Optional['outputs.SLOQueryRatio'] = None):
         """
-        :param str type: Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        :param str type: Query type must be one of: "freeform", "query", "ratio", "grafana_queries" or "threshold"
+        :param 'SLOQueryGrafanaQueriesArgs' grafana_queries: Array for holding a set of grafana queries
         """
         pulumi.set(__self__, "type", type)
         if freeform is not None:
             pulumi.set(__self__, "freeform", freeform)
+        if grafana_queries is not None:
+            pulumi.set(__self__, "grafana_queries", grafana_queries)
         if ratio is not None:
             pulumi.set(__self__, "ratio", ratio)
 
@@ -502,7 +525,7 @@ class SLOQuery(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        Query type must be one of: "freeform", "query", "ratio", "grafana_queries" or "threshold"
         """
         return pulumi.get(self, "type")
 
@@ -510,6 +533,14 @@ class SLOQuery(dict):
     @pulumi.getter
     def freeform(self) -> Optional['outputs.SLOQueryFreeform']:
         return pulumi.get(self, "freeform")
+
+    @property
+    @pulumi.getter(name="grafanaQueries")
+    def grafana_queries(self) -> Optional['outputs.SLOQueryGrafanaQueries']:
+        """
+        Array for holding a set of grafana queries
+        """
+        return pulumi.get(self, "grafana_queries")
 
     @property
     @pulumi.getter
@@ -522,7 +553,7 @@ class SLOQueryFreeform(dict):
     def __init__(__self__, *,
                  query: str):
         """
-        :param str query: Freeform Query Field
+        :param str query: Freeform Query Field - valid promQl
         """
         pulumi.set(__self__, "query", query)
 
@@ -530,9 +561,44 @@ class SLOQueryFreeform(dict):
     @pulumi.getter
     def query(self) -> str:
         """
-        Freeform Query Field
+        Freeform Query Field - valid promQl
         """
         return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class SLOQueryGrafanaQueries(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "grafanaQueries":
+            suggest = "grafana_queries"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SLOQueryGrafanaQueries. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SLOQueryGrafanaQueries.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SLOQueryGrafanaQueries.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 grafana_queries: str):
+        """
+        :param str grafana_queries: Query Object - Array of Grafana Query JSON objects
+        """
+        pulumi.set(__self__, "grafana_queries", grafana_queries)
+
+    @property
+    @pulumi.getter(name="grafanaQueries")
+    def grafana_queries(self) -> str:
+        """
+        Query Object - Array of Grafana Query JSON objects
+        """
+        return pulumi.get(self, "grafana_queries")
 
 
 @pulumi.output_type
@@ -1125,13 +1191,17 @@ class GetSlosSloQueryResult(dict):
     def __init__(__self__, *,
                  type: str,
                  freeform: Optional['outputs.GetSlosSloQueryFreeformResult'] = None,
+                 grafana_queries: Optional['outputs.GetSlosSloQueryGrafanaQueriesResult'] = None,
                  ratio: Optional['outputs.GetSlosSloQueryRatioResult'] = None):
         """
-        :param str type: Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        :param str type: Query type must be one of: "freeform", "query", "ratio", "grafana_queries" or "threshold"
+        :param 'GetSlosSloQueryGrafanaQueriesArgs' grafana_queries: Array for holding a set of grafana queries
         """
         pulumi.set(__self__, "type", type)
         if freeform is not None:
             pulumi.set(__self__, "freeform", freeform)
+        if grafana_queries is not None:
+            pulumi.set(__self__, "grafana_queries", grafana_queries)
         if ratio is not None:
             pulumi.set(__self__, "ratio", ratio)
 
@@ -1139,7 +1209,7 @@ class GetSlosSloQueryResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        Query type must be one of: "freeform", "query", "ratio", or "threshold"
+        Query type must be one of: "freeform", "query", "ratio", "grafana_queries" or "threshold"
         """
         return pulumi.get(self, "type")
 
@@ -1147,6 +1217,14 @@ class GetSlosSloQueryResult(dict):
     @pulumi.getter
     def freeform(self) -> Optional['outputs.GetSlosSloQueryFreeformResult']:
         return pulumi.get(self, "freeform")
+
+    @property
+    @pulumi.getter(name="grafanaQueries")
+    def grafana_queries(self) -> Optional['outputs.GetSlosSloQueryGrafanaQueriesResult']:
+        """
+        Array for holding a set of grafana queries
+        """
+        return pulumi.get(self, "grafana_queries")
 
     @property
     @pulumi.getter
@@ -1159,7 +1237,7 @@ class GetSlosSloQueryFreeformResult(dict):
     def __init__(__self__, *,
                  query: str):
         """
-        :param str query: Freeform Query Field
+        :param str query: Freeform Query Field - valid promQl
         """
         pulumi.set(__self__, "query", query)
 
@@ -1167,9 +1245,27 @@ class GetSlosSloQueryFreeformResult(dict):
     @pulumi.getter
     def query(self) -> str:
         """
-        Freeform Query Field
+        Freeform Query Field - valid promQl
         """
         return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class GetSlosSloQueryGrafanaQueriesResult(dict):
+    def __init__(__self__, *,
+                 grafana_queries: str):
+        """
+        :param str grafana_queries: Query Object - Array of Grafana Query JSON objects
+        """
+        pulumi.set(__self__, "grafana_queries", grafana_queries)
+
+    @property
+    @pulumi.getter(name="grafanaQueries")
+    def grafana_queries(self) -> str:
+        """
+        Query Object - Array of Grafana Query JSON objects
+        """
+        return pulumi.get(self, "grafana_queries")
 
 
 @pulumi.output_type
