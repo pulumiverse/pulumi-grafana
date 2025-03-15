@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
@@ -21,10 +21,10 @@ import * as utilities from "./utilities";
  *     login: "test-datasource",
  *     password: "my-password",
  * });
- * const fromEmail = grafana.getOrganizationUserOutput({
+ * const fromEmail = grafana.oss.getOrganizationUserOutput({
  *     email: test.email,
  * });
- * const fromLogin = test.login.apply(login => grafana.getOrganizationUserOutput({
+ * const fromLogin = test.login.apply(login => grafana.oss.getOrganizationUserOutput({
  *     login: login,
  * }));
  * ```
@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
 export function getOrganizationUser(args?: GetOrganizationUserArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationUserResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("grafana:index/getOrganizationUser:getOrganizationUser", {
+    return pulumi.runtime.invoke("grafana:oss/getOrganizationUser:getOrganizationUser", {
         "email": args.email,
         "login": args.login,
         "orgId": args.orgId,
@@ -99,10 +99,10 @@ export interface GetOrganizationUserResult {
  *     login: "test-datasource",
  *     password: "my-password",
  * });
- * const fromEmail = grafana.getOrganizationUserOutput({
+ * const fromEmail = grafana.oss.getOrganizationUserOutput({
  *     email: test.email,
  * });
- * const fromLogin = test.login.apply(login => grafana.getOrganizationUserOutput({
+ * const fromLogin = test.login.apply(login => grafana.oss.getOrganizationUserOutput({
  *     login: login,
  * }));
  * ```
@@ -110,7 +110,7 @@ export interface GetOrganizationUserResult {
 export function getOrganizationUserOutput(args?: GetOrganizationUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOrganizationUserResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("grafana:index/getOrganizationUser:getOrganizationUser", {
+    return pulumi.runtime.invokeOutput("grafana:oss/getOrganizationUser:getOrganizationUser", {
         "email": args.email,
         "login": args.login,
         "orgId": args.orgId,

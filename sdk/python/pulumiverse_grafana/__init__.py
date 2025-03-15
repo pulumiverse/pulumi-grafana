@@ -47,7 +47,6 @@ from .get_oncall_user import *
 from .get_oncall_user_group import *
 from .get_organization import *
 from .get_organization_preferences import *
-from .get_organization_user import *
 from .get_role import *
 from .get_service_account import *
 from .get_slos import *

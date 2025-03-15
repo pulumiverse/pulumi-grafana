@@ -1941,7 +1941,7 @@
                 ]
             },
             "grafana_organization_user": {
-                "current": "grafana:index/getOrganizationUser:getOrganizationUser"
+                "current": "grafana:oss/getOrganizationUser:getOrganizationUser"
             },
             "grafana_role": {
                 "current": "grafana:enterprise/getRole:getRole",
@@ -2778,7 +2778,6 @@
             "grafana:index/getOncallUserGroup:getOncallUserGroup": 0,
             "grafana:index/getOrganization:getOrganization": 0,
             "grafana:index/getOrganizationPreferences:getOrganizationPreferences": 0,
-            "grafana:index/getOrganizationUser:getOrganizationUser": 0,
             "grafana:index/getRole:getRole": 0,
             "grafana:index/getServiceAccount:getServiceAccount": 0,
             "grafana:index/getSlos:getSlos": 0,
@@ -2805,6 +2804,7 @@
             "grafana:oss/getLibraryPanels:getLibraryPanels": 1,
             "grafana:oss/getOrganization:getOrganization": 0,
             "grafana:oss/getOrganizationPreferences:getOrganizationPreferences": 0,
+            "grafana:oss/getOrganizationUser:getOrganizationUser": 0,
             "grafana:oss/getServiceAccount:getServiceAccount": 0,
             "grafana:oss/getTeam:getTeam": 0,
             "grafana:oss/getUser:getUser": 0,

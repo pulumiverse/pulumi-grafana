@@ -12,7 +12,7 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
 __all__ = [
     'GetOrganizationUserResult',
@@ -117,8 +117,8 @@ def get_organization_user(email: Optional[str] = None,
         name="Testing Datasource",
         login="test-datasource",
         password="my-password")
-    from_email = grafana.get_organization_user_output(email=test.email)
-    from_login = test.login.apply(lambda login: grafana.get_organization_user_output(login=login))
+    from_email = grafana.oss.get_organization_user_output(email=test.email)
+    from_login = test.login.apply(lambda login: grafana.oss.get_organization_user_output(login=login))
     ```
 
 
@@ -131,7 +131,7 @@ def get_organization_user(email: Optional[str] = None,
     __args__['login'] = login
     __args__['orgId'] = org_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('grafana:index/getOrganizationUser:getOrganizationUser', __args__, opts=opts, typ=GetOrganizationUserResult).value
+    __ret__ = pulumi.runtime.invoke('grafana:oss/getOrganizationUser:getOrganizationUser', __args__, opts=opts, typ=GetOrganizationUserResult).value
 
     return AwaitableGetOrganizationUserResult(
         email=pulumi.get(__ret__, 'email'),
@@ -159,8 +159,8 @@ def get_organization_user_output(email: Optional[pulumi.Input[Optional[str]]] = 
         name="Testing Datasource",
         login="test-datasource",
         password="my-password")
-    from_email = grafana.get_organization_user_output(email=test.email)
-    from_login = test.login.apply(lambda login: grafana.get_organization_user_output(login=login))
+    from_email = grafana.oss.get_organization_user_output(email=test.email)
+    from_login = test.login.apply(lambda login: grafana.oss.get_organization_user_output(login=login))
     ```
 
 
@@ -173,7 +173,7 @@ def get_organization_user_output(email: Optional[pulumi.Input[Optional[str]]] = 
     __args__['login'] = login
     __args__['orgId'] = org_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('grafana:index/getOrganizationUser:getOrganizationUser', __args__, opts=opts, typ=GetOrganizationUserResult)
+    __ret__ = pulumi.runtime.invoke_output('grafana:oss/getOrganizationUser:getOrganizationUser', __args__, opts=opts, typ=GetOrganizationUserResult)
     return __ret__.apply(lambda __response__: GetOrganizationUserResult(
         email=pulumi.get(__response__, 'email'),
         id=pulumi.get(__response__, 'id'),

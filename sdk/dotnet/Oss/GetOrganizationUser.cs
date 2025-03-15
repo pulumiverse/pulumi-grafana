@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Oss
 {
     public static class GetOrganizationUser
     {
@@ -35,12 +35,12 @@ namespace Pulumiverse.Grafana
         ///         Password = "my-password",
         ///     });
         /// 
-        ///     var fromEmail = Grafana.GetOrganizationUser.Invoke(new()
+        ///     var fromEmail = Grafana.Oss.GetOrganizationUser.Invoke(new()
         ///     {
         ///         Email = test.Email,
         ///     });
         /// 
-        ///     var fromLogin = Grafana.GetOrganizationUser.Invoke(new()
+        ///     var fromLogin = Grafana.Oss.GetOrganizationUser.Invoke(new()
         ///     {
         ///         Login = test.Login,
         ///     });
@@ -49,7 +49,7 @@ namespace Pulumiverse.Grafana
         /// ```
         /// </summary>
         public static Task<GetOrganizationUserResult> InvokeAsync(GetOrganizationUserArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationUserResult>("grafana:index/getOrganizationUser:getOrganizationUser", args ?? new GetOrganizationUserArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationUserResult>("grafana:oss/getOrganizationUser:getOrganizationUser", args ?? new GetOrganizationUserArgs(), options.WithDefaults());
 
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
@@ -74,12 +74,12 @@ namespace Pulumiverse.Grafana
         ///         Password = "my-password",
         ///     });
         /// 
-        ///     var fromEmail = Grafana.GetOrganizationUser.Invoke(new()
+        ///     var fromEmail = Grafana.Oss.GetOrganizationUser.Invoke(new()
         ///     {
         ///         Email = test.Email,
         ///     });
         /// 
-        ///     var fromLogin = Grafana.GetOrganizationUser.Invoke(new()
+        ///     var fromLogin = Grafana.Oss.GetOrganizationUser.Invoke(new()
         ///     {
         ///         Login = test.Login,
         ///     });
@@ -88,7 +88,7 @@ namespace Pulumiverse.Grafana
         /// ```
         /// </summary>
         public static Output<GetOrganizationUserResult> Invoke(GetOrganizationUserInvokeArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationUserResult>("grafana:index/getOrganizationUser:getOrganizationUser", args ?? new GetOrganizationUserInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationUserResult>("grafana:oss/getOrganizationUser:getOrganizationUser", args ?? new GetOrganizationUserInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
@@ -113,12 +113,12 @@ namespace Pulumiverse.Grafana
         ///         Password = "my-password",
         ///     });
         /// 
-        ///     var fromEmail = Grafana.GetOrganizationUser.Invoke(new()
+        ///     var fromEmail = Grafana.Oss.GetOrganizationUser.Invoke(new()
         ///     {
         ///         Email = test.Email,
         ///     });
         /// 
-        ///     var fromLogin = Grafana.GetOrganizationUser.Invoke(new()
+        ///     var fromLogin = Grafana.Oss.GetOrganizationUser.Invoke(new()
         ///     {
         ///         Login = test.Login,
         ///     });
@@ -127,7 +127,7 @@ namespace Pulumiverse.Grafana
         /// ```
         /// </summary>
         public static Output<GetOrganizationUserResult> Invoke(GetOrganizationUserInvokeArgs args, InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationUserResult>("grafana:index/getOrganizationUser:getOrganizationUser", args ?? new GetOrganizationUserInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationUserResult>("grafana:oss/getOrganizationUser:getOrganizationUser", args ?? new GetOrganizationUserInvokeArgs(), options.WithDefaults());
     }
 
 

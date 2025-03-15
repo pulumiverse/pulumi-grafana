@@ -30585,58 +30585,6 @@
                 "type": "object"
             }
         },
-        "grafana:index/getOrganizationUser:getOrganizationUser": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/#get-all-users-within-the-current-organization-lookup)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.oss.User(\"test\", {\n    email: \"test.datasource@example.com\",\n    name: \"Testing Datasource\",\n    login: \"test-datasource\",\n    password: \"my-password\",\n});\nconst fromEmail = grafana.getOrganizationUserOutput({\n    email: test.email,\n});\nconst fromLogin = test.login.apply(login =\u003e grafana.getOrganizationUserOutput({\n    login: login,\n}));\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest = grafana.oss.User(\"test\",\n    email=\"test.datasource@example.com\",\n    name=\"Testing Datasource\",\n    login=\"test-datasource\",\n    password=\"my-password\")\nfrom_email = grafana.get_organization_user_output(email=test.email)\nfrom_login = test.login.apply(lambda login: grafana.get_organization_user_output(login=login))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Oss.User(\"test\", new()\n    {\n        Email = \"test.datasource@example.com\",\n        Name = \"Testing Datasource\",\n        Login = \"test-datasource\",\n        Password = \"my-password\",\n    });\n\n    var fromEmail = Grafana.GetOrganizationUser.Invoke(new()\n    {\n        Email = test.Email,\n    });\n\n    var fromLogin = Grafana.GetOrganizationUser.Invoke(new()\n    {\n        Login = test.Login,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := oss.NewUser(ctx, \"test\", \u0026oss.UserArgs{\n\t\t\tEmail:    pulumi.String(\"test.datasource@example.com\"),\n\t\t\tName:     pulumi.String(\"Testing Datasource\"),\n\t\t\tLogin:    pulumi.String(\"test-datasource\"),\n\t\t\tPassword: pulumi.String(\"my-password\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = grafana.GetOrganizationUserOutput(ctx, grafana.GetOrganizationUserOutputArgs{\n\t\t\tEmail: test.Email,\n\t\t}, nil)\n\t\t_ = test.Login.ApplyT(func(login *string) (grafana.GetOrganizationUserResult, error) {\n\t\t\treturn grafana.GetOrganizationUserResult(interface{}(grafana.GetOrganizationUserOutput(ctx, grafana.GetOrganizationUserOutputArgs{\n\t\t\t\tLogin: login,\n\t\t\t}, nil))), nil\n\t\t}).(grafana.GetOrganizationUserResultOutput)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.User;\nimport com.pulumi.grafana.oss.UserArgs;\nimport com.pulumi.grafana.GrafanaFunctions;\nimport com.pulumi.grafana.inputs.GetOrganizationUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new User(\"test\", UserArgs.builder()\n            .email(\"test.datasource@example.com\")\n            .name(\"Testing Datasource\")\n            .login(\"test-datasource\")\n            .password(\"my-password\")\n            .build());\n\n        final var fromEmail = GrafanaFunctions.getOrganizationUser(GetOrganizationUserArgs.builder()\n            .email(test.email())\n            .build());\n\n        final var fromLogin = GrafanaFunctions.getOrganizationUser(GetOrganizationUserArgs.builder()\n            .login(test.login())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:oss:User\n    properties:\n      email: test.datasource@example.com\n      name: Testing Datasource\n      login: test-datasource\n      password: my-password\nvariables:\n  fromEmail:\n    fn::invoke:\n      function: grafana:getOrganizationUser\n      arguments:\n        email: ${test.email}\n  fromLogin:\n    fn::invoke:\n      function: grafana:getOrganizationUser\n      arguments:\n        login: ${test.login}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
-            "inputs": {
-                "description": "A collection of arguments for invoking getOrganizationUser.\n",
-                "properties": {
-                    "email": {
-                        "type": "string",
-                        "description": "The email address of the Grafana user. Defaults to ``.\n"
-                    },
-                    "login": {
-                        "type": "string",
-                        "description": "The username of the Grafana user. Defaults to ``.\n"
-                    },
-                    "orgId": {
-                        "type": "string",
-                        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n",
-                        "willReplaceOnChanges": true
-                    }
-                },
-                "type": "object"
-            },
-            "outputs": {
-                "description": "A collection of values returned by getOrganizationUser.\n",
-                "properties": {
-                    "email": {
-                        "description": "The email address of the Grafana user. Defaults to ``.\n",
-                        "type": "string"
-                    },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
-                        "type": "string"
-                    },
-                    "login": {
-                        "description": "The username of the Grafana user. Defaults to ``.\n",
-                        "type": "string"
-                    },
-                    "orgId": {
-                        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n",
-                        "type": "string"
-                    },
-                    "userId": {
-                        "description": "The numerical ID of the Grafana user.\n",
-                        "type": "integer"
-                    }
-                },
-                "required": [
-                    "userId",
-                    "id"
-                ],
-                "type": "object"
-            }
-        },
         "grafana:index/getRole:getRole": {
             "deprecationMessage": "grafana.index/getrole.getRole has been deprecated in favor of grafana.enterprise/getrole.getRole",
             "description": "**Note:** This resource is available only with Grafana Enterprise 8.+.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.enterprise.Role(\"test\", {\n    name: \"test-role\",\n    description: \"test-role description\",\n    uid: \"test-ds-role-uid\",\n    version: 1,\n    global: true,\n    hidden: false,\n    permissions: [\n        {\n            action: \"org.users:add\",\n            scope: \"users:*\",\n        },\n        {\n            action: \"org.users:write\",\n            scope: \"users:*\",\n        },\n        {\n            action: \"org.users:read\",\n            scope: \"users:*\",\n        },\n    ],\n});\nconst fromName = grafana.enterprise.getRoleOutput({\n    name: test.name,\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest = grafana.enterprise.Role(\"test\",\n    name=\"test-role\",\n    description=\"test-role description\",\n    uid=\"test-ds-role-uid\",\n    version=1,\n    global_=True,\n    hidden=False,\n    permissions=[\n        {\n            \"action\": \"org.users:add\",\n            \"scope\": \"users:*\",\n        },\n        {\n            \"action\": \"org.users:write\",\n            \"scope\": \"users:*\",\n        },\n        {\n            \"action\": \"org.users:read\",\n            \"scope\": \"users:*\",\n        },\n    ])\nfrom_name = grafana.enterprise.get_role_output(name=test.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Enterprise.Role(\"test\", new()\n    {\n        Name = \"test-role\",\n        Description = \"test-role description\",\n        Uid = \"test-ds-role-uid\",\n        Version = 1,\n        Global = true,\n        Hidden = false,\n        Permissions = new[]\n        {\n            new Grafana.Enterprise.Inputs.RolePermissionArgs\n            {\n                Action = \"org.users:add\",\n                Scope = \"users:*\",\n            },\n            new Grafana.Enterprise.Inputs.RolePermissionArgs\n            {\n                Action = \"org.users:write\",\n                Scope = \"users:*\",\n            },\n            new Grafana.Enterprise.Inputs.RolePermissionArgs\n            {\n                Action = \"org.users:read\",\n                Scope = \"users:*\",\n            },\n        },\n    });\n\n    var fromName = Grafana.Enterprise.GetRole.Invoke(new()\n    {\n        Name = test.Name,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/enterprise\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := enterprise.NewRole(ctx, \"test\", \u0026enterprise.RoleArgs{\n\t\t\tName:        pulumi.String(\"test-role\"),\n\t\t\tDescription: pulumi.String(\"test-role description\"),\n\t\t\tUid:         pulumi.String(\"test-ds-role-uid\"),\n\t\t\tVersion:     pulumi.Int(1),\n\t\t\tGlobal:      pulumi.Bool(true),\n\t\t\tHidden:      pulumi.Bool(false),\n\t\t\tPermissions: enterprise.RolePermissionArray{\n\t\t\t\t\u0026enterprise.RolePermissionArgs{\n\t\t\t\t\tAction: pulumi.String(\"org.users:add\"),\n\t\t\t\t\tScope:  pulumi.String(\"users:*\"),\n\t\t\t\t},\n\t\t\t\t\u0026enterprise.RolePermissionArgs{\n\t\t\t\t\tAction: pulumi.String(\"org.users:write\"),\n\t\t\t\t\tScope:  pulumi.String(\"users:*\"),\n\t\t\t\t},\n\t\t\t\t\u0026enterprise.RolePermissionArgs{\n\t\t\t\t\tAction: pulumi.String(\"org.users:read\"),\n\t\t\t\t\tScope:  pulumi.String(\"users:*\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = enterprise.LookupRoleOutput(ctx, enterprise.GetRoleOutputArgs{\n\t\t\tName: test.Name,\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.enterprise.Role;\nimport com.pulumi.grafana.enterprise.RoleArgs;\nimport com.pulumi.grafana.enterprise.inputs.RolePermissionArgs;\nimport com.pulumi.grafana.enterprise.EnterpriseFunctions;\nimport com.pulumi.grafana.enterprise.inputs.GetRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Role(\"test\", RoleArgs.builder()\n            .name(\"test-role\")\n            .description(\"test-role description\")\n            .uid(\"test-ds-role-uid\")\n            .version(1)\n            .global(true)\n            .hidden(false)\n            .permissions(            \n                RolePermissionArgs.builder()\n                    .action(\"org.users:add\")\n                    .scope(\"users:*\")\n                    .build(),\n                RolePermissionArgs.builder()\n                    .action(\"org.users:write\")\n                    .scope(\"users:*\")\n                    .build(),\n                RolePermissionArgs.builder()\n                    .action(\"org.users:read\")\n                    .scope(\"users:*\")\n                    .build())\n            .build());\n\n        final var fromName = EnterpriseFunctions.getRole(GetRoleArgs.builder()\n            .name(test.name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:enterprise:Role\n    properties:\n      name: test-role\n      description: test-role description\n      uid: test-ds-role-uid\n      version: 1\n      global: true\n      hidden: false\n      permissions:\n        - action: org.users:add\n          scope: users:*\n        - action: org.users:write\n          scope: users:*\n        - action: org.users:read\n          scope: users:*\nvariables:\n  fromName:\n    fn::invoke:\n      function: grafana:enterprise:getRole\n      arguments:\n        name: ${test.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
@@ -31992,6 +31940,58 @@
                     "theme",
                     "timezone",
                     "weekStart",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "grafana:oss/getOrganizationUser:getOrganizationUser": {
+            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/#get-all-users-within-the-current-organization-lookup)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumi/grafana\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.oss.User(\"test\", {\n    email: \"test.datasource@example.com\",\n    name: \"Testing Datasource\",\n    login: \"test-datasource\",\n    password: \"my-password\",\n});\nconst fromEmail = grafana.oss.getOrganizationUserOutput({\n    email: test.email,\n});\nconst fromLogin = test.login.apply(login =\u003e grafana.oss.getOrganizationUserOutput({\n    login: login,\n}));\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest = grafana.oss.User(\"test\",\n    email=\"test.datasource@example.com\",\n    name=\"Testing Datasource\",\n    login=\"test-datasource\",\n    password=\"my-password\")\nfrom_email = grafana.oss.get_organization_user_output(email=test.email)\nfrom_login = test.login.apply(lambda login: grafana.oss.get_organization_user_output(login=login))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Oss.User(\"test\", new()\n    {\n        Email = \"test.datasource@example.com\",\n        Name = \"Testing Datasource\",\n        Login = \"test-datasource\",\n        Password = \"my-password\",\n    });\n\n    var fromEmail = Grafana.Oss.GetOrganizationUser.Invoke(new()\n    {\n        Email = test.Email,\n    });\n\n    var fromLogin = Grafana.Oss.GetOrganizationUser.Invoke(new()\n    {\n        Login = test.Login,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := oss.NewUser(ctx, \"test\", \u0026oss.UserArgs{\n\t\t\tEmail:    pulumi.String(\"test.datasource@example.com\"),\n\t\t\tName:     pulumi.String(\"Testing Datasource\"),\n\t\t\tLogin:    pulumi.String(\"test-datasource\"),\n\t\t\tPassword: pulumi.String(\"my-password\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = oss.GetOrganizationUserOutput(ctx, oss.GetOrganizationUserOutputArgs{\n\t\t\tEmail: test.Email,\n\t\t}, nil)\n\t\t_ = test.Login.ApplyT(func(login *string) (oss.GetOrganizationUserResult, error) {\n\t\t\treturn oss.GetOrganizationUserResult(interface{}(oss.GetOrganizationUserOutput(ctx, oss.GetOrganizationUserOutputArgs{\n\t\t\t\tLogin: login,\n\t\t\t}, nil))), nil\n\t\t}).(oss.GetOrganizationUserResultOutput)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.User;\nimport com.pulumi.grafana.oss.UserArgs;\nimport com.pulumi.grafana.oss.OssFunctions;\nimport com.pulumi.grafana.oss.inputs.GetOrganizationUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new User(\"test\", UserArgs.builder()\n            .email(\"test.datasource@example.com\")\n            .name(\"Testing Datasource\")\n            .login(\"test-datasource\")\n            .password(\"my-password\")\n            .build());\n\n        final var fromEmail = OssFunctions.getOrganizationUser(GetOrganizationUserArgs.builder()\n            .email(test.email())\n            .build());\n\n        final var fromLogin = OssFunctions.getOrganizationUser(GetOrganizationUserArgs.builder()\n            .login(test.login())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:oss:User\n    properties:\n      email: test.datasource@example.com\n      name: Testing Datasource\n      login: test-datasource\n      password: my-password\nvariables:\n  fromEmail:\n    fn::invoke:\n      function: grafana:oss:getOrganizationUser\n      arguments:\n        email: ${test.email}\n  fromLogin:\n    fn::invoke:\n      function: grafana:oss:getOrganizationUser\n      arguments:\n        login: ${test.login}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getOrganizationUser.\n",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "The email address of the Grafana user. Defaults to ``.\n"
+                    },
+                    "login": {
+                        "type": "string",
+                        "description": "The username of the Grafana user. Defaults to ``.\n"
+                    },
+                    "orgId": {
+                        "type": "string",
+                        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getOrganizationUser.\n",
+                "properties": {
+                    "email": {
+                        "description": "The email address of the Grafana user. Defaults to ``.\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "login": {
+                        "description": "The username of the Grafana user. Defaults to ``.\n",
+                        "type": "string"
+                    },
+                    "orgId": {
+                        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n",
+                        "type": "string"
+                    },
+                    "userId": {
+                        "description": "The numerical ID of the Grafana user.\n",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "userId",
                     "id"
                 ],
                 "type": "object"

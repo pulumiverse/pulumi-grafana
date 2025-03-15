@@ -671,6 +671,12 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "organization_preferences.md",
 				},
 			},
+			"grafana_organization_user": {
+				Tok: grafanaDataSource(ossMod, "getOrganizationUser"),
+				Docs: &tfbridge.DocInfo{
+					Source: "organization_user.md",
+				},
+			},
 			"grafana_service_account": {
 				Tok: grafanaDataSource(ossMod, "getServiceAccount"),
 				Docs: &tfbridge.DocInfo{
