@@ -69,6 +69,10 @@ namespace Pulumiverse.Grafana.FrontendObservability
         /// </summary>
         public readonly ImmutableArray<string> AllowedOrigins;
         /// <summary>
+        /// The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+        /// </summary>
+        public readonly string CollectorEndpoint;
+        /// <summary>
         /// The extra attributes to append in each signal.
         /// </summary>
         public readonly ImmutableDictionary<string, string> ExtraLogAttributes;
@@ -84,6 +88,8 @@ namespace Pulumiverse.Grafana.FrontendObservability
         private GetAppResult(
             ImmutableArray<string> allowedOrigins,
 
+            string collectorEndpoint,
+
             ImmutableDictionary<string, string> extraLogAttributes,
 
             int id,
@@ -95,6 +101,7 @@ namespace Pulumiverse.Grafana.FrontendObservability
             int stackId)
         {
             AllowedOrigins = allowedOrigins;
+            CollectorEndpoint = collectorEndpoint;
             ExtraLogAttributes = extraLogAttributes;
             Id = id;
             Name = name;

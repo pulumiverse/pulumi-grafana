@@ -32,6 +32,10 @@ export interface GetAppResult {
      */
     readonly allowedOrigins: string[];
     /**
+     * The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+     */
+    readonly collectorEndpoint: string;
+    /**
      * The extra attributes to append in each signal.
      */
     readonly extraLogAttributes: {[key: string]: string};

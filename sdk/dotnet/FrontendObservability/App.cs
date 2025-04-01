@@ -29,6 +29,12 @@ namespace Pulumiverse.Grafana.FrontendObservability
         public Output<ImmutableArray<string>> AllowedOrigins { get; private set; } = null!;
 
         /// <summary>
+        /// The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+        /// </summary>
+        [Output("collectorEndpoint")]
+        public Output<string> CollectorEndpoint { get; private set; } = null!;
+
+        /// <summary>
         /// The extra attributes to append in each signal.
         /// </summary>
         [Output("extraLogAttributes")]
@@ -154,6 +160,12 @@ namespace Pulumiverse.Grafana.FrontendObservability
             get => _allowedOrigins ?? (_allowedOrigins = new InputList<string>());
             set => _allowedOrigins = value;
         }
+
+        /// <summary>
+        /// The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+        /// </summary>
+        [Input("collectorEndpoint")]
+        public Input<string>? CollectorEndpoint { get; set; }
 
         [Input("extraLogAttributes")]
         private InputMap<string>? _extraLogAttributes;

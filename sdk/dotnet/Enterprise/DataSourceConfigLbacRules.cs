@@ -50,6 +50,26 @@ namespace Pulumiverse.Grafana.Enterprise
     ///         }),
     ///     });
     /// 
+    ///     var testRule = new Grafana.Enterprise.DataSourceConfigLbacRules("test_rule", new()
+    ///     {
+    ///         DatasourceUid = test.Uid,
+    ///         Rules = Output.JsonSerialize(Output.Create(team.TeamUid.Apply(teamUid =&gt; 
+    ///         {
+    ///             { teamUid, new[]
+    ///             {
+    ///                 "{ cluster = \"dev-us-central-0\", namespace = \"hosted-grafana\" }",
+    ///                 "{ foo = \"qux\" }",
+    ///             } },
+    ///         }))),
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             team,
+    ///             test,
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
     /// 

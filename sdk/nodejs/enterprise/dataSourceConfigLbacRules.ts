@@ -32,6 +32,20 @@ import * as utilities from "../utilities";
  *         basicAuthPassword: "password",
  *     }),
  * });
+ * const testRule = new grafana.enterprise.DataSourceConfigLbacRules("test_rule", {
+ *     datasourceUid: test.uid,
+ *     rules: pulumi.jsonStringify(team.teamUid.apply(teamUid => {
+ *         [teamUid]: [
+ *             "{ cluster = \"dev-us-central-0\", namespace = \"hosted-grafana\" }",
+ *             "{ foo = \"qux\" }",
+ *         ],
+ *     })),
+ * }, {
+ *     dependsOn: [
+ *         team,
+ *         test,
+ *     ],
+ * });
  * ```
  *
  * ## Import

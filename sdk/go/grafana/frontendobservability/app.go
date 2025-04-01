@@ -24,6 +24,8 @@ type App struct {
 
 	// A list of allowed origins for CORS.
 	AllowedOrigins pulumi.StringArrayOutput `pulumi:"allowedOrigins"`
+	// The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+	CollectorEndpoint pulumi.StringOutput `pulumi:"collectorEndpoint"`
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes pulumi.StringMapOutput `pulumi:"extraLogAttributes"`
 	Name               pulumi.StringOutput    `pulumi:"name"`
@@ -76,6 +78,8 @@ func GetApp(ctx *pulumi.Context,
 type appState struct {
 	// A list of allowed origins for CORS.
 	AllowedOrigins []string `pulumi:"allowedOrigins"`
+	// The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+	CollectorEndpoint *string `pulumi:"collectorEndpoint"`
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes map[string]string `pulumi:"extraLogAttributes"`
 	Name               *string           `pulumi:"name"`
@@ -87,6 +91,8 @@ type appState struct {
 type AppState struct {
 	// A list of allowed origins for CORS.
 	AllowedOrigins pulumi.StringArrayInput
+	// The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+	CollectorEndpoint pulumi.StringPtrInput
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes pulumi.StringMapInput
 	Name               pulumi.StringPtrInput
@@ -212,6 +218,11 @@ func (o AppOutput) ToAppOutputWithContext(ctx context.Context) AppOutput {
 // A list of allowed origins for CORS.
 func (o AppOutput) AllowedOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *App) pulumi.StringArrayOutput { return v.AllowedOrigins }).(pulumi.StringArrayOutput)
+}
+
+// The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+func (o AppOutput) CollectorEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v *App) pulumi.StringOutput { return v.CollectorEndpoint }).(pulumi.StringOutput)
 }
 
 // The extra attributes to append in each signal.
