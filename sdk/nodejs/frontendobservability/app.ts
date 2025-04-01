@@ -46,6 +46,10 @@ export class App extends pulumi.CustomResource {
      */
     public readonly allowedOrigins!: pulumi.Output<string[]>;
     /**
+     * The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+     */
+    public /*out*/ readonly collectorEndpoint!: pulumi.Output<string>;
+    /**
      * The extra attributes to append in each signal.
      */
     public readonly extraLogAttributes!: pulumi.Output<{[key: string]: string}>;
@@ -70,6 +74,7 @@ export class App extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AppState | undefined;
             resourceInputs["allowedOrigins"] = state ? state.allowedOrigins : undefined;
+            resourceInputs["collectorEndpoint"] = state ? state.collectorEndpoint : undefined;
             resourceInputs["extraLogAttributes"] = state ? state.extraLogAttributes : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["settings"] = state ? state.settings : undefined;
@@ -93,6 +98,7 @@ export class App extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["settings"] = args ? args.settings : undefined;
             resourceInputs["stackId"] = args ? args.stackId : undefined;
+            resourceInputs["collectorEndpoint"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(App.__pulumiType, name, resourceInputs, opts);
@@ -107,6 +113,10 @@ export interface AppState {
      * A list of allowed origins for CORS.
      */
     allowedOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+     */
+    collectorEndpoint?: pulumi.Input<string>;
     /**
      * The extra attributes to append in each signal.
      */

@@ -31,13 +31,14 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/enterprise"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := oss.NewTeam(ctx, "team", &oss.TeamArgs{
+//			team, err := oss.NewTeam(ctx, "team", &oss.TeamArgs{
 //				Name: pulumi.String("Team Name"),
 //			})
 //			if err != nil {
@@ -51,7 +52,7 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = oss.NewDataSource(ctx, "test", &oss.DataSourceArgs{
+//			test, err := oss.NewDataSource(ctx, "test", &oss.DataSourceArgs{
 //				Type:              pulumi.String("loki"),
 //				Name:              pulumi.String("loki-from-terraform"),
 //				Url:               pulumi.String("https://mylokiurl.net"),
@@ -59,6 +60,29 @@ import (
 //				BasicAuthUsername: pulumi.String("username"),
 //				JsonDataEncoded:   pulumi.String(json0),
 //			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = enterprise.NewDataSourceConfigLbacRules(ctx, "test_rule", &enterprise.DataSourceConfigLbacRulesArgs{
+//				DatasourceUid: test.Uid,
+//				Rules: team.TeamUid.ApplyT(func(teamUid string) (pulumi.String, error) {
+//					var _zero pulumi.String
+//					tmpJSON1, err := json.Marshal(map[string][]string{
+//						teamUid: []string{
+//							"{ cluster = \"dev-us-central-0\", namespace = \"hosted-grafana\" }",
+//							"{ foo = \"qux\" }",
+//						},
+//					})
+//					if err != nil {
+//						return _zero, err
+//					}
+//					json1 := string(tmpJSON1)
+//					return pulumi.String(json1), nil
+//				}).(pulumi.StringOutput),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				team,
+//				test,
+//			}))
 //			if err != nil {
 //				return err
 //			}

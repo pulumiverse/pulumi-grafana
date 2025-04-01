@@ -130,6 +130,18 @@ class DataSourceConfigLbacRules(pulumi.CustomResource):
                 "authType": "default",
                 "basicAuthPassword": "password",
             }))
+        test_rule = grafana.enterprise.DataSourceConfigLbacRules("test_rule",
+            datasource_uid=test.uid,
+            rules=pulumi.Output.json_dumps(team.team_uid.apply(lambda team_uid: {
+                team_uid: [
+                    "{ cluster = \\"dev-us-central-0\\", namespace = \\"hosted-grafana\\" }",
+                    "{ foo = \\"qux\\" }",
+                ],
+            })),
+            opts = pulumi.ResourceOptions(depends_on=[
+                    team,
+                    test,
+                ]))
         ```
 
         ## Import
@@ -177,6 +189,18 @@ class DataSourceConfigLbacRules(pulumi.CustomResource):
                 "authType": "default",
                 "basicAuthPassword": "password",
             }))
+        test_rule = grafana.enterprise.DataSourceConfigLbacRules("test_rule",
+            datasource_uid=test.uid,
+            rules=pulumi.Output.json_dumps(team.team_uid.apply(lambda team_uid: {
+                team_uid: [
+                    "{ cluster = \\"dev-us-central-0\\", namespace = \\"hosted-grafana\\" }",
+                    "{ foo = \\"qux\\" }",
+                ],
+            })),
+            opts = pulumi.ResourceOptions(depends_on=[
+                    team,
+                    test,
+                ]))
         ```
 
         ## Import

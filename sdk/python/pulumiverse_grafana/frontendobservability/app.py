@@ -96,6 +96,7 @@ class AppArgs:
 class _AppState:
     def __init__(__self__, *,
                  allowed_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 collector_endpoint: Optional[pulumi.Input[str]] = None,
                  extra_log_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -103,11 +104,14 @@ class _AppState:
         """
         Input properties used for looking up and filtering App resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_origins: A list of allowed origins for CORS.
+        :param pulumi.Input[str] collector_endpoint: The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_log_attributes: The extra attributes to append in each signal.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
         """
         if allowed_origins is not None:
             pulumi.set(__self__, "allowed_origins", allowed_origins)
+        if collector_endpoint is not None:
+            pulumi.set(__self__, "collector_endpoint", collector_endpoint)
         if extra_log_attributes is not None:
             pulumi.set(__self__, "extra_log_attributes", extra_log_attributes)
         if name is not None:
@@ -128,6 +132,18 @@ class _AppState:
     @allowed_origins.setter
     def allowed_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allowed_origins", value)
+
+    @property
+    @pulumi.getter(name="collectorEndpoint")
+    def collector_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+        """
+        return pulumi.get(self, "collector_endpoint")
+
+    @collector_endpoint.setter
+    def collector_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "collector_endpoint", value)
 
     @property
     @pulumi.getter(name="extraLogAttributes")
@@ -255,6 +271,7 @@ class App(pulumi.CustomResource):
             if stack_id is None and not opts.urn:
                 raise TypeError("Missing required property 'stack_id'")
             __props__.__dict__["stack_id"] = stack_id
+            __props__.__dict__["collector_endpoint"] = None
         super(App, __self__).__init__(
             'grafana:frontendObservability/app:App',
             resource_name,
@@ -266,6 +283,7 @@ class App(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             allowed_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            collector_endpoint: Optional[pulumi.Input[str]] = None,
             extra_log_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -278,6 +296,7 @@ class App(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_origins: A list of allowed origins for CORS.
+        :param pulumi.Input[str] collector_endpoint: The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_log_attributes: The extra attributes to append in each signal.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
         """
@@ -286,6 +305,7 @@ class App(pulumi.CustomResource):
         __props__ = _AppState.__new__(_AppState)
 
         __props__.__dict__["allowed_origins"] = allowed_origins
+        __props__.__dict__["collector_endpoint"] = collector_endpoint
         __props__.__dict__["extra_log_attributes"] = extra_log_attributes
         __props__.__dict__["name"] = name
         __props__.__dict__["settings"] = settings
@@ -299,6 +319,14 @@ class App(pulumi.CustomResource):
         A list of allowed origins for CORS.
         """
         return pulumi.get(self, "allowed_origins")
+
+    @property
+    @pulumi.getter(name="collectorEndpoint")
+    def collector_endpoint(self) -> pulumi.Output[str]:
+        """
+        The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+        """
+        return pulumi.get(self, "collector_endpoint")
 
     @property
     @pulumi.getter(name="extraLogAttributes")

@@ -32,6 +32,8 @@ type LookupAppArgs struct {
 type LookupAppResult struct {
 	// A list of allowed origins for CORS.
 	AllowedOrigins []string `pulumi:"allowedOrigins"`
+	// The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+	CollectorEndpoint string `pulumi:"collectorEndpoint"`
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes map[string]string `pulumi:"extraLogAttributes"`
 	Id                 int               `pulumi:"id"`
@@ -78,6 +80,11 @@ func (o LookupAppResultOutput) ToLookupAppResultOutputWithContext(ctx context.Co
 // A list of allowed origins for CORS.
 func (o LookupAppResultOutput) AllowedOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupAppResult) []string { return v.AllowedOrigins }).(pulumi.StringArrayOutput)
+}
+
+// The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+func (o LookupAppResultOutput) CollectorEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAppResult) string { return v.CollectorEndpoint }).(pulumi.StringOutput)
 }
 
 // The extra attributes to append in each signal.

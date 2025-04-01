@@ -302,7 +302,7 @@ class NotificationPolicy(pulumi.CustomResource):
         """
         Sets the global notification policy for Grafana.
 
-        !> This resource manages the entire notification policy tree, and will overwrite any existing policies.
+        !> This resource manages the entire notification policy tree and overwrites its policies. However, it does not overwrite internal policies created when alert rules directly set a contact point for notifications.
 
         * Official documentation
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#notification-policies)
@@ -411,7 +411,7 @@ class NotificationPolicy(pulumi.CustomResource):
         """
         Sets the global notification policy for Grafana.
 
-        !> This resource manages the entire notification policy tree, and will overwrite any existing policies.
+        !> This resource manages the entire notification policy tree and overwrites its policies. However, it does not overwrite internal policies created when alert rules directly set a contact point for notifications.
 
         * Official documentation
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#notification-policies)

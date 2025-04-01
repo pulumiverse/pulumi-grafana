@@ -26,10 +26,13 @@ class GetAppResult:
     """
     A collection of values returned by getApp.
     """
-    def __init__(__self__, allowed_origins=None, extra_log_attributes=None, id=None, name=None, settings=None, stack_id=None):
+    def __init__(__self__, allowed_origins=None, collector_endpoint=None, extra_log_attributes=None, id=None, name=None, settings=None, stack_id=None):
         if allowed_origins and not isinstance(allowed_origins, list):
             raise TypeError("Expected argument 'allowed_origins' to be a list")
         pulumi.set(__self__, "allowed_origins", allowed_origins)
+        if collector_endpoint and not isinstance(collector_endpoint, str):
+            raise TypeError("Expected argument 'collector_endpoint' to be a str")
+        pulumi.set(__self__, "collector_endpoint", collector_endpoint)
         if extra_log_attributes and not isinstance(extra_log_attributes, dict):
             raise TypeError("Expected argument 'extra_log_attributes' to be a dict")
         pulumi.set(__self__, "extra_log_attributes", extra_log_attributes)
@@ -53,6 +56,14 @@ class GetAppResult:
         A list of allowed origins for CORS.
         """
         return pulumi.get(self, "allowed_origins")
+
+    @property
+    @pulumi.getter(name="collectorEndpoint")
+    def collector_endpoint(self) -> str:
+        """
+        The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
+        """
+        return pulumi.get(self, "collector_endpoint")
 
     @property
     @pulumi.getter(name="extraLogAttributes")
@@ -93,6 +104,7 @@ class AwaitableGetAppResult(GetAppResult):
             yield self
         return GetAppResult(
             allowed_origins=self.allowed_origins,
+            collector_endpoint=self.collector_endpoint,
             extra_log_attributes=self.extra_log_attributes,
             id=self.id,
             name=self.name,
@@ -114,6 +126,7 @@ def get_app(name: Optional[str] = None,
 
     return AwaitableGetAppResult(
         allowed_origins=pulumi.get(__ret__, 'allowed_origins'),
+        collector_endpoint=pulumi.get(__ret__, 'collector_endpoint'),
         extra_log_attributes=pulumi.get(__ret__, 'extra_log_attributes'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
@@ -132,6 +145,7 @@ def get_app_output(name: Optional[pulumi.Input[str]] = None,
     __ret__ = pulumi.runtime.invoke_output('grafana:frontendObservability/getApp:getApp', __args__, opts=opts, typ=GetAppResult)
     return __ret__.apply(lambda __response__: GetAppResult(
         allowed_origins=pulumi.get(__response__, 'allowed_origins'),
+        collector_endpoint=pulumi.get(__response__, 'collector_endpoint'),
         extra_log_attributes=pulumi.get(__response__, 'extra_log_attributes'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
