@@ -345,10 +345,8 @@ export type Playlist = import("./playlist").Playlist;
 export const Playlist: typeof import("./playlist").Playlist = null as any;
 utilities.lazyLoad(exports, ["Playlist"], () => require("./playlist"));
 
-export { ProviderArgs } from "./provider";
-export type Provider = import("./provider").Provider;
-export const Provider: typeof import("./provider").Provider = null as any;
-utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+export * from "./provider";
+import { Provider } from "./provider";
 
 export { ReportArgs, ReportState } from "./report";
 export type Report = import("./report").Report;
@@ -443,6 +441,7 @@ import * as cloudprovider from "./cloudprovider";
 import * as config from "./config";
 import * as connections from "./connections";
 import * as enterprise from "./enterprise";
+import * as experimental from "./experimental";
 import * as fleetmanagement from "./fleetmanagement";
 import * as frontendobservability from "./frontendobservability";
 import * as machinelearning from "./machinelearning";
@@ -459,6 +458,7 @@ export {
     config,
     connections,
     enterprise,
+    experimental,
     fleetmanagement,
     frontendobservability,
     machinelearning,

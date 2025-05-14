@@ -44,10 +44,10 @@ import (
 //				return err
 //			}
 //			_ = testAwsAccount.ResourceId.ApplyT(func(resourceId string) (cloudprovider.GetAwsAccountResult, error) {
-//				return cloudprovider.GetAwsAccountResult(interface{}(cloudprovider.GetAwsAccountOutput(ctx, cloudprovider.GetAwsAccountOutputArgs{
+//				return cloudprovider.GetAwsAccountResult(cloudprovider.GetAwsAccount(ctx, &cloudprovider.GetAwsAccountArgs{
 //					StackId:    test.Id,
 //					ResourceId: resourceId,
-//				}, nil))), nil
+//				}, nil)), nil
 //			}).(cloudprovider.GetAwsAccountResultOutput)
 //			return nil
 //		})

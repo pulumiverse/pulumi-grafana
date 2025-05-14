@@ -116,7 +116,8 @@ type MachineLearningOutlierDetector struct {
 	// The algorithm to use and its configuration. See
 	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm MachineLearningOutlierDetectorAlgorithmOutput `pulumi:"algorithm"`
-	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+	// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
 	DatasourceType pulumi.StringOutput `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
 	DatasourceUid pulumi.StringOutput `pulumi:"datasourceUid"`
@@ -180,7 +181,8 @@ type machineLearningOutlierDetectorState struct {
 	// The algorithm to use and its configuration. See
 	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm *MachineLearningOutlierDetectorAlgorithm `pulumi:"algorithm"`
-	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+	// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
 	DatasourceType *string `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
 	DatasourceUid *string `pulumi:"datasourceUid"`
@@ -200,7 +202,8 @@ type MachineLearningOutlierDetectorState struct {
 	// The algorithm to use and its configuration. See
 	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm MachineLearningOutlierDetectorAlgorithmPtrInput
-	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+	// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
 	DatasourceType pulumi.StringPtrInput
 	// The uid of the datasource to query.
 	DatasourceUid pulumi.StringPtrInput
@@ -224,7 +227,8 @@ type machineLearningOutlierDetectorArgs struct {
 	// The algorithm to use and its configuration. See
 	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm MachineLearningOutlierDetectorAlgorithm `pulumi:"algorithm"`
-	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+	// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
 	DatasourceType string `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
 	DatasourceUid string `pulumi:"datasourceUid"`
@@ -245,7 +249,8 @@ type MachineLearningOutlierDetectorArgs struct {
 	// The algorithm to use and its configuration. See
 	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm MachineLearningOutlierDetectorAlgorithmInput
-	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+	// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
 	DatasourceType pulumi.StringInput
 	// The uid of the datasource to query.
 	DatasourceUid pulumi.StringInput
@@ -356,7 +361,8 @@ func (o MachineLearningOutlierDetectorOutput) Algorithm() MachineLearningOutlier
 	}).(MachineLearningOutlierDetectorAlgorithmOutput)
 }
 
-// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
 func (o MachineLearningOutlierDetectorOutput) DatasourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *MachineLearningOutlierDetector) pulumi.StringOutput { return v.DatasourceType }).(pulumi.StringOutput)
 }

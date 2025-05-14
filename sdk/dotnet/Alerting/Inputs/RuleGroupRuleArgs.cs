@@ -17,7 +17,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         private InputMap<string>? _annotations;
 
         /// <summary>
-        /// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
+        /// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
         /// </summary>
         public InputMap<string> Annotations
         {

@@ -109,10 +109,10 @@ import (
 //				return err
 //			}
 //			_ = testAwsCloudwatchScrapeJob.Name.ApplyT(func(name string) (cloudprovider.GetAwsCloudwatchScrapeJobResult, error) {
-//				return cloudprovider.GetAwsCloudwatchScrapeJobResult(interface{}(cloudprovider.GetAwsCloudwatchScrapeJobOutput(ctx, cloudprovider.GetAwsCloudwatchScrapeJobOutputArgs{
+//				return cloudprovider.GetAwsCloudwatchScrapeJobResult(cloudprovider.GetAwsCloudwatchScrapeJob(ctx, &cloudprovider.GetAwsCloudwatchScrapeJobArgs{
 //					StackId: test.Id,
 //					Name:    name,
-//				}, nil))), nil
+//				}, nil)), nil
 //			}).(cloudprovider.GetAwsCloudwatchScrapeJobResultOutput)
 //			return nil
 //		})

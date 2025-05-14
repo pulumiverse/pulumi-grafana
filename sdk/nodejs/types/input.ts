@@ -1584,7 +1584,7 @@ export interface RolePermission {
 
 export interface RuleGroupRule {
     /**
-     * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
+     * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
      */
     annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -4058,7 +4058,7 @@ export namespace alerting {
 
     export interface RuleGroupRule {
         /**
-         * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
+         * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
          */
         annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
@@ -5390,6 +5390,106 @@ export namespace enterprise {
          */
         scope?: pulumi.Input<string>;
     }
+}
+
+export namespace experimental {
+    export interface AppsDashboardV1Alpha1Metadata {
+        /**
+         * The UID of the folder to save the resource in.
+         */
+        folderUid?: pulumi.Input<string>;
+        /**
+         * The unique identifier of the resource.
+         */
+        uid: pulumi.Input<string>;
+        /**
+         * The full URL of the resource.
+         */
+        url?: pulumi.Input<string>;
+        /**
+         * The globally unique identifier of a resource, used by the API for tracking.
+         */
+        uuid?: pulumi.Input<string>;
+        /**
+         * The version of the resource.
+         */
+        version?: pulumi.Input<string>;
+    }
+
+    export interface AppsDashboardV1Alpha1Options {
+        /**
+         * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+         */
+        overwrite?: pulumi.Input<boolean>;
+    }
+
+    export interface AppsDashboardV1Alpha1Spec {
+        /**
+         * The JSON representation of the dashboard spec.
+         */
+        json: pulumi.Input<string>;
+        /**
+         * The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
+         */
+        tags?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The title of the dashboard. If not set, the title will be derived from the JSON spec.
+         */
+        title?: pulumi.Input<string>;
+    }
+
+    export interface AppsPlaylistV0Alpha1Metadata {
+        /**
+         * The UID of the folder to save the resource in.
+         */
+        folderUid?: pulumi.Input<string>;
+        /**
+         * The unique identifier of the resource.
+         */
+        uid: pulumi.Input<string>;
+        /**
+         * The full URL of the resource.
+         */
+        url?: pulumi.Input<string>;
+        /**
+         * The globally unique identifier of a resource, used by the API for tracking.
+         */
+        uuid?: pulumi.Input<string>;
+        /**
+         * The version of the resource.
+         */
+        version?: pulumi.Input<string>;
+    }
+
+    export interface AppsPlaylistV0Alpha1Options {
+        /**
+         * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+         */
+        overwrite?: pulumi.Input<boolean>;
+    }
+
+    export interface AppsPlaylistV0Alpha1Spec {
+        /**
+         * The interval of the playlist.
+         */
+        interval?: pulumi.Input<string>;
+        /**
+         * The items of the playlist.
+         */
+        items: pulumi.Input<pulumi.Input<inputs.experimental.AppsPlaylistV0Alpha1SpecItem>[]>;
+        /**
+         * The title of the playlist.
+         */
+        title: pulumi.Input<string>;
+    }
+
+    export interface AppsPlaylistV0Alpha1SpecItem {
+        type: pulumi.Input<string>;
+        value: pulumi.Input<string>;
+    }
+}
+
+export namespace fleetManagement {
 }
 
 export namespace machineLearning {
