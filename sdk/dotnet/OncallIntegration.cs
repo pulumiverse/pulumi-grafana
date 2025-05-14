@@ -72,6 +72,12 @@ namespace Pulumiverse.Grafana
         public Output<Outputs.OncallIntegrationDefaultRoute> DefaultRoute { get; private set; } = null!;
 
         /// <summary>
+        /// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+        /// </summary>
+        [Output("labels")]
+        public Output<ImmutableArray<ImmutableDictionary<string, string>>> Labels { get; private set; } = null!;
+
+        /// <summary>
         /// The link for using in an integrated tool.
         /// </summary>
         [Output("link")]
@@ -154,6 +160,18 @@ namespace Pulumiverse.Grafana
         [Input("defaultRoute", required: true)]
         public Input<Inputs.OncallIntegrationDefaultRouteArgs> DefaultRoute { get; set; } = null!;
 
+        [Input("labels")]
+        private InputList<ImmutableDictionary<string, string>>? _labels;
+
+        /// <summary>
+        /// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+        /// </summary>
+        public InputList<ImmutableDictionary<string, string>> Labels
+        {
+            get => _labels ?? (_labels = new InputList<ImmutableDictionary<string, string>>());
+            set => _labels = value;
+        }
+
         /// <summary>
         /// The name of the service integration.
         /// </summary>
@@ -191,6 +209,18 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("defaultRoute")]
         public Input<Inputs.OncallIntegrationDefaultRouteGetArgs>? DefaultRoute { get; set; }
+
+        [Input("labels")]
+        private InputList<ImmutableDictionary<string, string>>? _labels;
+
+        /// <summary>
+        /// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+        /// </summary>
+        public InputList<ImmutableDictionary<string, string>> Labels
+        {
+            get => _labels ?? (_labels = new InputList<ImmutableDictionary<string, string>>());
+            set => _labels = value;
+        }
 
         /// <summary>
         /// The link for using in an integrated tool.

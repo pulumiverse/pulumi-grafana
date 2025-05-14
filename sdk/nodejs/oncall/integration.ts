@@ -79,6 +79,10 @@ export class Integration extends pulumi.CustomResource {
      */
     public readonly defaultRoute!: pulumi.Output<outputs.onCall.IntegrationDefaultRoute>;
     /**
+     * A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+     */
+    public readonly labels!: pulumi.Output<{[key: string]: string}[] | undefined>;
+    /**
      * The link for using in an integrated tool.
      */
     public /*out*/ readonly link!: pulumi.Output<string>;
@@ -113,6 +117,7 @@ export class Integration extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as IntegrationState | undefined;
             resourceInputs["defaultRoute"] = state ? state.defaultRoute : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["link"] = state ? state.link : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["teamId"] = state ? state.teamId : undefined;
@@ -127,6 +132,7 @@ export class Integration extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["defaultRoute"] = args ? args.defaultRoute : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["teamId"] = args ? args.teamId : undefined;
             resourceInputs["templates"] = args ? args.templates : undefined;
@@ -148,6 +154,10 @@ export interface IntegrationState {
      * The Default route for all alerts from the given integration
      */
     defaultRoute?: pulumi.Input<inputs.onCall.IntegrationDefaultRoute>;
+    /**
+     * A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+     */
+    labels?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**
      * The link for using in an integrated tool.
      */
@@ -178,6 +188,10 @@ export interface IntegrationArgs {
      * The Default route for all alerts from the given integration
      */
     defaultRoute: pulumi.Input<inputs.onCall.IntegrationDefaultRoute>;
+    /**
+     * A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+     */
+    labels?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**
      * The name of the service integration.
      */
