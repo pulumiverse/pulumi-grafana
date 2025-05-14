@@ -259,7 +259,8 @@ namespace Pulumiverse.Grafana.MachineLearning
         public Output<ImmutableDictionary<string, string>?> CustomLabels { get; private set; } = null!;
 
         /// <summary>
-        /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+        /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+        /// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
         /// </summary>
         [Output("datasourceType")]
         public Output<string> DatasourceType { get; private set; } = null!;
@@ -384,7 +385,8 @@ namespace Pulumiverse.Grafana.MachineLearning
         }
 
         /// <summary>
-        /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+        /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+        /// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
         /// </summary>
         [Input("datasourceType", required: true)]
         public Input<string> DatasourceType { get; set; } = null!;
@@ -484,7 +486,8 @@ namespace Pulumiverse.Grafana.MachineLearning
         }
 
         /// <summary>
-        /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+        /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+        /// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
         /// </summary>
         [Input("datasourceType")]
         public Input<string>? DatasourceType { get; set; }

@@ -108,7 +108,8 @@ namespace Pulumiverse.Grafana.MachineLearning
         public Output<Outputs.OutlierDetectorAlgorithm> Algorithm { get; private set; } = null!;
 
         /// <summary>
-        /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+        /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+        /// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
         /// </summary>
         [Output("datasourceType")]
         public Output<string> DatasourceType { get; private set; } = null!;
@@ -208,7 +209,8 @@ namespace Pulumiverse.Grafana.MachineLearning
         public Input<Inputs.OutlierDetectorAlgorithmArgs> Algorithm { get; set; } = null!;
 
         /// <summary>
-        /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+        /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+        /// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
         /// </summary>
         [Input("datasourceType", required: true)]
         public Input<string> DatasourceType { get; set; } = null!;
@@ -271,7 +273,8 @@ namespace Pulumiverse.Grafana.MachineLearning
         public Input<Inputs.OutlierDetectorAlgorithmGetArgs>? Algorithm { get; set; }
 
         /// <summary>
-        /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+        /// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+        /// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
         /// </summary>
         [Input("datasourceType")]
         public Input<string>? DatasourceType { get; set; }

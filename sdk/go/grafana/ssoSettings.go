@@ -74,8 +74,8 @@ import (
 //				ProviderName: pulumi.String("saml"),
 //				SamlSettings: &oss.SsoSettingsSamlSettingsArgs{
 //					AllowSignUp:             pulumi.Bool(true),
-//					CertificatePath:         pulumi.String("devenv/docker/blocks/auth/saml-enterprise/cert.crt"),
-//					PrivateKeyPath:          pulumi.String("devenv/docker/blocks/auth/saml-enterprise/key.pem"),
+//					CertificatePath:         pulumi.String("/certs/saml.crt"),
+//					PrivateKeyPath:          pulumi.String("/certs/saml.key"),
 //					IdpMetadataUrl:          pulumi.String("https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml"),
 //					SignatureAlgorithm:      pulumi.String("rsa-sha256"),
 //					AssertionAttributeLogin: pulumi.String("login"),

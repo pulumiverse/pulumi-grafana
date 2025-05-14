@@ -321,7 +321,8 @@ type Job struct {
 
 	// An object representing the custom labels added on the forecast.
 	CustomLabels pulumi.StringMapOutput `pulumi:"customLabels"`
-	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+	// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
 	DatasourceType pulumi.StringOutput `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
 	DatasourceUid pulumi.StringOutput `pulumi:"datasourceUid"`
@@ -395,7 +396,8 @@ func GetJob(ctx *pulumi.Context,
 type jobState struct {
 	// An object representing the custom labels added on the forecast.
 	CustomLabels map[string]string `pulumi:"customLabels"`
-	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+	// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
 	DatasourceType *string `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
 	DatasourceUid *string `pulumi:"datasourceUid"`
@@ -422,7 +424,8 @@ type jobState struct {
 type JobState struct {
 	// An object representing the custom labels added on the forecast.
 	CustomLabels pulumi.StringMapInput
-	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+	// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
 	DatasourceType pulumi.StringPtrInput
 	// The uid of the datasource to query.
 	DatasourceUid pulumi.StringPtrInput
@@ -453,7 +456,8 @@ func (JobState) ElementType() reflect.Type {
 type jobArgs struct {
 	// An object representing the custom labels added on the forecast.
 	CustomLabels map[string]string `pulumi:"customLabels"`
-	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+	// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
 	DatasourceType string `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
 	DatasourceUid string `pulumi:"datasourceUid"`
@@ -481,7 +485,8 @@ type jobArgs struct {
 type JobArgs struct {
 	// An object representing the custom labels added on the forecast.
 	CustomLabels pulumi.StringMapInput
-	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+	// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+	// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
 	DatasourceType pulumi.StringInput
 	// The uid of the datasource to query.
 	DatasourceUid pulumi.StringInput
@@ -597,7 +602,8 @@ func (o JobOutput) CustomLabels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringMapOutput { return v.CustomLabels }).(pulumi.StringMapOutput)
 }
 
-// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+// The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+// snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
 func (o JobOutput) DatasourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.DatasourceType }).(pulumi.StringOutput)
 }

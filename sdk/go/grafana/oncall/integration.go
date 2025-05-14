@@ -71,6 +71,8 @@ type Integration struct {
 
 	// The Default route for all alerts from the given integration
 	DefaultRoute IntegrationDefaultRouteOutput `pulumi:"defaultRoute"`
+	// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+	Labels pulumi.StringMapArrayOutput `pulumi:"labels"`
 	// The link for using in an integrated tool.
 	Link pulumi.StringOutput `pulumi:"link"`
 	// The name of the service integration.
@@ -127,6 +129,8 @@ func GetIntegration(ctx *pulumi.Context,
 type integrationState struct {
 	// The Default route for all alerts from the given integration
 	DefaultRoute *IntegrationDefaultRoute `pulumi:"defaultRoute"`
+	// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+	Labels []map[string]string `pulumi:"labels"`
 	// The link for using in an integrated tool.
 	Link *string `pulumi:"link"`
 	// The name of the service integration.
@@ -142,6 +146,8 @@ type integrationState struct {
 type IntegrationState struct {
 	// The Default route for all alerts from the given integration
 	DefaultRoute IntegrationDefaultRoutePtrInput
+	// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+	Labels pulumi.StringMapArrayInput
 	// The link for using in an integrated tool.
 	Link pulumi.StringPtrInput
 	// The name of the service integration.
@@ -161,6 +167,8 @@ func (IntegrationState) ElementType() reflect.Type {
 type integrationArgs struct {
 	// The Default route for all alerts from the given integration
 	DefaultRoute IntegrationDefaultRoute `pulumi:"defaultRoute"`
+	// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+	Labels []map[string]string `pulumi:"labels"`
 	// The name of the service integration.
 	Name *string `pulumi:"name"`
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
@@ -175,6 +183,8 @@ type integrationArgs struct {
 type IntegrationArgs struct {
 	// The Default route for all alerts from the given integration
 	DefaultRoute IntegrationDefaultRouteInput
+	// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+	Labels pulumi.StringMapArrayInput
 	// The name of the service integration.
 	Name pulumi.StringPtrInput
 	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
@@ -275,6 +285,11 @@ func (o IntegrationOutput) ToIntegrationOutputWithContext(ctx context.Context) I
 // The Default route for all alerts from the given integration
 func (o IntegrationOutput) DefaultRoute() IntegrationDefaultRouteOutput {
 	return o.ApplyT(func(v *Integration) IntegrationDefaultRouteOutput { return v.DefaultRoute }).(IntegrationDefaultRouteOutput)
+}
+
+// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+func (o IntegrationOutput) Labels() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v *Integration) pulumi.StringMapArrayOutput { return v.Labels }).(pulumi.StringMapArrayOutput)
 }
 
 // The link for using in an integrated tool.

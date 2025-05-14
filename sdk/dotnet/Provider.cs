@@ -172,6 +172,12 @@ namespace Pulumiverse.Grafana
             merged.Id = id ?? merged.Id;
             return merged;
         }
+
+        /// <summary>
+        /// This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
+        /// </summary>
+        public global::Pulumi.Output<ProviderTerraformConfigResult> TerraformConfig()
+            => global::Pulumi.Deployment.Instance.Call<ProviderTerraformConfigResult>("pulumi:providers:grafana/terraformConfig", CallArgs.Empty, this);
     }
 
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
@@ -357,6 +363,13 @@ namespace Pulumiverse.Grafana
         public Input<string>? OncallUrl { get; set; }
 
         /// <summary>
+        /// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
+        /// `GRAFANA_ORG_ID` environment variable.
+        /// </summary>
+        [Input("orgId", json: true)]
+        public Input<int>? OrgId { get; set; }
+
+        /// <summary>
         /// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
         /// `GRAFANA_RETRIES` environment variable.
         /// </summary>
@@ -401,6 +414,13 @@ namespace Pulumiverse.Grafana
 
         [Input("smUrl")]
         public Input<string>? SmUrl { get; set; }
+
+        /// <summary>
+        /// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID`
+        /// environment variable.
+        /// </summary>
+        [Input("stackId", json: true)]
+        public Input<int>? StackId { get; set; }
 
         /// <summary>
         /// Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
@@ -457,5 +477,20 @@ namespace Pulumiverse.Grafana
             Url = Utilities.GetEnv("GRAFANA_URL");
         }
         public static new ProviderArgs Empty => new ProviderArgs();
+    }
+
+    /// <summary>
+    /// The results of the <see cref="Provider.TerraformConfig"/> method.
+    /// </summary>
+    [OutputType]
+    public sealed class ProviderTerraformConfigResult
+    {
+        public readonly ImmutableDictionary<string, object> Result;
+
+        [OutputConstructor]
+        private ProviderTerraformConfigResult(ImmutableDictionary<string, object> result)
+        {
+            Result = result;
+        }
     }
 }
