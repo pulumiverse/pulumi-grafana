@@ -25,6 +25,11 @@ export const getIntegration: typeof import("./getIntegration").getIntegration = 
 export const getIntegrationOutput: typeof import("./getIntegration").getIntegrationOutput = null as any;
 utilities.lazyLoad(exports, ["getIntegration","getIntegrationOutput"], () => require("./getIntegration"));
 
+export { GetLabelArgs, GetLabelResult, GetLabelOutputArgs } from "./getLabel";
+export const getLabel: typeof import("./getLabel").getLabel = null as any;
+export const getLabelOutput: typeof import("./getLabel").getLabelOutput = null as any;
+utilities.lazyLoad(exports, ["getLabel","getLabelOutput"], () => require("./getLabel"));
+
 export { GetOutgoingWebhookArgs, GetOutgoingWebhookResult, GetOutgoingWebhookOutputArgs } from "./getOutgoingWebhook";
 export const getOutgoingWebhook: typeof import("./getOutgoingWebhook").getOutgoingWebhook = null as any;
 export const getOutgoingWebhookOutput: typeof import("./getOutgoingWebhook").getOutgoingWebhookOutput = null as any;

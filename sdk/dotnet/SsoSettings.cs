@@ -71,8 +71,8 @@ namespace Pulumiverse.Grafana
     ///         SamlSettings = new Grafana.Oss.Inputs.SsoSettingsSamlSettingsArgs
     ///         {
     ///             AllowSignUp = true,
-    ///             CertificatePath = "devenv/docker/blocks/auth/saml-enterprise/cert.crt",
-    ///             PrivateKeyPath = "devenv/docker/blocks/auth/saml-enterprise/key.pem",
+    ///             CertificatePath = "/certs/saml.crt",
+    ///             PrivateKeyPath = "/certs/saml.key",
     ///             IdpMetadataUrl = "https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml",
     ///             SignatureAlgorithm = "rsa-sha256",
     ///             AssertionAttributeLogin = "login",
