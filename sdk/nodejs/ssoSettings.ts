@@ -55,8 +55,8 @@ import * as utilities from "./utilities";
  *     providerName: "saml",
  *     samlSettings: {
  *         allowSignUp: true,
- *         certificatePath: "devenv/docker/blocks/auth/saml-enterprise/cert.crt",
- *         privateKeyPath: "devenv/docker/blocks/auth/saml-enterprise/key.pem",
+ *         certificatePath: "/certs/saml.crt",
+ *         privateKeyPath: "/certs/saml.key",
  *         idpMetadataUrl: "https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml",
  *         signatureAlgorithm: "rsa-sha256",
  *         assertionAttributeLogin: "login",

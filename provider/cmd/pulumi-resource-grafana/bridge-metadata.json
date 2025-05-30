@@ -16,6 +16,30 @@
                     }
                 }
             },
+            "grafana_apps_dashboard_dashboard_v1alpha1": {
+                "current": "grafana:experimental/appsDashboardV1Alpha1:AppsDashboardV1Alpha1",
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "tags": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
+            "grafana_apps_playlist_playlist_v0alpha1": {
+                "current": "grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1",
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "items": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_cloud_access_policy": {
                 "current": "grafana:cloud/accessPolicy:AccessPolicy",
                 "past": [
@@ -724,6 +748,9 @@
                                 }
                             }
                         }
+                    },
+                    "labels": {
+                        "maxItemsOne": false
                     },
                     "templates": {
                         "maxItemsOne": true,
@@ -1758,6 +1785,17 @@
                     }
                 ]
             },
+            "grafana_fleet_management_collector": {
+                "current": "grafana:fleetManagement/getCollector:getCollector"
+            },
+            "grafana_fleet_management_collectors": {
+                "current": "grafana:fleetManagement/getCollectors:getCollectors",
+                "fields": {
+                    "collectors": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "grafana_folder": {
                 "current": "grafana:oss/getFolder:getFolder",
                 "past": [
@@ -1840,6 +1878,9 @@
                         "majorVersion": 0
                     }
                 ]
+            },
+            "grafana_oncall_label": {
+                "current": "grafana:onCall/getLabel:getLabel"
             },
             "grafana_oncall_outgoing_webhook": {
                 "current": "grafana:onCall/getOutgoingWebhook:getOutgoingWebhook",
@@ -2643,6 +2684,8 @@
             "grafana:enterprise/roleAssignment:RoleAssignment": 0,
             "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem": 1,
             "grafana:enterprise/teamExternalGroup:TeamExternalGroup": 0,
+            "grafana:experimental/appsDashboardV1Alpha1:AppsDashboardV1Alpha1": 1,
+            "grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1": 1,
             "grafana:fleetManagement/collector:Collector": 1,
             "grafana:fleetManagement/pipeline:Pipeline": 1,
             "grafana:frontendObservability/app:App": 1,
@@ -2756,6 +2799,8 @@
             "grafana:cloudProvider/getAzureCredential:getAzureCredential": 1,
             "grafana:connections/getMetricsEndpointScrapeJob:getMetricsEndpointScrapeJob": 1,
             "grafana:enterprise/getRole:getRole": 0,
+            "grafana:fleetManagement/getCollector:getCollector": 1,
+            "grafana:fleetManagement/getCollectors:getCollectors": 1,
             "grafana:frontendObservability/getApp:getApp": 1,
             "grafana:index/getCloudIps:getCloudIps": 0,
             "grafana:index/getCloudOrganization:getCloudOrganization": 0,
@@ -2788,6 +2833,7 @@
             "grafana:index/getUsers:getUsers": 0,
             "grafana:onCall/getEscalationChain:getEscalationChain": 0,
             "grafana:onCall/getIntegration:getIntegration": 0,
+            "grafana:onCall/getLabel:getLabel": 1,
             "grafana:onCall/getOutgoingWebhook:getOutgoingWebhook": 0,
             "grafana:onCall/getSchedule:getSchedule": 0,
             "grafana:onCall/getSlackChannel:getSlackChannel": 0,
