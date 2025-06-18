@@ -132,11 +132,13 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["insecureSkipVerify"] = pulumi.output((args ? args.insecureSkipVerify : undefined) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
             resourceInputs["oncallAccessToken"] = (args?.oncallAccessToken ? pulumi.secret(args.oncallAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             resourceInputs["oncallUrl"] = (args ? args.oncallUrl : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
+            resourceInputs["orgId"] = pulumi.output(args ? args.orgId : undefined).apply(JSON.stringify);
             resourceInputs["retries"] = pulumi.output((args ? args.retries : undefined) ?? utilities.getEnvNumber("GRAFANA_RETRIES")).apply(JSON.stringify);
             resourceInputs["retryStatusCodes"] = pulumi.output(args ? args.retryStatusCodes : undefined).apply(JSON.stringify);
             resourceInputs["retryWait"] = pulumi.output((args ? args.retryWait : undefined) ?? utilities.getEnvNumber("GRAFANA_RETRY_WAIT")).apply(JSON.stringify);
             resourceInputs["smAccessToken"] = (args?.smAccessToken ? pulumi.secret(args.smAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_SM_ACCESS_TOKEN");
             resourceInputs["smUrl"] = (args ? args.smUrl : undefined) ?? utilities.getEnv("GRAFANA_SM_URL");
+            resourceInputs["stackId"] = pulumi.output(args ? args.stackId : undefined).apply(JSON.stringify);
             resourceInputs["storeDashboardSha256"] = pulumi.output((args ? args.storeDashboardSha256 : undefined) ?? utilities.getEnvBoolean("GRAFANA_STORE_DASHBOARD_SHA256")).apply(JSON.stringify);
             resourceInputs["tlsCert"] = (args ? args.tlsCert : undefined) ?? utilities.getEnv("GRAFANA_TLS_CERT");
             resourceInputs["tlsKey"] = (args?.tlsKey ? pulumi.secret(args.tlsKey) : undefined) ?? utilities.getEnv("GRAFANA_TLS_KEY");
@@ -146,6 +148,15 @@ export class Provider extends pulumi.ProviderResource {
         const secretOpts = { additionalSecretOutputs: ["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "fleetManagementAuth", "frontendO11yApiAccessToken", "oncallAccessToken", "smAccessToken", "tlsKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
+    }
+
+    /**
+     * This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
+     */
+    terraformConfig(): pulumi.Output<Provider.TerraformConfigResult> {
+        return pulumi.runtime.call("pulumi:providers:grafana/terraformConfig", {
+            "__self__": this,
+        }, this);
     }
 }
 
@@ -224,6 +235,11 @@ export interface ProviderArgs {
      */
     oncallUrl?: pulumi.Input<string>;
     /**
+     * The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
+     * `GRAFANA_ORG_ID` environment variable.
+     */
+    orgId?: pulumi.Input<number>;
+    /**
      * The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
      * `GRAFANA_RETRIES` environment variable.
      */
@@ -244,6 +260,11 @@ export interface ProviderArgs {
     smAccessToken?: pulumi.Input<string>;
     smUrl?: pulumi.Input<string>;
     /**
+     * The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID`
+     * environment variable.
+     */
+    stackId?: pulumi.Input<number>;
+    /**
      * Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
      */
     storeDashboardSha256?: pulumi.Input<boolean>;
@@ -261,4 +282,14 @@ export interface ProviderArgs {
      * The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
      */
     url?: pulumi.Input<string>;
+}
+
+export namespace Provider {
+    /**
+     * The results of the Provider.terraformConfig method.
+     */
+    export interface TerraformConfigResult {
+        readonly result: {[key: string]: any};
+    }
+
 }
