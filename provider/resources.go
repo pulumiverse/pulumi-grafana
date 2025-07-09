@@ -346,6 +346,9 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "role_assignment_item.md",
 				},
 			},
+			"grafana_scim_config": {
+				Tok: grafanaResource(enterpriseMod, "ScimConfig"),
+			},
 			"grafana_team_external_group": {
 				Tok: grafanaResource(enterpriseMod, "TeamExternalGroup"),
 				Aliases: []tfbridge.AliasInfo{
@@ -365,23 +368,6 @@ func Provider() tfbridge.ProviderInfo {
 
 			// Frontend Observability
 			"grafana_frontend_o11y_app": {
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"id": {Type: "string"},
-				},
-			},
-
-			// K6
-			"grafana_k6_project": {
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"id": {Type: "string"},
-				},
-			},
-			"grafana_k6_load_test": {
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"id": {Type: "string"},
-				},
-			},
-			"grafana_k6_project_limits": {
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"id": {Type: "string"},
 				},

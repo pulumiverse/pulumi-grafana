@@ -1960,6 +1960,10 @@
                     },
                     "description": "Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.\n"
                 },
+                "missingSeriesEvalsToResolve": {
+                    "type": "integer",
+                    "description": "The number of missing series evaluations that must occur before the rule is considered to be resolved.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the alert rule.\n"
@@ -2091,6 +2095,10 @@
                 "metric": {
                     "type": "string",
                     "description": "The name of the metric to write to.\n"
+                },
+                "targetDatasourceUid": {
+                    "type": "string",
+                    "description": "The UID of the datasource to write the metric to.\n"
                 }
             },
             "type": "object",
@@ -2164,7 +2172,7 @@
                 },
                 "scrapeIntervalSeconds": {
                     "type": "integer",
-                    "description": "The interval in seconds to scrape the custom namespace.\n"
+                    "description": "The interval in seconds to scrape the custom namespace. Defaults to `300`.\n"
                 }
             },
             "type": "object",
@@ -2222,7 +2230,7 @@
                 },
                 "scrapeIntervalSeconds": {
                     "type": "integer",
-                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
+                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.\n"
                 },
                 "tagsToAddToMetrics": {
                     "type": "array",
@@ -2906,7 +2914,7 @@
                 },
                 "scrapeIntervalSeconds": {
                     "type": "integer",
-                    "description": "The interval in seconds to scrape the custom namespace.\n"
+                    "description": "The interval in seconds to scrape the custom namespace. Defaults to `300`.\n"
                 }
             },
             "type": "object",
@@ -2964,7 +2972,7 @@
                 },
                 "scrapeIntervalSeconds": {
                     "type": "integer",
-                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
+                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.\n"
                 },
                 "tagsToAddToMetrics": {
                     "type": "array",
@@ -3040,7 +3048,7 @@
                 },
                 "scrapeIntervalSeconds": {
                     "type": "integer",
-                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
+                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.\n"
                 }
             },
             "type": "object",
@@ -6223,6 +6231,10 @@
                     },
                     "description": "Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.\n"
                 },
+                "missingSeriesEvalsToResolve": {
+                    "type": "integer",
+                    "description": "The number of missing series evaluations that must occur before the rule is considered to be resolved.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the alert rule.\n"
@@ -6354,6 +6366,10 @@
                 "metric": {
                     "type": "string",
                     "description": "The name of the metric to write to.\n"
+                },
+                "targetDatasourceUid": {
+                    "type": "string",
+                    "description": "The UID of the datasource to write the metric to.\n"
                 }
             },
             "type": "object",
@@ -8551,19 +8567,19 @@
         "grafana:k6/getLoadTestsLoadTest:getLoadTestsLoadTest": {
             "properties": {
                 "baselineTestRunId": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "created": {
                     "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
                 },
                 "projectId": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "script": {
                     "type": "string"
@@ -8597,7 +8613,7 @@
                     "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "isDefault": {
                     "type": "boolean"
@@ -10540,6 +10556,27 @@
                     "requiredInputs": []
                 }
             }
+        },
+        "grafana:syntheticMonitoring/CheckAlertsAlert:CheckAlertsAlert": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the alert. Required.\n"
+                },
+                "period": {
+                    "type": "string",
+                    "description": "Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.\n"
+                },
+                "threshold": {
+                    "type": "number",
+                    "description": "Threshold value for the alert.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "threshold"
+            ]
         },
         "grafana:syntheticMonitoring/CheckSettings:CheckSettings": {
             "properties": {
@@ -13247,11 +13284,11 @@
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
+                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.\n"
                 },
                 "exportTags": {
                     "type": "boolean",
-                    "description": "When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_\u003cservice_name\u003e_info`.\n"
+                    "description": "When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_\u003cservice_name\u003e_info`. Defaults to `true`.\n"
                 },
                 "name": {
                     "type": "string"
@@ -13305,11 +13342,11 @@
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
+                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.\n"
                 },
                 "exportTags": {
                     "type": "boolean",
-                    "description": "When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_\u003cservice_name\u003e_info`.\n"
+                    "description": "When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_\u003cservice_name\u003e_info`. Defaults to `true`.\n"
                 },
                 "name": {
                     "type": "string"
@@ -13363,11 +13400,11 @@
                     },
                     "enabled": {
                         "type": "boolean",
-                        "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
+                        "description": "Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.\n"
                     },
                     "exportTags": {
                         "type": "boolean",
-                        "description": "When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_\u003cservice_name\u003e_info`.\n"
+                        "description": "When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_\u003cservice_name\u003e_info`. Defaults to `true`.\n"
                     },
                     "name": {
                         "type": "string"
@@ -13674,6 +13711,10 @@
                     "type": "string",
                     "description": "Name of stack. Conventionally matches the url of the instance (e.g. `\u003cstack_slug\u003e.grafana.net`).\n"
                 },
+                "oncallApiUrl": {
+                    "type": "string",
+                    "description": "Base URL of the OnCall API instance configured for this stack.\n"
+                },
                 "orgId": {
                     "type": "integer",
                     "description": "Organization id to assign to this stack.\n"
@@ -13852,6 +13893,7 @@
                 "logsUrl",
                 "logsUserId",
                 "name",
+                "oncallApiUrl",
                 "orgId",
                 "orgName",
                 "orgSlug",
@@ -14042,6 +14084,10 @@
                     "name": {
                         "type": "string",
                         "description": "Name of stack. Conventionally matches the url of the instance (e.g. `\u003cstack_slug\u003e.grafana.net`).\n"
+                    },
+                    "oncallApiUrl": {
+                        "type": "string",
+                        "description": "Base URL of the OnCall API instance configured for this stack.\n"
                     },
                     "orgId": {
                         "type": "integer",
@@ -14488,11 +14534,11 @@
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
+                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.\n"
                 },
                 "exportTags": {
                     "type": "boolean",
-                    "description": "When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_\u003cservice_name\u003e_info`.\n"
+                    "description": "When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_\u003cservice_name\u003e_info`. Defaults to `true`.\n"
                 },
                 "name": {
                     "type": "string"
@@ -14546,11 +14592,11 @@
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
+                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.\n"
                 },
                 "exportTags": {
                     "type": "boolean",
-                    "description": "When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_\u003cservice_name\u003e_info`.\n"
+                    "description": "When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_\u003cservice_name\u003e_info`. Defaults to `true`.\n"
                 },
                 "name": {
                     "type": "string"
@@ -14604,11 +14650,11 @@
                     },
                     "enabled": {
                         "type": "boolean",
-                        "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
+                        "description": "Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.\n"
                     },
                     "exportTags": {
                         "type": "boolean",
-                        "description": "When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_\u003cservice_name\u003e_info`.\n"
+                        "description": "When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_\u003cservice_name\u003e_info`. Defaults to `true`.\n"
                     },
                     "name": {
                         "type": "string"
@@ -14659,7 +14705,7 @@
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the AWS Resource Metadata Scrape Job is enabled or not.\n"
+                    "description": "Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.\n"
                 },
                 "name": {
                     "type": "string"
@@ -14705,7 +14751,7 @@
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the AWS Resource Metadata Scrape Job is enabled or not.\n"
+                    "description": "Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.\n"
                 },
                 "name": {
                     "type": "string"
@@ -14752,7 +14798,7 @@
                     },
                     "enabled": {
                         "type": "boolean",
-                        "description": "Whether the AWS Resource Metadata Scrape Job is enabled or not.\n"
+                        "description": "Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.\n"
                     },
                     "name": {
                         "type": "string"
@@ -15873,6 +15919,65 @@
                 }
             ]
         },
+        "grafana:enterprise/scimConfig:ScimConfig": {
+            "description": "**Note:** This resource is available only with Grafana Enterprise.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)\n\n## Import\n\n```sh\n$ pulumi import grafana:enterprise/scimConfig:ScimConfig name \"\"\n```\n\n```sh\n$ pulumi import grafana:enterprise/scimConfig:ScimConfig name \"{{ orgID }}\"\n```\n\n",
+            "properties": {
+                "enableGroupSync": {
+                    "type": "boolean",
+                    "description": "Whether group synchronization is enabled.\n"
+                },
+                "enableUserSync": {
+                    "type": "boolean",
+                    "description": "Whether user synchronization is enabled.\n"
+                },
+                "orgId": {
+                    "type": "string",
+                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                }
+            },
+            "required": [
+                "enableGroupSync",
+                "enableUserSync"
+            ],
+            "inputProperties": {
+                "enableGroupSync": {
+                    "type": "boolean",
+                    "description": "Whether group synchronization is enabled.\n"
+                },
+                "enableUserSync": {
+                    "type": "boolean",
+                    "description": "Whether user synchronization is enabled.\n"
+                },
+                "orgId": {
+                    "type": "string",
+                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "enableGroupSync",
+                "enableUserSync"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ScimConfig resources.\n",
+                "properties": {
+                    "enableGroupSync": {
+                        "type": "boolean",
+                        "description": "Whether group synchronization is enabled.\n"
+                    },
+                    "enableUserSync": {
+                        "type": "boolean",
+                        "description": "Whether user synchronization is enabled.\n"
+                    },
+                    "orgId": {
+                        "type": "string",
+                        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:enterprise/teamExternalGroup:TeamExternalGroup": {
             "description": "Equivalent to the the `team_sync` attribute of the `grafana.oss.Team` resource. Use one or the other to configure a team's external groups syncing config.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst myTeam = new grafana.oss.Team(\"my_team\", {name: \"My Team\"});\nconst test_team_group = new grafana.enterprise.TeamExternalGroup(\"test-team-group\", {\n    teamId: myTeam.id,\n    groups: [\n        \"test-group-1\",\n        \"test-group-2\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nmy_team = grafana.oss.Team(\"my_team\", name=\"My Team\")\ntest_team_group = grafana.enterprise.TeamExternalGroup(\"test-team-group\",\n    team_id=my_team.id,\n    groups=[\n        \"test-group-1\",\n        \"test-group-2\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myTeam = new Grafana.Oss.Team(\"my_team\", new()\n    {\n        Name = \"My Team\",\n    });\n\n    var test_team_group = new Grafana.Enterprise.TeamExternalGroup(\"test-team-group\", new()\n    {\n        TeamId = myTeam.Id,\n        Groups = new[]\n        {\n            \"test-group-1\",\n            \"test-group-2\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/enterprise\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyTeam, err := oss.NewTeam(ctx, \"my_team\", \u0026oss.TeamArgs{\n\t\t\tName: pulumi.String(\"My Team\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = enterprise.NewTeamExternalGroup(ctx, \"test-team-group\", \u0026enterprise.TeamExternalGroupArgs{\n\t\t\tTeamId: myTeam.ID(),\n\t\t\tGroups: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"test-group-1\"),\n\t\t\t\tpulumi.String(\"test-group-2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.Team;\nimport com.pulumi.grafana.oss.TeamArgs;\nimport com.pulumi.grafana.enterprise.TeamExternalGroup;\nimport com.pulumi.grafana.enterprise.TeamExternalGroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myTeam = new Team(\"myTeam\", TeamArgs.builder()\n            .name(\"My Team\")\n            .build());\n\n        var test_team_group = new TeamExternalGroup(\"test-team-group\", TeamExternalGroupArgs.builder()\n            .teamId(myTeam.id())\n            .groups(            \n                \"test-group-1\",\n                \"test-group-2\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myTeam:\n    type: grafana:oss:Team\n    name: my_team\n    properties:\n      name: My Team\n  test-team-group:\n    type: grafana:enterprise:TeamExternalGroup\n    properties:\n      teamId: ${myTeam.id}\n      groups:\n        - test-group-1\n        - test-group-2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:enterprise/teamExternalGroup:TeamExternalGroup name \"{{ teamID }}\"\n```\n\n```sh\n$ pulumi import grafana:enterprise/teamExternalGroup:TeamExternalGroup name \"{{ orgID }}:{{ teamID }}\"\n```\n\n",
             "properties": {
@@ -16162,7 +16267,7 @@
             }
         },
         "grafana:frontendObservability/app:App": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  test-app:\n    type: grafana:frontendObservability:App\n    properties:\n      stackId: ${teststack.id}\n      name: test-app\n      allowedOrigins:\n        - https://grafana.com\n      extraLogAttributes:\n        terraform: 'true'\n      settings:\n        combineLabData: '1'\nvariables:\n  teststack:\n    fn::invoke:\n      function: grafana:cloud:getStack\n      arguments:\n        name: gcloudstacktest\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:frontendObservability/app:App name \"{{ stack_id }}:{{ name }}\"\n```\n\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  test-app:\n    type: grafana:frontendObservability:App\n    properties:\n      stackId: ${teststack.id}\n      name: test-app\n      allowedOrigins:\n        - https://grafana.com\n      extraLogAttributes:\n        terraform: 'true'\n      settings:\n        combineLabData: '1'\n        geolocation.enabled: '1'\n        geolocation.level: '3'\n        geolocation.country_denylist: DE,GR\nvariables:\n  teststack:\n    fn::invoke:\n      function: grafana:cloud:getStack\n      arguments:\n        name: gcloudstacktest\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:frontendObservability/app:App name \"{{ stack_id }}:{{ name }}\"\n```\n\n",
             "properties": {
                 "allowedOrigins": {
                     "type": "array",
@@ -16190,7 +16295,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`\n"
+                    "description": "The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=\u003ccomma-separated-list-of-country-codes\u003e}`\n"
                 },
                 "stackId": {
                     "type": "integer"
@@ -16227,7 +16332,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`\n"
+                    "description": "The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=\u003ccomma-separated-list-of-country-codes\u003e}`\n"
                 },
                 "stackId": {
                     "type": "integer"
@@ -16268,7 +16373,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`\n"
+                        "description": "The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=\u003ccomma-separated-list-of-country-codes\u003e}`\n"
                     },
                     "stackId": {
                         "type": "integer"
@@ -16926,6 +17031,10 @@
                     "type": "string",
                     "description": "Name of stack. Conventionally matches the url of the instance (e.g. `\u003cstack_slug\u003e.grafana.net`).\n"
                 },
+                "oncallApiUrl": {
+                    "type": "string",
+                    "description": "Base URL of the OnCall API instance configured for this stack.\n"
+                },
                 "orgId": {
                     "type": "integer",
                     "description": "Organization id to assign to this stack.\n"
@@ -17104,6 +17213,7 @@
                 "logsUrl",
                 "logsUserId",
                 "name",
+                "oncallApiUrl",
                 "orgId",
                 "orgName",
                 "orgSlug",
@@ -17294,6 +17404,10 @@
                     "name": {
                         "type": "string",
                         "description": "Name of stack. Conventionally matches the url of the instance (e.g. `\u003cstack_slug\u003e.grafana.net`).\n"
+                    },
+                    "oncallApiUrl": {
+                        "type": "string",
+                        "description": "Base URL of the OnCall API instance configured for this stack.\n"
                     },
                     "orgId": {
                         "type": "integer",
@@ -20542,7 +20656,7 @@
             "deprecationMessage": "grafana.index/oncallescalation.OncallEscalation has been deprecated in favor of grafana.oncall/escalation.Escalation"
         },
         "grafana:index/oncallEscalationChain:OncallEscalationChain": {
-            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst _default = new grafana.oncall.EscalationChain(\"default\", {name: \"default\"});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ndefault = grafana.on_call.EscalationChain(\"default\", name=\"default\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = new Grafana.OnCall.EscalationChain(\"default\", new()\n    {\n        Name = \"default\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oncall.NewEscalationChain(ctx, \"default\", \u0026oncall.EscalationChainArgs{\n\t\t\tName: pulumi.String(\"default\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.EscalationChain;\nimport com.pulumi.grafana.onCall.EscalationChainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var default_ = new EscalationChain(\"default\", EscalationChainArgs.builder()\n            .name(\"default\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: grafana:onCall:EscalationChain\n    properties:\n      name: default\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:index/oncallEscalationChain:OncallEscalationChain name \"{{ id }}\"\n```\n\n",
+            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst myTeam = grafana.oss.getTeam({\n    name: \"my team\",\n});\nconst myTeamGetTeam = myTeam.then(myTeam =\u003e grafana.onCall.getTeam({\n    name: myTeam.name,\n}));\nconst _default = new grafana.oncall.EscalationChain(\"default\", {\n    name: \"default\",\n    teamId: myTeamGetTeam.then(myTeamGetTeam =\u003e myTeamGetTeam.id),\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nmy_team = grafana.oss.get_team(name=\"my team\")\nmy_team_get_team = grafana.onCall.get_team(name=my_team.name)\ndefault = grafana.on_call.EscalationChain(\"default\",\n    name=\"default\",\n    team_id=my_team_get_team.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myTeam = Grafana.Oss.GetTeam.Invoke(new()\n    {\n        Name = \"my team\",\n    });\n\n    var myTeamGetTeam = Grafana.OnCall.GetTeam.Invoke(new()\n    {\n        Name = myTeam.Apply(getTeamResult =\u003e getTeamResult.Name),\n    });\n\n    var @default = new Grafana.OnCall.EscalationChain(\"default\", new()\n    {\n        Name = \"default\",\n        TeamId = myTeamGetTeam.Apply(getTeamResult =\u003e getTeamResult.Id),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyTeam, err := oss.LookupTeam(ctx, \u0026oss.LookupTeamArgs{\n\t\t\tName: \"my team\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmyTeamGetTeam, err := oncall.GetTeam(ctx, \u0026oncall.GetTeamArgs{\n\t\t\tName: myTeam.Name,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.NewEscalationChain(ctx, \"default\", \u0026oncall.EscalationChainArgs{\n\t\t\tName:   pulumi.String(\"default\"),\n\t\t\tTeamId: pulumi.String(myTeamGetTeam.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.OssFunctions;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.EscalationChain;\nimport com.pulumi.grafana.onCall.EscalationChainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myTeam = OssFunctions.getTeam(GetTeamArgs.builder()\n            .name(\"my team\")\n            .build());\n\n        final var myTeamGetTeam = OnCallFunctions.getTeam(GetTeamArgs.builder()\n            .name(myTeam.name())\n            .build());\n\n        var default_ = new EscalationChain(\"default\", EscalationChainArgs.builder()\n            .name(\"default\")\n            .teamId(myTeamGetTeam.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: grafana:onCall:EscalationChain\n    properties:\n      name: default\n      teamId: ${myTeamGetTeam.id}\nvariables:\n  myTeam:\n    fn::invoke:\n      function: grafana:oss:getTeam\n      arguments:\n        name: my team\n  myTeamGetTeam:\n    fn::invoke:\n      function: grafana:onCall:getTeam\n      arguments:\n        name: ${myTeam.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:index/oncallEscalationChain:OncallEscalationChain name \"{{ id }}\"\n```\n\n",
             "properties": {
                 "name": {
                     "type": "string",
@@ -20550,7 +20664,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 }
             },
             "required": [
@@ -20563,7 +20677,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 }
             },
             "stateInputs": {
@@ -20575,7 +20689,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                        "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                     }
                 },
                 "type": "object"
@@ -20583,11 +20697,21 @@
             "deprecationMessage": "grafana.index/oncallescalationchain.OncallEscalationChain has been deprecated in favor of grafana.oncall/escalationchain.EscalationChain"
         },
         "grafana:index/oncallIntegration:OncallIntegration": {
-            "description": "* [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)\n* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test_acc_integration = new grafana.oncall.Integration(\"test-acc-integration\", {\n    name: \"my integration\",\n    type: \"grafana\",\n    defaultRoute: {},\n});\n// Also it's possible to manage integration templates.\n// Check docs to see all available templates.\nconst integrationWithTemplates = new grafana.oncall.Integration(\"integration_with_templates\", {\n    name: \"integration_with_templates\",\n    type: \"webhook\",\n    defaultRoute: {},\n    templates: {\n        groupingKey: \"{{ payload.group_id }}\",\n        slack: {\n            title: \"Slack title\",\n            message: `This is example of multiline template\n{{ payload.message }}\n`,\n            imageUrl: \"{{ payload.image_url }}\",\n        },\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest_acc_integration = grafana.on_call.Integration(\"test-acc-integration\",\n    name=\"my integration\",\n    type=\"grafana\",\n    default_route={})\n# Also it's possible to manage integration templates.\n# Check docs to see all available templates.\nintegration_with_templates = grafana.on_call.Integration(\"integration_with_templates\",\n    name=\"integration_with_templates\",\n    type=\"webhook\",\n    default_route={},\n    templates={\n        \"grouping_key\": \"{{ payload.group_id }}\",\n        \"slack\": {\n            \"title\": \"Slack title\",\n            \"message\": \"\"\"This is example of multiline template\n{{ payload.message }}\n\"\"\",\n            \"image_url\": \"{{ payload.image_url }}\",\n        },\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test_acc_integration = new Grafana.OnCall.Integration(\"test-acc-integration\", new()\n    {\n        Name = \"my integration\",\n        Type = \"grafana\",\n        DefaultRoute = null,\n    });\n\n    // Also it's possible to manage integration templates.\n    // Check docs to see all available templates.\n    var integrationWithTemplates = new Grafana.OnCall.Integration(\"integration_with_templates\", new()\n    {\n        Name = \"integration_with_templates\",\n        Type = \"webhook\",\n        DefaultRoute = null,\n        Templates = new Grafana.OnCall.Inputs.IntegrationTemplatesArgs\n        {\n            GroupingKey = \"{{ payload.group_id }}\",\n            Slack = new Grafana.OnCall.Inputs.IntegrationTemplatesSlackArgs\n            {\n                Title = \"Slack title\",\n                Message = @\"This is example of multiline template\n{{ payload.message }}\n\",\n                ImageUrl = \"{{ payload.image_url }}\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oncall.NewIntegration(ctx, \"test-acc-integration\", \u0026oncall.IntegrationArgs{\n\t\t\tName:         pulumi.String(\"my integration\"),\n\t\t\tType:         pulumi.String(\"grafana\"),\n\t\t\tDefaultRoute: \u0026oncall.IntegrationDefaultRouteArgs{},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Also it's possible to manage integration templates.\n\t\t// Check docs to see all available templates.\n\t\t_, err = oncall.NewIntegration(ctx, \"integration_with_templates\", \u0026oncall.IntegrationArgs{\n\t\t\tName:         pulumi.String(\"integration_with_templates\"),\n\t\t\tType:         pulumi.String(\"webhook\"),\n\t\t\tDefaultRoute: \u0026oncall.IntegrationDefaultRouteArgs{},\n\t\t\tTemplates: \u0026oncall.IntegrationTemplatesArgs{\n\t\t\t\tGroupingKey: pulumi.String(\"{{ payload.group_id }}\"),\n\t\t\t\tSlack: \u0026oncall.IntegrationTemplatesSlackArgs{\n\t\t\t\t\tTitle:    pulumi.String(\"Slack title\"),\n\t\t\t\t\tMessage:  pulumi.String(\"This is example of multiline template\\n{{ payload.message }}\\n\"),\n\t\t\t\t\tImageUrl: pulumi.String(\"{{ payload.image_url }}\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.Integration;\nimport com.pulumi.grafana.onCall.IntegrationArgs;\nimport com.pulumi.grafana.onCall.inputs.IntegrationDefaultRouteArgs;\nimport com.pulumi.grafana.onCall.inputs.IntegrationTemplatesArgs;\nimport com.pulumi.grafana.onCall.inputs.IntegrationTemplatesSlackArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test_acc_integration = new Integration(\"test-acc-integration\", IntegrationArgs.builder()\n            .name(\"my integration\")\n            .type(\"grafana\")\n            .defaultRoute(IntegrationDefaultRouteArgs.builder()\n                .build())\n            .build());\n\n        // Also it's possible to manage integration templates.\n        // Check docs to see all available templates.\n        var integrationWithTemplates = new Integration(\"integrationWithTemplates\", IntegrationArgs.builder()\n            .name(\"integration_with_templates\")\n            .type(\"webhook\")\n            .defaultRoute(IntegrationDefaultRouteArgs.builder()\n                .build())\n            .templates(IntegrationTemplatesArgs.builder()\n                .groupingKey(\"{{ payload.group_id }}\")\n                .slack(IntegrationTemplatesSlackArgs.builder()\n                    .title(\"Slack title\")\n                    .message(\"\"\"\nThis is example of multiline template\n{{ payload.message }}\n                    \"\"\")\n                    .imageUrl(\"{{ payload.image_url }}\")\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test-acc-integration:\n    type: grafana:onCall:Integration\n    properties:\n      name: my integration\n      type: grafana\n      defaultRoute: {}\n  # Also it's possible to manage integration templates.\n  # Check docs to see all available templates.\n  integrationWithTemplates:\n    type: grafana:onCall:Integration\n    name: integration_with_templates\n    properties:\n      name: integration_with_templates\n      type: webhook\n      defaultRoute: {}\n      templates:\n        groupingKey: '{{ payload.group_id }}'\n        slack:\n          title: Slack title\n          message: |\n            This is example of multiline template\n            {{ payload.message }}\n          imageUrl: '{{ payload.image_url }}'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:index/oncallIntegration:OncallIntegration name \"{{ id }}\"\n```\n\n",
+            "description": "* [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)\n* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)\n\n## Import\n\n```sh\n$ pulumi import grafana:index/oncallIntegration:OncallIntegration name \"{{ id }}\"\n```\n\n",
             "properties": {
                 "defaultRoute": {
                     "$ref": "#/types/grafana:index/OncallIntegrationDefaultRoute:OncallIntegrationDefaultRoute",
                     "description": "The Default route for all alerts from the given integration\n"
+                },
+                "dynamicLabels": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "description": "A list of string-to-string mappings for dynamic labels. Each map must include one key named \"key\" and one key named \"value\" (using the `grafana.onCall.getLabel` datasource).\n"
                 },
                 "labels": {
                     "type": "array",
@@ -20597,7 +20721,7 @@
                             "type": "string"
                         }
                     },
-                    "description": "A list of string-to-string mappings. Each map must include one key named \"key\" and one key named \"value\".\n"
+                    "description": "A list of string-to-string mappings for static labels. Each map must include one key named \"key\" and one key named \"value\" (using the `grafana.onCall.getLabel` datasource).\n"
                 },
                 "link": {
                     "type": "string",
@@ -20609,7 +20733,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "templates": {
                     "$ref": "#/types/grafana:index/OncallIntegrationTemplates:OncallIntegrationTemplates",
@@ -20631,6 +20755,16 @@
                     "$ref": "#/types/grafana:index/OncallIntegrationDefaultRoute:OncallIntegrationDefaultRoute",
                     "description": "The Default route for all alerts from the given integration\n"
                 },
+                "dynamicLabels": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "description": "A list of string-to-string mappings for dynamic labels. Each map must include one key named \"key\" and one key named \"value\" (using the `grafana.onCall.getLabel` datasource).\n"
+                },
                 "labels": {
                     "type": "array",
                     "items": {
@@ -20639,7 +20773,7 @@
                             "type": "string"
                         }
                     },
-                    "description": "A list of string-to-string mappings. Each map must include one key named \"key\" and one key named \"value\".\n"
+                    "description": "A list of string-to-string mappings for static labels. Each map must include one key named \"key\" and one key named \"value\" (using the `grafana.onCall.getLabel` datasource).\n"
                 },
                 "name": {
                     "type": "string",
@@ -20647,7 +20781,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "templates": {
                     "$ref": "#/types/grafana:index/OncallIntegrationTemplates:OncallIntegrationTemplates",
@@ -20670,6 +20804,16 @@
                         "$ref": "#/types/grafana:index/OncallIntegrationDefaultRoute:OncallIntegrationDefaultRoute",
                         "description": "The Default route for all alerts from the given integration\n"
                     },
+                    "dynamicLabels": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "A list of string-to-string mappings for dynamic labels. Each map must include one key named \"key\" and one key named \"value\" (using the `grafana.onCall.getLabel` datasource).\n"
+                    },
                     "labels": {
                         "type": "array",
                         "items": {
@@ -20678,7 +20822,7 @@
                                 "type": "string"
                             }
                         },
-                        "description": "A list of string-to-string mappings. Each map must include one key named \"key\" and one key named \"value\".\n"
+                        "description": "A list of string-to-string mappings for static labels. Each map must include one key named \"key\" and one key named \"value\" (using the `grafana.onCall.getLabel` datasource).\n"
                     },
                     "link": {
                         "type": "string",
@@ -20690,7 +20834,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                        "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                     },
                     "templates": {
                         "$ref": "#/types/grafana:index/OncallIntegrationTemplates:OncallIntegrationTemplates",
@@ -20770,7 +20914,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "timeZone": {
                     "type": "string",
@@ -20864,7 +21008,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "timeZone": {
                     "type": "string",
@@ -20959,7 +21103,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                        "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                     },
                     "timeZone": {
                         "type": "string",
@@ -20990,7 +21134,7 @@
             "deprecationMessage": "grafana.index/oncalloncallshift.OncallOnCallShift has been deprecated in favor of grafana.oncall/oncallshift.OnCallShift"
         },
         "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook": {
-            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test_acc_outgoingWebhook = new grafana.oncall.OutgoingWebhook(\"test-acc-outgoing_webhook\", {\n    name: \"my outgoing webhook\",\n    url: \"https://example.com/\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest_acc_outgoing_webhook = grafana.on_call.OutgoingWebhook(\"test-acc-outgoing_webhook\",\n    name=\"my outgoing webhook\",\n    url=\"https://example.com/\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test_acc_outgoingWebhook = new Grafana.OnCall.OutgoingWebhook(\"test-acc-outgoing_webhook\", new()\n    {\n        Name = \"my outgoing webhook\",\n        Url = \"https://example.com/\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oncall.NewOutgoingWebhook(ctx, \"test-acc-outgoing_webhook\", \u0026oncall.OutgoingWebhookArgs{\n\t\t\tName: pulumi.String(\"my outgoing webhook\"),\n\t\t\tUrl:  pulumi.String(\"https://example.com/\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.OutgoingWebhook;\nimport com.pulumi.grafana.onCall.OutgoingWebhookArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test_acc_outgoingWebhook = new OutgoingWebhook(\"test-acc-outgoingWebhook\", OutgoingWebhookArgs.builder()\n            .name(\"my outgoing webhook\")\n            .url(\"https://example.com/\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test-acc-outgoingWebhook:\n    type: grafana:onCall:OutgoingWebhook\n    name: test-acc-outgoing_webhook\n    properties:\n      name: my outgoing webhook\n      url: https://example.com/\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook name \"{{ id }}\"\n```\n\n",
+            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst myTeam = grafana.oss.getTeam({\n    name: \"my team\",\n});\nconst myTeamGetTeam = myTeam.then(myTeam =\u003e grafana.onCall.getTeam({\n    name: myTeam.name,\n}));\nconst test_acc_outgoingWebhook = new grafana.oncall.OutgoingWebhook(\"test-acc-outgoing_webhook\", {\n    name: \"my outgoing webhook\",\n    url: \"https://example.com/\",\n    teamId: myTeamGetTeam.then(myTeamGetTeam =\u003e myTeamGetTeam.id),\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nmy_team = grafana.oss.get_team(name=\"my team\")\nmy_team_get_team = grafana.onCall.get_team(name=my_team.name)\ntest_acc_outgoing_webhook = grafana.on_call.OutgoingWebhook(\"test-acc-outgoing_webhook\",\n    name=\"my outgoing webhook\",\n    url=\"https://example.com/\",\n    team_id=my_team_get_team.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myTeam = Grafana.Oss.GetTeam.Invoke(new()\n    {\n        Name = \"my team\",\n    });\n\n    var myTeamGetTeam = Grafana.OnCall.GetTeam.Invoke(new()\n    {\n        Name = myTeam.Apply(getTeamResult =\u003e getTeamResult.Name),\n    });\n\n    var test_acc_outgoingWebhook = new Grafana.OnCall.OutgoingWebhook(\"test-acc-outgoing_webhook\", new()\n    {\n        Name = \"my outgoing webhook\",\n        Url = \"https://example.com/\",\n        TeamId = myTeamGetTeam.Apply(getTeamResult =\u003e getTeamResult.Id),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyTeam, err := oss.LookupTeam(ctx, \u0026oss.LookupTeamArgs{\n\t\t\tName: \"my team\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmyTeamGetTeam, err := oncall.GetTeam(ctx, \u0026oncall.GetTeamArgs{\n\t\t\tName: myTeam.Name,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.NewOutgoingWebhook(ctx, \"test-acc-outgoing_webhook\", \u0026oncall.OutgoingWebhookArgs{\n\t\t\tName:   pulumi.String(\"my outgoing webhook\"),\n\t\t\tUrl:    pulumi.String(\"https://example.com/\"),\n\t\t\tTeamId: pulumi.String(myTeamGetTeam.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.OssFunctions;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.OutgoingWebhook;\nimport com.pulumi.grafana.onCall.OutgoingWebhookArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myTeam = OssFunctions.getTeam(GetTeamArgs.builder()\n            .name(\"my team\")\n            .build());\n\n        final var myTeamGetTeam = OnCallFunctions.getTeam(GetTeamArgs.builder()\n            .name(myTeam.name())\n            .build());\n\n        var test_acc_outgoingWebhook = new OutgoingWebhook(\"test-acc-outgoingWebhook\", OutgoingWebhookArgs.builder()\n            .name(\"my outgoing webhook\")\n            .url(\"https://example.com/\")\n            .teamId(myTeamGetTeam.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test-acc-outgoingWebhook:\n    type: grafana:onCall:OutgoingWebhook\n    name: test-acc-outgoing_webhook\n    properties:\n      name: my outgoing webhook\n      url: https://example.com/\n      teamId: ${myTeamGetTeam.id}\nvariables:\n  myTeam:\n    fn::invoke:\n      function: grafana:oss:getTeam\n      arguments:\n        name: my team\n  myTeamGetTeam:\n    fn::invoke:\n      function: grafana:onCall:getTeam\n      arguments:\n        name: ${myTeam.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook name \"{{ id }}\"\n```\n\n",
             "properties": {
                 "authorizationHeader": {
                     "type": "string",
@@ -21035,7 +21179,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "triggerTemplate": {
                     "type": "string",
@@ -21102,7 +21246,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "triggerTemplate": {
                     "type": "string",
@@ -21170,7 +21314,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                        "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                     },
                     "triggerTemplate": {
                         "type": "string",
@@ -21349,7 +21493,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "timeZone": {
                     "type": "string",
@@ -21357,7 +21501,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The schedule's type. Valid values are `ical`, `calendar`.\n"
+                    "description": "The schedule's type. Valid values are `ical`, `calendar`, `web`.\n"
                 }
             },
             "required": [
@@ -21394,7 +21538,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "timeZone": {
                     "type": "string",
@@ -21402,7 +21546,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The schedule's type. Valid values are `ical`, `calendar`.\n",
+                    "description": "The schedule's type. Valid values are `ical`, `calendar`, `web`.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -21441,7 +21585,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                        "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                     },
                     "timeZone": {
                         "type": "string",
@@ -21449,7 +21593,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The schedule's type. Valid values are `ical`, `calendar`.\n",
+                        "description": "The schedule's type. Valid values are `ical`, `calendar`, `web`.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -23174,7 +23318,7 @@
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.\n"
+                    "description": "Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.\n"
                 }
             },
             "required": [
@@ -23229,7 +23373,7 @@
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.\n"
+                    "description": "Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.\n"
                 }
             },
             "requiredInputs": [
@@ -23289,7 +23433,7 @@
                     },
                     "timeout": {
                         "type": "integer",
-                        "description": "Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.\n"
+                        "description": "Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.\n"
                     }
                 },
                 "type": "object"
@@ -23925,7 +24069,7 @@
             "description": "Manages a k6 load test.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst loadTestProject = new grafana.k6.Project(\"load_test_project\", {name: \"Terraform Load Test Project\"});\nconst testLoadTest = new grafana.k6.LoadTest(\"test_load_test\", {\n    projectId: loadTestProject.id,\n    name: \"Terraform Test Load Test\",\n    script: `export default function() {\n  console.log('Hello from k6!');\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nload_test_project = grafana.k6.Project(\"load_test_project\", name=\"Terraform Load Test Project\")\ntest_load_test = grafana.k6.LoadTest(\"test_load_test\",\n    project_id=load_test_project.id,\n    name=\"Terraform Test Load Test\",\n    script=\"\"\"export default function() {\n  console.log('Hello from k6!');\n}\n\"\"\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var loadTestProject = new Grafana.K6.Project(\"load_test_project\", new()\n    {\n        Name = \"Terraform Load Test Project\",\n    });\n\n    var testLoadTest = new Grafana.K6.LoadTest(\"test_load_test\", new()\n    {\n        ProjectId = loadTestProject.Id,\n        Name = \"Terraform Test Load Test\",\n        Script = @\"export default function() {\n  console.log('Hello from k6!');\n}\n\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tloadTestProject, err := k6.NewProject(ctx, \"load_test_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Load Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewLoadTest(ctx, \"test_load_test\", \u0026k6.LoadTestArgs{\n\t\t\tProjectId: loadTestProject.ID(),\n\t\t\tName:      pulumi.String(\"Terraform Test Load Test\"),\n\t\t\tScript:    pulumi.String(\"export default function() {\\n  console.log('Hello from k6!');\\n}\\n\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.LoadTest;\nimport com.pulumi.grafana.k6.LoadTestArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var loadTestProject = new Project(\"loadTestProject\", ProjectArgs.builder()\n            .name(\"Terraform Load Test Project\")\n            .build());\n\n        var testLoadTest = new LoadTest(\"testLoadTest\", LoadTestArgs.builder()\n            .projectId(loadTestProject.id())\n            .name(\"Terraform Test Load Test\")\n            .script(\"\"\"\nexport default function() {\n  console.log('Hello from k6!');\n}\n            \"\"\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  loadTestProject:\n    type: grafana:k6:Project\n    name: load_test_project\n    properties:\n      name: Terraform Load Test Project\n  testLoadTest:\n    type: grafana:k6:LoadTest\n    name: test_load_test\n    properties:\n      projectId: ${loadTestProject.id}\n      name: Terraform Test Load Test\n      script: |\n        export default function() {\n          console.log('Hello from k6!');\n        }\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:k6/loadTest:LoadTest name \"{{ id }}\"\n```\n\n",
             "properties": {
                 "baselineTestRunId": {
-                    "type": "integer",
+                    "type": "string",
                     "description": "Identifier of a baseline test run used for results comparison.\n"
                 },
                 "created": {
@@ -23937,7 +24081,7 @@
                     "description": "Human-friendly identifier of the load test.\n"
                 },
                 "projectId": {
-                    "type": "integer",
+                    "type": "string",
                     "description": "The identifier of the project this load test belongs to.\n"
                 },
                 "script": {
@@ -23958,7 +24102,7 @@
             ],
             "inputProperties": {
                 "baselineTestRunId": {
-                    "type": "integer",
+                    "type": "string",
                     "description": "Identifier of a baseline test run used for results comparison.\n"
                 },
                 "name": {
@@ -23966,7 +24110,7 @@
                     "description": "Human-friendly identifier of the load test.\n"
                 },
                 "projectId": {
-                    "type": "integer",
+                    "type": "string",
                     "description": "The identifier of the project this load test belongs to.\n"
                 },
                 "script": {
@@ -23982,7 +24126,7 @@
                 "description": "Input properties used for looking up and filtering LoadTest resources.\n",
                 "properties": {
                     "baselineTestRunId": {
-                        "type": "integer",
+                        "type": "string",
                         "description": "Identifier of a baseline test run used for results comparison.\n"
                     },
                     "created": {
@@ -23994,7 +24138,7 @@
                         "description": "Human-friendly identifier of the load test.\n"
                     },
                     "projectId": {
-                        "type": "integer",
+                        "type": "string",
                         "description": "The identifier of the project this load test belongs to.\n"
                     },
                     "script": {
@@ -24081,7 +24225,7 @@
                     "description": "Maximum duration of a test in seconds.\n"
                 },
                 "projectId": {
-                    "type": "integer",
+                    "type": "string",
                     "description": "The identifier of the project to manage limits for.\n"
                 },
                 "vuBrowserMaxPerTest": {
@@ -24106,7 +24250,7 @@
                     "description": "Maximum duration of a test in seconds.\n"
                 },
                 "projectId": {
-                    "type": "integer",
+                    "type": "string",
                     "description": "The identifier of the project to manage limits for.\n"
                 },
                 "vuBrowserMaxPerTest": {
@@ -24133,7 +24277,7 @@
                         "description": "Maximum duration of a test in seconds.\n"
                     },
                     "projectId": {
-                        "type": "integer",
+                        "type": "string",
                         "description": "The identifier of the project to manage limits for.\n"
                     },
                     "vuBrowserMaxPerTest": {
@@ -24955,7 +25099,7 @@
             ]
         },
         "grafana:onCall/escalationChain:EscalationChain": {
-            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst _default = new grafana.oncall.EscalationChain(\"default\", {name: \"default\"});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ndefault = grafana.on_call.EscalationChain(\"default\", name=\"default\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = new Grafana.OnCall.EscalationChain(\"default\", new()\n    {\n        Name = \"default\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oncall.NewEscalationChain(ctx, \"default\", \u0026oncall.EscalationChainArgs{\n\t\t\tName: pulumi.String(\"default\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.EscalationChain;\nimport com.pulumi.grafana.onCall.EscalationChainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var default_ = new EscalationChain(\"default\", EscalationChainArgs.builder()\n            .name(\"default\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: grafana:onCall:EscalationChain\n    properties:\n      name: default\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:onCall/escalationChain:EscalationChain name \"{{ id }}\"\n```\n\n",
+            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/escalation_chains/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst myTeam = grafana.oss.getTeam({\n    name: \"my team\",\n});\nconst myTeamGetTeam = myTeam.then(myTeam =\u003e grafana.onCall.getTeam({\n    name: myTeam.name,\n}));\nconst _default = new grafana.oncall.EscalationChain(\"default\", {\n    name: \"default\",\n    teamId: myTeamGetTeam.then(myTeamGetTeam =\u003e myTeamGetTeam.id),\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nmy_team = grafana.oss.get_team(name=\"my team\")\nmy_team_get_team = grafana.onCall.get_team(name=my_team.name)\ndefault = grafana.on_call.EscalationChain(\"default\",\n    name=\"default\",\n    team_id=my_team_get_team.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myTeam = Grafana.Oss.GetTeam.Invoke(new()\n    {\n        Name = \"my team\",\n    });\n\n    var myTeamGetTeam = Grafana.OnCall.GetTeam.Invoke(new()\n    {\n        Name = myTeam.Apply(getTeamResult =\u003e getTeamResult.Name),\n    });\n\n    var @default = new Grafana.OnCall.EscalationChain(\"default\", new()\n    {\n        Name = \"default\",\n        TeamId = myTeamGetTeam.Apply(getTeamResult =\u003e getTeamResult.Id),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyTeam, err := oss.LookupTeam(ctx, \u0026oss.LookupTeamArgs{\n\t\t\tName: \"my team\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmyTeamGetTeam, err := oncall.GetTeam(ctx, \u0026oncall.GetTeamArgs{\n\t\t\tName: myTeam.Name,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.NewEscalationChain(ctx, \"default\", \u0026oncall.EscalationChainArgs{\n\t\t\tName:   pulumi.String(\"default\"),\n\t\t\tTeamId: pulumi.String(myTeamGetTeam.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.OssFunctions;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.EscalationChain;\nimport com.pulumi.grafana.onCall.EscalationChainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myTeam = OssFunctions.getTeam(GetTeamArgs.builder()\n            .name(\"my team\")\n            .build());\n\n        final var myTeamGetTeam = OnCallFunctions.getTeam(GetTeamArgs.builder()\n            .name(myTeam.name())\n            .build());\n\n        var default_ = new EscalationChain(\"default\", EscalationChainArgs.builder()\n            .name(\"default\")\n            .teamId(myTeamGetTeam.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: grafana:onCall:EscalationChain\n    properties:\n      name: default\n      teamId: ${myTeamGetTeam.id}\nvariables:\n  myTeam:\n    fn::invoke:\n      function: grafana:oss:getTeam\n      arguments:\n        name: my team\n  myTeamGetTeam:\n    fn::invoke:\n      function: grafana:onCall:getTeam\n      arguments:\n        name: ${myTeam.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:onCall/escalationChain:EscalationChain name \"{{ id }}\"\n```\n\n",
             "properties": {
                 "name": {
                     "type": "string",
@@ -24963,7 +25107,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 }
             },
             "required": [
@@ -24976,7 +25120,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 }
             },
             "stateInputs": {
@@ -24988,7 +25132,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                        "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                     }
                 },
                 "type": "object"
@@ -25000,11 +25144,21 @@
             ]
         },
         "grafana:onCall/integration:Integration": {
-            "description": "* [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)\n* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test_acc_integration = new grafana.oncall.Integration(\"test-acc-integration\", {\n    name: \"my integration\",\n    type: \"grafana\",\n    defaultRoute: {},\n});\n// Also it's possible to manage integration templates.\n// Check docs to see all available templates.\nconst integrationWithTemplates = new grafana.oncall.Integration(\"integration_with_templates\", {\n    name: \"integration_with_templates\",\n    type: \"webhook\",\n    defaultRoute: {},\n    templates: {\n        groupingKey: \"{{ payload.group_id }}\",\n        slack: {\n            title: \"Slack title\",\n            message: `This is example of multiline template\n{{ payload.message }}\n`,\n            imageUrl: \"{{ payload.image_url }}\",\n        },\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest_acc_integration = grafana.on_call.Integration(\"test-acc-integration\",\n    name=\"my integration\",\n    type=\"grafana\",\n    default_route={})\n# Also it's possible to manage integration templates.\n# Check docs to see all available templates.\nintegration_with_templates = grafana.on_call.Integration(\"integration_with_templates\",\n    name=\"integration_with_templates\",\n    type=\"webhook\",\n    default_route={},\n    templates={\n        \"grouping_key\": \"{{ payload.group_id }}\",\n        \"slack\": {\n            \"title\": \"Slack title\",\n            \"message\": \"\"\"This is example of multiline template\n{{ payload.message }}\n\"\"\",\n            \"image_url\": \"{{ payload.image_url }}\",\n        },\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test_acc_integration = new Grafana.OnCall.Integration(\"test-acc-integration\", new()\n    {\n        Name = \"my integration\",\n        Type = \"grafana\",\n        DefaultRoute = null,\n    });\n\n    // Also it's possible to manage integration templates.\n    // Check docs to see all available templates.\n    var integrationWithTemplates = new Grafana.OnCall.Integration(\"integration_with_templates\", new()\n    {\n        Name = \"integration_with_templates\",\n        Type = \"webhook\",\n        DefaultRoute = null,\n        Templates = new Grafana.OnCall.Inputs.IntegrationTemplatesArgs\n        {\n            GroupingKey = \"{{ payload.group_id }}\",\n            Slack = new Grafana.OnCall.Inputs.IntegrationTemplatesSlackArgs\n            {\n                Title = \"Slack title\",\n                Message = @\"This is example of multiline template\n{{ payload.message }}\n\",\n                ImageUrl = \"{{ payload.image_url }}\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oncall.NewIntegration(ctx, \"test-acc-integration\", \u0026oncall.IntegrationArgs{\n\t\t\tName:         pulumi.String(\"my integration\"),\n\t\t\tType:         pulumi.String(\"grafana\"),\n\t\t\tDefaultRoute: \u0026oncall.IntegrationDefaultRouteArgs{},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Also it's possible to manage integration templates.\n\t\t// Check docs to see all available templates.\n\t\t_, err = oncall.NewIntegration(ctx, \"integration_with_templates\", \u0026oncall.IntegrationArgs{\n\t\t\tName:         pulumi.String(\"integration_with_templates\"),\n\t\t\tType:         pulumi.String(\"webhook\"),\n\t\t\tDefaultRoute: \u0026oncall.IntegrationDefaultRouteArgs{},\n\t\t\tTemplates: \u0026oncall.IntegrationTemplatesArgs{\n\t\t\t\tGroupingKey: pulumi.String(\"{{ payload.group_id }}\"),\n\t\t\t\tSlack: \u0026oncall.IntegrationTemplatesSlackArgs{\n\t\t\t\t\tTitle:    pulumi.String(\"Slack title\"),\n\t\t\t\t\tMessage:  pulumi.String(\"This is example of multiline template\\n{{ payload.message }}\\n\"),\n\t\t\t\t\tImageUrl: pulumi.String(\"{{ payload.image_url }}\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.Integration;\nimport com.pulumi.grafana.onCall.IntegrationArgs;\nimport com.pulumi.grafana.onCall.inputs.IntegrationDefaultRouteArgs;\nimport com.pulumi.grafana.onCall.inputs.IntegrationTemplatesArgs;\nimport com.pulumi.grafana.onCall.inputs.IntegrationTemplatesSlackArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test_acc_integration = new Integration(\"test-acc-integration\", IntegrationArgs.builder()\n            .name(\"my integration\")\n            .type(\"grafana\")\n            .defaultRoute(IntegrationDefaultRouteArgs.builder()\n                .build())\n            .build());\n\n        // Also it's possible to manage integration templates.\n        // Check docs to see all available templates.\n        var integrationWithTemplates = new Integration(\"integrationWithTemplates\", IntegrationArgs.builder()\n            .name(\"integration_with_templates\")\n            .type(\"webhook\")\n            .defaultRoute(IntegrationDefaultRouteArgs.builder()\n                .build())\n            .templates(IntegrationTemplatesArgs.builder()\n                .groupingKey(\"{{ payload.group_id }}\")\n                .slack(IntegrationTemplatesSlackArgs.builder()\n                    .title(\"Slack title\")\n                    .message(\"\"\"\nThis is example of multiline template\n{{ payload.message }}\n                    \"\"\")\n                    .imageUrl(\"{{ payload.image_url }}\")\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test-acc-integration:\n    type: grafana:onCall:Integration\n    properties:\n      name: my integration\n      type: grafana\n      defaultRoute: {}\n  # Also it's possible to manage integration templates.\n  # Check docs to see all available templates.\n  integrationWithTemplates:\n    type: grafana:onCall:Integration\n    name: integration_with_templates\n    properties:\n      name: integration_with_templates\n      type: webhook\n      defaultRoute: {}\n      templates:\n        groupingKey: '{{ payload.group_id }}'\n        slack:\n          title: Slack title\n          message: |\n            This is example of multiline template\n            {{ payload.message }}\n          imageUrl: '{{ payload.image_url }}'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:onCall/integration:Integration name \"{{ id }}\"\n```\n\n",
+            "description": "* [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)\n* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)\n\n## Import\n\n```sh\n$ pulumi import grafana:onCall/integration:Integration name \"{{ id }}\"\n```\n\n",
             "properties": {
                 "defaultRoute": {
                     "$ref": "#/types/grafana:onCall/IntegrationDefaultRoute:IntegrationDefaultRoute",
                     "description": "The Default route for all alerts from the given integration\n"
+                },
+                "dynamicLabels": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "description": "A list of string-to-string mappings for dynamic labels. Each map must include one key named \"key\" and one key named \"value\" (using the `grafana.onCall.getLabel` datasource).\n"
                 },
                 "labels": {
                     "type": "array",
@@ -25014,7 +25168,7 @@
                             "type": "string"
                         }
                     },
-                    "description": "A list of string-to-string mappings. Each map must include one key named \"key\" and one key named \"value\".\n"
+                    "description": "A list of string-to-string mappings for static labels. Each map must include one key named \"key\" and one key named \"value\" (using the `grafana.onCall.getLabel` datasource).\n"
                 },
                 "link": {
                     "type": "string",
@@ -25026,7 +25180,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "templates": {
                     "$ref": "#/types/grafana:onCall/IntegrationTemplates:IntegrationTemplates",
@@ -25048,6 +25202,16 @@
                     "$ref": "#/types/grafana:onCall/IntegrationDefaultRoute:IntegrationDefaultRoute",
                     "description": "The Default route for all alerts from the given integration\n"
                 },
+                "dynamicLabels": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "description": "A list of string-to-string mappings for dynamic labels. Each map must include one key named \"key\" and one key named \"value\" (using the `grafana.onCall.getLabel` datasource).\n"
+                },
                 "labels": {
                     "type": "array",
                     "items": {
@@ -25056,7 +25220,7 @@
                             "type": "string"
                         }
                     },
-                    "description": "A list of string-to-string mappings. Each map must include one key named \"key\" and one key named \"value\".\n"
+                    "description": "A list of string-to-string mappings for static labels. Each map must include one key named \"key\" and one key named \"value\" (using the `grafana.onCall.getLabel` datasource).\n"
                 },
                 "name": {
                     "type": "string",
@@ -25064,7 +25228,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "templates": {
                     "$ref": "#/types/grafana:onCall/IntegrationTemplates:IntegrationTemplates",
@@ -25087,6 +25251,16 @@
                         "$ref": "#/types/grafana:onCall/IntegrationDefaultRoute:IntegrationDefaultRoute",
                         "description": "The Default route for all alerts from the given integration\n"
                     },
+                    "dynamicLabels": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "A list of string-to-string mappings for dynamic labels. Each map must include one key named \"key\" and one key named \"value\" (using the `grafana.onCall.getLabel` datasource).\n"
+                    },
                     "labels": {
                         "type": "array",
                         "items": {
@@ -25095,7 +25269,7 @@
                                 "type": "string"
                             }
                         },
-                        "description": "A list of string-to-string mappings. Each map must include one key named \"key\" and one key named \"value\".\n"
+                        "description": "A list of string-to-string mappings for static labels. Each map must include one key named \"key\" and one key named \"value\" (using the `grafana.onCall.getLabel` datasource).\n"
                     },
                     "link": {
                         "type": "string",
@@ -25107,7 +25281,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                        "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                     },
                     "templates": {
                         "$ref": "#/types/grafana:onCall/IntegrationTemplates:IntegrationTemplates",
@@ -25191,7 +25365,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "timeZone": {
                     "type": "string",
@@ -25285,7 +25459,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "timeZone": {
                     "type": "string",
@@ -25380,7 +25554,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                        "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                     },
                     "timeZone": {
                         "type": "string",
@@ -25415,7 +25589,7 @@
             ]
         },
         "grafana:onCall/outgoingWebhook:OutgoingWebhook": {
-            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test_acc_outgoingWebhook = new grafana.oncall.OutgoingWebhook(\"test-acc-outgoing_webhook\", {\n    name: \"my outgoing webhook\",\n    url: \"https://example.com/\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest_acc_outgoing_webhook = grafana.on_call.OutgoingWebhook(\"test-acc-outgoing_webhook\",\n    name=\"my outgoing webhook\",\n    url=\"https://example.com/\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test_acc_outgoingWebhook = new Grafana.OnCall.OutgoingWebhook(\"test-acc-outgoing_webhook\", new()\n    {\n        Name = \"my outgoing webhook\",\n        Url = \"https://example.com/\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oncall.NewOutgoingWebhook(ctx, \"test-acc-outgoing_webhook\", \u0026oncall.OutgoingWebhookArgs{\n\t\t\tName: pulumi.String(\"my outgoing webhook\"),\n\t\t\tUrl:  pulumi.String(\"https://example.com/\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.OutgoingWebhook;\nimport com.pulumi.grafana.onCall.OutgoingWebhookArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test_acc_outgoingWebhook = new OutgoingWebhook(\"test-acc-outgoingWebhook\", OutgoingWebhookArgs.builder()\n            .name(\"my outgoing webhook\")\n            .url(\"https://example.com/\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test-acc-outgoingWebhook:\n    type: grafana:onCall:OutgoingWebhook\n    name: test-acc-outgoing_webhook\n    properties:\n      name: my outgoing webhook\n      url: https://example.com/\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:onCall/outgoingWebhook:OutgoingWebhook name \"{{ id }}\"\n```\n\n",
+            "description": "* [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/outgoing_webhooks/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst myTeam = grafana.oss.getTeam({\n    name: \"my team\",\n});\nconst myTeamGetTeam = myTeam.then(myTeam =\u003e grafana.onCall.getTeam({\n    name: myTeam.name,\n}));\nconst test_acc_outgoingWebhook = new grafana.oncall.OutgoingWebhook(\"test-acc-outgoing_webhook\", {\n    name: \"my outgoing webhook\",\n    url: \"https://example.com/\",\n    teamId: myTeamGetTeam.then(myTeamGetTeam =\u003e myTeamGetTeam.id),\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nmy_team = grafana.oss.get_team(name=\"my team\")\nmy_team_get_team = grafana.onCall.get_team(name=my_team.name)\ntest_acc_outgoing_webhook = grafana.on_call.OutgoingWebhook(\"test-acc-outgoing_webhook\",\n    name=\"my outgoing webhook\",\n    url=\"https://example.com/\",\n    team_id=my_team_get_team.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myTeam = Grafana.Oss.GetTeam.Invoke(new()\n    {\n        Name = \"my team\",\n    });\n\n    var myTeamGetTeam = Grafana.OnCall.GetTeam.Invoke(new()\n    {\n        Name = myTeam.Apply(getTeamResult =\u003e getTeamResult.Name),\n    });\n\n    var test_acc_outgoingWebhook = new Grafana.OnCall.OutgoingWebhook(\"test-acc-outgoing_webhook\", new()\n    {\n        Name = \"my outgoing webhook\",\n        Url = \"https://example.com/\",\n        TeamId = myTeamGetTeam.Apply(getTeamResult =\u003e getTeamResult.Id),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyTeam, err := oss.LookupTeam(ctx, \u0026oss.LookupTeamArgs{\n\t\t\tName: \"my team\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmyTeamGetTeam, err := oncall.GetTeam(ctx, \u0026oncall.GetTeamArgs{\n\t\t\tName: myTeam.Name,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.NewOutgoingWebhook(ctx, \"test-acc-outgoing_webhook\", \u0026oncall.OutgoingWebhookArgs{\n\t\t\tName:   pulumi.String(\"my outgoing webhook\"),\n\t\t\tUrl:    pulumi.String(\"https://example.com/\"),\n\t\t\tTeamId: pulumi.String(myTeamGetTeam.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.OssFunctions;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.OutgoingWebhook;\nimport com.pulumi.grafana.onCall.OutgoingWebhookArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myTeam = OssFunctions.getTeam(GetTeamArgs.builder()\n            .name(\"my team\")\n            .build());\n\n        final var myTeamGetTeam = OnCallFunctions.getTeam(GetTeamArgs.builder()\n            .name(myTeam.name())\n            .build());\n\n        var test_acc_outgoingWebhook = new OutgoingWebhook(\"test-acc-outgoingWebhook\", OutgoingWebhookArgs.builder()\n            .name(\"my outgoing webhook\")\n            .url(\"https://example.com/\")\n            .teamId(myTeamGetTeam.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test-acc-outgoingWebhook:\n    type: grafana:onCall:OutgoingWebhook\n    name: test-acc-outgoing_webhook\n    properties:\n      name: my outgoing webhook\n      url: https://example.com/\n      teamId: ${myTeamGetTeam.id}\nvariables:\n  myTeam:\n    fn::invoke:\n      function: grafana:oss:getTeam\n      arguments:\n        name: my team\n  myTeamGetTeam:\n    fn::invoke:\n      function: grafana:onCall:getTeam\n      arguments:\n        name: ${myTeam.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:onCall/outgoingWebhook:OutgoingWebhook name \"{{ id }}\"\n```\n\n",
             "properties": {
                 "authorizationHeader": {
                     "type": "string",
@@ -25460,7 +25634,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "triggerTemplate": {
                     "type": "string",
@@ -25527,7 +25701,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "triggerTemplate": {
                     "type": "string",
@@ -25595,7 +25769,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                        "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                     },
                     "triggerTemplate": {
                         "type": "string",
@@ -25782,7 +25956,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "timeZone": {
                     "type": "string",
@@ -25790,7 +25964,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The schedule's type. Valid values are `ical`, `calendar`.\n"
+                    "description": "The schedule's type. Valid values are `ical`, `calendar`, `web`.\n"
                 }
             },
             "required": [
@@ -25827,7 +26001,7 @@
                 },
                 "teamId": {
                     "type": "string",
-                    "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                    "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                 },
                 "timeZone": {
                     "type": "string",
@@ -25835,7 +26009,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The schedule's type. Valid values are `ical`, `calendar`.\n",
+                    "description": "The schedule's type. Valid values are `ical`, `calendar`, `web`.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -25874,7 +26048,7 @@
                     },
                     "teamId": {
                         "type": "string",
-                        "description": "The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.\n"
+                        "description": "The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).\n"
                     },
                     "timeZone": {
                         "type": "string",
@@ -25882,7 +26056,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The schedule's type. Valid values are `ical`, `calendar`.\n",
+                        "description": "The schedule's type. Valid values are `ical`, `calendar`, `web`.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -28449,7 +28623,7 @@
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.\n"
+                    "description": "Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.\n"
                 }
             },
             "required": [
@@ -28504,7 +28678,7 @@
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.\n"
+                    "description": "Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.\n"
                 }
             },
             "requiredInputs": [
@@ -28564,7 +28738,7 @@
                     },
                     "timeout": {
                         "type": "integer",
-                        "description": "Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.\n"
+                        "description": "Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.\n"
                     }
                 },
                 "type": "object"
@@ -28574,6 +28748,62 @@
                     "type": "grafana:index/syntheticMonitoringCheck:SyntheticMonitoringCheck"
                 }
             ]
+        },
+        "grafana:syntheticMonitoring/checkAlerts:CheckAlerts": {
+            "description": "Manages alerts for a check in Grafana Synthetic Monitoring.\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/configure-per-check-alerts/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst main = new grafana.syntheticmonitoring.Check(\"main\", {\n    job: \"Check Alert Test\",\n    target: \"https://grafana.com\",\n    enabled: true,\n    probes: [1],\n    labels: {},\n    settings: {\n        http: {\n            ipVersion: \"V4\",\n            method: \"GET\",\n        },\n    },\n});\nconst mainCheckAlerts = new grafana.syntheticmonitoring.CheckAlerts(\"main\", {\n    checkId: main.id,\n    alerts: [\n        {\n            name: \"ProbeFailedExecutionsTooHigh\",\n            threshold: 1,\n            period: \"15m\",\n        },\n        {\n            name: \"TLSTargetCertificateCloseToExpiring\",\n            threshold: 14,\n            period: \"\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nmain = grafana.synthetic_monitoring.Check(\"main\",\n    job=\"Check Alert Test\",\n    target=\"https://grafana.com\",\n    enabled=True,\n    probes=[1],\n    labels={},\n    settings={\n        \"http\": {\n            \"ip_version\": \"V4\",\n            \"method\": \"GET\",\n        },\n    })\nmain_check_alerts = grafana.synthetic_monitoring.CheckAlerts(\"main\",\n    check_id=main.id,\n    alerts=[\n        {\n            \"name\": \"ProbeFailedExecutionsTooHigh\",\n            \"threshold\": 1,\n            \"period\": \"15m\",\n        },\n        {\n            \"name\": \"TLSTargetCertificateCloseToExpiring\",\n            \"threshold\": 14,\n            \"period\": \"\",\n        },\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Grafana.SyntheticMonitoring.Check(\"main\", new()\n    {\n        Job = \"Check Alert Test\",\n        Target = \"https://grafana.com\",\n        Enabled = true,\n        Probes = new[]\n        {\n            1,\n        },\n        Labels = null,\n        Settings = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsArgs\n        {\n            Http = new Grafana.SyntheticMonitoring.Inputs.CheckSettingsHttpArgs\n            {\n                IpVersion = \"V4\",\n                Method = \"GET\",\n            },\n        },\n    });\n\n    var mainCheckAlerts = new Grafana.SyntheticMonitoring.CheckAlerts(\"main\", new()\n    {\n        CheckId = main.Id,\n        Alerts = new[]\n        {\n            new Grafana.SyntheticMonitoring.Inputs.CheckAlertsAlertArgs\n            {\n                Name = \"ProbeFailedExecutionsTooHigh\",\n                Threshold = 1,\n                Period = \"15m\",\n            },\n            new Grafana.SyntheticMonitoring.Inputs.CheckAlertsAlertArgs\n            {\n                Name = \"TLSTargetCertificateCloseToExpiring\",\n                Threshold = 14,\n                Period = \"\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := syntheticmonitoring.NewCheck(ctx, \"main\", \u0026syntheticmonitoring.CheckArgs{\n\t\t\tJob:     pulumi.String(\"Check Alert Test\"),\n\t\t\tTarget:  pulumi.String(\"https://grafana.com\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t\tProbes: pulumi.IntArray{\n\t\t\t\tpulumi.Int(1),\n\t\t\t},\n\t\t\tLabels: pulumi.StringMap{},\n\t\t\tSettings: \u0026syntheticmonitoring.CheckSettingsArgs{\n\t\t\t\tHttp: \u0026syntheticmonitoring.CheckSettingsHttpArgs{\n\t\t\t\t\tIpVersion: pulumi.String(\"V4\"),\n\t\t\t\t\tMethod:    pulumi.String(\"GET\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = syntheticmonitoring.NewCheckAlerts(ctx, \"main\", \u0026syntheticmonitoring.CheckAlertsArgs{\n\t\t\tCheckId: main.ID(),\n\t\t\tAlerts: syntheticmonitoring.CheckAlertsAlertArray{\n\t\t\t\t\u0026syntheticmonitoring.CheckAlertsAlertArgs{\n\t\t\t\t\tName:      pulumi.String(\"ProbeFailedExecutionsTooHigh\"),\n\t\t\t\t\tThreshold: pulumi.Float64(1),\n\t\t\t\t\tPeriod:    pulumi.String(\"15m\"),\n\t\t\t\t},\n\t\t\t\t\u0026syntheticmonitoring.CheckAlertsAlertArgs{\n\t\t\t\t\tName:      pulumi.String(\"TLSTargetCertificateCloseToExpiring\"),\n\t\t\t\t\tThreshold: pulumi.Float64(14),\n\t\t\t\t\tPeriod:    pulumi.String(\"\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.syntheticMonitoring.Check;\nimport com.pulumi.grafana.syntheticMonitoring.CheckArgs;\nimport com.pulumi.grafana.syntheticMonitoring.inputs.CheckSettingsArgs;\nimport com.pulumi.grafana.syntheticMonitoring.inputs.CheckSettingsHttpArgs;\nimport com.pulumi.grafana.syntheticMonitoring.CheckAlerts;\nimport com.pulumi.grafana.syntheticMonitoring.CheckAlertsArgs;\nimport com.pulumi.grafana.syntheticMonitoring.inputs.CheckAlertsAlertArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new Check(\"main\", CheckArgs.builder()\n            .job(\"Check Alert Test\")\n            .target(\"https://grafana.com\")\n            .enabled(true)\n            .probes(1)\n            .labels(Map.ofEntries(\n            ))\n            .settings(CheckSettingsArgs.builder()\n                .http(CheckSettingsHttpArgs.builder()\n                    .ipVersion(\"V4\")\n                    .method(\"GET\")\n                    .build())\n                .build())\n            .build());\n\n        var mainCheckAlerts = new CheckAlerts(\"mainCheckAlerts\", CheckAlertsArgs.builder()\n            .checkId(main.id())\n            .alerts(            \n                CheckAlertsAlertArgs.builder()\n                    .name(\"ProbeFailedExecutionsTooHigh\")\n                    .threshold(1.0)\n                    .period(\"15m\")\n                    .build(),\n                CheckAlertsAlertArgs.builder()\n                    .name(\"TLSTargetCertificateCloseToExpiring\")\n                    .threshold(14.0)\n                    .period(\"\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: grafana:syntheticMonitoring:Check\n    properties:\n      job: Check Alert Test\n      target: https://grafana.com\n      enabled: true\n      probes:\n        - 1\n      labels: {}\n      settings:\n        http:\n          ipVersion: V4\n          method: GET\n  mainCheckAlerts:\n    type: grafana:syntheticMonitoring:CheckAlerts\n    name: main\n    properties:\n      checkId: ${main.id}\n      alerts:\n        - name: ProbeFailedExecutionsTooHigh\n          threshold: 1\n          period: 15m\n        - name: TLSTargetCertificateCloseToExpiring\n          threshold: 14\n          period: \"\"\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:syntheticMonitoring/checkAlerts:CheckAlerts name \"{{ check_id }}\"\n```\n\n",
+            "properties": {
+                "alerts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:syntheticMonitoring/CheckAlertsAlert:CheckAlertsAlert"
+                    },
+                    "description": "List of alerts for the check.\n"
+                },
+                "checkId": {
+                    "type": "integer",
+                    "description": "The ID of the check to manage alerts for.\n"
+                }
+            },
+            "required": [
+                "alerts",
+                "checkId"
+            ],
+            "inputProperties": {
+                "alerts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:syntheticMonitoring/CheckAlertsAlert:CheckAlertsAlert"
+                    },
+                    "description": "List of alerts for the check.\n"
+                },
+                "checkId": {
+                    "type": "integer",
+                    "description": "The ID of the check to manage alerts for.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "alerts",
+                "checkId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering CheckAlerts resources.\n",
+                "properties": {
+                    "alerts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:syntheticMonitoring/CheckAlertsAlert:CheckAlertsAlert"
+                        },
+                        "description": "List of alerts for the check.\n"
+                    },
+                    "checkId": {
+                        "type": "integer",
+                        "description": "The ID of the check to manage alerts for.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
         },
         "grafana:syntheticMonitoring/installation:Installation": {
             "description": "Sets up Synthetic Monitoring on a Grafana cloud stack and generates a token. \nOnce a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install synthetic monitoring.\nThis resource cannot be imported but it can be used on an existing Synthetic Monitoring installation without issues.\n\n**Note that this resource must be used on a provider configured with Grafana Cloud credentials.**\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/)\n* [API documentation](https://github.com/grafana/synthetic-monitoring-api-go-client/blob/main/docs/API.md#apiv1registerinstall)\n\nRequired access policy scopes:\n\n* stacks:read\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst config = new pulumi.Config();\n// Cloud Access Policy token for Grafana Cloud with the following scopes: accesspolicies:read|write|delete, stacks:read|write|delete\nconst cloudAccessPolicyToken = config.requireObject\u003cany\u003e(\"cloudAccessPolicyToken\");\nconst stackSlug = config.requireObject\u003cany\u003e(\"stackSlug\");\nconst cloudRegion = config.get(\"cloudRegion\") || \"prod-us-east-0\";\nconst smStack = new grafana.cloud.Stack(\"sm_stack\", {\n    name: stackSlug,\n    slug: stackSlug,\n    regionSlug: cloudRegion,\n});\n// Step 2: Install Synthetic Monitoring on the stack\nconst smMetricsPublish = new grafana.cloud.AccessPolicy(\"sm_metrics_publish\", {\n    region: cloudRegion,\n    name: \"metric-publisher-for-sm\",\n    scopes: [\n        \"metrics:write\",\n        \"stacks:read\",\n        \"logs:write\",\n        \"traces:write\",\n    ],\n    realms: [{\n        type: \"stack\",\n        identifier: smStack.id,\n    }],\n});\nconst smMetricsPublishAccessPolicyToken = new grafana.cloud.AccessPolicyToken(\"sm_metrics_publish\", {\n    region: cloudRegion,\n    accessPolicyId: smMetricsPublish.policyId,\n    name: \"metric-publisher-for-sm\",\n});\nconst smStackInstallation = new grafana.syntheticmonitoring.Installation(\"sm_stack\", {\n    stackId: smStack.id,\n    metricsPublisherKey: smMetricsPublishAccessPolicyToken.token,\n});\nconst main = grafana.syntheticMonitoring.getProbes({});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nconfig = pulumi.Config()\n# Cloud Access Policy token for Grafana Cloud with the following scopes: accesspolicies:read|write|delete, stacks:read|write|delete\ncloud_access_policy_token = config.require_object(\"cloudAccessPolicyToken\")\nstack_slug = config.require_object(\"stackSlug\")\ncloud_region = config.get(\"cloudRegion\")\nif cloud_region is None:\n    cloud_region = \"prod-us-east-0\"\nsm_stack = grafana.cloud.Stack(\"sm_stack\",\n    name=stack_slug,\n    slug=stack_slug,\n    region_slug=cloud_region)\n# Step 2: Install Synthetic Monitoring on the stack\nsm_metrics_publish = grafana.cloud.AccessPolicy(\"sm_metrics_publish\",\n    region=cloud_region,\n    name=\"metric-publisher-for-sm\",\n    scopes=[\n        \"metrics:write\",\n        \"stacks:read\",\n        \"logs:write\",\n        \"traces:write\",\n    ],\n    realms=[{\n        \"type\": \"stack\",\n        \"identifier\": sm_stack.id,\n    }])\nsm_metrics_publish_access_policy_token = grafana.cloud.AccessPolicyToken(\"sm_metrics_publish\",\n    region=cloud_region,\n    access_policy_id=sm_metrics_publish.policy_id,\n    name=\"metric-publisher-for-sm\")\nsm_stack_installation = grafana.synthetic_monitoring.Installation(\"sm_stack\",\n    stack_id=sm_stack.id,\n    metrics_publisher_key=sm_metrics_publish_access_policy_token.token)\nmain = grafana.syntheticMonitoring.get_probes()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    // Cloud Access Policy token for Grafana Cloud with the following scopes: accesspolicies:read|write|delete, stacks:read|write|delete\n    var cloudAccessPolicyToken = config.RequireObject\u003cdynamic\u003e(\"cloudAccessPolicyToken\");\n    var stackSlug = config.RequireObject\u003cdynamic\u003e(\"stackSlug\");\n    var cloudRegion = config.Get(\"cloudRegion\") ?? \"prod-us-east-0\";\n    var smStack = new Grafana.Cloud.Stack(\"sm_stack\", new()\n    {\n        Name = stackSlug,\n        Slug = stackSlug,\n        RegionSlug = cloudRegion,\n    });\n\n    // Step 2: Install Synthetic Monitoring on the stack\n    var smMetricsPublish = new Grafana.Cloud.AccessPolicy(\"sm_metrics_publish\", new()\n    {\n        Region = cloudRegion,\n        Name = \"metric-publisher-for-sm\",\n        Scopes = new[]\n        {\n            \"metrics:write\",\n            \"stacks:read\",\n            \"logs:write\",\n            \"traces:write\",\n        },\n        Realms = new[]\n        {\n            new Grafana.Cloud.Inputs.AccessPolicyRealmArgs\n            {\n                Type = \"stack\",\n                Identifier = smStack.Id,\n            },\n        },\n    });\n\n    var smMetricsPublishAccessPolicyToken = new Grafana.Cloud.AccessPolicyToken(\"sm_metrics_publish\", new()\n    {\n        Region = cloudRegion,\n        AccessPolicyId = smMetricsPublish.PolicyId,\n        Name = \"metric-publisher-for-sm\",\n    });\n\n    var smStackInstallation = new Grafana.SyntheticMonitoring.Installation(\"sm_stack\", new()\n    {\n        StackId = smStack.Id,\n        MetricsPublisherKey = smMetricsPublishAccessPolicyToken.Token,\n    });\n\n    var main = Grafana.SyntheticMonitoring.GetProbes.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\t// Cloud Access Policy token for Grafana Cloud with the following scopes: accesspolicies:read|write|delete, stacks:read|write|delete\n\t\tcloudAccessPolicyToken := cfg.RequireObject(\"cloudAccessPolicyToken\")\n\t\tstackSlug := cfg.RequireObject(\"stackSlug\")\n\t\tcloudRegion := \"prod-us-east-0\"\n\t\tif param := cfg.Get(\"cloudRegion\"); param != \"\" {\n\t\t\tcloudRegion = param\n\t\t}\n\t\tsmStack, err := cloud.NewStack(ctx, \"sm_stack\", \u0026cloud.StackArgs{\n\t\t\tName:       pulumi.Any(stackSlug),\n\t\t\tSlug:       pulumi.Any(stackSlug),\n\t\t\tRegionSlug: pulumi.String(cloudRegion),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Step 2: Install Synthetic Monitoring on the stack\n\t\tsmMetricsPublish, err := cloud.NewAccessPolicy(ctx, \"sm_metrics_publish\", \u0026cloud.AccessPolicyArgs{\n\t\t\tRegion: pulumi.String(cloudRegion),\n\t\t\tName:   pulumi.String(\"metric-publisher-for-sm\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"metrics:write\"),\n\t\t\t\tpulumi.String(\"stacks:read\"),\n\t\t\t\tpulumi.String(\"logs:write\"),\n\t\t\t\tpulumi.String(\"traces:write\"),\n\t\t\t},\n\t\t\tRealms: cloud.AccessPolicyRealmArray{\n\t\t\t\t\u0026cloud.AccessPolicyRealmArgs{\n\t\t\t\t\tType:       pulumi.String(\"stack\"),\n\t\t\t\t\tIdentifier: smStack.ID(),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tsmMetricsPublishAccessPolicyToken, err := cloud.NewAccessPolicyToken(ctx, \"sm_metrics_publish\", \u0026cloud.AccessPolicyTokenArgs{\n\t\t\tRegion:         pulumi.String(cloudRegion),\n\t\t\tAccessPolicyId: smMetricsPublish.PolicyId,\n\t\t\tName:           pulumi.String(\"metric-publisher-for-sm\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = syntheticmonitoring.NewInstallation(ctx, \"sm_stack\", \u0026syntheticmonitoring.InstallationArgs{\n\t\t\tStackId:             smStack.ID(),\n\t\t\tMetricsPublisherKey: smMetricsPublishAccessPolicyToken.Token,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = syntheticmonitoring.GetProbes(ctx, \u0026syntheticmonitoring.GetProbesArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.Stack;\nimport com.pulumi.grafana.cloud.StackArgs;\nimport com.pulumi.grafana.cloud.AccessPolicy;\nimport com.pulumi.grafana.cloud.AccessPolicyArgs;\nimport com.pulumi.grafana.cloud.inputs.AccessPolicyRealmArgs;\nimport com.pulumi.grafana.cloud.AccessPolicyToken;\nimport com.pulumi.grafana.cloud.AccessPolicyTokenArgs;\nimport com.pulumi.grafana.syntheticMonitoring.Installation;\nimport com.pulumi.grafana.syntheticMonitoring.InstallationArgs;\nimport com.pulumi.grafana.syntheticMonitoring.SyntheticMonitoringFunctions;\nimport com.pulumi.grafana.syntheticMonitoring.inputs.GetProbesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var cloudAccessPolicyToken = config.get(\"cloudAccessPolicyToken\");\n        final var stackSlug = config.get(\"stackSlug\");\n        final var cloudRegion = config.get(\"cloudRegion\").orElse(\"prod-us-east-0\");\n        var smStack = new Stack(\"smStack\", StackArgs.builder()\n            .name(stackSlug)\n            .slug(stackSlug)\n            .regionSlug(cloudRegion)\n            .build());\n\n        // Step 2: Install Synthetic Monitoring on the stack\n        var smMetricsPublish = new AccessPolicy(\"smMetricsPublish\", AccessPolicyArgs.builder()\n            .region(cloudRegion)\n            .name(\"metric-publisher-for-sm\")\n            .scopes(            \n                \"metrics:write\",\n                \"stacks:read\",\n                \"logs:write\",\n                \"traces:write\")\n            .realms(AccessPolicyRealmArgs.builder()\n                .type(\"stack\")\n                .identifier(smStack.id())\n                .build())\n            .build());\n\n        var smMetricsPublishAccessPolicyToken = new AccessPolicyToken(\"smMetricsPublishAccessPolicyToken\", AccessPolicyTokenArgs.builder()\n            .region(cloudRegion)\n            .accessPolicyId(smMetricsPublish.policyId())\n            .name(\"metric-publisher-for-sm\")\n            .build());\n\n        var smStackInstallation = new Installation(\"smStackInstallation\", InstallationArgs.builder()\n            .stackId(smStack.id())\n            .metricsPublisherKey(smMetricsPublishAccessPolicyToken.token())\n            .build());\n\n        final var main = SyntheticMonitoringFunctions.getProbes(GetProbesArgs.builder()\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  cloudAccessPolicyToken:\n    type: dynamic\n  stackSlug:\n    type: dynamic\n  cloudRegion:\n    type: string\n    default: prod-us-east-0\nresources:\n  smStack:\n    type: grafana:cloud:Stack\n    name: sm_stack\n    properties:\n      name: ${stackSlug}\n      slug: ${stackSlug}\n      regionSlug: ${cloudRegion}\n  # Step 2: Install Synthetic Monitoring on the stack\n  smMetricsPublish:\n    type: grafana:cloud:AccessPolicy\n    name: sm_metrics_publish\n    properties:\n      region: ${cloudRegion}\n      name: metric-publisher-for-sm\n      scopes:\n        - metrics:write\n        - stacks:read\n        - logs:write\n        - traces:write\n      realms:\n        - type: stack\n          identifier: ${smStack.id}\n  smMetricsPublishAccessPolicyToken:\n    type: grafana:cloud:AccessPolicyToken\n    name: sm_metrics_publish\n    properties:\n      region: ${cloudRegion}\n      accessPolicyId: ${smMetricsPublish.policyId}\n      name: metric-publisher-for-sm\n  smStackInstallation:\n    type: grafana:syntheticMonitoring:Installation\n    name: sm_stack\n    properties:\n      stackId: ${smStack.id}\n      metricsPublisherKey: ${smMetricsPublishAccessPolicyToken.token}\nvariables:\n  main:\n    fn::invoke:\n      function: grafana:syntheticMonitoring:getProbes\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
@@ -29451,6 +29681,10 @@
                         "description": "Name of stack. Conventionally matches the url of the instance (e.g. `\u003cstack_slug\u003e.grafana.net`).\n",
                         "type": "string"
                     },
+                    "oncallApiUrl": {
+                        "description": "Base URL of the OnCall API instance configured for this stack.\n",
+                        "type": "string"
+                    },
                     "orgId": {
                         "description": "Organization id to assign to this stack.\n",
                         "type": "integer"
@@ -29624,6 +29858,7 @@
                     "logsUrl",
                     "logsUserId",
                     "name",
+                    "oncallApiUrl",
                     "orgId",
                     "orgName",
                     "orgSlug",
@@ -30521,6 +30756,10 @@
                         "description": "Name of stack. Conventionally matches the url of the instance (e.g. `\u003cstack_slug\u003e.grafana.net`).\n",
                         "type": "string"
                     },
+                    "oncallApiUrl": {
+                        "description": "Base URL of the OnCall API instance configured for this stack.\n",
+                        "type": "string"
+                    },
                     "orgId": {
                         "description": "Organization id to assign to this stack.\n",
                         "type": "integer"
@@ -30694,6 +30933,7 @@
                     "logsUrl",
                     "logsUserId",
                     "name",
+                    "oncallApiUrl",
                     "orgId",
                     "orgName",
                     "orgSlug",
@@ -31403,6 +31643,10 @@
                         "description": "The integration ID.\n",
                         "type": "string"
                     },
+                    "link": {
+                        "description": "The link for the integration.\n",
+                        "type": "string"
+                    },
                     "name": {
                         "description": "The integration name.\n",
                         "type": "string"
@@ -31410,6 +31654,7 @@
                 },
                 "required": [
                     "id",
+                    "link",
                     "name"
                 ],
                 "type": "object"
@@ -31492,7 +31737,7 @@
         },
         "grafana:index/getOncallTeam:getOncallTeam": {
             "deprecationMessage": "grafana.index/getoncallteam.getOncallTeam has been deprecated in favor of grafana.oncall/getteam.getTeam",
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst exampleTeam = grafana.onCall.getTeam({\n    name: \"example_team\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\n\nexample_team = grafana.onCall.get_team(name=\"example_team\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleTeam = Grafana.OnCall.GetTeam.Invoke(new()\n    {\n        Name = \"example_team\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oncall.GetTeam(ctx, \u0026oncall.GetTeamArgs{\n\t\t\tName: \"example_team\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.inputs.GetTeamArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleTeam = OnCallFunctions.getTeam(GetTeamArgs.builder()\n            .name(\"example_team\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleTeam:\n    fn::invoke:\n      function: grafana:onCall:getTeam\n      arguments:\n        name: example_team\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst myTeam = grafana.oss.getTeam({\n    name: \"my team\",\n});\nconst myTeamGetTeam = myTeam.then(myTeam =\u003e grafana.onCall.getTeam({\n    name: myTeam.name,\n}));\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\n\nmy_team = grafana.oss.get_team(name=\"my team\")\nmy_team_get_team = grafana.onCall.get_team(name=my_team.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myTeam = Grafana.Oss.GetTeam.Invoke(new()\n    {\n        Name = \"my team\",\n    });\n\n    var myTeamGetTeam = Grafana.OnCall.GetTeam.Invoke(new()\n    {\n        Name = myTeam.Apply(getTeamResult =\u003e getTeamResult.Name),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyTeam, err := oss.LookupTeam(ctx, \u0026oss.LookupTeamArgs{\n\t\t\tName: \"my team\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.GetTeam(ctx, \u0026oncall.GetTeamArgs{\n\t\t\tName: myTeam.Name,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.OssFunctions;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myTeam = OssFunctions.getTeam(GetTeamArgs.builder()\n            .name(\"my team\")\n            .build());\n\n        final var myTeamGetTeam = OnCallFunctions.getTeam(GetTeamArgs.builder()\n            .name(myTeam.name())\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myTeam:\n    fn::invoke:\n      function: grafana:oss:getTeam\n      arguments:\n        name: my team\n  myTeamGetTeam:\n    fn::invoke:\n      function: grafana:onCall:getTeam\n      arguments:\n        name: ${myTeam.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getOncallTeam.\n",
                 "properties": {
@@ -32167,12 +32412,12 @@
             }
         },
         "grafana:k6/getLoadTest:getLoadTest": {
-            "description": "Retrieves a k6 load test.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst loadTestProject = new grafana.k6.Project(\"load_test_project\", {name: \"Terraform Load Test Project\"});\nconst testLoadTest = new grafana.k6.LoadTest(\"test_load_test\", {\n    projectId: loadTestProject.id,\n    name: \"Terraform Test Load Test\",\n    script: `export default function() {\n  console.log('Hello from k6!');\n}\n`,\n});\nconst fromId = testLoadTest.id.apply(id =\u003e grafana.k6.getLoadTestOutput({\n    id: id,\n}));\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nload_test_project = grafana.k6.Project(\"load_test_project\", name=\"Terraform Load Test Project\")\ntest_load_test = grafana.k6.LoadTest(\"test_load_test\",\n    project_id=load_test_project.id,\n    name=\"Terraform Test Load Test\",\n    script=\"\"\"export default function() {\n  console.log('Hello from k6!');\n}\n\"\"\")\nfrom_id = test_load_test.id.apply(lambda id: grafana.k6.get_load_test_output(id=id))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var loadTestProject = new Grafana.K6.Project(\"load_test_project\", new()\n    {\n        Name = \"Terraform Load Test Project\",\n    });\n\n    var testLoadTest = new Grafana.K6.LoadTest(\"test_load_test\", new()\n    {\n        ProjectId = loadTestProject.Id,\n        Name = \"Terraform Test Load Test\",\n        Script = @\"export default function() {\n  console.log('Hello from k6!');\n}\n\",\n    });\n\n    var fromId = Grafana.K6.GetLoadTest.Invoke(new()\n    {\n        Id = testLoadTest.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tloadTestProject, err := k6.NewProject(ctx, \"load_test_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Load Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestLoadTest, err := k6.NewLoadTest(ctx, \"test_load_test\", \u0026k6.LoadTestArgs{\n\t\t\tProjectId: loadTestProject.ID(),\n\t\t\tName:      pulumi.String(\"Terraform Test Load Test\"),\n\t\t\tScript:    pulumi.String(\"export default function() {\\n  console.log('Hello from k6!');\\n}\\n\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = testLoadTest.ID().ApplyT(func(id string) (k6.GetLoadTestResult, error) {\n\t\t\treturn k6.GetLoadTestResult(interface{}(k6.LookupLoadTestOutput(ctx, k6.GetLoadTestOutputArgs{\n\t\t\t\tId: id,\n\t\t\t}, nil))), nil\n\t\t}).(k6.GetLoadTestResultOutput)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.LoadTest;\nimport com.pulumi.grafana.k6.LoadTestArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetLoadTestArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var loadTestProject = new Project(\"loadTestProject\", ProjectArgs.builder()\n            .name(\"Terraform Load Test Project\")\n            .build());\n\n        var testLoadTest = new LoadTest(\"testLoadTest\", LoadTestArgs.builder()\n            .projectId(loadTestProject.id())\n            .name(\"Terraform Test Load Test\")\n            .script(\"\"\"\nexport default function() {\n  console.log('Hello from k6!');\n}\n            \"\"\")\n            .build());\n\n        final var fromId = testLoadTest.id().applyValue(_id -\u003e K6Functions.getLoadTest(GetLoadTestArgs.builder()\n            .id(_id)\n            .build()));\n\n    }\n}\n```\n```yaml\nresources:\n  loadTestProject:\n    type: grafana:k6:Project\n    name: load_test_project\n    properties:\n      name: Terraform Load Test Project\n  testLoadTest:\n    type: grafana:k6:LoadTest\n    name: test_load_test\n    properties:\n      projectId: ${loadTestProject.id}\n      name: Terraform Test Load Test\n      script: |\n        export default function() {\n          console.log('Hello from k6!');\n        }\nvariables:\n  fromId:\n    fn::invoke:\n      function: grafana:k6:getLoadTest\n      arguments:\n        id: ${testLoadTest.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Retrieves a k6 load test.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst loadTestProject = new grafana.k6.Project(\"load_test_project\", {name: \"Terraform Load Test Project\"});\nconst testLoadTest = new grafana.k6.LoadTest(\"test_load_test\", {\n    projectId: loadTestProject.id,\n    name: \"Terraform Test Load Test\",\n    script: `export default function() {\n  console.log('Hello from k6!');\n}\n`,\n});\nconst fromId = grafana.k6.getLoadTestOutput({\n    id: testLoadTest.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nload_test_project = grafana.k6.Project(\"load_test_project\", name=\"Terraform Load Test Project\")\ntest_load_test = grafana.k6.LoadTest(\"test_load_test\",\n    project_id=load_test_project.id,\n    name=\"Terraform Test Load Test\",\n    script=\"\"\"export default function() {\n  console.log('Hello from k6!');\n}\n\"\"\")\nfrom_id = grafana.k6.get_load_test_output(id=test_load_test.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var loadTestProject = new Grafana.K6.Project(\"load_test_project\", new()\n    {\n        Name = \"Terraform Load Test Project\",\n    });\n\n    var testLoadTest = new Grafana.K6.LoadTest(\"test_load_test\", new()\n    {\n        ProjectId = loadTestProject.Id,\n        Name = \"Terraform Test Load Test\",\n        Script = @\"export default function() {\n  console.log('Hello from k6!');\n}\n\",\n    });\n\n    var fromId = Grafana.K6.GetLoadTest.Invoke(new()\n    {\n        Id = testLoadTest.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tloadTestProject, err := k6.NewProject(ctx, \"load_test_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Load Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestLoadTest, err := k6.NewLoadTest(ctx, \"test_load_test\", \u0026k6.LoadTestArgs{\n\t\t\tProjectId: loadTestProject.ID(),\n\t\t\tName:      pulumi.String(\"Terraform Test Load Test\"),\n\t\t\tScript:    pulumi.String(\"export default function() {\\n  console.log('Hello from k6!');\\n}\\n\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = k6.LookupLoadTestOutput(ctx, k6.GetLoadTestOutputArgs{\n\t\t\tId: testLoadTest.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.LoadTest;\nimport com.pulumi.grafana.k6.LoadTestArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetLoadTestArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var loadTestProject = new Project(\"loadTestProject\", ProjectArgs.builder()\n            .name(\"Terraform Load Test Project\")\n            .build());\n\n        var testLoadTest = new LoadTest(\"testLoadTest\", LoadTestArgs.builder()\n            .projectId(loadTestProject.id())\n            .name(\"Terraform Test Load Test\")\n            .script(\"\"\"\nexport default function() {\n  console.log('Hello from k6!');\n}\n            \"\"\")\n            .build());\n\n        final var fromId = K6Functions.getLoadTest(GetLoadTestArgs.builder()\n            .id(testLoadTest.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  loadTestProject:\n    type: grafana:k6:Project\n    name: load_test_project\n    properties:\n      name: Terraform Load Test Project\n  testLoadTest:\n    type: grafana:k6:LoadTest\n    name: test_load_test\n    properties:\n      projectId: ${loadTestProject.id}\n      name: Terraform Test Load Test\n      script: |\n        export default function() {\n          console.log('Hello from k6!');\n        }\nvariables:\n  fromId:\n    fn::invoke:\n      function: grafana:k6:getLoadTest\n      arguments:\n        id: ${testLoadTest.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getLoadTest.\n",
                 "properties": {
                     "id": {
-                        "type": "integer",
+                        "type": "string",
                         "description": "Numeric identifier of the load test.\n"
                     }
                 },
@@ -32186,7 +32431,7 @@
                 "properties": {
                     "baselineTestRunId": {
                         "description": "Identifier of a baseline test run used for results comparison.\n",
-                        "type": "integer"
+                        "type": "string"
                     },
                     "created": {
                         "description": "The date when the load test was created.\n",
@@ -32194,7 +32439,7 @@
                     },
                     "id": {
                         "description": "Numeric identifier of the load test.\n",
-                        "type": "integer"
+                        "type": "string"
                     },
                     "name": {
                         "description": "Human-friendly identifier of the load test.\n",
@@ -32202,7 +32447,7 @@
                     },
                     "projectId": {
                         "description": "The identifier of the project this load test belongs to.\n",
-                        "type": "integer"
+                        "type": "string"
                     },
                     "script": {
                         "description": "The k6 test script content.\n",
@@ -32226,7 +32471,7 @@
             }
         },
         "grafana:k6/getLoadTests:getLoadTests": {
-            "description": "Retrieves all k6 load tests that belong to a project.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst loadTestProject = new grafana.k6.Project(\"load_test_project\", {name: \"Terraform Load Test Project\"});\nconst testLoadTest = new grafana.k6.LoadTest(\"test_load_test\", {\n    projectId: loadTestProject.id,\n    name: \"Terraform Test Load Test\",\n    script: `export default function() {\n  console.log('Hello from k6!');\n}\n`,\n}, {\n    dependsOn: [loadTestProject],\n});\nconst testLoadTest2 = new grafana.k6.LoadTest(\"test_load_test_2\", {\n    projectId: loadTestProject.id,\n    name: \"Terraform Test Load Test (2)\",\n    script: `export default function() {\n  console.log('Hello from k6!');\n}\n`,\n}, {\n    dependsOn: [testLoadTest],\n});\nconst fromProjectId = loadTestProject.id.apply(id =\u003e grafana.k6.getLoadTestsOutput({\n    projectId: id,\n}));\nconst filterByName = loadTestProject.id.apply(id =\u003e grafana.k6.getLoadTestsOutput({\n    name: \"Terraform Test Load Test (2)\",\n    projectId: id,\n}));\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nload_test_project = grafana.k6.Project(\"load_test_project\", name=\"Terraform Load Test Project\")\ntest_load_test = grafana.k6.LoadTest(\"test_load_test\",\n    project_id=load_test_project.id,\n    name=\"Terraform Test Load Test\",\n    script=\"\"\"export default function() {\n  console.log('Hello from k6!');\n}\n\"\"\",\n    opts = pulumi.ResourceOptions(depends_on=[load_test_project]))\ntest_load_test2 = grafana.k6.LoadTest(\"test_load_test_2\",\n    project_id=load_test_project.id,\n    name=\"Terraform Test Load Test (2)\",\n    script=\"\"\"export default function() {\n  console.log('Hello from k6!');\n}\n\"\"\",\n    opts = pulumi.ResourceOptions(depends_on=[test_load_test]))\nfrom_project_id = load_test_project.id.apply(lambda id: grafana.k6.get_load_tests_output(project_id=id))\nfilter_by_name = load_test_project.id.apply(lambda id: grafana.k6.get_load_tests_output(name=\"Terraform Test Load Test (2)\",\n    project_id=id))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var loadTestProject = new Grafana.K6.Project(\"load_test_project\", new()\n    {\n        Name = \"Terraform Load Test Project\",\n    });\n\n    var testLoadTest = new Grafana.K6.LoadTest(\"test_load_test\", new()\n    {\n        ProjectId = loadTestProject.Id,\n        Name = \"Terraform Test Load Test\",\n        Script = @\"export default function() {\n  console.log('Hello from k6!');\n}\n\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            loadTestProject,\n        },\n    });\n\n    var testLoadTest2 = new Grafana.K6.LoadTest(\"test_load_test_2\", new()\n    {\n        ProjectId = loadTestProject.Id,\n        Name = \"Terraform Test Load Test (2)\",\n        Script = @\"export default function() {\n  console.log('Hello from k6!');\n}\n\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            testLoadTest,\n        },\n    });\n\n    var fromProjectId = Grafana.K6.GetLoadTests.Invoke(new()\n    {\n        ProjectId = loadTestProject.Id,\n    });\n\n    var filterByName = Grafana.K6.GetLoadTests.Invoke(new()\n    {\n        Name = \"Terraform Test Load Test (2)\",\n        ProjectId = loadTestProject.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tloadTestProject, err := k6.NewProject(ctx, \"load_test_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Load Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestLoadTest, err := k6.NewLoadTest(ctx, \"test_load_test\", \u0026k6.LoadTestArgs{\n\t\t\tProjectId: loadTestProject.ID(),\n\t\t\tName:      pulumi.String(\"Terraform Test Load Test\"),\n\t\t\tScript:    pulumi.String(\"export default function() {\\n  console.log('Hello from k6!');\\n}\\n\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tloadTestProject,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewLoadTest(ctx, \"test_load_test_2\", \u0026k6.LoadTestArgs{\n\t\t\tProjectId: loadTestProject.ID(),\n\t\t\tName:      pulumi.String(\"Terraform Test Load Test (2)\"),\n\t\t\tScript:    pulumi.String(\"export default function() {\\n  console.log('Hello from k6!');\\n}\\n\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\ttestLoadTest,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = loadTestProject.ID().ApplyT(func(id string) (k6.GetLoadTestsResult, error) {\n\t\t\treturn k6.GetLoadTestsResult(interface{}(k6.GetLoadTestsOutput(ctx, k6.GetLoadTestsOutputArgs{\n\t\t\t\tProjectId: id,\n\t\t\t}, nil))), nil\n\t\t}).(k6.GetLoadTestsResultOutput)\n\t\t_ = loadTestProject.ID().ApplyT(func(id string) (k6.GetLoadTestsResult, error) {\n\t\t\treturn k6.GetLoadTestsResult(interface{}(k6.GetLoadTestsOutput(ctx, k6.GetLoadTestsOutputArgs{\n\t\t\t\tName:      \"Terraform Test Load Test (2)\",\n\t\t\t\tProjectId: id,\n\t\t\t}, nil))), nil\n\t\t}).(k6.GetLoadTestsResultOutput)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.LoadTest;\nimport com.pulumi.grafana.k6.LoadTestArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetLoadTestsArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var loadTestProject = new Project(\"loadTestProject\", ProjectArgs.builder()\n            .name(\"Terraform Load Test Project\")\n            .build());\n\n        var testLoadTest = new LoadTest(\"testLoadTest\", LoadTestArgs.builder()\n            .projectId(loadTestProject.id())\n            .name(\"Terraform Test Load Test\")\n            .script(\"\"\"\nexport default function() {\n  console.log('Hello from k6!');\n}\n            \"\"\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(loadTestProject)\n                .build());\n\n        var testLoadTest2 = new LoadTest(\"testLoadTest2\", LoadTestArgs.builder()\n            .projectId(loadTestProject.id())\n            .name(\"Terraform Test Load Test (2)\")\n            .script(\"\"\"\nexport default function() {\n  console.log('Hello from k6!');\n}\n            \"\"\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(testLoadTest)\n                .build());\n\n        final var fromProjectId = loadTestProject.id().applyValue(_id -\u003e K6Functions.getLoadTests(GetLoadTestsArgs.builder()\n            .projectId(_id)\n            .build()));\n\n        final var filterByName = loadTestProject.id().applyValue(_id -\u003e K6Functions.getLoadTests(GetLoadTestsArgs.builder()\n            .name(\"Terraform Test Load Test (2)\")\n            .projectId(_id)\n            .build()));\n\n    }\n}\n```\n```yaml\nresources:\n  loadTestProject:\n    type: grafana:k6:Project\n    name: load_test_project\n    properties:\n      name: Terraform Load Test Project\n  testLoadTest:\n    type: grafana:k6:LoadTest\n    name: test_load_test\n    properties:\n      projectId: ${loadTestProject.id}\n      name: Terraform Test Load Test\n      script: |\n        export default function() {\n          console.log('Hello from k6!');\n        }\n    options:\n      dependsOn:\n        - ${loadTestProject}\n  testLoadTest2:\n    type: grafana:k6:LoadTest\n    name: test_load_test_2\n    properties:\n      projectId: ${loadTestProject.id}\n      name: Terraform Test Load Test (2)\n      script: |\n        export default function() {\n          console.log('Hello from k6!');\n        }\n    options:\n      dependsOn:\n        - ${testLoadTest}\nvariables:\n  fromProjectId:\n    fn::invoke:\n      function: grafana:k6:getLoadTests\n      arguments:\n        projectId: ${loadTestProject.id}\n  filterByName:\n    fn::invoke:\n      function: grafana:k6:getLoadTests\n      arguments:\n        name: Terraform Test Load Test (2)\n        projectId: ${loadTestProject.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Retrieves all k6 load tests that belong to a project.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst loadTestProject = new grafana.k6.Project(\"load_test_project\", {name: \"Terraform Load Test Project\"});\nconst testLoadTest = new grafana.k6.LoadTest(\"test_load_test\", {\n    projectId: loadTestProject.id,\n    name: \"Terraform Test Load Test\",\n    script: `export default function() {\n  console.log('Hello from k6!');\n}\n`,\n}, {\n    dependsOn: [loadTestProject],\n});\nconst testLoadTest2 = new grafana.k6.LoadTest(\"test_load_test_2\", {\n    projectId: loadTestProject.id,\n    name: \"Terraform Test Load Test (2)\",\n    script: `export default function() {\n  console.log('Hello from k6!');\n}\n`,\n}, {\n    dependsOn: [testLoadTest],\n});\nconst fromProjectId = grafana.k6.getLoadTestsOutput({\n    projectId: loadTestProject.id,\n});\nconst filterByName = grafana.k6.getLoadTestsOutput({\n    name: \"Terraform Test Load Test (2)\",\n    projectId: loadTestProject.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nload_test_project = grafana.k6.Project(\"load_test_project\", name=\"Terraform Load Test Project\")\ntest_load_test = grafana.k6.LoadTest(\"test_load_test\",\n    project_id=load_test_project.id,\n    name=\"Terraform Test Load Test\",\n    script=\"\"\"export default function() {\n  console.log('Hello from k6!');\n}\n\"\"\",\n    opts = pulumi.ResourceOptions(depends_on=[load_test_project]))\ntest_load_test2 = grafana.k6.LoadTest(\"test_load_test_2\",\n    project_id=load_test_project.id,\n    name=\"Terraform Test Load Test (2)\",\n    script=\"\"\"export default function() {\n  console.log('Hello from k6!');\n}\n\"\"\",\n    opts = pulumi.ResourceOptions(depends_on=[test_load_test]))\nfrom_project_id = grafana.k6.get_load_tests_output(project_id=load_test_project.id)\nfilter_by_name = grafana.k6.get_load_tests_output(name=\"Terraform Test Load Test (2)\",\n    project_id=load_test_project.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var loadTestProject = new Grafana.K6.Project(\"load_test_project\", new()\n    {\n        Name = \"Terraform Load Test Project\",\n    });\n\n    var testLoadTest = new Grafana.K6.LoadTest(\"test_load_test\", new()\n    {\n        ProjectId = loadTestProject.Id,\n        Name = \"Terraform Test Load Test\",\n        Script = @\"export default function() {\n  console.log('Hello from k6!');\n}\n\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            loadTestProject,\n        },\n    });\n\n    var testLoadTest2 = new Grafana.K6.LoadTest(\"test_load_test_2\", new()\n    {\n        ProjectId = loadTestProject.Id,\n        Name = \"Terraform Test Load Test (2)\",\n        Script = @\"export default function() {\n  console.log('Hello from k6!');\n}\n\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            testLoadTest,\n        },\n    });\n\n    var fromProjectId = Grafana.K6.GetLoadTests.Invoke(new()\n    {\n        ProjectId = loadTestProject.Id,\n    });\n\n    var filterByName = Grafana.K6.GetLoadTests.Invoke(new()\n    {\n        Name = \"Terraform Test Load Test (2)\",\n        ProjectId = loadTestProject.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tloadTestProject, err := k6.NewProject(ctx, \"load_test_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Load Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestLoadTest, err := k6.NewLoadTest(ctx, \"test_load_test\", \u0026k6.LoadTestArgs{\n\t\t\tProjectId: loadTestProject.ID(),\n\t\t\tName:      pulumi.String(\"Terraform Test Load Test\"),\n\t\t\tScript:    pulumi.String(\"export default function() {\\n  console.log('Hello from k6!');\\n}\\n\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tloadTestProject,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewLoadTest(ctx, \"test_load_test_2\", \u0026k6.LoadTestArgs{\n\t\t\tProjectId: loadTestProject.ID(),\n\t\t\tName:      pulumi.String(\"Terraform Test Load Test (2)\"),\n\t\t\tScript:    pulumi.String(\"export default function() {\\n  console.log('Hello from k6!');\\n}\\n\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\ttestLoadTest,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = k6.GetLoadTestsOutput(ctx, k6.GetLoadTestsOutputArgs{\n\t\t\tProjectId: loadTestProject.ID(),\n\t\t}, nil)\n\t\t_ = k6.GetLoadTestsOutput(ctx, k6.GetLoadTestsOutputArgs{\n\t\t\tName:      pulumi.String(\"Terraform Test Load Test (2)\"),\n\t\t\tProjectId: loadTestProject.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.LoadTest;\nimport com.pulumi.grafana.k6.LoadTestArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetLoadTestsArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var loadTestProject = new Project(\"loadTestProject\", ProjectArgs.builder()\n            .name(\"Terraform Load Test Project\")\n            .build());\n\n        var testLoadTest = new LoadTest(\"testLoadTest\", LoadTestArgs.builder()\n            .projectId(loadTestProject.id())\n            .name(\"Terraform Test Load Test\")\n            .script(\"\"\"\nexport default function() {\n  console.log('Hello from k6!');\n}\n            \"\"\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(loadTestProject)\n                .build());\n\n        var testLoadTest2 = new LoadTest(\"testLoadTest2\", LoadTestArgs.builder()\n            .projectId(loadTestProject.id())\n            .name(\"Terraform Test Load Test (2)\")\n            .script(\"\"\"\nexport default function() {\n  console.log('Hello from k6!');\n}\n            \"\"\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(testLoadTest)\n                .build());\n\n        final var fromProjectId = K6Functions.getLoadTests(GetLoadTestsArgs.builder()\n            .projectId(loadTestProject.id())\n            .build());\n\n        final var filterByName = K6Functions.getLoadTests(GetLoadTestsArgs.builder()\n            .name(\"Terraform Test Load Test (2)\")\n            .projectId(loadTestProject.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  loadTestProject:\n    type: grafana:k6:Project\n    name: load_test_project\n    properties:\n      name: Terraform Load Test Project\n  testLoadTest:\n    type: grafana:k6:LoadTest\n    name: test_load_test\n    properties:\n      projectId: ${loadTestProject.id}\n      name: Terraform Test Load Test\n      script: |\n        export default function() {\n          console.log('Hello from k6!');\n        }\n    options:\n      dependsOn:\n        - ${loadTestProject}\n  testLoadTest2:\n    type: grafana:k6:LoadTest\n    name: test_load_test_2\n    properties:\n      projectId: ${loadTestProject.id}\n      name: Terraform Test Load Test (2)\n      script: |\n        export default function() {\n          console.log('Hello from k6!');\n        }\n    options:\n      dependsOn:\n        - ${testLoadTest}\nvariables:\n  fromProjectId:\n    fn::invoke:\n      function: grafana:k6:getLoadTests\n      arguments:\n        projectId: ${loadTestProject.id}\n  filterByName:\n    fn::invoke:\n      function: grafana:k6:getLoadTests\n      arguments:\n        name: Terraform Test Load Test (2)\n        projectId: ${loadTestProject.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getLoadTests.\n",
                 "properties": {
@@ -32235,7 +32480,7 @@
                         "description": "Human-friendly identifier of the load test.\n"
                     },
                     "projectId": {
-                        "type": "integer",
+                        "type": "string",
                         "description": "The identifier of the project the load tests belong to.\n"
                     }
                 },
@@ -32249,7 +32494,7 @@
                 "properties": {
                     "id": {
                         "description": "The identifier of the project the load tests belong to. This is set to the same as the project_id.\n",
-                        "type": "integer"
+                        "type": "string"
                     },
                     "loadTests": {
                         "items": {
@@ -32263,7 +32508,7 @@
                     },
                     "projectId": {
                         "description": "The identifier of the project the load tests belong to.\n",
-                        "type": "integer"
+                        "type": "string"
                     }
                 },
                 "required": [
@@ -32275,12 +32520,12 @@
             }
         },
         "grafana:k6/getProject:getProject": {
-            "description": "Retrieves a k6 project.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.k6.Project(\"test\", {name: \"Terraform Test Project\"});\nconst fromId = test.id.apply(id =\u003e grafana.k6.getProjectOutput({\n    id: id,\n}));\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest = grafana.k6.Project(\"test\", name=\"Terraform Test Project\")\nfrom_id = test.id.apply(lambda id: grafana.k6.get_project_output(id=id))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.K6.Project(\"test\", new()\n    {\n        Name = \"Terraform Test Project\",\n    });\n\n    var fromId = Grafana.K6.GetProject.Invoke(new()\n    {\n        Id = test.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := k6.NewProject(ctx, \"test\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = test.ID().ApplyT(func(id string) (k6.GetProjectResult, error) {\n\t\t\treturn k6.GetProjectResult(interface{}(k6.LookupProjectOutput(ctx, k6.GetProjectOutputArgs{\n\t\t\t\tId: id,\n\t\t\t}, nil))), nil\n\t\t}).(k6.GetProjectResultOutput)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Project(\"test\", ProjectArgs.builder()\n            .name(\"Terraform Test Project\")\n            .build());\n\n        final var fromId = test.id().applyValue(_id -\u003e K6Functions.getProject(GetProjectArgs.builder()\n            .id(_id)\n            .build()));\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:k6:Project\n    properties:\n      name: Terraform Test Project\nvariables:\n  fromId:\n    fn::invoke:\n      function: grafana:k6:getProject\n      arguments:\n        id: ${test.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Retrieves a k6 project.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.k6.Project(\"test\", {name: \"Terraform Test Project\"});\nconst fromId = grafana.k6.getProjectOutput({\n    id: test.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest = grafana.k6.Project(\"test\", name=\"Terraform Test Project\")\nfrom_id = grafana.k6.get_project_output(id=test.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.K6.Project(\"test\", new()\n    {\n        Name = \"Terraform Test Project\",\n    });\n\n    var fromId = Grafana.K6.GetProject.Invoke(new()\n    {\n        Id = test.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := k6.NewProject(ctx, \"test\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = k6.LookupProjectOutput(ctx, k6.GetProjectOutputArgs{\n\t\t\tId: test.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Project(\"test\", ProjectArgs.builder()\n            .name(\"Terraform Test Project\")\n            .build());\n\n        final var fromId = K6Functions.getProject(GetProjectArgs.builder()\n            .id(test.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:k6:Project\n    properties:\n      name: Terraform Test Project\nvariables:\n  fromId:\n    fn::invoke:\n      function: grafana:k6:getProject\n      arguments:\n        id: ${test.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getProject.\n",
                 "properties": {
                     "id": {
-                        "type": "integer",
+                        "type": "string",
                         "description": "Numeric identifier of the project.\n"
                     }
                 },
@@ -32302,7 +32547,7 @@
                     },
                     "id": {
                         "description": "Numeric identifier of the project.\n",
-                        "type": "integer"
+                        "type": "string"
                     },
                     "isDefault": {
                         "description": "Whether this project is the default for running tests when no explicit project identifier is provided.\n",
@@ -32329,12 +32574,12 @@
             }
         },
         "grafana:k6/getProjectLimits:getProjectLimits": {
-            "description": "Retrieves a k6 project limits.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst testProjectLimits = new grafana.k6.Project(\"test_project_limits\", {name: \"Terraform Project Test Limits\"});\nconst fromProjectId = testProjectLimits.id.apply(id =\u003e grafana.k6.getProjectLimitsOutput({\n    projectId: id,\n}));\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest_project_limits = grafana.k6.Project(\"test_project_limits\", name=\"Terraform Project Test Limits\")\nfrom_project_id = test_project_limits.id.apply(lambda id: grafana.k6.get_project_limits_output(project_id=id))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testProjectLimits = new Grafana.K6.Project(\"test_project_limits\", new()\n    {\n        Name = \"Terraform Project Test Limits\",\n    });\n\n    var fromProjectId = Grafana.K6.GetProjectLimits.Invoke(new()\n    {\n        ProjectId = testProjectLimits.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestProjectLimits, err := k6.NewProject(ctx, \"test_project_limits\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Project Test Limits\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = testProjectLimits.ID().ApplyT(func(id string) (k6.GetProjectLimitsResult, error) {\n\t\t\treturn k6.GetProjectLimitsResult(interface{}(k6.LookupProjectLimitsOutput(ctx, k6.GetProjectLimitsOutputArgs{\n\t\t\t\tProjectId: id,\n\t\t\t}, nil))), nil\n\t\t}).(k6.GetProjectLimitsResultOutput)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetProjectLimitsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testProjectLimits = new Project(\"testProjectLimits\", ProjectArgs.builder()\n            .name(\"Terraform Project Test Limits\")\n            .build());\n\n        final var fromProjectId = testProjectLimits.id().applyValue(_id -\u003e K6Functions.getProjectLimits(GetProjectLimitsArgs.builder()\n            .projectId(_id)\n            .build()));\n\n    }\n}\n```\n```yaml\nresources:\n  testProjectLimits:\n    type: grafana:k6:Project\n    name: test_project_limits\n    properties:\n      name: Terraform Project Test Limits\nvariables:\n  fromProjectId:\n    fn::invoke:\n      function: grafana:k6:getProjectLimits\n      arguments:\n        projectId: ${testProjectLimits.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Retrieves a k6 project limits.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst testProjectLimits = new grafana.k6.Project(\"test_project_limits\", {name: \"Terraform Project Test Limits\"});\nconst fromProjectId = grafana.k6.getProjectLimitsOutput({\n    projectId: testProjectLimits.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest_project_limits = grafana.k6.Project(\"test_project_limits\", name=\"Terraform Project Test Limits\")\nfrom_project_id = grafana.k6.get_project_limits_output(project_id=test_project_limits.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testProjectLimits = new Grafana.K6.Project(\"test_project_limits\", new()\n    {\n        Name = \"Terraform Project Test Limits\",\n    });\n\n    var fromProjectId = Grafana.K6.GetProjectLimits.Invoke(new()\n    {\n        ProjectId = testProjectLimits.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestProjectLimits, err := k6.NewProject(ctx, \"test_project_limits\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Project Test Limits\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = k6.LookupProjectLimitsOutput(ctx, k6.GetProjectLimitsOutputArgs{\n\t\t\tProjectId: testProjectLimits.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetProjectLimitsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testProjectLimits = new Project(\"testProjectLimits\", ProjectArgs.builder()\n            .name(\"Terraform Project Test Limits\")\n            .build());\n\n        final var fromProjectId = K6Functions.getProjectLimits(GetProjectLimitsArgs.builder()\n            .projectId(testProjectLimits.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testProjectLimits:\n    type: grafana:k6:Project\n    name: test_project_limits\n    properties:\n      name: Terraform Project Test Limits\nvariables:\n  fromProjectId:\n    fn::invoke:\n      function: grafana:k6:getProjectLimits\n      arguments:\n        projectId: ${testProjectLimits.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getProjectLimits.\n",
                 "properties": {
                     "projectId": {
-                        "type": "integer",
+                        "type": "string",
                         "description": "The identifier of the project to get limits for.\n"
                     }
                 },
@@ -32352,11 +32597,11 @@
                     },
                     "id": {
                         "description": "The identifier of the project limits. This is set to the same as the project_id.\n",
-                        "type": "integer"
+                        "type": "string"
                     },
                     "projectId": {
                         "description": "The identifier of the project to get limits for.\n",
-                        "type": "integer"
+                        "type": "string"
                     },
                     "vuBrowserMaxPerTest": {
                         "description": "Maximum number of concurrent browser virtual users (VUs) used in one test.\n",
@@ -32383,7 +32628,7 @@
             }
         },
         "grafana:k6/getProjects:getProjects": {
-            "description": "Retrieves all k6 projects with the given name.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst project = new grafana.k6.Project(\"project\", {name: \"Terraform Test Project\"});\nconst project2 = new grafana.k6.Project(\"project_2\", {name: \"Terraform Test Project\"});\nconst fromName = grafana.k6.getProjects({\n    name: \"Terraform Test Project\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nproject = grafana.k6.Project(\"project\", name=\"Terraform Test Project\")\nproject2 = grafana.k6.Project(\"project_2\", name=\"Terraform Test Project\")\nfrom_name = grafana.k6.get_projects(name=\"Terraform Test Project\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Grafana.K6.Project(\"project\", new()\n    {\n        Name = \"Terraform Test Project\",\n    });\n\n    var project2 = new Grafana.K6.Project(\"project_2\", new()\n    {\n        Name = \"Terraform Test Project\",\n    });\n\n    var fromName = Grafana.K6.GetProjects.Invoke(new()\n    {\n        Name = \"Terraform Test Project\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := k6.NewProject(ctx, \"project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewProject(ctx, \"project_2\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.GetProjects(ctx, \u0026k6.GetProjectsArgs{\n\t\t\tName: pulumi.StringRef(\"Terraform Test Project\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetProjectsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new Project(\"project\", ProjectArgs.builder()\n            .name(\"Terraform Test Project\")\n            .build());\n\n        var project2 = new Project(\"project2\", ProjectArgs.builder()\n            .name(\"Terraform Test Project\")\n            .build());\n\n        final var fromName = K6Functions.getProjects(GetProjectsArgs.builder()\n            .name(\"Terraform Test Project\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: grafana:k6:Project\n    properties:\n      name: Terraform Test Project\n  project2:\n    type: grafana:k6:Project\n    name: project_2\n    properties:\n      name: Terraform Test Project\nvariables:\n  fromName:\n    fn::invoke:\n      function: grafana:k6:getProjects\n      arguments:\n        name: Terraform Test Project\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Retrieves all k6 projects with the given name.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst project = new grafana.k6.Project(\"project\", {name: \"Terraform Test Project\"});\nconst fromName = grafana.k6.getProjects({\n    name: \"Terraform Test Project\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nproject = grafana.k6.Project(\"project\", name=\"Terraform Test Project\")\nfrom_name = grafana.k6.get_projects(name=\"Terraform Test Project\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Grafana.K6.Project(\"project\", new()\n    {\n        Name = \"Terraform Test Project\",\n    });\n\n    var fromName = Grafana.K6.GetProjects.Invoke(new()\n    {\n        Name = \"Terraform Test Project\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := k6.NewProject(ctx, \"project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.GetProjects(ctx, \u0026k6.GetProjectsArgs{\n\t\t\tName: pulumi.StringRef(\"Terraform Test Project\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetProjectsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new Project(\"project\", ProjectArgs.builder()\n            .name(\"Terraform Test Project\")\n            .build());\n\n        final var fromName = K6Functions.getProjects(GetProjectsArgs.builder()\n            .name(\"Terraform Test Project\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: grafana:k6:Project\n    properties:\n      name: Terraform Test Project\nvariables:\n  fromName:\n    fn::invoke:\n      function: grafana:k6:getProjects\n      arguments:\n        name: Terraform Test Project\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getProjects.\n",
                 "properties": {
@@ -32475,6 +32720,10 @@
                         "description": "The integration ID.\n",
                         "type": "string"
                     },
+                    "link": {
+                        "description": "The link for the integration.\n",
+                        "type": "string"
+                    },
                     "name": {
                         "description": "The integration name.\n",
                         "type": "string"
@@ -32482,6 +32731,7 @@
                 },
                 "required": [
                     "id",
+                    "link",
                     "name"
                 ],
                 "type": "object"
@@ -32644,7 +32894,7 @@
             }
         },
         "grafana:onCall/getTeam:getTeam": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst exampleTeam = grafana.onCall.getTeam({\n    name: \"example_team\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\n\nexample_team = grafana.onCall.get_team(name=\"example_team\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleTeam = Grafana.OnCall.GetTeam.Invoke(new()\n    {\n        Name = \"example_team\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oncall.GetTeam(ctx, \u0026oncall.GetTeamArgs{\n\t\t\tName: \"example_team\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport com.pulumi.grafana.onCall.inputs.GetTeamArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleTeam = OnCallFunctions.getTeam(GetTeamArgs.builder()\n            .name(\"example_team\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleTeam:\n    fn::invoke:\n      function: grafana:onCall:getTeam\n      arguments:\n        name: example_team\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst myTeam = grafana.oss.getTeam({\n    name: \"my team\",\n});\nconst myTeamGetTeam = myTeam.then(myTeam =\u003e grafana.onCall.getTeam({\n    name: myTeam.name,\n}));\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\n\nmy_team = grafana.oss.get_team(name=\"my team\")\nmy_team_get_team = grafana.onCall.get_team(name=my_team.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myTeam = Grafana.Oss.GetTeam.Invoke(new()\n    {\n        Name = \"my team\",\n    });\n\n    var myTeamGetTeam = Grafana.OnCall.GetTeam.Invoke(new()\n    {\n        Name = myTeam.Apply(getTeamResult =\u003e getTeamResult.Name),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyTeam, err := oss.LookupTeam(ctx, \u0026oss.LookupTeamArgs{\n\t\t\tName: \"my team\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oncall.GetTeam(ctx, \u0026oncall.GetTeamArgs{\n\t\t\tName: myTeam.Name,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.OssFunctions;\nimport com.pulumi.grafana.onCall.OnCallFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myTeam = OssFunctions.getTeam(GetTeamArgs.builder()\n            .name(\"my team\")\n            .build());\n\n        final var myTeamGetTeam = OnCallFunctions.getTeam(GetTeamArgs.builder()\n            .name(myTeam.name())\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myTeam:\n    fn::invoke:\n      function: grafana:oss:getTeam\n      arguments:\n        name: my team\n  myTeamGetTeam:\n    fn::invoke:\n      function: grafana:onCall:getTeam\n      arguments:\n        name: ${myTeam.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getTeam.\n",
                 "properties": {

@@ -779,6 +779,9 @@
                             }
                         }
                     },
+                    "dynamic_labels": {
+                        "maxItemsOne": false
+                    },
                     "labels": {
                         "maxItemsOne": false
                     },
@@ -1084,6 +1087,9 @@
                         }
                     }
                 }
+            },
+            "grafana_scim_config": {
+                "current": "grafana:enterprise/scimConfig:ScimConfig"
             },
             "grafana_service_account": {
                 "current": "grafana:oss/serviceAccount:ServiceAccount",
@@ -1446,6 +1452,14 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "grafana_synthetic_monitoring_check_alerts": {
+                "current": "grafana:syntheticMonitoring/checkAlerts:CheckAlerts",
+                "fields": {
+                    "alerts": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -2739,6 +2753,7 @@
             "grafana:enterprise/role:Role": 0,
             "grafana:enterprise/roleAssignment:RoleAssignment": 0,
             "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem": 1,
+            "grafana:enterprise/scimConfig:ScimConfig": 0,
             "grafana:enterprise/teamExternalGroup:TeamExternalGroup": 0,
             "grafana:experimental/appsDashboard:AppsDashboard": 1,
             "grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1": 1,
@@ -2840,6 +2855,7 @@
             "grafana:oss/user:User": 0,
             "grafana:slo/sLO:SLO": 0,
             "grafana:syntheticMonitoring/check:Check": 0,
+            "grafana:syntheticMonitoring/checkAlerts:CheckAlerts": 0,
             "grafana:syntheticMonitoring/installation:Installation": 0,
             "grafana:syntheticMonitoring/probe:Probe": 0
         },
