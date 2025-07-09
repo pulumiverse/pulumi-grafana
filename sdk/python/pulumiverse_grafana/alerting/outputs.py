@@ -4031,6 +4031,8 @@ class RuleGroupRule(dict):
             suggest = "is_paused"
         elif key == "keepFiringFor":
             suggest = "keep_firing_for"
+        elif key == "missingSeriesEvalsToResolve":
+            suggest = "missing_series_evals_to_resolve"
         elif key == "noDataState":
             suggest = "no_data_state"
         elif key == "notificationSettings":
@@ -4057,6 +4059,7 @@ class RuleGroupRule(dict):
                  is_paused: Optional[builtins.bool] = None,
                  keep_firing_for: Optional[builtins.str] = None,
                  labels: Optional[Mapping[str, builtins.str]] = None,
+                 missing_series_evals_to_resolve: Optional[builtins.int] = None,
                  no_data_state: Optional[builtins.str] = None,
                  notification_settings: Optional['outputs.RuleGroupRuleNotificationSettings'] = None,
                  record: Optional['outputs.RuleGroupRuleRecord'] = None,
@@ -4071,6 +4074,7 @@ class RuleGroupRule(dict):
         :param builtins.bool is_paused: Sets whether the alert should be paused or not. Defaults to `false`.
         :param builtins.str keep_firing_for: The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
         :param Mapping[str, builtins.str] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
+        :param builtins.int missing_series_evals_to_resolve: The number of missing series evaluations that must occur before the rule is considered to be resolved.
         :param builtins.str no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
         :param 'RuleGroupRuleNotificationSettingsArgs' notification_settings: Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
         :param 'RuleGroupRuleRecordArgs' record: Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
@@ -4092,6 +4096,8 @@ class RuleGroupRule(dict):
             pulumi.set(__self__, "keep_firing_for", keep_firing_for)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
+        if missing_series_evals_to_resolve is not None:
+            pulumi.set(__self__, "missing_series_evals_to_resolve", missing_series_evals_to_resolve)
         if no_data_state is not None:
             pulumi.set(__self__, "no_data_state", no_data_state)
         if notification_settings is not None:
@@ -4172,6 +4178,14 @@ class RuleGroupRule(dict):
         Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
         """
         return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter(name="missingSeriesEvalsToResolve")
+    def missing_series_evals_to_resolve(self) -> Optional[builtins.int]:
+        """
+        The number of missing series evaluations that must occur before the rule is considered to be resolved.
+        """
+        return pulumi.get(self, "missing_series_evals_to_resolve")
 
     @property
     @pulumi.getter(name="noDataState")
@@ -4450,6 +4464,8 @@ class RuleGroupRuleRecord(dict):
         suggest = None
         if key == "from":
             suggest = "from_"
+        elif key == "targetDatasourceUid":
+            suggest = "target_datasource_uid"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in RuleGroupRuleRecord. Access the value via the '{suggest}' property getter instead.")
@@ -4464,13 +4480,17 @@ class RuleGroupRuleRecord(dict):
 
     def __init__(__self__, *,
                  from_: builtins.str,
-                 metric: builtins.str):
+                 metric: builtins.str,
+                 target_datasource_uid: Optional[builtins.str] = None):
         """
         :param builtins.str from_: The ref id of the query node in the data field to use as the source of the metric.
         :param builtins.str metric: The name of the metric to write to.
+        :param builtins.str target_datasource_uid: The UID of the datasource to write the metric to.
         """
         pulumi.set(__self__, "from_", from_)
         pulumi.set(__self__, "metric", metric)
+        if target_datasource_uid is not None:
+            pulumi.set(__self__, "target_datasource_uid", target_datasource_uid)
 
     @property
     @pulumi.getter(name="from")
@@ -4487,5 +4507,13 @@ class RuleGroupRuleRecord(dict):
         The name of the metric to write to.
         """
         return pulumi.get(self, "metric")
+
+    @property
+    @pulumi.getter(name="targetDatasourceUid")
+    def target_datasource_uid(self) -> Optional[builtins.str]:
+        """
+        The UID of the datasource to write the metric to.
+        """
+        return pulumi.get(self, "target_datasource_uid")
 
 

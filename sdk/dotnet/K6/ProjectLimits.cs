@@ -59,7 +59,7 @@ namespace Pulumiverse.Grafana.K6
         /// The identifier of the project to manage limits for.
         /// </summary>
         [Output("projectId")]
-        public Output<int> ProjectId { get; private set; } = null!;
+        public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// Maximum number of concurrent browser virtual users (VUs) used in one test.
@@ -136,7 +136,7 @@ namespace Pulumiverse.Grafana.K6
         /// The identifier of the project to manage limits for.
         /// </summary>
         [Input("projectId", required: true)]
-        public Input<int> ProjectId { get; set; } = null!;
+        public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
         /// Maximum number of concurrent browser virtual users (VUs) used in one test.
@@ -174,7 +174,7 @@ namespace Pulumiverse.Grafana.K6
         /// The identifier of the project to manage limits for.
         /// </summary>
         [Input("projectId")]
-        public Input<int>? ProjectId { get; set; }
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// Maximum number of concurrent browser virtual users (VUs) used in one test.

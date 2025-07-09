@@ -157,6 +157,10 @@ export class CloudStack extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Base URL of the OnCall API instance configured for this stack.
+     */
+    public /*out*/ readonly oncallApiUrl!: pulumi.Output<string>;
+    /**
      * Organization id to assign to this stack.
      */
     public /*out*/ readonly orgId!: pulumi.Output<number>;
@@ -337,6 +341,7 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["logsUrl"] = state ? state.logsUrl : undefined;
             resourceInputs["logsUserId"] = state ? state.logsUserId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["oncallApiUrl"] = state ? state.oncallApiUrl : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["orgName"] = state ? state.orgName : undefined;
             resourceInputs["orgSlug"] = state ? state.orgSlug : undefined;
@@ -415,6 +420,7 @@ export class CloudStack extends pulumi.CustomResource {
             resourceInputs["logsStatus"] = undefined /*out*/;
             resourceInputs["logsUrl"] = undefined /*out*/;
             resourceInputs["logsUserId"] = undefined /*out*/;
+            resourceInputs["oncallApiUrl"] = undefined /*out*/;
             resourceInputs["orgId"] = undefined /*out*/;
             resourceInputs["orgName"] = undefined /*out*/;
             resourceInputs["orgSlug"] = undefined /*out*/;
@@ -551,6 +557,10 @@ export interface CloudStackState {
      * Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
      */
     name?: pulumi.Input<string>;
+    /**
+     * Base URL of the OnCall API instance configured for this stack.
+     */
+    oncallApiUrl?: pulumi.Input<string>;
     /**
      * Organization id to assign to this stack.
      */

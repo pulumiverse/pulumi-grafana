@@ -7,6 +7,7 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .check import *
+from .check_alerts import *
 from .get_probe import *
 from .get_probes import *
 from .installation import *

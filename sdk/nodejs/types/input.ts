@@ -1620,6 +1620,10 @@ export interface RuleGroupRule {
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * The number of missing series evaluations that must occur before the rule is considered to be resolved.
+     */
+    missingSeriesEvalsToResolve?: pulumi.Input<number>;
+    /**
      * The name of the alert rule.
      */
     name: pulumi.Input<string>;
@@ -1711,6 +1715,10 @@ export interface RuleGroupRuleRecord {
      * The name of the metric to write to.
      */
     metric: pulumi.Input<string>;
+    /**
+     * The UID of the datasource to write the metric to.
+     */
+    targetDatasourceUid?: pulumi.Input<string>;
 }
 
 export interface SLOAlerting {
@@ -4102,6 +4110,10 @@ export namespace alerting {
          */
         labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
+         * The number of missing series evaluations that must occur before the rule is considered to be resolved.
+         */
+        missingSeriesEvalsToResolve?: pulumi.Input<number>;
+        /**
          * The name of the alert rule.
          */
         name: pulumi.Input<string>;
@@ -4193,6 +4205,10 @@ export namespace alerting {
          * The name of the metric to write to.
          */
         metric: pulumi.Input<string>;
+        /**
+         * The UID of the datasource to write the metric to.
+         */
+        targetDatasourceUid?: pulumi.Input<string>;
     }
 }
 
@@ -4675,7 +4691,7 @@ export namespace cloud {
          */
         name: pulumi.Input<string>;
         /**
-         * The interval in seconds to scrape the custom namespace.
+         * The interval in seconds to scrape the custom namespace. Defaults to `300`.
          */
         scrapeIntervalSeconds?: pulumi.Input<number>;
     }
@@ -4705,7 +4721,7 @@ export namespace cloud {
          */
         resourceDiscoveryTagFilters?: pulumi.Input<pulumi.Input<inputs.cloud.ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter>[]>;
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
          */
         scrapeIntervalSeconds?: pulumi.Input<number>;
         /**
@@ -4781,7 +4797,7 @@ export namespace cloudProvider {
          */
         name: pulumi.Input<string>;
         /**
-         * The interval in seconds to scrape the custom namespace.
+         * The interval in seconds to scrape the custom namespace. Defaults to `300`.
          */
         scrapeIntervalSeconds?: pulumi.Input<number>;
     }
@@ -4811,7 +4827,7 @@ export namespace cloudProvider {
          */
         resourceDiscoveryTagFilters?: pulumi.Input<pulumi.Input<inputs.cloudProvider.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter>[]>;
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
          */
         scrapeIntervalSeconds?: pulumi.Input<number>;
         /**
@@ -4852,7 +4868,7 @@ export namespace cloudProvider {
          */
         resourceDiscoveryTagFilters?: pulumi.Input<pulumi.Input<inputs.cloudProvider.AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter>[]>;
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
          */
         scrapeIntervalSeconds?: pulumi.Input<number>;
     }
@@ -6548,6 +6564,21 @@ export namespace slo {
 }
 
 export namespace syntheticMonitoring {
+    export interface CheckAlertsAlert {
+        /**
+         * Name of the alert. Required.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
+         */
+        period?: pulumi.Input<string>;
+        /**
+         * Threshold value for the alert.
+         */
+        threshold: pulumi.Input<number>;
+    }
+
     export interface CheckSettings {
         /**
          * Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.

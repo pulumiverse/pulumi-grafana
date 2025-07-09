@@ -34,8 +34,8 @@ class GetProjectResult:
         if grafana_folder_uid and not isinstance(grafana_folder_uid, str):
             raise TypeError("Expected argument 'grafana_folder_uid' to be a str")
         pulumi.set(__self__, "grafana_folder_uid", grafana_folder_uid)
-        if id and not isinstance(id, int):
-            raise TypeError("Expected argument 'id' to be a int")
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if is_default and not isinstance(is_default, bool):
             raise TypeError("Expected argument 'is_default' to be a bool")
@@ -65,7 +65,7 @@ class GetProjectResult:
 
     @property
     @pulumi.getter
-    def id(self) -> builtins.int:
+    def id(self) -> builtins.str:
         """
         Numeric identifier of the project.
         """
@@ -110,7 +110,7 @@ class AwaitableGetProjectResult(GetProjectResult):
             updated=self.updated)
 
 
-def get_project(id: Optional[builtins.int] = None,
+def get_project(id: Optional[builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectResult:
     """
     Retrieves a k6 project.
@@ -123,11 +123,11 @@ def get_project(id: Optional[builtins.int] = None,
     import pulumiverse_grafana as grafana
 
     test = grafana.k6.Project("test", name="Terraform Test Project")
-    from_id = test.id.apply(lambda id: grafana.k6.get_project_output(id=id))
+    from_id = grafana.k6.get_project_output(id=test.id)
     ```
 
 
-    :param builtins.int id: Numeric identifier of the project.
+    :param builtins.str id: Numeric identifier of the project.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -141,7 +141,7 @@ def get_project(id: Optional[builtins.int] = None,
         is_default=pulumi.get(__ret__, 'is_default'),
         name=pulumi.get(__ret__, 'name'),
         updated=pulumi.get(__ret__, 'updated'))
-def get_project_output(id: Optional[pulumi.Input[builtins.int]] = None,
+def get_project_output(id: Optional[pulumi.Input[builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectResult]:
     """
     Retrieves a k6 project.
@@ -154,11 +154,11 @@ def get_project_output(id: Optional[pulumi.Input[builtins.int]] = None,
     import pulumiverse_grafana as grafana
 
     test = grafana.k6.Project("test", name="Terraform Test Project")
-    from_id = test.id.apply(lambda id: grafana.k6.get_project_output(id=id))
+    from_id = grafana.k6.get_project_output(id=test.id)
     ```
 
 
-    :param builtins.int id: Numeric identifier of the project.
+    :param builtins.str id: Numeric identifier of the project.
     """
     __args__ = dict()
     __args__['id'] = id

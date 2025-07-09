@@ -89,7 +89,7 @@ export class OncallOnCallShift extends pulumi.CustomResource {
      */
     public readonly startRotationFromUserIndex!: pulumi.Output<number | undefined>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
@@ -229,7 +229,7 @@ export interface OncallOnCallShiftState {
      */
     startRotationFromUserIndex?: pulumi.Input<number>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -303,7 +303,7 @@ export interface OncallOnCallShiftArgs {
      */
     startRotationFromUserIndex?: pulumi.Input<number>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     teamId?: pulumi.Input<string>;
     /**

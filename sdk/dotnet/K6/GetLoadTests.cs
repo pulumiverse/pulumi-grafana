@@ -230,7 +230,7 @@ namespace Pulumiverse.Grafana.K6
         /// The identifier of the project the load tests belong to.
         /// </summary>
         [Input("projectId", required: true)]
-        public int ProjectId { get; set; }
+        public string ProjectId { get; set; } = null!;
 
         public GetLoadTestsArgs()
         {
@@ -250,7 +250,7 @@ namespace Pulumiverse.Grafana.K6
         /// The identifier of the project the load tests belong to.
         /// </summary>
         [Input("projectId", required: true)]
-        public Input<int> ProjectId { get; set; } = null!;
+        public Input<string> ProjectId { get; set; } = null!;
 
         public GetLoadTestsInvokeArgs()
         {
@@ -265,7 +265,7 @@ namespace Pulumiverse.Grafana.K6
         /// <summary>
         /// The identifier of the project the load tests belong to. This is set to the same as the project_id.
         /// </summary>
-        public readonly int Id;
+        public readonly string Id;
         public readonly ImmutableArray<Outputs.GetLoadTestsLoadTestResult> LoadTests;
         /// <summary>
         /// Human-friendly identifier of the load test.
@@ -274,17 +274,17 @@ namespace Pulumiverse.Grafana.K6
         /// <summary>
         /// The identifier of the project the load tests belong to.
         /// </summary>
-        public readonly int ProjectId;
+        public readonly string ProjectId;
 
         [OutputConstructor]
         private GetLoadTestsResult(
-            int id,
+            string id,
 
             ImmutableArray<Outputs.GetLoadTestsLoadTestResult> loadTests,
 
             string? name,
 
-            int projectId)
+            string projectId)
         {
             Id = id;
             LoadTests = loadTests;

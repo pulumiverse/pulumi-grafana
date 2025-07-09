@@ -184,6 +184,7 @@ class _CloudStackState:
                  logs_url: Optional[pulumi.Input[builtins.str]] = None,
                  logs_user_id: Optional[pulumi.Input[builtins.int]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
+                 oncall_api_url: Optional[pulumi.Input[builtins.str]] = None,
                  org_id: Optional[pulumi.Input[builtins.int]] = None,
                  org_name: Optional[pulumi.Input[builtins.str]] = None,
                  org_slug: Optional[pulumi.Input[builtins.str]] = None,
@@ -246,6 +247,7 @@ class _CloudStackState:
         :param pulumi.Input[builtins.str] logs_private_connectivity_info_private_dns: Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[builtins.str] logs_private_connectivity_info_service_name: Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[builtins.str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
+        :param pulumi.Input[builtins.str] oncall_api_url: Base URL of the OnCall API instance configured for this stack.
         :param pulumi.Input[builtins.int] org_id: Organization id to assign to this stack.
         :param pulumi.Input[builtins.str] org_name: Organization name to assign to this stack.
         :param pulumi.Input[builtins.str] org_slug: Organization slug to assign to this stack.
@@ -337,6 +339,8 @@ class _CloudStackState:
             pulumi.set(__self__, "logs_user_id", logs_user_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if oncall_api_url is not None:
+            pulumi.set(__self__, "oncall_api_url", oncall_api_url)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
         if org_name is not None:
@@ -739,6 +743,18 @@ class _CloudStackState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="oncallApiUrl")
+    def oncall_api_url(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Base URL of the OnCall API instance configured for this stack.
+        """
+        return pulumi.get(self, "oncall_api_url")
+
+    @oncall_api_url.setter
+    def oncall_api_url(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "oncall_api_url", value)
 
     @property
     @pulumi.getter(name="orgId")
@@ -1350,6 +1366,7 @@ class CloudStack(pulumi.CustomResource):
             __props__.__dict__["logs_status"] = None
             __props__.__dict__["logs_url"] = None
             __props__.__dict__["logs_user_id"] = None
+            __props__.__dict__["oncall_api_url"] = None
             __props__.__dict__["org_id"] = None
             __props__.__dict__["org_name"] = None
             __props__.__dict__["org_slug"] = None
@@ -1423,6 +1440,7 @@ class CloudStack(pulumi.CustomResource):
             logs_url: Optional[pulumi.Input[builtins.str]] = None,
             logs_user_id: Optional[pulumi.Input[builtins.int]] = None,
             name: Optional[pulumi.Input[builtins.str]] = None,
+            oncall_api_url: Optional[pulumi.Input[builtins.str]] = None,
             org_id: Optional[pulumi.Input[builtins.int]] = None,
             org_name: Optional[pulumi.Input[builtins.str]] = None,
             org_slug: Optional[pulumi.Input[builtins.str]] = None,
@@ -1490,6 +1508,7 @@ class CloudStack(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] logs_private_connectivity_info_private_dns: Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[builtins.str] logs_private_connectivity_info_service_name: Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[builtins.str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
+        :param pulumi.Input[builtins.str] oncall_api_url: Base URL of the OnCall API instance configured for this stack.
         :param pulumi.Input[builtins.int] org_id: Organization id to assign to this stack.
         :param pulumi.Input[builtins.str] org_name: Organization name to assign to this stack.
         :param pulumi.Input[builtins.str] org_slug: Organization slug to assign to this stack.
@@ -1556,6 +1575,7 @@ class CloudStack(pulumi.CustomResource):
         __props__.__dict__["logs_url"] = logs_url
         __props__.__dict__["logs_user_id"] = logs_user_id
         __props__.__dict__["name"] = name
+        __props__.__dict__["oncall_api_url"] = oncall_api_url
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["org_name"] = org_name
         __props__.__dict__["org_slug"] = org_slug
@@ -1804,6 +1824,14 @@ class CloudStack(pulumi.CustomResource):
         Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="oncallApiUrl")
+    def oncall_api_url(self) -> pulumi.Output[builtins.str]:
+        """
+        Base URL of the OnCall API instance configured for this stack.
+        """
+        return pulumi.get(self, "oncall_api_url")
 
     @property
     @pulumi.getter(name="orgId")

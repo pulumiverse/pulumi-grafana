@@ -16,7 +16,6 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const project = new grafana.k6.Project("project", {name: "Terraform Test Project"});
- * const project2 = new grafana.k6.Project("project_2", {name: "Terraform Test Project"});
  * const fromName = grafana.k6.getProjects({
  *     name: "Terraform Test Project",
  * });
@@ -64,7 +63,6 @@ export interface GetProjectsResult {
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const project = new grafana.k6.Project("project", {name: "Terraform Test Project"});
- * const project2 = new grafana.k6.Project("project_2", {name: "Terraform Test Project"});
  * const fromName = grafana.k6.getProjects({
  *     name: "Terraform Test Project",
  * });

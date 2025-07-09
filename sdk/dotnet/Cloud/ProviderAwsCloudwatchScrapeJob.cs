@@ -149,13 +149,13 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> DisabledReason { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the AWS CloudWatch Scrape Job is enabled or not.
+        /// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
         /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_&lt;service_name&gt;_info`.
+        /// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_&lt;service_name&gt;_info`. Defaults to `true`.
         /// </summary>
         [Output("exportTags")]
         public Output<bool> ExportTags { get; private set; } = null!;
@@ -250,13 +250,13 @@ namespace Pulumiverse.Grafana.Cloud
         }
 
         /// <summary>
-        /// Whether the AWS CloudWatch Scrape Job is enabled or not.
+        /// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_&lt;service_name&gt;_info`.
+        /// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_&lt;service_name&gt;_info`. Defaults to `true`.
         /// </summary>
         [Input("exportTags")]
         public Input<bool>? ExportTags { get; set; }
@@ -336,13 +336,13 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<string>? DisabledReason { get; set; }
 
         /// <summary>
-        /// Whether the AWS CloudWatch Scrape Job is enabled or not.
+        /// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_&lt;service_name&gt;_info`.
+        /// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_&lt;service_name&gt;_info`. Defaults to `true`.
         /// </summary>
         [Input("exportTags")]
         public Input<bool>? ExportTags { get; set; }

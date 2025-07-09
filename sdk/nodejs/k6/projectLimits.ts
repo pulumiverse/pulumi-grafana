@@ -64,7 +64,7 @@ export class ProjectLimits extends pulumi.CustomResource {
     /**
      * The identifier of the project to manage limits for.
      */
-    public readonly projectId!: pulumi.Output<number>;
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * Maximum number of concurrent browser virtual users (VUs) used in one test.
      */
@@ -123,7 +123,7 @@ export interface ProjectLimitsState {
     /**
      * The identifier of the project to manage limits for.
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<string>;
     /**
      * Maximum number of concurrent browser virtual users (VUs) used in one test.
      */
@@ -149,7 +149,7 @@ export interface ProjectLimitsArgs {
     /**
      * The identifier of the project to manage limits for.
      */
-    projectId: pulumi.Input<number>;
+    projectId: pulumi.Input<string>;
     /**
      * Maximum number of concurrent browser virtual users (VUs) used in one test.
      */

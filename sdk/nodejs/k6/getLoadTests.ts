@@ -36,13 +36,13 @@ import * as utilities from "../utilities";
  * }, {
  *     dependsOn: [testLoadTest],
  * });
- * const fromProjectId = loadTestProject.id.apply(id => grafana.k6.getLoadTestsOutput({
- *     projectId: id,
- * }));
- * const filterByName = loadTestProject.id.apply(id => grafana.k6.getLoadTestsOutput({
+ * const fromProjectId = grafana.k6.getLoadTestsOutput({
+ *     projectId: loadTestProject.id,
+ * });
+ * const filterByName = grafana.k6.getLoadTestsOutput({
  *     name: "Terraform Test Load Test (2)",
- *     projectId: id,
- * }));
+ *     projectId: loadTestProject.id,
+ * });
  * ```
  */
 export function getLoadTests(args: GetLoadTestsArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadTestsResult> {
@@ -64,7 +64,7 @@ export interface GetLoadTestsArgs {
     /**
      * The identifier of the project the load tests belong to.
      */
-    projectId: number;
+    projectId: string;
 }
 
 /**
@@ -74,7 +74,7 @@ export interface GetLoadTestsResult {
     /**
      * The identifier of the project the load tests belong to. This is set to the same as the project_id.
      */
-    readonly id: number;
+    readonly id: string;
     readonly loadTests: outputs.k6.GetLoadTestsLoadTest[];
     /**
      * Human-friendly identifier of the load test.
@@ -83,7 +83,7 @@ export interface GetLoadTestsResult {
     /**
      * The identifier of the project the load tests belong to.
      */
-    readonly projectId: number;
+    readonly projectId: string;
 }
 /**
  * Retrieves all k6 load tests that belong to a project.
@@ -115,13 +115,13 @@ export interface GetLoadTestsResult {
  * }, {
  *     dependsOn: [testLoadTest],
  * });
- * const fromProjectId = loadTestProject.id.apply(id => grafana.k6.getLoadTestsOutput({
- *     projectId: id,
- * }));
- * const filterByName = loadTestProject.id.apply(id => grafana.k6.getLoadTestsOutput({
+ * const fromProjectId = grafana.k6.getLoadTestsOutput({
+ *     projectId: loadTestProject.id,
+ * });
+ * const filterByName = grafana.k6.getLoadTestsOutput({
  *     name: "Terraform Test Load Test (2)",
- *     projectId: id,
- * }));
+ *     projectId: loadTestProject.id,
+ * });
  * ```
  */
 export function getLoadTestsOutput(args: GetLoadTestsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLoadTestsResult> {
@@ -143,5 +143,5 @@ export interface GetLoadTestsOutputArgs {
     /**
      * The identifier of the project the load tests belong to.
      */
-    projectId: pulumi.Input<number>;
+    projectId: pulumi.Input<string>;
 }

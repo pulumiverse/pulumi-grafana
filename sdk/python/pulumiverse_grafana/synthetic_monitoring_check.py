@@ -43,7 +43,7 @@ class SyntheticMonitoringCheckArgs:
         :param pulumi.Input[builtins.bool] enabled: Whether to enable the check. Defaults to `true`.
         :param pulumi.Input[builtins.int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
-        :param pulumi.Input[builtins.int] timeout: Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+        :param pulumi.Input[builtins.int] timeout: Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
         """
         pulumi.set(__self__, "job", job)
         pulumi.set(__self__, "probes", probes)
@@ -174,7 +174,7 @@ class SyntheticMonitoringCheckArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+        Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
         """
         return pulumi.get(self, "timeout")
 
@@ -209,7 +209,7 @@ class _SyntheticMonitoringCheckState:
         :param pulumi.Input['SyntheticMonitoringCheckSettingsArgs'] settings: Check settings. Should contain exactly one nested block.
         :param pulumi.Input[builtins.str] target: Hostname to ping.
         :param pulumi.Input[builtins.int] tenant_id: The tenant ID of the check.
-        :param pulumi.Input[builtins.int] timeout: Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+        :param pulumi.Input[builtins.int] timeout: Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
         """
         if alert_sensitivity is not None:
             pulumi.set(__self__, "alert_sensitivity", alert_sensitivity)
@@ -358,7 +358,7 @@ class _SyntheticMonitoringCheckState:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+        Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
         """
         return pulumi.get(self, "timeout")
 
@@ -784,7 +784,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] probes: List of probe location IDs where this target will be checked from.
         :param pulumi.Input[Union['SyntheticMonitoringCheckSettingsArgs', 'SyntheticMonitoringCheckSettingsArgsDict']] settings: Check settings. Should contain exactly one nested block.
         :param pulumi.Input[builtins.str] target: Hostname to ping.
-        :param pulumi.Input[builtins.int] timeout: Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+        :param pulumi.Input[builtins.int] timeout: Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
         """
         ...
     @overload
@@ -1268,7 +1268,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
         :param pulumi.Input[Union['SyntheticMonitoringCheckSettingsArgs', 'SyntheticMonitoringCheckSettingsArgsDict']] settings: Check settings. Should contain exactly one nested block.
         :param pulumi.Input[builtins.str] target: Hostname to ping.
         :param pulumi.Input[builtins.int] tenant_id: The tenant ID of the check.
-        :param pulumi.Input[builtins.int] timeout: Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+        :param pulumi.Input[builtins.int] timeout: Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1371,7 +1371,7 @@ class SyntheticMonitoringCheck(pulumi.CustomResource):
     @pulumi.getter
     def timeout(self) -> pulumi.Output[Optional[builtins.int]]:
         """
-        Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+        Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
         """
         return pulumi.get(self, "timeout")
 

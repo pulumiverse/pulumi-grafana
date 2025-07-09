@@ -115,6 +115,8 @@ type LookupStackResult struct {
 	LogsUserId                             int    `pulumi:"logsUserId"`
 	// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 	Name string `pulumi:"name"`
+	// Base URL of the OnCall API instance configured for this stack.
+	OncallApiUrl string `pulumi:"oncallApiUrl"`
 	// Organization id to assign to this stack.
 	OrgId int `pulumi:"orgId"`
 	// Organization name to assign to this stack.
@@ -360,6 +362,11 @@ func (o LookupStackResultOutput) LogsUserId() pulumi.IntOutput {
 // Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 func (o LookupStackResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Base URL of the OnCall API instance configured for this stack.
+func (o LookupStackResultOutput) OncallApiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.OncallApiUrl }).(pulumi.StringOutput)
 }
 
 // Organization id to assign to this stack.

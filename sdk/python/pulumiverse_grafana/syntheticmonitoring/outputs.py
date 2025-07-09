@@ -17,6 +17,7 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'CheckAlertsAlert',
     'CheckSettings',
     'CheckSettingsBrowser',
     'CheckSettingsDns',
@@ -45,6 +46,47 @@ __all__ = [
     'CheckSettingsTcpTlsConfig',
     'CheckSettingsTraceroute',
 ]
+
+@pulumi.output_type
+class CheckAlertsAlert(dict):
+    def __init__(__self__, *,
+                 name: builtins.str,
+                 threshold: builtins.float,
+                 period: Optional[builtins.str] = None):
+        """
+        :param builtins.str name: Name of the alert. Required.
+        :param builtins.float threshold: Threshold value for the alert.
+        :param builtins.str period: Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "threshold", threshold)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        """
+        Name of the alert. Required.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> builtins.float:
+        """
+        Threshold value for the alert.
+        """
+        return pulumi.get(self, "threshold")
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[builtins.str]:
+        """
+        Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
+        """
+        return pulumi.get(self, "period")
+
 
 @pulumi.output_type
 class CheckSettings(dict):

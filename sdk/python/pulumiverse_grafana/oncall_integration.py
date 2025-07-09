@@ -24,6 +24,7 @@ class OncallIntegrationArgs:
     def __init__(__self__, *,
                  default_route: pulumi.Input['OncallIntegrationDefaultRouteArgs'],
                  type: pulumi.Input[builtins.str],
+                 dynamic_labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  team_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -32,13 +33,16 @@ class OncallIntegrationArgs:
         The set of arguments for constructing a OncallIntegration resource.
         :param pulumi.Input['OncallIntegrationDefaultRouteArgs'] default_route: The Default route for all alerts from the given integration
         :param pulumi.Input[builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]] labels: A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
         :param pulumi.Input[builtins.str] name: The name of the service integration.
-        :param pulumi.Input[builtins.str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
+        :param pulumi.Input[builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
         :param pulumi.Input['OncallIntegrationTemplatesArgs'] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
         """
         pulumi.set(__self__, "default_route", default_route)
         pulumi.set(__self__, "type", type)
+        if dynamic_labels is not None:
+            pulumi.set(__self__, "dynamic_labels", dynamic_labels)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
@@ -73,10 +77,22 @@ class OncallIntegrationArgs:
         pulumi.set(self, "type", value)
 
     @property
+    @pulumi.getter(name="dynamicLabels")
+    def dynamic_labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]]:
+        """
+        A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        """
+        return pulumi.get(self, "dynamic_labels")
+
+    @dynamic_labels.setter
+    def dynamic_labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]]):
+        pulumi.set(self, "dynamic_labels", value)
+
+    @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]]:
         """
-        A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+        A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
         """
         return pulumi.get(self, "labels")
 
@@ -100,7 +116,7 @@ class OncallIntegrationArgs:
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
+        The ID of the OnCall team (using the `on_call_get_team` datasource).
         """
         return pulumi.get(self, "team_id")
 
@@ -125,6 +141,7 @@ class OncallIntegrationArgs:
 class _OncallIntegrationState:
     def __init__(__self__, *,
                  default_route: Optional[pulumi.Input['OncallIntegrationDefaultRouteArgs']] = None,
+                 dynamic_labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]] = None,
                  link: Optional[pulumi.Input[builtins.str]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -134,15 +151,18 @@ class _OncallIntegrationState:
         """
         Input properties used for looking up and filtering OncallIntegration resources.
         :param pulumi.Input['OncallIntegrationDefaultRouteArgs'] default_route: The Default route for all alerts from the given integration
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]] labels: A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
         :param pulumi.Input[builtins.str] link: The link for using in an integrated tool.
         :param pulumi.Input[builtins.str] name: The name of the service integration.
-        :param pulumi.Input[builtins.str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
+        :param pulumi.Input[builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
         :param pulumi.Input['OncallIntegrationTemplatesArgs'] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
         :param pulumi.Input[builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
         """
         if default_route is not None:
             pulumi.set(__self__, "default_route", default_route)
+        if dynamic_labels is not None:
+            pulumi.set(__self__, "dynamic_labels", dynamic_labels)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if link is not None:
@@ -169,10 +189,22 @@ class _OncallIntegrationState:
         pulumi.set(self, "default_route", value)
 
     @property
+    @pulumi.getter(name="dynamicLabels")
+    def dynamic_labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]]:
+        """
+        A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        """
+        return pulumi.get(self, "dynamic_labels")
+
+    @dynamic_labels.setter
+    def dynamic_labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]]):
+        pulumi.set(self, "dynamic_labels", value)
+
+    @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]]:
         """
-        A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+        A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
         """
         return pulumi.get(self, "labels")
 
@@ -208,7 +240,7 @@ class _OncallIntegrationState:
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
+        The ID of the OnCall team (using the `on_call_get_team` datasource).
         """
         return pulumi.get(self, "team_id")
 
@@ -253,6 +285,7 @@ class OncallIntegration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  default_route: Optional[pulumi.Input[Union['OncallIntegrationDefaultRouteArgs', 'OncallIntegrationDefaultRouteArgsDict']]] = None,
+                 dynamic_labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  team_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -263,34 +296,6 @@ class OncallIntegration(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test_acc_integration = grafana.on_call.Integration("test-acc-integration",
-            name="my integration",
-            type="grafana",
-            default_route={})
-        # Also it's possible to manage integration templates.
-        # Check docs to see all available templates.
-        integration_with_templates = grafana.on_call.Integration("integration_with_templates",
-            name="integration_with_templates",
-            type="webhook",
-            default_route={},
-            templates={
-                "grouping_key": "{{ payload.group_id }}",
-                "slack": {
-                    "title": "Slack title",
-                    "message": \"\"\"This is example of multiline template
-        {{ payload.message }}
-        \"\"\",
-                    "image_url": "{{ payload.image_url }}",
-                },
-            })
-        ```
-
         ## Import
 
         ```sh
@@ -300,9 +305,10 @@ class OncallIntegration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['OncallIntegrationDefaultRouteArgs', 'OncallIntegrationDefaultRouteArgsDict']] default_route: The Default route for all alerts from the given integration
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]] labels: A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
         :param pulumi.Input[builtins.str] name: The name of the service integration.
-        :param pulumi.Input[builtins.str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
+        :param pulumi.Input[builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
         :param pulumi.Input[Union['OncallIntegrationTemplatesArgs', 'OncallIntegrationTemplatesArgsDict']] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
         :param pulumi.Input[builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
         """
@@ -315,34 +321,6 @@ class OncallIntegration(pulumi.CustomResource):
         """
         * [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        test_acc_integration = grafana.on_call.Integration("test-acc-integration",
-            name="my integration",
-            type="grafana",
-            default_route={})
-        # Also it's possible to manage integration templates.
-        # Check docs to see all available templates.
-        integration_with_templates = grafana.on_call.Integration("integration_with_templates",
-            name="integration_with_templates",
-            type="webhook",
-            default_route={},
-            templates={
-                "grouping_key": "{{ payload.group_id }}",
-                "slack": {
-                    "title": "Slack title",
-                    "message": \"\"\"This is example of multiline template
-        {{ payload.message }}
-        \"\"\",
-                    "image_url": "{{ payload.image_url }}",
-                },
-            })
-        ```
 
         ## Import
 
@@ -366,6 +344,7 @@ class OncallIntegration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  default_route: Optional[pulumi.Input[Union['OncallIntegrationDefaultRouteArgs', 'OncallIntegrationDefaultRouteArgsDict']]] = None,
+                 dynamic_labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  team_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -384,6 +363,7 @@ class OncallIntegration(pulumi.CustomResource):
             if default_route is None and not opts.urn:
                 raise TypeError("Missing required property 'default_route'")
             __props__.__dict__["default_route"] = default_route
+            __props__.__dict__["dynamic_labels"] = dynamic_labels
             __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
             __props__.__dict__["team_id"] = team_id
@@ -403,6 +383,7 @@ class OncallIntegration(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             default_route: Optional[pulumi.Input[Union['OncallIntegrationDefaultRouteArgs', 'OncallIntegrationDefaultRouteArgsDict']]] = None,
+            dynamic_labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]] = None,
             labels: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]]] = None,
             link: Optional[pulumi.Input[builtins.str]] = None,
             name: Optional[pulumi.Input[builtins.str]] = None,
@@ -417,10 +398,11 @@ class OncallIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['OncallIntegrationDefaultRouteArgs', 'OncallIntegrationDefaultRouteArgsDict']] default_route: The Default route for all alerts from the given integration
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]] labels: A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
         :param pulumi.Input[builtins.str] link: The link for using in an integrated tool.
         :param pulumi.Input[builtins.str] name: The name of the service integration.
-        :param pulumi.Input[builtins.str] team_id: The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
+        :param pulumi.Input[builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
         :param pulumi.Input[Union['OncallIntegrationTemplatesArgs', 'OncallIntegrationTemplatesArgsDict']] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
         :param pulumi.Input[builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
         """
@@ -429,6 +411,7 @@ class OncallIntegration(pulumi.CustomResource):
         __props__ = _OncallIntegrationState.__new__(_OncallIntegrationState)
 
         __props__.__dict__["default_route"] = default_route
+        __props__.__dict__["dynamic_labels"] = dynamic_labels
         __props__.__dict__["labels"] = labels
         __props__.__dict__["link"] = link
         __props__.__dict__["name"] = name
@@ -446,10 +429,18 @@ class OncallIntegration(pulumi.CustomResource):
         return pulumi.get(self, "default_route")
 
     @property
+    @pulumi.getter(name="dynamicLabels")
+    def dynamic_labels(self) -> pulumi.Output[Optional[Sequence[Mapping[str, builtins.str]]]]:
+        """
+        A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
+        """
+        return pulumi.get(self, "dynamic_labels")
+
+    @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Sequence[Mapping[str, builtins.str]]]]:
         """
-        A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+        A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
         """
         return pulumi.get(self, "labels")
 
@@ -473,7 +464,7 @@ class OncallIntegration(pulumi.CustomResource):
     @pulumi.getter(name="teamId")
     def team_id(self) -> pulumi.Output[Optional[builtins.str]]:
         """
-        The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `on_call_get_team` datasource.
+        The ID of the OnCall team (using the `on_call_get_team` datasource).
         """
         return pulumi.get(self, "team_id")
 

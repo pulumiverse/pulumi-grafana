@@ -13,7 +13,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const _default = new grafana.oncall.EscalationChain("default", {name: "default"});
+ * const myTeam = grafana.oss.getTeam({
+ *     name: "my team",
+ * });
+ * const myTeamGetTeam = myTeam.then(myTeam => grafana.onCall.getTeam({
+ *     name: myTeam.name,
+ * }));
+ * const _default = new grafana.oncall.EscalationChain("default", {
+ *     name: "default",
+ *     teamId: myTeamGetTeam.then(myTeamGetTeam => myTeamGetTeam.id),
+ * });
  * ```
  *
  * ## Import
@@ -55,7 +64,7 @@ export class EscalationChain extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
 
@@ -95,7 +104,7 @@ export interface EscalationChainState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     teamId?: pulumi.Input<string>;
 }
@@ -109,7 +118,7 @@ export interface EscalationChainArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     teamId?: pulumi.Input<string>;
 }

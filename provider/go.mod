@@ -7,7 +7,7 @@ toolchain go1.24.4
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250530111747-935112552988
 
 require (
-	github.com/grafana/terraform-provider-grafana/v3 v3.24.1
+	github.com/grafana/terraform-provider-grafana/v3 v3.25.7
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.110.0
 	github.com/pulumi/pulumi/sdk/v3 v3.175.0
 )
@@ -108,13 +108,13 @@ require (
 	github.com/googleapis/enterprise-certificate-proxy v0.3.4 // indirect
 	github.com/googleapis/gax-go/v2 v2.14.1 // indirect
 	github.com/gorilla/mux v1.8.1 // indirect
-	github.com/grafana/amixr-api-go-client v0.0.23 // indirect
+	github.com/grafana/amixr-api-go-client v0.0.24 // indirect
 	github.com/grafana/authlib/claims v0.0.0-20250120084028-e3328c576437 // indirect
 	github.com/grafana/fleet-management-api v1.0.0 // indirect
 	github.com/grafana/grafana-app-sdk v0.35.2-0.20250408075831-c2a87bde0849 // indirect
 	github.com/grafana/grafana-app-sdk/logging v0.35.1 // indirect
-	github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20250214150112-a52892176c26 // indirect
-	github.com/grafana/grafana-openapi-client-go v0.0.0-20250424142317-beadd3136e10 // indirect
+	github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20250225152211-076f0759931d // indirect
+	github.com/grafana/grafana-openapi-client-go v0.0.0-20250516123951-83fcd32d7bbe // indirect
 	github.com/grafana/grafana-plugin-sdk-go v0.275.0 // indirect
 	github.com/grafana/grafana/apps/dashboard v0.0.0-20250424064802-2fbb2d6f5d27 // indirect
 	github.com/grafana/grafana/apps/playlist v0.0.0-20250424064802-2fbb2d6f5d27 // indirect
@@ -125,8 +125,8 @@ require (
 	github.com/grafana/pyroscope-go/godeltaprof v0.1.8 // indirect
 	github.com/grafana/river v0.3.0 // indirect
 	github.com/grafana/slo-openapi-client/go/slo v0.0.0-20250218172929-ab9cae090da6 // indirect
-	github.com/grafana/synthetic-monitoring-agent v0.34.2 // indirect
-	github.com/grafana/synthetic-monitoring-api-go-client v0.11.0 // indirect
+	github.com/grafana/synthetic-monitoring-agent v0.34.4 // indirect
+	github.com/grafana/synthetic-monitoring-api-go-client v0.14.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.0.1 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.3.1 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.26.3 // indirect

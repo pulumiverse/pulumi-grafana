@@ -635,7 +635,7 @@ type SyntheticMonitoringCheck struct {
 	Target pulumi.StringOutput `pulumi:"target"`
 	// The tenant ID of the check.
 	TenantId pulumi.IntOutput `pulumi:"tenantId"`
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 }
 
@@ -701,7 +701,7 @@ type syntheticMonitoringCheckState struct {
 	Target *string `pulumi:"target"`
 	// The tenant ID of the check.
 	TenantId *int `pulumi:"tenantId"`
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -726,7 +726,7 @@ type SyntheticMonitoringCheckState struct {
 	Target pulumi.StringPtrInput
 	// The tenant ID of the check.
 	TenantId pulumi.IntPtrInput
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
 	Timeout pulumi.IntPtrInput
 }
 
@@ -753,7 +753,7 @@ type syntheticMonitoringCheckArgs struct {
 	Settings SyntheticMonitoringCheckSettings `pulumi:"settings"`
 	// Hostname to ping.
 	Target string `pulumi:"target"`
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -777,7 +777,7 @@ type SyntheticMonitoringCheckArgs struct {
 	Settings SyntheticMonitoringCheckSettingsInput
 	// Hostname to ping.
 	Target pulumi.StringInput
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
 	Timeout pulumi.IntPtrInput
 }
 
@@ -918,7 +918,7 @@ func (o SyntheticMonitoringCheckOutput) TenantId() pulumi.IntOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheck) pulumi.IntOutput { return v.TenantId }).(pulumi.IntOutput)
 }
 
-// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
 func (o SyntheticMonitoringCheckOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SyntheticMonitoringCheck) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }

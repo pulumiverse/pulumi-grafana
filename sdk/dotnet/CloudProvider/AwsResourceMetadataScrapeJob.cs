@@ -98,7 +98,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         public Output<string> DisabledReason { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the AWS Resource Metadata Scrape Job is enabled or not.
+        /// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
         /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
@@ -181,7 +181,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         public Input<string> AwsAccountResourceId { get; set; } = null!;
 
         /// <summary>
-        /// Whether the AWS Resource Metadata Scrape Job is enabled or not.
+        /// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -249,7 +249,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         public Input<string>? DisabledReason { get; set; }
 
         /// <summary>
-        /// Whether the AWS Resource Metadata Scrape Job is enabled or not.
+        /// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

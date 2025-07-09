@@ -55,7 +55,7 @@ export class App extends pulumi.CustomResource {
     public readonly extraLogAttributes!: pulumi.Output<{[key: string]: string}>;
     public readonly name!: pulumi.Output<string>;
     /**
-     * The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+     * The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
      */
     public readonly settings!: pulumi.Output<{[key: string]: string}>;
     public readonly stackId!: pulumi.Output<number>;
@@ -123,7 +123,7 @@ export interface AppState {
     extraLogAttributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     name?: pulumi.Input<string>;
     /**
-     * The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+     * The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     stackId?: pulumi.Input<number>;
@@ -143,7 +143,7 @@ export interface AppArgs {
     extraLogAttributes: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     name?: pulumi.Input<string>;
     /**
-     * The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+     * The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
      */
     settings: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     stackId: pulumi.Input<number>;

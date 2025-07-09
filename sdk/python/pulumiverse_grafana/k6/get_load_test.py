@@ -28,20 +28,20 @@ class GetLoadTestResult:
     A collection of values returned by getLoadTest.
     """
     def __init__(__self__, baseline_test_run_id=None, created=None, id=None, name=None, project_id=None, script=None, updated=None):
-        if baseline_test_run_id and not isinstance(baseline_test_run_id, int):
-            raise TypeError("Expected argument 'baseline_test_run_id' to be a int")
+        if baseline_test_run_id and not isinstance(baseline_test_run_id, str):
+            raise TypeError("Expected argument 'baseline_test_run_id' to be a str")
         pulumi.set(__self__, "baseline_test_run_id", baseline_test_run_id)
         if created and not isinstance(created, str):
             raise TypeError("Expected argument 'created' to be a str")
         pulumi.set(__self__, "created", created)
-        if id and not isinstance(id, int):
-            raise TypeError("Expected argument 'id' to be a int")
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
-        if project_id and not isinstance(project_id, int):
-            raise TypeError("Expected argument 'project_id' to be a int")
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
         if script and not isinstance(script, str):
             raise TypeError("Expected argument 'script' to be a str")
@@ -52,7 +52,7 @@ class GetLoadTestResult:
 
     @property
     @pulumi.getter(name="baselineTestRunId")
-    def baseline_test_run_id(self) -> builtins.int:
+    def baseline_test_run_id(self) -> builtins.str:
         """
         Identifier of a baseline test run used for results comparison.
         """
@@ -68,7 +68,7 @@ class GetLoadTestResult:
 
     @property
     @pulumi.getter
-    def id(self) -> builtins.int:
+    def id(self) -> builtins.str:
         """
         Numeric identifier of the load test.
         """
@@ -84,7 +84,7 @@ class GetLoadTestResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> builtins.int:
+    def project_id(self) -> builtins.str:
         """
         The identifier of the project this load test belongs to.
         """
@@ -122,7 +122,7 @@ class AwaitableGetLoadTestResult(GetLoadTestResult):
             updated=self.updated)
 
 
-def get_load_test(id: Optional[builtins.int] = None,
+def get_load_test(id: Optional[builtins.str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadTestResult:
     """
     Retrieves a k6 load test.
@@ -142,11 +142,11 @@ def get_load_test(id: Optional[builtins.int] = None,
       console.log('Hello from k6!');
     }
     \"\"\")
-    from_id = test_load_test.id.apply(lambda id: grafana.k6.get_load_test_output(id=id))
+    from_id = grafana.k6.get_load_test_output(id=test_load_test.id)
     ```
 
 
-    :param builtins.int id: Numeric identifier of the load test.
+    :param builtins.str id: Numeric identifier of the load test.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -161,7 +161,7 @@ def get_load_test(id: Optional[builtins.int] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         script=pulumi.get(__ret__, 'script'),
         updated=pulumi.get(__ret__, 'updated'))
-def get_load_test_output(id: Optional[pulumi.Input[builtins.int]] = None,
+def get_load_test_output(id: Optional[pulumi.Input[builtins.str]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLoadTestResult]:
     """
     Retrieves a k6 load test.
@@ -181,11 +181,11 @@ def get_load_test_output(id: Optional[pulumi.Input[builtins.int]] = None,
       console.log('Hello from k6!');
     }
     \"\"\")
-    from_id = test_load_test.id.apply(lambda id: grafana.k6.get_load_test_output(id=id))
+    from_id = grafana.k6.get_load_test_output(id=test_load_test.id)
     ```
 
 
-    :param builtins.int id: Numeric identifier of the load test.
+    :param builtins.str id: Numeric identifier of the load test.
     """
     __args__ = dict()
     __args__['id'] = id

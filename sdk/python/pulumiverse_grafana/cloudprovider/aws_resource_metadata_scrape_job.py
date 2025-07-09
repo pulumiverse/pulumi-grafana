@@ -32,7 +32,7 @@ class AwsResourceMetadataScrapeJobArgs:
         """
         The set of arguments for constructing a AwsResourceMetadataScrapeJob resource.
         :param pulumi.Input[builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
-        :param pulumi.Input[builtins.bool] enabled: Whether the AWS Resource Metadata Scrape Job is enabled or not.
+        :param pulumi.Input[builtins.bool] enabled: Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input['AwsResourceMetadataScrapeJobServiceArgs']]] services: One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
@@ -75,7 +75,7 @@ class AwsResourceMetadataScrapeJobArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        Whether the AWS Resource Metadata Scrape Job is enabled or not.
+        Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
@@ -144,7 +144,7 @@ class _AwsResourceMetadataScrapeJobState:
         Input properties used for looking up and filtering AwsResourceMetadataScrapeJob resources.
         :param pulumi.Input[builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[builtins.str] disabled_reason: When the AWS Resource Metadata Scrape Job is disabled, this will show the reason that it is in that state.
-        :param pulumi.Input[builtins.bool] enabled: Whether the AWS Resource Metadata Scrape Job is enabled or not.
+        :param pulumi.Input[builtins.bool] enabled: Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input['AwsResourceMetadataScrapeJobServiceArgs']]] services: One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
@@ -194,7 +194,7 @@ class _AwsResourceMetadataScrapeJobState:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        Whether the AWS Resource Metadata Scrape Job is enabled or not.
+        Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
@@ -317,7 +317,7 @@ class AwsResourceMetadataScrapeJob(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
-        :param pulumi.Input[builtins.bool] enabled: Whether the AWS Resource Metadata Scrape Job is enabled or not.
+        :param pulumi.Input[builtins.bool] enabled: Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AwsResourceMetadataScrapeJobServiceArgs', 'AwsResourceMetadataScrapeJobServiceArgsDict']]]] services: One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
@@ -441,7 +441,7 @@ class AwsResourceMetadataScrapeJob(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[builtins.str] disabled_reason: When the AWS Resource Metadata Scrape Job is disabled, this will show the reason that it is in that state.
-        :param pulumi.Input[builtins.bool] enabled: Whether the AWS Resource Metadata Scrape Job is enabled or not.
+        :param pulumi.Input[builtins.bool] enabled: Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AwsResourceMetadataScrapeJobServiceArgs', 'AwsResourceMetadataScrapeJobServiceArgsDict']]]] services: One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
@@ -480,7 +480,7 @@ class AwsResourceMetadataScrapeJob(pulumi.CustomResource):
     @pulumi.getter
     def enabled(self) -> pulumi.Output[builtins.bool]:
         """
-        Whether the AWS Resource Metadata Scrape Job is enabled or not.
+        Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 

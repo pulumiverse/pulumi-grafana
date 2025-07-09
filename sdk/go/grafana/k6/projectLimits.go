@@ -61,7 +61,7 @@ type ProjectLimits struct {
 	// Maximum duration of a test in seconds.
 	DurationMaxPerTest pulumi.IntPtrOutput `pulumi:"durationMaxPerTest"`
 	// The identifier of the project to manage limits for.
-	ProjectId pulumi.IntOutput `pulumi:"projectId"`
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Maximum number of concurrent browser virtual users (VUs) used in one test.
 	VuBrowserMaxPerTest pulumi.IntPtrOutput `pulumi:"vuBrowserMaxPerTest"`
 	// Maximum number of concurrent virtual users (VUs) used in one test.
@@ -106,7 +106,7 @@ type projectLimitsState struct {
 	// Maximum duration of a test in seconds.
 	DurationMaxPerTest *int `pulumi:"durationMaxPerTest"`
 	// The identifier of the project to manage limits for.
-	ProjectId *int `pulumi:"projectId"`
+	ProjectId *string `pulumi:"projectId"`
 	// Maximum number of concurrent browser virtual users (VUs) used in one test.
 	VuBrowserMaxPerTest *int `pulumi:"vuBrowserMaxPerTest"`
 	// Maximum number of concurrent virtual users (VUs) used in one test.
@@ -119,7 +119,7 @@ type ProjectLimitsState struct {
 	// Maximum duration of a test in seconds.
 	DurationMaxPerTest pulumi.IntPtrInput
 	// The identifier of the project to manage limits for.
-	ProjectId pulumi.IntPtrInput
+	ProjectId pulumi.StringPtrInput
 	// Maximum number of concurrent browser virtual users (VUs) used in one test.
 	VuBrowserMaxPerTest pulumi.IntPtrInput
 	// Maximum number of concurrent virtual users (VUs) used in one test.
@@ -136,7 +136,7 @@ type projectLimitsArgs struct {
 	// Maximum duration of a test in seconds.
 	DurationMaxPerTest *int `pulumi:"durationMaxPerTest"`
 	// The identifier of the project to manage limits for.
-	ProjectId int `pulumi:"projectId"`
+	ProjectId string `pulumi:"projectId"`
 	// Maximum number of concurrent browser virtual users (VUs) used in one test.
 	VuBrowserMaxPerTest *int `pulumi:"vuBrowserMaxPerTest"`
 	// Maximum number of concurrent virtual users (VUs) used in one test.
@@ -150,7 +150,7 @@ type ProjectLimitsArgs struct {
 	// Maximum duration of a test in seconds.
 	DurationMaxPerTest pulumi.IntPtrInput
 	// The identifier of the project to manage limits for.
-	ProjectId pulumi.IntInput
+	ProjectId pulumi.StringInput
 	// Maximum number of concurrent browser virtual users (VUs) used in one test.
 	VuBrowserMaxPerTest pulumi.IntPtrInput
 	// Maximum number of concurrent virtual users (VUs) used in one test.
@@ -252,8 +252,8 @@ func (o ProjectLimitsOutput) DurationMaxPerTest() pulumi.IntPtrOutput {
 }
 
 // The identifier of the project to manage limits for.
-func (o ProjectLimitsOutput) ProjectId() pulumi.IntOutput {
-	return o.ApplyT(func(v *ProjectLimits) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
+func (o ProjectLimitsOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ProjectLimits) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // Maximum number of concurrent browser virtual users (VUs) used in one test.

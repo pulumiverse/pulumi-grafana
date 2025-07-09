@@ -14,9 +14,9 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.k6.Project("test", {name: "Terraform Test Project"});
- * const fromId = test.id.apply(id => grafana.k6.getProjectOutput({
- *     id: id,
- * }));
+ * const fromId = grafana.k6.getProjectOutput({
+ *     id: test.id,
+ * });
  * ```
  */
 export function getProject(args: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
@@ -33,7 +33,7 @@ export interface GetProjectArgs {
     /**
      * Numeric identifier of the project.
      */
-    id: number;
+    id: string;
 }
 
 /**
@@ -51,7 +51,7 @@ export interface GetProjectResult {
     /**
      * Numeric identifier of the project.
      */
-    readonly id: number;
+    readonly id: string;
     /**
      * Whether this project is the default for running tests when no explicit project identifier is provided.
      */
@@ -75,9 +75,9 @@ export interface GetProjectResult {
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const test = new grafana.k6.Project("test", {name: "Terraform Test Project"});
- * const fromId = test.id.apply(id => grafana.k6.getProjectOutput({
- *     id: id,
- * }));
+ * const fromId = grafana.k6.getProjectOutput({
+ *     id: test.id,
+ * });
  * ```
  */
 export function getProjectOutput(args: GetProjectOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectResult> {
@@ -94,5 +94,5 @@ export interface GetProjectOutputArgs {
     /**
      * Numeric identifier of the project.
      */
-    id: pulumi.Input<number>;
+    id: pulumi.Input<string>;
 }

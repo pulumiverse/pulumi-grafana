@@ -140,7 +140,7 @@ namespace Pulumiverse.Grafana.K6
         /// Numeric identifier of the load test.
         /// </summary>
         [Input("id", required: true)]
-        public int Id { get; set; }
+        public string Id { get; set; } = null!;
 
         public GetLoadTestArgs()
         {
@@ -154,7 +154,7 @@ namespace Pulumiverse.Grafana.K6
         /// Numeric identifier of the load test.
         /// </summary>
         [Input("id", required: true)]
-        public Input<int> Id { get; set; } = null!;
+        public Input<string> Id { get; set; } = null!;
 
         public GetLoadTestInvokeArgs()
         {
@@ -169,7 +169,7 @@ namespace Pulumiverse.Grafana.K6
         /// <summary>
         /// Identifier of a baseline test run used for results comparison.
         /// </summary>
-        public readonly int BaselineTestRunId;
+        public readonly string BaselineTestRunId;
         /// <summary>
         /// The date when the load test was created.
         /// </summary>
@@ -177,7 +177,7 @@ namespace Pulumiverse.Grafana.K6
         /// <summary>
         /// Numeric identifier of the load test.
         /// </summary>
-        public readonly int Id;
+        public readonly string Id;
         /// <summary>
         /// Human-friendly identifier of the load test.
         /// </summary>
@@ -185,7 +185,7 @@ namespace Pulumiverse.Grafana.K6
         /// <summary>
         /// The identifier of the project this load test belongs to.
         /// </summary>
-        public readonly int ProjectId;
+        public readonly string ProjectId;
         /// <summary>
         /// The k6 test script content.
         /// </summary>
@@ -197,15 +197,15 @@ namespace Pulumiverse.Grafana.K6
 
         [OutputConstructor]
         private GetLoadTestResult(
-            int baselineTestRunId,
+            string baselineTestRunId,
 
             string created,
 
-            int id,
+            string id,
 
             string name,
 
-            int projectId,
+            string projectId,
 
             string script,
 

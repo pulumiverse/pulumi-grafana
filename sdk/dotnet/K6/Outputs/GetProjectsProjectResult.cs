@@ -16,7 +16,7 @@ namespace Pulumiverse.Grafana.K6.Outputs
     {
         public readonly string Created;
         public readonly string GrafanaFolderUid;
-        public readonly int Id;
+        public readonly string Id;
         public readonly bool IsDefault;
         public readonly string Name;
         public readonly string Updated;
@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana.K6.Outputs
 
             string grafanaFolderUid,
 
-            int id,
+            string id,
 
             bool isDefault,
 

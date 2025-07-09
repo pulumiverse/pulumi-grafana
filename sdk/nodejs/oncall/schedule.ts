@@ -68,7 +68,7 @@ export class Schedule extends pulumi.CustomResource {
      */
     public readonly slack!: pulumi.Output<outputs.onCall.ScheduleSlack | undefined>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
@@ -76,7 +76,7 @@ export class Schedule extends pulumi.CustomResource {
      */
     public readonly timeZone!: pulumi.Output<string | undefined>;
     /**
-     * The schedule's type. Valid values are `ical`, `calendar`.
+     * The schedule's type. Valid values are `ical`, `calendar`, `web`.
      */
     public readonly type!: pulumi.Output<string>;
 
@@ -153,7 +153,7 @@ export interface ScheduleState {
      */
     slack?: pulumi.Input<inputs.onCall.ScheduleSlack>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -161,7 +161,7 @@ export interface ScheduleState {
      */
     timeZone?: pulumi.Input<string>;
     /**
-     * The schedule's type. Valid values are `ical`, `calendar`.
+     * The schedule's type. Valid values are `ical`, `calendar`, `web`.
      */
     type?: pulumi.Input<string>;
 }
@@ -195,7 +195,7 @@ export interface ScheduleArgs {
      */
     slack?: pulumi.Input<inputs.onCall.ScheduleSlack>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -203,7 +203,7 @@ export interface ScheduleArgs {
      */
     timeZone?: pulumi.Input<string>;
     /**
-     * The schedule's type. Valid values are `ical`, `calendar`.
+     * The schedule's type. Valid values are `ical`, `calendar`, `web`.
      */
     type: pulumi.Input<string>;
 }

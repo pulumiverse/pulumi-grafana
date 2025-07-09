@@ -27,10 +27,13 @@ class GetIntegrationResult:
     """
     A collection of values returned by getIntegration.
     """
-    def __init__(__self__, id=None, name=None):
+    def __init__(__self__, id=None, link=None, name=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if link and not isinstance(link, str):
+            raise TypeError("Expected argument 'link' to be a str")
+        pulumi.set(__self__, "link", link)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -42,6 +45,14 @@ class GetIntegrationResult:
         The integration ID.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def link(self) -> builtins.str:
+        """
+        The link for the integration.
+        """
+        return pulumi.get(self, "link")
 
     @property
     @pulumi.getter
@@ -59,6 +70,7 @@ class AwaitableGetIntegrationResult(GetIntegrationResult):
             yield self
         return GetIntegrationResult(
             id=self.id,
+            link=self.link,
             name=self.name)
 
 
@@ -86,6 +98,7 @@ def get_integration(id: Optional[builtins.str] = None,
 
     return AwaitableGetIntegrationResult(
         id=pulumi.get(__ret__, 'id'),
+        link=pulumi.get(__ret__, 'link'),
         name=pulumi.get(__ret__, 'name'))
 def get_integration_output(id: Optional[pulumi.Input[builtins.str]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIntegrationResult]:
@@ -110,4 +123,5 @@ def get_integration_output(id: Optional[pulumi.Input[builtins.str]] = None,
     __ret__ = pulumi.runtime.invoke_output('grafana:onCall/getIntegration:getIntegration', __args__, opts=opts, typ=GetIntegrationResult)
     return __ret__.apply(lambda __response__: GetIntegrationResult(
         id=pulumi.get(__response__, 'id'),
+        link=pulumi.get(__response__, 'link'),
         name=pulumi.get(__response__, 'name')))

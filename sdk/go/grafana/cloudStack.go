@@ -109,6 +109,8 @@ type CloudStack struct {
 	LogsUserId                             pulumi.IntOutput    `pulumi:"logsUserId"`
 	// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Base URL of the OnCall API instance configured for this stack.
+	OncallApiUrl pulumi.StringOutput `pulumi:"oncallApiUrl"`
 	// Organization id to assign to this stack.
 	OrgId pulumi.IntOutput `pulumi:"orgId"`
 	// Organization name to assign to this stack.
@@ -265,6 +267,8 @@ type cloudStackState struct {
 	LogsUserId                             *int    `pulumi:"logsUserId"`
 	// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 	Name *string `pulumi:"name"`
+	// Base URL of the OnCall API instance configured for this stack.
+	OncallApiUrl *string `pulumi:"oncallApiUrl"`
 	// Organization id to assign to this stack.
 	OrgId *int `pulumi:"orgId"`
 	// Organization name to assign to this stack.
@@ -389,6 +393,8 @@ type CloudStackState struct {
 	LogsUserId                             pulumi.IntPtrInput
 	// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 	Name pulumi.StringPtrInput
+	// Base URL of the OnCall API instance configured for this stack.
+	OncallApiUrl pulumi.StringPtrInput
 	// Organization id to assign to this stack.
 	OrgId pulumi.IntPtrInput
 	// Organization name to assign to this stack.
@@ -727,6 +733,11 @@ func (o CloudStackOutput) LogsUserId() pulumi.IntOutput {
 // Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 func (o CloudStackOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Base URL of the OnCall API instance configured for this stack.
+func (o CloudStackOutput) OncallApiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.OncallApiUrl }).(pulumi.StringOutput)
 }
 
 // Organization id to assign to this stack.

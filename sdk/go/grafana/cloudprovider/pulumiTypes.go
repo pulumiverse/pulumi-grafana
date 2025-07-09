@@ -18,7 +18,7 @@ type AwsCloudwatchScrapeJobCustomNamespace struct {
 	Metrics []AwsCloudwatchScrapeJobCustomNamespaceMetric `pulumi:"metrics"`
 	// The name of the custom namespace to scrape.
 	Name string `pulumi:"name"`
-	// The interval in seconds to scrape the custom namespace.
+	// The interval in seconds to scrape the custom namespace. Defaults to `300`.
 	ScrapeIntervalSeconds *int `pulumi:"scrapeIntervalSeconds"`
 }
 
@@ -38,7 +38,7 @@ type AwsCloudwatchScrapeJobCustomNamespaceArgs struct {
 	Metrics AwsCloudwatchScrapeJobCustomNamespaceMetricArrayInput `pulumi:"metrics"`
 	// The name of the custom namespace to scrape.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The interval in seconds to scrape the custom namespace.
+	// The interval in seconds to scrape the custom namespace. Defaults to `300`.
 	ScrapeIntervalSeconds pulumi.IntPtrInput `pulumi:"scrapeIntervalSeconds"`
 }
 
@@ -105,7 +105,7 @@ func (o AwsCloudwatchScrapeJobCustomNamespaceOutput) Name() pulumi.StringOutput 
 	return o.ApplyT(func(v AwsCloudwatchScrapeJobCustomNamespace) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The interval in seconds to scrape the custom namespace.
+// The interval in seconds to scrape the custom namespace. Defaults to `300`.
 func (o AwsCloudwatchScrapeJobCustomNamespaceOutput) ScrapeIntervalSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AwsCloudwatchScrapeJobCustomNamespace) *int { return v.ScrapeIntervalSeconds }).(pulumi.IntPtrOutput)
 }
@@ -243,7 +243,7 @@ type AwsCloudwatchScrapeJobService struct {
 	Name string `pulumi:"name"`
 	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
 	ResourceDiscoveryTagFilters []AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
-	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
 	ScrapeIntervalSeconds *int `pulumi:"scrapeIntervalSeconds"`
 	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
 	TagsToAddToMetrics []string `pulumi:"tagsToAddToMetrics"`
@@ -267,7 +267,7 @@ type AwsCloudwatchScrapeJobServiceArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
 	ResourceDiscoveryTagFilters AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput `pulumi:"resourceDiscoveryTagFilters"`
-	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
 	ScrapeIntervalSeconds pulumi.IntPtrInput `pulumi:"scrapeIntervalSeconds"`
 	// A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
 	TagsToAddToMetrics pulumi.StringArrayInput `pulumi:"tagsToAddToMetrics"`
@@ -341,7 +341,7 @@ func (o AwsCloudwatchScrapeJobServiceOutput) ResourceDiscoveryTagFilters() AwsCl
 	}).(AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput)
 }
 
-// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
 func (o AwsCloudwatchScrapeJobServiceOutput) ScrapeIntervalSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AwsCloudwatchScrapeJobService) *int { return v.ScrapeIntervalSeconds }).(pulumi.IntPtrOutput)
 }
@@ -588,7 +588,7 @@ type AwsResourceMetadataScrapeJobService struct {
 	Name string `pulumi:"name"`
 	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
 	ResourceDiscoveryTagFilters []AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
-	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
 	ScrapeIntervalSeconds *int `pulumi:"scrapeIntervalSeconds"`
 }
 
@@ -608,7 +608,7 @@ type AwsResourceMetadataScrapeJobServiceArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
 	ResourceDiscoveryTagFilters AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayInput `pulumi:"resourceDiscoveryTagFilters"`
-	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
 	ScrapeIntervalSeconds pulumi.IntPtrInput `pulumi:"scrapeIntervalSeconds"`
 }
 
@@ -675,7 +675,7 @@ func (o AwsResourceMetadataScrapeJobServiceOutput) ResourceDiscoveryTagFilters()
 	}).(AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput)
 }
 
-// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
 func (o AwsResourceMetadataScrapeJobServiceOutput) ScrapeIntervalSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AwsResourceMetadataScrapeJobService) *int { return v.ScrapeIntervalSeconds }).(pulumi.IntPtrOutput)
 }

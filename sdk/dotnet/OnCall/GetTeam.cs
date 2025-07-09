@@ -23,9 +23,14 @@ namespace Pulumiverse.Grafana.OnCall
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTeam = Grafana.OnCall.GetTeam.Invoke(new()
+        ///     var myTeam = Grafana.Oss.GetTeam.Invoke(new()
         ///     {
-        ///         Name = "example_team",
+        ///         Name = "my team",
+        ///     });
+        /// 
+        ///     var myTeamGetTeam = Grafana.OnCall.GetTeam.Invoke(new()
+        ///     {
+        ///         Name = myTeam.Apply(getTeamResult =&gt; getTeamResult.Name),
         ///     });
         /// 
         /// });
@@ -45,9 +50,14 @@ namespace Pulumiverse.Grafana.OnCall
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTeam = Grafana.OnCall.GetTeam.Invoke(new()
+        ///     var myTeam = Grafana.Oss.GetTeam.Invoke(new()
         ///     {
-        ///         Name = "example_team",
+        ///         Name = "my team",
+        ///     });
+        /// 
+        ///     var myTeamGetTeam = Grafana.OnCall.GetTeam.Invoke(new()
+        ///     {
+        ///         Name = myTeam.Apply(getTeamResult =&gt; getTeamResult.Name),
         ///     });
         /// 
         /// });
@@ -67,9 +77,14 @@ namespace Pulumiverse.Grafana.OnCall
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTeam = Grafana.OnCall.GetTeam.Invoke(new()
+        ///     var myTeam = Grafana.Oss.GetTeam.Invoke(new()
         ///     {
-        ///         Name = "example_team",
+        ///         Name = "my team",
+        ///     });
+        /// 
+        ///     var myTeamGetTeam = Grafana.OnCall.GetTeam.Invoke(new()
+        ///     {
+        ///         Name = myTeam.Apply(getTeamResult =&gt; getTeamResult.Name),
         ///     });
         /// 
         /// });

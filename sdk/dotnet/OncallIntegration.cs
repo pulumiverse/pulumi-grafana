@@ -14,47 +14,6 @@ namespace Pulumiverse.Grafana
     /// * [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)
     /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test_acc_integration = new Grafana.OnCall.Integration("test-acc-integration", new()
-    ///     {
-    ///         Name = "my integration",
-    ///         Type = "grafana",
-    ///         DefaultRoute = null,
-    ///     });
-    /// 
-    ///     // Also it's possible to manage integration templates.
-    ///     // Check docs to see all available templates.
-    ///     var integrationWithTemplates = new Grafana.OnCall.Integration("integration_with_templates", new()
-    ///     {
-    ///         Name = "integration_with_templates",
-    ///         Type = "webhook",
-    ///         DefaultRoute = null,
-    ///         Templates = new Grafana.OnCall.Inputs.IntegrationTemplatesArgs
-    ///         {
-    ///             GroupingKey = "{{ payload.group_id }}",
-    ///             Slack = new Grafana.OnCall.Inputs.IntegrationTemplatesSlackArgs
-    ///             {
-    ///                 Title = "Slack title",
-    ///                 Message = @"This is example of multiline template
-    /// {{ payload.message }}
-    /// ",
-    ///                 ImageUrl = "{{ payload.image_url }}",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// ```sh
@@ -72,7 +31,13 @@ namespace Pulumiverse.Grafana
         public Output<Outputs.OncallIntegrationDefaultRoute> DefaultRoute { get; private set; } = null!;
 
         /// <summary>
-        /// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+        /// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+        /// </summary>
+        [Output("dynamicLabels")]
+        public Output<ImmutableArray<ImmutableDictionary<string, string>>> DynamicLabels { get; private set; } = null!;
+
+        /// <summary>
+        /// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
         /// </summary>
         [Output("labels")]
         public Output<ImmutableArray<ImmutableDictionary<string, string>>> Labels { get; private set; } = null!;
@@ -90,7 +55,7 @@ namespace Pulumiverse.Grafana
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+        /// The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
         /// </summary>
         [Output("teamId")]
         public Output<string?> TeamId { get; private set; } = null!;
@@ -160,11 +125,23 @@ namespace Pulumiverse.Grafana
         [Input("defaultRoute", required: true)]
         public Input<Inputs.OncallIntegrationDefaultRouteArgs> DefaultRoute { get; set; } = null!;
 
+        [Input("dynamicLabels")]
+        private InputList<ImmutableDictionary<string, string>>? _dynamicLabels;
+
+        /// <summary>
+        /// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+        /// </summary>
+        public InputList<ImmutableDictionary<string, string>> DynamicLabels
+        {
+            get => _dynamicLabels ?? (_dynamicLabels = new InputList<ImmutableDictionary<string, string>>());
+            set => _dynamicLabels = value;
+        }
+
         [Input("labels")]
         private InputList<ImmutableDictionary<string, string>>? _labels;
 
         /// <summary>
-        /// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+        /// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
         /// </summary>
         public InputList<ImmutableDictionary<string, string>> Labels
         {
@@ -179,7 +156,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+        /// The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
@@ -210,11 +187,23 @@ namespace Pulumiverse.Grafana
         [Input("defaultRoute")]
         public Input<Inputs.OncallIntegrationDefaultRouteGetArgs>? DefaultRoute { get; set; }
 
+        [Input("dynamicLabels")]
+        private InputList<ImmutableDictionary<string, string>>? _dynamicLabels;
+
+        /// <summary>
+        /// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+        /// </summary>
+        public InputList<ImmutableDictionary<string, string>> DynamicLabels
+        {
+            get => _dynamicLabels ?? (_dynamicLabels = new InputList<ImmutableDictionary<string, string>>());
+            set => _dynamicLabels = value;
+        }
+
         [Input("labels")]
         private InputList<ImmutableDictionary<string, string>>? _labels;
 
         /// <summary>
-        /// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+        /// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
         /// </summary>
         public InputList<ImmutableDictionary<string, string>> Labels
         {
@@ -235,7 +224,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+        /// The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }

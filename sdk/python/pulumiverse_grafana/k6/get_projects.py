@@ -85,7 +85,6 @@ def get_projects(name: Optional[builtins.str] = None,
     import pulumiverse_grafana as grafana
 
     project = grafana.k6.Project("project", name="Terraform Test Project")
-    project2 = grafana.k6.Project("project_2", name="Terraform Test Project")
     from_name = grafana.k6.get_projects(name="Terraform Test Project")
     ```
 
@@ -114,7 +113,6 @@ def get_projects_output(name: Optional[pulumi.Input[Optional[builtins.str]]] = N
     import pulumiverse_grafana as grafana
 
     project = grafana.k6.Project("project", name="Terraform Test Project")
-    project2 = grafana.k6.Project("project_2", name="Terraform Test Project")
     from_name = grafana.k6.get_projects(name="Terraform Test Project")
     ```
 

@@ -14,9 +14,9 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const testProjectLimits = new grafana.k6.Project("test_project_limits", {name: "Terraform Project Test Limits"});
- * const fromProjectId = testProjectLimits.id.apply(id => grafana.k6.getProjectLimitsOutput({
- *     projectId: id,
- * }));
+ * const fromProjectId = grafana.k6.getProjectLimitsOutput({
+ *     projectId: testProjectLimits.id,
+ * });
  * ```
  */
 export function getProjectLimits(args: GetProjectLimitsArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectLimitsResult> {
@@ -33,7 +33,7 @@ export interface GetProjectLimitsArgs {
     /**
      * The identifier of the project to get limits for.
      */
-    projectId: number;
+    projectId: string;
 }
 
 /**
@@ -47,11 +47,11 @@ export interface GetProjectLimitsResult {
     /**
      * The identifier of the project limits. This is set to the same as the project_id.
      */
-    readonly id: number;
+    readonly id: string;
     /**
      * The identifier of the project to get limits for.
      */
-    readonly projectId: number;
+    readonly projectId: string;
     /**
      * Maximum number of concurrent browser virtual users (VUs) used in one test.
      */
@@ -75,9 +75,9 @@ export interface GetProjectLimitsResult {
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const testProjectLimits = new grafana.k6.Project("test_project_limits", {name: "Terraform Project Test Limits"});
- * const fromProjectId = testProjectLimits.id.apply(id => grafana.k6.getProjectLimitsOutput({
- *     projectId: id,
- * }));
+ * const fromProjectId = grafana.k6.getProjectLimitsOutput({
+ *     projectId: testProjectLimits.id,
+ * });
  * ```
  */
 export function getProjectLimitsOutput(args: GetProjectLimitsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectLimitsResult> {
@@ -94,5 +94,5 @@ export interface GetProjectLimitsOutputArgs {
     /**
      * The identifier of the project to get limits for.
      */
-    projectId: pulumi.Input<number>;
+    projectId: pulumi.Input<string>;
 }

@@ -34,11 +34,11 @@ type Schedule struct {
 	Shifts pulumi.StringArrayOutput `pulumi:"shifts"`
 	// The Slack-specific settings for a schedule.
 	Slack ScheduleSlackPtrOutput `pulumi:"slack"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 	// The schedule's time zone.
 	TimeZone pulumi.StringPtrOutput `pulumi:"timeZone"`
-	// The schedule's type. Valid values are `ical`, `calendar`.
+	// The schedule's type. Valid values are `ical`, `calendar`, `web`.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -93,11 +93,11 @@ type scheduleState struct {
 	Shifts []string `pulumi:"shifts"`
 	// The Slack-specific settings for a schedule.
 	Slack *ScheduleSlack `pulumi:"slack"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId *string `pulumi:"teamId"`
 	// The schedule's time zone.
 	TimeZone *string `pulumi:"timeZone"`
-	// The schedule's type. Valid values are `ical`, `calendar`.
+	// The schedule's type. Valid values are `ical`, `calendar`, `web`.
 	Type *string `pulumi:"type"`
 }
 
@@ -114,11 +114,11 @@ type ScheduleState struct {
 	Shifts pulumi.StringArrayInput
 	// The Slack-specific settings for a schedule.
 	Slack ScheduleSlackPtrInput
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrInput
 	// The schedule's time zone.
 	TimeZone pulumi.StringPtrInput
-	// The schedule's type. Valid values are `ical`, `calendar`.
+	// The schedule's type. Valid values are `ical`, `calendar`, `web`.
 	Type pulumi.StringPtrInput
 }
 
@@ -139,11 +139,11 @@ type scheduleArgs struct {
 	Shifts []string `pulumi:"shifts"`
 	// The Slack-specific settings for a schedule.
 	Slack *ScheduleSlack `pulumi:"slack"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId *string `pulumi:"teamId"`
 	// The schedule's time zone.
 	TimeZone *string `pulumi:"timeZone"`
-	// The schedule's type. Valid values are `ical`, `calendar`.
+	// The schedule's type. Valid values are `ical`, `calendar`, `web`.
 	Type string `pulumi:"type"`
 }
 
@@ -161,11 +161,11 @@ type ScheduleArgs struct {
 	Shifts pulumi.StringArrayInput
 	// The Slack-specific settings for a schedule.
 	Slack ScheduleSlackPtrInput
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrInput
 	// The schedule's time zone.
 	TimeZone pulumi.StringPtrInput
-	// The schedule's type. Valid values are `ical`, `calendar`.
+	// The schedule's type. Valid values are `ical`, `calendar`, `web`.
 	Type pulumi.StringInput
 }
 
@@ -286,7 +286,7 @@ func (o ScheduleOutput) Slack() ScheduleSlackPtrOutput {
 	return o.ApplyT(func(v *Schedule) ScheduleSlackPtrOutput { return v.Slack }).(ScheduleSlackPtrOutput)
 }
 
-// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 func (o ScheduleOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Schedule) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }
@@ -296,7 +296,7 @@ func (o ScheduleOutput) TimeZone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Schedule) pulumi.StringPtrOutput { return v.TimeZone }).(pulumi.StringPtrOutput)
 }
 
-// The schedule's type. Valid values are `ical`, `calendar`.
+// The schedule's type. Valid values are `ical`, `calendar`, `web`.
 func (o ScheduleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Schedule) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

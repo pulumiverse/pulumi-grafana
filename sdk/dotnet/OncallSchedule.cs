@@ -60,7 +60,7 @@ namespace Pulumiverse.Grafana
         public Output<Outputs.OncallScheduleSlack?> Slack { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+        /// The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
         /// </summary>
         [Output("teamId")]
         public Output<string?> TeamId { get; private set; } = null!;
@@ -72,7 +72,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> TimeZone { get; private set; } = null!;
 
         /// <summary>
-        /// The schedule's type. Valid values are `ical`, `calendar`.
+        /// The schedule's type. Valid values are `ical`, `calendar`, `web`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -167,7 +167,7 @@ namespace Pulumiverse.Grafana
         public Input<Inputs.OncallScheduleSlackArgs>? Slack { get; set; }
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+        /// The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
@@ -179,7 +179,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? TimeZone { get; set; }
 
         /// <summary>
-        /// The schedule's type. Valid values are `ical`, `calendar`.
+        /// The schedule's type. Valid values are `ical`, `calendar`, `web`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -235,7 +235,7 @@ namespace Pulumiverse.Grafana
         public Input<Inputs.OncallScheduleSlackGetArgs>? Slack { get; set; }
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+        /// The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
@@ -247,7 +247,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? TimeZone { get; set; }
 
         /// <summary>
-        /// The schedule's type. Valid values are `ical`, `calendar`.
+        /// The schedule's type. Valid values are `ical`, `calendar`, `web`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

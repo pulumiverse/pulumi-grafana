@@ -35,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RoleAssignment{}
 	case "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem":
 		r = &RoleAssignmentItem{}
+	case "grafana:enterprise/scimConfig:ScimConfig":
+		r = &ScimConfig{}
 	case "grafana:enterprise/teamExternalGroup:TeamExternalGroup":
 		r = &TeamExternalGroup{}
 	default:
@@ -83,6 +85,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"enterprise/roleAssignmentItem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"enterprise/scimConfig",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -29,7 +29,7 @@ type App struct {
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes pulumi.StringMapOutput `pulumi:"extraLogAttributes"`
 	Name               pulumi.StringOutput    `pulumi:"name"`
-	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
 	StackId  pulumi.IntOutput       `pulumi:"stackId"`
 }
@@ -83,7 +83,7 @@ type appState struct {
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes map[string]string `pulumi:"extraLogAttributes"`
 	Name               *string           `pulumi:"name"`
-	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
 	Settings map[string]string `pulumi:"settings"`
 	StackId  *int              `pulumi:"stackId"`
 }
@@ -96,7 +96,7 @@ type AppState struct {
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes pulumi.StringMapInput
 	Name               pulumi.StringPtrInput
-	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
 	Settings pulumi.StringMapInput
 	StackId  pulumi.IntPtrInput
 }
@@ -111,7 +111,7 @@ type appArgs struct {
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes map[string]string `pulumi:"extraLogAttributes"`
 	Name               *string           `pulumi:"name"`
-	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
 	Settings map[string]string `pulumi:"settings"`
 	StackId  int               `pulumi:"stackId"`
 }
@@ -123,7 +123,7 @@ type AppArgs struct {
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes pulumi.StringMapInput
 	Name               pulumi.StringPtrInput
-	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
 	Settings pulumi.StringMapInput
 	StackId  pulumi.IntInput
 }
@@ -234,7 +234,7 @@ func (o AppOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *App) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
 func (o AppOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *App) pulumi.StringMapOutput { return v.Settings }).(pulumi.StringMapOutput)
 }

@@ -8043,6 +8043,10 @@ if not MYPY:
         """
         Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
         """
+        missing_series_evals_to_resolve: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The number of missing series evaluations that must occur before the rule is considered to be resolved.
+        """
         no_data_state: NotRequired[pulumi.Input[builtins.str]]
         """
         Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
@@ -8074,6 +8078,7 @@ class RuleGroupRuleArgs:
                  is_paused: Optional[pulumi.Input[builtins.bool]] = None,
                  keep_firing_for: Optional[pulumi.Input[builtins.str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
+                 missing_series_evals_to_resolve: Optional[pulumi.Input[builtins.int]] = None,
                  no_data_state: Optional[pulumi.Input[builtins.str]] = None,
                  notification_settings: Optional[pulumi.Input['RuleGroupRuleNotificationSettingsArgs']] = None,
                  record: Optional[pulumi.Input['RuleGroupRuleRecordArgs']] = None,
@@ -8088,6 +8093,7 @@ class RuleGroupRuleArgs:
         :param pulumi.Input[builtins.bool] is_paused: Sets whether the alert should be paused or not. Defaults to `false`.
         :param pulumi.Input[builtins.str] keep_firing_for: The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
+        :param pulumi.Input[builtins.int] missing_series_evals_to_resolve: The number of missing series evaluations that must occur before the rule is considered to be resolved.
         :param pulumi.Input[builtins.str] no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
         :param pulumi.Input['RuleGroupRuleNotificationSettingsArgs'] notification_settings: Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.
         :param pulumi.Input['RuleGroupRuleRecordArgs'] record: Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.
@@ -8109,6 +8115,8 @@ class RuleGroupRuleArgs:
             pulumi.set(__self__, "keep_firing_for", keep_firing_for)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
+        if missing_series_evals_to_resolve is not None:
+            pulumi.set(__self__, "missing_series_evals_to_resolve", missing_series_evals_to_resolve)
         if no_data_state is not None:
             pulumi.set(__self__, "no_data_state", no_data_state)
         if notification_settings is not None:
@@ -8225,6 +8233,18 @@ class RuleGroupRuleArgs:
     @labels.setter
     def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]):
         pulumi.set(self, "labels", value)
+
+    @property
+    @pulumi.getter(name="missingSeriesEvalsToResolve")
+    def missing_series_evals_to_resolve(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The number of missing series evaluations that must occur before the rule is considered to be resolved.
+        """
+        return pulumi.get(self, "missing_series_evals_to_resolve")
+
+    @missing_series_evals_to_resolve.setter
+    def missing_series_evals_to_resolve(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "missing_series_evals_to_resolve", value)
 
     @property
     @pulumi.getter(name="noDataState")
@@ -8574,6 +8594,10 @@ if not MYPY:
         """
         The name of the metric to write to.
         """
+        target_datasource_uid: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The UID of the datasource to write the metric to.
+        """
 elif False:
     RuleGroupRuleRecordArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -8581,13 +8605,17 @@ elif False:
 class RuleGroupRuleRecordArgs:
     def __init__(__self__, *,
                  from_: pulumi.Input[builtins.str],
-                 metric: pulumi.Input[builtins.str]):
+                 metric: pulumi.Input[builtins.str],
+                 target_datasource_uid: Optional[pulumi.Input[builtins.str]] = None):
         """
         :param pulumi.Input[builtins.str] from_: The ref id of the query node in the data field to use as the source of the metric.
         :param pulumi.Input[builtins.str] metric: The name of the metric to write to.
+        :param pulumi.Input[builtins.str] target_datasource_uid: The UID of the datasource to write the metric to.
         """
         pulumi.set(__self__, "from_", from_)
         pulumi.set(__self__, "metric", metric)
+        if target_datasource_uid is not None:
+            pulumi.set(__self__, "target_datasource_uid", target_datasource_uid)
 
     @property
     @pulumi.getter(name="from")
@@ -8612,6 +8640,18 @@ class RuleGroupRuleRecordArgs:
     @metric.setter
     def metric(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "metric", value)
+
+    @property
+    @pulumi.getter(name="targetDatasourceUid")
+    def target_datasource_uid(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The UID of the datasource to write the metric to.
+        """
+        return pulumi.get(self, "target_datasource_uid")
+
+    @target_datasource_uid.setter
+    def target_datasource_uid(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "target_datasource_uid", value)
 
 
 if not MYPY:

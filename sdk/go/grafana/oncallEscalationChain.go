@@ -22,13 +22,27 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := oncall.NewEscalationChain(ctx, "default", &oncall.EscalationChainArgs{
-//				Name: pulumi.String("default"),
+//			myTeam, err := oss.LookupTeam(ctx, &oss.LookupTeamArgs{
+//				Name: "my team",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myTeamGetTeam, err := oncall.GetTeam(ctx, &oncall.GetTeamArgs{
+//				Name: myTeam.Name,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oncall.NewEscalationChain(ctx, "default", &oncall.EscalationChainArgs{
+//				Name:   pulumi.String("default"),
+//				TeamId: pulumi.String(myTeamGetTeam.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -51,7 +65,7 @@ type OncallEscalationChain struct {
 
 	// The name of the escalation chain.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 }
 
@@ -87,14 +101,14 @@ func GetOncallEscalationChain(ctx *pulumi.Context,
 type oncallEscalationChainState struct {
 	// The name of the escalation chain.
 	Name *string `pulumi:"name"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId *string `pulumi:"teamId"`
 }
 
 type OncallEscalationChainState struct {
 	// The name of the escalation chain.
 	Name pulumi.StringPtrInput
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrInput
 }
 
@@ -105,7 +119,7 @@ func (OncallEscalationChainState) ElementType() reflect.Type {
 type oncallEscalationChainArgs struct {
 	// The name of the escalation chain.
 	Name *string `pulumi:"name"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId *string `pulumi:"teamId"`
 }
 
@@ -113,7 +127,7 @@ type oncallEscalationChainArgs struct {
 type OncallEscalationChainArgs struct {
 	// The name of the escalation chain.
 	Name pulumi.StringPtrInput
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrInput
 }
 
@@ -209,7 +223,7 @@ func (o OncallEscalationChainOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *OncallEscalationChain) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 func (o OncallEscalationChainOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OncallEscalationChain) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }

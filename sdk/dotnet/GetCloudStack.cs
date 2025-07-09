@@ -245,6 +245,10 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// Base URL of the OnCall API instance configured for this stack.
+        /// </summary>
+        public readonly string OncallApiUrl;
+        /// <summary>
         /// Organization id to assign to this stack.
         /// </summary>
         public readonly int OrgId;
@@ -435,6 +439,8 @@ namespace Pulumiverse.Grafana
 
             string name,
 
+            string oncallApiUrl,
+
             int orgId,
 
             string orgName,
@@ -539,6 +545,7 @@ namespace Pulumiverse.Grafana
             LogsUrl = logsUrl;
             LogsUserId = logsUserId;
             Name = name;
+            OncallApiUrl = oncallApiUrl;
             OrgId = orgId;
             OrgName = orgName;
             OrgSlug = orgSlug;

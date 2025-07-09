@@ -10006,6 +10006,8 @@ type RuleGroupRule struct {
 	KeepFiringFor *string `pulumi:"keepFiringFor"`
 	// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
 	Labels map[string]string `pulumi:"labels"`
+	// The number of missing series evaluations that must occur before the rule is considered to be resolved.
+	MissingSeriesEvalsToResolve *int `pulumi:"missingSeriesEvalsToResolve"`
 	// The name of the alert rule.
 	Name string `pulumi:"name"`
 	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
@@ -10046,6 +10048,8 @@ type RuleGroupRuleArgs struct {
 	KeepFiringFor pulumi.StringPtrInput `pulumi:"keepFiringFor"`
 	// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
 	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// The number of missing series evaluations that must occur before the rule is considered to be resolved.
+	MissingSeriesEvalsToResolve pulumi.IntPtrInput `pulumi:"missingSeriesEvalsToResolve"`
 	// The name of the alert rule.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.
@@ -10147,6 +10151,11 @@ func (o RuleGroupRuleOutput) KeepFiringFor() pulumi.StringPtrOutput {
 // Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.
 func (o RuleGroupRuleOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v RuleGroupRule) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// The number of missing series evaluations that must occur before the rule is considered to be resolved.
+func (o RuleGroupRuleOutput) MissingSeriesEvalsToResolve() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RuleGroupRule) *int { return v.MissingSeriesEvalsToResolve }).(pulumi.IntPtrOutput)
 }
 
 // The name of the alert rule.
@@ -10625,6 +10634,8 @@ type RuleGroupRuleRecord struct {
 	From string `pulumi:"from"`
 	// The name of the metric to write to.
 	Metric string `pulumi:"metric"`
+	// The UID of the datasource to write the metric to.
+	TargetDatasourceUid *string `pulumi:"targetDatasourceUid"`
 }
 
 // RuleGroupRuleRecordInput is an input type that accepts RuleGroupRuleRecordArgs and RuleGroupRuleRecordOutput values.
@@ -10643,6 +10654,8 @@ type RuleGroupRuleRecordArgs struct {
 	From pulumi.StringInput `pulumi:"from"`
 	// The name of the metric to write to.
 	Metric pulumi.StringInput `pulumi:"metric"`
+	// The UID of the datasource to write the metric to.
+	TargetDatasourceUid pulumi.StringPtrInput `pulumi:"targetDatasourceUid"`
 }
 
 func (RuleGroupRuleRecordArgs) ElementType() reflect.Type {
@@ -10732,6 +10745,11 @@ func (o RuleGroupRuleRecordOutput) Metric() pulumi.StringOutput {
 	return o.ApplyT(func(v RuleGroupRuleRecord) string { return v.Metric }).(pulumi.StringOutput)
 }
 
+// The UID of the datasource to write the metric to.
+func (o RuleGroupRuleRecordOutput) TargetDatasourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleGroupRuleRecord) *string { return v.TargetDatasourceUid }).(pulumi.StringPtrOutput)
+}
+
 type RuleGroupRuleRecordPtrOutput struct{ *pulumi.OutputState }
 
 func (RuleGroupRuleRecordPtrOutput) ElementType() reflect.Type {
@@ -10773,6 +10791,16 @@ func (o RuleGroupRuleRecordPtrOutput) Metric() pulumi.StringPtrOutput {
 			return nil
 		}
 		return &v.Metric
+	}).(pulumi.StringPtrOutput)
+}
+
+// The UID of the datasource to write the metric to.
+func (o RuleGroupRuleRecordPtrOutput) TargetDatasourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleGroupRuleRecord) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TargetDatasourceUid
 	}).(pulumi.StringPtrOutput)
 }
 

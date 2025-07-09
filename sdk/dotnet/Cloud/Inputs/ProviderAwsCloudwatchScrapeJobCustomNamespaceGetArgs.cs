@@ -32,7 +32,7 @@ namespace Pulumiverse.Grafana.Cloud.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The interval in seconds to scrape the custom namespace.
+        /// The interval in seconds to scrape the custom namespace. Defaults to `300`.
         /// </summary>
         [Input("scrapeIntervalSeconds")]
         public Input<int>? ScrapeIntervalSeconds { get; set; }

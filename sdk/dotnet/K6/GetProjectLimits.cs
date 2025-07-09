@@ -110,7 +110,7 @@ namespace Pulumiverse.Grafana.K6
         /// The identifier of the project to get limits for.
         /// </summary>
         [Input("projectId", required: true)]
-        public int ProjectId { get; set; }
+        public string ProjectId { get; set; } = null!;
 
         public GetProjectLimitsArgs()
         {
@@ -124,7 +124,7 @@ namespace Pulumiverse.Grafana.K6
         /// The identifier of the project to get limits for.
         /// </summary>
         [Input("projectId", required: true)]
-        public Input<int> ProjectId { get; set; } = null!;
+        public Input<string> ProjectId { get; set; } = null!;
 
         public GetProjectLimitsInvokeArgs()
         {
@@ -143,11 +143,11 @@ namespace Pulumiverse.Grafana.K6
         /// <summary>
         /// The identifier of the project limits. This is set to the same as the project_id.
         /// </summary>
-        public readonly int Id;
+        public readonly string Id;
         /// <summary>
         /// The identifier of the project to get limits for.
         /// </summary>
-        public readonly int ProjectId;
+        public readonly string ProjectId;
         /// <summary>
         /// Maximum number of concurrent browser virtual users (VUs) used in one test.
         /// </summary>
@@ -165,9 +165,9 @@ namespace Pulumiverse.Grafana.K6
         private GetProjectLimitsResult(
             int durationMaxPerTest,
 
-            int id,
+            string id,
 
-            int projectId,
+            string projectId,
 
             int vuBrowserMaxPerTest,
 

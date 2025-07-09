@@ -11,9 +11,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const exampleTeam = grafana.onCall.getTeam({
- *     name: "example_team",
+ * const myTeam = grafana.oss.getTeam({
+ *     name: "my team",
  * });
+ * const myTeamGetTeam = myTeam.then(myTeam => grafana.onCall.getTeam({
+ *     name: myTeam.name,
+ * }));
  * ```
  */
 /** @deprecated grafana.index/getoncallteam.getOncallTeam has been deprecated in favor of grafana.oncall/getteam.getTeam */
@@ -57,9 +60,12 @@ export interface GetOncallTeamResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const exampleTeam = grafana.onCall.getTeam({
- *     name: "example_team",
+ * const myTeam = grafana.oss.getTeam({
+ *     name: "my team",
  * });
+ * const myTeamGetTeam = myTeam.then(myTeam => grafana.onCall.getTeam({
+ *     name: myTeam.name,
+ * }));
  * ```
  */
 /** @deprecated grafana.index/getoncallteam.getOncallTeam has been deprecated in favor of grafana.oncall/getteam.getTeam */

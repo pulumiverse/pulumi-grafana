@@ -14,25 +14,25 @@ namespace Pulumiverse.Grafana.K6.Outputs
     [OutputType]
     public sealed class GetLoadTestsLoadTestResult
     {
-        public readonly int BaselineTestRunId;
+        public readonly string BaselineTestRunId;
         public readonly string Created;
-        public readonly int Id;
+        public readonly string Id;
         public readonly string Name;
-        public readonly int ProjectId;
+        public readonly string ProjectId;
         public readonly string Script;
         public readonly string Updated;
 
         [OutputConstructor]
         private GetLoadTestsLoadTestResult(
-            int baselineTestRunId,
+            string baselineTestRunId,
 
             string created,
 
-            int id,
+            string id,
 
             string name,
 
-            int projectId,
+            string projectId,
 
             string script,
 

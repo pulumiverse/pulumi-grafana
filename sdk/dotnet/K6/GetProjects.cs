@@ -31,11 +31,6 @@ namespace Pulumiverse.Grafana.K6
         ///         Name = "Terraform Test Project",
         ///     });
         /// 
-        ///     var project2 = new Grafana.K6.Project("project_2", new()
-        ///     {
-        ///         Name = "Terraform Test Project",
-        ///     });
-        /// 
         ///     var fromName = Grafana.K6.GetProjects.Invoke(new()
         ///     {
         ///         Name = "Terraform Test Project",
@@ -66,11 +61,6 @@ namespace Pulumiverse.Grafana.K6
         ///         Name = "Terraform Test Project",
         ///     });
         /// 
-        ///     var project2 = new Grafana.K6.Project("project_2", new()
-        ///     {
-        ///         Name = "Terraform Test Project",
-        ///     });
-        /// 
         ///     var fromName = Grafana.K6.GetProjects.Invoke(new()
         ///     {
         ///         Name = "Terraform Test Project",
@@ -97,11 +87,6 @@ namespace Pulumiverse.Grafana.K6
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     var project = new Grafana.K6.Project("project", new()
-        ///     {
-        ///         Name = "Terraform Test Project",
-        ///     });
-        /// 
-        ///     var project2 = new Grafana.K6.Project("project_2", new()
         ///     {
         ///         Name = "Terraform Test Project",
         ///     });

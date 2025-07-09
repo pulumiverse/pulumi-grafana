@@ -54,7 +54,7 @@ namespace Pulumiverse.Grafana.K6
         /// Identifier of a baseline test run used for results comparison.
         /// </summary>
         [Output("baselineTestRunId")]
-        public Output<int?> BaselineTestRunId { get; private set; } = null!;
+        public Output<string?> BaselineTestRunId { get; private set; } = null!;
 
         /// <summary>
         /// The date when the load test was created.
@@ -72,7 +72,7 @@ namespace Pulumiverse.Grafana.K6
         /// The identifier of the project this load test belongs to.
         /// </summary>
         [Output("projectId")]
-        public Output<int> ProjectId { get; private set; } = null!;
+        public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// The k6 test script content. Can be provided inline or via the `file()` function.
@@ -137,7 +137,7 @@ namespace Pulumiverse.Grafana.K6
         /// Identifier of a baseline test run used for results comparison.
         /// </summary>
         [Input("baselineTestRunId")]
-        public Input<int>? BaselineTestRunId { get; set; }
+        public Input<string>? BaselineTestRunId { get; set; }
 
         /// <summary>
         /// Human-friendly identifier of the load test.
@@ -149,7 +149,7 @@ namespace Pulumiverse.Grafana.K6
         /// The identifier of the project this load test belongs to.
         /// </summary>
         [Input("projectId", required: true)]
-        public Input<int> ProjectId { get; set; } = null!;
+        public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
         /// The k6 test script content. Can be provided inline or via the `file()` function.
@@ -169,7 +169,7 @@ namespace Pulumiverse.Grafana.K6
         /// Identifier of a baseline test run used for results comparison.
         /// </summary>
         [Input("baselineTestRunId")]
-        public Input<int>? BaselineTestRunId { get; set; }
+        public Input<string>? BaselineTestRunId { get; set; }
 
         /// <summary>
         /// The date when the load test was created.
@@ -187,7 +187,7 @@ namespace Pulumiverse.Grafana.K6
         /// The identifier of the project this load test belongs to.
         /// </summary>
         [Input("projectId")]
-        public Input<int>? ProjectId { get; set; }
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The k6 test script content. Can be provided inline or via the `file()` function.

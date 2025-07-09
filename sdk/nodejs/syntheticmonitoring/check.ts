@@ -459,7 +459,7 @@ export class Check extends pulumi.CustomResource {
      */
     public /*out*/ readonly tenantId!: pulumi.Output<number>;
     /**
-     * Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+     * Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
 
@@ -565,7 +565,7 @@ export interface CheckState {
      */
     tenantId?: pulumi.Input<number>;
     /**
-     * Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+     * Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
      */
     timeout?: pulumi.Input<number>;
 }
@@ -611,7 +611,7 @@ export interface CheckArgs {
      */
     target: pulumi.Input<string>;
     /**
-     * Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+     * Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
      */
     timeout?: pulumi.Input<number>;
 }
