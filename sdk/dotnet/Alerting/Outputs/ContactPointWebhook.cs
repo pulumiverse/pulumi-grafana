@@ -55,6 +55,10 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly string? Title;
         /// <summary>
+        /// Allows configuring TLS for the webhook notifier.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string>? TlsConfig;
+        /// <summary>
         /// The UID of the contact point.
         /// </summary>
         public readonly string? Uid;
@@ -85,6 +89,8 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
             string? title,
 
+            ImmutableDictionary<string, string>? tlsConfig,
+
             string? uid,
 
             string url)
@@ -99,6 +105,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
             Message = message;
             Settings = settings;
             Title = title;
+            TlsConfig = tlsConfig;
             Uid = uid;
             Url = url;
         }

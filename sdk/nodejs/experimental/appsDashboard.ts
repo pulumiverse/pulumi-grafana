@@ -7,7 +7,10 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages Grafana dashboards via the new Grafana App Platform API. This resource is currently **EXPERIMENTAL** and may be subject to change. It requires a development build of Grafana with specific feature flags enabled.
+ * Manages Grafana dashboards using the new Grafana APIs.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)
  */
 export class AppsDashboard extends pulumi.CustomResource {
     /**

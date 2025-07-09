@@ -11,7 +11,10 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
 )
 
-// Manages Grafana playlists via the new Grafana App Platform API. This resource is currently **EXPERIMENTAL** and may be subject to change. It requires a development build of Grafana with specific feature flags enabled.
+// Manages Grafana playlists using the new Grafana APIs.
+//
+// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/apis/)
 type AppsPlaylistV0Alpha1 struct {
 	pulumi.CustomResourceState
 

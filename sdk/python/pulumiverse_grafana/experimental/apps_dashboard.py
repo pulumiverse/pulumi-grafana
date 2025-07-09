@@ -142,7 +142,10 @@ class AppsDashboard(pulumi.CustomResource):
                  spec: Optional[pulumi.Input[Union['AppsDashboardSpecArgs', 'AppsDashboardSpecArgsDict']]] = None,
                  __props__=None):
         """
-        Manages Grafana dashboards via the new Grafana App Platform API. This resource is currently **EXPERIMENTAL** and may be subject to change. It requires a development build of Grafana with specific feature flags enabled.
+        Manages Grafana dashboards using the new Grafana APIs.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -157,7 +160,10 @@ class AppsDashboard(pulumi.CustomResource):
                  args: Optional[AppsDashboardArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Grafana dashboards via the new Grafana App Platform API. This resource is currently **EXPERIMENTAL** and may be subject to change. It requires a development build of Grafana with specific feature flags enabled.
+        Manages Grafana dashboards using the new Grafana APIs.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)
 
         :param str resource_name: The name of the resource.
         :param AppsDashboardArgs args: The arguments to use to populate this resource's properties.

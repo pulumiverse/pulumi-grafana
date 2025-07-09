@@ -867,6 +867,10 @@ export interface ContactPointWebhook {
      */
     title?: string;
     /**
+     * Allows configuring TLS for the webhook notifier.
+     */
+    tlsConfig?: {[key: string]: string};
+    /**
      * The UID of the contact point.
      */
     uid: string;
@@ -4080,6 +4084,10 @@ export namespace alerting {
          * Templated title of the message.
          */
         title?: string;
+        /**
+         * Allows configuring TLS for the webhook notifier.
+         */
+        tlsConfig?: {[key: string]: string};
         /**
          * The UID of the contact point.
          */

@@ -3048,6 +3048,8 @@ class ContactPointWebhook(dict):
             suggest = "http_method"
         elif key == "maxAlerts":
             suggest = "max_alerts"
+        elif key == "tlsConfig":
+            suggest = "tls_config"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ContactPointWebhook. Access the value via the '{suggest}' property getter instead.")
@@ -3072,6 +3074,7 @@ class ContactPointWebhook(dict):
                  message: Optional[builtins.str] = None,
                  settings: Optional[Mapping[str, builtins.str]] = None,
                  title: Optional[builtins.str] = None,
+                 tls_config: Optional[Mapping[str, builtins.str]] = None,
                  uid: Optional[builtins.str] = None):
         """
         :param builtins.str url: The URL to send webhook requests to.
@@ -3085,6 +3088,7 @@ class ContactPointWebhook(dict):
         :param builtins.str message: Custom message. You can use template variables.
         :param Mapping[str, builtins.str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
         :param builtins.str title: Templated title of the message.
+        :param Mapping[str, builtins.str] tls_config: Allows configuring TLS for the webhook notifier.
         :param builtins.str uid: The UID of the contact point.
         """
         pulumi.set(__self__, "url", url)
@@ -3108,6 +3112,8 @@ class ContactPointWebhook(dict):
             pulumi.set(__self__, "settings", settings)
         if title is not None:
             pulumi.set(__self__, "title", title)
+        if tls_config is not None:
+            pulumi.set(__self__, "tls_config", tls_config)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -3198,6 +3204,14 @@ class ContactPointWebhook(dict):
         Templated title of the message.
         """
         return pulumi.get(self, "title")
+
+    @property
+    @pulumi.getter(name="tlsConfig")
+    def tls_config(self) -> Optional[Mapping[str, builtins.str]]:
+        """
+        Allows configuring TLS for the webhook notifier.
+        """
+        return pulumi.get(self, "tls_config")
 
     @property
     @pulumi.getter
