@@ -27,7 +27,7 @@ class GetStackResult:
     """
     A collection of values returned by getStack.
     """
-    def __init__(__self__, alertmanager_ip_allow_list_cname=None, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, cluster_slug=None, description=None, fleet_management_name=None, fleet_management_status=None, fleet_management_url=None, fleet_management_user_id=None, grafanas_ip_allow_list_cname=None, graphite_ip_allow_list_cname=None, graphite_name=None, graphite_private_connectivity_info_private_dns=None, graphite_private_connectivity_info_service_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, influx_url=None, labels=None, logs_ip_allow_list_cname=None, logs_name=None, logs_private_connectivity_info_private_dns=None, logs_private_connectivity_info_service_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, org_id=None, org_name=None, org_slug=None, otlp_private_connectivity_info_private_dns=None, otlp_private_connectivity_info_service_name=None, otlp_url=None, pdc_api_private_connectivity_info_private_dns=None, pdc_api_private_connectivity_info_service_name=None, pdc_gateway_private_connectivity_info_private_dns=None, pdc_gateway_private_connectivity_info_service_name=None, profiles_ip_allow_list_cname=None, profiles_name=None, profiles_private_connectivity_info_private_dns=None, profiles_private_connectivity_info_service_name=None, profiles_status=None, profiles_url=None, profiles_user_id=None, prometheus_ip_allow_list_cname=None, prometheus_name=None, prometheus_private_connectivity_info_private_dns=None, prometheus_private_connectivity_info_service_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, status=None, traces_ip_allow_list_cname=None, traces_name=None, traces_private_connectivity_info_private_dns=None, traces_private_connectivity_info_service_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
+    def __init__(__self__, alertmanager_ip_allow_list_cname=None, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, cluster_slug=None, description=None, fleet_management_name=None, fleet_management_status=None, fleet_management_url=None, fleet_management_user_id=None, grafanas_ip_allow_list_cname=None, graphite_ip_allow_list_cname=None, graphite_name=None, graphite_private_connectivity_info_private_dns=None, graphite_private_connectivity_info_service_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, influx_url=None, labels=None, logs_ip_allow_list_cname=None, logs_name=None, logs_private_connectivity_info_private_dns=None, logs_private_connectivity_info_service_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, oncall_api_url=None, org_id=None, org_name=None, org_slug=None, otlp_private_connectivity_info_private_dns=None, otlp_private_connectivity_info_service_name=None, otlp_url=None, pdc_api_private_connectivity_info_private_dns=None, pdc_api_private_connectivity_info_service_name=None, pdc_gateway_private_connectivity_info_private_dns=None, pdc_gateway_private_connectivity_info_service_name=None, profiles_ip_allow_list_cname=None, profiles_name=None, profiles_private_connectivity_info_private_dns=None, profiles_private_connectivity_info_service_name=None, profiles_status=None, profiles_url=None, profiles_user_id=None, prometheus_ip_allow_list_cname=None, prometheus_name=None, prometheus_private_connectivity_info_private_dns=None, prometheus_private_connectivity_info_service_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, status=None, traces_ip_allow_list_cname=None, traces_name=None, traces_private_connectivity_info_private_dns=None, traces_private_connectivity_info_service_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
         if alertmanager_ip_allow_list_cname and not isinstance(alertmanager_ip_allow_list_cname, str):
             raise TypeError("Expected argument 'alertmanager_ip_allow_list_cname' to be a str")
         pulumi.set(__self__, "alertmanager_ip_allow_list_cname", alertmanager_ip_allow_list_cname)
@@ -118,6 +118,9 @@ class GetStackResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if oncall_api_url and not isinstance(oncall_api_url, str):
+            raise TypeError("Expected argument 'oncall_api_url' to be a str")
+        pulumi.set(__self__, "oncall_api_url", oncall_api_url)
         if org_id and not isinstance(org_id, int):
             raise TypeError("Expected argument 'org_id' to be a int")
         pulumi.set(__self__, "org_id", org_id)
@@ -447,6 +450,14 @@ class GetStackResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="oncallApiUrl")
+    def oncall_api_url(self) -> builtins.str:
+        """
+        Base URL of the OnCall API instance configured for this stack.
+        """
+        return pulumi.get(self, "oncall_api_url")
+
+    @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> builtins.int:
         """
@@ -759,6 +770,7 @@ class AwaitableGetStackResult(GetStackResult):
             logs_url=self.logs_url,
             logs_user_id=self.logs_user_id,
             name=self.name,
+            oncall_api_url=self.oncall_api_url,
             org_id=self.org_id,
             org_name=self.org_name,
             org_slug=self.org_slug,
@@ -858,6 +870,7 @@ def get_stack(slug: Optional[builtins.str] = None,
         logs_url=pulumi.get(__ret__, 'logs_url'),
         logs_user_id=pulumi.get(__ret__, 'logs_user_id'),
         name=pulumi.get(__ret__, 'name'),
+        oncall_api_url=pulumi.get(__ret__, 'oncall_api_url'),
         org_id=pulumi.get(__ret__, 'org_id'),
         org_name=pulumi.get(__ret__, 'org_name'),
         org_slug=pulumi.get(__ret__, 'org_slug'),
@@ -954,6 +967,7 @@ def get_stack_output(slug: Optional[pulumi.Input[builtins.str]] = None,
         logs_url=pulumi.get(__response__, 'logs_url'),
         logs_user_id=pulumi.get(__response__, 'logs_user_id'),
         name=pulumi.get(__response__, 'name'),
+        oncall_api_url=pulumi.get(__response__, 'oncall_api_url'),
         org_id=pulumi.get(__response__, 'org_id'),
         org_name=pulumi.get(__response__, 'org_name'),
         org_slug=pulumi.get(__response__, 'org_slug'),

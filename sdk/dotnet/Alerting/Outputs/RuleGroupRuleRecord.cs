@@ -22,15 +22,22 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// The name of the metric to write to.
         /// </summary>
         public readonly string Metric;
+        /// <summary>
+        /// The UID of the datasource to write the metric to.
+        /// </summary>
+        public readonly string? TargetDatasourceUid;
 
         [OutputConstructor]
         private RuleGroupRuleRecord(
             string from,
 
-            string metric)
+            string metric,
+
+            string? targetDatasourceUid)
         {
             From = from;
             Metric = metric;
+            TargetDatasourceUid = targetDatasourceUid;
         }
     }
 }

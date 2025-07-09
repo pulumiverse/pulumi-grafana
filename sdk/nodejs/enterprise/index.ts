@@ -45,6 +45,11 @@ export type RoleAssignmentItem = import("./roleAssignmentItem").RoleAssignmentIt
 export const RoleAssignmentItem: typeof import("./roleAssignmentItem").RoleAssignmentItem = null as any;
 utilities.lazyLoad(exports, ["RoleAssignmentItem"], () => require("./roleAssignmentItem"));
 
+export { ScimConfigArgs, ScimConfigState } from "./scimConfig";
+export type ScimConfig = import("./scimConfig").ScimConfig;
+export const ScimConfig: typeof import("./scimConfig").ScimConfig = null as any;
+utilities.lazyLoad(exports, ["ScimConfig"], () => require("./scimConfig"));
+
 export { TeamExternalGroupArgs, TeamExternalGroupState } from "./teamExternalGroup";
 export type TeamExternalGroup = import("./teamExternalGroup").TeamExternalGroup;
 export const TeamExternalGroup: typeof import("./teamExternalGroup").TeamExternalGroup = null as any;
@@ -69,6 +74,8 @@ const _module = {
                 return new RoleAssignment(name, <any>undefined, { urn })
             case "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem":
                 return new RoleAssignmentItem(name, <any>undefined, { urn })
+            case "grafana:enterprise/scimConfig:ScimConfig":
+                return new ScimConfig(name, <any>undefined, { urn })
             case "grafana:enterprise/teamExternalGroup:TeamExternalGroup":
                 return new TeamExternalGroup(name, <any>undefined, { urn })
             default:
@@ -83,4 +90,5 @@ pulumi.runtime.registerResourceModule("grafana", "enterprise/report", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/role", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/roleAssignment", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/roleAssignmentItem", _module)
+pulumi.runtime.registerResourceModule("grafana", "enterprise/scimConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/teamExternalGroup", _module)

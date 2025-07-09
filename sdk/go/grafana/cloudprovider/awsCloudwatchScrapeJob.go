@@ -129,9 +129,9 @@ type AwsCloudwatchScrapeJob struct {
 	CustomNamespaces AwsCloudwatchScrapeJobCustomNamespaceArrayOutput `pulumi:"customNamespaces"`
 	// When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
 	DisabledReason pulumi.StringOutput `pulumi:"disabledReason"`
-	// Whether the AWS CloudWatch Scrape Job is enabled or not.
+	// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
-	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
 	ExportTags pulumi.BoolOutput   `pulumi:"exportTags"`
 	Name       pulumi.StringOutput `pulumi:"name"`
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
@@ -191,9 +191,9 @@ type awsCloudwatchScrapeJobState struct {
 	CustomNamespaces []AwsCloudwatchScrapeJobCustomNamespace `pulumi:"customNamespaces"`
 	// When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
 	DisabledReason *string `pulumi:"disabledReason"`
-	// Whether the AWS CloudWatch Scrape Job is enabled or not.
+	// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
-	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
 	ExportTags *bool   `pulumi:"exportTags"`
 	Name       *string `pulumi:"name"`
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
@@ -212,9 +212,9 @@ type AwsCloudwatchScrapeJobState struct {
 	CustomNamespaces AwsCloudwatchScrapeJobCustomNamespaceArrayInput
 	// When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
 	DisabledReason pulumi.StringPtrInput
-	// Whether the AWS CloudWatch Scrape Job is enabled or not.
+	// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
-	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
 	ExportTags pulumi.BoolPtrInput
 	Name       pulumi.StringPtrInput
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
@@ -235,9 +235,9 @@ type awsCloudwatchScrapeJobArgs struct {
 	AwsAccountResourceId string `pulumi:"awsAccountResourceId"`
 	// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces []AwsCloudwatchScrapeJobCustomNamespace `pulumi:"customNamespaces"`
-	// Whether the AWS CloudWatch Scrape Job is enabled or not.
+	// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
-	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
 	ExportTags *bool   `pulumi:"exportTags"`
 	Name       *string `pulumi:"name"`
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
@@ -255,9 +255,9 @@ type AwsCloudwatchScrapeJobArgs struct {
 	AwsAccountResourceId pulumi.StringInput
 	// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces AwsCloudwatchScrapeJobCustomNamespaceArrayInput
-	// Whether the AWS CloudWatch Scrape Job is enabled or not.
+	// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
-	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
 	ExportTags pulumi.BoolPtrInput
 	Name       pulumi.StringPtrInput
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
@@ -373,12 +373,12 @@ func (o AwsCloudwatchScrapeJobOutput) DisabledReason() pulumi.StringOutput {
 	return o.ApplyT(func(v *AwsCloudwatchScrapeJob) pulumi.StringOutput { return v.DisabledReason }).(pulumi.StringOutput)
 }
 
-// Whether the AWS CloudWatch Scrape Job is enabled or not.
+// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
 func (o AwsCloudwatchScrapeJobOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AwsCloudwatchScrapeJob) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
 func (o AwsCloudwatchScrapeJobOutput) ExportTags() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AwsCloudwatchScrapeJob) pulumi.BoolOutput { return v.ExportTags }).(pulumi.BoolOutput)
 }

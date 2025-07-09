@@ -31,11 +31,11 @@ class GetProjectLimitsResult:
         if duration_max_per_test and not isinstance(duration_max_per_test, int):
             raise TypeError("Expected argument 'duration_max_per_test' to be a int")
         pulumi.set(__self__, "duration_max_per_test", duration_max_per_test)
-        if id and not isinstance(id, int):
-            raise TypeError("Expected argument 'id' to be a int")
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if project_id and not isinstance(project_id, int):
-            raise TypeError("Expected argument 'project_id' to be a int")
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
         if vu_browser_max_per_test and not isinstance(vu_browser_max_per_test, int):
             raise TypeError("Expected argument 'vu_browser_max_per_test' to be a int")
@@ -57,7 +57,7 @@ class GetProjectLimitsResult:
 
     @property
     @pulumi.getter
-    def id(self) -> builtins.int:
+    def id(self) -> builtins.str:
         """
         The identifier of the project limits. This is set to the same as the project_id.
         """
@@ -65,7 +65,7 @@ class GetProjectLimitsResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> builtins.int:
+    def project_id(self) -> builtins.str:
         """
         The identifier of the project to get limits for.
         """
@@ -110,7 +110,7 @@ class AwaitableGetProjectLimitsResult(GetProjectLimitsResult):
             vuh_max_per_month=self.vuh_max_per_month)
 
 
-def get_project_limits(project_id: Optional[builtins.int] = None,
+def get_project_limits(project_id: Optional[builtins.str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectLimitsResult:
     """
     Retrieves a k6 project limits.
@@ -123,11 +123,11 @@ def get_project_limits(project_id: Optional[builtins.int] = None,
     import pulumiverse_grafana as grafana
 
     test_project_limits = grafana.k6.Project("test_project_limits", name="Terraform Project Test Limits")
-    from_project_id = test_project_limits.id.apply(lambda id: grafana.k6.get_project_limits_output(project_id=id))
+    from_project_id = grafana.k6.get_project_limits_output(project_id=test_project_limits.id)
     ```
 
 
-    :param builtins.int project_id: The identifier of the project to get limits for.
+    :param builtins.str project_id: The identifier of the project to get limits for.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -141,7 +141,7 @@ def get_project_limits(project_id: Optional[builtins.int] = None,
         vu_browser_max_per_test=pulumi.get(__ret__, 'vu_browser_max_per_test'),
         vu_max_per_test=pulumi.get(__ret__, 'vu_max_per_test'),
         vuh_max_per_month=pulumi.get(__ret__, 'vuh_max_per_month'))
-def get_project_limits_output(project_id: Optional[pulumi.Input[builtins.int]] = None,
+def get_project_limits_output(project_id: Optional[pulumi.Input[builtins.str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectLimitsResult]:
     """
     Retrieves a k6 project limits.
@@ -154,11 +154,11 @@ def get_project_limits_output(project_id: Optional[pulumi.Input[builtins.int]] =
     import pulumiverse_grafana as grafana
 
     test_project_limits = grafana.k6.Project("test_project_limits", name="Terraform Project Test Limits")
-    from_project_id = test_project_limits.id.apply(lambda id: grafana.k6.get_project_limits_output(project_id=id))
+    from_project_id = grafana.k6.get_project_limits_output(project_id=test_project_limits.id)
     ```
 
 
-    :param builtins.int project_id: The identifier of the project to get limits for.
+    :param builtins.str project_id: The identifier of the project to get limits for.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

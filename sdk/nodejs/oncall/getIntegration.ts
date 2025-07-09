@@ -44,6 +44,10 @@ export interface GetIntegrationResult {
      */
     readonly id: string;
     /**
+     * The link for the integration.
+     */
+    readonly link: string;
+    /**
      * The integration name.
      */
     readonly name: string;

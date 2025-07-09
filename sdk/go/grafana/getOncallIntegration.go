@@ -60,6 +60,8 @@ type LookupOncallIntegrationArgs struct {
 type LookupOncallIntegrationResult struct {
 	// The integration ID.
 	Id string `pulumi:"id"`
+	// The link for the integration.
+	Link string `pulumi:"link"`
 	// The integration name.
 	Name string `pulumi:"name"`
 }
@@ -101,6 +103,11 @@ func (o LookupOncallIntegrationResultOutput) ToLookupOncallIntegrationResultOutp
 // The integration ID.
 func (o LookupOncallIntegrationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOncallIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The link for the integration.
+func (o LookupOncallIntegrationResultOutput) Link() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOncallIntegrationResult) string { return v.Link }).(pulumi.StringOutput)
 }
 
 // The integration name.

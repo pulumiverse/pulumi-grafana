@@ -41,11 +41,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = testLoadTest.ID().ApplyT(func(id string) (k6.GetLoadTestResult, error) {
-//				return k6.GetLoadTestResult(interface{}(k6.LookupLoadTestOutput(ctx, k6.GetLoadTestOutputArgs{
-//					Id: id,
-//				}, nil))), nil
-//			}).(k6.GetLoadTestResultOutput)
+//			_ = k6.LookupLoadTestOutput(ctx, k6.GetLoadTestOutputArgs{
+//				Id: testLoadTest.ID(),
+//			}, nil)
 //			return nil
 //		})
 //	}
@@ -64,21 +62,21 @@ func LookupLoadTest(ctx *pulumi.Context, args *LookupLoadTestArgs, opts ...pulum
 // A collection of arguments for invoking getLoadTest.
 type LookupLoadTestArgs struct {
 	// Numeric identifier of the load test.
-	Id int `pulumi:"id"`
+	Id string `pulumi:"id"`
 }
 
 // A collection of values returned by getLoadTest.
 type LookupLoadTestResult struct {
 	// Identifier of a baseline test run used for results comparison.
-	BaselineTestRunId int `pulumi:"baselineTestRunId"`
+	BaselineTestRunId string `pulumi:"baselineTestRunId"`
 	// The date when the load test was created.
 	Created string `pulumi:"created"`
 	// Numeric identifier of the load test.
-	Id int `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Human-friendly identifier of the load test.
 	Name string `pulumi:"name"`
 	// The identifier of the project this load test belongs to.
-	ProjectId int `pulumi:"projectId"`
+	ProjectId string `pulumi:"projectId"`
 	// The k6 test script content.
 	Script string `pulumi:"script"`
 	// The date when the load test was last updated.
@@ -97,7 +95,7 @@ func LookupLoadTestOutput(ctx *pulumi.Context, args LookupLoadTestOutputArgs, op
 // A collection of arguments for invoking getLoadTest.
 type LookupLoadTestOutputArgs struct {
 	// Numeric identifier of the load test.
-	Id pulumi.IntInput `pulumi:"id"`
+	Id pulumi.StringInput `pulumi:"id"`
 }
 
 func (LookupLoadTestOutputArgs) ElementType() reflect.Type {
@@ -120,8 +118,8 @@ func (o LookupLoadTestResultOutput) ToLookupLoadTestResultOutputWithContext(ctx 
 }
 
 // Identifier of a baseline test run used for results comparison.
-func (o LookupLoadTestResultOutput) BaselineTestRunId() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupLoadTestResult) int { return v.BaselineTestRunId }).(pulumi.IntOutput)
+func (o LookupLoadTestResultOutput) BaselineTestRunId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadTestResult) string { return v.BaselineTestRunId }).(pulumi.StringOutput)
 }
 
 // The date when the load test was created.
@@ -130,8 +128,8 @@ func (o LookupLoadTestResultOutput) Created() pulumi.StringOutput {
 }
 
 // Numeric identifier of the load test.
-func (o LookupLoadTestResultOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupLoadTestResult) int { return v.Id }).(pulumi.IntOutput)
+func (o LookupLoadTestResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadTestResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Human-friendly identifier of the load test.
@@ -140,8 +138,8 @@ func (o LookupLoadTestResultOutput) Name() pulumi.StringOutput {
 }
 
 // The identifier of the project this load test belongs to.
-func (o LookupLoadTestResultOutput) ProjectId() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupLoadTestResult) int { return v.ProjectId }).(pulumi.IntOutput)
+func (o LookupLoadTestResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoadTestResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // The k6 test script content.

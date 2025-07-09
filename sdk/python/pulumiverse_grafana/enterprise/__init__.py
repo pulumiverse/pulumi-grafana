@@ -14,6 +14,7 @@ from .report import *
 from .role import *
 from .role_assignment import *
 from .role_assignment_item import *
+from .scim_config import *
 from .team_external_group import *
 from ._inputs import *
 from . import outputs

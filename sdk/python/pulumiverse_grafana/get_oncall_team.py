@@ -91,7 +91,8 @@ def get_oncall_team(name: Optional[builtins.str] = None,
     import pulumi
     import pulumi_grafana as grafana
 
-    example_team = grafana.onCall.get_team(name="example_team")
+    my_team = grafana.oss.get_team(name="my team")
+    my_team_get_team = grafana.onCall.get_team(name=my_team.name)
     ```
 
 
@@ -117,7 +118,8 @@ def get_oncall_team_output(name: Optional[pulumi.Input[builtins.str]] = None,
     import pulumi
     import pulumi_grafana as grafana
 
-    example_team = grafana.onCall.get_team(name="example_team")
+    my_team = grafana.oss.get_team(name="my team")
+    my_team_get_team = grafana.onCall.get_team(name=my_team.name)
     ```
 
 

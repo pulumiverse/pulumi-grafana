@@ -121,11 +121,11 @@ export class ProviderAwsCloudwatchScrapeJob extends pulumi.CustomResource {
      */
     public /*out*/ readonly disabledReason!: pulumi.Output<string>;
     /**
-     * Whether the AWS CloudWatch Scrape Job is enabled or not.
+     * Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
      */
     public readonly enabled!: pulumi.Output<boolean>;
     /**
-     * When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+     * When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
      */
     public readonly exportTags!: pulumi.Output<boolean>;
     public readonly name!: pulumi.Output<string>;
@@ -210,11 +210,11 @@ export interface ProviderAwsCloudwatchScrapeJobState {
      */
     disabledReason?: pulumi.Input<string>;
     /**
-     * Whether the AWS CloudWatch Scrape Job is enabled or not.
+     * Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+     * When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
      */
     exportTags?: pulumi.Input<boolean>;
     name?: pulumi.Input<string>;
@@ -246,11 +246,11 @@ export interface ProviderAwsCloudwatchScrapeJobArgs {
      */
     customNamespaces?: pulumi.Input<pulumi.Input<inputs.cloud.ProviderAwsCloudwatchScrapeJobCustomNamespace>[]>;
     /**
-     * Whether the AWS CloudWatch Scrape Job is enabled or not.
+     * Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+     * When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
      */
     exportTags?: pulumi.Input<boolean>;
     name?: pulumi.Input<string>;

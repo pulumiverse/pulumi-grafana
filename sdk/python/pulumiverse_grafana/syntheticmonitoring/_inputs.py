@@ -16,6 +16,8 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'CheckAlertsAlertArgs',
+    'CheckAlertsAlertArgsDict',
     'CheckSettingsArgs',
     'CheckSettingsArgsDict',
     'CheckSettingsBrowserArgs',
@@ -73,6 +75,76 @@ __all__ = [
 ]
 
 MYPY = False
+
+if not MYPY:
+    class CheckAlertsAlertArgsDict(TypedDict):
+        name: pulumi.Input[builtins.str]
+        """
+        Name of the alert. Required.
+        """
+        threshold: pulumi.Input[builtins.float]
+        """
+        Threshold value for the alert.
+        """
+        period: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
+        """
+elif False:
+    CheckAlertsAlertArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CheckAlertsAlertArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[builtins.str],
+                 threshold: pulumi.Input[builtins.float],
+                 period: Optional[pulumi.Input[builtins.str]] = None):
+        """
+        :param pulumi.Input[builtins.str] name: Name of the alert. Required.
+        :param pulumi.Input[builtins.float] threshold: Threshold value for the alert.
+        :param pulumi.Input[builtins.str] period: Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "threshold", threshold)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[builtins.str]:
+        """
+        Name of the alert. Required.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> pulumi.Input[builtins.float]:
+        """
+        Threshold value for the alert.
+        """
+        return pulumi.get(self, "threshold")
+
+    @threshold.setter
+    def threshold(self, value: pulumi.Input[builtins.float]):
+        pulumi.set(self, "threshold", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "period", value)
+
 
 if not MYPY:
     class CheckSettingsArgsDict(TypedDict):

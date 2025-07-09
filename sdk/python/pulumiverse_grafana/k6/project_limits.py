@@ -20,14 +20,14 @@ __all__ = ['ProjectLimitsArgs', 'ProjectLimits']
 @pulumi.input_type
 class ProjectLimitsArgs:
     def __init__(__self__, *,
-                 project_id: pulumi.Input[builtins.int],
+                 project_id: pulumi.Input[builtins.str],
                  duration_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
                  vu_browser_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
                  vu_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
                  vuh_max_per_month: Optional[pulumi.Input[builtins.int]] = None):
         """
         The set of arguments for constructing a ProjectLimits resource.
-        :param pulumi.Input[builtins.int] project_id: The identifier of the project to manage limits for.
+        :param pulumi.Input[builtins.str] project_id: The identifier of the project to manage limits for.
         :param pulumi.Input[builtins.int] duration_max_per_test: Maximum duration of a test in seconds.
         :param pulumi.Input[builtins.int] vu_browser_max_per_test: Maximum number of concurrent browser virtual users (VUs) used in one test.
         :param pulumi.Input[builtins.int] vu_max_per_test: Maximum number of concurrent virtual users (VUs) used in one test.
@@ -45,14 +45,14 @@ class ProjectLimitsArgs:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> pulumi.Input[builtins.int]:
+    def project_id(self) -> pulumi.Input[builtins.str]:
         """
         The identifier of the project to manage limits for.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: pulumi.Input[builtins.int]):
+    def project_id(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "project_id", value)
 
     @property
@@ -108,14 +108,14 @@ class ProjectLimitsArgs:
 class _ProjectLimitsState:
     def __init__(__self__, *,
                  duration_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[builtins.int]] = None,
+                 project_id: Optional[pulumi.Input[builtins.str]] = None,
                  vu_browser_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
                  vu_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
                  vuh_max_per_month: Optional[pulumi.Input[builtins.int]] = None):
         """
         Input properties used for looking up and filtering ProjectLimits resources.
         :param pulumi.Input[builtins.int] duration_max_per_test: Maximum duration of a test in seconds.
-        :param pulumi.Input[builtins.int] project_id: The identifier of the project to manage limits for.
+        :param pulumi.Input[builtins.str] project_id: The identifier of the project to manage limits for.
         :param pulumi.Input[builtins.int] vu_browser_max_per_test: Maximum number of concurrent browser virtual users (VUs) used in one test.
         :param pulumi.Input[builtins.int] vu_max_per_test: Maximum number of concurrent virtual users (VUs) used in one test.
         :param pulumi.Input[builtins.int] vuh_max_per_month: Maximum amount of virtual user hours (VU/h) used per one calendar month.
@@ -145,14 +145,14 @@ class _ProjectLimitsState:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[builtins.int]]:
+    def project_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         The identifier of the project to manage limits for.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[builtins.int]]):
+    def project_id(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @property
@@ -199,7 +199,7 @@ class ProjectLimits(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  duration_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[builtins.int]] = None,
+                 project_id: Optional[pulumi.Input[builtins.str]] = None,
                  vu_browser_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
                  vu_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
                  vuh_max_per_month: Optional[pulumi.Input[builtins.int]] = None,
@@ -231,7 +231,7 @@ class ProjectLimits(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.int] duration_max_per_test: Maximum duration of a test in seconds.
-        :param pulumi.Input[builtins.int] project_id: The identifier of the project to manage limits for.
+        :param pulumi.Input[builtins.str] project_id: The identifier of the project to manage limits for.
         :param pulumi.Input[builtins.int] vu_browser_max_per_test: Maximum number of concurrent browser virtual users (VUs) used in one test.
         :param pulumi.Input[builtins.int] vu_max_per_test: Maximum number of concurrent virtual users (VUs) used in one test.
         :param pulumi.Input[builtins.int] vuh_max_per_month: Maximum amount of virtual user hours (VU/h) used per one calendar month.
@@ -282,7 +282,7 @@ class ProjectLimits(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  duration_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[builtins.int]] = None,
+                 project_id: Optional[pulumi.Input[builtins.str]] = None,
                  vu_browser_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
                  vu_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
                  vuh_max_per_month: Optional[pulumi.Input[builtins.int]] = None,
@@ -313,7 +313,7 @@ class ProjectLimits(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             duration_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
-            project_id: Optional[pulumi.Input[builtins.int]] = None,
+            project_id: Optional[pulumi.Input[builtins.str]] = None,
             vu_browser_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
             vu_max_per_test: Optional[pulumi.Input[builtins.int]] = None,
             vuh_max_per_month: Optional[pulumi.Input[builtins.int]] = None) -> 'ProjectLimits':
@@ -325,7 +325,7 @@ class ProjectLimits(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.int] duration_max_per_test: Maximum duration of a test in seconds.
-        :param pulumi.Input[builtins.int] project_id: The identifier of the project to manage limits for.
+        :param pulumi.Input[builtins.str] project_id: The identifier of the project to manage limits for.
         :param pulumi.Input[builtins.int] vu_browser_max_per_test: Maximum number of concurrent browser virtual users (VUs) used in one test.
         :param pulumi.Input[builtins.int] vu_max_per_test: Maximum number of concurrent virtual users (VUs) used in one test.
         :param pulumi.Input[builtins.int] vuh_max_per_month: Maximum amount of virtual user hours (VU/h) used per one calendar month.
@@ -351,7 +351,7 @@ class ProjectLimits(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> pulumi.Output[builtins.int]:
+    def project_id(self) -> pulumi.Output[builtins.str]:
         """
         The identifier of the project to manage limits for.
         """

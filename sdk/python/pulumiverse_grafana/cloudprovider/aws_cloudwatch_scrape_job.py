@@ -35,8 +35,8 @@ class AwsCloudwatchScrapeJobArgs:
         The set of arguments for constructing a AwsCloudwatchScrapeJob resource.
         :param pulumi.Input[builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobCustomNamespaceArgs']]] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
-        :param pulumi.Input[builtins.bool] enabled: Whether the AWS CloudWatch Scrape Job is enabled or not.
-        :param pulumi.Input[builtins.bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+        :param pulumi.Input[builtins.bool] enabled: Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobServiceArgs']]] services: One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
@@ -95,7 +95,7 @@ class AwsCloudwatchScrapeJobArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        Whether the AWS CloudWatch Scrape Job is enabled or not.
+        Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
@@ -107,7 +107,7 @@ class AwsCloudwatchScrapeJobArgs:
     @pulumi.getter(name="exportTags")
     def export_tags(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+        When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
         """
         return pulumi.get(self, "export_tags")
 
@@ -179,8 +179,8 @@ class _AwsCloudwatchScrapeJobState:
         :param pulumi.Input[builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobCustomNamespaceArgs']]] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[builtins.str] disabled_reason: When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
-        :param pulumi.Input[builtins.bool] enabled: Whether the AWS CloudWatch Scrape Job is enabled or not.
-        :param pulumi.Input[builtins.bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+        :param pulumi.Input[builtins.bool] enabled: Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobServiceArgs']]] services: One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
@@ -246,7 +246,7 @@ class _AwsCloudwatchScrapeJobState:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        Whether the AWS CloudWatch Scrape Job is enabled or not.
+        Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
@@ -258,7 +258,7 @@ class _AwsCloudwatchScrapeJobState:
     @pulumi.getter(name="exportTags")
     def export_tags(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+        When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
         """
         return pulumi.get(self, "export_tags")
 
@@ -407,8 +407,8 @@ class AwsCloudwatchScrapeJob(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AwsCloudwatchScrapeJobCustomNamespaceArgs', 'AwsCloudwatchScrapeJobCustomNamespaceArgsDict']]]] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
-        :param pulumi.Input[builtins.bool] enabled: Whether the AWS CloudWatch Scrape Job is enabled or not.
-        :param pulumi.Input[builtins.bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+        :param pulumi.Input[builtins.bool] enabled: Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AwsCloudwatchScrapeJobServiceArgs', 'AwsCloudwatchScrapeJobServiceArgsDict']]]] services: One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
@@ -564,8 +564,8 @@ class AwsCloudwatchScrapeJob(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AwsCloudwatchScrapeJobCustomNamespaceArgs', 'AwsCloudwatchScrapeJobCustomNamespaceArgsDict']]]] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[builtins.str] disabled_reason: When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
-        :param pulumi.Input[builtins.bool] enabled: Whether the AWS CloudWatch Scrape Job is enabled or not.
-        :param pulumi.Input[builtins.bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+        :param pulumi.Input[builtins.bool] enabled: Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AwsCloudwatchScrapeJobServiceArgs', 'AwsCloudwatchScrapeJobServiceArgsDict']]]] services: One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
@@ -614,7 +614,7 @@ class AwsCloudwatchScrapeJob(pulumi.CustomResource):
     @pulumi.getter
     def enabled(self) -> pulumi.Output[builtins.bool]:
         """
-        Whether the AWS CloudWatch Scrape Job is enabled or not.
+        Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
@@ -622,7 +622,7 @@ class AwsCloudwatchScrapeJob(pulumi.CustomResource):
     @pulumi.getter(name="exportTags")
     def export_tags(self) -> pulumi.Output[builtins.bool]:
         """
-        When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+        When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
         """
         return pulumi.get(self, "export_tags")
 

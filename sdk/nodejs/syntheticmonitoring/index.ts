@@ -10,6 +10,11 @@ export type Check = import("./check").Check;
 export const Check: typeof import("./check").Check = null as any;
 utilities.lazyLoad(exports, ["Check"], () => require("./check"));
 
+export { CheckAlertsArgs, CheckAlertsState } from "./checkAlerts";
+export type CheckAlerts = import("./checkAlerts").CheckAlerts;
+export const CheckAlerts: typeof import("./checkAlerts").CheckAlerts = null as any;
+utilities.lazyLoad(exports, ["CheckAlerts"], () => require("./checkAlerts"));
+
 export { GetProbeArgs, GetProbeResult, GetProbeOutputArgs } from "./getProbe";
 export const getProbe: typeof import("./getProbe").getProbe = null as any;
 export const getProbeOutput: typeof import("./getProbe").getProbeOutput = null as any;
@@ -37,6 +42,8 @@ const _module = {
         switch (type) {
             case "grafana:syntheticMonitoring/check:Check":
                 return new Check(name, <any>undefined, { urn })
+            case "grafana:syntheticMonitoring/checkAlerts:CheckAlerts":
+                return new CheckAlerts(name, <any>undefined, { urn })
             case "grafana:syntheticMonitoring/installation:Installation":
                 return new Installation(name, <any>undefined, { urn })
             case "grafana:syntheticMonitoring/probe:Probe":
@@ -47,5 +54,6 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("grafana", "syntheticMonitoring/check", _module)
+pulumi.runtime.registerResourceModule("grafana", "syntheticMonitoring/checkAlerts", _module)
 pulumi.runtime.registerResourceModule("grafana", "syntheticMonitoring/installation", _module)
 pulumi.runtime.registerResourceModule("grafana", "syntheticMonitoring/probe", _module)

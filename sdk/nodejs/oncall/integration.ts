@@ -10,36 +10,6 @@ import * as utilities from "../utilities";
  * * [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test_acc_integration = new grafana.oncall.Integration("test-acc-integration", {
- *     name: "my integration",
- *     type: "grafana",
- *     defaultRoute: {},
- * });
- * // Also it's possible to manage integration templates.
- * // Check docs to see all available templates.
- * const integrationWithTemplates = new grafana.oncall.Integration("integration_with_templates", {
- *     name: "integration_with_templates",
- *     type: "webhook",
- *     defaultRoute: {},
- *     templates: {
- *         groupingKey: "{{ payload.group_id }}",
- *         slack: {
- *             title: "Slack title",
- *             message: `This is example of multiline template
- * {{ payload.message }}
- * `,
- *             imageUrl: "{{ payload.image_url }}",
- *         },
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * ```sh
@@ -79,7 +49,11 @@ export class Integration extends pulumi.CustomResource {
      */
     public readonly defaultRoute!: pulumi.Output<outputs.onCall.IntegrationDefaultRoute>;
     /**
-     * A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+     * A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+     */
+    public readonly dynamicLabels!: pulumi.Output<{[key: string]: string}[] | undefined>;
+    /**
+     * A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
      */
     public readonly labels!: pulumi.Output<{[key: string]: string}[] | undefined>;
     /**
@@ -91,7 +65,7 @@ export class Integration extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
@@ -117,6 +91,7 @@ export class Integration extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as IntegrationState | undefined;
             resourceInputs["defaultRoute"] = state ? state.defaultRoute : undefined;
+            resourceInputs["dynamicLabels"] = state ? state.dynamicLabels : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["link"] = state ? state.link : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -132,6 +107,7 @@ export class Integration extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["defaultRoute"] = args ? args.defaultRoute : undefined;
+            resourceInputs["dynamicLabels"] = args ? args.dynamicLabels : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["teamId"] = args ? args.teamId : undefined;
@@ -155,7 +131,11 @@ export interface IntegrationState {
      */
     defaultRoute?: pulumi.Input<inputs.onCall.IntegrationDefaultRoute>;
     /**
-     * A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+     * A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+     */
+    dynamicLabels?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    /**
+     * A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
      */
     labels?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**
@@ -167,7 +147,7 @@ export interface IntegrationState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     teamId?: pulumi.Input<string>;
     /**
@@ -189,7 +169,11 @@ export interface IntegrationArgs {
      */
     defaultRoute: pulumi.Input<inputs.onCall.IntegrationDefaultRoute>;
     /**
-     * A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+     * A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
+     */
+    dynamicLabels?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    /**
+     * A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
      */
     labels?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**
@@ -197,7 +181,7 @@ export interface IntegrationArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+     * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     teamId?: pulumi.Input<string>;
     /**

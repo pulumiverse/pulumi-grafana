@@ -640,7 +640,7 @@ namespace Pulumiverse.Grafana
         public Output<int> TenantId { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+        /// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
@@ -759,7 +759,7 @@ namespace Pulumiverse.Grafana
         public Input<string> Target { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+        /// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -845,7 +845,7 @@ namespace Pulumiverse.Grafana
         public Input<int>? TenantId { get; set; }
 
         /// <summary>
-        /// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+        /// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

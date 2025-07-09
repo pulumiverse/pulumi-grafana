@@ -20,15 +20,15 @@ __all__ = ['LoadTestArgs', 'LoadTest']
 @pulumi.input_type
 class LoadTestArgs:
     def __init__(__self__, *,
-                 project_id: pulumi.Input[builtins.int],
+                 project_id: pulumi.Input[builtins.str],
                  script: pulumi.Input[builtins.str],
-                 baseline_test_run_id: Optional[pulumi.Input[builtins.int]] = None,
+                 baseline_test_run_id: Optional[pulumi.Input[builtins.str]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a LoadTest resource.
-        :param pulumi.Input[builtins.int] project_id: The identifier of the project this load test belongs to.
+        :param pulumi.Input[builtins.str] project_id: The identifier of the project this load test belongs to.
         :param pulumi.Input[builtins.str] script: The k6 test script content. Can be provided inline or via the `file()` function.
-        :param pulumi.Input[builtins.int] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
+        :param pulumi.Input[builtins.str] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
         :param pulumi.Input[builtins.str] name: Human-friendly identifier of the load test.
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -40,14 +40,14 @@ class LoadTestArgs:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> pulumi.Input[builtins.int]:
+    def project_id(self) -> pulumi.Input[builtins.str]:
         """
         The identifier of the project this load test belongs to.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: pulumi.Input[builtins.int]):
+    def project_id(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "project_id", value)
 
     @property
@@ -64,14 +64,14 @@ class LoadTestArgs:
 
     @property
     @pulumi.getter(name="baselineTestRunId")
-    def baseline_test_run_id(self) -> Optional[pulumi.Input[builtins.int]]:
+    def baseline_test_run_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         Identifier of a baseline test run used for results comparison.
         """
         return pulumi.get(self, "baseline_test_run_id")
 
     @baseline_test_run_id.setter
-    def baseline_test_run_id(self, value: Optional[pulumi.Input[builtins.int]]):
+    def baseline_test_run_id(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "baseline_test_run_id", value)
 
     @property
@@ -90,18 +90,18 @@ class LoadTestArgs:
 @pulumi.input_type
 class _LoadTestState:
     def __init__(__self__, *,
-                 baseline_test_run_id: Optional[pulumi.Input[builtins.int]] = None,
+                 baseline_test_run_id: Optional[pulumi.Input[builtins.str]] = None,
                  created: Optional[pulumi.Input[builtins.str]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[builtins.int]] = None,
+                 project_id: Optional[pulumi.Input[builtins.str]] = None,
                  script: Optional[pulumi.Input[builtins.str]] = None,
                  updated: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering LoadTest resources.
-        :param pulumi.Input[builtins.int] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
+        :param pulumi.Input[builtins.str] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
         :param pulumi.Input[builtins.str] created: The date when the load test was created.
         :param pulumi.Input[builtins.str] name: Human-friendly identifier of the load test.
-        :param pulumi.Input[builtins.int] project_id: The identifier of the project this load test belongs to.
+        :param pulumi.Input[builtins.str] project_id: The identifier of the project this load test belongs to.
         :param pulumi.Input[builtins.str] script: The k6 test script content. Can be provided inline or via the `file()` function.
         :param pulumi.Input[builtins.str] updated: The date when the load test was last updated.
         """
@@ -120,14 +120,14 @@ class _LoadTestState:
 
     @property
     @pulumi.getter(name="baselineTestRunId")
-    def baseline_test_run_id(self) -> Optional[pulumi.Input[builtins.int]]:
+    def baseline_test_run_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         Identifier of a baseline test run used for results comparison.
         """
         return pulumi.get(self, "baseline_test_run_id")
 
     @baseline_test_run_id.setter
-    def baseline_test_run_id(self, value: Optional[pulumi.Input[builtins.int]]):
+    def baseline_test_run_id(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "baseline_test_run_id", value)
 
     @property
@@ -156,14 +156,14 @@ class _LoadTestState:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[builtins.int]]:
+    def project_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         The identifier of the project this load test belongs to.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[builtins.int]]):
+    def project_id(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @property
@@ -197,9 +197,9 @@ class LoadTest(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 baseline_test_run_id: Optional[pulumi.Input[builtins.int]] = None,
+                 baseline_test_run_id: Optional[pulumi.Input[builtins.str]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[builtins.int]] = None,
+                 project_id: Optional[pulumi.Input[builtins.str]] = None,
                  script: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         """
@@ -229,9 +229,9 @@ class LoadTest(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.int] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
+        :param pulumi.Input[builtins.str] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
         :param pulumi.Input[builtins.str] name: Human-friendly identifier of the load test.
-        :param pulumi.Input[builtins.int] project_id: The identifier of the project this load test belongs to.
+        :param pulumi.Input[builtins.str] project_id: The identifier of the project this load test belongs to.
         :param pulumi.Input[builtins.str] script: The k6 test script content. Can be provided inline or via the `file()` function.
         """
         ...
@@ -280,9 +280,9 @@ class LoadTest(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 baseline_test_run_id: Optional[pulumi.Input[builtins.int]] = None,
+                 baseline_test_run_id: Optional[pulumi.Input[builtins.str]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[builtins.int]] = None,
+                 project_id: Optional[pulumi.Input[builtins.str]] = None,
                  script: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -313,10 +313,10 @@ class LoadTest(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            baseline_test_run_id: Optional[pulumi.Input[builtins.int]] = None,
+            baseline_test_run_id: Optional[pulumi.Input[builtins.str]] = None,
             created: Optional[pulumi.Input[builtins.str]] = None,
             name: Optional[pulumi.Input[builtins.str]] = None,
-            project_id: Optional[pulumi.Input[builtins.int]] = None,
+            project_id: Optional[pulumi.Input[builtins.str]] = None,
             script: Optional[pulumi.Input[builtins.str]] = None,
             updated: Optional[pulumi.Input[builtins.str]] = None) -> 'LoadTest':
         """
@@ -326,10 +326,10 @@ class LoadTest(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.int] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
+        :param pulumi.Input[builtins.str] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
         :param pulumi.Input[builtins.str] created: The date when the load test was created.
         :param pulumi.Input[builtins.str] name: Human-friendly identifier of the load test.
-        :param pulumi.Input[builtins.int] project_id: The identifier of the project this load test belongs to.
+        :param pulumi.Input[builtins.str] project_id: The identifier of the project this load test belongs to.
         :param pulumi.Input[builtins.str] script: The k6 test script content. Can be provided inline or via the `file()` function.
         :param pulumi.Input[builtins.str] updated: The date when the load test was last updated.
         """
@@ -347,7 +347,7 @@ class LoadTest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="baselineTestRunId")
-    def baseline_test_run_id(self) -> pulumi.Output[Optional[builtins.int]]:
+    def baseline_test_run_id(self) -> pulumi.Output[Optional[builtins.str]]:
         """
         Identifier of a baseline test run used for results comparison.
         """
@@ -371,7 +371,7 @@ class LoadTest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> pulumi.Output[builtins.int]:
+    def project_id(self) -> pulumi.Output[builtins.str]:
         """
         The identifier of the project this load test belongs to.
         """

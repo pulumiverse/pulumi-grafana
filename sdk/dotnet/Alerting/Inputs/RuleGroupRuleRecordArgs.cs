@@ -25,6 +25,12 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         [Input("metric", required: true)]
         public Input<string> Metric { get; set; } = null!;
 
+        /// <summary>
+        /// The UID of the datasource to write the metric to.
+        /// </summary>
+        [Input("targetDatasourceUid")]
+        public Input<string>? TargetDatasourceUid { get; set; }
+
         public RuleGroupRuleRecordArgs()
         {
         }

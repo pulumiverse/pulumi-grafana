@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "grafana:syntheticMonitoring/check:Check":
 		r = &Check{}
+	case "grafana:syntheticMonitoring/checkAlerts:CheckAlerts":
+		r = &CheckAlerts{}
 	case "grafana:syntheticMonitoring/installation:Installation":
 		r = &Installation{}
 	case "grafana:syntheticMonitoring/probe:Probe":
@@ -43,6 +45,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"syntheticMonitoring/check",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"syntheticMonitoring/checkAlerts",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

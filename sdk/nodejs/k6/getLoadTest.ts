@@ -22,9 +22,9 @@ import * as utilities from "../utilities";
  * }
  * `,
  * });
- * const fromId = testLoadTest.id.apply(id => grafana.k6.getLoadTestOutput({
- *     id: id,
- * }));
+ * const fromId = grafana.k6.getLoadTestOutput({
+ *     id: testLoadTest.id,
+ * });
  * ```
  */
 export function getLoadTest(args: GetLoadTestArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadTestResult> {
@@ -41,7 +41,7 @@ export interface GetLoadTestArgs {
     /**
      * Numeric identifier of the load test.
      */
-    id: number;
+    id: string;
 }
 
 /**
@@ -51,7 +51,7 @@ export interface GetLoadTestResult {
     /**
      * Identifier of a baseline test run used for results comparison.
      */
-    readonly baselineTestRunId: number;
+    readonly baselineTestRunId: string;
     /**
      * The date when the load test was created.
      */
@@ -59,7 +59,7 @@ export interface GetLoadTestResult {
     /**
      * Numeric identifier of the load test.
      */
-    readonly id: number;
+    readonly id: string;
     /**
      * Human-friendly identifier of the load test.
      */
@@ -67,7 +67,7 @@ export interface GetLoadTestResult {
     /**
      * The identifier of the project this load test belongs to.
      */
-    readonly projectId: number;
+    readonly projectId: string;
     /**
      * The k6 test script content.
      */
@@ -95,9 +95,9 @@ export interface GetLoadTestResult {
  * }
  * `,
  * });
- * const fromId = testLoadTest.id.apply(id => grafana.k6.getLoadTestOutput({
- *     id: id,
- * }));
+ * const fromId = grafana.k6.getLoadTestOutput({
+ *     id: testLoadTest.id,
+ * });
  * ```
  */
 export function getLoadTestOutput(args: GetLoadTestOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLoadTestResult> {
@@ -114,5 +114,5 @@ export interface GetLoadTestOutputArgs {
     /**
      * Numeric identifier of the load test.
      */
-    id: pulumi.Input<number>;
+    id: pulumi.Input<string>;
 }

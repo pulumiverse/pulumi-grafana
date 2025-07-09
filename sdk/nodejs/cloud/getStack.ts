@@ -143,6 +143,10 @@ export interface GetStackResult {
      */
     readonly name: string;
     /**
+     * Base URL of the OnCall API instance configured for this stack.
+     */
+    readonly oncallApiUrl: string;
+    /**
      * Organization id to assign to this stack.
      */
     readonly orgId: number;

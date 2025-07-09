@@ -633,7 +633,7 @@ type Check struct {
 	Target pulumi.StringOutput `pulumi:"target"`
 	// The tenant ID of the check.
 	TenantId pulumi.IntOutput `pulumi:"tenantId"`
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 }
 
@@ -705,7 +705,7 @@ type checkState struct {
 	Target *string `pulumi:"target"`
 	// The tenant ID of the check.
 	TenantId *int `pulumi:"tenantId"`
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -730,7 +730,7 @@ type CheckState struct {
 	Target pulumi.StringPtrInput
 	// The tenant ID of the check.
 	TenantId pulumi.IntPtrInput
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
 	Timeout pulumi.IntPtrInput
 }
 
@@ -757,7 +757,7 @@ type checkArgs struct {
 	Settings CheckSettings `pulumi:"settings"`
 	// Hostname to ping.
 	Target string `pulumi:"target"`
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -781,7 +781,7 @@ type CheckArgs struct {
 	Settings CheckSettingsInput
 	// Hostname to ping.
 	Target pulumi.StringInput
-	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+	// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
 	Timeout pulumi.IntPtrInput
 }
 
@@ -922,7 +922,7 @@ func (o CheckOutput) TenantId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Check) pulumi.IntOutput { return v.TenantId }).(pulumi.IntOutput)
 }
 
-// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 10 seconds (10000 ms). Defaults to `3000`.
+// Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
 func (o CheckOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Check) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }

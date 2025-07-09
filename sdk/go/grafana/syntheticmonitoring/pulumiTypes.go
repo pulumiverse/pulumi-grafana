@@ -13,6 +13,121 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type CheckAlertsAlert struct {
+	// Name of the alert. Required.
+	Name string `pulumi:"name"`
+	// Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
+	Period *string `pulumi:"period"`
+	// Threshold value for the alert.
+	Threshold float64 `pulumi:"threshold"`
+}
+
+// CheckAlertsAlertInput is an input type that accepts CheckAlertsAlertArgs and CheckAlertsAlertOutput values.
+// You can construct a concrete instance of `CheckAlertsAlertInput` via:
+//
+//	CheckAlertsAlertArgs{...}
+type CheckAlertsAlertInput interface {
+	pulumi.Input
+
+	ToCheckAlertsAlertOutput() CheckAlertsAlertOutput
+	ToCheckAlertsAlertOutputWithContext(context.Context) CheckAlertsAlertOutput
+}
+
+type CheckAlertsAlertArgs struct {
+	// Name of the alert. Required.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
+	Period pulumi.StringPtrInput `pulumi:"period"`
+	// Threshold value for the alert.
+	Threshold pulumi.Float64Input `pulumi:"threshold"`
+}
+
+func (CheckAlertsAlertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckAlertsAlert)(nil)).Elem()
+}
+
+func (i CheckAlertsAlertArgs) ToCheckAlertsAlertOutput() CheckAlertsAlertOutput {
+	return i.ToCheckAlertsAlertOutputWithContext(context.Background())
+}
+
+func (i CheckAlertsAlertArgs) ToCheckAlertsAlertOutputWithContext(ctx context.Context) CheckAlertsAlertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckAlertsAlertOutput)
+}
+
+// CheckAlertsAlertArrayInput is an input type that accepts CheckAlertsAlertArray and CheckAlertsAlertArrayOutput values.
+// You can construct a concrete instance of `CheckAlertsAlertArrayInput` via:
+//
+//	CheckAlertsAlertArray{ CheckAlertsAlertArgs{...} }
+type CheckAlertsAlertArrayInput interface {
+	pulumi.Input
+
+	ToCheckAlertsAlertArrayOutput() CheckAlertsAlertArrayOutput
+	ToCheckAlertsAlertArrayOutputWithContext(context.Context) CheckAlertsAlertArrayOutput
+}
+
+type CheckAlertsAlertArray []CheckAlertsAlertInput
+
+func (CheckAlertsAlertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CheckAlertsAlert)(nil)).Elem()
+}
+
+func (i CheckAlertsAlertArray) ToCheckAlertsAlertArrayOutput() CheckAlertsAlertArrayOutput {
+	return i.ToCheckAlertsAlertArrayOutputWithContext(context.Background())
+}
+
+func (i CheckAlertsAlertArray) ToCheckAlertsAlertArrayOutputWithContext(ctx context.Context) CheckAlertsAlertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CheckAlertsAlertArrayOutput)
+}
+
+type CheckAlertsAlertOutput struct{ *pulumi.OutputState }
+
+func (CheckAlertsAlertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CheckAlertsAlert)(nil)).Elem()
+}
+
+func (o CheckAlertsAlertOutput) ToCheckAlertsAlertOutput() CheckAlertsAlertOutput {
+	return o
+}
+
+func (o CheckAlertsAlertOutput) ToCheckAlertsAlertOutputWithContext(ctx context.Context) CheckAlertsAlertOutput {
+	return o
+}
+
+// Name of the alert. Required.
+func (o CheckAlertsAlertOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v CheckAlertsAlert) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
+func (o CheckAlertsAlertOutput) Period() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CheckAlertsAlert) *string { return v.Period }).(pulumi.StringPtrOutput)
+}
+
+// Threshold value for the alert.
+func (o CheckAlertsAlertOutput) Threshold() pulumi.Float64Output {
+	return o.ApplyT(func(v CheckAlertsAlert) float64 { return v.Threshold }).(pulumi.Float64Output)
+}
+
+type CheckAlertsAlertArrayOutput struct{ *pulumi.OutputState }
+
+func (CheckAlertsAlertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CheckAlertsAlert)(nil)).Elem()
+}
+
+func (o CheckAlertsAlertArrayOutput) ToCheckAlertsAlertArrayOutput() CheckAlertsAlertArrayOutput {
+	return o
+}
+
+func (o CheckAlertsAlertArrayOutput) ToCheckAlertsAlertArrayOutputWithContext(ctx context.Context) CheckAlertsAlertArrayOutput {
+	return o
+}
+
+func (o CheckAlertsAlertArrayOutput) Index(i pulumi.IntInput) CheckAlertsAlertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CheckAlertsAlert {
+		return vs[0].([]CheckAlertsAlert)[vs[1].(int)]
+	}).(CheckAlertsAlertOutput)
+}
+
 type CheckSettings struct {
 	// Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.
 	Browser *CheckSettingsBrowser `pulumi:"browser"`
@@ -4762,6 +4877,8 @@ func (o CheckSettingsTraceroutePtrOutput) PtrLookup() pulumi.BoolPtrOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckAlertsAlertInput)(nil)).Elem(), CheckAlertsAlertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CheckAlertsAlertArrayInput)(nil)).Elem(), CheckAlertsAlertArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsInput)(nil)).Elem(), CheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsPtrInput)(nil)).Elem(), CheckSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsBrowserInput)(nil)).Elem(), CheckSettingsBrowserArgs{})
@@ -4816,6 +4933,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsTcpTlsConfigPtrInput)(nil)).Elem(), CheckSettingsTcpTlsConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsTracerouteInput)(nil)).Elem(), CheckSettingsTracerouteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CheckSettingsTraceroutePtrInput)(nil)).Elem(), CheckSettingsTracerouteArgs{})
+	pulumi.RegisterOutputType(CheckAlertsAlertOutput{})
+	pulumi.RegisterOutputType(CheckAlertsAlertArrayOutput{})
 	pulumi.RegisterOutputType(CheckSettingsOutput{})
 	pulumi.RegisterOutputType(CheckSettingsPtrOutput{})
 	pulumi.RegisterOutputType(CheckSettingsBrowserOutput{})

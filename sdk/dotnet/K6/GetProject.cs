@@ -110,7 +110,7 @@ namespace Pulumiverse.Grafana.K6
         /// Numeric identifier of the project.
         /// </summary>
         [Input("id", required: true)]
-        public int Id { get; set; }
+        public string Id { get; set; } = null!;
 
         public GetProjectArgs()
         {
@@ -124,7 +124,7 @@ namespace Pulumiverse.Grafana.K6
         /// Numeric identifier of the project.
         /// </summary>
         [Input("id", required: true)]
-        public Input<int> Id { get; set; } = null!;
+        public Input<string> Id { get; set; } = null!;
 
         public GetProjectInvokeArgs()
         {
@@ -147,7 +147,7 @@ namespace Pulumiverse.Grafana.K6
         /// <summary>
         /// Numeric identifier of the project.
         /// </summary>
-        public readonly int Id;
+        public readonly string Id;
         /// <summary>
         /// Whether this project is the default for running tests when no explicit project identifier is provided.
         /// </summary>
@@ -167,7 +167,7 @@ namespace Pulumiverse.Grafana.K6
 
             string grafanaFolderUid,
 
-            int id,
+            string id,
 
             bool isDefault,
 

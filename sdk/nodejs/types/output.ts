@@ -1946,6 +1946,10 @@ export interface RuleGroupRule {
      */
     labels?: {[key: string]: string};
     /**
+     * The number of missing series evaluations that must occur before the rule is considered to be resolved.
+     */
+    missingSeriesEvalsToResolve?: number;
+    /**
      * The name of the alert rule.
      */
     name: string;
@@ -2037,6 +2041,10 @@ export interface RuleGroupRuleRecord {
      * The name of the metric to write to.
      */
     metric: string;
+    /**
+     * The UID of the datasource to write the metric to.
+     */
+    targetDatasourceUid?: string;
 }
 
 export interface SLOAlerting {
@@ -4429,6 +4437,10 @@ export namespace alerting {
          */
         labels?: {[key: string]: string};
         /**
+         * The number of missing series evaluations that must occur before the rule is considered to be resolved.
+         */
+        missingSeriesEvalsToResolve?: number;
+        /**
          * The name of the alert rule.
          */
         name: string;
@@ -4520,6 +4532,10 @@ export namespace alerting {
          * The name of the metric to write to.
          */
         metric: string;
+        /**
+         * The UID of the datasource to write the metric to.
+         */
+        targetDatasourceUid?: string;
     }
 
 }
@@ -4798,7 +4814,7 @@ export namespace cloud {
          */
         name: string;
         /**
-         * The interval in seconds to scrape the custom namespace.
+         * The interval in seconds to scrape the custom namespace. Defaults to `300`.
          */
         scrapeIntervalSeconds: number;
     }
@@ -4828,7 +4844,7 @@ export namespace cloud {
          */
         resourceDiscoveryTagFilters?: outputs.cloud.ProviderAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter[];
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
          */
         scrapeIntervalSeconds: number;
         /**
@@ -4905,7 +4921,7 @@ export namespace cloudProvider {
          */
         name: string;
         /**
-         * The interval in seconds to scrape the custom namespace.
+         * The interval in seconds to scrape the custom namespace. Defaults to `300`.
          */
         scrapeIntervalSeconds: number;
     }
@@ -4935,7 +4951,7 @@ export namespace cloudProvider {
          */
         resourceDiscoveryTagFilters?: outputs.cloudProvider.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter[];
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
          */
         scrapeIntervalSeconds: number;
         /**
@@ -4976,7 +4992,7 @@ export namespace cloudProvider {
          */
         resourceDiscoveryTagFilters?: outputs.cloudProvider.AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter[];
         /**
-         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
          */
         scrapeIntervalSeconds: number;
     }
@@ -5460,11 +5476,11 @@ export namespace fleetManagement {
 
 export namespace k6 {
     export interface GetLoadTestsLoadTest {
-        baselineTestRunId: number;
+        baselineTestRunId: string;
         created: string;
-        id: number;
+        id: string;
         name: string;
-        projectId: number;
+        projectId: string;
         script: string;
         updated: string;
     }
@@ -5472,7 +5488,7 @@ export namespace k6 {
     export interface GetProjectsProject {
         created: string;
         grafanaFolderUid: string;
-        id: number;
+        id: string;
         isDefault: boolean;
         name: string;
         updated: string;
@@ -6817,6 +6833,21 @@ export namespace slo {
 }
 
 export namespace syntheticMonitoring {
+    export interface CheckAlertsAlert {
+        /**
+         * Name of the alert. Required.
+         */
+        name: string;
+        /**
+         * Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
+         */
+        period?: string;
+        /**
+         * Threshold value for the alert.
+         */
+        threshold: number;
+    }
+
     export interface CheckSettings {
         /**
          * Settings for browser check. See https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/create-checks/checks/k6-browser/.

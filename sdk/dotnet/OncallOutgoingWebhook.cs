@@ -19,14 +19,26 @@ namespace Pulumiverse.Grafana
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var myTeam = Grafana.Oss.GetTeam.Invoke(new()
+    ///     {
+    ///         Name = "my team",
+    ///     });
+    /// 
+    ///     var myTeamGetTeam = Grafana.OnCall.GetTeam.Invoke(new()
+    ///     {
+    ///         Name = myTeam.Apply(getTeamResult =&gt; getTeamResult.Name),
+    ///     });
+    /// 
     ///     var test_acc_outgoingWebhook = new Grafana.OnCall.OutgoingWebhook("test-acc-outgoing_webhook", new()
     ///     {
     ///         Name = "my outgoing webhook",
     ///         Url = "https://example.com/",
+    ///         TeamId = myTeamGetTeam.Apply(getTeamResult =&gt; getTeamResult.Id),
     ///     });
     /// 
     /// });
@@ -97,7 +109,7 @@ namespace Pulumiverse.Grafana
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+        /// The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
         /// </summary>
         [Output("teamId")]
         public Output<string?> TeamId { get; private set; } = null!;
@@ -259,7 +271,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+        /// The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
@@ -377,7 +389,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `grafana.onCall.getTeam` datasource.
+        /// The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }

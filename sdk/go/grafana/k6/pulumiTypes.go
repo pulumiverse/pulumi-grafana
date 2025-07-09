@@ -14,11 +14,11 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type GetLoadTestsLoadTest struct {
-	BaselineTestRunId int    `pulumi:"baselineTestRunId"`
+	BaselineTestRunId string `pulumi:"baselineTestRunId"`
 	Created           string `pulumi:"created"`
-	Id                int    `pulumi:"id"`
+	Id                string `pulumi:"id"`
 	Name              string `pulumi:"name"`
-	ProjectId         int    `pulumi:"projectId"`
+	ProjectId         string `pulumi:"projectId"`
 	Script            string `pulumi:"script"`
 	Updated           string `pulumi:"updated"`
 }
@@ -35,11 +35,11 @@ type GetLoadTestsLoadTestInput interface {
 }
 
 type GetLoadTestsLoadTestArgs struct {
-	BaselineTestRunId pulumi.IntInput    `pulumi:"baselineTestRunId"`
+	BaselineTestRunId pulumi.StringInput `pulumi:"baselineTestRunId"`
 	Created           pulumi.StringInput `pulumi:"created"`
-	Id                pulumi.IntInput    `pulumi:"id"`
+	Id                pulumi.StringInput `pulumi:"id"`
 	Name              pulumi.StringInput `pulumi:"name"`
-	ProjectId         pulumi.IntInput    `pulumi:"projectId"`
+	ProjectId         pulumi.StringInput `pulumi:"projectId"`
 	Script            pulumi.StringInput `pulumi:"script"`
 	Updated           pulumi.StringInput `pulumi:"updated"`
 }
@@ -95,24 +95,24 @@ func (o GetLoadTestsLoadTestOutput) ToGetLoadTestsLoadTestOutputWithContext(ctx 
 	return o
 }
 
-func (o GetLoadTestsLoadTestOutput) BaselineTestRunId() pulumi.IntOutput {
-	return o.ApplyT(func(v GetLoadTestsLoadTest) int { return v.BaselineTestRunId }).(pulumi.IntOutput)
+func (o GetLoadTestsLoadTestOutput) BaselineTestRunId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadTestsLoadTest) string { return v.BaselineTestRunId }).(pulumi.StringOutput)
 }
 
 func (o GetLoadTestsLoadTestOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadTestsLoadTest) string { return v.Created }).(pulumi.StringOutput)
 }
 
-func (o GetLoadTestsLoadTestOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v GetLoadTestsLoadTest) int { return v.Id }).(pulumi.IntOutput)
+func (o GetLoadTestsLoadTestOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadTestsLoadTest) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetLoadTestsLoadTestOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadTestsLoadTest) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetLoadTestsLoadTestOutput) ProjectId() pulumi.IntOutput {
-	return o.ApplyT(func(v GetLoadTestsLoadTest) int { return v.ProjectId }).(pulumi.IntOutput)
+func (o GetLoadTestsLoadTestOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadTestsLoadTest) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 func (o GetLoadTestsLoadTestOutput) Script() pulumi.StringOutput {
@@ -146,7 +146,7 @@ func (o GetLoadTestsLoadTestArrayOutput) Index(i pulumi.IntInput) GetLoadTestsLo
 type GetProjectsProject struct {
 	Created          string `pulumi:"created"`
 	GrafanaFolderUid string `pulumi:"grafanaFolderUid"`
-	Id               int    `pulumi:"id"`
+	Id               string `pulumi:"id"`
 	IsDefault        bool   `pulumi:"isDefault"`
 	Name             string `pulumi:"name"`
 	Updated          string `pulumi:"updated"`
@@ -166,7 +166,7 @@ type GetProjectsProjectInput interface {
 type GetProjectsProjectArgs struct {
 	Created          pulumi.StringInput `pulumi:"created"`
 	GrafanaFolderUid pulumi.StringInput `pulumi:"grafanaFolderUid"`
-	Id               pulumi.IntInput    `pulumi:"id"`
+	Id               pulumi.StringInput `pulumi:"id"`
 	IsDefault        pulumi.BoolInput   `pulumi:"isDefault"`
 	Name             pulumi.StringInput `pulumi:"name"`
 	Updated          pulumi.StringInput `pulumi:"updated"`
@@ -231,8 +231,8 @@ func (o GetProjectsProjectOutput) GrafanaFolderUid() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsProject) string { return v.GrafanaFolderUid }).(pulumi.StringOutput)
 }
 
-func (o GetProjectsProjectOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v GetProjectsProject) int { return v.Id }).(pulumi.IntOutput)
+func (o GetProjectsProjectOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsProject) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetProjectsProjectOutput) IsDefault() pulumi.BoolOutput {

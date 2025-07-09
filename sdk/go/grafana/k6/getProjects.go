@@ -33,12 +33,6 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = k6.NewProject(ctx, "project_2", &k6.ProjectArgs{
-//				Name: pulumi.String("Terraform Test Project"),
-//			})
-//			if err != nil {
-//				return err
-//			}
 //			_, err = k6.GetProjects(ctx, &k6.GetProjectsArgs{
 //				Name: pulumi.StringRef("Terraform Test Project"),
 //			}, nil)

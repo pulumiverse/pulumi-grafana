@@ -23,11 +23,11 @@ __all__ = [
 @pulumi.output_type
 class GetLoadTestsLoadTestResult(dict):
     def __init__(__self__, *,
-                 baseline_test_run_id: builtins.int,
+                 baseline_test_run_id: builtins.str,
                  created: builtins.str,
-                 id: builtins.int,
+                 id: builtins.str,
                  name: builtins.str,
-                 project_id: builtins.int,
+                 project_id: builtins.str,
                  script: builtins.str,
                  updated: builtins.str):
         pulumi.set(__self__, "baseline_test_run_id", baseline_test_run_id)
@@ -40,7 +40,7 @@ class GetLoadTestsLoadTestResult(dict):
 
     @property
     @pulumi.getter(name="baselineTestRunId")
-    def baseline_test_run_id(self) -> builtins.int:
+    def baseline_test_run_id(self) -> builtins.str:
         return pulumi.get(self, "baseline_test_run_id")
 
     @property
@@ -50,7 +50,7 @@ class GetLoadTestsLoadTestResult(dict):
 
     @property
     @pulumi.getter
-    def id(self) -> builtins.int:
+    def id(self) -> builtins.str:
         return pulumi.get(self, "id")
 
     @property
@@ -60,7 +60,7 @@ class GetLoadTestsLoadTestResult(dict):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> builtins.int:
+    def project_id(self) -> builtins.str:
         return pulumi.get(self, "project_id")
 
     @property
@@ -79,7 +79,7 @@ class GetProjectsProjectResult(dict):
     def __init__(__self__, *,
                  created: builtins.str,
                  grafana_folder_uid: builtins.str,
-                 id: builtins.int,
+                 id: builtins.str,
                  is_default: builtins.bool,
                  name: builtins.str,
                  updated: builtins.str):
@@ -102,7 +102,7 @@ class GetProjectsProjectResult(dict):
 
     @property
     @pulumi.getter
-    def id(self) -> builtins.int:
+    def id(self) -> builtins.str:
         return pulumi.get(self, "id")
 
     @property

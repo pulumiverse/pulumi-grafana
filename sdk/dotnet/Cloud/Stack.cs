@@ -200,6 +200,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// Base URL of the OnCall API instance configured for this stack.
+        /// </summary>
+        [Output("oncallApiUrl")]
+        public Output<string> OncallApiUrl { get; private set; } = null!;
+
+        /// <summary>
         /// Organization id to assign to this stack.
         /// </summary>
         [Output("orgId")]
@@ -680,6 +686,12 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Base URL of the OnCall API instance configured for this stack.
+        /// </summary>
+        [Input("oncallApiUrl")]
+        public Input<string>? OncallApiUrl { get; set; }
 
         /// <summary>
         /// Organization id to assign to this stack.

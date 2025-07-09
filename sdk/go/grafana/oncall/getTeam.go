@@ -20,13 +20,20 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := oncall.GetTeam(ctx, &oncall.GetTeamArgs{
-//				Name: "example_team",
+//			myTeam, err := oss.LookupTeam(ctx, &oss.LookupTeamArgs{
+//				Name: "my team",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = oncall.GetTeam(ctx, &oncall.GetTeamArgs{
+//				Name: myTeam.Name,
 //			}, nil)
 //			if err != nil {
 //				return err

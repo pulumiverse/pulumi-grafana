@@ -33,11 +33,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = test.ID().ApplyT(func(id string) (k6.GetProjectResult, error) {
-//				return k6.GetProjectResult(interface{}(k6.LookupProjectOutput(ctx, k6.GetProjectOutputArgs{
-//					Id: id,
-//				}, nil))), nil
-//			}).(k6.GetProjectResultOutput)
+//			_ = k6.LookupProjectOutput(ctx, k6.GetProjectOutputArgs{
+//				Id: test.ID(),
+//			}, nil)
 //			return nil
 //		})
 //	}
@@ -56,7 +54,7 @@ func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.
 // A collection of arguments for invoking getProject.
 type LookupProjectArgs struct {
 	// Numeric identifier of the project.
-	Id int `pulumi:"id"`
+	Id string `pulumi:"id"`
 }
 
 // A collection of values returned by getProject.
@@ -66,7 +64,7 @@ type LookupProjectResult struct {
 	// The Grafana folder uid.
 	GrafanaFolderUid string `pulumi:"grafanaFolderUid"`
 	// Numeric identifier of the project.
-	Id int `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Whether this project is the default for running tests when no explicit project identifier is provided.
 	IsDefault bool `pulumi:"isDefault"`
 	// Human-friendly identifier of the project.
@@ -87,7 +85,7 @@ func LookupProjectOutput(ctx *pulumi.Context, args LookupProjectOutputArgs, opts
 // A collection of arguments for invoking getProject.
 type LookupProjectOutputArgs struct {
 	// Numeric identifier of the project.
-	Id pulumi.IntInput `pulumi:"id"`
+	Id pulumi.StringInput `pulumi:"id"`
 }
 
 func (LookupProjectOutputArgs) ElementType() reflect.Type {
@@ -120,8 +118,8 @@ func (o LookupProjectResultOutput) GrafanaFolderUid() pulumi.StringOutput {
 }
 
 // Numeric identifier of the project.
-func (o LookupProjectResultOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupProjectResult) int { return v.Id }).(pulumi.IntOutput)
+func (o LookupProjectResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Whether this project is the default for running tests when no explicit project identifier is provided.

@@ -44,7 +44,7 @@ type OnCallShift struct {
 	Start pulumi.StringOutput `pulumi:"start"`
 	// The index of the list of users in rolling_users, from which on-call rotation starts.
 	StartRotationFromUserIndex pulumi.IntPtrOutput `pulumi:"startRotationFromUserIndex"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 	// The shift's timezone.  Overrides schedule's timezone.
 	TimeZone pulumi.StringPtrOutput `pulumi:"timeZone"`
@@ -125,7 +125,7 @@ type onCallShiftState struct {
 	Start *string `pulumi:"start"`
 	// The index of the list of users in rolling_users, from which on-call rotation starts.
 	StartRotationFromUserIndex *int `pulumi:"startRotationFromUserIndex"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId *string `pulumi:"teamId"`
 	// The shift's timezone.  Overrides schedule's timezone.
 	TimeZone *string `pulumi:"timeZone"`
@@ -162,7 +162,7 @@ type OnCallShiftState struct {
 	Start pulumi.StringPtrInput
 	// The index of the list of users in rolling_users, from which on-call rotation starts.
 	StartRotationFromUserIndex pulumi.IntPtrInput
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrInput
 	// The shift's timezone.  Overrides schedule's timezone.
 	TimeZone pulumi.StringPtrInput
@@ -203,7 +203,7 @@ type onCallShiftArgs struct {
 	Start string `pulumi:"start"`
 	// The index of the list of users in rolling_users, from which on-call rotation starts.
 	StartRotationFromUserIndex *int `pulumi:"startRotationFromUserIndex"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId *string `pulumi:"teamId"`
 	// The shift's timezone.  Overrides schedule's timezone.
 	TimeZone *string `pulumi:"timeZone"`
@@ -241,7 +241,7 @@ type OnCallShiftArgs struct {
 	Start pulumi.StringInput
 	// The index of the list of users in rolling_users, from which on-call rotation starts.
 	StartRotationFromUserIndex pulumi.IntPtrInput
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrInput
 	// The shift's timezone.  Overrides schedule's timezone.
 	TimeZone pulumi.StringPtrInput
@@ -397,7 +397,7 @@ func (o OnCallShiftOutput) StartRotationFromUserIndex() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *OnCallShift) pulumi.IntPtrOutput { return v.StartRotationFromUserIndex }).(pulumi.IntPtrOutput)
 }
 
-// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 func (o OnCallShiftOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OnCallShift) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }

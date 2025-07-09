@@ -124,6 +124,10 @@ namespace Pulumiverse.Grafana
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The link for the integration.
+        /// </summary>
+        public readonly string Link;
+        /// <summary>
         /// The integration name.
         /// </summary>
         public readonly string Name;
@@ -132,9 +136,12 @@ namespace Pulumiverse.Grafana
         private GetOncallIntegrationResult(
             string id,
 
+            string link,
+
             string name)
         {
             Id = id;
+            Link = link;
             Name = name;
         }
     }

@@ -29,7 +29,7 @@ class AppArgs:
         The set of arguments for constructing a App resource.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] allowed_origins: A list of allowed origins for CORS.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] extra_log_attributes: The extra attributes to append in each signal.
-        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
         """
         pulumi.set(__self__, "allowed_origins", allowed_origins)
         pulumi.set(__self__, "extra_log_attributes", extra_log_attributes)
@@ -66,7 +66,7 @@ class AppArgs:
     @pulumi.getter
     def settings(self) -> pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]:
         """
-        The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+        The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
         """
         return pulumi.get(self, "settings")
 
@@ -107,7 +107,7 @@ class _AppState:
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] allowed_origins: A list of allowed origins for CORS.
         :param pulumi.Input[builtins.str] collector_endpoint: The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] extra_log_attributes: The extra attributes to append in each signal.
-        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
         """
         if allowed_origins is not None:
             pulumi.set(__self__, "allowed_origins", allowed_origins)
@@ -171,7 +171,7 @@ class _AppState:
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
         """
-        The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+        The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
         """
         return pulumi.get(self, "settings")
 
@@ -214,7 +214,7 @@ class App(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] allowed_origins: A list of allowed origins for CORS.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] extra_log_attributes: The extra attributes to append in each signal.
-        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
         """
         ...
     @overload
@@ -300,7 +300,7 @@ class App(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] allowed_origins: A list of allowed origins for CORS.
         :param pulumi.Input[builtins.str] collector_endpoint: The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] extra_log_attributes: The extra attributes to append in each signal.
-        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -347,7 +347,7 @@ class App(pulumi.CustomResource):
     @pulumi.getter
     def settings(self) -> pulumi.Output[Mapping[str, builtins.str]]:
         """
-        The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+        The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
         """
         return pulumi.get(self, "settings")
 

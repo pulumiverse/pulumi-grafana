@@ -53,17 +53,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = loadTestProject.ID().ApplyT(func(id string) (k6.GetLoadTestsResult, error) {
-//				return k6.GetLoadTestsResult(interface{}(k6.GetLoadTestsOutput(ctx, k6.GetLoadTestsOutputArgs{
-//					ProjectId: id,
-//				}, nil))), nil
-//			}).(k6.GetLoadTestsResultOutput)
-//			_ = loadTestProject.ID().ApplyT(func(id string) (k6.GetLoadTestsResult, error) {
-//				return k6.GetLoadTestsResult(interface{}(k6.GetLoadTestsOutput(ctx, k6.GetLoadTestsOutputArgs{
-//					Name:      "Terraform Test Load Test (2)",
-//					ProjectId: id,
-//				}, nil))), nil
-//			}).(k6.GetLoadTestsResultOutput)
+//			_ = k6.GetLoadTestsOutput(ctx, k6.GetLoadTestsOutputArgs{
+//				ProjectId: loadTestProject.ID(),
+//			}, nil)
+//			_ = k6.GetLoadTestsOutput(ctx, k6.GetLoadTestsOutputArgs{
+//				Name:      pulumi.String("Terraform Test Load Test (2)"),
+//				ProjectId: loadTestProject.ID(),
+//			}, nil)
 //			return nil
 //		})
 //	}
@@ -84,18 +80,18 @@ type GetLoadTestsArgs struct {
 	// Human-friendly identifier of the load test.
 	Name *string `pulumi:"name"`
 	// The identifier of the project the load tests belong to.
-	ProjectId int `pulumi:"projectId"`
+	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getLoadTests.
 type GetLoadTestsResult struct {
 	// The identifier of the project the load tests belong to. This is set to the same as the project_id.
-	Id        int                    `pulumi:"id"`
+	Id        string                 `pulumi:"id"`
 	LoadTests []GetLoadTestsLoadTest `pulumi:"loadTests"`
 	// Human-friendly identifier of the load test.
 	Name *string `pulumi:"name"`
 	// The identifier of the project the load tests belong to.
-	ProjectId int `pulumi:"projectId"`
+	ProjectId string `pulumi:"projectId"`
 }
 
 func GetLoadTestsOutput(ctx *pulumi.Context, args GetLoadTestsOutputArgs, opts ...pulumi.InvokeOption) GetLoadTestsResultOutput {
@@ -112,7 +108,7 @@ type GetLoadTestsOutputArgs struct {
 	// Human-friendly identifier of the load test.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The identifier of the project the load tests belong to.
-	ProjectId pulumi.IntInput `pulumi:"projectId"`
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
 func (GetLoadTestsOutputArgs) ElementType() reflect.Type {
@@ -135,8 +131,8 @@ func (o GetLoadTestsResultOutput) ToGetLoadTestsResultOutputWithContext(ctx cont
 }
 
 // The identifier of the project the load tests belong to. This is set to the same as the project_id.
-func (o GetLoadTestsResultOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v GetLoadTestsResult) int { return v.Id }).(pulumi.IntOutput)
+func (o GetLoadTestsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadTestsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetLoadTestsResultOutput) LoadTests() GetLoadTestsLoadTestArrayOutput {
@@ -149,8 +145,8 @@ func (o GetLoadTestsResultOutput) Name() pulumi.StringPtrOutput {
 }
 
 // The identifier of the project the load tests belong to.
-func (o GetLoadTestsResultOutput) ProjectId() pulumi.IntOutput {
-	return o.ApplyT(func(v GetLoadTestsResult) int { return v.ProjectId }).(pulumi.IntOutput)
+func (o GetLoadTestsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadTestsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 func init() {

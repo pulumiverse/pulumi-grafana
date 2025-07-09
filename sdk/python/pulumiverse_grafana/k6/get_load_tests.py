@@ -29,8 +29,8 @@ class GetLoadTestsResult:
     A collection of values returned by getLoadTests.
     """
     def __init__(__self__, id=None, load_tests=None, name=None, project_id=None):
-        if id and not isinstance(id, int):
-            raise TypeError("Expected argument 'id' to be a int")
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if load_tests and not isinstance(load_tests, list):
             raise TypeError("Expected argument 'load_tests' to be a list")
@@ -38,13 +38,13 @@ class GetLoadTestsResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
-        if project_id and not isinstance(project_id, int):
-            raise TypeError("Expected argument 'project_id' to be a int")
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
 
     @property
     @pulumi.getter
-    def id(self) -> builtins.int:
+    def id(self) -> builtins.str:
         """
         The identifier of the project the load tests belong to. This is set to the same as the project_id.
         """
@@ -65,7 +65,7 @@ class GetLoadTestsResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> builtins.int:
+    def project_id(self) -> builtins.str:
         """
         The identifier of the project the load tests belong to.
         """
@@ -85,7 +85,7 @@ class AwaitableGetLoadTestsResult(GetLoadTestsResult):
 
 
 def get_load_tests(name: Optional[builtins.str] = None,
-                   project_id: Optional[builtins.int] = None,
+                   project_id: Optional[builtins.str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadTestsResult:
     """
     Retrieves all k6 load tests that belong to a project.
@@ -114,14 +114,14 @@ def get_load_tests(name: Optional[builtins.str] = None,
     }
     \"\"\",
         opts = pulumi.ResourceOptions(depends_on=[test_load_test]))
-    from_project_id = load_test_project.id.apply(lambda id: grafana.k6.get_load_tests_output(project_id=id))
-    filter_by_name = load_test_project.id.apply(lambda id: grafana.k6.get_load_tests_output(name="Terraform Test Load Test (2)",
-        project_id=id))
+    from_project_id = grafana.k6.get_load_tests_output(project_id=load_test_project.id)
+    filter_by_name = grafana.k6.get_load_tests_output(name="Terraform Test Load Test (2)",
+        project_id=load_test_project.id)
     ```
 
 
     :param builtins.str name: Human-friendly identifier of the load test.
-    :param builtins.int project_id: The identifier of the project the load tests belong to.
+    :param builtins.str project_id: The identifier of the project the load tests belong to.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -135,7 +135,7 @@ def get_load_tests(name: Optional[builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'))
 def get_load_tests_output(name: Optional[pulumi.Input[Optional[builtins.str]]] = None,
-                          project_id: Optional[pulumi.Input[builtins.int]] = None,
+                          project_id: Optional[pulumi.Input[builtins.str]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLoadTestsResult]:
     """
     Retrieves all k6 load tests that belong to a project.
@@ -164,14 +164,14 @@ def get_load_tests_output(name: Optional[pulumi.Input[Optional[builtins.str]]] =
     }
     \"\"\",
         opts = pulumi.ResourceOptions(depends_on=[test_load_test]))
-    from_project_id = load_test_project.id.apply(lambda id: grafana.k6.get_load_tests_output(project_id=id))
-    filter_by_name = load_test_project.id.apply(lambda id: grafana.k6.get_load_tests_output(name="Terraform Test Load Test (2)",
-        project_id=id))
+    from_project_id = grafana.k6.get_load_tests_output(project_id=load_test_project.id)
+    filter_by_name = grafana.k6.get_load_tests_output(name="Terraform Test Load Test (2)",
+        project_id=load_test_project.id)
     ```
 
 
     :param builtins.str name: Human-friendly identifier of the load test.
-    :param builtins.int project_id: The identifier of the project the load tests belong to.
+    :param builtins.str project_id: The identifier of the project the load tests belong to.
     """
     __args__ = dict()
     __args__['name'] = name

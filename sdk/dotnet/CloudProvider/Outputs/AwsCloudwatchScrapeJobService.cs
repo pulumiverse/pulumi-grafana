@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana.CloudProvider.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilter> ResourceDiscoveryTagFilters;
         /// <summary>
-        /// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        /// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
         /// </summary>
         public readonly int? ScrapeIntervalSeconds;
         /// <summary>

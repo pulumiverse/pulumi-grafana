@@ -94,7 +94,7 @@ type AwsResourceMetadataScrapeJob struct {
 	AwsAccountResourceId pulumi.StringOutput `pulumi:"awsAccountResourceId"`
 	// When the AWS Resource Metadata Scrape Job is disabled, this will show the reason that it is in that state.
 	DisabledReason pulumi.StringOutput `pulumi:"disabledReason"`
-	// Whether the AWS Resource Metadata Scrape Job is enabled or not.
+	// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
 	Enabled pulumi.BoolOutput   `pulumi:"enabled"`
 	Name    pulumi.StringOutput `pulumi:"name"`
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
@@ -146,7 +146,7 @@ type awsResourceMetadataScrapeJobState struct {
 	AwsAccountResourceId *string `pulumi:"awsAccountResourceId"`
 	// When the AWS Resource Metadata Scrape Job is disabled, this will show the reason that it is in that state.
 	DisabledReason *string `pulumi:"disabledReason"`
-	// Whether the AWS Resource Metadata Scrape Job is enabled or not.
+	// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
 	Enabled *bool   `pulumi:"enabled"`
 	Name    *string `pulumi:"name"`
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
@@ -163,7 +163,7 @@ type AwsResourceMetadataScrapeJobState struct {
 	AwsAccountResourceId pulumi.StringPtrInput
 	// When the AWS Resource Metadata Scrape Job is disabled, this will show the reason that it is in that state.
 	DisabledReason pulumi.StringPtrInput
-	// Whether the AWS Resource Metadata Scrape Job is enabled or not.
+	// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	Name    pulumi.StringPtrInput
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
@@ -182,7 +182,7 @@ func (AwsResourceMetadataScrapeJobState) ElementType() reflect.Type {
 type awsResourceMetadataScrapeJobArgs struct {
 	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId string `pulumi:"awsAccountResourceId"`
-	// Whether the AWS Resource Metadata Scrape Job is enabled or not.
+	// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
 	Enabled *bool   `pulumi:"enabled"`
 	Name    *string `pulumi:"name"`
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
@@ -198,7 +198,7 @@ type awsResourceMetadataScrapeJobArgs struct {
 type AwsResourceMetadataScrapeJobArgs struct {
 	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId pulumi.StringInput
-	// Whether the AWS Resource Metadata Scrape Job is enabled or not.
+	// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	Name    pulumi.StringPtrInput
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
@@ -307,7 +307,7 @@ func (o AwsResourceMetadataScrapeJobOutput) DisabledReason() pulumi.StringOutput
 	return o.ApplyT(func(v *AwsResourceMetadataScrapeJob) pulumi.StringOutput { return v.DisabledReason }).(pulumi.StringOutput)
 }
 
-// Whether the AWS Resource Metadata Scrape Job is enabled or not.
+// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
 func (o AwsResourceMetadataScrapeJobOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AwsResourceMetadataScrapeJob) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }

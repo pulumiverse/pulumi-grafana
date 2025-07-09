@@ -57,13 +57,13 @@ type LoadTest struct {
 	pulumi.CustomResourceState
 
 	// Identifier of a baseline test run used for results comparison.
-	BaselineTestRunId pulumi.IntPtrOutput `pulumi:"baselineTestRunId"`
+	BaselineTestRunId pulumi.StringPtrOutput `pulumi:"baselineTestRunId"`
 	// The date when the load test was created.
 	Created pulumi.StringOutput `pulumi:"created"`
 	// Human-friendly identifier of the load test.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The identifier of the project this load test belongs to.
-	ProjectId pulumi.IntOutput `pulumi:"projectId"`
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The k6 test script content. Can be provided inline or via the `file()` function.
 	Script pulumi.StringOutput `pulumi:"script"`
 	// The date when the load test was last updated.
@@ -107,13 +107,13 @@ func GetLoadTest(ctx *pulumi.Context,
 // Input properties used for looking up and filtering LoadTest resources.
 type loadTestState struct {
 	// Identifier of a baseline test run used for results comparison.
-	BaselineTestRunId *int `pulumi:"baselineTestRunId"`
+	BaselineTestRunId *string `pulumi:"baselineTestRunId"`
 	// The date when the load test was created.
 	Created *string `pulumi:"created"`
 	// Human-friendly identifier of the load test.
 	Name *string `pulumi:"name"`
 	// The identifier of the project this load test belongs to.
-	ProjectId *int `pulumi:"projectId"`
+	ProjectId *string `pulumi:"projectId"`
 	// The k6 test script content. Can be provided inline or via the `file()` function.
 	Script *string `pulumi:"script"`
 	// The date when the load test was last updated.
@@ -122,13 +122,13 @@ type loadTestState struct {
 
 type LoadTestState struct {
 	// Identifier of a baseline test run used for results comparison.
-	BaselineTestRunId pulumi.IntPtrInput
+	BaselineTestRunId pulumi.StringPtrInput
 	// The date when the load test was created.
 	Created pulumi.StringPtrInput
 	// Human-friendly identifier of the load test.
 	Name pulumi.StringPtrInput
 	// The identifier of the project this load test belongs to.
-	ProjectId pulumi.IntPtrInput
+	ProjectId pulumi.StringPtrInput
 	// The k6 test script content. Can be provided inline or via the `file()` function.
 	Script pulumi.StringPtrInput
 	// The date when the load test was last updated.
@@ -141,11 +141,11 @@ func (LoadTestState) ElementType() reflect.Type {
 
 type loadTestArgs struct {
 	// Identifier of a baseline test run used for results comparison.
-	BaselineTestRunId *int `pulumi:"baselineTestRunId"`
+	BaselineTestRunId *string `pulumi:"baselineTestRunId"`
 	// Human-friendly identifier of the load test.
 	Name *string `pulumi:"name"`
 	// The identifier of the project this load test belongs to.
-	ProjectId int `pulumi:"projectId"`
+	ProjectId string `pulumi:"projectId"`
 	// The k6 test script content. Can be provided inline or via the `file()` function.
 	Script string `pulumi:"script"`
 }
@@ -153,11 +153,11 @@ type loadTestArgs struct {
 // The set of arguments for constructing a LoadTest resource.
 type LoadTestArgs struct {
 	// Identifier of a baseline test run used for results comparison.
-	BaselineTestRunId pulumi.IntPtrInput
+	BaselineTestRunId pulumi.StringPtrInput
 	// Human-friendly identifier of the load test.
 	Name pulumi.StringPtrInput
 	// The identifier of the project this load test belongs to.
-	ProjectId pulumi.IntInput
+	ProjectId pulumi.StringInput
 	// The k6 test script content. Can be provided inline or via the `file()` function.
 	Script pulumi.StringInput
 }
@@ -250,8 +250,8 @@ func (o LoadTestOutput) ToLoadTestOutputWithContext(ctx context.Context) LoadTes
 }
 
 // Identifier of a baseline test run used for results comparison.
-func (o LoadTestOutput) BaselineTestRunId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *LoadTest) pulumi.IntPtrOutput { return v.BaselineTestRunId }).(pulumi.IntPtrOutput)
+func (o LoadTestOutput) BaselineTestRunId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadTest) pulumi.StringPtrOutput { return v.BaselineTestRunId }).(pulumi.StringPtrOutput)
 }
 
 // The date when the load test was created.
@@ -265,8 +265,8 @@ func (o LoadTestOutput) Name() pulumi.StringOutput {
 }
 
 // The identifier of the project this load test belongs to.
-func (o LoadTestOutput) ProjectId() pulumi.IntOutput {
-	return o.ApplyT(func(v *LoadTest) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
+func (o LoadTestOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadTest) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // The k6 test script content. Can be provided inline or via the `file()` function.

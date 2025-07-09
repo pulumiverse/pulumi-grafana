@@ -33,11 +33,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = testProjectLimits.ID().ApplyT(func(id string) (k6.GetProjectLimitsResult, error) {
-//				return k6.GetProjectLimitsResult(interface{}(k6.LookupProjectLimitsOutput(ctx, k6.GetProjectLimitsOutputArgs{
-//					ProjectId: id,
-//				}, nil))), nil
-//			}).(k6.GetProjectLimitsResultOutput)
+//			_ = k6.LookupProjectLimitsOutput(ctx, k6.GetProjectLimitsOutputArgs{
+//				ProjectId: testProjectLimits.ID(),
+//			}, nil)
 //			return nil
 //		})
 //	}
@@ -56,7 +54,7 @@ func LookupProjectLimits(ctx *pulumi.Context, args *LookupProjectLimitsArgs, opt
 // A collection of arguments for invoking getProjectLimits.
 type LookupProjectLimitsArgs struct {
 	// The identifier of the project to get limits for.
-	ProjectId int `pulumi:"projectId"`
+	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getProjectLimits.
@@ -64,9 +62,9 @@ type LookupProjectLimitsResult struct {
 	// Maximum duration of a test in seconds.
 	DurationMaxPerTest int `pulumi:"durationMaxPerTest"`
 	// The identifier of the project limits. This is set to the same as the project_id.
-	Id int `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// The identifier of the project to get limits for.
-	ProjectId int `pulumi:"projectId"`
+	ProjectId string `pulumi:"projectId"`
 	// Maximum number of concurrent browser virtual users (VUs) used in one test.
 	VuBrowserMaxPerTest int `pulumi:"vuBrowserMaxPerTest"`
 	// Maximum number of concurrent virtual users (VUs) used in one test.
@@ -87,7 +85,7 @@ func LookupProjectLimitsOutput(ctx *pulumi.Context, args LookupProjectLimitsOutp
 // A collection of arguments for invoking getProjectLimits.
 type LookupProjectLimitsOutputArgs struct {
 	// The identifier of the project to get limits for.
-	ProjectId pulumi.IntInput `pulumi:"projectId"`
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
 func (LookupProjectLimitsOutputArgs) ElementType() reflect.Type {
@@ -115,13 +113,13 @@ func (o LookupProjectLimitsResultOutput) DurationMaxPerTest() pulumi.IntOutput {
 }
 
 // The identifier of the project limits. This is set to the same as the project_id.
-func (o LookupProjectLimitsResultOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupProjectLimitsResult) int { return v.Id }).(pulumi.IntOutput)
+func (o LookupProjectLimitsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectLimitsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The identifier of the project to get limits for.
-func (o LookupProjectLimitsResultOutput) ProjectId() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupProjectLimitsResult) int { return v.ProjectId }).(pulumi.IntOutput)
+func (o LookupProjectLimitsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectLimitsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // Maximum number of concurrent browser virtual users (VUs) used in one test.

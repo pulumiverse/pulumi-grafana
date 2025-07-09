@@ -44,7 +44,7 @@ namespace Pulumiverse.Grafana.FrontendObservability
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+        /// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=&lt;comma-separated-list-of-country-codes&gt;}`
         /// </summary>
         [Output("settings")]
         public Output<ImmutableDictionary<string, string>> Settings { get; private set; } = null!;
@@ -130,7 +130,7 @@ namespace Pulumiverse.Grafana.FrontendObservability
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+        /// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=&lt;comma-separated-list-of-country-codes&gt;}`
         /// </summary>
         public InputMap<string> Settings
         {
@@ -186,7 +186,7 @@ namespace Pulumiverse.Grafana.FrontendObservability
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1)}`
+        /// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=&lt;comma-separated-list-of-country-codes&gt;}`
         /// </summary>
         public InputMap<string> Settings
         {

@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana.Cloud.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The interval in seconds to scrape the custom namespace.
+        /// The interval in seconds to scrape the custom namespace. Defaults to `300`.
         /// </summary>
         public readonly int? ScrapeIntervalSeconds;
 

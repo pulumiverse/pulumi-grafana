@@ -91,7 +91,7 @@ export class AwsResourceMetadataScrapeJob extends pulumi.CustomResource {
      */
     public /*out*/ readonly disabledReason!: pulumi.Output<string>;
     /**
-     * Whether the AWS Resource Metadata Scrape Job is enabled or not.
+     * Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
      */
     public readonly enabled!: pulumi.Output<boolean>;
     public readonly name!: pulumi.Output<string>;
@@ -165,7 +165,7 @@ export interface AwsResourceMetadataScrapeJobState {
      */
     disabledReason?: pulumi.Input<string>;
     /**
-     * Whether the AWS Resource Metadata Scrape Job is enabled or not.
+     * Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
     name?: pulumi.Input<string>;
@@ -193,7 +193,7 @@ export interface AwsResourceMetadataScrapeJobArgs {
      */
     awsAccountResourceId: pulumi.Input<string>;
     /**
-     * Whether the AWS Resource Metadata Scrape Job is enabled or not.
+     * Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
     name?: pulumi.Input<string>;

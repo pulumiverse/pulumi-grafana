@@ -11,9 +11,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const exampleTeam = grafana.onCall.getTeam({
- *     name: "example_team",
+ * const myTeam = grafana.oss.getTeam({
+ *     name: "my team",
  * });
+ * const myTeamGetTeam = myTeam.then(myTeam => grafana.onCall.getTeam({
+ *     name: myTeam.name,
+ * }));
  * ```
  */
 export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamResult> {
@@ -55,9 +58,12 @@ export interface GetTeamResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const exampleTeam = grafana.onCall.getTeam({
- *     name: "example_team",
+ * const myTeam = grafana.oss.getTeam({
+ *     name: "my team",
  * });
+ * const myTeamGetTeam = myTeam.then(myTeam => grafana.onCall.getTeam({
+ *     name: myTeam.name,
+ * }));
  * ```
  */
 export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTeamResult> {

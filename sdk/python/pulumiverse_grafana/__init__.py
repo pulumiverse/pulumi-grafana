@@ -381,6 +381,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "enterprise/scimConfig",
+  "fqn": "pulumiverse_grafana.enterprise",
+  "classes": {
+   "grafana:enterprise/scimConfig:ScimConfig": "ScimConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "enterprise/teamExternalGroup",
   "fqn": "pulumiverse_grafana.enterprise",
   "classes": {
@@ -1185,6 +1193,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.syntheticmonitoring",
   "classes": {
    "grafana:syntheticMonitoring/check:Check": "Check"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "syntheticMonitoring/checkAlerts",
+  "fqn": "pulumiverse_grafana.syntheticmonitoring",
+  "classes": {
+   "grafana:syntheticMonitoring/checkAlerts:CheckAlerts": "CheckAlerts"
   }
  },
  {

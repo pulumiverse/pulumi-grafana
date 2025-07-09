@@ -61,7 +61,7 @@ export class LoadTest extends pulumi.CustomResource {
     /**
      * Identifier of a baseline test run used for results comparison.
      */
-    public readonly baselineTestRunId!: pulumi.Output<number | undefined>;
+    public readonly baselineTestRunId!: pulumi.Output<string | undefined>;
     /**
      * The date when the load test was created.
      */
@@ -73,7 +73,7 @@ export class LoadTest extends pulumi.CustomResource {
     /**
      * The identifier of the project this load test belongs to.
      */
-    public readonly projectId!: pulumi.Output<number>;
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * The k6 test script content. Can be provided inline or via the `file()` function.
      */
@@ -129,7 +129,7 @@ export interface LoadTestState {
     /**
      * Identifier of a baseline test run used for results comparison.
      */
-    baselineTestRunId?: pulumi.Input<number>;
+    baselineTestRunId?: pulumi.Input<string>;
     /**
      * The date when the load test was created.
      */
@@ -141,7 +141,7 @@ export interface LoadTestState {
     /**
      * The identifier of the project this load test belongs to.
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<string>;
     /**
      * The k6 test script content. Can be provided inline or via the `file()` function.
      */
@@ -159,7 +159,7 @@ export interface LoadTestArgs {
     /**
      * Identifier of a baseline test run used for results comparison.
      */
-    baselineTestRunId?: pulumi.Input<number>;
+    baselineTestRunId?: pulumi.Input<string>;
     /**
      * Human-friendly identifier of the load test.
      */
@@ -167,7 +167,7 @@ export interface LoadTestArgs {
     /**
      * The identifier of the project this load test belongs to.
      */
-    projectId: pulumi.Input<number>;
+    projectId: pulumi.Input<string>;
     /**
      * The k6 test script content. Can be provided inline or via the `file()` function.
      */

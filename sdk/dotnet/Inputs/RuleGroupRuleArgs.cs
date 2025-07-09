@@ -80,6 +80,12 @@ namespace Pulumiverse.Grafana.Inputs
         }
 
         /// <summary>
+        /// The number of missing series evaluations that must occur before the rule is considered to be resolved.
+        /// </summary>
+        [Input("missingSeriesEvalsToResolve")]
+        public Input<int>? MissingSeriesEvalsToResolve { get; set; }
+
+        /// <summary>
         /// The name of the alert rule.
         /// </summary>
         [Input("name", required: true)]

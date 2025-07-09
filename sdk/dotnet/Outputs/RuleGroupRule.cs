@@ -47,6 +47,10 @@ namespace Pulumiverse.Grafana.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
         /// <summary>
+        /// The number of missing series evaluations that must occur before the rule is considered to be resolved.
+        /// </summary>
+        public readonly int? MissingSeriesEvalsToResolve;
+        /// <summary>
         /// The name of the alert rule.
         /// </summary>
         public readonly string Name;
@@ -85,6 +89,8 @@ namespace Pulumiverse.Grafana.Outputs
 
             ImmutableDictionary<string, string>? labels,
 
+            int? missingSeriesEvalsToResolve,
+
             string name,
 
             string? noDataState,
@@ -103,6 +109,7 @@ namespace Pulumiverse.Grafana.Outputs
             IsPaused = isPaused;
             KeepFiringFor = keepFiringFor;
             Labels = labels;
+            MissingSeriesEvalsToResolve = missingSeriesEvalsToResolve;
             Name = name;
             NoDataState = noDataState;
             NotificationSettings = notificationSettings;

@@ -29,10 +29,13 @@ class GetOncallIntegrationResult:
     """
     A collection of values returned by getOncallIntegration.
     """
-    def __init__(__self__, id=None, name=None):
+    def __init__(__self__, id=None, link=None, name=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if link and not isinstance(link, str):
+            raise TypeError("Expected argument 'link' to be a str")
+        pulumi.set(__self__, "link", link)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -44,6 +47,14 @@ class GetOncallIntegrationResult:
         The integration ID.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def link(self) -> builtins.str:
+        """
+        The link for the integration.
+        """
+        return pulumi.get(self, "link")
 
     @property
     @pulumi.getter
@@ -61,6 +72,7 @@ class AwaitableGetOncallIntegrationResult(GetOncallIntegrationResult):
             yield self
         return GetOncallIntegrationResult(
             id=self.id,
+            link=self.link,
             name=self.name)
 
 
@@ -89,6 +101,7 @@ def get_oncall_integration(id: Optional[builtins.str] = None,
 
     return AwaitableGetOncallIntegrationResult(
         id=pulumi.get(__ret__, 'id'),
+        link=pulumi.get(__ret__, 'link'),
         name=pulumi.get(__ret__, 'name'))
 def get_oncall_integration_output(id: Optional[pulumi.Input[builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOncallIntegrationResult]:
@@ -114,4 +127,5 @@ def get_oncall_integration_output(id: Optional[pulumi.Input[builtins.str]] = Non
     __ret__ = pulumi.runtime.invoke_output('grafana:index/getOncallIntegration:getOncallIntegration', __args__, opts=opts, typ=GetOncallIntegrationResult)
     return __ret__.apply(lambda __response__: GetOncallIntegrationResult(
         id=pulumi.get(__response__, 'id'),
+        link=pulumi.get(__response__, 'link'),
         name=pulumi.get(__response__, 'name')))

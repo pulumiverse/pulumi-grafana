@@ -15,52 +15,6 @@ import (
 // * [Official documentation](https://grafana.com/docs/oncall/latest/configure/integrations/)
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/)
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oncall"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := oncall.NewIntegration(ctx, "test-acc-integration", &oncall.IntegrationArgs{
-//				Name:         pulumi.String("my integration"),
-//				Type:         pulumi.String("grafana"),
-//				DefaultRoute: &oncall.IntegrationDefaultRouteArgs{},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Also it's possible to manage integration templates.
-//			// Check docs to see all available templates.
-//			_, err = oncall.NewIntegration(ctx, "integration_with_templates", &oncall.IntegrationArgs{
-//				Name:         pulumi.String("integration_with_templates"),
-//				Type:         pulumi.String("webhook"),
-//				DefaultRoute: &oncall.IntegrationDefaultRouteArgs{},
-//				Templates: &oncall.IntegrationTemplatesArgs{
-//					GroupingKey: pulumi.String("{{ payload.group_id }}"),
-//					Slack: &oncall.IntegrationTemplatesSlackArgs{
-//						Title:    pulumi.String("Slack title"),
-//						Message:  pulumi.String("This is example of multiline template\n{{ payload.message }}\n"),
-//						ImageUrl: pulumi.String("{{ payload.image_url }}"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // ```sh
@@ -71,13 +25,15 @@ type Integration struct {
 
 	// The Default route for all alerts from the given integration
 	DefaultRoute IntegrationDefaultRouteOutput `pulumi:"defaultRoute"`
-	// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	DynamicLabels pulumi.StringMapArrayOutput `pulumi:"dynamicLabels"`
+	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
 	Labels pulumi.StringMapArrayOutput `pulumi:"labels"`
 	// The link for using in an integrated tool.
 	Link pulumi.StringOutput `pulumi:"link"`
 	// The name of the service integration.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates IntegrationTemplatesPtrOutput `pulumi:"templates"`
@@ -129,13 +85,15 @@ func GetIntegration(ctx *pulumi.Context,
 type integrationState struct {
 	// The Default route for all alerts from the given integration
 	DefaultRoute *IntegrationDefaultRoute `pulumi:"defaultRoute"`
-	// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	DynamicLabels []map[string]string `pulumi:"dynamicLabels"`
+	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
 	Labels []map[string]string `pulumi:"labels"`
 	// The link for using in an integrated tool.
 	Link *string `pulumi:"link"`
 	// The name of the service integration.
 	Name *string `pulumi:"name"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId *string `pulumi:"teamId"`
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates *IntegrationTemplates `pulumi:"templates"`
@@ -146,13 +104,15 @@ type integrationState struct {
 type IntegrationState struct {
 	// The Default route for all alerts from the given integration
 	DefaultRoute IntegrationDefaultRoutePtrInput
-	// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	DynamicLabels pulumi.StringMapArrayInput
+	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
 	Labels pulumi.StringMapArrayInput
 	// The link for using in an integrated tool.
 	Link pulumi.StringPtrInput
 	// The name of the service integration.
 	Name pulumi.StringPtrInput
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrInput
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates IntegrationTemplatesPtrInput
@@ -167,11 +127,13 @@ func (IntegrationState) ElementType() reflect.Type {
 type integrationArgs struct {
 	// The Default route for all alerts from the given integration
 	DefaultRoute IntegrationDefaultRoute `pulumi:"defaultRoute"`
-	// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	DynamicLabels []map[string]string `pulumi:"dynamicLabels"`
+	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
 	Labels []map[string]string `pulumi:"labels"`
 	// The name of the service integration.
 	Name *string `pulumi:"name"`
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId *string `pulumi:"teamId"`
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates *IntegrationTemplates `pulumi:"templates"`
@@ -183,11 +145,13 @@ type integrationArgs struct {
 type IntegrationArgs struct {
 	// The Default route for all alerts from the given integration
 	DefaultRoute IntegrationDefaultRouteInput
-	// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+	// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+	DynamicLabels pulumi.StringMapArrayInput
+	// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
 	Labels pulumi.StringMapArrayInput
 	// The name of the service integration.
 	Name pulumi.StringPtrInput
-	// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrInput
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates IntegrationTemplatesPtrInput
@@ -287,7 +251,12 @@ func (o IntegrationOutput) DefaultRoute() IntegrationDefaultRouteOutput {
 	return o.ApplyT(func(v *Integration) IntegrationDefaultRouteOutput { return v.DefaultRoute }).(IntegrationDefaultRouteOutput)
 }
 
-// A list of string-to-string mappings. Each map must include one key named "key" and one key named "value".
+// A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
+func (o IntegrationOutput) DynamicLabels() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v *Integration) pulumi.StringMapArrayOutput { return v.DynamicLabels }).(pulumi.StringMapArrayOutput)
+}
+
+// A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `onCall.getLabel` datasource).
 func (o IntegrationOutput) Labels() pulumi.StringMapArrayOutput {
 	return o.ApplyT(func(v *Integration) pulumi.StringMapArrayOutput { return v.Labels }).(pulumi.StringMapArrayOutput)
 }
@@ -302,7 +271,7 @@ func (o IntegrationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Integration) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The ID of the OnCall team. To get one, create a team in Grafana, and navigate to the OnCall plugin (to sync the team with OnCall). You can then get the ID using the `onCall.getTeam` datasource.
+// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 func (o IntegrationOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Integration) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }
