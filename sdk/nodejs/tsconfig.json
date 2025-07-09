@@ -82,7 +82,7 @@
         "enterprise/roleAssignment.ts",
         "enterprise/roleAssignmentItem.ts",
         "enterprise/teamExternalGroup.ts",
-        "experimental/appsDashboardV1Alpha1.ts",
+        "experimental/appsDashboard.ts",
         "experimental/appsPlaylistV0Alpha1.ts",
         "experimental/index.ts",
         "fleetmanagement/collector.ts",
