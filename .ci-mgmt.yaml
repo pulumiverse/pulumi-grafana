@@ -24,6 +24,7 @@ publish:
 license:
   ignore:
     - github.com/apache/arrow/go/v15
+    - github.com/grafana/grafana # Is AGPL-3.0, but compatible with MPLv2.0
     - github.com/grafana/grafana-com-public-clients/go/gcom # Temporary while Grafana provider hasn't been upgraded yet
 toolVersions:
   go: "1.23.x"
