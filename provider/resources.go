@@ -38,6 +38,7 @@ const (
 	enterpriseMod            = "enterprise"
 	fleetManagementMod       = "fleetManagement"
 	frontendObservabilityMod = "frontendObservability"
+	k6Mod                    = "k6"
 	mlMod                    = "machineLearning"
 	oncallMod                = "onCall"
 	ossMod                   = "oss"
@@ -364,6 +365,23 @@ func Provider() tfbridge.ProviderInfo {
 
 			// Frontend Observability
 			"grafana_frontend_o11y_app": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"id": {Type: "string"},
+				},
+			},
+
+			// K6
+			"grafana_k6_project": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"id": {Type: "string"},
+				},
+			},
+			"grafana_k6_load_test": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"id": {Type: "string"},
+				},
+			},
+			"grafana_k6_project_limits": {
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"id": {Type: "string"},
 				},
@@ -766,6 +784,7 @@ func Provider() tfbridge.ProviderInfo {
 				"enterprise":           enterpriseMod,
 				"fleet_management":     fleetManagementMod,
 				"frontend_o11y":        frontendObservabilityMod,
+				"k6":                   k6Mod,
 				"machine_learning":     mlMod,
 				"oncall":               oncallMod,
 				"oss":                  ossMod,
