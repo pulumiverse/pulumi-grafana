@@ -4335,6 +4335,10 @@ if not MYPY:
         """
         Templated title of the message.
         """
+        tls_config: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]
+        """
+        Allows configuring TLS for the webhook notifier.
+        """
         uid: NotRequired[pulumi.Input[builtins.str]]
         """
         The UID of the contact point.
@@ -4356,6 +4360,7 @@ class ContactPointWebhookArgs:
                  message: Optional[pulumi.Input[builtins.str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  title: Optional[pulumi.Input[builtins.str]] = None,
+                 tls_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  uid: Optional[pulumi.Input[builtins.str]] = None):
         """
         :param pulumi.Input[builtins.str] url: The URL to send webhook requests to.
@@ -4369,6 +4374,7 @@ class ContactPointWebhookArgs:
         :param pulumi.Input[builtins.str] message: Custom message. You can use template variables.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
         :param pulumi.Input[builtins.str] title: Templated title of the message.
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] tls_config: Allows configuring TLS for the webhook notifier.
         :param pulumi.Input[builtins.str] uid: The UID of the contact point.
         """
         pulumi.set(__self__, "url", url)
@@ -4392,6 +4398,8 @@ class ContactPointWebhookArgs:
             pulumi.set(__self__, "settings", settings)
         if title is not None:
             pulumi.set(__self__, "title", title)
+        if tls_config is not None:
+            pulumi.set(__self__, "tls_config", tls_config)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
 
@@ -4526,6 +4534,18 @@ class ContactPointWebhookArgs:
     @title.setter
     def title(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "title", value)
+
+    @property
+    @pulumi.getter(name="tlsConfig")
+    def tls_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
+        """
+        Allows configuring TLS for the webhook notifier.
+        """
+        return pulumi.get(self, "tls_config")
+
+    @tls_config.setter
+    def tls_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "tls_config", value)
 
     @property
     @pulumi.getter

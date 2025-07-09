@@ -11,7 +11,10 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Experimental
 {
     /// <summary>
-    /// Manages Grafana playlists via the new Grafana App Platform API. This resource is currently **EXPERIMENTAL** and may be subject to change. It requires a development build of Grafana with specific feature flags enabled.
+    /// Manages Grafana playlists using the new Grafana APIs.
+    /// 
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/apis/)
     /// </summary>
     [GrafanaResourceType("grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1")]
     public partial class AppsPlaylistV0Alpha1 : global::Pulumi.CustomResource

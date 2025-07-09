@@ -103,6 +103,22 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         [Input("title")]
         public Input<string>? Title { get; set; }
 
+        [Input("tlsConfig")]
+        private InputMap<string>? _tlsConfig;
+
+        /// <summary>
+        /// Allows configuring TLS for the webhook notifier.
+        /// </summary>
+        public InputMap<string> TlsConfig
+        {
+            get => _tlsConfig ?? (_tlsConfig = new InputMap<string>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _tlsConfig = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
+        }
+
         /// <summary>
         /// The UID of the contact point.
         /// </summary>

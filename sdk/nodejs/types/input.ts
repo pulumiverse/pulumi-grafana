@@ -867,6 +867,10 @@ export interface ContactPointWebhook {
      */
     title?: pulumi.Input<string>;
     /**
+     * Allows configuring TLS for the webhook notifier.
+     */
+    tlsConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
      * The UID of the contact point.
      */
     uid?: pulumi.Input<string>;
@@ -3753,6 +3757,10 @@ export namespace alerting {
          * Templated title of the message.
          */
         title?: pulumi.Input<string>;
+        /**
+         * Allows configuring TLS for the webhook notifier.
+         */
+        tlsConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * The UID of the contact point.
          */

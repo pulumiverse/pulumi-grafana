@@ -142,7 +142,10 @@ class AppsPlaylistV0Alpha1(pulumi.CustomResource):
                  spec: Optional[pulumi.Input[Union['AppsPlaylistV0Alpha1SpecArgs', 'AppsPlaylistV0Alpha1SpecArgsDict']]] = None,
                  __props__=None):
         """
-        Manages Grafana playlists via the new Grafana App Platform API. This resource is currently **EXPERIMENTAL** and may be subject to change. It requires a development build of Grafana with specific feature flags enabled.
+        Manages Grafana playlists using the new Grafana APIs.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/apis/)
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -157,7 +160,10 @@ class AppsPlaylistV0Alpha1(pulumi.CustomResource):
                  args: Optional[AppsPlaylistV0Alpha1Args] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Grafana playlists via the new Grafana App Platform API. This resource is currently **EXPERIMENTAL** and may be subject to change. It requires a development build of Grafana with specific feature flags enabled.
+        Manages Grafana playlists using the new Grafana APIs.
+
+        * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/apis/)
 
         :param str resource_name: The name of the resource.
         :param AppsPlaylistV0Alpha1Args args: The arguments to use to populate this resource's properties.

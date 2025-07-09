@@ -3759,6 +3759,8 @@ type ContactPointWebhook struct {
 	Settings map[string]string `pulumi:"settings"`
 	// Templated title of the message.
 	Title *string `pulumi:"title"`
+	// Allows configuring TLS for the webhook notifier.
+	TlsConfig map[string]string `pulumi:"tlsConfig"`
 	// The UID of the contact point.
 	Uid *string `pulumi:"uid"`
 	// The URL to send webhook requests to.
@@ -3797,6 +3799,8 @@ type ContactPointWebhookArgs struct {
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// Templated title of the message.
 	Title pulumi.StringPtrInput `pulumi:"title"`
+	// Allows configuring TLS for the webhook notifier.
+	TlsConfig pulumi.StringMapInput `pulumi:"tlsConfig"`
 	// The UID of the contact point.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
 	// The URL to send webhook requests to.
@@ -3902,6 +3906,11 @@ func (o ContactPointWebhookOutput) Settings() pulumi.StringMapOutput {
 // Templated title of the message.
 func (o ContactPointWebhookOutput) Title() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointWebhook) *string { return v.Title }).(pulumi.StringPtrOutput)
+}
+
+// Allows configuring TLS for the webhook notifier.
+func (o ContactPointWebhookOutput) TlsConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ContactPointWebhook) map[string]string { return v.TlsConfig }).(pulumi.StringMapOutput)
 }
 
 // The UID of the contact point.
