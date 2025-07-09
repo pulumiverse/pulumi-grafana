@@ -140,6 +140,15 @@
                     ]
                 }
             },
+            "k6AccessToken": {
+                "type": "string",
+                "description": "The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.\n",
+                "secret": true
+            },
+            "k6Url": {
+                "type": "string",
+                "description": "The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.\n"
+            },
             "oncallAccessToken": {
                 "type": "string",
                 "description": "A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.\n",
@@ -2567,22 +2576,22 @@
             "properties": {
                 "awsAccountResourceId": {
                     "type": "string",
-                    "description": "The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.\n"
+                    "description": "The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.\n"
                 },
                 "customNamespaces": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:cloud/getProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace:getProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace"
                     },
-                    "description": "Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                    "description": "Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                 },
                 "disabledReason": {
                     "type": "string",
-                    "description": "When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n"
+                    "description": "When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n"
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the CloudWatch Scrape Job is enabled or not.\n"
+                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
                 },
                 "exportTags": {
                     "type": "boolean",
@@ -2599,22 +2608,22 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.\n"
+                    "description": "The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.\n"
                 },
                 "regionsSubsetOverrideUsed": {
                     "type": "boolean",
-                    "description": "When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.\n"
+                    "description": "When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.\n"
                 },
                 "roleArn": {
                     "type": "string",
-                    "description": "The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.\n"
+                    "description": "The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.\n"
                 },
                 "services": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:cloud/getProviderAwsCloudwatchScrapeJobsScrapeJobService:getProviderAwsCloudwatchScrapeJobsScrapeJobService"
                     },
-                    "description": "One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                    "description": "One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                 },
                 "stackId": {
                     "type": "string"
@@ -3016,6 +3025,54 @@
                 "value"
             ]
         },
+        "grafana:cloudProvider/AwsResourceMetadataScrapeJobService:AwsResourceMetadataScrapeJobService": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.\n"
+                },
+                "resourceDiscoveryTagFilters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:cloudProvider/AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter:AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter"
+                    },
+                    "description": "One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.\n"
+                },
+                "scrapeIntervalSeconds": {
+                    "type": "integer",
+                    "description": "The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "name",
+                        "scrapeIntervalSeconds"
+                    ]
+                }
+            }
+        },
+        "grafana:cloudProvider/AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter:AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "description": "The key of the tag filter.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value of the tag filter.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "value"
+            ]
+        },
         "grafana:cloudProvider/AzureCredentialAutoDiscoveryConfiguration:AzureCredentialAutoDiscoveryConfiguration": {
             "properties": {
                 "resourceTypeConfigurations": {
@@ -3245,22 +3302,22 @@
             "properties": {
                 "awsAccountResourceId": {
                     "type": "string",
-                    "description": "The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.\n"
+                    "description": "The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.\n"
                 },
                 "customNamespaces": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:cloudProvider/getAwsCloudwatchScrapeJobsScrapeJobCustomNamespace:getAwsCloudwatchScrapeJobsScrapeJobCustomNamespace"
                     },
-                    "description": "Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                    "description": "Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                 },
                 "disabledReason": {
                     "type": "string",
-                    "description": "When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n"
+                    "description": "When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n"
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the CloudWatch Scrape Job is enabled or not.\n"
+                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
                 },
                 "exportTags": {
                     "type": "boolean",
@@ -3277,22 +3334,22 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.\n"
+                    "description": "The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.\n"
                 },
                 "regionsSubsetOverrideUsed": {
                     "type": "boolean",
-                    "description": "When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.\n"
+                    "description": "When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.\n"
                 },
                 "roleArn": {
                     "type": "string",
-                    "description": "The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.\n"
+                    "description": "The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.\n"
                 },
                 "services": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:cloudProvider/getAwsCloudwatchScrapeJobsScrapeJobService:getAwsCloudwatchScrapeJobsScrapeJobService"
                     },
-                    "description": "One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                    "description": "One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                 },
                 "stackId": {
                     "type": "string"
@@ -8491,6 +8548,82 @@
                 }
             }
         },
+        "grafana:k6/getLoadTestsLoadTest:getLoadTestsLoadTest": {
+            "properties": {
+                "baselineTestRunId": {
+                    "type": "integer"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "projectId": {
+                    "type": "integer"
+                },
+                "script": {
+                    "type": "string"
+                },
+                "updated": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "baselineTestRunId",
+                "created",
+                "id",
+                "name",
+                "projectId",
+                "script",
+                "updated"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "grafana:k6/getProjectsProject:getProjectsProject": {
+            "properties": {
+                "created": {
+                    "type": "string"
+                },
+                "grafanaFolderUid": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updated": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "created",
+                "grafanaFolderUid",
+                "id",
+                "isDefault",
+                "name",
+                "updated"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "grafana:machineLearning/HolidayCustomPeriod:HolidayCustomPeriod": {
             "properties": {
                 "endTime": {
@@ -11176,6 +11309,15 @@
                 "type": "boolean",
                 "description": "Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.\n"
             },
+            "k6AccessToken": {
+                "type": "string",
+                "description": "The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.\n",
+                "secret": true
+            },
+            "k6Url": {
+                "type": "string",
+                "description": "The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.\n"
+            },
             "oncallAccessToken": {
                 "type": "string",
                 "description": "A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.\n",
@@ -11321,6 +11463,15 @@
                         "GRAFANA_INSECURE_SKIP_VERIFY"
                     ]
                 }
+            },
+            "k6AccessToken": {
+                "type": "string",
+                "description": "The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.\n",
+                "secret": true
+            },
+            "k6Url": {
+                "type": "string",
+                "description": "The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.\n"
             },
             "oncallAccessToken": {
                 "type": "string",
@@ -13088,15 +13239,15 @@
                     "items": {
                         "$ref": "#/types/grafana:cloud/ProviderAwsCloudwatchScrapeJobCustomNamespace:ProviderAwsCloudwatchScrapeJobCustomNamespace"
                     },
-                    "description": "Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                    "description": "Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                 },
                 "disabledReason": {
                     "type": "string",
-                    "description": "When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n"
+                    "description": "When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n"
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the CloudWatch Scrape Job is enabled or not.\n"
+                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
                 },
                 "exportTags": {
                     "type": "boolean",
@@ -13117,7 +13268,7 @@
                     "items": {
                         "$ref": "#/types/grafana:cloud/ProviderAwsCloudwatchScrapeJobService:ProviderAwsCloudwatchScrapeJobService"
                     },
-                    "description": "One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                    "description": "One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                 },
                 "stackId": {
                     "type": "string"
@@ -13150,11 +13301,11 @@
                     "items": {
                         "$ref": "#/types/grafana:cloud/ProviderAwsCloudwatchScrapeJobCustomNamespace:ProviderAwsCloudwatchScrapeJobCustomNamespace"
                     },
-                    "description": "Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                    "description": "Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the CloudWatch Scrape Job is enabled or not.\n"
+                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
                 },
                 "exportTags": {
                     "type": "boolean",
@@ -13175,7 +13326,7 @@
                     "items": {
                         "$ref": "#/types/grafana:cloud/ProviderAwsCloudwatchScrapeJobService:ProviderAwsCloudwatchScrapeJobService"
                     },
-                    "description": "One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                    "description": "One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                 },
                 "stackId": {
                     "type": "string"
@@ -13204,15 +13355,15 @@
                         "items": {
                             "$ref": "#/types/grafana:cloud/ProviderAwsCloudwatchScrapeJobCustomNamespace:ProviderAwsCloudwatchScrapeJobCustomNamespace"
                         },
-                        "description": "Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                        "description": "Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                     },
                     "disabledReason": {
                         "type": "string",
-                        "description": "When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n"
+                        "description": "When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n"
                     },
                     "enabled": {
                         "type": "boolean",
-                        "description": "Whether the CloudWatch Scrape Job is enabled or not.\n"
+                        "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
                     },
                     "exportTags": {
                         "type": "boolean",
@@ -13233,7 +13384,7 @@
                         "items": {
                             "$ref": "#/types/grafana:cloud/ProviderAwsCloudwatchScrapeJobService:ProviderAwsCloudwatchScrapeJobService"
                         },
-                        "description": "One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                        "description": "One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                     },
                     "stackId": {
                         "type": "string"
@@ -14329,15 +14480,15 @@
                     "items": {
                         "$ref": "#/types/grafana:cloudProvider/AwsCloudwatchScrapeJobCustomNamespace:AwsCloudwatchScrapeJobCustomNamespace"
                     },
-                    "description": "Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                    "description": "Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                 },
                 "disabledReason": {
                     "type": "string",
-                    "description": "When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n"
+                    "description": "When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n"
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the CloudWatch Scrape Job is enabled or not.\n"
+                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
                 },
                 "exportTags": {
                     "type": "boolean",
@@ -14358,7 +14509,7 @@
                     "items": {
                         "$ref": "#/types/grafana:cloudProvider/AwsCloudwatchScrapeJobService:AwsCloudwatchScrapeJobService"
                     },
-                    "description": "One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                    "description": "One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                 },
                 "stackId": {
                     "type": "string"
@@ -14391,11 +14542,11 @@
                     "items": {
                         "$ref": "#/types/grafana:cloudProvider/AwsCloudwatchScrapeJobCustomNamespace:AwsCloudwatchScrapeJobCustomNamespace"
                     },
-                    "description": "Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                    "description": "Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the CloudWatch Scrape Job is enabled or not.\n"
+                    "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
                 },
                 "exportTags": {
                     "type": "boolean",
@@ -14416,7 +14567,7 @@
                     "items": {
                         "$ref": "#/types/grafana:cloudProvider/AwsCloudwatchScrapeJobService:AwsCloudwatchScrapeJobService"
                     },
-                    "description": "One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                    "description": "One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                 },
                 "stackId": {
                     "type": "string"
@@ -14445,15 +14596,15 @@
                         "items": {
                             "$ref": "#/types/grafana:cloudProvider/AwsCloudwatchScrapeJobCustomNamespace:AwsCloudwatchScrapeJobCustomNamespace"
                         },
-                        "description": "Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                        "description": "Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                     },
                     "disabledReason": {
                         "type": "string",
-                        "description": "When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n"
+                        "description": "When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n"
                     },
                     "enabled": {
                         "type": "boolean",
-                        "description": "Whether the CloudWatch Scrape Job is enabled or not.\n"
+                        "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n"
                     },
                     "exportTags": {
                         "type": "boolean",
@@ -14474,7 +14625,7 @@
                         "items": {
                             "$ref": "#/types/grafana:cloudProvider/AwsCloudwatchScrapeJobService:AwsCloudwatchScrapeJobService"
                         },
-                        "description": "One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                        "description": "One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                     },
                     "stackId": {
                         "type": "string"
@@ -14494,6 +14645,145 @@
                     "type": "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob"
                 }
             ]
+        },
+        "grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = grafana.cloud.getStack({\n    slug: \"gcloudstacktest\",\n});\nconst testGetRole = aws.iam.getRole({\n    name: \"my-role\",\n});\nconst testAwsAccount = new grafana.cloudprovider.AwsAccount(\"test\", {\n    stackId: test.then(test =\u003e test.id),\n    roleArn: testGetRole.then(testGetRole =\u003e testGetRole.arn),\n    regions: [\n        \"us-east-1\",\n        \"us-east-2\",\n        \"us-west-1\",\n    ],\n});\nconst testAwsResourceMetadataScrapeJob = new grafana.cloudprovider.AwsResourceMetadataScrapeJob(\"test\", {\n    stackId: test.then(test =\u003e test.id),\n    name: \"my-aws-resource-metadata-scrape-job\",\n    awsAccountResourceId: testAwsAccount.resourceId,\n    services: [{\n        name: \"AWS/EC2\",\n        scrapeIntervalSeconds: 300,\n        resourceDiscoveryTagFilters: [{\n            key: \"k8s.io/cluster-autoscaler/enabled\",\n            value: \"true\",\n        }],\n    }],\n    staticLabels: {\n        label1: \"value1\",\n        label2: \"value2\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest = grafana.cloud.get_stack(slug=\"gcloudstacktest\")\ntest_get_role = aws.iam.get_role(name=\"my-role\")\ntest_aws_account = grafana.cloud_provider.AwsAccount(\"test\",\n    stack_id=test.id,\n    role_arn=test_get_role.arn,\n    regions=[\n        \"us-east-1\",\n        \"us-east-2\",\n        \"us-west-1\",\n    ])\ntest_aws_resource_metadata_scrape_job = grafana.cloud_provider.AwsResourceMetadataScrapeJob(\"test\",\n    stack_id=test.id,\n    name=\"my-aws-resource-metadata-scrape-job\",\n    aws_account_resource_id=test_aws_account.resource_id,\n    services=[{\n        \"name\": \"AWS/EC2\",\n        \"scrape_interval_seconds\": 300,\n        \"resource_discovery_tag_filters\": [{\n            \"key\": \"k8s.io/cluster-autoscaler/enabled\",\n            \"value\": \"true\",\n        }],\n    }],\n    static_labels={\n        \"label1\": \"value1\",\n        \"label2\": \"value2\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = Grafana.Cloud.GetStack.Invoke(new()\n    {\n        Slug = \"gcloudstacktest\",\n    });\n\n    var testGetRole = Aws.Iam.GetRole.Invoke(new()\n    {\n        Name = \"my-role\",\n    });\n\n    var testAwsAccount = new Grafana.CloudProvider.AwsAccount(\"test\", new()\n    {\n        StackId = test.Apply(getStackResult =\u003e getStackResult.Id),\n        RoleArn = testGetRole.Apply(getRoleResult =\u003e getRoleResult.Arn),\n        Regions = new[]\n        {\n            \"us-east-1\",\n            \"us-east-2\",\n            \"us-west-1\",\n        },\n    });\n\n    var testAwsResourceMetadataScrapeJob = new Grafana.CloudProvider.AwsResourceMetadataScrapeJob(\"test\", new()\n    {\n        StackId = test.Apply(getStackResult =\u003e getStackResult.Id),\n        Name = \"my-aws-resource-metadata-scrape-job\",\n        AwsAccountResourceId = testAwsAccount.ResourceId,\n        Services = new[]\n        {\n            new Grafana.CloudProvider.Inputs.AwsResourceMetadataScrapeJobServiceArgs\n            {\n                Name = \"AWS/EC2\",\n                ScrapeIntervalSeconds = 300,\n                ResourceDiscoveryTagFilters = new[]\n                {\n                    new Grafana.CloudProvider.Inputs.AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs\n                    {\n                        Key = \"k8s.io/cluster-autoscaler/enabled\",\n                        Value = \"true\",\n                    },\n                },\n            },\n        },\n        StaticLabels = \n        {\n            { \"label1\", \"value1\" },\n            { \"label2\", \"value2\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloudprovider\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := cloud.LookupStack(ctx, \u0026cloud.LookupStackArgs{\n\t\t\tSlug: \"gcloudstacktest\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestGetRole, err := iam.LookupRole(ctx, \u0026iam.LookupRoleArgs{\n\t\t\tName: \"my-role\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestAwsAccount, err := cloudprovider.NewAwsAccount(ctx, \"test\", \u0026cloudprovider.AwsAccountArgs{\n\t\t\tStackId: pulumi.String(test.Id),\n\t\t\tRoleArn: pulumi.String(testGetRole.Arn),\n\t\t\tRegions: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"us-east-1\"),\n\t\t\t\tpulumi.String(\"us-east-2\"),\n\t\t\t\tpulumi.String(\"us-west-1\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudprovider.NewAwsResourceMetadataScrapeJob(ctx, \"test\", \u0026cloudprovider.AwsResourceMetadataScrapeJobArgs{\n\t\t\tStackId:              pulumi.String(test.Id),\n\t\t\tName:                 pulumi.String(\"my-aws-resource-metadata-scrape-job\"),\n\t\t\tAwsAccountResourceId: testAwsAccount.ResourceId,\n\t\t\tServices: cloudprovider.AwsResourceMetadataScrapeJobServiceArray{\n\t\t\t\t\u0026cloudprovider.AwsResourceMetadataScrapeJobServiceArgs{\n\t\t\t\t\tName:                  pulumi.String(\"AWS/EC2\"),\n\t\t\t\t\tScrapeIntervalSeconds: pulumi.Int(300),\n\t\t\t\t\tResourceDiscoveryTagFilters: cloudprovider.AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArray{\n\t\t\t\t\t\t\u0026cloudprovider.AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs{\n\t\t\t\t\t\t\tKey:   pulumi.String(\"k8s.io/cluster-autoscaler/enabled\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"true\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tStaticLabels: pulumi.StringMap{\n\t\t\t\t\"label1\": pulumi.String(\"value1\"),\n\t\t\t\t\"label2\": pulumi.String(\"value2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetStackArgs;\nimport com.pulumi.aws.iam.IamFunctions;\nimport com.pulumi.aws.iam.inputs.GetRoleArgs;\nimport com.pulumi.grafana.cloudProvider.AwsAccount;\nimport com.pulumi.grafana.cloudProvider.AwsAccountArgs;\nimport com.pulumi.grafana.cloudProvider.AwsResourceMetadataScrapeJob;\nimport com.pulumi.grafana.cloudProvider.AwsResourceMetadataScrapeJobArgs;\nimport com.pulumi.grafana.cloudProvider.inputs.AwsResourceMetadataScrapeJobServiceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = CloudFunctions.getStack(GetStackArgs.builder()\n            .slug(\"gcloudstacktest\")\n            .build());\n\n        final var testGetRole = IamFunctions.getRole(GetRoleArgs.builder()\n            .name(\"my-role\")\n            .build());\n\n        var testAwsAccount = new AwsAccount(\"testAwsAccount\", AwsAccountArgs.builder()\n            .stackId(test.id())\n            .roleArn(testGetRole.arn())\n            .regions(            \n                \"us-east-1\",\n                \"us-east-2\",\n                \"us-west-1\")\n            .build());\n\n        var testAwsResourceMetadataScrapeJob = new AwsResourceMetadataScrapeJob(\"testAwsResourceMetadataScrapeJob\", AwsResourceMetadataScrapeJobArgs.builder()\n            .stackId(test.id())\n            .name(\"my-aws-resource-metadata-scrape-job\")\n            .awsAccountResourceId(testAwsAccount.resourceId())\n            .services(AwsResourceMetadataScrapeJobServiceArgs.builder()\n                .name(\"AWS/EC2\")\n                .scrapeIntervalSeconds(300)\n                .resourceDiscoveryTagFilters(AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs.builder()\n                    .key(\"k8s.io/cluster-autoscaler/enabled\")\n                    .value(\"true\")\n                    .build())\n                .build())\n            .staticLabels(Map.ofEntries(\n                Map.entry(\"label1\", \"value1\"),\n                Map.entry(\"label2\", \"value2\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testAwsAccount:\n    type: grafana:cloudProvider:AwsAccount\n    name: test\n    properties:\n      stackId: ${test.id}\n      roleArn: ${testGetRole.arn}\n      regions:\n        - us-east-1\n        - us-east-2\n        - us-west-1\n  testAwsResourceMetadataScrapeJob:\n    type: grafana:cloudProvider:AwsResourceMetadataScrapeJob\n    name: test\n    properties:\n      stackId: ${test.id}\n      name: my-aws-resource-metadata-scrape-job\n      awsAccountResourceId: ${testAwsAccount.resourceId}\n      services:\n        - name: AWS/EC2\n          scrapeIntervalSeconds: 300\n          resourceDiscoveryTagFilters:\n            - key: k8s.io/cluster-autoscaler/enabled\n              value: 'true'\n      staticLabels:\n        label1: value1\n        label2: value2\nvariables:\n  test:\n    fn::invoke:\n      function: grafana:cloud:getStack\n      arguments:\n        slug: gcloudstacktest\n  testGetRole:\n    fn::invoke:\n      function: aws:iam:getRole\n      arguments:\n        name: my-role\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob name \"{{ stack_id }}:{{ name }}\"\n```\n\n",
+            "properties": {
+                "awsAccountResourceId": {
+                    "type": "string",
+                    "description": "The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.\n"
+                },
+                "disabledReason": {
+                    "type": "string",
+                    "description": "When the AWS Resource Metadata Scrape Job is disabled, this will show the reason that it is in that state.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the AWS Resource Metadata Scrape Job is enabled or not.\n"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "regionsSubsetOverrides": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.\n"
+                },
+                "services": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:cloudProvider/AwsResourceMetadataScrapeJobService:AwsResourceMetadataScrapeJobService"
+                    },
+                    "description": "One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                },
+                "stackId": {
+                    "type": "string"
+                },
+                "staticLabels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "A set of static labels to add to all metrics exported by this scrape job.\n"
+                }
+            },
+            "required": [
+                "awsAccountResourceId",
+                "disabledReason",
+                "enabled",
+                "name",
+                "regionsSubsetOverrides",
+                "stackId",
+                "staticLabels"
+            ],
+            "inputProperties": {
+                "awsAccountResourceId": {
+                    "type": "string",
+                    "description": "The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the AWS Resource Metadata Scrape Job is enabled or not.\n"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "regionsSubsetOverrides": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.\n"
+                },
+                "services": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:cloudProvider/AwsResourceMetadataScrapeJobService:AwsResourceMetadataScrapeJobService"
+                    },
+                    "description": "One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                },
+                "stackId": {
+                    "type": "string"
+                },
+                "staticLabels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "A set of static labels to add to all metrics exported by this scrape job.\n"
+                }
+            },
+            "requiredInputs": [
+                "awsAccountResourceId",
+                "stackId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AwsResourceMetadataScrapeJob resources.\n",
+                "properties": {
+                    "awsAccountResourceId": {
+                        "type": "string",
+                        "description": "The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.\n"
+                    },
+                    "disabledReason": {
+                        "type": "string",
+                        "description": "When the AWS Resource Metadata Scrape Job is disabled, this will show the reason that it is in that state.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Whether the AWS Resource Metadata Scrape Job is enabled or not.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "regionsSubsetOverrides": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.\n"
+                    },
+                    "services": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:cloudProvider/AwsResourceMetadataScrapeJobService:AwsResourceMetadataScrapeJobService"
+                        },
+                        "description": "One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                    },
+                    "stackId": {
+                        "type": "string"
+                    },
+                    "staticLabels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "A set of static labels to add to all metrics exported by this scrape job.\n"
+                    }
+                },
+                "type": "object"
+            }
         },
         "grafana:cloudProvider/azureCredential:AzureCredential": {
             "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  test:\n    type: grafana:cloudProvider:AzureCredential\n    properties:\n      stackId: '1'\n      name: test-name\n      clientId: my-client-id\n      clientSecret: my-client-secret\n      tenantId: my-tenant-id\n      resourceTagsToAddToMetrics:\n        - tag1\n        - tag2\n      resourceDiscoveryTagFilters:\n        - key: key-1\n          value: value-1\n        - key: key-2\n          value: value-2\n      autoDiscoveryConfigurations:\n        - subscriptionId: my-subscription_id\n          resourceTypeConfigurations:\n            - resourceTypeName: Microsoft.App/containerApps\n              metricConfiguration:\n                - name: TotalCoresQuotaUsed\n            - resourceTypeName: Microsoft.Storage/storageAccounts/tableServices\n              metricConfiguration:\n                - name: Availability\n                  dimensions:\n                    - GeoType\n                    - ApiName\n                  aggregations:\n                    - Average\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:cloudProvider/azureCredential:AzureCredential name \"{{ stack_id }}:{{ resource_id }}\"\n```\n\n",
@@ -23524,6 +23814,344 @@
             ],
             "deprecationMessage": "grafana.index/user.User has been deprecated in favor of grafana.oss/user.User"
         },
+        "grafana:k6/installation:Installation": {
+            "description": "Sets up the k6 App on a Grafana Cloud instance and generates a token. \nOnce a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install k6.\nThis resource cannot be imported but it can be used on an existing k6 App installation without issues.\n\n**Note that this resource must be used on a provider configured with Grafana Cloud credentials.**\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/testing/k6/)\n\nRequired access policy scopes:\n\n* stacks:read\n* stacks:write\n* subscriptions:read\n* orgs:read\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst config = new pulumi.Config();\n// Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\nconst cloudAccessPolicyToken = config.requireObject\u003cany\u003e(\"cloudAccessPolicyToken\");\nconst stackSlug = config.requireObject\u003cany\u003e(\"stackSlug\");\nconst cloudRegion = config.get(\"cloudRegion\") || \"us\";\nconst k6Stack = new grafana.cloud.Stack(\"k6_stack\", {\n    name: stackSlug,\n    slug: stackSlug,\n    regionSlug: cloudRegion,\n});\n// Step 2: Create a Service Account and a token to install the k6 App\nconst k6Sa = new grafana.cloud.StackServiceAccount(\"k6_sa\", {\n    stackSlug: stackSlug,\n    name: `${stackSlug}-k6-app`,\n    role: \"Admin\",\n    isDisabled: false,\n});\nconst k6SaToken = new grafana.cloud.StackServiceAccountToken(\"k6_sa_token\", {\n    stackSlug: stackSlug,\n    name: `${stackSlug}-k6-app-token`,\n    serviceAccountId: k6Sa.id,\n});\n// Step 3: Install the k6 App on the stack\nconst k6Installation = new grafana.k6.Installation(\"k6_installation\", {\n    cloudAccessPolicyToken: cloudAccessPolicyToken,\n    stackId: k6Stack.id,\n    grafanaSaToken: k6SaToken.key,\n    grafanaUser: \"admin\",\n});\nconst myK6Project = new grafana.k6.Project(\"my_k6_project\", {name: \"k6 Project created with TF\"});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nconfig = pulumi.Config()\n# Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\ncloud_access_policy_token = config.require_object(\"cloudAccessPolicyToken\")\nstack_slug = config.require_object(\"stackSlug\")\ncloud_region = config.get(\"cloudRegion\")\nif cloud_region is None:\n    cloud_region = \"us\"\nk6_stack = grafana.cloud.Stack(\"k6_stack\",\n    name=stack_slug,\n    slug=stack_slug,\n    region_slug=cloud_region)\n# Step 2: Create a Service Account and a token to install the k6 App\nk6_sa = grafana.cloud.StackServiceAccount(\"k6_sa\",\n    stack_slug=stack_slug,\n    name=f\"{stack_slug}-k6-app\",\n    role=\"Admin\",\n    is_disabled=False)\nk6_sa_token = grafana.cloud.StackServiceAccountToken(\"k6_sa_token\",\n    stack_slug=stack_slug,\n    name=f\"{stack_slug}-k6-app-token\",\n    service_account_id=k6_sa.id)\n# Step 3: Install the k6 App on the stack\nk6_installation = grafana.k6.Installation(\"k6_installation\",\n    cloud_access_policy_token=cloud_access_policy_token,\n    stack_id=k6_stack.id,\n    grafana_sa_token=k6_sa_token.key,\n    grafana_user=\"admin\")\nmy_k6_project = grafana.k6.Project(\"my_k6_project\", name=\"k6 Project created with TF\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    // Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\n    var cloudAccessPolicyToken = config.RequireObject\u003cdynamic\u003e(\"cloudAccessPolicyToken\");\n    var stackSlug = config.RequireObject\u003cdynamic\u003e(\"stackSlug\");\n    var cloudRegion = config.Get(\"cloudRegion\") ?? \"us\";\n    var k6Stack = new Grafana.Cloud.Stack(\"k6_stack\", new()\n    {\n        Name = stackSlug,\n        Slug = stackSlug,\n        RegionSlug = cloudRegion,\n    });\n\n    // Step 2: Create a Service Account and a token to install the k6 App\n    var k6Sa = new Grafana.Cloud.StackServiceAccount(\"k6_sa\", new()\n    {\n        StackSlug = stackSlug,\n        Name = $\"{stackSlug}-k6-app\",\n        Role = \"Admin\",\n        IsDisabled = false,\n    });\n\n    var k6SaToken = new Grafana.Cloud.StackServiceAccountToken(\"k6_sa_token\", new()\n    {\n        StackSlug = stackSlug,\n        Name = $\"{stackSlug}-k6-app-token\",\n        ServiceAccountId = k6Sa.Id,\n    });\n\n    // Step 3: Install the k6 App on the stack\n    var k6Installation = new Grafana.K6.Installation(\"k6_installation\", new()\n    {\n        CloudAccessPolicyToken = cloudAccessPolicyToken,\n        StackId = k6Stack.Id,\n        GrafanaSaToken = k6SaToken.Key,\n        GrafanaUser = \"admin\",\n    });\n\n    var myK6Project = new Grafana.K6.Project(\"my_k6_project\", new()\n    {\n        Name = \"k6 Project created with TF\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\t// Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\n\t\tcloudAccessPolicyToken := cfg.RequireObject(\"cloudAccessPolicyToken\")\n\t\tstackSlug := cfg.RequireObject(\"stackSlug\")\n\t\tcloudRegion := \"us\"\n\t\tif param := cfg.Get(\"cloudRegion\"); param != \"\" {\n\t\t\tcloudRegion = param\n\t\t}\n\t\tk6Stack, err := cloud.NewStack(ctx, \"k6_stack\", \u0026cloud.StackArgs{\n\t\t\tName:       pulumi.Any(stackSlug),\n\t\t\tSlug:       pulumi.Any(stackSlug),\n\t\t\tRegionSlug: pulumi.String(cloudRegion),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Step 2: Create a Service Account and a token to install the k6 App\n\t\tk6Sa, err := cloud.NewStackServiceAccount(ctx, \"k6_sa\", \u0026cloud.StackServiceAccountArgs{\n\t\t\tStackSlug:  pulumi.Any(stackSlug),\n\t\t\tName:       pulumi.Sprintf(\"%v-k6-app\", stackSlug),\n\t\t\tRole:       pulumi.String(\"Admin\"),\n\t\t\tIsDisabled: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tk6SaToken, err := cloud.NewStackServiceAccountToken(ctx, \"k6_sa_token\", \u0026cloud.StackServiceAccountTokenArgs{\n\t\t\tStackSlug:        pulumi.Any(stackSlug),\n\t\t\tName:             pulumi.Sprintf(\"%v-k6-app-token\", stackSlug),\n\t\t\tServiceAccountId: k6Sa.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Step 3: Install the k6 App on the stack\n\t\t_, err = k6.NewInstallation(ctx, \"k6_installation\", \u0026k6.InstallationArgs{\n\t\t\tCloudAccessPolicyToken: pulumi.Any(cloudAccessPolicyToken),\n\t\t\tStackId:                k6Stack.ID(),\n\t\t\tGrafanaSaToken:         k6SaToken.Key,\n\t\t\tGrafanaUser:            pulumi.String(\"admin\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewProject(ctx, \"my_k6_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"k6 Project created with TF\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.Stack;\nimport com.pulumi.grafana.cloud.StackArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccount;\nimport com.pulumi.grafana.cloud.StackServiceAccountArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccountToken;\nimport com.pulumi.grafana.cloud.StackServiceAccountTokenArgs;\nimport com.pulumi.grafana.k6.Installation;\nimport com.pulumi.grafana.k6.InstallationArgs;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var cloudAccessPolicyToken = config.get(\"cloudAccessPolicyToken\");\n        final var stackSlug = config.get(\"stackSlug\");\n        final var cloudRegion = config.get(\"cloudRegion\").orElse(\"us\");\n        var k6Stack = new Stack(\"k6Stack\", StackArgs.builder()\n            .name(stackSlug)\n            .slug(stackSlug)\n            .regionSlug(cloudRegion)\n            .build());\n\n        // Step 2: Create a Service Account and a token to install the k6 App\n        var k6Sa = new StackServiceAccount(\"k6Sa\", StackServiceAccountArgs.builder()\n            .stackSlug(stackSlug)\n            .name(String.format(\"%s-k6-app\", stackSlug))\n            .role(\"Admin\")\n            .isDisabled(false)\n            .build());\n\n        var k6SaToken = new StackServiceAccountToken(\"k6SaToken\", StackServiceAccountTokenArgs.builder()\n            .stackSlug(stackSlug)\n            .name(String.format(\"%s-k6-app-token\", stackSlug))\n            .serviceAccountId(k6Sa.id())\n            .build());\n\n        // Step 3: Install the k6 App on the stack\n        var k6Installation = new Installation(\"k6Installation\", InstallationArgs.builder()\n            .cloudAccessPolicyToken(cloudAccessPolicyToken)\n            .stackId(k6Stack.id())\n            .grafanaSaToken(k6SaToken.key())\n            .grafanaUser(\"admin\")\n            .build());\n\n        var myK6Project = new Project(\"myK6Project\", ProjectArgs.builder()\n            .name(\"k6 Project created with TF\")\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  cloudAccessPolicyToken:\n    type: dynamic\n  stackSlug:\n    type: dynamic\n  cloudRegion:\n    type: string\n    default: us\nresources:\n  k6Stack:\n    type: grafana:cloud:Stack\n    name: k6_stack\n    properties:\n      name: ${stackSlug}\n      slug: ${stackSlug}\n      regionSlug: ${cloudRegion}\n  # Step 2: Create a Service Account and a token to install the k6 App\n  k6Sa:\n    type: grafana:cloud:StackServiceAccount\n    name: k6_sa\n    properties:\n      stackSlug: ${stackSlug}\n      name: ${stackSlug}-k6-app\n      role: Admin\n      isDisabled: false\n  k6SaToken:\n    type: grafana:cloud:StackServiceAccountToken\n    name: k6_sa_token\n    properties:\n      stackSlug: ${stackSlug}\n      name: ${stackSlug}-k6-app-token\n      serviceAccountId: ${k6Sa.id}\n  # Step 3: Install the k6 App on the stack\n  k6Installation:\n    type: grafana:k6:Installation\n    name: k6_installation\n    properties:\n      cloudAccessPolicyToken: ${cloudAccessPolicyToken}\n      stackId: ${k6Stack.id}\n      grafanaSaToken: ${k6SaToken.key}\n      grafanaUser: admin\n  myK6Project:\n    type: grafana:k6:Project\n    name: my_k6_project\n    properties:\n      name: k6 Project created with TF\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "cloudAccessPolicyToken": {
+                    "type": "string",
+                    "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).\n",
+                    "secret": true
+                },
+                "grafanaSaToken": {
+                    "type": "string",
+                    "description": "The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.\n",
+                    "secret": true
+                },
+                "grafanaUser": {
+                    "type": "string",
+                    "description": "The user to use for the installation.\n"
+                },
+                "k6AccessToken": {
+                    "type": "string",
+                    "description": "Generated token to access the k6 API.\n",
+                    "secret": true
+                },
+                "k6Organization": {
+                    "type": "string",
+                    "description": "The identifier of the k6 organization.\n"
+                },
+                "stackId": {
+                    "type": "string",
+                    "description": "The identifier of the stack to install k6 on.\n"
+                }
+            },
+            "required": [
+                "cloudAccessPolicyToken",
+                "grafanaSaToken",
+                "grafanaUser",
+                "k6AccessToken",
+                "k6Organization",
+                "stackId"
+            ],
+            "inputProperties": {
+                "cloudAccessPolicyToken": {
+                    "type": "string",
+                    "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).\n",
+                    "secret": true,
+                    "willReplaceOnChanges": true
+                },
+                "grafanaSaToken": {
+                    "type": "string",
+                    "description": "The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.\n",
+                    "secret": true,
+                    "willReplaceOnChanges": true
+                },
+                "grafanaUser": {
+                    "type": "string",
+                    "description": "The user to use for the installation.\n",
+                    "willReplaceOnChanges": true
+                },
+                "stackId": {
+                    "type": "string",
+                    "description": "The identifier of the stack to install k6 on.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "cloudAccessPolicyToken",
+                "grafanaSaToken",
+                "grafanaUser",
+                "stackId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Installation resources.\n",
+                "properties": {
+                    "cloudAccessPolicyToken": {
+                        "type": "string",
+                        "description": "The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).\n",
+                        "secret": true,
+                        "willReplaceOnChanges": true
+                    },
+                    "grafanaSaToken": {
+                        "type": "string",
+                        "description": "The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.\n",
+                        "secret": true,
+                        "willReplaceOnChanges": true
+                    },
+                    "grafanaUser": {
+                        "type": "string",
+                        "description": "The user to use for the installation.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "k6AccessToken": {
+                        "type": "string",
+                        "description": "Generated token to access the k6 API.\n",
+                        "secret": true
+                    },
+                    "k6Organization": {
+                        "type": "string",
+                        "description": "The identifier of the k6 organization.\n"
+                    },
+                    "stackId": {
+                        "type": "string",
+                        "description": "The identifier of the stack to install k6 on.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:k6/loadTest:LoadTest": {
+            "description": "Manages a k6 load test.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst loadTestProject = new grafana.k6.Project(\"load_test_project\", {name: \"Terraform Load Test Project\"});\nconst testLoadTest = new grafana.k6.LoadTest(\"test_load_test\", {\n    projectId: loadTestProject.id,\n    name: \"Terraform Test Load Test\",\n    script: `export default function() {\n  console.log('Hello from k6!');\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nload_test_project = grafana.k6.Project(\"load_test_project\", name=\"Terraform Load Test Project\")\ntest_load_test = grafana.k6.LoadTest(\"test_load_test\",\n    project_id=load_test_project.id,\n    name=\"Terraform Test Load Test\",\n    script=\"\"\"export default function() {\n  console.log('Hello from k6!');\n}\n\"\"\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var loadTestProject = new Grafana.K6.Project(\"load_test_project\", new()\n    {\n        Name = \"Terraform Load Test Project\",\n    });\n\n    var testLoadTest = new Grafana.K6.LoadTest(\"test_load_test\", new()\n    {\n        ProjectId = loadTestProject.Id,\n        Name = \"Terraform Test Load Test\",\n        Script = @\"export default function() {\n  console.log('Hello from k6!');\n}\n\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tloadTestProject, err := k6.NewProject(ctx, \"load_test_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Load Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewLoadTest(ctx, \"test_load_test\", \u0026k6.LoadTestArgs{\n\t\t\tProjectId: loadTestProject.ID(),\n\t\t\tName:      pulumi.String(\"Terraform Test Load Test\"),\n\t\t\tScript:    pulumi.String(\"export default function() {\\n  console.log('Hello from k6!');\\n}\\n\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.LoadTest;\nimport com.pulumi.grafana.k6.LoadTestArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var loadTestProject = new Project(\"loadTestProject\", ProjectArgs.builder()\n            .name(\"Terraform Load Test Project\")\n            .build());\n\n        var testLoadTest = new LoadTest(\"testLoadTest\", LoadTestArgs.builder()\n            .projectId(loadTestProject.id())\n            .name(\"Terraform Test Load Test\")\n            .script(\"\"\"\nexport default function() {\n  console.log('Hello from k6!');\n}\n            \"\"\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  loadTestProject:\n    type: grafana:k6:Project\n    name: load_test_project\n    properties:\n      name: Terraform Load Test Project\n  testLoadTest:\n    type: grafana:k6:LoadTest\n    name: test_load_test\n    properties:\n      projectId: ${loadTestProject.id}\n      name: Terraform Test Load Test\n      script: |\n        export default function() {\n          console.log('Hello from k6!');\n        }\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:k6/loadTest:LoadTest name \"{{ id }}\"\n```\n\n",
+            "properties": {
+                "baselineTestRunId": {
+                    "type": "integer",
+                    "description": "Identifier of a baseline test run used for results comparison.\n"
+                },
+                "created": {
+                    "type": "string",
+                    "description": "The date when the load test was created.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Human-friendly identifier of the load test.\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "The identifier of the project this load test belongs to.\n"
+                },
+                "script": {
+                    "type": "string",
+                    "description": "The k6 test script content. Can be provided inline or via the `file()` function.\n"
+                },
+                "updated": {
+                    "type": "string",
+                    "description": "The date when the load test was last updated.\n"
+                }
+            },
+            "required": [
+                "created",
+                "name",
+                "projectId",
+                "script",
+                "updated"
+            ],
+            "inputProperties": {
+                "baselineTestRunId": {
+                    "type": "integer",
+                    "description": "Identifier of a baseline test run used for results comparison.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Human-friendly identifier of the load test.\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "The identifier of the project this load test belongs to.\n"
+                },
+                "script": {
+                    "type": "string",
+                    "description": "The k6 test script content. Can be provided inline or via the `file()` function.\n"
+                }
+            },
+            "requiredInputs": [
+                "projectId",
+                "script"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering LoadTest resources.\n",
+                "properties": {
+                    "baselineTestRunId": {
+                        "type": "integer",
+                        "description": "Identifier of a baseline test run used for results comparison.\n"
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The date when the load test was created.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Human-friendly identifier of the load test.\n"
+                    },
+                    "projectId": {
+                        "type": "integer",
+                        "description": "The identifier of the project this load test belongs to.\n"
+                    },
+                    "script": {
+                        "type": "string",
+                        "description": "The k6 test script content. Can be provided inline or via the `file()` function.\n"
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The date when the load test was last updated.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:k6/project:Project": {
+            "description": "Manages a k6 project.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst testProject = new grafana.k6.Project(\"test_project\", {name: \"Terraform Test Project\"});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest_project = grafana.k6.Project(\"test_project\", name=\"Terraform Test Project\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testProject = new Grafana.K6.Project(\"test_project\", new()\n    {\n        Name = \"Terraform Test Project\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := k6.NewProject(ctx, \"test_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testProject = new Project(\"testProject\", ProjectArgs.builder()\n            .name(\"Terraform Test Project\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testProject:\n    type: grafana:k6:Project\n    name: test_project\n    properties:\n      name: Terraform Test Project\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:k6/project:Project name \"{{ id }}\"\n```\n\n",
+            "properties": {
+                "created": {
+                    "type": "string",
+                    "description": "The date when the project was created.\n"
+                },
+                "grafanaFolderUid": {
+                    "type": "string",
+                    "description": "The Grafana folder uid.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Use this project as default for running tests when no explicit project identifier is provided.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Human-friendly identifier of the project.\n"
+                },
+                "updated": {
+                    "type": "string",
+                    "description": "The date when the project was last updated.\n"
+                }
+            },
+            "required": [
+                "created",
+                "grafanaFolderUid",
+                "isDefault",
+                "name",
+                "updated"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "Human-friendly identifier of the project.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Project resources.\n",
+                "properties": {
+                    "created": {
+                        "type": "string",
+                        "description": "The date when the project was created.\n"
+                    },
+                    "grafanaFolderUid": {
+                        "type": "string",
+                        "description": "The Grafana folder uid.\n"
+                    },
+                    "isDefault": {
+                        "type": "boolean",
+                        "description": "Use this project as default for running tests when no explicit project identifier is provided.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Human-friendly identifier of the project.\n"
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The date when the project was last updated.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:k6/projectLimits:ProjectLimits": {
+            "description": "Manages limits for a k6 project.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst testProjectLimits = new grafana.k6.Project(\"test_project_limits\", {name: \"Terraform Project Test Limits\"});\nconst testLimits = new grafana.k6.ProjectLimits(\"test_limits\", {\n    projectId: testProjectLimits.id,\n    vuhMaxPerMonth: 1000,\n    vuMaxPerTest: 100,\n    vuBrowserMaxPerTest: 10,\n    durationMaxPerTest: 3600,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest_project_limits = grafana.k6.Project(\"test_project_limits\", name=\"Terraform Project Test Limits\")\ntest_limits = grafana.k6.ProjectLimits(\"test_limits\",\n    project_id=test_project_limits.id,\n    vuh_max_per_month=1000,\n    vu_max_per_test=100,\n    vu_browser_max_per_test=10,\n    duration_max_per_test=3600)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testProjectLimits = new Grafana.K6.Project(\"test_project_limits\", new()\n    {\n        Name = \"Terraform Project Test Limits\",\n    });\n\n    var testLimits = new Grafana.K6.ProjectLimits(\"test_limits\", new()\n    {\n        ProjectId = testProjectLimits.Id,\n        VuhMaxPerMonth = 1000,\n        VuMaxPerTest = 100,\n        VuBrowserMaxPerTest = 10,\n        DurationMaxPerTest = 3600,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestProjectLimits, err := k6.NewProject(ctx, \"test_project_limits\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Project Test Limits\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewProjectLimits(ctx, \"test_limits\", \u0026k6.ProjectLimitsArgs{\n\t\t\tProjectId:           testProjectLimits.ID(),\n\t\t\tVuhMaxPerMonth:      pulumi.Int(1000),\n\t\t\tVuMaxPerTest:        pulumi.Int(100),\n\t\t\tVuBrowserMaxPerTest: pulumi.Int(10),\n\t\t\tDurationMaxPerTest:  pulumi.Int(3600),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.ProjectLimits;\nimport com.pulumi.grafana.k6.ProjectLimitsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testProjectLimits = new Project(\"testProjectLimits\", ProjectArgs.builder()\n            .name(\"Terraform Project Test Limits\")\n            .build());\n\n        var testLimits = new ProjectLimits(\"testLimits\", ProjectLimitsArgs.builder()\n            .projectId(testProjectLimits.id())\n            .vuhMaxPerMonth(1000)\n            .vuMaxPerTest(100)\n            .vuBrowserMaxPerTest(10)\n            .durationMaxPerTest(3600)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testProjectLimits:\n    type: grafana:k6:Project\n    name: test_project_limits\n    properties:\n      name: Terraform Project Test Limits\n  testLimits:\n    type: grafana:k6:ProjectLimits\n    name: test_limits\n    properties:\n      projectId: ${testProjectLimits.id}\n      vuhMaxPerMonth: 1000\n      vuMaxPerTest: 100\n      vuBrowserMaxPerTest: 10\n      durationMaxPerTest: 3600\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:k6/projectLimits:ProjectLimits name \"{{ project_id }}\"\n```\n\n",
+            "properties": {
+                "durationMaxPerTest": {
+                    "type": "integer",
+                    "description": "Maximum duration of a test in seconds.\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "The identifier of the project to manage limits for.\n"
+                },
+                "vuBrowserMaxPerTest": {
+                    "type": "integer",
+                    "description": "Maximum number of concurrent browser virtual users (VUs) used in one test.\n"
+                },
+                "vuMaxPerTest": {
+                    "type": "integer",
+                    "description": "Maximum number of concurrent virtual users (VUs) used in one test.\n"
+                },
+                "vuhMaxPerMonth": {
+                    "type": "integer",
+                    "description": "Maximum amount of virtual user hours (VU/h) used per one calendar month.\n"
+                }
+            },
+            "required": [
+                "projectId"
+            ],
+            "inputProperties": {
+                "durationMaxPerTest": {
+                    "type": "integer",
+                    "description": "Maximum duration of a test in seconds.\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "The identifier of the project to manage limits for.\n"
+                },
+                "vuBrowserMaxPerTest": {
+                    "type": "integer",
+                    "description": "Maximum number of concurrent browser virtual users (VUs) used in one test.\n"
+                },
+                "vuMaxPerTest": {
+                    "type": "integer",
+                    "description": "Maximum number of concurrent virtual users (VUs) used in one test.\n"
+                },
+                "vuhMaxPerMonth": {
+                    "type": "integer",
+                    "description": "Maximum amount of virtual user hours (VU/h) used per one calendar month.\n"
+                }
+            },
+            "requiredInputs": [
+                "projectId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ProjectLimits resources.\n",
+                "properties": {
+                    "durationMaxPerTest": {
+                        "type": "integer",
+                        "description": "Maximum duration of a test in seconds.\n"
+                    },
+                    "projectId": {
+                        "type": "integer",
+                        "description": "The identifier of the project to manage limits for.\n"
+                    },
+                    "vuBrowserMaxPerTest": {
+                        "type": "integer",
+                        "description": "Maximum number of concurrent browser virtual users (VUs) used in one test.\n"
+                    },
+                    "vuMaxPerTest": {
+                        "type": "integer",
+                        "description": "Maximum number of concurrent virtual users (VUs) used in one test.\n"
+                    },
+                    "vuhMaxPerMonth": {
+                        "type": "integer",
+                        "description": "Maximum amount of virtual user hours (VU/h) used per one calendar month.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:machineLearning/alert:Alert": {
             "description": "## Example Usage\n\n### Forecast Alert\n\nThis alert uses a forecast.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst testAlertJob = new grafana.machinelearning.Job(\"test_alert_job\", {\n    name: \"Test Job\",\n    metric: \"tf_test_alert_job\",\n    datasourceType: \"prometheus\",\n    datasourceUid: \"abcd12345\",\n    queryParams: {\n        expr: \"grafanacloud_grafana_instance_active_user_count\",\n    },\n});\nconst testJobAlert = new grafana.machinelearning.Alert(\"test_job_alert\", {\n    jobId: testAlertJob.id,\n    title: \"Test Alert\",\n    anomalyCondition: \"any\",\n    threshold: \"\u003e0.8\",\n    window: \"15m\",\n    noDataState: \"OK\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest_alert_job = grafana.machine_learning.Job(\"test_alert_job\",\n    name=\"Test Job\",\n    metric=\"tf_test_alert_job\",\n    datasource_type=\"prometheus\",\n    datasource_uid=\"abcd12345\",\n    query_params={\n        \"expr\": \"grafanacloud_grafana_instance_active_user_count\",\n    })\ntest_job_alert = grafana.machine_learning.Alert(\"test_job_alert\",\n    job_id=test_alert_job.id,\n    title=\"Test Alert\",\n    anomaly_condition=\"any\",\n    threshold=\"\u003e0.8\",\n    window=\"15m\",\n    no_data_state=\"OK\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testAlertJob = new Grafana.MachineLearning.Job(\"test_alert_job\", new()\n    {\n        Name = \"Test Job\",\n        Metric = \"tf_test_alert_job\",\n        DatasourceType = \"prometheus\",\n        DatasourceUid = \"abcd12345\",\n        QueryParams = \n        {\n            { \"expr\", \"grafanacloud_grafana_instance_active_user_count\" },\n        },\n    });\n\n    var testJobAlert = new Grafana.MachineLearning.Alert(\"test_job_alert\", new()\n    {\n        JobId = testAlertJob.Id,\n        Title = \"Test Alert\",\n        AnomalyCondition = \"any\",\n        Threshold = \"\u003e0.8\",\n        Window = \"15m\",\n        NoDataState = \"OK\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestAlertJob, err := machinelearning.NewJob(ctx, \"test_alert_job\", \u0026machinelearning.JobArgs{\n\t\t\tName:           pulumi.String(\"Test Job\"),\n\t\t\tMetric:         pulumi.String(\"tf_test_alert_job\"),\n\t\t\tDatasourceType: pulumi.String(\"prometheus\"),\n\t\t\tDatasourceUid:  pulumi.String(\"abcd12345\"),\n\t\t\tQueryParams: pulumi.StringMap{\n\t\t\t\t\"expr\": pulumi.String(\"grafanacloud_grafana_instance_active_user_count\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = machinelearning.NewAlert(ctx, \"test_job_alert\", \u0026machinelearning.AlertArgs{\n\t\t\tJobId:            testAlertJob.ID(),\n\t\t\tTitle:            pulumi.String(\"Test Alert\"),\n\t\t\tAnomalyCondition: pulumi.String(\"any\"),\n\t\t\tThreshold:        pulumi.String(\"\u003e0.8\"),\n\t\t\tWindow:           pulumi.String(\"15m\"),\n\t\t\tNoDataState:      pulumi.String(\"OK\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.machineLearning.Job;\nimport com.pulumi.grafana.machineLearning.JobArgs;\nimport com.pulumi.grafana.machineLearning.Alert;\nimport com.pulumi.grafana.machineLearning.AlertArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testAlertJob = new Job(\"testAlertJob\", JobArgs.builder()\n            .name(\"Test Job\")\n            .metric(\"tf_test_alert_job\")\n            .datasourceType(\"prometheus\")\n            .datasourceUid(\"abcd12345\")\n            .queryParams(Map.of(\"expr\", \"grafanacloud_grafana_instance_active_user_count\"))\n            .build());\n\n        var testJobAlert = new Alert(\"testJobAlert\", AlertArgs.builder()\n            .jobId(testAlertJob.id())\n            .title(\"Test Alert\")\n            .anomalyCondition(\"any\")\n            .threshold(\"\u003e0.8\")\n            .window(\"15m\")\n            .noDataState(\"OK\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testAlertJob:\n    type: grafana:machineLearning:Job\n    name: test_alert_job\n    properties:\n      name: Test Job\n      metric: tf_test_alert_job\n      datasourceType: prometheus\n      datasourceUid: abcd12345\n      queryParams:\n        expr: grafanacloud_grafana_instance_active_user_count\n  testJobAlert:\n    type: grafana:machineLearning:Alert\n    name: test_job_alert\n    properties:\n      jobId: ${testAlertJob.id}\n      title: Test Alert\n      anomalyCondition: any\n      threshold: '\u003e0.8'\n      window: 15m\n      noDataState: OK\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Outlier Alert\n\nThis alert uses an outlier detector.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst testAlertOutlierDetector = new grafana.machinelearning.OutlierDetector(\"test_alert_outlier_detector\", {\n    name: \"Test Outlier\",\n    metric: \"tf_test_alert_outlier\",\n    datasourceType: \"prometheus\",\n    datasourceUid: \"AbCd12345\",\n    queryParams: {\n        expr: \"grafanacloud_grafana_instance_active_user_count\",\n    },\n    interval: 300,\n    algorithm: {\n        name: \"dbscan\",\n        sensitivity: 0.5,\n        config: {\n            epsilon: 1,\n        },\n    },\n});\nconst testOutlierAlert = new grafana.machinelearning.Alert(\"test_outlier_alert\", {\n    outlierId: testAlertOutlierDetector.id,\n    title: \"Test Alert\",\n    window: \"1h\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest_alert_outlier_detector = grafana.machine_learning.OutlierDetector(\"test_alert_outlier_detector\",\n    name=\"Test Outlier\",\n    metric=\"tf_test_alert_outlier\",\n    datasource_type=\"prometheus\",\n    datasource_uid=\"AbCd12345\",\n    query_params={\n        \"expr\": \"grafanacloud_grafana_instance_active_user_count\",\n    },\n    interval=300,\n    algorithm={\n        \"name\": \"dbscan\",\n        \"sensitivity\": 0.5,\n        \"config\": {\n            \"epsilon\": 1,\n        },\n    })\ntest_outlier_alert = grafana.machine_learning.Alert(\"test_outlier_alert\",\n    outlier_id=test_alert_outlier_detector.id,\n    title=\"Test Alert\",\n    window=\"1h\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testAlertOutlierDetector = new Grafana.MachineLearning.OutlierDetector(\"test_alert_outlier_detector\", new()\n    {\n        Name = \"Test Outlier\",\n        Metric = \"tf_test_alert_outlier\",\n        DatasourceType = \"prometheus\",\n        DatasourceUid = \"AbCd12345\",\n        QueryParams = \n        {\n            { \"expr\", \"grafanacloud_grafana_instance_active_user_count\" },\n        },\n        Interval = 300,\n        Algorithm = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmArgs\n        {\n            Name = \"dbscan\",\n            Sensitivity = 0.5,\n            Config = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmConfigArgs\n            {\n                Epsilon = 1,\n            },\n        },\n    });\n\n    var testOutlierAlert = new Grafana.MachineLearning.Alert(\"test_outlier_alert\", new()\n    {\n        OutlierId = testAlertOutlierDetector.Id,\n        Title = \"Test Alert\",\n        Window = \"1h\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestAlertOutlierDetector, err := machinelearning.NewOutlierDetector(ctx, \"test_alert_outlier_detector\", \u0026machinelearning.OutlierDetectorArgs{\n\t\t\tName:           pulumi.String(\"Test Outlier\"),\n\t\t\tMetric:         pulumi.String(\"tf_test_alert_outlier\"),\n\t\t\tDatasourceType: pulumi.String(\"prometheus\"),\n\t\t\tDatasourceUid:  pulumi.String(\"AbCd12345\"),\n\t\t\tQueryParams: pulumi.StringMap{\n\t\t\t\t\"expr\": pulumi.String(\"grafanacloud_grafana_instance_active_user_count\"),\n\t\t\t},\n\t\t\tInterval: pulumi.Int(300),\n\t\t\tAlgorithm: \u0026machinelearning.OutlierDetectorAlgorithmArgs{\n\t\t\t\tName:        pulumi.String(\"dbscan\"),\n\t\t\t\tSensitivity: pulumi.Float64(0.5),\n\t\t\t\tConfig: \u0026machinelearning.OutlierDetectorAlgorithmConfigArgs{\n\t\t\t\t\tEpsilon: pulumi.Float64(1),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = machinelearning.NewAlert(ctx, \"test_outlier_alert\", \u0026machinelearning.AlertArgs{\n\t\t\tOutlierId: testAlertOutlierDetector.ID(),\n\t\t\tTitle:     pulumi.String(\"Test Alert\"),\n\t\t\tWindow:    pulumi.String(\"1h\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.machineLearning.OutlierDetector;\nimport com.pulumi.grafana.machineLearning.OutlierDetectorArgs;\nimport com.pulumi.grafana.machineLearning.inputs.OutlierDetectorAlgorithmArgs;\nimport com.pulumi.grafana.machineLearning.inputs.OutlierDetectorAlgorithmConfigArgs;\nimport com.pulumi.grafana.machineLearning.Alert;\nimport com.pulumi.grafana.machineLearning.AlertArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testAlertOutlierDetector = new OutlierDetector(\"testAlertOutlierDetector\", OutlierDetectorArgs.builder()\n            .name(\"Test Outlier\")\n            .metric(\"tf_test_alert_outlier\")\n            .datasourceType(\"prometheus\")\n            .datasourceUid(\"AbCd12345\")\n            .queryParams(Map.of(\"expr\", \"grafanacloud_grafana_instance_active_user_count\"))\n            .interval(300)\n            .algorithm(OutlierDetectorAlgorithmArgs.builder()\n                .name(\"dbscan\")\n                .sensitivity(0.5)\n                .config(OutlierDetectorAlgorithmConfigArgs.builder()\n                    .epsilon(1.0)\n                    .build())\n                .build())\n            .build());\n\n        var testOutlierAlert = new Alert(\"testOutlierAlert\", AlertArgs.builder()\n            .outlierId(testAlertOutlierDetector.id())\n            .title(\"Test Alert\")\n            .window(\"1h\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testAlertOutlierDetector:\n    type: grafana:machineLearning:OutlierDetector\n    name: test_alert_outlier_detector\n    properties:\n      name: Test Outlier\n      metric: tf_test_alert_outlier\n      datasourceType: prometheus\n      datasourceUid: AbCd12345\n      queryParams:\n        expr: grafanacloud_grafana_instance_active_user_count\n      interval: 300\n      algorithm:\n        name: dbscan\n        sensitivity: 0.5\n        config:\n          epsilon: 1\n  testOutlierAlert:\n    type: grafana:machineLearning:Alert\n    name: test_outlier_alert\n    properties:\n      outlierId: ${testAlertOutlierDetector.id}\n      title: Test Alert\n      window: 1h\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:machineLearning/alert:Alert name \"{{ id }}\"\n```\n\n",
             "properties": {
@@ -28442,7 +29070,7 @@
                         "items": {
                             "$ref": "#/types/grafana:cloud/getProviderAwsCloudwatchScrapeJobCustomNamespace:getProviderAwsCloudwatchScrapeJobCustomNamespace"
                         },
-                        "description": "Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                        "description": "Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                     },
                     "name": {
                         "type": "string"
@@ -28452,7 +29080,7 @@
                         "items": {
                             "$ref": "#/types/grafana:cloud/getProviderAwsCloudwatchScrapeJobService:getProviderAwsCloudwatchScrapeJobService"
                         },
-                        "description": "One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                        "description": "One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                     },
                     "stackId": {
                         "type": "string"
@@ -28468,22 +29096,22 @@
                 "description": "A collection of values returned by getProviderAwsCloudwatchScrapeJob.\n",
                 "properties": {
                     "awsAccountResourceId": {
-                        "description": "The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.\n",
+                        "description": "The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.\n",
                         "type": "string"
                     },
                     "customNamespaces": {
-                        "description": "Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n",
+                        "description": "Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n",
                         "items": {
                             "$ref": "#/types/grafana:cloud/getProviderAwsCloudwatchScrapeJobCustomNamespace:getProviderAwsCloudwatchScrapeJobCustomNamespace"
                         },
                         "type": "array"
                     },
                     "disabledReason": {
-                        "description": "When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n",
+                        "description": "When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n",
                         "type": "string"
                     },
                     "enabled": {
-                        "description": "Whether the CloudWatch Scrape Job is enabled or not.\n",
+                        "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n",
                         "type": "boolean"
                     },
                     "exportTags": {
@@ -28497,22 +29125,22 @@
                         "type": "string"
                     },
                     "regions": {
-                        "description": "The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.\n",
+                        "description": "The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.\n",
                         "items": {
                             "type": "string"
                         },
                         "type": "array"
                     },
                     "regionsSubsetOverrideUsed": {
-                        "description": "When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.\n",
+                        "description": "When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.\n",
                         "type": "boolean"
                     },
                     "roleArn": {
-                        "description": "The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.\n",
+                        "description": "The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.\n",
                         "type": "string"
                     },
                     "services": {
-                        "description": "One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n",
+                        "description": "One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n",
                         "items": {
                             "$ref": "#/types/grafana:cloud/getProviderAwsCloudwatchScrapeJobService:getProviderAwsCloudwatchScrapeJobService"
                         },
@@ -29106,7 +29734,7 @@
                         "items": {
                             "$ref": "#/types/grafana:cloudProvider/getAwsCloudwatchScrapeJobCustomNamespace:getAwsCloudwatchScrapeJobCustomNamespace"
                         },
-                        "description": "Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                        "description": "Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                     },
                     "name": {
                         "type": "string"
@@ -29116,7 +29744,7 @@
                         "items": {
                             "$ref": "#/types/grafana:cloudProvider/getAwsCloudwatchScrapeJobService:getAwsCloudwatchScrapeJobService"
                         },
-                        "description": "One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
+                        "description": "One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n"
                     },
                     "stackId": {
                         "type": "string"
@@ -29132,22 +29760,22 @@
                 "description": "A collection of values returned by getAwsCloudwatchScrapeJob.\n",
                 "properties": {
                     "awsAccountResourceId": {
-                        "description": "The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.\n",
+                        "description": "The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.\n",
                         "type": "string"
                     },
                     "customNamespaces": {
-                        "description": "Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n",
+                        "description": "Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n",
                         "items": {
                             "$ref": "#/types/grafana:cloudProvider/getAwsCloudwatchScrapeJobCustomNamespace:getAwsCloudwatchScrapeJobCustomNamespace"
                         },
                         "type": "array"
                     },
                     "disabledReason": {
-                        "description": "When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n",
+                        "description": "When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.\n",
                         "type": "string"
                     },
                     "enabled": {
-                        "description": "Whether the CloudWatch Scrape Job is enabled or not.\n",
+                        "description": "Whether the AWS CloudWatch Scrape Job is enabled or not.\n",
                         "type": "boolean"
                     },
                     "exportTags": {
@@ -29161,22 +29789,22 @@
                         "type": "string"
                     },
                     "regions": {
-                        "description": "The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.\n",
+                        "description": "The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.\n",
                         "items": {
                             "type": "string"
                         },
                         "type": "array"
                     },
                     "regionsSubsetOverrideUsed": {
-                        "description": "When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.\n",
+                        "description": "When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.\n",
                         "type": "boolean"
                     },
                     "roleArn": {
-                        "description": "The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.\n",
+                        "description": "The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.\n",
                         "type": "string"
                     },
                     "services": {
-                        "description": "One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n",
+                        "description": "One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.\n",
                         "items": {
                             "$ref": "#/types/grafana:cloudProvider/getAwsCloudwatchScrapeJobService:getAwsCloudwatchScrapeJobService"
                         },
@@ -31534,6 +32162,259 @@
                 "required": [
                     "users",
                     "id"
+                ],
+                "type": "object"
+            }
+        },
+        "grafana:k6/getLoadTest:getLoadTest": {
+            "description": "Retrieves a k6 load test.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst loadTestProject = new grafana.k6.Project(\"load_test_project\", {name: \"Terraform Load Test Project\"});\nconst testLoadTest = new grafana.k6.LoadTest(\"test_load_test\", {\n    projectId: loadTestProject.id,\n    name: \"Terraform Test Load Test\",\n    script: `export default function() {\n  console.log('Hello from k6!');\n}\n`,\n});\nconst fromId = testLoadTest.id.apply(id =\u003e grafana.k6.getLoadTestOutput({\n    id: id,\n}));\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nload_test_project = grafana.k6.Project(\"load_test_project\", name=\"Terraform Load Test Project\")\ntest_load_test = grafana.k6.LoadTest(\"test_load_test\",\n    project_id=load_test_project.id,\n    name=\"Terraform Test Load Test\",\n    script=\"\"\"export default function() {\n  console.log('Hello from k6!');\n}\n\"\"\")\nfrom_id = test_load_test.id.apply(lambda id: grafana.k6.get_load_test_output(id=id))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var loadTestProject = new Grafana.K6.Project(\"load_test_project\", new()\n    {\n        Name = \"Terraform Load Test Project\",\n    });\n\n    var testLoadTest = new Grafana.K6.LoadTest(\"test_load_test\", new()\n    {\n        ProjectId = loadTestProject.Id,\n        Name = \"Terraform Test Load Test\",\n        Script = @\"export default function() {\n  console.log('Hello from k6!');\n}\n\",\n    });\n\n    var fromId = Grafana.K6.GetLoadTest.Invoke(new()\n    {\n        Id = testLoadTest.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tloadTestProject, err := k6.NewProject(ctx, \"load_test_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Load Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestLoadTest, err := k6.NewLoadTest(ctx, \"test_load_test\", \u0026k6.LoadTestArgs{\n\t\t\tProjectId: loadTestProject.ID(),\n\t\t\tName:      pulumi.String(\"Terraform Test Load Test\"),\n\t\t\tScript:    pulumi.String(\"export default function() {\\n  console.log('Hello from k6!');\\n}\\n\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = testLoadTest.ID().ApplyT(func(id string) (k6.GetLoadTestResult, error) {\n\t\t\treturn k6.GetLoadTestResult(interface{}(k6.LookupLoadTestOutput(ctx, k6.GetLoadTestOutputArgs{\n\t\t\t\tId: id,\n\t\t\t}, nil))), nil\n\t\t}).(k6.GetLoadTestResultOutput)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.LoadTest;\nimport com.pulumi.grafana.k6.LoadTestArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetLoadTestArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var loadTestProject = new Project(\"loadTestProject\", ProjectArgs.builder()\n            .name(\"Terraform Load Test Project\")\n            .build());\n\n        var testLoadTest = new LoadTest(\"testLoadTest\", LoadTestArgs.builder()\n            .projectId(loadTestProject.id())\n            .name(\"Terraform Test Load Test\")\n            .script(\"\"\"\nexport default function() {\n  console.log('Hello from k6!');\n}\n            \"\"\")\n            .build());\n\n        final var fromId = testLoadTest.id().applyValue(_id -\u003e K6Functions.getLoadTest(GetLoadTestArgs.builder()\n            .id(_id)\n            .build()));\n\n    }\n}\n```\n```yaml\nresources:\n  loadTestProject:\n    type: grafana:k6:Project\n    name: load_test_project\n    properties:\n      name: Terraform Load Test Project\n  testLoadTest:\n    type: grafana:k6:LoadTest\n    name: test_load_test\n    properties:\n      projectId: ${loadTestProject.id}\n      name: Terraform Test Load Test\n      script: |\n        export default function() {\n          console.log('Hello from k6!');\n        }\nvariables:\n  fromId:\n    fn::invoke:\n      function: grafana:k6:getLoadTest\n      arguments:\n        id: ${testLoadTest.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getLoadTest.\n",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Numeric identifier of the load test.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getLoadTest.\n",
+                "properties": {
+                    "baselineTestRunId": {
+                        "description": "Identifier of a baseline test run used for results comparison.\n",
+                        "type": "integer"
+                    },
+                    "created": {
+                        "description": "The date when the load test was created.\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "Numeric identifier of the load test.\n",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Human-friendly identifier of the load test.\n",
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "description": "The identifier of the project this load test belongs to.\n",
+                        "type": "integer"
+                    },
+                    "script": {
+                        "description": "The k6 test script content.\n",
+                        "type": "string"
+                    },
+                    "updated": {
+                        "description": "The date when the load test was last updated.\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "baselineTestRunId",
+                    "created",
+                    "id",
+                    "name",
+                    "projectId",
+                    "script",
+                    "updated"
+                ],
+                "type": "object"
+            }
+        },
+        "grafana:k6/getLoadTests:getLoadTests": {
+            "description": "Retrieves all k6 load tests that belong to a project.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst loadTestProject = new grafana.k6.Project(\"load_test_project\", {name: \"Terraform Load Test Project\"});\nconst testLoadTest = new grafana.k6.LoadTest(\"test_load_test\", {\n    projectId: loadTestProject.id,\n    name: \"Terraform Test Load Test\",\n    script: `export default function() {\n  console.log('Hello from k6!');\n}\n`,\n}, {\n    dependsOn: [loadTestProject],\n});\nconst testLoadTest2 = new grafana.k6.LoadTest(\"test_load_test_2\", {\n    projectId: loadTestProject.id,\n    name: \"Terraform Test Load Test (2)\",\n    script: `export default function() {\n  console.log('Hello from k6!');\n}\n`,\n}, {\n    dependsOn: [testLoadTest],\n});\nconst fromProjectId = loadTestProject.id.apply(id =\u003e grafana.k6.getLoadTestsOutput({\n    projectId: id,\n}));\nconst filterByName = loadTestProject.id.apply(id =\u003e grafana.k6.getLoadTestsOutput({\n    name: \"Terraform Test Load Test (2)\",\n    projectId: id,\n}));\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nload_test_project = grafana.k6.Project(\"load_test_project\", name=\"Terraform Load Test Project\")\ntest_load_test = grafana.k6.LoadTest(\"test_load_test\",\n    project_id=load_test_project.id,\n    name=\"Terraform Test Load Test\",\n    script=\"\"\"export default function() {\n  console.log('Hello from k6!');\n}\n\"\"\",\n    opts = pulumi.ResourceOptions(depends_on=[load_test_project]))\ntest_load_test2 = grafana.k6.LoadTest(\"test_load_test_2\",\n    project_id=load_test_project.id,\n    name=\"Terraform Test Load Test (2)\",\n    script=\"\"\"export default function() {\n  console.log('Hello from k6!');\n}\n\"\"\",\n    opts = pulumi.ResourceOptions(depends_on=[test_load_test]))\nfrom_project_id = load_test_project.id.apply(lambda id: grafana.k6.get_load_tests_output(project_id=id))\nfilter_by_name = load_test_project.id.apply(lambda id: grafana.k6.get_load_tests_output(name=\"Terraform Test Load Test (2)\",\n    project_id=id))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var loadTestProject = new Grafana.K6.Project(\"load_test_project\", new()\n    {\n        Name = \"Terraform Load Test Project\",\n    });\n\n    var testLoadTest = new Grafana.K6.LoadTest(\"test_load_test\", new()\n    {\n        ProjectId = loadTestProject.Id,\n        Name = \"Terraform Test Load Test\",\n        Script = @\"export default function() {\n  console.log('Hello from k6!');\n}\n\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            loadTestProject,\n        },\n    });\n\n    var testLoadTest2 = new Grafana.K6.LoadTest(\"test_load_test_2\", new()\n    {\n        ProjectId = loadTestProject.Id,\n        Name = \"Terraform Test Load Test (2)\",\n        Script = @\"export default function() {\n  console.log('Hello from k6!');\n}\n\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            testLoadTest,\n        },\n    });\n\n    var fromProjectId = Grafana.K6.GetLoadTests.Invoke(new()\n    {\n        ProjectId = loadTestProject.Id,\n    });\n\n    var filterByName = Grafana.K6.GetLoadTests.Invoke(new()\n    {\n        Name = \"Terraform Test Load Test (2)\",\n        ProjectId = loadTestProject.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tloadTestProject, err := k6.NewProject(ctx, \"load_test_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Load Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestLoadTest, err := k6.NewLoadTest(ctx, \"test_load_test\", \u0026k6.LoadTestArgs{\n\t\t\tProjectId: loadTestProject.ID(),\n\t\t\tName:      pulumi.String(\"Terraform Test Load Test\"),\n\t\t\tScript:    pulumi.String(\"export default function() {\\n  console.log('Hello from k6!');\\n}\\n\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tloadTestProject,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewLoadTest(ctx, \"test_load_test_2\", \u0026k6.LoadTestArgs{\n\t\t\tProjectId: loadTestProject.ID(),\n\t\t\tName:      pulumi.String(\"Terraform Test Load Test (2)\"),\n\t\t\tScript:    pulumi.String(\"export default function() {\\n  console.log('Hello from k6!');\\n}\\n\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\ttestLoadTest,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = loadTestProject.ID().ApplyT(func(id string) (k6.GetLoadTestsResult, error) {\n\t\t\treturn k6.GetLoadTestsResult(interface{}(k6.GetLoadTestsOutput(ctx, k6.GetLoadTestsOutputArgs{\n\t\t\t\tProjectId: id,\n\t\t\t}, nil))), nil\n\t\t}).(k6.GetLoadTestsResultOutput)\n\t\t_ = loadTestProject.ID().ApplyT(func(id string) (k6.GetLoadTestsResult, error) {\n\t\t\treturn k6.GetLoadTestsResult(interface{}(k6.GetLoadTestsOutput(ctx, k6.GetLoadTestsOutputArgs{\n\t\t\t\tName:      \"Terraform Test Load Test (2)\",\n\t\t\t\tProjectId: id,\n\t\t\t}, nil))), nil\n\t\t}).(k6.GetLoadTestsResultOutput)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.LoadTest;\nimport com.pulumi.grafana.k6.LoadTestArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetLoadTestsArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var loadTestProject = new Project(\"loadTestProject\", ProjectArgs.builder()\n            .name(\"Terraform Load Test Project\")\n            .build());\n\n        var testLoadTest = new LoadTest(\"testLoadTest\", LoadTestArgs.builder()\n            .projectId(loadTestProject.id())\n            .name(\"Terraform Test Load Test\")\n            .script(\"\"\"\nexport default function() {\n  console.log('Hello from k6!');\n}\n            \"\"\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(loadTestProject)\n                .build());\n\n        var testLoadTest2 = new LoadTest(\"testLoadTest2\", LoadTestArgs.builder()\n            .projectId(loadTestProject.id())\n            .name(\"Terraform Test Load Test (2)\")\n            .script(\"\"\"\nexport default function() {\n  console.log('Hello from k6!');\n}\n            \"\"\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(testLoadTest)\n                .build());\n\n        final var fromProjectId = loadTestProject.id().applyValue(_id -\u003e K6Functions.getLoadTests(GetLoadTestsArgs.builder()\n            .projectId(_id)\n            .build()));\n\n        final var filterByName = loadTestProject.id().applyValue(_id -\u003e K6Functions.getLoadTests(GetLoadTestsArgs.builder()\n            .name(\"Terraform Test Load Test (2)\")\n            .projectId(_id)\n            .build()));\n\n    }\n}\n```\n```yaml\nresources:\n  loadTestProject:\n    type: grafana:k6:Project\n    name: load_test_project\n    properties:\n      name: Terraform Load Test Project\n  testLoadTest:\n    type: grafana:k6:LoadTest\n    name: test_load_test\n    properties:\n      projectId: ${loadTestProject.id}\n      name: Terraform Test Load Test\n      script: |\n        export default function() {\n          console.log('Hello from k6!');\n        }\n    options:\n      dependsOn:\n        - ${loadTestProject}\n  testLoadTest2:\n    type: grafana:k6:LoadTest\n    name: test_load_test_2\n    properties:\n      projectId: ${loadTestProject.id}\n      name: Terraform Test Load Test (2)\n      script: |\n        export default function() {\n          console.log('Hello from k6!');\n        }\n    options:\n      dependsOn:\n        - ${testLoadTest}\nvariables:\n  fromProjectId:\n    fn::invoke:\n      function: grafana:k6:getLoadTests\n      arguments:\n        projectId: ${loadTestProject.id}\n  filterByName:\n    fn::invoke:\n      function: grafana:k6:getLoadTests\n      arguments:\n        name: Terraform Test Load Test (2)\n        projectId: ${loadTestProject.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getLoadTests.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Human-friendly identifier of the load test.\n"
+                    },
+                    "projectId": {
+                        "type": "integer",
+                        "description": "The identifier of the project the load tests belong to.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getLoadTests.\n",
+                "properties": {
+                    "id": {
+                        "description": "The identifier of the project the load tests belong to. This is set to the same as the project_id.\n",
+                        "type": "integer"
+                    },
+                    "loadTests": {
+                        "items": {
+                            "$ref": "#/types/grafana:k6/getLoadTestsLoadTest:getLoadTestsLoadTest"
+                        },
+                        "type": "array"
+                    },
+                    "name": {
+                        "description": "Human-friendly identifier of the load test.\n",
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "description": "The identifier of the project the load tests belong to.\n",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "id",
+                    "loadTests",
+                    "projectId"
+                ],
+                "type": "object"
+            }
+        },
+        "grafana:k6/getProject:getProject": {
+            "description": "Retrieves a k6 project.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.k6.Project(\"test\", {name: \"Terraform Test Project\"});\nconst fromId = test.id.apply(id =\u003e grafana.k6.getProjectOutput({\n    id: id,\n}));\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest = grafana.k6.Project(\"test\", name=\"Terraform Test Project\")\nfrom_id = test.id.apply(lambda id: grafana.k6.get_project_output(id=id))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.K6.Project(\"test\", new()\n    {\n        Name = \"Terraform Test Project\",\n    });\n\n    var fromId = Grafana.K6.GetProject.Invoke(new()\n    {\n        Id = test.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := k6.NewProject(ctx, \"test\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = test.ID().ApplyT(func(id string) (k6.GetProjectResult, error) {\n\t\t\treturn k6.GetProjectResult(interface{}(k6.LookupProjectOutput(ctx, k6.GetProjectOutputArgs{\n\t\t\t\tId: id,\n\t\t\t}, nil))), nil\n\t\t}).(k6.GetProjectResultOutput)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Project(\"test\", ProjectArgs.builder()\n            .name(\"Terraform Test Project\")\n            .build());\n\n        final var fromId = test.id().applyValue(_id -\u003e K6Functions.getProject(GetProjectArgs.builder()\n            .id(_id)\n            .build()));\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:k6:Project\n    properties:\n      name: Terraform Test Project\nvariables:\n  fromId:\n    fn::invoke:\n      function: grafana:k6:getProject\n      arguments:\n        id: ${test.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getProject.\n",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Numeric identifier of the project.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getProject.\n",
+                "properties": {
+                    "created": {
+                        "description": "The date when the project was created.\n",
+                        "type": "string"
+                    },
+                    "grafanaFolderUid": {
+                        "description": "The Grafana folder uid.\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "Numeric identifier of the project.\n",
+                        "type": "integer"
+                    },
+                    "isDefault": {
+                        "description": "Whether this project is the default for running tests when no explicit project identifier is provided.\n",
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "description": "Human-friendly identifier of the project.\n",
+                        "type": "string"
+                    },
+                    "updated": {
+                        "description": "The date when the project was last updated.\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "created",
+                    "grafanaFolderUid",
+                    "id",
+                    "isDefault",
+                    "name",
+                    "updated"
+                ],
+                "type": "object"
+            }
+        },
+        "grafana:k6/getProjectLimits:getProjectLimits": {
+            "description": "Retrieves a k6 project limits.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst testProjectLimits = new grafana.k6.Project(\"test_project_limits\", {name: \"Terraform Project Test Limits\"});\nconst fromProjectId = testProjectLimits.id.apply(id =\u003e grafana.k6.getProjectLimitsOutput({\n    projectId: id,\n}));\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest_project_limits = grafana.k6.Project(\"test_project_limits\", name=\"Terraform Project Test Limits\")\nfrom_project_id = test_project_limits.id.apply(lambda id: grafana.k6.get_project_limits_output(project_id=id))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testProjectLimits = new Grafana.K6.Project(\"test_project_limits\", new()\n    {\n        Name = \"Terraform Project Test Limits\",\n    });\n\n    var fromProjectId = Grafana.K6.GetProjectLimits.Invoke(new()\n    {\n        ProjectId = testProjectLimits.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestProjectLimits, err := k6.NewProject(ctx, \"test_project_limits\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Project Test Limits\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = testProjectLimits.ID().ApplyT(func(id string) (k6.GetProjectLimitsResult, error) {\n\t\t\treturn k6.GetProjectLimitsResult(interface{}(k6.LookupProjectLimitsOutput(ctx, k6.GetProjectLimitsOutputArgs{\n\t\t\t\tProjectId: id,\n\t\t\t}, nil))), nil\n\t\t}).(k6.GetProjectLimitsResultOutput)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetProjectLimitsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testProjectLimits = new Project(\"testProjectLimits\", ProjectArgs.builder()\n            .name(\"Terraform Project Test Limits\")\n            .build());\n\n        final var fromProjectId = testProjectLimits.id().applyValue(_id -\u003e K6Functions.getProjectLimits(GetProjectLimitsArgs.builder()\n            .projectId(_id)\n            .build()));\n\n    }\n}\n```\n```yaml\nresources:\n  testProjectLimits:\n    type: grafana:k6:Project\n    name: test_project_limits\n    properties:\n      name: Terraform Project Test Limits\nvariables:\n  fromProjectId:\n    fn::invoke:\n      function: grafana:k6:getProjectLimits\n      arguments:\n        projectId: ${testProjectLimits.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getProjectLimits.\n",
+                "properties": {
+                    "projectId": {
+                        "type": "integer",
+                        "description": "The identifier of the project to get limits for.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getProjectLimits.\n",
+                "properties": {
+                    "durationMaxPerTest": {
+                        "description": "Maximum duration of a test in seconds.\n",
+                        "type": "integer"
+                    },
+                    "id": {
+                        "description": "The identifier of the project limits. This is set to the same as the project_id.\n",
+                        "type": "integer"
+                    },
+                    "projectId": {
+                        "description": "The identifier of the project to get limits for.\n",
+                        "type": "integer"
+                    },
+                    "vuBrowserMaxPerTest": {
+                        "description": "Maximum number of concurrent browser virtual users (VUs) used in one test.\n",
+                        "type": "integer"
+                    },
+                    "vuMaxPerTest": {
+                        "description": "Maximum number of concurrent virtual users (VUs) used in one test.\n",
+                        "type": "integer"
+                    },
+                    "vuhMaxPerMonth": {
+                        "description": "Maximum amount of virtual user hours (VU/h) used per one calendar month.\n",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "durationMaxPerTest",
+                    "id",
+                    "projectId",
+                    "vuBrowserMaxPerTest",
+                    "vuMaxPerTest",
+                    "vuhMaxPerMonth"
+                ],
+                "type": "object"
+            }
+        },
+        "grafana:k6/getProjects:getProjects": {
+            "description": "Retrieves all k6 projects with the given name.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst project = new grafana.k6.Project(\"project\", {name: \"Terraform Test Project\"});\nconst project2 = new grafana.k6.Project(\"project_2\", {name: \"Terraform Test Project\"});\nconst fromName = grafana.k6.getProjects({\n    name: \"Terraform Test Project\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\nproject = grafana.k6.Project(\"project\", name=\"Terraform Test Project\")\nproject2 = grafana.k6.Project(\"project_2\", name=\"Terraform Test Project\")\nfrom_name = grafana.k6.get_projects(name=\"Terraform Test Project\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Grafana.K6.Project(\"project\", new()\n    {\n        Name = \"Terraform Test Project\",\n    });\n\n    var project2 = new Grafana.K6.Project(\"project_2\", new()\n    {\n        Name = \"Terraform Test Project\",\n    });\n\n    var fromName = Grafana.K6.GetProjects.Invoke(new()\n    {\n        Name = \"Terraform Test Project\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := k6.NewProject(ctx, \"project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewProject(ctx, \"project_2\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Test Project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.GetProjects(ctx, \u0026k6.GetProjectsArgs{\n\t\t\tName: pulumi.StringRef(\"Terraform Test Project\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetProjectsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new Project(\"project\", ProjectArgs.builder()\n            .name(\"Terraform Test Project\")\n            .build());\n\n        var project2 = new Project(\"project2\", ProjectArgs.builder()\n            .name(\"Terraform Test Project\")\n            .build());\n\n        final var fromName = K6Functions.getProjects(GetProjectsArgs.builder()\n            .name(\"Terraform Test Project\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: grafana:k6:Project\n    properties:\n      name: Terraform Test Project\n  project2:\n    type: grafana:k6:Project\n    name: project_2\n    properties:\n      name: Terraform Test Project\nvariables:\n  fromName:\n    fn::invoke:\n      function: grafana:k6:getProjects\n      arguments:\n        name: Terraform Test Project\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getProjects.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Human-friendly identifier of the project.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getProjects.\n",
+                "properties": {
+                    "id": {
+                        "description": "Human-friendly identifier of the project. This is set to the same as name.\n",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Human-friendly identifier of the project.\n",
+                        "type": "string"
+                    },
+                    "projects": {
+                        "items": {
+                            "$ref": "#/types/grafana:k6/getProjectsProject:getProjectsProject"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "id",
+                    "projects"
                 ],
                 "type": "object"
             }

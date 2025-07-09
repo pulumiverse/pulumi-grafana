@@ -47,6 +47,7 @@ jobs:
             github.com/apache/arrow/go/v15,
             github.com/grafana/grafana,
             github.com/grafana/grafana-com-public-clients/go/gcom,
+            github.com/grafana/k6-cloud-openapi-client-go,
             github.com/aead/chacha20,
             github.com/apache/arrow/go/v12,
             github.com/apache/thrift/lib/go/thrift,

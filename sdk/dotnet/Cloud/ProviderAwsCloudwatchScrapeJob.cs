@@ -137,19 +137,19 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> AwsAccountResourceId { get; private set; } = null!;
 
         /// <summary>
-        /// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         [Output("customNamespaces")]
         public Output<ImmutableArray<Outputs.ProviderAwsCloudwatchScrapeJobCustomNamespace>> CustomNamespaces { get; private set; } = null!;
 
         /// <summary>
-        /// When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+        /// When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
         /// </summary>
         [Output("disabledReason")]
         public Output<string> DisabledReason { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the CloudWatch Scrape Job is enabled or not.
+        /// Whether the AWS CloudWatch Scrape Job is enabled or not.
         /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
@@ -170,7 +170,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<ImmutableArray<string>> RegionsSubsetOverrides { get; private set; } = null!;
 
         /// <summary>
-        /// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         [Output("services")]
         public Output<ImmutableArray<Outputs.ProviderAwsCloudwatchScrapeJobService>> Services { get; private set; } = null!;
@@ -241,7 +241,7 @@ namespace Pulumiverse.Grafana.Cloud
         private InputList<Inputs.ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs>? _customNamespaces;
 
         /// <summary>
-        /// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         public InputList<Inputs.ProviderAwsCloudwatchScrapeJobCustomNamespaceArgs> CustomNamespaces
         {
@@ -250,7 +250,7 @@ namespace Pulumiverse.Grafana.Cloud
         }
 
         /// <summary>
-        /// Whether the CloudWatch Scrape Job is enabled or not.
+        /// Whether the AWS CloudWatch Scrape Job is enabled or not.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -280,7 +280,7 @@ namespace Pulumiverse.Grafana.Cloud
         private InputList<Inputs.ProviderAwsCloudwatchScrapeJobServiceArgs>? _services;
 
         /// <summary>
-        /// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         public InputList<Inputs.ProviderAwsCloudwatchScrapeJobServiceArgs> Services
         {
@@ -321,7 +321,7 @@ namespace Pulumiverse.Grafana.Cloud
         private InputList<Inputs.ProviderAwsCloudwatchScrapeJobCustomNamespaceGetArgs>? _customNamespaces;
 
         /// <summary>
-        /// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         public InputList<Inputs.ProviderAwsCloudwatchScrapeJobCustomNamespaceGetArgs> CustomNamespaces
         {
@@ -330,13 +330,13 @@ namespace Pulumiverse.Grafana.Cloud
         }
 
         /// <summary>
-        /// When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+        /// When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
         /// </summary>
         [Input("disabledReason")]
         public Input<string>? DisabledReason { get; set; }
 
         /// <summary>
-        /// Whether the CloudWatch Scrape Job is enabled or not.
+        /// Whether the AWS CloudWatch Scrape Job is enabled or not.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -366,7 +366,7 @@ namespace Pulumiverse.Grafana.Cloud
         private InputList<Inputs.ProviderAwsCloudwatchScrapeJobServiceGetArgs>? _services;
 
         /// <summary>
-        /// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         public InputList<Inputs.ProviderAwsCloudwatchScrapeJobServiceGetArgs> Services
         {

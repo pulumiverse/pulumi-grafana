@@ -26,6 +26,10 @@ __all__ = [
     'AwsCloudwatchScrapeJobServiceMetricArgsDict',
     'AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs',
     'AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgsDict',
+    'AwsResourceMetadataScrapeJobServiceArgs',
+    'AwsResourceMetadataScrapeJobServiceArgsDict',
+    'AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs',
+    'AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgsDict',
     'AzureCredentialAutoDiscoveryConfigurationArgs',
     'AzureCredentialAutoDiscoveryConfigurationArgsDict',
     'AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs',
@@ -365,6 +369,127 @@ elif False:
 
 @pulumi.input_type
 class AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[builtins.str],
+                 value: pulumi.Input[builtins.str]):
+        """
+        :param pulumi.Input[builtins.str] key: The key of the tag filter.
+        :param pulumi.Input[builtins.str] value: The value of the tag filter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[builtins.str]:
+        """
+        The key of the tag filter.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[builtins.str]:
+        """
+        The value of the tag filter.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class AwsResourceMetadataScrapeJobServiceArgsDict(TypedDict):
+        name: pulumi.Input[builtins.str]
+        """
+        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
+        """
+        resource_discovery_tag_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input['AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgsDict']]]]
+        """
+        One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+        """
+        scrape_interval_seconds: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        """
+elif False:
+    AwsResourceMetadataScrapeJobServiceArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AwsResourceMetadataScrapeJobServiceArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[builtins.str],
+                 resource_discovery_tag_filters: Optional[pulumi.Input[Sequence[pulumi.Input['AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs']]]] = None,
+                 scrape_interval_seconds: Optional[pulumi.Input[builtins.int]] = None):
+        """
+        :param pulumi.Input[builtins.str] name: The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
+        :param pulumi.Input[Sequence[pulumi.Input['AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs']]] resource_discovery_tag_filters: One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+        :param pulumi.Input[builtins.int] scrape_interval_seconds: The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        """
+        pulumi.set(__self__, "name", name)
+        if resource_discovery_tag_filters is not None:
+            pulumi.set(__self__, "resource_discovery_tag_filters", resource_discovery_tag_filters)
+        if scrape_interval_seconds is not None:
+            pulumi.set(__self__, "scrape_interval_seconds", scrape_interval_seconds)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[builtins.str]:
+        """
+        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="resourceDiscoveryTagFilters")
+    def resource_discovery_tag_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs']]]]:
+        """
+        One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+        """
+        return pulumi.get(self, "resource_discovery_tag_filters")
+
+    @resource_discovery_tag_filters.setter
+    def resource_discovery_tag_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs']]]]):
+        pulumi.set(self, "resource_discovery_tag_filters", value)
+
+    @property
+    @pulumi.getter(name="scrapeIntervalSeconds")
+    def scrape_interval_seconds(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+        """
+        return pulumi.get(self, "scrape_interval_seconds")
+
+    @scrape_interval_seconds.setter
+    def scrape_interval_seconds(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "scrape_interval_seconds", value)
+
+
+if not MYPY:
+    class AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgsDict(TypedDict):
+        key: pulumi.Input[builtins.str]
+        """
+        The key of the tag filter.
+        """
+        value: pulumi.Input[builtins.str]
+        """
+        The value of the tag filter.
+        """
+elif False:
+    AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[builtins.str],
                  value: pulumi.Input[builtins.str]):
@@ -913,15 +1038,15 @@ if not MYPY:
     class GetAwsCloudwatchScrapeJobsScrapeJobArgsDict(TypedDict):
         aws_account_resource_id: builtins.str
         """
-        The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
+        The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         """
         disabled_reason: builtins.str
         """
-        When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+        When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
         """
         enabled: builtins.bool
         """
-        Whether the CloudWatch Scrape Job is enabled or not.
+        Whether the AWS CloudWatch Scrape Job is enabled or not.
         """
         export_tags: builtins.bool
         """
@@ -931,15 +1056,15 @@ if not MYPY:
         name: builtins.str
         regions: Sequence[builtins.str]
         """
-        The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
+        The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
         """
         regions_subset_override_used: builtins.bool
         """
-        When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
+        When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
         """
         role_arn: builtins.str
         """
-        The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+        The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.
         """
         stack_id: builtins.str
         static_labels: Mapping[str, builtins.str]
@@ -948,11 +1073,11 @@ if not MYPY:
         """
         custom_namespaces: NotRequired[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgsDict']]
         """
-        Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         """
         services: NotRequired[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceArgsDict']]
         """
-        One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         """
 elif False:
     GetAwsCloudwatchScrapeJobsScrapeJobArgsDict: TypeAlias = Mapping[str, Any]
@@ -974,16 +1099,16 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
                  custom_namespaces: Optional[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs']] = None,
                  services: Optional[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs']] = None):
         """
-        :param builtins.str aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
-        :param builtins.str disabled_reason: When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
-        :param builtins.bool enabled: Whether the CloudWatch Scrape Job is enabled or not.
+        :param builtins.str aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
+        :param builtins.str disabled_reason: When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+        :param builtins.bool enabled: Whether the AWS CloudWatch Scrape Job is enabled or not.
         :param builtins.bool export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
-        :param Sequence[builtins.str] regions: The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
-        :param builtins.bool regions_subset_override_used: When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
-        :param builtins.str role_arn: The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+        :param Sequence[builtins.str] regions: The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
+        :param builtins.bool regions_subset_override_used: When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
+        :param builtins.str role_arn: The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.
         :param Mapping[str, builtins.str] static_labels: A set of static labels to add to all metrics exported by this scrape job.
-        :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs'] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
-        :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs'] services: One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs'] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs'] services: One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         """
         pulumi.set(__self__, "aws_account_resource_id", aws_account_resource_id)
         pulumi.set(__self__, "disabled_reason", disabled_reason)
@@ -1005,7 +1130,7 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
     @pulumi.getter(name="awsAccountResourceId")
     def aws_account_resource_id(self) -> builtins.str:
         """
-        The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
+        The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         """
         return pulumi.get(self, "aws_account_resource_id")
 
@@ -1017,7 +1142,7 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
     @pulumi.getter(name="disabledReason")
     def disabled_reason(self) -> builtins.str:
         """
-        When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+        When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
         """
         return pulumi.get(self, "disabled_reason")
 
@@ -1029,7 +1154,7 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
     @pulumi.getter
     def enabled(self) -> builtins.bool:
         """
-        Whether the CloudWatch Scrape Job is enabled or not.
+        Whether the AWS CloudWatch Scrape Job is enabled or not.
         """
         return pulumi.get(self, "enabled")
 
@@ -1071,7 +1196,7 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
     @pulumi.getter
     def regions(self) -> Sequence[builtins.str]:
         """
-        The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
+        The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
         """
         return pulumi.get(self, "regions")
 
@@ -1083,7 +1208,7 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
     @pulumi.getter(name="regionsSubsetOverrideUsed")
     def regions_subset_override_used(self) -> builtins.bool:
         """
-        When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
+        When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
         """
         return pulumi.get(self, "regions_subset_override_used")
 
@@ -1095,7 +1220,7 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
     @pulumi.getter(name="roleArn")
     def role_arn(self) -> builtins.str:
         """
-        The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+        The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.
         """
         return pulumi.get(self, "role_arn")
 
@@ -1128,7 +1253,7 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
     @pulumi.getter(name="customNamespaces")
     def custom_namespaces(self) -> Optional[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs']]:
         """
-        Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         """
         return pulumi.get(self, "custom_namespaces")
 
@@ -1140,7 +1265,7 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
     @pulumi.getter
     def services(self) -> Optional[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs']]:
         """
-        One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         """
         return pulumi.get(self, "services")
 

@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AwsAccount{}
 	case "grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob":
 		r = &AwsCloudwatchScrapeJob{}
+	case "grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob":
+		r = &AwsResourceMetadataScrapeJob{}
 	case "grafana:cloudProvider/azureCredential:AzureCredential":
 		r = &AzureCredential{}
 	default:
@@ -48,6 +50,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"cloudProvider/awsCloudwatchScrapeJob",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"cloudProvider/awsResourceMetadataScrapeJob",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

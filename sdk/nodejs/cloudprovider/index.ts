@@ -15,6 +15,11 @@ export type AwsCloudwatchScrapeJob = import("./awsCloudwatchScrapeJob").AwsCloud
 export const AwsCloudwatchScrapeJob: typeof import("./awsCloudwatchScrapeJob").AwsCloudwatchScrapeJob = null as any;
 utilities.lazyLoad(exports, ["AwsCloudwatchScrapeJob"], () => require("./awsCloudwatchScrapeJob"));
 
+export { AwsResourceMetadataScrapeJobArgs, AwsResourceMetadataScrapeJobState } from "./awsResourceMetadataScrapeJob";
+export type AwsResourceMetadataScrapeJob = import("./awsResourceMetadataScrapeJob").AwsResourceMetadataScrapeJob;
+export const AwsResourceMetadataScrapeJob: typeof import("./awsResourceMetadataScrapeJob").AwsResourceMetadataScrapeJob = null as any;
+utilities.lazyLoad(exports, ["AwsResourceMetadataScrapeJob"], () => require("./awsResourceMetadataScrapeJob"));
+
 export { AzureCredentialArgs, AzureCredentialState } from "./azureCredential";
 export type AzureCredential = import("./azureCredential").AzureCredential;
 export const AzureCredential: typeof import("./azureCredential").AzureCredential = null as any;
@@ -49,6 +54,8 @@ const _module = {
                 return new AwsAccount(name, <any>undefined, { urn })
             case "grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob":
                 return new AwsCloudwatchScrapeJob(name, <any>undefined, { urn })
+            case "grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob":
+                return new AwsResourceMetadataScrapeJob(name, <any>undefined, { urn })
             case "grafana:cloudProvider/azureCredential:AzureCredential":
                 return new AzureCredential(name, <any>undefined, { urn })
             default:
@@ -58,4 +65,5 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("grafana", "cloudProvider/awsAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloudProvider/awsCloudwatchScrapeJob", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloudProvider/awsResourceMetadataScrapeJob", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloudProvider/azureCredential", _module)

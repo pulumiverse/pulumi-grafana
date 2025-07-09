@@ -4640,19 +4640,19 @@ export namespace cloud {
 
     export interface GetProviderAwsCloudwatchScrapeJobsScrapeJob {
         /**
-         * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
+         * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
          */
         awsAccountResourceId: string;
         /**
-         * Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+         * Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
          */
         customNamespaces?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobCustomNamespace[];
         /**
-         * When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+         * When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
          */
         disabledReason: string;
         /**
-         * Whether the CloudWatch Scrape Job is enabled or not.
+         * Whether the AWS CloudWatch Scrape Job is enabled or not.
          */
         enabled: boolean;
         /**
@@ -4662,19 +4662,19 @@ export namespace cloud {
         id: string;
         name: string;
         /**
-         * The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
+         * The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
          */
         regions: string[];
         /**
-         * When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
+         * When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
          */
         regionsSubsetOverrideUsed: boolean;
         /**
-         * The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+         * The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.
          */
         roleArn: string;
         /**
-         * One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+         * One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
          */
         services?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobsScrapeJobService[];
         stackId: string;
@@ -4966,6 +4966,32 @@ export namespace cloudProvider {
         value: string;
     }
 
+    export interface AwsResourceMetadataScrapeJobService {
+        /**
+         * The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
+         */
+        name: string;
+        /**
+         * One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+         */
+        resourceDiscoveryTagFilters?: outputs.cloudProvider.AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter[];
+        /**
+         * The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+         */
+        scrapeIntervalSeconds: number;
+    }
+
+    export interface AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter {
+        /**
+         * The key of the tag filter.
+         */
+        key: string;
+        /**
+         * The value of the tag filter.
+         */
+        value: string;
+    }
+
     export interface AzureCredentialAutoDiscoveryConfiguration {
         /**
          * The list of resource type configurations.
@@ -5072,19 +5098,19 @@ export namespace cloudProvider {
 
     export interface GetAwsCloudwatchScrapeJobsScrapeJob {
         /**
-         * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
+         * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
          */
         awsAccountResourceId: string;
         /**
-         * Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+         * Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
          */
         customNamespaces?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespace[];
         /**
-         * When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+         * When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
          */
         disabledReason: string;
         /**
-         * Whether the CloudWatch Scrape Job is enabled or not.
+         * Whether the AWS CloudWatch Scrape Job is enabled or not.
          */
         enabled: boolean;
         /**
@@ -5094,19 +5120,19 @@ export namespace cloudProvider {
         id: string;
         name: string;
         /**
-         * The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
+         * The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
          */
         regions: string[];
         /**
-         * When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
+         * When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
          */
         regionsSubsetOverrideUsed: boolean;
         /**
-         * The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+         * The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.
          */
         roleArn: string;
         /**
-         * One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+         * One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
          */
         services?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobService[];
         stackId: string;
@@ -5428,6 +5454,28 @@ export namespace fleetManagement {
         id: string;
         localAttributes: {[key: string]: string};
         remoteAttributes: {[key: string]: string};
+    }
+
+}
+
+export namespace k6 {
+    export interface GetLoadTestsLoadTest {
+        baselineTestRunId: number;
+        created: string;
+        id: number;
+        name: string;
+        projectId: number;
+        script: string;
+        updated: string;
+    }
+
+    export interface GetProjectsProject {
+        created: string;
+        grafanaFolderUid: string;
+        id: number;
+        isDefault: boolean;
+        name: string;
+        updated: string;
     }
 
 }

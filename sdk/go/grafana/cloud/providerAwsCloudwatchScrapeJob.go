@@ -127,18 +127,18 @@ type ProviderAwsCloudwatchScrapeJob struct {
 
 	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId pulumi.StringOutput `pulumi:"awsAccountResourceId"`
-	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput `pulumi:"customNamespaces"`
-	// When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+	// When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
 	DisabledReason pulumi.StringOutput `pulumi:"disabledReason"`
-	// Whether the CloudWatch Scrape Job is enabled or not.
+	// Whether the AWS CloudWatch Scrape Job is enabled or not.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
 	ExportTags pulumi.BoolOutput   `pulumi:"exportTags"`
 	Name       pulumi.StringOutput `pulumi:"name"`
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
 	RegionsSubsetOverrides pulumi.StringArrayOutput `pulumi:"regionsSubsetOverrides"`
-	// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services ProviderAwsCloudwatchScrapeJobServiceArrayOutput `pulumi:"services"`
 	StackId  pulumi.StringOutput                              `pulumi:"stackId"`
 	// A set of static labels to add to all metrics exported by this scrape job.
@@ -183,18 +183,18 @@ func GetProviderAwsCloudwatchScrapeJob(ctx *pulumi.Context,
 type providerAwsCloudwatchScrapeJobState struct {
 	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId *string `pulumi:"awsAccountResourceId"`
-	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces []ProviderAwsCloudwatchScrapeJobCustomNamespace `pulumi:"customNamespaces"`
-	// When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+	// When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
 	DisabledReason *string `pulumi:"disabledReason"`
-	// Whether the CloudWatch Scrape Job is enabled or not.
+	// Whether the AWS CloudWatch Scrape Job is enabled or not.
 	Enabled *bool `pulumi:"enabled"`
 	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
 	ExportTags *bool   `pulumi:"exportTags"`
 	Name       *string `pulumi:"name"`
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
 	RegionsSubsetOverrides []string `pulumi:"regionsSubsetOverrides"`
-	// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services []ProviderAwsCloudwatchScrapeJobService `pulumi:"services"`
 	StackId  *string                                 `pulumi:"stackId"`
 	// A set of static labels to add to all metrics exported by this scrape job.
@@ -204,18 +204,18 @@ type providerAwsCloudwatchScrapeJobState struct {
 type ProviderAwsCloudwatchScrapeJobState struct {
 	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId pulumi.StringPtrInput
-	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayInput
-	// When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+	// When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
 	DisabledReason pulumi.StringPtrInput
-	// Whether the CloudWatch Scrape Job is enabled or not.
+	// Whether the AWS CloudWatch Scrape Job is enabled or not.
 	Enabled pulumi.BoolPtrInput
 	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
 	ExportTags pulumi.BoolPtrInput
 	Name       pulumi.StringPtrInput
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
 	RegionsSubsetOverrides pulumi.StringArrayInput
-	// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services ProviderAwsCloudwatchScrapeJobServiceArrayInput
 	StackId  pulumi.StringPtrInput
 	// A set of static labels to add to all metrics exported by this scrape job.
@@ -229,16 +229,16 @@ func (ProviderAwsCloudwatchScrapeJobState) ElementType() reflect.Type {
 type providerAwsCloudwatchScrapeJobArgs struct {
 	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId string `pulumi:"awsAccountResourceId"`
-	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces []ProviderAwsCloudwatchScrapeJobCustomNamespace `pulumi:"customNamespaces"`
-	// Whether the CloudWatch Scrape Job is enabled or not.
+	// Whether the AWS CloudWatch Scrape Job is enabled or not.
 	Enabled *bool `pulumi:"enabled"`
 	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
 	ExportTags *bool   `pulumi:"exportTags"`
 	Name       *string `pulumi:"name"`
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
 	RegionsSubsetOverrides []string `pulumi:"regionsSubsetOverrides"`
-	// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services []ProviderAwsCloudwatchScrapeJobService `pulumi:"services"`
 	StackId  string                                  `pulumi:"stackId"`
 	// A set of static labels to add to all metrics exported by this scrape job.
@@ -249,16 +249,16 @@ type providerAwsCloudwatchScrapeJobArgs struct {
 type ProviderAwsCloudwatchScrapeJobArgs struct {
 	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId pulumi.StringInput
-	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayInput
-	// Whether the CloudWatch Scrape Job is enabled or not.
+	// Whether the AWS CloudWatch Scrape Job is enabled or not.
 	Enabled pulumi.BoolPtrInput
 	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
 	ExportTags pulumi.BoolPtrInput
 	Name       pulumi.StringPtrInput
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
 	RegionsSubsetOverrides pulumi.StringArrayInput
-	// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services ProviderAwsCloudwatchScrapeJobServiceArrayInput
 	StackId  pulumi.StringInput
 	// A set of static labels to add to all metrics exported by this scrape job.
@@ -357,19 +357,19 @@ func (o ProviderAwsCloudwatchScrapeJobOutput) AwsAccountResourceId() pulumi.Stri
 	return o.ApplyT(func(v *ProviderAwsCloudwatchScrapeJob) pulumi.StringOutput { return v.AwsAccountResourceId }).(pulumi.StringOutput)
 }
 
-// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 func (o ProviderAwsCloudwatchScrapeJobOutput) CustomNamespaces() ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput {
 	return o.ApplyT(func(v *ProviderAwsCloudwatchScrapeJob) ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput {
 		return v.CustomNamespaces
 	}).(ProviderAwsCloudwatchScrapeJobCustomNamespaceArrayOutput)
 }
 
-// When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+// When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
 func (o ProviderAwsCloudwatchScrapeJobOutput) DisabledReason() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProviderAwsCloudwatchScrapeJob) pulumi.StringOutput { return v.DisabledReason }).(pulumi.StringOutput)
 }
 
-// Whether the CloudWatch Scrape Job is enabled or not.
+// Whether the AWS CloudWatch Scrape Job is enabled or not.
 func (o ProviderAwsCloudwatchScrapeJobOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ProviderAwsCloudwatchScrapeJob) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -388,7 +388,7 @@ func (o ProviderAwsCloudwatchScrapeJobOutput) RegionsSubsetOverrides() pulumi.St
 	return o.ApplyT(func(v *ProviderAwsCloudwatchScrapeJob) pulumi.StringArrayOutput { return v.RegionsSubsetOverrides }).(pulumi.StringArrayOutput)
 }
 
-// One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 func (o ProviderAwsCloudwatchScrapeJobOutput) Services() ProviderAwsCloudwatchScrapeJobServiceArrayOutput {
 	return o.ApplyT(func(v *ProviderAwsCloudwatchScrapeJob) ProviderAwsCloudwatchScrapeJobServiceArrayOutput {
 		return v.Services

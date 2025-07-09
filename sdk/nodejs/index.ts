@@ -444,6 +444,7 @@ import * as enterprise from "./enterprise";
 import * as experimental from "./experimental";
 import * as fleetmanagement from "./fleetmanagement";
 import * as frontendobservability from "./frontendobservability";
+import * as k6 from "./k6";
 import * as machinelearning from "./machinelearning";
 import * as oncall from "./oncall";
 import * as oss from "./oss";
@@ -461,6 +462,7 @@ export {
     experimental,
     fleetmanagement,
     frontendobservability,
+    k6,
     machinelearning,
     oncall,
     oss,

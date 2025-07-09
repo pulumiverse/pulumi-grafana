@@ -90,6 +90,16 @@ insecureSkipVerify: Optional[bool]
 Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 """
 
+k6AccessToken: Optional[str]
+"""
+The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+"""
+
+k6Url: Optional[str]
+"""
+The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+"""
+
 oncallAccessToken: Optional[str]
 """
 A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.

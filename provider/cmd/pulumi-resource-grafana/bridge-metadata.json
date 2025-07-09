@@ -181,6 +181,24 @@
                     }
                 }
             },
+            "grafana_cloud_provider_aws_resource_metadata_scrape_job": {
+                "current": "grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob",
+                "fields": {
+                    "regions_subset_override": {
+                        "maxItemsOne": false
+                    },
+                    "service": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "resource_discovery_tag_filter": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_cloud_provider_azure_credential": {
                 "current": "grafana:cloudProvider/azureCredential:AzureCredential",
                 "past": [
@@ -501,6 +519,18 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "grafana_k6_installation": {
+                "current": "grafana:k6/installation:Installation"
+            },
+            "grafana_k6_load_test": {
+                "current": "grafana:k6/loadTest:LoadTest"
+            },
+            "grafana_k6_project": {
+                "current": "grafana:k6/project:Project"
+            },
+            "grafana_k6_project_limits": {
+                "current": "grafana:k6/projectLimits:ProjectLimits"
             },
             "grafana_library_panel": {
                 "current": "grafana:oss/libraryPanel:LibraryPanel",
@@ -1829,6 +1859,31 @@
                     }
                 }
             },
+            "grafana_k6_load_test": {
+                "current": "grafana:k6/getLoadTest:getLoadTest"
+            },
+            "grafana_k6_load_tests": {
+                "current": "grafana:k6/getLoadTests:getLoadTests",
+                "fields": {
+                    "load_tests": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "grafana_k6_project": {
+                "current": "grafana:k6/getProject:getProject"
+            },
+            "grafana_k6_project_limits": {
+                "current": "grafana:k6/getProjectLimits:getProjectLimits"
+            },
+            "grafana_k6_projects": {
+                "current": "grafana:k6/getProjects:getProjects",
+                "fields": {
+                    "projects": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "grafana_library_panel": {
                 "current": "grafana:oss/getLibraryPanel:getLibraryPanel",
                 "past": [
@@ -2674,6 +2729,7 @@
             "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": 0,
             "grafana:cloudProvider/awsAccount:AwsAccount": 1,
             "grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob": 1,
+            "grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob": 1,
             "grafana:cloudProvider/azureCredential:AzureCredential": 1,
             "grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob": 1,
             "grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules": 1,
@@ -2745,6 +2801,10 @@
             "grafana:index/team:Team": 0,
             "grafana:index/teamExternalGroup:TeamExternalGroup": 0,
             "grafana:index/user:User": 0,
+            "grafana:k6/installation:Installation": 0,
+            "grafana:k6/loadTest:LoadTest": 1,
+            "grafana:k6/project:Project": 1,
+            "grafana:k6/projectLimits:ProjectLimits": 1,
             "grafana:machineLearning/alert:Alert": 1,
             "grafana:machineLearning/holiday:Holiday": 0,
             "grafana:machineLearning/job:Job": 0,
@@ -2831,6 +2891,11 @@
             "grafana:index/getTeam:getTeam": 0,
             "grafana:index/getUser:getUser": 0,
             "grafana:index/getUsers:getUsers": 0,
+            "grafana:k6/getLoadTest:getLoadTest": 1,
+            "grafana:k6/getLoadTests:getLoadTests": 1,
+            "grafana:k6/getProject:getProject": 1,
+            "grafana:k6/getProjectLimits:getProjectLimits": 1,
+            "grafana:k6/getProjects:getProjects": 1,
             "grafana:onCall/getEscalationChain:getEscalationChain": 0,
             "grafana:onCall/getIntegration:getIntegration": 0,
             "grafana:onCall/getLabel:getLabel": 1,

@@ -33,6 +33,8 @@ class ProviderArgs:
                  frontend_o11y_api_access_token: Optional[pulumi.Input[builtins.str]] = None,
                  http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[builtins.bool]] = None,
+                 k6_access_token: Optional[pulumi.Input[builtins.str]] = None,
+                 k6_url: Optional[pulumi.Input[builtins.str]] = None,
                  oncall_access_token: Optional[pulumi.Input[builtins.str]] = None,
                  oncall_url: Optional[pulumi.Input[builtins.str]] = None,
                  org_id: Optional[pulumi.Input[builtins.int]] = None,
@@ -71,6 +73,8 @@ class ProviderArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] http_headers: Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
                be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
         :param pulumi.Input[builtins.bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
+        :param pulumi.Input[builtins.str] k6_access_token: The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+        :param pulumi.Input[builtins.str] k6_url: The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
         :param pulumi.Input[builtins.str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[builtins.str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
         :param pulumi.Input[builtins.int] org_id: The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
@@ -127,6 +131,10 @@ class ProviderArgs:
             insecure_skip_verify = _utilities.get_env_bool('GRAFANA_INSECURE_SKIP_VERIFY')
         if insecure_skip_verify is not None:
             pulumi.set(__self__, "insecure_skip_verify", insecure_skip_verify)
+        if k6_access_token is not None:
+            pulumi.set(__self__, "k6_access_token", k6_access_token)
+        if k6_url is not None:
+            pulumi.set(__self__, "k6_url", k6_url)
         if oncall_access_token is None:
             oncall_access_token = _utilities.get_env('GRAFANA_ONCALL_ACCESS_TOKEN')
         if oncall_access_token is not None:
@@ -341,6 +349,30 @@ class ProviderArgs:
         pulumi.set(self, "insecure_skip_verify", value)
 
     @property
+    @pulumi.getter(name="k6AccessToken")
+    def k6_access_token(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+        """
+        return pulumi.get(self, "k6_access_token")
+
+    @k6_access_token.setter
+    def k6_access_token(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "k6_access_token", value)
+
+    @property
+    @pulumi.getter(name="k6Url")
+    def k6_url(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+        """
+        return pulumi.get(self, "k6_url")
+
+    @k6_url.setter
+    def k6_url(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "k6_url", value)
+
+    @property
     @pulumi.getter(name="oncallAccessToken")
     def oncall_access_token(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -520,6 +552,8 @@ class Provider(pulumi.ProviderResource):
                  frontend_o11y_api_access_token: Optional[pulumi.Input[builtins.str]] = None,
                  http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[builtins.bool]] = None,
+                 k6_access_token: Optional[pulumi.Input[builtins.str]] = None,
+                 k6_url: Optional[pulumi.Input[builtins.str]] = None,
                  oncall_access_token: Optional[pulumi.Input[builtins.str]] = None,
                  oncall_url: Optional[pulumi.Input[builtins.str]] = None,
                  org_id: Optional[pulumi.Input[builtins.int]] = None,
@@ -565,6 +599,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] http_headers: Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
                be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
         :param pulumi.Input[builtins.bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
+        :param pulumi.Input[builtins.str] k6_access_token: The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+        :param pulumi.Input[builtins.str] k6_url: The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
         :param pulumi.Input[builtins.str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[builtins.str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
         :param pulumi.Input[builtins.int] org_id: The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
@@ -625,6 +661,8 @@ class Provider(pulumi.ProviderResource):
                  frontend_o11y_api_access_token: Optional[pulumi.Input[builtins.str]] = None,
                  http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[builtins.bool]] = None,
+                 k6_access_token: Optional[pulumi.Input[builtins.str]] = None,
+                 k6_url: Optional[pulumi.Input[builtins.str]] = None,
                  oncall_access_token: Optional[pulumi.Input[builtins.str]] = None,
                  oncall_url: Optional[pulumi.Input[builtins.str]] = None,
                  org_id: Optional[pulumi.Input[builtins.int]] = None,
@@ -670,6 +708,8 @@ class Provider(pulumi.ProviderResource):
             if insecure_skip_verify is None:
                 insecure_skip_verify = _utilities.get_env_bool('GRAFANA_INSECURE_SKIP_VERIFY')
             __props__.__dict__["insecure_skip_verify"] = pulumi.Output.from_input(insecure_skip_verify).apply(pulumi.runtime.to_json) if insecure_skip_verify is not None else None
+            __props__.__dict__["k6_access_token"] = None if k6_access_token is None else pulumi.Output.secret(k6_access_token)
+            __props__.__dict__["k6_url"] = k6_url
             if oncall_access_token is None:
                 oncall_access_token = _utilities.get_env('GRAFANA_ONCALL_ACCESS_TOKEN')
             __props__.__dict__["oncall_access_token"] = None if oncall_access_token is None else pulumi.Output.secret(oncall_access_token)
@@ -703,7 +743,7 @@ class Provider(pulumi.ProviderResource):
             if url is None:
                 url = _utilities.get_env('GRAFANA_URL')
             __props__.__dict__["url"] = url
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "fleetManagementAuth", "frontendO11yApiAccessToken", "oncallAccessToken", "smAccessToken", "tlsKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "fleetManagementAuth", "frontendO11yApiAccessToken", "k6AccessToken", "oncallAccessToken", "smAccessToken", "tlsKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'grafana',
@@ -807,6 +847,22 @@ class Provider(pulumi.ProviderResource):
         `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
         """
         return pulumi.get(self, "frontend_o11y_api_access_token")
+
+    @property
+    @pulumi.getter(name="k6AccessToken")
+    def k6_access_token(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+        """
+        return pulumi.get(self, "k6_access_token")
+
+    @property
+    @pulumi.getter(name="k6Url")
+    def k6_url(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+        """
+        return pulumi.get(self, "k6_url")
 
     @property
     @pulumi.getter(name="oncallAccessToken")
