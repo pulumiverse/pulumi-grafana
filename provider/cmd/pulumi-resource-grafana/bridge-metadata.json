@@ -16,8 +16,8 @@
                     }
                 }
             },
-            "grafana_apps_dashboard_dashboard_v1alpha1": {
-                "current": "grafana:experimental/appsDashboardV1Alpha1:AppsDashboardV1Alpha1",
+            "grafana_apps_dashboard_dashboard_v1beta1": {
+                "current": "grafana:experimental/appsDashboard:AppsDashboard",
                 "fields": {
                     "spec": {
                         "fields": {
@@ -2684,7 +2684,7 @@
             "grafana:enterprise/roleAssignment:RoleAssignment": 0,
             "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem": 1,
             "grafana:enterprise/teamExternalGroup:TeamExternalGroup": 0,
-            "grafana:experimental/appsDashboardV1Alpha1:AppsDashboardV1Alpha1": 1,
+            "grafana:experimental/appsDashboard:AppsDashboard": 1,
             "grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1": 1,
             "grafana:fleetManagement/collector:Collector": 1,
             "grafana:fleetManagement/pipeline:Pipeline": 1,

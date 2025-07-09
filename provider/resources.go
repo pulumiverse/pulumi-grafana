@@ -207,8 +207,8 @@ func Provider() tfbridge.ProviderInfo {
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			// Experimental - these can still change over time
-			"grafana_apps_dashboard_dashboard_v1alpha1": {
-				Tok:       grafanaResource(experimentalMod, "AppsDashboardV1Alpha1"),
+			"grafana_apps_dashboard_dashboard_v1beta1": {
+				Tok:       grafanaResource(experimentalMod, "AppsDashboard"),
 				ComputeID: tfbridge.DelegateIDField("id", "grafana", "https://github.com/pulumiverse/pulumi-grafana"),
 			},
 			"grafana_apps_playlist_playlist_v0alpha1": {
