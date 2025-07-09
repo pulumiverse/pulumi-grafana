@@ -172,6 +172,26 @@ namespace Pulumiverse.Grafana
             set => _insecureSkipVerify.Set(value);
         }
 
+        private static readonly __Value<string?> _k6AccessToken = new __Value<string?>(() => __config.Get("k6AccessToken"));
+        /// <summary>
+        /// The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+        /// </summary>
+        public static string? K6AccessToken
+        {
+            get => _k6AccessToken.Get();
+            set => _k6AccessToken.Set(value);
+        }
+
+        private static readonly __Value<string?> _k6Url = new __Value<string?>(() => __config.Get("k6Url"));
+        /// <summary>
+        /// The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+        /// </summary>
+        public static string? K6Url
+        {
+            get => _k6Url.Get();
+            set => _k6Url.Set(value);
+        }
+
         private static readonly __Value<string?> _oncallAccessToken = new __Value<string?>(() => __config.Get("oncallAccessToken") ?? Utilities.GetEnv("GRAFANA_ONCALL_ACCESS_TOKEN"));
         /// <summary>
         /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.

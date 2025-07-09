@@ -115,6 +115,8 @@ if typing.TYPE_CHECKING:
     fleetmanagement = __fleetmanagement
     import pulumiverse_grafana.frontendobservability as __frontendobservability
     frontendobservability = __frontendobservability
+    import pulumiverse_grafana.k6 as __k6
+    k6 = __k6
     import pulumiverse_grafana.machinelearning as __machinelearning
     machinelearning = __machinelearning
     import pulumiverse_grafana.oncall as __oncall
@@ -135,6 +137,7 @@ else:
     experimental = _utilities.lazy_import('pulumiverse_grafana.experimental')
     fleetmanagement = _utilities.lazy_import('pulumiverse_grafana.fleetmanagement')
     frontendobservability = _utilities.lazy_import('pulumiverse_grafana.frontendobservability')
+    k6 = _utilities.lazy_import('pulumiverse_grafana.k6')
     machinelearning = _utilities.lazy_import('pulumiverse_grafana.machinelearning')
     oncall = _utilities.lazy_import('pulumiverse_grafana.oncall')
     oss = _utilities.lazy_import('pulumiverse_grafana.oss')
@@ -294,6 +297,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.cloudprovider",
   "classes": {
    "grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob": "AwsCloudwatchScrapeJob"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloudProvider/awsResourceMetadataScrapeJob",
+  "fqn": "pulumiverse_grafana.cloudprovider",
+  "classes": {
+   "grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob": "AwsResourceMetadataScrapeJob"
   }
  },
  {
@@ -862,6 +873,38 @@ _utilities.register(
   "fqn": "pulumiverse_grafana",
   "classes": {
    "grafana:index/user:User": "User"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "k6/installation",
+  "fqn": "pulumiverse_grafana.k6",
+  "classes": {
+   "grafana:k6/installation:Installation": "Installation"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "k6/loadTest",
+  "fqn": "pulumiverse_grafana.k6",
+  "classes": {
+   "grafana:k6/loadTest:LoadTest": "LoadTest"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "k6/project",
+  "fqn": "pulumiverse_grafana.k6",
+  "classes": {
+   "grafana:k6/project:Project": "Project"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "k6/projectLimits",
+  "fqn": "pulumiverse_grafana.k6",
+  "classes": {
+   "grafana:k6/projectLimits:ProjectLimits": "ProjectLimits"
   }
  },
  {

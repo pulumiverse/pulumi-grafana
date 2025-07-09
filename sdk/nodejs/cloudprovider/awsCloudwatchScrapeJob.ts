@@ -110,15 +110,15 @@ export class AwsCloudwatchScrapeJob extends pulumi.CustomResource {
      */
     public readonly awsAccountResourceId!: pulumi.Output<string>;
     /**
-     * Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+     * Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     public readonly customNamespaces!: pulumi.Output<outputs.cloudProvider.AwsCloudwatchScrapeJobCustomNamespace[] | undefined>;
     /**
-     * When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+     * When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
      */
     public /*out*/ readonly disabledReason!: pulumi.Output<string>;
     /**
-     * Whether the CloudWatch Scrape Job is enabled or not.
+     * Whether the AWS CloudWatch Scrape Job is enabled or not.
      */
     public readonly enabled!: pulumi.Output<boolean>;
     /**
@@ -131,7 +131,7 @@ export class AwsCloudwatchScrapeJob extends pulumi.CustomResource {
      */
     public readonly regionsSubsetOverrides!: pulumi.Output<string[]>;
     /**
-     * One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+     * One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     public readonly services!: pulumi.Output<outputs.cloudProvider.AwsCloudwatchScrapeJobService[] | undefined>;
     public readonly stackId!: pulumi.Output<string>;
@@ -198,15 +198,15 @@ export interface AwsCloudwatchScrapeJobState {
      */
     awsAccountResourceId?: pulumi.Input<string>;
     /**
-     * Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+     * Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     customNamespaces?: pulumi.Input<pulumi.Input<inputs.cloudProvider.AwsCloudwatchScrapeJobCustomNamespace>[]>;
     /**
-     * When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+     * When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
      */
     disabledReason?: pulumi.Input<string>;
     /**
-     * Whether the CloudWatch Scrape Job is enabled or not.
+     * Whether the AWS CloudWatch Scrape Job is enabled or not.
      */
     enabled?: pulumi.Input<boolean>;
     /**
@@ -219,7 +219,7 @@ export interface AwsCloudwatchScrapeJobState {
      */
     regionsSubsetOverrides?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+     * One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     services?: pulumi.Input<pulumi.Input<inputs.cloudProvider.AwsCloudwatchScrapeJobService>[]>;
     stackId?: pulumi.Input<string>;
@@ -238,11 +238,11 @@ export interface AwsCloudwatchScrapeJobArgs {
      */
     awsAccountResourceId: pulumi.Input<string>;
     /**
-     * Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+     * Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     customNamespaces?: pulumi.Input<pulumi.Input<inputs.cloudProvider.AwsCloudwatchScrapeJobCustomNamespace>[]>;
     /**
-     * Whether the CloudWatch Scrape Job is enabled or not.
+     * Whether the AWS CloudWatch Scrape Job is enabled or not.
      */
     enabled?: pulumi.Input<boolean>;
     /**
@@ -255,7 +255,7 @@ export interface AwsCloudwatchScrapeJobArgs {
      */
     regionsSubsetOverrides?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * One or more configuration blocks to configure AWS services for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+     * One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     services?: pulumi.Input<pulumi.Input<inputs.cloudProvider.AwsCloudwatchScrapeJobService>[]>;
     stackId: pulumi.Input<string>;

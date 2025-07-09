@@ -583,6 +583,229 @@ func (o AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) Inde
 	}).(AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput)
 }
 
+type AwsResourceMetadataScrapeJobService struct {
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
+	Name string `pulumi:"name"`
+	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+	ResourceDiscoveryTagFilters []AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	ScrapeIntervalSeconds *int `pulumi:"scrapeIntervalSeconds"`
+}
+
+// AwsResourceMetadataScrapeJobServiceInput is an input type that accepts AwsResourceMetadataScrapeJobServiceArgs and AwsResourceMetadataScrapeJobServiceOutput values.
+// You can construct a concrete instance of `AwsResourceMetadataScrapeJobServiceInput` via:
+//
+//	AwsResourceMetadataScrapeJobServiceArgs{...}
+type AwsResourceMetadataScrapeJobServiceInput interface {
+	pulumi.Input
+
+	ToAwsResourceMetadataScrapeJobServiceOutput() AwsResourceMetadataScrapeJobServiceOutput
+	ToAwsResourceMetadataScrapeJobServiceOutputWithContext(context.Context) AwsResourceMetadataScrapeJobServiceOutput
+}
+
+type AwsResourceMetadataScrapeJobServiceArgs struct {
+	// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
+	Name pulumi.StringInput `pulumi:"name"`
+	// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+	ResourceDiscoveryTagFilters AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayInput `pulumi:"resourceDiscoveryTagFilters"`
+	// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+	ScrapeIntervalSeconds pulumi.IntPtrInput `pulumi:"scrapeIntervalSeconds"`
+}
+
+func (AwsResourceMetadataScrapeJobServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AwsResourceMetadataScrapeJobService)(nil)).Elem()
+}
+
+func (i AwsResourceMetadataScrapeJobServiceArgs) ToAwsResourceMetadataScrapeJobServiceOutput() AwsResourceMetadataScrapeJobServiceOutput {
+	return i.ToAwsResourceMetadataScrapeJobServiceOutputWithContext(context.Background())
+}
+
+func (i AwsResourceMetadataScrapeJobServiceArgs) ToAwsResourceMetadataScrapeJobServiceOutputWithContext(ctx context.Context) AwsResourceMetadataScrapeJobServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AwsResourceMetadataScrapeJobServiceOutput)
+}
+
+// AwsResourceMetadataScrapeJobServiceArrayInput is an input type that accepts AwsResourceMetadataScrapeJobServiceArray and AwsResourceMetadataScrapeJobServiceArrayOutput values.
+// You can construct a concrete instance of `AwsResourceMetadataScrapeJobServiceArrayInput` via:
+//
+//	AwsResourceMetadataScrapeJobServiceArray{ AwsResourceMetadataScrapeJobServiceArgs{...} }
+type AwsResourceMetadataScrapeJobServiceArrayInput interface {
+	pulumi.Input
+
+	ToAwsResourceMetadataScrapeJobServiceArrayOutput() AwsResourceMetadataScrapeJobServiceArrayOutput
+	ToAwsResourceMetadataScrapeJobServiceArrayOutputWithContext(context.Context) AwsResourceMetadataScrapeJobServiceArrayOutput
+}
+
+type AwsResourceMetadataScrapeJobServiceArray []AwsResourceMetadataScrapeJobServiceInput
+
+func (AwsResourceMetadataScrapeJobServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AwsResourceMetadataScrapeJobService)(nil)).Elem()
+}
+
+func (i AwsResourceMetadataScrapeJobServiceArray) ToAwsResourceMetadataScrapeJobServiceArrayOutput() AwsResourceMetadataScrapeJobServiceArrayOutput {
+	return i.ToAwsResourceMetadataScrapeJobServiceArrayOutputWithContext(context.Background())
+}
+
+func (i AwsResourceMetadataScrapeJobServiceArray) ToAwsResourceMetadataScrapeJobServiceArrayOutputWithContext(ctx context.Context) AwsResourceMetadataScrapeJobServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AwsResourceMetadataScrapeJobServiceArrayOutput)
+}
+
+type AwsResourceMetadataScrapeJobServiceOutput struct{ *pulumi.OutputState }
+
+func (AwsResourceMetadataScrapeJobServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AwsResourceMetadataScrapeJobService)(nil)).Elem()
+}
+
+func (o AwsResourceMetadataScrapeJobServiceOutput) ToAwsResourceMetadataScrapeJobServiceOutput() AwsResourceMetadataScrapeJobServiceOutput {
+	return o
+}
+
+func (o AwsResourceMetadataScrapeJobServiceOutput) ToAwsResourceMetadataScrapeJobServiceOutputWithContext(ctx context.Context) AwsResourceMetadataScrapeJobServiceOutput {
+	return o
+}
+
+// The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
+func (o AwsResourceMetadataScrapeJobServiceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v AwsResourceMetadataScrapeJobService) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+func (o AwsResourceMetadataScrapeJobServiceOutput) ResourceDiscoveryTagFilters() AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return o.ApplyT(func(v AwsResourceMetadataScrapeJobService) []AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter {
+		return v.ResourceDiscoveryTagFilters
+	}).(AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput)
+}
+
+// The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+func (o AwsResourceMetadataScrapeJobServiceOutput) ScrapeIntervalSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AwsResourceMetadataScrapeJobService) *int { return v.ScrapeIntervalSeconds }).(pulumi.IntPtrOutput)
+}
+
+type AwsResourceMetadataScrapeJobServiceArrayOutput struct{ *pulumi.OutputState }
+
+func (AwsResourceMetadataScrapeJobServiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AwsResourceMetadataScrapeJobService)(nil)).Elem()
+}
+
+func (o AwsResourceMetadataScrapeJobServiceArrayOutput) ToAwsResourceMetadataScrapeJobServiceArrayOutput() AwsResourceMetadataScrapeJobServiceArrayOutput {
+	return o
+}
+
+func (o AwsResourceMetadataScrapeJobServiceArrayOutput) ToAwsResourceMetadataScrapeJobServiceArrayOutputWithContext(ctx context.Context) AwsResourceMetadataScrapeJobServiceArrayOutput {
+	return o
+}
+
+func (o AwsResourceMetadataScrapeJobServiceArrayOutput) Index(i pulumi.IntInput) AwsResourceMetadataScrapeJobServiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AwsResourceMetadataScrapeJobService {
+		return vs[0].([]AwsResourceMetadataScrapeJobService)[vs[1].(int)]
+	}).(AwsResourceMetadataScrapeJobServiceOutput)
+}
+
+type AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter struct {
+	// The key of the tag filter.
+	Key string `pulumi:"key"`
+	// The value of the tag filter.
+	Value string `pulumi:"value"`
+}
+
+// AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterInput is an input type that accepts AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs and AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput values.
+// You can construct a concrete instance of `AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterInput` via:
+//
+//	AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs{...}
+type AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterInput interface {
+	pulumi.Input
+
+	ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput() AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput
+	ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(context.Context) AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput
+}
+
+type AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs struct {
+	// The key of the tag filter.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the tag filter.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (i AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs) ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput() AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return i.ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(context.Background())
+}
+
+func (i AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs) ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(ctx context.Context) AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput)
+}
+
+// AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayInput is an input type that accepts AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArray and AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput values.
+// You can construct a concrete instance of `AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayInput` via:
+//
+//	AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArray{ AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs{...} }
+type AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput() AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput
+	ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(context.Context) AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput
+}
+
+type AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArray []AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterInput
+
+func (AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (i AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArray) ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput() AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return i.ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArray) ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(ctx context.Context) AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput)
+}
+
+type AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput struct{ *pulumi.OutputState }
+
+func (AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (o AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput) ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput() AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return o
+}
+
+func (o AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput) ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutputWithContext(ctx context.Context) AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return o
+}
+
+// The key of the tag filter.
+func (o AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value of the tag filter.
+func (o AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter)(nil)).Elem()
+}
+
+func (o AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput() AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return o
+}
+
+func (o AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) ToAwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutputWithContext(ctx context.Context) AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput {
+	return o
+}
+
+func (o AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) Index(i pulumi.IntInput) AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter {
+		return vs[0].([]AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilter)[vs[1].(int)]
+	}).(AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput)
+}
+
 type AzureCredentialAutoDiscoveryConfiguration struct {
 	// The list of resource type configurations.
 	ResourceTypeConfigurations []AzureCredentialAutoDiscoveryConfigurationResourceTypeConfiguration `pulumi:"resourceTypeConfigurations"`
@@ -1584,25 +1807,25 @@ func (o GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput) I
 }
 
 type GetAwsCloudwatchScrapeJobsScrapeJob struct {
-	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
+	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId string `pulumi:"awsAccountResourceId"`
-	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces []GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespace `pulumi:"customNamespaces"`
-	// When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+	// When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
 	DisabledReason string `pulumi:"disabledReason"`
-	// Whether the CloudWatch Scrape Job is enabled or not.
+	// Whether the AWS CloudWatch Scrape Job is enabled or not.
 	Enabled bool `pulumi:"enabled"`
 	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
 	ExportTags bool   `pulumi:"exportTags"`
 	Id         string `pulumi:"id"`
 	Name       string `pulumi:"name"`
-	// The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
+	// The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
 	Regions []string `pulumi:"regions"`
-	// When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
+	// When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
 	RegionsSubsetOverrideUsed bool `pulumi:"regionsSubsetOverrideUsed"`
-	// The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+	// The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.
 	RoleArn string `pulumi:"roleArn"`
-	// One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services []GetAwsCloudwatchScrapeJobsScrapeJobService `pulumi:"services"`
 	StackId  string                                       `pulumi:"stackId"`
 	// A set of static labels to add to all metrics exported by this scrape job.
@@ -1621,25 +1844,25 @@ type GetAwsCloudwatchScrapeJobsScrapeJobInput interface {
 }
 
 type GetAwsCloudwatchScrapeJobsScrapeJobArgs struct {
-	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
+	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId pulumi.StringInput `pulumi:"awsAccountResourceId"`
-	// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayInput `pulumi:"customNamespaces"`
-	// When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+	// When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
 	DisabledReason pulumi.StringInput `pulumi:"disabledReason"`
-	// Whether the CloudWatch Scrape Job is enabled or not.
+	// Whether the AWS CloudWatch Scrape Job is enabled or not.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
 	ExportTags pulumi.BoolInput   `pulumi:"exportTags"`
 	Id         pulumi.StringInput `pulumi:"id"`
 	Name       pulumi.StringInput `pulumi:"name"`
-	// The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
+	// The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
 	Regions pulumi.StringArrayInput `pulumi:"regions"`
-	// When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
+	// When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
 	RegionsSubsetOverrideUsed pulumi.BoolInput `pulumi:"regionsSubsetOverrideUsed"`
-	// The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+	// The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.
 	RoleArn pulumi.StringInput `pulumi:"roleArn"`
-	// One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+	// One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services GetAwsCloudwatchScrapeJobsScrapeJobServiceArrayInput `pulumi:"services"`
 	StackId  pulumi.StringInput                                   `pulumi:"stackId"`
 	// A set of static labels to add to all metrics exported by this scrape job.
@@ -1697,24 +1920,24 @@ func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) ToGetAwsCloudwatchScrapeJobsS
 	return o
 }
 
-// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
+// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) AwsAccountResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJob) string { return v.AwsAccountResourceId }).(pulumi.StringOutput)
 }
 
-// Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) CustomNamespaces() GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJob) []GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespace {
 		return v.CustomNamespaces
 	}).(GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArrayOutput)
 }
 
-// When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+// When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
 func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) DisabledReason() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJob) string { return v.DisabledReason }).(pulumi.StringOutput)
 }
 
-// Whether the CloudWatch Scrape Job is enabled or not.
+// Whether the AWS CloudWatch Scrape Job is enabled or not.
 func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJob) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -1732,22 +1955,22 @@ func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJob) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
+// The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
 func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) Regions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJob) []string { return v.Regions }).(pulumi.StringArrayOutput)
 }
 
-// When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
+// When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
 func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) RegionsSubsetOverrideUsed() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJob) bool { return v.RegionsSubsetOverrideUsed }).(pulumi.BoolOutput)
 }
 
-// The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+// The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.
 func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) RoleArn() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJob) string { return v.RoleArn }).(pulumi.StringOutput)
 }
 
-// One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+// One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) Services() GetAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJob) []GetAwsCloudwatchScrapeJobsScrapeJobService {
 		return v.Services
@@ -2796,6 +3019,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AwsCloudwatchScrapeJobServiceMetricArrayInput)(nil)).Elem(), AwsCloudwatchScrapeJobServiceMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterInput)(nil)).Elem(), AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AwsResourceMetadataScrapeJobServiceInput)(nil)).Elem(), AwsResourceMetadataScrapeJobServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AwsResourceMetadataScrapeJobServiceArrayInput)(nil)).Elem(), AwsResourceMetadataScrapeJobServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterInput)(nil)).Elem(), AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayInput)(nil)).Elem(), AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AzureCredentialAutoDiscoveryConfigurationInput)(nil)).Elem(), AzureCredentialAutoDiscoveryConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AzureCredentialAutoDiscoveryConfigurationArrayInput)(nil)).Elem(), AzureCredentialAutoDiscoveryConfigurationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationInput)(nil)).Elem(), AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs{})
@@ -2844,6 +3071,10 @@ func init() {
 	pulumi.RegisterOutputType(AwsCloudwatchScrapeJobServiceMetricArrayOutput{})
 	pulumi.RegisterOutputType(AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterOutput{})
 	pulumi.RegisterOutputType(AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArrayOutput{})
+	pulumi.RegisterOutputType(AwsResourceMetadataScrapeJobServiceOutput{})
+	pulumi.RegisterOutputType(AwsResourceMetadataScrapeJobServiceArrayOutput{})
+	pulumi.RegisterOutputType(AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterOutput{})
+	pulumi.RegisterOutputType(AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArrayOutput{})
 	pulumi.RegisterOutputType(AzureCredentialAutoDiscoveryConfigurationOutput{})
 	pulumi.RegisterOutputType(AzureCredentialAutoDiscoveryConfigurationArrayOutput{})
 	pulumi.RegisterOutputType(AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationOutput{})

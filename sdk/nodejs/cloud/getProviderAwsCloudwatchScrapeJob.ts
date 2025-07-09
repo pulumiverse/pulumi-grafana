@@ -92,12 +92,12 @@ export function getProviderAwsCloudwatchScrapeJob(args: GetProviderAwsCloudwatch
  */
 export interface GetProviderAwsCloudwatchScrapeJobArgs {
     /**
-     * Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+     * Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     customNamespaces?: inputs.cloud.GetProviderAwsCloudwatchScrapeJobCustomNamespace[];
     name: string;
     /**
-     * One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+     * One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     services?: inputs.cloud.GetProviderAwsCloudwatchScrapeJobService[];
     stackId: string;
@@ -108,19 +108,19 @@ export interface GetProviderAwsCloudwatchScrapeJobArgs {
  */
 export interface GetProviderAwsCloudwatchScrapeJobResult {
     /**
-     * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
+     * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
      */
     readonly awsAccountResourceId: string;
     /**
-     * Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+     * Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     readonly customNamespaces?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobCustomNamespace[];
     /**
-     * When the CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+     * When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
      */
     readonly disabledReason: string;
     /**
-     * Whether the CloudWatch Scrape Job is enabled or not.
+     * Whether the AWS CloudWatch Scrape Job is enabled or not.
      */
     readonly enabled: boolean;
     /**
@@ -130,19 +130,19 @@ export interface GetProviderAwsCloudwatchScrapeJobResult {
     readonly id: string;
     readonly name: string;
     /**
-     * The set of AWS region names that this CloudWatch Scrape Job is configured to scrape.
+     * The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
      */
     readonly regions: string[];
     /**
-     * When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this CloudWatch Scrape Job.
+     * When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
      */
     readonly regionsSubsetOverrideUsed: boolean;
     /**
-     * The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this CloudWatch Scrape Job.
+     * The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.
      */
     readonly roleArn: string;
     /**
-     * One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+     * One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     readonly services?: outputs.cloud.GetProviderAwsCloudwatchScrapeJobService[];
     readonly stackId: string;
@@ -237,12 +237,12 @@ export function getProviderAwsCloudwatchScrapeJobOutput(args: GetProviderAwsClou
  */
 export interface GetProviderAwsCloudwatchScrapeJobOutputArgs {
     /**
-     * Zero or more configuration blocks to configure custom namespaces for the CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+     * Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     customNamespaces?: pulumi.Input<pulumi.Input<inputs.cloud.GetProviderAwsCloudwatchScrapeJobCustomNamespaceArgs>[]>;
     name: pulumi.Input<string>;
     /**
-     * One or more configuration blocks to dictate what this CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+     * One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     services?: pulumi.Input<pulumi.Input<inputs.cloud.GetProviderAwsCloudwatchScrapeJobServiceArgs>[]>;
     stackId: pulumi.Input<string>;

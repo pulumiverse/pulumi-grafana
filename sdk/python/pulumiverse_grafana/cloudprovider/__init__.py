@@ -8,6 +8,7 @@ import typing
 # Export this package's modules as members:
 from .aws_account import *
 from .aws_cloudwatch_scrape_job import *
+from .aws_resource_metadata_scrape_job import *
 from .azure_credential import *
 from .get_aws_account import *
 from .get_aws_cloudwatch_scrape_job import *

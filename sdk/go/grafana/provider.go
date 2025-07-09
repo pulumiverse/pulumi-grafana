@@ -49,6 +49,10 @@ type Provider struct {
 	// A Grafana Frontend Observability API access token. May alternatively be set via the
 	// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 	FrontendO11yApiAccessToken pulumi.StringPtrOutput `pulumi:"frontendO11yApiAccessToken"`
+	// The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+	K6AccessToken pulumi.StringPtrOutput `pulumi:"k6AccessToken"`
+	// The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+	K6Url pulumi.StringPtrOutput `pulumi:"k6Url"`
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
 	OncallAccessToken pulumi.StringPtrOutput `pulumi:"oncallAccessToken"`
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -169,6 +173,9 @@ func NewProvider(ctx *pulumi.Context,
 	if args.HttpHeaders != nil {
 		args.HttpHeaders = pulumi.ToSecret(args.HttpHeaders).(pulumi.StringMapInput)
 	}
+	if args.K6AccessToken != nil {
+		args.K6AccessToken = pulumi.ToSecret(args.K6AccessToken).(pulumi.StringPtrInput)
+	}
 	if args.OncallAccessToken != nil {
 		args.OncallAccessToken = pulumi.ToSecret(args.OncallAccessToken).(pulumi.StringPtrInput)
 	}
@@ -185,6 +192,7 @@ func NewProvider(ctx *pulumi.Context,
 		"connectionsApiAccessToken",
 		"fleetManagementAuth",
 		"frontendO11yApiAccessToken",
+		"k6AccessToken",
 		"oncallAccessToken",
 		"smAccessToken",
 		"tlsKey",
@@ -236,6 +244,10 @@ type providerArgs struct {
 	HttpHeaders map[string]string `pulumi:"httpHeaders"`
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 	InsecureSkipVerify *bool `pulumi:"insecureSkipVerify"`
+	// The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+	K6AccessToken *string `pulumi:"k6AccessToken"`
+	// The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+	K6Url *string `pulumi:"k6Url"`
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
 	OncallAccessToken *string `pulumi:"oncallAccessToken"`
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -308,6 +320,10 @@ type ProviderArgs struct {
 	HttpHeaders pulumi.StringMapInput
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 	InsecureSkipVerify pulumi.BoolPtrInput
+	// The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+	K6AccessToken pulumi.StringPtrInput
+	// The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+	K6Url pulumi.StringPtrInput
 	// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
 	OncallAccessToken pulumi.StringPtrInput
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
@@ -464,6 +480,16 @@ func (o ProviderOutput) FleetManagementUrl() pulumi.StringPtrOutput {
 // `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 func (o ProviderOutput) FrontendO11yApiAccessToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.FrontendO11yApiAccessToken }).(pulumi.StringPtrOutput)
+}
+
+// The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+func (o ProviderOutput) K6AccessToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.K6AccessToken }).(pulumi.StringPtrOutput)
+}
+
+// The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+func (o ProviderOutput) K6Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.K6Url }).(pulumi.StringPtrOutput)
 }
 
 // A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.

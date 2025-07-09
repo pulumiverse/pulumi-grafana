@@ -95,6 +95,18 @@ namespace Pulumiverse.Grafana
         public Output<string?> FrontendO11yApiAccessToken { get; private set; } = null!;
 
         /// <summary>
+        /// The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+        /// </summary>
+        [Output("k6AccessToken")]
+        public Output<string?> K6AccessToken { get; private set; } = null!;
+
+        /// <summary>
+        /// The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+        /// </summary>
+        [Output("k6Url")]
+        public Output<string?> K6Url { get; private set; } = null!;
+
+        /// <summary>
         /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
         /// </summary>
         [Output("oncallAccessToken")]
@@ -162,6 +174,7 @@ namespace Pulumiverse.Grafana
                     "connectionsApiAccessToken",
                     "fleetManagementAuth",
                     "frontendO11yApiAccessToken",
+                    "k6AccessToken",
                     "oncallAccessToken",
                     "smAccessToken",
                     "tlsKey",
@@ -339,6 +352,28 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("insecureSkipVerify", json: true)]
         public Input<bool>? InsecureSkipVerify { get; set; }
+
+        [Input("k6AccessToken")]
+        private Input<string>? _k6AccessToken;
+
+        /// <summary>
+        /// The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+        /// </summary>
+        public Input<string>? K6AccessToken
+        {
+            get => _k6AccessToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _k6AccessToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+        /// </summary>
+        [Input("k6Url")]
+        public Input<string>? K6Url { get; set; }
 
         [Input("oncallAccessToken")]
         private Input<string>? _oncallAccessToken;

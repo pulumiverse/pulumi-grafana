@@ -126,6 +126,16 @@ func GetInsecureSkipVerify(ctx *pulumi.Context) bool {
 	return value
 }
 
+// The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+func GetK6AccessToken(ctx *pulumi.Context) string {
+	return config.Get(ctx, "grafana:k6AccessToken")
+}
+
+// The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+func GetK6Url(ctx *pulumi.Context) string {
+	return config.Get(ctx, "grafana:k6Url")
+}
+
 // A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
 func GetOncallAccessToken(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:oncallAccessToken")

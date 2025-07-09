@@ -161,6 +161,28 @@ Object.defineProperty(exports, "insecureSkipVerify", {
 });
 
 /**
+ * The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+ */
+export declare const k6AccessToken: string | undefined;
+Object.defineProperty(exports, "k6AccessToken", {
+    get() {
+        return __config.get("k6AccessToken");
+    },
+    enumerable: true,
+});
+
+/**
+ * The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+ */
+export declare const k6Url: string | undefined;
+Object.defineProperty(exports, "k6Url", {
+    get() {
+        return __config.get("k6Url");
+    },
+    enumerable: true,
+});
+
+/**
  * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
  */
 export declare const oncallAccessToken: string | undefined;

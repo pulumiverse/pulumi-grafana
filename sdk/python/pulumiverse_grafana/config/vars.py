@@ -123,6 +123,20 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get_bool('insecureSkipVerify') or _utilities.get_env_bool('GRAFANA_INSECURE_SKIP_VERIFY')
 
     @property
+    def k6_access_token(self) -> Optional[str]:
+        """
+        The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+        """
+        return __config__.get('k6AccessToken')
+
+    @property
+    def k6_url(self) -> Optional[str]:
+        """
+        The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+        """
+        return __config__.get('k6Url')
+
+    @property
     def oncall_access_token(self) -> Optional[str]:
         """
         A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.

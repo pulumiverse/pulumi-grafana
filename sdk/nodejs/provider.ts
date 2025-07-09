@@ -79,6 +79,14 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly frontendO11yApiAccessToken!: pulumi.Output<string | undefined>;
     /**
+     * The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+     */
+    public readonly k6AccessToken!: pulumi.Output<string | undefined>;
+    /**
+     * The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+     */
+    public readonly k6Url!: pulumi.Output<string | undefined>;
+    /**
      * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
      */
     public readonly oncallAccessToken!: pulumi.Output<string | undefined>;
@@ -130,6 +138,8 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["frontendO11yApiAccessToken"] = args?.frontendO11yApiAccessToken ? pulumi.secret(args.frontendO11yApiAccessToken) : undefined;
             resourceInputs["httpHeaders"] = pulumi.output(args?.httpHeaders ? pulumi.secret(args.httpHeaders) : undefined).apply(JSON.stringify);
             resourceInputs["insecureSkipVerify"] = pulumi.output((args ? args.insecureSkipVerify : undefined) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
+            resourceInputs["k6AccessToken"] = args?.k6AccessToken ? pulumi.secret(args.k6AccessToken) : undefined;
+            resourceInputs["k6Url"] = args ? args.k6Url : undefined;
             resourceInputs["oncallAccessToken"] = (args?.oncallAccessToken ? pulumi.secret(args.oncallAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
             resourceInputs["oncallUrl"] = (args ? args.oncallUrl : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
             resourceInputs["orgId"] = pulumi.output(args ? args.orgId : undefined).apply(JSON.stringify);
@@ -145,7 +155,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["url"] = (args ? args.url : undefined) ?? utilities.getEnv("GRAFANA_URL");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "fleetManagementAuth", "frontendO11yApiAccessToken", "oncallAccessToken", "smAccessToken", "tlsKey"] };
+        const secretOpts = { additionalSecretOutputs: ["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "fleetManagementAuth", "frontendO11yApiAccessToken", "k6AccessToken", "oncallAccessToken", "smAccessToken", "tlsKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
@@ -226,6 +236,14 @@ export interface ProviderArgs {
      * Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
      */
     insecureSkipVerify?: pulumi.Input<boolean>;
+    /**
+     * The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
+     */
+    k6AccessToken?: pulumi.Input<string>;
+    /**
+     * The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
+     */
+    k6Url?: pulumi.Input<string>;
     /**
      * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
      */
