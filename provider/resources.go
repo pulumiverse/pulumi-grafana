@@ -43,6 +43,8 @@ const (
 	ossMod                   = "oss"
 	sloMod                   = "slo"
 	syntheticMonitoringMod   = "syntheticMonitoring"
+	// Experimental resources
+	experimentalMod = "experimental"
 )
 
 // grafanaMember manufactures a type token for the grafana package and the given module and type.
@@ -204,6 +206,15 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
+			// Experimental - these can still change over time
+			"grafana_apps_dashboard_dashboard_v1alpha1": {
+				Tok:       grafanaResource(experimentalMod, "AppsDashboardV1Alpha1"),
+				ComputeID: tfbridge.DelegateIDField("id", "grafana", "https://github.com/pulumiverse/pulumi-grafana"),
+			},
+			"grafana_apps_playlist_playlist_v0alpha1": {
+				Tok:       grafanaResource(experimentalMod, "AppsPlaylistV0Alpha1"),
+				ComputeID: tfbridge.DelegateIDField("id", "grafana", "https://github.com/pulumiverse/pulumi-grafana"),
+			},
 			// Alerting
 			"grafana_contact_point": {
 				Tok: grafanaResource(alertingMod, "ContactPoint"),

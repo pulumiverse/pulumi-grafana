@@ -10,6 +10,16 @@ export type Collector = import("./collector").Collector;
 export const Collector: typeof import("./collector").Collector = null as any;
 utilities.lazyLoad(exports, ["Collector"], () => require("./collector"));
 
+export { GetCollectorArgs, GetCollectorResult, GetCollectorOutputArgs } from "./getCollector";
+export const getCollector: typeof import("./getCollector").getCollector = null as any;
+export const getCollectorOutput: typeof import("./getCollector").getCollectorOutput = null as any;
+utilities.lazyLoad(exports, ["getCollector","getCollectorOutput"], () => require("./getCollector"));
+
+export { GetCollectorsResult } from "./getCollectors";
+export const getCollectors: typeof import("./getCollectors").getCollectors = null as any;
+export const getCollectorsOutput: typeof import("./getCollectors").getCollectorsOutput = null as any;
+utilities.lazyLoad(exports, ["getCollectors","getCollectorsOutput"], () => require("./getCollectors"));
+
 export { PipelineArgs, PipelineState } from "./pipeline";
 export type Pipeline = import("./pipeline").Pipeline;
 export const Pipeline: typeof import("./pipeline").Pipeline = null as any;

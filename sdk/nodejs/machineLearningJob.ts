@@ -215,7 +215,8 @@ export class MachineLearningJob extends pulumi.CustomResource {
      */
     public readonly customLabels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+     * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+     * snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
      */
     public readonly datasourceType!: pulumi.Output<string>;
     /**
@@ -324,7 +325,8 @@ export interface MachineLearningJobState {
      */
     customLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+     * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+     * snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
      */
     datasourceType?: pulumi.Input<string>;
     /**
@@ -376,7 +378,8 @@ export interface MachineLearningJobArgs {
      */
     customLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+     * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+     * snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
      */
     datasourceType: pulumi.Input<string>;
     /**

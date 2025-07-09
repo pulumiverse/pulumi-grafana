@@ -111,7 +111,8 @@ export class MachineLearningOutlierDetector extends pulumi.CustomResource {
      */
     public readonly algorithm!: pulumi.Output<outputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
-     * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+     * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+     * snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
      */
     public readonly datasourceType!: pulumi.Output<string>;
     /**
@@ -204,7 +205,8 @@ export interface MachineLearningOutlierDetectorState {
      */
     algorithm?: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
-     * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+     * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+     * snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
      */
     datasourceType?: pulumi.Input<string>;
     /**
@@ -243,7 +245,8 @@ export interface MachineLearningOutlierDetectorArgs {
      */
     algorithm: pulumi.Input<inputs.MachineLearningOutlierDetectorAlgorithm>;
     /**
-     * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, and datadog.
+     * The type of datasource being queried. Currently allowed values are prometheus, graphite, loki, postgres, influxdb,
+     * snowflake, splunk, elasticsearch, bigquery, mongodb, and datadog.
      */
     datasourceType: pulumi.Input<string>;
     /**

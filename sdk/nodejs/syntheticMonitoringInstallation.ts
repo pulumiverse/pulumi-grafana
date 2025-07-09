@@ -27,8 +27,8 @@ import * as utilities from "./utilities";
  *
  * const config = new pulumi.Config();
  * // Cloud Access Policy token for Grafana Cloud with the following scopes: accesspolicies:read|write|delete, stacks:read|write|delete
- * const cloudAccessPolicyToken = config.requireObject("cloudAccessPolicyToken");
- * const stackSlug = config.requireObject("stackSlug");
+ * const cloudAccessPolicyToken = config.requireObject<any>("cloudAccessPolicyToken");
+ * const stackSlug = config.requireObject<any>("stackSlug");
  * const cloudRegion = config.get("cloudRegion") || "prod-us-east-0";
  * const smStack = new grafana.cloud.Stack("sm_stack", {
  *     name: stackSlug,

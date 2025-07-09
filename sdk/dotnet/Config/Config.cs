@@ -192,6 +192,17 @@ namespace Pulumiverse.Grafana
             set => _oncallUrl.Set(value);
         }
 
+        private static readonly __Value<int?> _orgId = new __Value<int?>(() => __config.GetInt32("orgId"));
+        /// <summary>
+        /// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
+        /// `GRAFANA_ORG_ID` environment variable.
+        /// </summary>
+        public static int? OrgId
+        {
+            get => _orgId.Get();
+            set => _orgId.Set(value);
+        }
+
         private static readonly __Value<int?> _retries = new __Value<int?>(() => __config.GetInt32("retries") ?? Utilities.GetEnvInt32("GRAFANA_RETRIES"));
         /// <summary>
         /// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
@@ -240,6 +251,17 @@ namespace Pulumiverse.Grafana
         {
             get => _smUrl.Get();
             set => _smUrl.Set(value);
+        }
+
+        private static readonly __Value<int?> _stackId = new __Value<int?>(() => __config.GetInt32("stackId"));
+        /// <summary>
+        /// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID`
+        /// environment variable.
+        /// </summary>
+        public static int? StackId
+        {
+            get => _stackId.Get();
+            set => _stackId.Set(value);
         }
 
         private static readonly __Value<bool?> _storeDashboardSha256 = new __Value<bool?>(() => __config.GetBoolean("storeDashboardSha256") ?? Utilities.GetEnvBoolean("GRAFANA_STORE_DASHBOARD_SHA256"));

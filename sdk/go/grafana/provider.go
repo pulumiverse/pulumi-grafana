@@ -240,6 +240,9 @@ type providerArgs struct {
 	OncallAccessToken *string `pulumi:"oncallAccessToken"`
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
 	OncallUrl *string `pulumi:"oncallUrl"`
+	// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
+	// `GRAFANA_ORG_ID` environment variable.
+	OrgId *int `pulumi:"orgId"`
 	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
 	// `GRAFANA_RETRIES` environment variable.
 	Retries *int `pulumi:"retries"`
@@ -252,6 +255,9 @@ type providerArgs struct {
 	// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
 	SmAccessToken *string `pulumi:"smAccessToken"`
 	SmUrl         *string `pulumi:"smUrl"`
+	// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID`
+	// environment variable.
+	StackId *int `pulumi:"stackId"`
 	// Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
 	StoreDashboardSha256 *bool `pulumi:"storeDashboardSha256"`
 	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
@@ -306,6 +312,9 @@ type ProviderArgs struct {
 	OncallAccessToken pulumi.StringPtrInput
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
 	OncallUrl pulumi.StringPtrInput
+	// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
+	// `GRAFANA_ORG_ID` environment variable.
+	OrgId pulumi.IntPtrInput
 	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
 	// `GRAFANA_RETRIES` environment variable.
 	Retries pulumi.IntPtrInput
@@ -318,6 +327,9 @@ type ProviderArgs struct {
 	// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
 	SmAccessToken pulumi.StringPtrInput
 	SmUrl         pulumi.StringPtrInput
+	// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID`
+	// environment variable.
+	StackId pulumi.IntPtrInput
 	// Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
 	StoreDashboardSha256 pulumi.BoolPtrInput
 	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
@@ -332,6 +344,29 @@ type ProviderArgs struct {
 
 func (ProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*providerArgs)(nil)).Elem()
+}
+
+// This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
+func (r *Provider) TerraformConfig(ctx *pulumi.Context) (ProviderTerraformConfigResultOutput, error) {
+	out, err := ctx.Call("pulumi:providers:grafana/terraformConfig", nil, ProviderTerraformConfigResultOutput{}, r)
+	if err != nil {
+		return ProviderTerraformConfigResultOutput{}, err
+	}
+	return out.(ProviderTerraformConfigResultOutput), nil
+}
+
+type ProviderTerraformConfigResult struct {
+	Result map[string]interface{} `pulumi:"result"`
+}
+
+type ProviderTerraformConfigResultOutput struct{ *pulumi.OutputState }
+
+func (ProviderTerraformConfigResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderTerraformConfigResult)(nil)).Elem()
+}
+
+func (o ProviderTerraformConfigResultOutput) Result() pulumi.MapOutput {
+	return o.ApplyT(func(v ProviderTerraformConfigResult) map[string]interface{} { return v.Result }).(pulumi.MapOutput)
 }
 
 type ProviderInput interface {
@@ -470,4 +505,5 @@ func (o ProviderOutput) Url() pulumi.StringPtrOutput {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
 	pulumi.RegisterOutputType(ProviderOutput{})
+	pulumi.RegisterOutputType(ProviderTerraformConfigResultOutput{})
 }

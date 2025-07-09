@@ -9981,7 +9981,7 @@ func (o RolePermissionArrayOutput) Index(i pulumi.IntInput) RolePermissionOutput
 }
 
 type RuleGroupRule struct {
-	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
+	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
 	Annotations map[string]string `pulumi:"annotations"`
 	// The `refId` of the query node in the `data` field to use as the alert condition.
 	Condition *string `pulumi:"condition"`
@@ -10019,7 +10019,7 @@ type RuleGroupRuleInput interface {
 }
 
 type RuleGroupRuleArgs struct {
-	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
+	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The `refId` of the query node in the `data` field to use as the alert condition.
 	Condition pulumi.StringPtrInput `pulumi:"condition"`
@@ -10096,7 +10096,7 @@ func (o RuleGroupRuleOutput) ToRuleGroupRuleOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
+// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
 func (o RuleGroupRuleOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v RuleGroupRule) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }

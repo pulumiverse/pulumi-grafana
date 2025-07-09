@@ -1910,7 +1910,7 @@ export interface RolePermission {
 
 export interface RuleGroupRule {
     /**
-     * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
+     * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
      */
     annotations?: {[key: string]: string};
     /**
@@ -4385,7 +4385,7 @@ export namespace alerting {
 
     export interface RuleGroupRule {
         /**
-         * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `dashboardUId` and `panelId` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
+         * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
          */
         annotations?: {[key: string]: string};
         /**
@@ -5304,6 +5304,114 @@ export namespace enterprise {
          * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
          */
         scope?: string;
+    }
+
+}
+
+export namespace experimental {
+    export interface AppsDashboardV1Alpha1Metadata {
+        /**
+         * The UID of the folder to save the resource in.
+         */
+        folderUid?: string;
+        /**
+         * The unique identifier of the resource.
+         */
+        uid: string;
+        /**
+         * The full URL of the resource.
+         */
+        url: string;
+        /**
+         * The globally unique identifier of a resource, used by the API for tracking.
+         */
+        uuid: string;
+        /**
+         * The version of the resource.
+         */
+        version: string;
+    }
+
+    export interface AppsDashboardV1Alpha1Options {
+        /**
+         * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+         */
+        overwrite?: boolean;
+    }
+
+    export interface AppsDashboardV1Alpha1Spec {
+        /**
+         * The JSON representation of the dashboard spec.
+         */
+        json: string;
+        /**
+         * The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
+         */
+        tags?: string[];
+        /**
+         * The title of the dashboard. If not set, the title will be derived from the JSON spec.
+         */
+        title?: string;
+    }
+
+    export interface AppsPlaylistV0Alpha1Metadata {
+        /**
+         * The UID of the folder to save the resource in.
+         */
+        folderUid?: string;
+        /**
+         * The unique identifier of the resource.
+         */
+        uid: string;
+        /**
+         * The full URL of the resource.
+         */
+        url: string;
+        /**
+         * The globally unique identifier of a resource, used by the API for tracking.
+         */
+        uuid: string;
+        /**
+         * The version of the resource.
+         */
+        version: string;
+    }
+
+    export interface AppsPlaylistV0Alpha1Options {
+        /**
+         * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+         */
+        overwrite?: boolean;
+    }
+
+    export interface AppsPlaylistV0Alpha1Spec {
+        /**
+         * The interval of the playlist.
+         */
+        interval?: string;
+        /**
+         * The items of the playlist.
+         */
+        items: outputs.experimental.AppsPlaylistV0Alpha1SpecItem[];
+        /**
+         * The title of the playlist.
+         */
+        title: string;
+    }
+
+    export interface AppsPlaylistV0Alpha1SpecItem {
+        type: string;
+        value: string;
+    }
+
+}
+
+export namespace fleetManagement {
+    export interface GetCollectorsCollector {
+        enabled: boolean;
+        id: string;
+        localAttributes: {[key: string]: string};
+        remoteAttributes: {[key: string]: string};
     }
 
 }
