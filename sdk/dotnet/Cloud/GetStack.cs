@@ -180,6 +180,14 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string FleetManagementName;
         /// <summary>
+        /// Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string FleetManagementPrivateConnectivityInfoPrivateDns;
+        /// <summary>
+        /// Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly string FleetManagementPrivateConnectivityInfoServiceName;
+        /// <summary>
         /// Status of the Fleet Management instance configured for this stack.
         /// </summary>
         public readonly string FleetManagementStatus;
@@ -394,6 +402,10 @@ namespace Pulumiverse.Grafana.Cloud
 
             string fleetManagementName,
 
+            string fleetManagementPrivateConnectivityInfoPrivateDns,
+
+            string fleetManagementPrivateConnectivityInfoServiceName,
+
             string fleetManagementStatus,
 
             string fleetManagementUrl,
@@ -522,6 +534,8 @@ namespace Pulumiverse.Grafana.Cloud
             ClusterSlug = clusterSlug;
             Description = description;
             FleetManagementName = fleetManagementName;
+            FleetManagementPrivateConnectivityInfoPrivateDns = fleetManagementPrivateConnectivityInfoPrivateDns;
+            FleetManagementPrivateConnectivityInfoServiceName = fleetManagementPrivateConnectivityInfoServiceName;
             FleetManagementStatus = fleetManagementStatus;
             FleetManagementUrl = fleetManagementUrl;
             FleetManagementUserId = fleetManagementUserId;

@@ -16,6 +16,34 @@ import (
 //
 // * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/enterprise"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := enterprise.NewScimConfig(ctx, "default", &enterprise.ScimConfigArgs{
+//				EnableUserSync:           pulumi.Bool(true),
+//				EnableGroupSync:          pulumi.Bool(false),
+//				AllowNonProvisionedUsers: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // ```sh
@@ -28,6 +56,8 @@ import (
 type ScimConfig struct {
 	pulumi.CustomResourceState
 
+	// Whether to allow non-provisioned users to access Grafana.
+	AllowNonProvisionedUsers pulumi.BoolOutput `pulumi:"allowNonProvisionedUsers"`
 	// Whether group synchronization is enabled.
 	EnableGroupSync pulumi.BoolOutput `pulumi:"enableGroupSync"`
 	// Whether user synchronization is enabled.
@@ -43,6 +73,9 @@ func NewScimConfig(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.AllowNonProvisionedUsers == nil {
+		return nil, errors.New("invalid value for required argument 'AllowNonProvisionedUsers'")
+	}
 	if args.EnableGroupSync == nil {
 		return nil, errors.New("invalid value for required argument 'EnableGroupSync'")
 	}
@@ -72,6 +105,8 @@ func GetScimConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ScimConfig resources.
 type scimConfigState struct {
+	// Whether to allow non-provisioned users to access Grafana.
+	AllowNonProvisionedUsers *bool `pulumi:"allowNonProvisionedUsers"`
 	// Whether group synchronization is enabled.
 	EnableGroupSync *bool `pulumi:"enableGroupSync"`
 	// Whether user synchronization is enabled.
@@ -81,6 +116,8 @@ type scimConfigState struct {
 }
 
 type ScimConfigState struct {
+	// Whether to allow non-provisioned users to access Grafana.
+	AllowNonProvisionedUsers pulumi.BoolPtrInput
 	// Whether group synchronization is enabled.
 	EnableGroupSync pulumi.BoolPtrInput
 	// Whether user synchronization is enabled.
@@ -94,6 +131,8 @@ func (ScimConfigState) ElementType() reflect.Type {
 }
 
 type scimConfigArgs struct {
+	// Whether to allow non-provisioned users to access Grafana.
+	AllowNonProvisionedUsers bool `pulumi:"allowNonProvisionedUsers"`
 	// Whether group synchronization is enabled.
 	EnableGroupSync bool `pulumi:"enableGroupSync"`
 	// Whether user synchronization is enabled.
@@ -104,6 +143,8 @@ type scimConfigArgs struct {
 
 // The set of arguments for constructing a ScimConfig resource.
 type ScimConfigArgs struct {
+	// Whether to allow non-provisioned users to access Grafana.
+	AllowNonProvisionedUsers pulumi.BoolInput
 	// Whether group synchronization is enabled.
 	EnableGroupSync pulumi.BoolInput
 	// Whether user synchronization is enabled.
@@ -197,6 +238,11 @@ func (o ScimConfigOutput) ToScimConfigOutput() ScimConfigOutput {
 
 func (o ScimConfigOutput) ToScimConfigOutputWithContext(ctx context.Context) ScimConfigOutput {
 	return o
+}
+
+// Whether to allow non-provisioned users to access Grafana.
+func (o ScimConfigOutput) AllowNonProvisionedUsers() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ScimConfig) pulumi.BoolOutput { return v.AllowNonProvisionedUsers }).(pulumi.BoolOutput)
 }
 
 // Whether group synchronization is enabled.

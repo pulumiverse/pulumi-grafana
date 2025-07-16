@@ -94,6 +94,14 @@ export class Stack extends pulumi.CustomResource {
      */
     public /*out*/ readonly fleetManagementName!: pulumi.Output<string>;
     /**
+     * Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly fleetManagementPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    /**
+     * Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+     */
+    public /*out*/ readonly fleetManagementPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
+    /**
      * Status of the Fleet Management instance configured for this stack.
      */
     public /*out*/ readonly fleetManagementStatus!: pulumi.Output<string>;
@@ -314,6 +322,8 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["clusterSlug"] = state ? state.clusterSlug : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["fleetManagementName"] = state ? state.fleetManagementName : undefined;
+            resourceInputs["fleetManagementPrivateConnectivityInfoPrivateDns"] = state ? state.fleetManagementPrivateConnectivityInfoPrivateDns : undefined;
+            resourceInputs["fleetManagementPrivateConnectivityInfoServiceName"] = state ? state.fleetManagementPrivateConnectivityInfoServiceName : undefined;
             resourceInputs["fleetManagementStatus"] = state ? state.fleetManagementStatus : undefined;
             resourceInputs["fleetManagementUrl"] = state ? state.fleetManagementUrl : undefined;
             resourceInputs["fleetManagementUserId"] = state ? state.fleetManagementUserId : undefined;
@@ -395,6 +405,8 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["alertmanagerUserId"] = undefined /*out*/;
             resourceInputs["clusterSlug"] = undefined /*out*/;
             resourceInputs["fleetManagementName"] = undefined /*out*/;
+            resourceInputs["fleetManagementPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["fleetManagementPrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["fleetManagementStatus"] = undefined /*out*/;
             resourceInputs["fleetManagementUrl"] = undefined /*out*/;
             resourceInputs["fleetManagementUserId"] = undefined /*out*/;
@@ -493,6 +505,14 @@ export interface StackState {
      * Name of the Fleet Management instance configured for this stack.
      */
     fleetManagementName?: pulumi.Input<string>;
+    /**
+     * Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+     */
+    fleetManagementPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+     */
+    fleetManagementPrivateConnectivityInfoServiceName?: pulumi.Input<string>;
     /**
      * Status of the Fleet Management instance configured for this stack.
      */

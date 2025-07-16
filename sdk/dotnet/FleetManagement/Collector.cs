@@ -31,7 +31,7 @@ namespace Pulumiverse.Grafana.FleetManagement
     public partial class Collector : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Whether the collector is enabled or not
+        /// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
@@ -90,7 +90,7 @@ namespace Pulumiverse.Grafana.FleetManagement
     public sealed class CollectorArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the collector is enabled or not
+        /// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -116,7 +116,7 @@ namespace Pulumiverse.Grafana.FleetManagement
     public sealed class CollectorState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the collector is enabled or not
+        /// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

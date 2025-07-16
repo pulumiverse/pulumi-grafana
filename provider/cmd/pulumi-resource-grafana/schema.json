@@ -13632,6 +13632,14 @@
                     "type": "string",
                     "description": "Name of the Fleet Management instance configured for this stack.\n"
                 },
+                "fleetManagementPrivateConnectivityInfoPrivateDns": {
+                    "type": "string",
+                    "description": "Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)\n"
+                },
+                "fleetManagementPrivateConnectivityInfoServiceName": {
+                    "type": "string",
+                    "description": "Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)\n"
+                },
                 "fleetManagementStatus": {
                     "type": "string",
                     "description": "Status of the Fleet Management instance configured for this stack.\n"
@@ -13873,6 +13881,8 @@
                 "alertmanagerUserId",
                 "clusterSlug",
                 "fleetManagementName",
+                "fleetManagementPrivateConnectivityInfoPrivateDns",
+                "fleetManagementPrivateConnectivityInfoServiceName",
                 "fleetManagementStatus",
                 "fleetManagementUrl",
                 "fleetManagementUserId",
@@ -14005,6 +14015,14 @@
                     "fleetManagementName": {
                         "type": "string",
                         "description": "Name of the Fleet Management instance configured for this stack.\n"
+                    },
+                    "fleetManagementPrivateConnectivityInfoPrivateDns": {
+                        "type": "string",
+                        "description": "Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)\n"
+                    },
+                    "fleetManagementPrivateConnectivityInfoServiceName": {
+                        "type": "string",
+                        "description": "Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)\n"
                     },
                     "fleetManagementStatus": {
                         "type": "string",
@@ -15920,8 +15938,12 @@
             ]
         },
         "grafana:enterprise/scimConfig:ScimConfig": {
-            "description": "**Note:** This resource is available only with Grafana Enterprise.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)\n\n## Import\n\n```sh\n$ pulumi import grafana:enterprise/scimConfig:ScimConfig name \"\"\n```\n\n```sh\n$ pulumi import grafana:enterprise/scimConfig:ScimConfig name \"{{ orgID }}\"\n```\n\n",
+            "description": "**Note:** This resource is available only with Grafana Enterprise.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst _default = new grafana.enterprise.ScimConfig(\"default\", {\n    enableUserSync: true,\n    enableGroupSync: false,\n    allowNonProvisionedUsers: false,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ndefault = grafana.enterprise.ScimConfig(\"default\",\n    enable_user_sync=True,\n    enable_group_sync=False,\n    allow_non_provisioned_users=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = new Grafana.Enterprise.ScimConfig(\"default\", new()\n    {\n        EnableUserSync = true,\n        EnableGroupSync = false,\n        AllowNonProvisionedUsers = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/enterprise\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := enterprise.NewScimConfig(ctx, \"default\", \u0026enterprise.ScimConfigArgs{\n\t\t\tEnableUserSync:           pulumi.Bool(true),\n\t\t\tEnableGroupSync:          pulumi.Bool(false),\n\t\t\tAllowNonProvisionedUsers: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.enterprise.ScimConfig;\nimport com.pulumi.grafana.enterprise.ScimConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var default_ = new ScimConfig(\"default\", ScimConfigArgs.builder()\n            .enableUserSync(true)\n            .enableGroupSync(false)\n            .allowNonProvisionedUsers(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: grafana:enterprise:ScimConfig\n    properties:\n      enableUserSync: true\n      enableGroupSync: false\n      allowNonProvisionedUsers: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:enterprise/scimConfig:ScimConfig name \"\"\n```\n\n```sh\n$ pulumi import grafana:enterprise/scimConfig:ScimConfig name \"{{ orgID }}\"\n```\n\n",
             "properties": {
+                "allowNonProvisionedUsers": {
+                    "type": "boolean",
+                    "description": "Whether to allow non-provisioned users to access Grafana.\n"
+                },
                 "enableGroupSync": {
                     "type": "boolean",
                     "description": "Whether group synchronization is enabled.\n"
@@ -15936,10 +15958,15 @@
                 }
             },
             "required": [
+                "allowNonProvisionedUsers",
                 "enableGroupSync",
                 "enableUserSync"
             ],
             "inputProperties": {
+                "allowNonProvisionedUsers": {
+                    "type": "boolean",
+                    "description": "Whether to allow non-provisioned users to access Grafana.\n"
+                },
                 "enableGroupSync": {
                     "type": "boolean",
                     "description": "Whether group synchronization is enabled.\n"
@@ -15955,12 +15982,17 @@
                 }
             },
             "requiredInputs": [
+                "allowNonProvisionedUsers",
                 "enableGroupSync",
                 "enableUserSync"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ScimConfig resources.\n",
                 "properties": {
+                    "allowNonProvisionedUsers": {
+                        "type": "boolean",
+                        "description": "Whether to allow non-provisioned users to access Grafana.\n"
+                    },
                     "enableGroupSync": {
                         "type": "boolean",
                         "description": "Whether group synchronization is enabled.\n"
@@ -16142,7 +16174,7 @@
             "properties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the collector is enabled or not\n"
+                    "description": "Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service\n"
                 },
                 "remoteAttributes": {
                     "type": "object",
@@ -16159,7 +16191,7 @@
             "inputProperties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "Whether the collector is enabled or not\n"
+                    "description": "Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service\n"
                 },
                 "remoteAttributes": {
                     "type": "object",
@@ -16174,7 +16206,7 @@
                 "properties": {
                     "enabled": {
                         "type": "boolean",
-                        "description": "Whether the collector is enabled or not\n"
+                        "description": "Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service\n"
                     },
                     "remoteAttributes": {
                         "type": "object",
@@ -16952,6 +16984,14 @@
                     "type": "string",
                     "description": "Name of the Fleet Management instance configured for this stack.\n"
                 },
+                "fleetManagementPrivateConnectivityInfoPrivateDns": {
+                    "type": "string",
+                    "description": "Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)\n"
+                },
+                "fleetManagementPrivateConnectivityInfoServiceName": {
+                    "type": "string",
+                    "description": "Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)\n"
+                },
                 "fleetManagementStatus": {
                     "type": "string",
                     "description": "Status of the Fleet Management instance configured for this stack.\n"
@@ -17193,6 +17233,8 @@
                 "alertmanagerUserId",
                 "clusterSlug",
                 "fleetManagementName",
+                "fleetManagementPrivateConnectivityInfoPrivateDns",
+                "fleetManagementPrivateConnectivityInfoServiceName",
                 "fleetManagementStatus",
                 "fleetManagementUrl",
                 "fleetManagementUserId",
@@ -17325,6 +17367,14 @@
                     "fleetManagementName": {
                         "type": "string",
                         "description": "Name of the Fleet Management instance configured for this stack.\n"
+                    },
+                    "fleetManagementPrivateConnectivityInfoPrivateDns": {
+                        "type": "string",
+                        "description": "Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)\n"
+                    },
+                    "fleetManagementPrivateConnectivityInfoServiceName": {
+                        "type": "string",
+                        "description": "Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)\n"
                     },
                     "fleetManagementStatus": {
                         "type": "string",
@@ -29598,6 +29648,14 @@
                         "description": "Name of the Fleet Management instance configured for this stack.\n",
                         "type": "string"
                     },
+                    "fleetManagementPrivateConnectivityInfoPrivateDns": {
+                        "description": "Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)\n",
+                        "type": "string"
+                    },
+                    "fleetManagementPrivateConnectivityInfoServiceName": {
+                        "description": "Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)\n",
+                        "type": "string"
+                    },
                     "fleetManagementStatus": {
                         "description": "Status of the Fleet Management instance configured for this stack.\n",
                         "type": "string"
@@ -29836,6 +29894,8 @@
                     "clusterSlug",
                     "description",
                     "fleetManagementName",
+                    "fleetManagementPrivateConnectivityInfoPrivateDns",
+                    "fleetManagementPrivateConnectivityInfoServiceName",
                     "fleetManagementStatus",
                     "fleetManagementUrl",
                     "fleetManagementUserId",
@@ -30392,7 +30452,7 @@
                 "description": "A collection of values returned by getCollector.\n",
                 "properties": {
                     "enabled": {
-                        "description": "Whether the collector is enabled or not\n",
+                        "description": "Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service\n",
                         "type": "boolean"
                     },
                     "id": {
@@ -30673,6 +30733,14 @@
                         "description": "Name of the Fleet Management instance configured for this stack.\n",
                         "type": "string"
                     },
+                    "fleetManagementPrivateConnectivityInfoPrivateDns": {
+                        "description": "Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)\n",
+                        "type": "string"
+                    },
+                    "fleetManagementPrivateConnectivityInfoServiceName": {
+                        "description": "Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)\n",
+                        "type": "string"
+                    },
                     "fleetManagementStatus": {
                         "description": "Status of the Fleet Management instance configured for this stack.\n",
                         "type": "string"
@@ -30911,6 +30979,8 @@
                     "clusterSlug",
                     "description",
                     "fleetManagementName",
+                    "fleetManagementPrivateConnectivityInfoPrivateDns",
+                    "fleetManagementPrivateConnectivityInfoServiceName",
                     "fleetManagementStatus",
                     "fleetManagementUrl",
                     "fleetManagementUserId",

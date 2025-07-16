@@ -20,19 +20,34 @@ __all__ = ['ScimConfigArgs', 'ScimConfig']
 @pulumi.input_type
 class ScimConfigArgs:
     def __init__(__self__, *,
+                 allow_non_provisioned_users: pulumi.Input[builtins.bool],
                  enable_group_sync: pulumi.Input[builtins.bool],
                  enable_user_sync: pulumi.Input[builtins.bool],
                  org_id: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a ScimConfig resource.
+        :param pulumi.Input[builtins.bool] allow_non_provisioned_users: Whether to allow non-provisioned users to access Grafana.
         :param pulumi.Input[builtins.bool] enable_group_sync: Whether group synchronization is enabled.
         :param pulumi.Input[builtins.bool] enable_user_sync: Whether user synchronization is enabled.
         :param pulumi.Input[builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
+        pulumi.set(__self__, "allow_non_provisioned_users", allow_non_provisioned_users)
         pulumi.set(__self__, "enable_group_sync", enable_group_sync)
         pulumi.set(__self__, "enable_user_sync", enable_user_sync)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
+
+    @property
+    @pulumi.getter(name="allowNonProvisionedUsers")
+    def allow_non_provisioned_users(self) -> pulumi.Input[builtins.bool]:
+        """
+        Whether to allow non-provisioned users to access Grafana.
+        """
+        return pulumi.get(self, "allow_non_provisioned_users")
+
+    @allow_non_provisioned_users.setter
+    def allow_non_provisioned_users(self, value: pulumi.Input[builtins.bool]):
+        pulumi.set(self, "allow_non_provisioned_users", value)
 
     @property
     @pulumi.getter(name="enableGroupSync")
@@ -74,21 +89,37 @@ class ScimConfigArgs:
 @pulumi.input_type
 class _ScimConfigState:
     def __init__(__self__, *,
+                 allow_non_provisioned_users: Optional[pulumi.Input[builtins.bool]] = None,
                  enable_group_sync: Optional[pulumi.Input[builtins.bool]] = None,
                  enable_user_sync: Optional[pulumi.Input[builtins.bool]] = None,
                  org_id: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering ScimConfig resources.
+        :param pulumi.Input[builtins.bool] allow_non_provisioned_users: Whether to allow non-provisioned users to access Grafana.
         :param pulumi.Input[builtins.bool] enable_group_sync: Whether group synchronization is enabled.
         :param pulumi.Input[builtins.bool] enable_user_sync: Whether user synchronization is enabled.
         :param pulumi.Input[builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
+        if allow_non_provisioned_users is not None:
+            pulumi.set(__self__, "allow_non_provisioned_users", allow_non_provisioned_users)
         if enable_group_sync is not None:
             pulumi.set(__self__, "enable_group_sync", enable_group_sync)
         if enable_user_sync is not None:
             pulumi.set(__self__, "enable_user_sync", enable_user_sync)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
+
+    @property
+    @pulumi.getter(name="allowNonProvisionedUsers")
+    def allow_non_provisioned_users(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether to allow non-provisioned users to access Grafana.
+        """
+        return pulumi.get(self, "allow_non_provisioned_users")
+
+    @allow_non_provisioned_users.setter
+    def allow_non_provisioned_users(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "allow_non_provisioned_users", value)
 
     @property
     @pulumi.getter(name="enableGroupSync")
@@ -133,6 +164,7 @@ class ScimConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_non_provisioned_users: Optional[pulumi.Input[builtins.bool]] = None,
                  enable_group_sync: Optional[pulumi.Input[builtins.bool]] = None,
                  enable_user_sync: Optional[pulumi.Input[builtins.bool]] = None,
                  org_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -141,6 +173,18 @@ class ScimConfig(pulumi.CustomResource):
         **Note:** This resource is available only with Grafana Enterprise.
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        default = grafana.enterprise.ScimConfig("default",
+            enable_user_sync=True,
+            enable_group_sync=False,
+            allow_non_provisioned_users=False)
+        ```
 
         ## Import
 
@@ -154,6 +198,7 @@ class ScimConfig(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.bool] allow_non_provisioned_users: Whether to allow non-provisioned users to access Grafana.
         :param pulumi.Input[builtins.bool] enable_group_sync: Whether group synchronization is enabled.
         :param pulumi.Input[builtins.bool] enable_user_sync: Whether user synchronization is enabled.
         :param pulumi.Input[builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -168,6 +213,18 @@ class ScimConfig(pulumi.CustomResource):
         **Note:** This resource is available only with Grafana Enterprise.
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        default = grafana.enterprise.ScimConfig("default",
+            enable_user_sync=True,
+            enable_group_sync=False,
+            allow_non_provisioned_users=False)
+        ```
 
         ## Import
 
@@ -194,6 +251,7 @@ class ScimConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_non_provisioned_users: Optional[pulumi.Input[builtins.bool]] = None,
                  enable_group_sync: Optional[pulumi.Input[builtins.bool]] = None,
                  enable_user_sync: Optional[pulumi.Input[builtins.bool]] = None,
                  org_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -206,6 +264,9 @@ class ScimConfig(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ScimConfigArgs.__new__(ScimConfigArgs)
 
+            if allow_non_provisioned_users is None and not opts.urn:
+                raise TypeError("Missing required property 'allow_non_provisioned_users'")
+            __props__.__dict__["allow_non_provisioned_users"] = allow_non_provisioned_users
             if enable_group_sync is None and not opts.urn:
                 raise TypeError("Missing required property 'enable_group_sync'")
             __props__.__dict__["enable_group_sync"] = enable_group_sync
@@ -223,6 +284,7 @@ class ScimConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            allow_non_provisioned_users: Optional[pulumi.Input[builtins.bool]] = None,
             enable_group_sync: Optional[pulumi.Input[builtins.bool]] = None,
             enable_user_sync: Optional[pulumi.Input[builtins.bool]] = None,
             org_id: Optional[pulumi.Input[builtins.str]] = None) -> 'ScimConfig':
@@ -233,6 +295,7 @@ class ScimConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.bool] allow_non_provisioned_users: Whether to allow non-provisioned users to access Grafana.
         :param pulumi.Input[builtins.bool] enable_group_sync: Whether group synchronization is enabled.
         :param pulumi.Input[builtins.bool] enable_user_sync: Whether user synchronization is enabled.
         :param pulumi.Input[builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -241,10 +304,19 @@ class ScimConfig(pulumi.CustomResource):
 
         __props__ = _ScimConfigState.__new__(_ScimConfigState)
 
+        __props__.__dict__["allow_non_provisioned_users"] = allow_non_provisioned_users
         __props__.__dict__["enable_group_sync"] = enable_group_sync
         __props__.__dict__["enable_user_sync"] = enable_user_sync
         __props__.__dict__["org_id"] = org_id
         return ScimConfig(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allowNonProvisionedUsers")
+    def allow_non_provisioned_users(self) -> pulumi.Output[builtins.bool]:
+        """
+        Whether to allow non-provisioned users to access Grafana.
+        """
+        return pulumi.get(self, "allow_non_provisioned_users")
 
     @property
     @pulumi.getter(name="enableGroupSync")

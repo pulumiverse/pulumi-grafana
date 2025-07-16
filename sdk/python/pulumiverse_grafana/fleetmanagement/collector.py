@@ -24,7 +24,7 @@ class CollectorArgs:
                  remote_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None):
         """
         The set of arguments for constructing a Collector resource.
-        :param pulumi.Input[builtins.bool] enabled: Whether the collector is enabled or not
+        :param pulumi.Input[builtins.bool] enabled: Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] remote_attributes: Remote attributes for the collector
         """
         if enabled is not None:
@@ -36,7 +36,7 @@ class CollectorArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        Whether the collector is enabled or not
+        Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         """
         return pulumi.get(self, "enabled")
 
@@ -64,7 +64,7 @@ class _CollectorState:
                  remote_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Collector resources.
-        :param pulumi.Input[builtins.bool] enabled: Whether the collector is enabled or not
+        :param pulumi.Input[builtins.bool] enabled: Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] remote_attributes: Remote attributes for the collector
         """
         if enabled is not None:
@@ -76,7 +76,7 @@ class _CollectorState:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        Whether the collector is enabled or not
+        Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         """
         return pulumi.get(self, "enabled")
 
@@ -125,7 +125,7 @@ class Collector(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.bool] enabled: Whether the collector is enabled or not
+        :param pulumi.Input[builtins.bool] enabled: Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] remote_attributes: Remote attributes for the collector
         """
         ...
@@ -198,7 +198,7 @@ class Collector(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.bool] enabled: Whether the collector is enabled or not
+        :param pulumi.Input[builtins.bool] enabled: Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] remote_attributes: Remote attributes for the collector
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -213,7 +213,7 @@ class Collector(pulumi.CustomResource):
     @pulumi.getter
     def enabled(self) -> pulumi.Output[builtins.bool]:
         """
-        Whether the collector is enabled or not
+        Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         """
         return pulumi.get(self, "enabled")
 

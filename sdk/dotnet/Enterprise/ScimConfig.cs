@@ -15,6 +15,26 @@ namespace Pulumiverse.Grafana.Enterprise
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @default = new Grafana.Enterprise.ScimConfig("default", new()
+    ///     {
+    ///         EnableUserSync = true,
+    ///         EnableGroupSync = false,
+    ///         AllowNonProvisionedUsers = false,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// ```sh
@@ -28,6 +48,12 @@ namespace Pulumiverse.Grafana.Enterprise
     [GrafanaResourceType("grafana:enterprise/scimConfig:ScimConfig")]
     public partial class ScimConfig : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Whether to allow non-provisioned users to access Grafana.
+        /// </summary>
+        [Output("allowNonProvisionedUsers")]
+        public Output<bool> AllowNonProvisionedUsers { get; private set; } = null!;
+
         /// <summary>
         /// Whether group synchronization is enabled.
         /// </summary>
@@ -94,6 +120,12 @@ namespace Pulumiverse.Grafana.Enterprise
     public sealed class ScimConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Whether to allow non-provisioned users to access Grafana.
+        /// </summary>
+        [Input("allowNonProvisionedUsers", required: true)]
+        public Input<bool> AllowNonProvisionedUsers { get; set; } = null!;
+
+        /// <summary>
         /// Whether group synchronization is enabled.
         /// </summary>
         [Input("enableGroupSync", required: true)]
@@ -119,6 +151,12 @@ namespace Pulumiverse.Grafana.Enterprise
 
     public sealed class ScimConfigState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Whether to allow non-provisioned users to access Grafana.
+        /// </summary>
+        [Input("allowNonProvisionedUsers")]
+        public Input<bool>? AllowNonProvisionedUsers { get; set; }
+
         /// <summary>
         /// Whether group synchronization is enabled.
         /// </summary>

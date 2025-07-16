@@ -63,7 +63,7 @@ type LookupCollectorArgs struct {
 
 // A collection of values returned by getCollector.
 type LookupCollectorResult struct {
-	// Whether the collector is enabled or not
+	// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 	Enabled bool `pulumi:"enabled"`
 	// ID of the collector
 	Id string `pulumi:"id"`
@@ -107,7 +107,7 @@ func (o LookupCollectorResultOutput) ToLookupCollectorResultOutputWithContext(ct
 	return o
 }
 
-// Whether the collector is enabled or not
+// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 func (o LookupCollectorResultOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupCollectorResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }

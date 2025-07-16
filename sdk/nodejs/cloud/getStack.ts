@@ -79,6 +79,14 @@ export interface GetStackResult {
      */
     readonly fleetManagementName: string;
     /**
+     * Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly fleetManagementPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly fleetManagementPrivateConnectivityInfoServiceName: string;
+    /**
      * Status of the Fleet Management instance configured for this stack.
      */
     readonly fleetManagementStatus: string;

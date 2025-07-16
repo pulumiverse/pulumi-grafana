@@ -140,7 +140,7 @@ namespace Pulumiverse.Grafana.FleetManagement
     public sealed class GetCollectorResult
     {
         /// <summary>
-        /// Whether the collector is enabled or not
+        /// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         /// </summary>
         public readonly bool Enabled;
         /// <summary>
