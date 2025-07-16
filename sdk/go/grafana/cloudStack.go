@@ -75,6 +75,10 @@ type CloudStack struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Name of the Fleet Management instance configured for this stack.
 	FleetManagementName pulumi.StringOutput `pulumi:"fleetManagementName"`
+	// Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+	FleetManagementPrivateConnectivityInfoPrivateDns pulumi.StringOutput `pulumi:"fleetManagementPrivateConnectivityInfoPrivateDns"`
+	// Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+	FleetManagementPrivateConnectivityInfoServiceName pulumi.StringOutput `pulumi:"fleetManagementPrivateConnectivityInfoServiceName"`
 	// Status of the Fleet Management instance configured for this stack.
 	FleetManagementStatus pulumi.StringOutput `pulumi:"fleetManagementStatus"`
 	// Base URL of the Fleet Management instance configured for this stack.
@@ -233,6 +237,10 @@ type cloudStackState struct {
 	Description *string `pulumi:"description"`
 	// Name of the Fleet Management instance configured for this stack.
 	FleetManagementName *string `pulumi:"fleetManagementName"`
+	// Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+	FleetManagementPrivateConnectivityInfoPrivateDns *string `pulumi:"fleetManagementPrivateConnectivityInfoPrivateDns"`
+	// Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+	FleetManagementPrivateConnectivityInfoServiceName *string `pulumi:"fleetManagementPrivateConnectivityInfoServiceName"`
 	// Status of the Fleet Management instance configured for this stack.
 	FleetManagementStatus *string `pulumi:"fleetManagementStatus"`
 	// Base URL of the Fleet Management instance configured for this stack.
@@ -359,6 +367,10 @@ type CloudStackState struct {
 	Description pulumi.StringPtrInput
 	// Name of the Fleet Management instance configured for this stack.
 	FleetManagementName pulumi.StringPtrInput
+	// Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+	FleetManagementPrivateConnectivityInfoPrivateDns pulumi.StringPtrInput
+	// Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+	FleetManagementPrivateConnectivityInfoServiceName pulumi.StringPtrInput
 	// Status of the Fleet Management instance configured for this stack.
 	FleetManagementStatus pulumi.StringPtrInput
 	// Base URL of the Fleet Management instance configured for this stack.
@@ -636,6 +648,16 @@ func (o CloudStackOutput) Description() pulumi.StringPtrOutput {
 // Name of the Fleet Management instance configured for this stack.
 func (o CloudStackOutput) FleetManagementName() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.FleetManagementName }).(pulumi.StringOutput)
+}
+
+// Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+func (o CloudStackOutput) FleetManagementPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.FleetManagementPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+func (o CloudStackOutput) FleetManagementPrivateConnectivityInfoServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudStack) pulumi.StringOutput { return v.FleetManagementPrivateConnectivityInfoServiceName }).(pulumi.StringOutput)
 }
 
 // Status of the Fleet Management instance configured for this stack.

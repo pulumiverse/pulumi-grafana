@@ -45,7 +45,7 @@ class GetCollectorResult:
     @pulumi.getter
     def enabled(self) -> builtins.bool:
         """
-        Whether the collector is enabled or not
+        Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         """
         return pulumi.get(self, "enabled")
 

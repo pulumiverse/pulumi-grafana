@@ -81,6 +81,10 @@ type LookupCloudStackResult struct {
 	Description string `pulumi:"description"`
 	// Name of the Fleet Management instance configured for this stack.
 	FleetManagementName string `pulumi:"fleetManagementName"`
+	// Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+	FleetManagementPrivateConnectivityInfoPrivateDns string `pulumi:"fleetManagementPrivateConnectivityInfoPrivateDns"`
+	// Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+	FleetManagementPrivateConnectivityInfoServiceName string `pulumi:"fleetManagementPrivateConnectivityInfoServiceName"`
 	// Status of the Fleet Management instance configured for this stack.
 	FleetManagementStatus string `pulumi:"fleetManagementStatus"`
 	// Base URL of the Fleet Management instance configured for this stack.
@@ -262,6 +266,16 @@ func (o LookupCloudStackResultOutput) Description() pulumi.StringOutput {
 // Name of the Fleet Management instance configured for this stack.
 func (o LookupCloudStackResultOutput) FleetManagementName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudStackResult) string { return v.FleetManagementName }).(pulumi.StringOutput)
+}
+
+// Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+func (o LookupCloudStackResultOutput) FleetManagementPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudStackResult) string { return v.FleetManagementPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+func (o LookupCloudStackResultOutput) FleetManagementPrivateConnectivityInfoServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudStackResult) string { return v.FleetManagementPrivateConnectivityInfoServiceName }).(pulumi.StringOutput)
 }
 
 // Status of the Fleet Management instance configured for this stack.

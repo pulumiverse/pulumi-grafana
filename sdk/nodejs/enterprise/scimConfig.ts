@@ -9,6 +9,19 @@ import * as utilities from "../utilities";
  *
  * * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const _default = new grafana.enterprise.ScimConfig("default", {
+ *     enableUserSync: true,
+ *     enableGroupSync: false,
+ *     allowNonProvisionedUsers: false,
+ * });
+ * ```
+ *
  * ## Import
  *
  * ```sh
@@ -48,6 +61,10 @@ export class ScimConfig extends pulumi.CustomResource {
     }
 
     /**
+     * Whether to allow non-provisioned users to access Grafana.
+     */
+    public readonly allowNonProvisionedUsers!: pulumi.Output<boolean>;
+    /**
      * Whether group synchronization is enabled.
      */
     public readonly enableGroupSync!: pulumi.Output<boolean>;
@@ -73,17 +90,22 @@ export class ScimConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ScimConfigState | undefined;
+            resourceInputs["allowNonProvisionedUsers"] = state ? state.allowNonProvisionedUsers : undefined;
             resourceInputs["enableGroupSync"] = state ? state.enableGroupSync : undefined;
             resourceInputs["enableUserSync"] = state ? state.enableUserSync : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
         } else {
             const args = argsOrState as ScimConfigArgs | undefined;
+            if ((!args || args.allowNonProvisionedUsers === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'allowNonProvisionedUsers'");
+            }
             if ((!args || args.enableGroupSync === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'enableGroupSync'");
             }
             if ((!args || args.enableUserSync === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'enableUserSync'");
             }
+            resourceInputs["allowNonProvisionedUsers"] = args ? args.allowNonProvisionedUsers : undefined;
             resourceInputs["enableGroupSync"] = args ? args.enableGroupSync : undefined;
             resourceInputs["enableUserSync"] = args ? args.enableUserSync : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
@@ -97,6 +119,10 @@ export class ScimConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ScimConfig resources.
  */
 export interface ScimConfigState {
+    /**
+     * Whether to allow non-provisioned users to access Grafana.
+     */
+    allowNonProvisionedUsers?: pulumi.Input<boolean>;
     /**
      * Whether group synchronization is enabled.
      */
@@ -115,6 +141,10 @@ export interface ScimConfigState {
  * The set of arguments for constructing a ScimConfig resource.
  */
 export interface ScimConfigArgs {
+    /**
+     * Whether to allow non-provisioned users to access Grafana.
+     */
+    allowNonProvisionedUsers: pulumi.Input<boolean>;
     /**
      * Whether group synchronization is enabled.
      */

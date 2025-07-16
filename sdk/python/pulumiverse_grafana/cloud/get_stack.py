@@ -27,7 +27,7 @@ class GetStackResult:
     """
     A collection of values returned by getStack.
     """
-    def __init__(__self__, alertmanager_ip_allow_list_cname=None, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, cluster_slug=None, description=None, fleet_management_name=None, fleet_management_status=None, fleet_management_url=None, fleet_management_user_id=None, grafanas_ip_allow_list_cname=None, graphite_ip_allow_list_cname=None, graphite_name=None, graphite_private_connectivity_info_private_dns=None, graphite_private_connectivity_info_service_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, influx_url=None, labels=None, logs_ip_allow_list_cname=None, logs_name=None, logs_private_connectivity_info_private_dns=None, logs_private_connectivity_info_service_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, oncall_api_url=None, org_id=None, org_name=None, org_slug=None, otlp_private_connectivity_info_private_dns=None, otlp_private_connectivity_info_service_name=None, otlp_url=None, pdc_api_private_connectivity_info_private_dns=None, pdc_api_private_connectivity_info_service_name=None, pdc_gateway_private_connectivity_info_private_dns=None, pdc_gateway_private_connectivity_info_service_name=None, profiles_ip_allow_list_cname=None, profiles_name=None, profiles_private_connectivity_info_private_dns=None, profiles_private_connectivity_info_service_name=None, profiles_status=None, profiles_url=None, profiles_user_id=None, prometheus_ip_allow_list_cname=None, prometheus_name=None, prometheus_private_connectivity_info_private_dns=None, prometheus_private_connectivity_info_service_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, status=None, traces_ip_allow_list_cname=None, traces_name=None, traces_private_connectivity_info_private_dns=None, traces_private_connectivity_info_service_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
+    def __init__(__self__, alertmanager_ip_allow_list_cname=None, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, cluster_slug=None, description=None, fleet_management_name=None, fleet_management_private_connectivity_info_private_dns=None, fleet_management_private_connectivity_info_service_name=None, fleet_management_status=None, fleet_management_url=None, fleet_management_user_id=None, grafanas_ip_allow_list_cname=None, graphite_ip_allow_list_cname=None, graphite_name=None, graphite_private_connectivity_info_private_dns=None, graphite_private_connectivity_info_service_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, influx_url=None, labels=None, logs_ip_allow_list_cname=None, logs_name=None, logs_private_connectivity_info_private_dns=None, logs_private_connectivity_info_service_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, oncall_api_url=None, org_id=None, org_name=None, org_slug=None, otlp_private_connectivity_info_private_dns=None, otlp_private_connectivity_info_service_name=None, otlp_url=None, pdc_api_private_connectivity_info_private_dns=None, pdc_api_private_connectivity_info_service_name=None, pdc_gateway_private_connectivity_info_private_dns=None, pdc_gateway_private_connectivity_info_service_name=None, profiles_ip_allow_list_cname=None, profiles_name=None, profiles_private_connectivity_info_private_dns=None, profiles_private_connectivity_info_service_name=None, profiles_status=None, profiles_url=None, profiles_user_id=None, prometheus_ip_allow_list_cname=None, prometheus_name=None, prometheus_private_connectivity_info_private_dns=None, prometheus_private_connectivity_info_service_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, status=None, traces_ip_allow_list_cname=None, traces_name=None, traces_private_connectivity_info_private_dns=None, traces_private_connectivity_info_service_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
         if alertmanager_ip_allow_list_cname and not isinstance(alertmanager_ip_allow_list_cname, str):
             raise TypeError("Expected argument 'alertmanager_ip_allow_list_cname' to be a str")
         pulumi.set(__self__, "alertmanager_ip_allow_list_cname", alertmanager_ip_allow_list_cname)
@@ -52,6 +52,12 @@ class GetStackResult:
         if fleet_management_name and not isinstance(fleet_management_name, str):
             raise TypeError("Expected argument 'fleet_management_name' to be a str")
         pulumi.set(__self__, "fleet_management_name", fleet_management_name)
+        if fleet_management_private_connectivity_info_private_dns and not isinstance(fleet_management_private_connectivity_info_private_dns, str):
+            raise TypeError("Expected argument 'fleet_management_private_connectivity_info_private_dns' to be a str")
+        pulumi.set(__self__, "fleet_management_private_connectivity_info_private_dns", fleet_management_private_connectivity_info_private_dns)
+        if fleet_management_private_connectivity_info_service_name and not isinstance(fleet_management_private_connectivity_info_service_name, str):
+            raise TypeError("Expected argument 'fleet_management_private_connectivity_info_service_name' to be a str")
+        pulumi.set(__self__, "fleet_management_private_connectivity_info_service_name", fleet_management_private_connectivity_info_service_name)
         if fleet_management_status and not isinstance(fleet_management_status, str):
             raise TypeError("Expected argument 'fleet_management_status' to be a str")
         pulumi.set(__self__, "fleet_management_status", fleet_management_status)
@@ -296,6 +302,22 @@ class GetStackResult:
         Name of the Fleet Management instance configured for this stack.
         """
         return pulumi.get(self, "fleet_management_name")
+
+    @property
+    @pulumi.getter(name="fleetManagementPrivateConnectivityInfoPrivateDns")
+    def fleet_management_private_connectivity_info_private_dns(self) -> builtins.str:
+        """
+        Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "fleet_management_private_connectivity_info_private_dns")
+
+    @property
+    @pulumi.getter(name="fleetManagementPrivateConnectivityInfoServiceName")
+    def fleet_management_private_connectivity_info_service_name(self) -> builtins.str:
+        """
+        Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "fleet_management_private_connectivity_info_service_name")
 
     @property
     @pulumi.getter(name="fleetManagementStatus")
@@ -748,6 +770,8 @@ class AwaitableGetStackResult(GetStackResult):
             cluster_slug=self.cluster_slug,
             description=self.description,
             fleet_management_name=self.fleet_management_name,
+            fleet_management_private_connectivity_info_private_dns=self.fleet_management_private_connectivity_info_private_dns,
+            fleet_management_private_connectivity_info_service_name=self.fleet_management_private_connectivity_info_service_name,
             fleet_management_status=self.fleet_management_status,
             fleet_management_url=self.fleet_management_url,
             fleet_management_user_id=self.fleet_management_user_id,
@@ -848,6 +872,8 @@ def get_stack(slug: Optional[builtins.str] = None,
         cluster_slug=pulumi.get(__ret__, 'cluster_slug'),
         description=pulumi.get(__ret__, 'description'),
         fleet_management_name=pulumi.get(__ret__, 'fleet_management_name'),
+        fleet_management_private_connectivity_info_private_dns=pulumi.get(__ret__, 'fleet_management_private_connectivity_info_private_dns'),
+        fleet_management_private_connectivity_info_service_name=pulumi.get(__ret__, 'fleet_management_private_connectivity_info_service_name'),
         fleet_management_status=pulumi.get(__ret__, 'fleet_management_status'),
         fleet_management_url=pulumi.get(__ret__, 'fleet_management_url'),
         fleet_management_user_id=pulumi.get(__ret__, 'fleet_management_user_id'),
@@ -945,6 +971,8 @@ def get_stack_output(slug: Optional[pulumi.Input[builtins.str]] = None,
         cluster_slug=pulumi.get(__response__, 'cluster_slug'),
         description=pulumi.get(__response__, 'description'),
         fleet_management_name=pulumi.get(__response__, 'fleet_management_name'),
+        fleet_management_private_connectivity_info_private_dns=pulumi.get(__response__, 'fleet_management_private_connectivity_info_private_dns'),
+        fleet_management_private_connectivity_info_service_name=pulumi.get(__response__, 'fleet_management_private_connectivity_info_service_name'),
         fleet_management_status=pulumi.get(__response__, 'fleet_management_status'),
         fleet_management_url=pulumi.get(__response__, 'fleet_management_url'),
         fleet_management_user_id=pulumi.get(__response__, 'fleet_management_user_id'),

@@ -47,7 +47,7 @@ export interface GetCollectorArgs {
  */
 export interface GetCollectorResult {
     /**
-     * Whether the collector is enabled or not
+     * Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
      */
     readonly enabled: boolean;
     /**

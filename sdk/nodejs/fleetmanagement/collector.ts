@@ -50,7 +50,7 @@ export class Collector extends pulumi.CustomResource {
     }
 
     /**
-     * Whether the collector is enabled or not
+     * Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
      */
     public readonly enabled!: pulumi.Output<boolean>;
     /**
@@ -88,7 +88,7 @@ export class Collector extends pulumi.CustomResource {
  */
 export interface CollectorState {
     /**
-     * Whether the collector is enabled or not
+     * Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
      */
     enabled?: pulumi.Input<boolean>;
     /**
@@ -102,7 +102,7 @@ export interface CollectorState {
  */
 export interface CollectorArgs {
     /**
-     * Whether the collector is enabled or not
+     * Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
      */
     enabled?: pulumi.Input<boolean>;
     /**

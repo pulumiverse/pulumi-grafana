@@ -163,6 +163,8 @@ class _CloudStackState:
                  cluster_slug: Optional[pulumi.Input[builtins.str]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  fleet_management_name: Optional[pulumi.Input[builtins.str]] = None,
+                 fleet_management_private_connectivity_info_private_dns: Optional[pulumi.Input[builtins.str]] = None,
+                 fleet_management_private_connectivity_info_service_name: Optional[pulumi.Input[builtins.str]] = None,
                  fleet_management_status: Optional[pulumi.Input[builtins.str]] = None,
                  fleet_management_url: Optional[pulumi.Input[builtins.str]] = None,
                  fleet_management_user_id: Optional[pulumi.Input[builtins.int]] = None,
@@ -234,6 +236,8 @@ class _CloudStackState:
         :param pulumi.Input[builtins.str] cluster_slug: Slug of the cluster where this stack resides.
         :param pulumi.Input[builtins.str] description: Description of stack.
         :param pulumi.Input[builtins.str] fleet_management_name: Name of the Fleet Management instance configured for this stack.
+        :param pulumi.Input[builtins.str] fleet_management_private_connectivity_info_private_dns: Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[builtins.str] fleet_management_private_connectivity_info_service_name: Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[builtins.str] fleet_management_status: Status of the Fleet Management instance configured for this stack.
         :param pulumi.Input[builtins.str] fleet_management_url: Base URL of the Fleet Management instance configured for this stack.
         :param pulumi.Input[builtins.int] fleet_management_user_id: User ID of the Fleet Management instance configured for this stack.
@@ -297,6 +301,10 @@ class _CloudStackState:
             pulumi.set(__self__, "description", description)
         if fleet_management_name is not None:
             pulumi.set(__self__, "fleet_management_name", fleet_management_name)
+        if fleet_management_private_connectivity_info_private_dns is not None:
+            pulumi.set(__self__, "fleet_management_private_connectivity_info_private_dns", fleet_management_private_connectivity_info_private_dns)
+        if fleet_management_private_connectivity_info_service_name is not None:
+            pulumi.set(__self__, "fleet_management_private_connectivity_info_service_name", fleet_management_private_connectivity_info_service_name)
         if fleet_management_status is not None:
             pulumi.set(__self__, "fleet_management_status", fleet_management_status)
         if fleet_management_url is not None:
@@ -515,6 +523,30 @@ class _CloudStackState:
     @fleet_management_name.setter
     def fleet_management_name(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "fleet_management_name", value)
+
+    @property
+    @pulumi.getter(name="fleetManagementPrivateConnectivityInfoPrivateDns")
+    def fleet_management_private_connectivity_info_private_dns(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "fleet_management_private_connectivity_info_private_dns")
+
+    @fleet_management_private_connectivity_info_private_dns.setter
+    def fleet_management_private_connectivity_info_private_dns(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "fleet_management_private_connectivity_info_private_dns", value)
+
+    @property
+    @pulumi.getter(name="fleetManagementPrivateConnectivityInfoServiceName")
+    def fleet_management_private_connectivity_info_service_name(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "fleet_management_private_connectivity_info_service_name")
+
+    @fleet_management_private_connectivity_info_service_name.setter
+    def fleet_management_private_connectivity_info_service_name(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "fleet_management_private_connectivity_info_service_name", value)
 
     @property
     @pulumi.getter(name="fleetManagementStatus")
@@ -1347,6 +1379,8 @@ class CloudStack(pulumi.CustomResource):
             __props__.__dict__["alertmanager_user_id"] = None
             __props__.__dict__["cluster_slug"] = None
             __props__.__dict__["fleet_management_name"] = None
+            __props__.__dict__["fleet_management_private_connectivity_info_private_dns"] = None
+            __props__.__dict__["fleet_management_private_connectivity_info_service_name"] = None
             __props__.__dict__["fleet_management_status"] = None
             __props__.__dict__["fleet_management_url"] = None
             __props__.__dict__["fleet_management_user_id"] = None
@@ -1419,6 +1453,8 @@ class CloudStack(pulumi.CustomResource):
             cluster_slug: Optional[pulumi.Input[builtins.str]] = None,
             description: Optional[pulumi.Input[builtins.str]] = None,
             fleet_management_name: Optional[pulumi.Input[builtins.str]] = None,
+            fleet_management_private_connectivity_info_private_dns: Optional[pulumi.Input[builtins.str]] = None,
+            fleet_management_private_connectivity_info_service_name: Optional[pulumi.Input[builtins.str]] = None,
             fleet_management_status: Optional[pulumi.Input[builtins.str]] = None,
             fleet_management_url: Optional[pulumi.Input[builtins.str]] = None,
             fleet_management_user_id: Optional[pulumi.Input[builtins.int]] = None,
@@ -1495,6 +1531,8 @@ class CloudStack(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] cluster_slug: Slug of the cluster where this stack resides.
         :param pulumi.Input[builtins.str] description: Description of stack.
         :param pulumi.Input[builtins.str] fleet_management_name: Name of the Fleet Management instance configured for this stack.
+        :param pulumi.Input[builtins.str] fleet_management_private_connectivity_info_private_dns: Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[builtins.str] fleet_management_private_connectivity_info_service_name: Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[builtins.str] fleet_management_status: Status of the Fleet Management instance configured for this stack.
         :param pulumi.Input[builtins.str] fleet_management_url: Base URL of the Fleet Management instance configured for this stack.
         :param pulumi.Input[builtins.int] fleet_management_user_id: User ID of the Fleet Management instance configured for this stack.
@@ -1554,6 +1592,8 @@ class CloudStack(pulumi.CustomResource):
         __props__.__dict__["cluster_slug"] = cluster_slug
         __props__.__dict__["description"] = description
         __props__.__dict__["fleet_management_name"] = fleet_management_name
+        __props__.__dict__["fleet_management_private_connectivity_info_private_dns"] = fleet_management_private_connectivity_info_private_dns
+        __props__.__dict__["fleet_management_private_connectivity_info_service_name"] = fleet_management_private_connectivity_info_service_name
         __props__.__dict__["fleet_management_status"] = fleet_management_status
         __props__.__dict__["fleet_management_url"] = fleet_management_url
         __props__.__dict__["fleet_management_user_id"] = fleet_management_user_id
@@ -1680,6 +1720,22 @@ class CloudStack(pulumi.CustomResource):
         Name of the Fleet Management instance configured for this stack.
         """
         return pulumi.get(self, "fleet_management_name")
+
+    @property
+    @pulumi.getter(name="fleetManagementPrivateConnectivityInfoPrivateDns")
+    def fleet_management_private_connectivity_info_private_dns(self) -> pulumi.Output[builtins.str]:
+        """
+        Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "fleet_management_private_connectivity_info_private_dns")
+
+    @property
+    @pulumi.getter(name="fleetManagementPrivateConnectivityInfoServiceName")
+    def fleet_management_private_connectivity_info_service_name(self) -> pulumi.Output[builtins.str]:
+        """
+        Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "fleet_management_private_connectivity_info_service_name")
 
     @property
     @pulumi.getter(name="fleetManagementStatus")

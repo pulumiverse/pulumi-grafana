@@ -99,6 +99,18 @@ namespace Pulumiverse.Grafana
         public Output<string> FleetManagementName { get; private set; } = null!;
 
         /// <summary>
+        /// Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("fleetManagementPrivateConnectivityInfoPrivateDns")]
+        public Output<string> FleetManagementPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("fleetManagementPrivateConnectivityInfoServiceName")]
+        public Output<string> FleetManagementPrivateConnectivityInfoServiceName { get; private set; } = null!;
+
+        /// <summary>
         /// Status of the Fleet Management instance configured for this stack.
         /// </summary>
         [Output("fleetManagementStatus")]
@@ -575,6 +587,18 @@ namespace Pulumiverse.Grafana
         /// </summary>
         [Input("fleetManagementName")]
         public Input<string>? FleetManagementName { get; set; }
+
+        /// <summary>
+        /// Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("fleetManagementPrivateConnectivityInfoPrivateDns")]
+        public Input<string>? FleetManagementPrivateConnectivityInfoPrivateDns { get; set; }
+
+        /// <summary>
+        /// Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Input("fleetManagementPrivateConnectivityInfoServiceName")]
+        public Input<string>? FleetManagementPrivateConnectivityInfoServiceName { get; set; }
 
         /// <summary>
         /// Status of the Fleet Management instance configured for this stack.

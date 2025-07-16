@@ -29,7 +29,7 @@ import (
 type Collector struct {
 	pulumi.CustomResourceState
 
-	// Whether the collector is enabled or not
+	// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// Remote attributes for the collector
 	RemoteAttributes pulumi.StringMapOutput `pulumi:"remoteAttributes"`
@@ -65,14 +65,14 @@ func GetCollector(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Collector resources.
 type collectorState struct {
-	// Whether the collector is enabled or not
+	// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 	Enabled *bool `pulumi:"enabled"`
 	// Remote attributes for the collector
 	RemoteAttributes map[string]string `pulumi:"remoteAttributes"`
 }
 
 type CollectorState struct {
-	// Whether the collector is enabled or not
+	// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 	Enabled pulumi.BoolPtrInput
 	// Remote attributes for the collector
 	RemoteAttributes pulumi.StringMapInput
@@ -83,7 +83,7 @@ func (CollectorState) ElementType() reflect.Type {
 }
 
 type collectorArgs struct {
-	// Whether the collector is enabled or not
+	// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 	Enabled *bool `pulumi:"enabled"`
 	// Remote attributes for the collector
 	RemoteAttributes map[string]string `pulumi:"remoteAttributes"`
@@ -91,7 +91,7 @@ type collectorArgs struct {
 
 // The set of arguments for constructing a Collector resource.
 type CollectorArgs struct {
-	// Whether the collector is enabled or not
+	// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 	Enabled pulumi.BoolPtrInput
 	// Remote attributes for the collector
 	RemoteAttributes pulumi.StringMapInput
@@ -184,7 +184,7 @@ func (o CollectorOutput) ToCollectorOutputWithContext(ctx context.Context) Colle
 	return o
 }
 
-// Whether the collector is enabled or not
+// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 func (o CollectorOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Collector) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
