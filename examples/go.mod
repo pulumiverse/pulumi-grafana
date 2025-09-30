@@ -1,8 +1,6 @@
 module github.com/pulumiverse/pulumi-grafana/examples
 
-go 1.23.0
-
-toolchain go1.24.4
+go 1.25
 
 require github.com/pulumi/pulumi/pkg/v3 v3.175.0
 
