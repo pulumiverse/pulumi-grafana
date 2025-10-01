@@ -65,52 +65,43 @@ namespace Pulumiverse.Grafana.Slo
         ///                 Value = "value",
         ///             },
         ///         },
-        ///         Alertings = new[]
+        ///         Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs
         ///         {
-        ///             new Grafana.Slo.Inputs.SLOAlertingArgs
+        ///             Fastburn = new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
         ///             {
-        ///                 Fastburns = new[]
+        ///                 Annotations = new[]
         ///                 {
-        ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
+        ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
         ///                     {
-        ///                         Annotations = new[]
-        ///                         {
-        ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
-        ///                             {
-        ///                                 Key = "name",
-        ///                                 Value = "Critical - SLO Burn Rate Alert",
-        ///                             },
-        ///                         },
-        ///                         Labels = new[]
-        ///                         {
-        ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnLabelArgs
-        ///                             {
-        ///                                 Key = "type",
-        ///                                 Value = "slo",
-        ///                             },
-        ///                         },
+        ///                         Key = "name",
+        ///                         Value = "Critical - SLO Burn Rate Alert",
         ///                     },
         ///                 },
-        ///                 Slowburns = new[]
+        ///                 Labels = new[]
         ///                 {
-        ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+        ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnLabelArgs
         ///                     {
-        ///                         Annotations = new[]
-        ///                         {
-        ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
-        ///                             {
-        ///                                 Key = "name",
-        ///                                 Value = "Warning - SLO Burn Rate Alert",
-        ///                             },
-        ///                         },
-        ///                         Labels = new[]
-        ///                         {
-        ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnLabelArgs
-        ///                             {
-        ///                                 Key = "type",
-        ///                                 Value = "slo",
-        ///                             },
-        ///                         },
+        ///                         Key = "type",
+        ///                         Value = "slo",
+        ///                     },
+        ///                 },
+        ///             },
+        ///             Slowburn = new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+        ///             {
+        ///                 Annotations = new[]
+        ///                 {
+        ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+        ///                     {
+        ///                         Key = "name",
+        ///                         Value = "Warning - SLO Burn Rate Alert",
+        ///                     },
+        ///                 },
+        ///                 Labels = new[]
+        ///                 {
+        ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnLabelArgs
+        ///                     {
+        ///                         Key = "type",
+        ///                         Value = "slo",
         ///                     },
         ///                 },
         ///             },
@@ -178,52 +169,43 @@ namespace Pulumiverse.Grafana.Slo
         ///                 Value = "value",
         ///             },
         ///         },
-        ///         Alertings = new[]
+        ///         Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs
         ///         {
-        ///             new Grafana.Slo.Inputs.SLOAlertingArgs
+        ///             Fastburn = new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
         ///             {
-        ///                 Fastburns = new[]
+        ///                 Annotations = new[]
         ///                 {
-        ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
+        ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
         ///                     {
-        ///                         Annotations = new[]
-        ///                         {
-        ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
-        ///                             {
-        ///                                 Key = "name",
-        ///                                 Value = "Critical - SLO Burn Rate Alert",
-        ///                             },
-        ///                         },
-        ///                         Labels = new[]
-        ///                         {
-        ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnLabelArgs
-        ///                             {
-        ///                                 Key = "type",
-        ///                                 Value = "slo",
-        ///                             },
-        ///                         },
+        ///                         Key = "name",
+        ///                         Value = "Critical - SLO Burn Rate Alert",
         ///                     },
         ///                 },
-        ///                 Slowburns = new[]
+        ///                 Labels = new[]
         ///                 {
-        ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+        ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnLabelArgs
         ///                     {
-        ///                         Annotations = new[]
-        ///                         {
-        ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
-        ///                             {
-        ///                                 Key = "name",
-        ///                                 Value = "Warning - SLO Burn Rate Alert",
-        ///                             },
-        ///                         },
-        ///                         Labels = new[]
-        ///                         {
-        ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnLabelArgs
-        ///                             {
-        ///                                 Key = "type",
-        ///                                 Value = "slo",
-        ///                             },
-        ///                         },
+        ///                         Key = "type",
+        ///                         Value = "slo",
+        ///                     },
+        ///                 },
+        ///             },
+        ///             Slowburn = new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+        ///             {
+        ///                 Annotations = new[]
+        ///                 {
+        ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+        ///                     {
+        ///                         Key = "name",
+        ///                         Value = "Warning - SLO Burn Rate Alert",
+        ///                     },
+        ///                 },
+        ///                 Labels = new[]
+        ///                 {
+        ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnLabelArgs
+        ///                     {
+        ///                         Key = "type",
+        ///                         Value = "slo",
         ///                     },
         ///                 },
         ///             },
@@ -291,52 +273,43 @@ namespace Pulumiverse.Grafana.Slo
         ///                 Value = "value",
         ///             },
         ///         },
-        ///         Alertings = new[]
+        ///         Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs
         ///         {
-        ///             new Grafana.Slo.Inputs.SLOAlertingArgs
+        ///             Fastburn = new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
         ///             {
-        ///                 Fastburns = new[]
+        ///                 Annotations = new[]
         ///                 {
-        ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
+        ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
         ///                     {
-        ///                         Annotations = new[]
-        ///                         {
-        ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
-        ///                             {
-        ///                                 Key = "name",
-        ///                                 Value = "Critical - SLO Burn Rate Alert",
-        ///                             },
-        ///                         },
-        ///                         Labels = new[]
-        ///                         {
-        ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnLabelArgs
-        ///                             {
-        ///                                 Key = "type",
-        ///                                 Value = "slo",
-        ///                             },
-        ///                         },
+        ///                         Key = "name",
+        ///                         Value = "Critical - SLO Burn Rate Alert",
         ///                     },
         ///                 },
-        ///                 Slowburns = new[]
+        ///                 Labels = new[]
         ///                 {
-        ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+        ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnLabelArgs
         ///                     {
-        ///                         Annotations = new[]
-        ///                         {
-        ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
-        ///                             {
-        ///                                 Key = "name",
-        ///                                 Value = "Warning - SLO Burn Rate Alert",
-        ///                             },
-        ///                         },
-        ///                         Labels = new[]
-        ///                         {
-        ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnLabelArgs
-        ///                             {
-        ///                                 Key = "type",
-        ///                                 Value = "slo",
-        ///                             },
-        ///                         },
+        ///                         Key = "type",
+        ///                         Value = "slo",
+        ///                     },
+        ///                 },
+        ///             },
+        ///             Slowburn = new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+        ///             {
+        ///                 Annotations = new[]
+        ///                 {
+        ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+        ///                     {
+        ///                         Key = "name",
+        ///                         Value = "Warning - SLO Burn Rate Alert",
+        ///                     },
+        ///                 },
+        ///                 Labels = new[]
+        ///                 {
+        ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnLabelArgs
+        ///                     {
+        ///                         Key = "type",
+        ///                         Value = "slo",
         ///                     },
         ///                 },
         ///             },

@@ -165,8 +165,6 @@ export class OutgoingWebhook extends pulumi.CustomResource {
             resourceInputs["user"] = args ? args.user : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/oncallOutgoingWebhook:OncallOutgoingWebhook" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["authorizationHeader", "password"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(OutgoingWebhook.__pulumiType, name, resourceInputs, opts);

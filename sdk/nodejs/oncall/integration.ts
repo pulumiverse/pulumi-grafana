@@ -116,8 +116,6 @@ export class Integration extends pulumi.CustomResource {
             resourceInputs["link"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/oncallIntegration:OncallIntegration" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Integration.__pulumiType, name, resourceInputs, opts);
     }
 }

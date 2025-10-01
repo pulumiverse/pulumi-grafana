@@ -70,10 +70,6 @@ namespace Pulumiverse.Grafana.Cloud
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
-                Aliases =
-                {
-                    new global::Pulumi.Alias { Type = "grafana:index/cloudOrgMember:CloudOrgMember" },
-                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

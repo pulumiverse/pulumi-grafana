@@ -97,10 +97,6 @@ namespace Pulumiverse.Grafana.CloudProvider
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
-                Aliases =
-                {
-                    new global::Pulumi.Alias { Type = "grafana:cloud/providerAzureCredential:ProviderAzureCredential" },
-                },
                 AdditionalSecretOutputs =
                 {
                     "clientSecret",

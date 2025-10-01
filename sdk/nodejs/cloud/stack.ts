@@ -463,8 +463,6 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["tracesUserId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/cloudStack:CloudStack" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Stack.__pulumiType, name, resourceInputs, opts);
     }
 }

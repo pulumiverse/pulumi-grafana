@@ -101,12 +101,6 @@ func NewProbe(ctx *pulumi.Context,
 	if args.Region == nil {
 		return nil, errors.New("invalid value for required argument 'Region'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/syntheticMonitoringProbe:SyntheticMonitoringProbe"),
-		},
-	})
-	opts = append(opts, aliases)
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"authToken",
 	})

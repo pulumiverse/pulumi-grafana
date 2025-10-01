@@ -31,17 +31,11 @@ namespace Pulumiverse.Grafana.Slo.Inputs
             set => _annotations = value;
         }
 
-        [Input("fastburns")]
-        private InputList<Inputs.SLOAlertingFastburnGetArgs>? _fastburns;
-
         /// <summary>
         /// Alerting Rules generated for Fast Burn alerts
         /// </summary>
-        public InputList<Inputs.SLOAlertingFastburnGetArgs> Fastburns
-        {
-            get => _fastburns ?? (_fastburns = new InputList<Inputs.SLOAlertingFastburnGetArgs>());
-            set => _fastburns = value;
-        }
+        [Input("fastburn")]
+        public Input<Inputs.SLOAlertingFastburnGetArgs>? Fastburn { get; set; }
 
         [Input("labels")]
         private InputList<Inputs.SLOAlertingLabelGetArgs>? _labels;
@@ -55,17 +49,11 @@ namespace Pulumiverse.Grafana.Slo.Inputs
             set => _labels = value;
         }
 
-        [Input("slowburns")]
-        private InputList<Inputs.SLOAlertingSlowburnGetArgs>? _slowburns;
-
         /// <summary>
         /// Alerting Rules generated for Slow Burn alerts
         /// </summary>
-        public InputList<Inputs.SLOAlertingSlowburnGetArgs> Slowburns
-        {
-            get => _slowburns ?? (_slowburns = new InputList<Inputs.SLOAlertingSlowburnGetArgs>());
-            set => _slowburns = value;
-        }
+        [Input("slowburn")]
+        public Input<Inputs.SLOAlertingSlowburnGetArgs>? Slowburn { get; set; }
 
         public SLOAlertingGetArgs()
         {

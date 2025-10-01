@@ -70,46 +70,37 @@ namespace Pulumiverse.Grafana.Slo
     ///                 Value = "terraform",
     ///             },
     ///         },
-    ///         Alertings = new[]
+    ///         Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs
     ///         {
-    ///             new Grafana.Slo.Inputs.SLOAlertingArgs
+    ///             Fastburn = new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
     ///             {
-    ///                 Fastburns = new[]
+    ///                 Annotations = new[]
     ///                 {
-    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
+    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
     ///                     {
-    ///                         Annotations = new[]
-    ///                         {
-    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
-    ///                             {
-    ///                                 Key = "name",
-    ///                                 Value = "SLO Burn Rate Very High",
-    ///                             },
-    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
-    ///                             {
-    ///                                 Key = "description",
-    ///                                 Value = "Error budget is burning too fast",
-    ///                             },
-    ///                         },
+    ///                         Key = "name",
+    ///                         Value = "SLO Burn Rate Very High",
+    ///                     },
+    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
+    ///                     {
+    ///                         Key = "description",
+    ///                         Value = "Error budget is burning too fast",
     ///                     },
     ///                 },
-    ///                 Slowburns = new[]
+    ///             },
+    ///             Slowburn = new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+    ///             {
+    ///                 Annotations = new[]
     ///                 {
-    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
     ///                     {
-    ///                         Annotations = new[]
-    ///                         {
-    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
-    ///                             {
-    ///                                 Key = "name",
-    ///                                 Value = "SLO Burn Rate High",
-    ///                             },
-    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
-    ///                             {
-    ///                                 Key = "description",
-    ///                                 Value = "Error budget is burning too fast",
-    ///                             },
-    ///                         },
+    ///                         Key = "name",
+    ///                         Value = "SLO Burn Rate High",
+    ///                     },
+    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+    ///                     {
+    ///                         Key = "description",
+    ///                         Value = "Error budget is burning too fast",
     ///                     },
     ///                 },
     ///             },
@@ -164,46 +155,37 @@ namespace Pulumiverse.Grafana.Slo
     ///                 Value = "terraform",
     ///             },
     ///         },
-    ///         Alertings = new[]
+    ///         Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs
     ///         {
-    ///             new Grafana.Slo.Inputs.SLOAlertingArgs
+    ///             Fastburn = new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
     ///             {
-    ///                 Fastburns = new[]
+    ///                 Annotations = new[]
     ///                 {
-    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
+    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
     ///                     {
-    ///                         Annotations = new[]
-    ///                         {
-    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
-    ///                             {
-    ///                                 Key = "name",
-    ///                                 Value = "SLO Burn Rate Very High",
-    ///                             },
-    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
-    ///                             {
-    ///                                 Key = "description",
-    ///                                 Value = "Error budget is burning too fast",
-    ///                             },
-    ///                         },
+    ///                         Key = "name",
+    ///                         Value = "SLO Burn Rate Very High",
+    ///                     },
+    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
+    ///                     {
+    ///                         Key = "description",
+    ///                         Value = "Error budget is burning too fast",
     ///                     },
     ///                 },
-    ///                 Slowburns = new[]
+    ///             },
+    ///             Slowburn = new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+    ///             {
+    ///                 Annotations = new[]
     ///                 {
-    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
     ///                     {
-    ///                         Annotations = new[]
-    ///                         {
-    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
-    ///                             {
-    ///                                 Key = "name",
-    ///                                 Value = "SLO Burn Rate High",
-    ///                             },
-    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
-    ///                             {
-    ///                                 Key = "description",
-    ///                                 Value = "Error budget is burning too fast",
-    ///                             },
-    ///                         },
+    ///                         Key = "name",
+    ///                         Value = "SLO Burn Rate High",
+    ///                     },
+    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+    ///                     {
+    ///                         Key = "description",
+    ///                         Value = "Error budget is burning too fast",
     ///                     },
     ///                 },
     ///             },
@@ -294,46 +276,37 @@ namespace Pulumiverse.Grafana.Slo
     ///                 Value = "terraform",
     ///             },
     ///         },
-    ///         Alertings = new[]
+    ///         Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs
     ///         {
-    ///             new Grafana.Slo.Inputs.SLOAlertingArgs
+    ///             Fastburn = new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
     ///             {
-    ///                 Fastburns = new[]
+    ///                 Annotations = new[]
     ///                 {
-    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnArgs
+    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
     ///                     {
-    ///                         Annotations = new[]
-    ///                         {
-    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
-    ///                             {
-    ///                                 Key = "name",
-    ///                                 Value = "SLO Burn Rate Very High",
-    ///                             },
-    ///                             new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
-    ///                             {
-    ///                                 Key = "description",
-    ///                                 Value = "Error budget is burning too fast",
-    ///                             },
-    ///                         },
+    ///                         Key = "name",
+    ///                         Value = "SLO Burn Rate Very High",
+    ///                     },
+    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs
+    ///                     {
+    ///                         Key = "description",
+    ///                         Value = "Error budget is burning too fast",
     ///                     },
     ///                 },
-    ///                 Slowburns = new[]
+    ///             },
+    ///             Slowburn = new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+    ///             {
+    ///                 Annotations = new[]
     ///                 {
-    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
+    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
     ///                     {
-    ///                         Annotations = new[]
-    ///                         {
-    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
-    ///                             {
-    ///                                 Key = "name",
-    ///                                 Value = "SLO Burn Rate High",
-    ///                             },
-    ///                             new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
-    ///                             {
-    ///                                 Key = "description",
-    ///                                 Value = "Error budget is burning too fast",
-    ///                             },
-    ///                         },
+    ///                         Key = "name",
+    ///                         Value = "SLO Burn Rate High",
+    ///                     },
+    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs
+    ///                     {
+    ///                         Key = "description",
+    ///                         Value = "Error budget is burning too fast",
     ///                     },
     ///                 },
     ///             },
@@ -363,8 +336,8 @@ namespace Pulumiverse.Grafana.Slo
         /// 			long-term error budget burn rate is high, or when the remaining
         /// 			error budget is below a certain threshold. Annotations and Labels support templating.
         /// </summary>
-        [Output("alertings")]
-        public Output<ImmutableArray<Outputs.SLOAlerting>> Alertings { get; private set; } = null!;
+        [Output("alerting")]
+        public Output<Outputs.SLOAlerting?> Alerting { get; private set; } = null!;
 
         /// <summary>
         /// Description is a free-text field that can provide more context to an SLO.
@@ -465,9 +438,6 @@ namespace Pulumiverse.Grafana.Slo
 
     public sealed class SLOArgs : global::Pulumi.ResourceArgs
     {
-        [Input("alertings")]
-        private InputList<Inputs.SLOAlertingArgs>? _alertings;
-
         /// <summary>
         /// Configures the alerting rules that will be generated for each
         /// 			time window associated with the SLO. Grafana SLOs can generate
@@ -475,11 +445,8 @@ namespace Pulumiverse.Grafana.Slo
         /// 			long-term error budget burn rate is high, or when the remaining
         /// 			error budget is below a certain threshold. Annotations and Labels support templating.
         /// </summary>
-        public InputList<Inputs.SLOAlertingArgs> Alertings
-        {
-            get => _alertings ?? (_alertings = new InputList<Inputs.SLOAlertingArgs>());
-            set => _alertings = value;
-        }
+        [Input("alerting")]
+        public Input<Inputs.SLOAlertingArgs>? Alerting { get; set; }
 
         /// <summary>
         /// Description is a free-text field that can provide more context to an SLO.
@@ -555,9 +522,6 @@ namespace Pulumiverse.Grafana.Slo
 
     public sealed class SLOState : global::Pulumi.ResourceArgs
     {
-        [Input("alertings")]
-        private InputList<Inputs.SLOAlertingGetArgs>? _alertings;
-
         /// <summary>
         /// Configures the alerting rules that will be generated for each
         /// 			time window associated with the SLO. Grafana SLOs can generate
@@ -565,11 +529,8 @@ namespace Pulumiverse.Grafana.Slo
         /// 			long-term error budget burn rate is high, or when the remaining
         /// 			error budget is below a certain threshold. Annotations and Labels support templating.
         /// </summary>
-        public InputList<Inputs.SLOAlertingGetArgs> Alertings
-        {
-            get => _alertings ?? (_alertings = new InputList<Inputs.SLOAlertingGetArgs>());
-            set => _alertings = value;
-        }
+        [Input("alerting")]
+        public Input<Inputs.SLOAlertingGetArgs>? Alerting { get; set; }
 
         /// <summary>
         /// Description is a free-text field that can provide more context to an SLO.

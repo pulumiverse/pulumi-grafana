@@ -135,8 +135,6 @@ export class Holiday extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/machineLearningHoliday:MachineLearningHoliday" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Holiday.__pulumiType, name, resourceInputs, opts);
     }
 }

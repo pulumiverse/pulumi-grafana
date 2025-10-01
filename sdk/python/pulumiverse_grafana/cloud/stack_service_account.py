@@ -272,8 +272,6 @@ class StackServiceAccount(pulumi.CustomResource):
             if stack_slug is None and not opts.urn:
                 raise TypeError("Missing required property 'stack_slug'")
             __props__.__dict__["stack_slug"] = stack_slug
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/cloudStackServiceAccount:CloudStackServiceAccount")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(StackServiceAccount, __self__).__init__(
             'grafana:cloud/stackServiceAccount:StackServiceAccount',
             resource_name,

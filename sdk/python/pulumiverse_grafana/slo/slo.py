@@ -26,7 +26,7 @@ class SLOArgs:
                  destination_datasource: pulumi.Input['SLODestinationDatasourceArgs'],
                  objectives: pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]],
                  queries: pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]],
-                 alertings: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]]] = None,
+                 alerting: Optional[pulumi.Input['SLOAlertingArgs']] = None,
                  folder_uid: Optional[pulumi.Input[builtins.str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['SLOLabelArgs']]]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -37,7 +37,7 @@ class SLOArgs:
         :param pulumi.Input['SLODestinationDatasourceArgs'] destination_datasource: Destination Datasource sets the datasource defined for an SLO
         :param pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
         :param pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
-        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]] alertings: Configures the alerting rules that will be generated for each
+        :param pulumi.Input['SLOAlertingArgs'] alerting: Configures the alerting rules that will be generated for each
                			time window associated with the SLO. Grafana SLOs can generate
                			alerts when the short-term error budget burn is very high, the
                			long-term error budget burn rate is high, or when the remaining
@@ -51,8 +51,8 @@ class SLOArgs:
         pulumi.set(__self__, "destination_datasource", destination_datasource)
         pulumi.set(__self__, "objectives", objectives)
         pulumi.set(__self__, "queries", queries)
-        if alertings is not None:
-            pulumi.set(__self__, "alertings", alertings)
+        if alerting is not None:
+            pulumi.set(__self__, "alerting", alerting)
         if folder_uid is not None:
             pulumi.set(__self__, "folder_uid", folder_uid)
         if labels is not None:
@@ -112,7 +112,7 @@ class SLOArgs:
 
     @property
     @pulumi.getter
-    def alertings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]]]:
+    def alerting(self) -> Optional[pulumi.Input['SLOAlertingArgs']]:
         """
         Configures the alerting rules that will be generated for each
         			time window associated with the SLO. Grafana SLOs can generate
@@ -120,11 +120,11 @@ class SLOArgs:
         			long-term error budget burn rate is high, or when the remaining
         			error budget is below a certain threshold. Annotations and Labels support templating.
         """
-        return pulumi.get(self, "alertings")
+        return pulumi.get(self, "alerting")
 
-    @alertings.setter
-    def alertings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]]]):
-        pulumi.set(self, "alertings", value)
+    @alerting.setter
+    def alerting(self, value: Optional[pulumi.Input['SLOAlertingArgs']]):
+        pulumi.set(self, "alerting", value)
 
     @property
     @pulumi.getter(name="folderUid")
@@ -178,7 +178,7 @@ class SLOArgs:
 @pulumi.input_type
 class _SLOState:
     def __init__(__self__, *,
-                 alertings: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]]] = None,
+                 alerting: Optional[pulumi.Input['SLOAlertingArgs']] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  destination_datasource: Optional[pulumi.Input['SLODestinationDatasourceArgs']] = None,
                  folder_uid: Optional[pulumi.Input[builtins.str]] = None,
@@ -189,7 +189,7 @@ class _SLOState:
                  search_expression: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering SLO resources.
-        :param pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]] alertings: Configures the alerting rules that will be generated for each
+        :param pulumi.Input['SLOAlertingArgs'] alerting: Configures the alerting rules that will be generated for each
                			time window associated with the SLO. Grafana SLOs can generate
                			alerts when the short-term error budget burn is very high, the
                			long-term error budget burn rate is high, or when the remaining
@@ -203,8 +203,8 @@ class _SLOState:
         :param pulumi.Input[Sequence[pulumi.Input['SLOQueryArgs']]] queries: Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         :param pulumi.Input[builtins.str] search_expression: The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
         """
-        if alertings is not None:
-            pulumi.set(__self__, "alertings", alertings)
+        if alerting is not None:
+            pulumi.set(__self__, "alerting", alerting)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if destination_datasource is not None:
@@ -224,7 +224,7 @@ class _SLOState:
 
     @property
     @pulumi.getter
-    def alertings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]]]:
+    def alerting(self) -> Optional[pulumi.Input['SLOAlertingArgs']]:
         """
         Configures the alerting rules that will be generated for each
         			time window associated with the SLO. Grafana SLOs can generate
@@ -232,11 +232,11 @@ class _SLOState:
         			long-term error budget burn rate is high, or when the remaining
         			error budget is below a certain threshold. Annotations and Labels support templating.
         """
-        return pulumi.get(self, "alertings")
+        return pulumi.get(self, "alerting")
 
-    @alertings.setter
-    def alertings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOAlertingArgs']]]]):
-        pulumi.set(self, "alertings", value)
+    @alerting.setter
+    def alerting(self, value: Optional[pulumi.Input['SLOAlertingArgs']]):
+        pulumi.set(self, "alerting", value)
 
     @property
     @pulumi.getter
@@ -341,7 +341,7 @@ class SLO(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alertings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']]]]] = None,
+                 alerting: Optional[pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  destination_datasource: Optional[pulumi.Input[Union['SLODestinationDatasourceArgs', 'SLODestinationDatasourceArgsDict']]] = None,
                  folder_uid: Optional[pulumi.Input[builtins.str]] = None,
@@ -391,8 +391,8 @@ class SLO(pulumi.CustomResource):
                 "key": "slo",
                 "value": "terraform",
             }],
-            alertings=[{
-                "fastburns": [{
+            alerting={
+                "fastburn": {
                     "annotations": [
                         {
                             "key": "name",
@@ -403,8 +403,8 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                }],
-                "slowburns": [{
+                },
+                "slowburn": {
                     "annotations": [
                         {
                             "key": "name",
@@ -415,8 +415,8 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                }],
-            }])
+                },
+            })
         ```
 
         ### Advanced
@@ -445,8 +445,8 @@ class SLO(pulumi.CustomResource):
                 "key": "slo",
                 "value": "terraform",
             }],
-            alertings=[{
-                "fastburns": [{
+            alerting={
+                "fastburn": {
                     "annotations": [
                         {
                             "key": "name",
@@ -457,8 +457,8 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                }],
-                "slowburns": [{
+                },
+                "slowburn": {
                     "annotations": [
                         {
                             "key": "name",
@@ -469,8 +469,8 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                }],
-            }])
+                },
+            })
         ```
 
         ### Grafana Queries - Any supported datasource
@@ -528,8 +528,8 @@ class SLO(pulumi.CustomResource):
                 "key": "slo",
                 "value": "terraform",
             }],
-            alertings=[{
-                "fastburns": [{
+            alerting={
+                "fastburn": {
                     "annotations": [
                         {
                             "key": "name",
@@ -540,8 +540,8 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                }],
-                "slowburns": [{
+                },
+                "slowburn": {
                     "annotations": [
                         {
                             "key": "name",
@@ -552,8 +552,8 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                }],
-            }])
+                },
+            })
         ```
 
         For a complete list, see [supported data sources](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/set-up/additionaldatasources/#supported-data-sources).
@@ -568,7 +568,7 @@ class SLO(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']]]] alertings: Configures the alerting rules that will be generated for each
+        :param pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']] alerting: Configures the alerting rules that will be generated for each
                			time window associated with the SLO. Grafana SLOs can generate
                			alerts when the short-term error budget burn is very high, the
                			long-term error budget burn rate is high, or when the remaining
@@ -628,8 +628,8 @@ class SLO(pulumi.CustomResource):
                 "key": "slo",
                 "value": "terraform",
             }],
-            alertings=[{
-                "fastburns": [{
+            alerting={
+                "fastburn": {
                     "annotations": [
                         {
                             "key": "name",
@@ -640,8 +640,8 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                }],
-                "slowburns": [{
+                },
+                "slowburn": {
                     "annotations": [
                         {
                             "key": "name",
@@ -652,8 +652,8 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                }],
-            }])
+                },
+            })
         ```
 
         ### Advanced
@@ -682,8 +682,8 @@ class SLO(pulumi.CustomResource):
                 "key": "slo",
                 "value": "terraform",
             }],
-            alertings=[{
-                "fastburns": [{
+            alerting={
+                "fastburn": {
                     "annotations": [
                         {
                             "key": "name",
@@ -694,8 +694,8 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                }],
-                "slowburns": [{
+                },
+                "slowburn": {
                     "annotations": [
                         {
                             "key": "name",
@@ -706,8 +706,8 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                }],
-            }])
+                },
+            })
         ```
 
         ### Grafana Queries - Any supported datasource
@@ -765,8 +765,8 @@ class SLO(pulumi.CustomResource):
                 "key": "slo",
                 "value": "terraform",
             }],
-            alertings=[{
-                "fastburns": [{
+            alerting={
+                "fastburn": {
                     "annotations": [
                         {
                             "key": "name",
@@ -777,8 +777,8 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                }],
-                "slowburns": [{
+                },
+                "slowburn": {
                     "annotations": [
                         {
                             "key": "name",
@@ -789,8 +789,8 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
-                }],
-            }])
+                },
+            })
         ```
 
         For a complete list, see [supported data sources](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/set-up/additionaldatasources/#supported-data-sources).
@@ -818,7 +818,7 @@ class SLO(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alertings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']]]]] = None,
+                 alerting: Optional[pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  destination_datasource: Optional[pulumi.Input[Union['SLODestinationDatasourceArgs', 'SLODestinationDatasourceArgsDict']]] = None,
                  folder_uid: Optional[pulumi.Input[builtins.str]] = None,
@@ -836,7 +836,7 @@ class SLO(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SLOArgs.__new__(SLOArgs)
 
-            __props__.__dict__["alertings"] = alertings
+            __props__.__dict__["alerting"] = alerting
             if description is None and not opts.urn:
                 raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
@@ -865,7 +865,7 @@ class SLO(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alertings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']]]]] = None,
+            alerting: Optional[pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']]] = None,
             description: Optional[pulumi.Input[builtins.str]] = None,
             destination_datasource: Optional[pulumi.Input[Union['SLODestinationDatasourceArgs', 'SLODestinationDatasourceArgsDict']]] = None,
             folder_uid: Optional[pulumi.Input[builtins.str]] = None,
@@ -881,7 +881,7 @@ class SLO(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']]]] alertings: Configures the alerting rules that will be generated for each
+        :param pulumi.Input[Union['SLOAlertingArgs', 'SLOAlertingArgsDict']] alerting: Configures the alerting rules that will be generated for each
                			time window associated with the SLO. Grafana SLOs can generate
                			alerts when the short-term error budget burn is very high, the
                			long-term error budget burn rate is high, or when the remaining
@@ -899,7 +899,7 @@ class SLO(pulumi.CustomResource):
 
         __props__ = _SLOState.__new__(_SLOState)
 
-        __props__.__dict__["alertings"] = alertings
+        __props__.__dict__["alerting"] = alerting
         __props__.__dict__["description"] = description
         __props__.__dict__["destination_datasource"] = destination_datasource
         __props__.__dict__["folder_uid"] = folder_uid
@@ -912,7 +912,7 @@ class SLO(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def alertings(self) -> pulumi.Output[Optional[Sequence['outputs.SLOAlerting']]]:
+    def alerting(self) -> pulumi.Output[Optional['outputs.SLOAlerting']]:
         """
         Configures the alerting rules that will be generated for each
         			time window associated with the SLO. Grafana SLOs can generate
@@ -920,7 +920,7 @@ class SLO(pulumi.CustomResource):
         			long-term error budget burn rate is high, or when the remaining
         			error budget is below a certain threshold. Annotations and Labels support templating.
         """
-        return pulumi.get(self, "alertings")
+        return pulumi.get(self, "alerting")
 
     @property
     @pulumi.getter

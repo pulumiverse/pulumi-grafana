@@ -183,8 +183,6 @@ export class AwsCloudwatchScrapeJob extends pulumi.CustomResource {
             resourceInputs["disabledReason"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(AwsCloudwatchScrapeJob.__pulumiType, name, resourceInputs, opts);
     }
 }

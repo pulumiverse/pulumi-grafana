@@ -137,8 +137,6 @@ export class Installation extends pulumi.CustomResource {
             resourceInputs["smAccessToken"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/syntheticMonitoringInstallation:SyntheticMonitoringInstallation" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["metricsPublisherKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Installation.__pulumiType, name, resourceInputs, opts);

@@ -525,8 +525,6 @@ class OutlierDetector(pulumi.CustomResource):
             if query_params is None and not opts.urn:
                 raise TypeError("Missing required property 'query_params'")
             __props__.__dict__["query_params"] = query_params
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/machineLearningOutlierDetector:MachineLearningOutlierDetector")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(OutlierDetector, __self__).__init__(
             'grafana:machineLearning/outlierDetector:OutlierDetector',
             resource_name,

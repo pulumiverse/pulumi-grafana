@@ -430,8 +430,6 @@ class MetricsEndpointScrapeJob(pulumi.CustomResource):
             if url is None and not opts.urn:
                 raise TypeError("Missing required property 'url'")
             __props__.__dict__["url"] = url
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["authenticationBasicPassword", "authenticationBearerToken"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(MetricsEndpointScrapeJob, __self__).__init__(

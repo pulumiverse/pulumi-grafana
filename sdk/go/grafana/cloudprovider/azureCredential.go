@@ -60,12 +60,6 @@ func NewAzureCredential(ctx *pulumi.Context,
 	if args.TenantId == nil {
 		return nil, errors.New("invalid value for required argument 'TenantId'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:cloud/providerAzureCredential:ProviderAzureCredential"),
-		},
-	})
-	opts = append(opts, aliases)
 	if args.ClientSecret != nil {
 		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringInput)
 	}

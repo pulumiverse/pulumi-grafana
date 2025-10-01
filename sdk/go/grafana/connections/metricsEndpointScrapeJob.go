@@ -87,12 +87,6 @@ func NewMetricsEndpointScrapeJob(ctx *pulumi.Context,
 	if args.Url == nil {
 		return nil, errors.New("invalid value for required argument 'Url'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob"),
-		},
-	})
-	opts = append(opts, aliases)
 	if args.AuthenticationBasicPassword != nil {
 		args.AuthenticationBasicPassword = pulumi.ToSecret(args.AuthenticationBasicPassword).(pulumi.StringPtrInput)
 	}

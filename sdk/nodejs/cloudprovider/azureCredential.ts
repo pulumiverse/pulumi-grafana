@@ -124,8 +124,6 @@ export class AzureCredential extends pulumi.CustomResource {
             resourceInputs["resourceId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:cloud/providerAzureCredential:ProviderAzureCredential" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["clientSecret"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(AzureCredential.__pulumiType, name, resourceInputs, opts);

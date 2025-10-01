@@ -98,8 +98,8 @@ def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosRes
             "key": "custom",
             "value": "value",
         }],
-        alertings=[{
-            "fastburns": [{
+        alerting={
+            "fastburn": {
                 "annotations": [{
                     "key": "name",
                     "value": "Critical - SLO Burn Rate Alert",
@@ -108,8 +108,8 @@ def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosRes
                     "key": "type",
                     "value": "slo",
                 }],
-            }],
-            "slowburns": [{
+            },
+            "slowburn": {
                 "annotations": [{
                     "key": "name",
                     "value": "Warning - SLO Burn Rate Alert",
@@ -118,8 +118,8 @@ def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosRes
                     "key": "type",
                     "value": "slo",
                 }],
-            }],
-        }])
+            },
+        })
     slos = grafana.slo.get_slos()
     ```
     """
@@ -165,8 +165,8 @@ def get_slos_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutp
             "key": "custom",
             "value": "value",
         }],
-        alertings=[{
-            "fastburns": [{
+        alerting={
+            "fastburn": {
                 "annotations": [{
                     "key": "name",
                     "value": "Critical - SLO Burn Rate Alert",
@@ -175,8 +175,8 @@ def get_slos_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutp
                     "key": "type",
                     "value": "slo",
                 }],
-            }],
-            "slowburns": [{
+            },
+            "slowburn": {
                 "annotations": [{
                     "key": "name",
                     "value": "Warning - SLO Burn Rate Alert",
@@ -185,8 +185,8 @@ def get_slos_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutp
                     "key": "type",
                     "value": "slo",
                 }],
-            }],
-        }])
+            },
+        })
     slos = grafana.slo.get_slos()
     ```
     """
