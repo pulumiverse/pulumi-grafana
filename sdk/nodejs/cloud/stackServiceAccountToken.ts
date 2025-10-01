@@ -107,8 +107,6 @@ export class StackServiceAccountToken extends pulumi.CustomResource {
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["key"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(StackServiceAccountToken.__pulumiType, name, resourceInputs, opts);

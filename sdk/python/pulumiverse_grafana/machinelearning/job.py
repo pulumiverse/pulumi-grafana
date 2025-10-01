@@ -843,8 +843,6 @@ class Job(pulumi.CustomResource):
                 raise TypeError("Missing required property 'query_params'")
             __props__.__dict__["query_params"] = query_params
             __props__.__dict__["training_window"] = training_window
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/machineLearningJob:MachineLearningJob")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Job, __self__).__init__(
             'grafana:machineLearning/job:Job',
             resource_name,

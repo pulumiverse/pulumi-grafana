@@ -706,8 +706,6 @@ class OnCallShift(pulumi.CustomResource):
             __props__.__dict__["until"] = until
             __props__.__dict__["users"] = users
             __props__.__dict__["week_start"] = week_start
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/oncallOnCallShift:OncallOnCallShift")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(OnCallShift, __self__).__init__(
             'grafana:onCall/onCallShift:OnCallShift',
             resource_name,

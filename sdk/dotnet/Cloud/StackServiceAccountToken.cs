@@ -100,10 +100,6 @@ namespace Pulumiverse.Grafana.Cloud
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
-                Aliases =
-                {
-                    new global::Pulumi.Alias { Type = "grafana:index/cloudStackServiceAccountToken:CloudStackServiceAccountToken" },
-                },
                 AdditionalSecretOutputs =
                 {
                     "key",

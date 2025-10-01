@@ -114,12 +114,6 @@ func NewHoliday(ctx *pulumi.Context,
 		args = &HolidayArgs{}
 	}
 
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/machineLearningHoliday:MachineLearningHoliday"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Holiday
 	err := ctx.RegisterResource("grafana:machineLearning/holiday:Holiday", name, args, &resource, opts...)

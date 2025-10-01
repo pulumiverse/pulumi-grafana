@@ -82,12 +82,6 @@ func NewPluginInstallation(ctx *pulumi.Context,
 	if args.Version == nil {
 		return nil, errors.New("invalid value for required argument 'Version'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/cloudPluginInstallation:CloudPluginInstallation"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource PluginInstallation
 	err := ctx.RegisterResource("grafana:cloud/pluginInstallation:PluginInstallation", name, args, &resource, opts...)

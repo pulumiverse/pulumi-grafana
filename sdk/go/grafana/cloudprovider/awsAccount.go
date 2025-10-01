@@ -93,12 +93,6 @@ func NewAwsAccount(ctx *pulumi.Context,
 	if args.StackId == nil {
 		return nil, errors.New("invalid value for required argument 'StackId'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:cloud/providerAwsAccount:ProviderAwsAccount"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AwsAccount
 	err := ctx.RegisterResource("grafana:cloudProvider/awsAccount:AwsAccount", name, args, &resource, opts...)

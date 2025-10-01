@@ -156,12 +156,6 @@ func NewAwsCloudwatchScrapeJob(ctx *pulumi.Context,
 	if args.StackId == nil {
 		return nil, errors.New("invalid value for required argument 'StackId'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AwsCloudwatchScrapeJob
 	err := ctx.RegisterResource("grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob", name, args, &resource, opts...)

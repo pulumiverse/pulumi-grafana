@@ -368,12 +368,6 @@ func NewJob(ctx *pulumi.Context,
 	if args.QueryParams == nil {
 		return nil, errors.New("invalid value for required argument 'QueryParams'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("grafana:index/machineLearningJob:MachineLearningJob"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Job
 	err := ctx.RegisterResource("grafana:machineLearning/job:Job", name, args, &resource, opts...)

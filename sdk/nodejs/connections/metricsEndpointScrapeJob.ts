@@ -132,8 +132,6 @@ export class MetricsEndpointScrapeJob extends pulumi.CustomResource {
             resourceInputs["url"] = args ? args.url : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:index/connectionsMetricsEndpointScrapeJob:ConnectionsMetricsEndpointScrapeJob" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["authenticationBasicPassword", "authenticationBearerToken"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(MetricsEndpointScrapeJob.__pulumiType, name, resourceInputs, opts);

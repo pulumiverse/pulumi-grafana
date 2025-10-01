@@ -282,8 +282,6 @@ class AwsAccount(pulumi.CustomResource):
                 raise TypeError("Missing required property 'stack_id'")
             __props__.__dict__["stack_id"] = stack_id
             __props__.__dict__["resource_id"] = None
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:cloud/providerAwsAccount:ProviderAwsAccount")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(AwsAccount, __self__).__init__(
             'grafana:cloudProvider/awsAccount:AwsAccount',
             resource_name,

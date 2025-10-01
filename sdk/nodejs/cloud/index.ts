@@ -35,26 +35,6 @@ export const getPrivateDataSourceConnectNetworks: typeof import("./getPrivateDat
 export const getPrivateDataSourceConnectNetworksOutput: typeof import("./getPrivateDataSourceConnectNetworks").getPrivateDataSourceConnectNetworksOutput = null as any;
 utilities.lazyLoad(exports, ["getPrivateDataSourceConnectNetworks","getPrivateDataSourceConnectNetworksOutput"], () => require("./getPrivateDataSourceConnectNetworks"));
 
-export { GetProviderAwsAccountArgs, GetProviderAwsAccountResult, GetProviderAwsAccountOutputArgs } from "./getProviderAwsAccount";
-export const getProviderAwsAccount: typeof import("./getProviderAwsAccount").getProviderAwsAccount = null as any;
-export const getProviderAwsAccountOutput: typeof import("./getProviderAwsAccount").getProviderAwsAccountOutput = null as any;
-utilities.lazyLoad(exports, ["getProviderAwsAccount","getProviderAwsAccountOutput"], () => require("./getProviderAwsAccount"));
-
-export { GetProviderAwsCloudwatchScrapeJobArgs, GetProviderAwsCloudwatchScrapeJobResult, GetProviderAwsCloudwatchScrapeJobOutputArgs } from "./getProviderAwsCloudwatchScrapeJob";
-export const getProviderAwsCloudwatchScrapeJob: typeof import("./getProviderAwsCloudwatchScrapeJob").getProviderAwsCloudwatchScrapeJob = null as any;
-export const getProviderAwsCloudwatchScrapeJobOutput: typeof import("./getProviderAwsCloudwatchScrapeJob").getProviderAwsCloudwatchScrapeJobOutput = null as any;
-utilities.lazyLoad(exports, ["getProviderAwsCloudwatchScrapeJob","getProviderAwsCloudwatchScrapeJobOutput"], () => require("./getProviderAwsCloudwatchScrapeJob"));
-
-export { GetProviderAwsCloudwatchScrapeJobsArgs, GetProviderAwsCloudwatchScrapeJobsResult, GetProviderAwsCloudwatchScrapeJobsOutputArgs } from "./getProviderAwsCloudwatchScrapeJobs";
-export const getProviderAwsCloudwatchScrapeJobs: typeof import("./getProviderAwsCloudwatchScrapeJobs").getProviderAwsCloudwatchScrapeJobs = null as any;
-export const getProviderAwsCloudwatchScrapeJobsOutput: typeof import("./getProviderAwsCloudwatchScrapeJobs").getProviderAwsCloudwatchScrapeJobsOutput = null as any;
-utilities.lazyLoad(exports, ["getProviderAwsCloudwatchScrapeJobs","getProviderAwsCloudwatchScrapeJobsOutput"], () => require("./getProviderAwsCloudwatchScrapeJobs"));
-
-export { GetProviderAzureCredentialArgs, GetProviderAzureCredentialResult, GetProviderAzureCredentialOutputArgs } from "./getProviderAzureCredential";
-export const getProviderAzureCredential: typeof import("./getProviderAzureCredential").getProviderAzureCredential = null as any;
-export const getProviderAzureCredentialOutput: typeof import("./getProviderAzureCredential").getProviderAzureCredentialOutput = null as any;
-utilities.lazyLoad(exports, ["getProviderAzureCredential","getProviderAzureCredentialOutput"], () => require("./getProviderAzureCredential"));
-
 export { GetStackArgs, GetStackResult, GetStackOutputArgs } from "./getStack";
 export const getStack: typeof import("./getStack").getStack = null as any;
 export const getStackOutput: typeof import("./getStack").getStackOutput = null as any;
@@ -79,21 +59,6 @@ export { PrivateDataSourceConnectNetworkTokenArgs, PrivateDataSourceConnectNetwo
 export type PrivateDataSourceConnectNetworkToken = import("./privateDataSourceConnectNetworkToken").PrivateDataSourceConnectNetworkToken;
 export const PrivateDataSourceConnectNetworkToken: typeof import("./privateDataSourceConnectNetworkToken").PrivateDataSourceConnectNetworkToken = null as any;
 utilities.lazyLoad(exports, ["PrivateDataSourceConnectNetworkToken"], () => require("./privateDataSourceConnectNetworkToken"));
-
-export { ProviderAwsAccountArgs, ProviderAwsAccountState } from "./providerAwsAccount";
-export type ProviderAwsAccount = import("./providerAwsAccount").ProviderAwsAccount;
-export const ProviderAwsAccount: typeof import("./providerAwsAccount").ProviderAwsAccount = null as any;
-utilities.lazyLoad(exports, ["ProviderAwsAccount"], () => require("./providerAwsAccount"));
-
-export { ProviderAwsCloudwatchScrapeJobArgs, ProviderAwsCloudwatchScrapeJobState } from "./providerAwsCloudwatchScrapeJob";
-export type ProviderAwsCloudwatchScrapeJob = import("./providerAwsCloudwatchScrapeJob").ProviderAwsCloudwatchScrapeJob;
-export const ProviderAwsCloudwatchScrapeJob: typeof import("./providerAwsCloudwatchScrapeJob").ProviderAwsCloudwatchScrapeJob = null as any;
-utilities.lazyLoad(exports, ["ProviderAwsCloudwatchScrapeJob"], () => require("./providerAwsCloudwatchScrapeJob"));
-
-export { ProviderAzureCredentialArgs, ProviderAzureCredentialState } from "./providerAzureCredential";
-export type ProviderAzureCredential = import("./providerAzureCredential").ProviderAzureCredential;
-export const ProviderAzureCredential: typeof import("./providerAzureCredential").ProviderAzureCredential = null as any;
-utilities.lazyLoad(exports, ["ProviderAzureCredential"], () => require("./providerAzureCredential"));
 
 export { StackArgs, StackState } from "./stack";
 export type Stack = import("./stack").Stack;
@@ -127,12 +92,6 @@ const _module = {
                 return new PrivateDataSourceConnectNetwork(name, <any>undefined, { urn })
             case "grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken":
                 return new PrivateDataSourceConnectNetworkToken(name, <any>undefined, { urn })
-            case "grafana:cloud/providerAwsAccount:ProviderAwsAccount":
-                return new ProviderAwsAccount(name, <any>undefined, { urn })
-            case "grafana:cloud/providerAwsCloudwatchScrapeJob:ProviderAwsCloudwatchScrapeJob":
-                return new ProviderAwsCloudwatchScrapeJob(name, <any>undefined, { urn })
-            case "grafana:cloud/providerAzureCredential:ProviderAzureCredential":
-                return new ProviderAzureCredential(name, <any>undefined, { urn })
             case "grafana:cloud/stack:Stack":
                 return new Stack(name, <any>undefined, { urn })
             case "grafana:cloud/stackServiceAccount:StackServiceAccount":
@@ -150,9 +109,6 @@ pulumi.runtime.registerResourceModule("grafana", "cloud/orgMember", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/pluginInstallation", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/privateDataSourceConnectNetwork", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/privateDataSourceConnectNetworkToken", _module)
-pulumi.runtime.registerResourceModule("grafana", "cloud/providerAwsAccount", _module)
-pulumi.runtime.registerResourceModule("grafana", "cloud/providerAwsCloudwatchScrapeJob", _module)
-pulumi.runtime.registerResourceModule("grafana", "cloud/providerAzureCredential", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stack", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stackServiceAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stackServiceAccountToken", _module)

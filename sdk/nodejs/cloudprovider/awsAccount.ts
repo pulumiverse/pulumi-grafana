@@ -117,8 +117,6 @@ export class AwsAccount extends pulumi.CustomResource {
             resourceInputs["resourceId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "grafana:cloud/providerAwsAccount:ProviderAwsAccount" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(AwsAccount.__pulumiType, name, resourceInputs, opts);
     }
 }
