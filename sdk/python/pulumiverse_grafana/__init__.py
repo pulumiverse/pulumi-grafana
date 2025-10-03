@@ -6,6 +6,8 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .asserts_notification_alerts_config import *
+from .asserts_suppressed_assertions_config import *
 from .provider import *
 
 # Make subpackages available:
@@ -322,6 +324,22 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/assertsNotificationAlertsConfig",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/assertsNotificationAlertsConfig:AssertsNotificationAlertsConfig": "AssertsNotificationAlertsConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/assertsSuppressedAssertionsConfig",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig": "AssertsSuppressedAssertionsConfig"
   }
  },
  {

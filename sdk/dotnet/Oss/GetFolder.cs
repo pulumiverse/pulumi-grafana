@@ -41,7 +41,7 @@ namespace Pulumiverse.Grafana.Oss
         /// });
         /// ```
         /// </summary>
-        public static Task<GetFolderResult> InvokeAsync(GetFolderArgs args, InvokeOptions? options = null)
+        public static Task<GetFolderResult> InvokeAsync(GetFolderArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFolderResult>("grafana:oss/getFolder:getFolder", args ?? new GetFolderArgs(), options.WithDefaults());
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Pulumiverse.Grafana.Oss
         /// });
         /// ```
         /// </summary>
-        public static Output<GetFolderResult> Invoke(GetFolderInvokeArgs args, InvokeOptions? options = null)
+        public static Output<GetFolderResult> Invoke(GetFolderInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFolderResult>("grafana:oss/getFolder:getFolder", args ?? new GetFolderInvokeArgs(), options.WithDefaults());
 
         /// <summary>
@@ -119,10 +119,16 @@ namespace Pulumiverse.Grafana.Oss
         public string? OrgId { get; set; }
 
         /// <summary>
-        /// The title of the folder.
+        /// The title of the folder. If not set, only the uid is used to find the folder.
         /// </summary>
-        [Input("title", required: true)]
-        public string Title { get; set; } = null!;
+        [Input("title")]
+        public string? Title { get; set; }
+
+        /// <summary>
+        /// The uid of the folder. If not set, only the title of the folder is used to find the folder.
+        /// </summary>
+        [Input("uid")]
+        public string? Uid { get; set; }
 
         public GetFolderArgs()
         {
@@ -139,10 +145,16 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// The title of the folder.
+        /// The title of the folder. If not set, only the uid is used to find the folder.
         /// </summary>
-        [Input("title", required: true)]
-        public Input<string> Title { get; set; } = null!;
+        [Input("title")]
+        public Input<string>? Title { get; set; }
+
+        /// <summary>
+        /// The uid of the folder. If not set, only the title of the folder is used to find the folder.
+        /// </summary>
+        [Input("uid")]
+        public Input<string>? Uid { get; set; }
 
         public GetFolderInvokeArgs()
         {
@@ -167,11 +179,11 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public readonly string ParentFolderUid;
         /// <summary>
-        /// The title of the folder.
+        /// The title of the folder. If not set, only the uid is used to find the folder.
         /// </summary>
-        public readonly string Title;
+        public readonly string? Title;
         /// <summary>
-        /// Unique identifier.
+        /// The uid of the folder. If not set, only the title of the folder is used to find the folder.
         /// </summary>
         public readonly string Uid;
         /// <summary>
@@ -187,7 +199,7 @@ namespace Pulumiverse.Grafana.Oss
 
             string parentFolderUid,
 
-            string title,
+            string? title,
 
             string uid,
 

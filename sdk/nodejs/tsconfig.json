@@ -19,6 +19,8 @@
         "alerting/muteTiming.ts",
         "alerting/notificationPolicy.ts",
         "alerting/ruleGroup.ts",
+        "assertsNotificationAlertsConfig.ts",
+        "assertsSuppressedAssertionsConfig.ts",
         "cloud/accessPolicy.ts",
         "cloud/accessPolicyToken.ts",
         "cloud/getAccessPolicies.ts",

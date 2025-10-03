@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AssertsNotificationAlertsConfigArgs, AssertsNotificationAlertsConfigState } from "./assertsNotificationAlertsConfig";
+export type AssertsNotificationAlertsConfig = import("./assertsNotificationAlertsConfig").AssertsNotificationAlertsConfig;
+export const AssertsNotificationAlertsConfig: typeof import("./assertsNotificationAlertsConfig").AssertsNotificationAlertsConfig = null as any;
+utilities.lazyLoad(exports, ["AssertsNotificationAlertsConfig"], () => require("./assertsNotificationAlertsConfig"));
+
+export { AssertsSuppressedAssertionsConfigArgs, AssertsSuppressedAssertionsConfigState } from "./assertsSuppressedAssertionsConfig";
+export type AssertsSuppressedAssertionsConfig = import("./assertsSuppressedAssertionsConfig").AssertsSuppressedAssertionsConfig;
+export const AssertsSuppressedAssertionsConfig: typeof import("./assertsSuppressedAssertionsConfig").AssertsSuppressedAssertionsConfig = null as any;
+utilities.lazyLoad(exports, ["AssertsSuppressedAssertionsConfig"], () => require("./assertsSuppressedAssertionsConfig"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -45,6 +55,22 @@ export {
     syntheticmonitoring,
     types,
 };
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "grafana:index/assertsNotificationAlertsConfig:AssertsNotificationAlertsConfig":
+                return new AssertsNotificationAlertsConfig(name, <any>undefined, { urn })
+            case "grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig":
+                return new AssertsSuppressedAssertionsConfig(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("grafana", "index/assertsNotificationAlertsConfig", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/assertsSuppressedAssertionsConfig", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

@@ -70,10 +70,7 @@ export class PluginInstallation extends pulumi.CustomResource {
      * The stack id to which the plugin should be installed.
      */
     declare public readonly stackSlug: pulumi.Output<string>;
-    /**
-     * Version of the plugin to be installed.
-     */
-    declare public readonly version: pulumi.Output<string>;
+    declare public readonly version: pulumi.Output<string | undefined>;
 
     /**
      * Create a PluginInstallation resource with the given unique name, arguments, and options.
@@ -99,9 +96,6 @@ export class PluginInstallation extends pulumi.CustomResource {
             if (args?.stackSlug === undefined && !opts.urn) {
                 throw new Error("Missing required property 'stackSlug'");
             }
-            if (args?.version === undefined && !opts.urn) {
-                throw new Error("Missing required property 'version'");
-            }
             resourceInputs["slug"] = args?.slug;
             resourceInputs["stackSlug"] = args?.stackSlug;
             resourceInputs["version"] = args?.version;
@@ -123,9 +117,6 @@ export interface PluginInstallationState {
      * The stack id to which the plugin should be installed.
      */
     stackSlug?: pulumi.Input<string>;
-    /**
-     * Version of the plugin to be installed.
-     */
     version?: pulumi.Input<string>;
 }
 
@@ -141,8 +132,5 @@ export interface PluginInstallationArgs {
      * The stack id to which the plugin should be installed.
      */
     stackSlug: pulumi.Input<string>;
-    /**
-     * Version of the plugin to be installed.
-     */
-    version: pulumi.Input<string>;
+    version?: pulumi.Input<string>;
 }

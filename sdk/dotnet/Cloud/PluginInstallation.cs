@@ -62,11 +62,8 @@ namespace Pulumiverse.Grafana.Cloud
         [Output("stackSlug")]
         public Output<string> StackSlug { get; private set; } = null!;
 
-        /// <summary>
-        /// Version of the plugin to be installed.
-        /// </summary>
         [Output("version")]
-        public Output<string> Version { get; private set; } = null!;
+        public Output<string?> Version { get; private set; } = null!;
 
 
         /// <summary>
@@ -127,11 +124,8 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("stackSlug", required: true)]
         public Input<string> StackSlug { get; set; } = null!;
 
-        /// <summary>
-        /// Version of the plugin to be installed.
-        /// </summary>
-        [Input("version", required: true)]
-        public Input<string> Version { get; set; } = null!;
+        [Input("version")]
+        public Input<string>? Version { get; set; }
 
         public PluginInstallationArgs()
         {
@@ -153,9 +147,6 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("stackSlug")]
         public Input<string>? StackSlug { get; set; }
 
-        /// <summary>
-        /// Version of the plugin to be installed.
-        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 

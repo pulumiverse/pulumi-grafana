@@ -29,7 +29,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// <summary>
         /// ID of the Webex Teams room where to send the messages.
         /// </summary>
-        public readonly string? RoomId;
+        public readonly string RoomId;
         /// <summary>
         /// Additional custom properties to attach to the notifier. Defaults to `map[]`.
         /// </summary>
@@ -37,7 +37,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// <summary>
         /// The bearer token used to authorize the client.
         /// </summary>
-        public readonly string? Token;
+        public readonly string Token;
         /// <summary>
         /// The UID of the contact point.
         /// </summary>
@@ -51,11 +51,11 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
             string? message,
 
-            string? roomId,
+            string roomId,
 
             ImmutableDictionary<string, string>? settings,
 
-            string? token,
+            string token,
 
             string? uid)
         {

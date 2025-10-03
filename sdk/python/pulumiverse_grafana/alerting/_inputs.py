@@ -3845,6 +3845,14 @@ class ContactPointVictoropArgs:
 
 if not MYPY:
     class ContactPointWebexArgsDict(TypedDict):
+        room_id: pulumi.Input[_builtins.str]
+        """
+        ID of the Webex Teams room where to send the messages.
+        """
+        token: pulumi.Input[_builtins.str]
+        """
+        The bearer token used to authorize the client.
+        """
         api_url: NotRequired[pulumi.Input[_builtins.str]]
         """
         The URL to send webhook requests to.
@@ -3857,17 +3865,9 @@ if not MYPY:
         """
         The templated title of the message to send.
         """
-        room_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the Webex Teams room where to send the messages.
-        """
         settings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
         """
         Additional custom properties to attach to the notifier. Defaults to `map[]`.
-        """
-        token: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The bearer token used to authorize the client.
         """
         uid: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -3879,36 +3879,58 @@ elif False:
 @pulumi.input_type
 class ContactPointWebexArgs:
     def __init__(__self__, *,
+                 room_id: pulumi.Input[_builtins.str],
+                 token: pulumi.Input[_builtins.str],
                  api_url: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_resolve_message: Optional[pulumi.Input[_builtins.bool]] = None,
                  message: Optional[pulumi.Input[_builtins.str]] = None,
-                 room_id: Optional[pulumi.Input[_builtins.str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
                  uid: Optional[pulumi.Input[_builtins.str]] = None):
         """
+        :param pulumi.Input[_builtins.str] room_id: ID of the Webex Teams room where to send the messages.
+        :param pulumi.Input[_builtins.str] token: The bearer token used to authorize the client.
         :param pulumi.Input[_builtins.str] api_url: The URL to send webhook requests to.
         :param pulumi.Input[_builtins.bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param pulumi.Input[_builtins.str] message: The templated title of the message to send.
-        :param pulumi.Input[_builtins.str] room_id: ID of the Webex Teams room where to send the messages.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
-        :param pulumi.Input[_builtins.str] token: The bearer token used to authorize the client.
         :param pulumi.Input[_builtins.str] uid: The UID of the contact point.
         """
+        pulumi.set(__self__, "room_id", room_id)
+        pulumi.set(__self__, "token", token)
         if api_url is not None:
             pulumi.set(__self__, "api_url", api_url)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
         if message is not None:
             pulumi.set(__self__, "message", message)
-        if room_id is not None:
-            pulumi.set(__self__, "room_id", room_id)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
-        if token is not None:
-            pulumi.set(__self__, "token", token)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
+
+    @_builtins.property
+    @pulumi.getter(name="roomId")
+    def room_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        ID of the Webex Teams room where to send the messages.
+        """
+        return pulumi.get(self, "room_id")
+
+    @room_id.setter
+    def room_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "room_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> pulumi.Input[_builtins.str]:
+        """
+        The bearer token used to authorize the client.
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="apiUrl")
@@ -3947,18 +3969,6 @@ class ContactPointWebexArgs:
         pulumi.set(self, "message", value)
 
     @_builtins.property
-    @pulumi.getter(name="roomId")
-    def room_id(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        ID of the Webex Teams room where to send the messages.
-        """
-        return pulumi.get(self, "room_id")
-
-    @room_id.setter
-    def room_id(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "room_id", value)
-
-    @_builtins.property
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
@@ -3969,18 +3979,6 @@ class ContactPointWebexArgs:
     @settings.setter
     def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "settings", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The bearer token used to authorize the client.
-        """
-        return pulumi.get(self, "token")
-
-    @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter

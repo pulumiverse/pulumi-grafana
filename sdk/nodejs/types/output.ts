@@ -785,7 +785,7 @@ export namespace alerting {
         /**
          * ID of the Webex Teams room where to send the messages.
          */
-        roomId?: string;
+        roomId: string;
         /**
          * Additional custom properties to attach to the notifier. Defaults to `map[]`.
          */
@@ -793,7 +793,7 @@ export namespace alerting {
         /**
          * The bearer token used to authorize the client.
          */
-        token?: string;
+        token: string;
         /**
          * The UID of the contact point.
          */
