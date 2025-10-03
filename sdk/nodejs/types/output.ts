@@ -4093,6 +4093,10 @@ export namespace syntheticMonitoring {
          */
         period?: string;
         /**
+         * URL to runbook documentation for this alert.
+         */
+        runbookUrl?: string;
+        /**
          * Threshold value for the alert.
          */
         threshold: number;

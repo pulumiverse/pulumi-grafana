@@ -3934,6 +3934,10 @@ export namespace syntheticMonitoring {
          */
         period?: pulumi.Input<string>;
         /**
+         * URL to runbook documentation for this alert.
+         */
+        runbookUrl?: pulumi.Input<string>;
+        /**
          * Threshold value for the alert.
          */
         threshold: pulumi.Input<number>;

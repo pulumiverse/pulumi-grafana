@@ -37,16 +37,19 @@ import * as utilities from "../utilities";
  *             name: "ProbeFailedExecutionsTooHigh",
  *             threshold: 1,
  *             period: "15m",
+ *             runbookUrl: "",
  *         },
  *         {
  *             name: "TLSTargetCertificateCloseToExpiring",
  *             threshold: 14,
  *             period: "",
+ *             runbookUrl: "",
  *         },
  *         {
  *             name: "HTTPRequestDurationTooHighAvg",
  *             threshold: 5000,
  *             period: "10m",
+ *             runbookUrl: "https://wiki.company.com/runbooks/http-duration",
  *         },
  *     ],
  * });

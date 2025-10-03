@@ -5,7 +5,7 @@ go 1.25
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250530111747-935112552988
 
 require (
-	github.com/grafana/terraform-provider-grafana/v4 v4.9.0
+	github.com/grafana/terraform-provider-grafana/v4 v4.10.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.114.0
 	github.com/pulumi/pulumi/sdk/v3 v3.190.0
 )
@@ -115,7 +115,7 @@ require (
 	github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20250526074454-7ec66e02e4bb // indirect
 	github.com/grafana/grafana-openapi-client-go v0.0.0-20250617151817-c0f8cbb88d5c // indirect
 	github.com/grafana/grafana-plugin-sdk-go v0.275.0 // indirect
-	github.com/grafana/grafana/apps/alerting/alertenrichment v0.0.0-20250904171753-3d6d6326866f // indirect
+	github.com/grafana/grafana/apps/alerting/alertenrichment v0.0.0-20250925121631-89b988ca553e // indirect
 	github.com/grafana/grafana/apps/dashboard v0.0.0-20250424064802-2fbb2d6f5d27 // indirect
 	github.com/grafana/grafana/apps/playlist v0.0.0-20250424064802-2fbb2d6f5d27 // indirect
 	github.com/grafana/grafana/pkg/apimachinery v0.0.0-20250901080157-a0280d701b28 // indirect

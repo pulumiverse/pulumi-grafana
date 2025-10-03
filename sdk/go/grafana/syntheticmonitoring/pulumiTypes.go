@@ -18,6 +18,8 @@ type CheckAlertsAlert struct {
 	Name string `pulumi:"name"`
 	// Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
 	Period *string `pulumi:"period"`
+	// URL to runbook documentation for this alert.
+	RunbookUrl *string `pulumi:"runbookUrl"`
 	// Threshold value for the alert.
 	Threshold float64 `pulumi:"threshold"`
 }
@@ -38,6 +40,8 @@ type CheckAlertsAlertArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
 	Period pulumi.StringPtrInput `pulumi:"period"`
+	// URL to runbook documentation for this alert.
+	RunbookUrl pulumi.StringPtrInput `pulumi:"runbookUrl"`
 	// Threshold value for the alert.
 	Threshold pulumi.Float64Input `pulumi:"threshold"`
 }
@@ -101,6 +105,11 @@ func (o CheckAlertsAlertOutput) Name() pulumi.StringOutput {
 // Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
 func (o CheckAlertsAlertOutput) Period() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CheckAlertsAlert) *string { return v.Period }).(pulumi.StringPtrOutput)
+}
+
+// URL to runbook documentation for this alert.
+func (o CheckAlertsAlertOutput) RunbookUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CheckAlertsAlert) *string { return v.RunbookUrl }).(pulumi.StringPtrOutput)
 }
 
 // Threshold value for the alert.

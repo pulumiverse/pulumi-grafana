@@ -52,19 +52,22 @@ import (
 //				CheckId: main.ID(),
 //				Alerts: syntheticmonitoring.CheckAlertsAlertArray{
 //					&syntheticmonitoring.CheckAlertsAlertArgs{
-//						Name:      pulumi.String("ProbeFailedExecutionsTooHigh"),
-//						Threshold: pulumi.Float64(1),
-//						Period:    pulumi.String("15m"),
+//						Name:       pulumi.String("ProbeFailedExecutionsTooHigh"),
+//						Threshold:  pulumi.Float64(1),
+//						Period:     pulumi.String("15m"),
+//						RunbookUrl: pulumi.String(""),
 //					},
 //					&syntheticmonitoring.CheckAlertsAlertArgs{
-//						Name:      pulumi.String("TLSTargetCertificateCloseToExpiring"),
-//						Threshold: pulumi.Float64(14),
-//						Period:    pulumi.String(""),
+//						Name:       pulumi.String("TLSTargetCertificateCloseToExpiring"),
+//						Threshold:  pulumi.Float64(14),
+//						Period:     pulumi.String(""),
+//						RunbookUrl: pulumi.String(""),
 //					},
 //					&syntheticmonitoring.CheckAlertsAlertArgs{
-//						Name:      pulumi.String("HTTPRequestDurationTooHighAvg"),
-//						Threshold: pulumi.Float64(5000),
-//						Period:    pulumi.String("10m"),
+//						Name:       pulumi.String("HTTPRequestDurationTooHighAvg"),
+//						Threshold:  pulumi.Float64(5000),
+//						Period:     pulumi.String("10m"),
+//						RunbookUrl: pulumi.String("https://wiki.company.com/runbooks/http-duration"),
 //					},
 //				},
 //			})

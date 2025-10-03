@@ -135,16 +135,19 @@ class CheckAlerts(pulumi.CustomResource):
                     "name": "ProbeFailedExecutionsTooHigh",
                     "threshold": 1,
                     "period": "15m",
+                    "runbook_url": "",
                 },
                 {
                     "name": "TLSTargetCertificateCloseToExpiring",
                     "threshold": 14,
                     "period": "",
+                    "runbook_url": "",
                 },
                 {
                     "name": "HTTPRequestDurationTooHighAvg",
                     "threshold": 5000,
                     "period": "10m",
+                    "runbook_url": "https://wiki.company.com/runbooks/http-duration",
                 },
             ])
         ```
@@ -196,16 +199,19 @@ class CheckAlerts(pulumi.CustomResource):
                     "name": "ProbeFailedExecutionsTooHigh",
                     "threshold": 1,
                     "period": "15m",
+                    "runbook_url": "",
                 },
                 {
                     "name": "TLSTargetCertificateCloseToExpiring",
                     "threshold": 14,
                     "period": "",
+                    "runbook_url": "",
                 },
                 {
                     "name": "HTTPRequestDurationTooHighAvg",
                     "threshold": 5000,
                     "period": "10m",
+                    "runbook_url": "https://wiki.company.com/runbooks/http-duration",
                 },
             ])
         ```

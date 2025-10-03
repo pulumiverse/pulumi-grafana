@@ -55,18 +55,21 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///                 Name = "ProbeFailedExecutionsTooHigh",
     ///                 Threshold = 1,
     ///                 Period = "15m",
+    ///                 RunbookUrl = "",
     ///             },
     ///             new Grafana.SyntheticMonitoring.Inputs.CheckAlertsAlertArgs
     ///             {
     ///                 Name = "TLSTargetCertificateCloseToExpiring",
     ///                 Threshold = 14,
     ///                 Period = "",
+    ///                 RunbookUrl = "",
     ///             },
     ///             new Grafana.SyntheticMonitoring.Inputs.CheckAlertsAlertArgs
     ///             {
     ///                 Name = "HTTPRequestDurationTooHighAvg",
     ///                 Threshold = 5000,
     ///                 Period = "10m",
+    ///                 RunbookUrl = "https://wiki.company.com/runbooks/http-duration",
     ///             },
     ///         },
     ///     });

@@ -23,6 +23,10 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         /// </summary>
         public readonly string? Period;
         /// <summary>
+        /// URL to runbook documentation for this alert.
+        /// </summary>
+        public readonly string? RunbookUrl;
+        /// <summary>
         /// Threshold value for the alert.
         /// </summary>
         public readonly double Threshold;
@@ -33,10 +37,13 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
 
             string? period,
 
+            string? runbookUrl,
+
             double threshold)
         {
             Name = name;
             Period = period;
+            RunbookUrl = runbookUrl;
             Threshold = threshold;
         }
     }
