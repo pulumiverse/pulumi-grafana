@@ -81,9 +81,40 @@ export namespace alerting {
 
     export interface AlertEnrichmentSpecStep {
         /**
+         * Integrate with Grafana Asserts for enrichment.
+         */
+        asserts?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepAsserts>;
+        /**
          * Assign annotations to an alert.
          */
         assign?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepAssign>;
+        /**
+         * Use AI assistant to investigate alerts and add insights.
+         */
+        assistantInvestigations?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepAssistantInvestigations>;
+        /**
+         * Query Grafana data sources and add results to alerts.
+         */
+        dataSource?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepDataSource>;
+        /**
+         * Generate AI explanation and store in an annotation.
+         */
+        explain?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepExplain>;
+        /**
+         * Call an external HTTP service for enrichment.
+         */
+        external?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepExternal>;
+        /**
+         * Analyze alerts for patterns and insights.
+         */
+        sift?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepSift>;
+    }
+
+    export interface AlertEnrichmentSpecStepAsserts {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
     }
 
     export interface AlertEnrichmentSpecStepAssign {
@@ -91,6 +122,87 @@ export namespace alerting {
          * Map of annotation names to values to set on matching alerts.
          */
         annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepAssistantInvestigations {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepDataSource {
+        /**
+         * Logs query configuration for querying log data sources.
+         */
+        logsQuery?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepDataSourceLogsQuery>;
+        /**
+         * Raw query configuration for advanced data source queries.
+         */
+        rawQuery?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepDataSourceRawQuery>;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepDataSourceLogsQuery {
+        /**
+         * Data source type (e.g., 'loki').
+         */
+        dataSourceType?: pulumi.Input<string>;
+        /**
+         * UID of the data source to query.
+         */
+        dataSourceUid?: pulumi.Input<string>;
+        /**
+         * Log query expression to execute.
+         */
+        expr?: pulumi.Input<string>;
+        /**
+         * Maximum number of log lines to include. Defaults to 3.
+         */
+        maxLines?: pulumi.Input<number>;
+    }
+
+    export interface AlertEnrichmentSpecStepDataSourceRawQuery {
+        /**
+         * Reference ID for correlating queries.
+         */
+        refId?: pulumi.Input<string>;
+        /**
+         * Raw request payload for the data source query.
+         */
+        request?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepExplain {
+        /**
+         * Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+         */
+        annotation?: pulumi.Input<string>;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepExternal {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+        /**
+         * HTTP endpoint URL to call for enrichment
+         */
+        url?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepSift {
         /**
          * Maximum execution time (e.g., '30s', '1m')
          */

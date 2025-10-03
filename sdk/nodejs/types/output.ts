@@ -48,7 +48,7 @@ export namespace alerting {
         /**
          * Description of the alert enrichment.
          */
-        description?: string;
+        description: string;
         /**
          * Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
          */
@@ -81,9 +81,40 @@ export namespace alerting {
 
     export interface AlertEnrichmentSpecStep {
         /**
+         * Integrate with Grafana Asserts for enrichment.
+         */
+        asserts?: outputs.alerting.AlertEnrichmentSpecStepAsserts;
+        /**
          * Assign annotations to an alert.
          */
         assign?: outputs.alerting.AlertEnrichmentSpecStepAssign;
+        /**
+         * Use AI assistant to investigate alerts and add insights.
+         */
+        assistantInvestigations?: outputs.alerting.AlertEnrichmentSpecStepAssistantInvestigations;
+        /**
+         * Query Grafana data sources and add results to alerts.
+         */
+        dataSource?: outputs.alerting.AlertEnrichmentSpecStepDataSource;
+        /**
+         * Generate AI explanation and store in an annotation.
+         */
+        explain?: outputs.alerting.AlertEnrichmentSpecStepExplain;
+        /**
+         * Call an external HTTP service for enrichment.
+         */
+        external?: outputs.alerting.AlertEnrichmentSpecStepExternal;
+        /**
+         * Analyze alerts for patterns and insights.
+         */
+        sift?: outputs.alerting.AlertEnrichmentSpecStepSift;
+    }
+
+    export interface AlertEnrichmentSpecStepAsserts {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
     }
 
     export interface AlertEnrichmentSpecStepAssign {
@@ -91,6 +122,87 @@ export namespace alerting {
          * Map of annotation names to values to set on matching alerts.
          */
         annotations?: {[key: string]: string};
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepAssistantInvestigations {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepDataSource {
+        /**
+         * Logs query configuration for querying log data sources.
+         */
+        logsQuery?: outputs.alerting.AlertEnrichmentSpecStepDataSourceLogsQuery;
+        /**
+         * Raw query configuration for advanced data source queries.
+         */
+        rawQuery?: outputs.alerting.AlertEnrichmentSpecStepDataSourceRawQuery;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepDataSourceLogsQuery {
+        /**
+         * Data source type (e.g., 'loki').
+         */
+        dataSourceType?: string;
+        /**
+         * UID of the data source to query.
+         */
+        dataSourceUid?: string;
+        /**
+         * Log query expression to execute.
+         */
+        expr?: string;
+        /**
+         * Maximum number of log lines to include. Defaults to 3.
+         */
+        maxLines: number;
+    }
+
+    export interface AlertEnrichmentSpecStepDataSourceRawQuery {
+        /**
+         * Reference ID for correlating queries.
+         */
+        refId: string;
+        /**
+         * Raw request payload for the data source query.
+         */
+        request?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepExplain {
+        /**
+         * Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+         */
+        annotation: string;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepExternal {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+        /**
+         * HTTP endpoint URL to call for enrichment
+         */
+        url?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepSift {
         /**
          * Maximum execution time (e.g., '30s', '1m')
          */

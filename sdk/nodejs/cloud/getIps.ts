@@ -43,6 +43,10 @@ export interface GetIpsResult {
      */
     readonly hostedMetrics: string[];
     /**
+     * Set of IP addresses that are used for hosted profiles.
+     */
+    readonly hostedProfiles: string[];
+    /**
      * Set of IP addresses that are used for hosted traces.
      */
     readonly hostedTraces: string[];

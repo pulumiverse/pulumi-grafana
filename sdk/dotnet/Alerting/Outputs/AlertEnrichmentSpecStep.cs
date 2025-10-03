@@ -15,14 +15,57 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
     public sealed class AlertEnrichmentSpecStep
     {
         /// <summary>
+        /// Integrate with Grafana Asserts for enrichment.
+        /// </summary>
+        public readonly Outputs.AlertEnrichmentSpecStepAsserts? Asserts;
+        /// <summary>
         /// Assign annotations to an alert.
         /// </summary>
         public readonly Outputs.AlertEnrichmentSpecStepAssign? Assign;
+        /// <summary>
+        /// Use AI assistant to investigate alerts and add insights.
+        /// </summary>
+        public readonly Outputs.AlertEnrichmentSpecStepAssistantInvestigations? AssistantInvestigations;
+        /// <summary>
+        /// Query Grafana data sources and add results to alerts.
+        /// </summary>
+        public readonly Outputs.AlertEnrichmentSpecStepDataSource? DataSource;
+        /// <summary>
+        /// Generate AI explanation and store in an annotation.
+        /// </summary>
+        public readonly Outputs.AlertEnrichmentSpecStepExplain? Explain;
+        /// <summary>
+        /// Call an external HTTP service for enrichment.
+        /// </summary>
+        public readonly Outputs.AlertEnrichmentSpecStepExternal? External;
+        /// <summary>
+        /// Analyze alerts for patterns and insights.
+        /// </summary>
+        public readonly Outputs.AlertEnrichmentSpecStepSift? Sift;
 
         [OutputConstructor]
-        private AlertEnrichmentSpecStep(Outputs.AlertEnrichmentSpecStepAssign? assign)
+        private AlertEnrichmentSpecStep(
+            Outputs.AlertEnrichmentSpecStepAsserts? asserts,
+
+            Outputs.AlertEnrichmentSpecStepAssign? assign,
+
+            Outputs.AlertEnrichmentSpecStepAssistantInvestigations? assistantInvestigations,
+
+            Outputs.AlertEnrichmentSpecStepDataSource? dataSource,
+
+            Outputs.AlertEnrichmentSpecStepExplain? explain,
+
+            Outputs.AlertEnrichmentSpecStepExternal? external,
+
+            Outputs.AlertEnrichmentSpecStepSift? sift)
         {
+            Asserts = asserts;
             Assign = assign;
+            AssistantInvestigations = assistantInvestigations;
+            DataSource = dataSource;
+            Explain = explain;
+            External = external;
+            Sift = sift;
         }
     }
 }
