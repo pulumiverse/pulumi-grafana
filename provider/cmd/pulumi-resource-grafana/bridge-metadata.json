@@ -3,7 +3,7 @@
         "resources": {
             "grafana_annotation": {
                 "current": "grafana:oss/annotation:Annotation",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -12,7 +12,7 @@
             },
             "grafana_apps_dashboard_dashboard_v1beta1": {
                 "current": "grafana:experimental/appsDashboard:AppsDashboard",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "spec": {
                         "fields": {
@@ -25,7 +25,7 @@
             },
             "grafana_apps_playlist_playlist_v0alpha1": {
                 "current": "grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "spec": {
                         "fields": {
@@ -38,7 +38,7 @@
             },
             "grafana_cloud_access_policy": {
                 "current": "grafana:cloud/accessPolicy:AccessPolicy",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "conditions": {
                         "maxItemsOne": false,
@@ -67,27 +67,27 @@
             },
             "grafana_cloud_access_policy_token": {
                 "current": "grafana:cloud/accessPolicyToken:AccessPolicyToken",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_cloud_org_member": {
                 "current": "grafana:cloud/orgMember:OrgMember",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_cloud_plugin_installation": {
                 "current": "grafana:cloud/pluginInstallation:PluginInstallation",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_cloud_private_data_source_connect_network": {
                 "current": "grafana:cloud/privateDataSourceConnectNetwork:PrivateDataSourceConnectNetwork",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_cloud_private_data_source_connect_network_token": {
                 "current": "grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_cloud_provider_aws_account": {
                 "current": "grafana:cloudProvider/awsAccount:AwsAccount",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "regions": {
                         "maxItemsOne": false
@@ -96,7 +96,7 @@
             },
             "grafana_cloud_provider_aws_cloudwatch_scrape_job": {
                 "current": "grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "custom_namespace": {
                         "maxItemsOne": false,
@@ -145,7 +145,7 @@
             },
             "grafana_cloud_provider_aws_resource_metadata_scrape_job": {
                 "current": "grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "regions_subset_override": {
                         "maxItemsOne": false
@@ -164,7 +164,7 @@
             },
             "grafana_cloud_provider_azure_credential": {
                 "current": "grafana:cloudProvider/azureCredential:AzureCredential",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "auto_discovery_configuration": {
                         "maxItemsOne": false,
@@ -203,23 +203,23 @@
             },
             "grafana_cloud_stack": {
                 "current": "grafana:cloud/stack:Stack",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_cloud_stack_service_account": {
                 "current": "grafana:cloud/stackServiceAccount:StackServiceAccount",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_cloud_stack_service_account_token": {
                 "current": "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_connections_metrics_endpoint_scrape_job": {
                 "current": "grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_contact_point": {
                 "current": "grafana:alerting/contactPoint:ContactPoint",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "alertmanager": {
                         "maxItemsOne": false
@@ -302,11 +302,11 @@
             },
             "grafana_dashboard": {
                 "current": "grafana:oss/dashboard:Dashboard",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_dashboard_permission": {
                 "current": "grafana:oss/dashboardPermission:DashboardPermission",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "permissions": {
                         "maxItemsOne": false
@@ -315,27 +315,27 @@
             },
             "grafana_dashboard_permission_item": {
                 "current": "grafana:oss/dashboardPermissionItem:DashboardPermissionItem",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_dashboard_public": {
                 "current": "grafana:oss/dashboardPublic:DashboardPublic",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_data_source": {
                 "current": "grafana:oss/dataSource:DataSource",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_data_source_config": {
                 "current": "grafana:oss/dataSourceConfig:DataSourceConfig",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_data_source_config_lbac_rules": {
                 "current": "grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_data_source_permission": {
                 "current": "grafana:enterprise/dataSourcePermission:DataSourcePermission",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "permissions": {
                         "maxItemsOne": false
@@ -344,15 +344,15 @@
             },
             "grafana_data_source_permission_item": {
                 "current": "grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_fleet_management_collector": {
                 "current": "grafana:fleetManagement/collector:Collector",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_fleet_management_pipeline": {
                 "current": "grafana:fleetManagement/pipeline:Pipeline",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "matchers": {
                         "maxItemsOne": false
@@ -361,11 +361,11 @@
             },
             "grafana_folder": {
                 "current": "grafana:oss/folder:Folder",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_folder_permission": {
                 "current": "grafana:oss/folderPermission:FolderPermission",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "permissions": {
                         "maxItemsOne": false
@@ -374,11 +374,11 @@
             },
             "grafana_folder_permission_item": {
                 "current": "grafana:oss/folderPermissionItem:FolderPermissionItem",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_frontend_o11y_app": {
                 "current": "grafana:frontendObservability/app:App",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "allowed_origins": {
                         "maxItemsOne": false
@@ -387,23 +387,23 @@
             },
             "grafana_k6_installation": {
                 "current": "grafana:k6/installation:Installation",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_k6_load_test": {
                 "current": "grafana:k6/loadTest:LoadTest",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_k6_project": {
                 "current": "grafana:k6/project:Project",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_k6_project_limits": {
                 "current": "grafana:k6/projectLimits:ProjectLimits",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_library_panel": {
                 "current": "grafana:oss/libraryPanel:LibraryPanel",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "dashboard_ids": {
                         "maxItemsOne": false
@@ -412,11 +412,11 @@
             },
             "grafana_machine_learning_alert": {
                 "current": "grafana:machineLearning/alert:Alert",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_machine_learning_holiday": {
                 "current": "grafana:machineLearning/holiday:Holiday",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "custom_periods": {
                         "maxItemsOne": false
@@ -425,7 +425,7 @@
             },
             "grafana_machine_learning_job": {
                 "current": "grafana:machineLearning/job:Job",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "holidays": {
                         "maxItemsOne": false
@@ -434,7 +434,7 @@
             },
             "grafana_machine_learning_outlier_detector": {
                 "current": "grafana:machineLearning/outlierDetector:OutlierDetector",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "algorithm": {
                         "maxItemsOne": true,
@@ -450,11 +450,11 @@
             },
             "grafana_message_template": {
                 "current": "grafana:alerting/messageTemplate:MessageTemplate",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_mute_timing": {
                 "current": "grafana:alerting/muteTiming:MuteTiming",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "intervals": {
                         "maxItemsOne": false,
@@ -482,7 +482,7 @@
             },
             "grafana_notification_policy": {
                 "current": "grafana:alerting/notificationPolicy:NotificationPolicy",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "group_by": {
                         "maxItemsOne": false
@@ -491,6 +491,9 @@
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
+                                "active_timings": {
+                                    "maxItemsOne": false
+                                },
                                 "group_by": {
                                     "maxItemsOne": false
                                 },
@@ -504,6 +507,9 @@
                                     "maxItemsOne": false,
                                     "elem": {
                                         "fields": {
+                                            "active_timings": {
+                                                "maxItemsOne": false
+                                            },
                                             "group_by": {
                                                 "maxItemsOne": false
                                             },
@@ -517,6 +523,9 @@
                                                 "maxItemsOne": false,
                                                 "elem": {
                                                     "fields": {
+                                                        "active_timings": {
+                                                            "maxItemsOne": false
+                                                        },
                                                         "group_by": {
                                                             "maxItemsOne": false
                                                         },
@@ -530,6 +539,9 @@
                                                             "maxItemsOne": false,
                                                             "elem": {
                                                                 "fields": {
+                                                                    "active_timings": {
+                                                                        "maxItemsOne": false
+                                                                    },
                                                                     "group_by": {
                                                                         "maxItemsOne": false
                                                                     },
@@ -555,7 +567,7 @@
             },
             "grafana_oncall_escalation": {
                 "current": "grafana:onCall/escalation:Escalation",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "persons_to_notify": {
                         "maxItemsOne": false
@@ -567,11 +579,11 @@
             },
             "grafana_oncall_escalation_chain": {
                 "current": "grafana:onCall/escalationChain:EscalationChain",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_oncall_integration": {
                 "current": "grafana:onCall/integration:Integration",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "default_route": {
                         "maxItemsOne": true,
@@ -630,7 +642,7 @@
             },
             "grafana_oncall_on_call_shift": {
                 "current": "grafana:onCall/onCallShift:OnCallShift",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "by_day": {
                         "maxItemsOne": false
@@ -654,7 +666,7 @@
             },
             "grafana_oncall_outgoing_webhook": {
                 "current": "grafana:onCall/outgoingWebhook:OutgoingWebhook",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "integration_filter": {
                         "maxItemsOne": false
@@ -663,7 +675,7 @@
             },
             "grafana_oncall_route": {
                 "current": "grafana:onCall/route:Route",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "msteams": {
                         "maxItemsOne": true
@@ -678,7 +690,7 @@
             },
             "grafana_oncall_schedule": {
                 "current": "grafana:onCall/schedule:Schedule",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "shifts": {
                         "maxItemsOne": false
@@ -690,11 +702,11 @@
             },
             "grafana_oncall_user_notification_rule": {
                 "current": "grafana:onCall/userNotificationRule:UserNotificationRule",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_organization": {
                 "current": "grafana:oss/organization:Organization",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "admins": {
                         "maxItemsOne": false
@@ -712,11 +724,11 @@
             },
             "grafana_organization_preferences": {
                 "current": "grafana:oss/organizationPreferences:OrganizationPreferences",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_playlist": {
                 "current": "grafana:oss/playlist:Playlist",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "item": {
                         "maxItemsOne": false
@@ -725,7 +737,7 @@
             },
             "grafana_report": {
                 "current": "grafana:enterprise/report:Report",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "dashboards": {
                         "maxItemsOne": false,
@@ -750,7 +762,7 @@
             },
             "grafana_role": {
                 "current": "grafana:enterprise/role:Role",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "permissions": {
                         "maxItemsOne": false
@@ -759,7 +771,7 @@
             },
             "grafana_role_assignment": {
                 "current": "grafana:enterprise/roleAssignment:RoleAssignment",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "service_accounts": {
                         "maxItemsOne": false
@@ -774,11 +786,11 @@
             },
             "grafana_role_assignment_item": {
                 "current": "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_rule_group": {
                 "current": "grafana:alerting/ruleGroup:RuleGroup",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "rule": {
                         "maxItemsOne": false,
@@ -817,15 +829,15 @@
             },
             "grafana_scim_config": {
                 "current": "grafana:enterprise/scimConfig:ScimConfig",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_service_account": {
                 "current": "grafana:oss/serviceAccount:ServiceAccount",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_service_account_permission": {
                 "current": "grafana:oss/serviceAccountPermission:ServiceAccountPermission",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "permissions": {
                         "maxItemsOne": false
@@ -834,15 +846,15 @@
             },
             "grafana_service_account_permission_item": {
                 "current": "grafana:oss/serviceAccountPermissionItem:ServiceAccountPermissionItem",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_service_account_token": {
                 "current": "grafana:oss/serviceAccountToken:ServiceAccountToken",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_slo": {
                 "current": "grafana:slo/sLO:SLO",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "alerting": {
                         "maxItemsOne": true,
@@ -922,7 +934,7 @@
             },
             "grafana_sso_settings": {
                 "current": "grafana:oss/ssoSettings:SsoSettings",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "ldap_settings": {
                         "maxItemsOne": true,
@@ -970,7 +982,7 @@
             },
             "grafana_synthetic_monitoring_check": {
                 "current": "grafana:syntheticMonitoring/check:Check",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "probes": {
                         "maxItemsOne": false
@@ -1143,7 +1155,7 @@
             },
             "grafana_synthetic_monitoring_check_alerts": {
                 "current": "grafana:syntheticMonitoring/checkAlerts:CheckAlerts",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "alerts": {
                         "maxItemsOne": false
@@ -1152,15 +1164,15 @@
             },
             "grafana_synthetic_monitoring_installation": {
                 "current": "grafana:syntheticMonitoring/installation:Installation",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_synthetic_monitoring_probe": {
                 "current": "grafana:syntheticMonitoring/probe:Probe",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_team": {
                 "current": "grafana:oss/team:Team",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "members": {
                         "maxItemsOne": false
@@ -1182,7 +1194,7 @@
             },
             "grafana_team_external_group": {
                 "current": "grafana:enterprise/teamExternalGroup:TeamExternalGroup",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "groups": {
                         "maxItemsOne": false
@@ -1191,13 +1203,13 @@
             },
             "grafana_user": {
                 "current": "grafana:oss/user:User",
-                "majorVersion": 1
+                "majorVersion": 2
             }
         },
         "datasources": {
             "grafana_cloud_access_policies": {
                 "current": "grafana:cloud/getAccessPolicies:getAccessPolicies",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "access_policies": {
                         "maxItemsOne": false
@@ -1206,7 +1218,7 @@
             },
             "grafana_cloud_ips": {
                 "current": "grafana:cloud/getIps:getIps",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "hosted_alerts": {
                         "maxItemsOne": false
@@ -1227,11 +1239,11 @@
             },
             "grafana_cloud_organization": {
                 "current": "grafana:cloud/getOrganization:getOrganization",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_cloud_private_data_source_connect_networks": {
                 "current": "grafana:cloud/getPrivateDataSourceConnectNetworks:getPrivateDataSourceConnectNetworks",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "private_data_source_connect_networks": {
                         "maxItemsOne": false
@@ -1240,7 +1252,7 @@
             },
             "grafana_cloud_provider_aws_account": {
                 "current": "grafana:cloudProvider/getAwsAccount:getAwsAccount",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "regions": {
                         "maxItemsOne": false
@@ -1249,7 +1261,7 @@
             },
             "grafana_cloud_provider_aws_cloudwatch_scrape_job": {
                 "current": "grafana:cloudProvider/getAwsCloudwatchScrapeJob:getAwsCloudwatchScrapeJob",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "custom_namespace": {
                         "maxItemsOne": false,
@@ -1298,7 +1310,7 @@
             },
             "grafana_cloud_provider_aws_cloudwatch_scrape_jobs": {
                 "current": "grafana:cloudProvider/getAwsCloudwatchScrapeJobs:getAwsCloudwatchScrapeJobs",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "scrape_job": {
                         "maxItemsOne": false,
@@ -1354,7 +1366,7 @@
             },
             "grafana_cloud_provider_azure_credential": {
                 "current": "grafana:cloudProvider/getAzureCredential:getAzureCredential",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "auto_discovery_configuration": {
                         "maxItemsOne": false,
@@ -1393,19 +1405,19 @@
             },
             "grafana_cloud_stack": {
                 "current": "grafana:cloud/getStack:getStack",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_connections_metrics_endpoint_scrape_job": {
                 "current": "grafana:connections/getMetricsEndpointScrapeJob:getMetricsEndpointScrapeJob",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_dashboard": {
                 "current": "grafana:oss/getDashboard:getDashboard",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_dashboards": {
                 "current": "grafana:oss/getDashboards:getDashboards",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "dashboards": {
                         "maxItemsOne": false
@@ -1420,15 +1432,15 @@
             },
             "grafana_data_source": {
                 "current": "grafana:oss/getDataSource:getDataSource",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_fleet_management_collector": {
                 "current": "grafana:fleetManagement/getCollector:getCollector",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_fleet_management_collectors": {
                 "current": "grafana:fleetManagement/getCollectors:getCollectors",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "collectors": {
                         "maxItemsOne": false
@@ -1437,11 +1449,11 @@
             },
             "grafana_folder": {
                 "current": "grafana:oss/getFolder:getFolder",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_folders": {
                 "current": "grafana:oss/getFolders:getFolders",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "folders": {
                         "maxItemsOne": false
@@ -1450,7 +1462,7 @@
             },
             "grafana_frontend_o11y_app": {
                 "current": "grafana:frontendObservability/getApp:getApp",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "allowed_origins": {
                         "maxItemsOne": false
@@ -1459,11 +1471,11 @@
             },
             "grafana_k6_load_test": {
                 "current": "grafana:k6/getLoadTest:getLoadTest",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_k6_load_tests": {
                 "current": "grafana:k6/getLoadTests:getLoadTests",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "load_tests": {
                         "maxItemsOne": false
@@ -1472,15 +1484,15 @@
             },
             "grafana_k6_project": {
                 "current": "grafana:k6/getProject:getProject",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_k6_project_limits": {
                 "current": "grafana:k6/getProjectLimits:getProjectLimits",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_k6_projects": {
                 "current": "grafana:k6/getProjects:getProjects",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "projects": {
                         "maxItemsOne": false
@@ -1489,7 +1501,7 @@
             },
             "grafana_library_panel": {
                 "current": "grafana:oss/getLibraryPanel:getLibraryPanel",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "dashboard_ids": {
                         "maxItemsOne": false
@@ -1498,7 +1510,7 @@
             },
             "grafana_library_panels": {
                 "current": "grafana:oss/getLibraryPanels:getLibraryPanels",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "panels": {
                         "maxItemsOne": false
@@ -1507,43 +1519,43 @@
             },
             "grafana_oncall_escalation_chain": {
                 "current": "grafana:onCall/getEscalationChain:getEscalationChain",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_oncall_integration": {
                 "current": "grafana:onCall/getIntegration:getIntegration",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_oncall_label": {
                 "current": "grafana:onCall/getLabel:getLabel",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_oncall_outgoing_webhook": {
                 "current": "grafana:onCall/getOutgoingWebhook:getOutgoingWebhook",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_oncall_schedule": {
                 "current": "grafana:onCall/getSchedule:getSchedule",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_oncall_slack_channel": {
                 "current": "grafana:onCall/getSlackChannel:getSlackChannel",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_oncall_team": {
                 "current": "grafana:onCall/getTeam:getTeam",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_oncall_user": {
                 "current": "grafana:onCall/getUser:getUser",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_oncall_user_group": {
                 "current": "grafana:onCall/getUserGroup:getUserGroup",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_oncall_users": {
                 "current": "grafana:onCall/getUsers:getUsers",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "users": {
                         "maxItemsOne": false
@@ -1552,7 +1564,7 @@
             },
             "grafana_organization": {
                 "current": "grafana:oss/getOrganization:getOrganization",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "admins": {
                         "maxItemsOne": false
@@ -1567,15 +1579,15 @@
             },
             "grafana_organization_preferences": {
                 "current": "grafana:oss/getOrganizationPreferences:getOrganizationPreferences",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_organization_user": {
                 "current": "grafana:oss/getOrganizationUser:getOrganizationUser",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_role": {
                 "current": "grafana:enterprise/getRole:getRole",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "permissions": {
                         "maxItemsOne": false
@@ -1584,11 +1596,11 @@
             },
             "grafana_service_account": {
                 "current": "grafana:oss/getServiceAccount:getServiceAccount",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_slos": {
                 "current": "grafana:slo/getSlos:getSlos",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "slos": {
                         "maxItemsOne": false,
@@ -1675,15 +1687,15 @@
             },
             "grafana_synthetic_monitoring_probe": {
                 "current": "grafana:syntheticMonitoring/getProbe:getProbe",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_synthetic_monitoring_probes": {
                 "current": "grafana:syntheticMonitoring/getProbes:getProbes",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_team": {
                 "current": "grafana:oss/getTeam:getTeam",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "members": {
                         "maxItemsOne": false
@@ -1705,11 +1717,11 @@
             },
             "grafana_user": {
                 "current": "grafana:oss/getUser:getUser",
-                "majorVersion": 1
+                "majorVersion": 2
             },
             "grafana_users": {
                 "current": "grafana:oss/getUsers:getUsers",
-                "majorVersion": 1,
+                "majorVersion": 2,
                 "fields": {
                     "users": {
                         "maxItemsOne": false

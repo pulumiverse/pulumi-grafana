@@ -9,7 +9,7 @@ import (
 	// The linter requires unnamed imports to have a doc comment
 	_ "embed"
 
-	grafana "github.com/grafana/terraform-provider-grafana/v3/pkg/provider"
+	grafana "github.com/grafana/terraform-provider-grafana/v4/pkg/provider"
 
 	pfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
@@ -19,7 +19,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
-	"github.com/pulumiverse/pulumi-grafana/provider/pkg/version"
+	"github.com/pulumiverse/pulumi-grafana/provider/v2/pkg/version"
 )
 
 // all of the token components used below.
@@ -113,7 +113,7 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:                "https://grafana.com",
 		Repository:              "https://github.com/pulumiverse/pulumi-grafana",
 		GitHubOrg:               "grafana",
-		TFProviderModuleVersion: "v3",
+		TFProviderModuleVersion: "v4",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"auth": {
 				Type:   "string",
