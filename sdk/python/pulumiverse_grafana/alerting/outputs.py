@@ -16,6 +16,13 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AlertEnrichmentMetadata',
+    'AlertEnrichmentOptions',
+    'AlertEnrichmentSpec',
+    'AlertEnrichmentSpecAnnotationMatcher',
+    'AlertEnrichmentSpecLabelMatcher',
+    'AlertEnrichmentSpecStep',
+    'AlertEnrichmentSpecStepAssign',
     'ContactPointAlertmanager',
     'ContactPointDingding',
     'ContactPointDiscord',
@@ -37,6 +44,12 @@ __all__ = [
     'ContactPointVictorop',
     'ContactPointWebex',
     'ContactPointWebhook',
+    'ContactPointWebhookHmacConfig',
+    'ContactPointWebhookHttpConfig',
+    'ContactPointWebhookHttpConfigOauth2',
+    'ContactPointWebhookHttpConfigOauth2ProxyConfig',
+    'ContactPointWebhookHttpConfigOauth2TlsConfig',
+    'ContactPointWebhookPayload',
     'ContactPointWecom',
     'MuteTimingInterval',
     'MuteTimingIntervalTime',
@@ -54,6 +67,321 @@ __all__ = [
     'RuleGroupRuleNotificationSettings',
     'RuleGroupRuleRecord',
 ]
+
+@pulumi.output_type
+class AlertEnrichmentMetadata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "folderUid":
+            suggest = "folder_uid"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertEnrichmentMetadata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertEnrichmentMetadata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertEnrichmentMetadata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 uid: _builtins.str,
+                 folder_uid: Optional[_builtins.str] = None,
+                 url: Optional[_builtins.str] = None,
+                 uuid: Optional[_builtins.str] = None,
+                 version: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str uid: The unique identifier of the resource.
+        :param _builtins.str folder_uid: The UID of the folder to save the resource in.
+        :param _builtins.str url: The full URL of the resource.
+        :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
+        :param _builtins.str version: The version of the resource.
+        """
+        pulumi.set(__self__, "uid", uid)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.str:
+        """
+        The unique identifier of the resource.
+        """
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[_builtins.str]:
+        """
+        The UID of the folder to save the resource in.
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[_builtins.str]:
+        """
+        The full URL of the resource.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[_builtins.str]:
+        """
+        The globally unique identifier of a resource, used by the API for tracking.
+        """
+        return pulumi.get(self, "uuid")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        The version of the resource.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class AlertEnrichmentOptions(dict):
+    def __init__(__self__, *,
+                 overwrite: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.bool overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        if overwrite is not None:
+            pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter
+    def overwrite(self) -> Optional[_builtins.bool]:
+        """
+        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        return pulumi.get(self, "overwrite")
+
+
+@pulumi.output_type
+class AlertEnrichmentSpec(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "alertRuleUids":
+            suggest = "alert_rule_uids"
+        elif key == "annotationMatchers":
+            suggest = "annotation_matchers"
+        elif key == "labelMatchers":
+            suggest = "label_matchers"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertEnrichmentSpec. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertEnrichmentSpec.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertEnrichmentSpec.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 title: _builtins.str,
+                 alert_rule_uids: Optional[Sequence[_builtins.str]] = None,
+                 annotation_matchers: Optional[Sequence['outputs.AlertEnrichmentSpecAnnotationMatcher']] = None,
+                 description: Optional[_builtins.str] = None,
+                 label_matchers: Optional[Sequence['outputs.AlertEnrichmentSpecLabelMatcher']] = None,
+                 receivers: Optional[Sequence[_builtins.str]] = None,
+                 steps: Optional[Sequence['outputs.AlertEnrichmentSpecStep']] = None):
+        """
+        :param _builtins.str title: The title of the alert enrichment.
+        :param Sequence[_builtins.str] alert_rule_uids: UIDs of alert rules this enrichment applies to. If empty, applies to all alert rules.
+        :param Sequence['AlertEnrichmentSpecAnnotationMatcherArgs'] annotation_matchers: Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
+        :param _builtins.str description: Description of the alert enrichment.
+        :param Sequence['AlertEnrichmentSpecLabelMatcherArgs'] label_matchers: Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
+        :param Sequence[_builtins.str] receivers: Receiver names to match. If empty, applies to all receivers.
+        :param Sequence['AlertEnrichmentSpecStepArgs'] steps: Enrichment step. Can be repeated multiple times to define a sequence of steps. Each step must contain exactly one enrichment block.
+        """
+        pulumi.set(__self__, "title", title)
+        if alert_rule_uids is not None:
+            pulumi.set(__self__, "alert_rule_uids", alert_rule_uids)
+        if annotation_matchers is not None:
+            pulumi.set(__self__, "annotation_matchers", annotation_matchers)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if label_matchers is not None:
+            pulumi.set(__self__, "label_matchers", label_matchers)
+        if receivers is not None:
+            pulumi.set(__self__, "receivers", receivers)
+        if steps is not None:
+            pulumi.set(__self__, "steps", steps)
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The title of the alert enrichment.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter(name="alertRuleUids")
+    def alert_rule_uids(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        UIDs of alert rules this enrichment applies to. If empty, applies to all alert rules.
+        """
+        return pulumi.get(self, "alert_rule_uids")
+
+    @_builtins.property
+    @pulumi.getter(name="annotationMatchers")
+    def annotation_matchers(self) -> Optional[Sequence['outputs.AlertEnrichmentSpecAnnotationMatcher']]:
+        """
+        Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
+        """
+        return pulumi.get(self, "annotation_matchers")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        Description of the alert enrichment.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="labelMatchers")
+    def label_matchers(self) -> Optional[Sequence['outputs.AlertEnrichmentSpecLabelMatcher']]:
+        """
+        Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
+        """
+        return pulumi.get(self, "label_matchers")
+
+    @_builtins.property
+    @pulumi.getter
+    def receivers(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Receiver names to match. If empty, applies to all receivers.
+        """
+        return pulumi.get(self, "receivers")
+
+    @_builtins.property
+    @pulumi.getter
+    def steps(self) -> Optional[Sequence['outputs.AlertEnrichmentSpecStep']]:
+        """
+        Enrichment step. Can be repeated multiple times to define a sequence of steps. Each step must contain exactly one enrichment block.
+        """
+        return pulumi.get(self, "steps")
+
+
+@pulumi.output_type
+class AlertEnrichmentSpecAnnotationMatcher(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 type: _builtins.str,
+                 value: _builtins.str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class AlertEnrichmentSpecLabelMatcher(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 type: _builtins.str,
+                 value: _builtins.str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class AlertEnrichmentSpecStep(dict):
+    def __init__(__self__, *,
+                 assign: Optional['outputs.AlertEnrichmentSpecStepAssign'] = None):
+        """
+        :param 'AlertEnrichmentSpecStepAssignArgs' assign: Assign annotations to an alert.
+        """
+        if assign is not None:
+            pulumi.set(__self__, "assign", assign)
+
+    @_builtins.property
+    @pulumi.getter
+    def assign(self) -> Optional['outputs.AlertEnrichmentSpecStepAssign']:
+        """
+        Assign annotations to an alert.
+        """
+        return pulumi.get(self, "assign")
+
+
+@pulumi.output_type
+class AlertEnrichmentSpecStepAssign(dict):
+    def __init__(__self__, *,
+                 annotations: Optional[Mapping[str, _builtins.str]] = None,
+                 timeout: Optional[_builtins.str] = None):
+        """
+        :param Mapping[str, _builtins.str] annotations: Map of annotation names to values to set on matching alerts.
+        :param _builtins.str timeout: Maximum execution time (e.g., '30s', '1m')
+        """
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Map of annotation names to values to set on matching alerts.
+        """
+        return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[_builtins.str]:
+        """
+        Maximum execution time (e.g., '30s', '1m')
+        """
+        return pulumi.get(self, "timeout")
+
 
 @pulumi.output_type
 class ContactPointAlertmanager(dict):
@@ -2825,6 +3153,10 @@ class ContactPointWebhook(dict):
             suggest = "basic_auth_user"
         elif key == "disableResolveMessage":
             suggest = "disable_resolve_message"
+        elif key == "hmacConfig":
+            suggest = "hmac_config"
+        elif key == "httpConfig":
+            suggest = "http_config"
         elif key == "httpMethod":
             suggest = "http_method"
         elif key == "maxAlerts":
@@ -2850,9 +3182,13 @@ class ContactPointWebhook(dict):
                  basic_auth_password: Optional[_builtins.str] = None,
                  basic_auth_user: Optional[_builtins.str] = None,
                  disable_resolve_message: Optional[_builtins.bool] = None,
+                 headers: Optional[Mapping[str, _builtins.str]] = None,
+                 hmac_config: Optional['outputs.ContactPointWebhookHmacConfig'] = None,
+                 http_config: Optional['outputs.ContactPointWebhookHttpConfig'] = None,
                  http_method: Optional[_builtins.str] = None,
                  max_alerts: Optional[_builtins.int] = None,
                  message: Optional[_builtins.str] = None,
+                 payload: Optional['outputs.ContactPointWebhookPayload'] = None,
                  settings: Optional[Mapping[str, _builtins.str]] = None,
                  title: Optional[_builtins.str] = None,
                  tls_config: Optional[Mapping[str, _builtins.str]] = None,
@@ -2864,9 +3200,13 @@ class ContactPointWebhook(dict):
         :param _builtins.str basic_auth_password: The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
         :param _builtins.str basic_auth_user: The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.
         :param _builtins.bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
+        :param Mapping[str, _builtins.str] headers: Custom headers to attach to the request.
+        :param 'ContactPointWebhookHmacConfigArgs' hmac_config: HMAC signature configuration options.
+        :param 'ContactPointWebhookHttpConfigArgs' http_config: Common HTTP client options.
         :param _builtins.str http_method: The HTTP method to use in the request. Defaults to `POST`.
         :param _builtins.int max_alerts: The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
         :param _builtins.str message: Custom message. You can use template variables.
+        :param 'ContactPointWebhookPayloadArgs' payload: Optionally provide a templated payload. Overrides 'Message' and 'Title' field.
         :param Mapping[str, _builtins.str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
         :param _builtins.str title: Templated title of the message.
         :param Mapping[str, _builtins.str] tls_config: Allows configuring TLS for the webhook notifier.
@@ -2883,12 +3223,20 @@ class ContactPointWebhook(dict):
             pulumi.set(__self__, "basic_auth_user", basic_auth_user)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if hmac_config is not None:
+            pulumi.set(__self__, "hmac_config", hmac_config)
+        if http_config is not None:
+            pulumi.set(__self__, "http_config", http_config)
         if http_method is not None:
             pulumi.set(__self__, "http_method", http_method)
         if max_alerts is not None:
             pulumi.set(__self__, "max_alerts", max_alerts)
         if message is not None:
             pulumi.set(__self__, "message", message)
+        if payload is not None:
+            pulumi.set(__self__, "payload", payload)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
         if title is not None:
@@ -2947,6 +3295,30 @@ class ContactPointWebhook(dict):
         return pulumi.get(self, "disable_resolve_message")
 
     @_builtins.property
+    @pulumi.getter
+    def headers(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Custom headers to attach to the request.
+        """
+        return pulumi.get(self, "headers")
+
+    @_builtins.property
+    @pulumi.getter(name="hmacConfig")
+    def hmac_config(self) -> Optional['outputs.ContactPointWebhookHmacConfig']:
+        """
+        HMAC signature configuration options.
+        """
+        return pulumi.get(self, "hmac_config")
+
+    @_builtins.property
+    @pulumi.getter(name="httpConfig")
+    def http_config(self) -> Optional['outputs.ContactPointWebhookHttpConfig']:
+        """
+        Common HTTP client options.
+        """
+        return pulumi.get(self, "http_config")
+
+    @_builtins.property
     @pulumi.getter(name="httpMethod")
     def http_method(self) -> Optional[_builtins.str]:
         """
@@ -2969,6 +3341,14 @@ class ContactPointWebhook(dict):
         Custom message. You can use template variables.
         """
         return pulumi.get(self, "message")
+
+    @_builtins.property
+    @pulumi.getter
+    def payload(self) -> Optional['outputs.ContactPointWebhookPayload']:
+        """
+        Optionally provide a templated payload. Overrides 'Message' and 'Title' field.
+        """
+        return pulumi.get(self, "payload")
 
     @_builtins.property
     @pulumi.getter
@@ -3001,6 +3381,385 @@ class ContactPointWebhook(dict):
         The UID of the contact point.
         """
         return pulumi.get(self, "uid")
+
+
+@pulumi.output_type
+class ContactPointWebhookHmacConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "timestampHeader":
+            suggest = "timestamp_header"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContactPointWebhookHmacConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContactPointWebhookHmacConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContactPointWebhookHmacConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 secret: _builtins.str,
+                 header: Optional[_builtins.str] = None,
+                 timestamp_header: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str secret: The secret key used to generate the HMAC signature.
+        :param _builtins.str header: The header in which the HMAC signature will be included. Defaults to `X-Grafana-Alerting-Signature`.
+        :param _builtins.str timestamp_header: If set, the timestamp will be included in the HMAC signature. The value should be the name of the header to use.
+        """
+        pulumi.set(__self__, "secret", secret)
+        if header is not None:
+            pulumi.set(__self__, "header", header)
+        if timestamp_header is not None:
+            pulumi.set(__self__, "timestamp_header", timestamp_header)
+
+    @_builtins.property
+    @pulumi.getter
+    def secret(self) -> _builtins.str:
+        """
+        The secret key used to generate the HMAC signature.
+        """
+        return pulumi.get(self, "secret")
+
+    @_builtins.property
+    @pulumi.getter
+    def header(self) -> Optional[_builtins.str]:
+        """
+        The header in which the HMAC signature will be included. Defaults to `X-Grafana-Alerting-Signature`.
+        """
+        return pulumi.get(self, "header")
+
+    @_builtins.property
+    @pulumi.getter(name="timestampHeader")
+    def timestamp_header(self) -> Optional[_builtins.str]:
+        """
+        If set, the timestamp will be included in the HMAC signature. The value should be the name of the header to use.
+        """
+        return pulumi.get(self, "timestamp_header")
+
+
+@pulumi.output_type
+class ContactPointWebhookHttpConfig(dict):
+    def __init__(__self__, *,
+                 oauth2: Optional['outputs.ContactPointWebhookHttpConfigOauth2'] = None):
+        """
+        :param 'ContactPointWebhookHttpConfigOauth2Args' oauth2: OAuth2 configuration options.
+        """
+        if oauth2 is not None:
+            pulumi.set(__self__, "oauth2", oauth2)
+
+    @_builtins.property
+    @pulumi.getter
+    def oauth2(self) -> Optional['outputs.ContactPointWebhookHttpConfigOauth2']:
+        """
+        OAuth2 configuration options.
+        """
+        return pulumi.get(self, "oauth2")
+
+
+@pulumi.output_type
+class ContactPointWebhookHttpConfigOauth2(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientId":
+            suggest = "client_id"
+        elif key == "clientSecret":
+            suggest = "client_secret"
+        elif key == "tokenUrl":
+            suggest = "token_url"
+        elif key == "endpointParams":
+            suggest = "endpoint_params"
+        elif key == "proxyConfig":
+            suggest = "proxy_config"
+        elif key == "tlsConfig":
+            suggest = "tls_config"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContactPointWebhookHttpConfigOauth2. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContactPointWebhookHttpConfigOauth2.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContactPointWebhookHttpConfigOauth2.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 client_id: _builtins.str,
+                 client_secret: _builtins.str,
+                 token_url: _builtins.str,
+                 endpoint_params: Optional[Mapping[str, _builtins.str]] = None,
+                 proxy_config: Optional['outputs.ContactPointWebhookHttpConfigOauth2ProxyConfig'] = None,
+                 scopes: Optional[Sequence[_builtins.str]] = None,
+                 tls_config: Optional['outputs.ContactPointWebhookHttpConfigOauth2TlsConfig'] = None):
+        """
+        :param _builtins.str client_id: Client ID to use when authenticating.
+        :param _builtins.str client_secret: Client secret to use when authenticating.
+        :param _builtins.str token_url: URL for the access token endpoint.
+        :param Mapping[str, _builtins.str] endpoint_params: Optional parameters to append to the access token request.
+        :param 'ContactPointWebhookHttpConfigOauth2ProxyConfigArgs' proxy_config: Optional proxy configuration for OAuth2 requests.
+        :param Sequence[_builtins.str] scopes: Optional scopes to request when obtaining an access token.
+        :param 'ContactPointWebhookHttpConfigOauth2TlsConfigArgs' tls_config: Optional TLS configuration options for OAuth2 requests.
+        """
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret", client_secret)
+        pulumi.set(__self__, "token_url", token_url)
+        if endpoint_params is not None:
+            pulumi.set(__self__, "endpoint_params", endpoint_params)
+        if proxy_config is not None:
+            pulumi.set(__self__, "proxy_config", proxy_config)
+        if scopes is not None:
+            pulumi.set(__self__, "scopes", scopes)
+        if tls_config is not None:
+            pulumi.set(__self__, "tls_config", tls_config)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        Client ID to use when authenticating.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> _builtins.str:
+        """
+        Client secret to use when authenticating.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenUrl")
+    def token_url(self) -> _builtins.str:
+        """
+        URL for the access token endpoint.
+        """
+        return pulumi.get(self, "token_url")
+
+    @_builtins.property
+    @pulumi.getter(name="endpointParams")
+    def endpoint_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Optional parameters to append to the access token request.
+        """
+        return pulumi.get(self, "endpoint_params")
+
+    @_builtins.property
+    @pulumi.getter(name="proxyConfig")
+    def proxy_config(self) -> Optional['outputs.ContactPointWebhookHttpConfigOauth2ProxyConfig']:
+        """
+        Optional proxy configuration for OAuth2 requests.
+        """
+        return pulumi.get(self, "proxy_config")
+
+    @_builtins.property
+    @pulumi.getter
+    def scopes(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Optional scopes to request when obtaining an access token.
+        """
+        return pulumi.get(self, "scopes")
+
+    @_builtins.property
+    @pulumi.getter(name="tlsConfig")
+    def tls_config(self) -> Optional['outputs.ContactPointWebhookHttpConfigOauth2TlsConfig']:
+        """
+        Optional TLS configuration options for OAuth2 requests.
+        """
+        return pulumi.get(self, "tls_config")
+
+
+@pulumi.output_type
+class ContactPointWebhookHttpConfigOauth2ProxyConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "noProxy":
+            suggest = "no_proxy"
+        elif key == "proxyConnectHeader":
+            suggest = "proxy_connect_header"
+        elif key == "proxyFromEnvironment":
+            suggest = "proxy_from_environment"
+        elif key == "proxyUrl":
+            suggest = "proxy_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContactPointWebhookHttpConfigOauth2ProxyConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContactPointWebhookHttpConfigOauth2ProxyConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContactPointWebhookHttpConfigOauth2ProxyConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 no_proxy: Optional[_builtins.str] = None,
+                 proxy_connect_header: Optional[Mapping[str, _builtins.str]] = None,
+                 proxy_from_environment: Optional[_builtins.bool] = None,
+                 proxy_url: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str no_proxy: Comma-separated list of addresses that should not use a proxy.
+        :param Mapping[str, _builtins.str] proxy_connect_header: Optional headers to send to proxies during CONNECT requests.
+        :param _builtins.bool proxy_from_environment: Use environment HTTP*PROXY, HTTPS*PROXY and NO_PROXY to determine proxies. Defaults to `false`.
+        :param _builtins.str proxy_url: HTTP proxy server to use to connect to the targets.
+        """
+        if no_proxy is not None:
+            pulumi.set(__self__, "no_proxy", no_proxy)
+        if proxy_connect_header is not None:
+            pulumi.set(__self__, "proxy_connect_header", proxy_connect_header)
+        if proxy_from_environment is not None:
+            pulumi.set(__self__, "proxy_from_environment", proxy_from_environment)
+        if proxy_url is not None:
+            pulumi.set(__self__, "proxy_url", proxy_url)
+
+    @_builtins.property
+    @pulumi.getter(name="noProxy")
+    def no_proxy(self) -> Optional[_builtins.str]:
+        """
+        Comma-separated list of addresses that should not use a proxy.
+        """
+        return pulumi.get(self, "no_proxy")
+
+    @_builtins.property
+    @pulumi.getter(name="proxyConnectHeader")
+    def proxy_connect_header(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Optional headers to send to proxies during CONNECT requests.
+        """
+        return pulumi.get(self, "proxy_connect_header")
+
+    @_builtins.property
+    @pulumi.getter(name="proxyFromEnvironment")
+    def proxy_from_environment(self) -> Optional[_builtins.bool]:
+        """
+        Use environment HTTP*PROXY, HTTPS*PROXY and NO_PROXY to determine proxies. Defaults to `false`.
+        """
+        return pulumi.get(self, "proxy_from_environment")
+
+    @_builtins.property
+    @pulumi.getter(name="proxyUrl")
+    def proxy_url(self) -> Optional[_builtins.str]:
+        """
+        HTTP proxy server to use to connect to the targets.
+        """
+        return pulumi.get(self, "proxy_url")
+
+
+@pulumi.output_type
+class ContactPointWebhookHttpConfigOauth2TlsConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "caCertificate":
+            suggest = "ca_certificate"
+        elif key == "clientCertificate":
+            suggest = "client_certificate"
+        elif key == "clientKey":
+            suggest = "client_key"
+        elif key == "insecureSkipVerify":
+            suggest = "insecure_skip_verify"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContactPointWebhookHttpConfigOauth2TlsConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContactPointWebhookHttpConfigOauth2TlsConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContactPointWebhookHttpConfigOauth2TlsConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ca_certificate: Optional[_builtins.str] = None,
+                 client_certificate: Optional[_builtins.str] = None,
+                 client_key: Optional[_builtins.str] = None,
+                 insecure_skip_verify: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str ca_certificate: Certificate in PEM format to use when verifying the server's certificate chain.
+        :param _builtins.str client_certificate: Client certificate in PEM format to use when connecting to the server.
+        :param _builtins.str client_key: Client key in PEM format to use when connecting to the server.
+        :param _builtins.bool insecure_skip_verify: Do not verify the server's certificate chain and host name. Defaults to `false`.
+        """
+        if ca_certificate is not None:
+            pulumi.set(__self__, "ca_certificate", ca_certificate)
+        if client_certificate is not None:
+            pulumi.set(__self__, "client_certificate", client_certificate)
+        if client_key is not None:
+            pulumi.set(__self__, "client_key", client_key)
+        if insecure_skip_verify is not None:
+            pulumi.set(__self__, "insecure_skip_verify", insecure_skip_verify)
+
+    @_builtins.property
+    @pulumi.getter(name="caCertificate")
+    def ca_certificate(self) -> Optional[_builtins.str]:
+        """
+        Certificate in PEM format to use when verifying the server's certificate chain.
+        """
+        return pulumi.get(self, "ca_certificate")
+
+    @_builtins.property
+    @pulumi.getter(name="clientCertificate")
+    def client_certificate(self) -> Optional[_builtins.str]:
+        """
+        Client certificate in PEM format to use when connecting to the server.
+        """
+        return pulumi.get(self, "client_certificate")
+
+    @_builtins.property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> Optional[_builtins.str]:
+        """
+        Client key in PEM format to use when connecting to the server.
+        """
+        return pulumi.get(self, "client_key")
+
+    @_builtins.property
+    @pulumi.getter(name="insecureSkipVerify")
+    def insecure_skip_verify(self) -> Optional[_builtins.bool]:
+        """
+        Do not verify the server's certificate chain and host name. Defaults to `false`.
+        """
+        return pulumi.get(self, "insecure_skip_verify")
+
+
+@pulumi.output_type
+class ContactPointWebhookPayload(dict):
+    def __init__(__self__, *,
+                 template: _builtins.str,
+                 vars: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        :param _builtins.str template: Custom payload template.
+        :param Mapping[str, _builtins.str] vars: Optionally provide a variables to be used in the payload template. They will be available in the template as `.Vars.<variable_name>`.
+        """
+        pulumi.set(__self__, "template", template)
+        if vars is not None:
+            pulumi.set(__self__, "vars", vars)
+
+    @_builtins.property
+    @pulumi.getter
+    def template(self) -> _builtins.str:
+        """
+        Custom payload template.
+        """
+        return pulumi.get(self, "template")
+
+    @_builtins.property
+    @pulumi.getter
+    def vars(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Optionally provide a variables to be used in the payload template. They will be available in the template as `.Vars.<variable_name>`.
+        """
+        return pulumi.get(self, "vars")
 
 
 @pulumi.output_type

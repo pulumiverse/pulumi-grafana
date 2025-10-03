@@ -6,6 +6,97 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export namespace alerting {
+    export interface AlertEnrichmentMetadata {
+        /**
+         * The UID of the folder to save the resource in.
+         */
+        folderUid?: string;
+        /**
+         * The unique identifier of the resource.
+         */
+        uid: string;
+        /**
+         * The full URL of the resource.
+         */
+        url: string;
+        /**
+         * The globally unique identifier of a resource, used by the API for tracking.
+         */
+        uuid: string;
+        /**
+         * The version of the resource.
+         */
+        version: string;
+    }
+
+    export interface AlertEnrichmentOptions {
+        /**
+         * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+         */
+        overwrite?: boolean;
+    }
+
+    export interface AlertEnrichmentSpec {
+        /**
+         * UIDs of alert rules this enrichment applies to. If empty, applies to all alert rules.
+         */
+        alertRuleUids?: string[];
+        /**
+         * Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
+         */
+        annotationMatchers?: outputs.alerting.AlertEnrichmentSpecAnnotationMatcher[];
+        /**
+         * Description of the alert enrichment.
+         */
+        description?: string;
+        /**
+         * Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
+         */
+        labelMatchers?: outputs.alerting.AlertEnrichmentSpecLabelMatcher[];
+        /**
+         * Receiver names to match. If empty, applies to all receivers.
+         */
+        receivers?: string[];
+        /**
+         * Enrichment step. Can be repeated multiple times to define a sequence of steps. Each step must contain exactly one enrichment block.
+         */
+        steps?: outputs.alerting.AlertEnrichmentSpecStep[];
+        /**
+         * The title of the alert enrichment.
+         */
+        title: string;
+    }
+
+    export interface AlertEnrichmentSpecAnnotationMatcher {
+        name: string;
+        type: string;
+        value: string;
+    }
+
+    export interface AlertEnrichmentSpecLabelMatcher {
+        name: string;
+        type: string;
+        value: string;
+    }
+
+    export interface AlertEnrichmentSpecStep {
+        /**
+         * Assign annotations to an alert.
+         */
+        assign?: outputs.alerting.AlertEnrichmentSpecStepAssign;
+    }
+
+    export interface AlertEnrichmentSpecStepAssign {
+        /**
+         * Map of annotation names to values to set on matching alerts.
+         */
+        annotations?: {[key: string]: string};
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
     export interface ContactPointAlertmanager {
         /**
          * The password component of the basic auth credentials to use.
@@ -822,6 +913,18 @@ export namespace alerting {
          */
         disableResolveMessage?: boolean;
         /**
+         * Custom headers to attach to the request.
+         */
+        headers?: {[key: string]: string};
+        /**
+         * HMAC signature configuration options.
+         */
+        hmacConfig?: outputs.alerting.ContactPointWebhookHmacConfig;
+        /**
+         * Common HTTP client options.
+         */
+        httpConfig?: outputs.alerting.ContactPointWebhookHttpConfig;
+        /**
          * The HTTP method to use in the request. Defaults to `POST`.
          */
         httpMethod?: string;
@@ -833,6 +936,10 @@ export namespace alerting {
          * Custom message. You can use template variables.
          */
         message?: string;
+        /**
+         * Optionally provide a templated payload. Overrides 'Message' and 'Title' field.
+         */
+        payload?: outputs.alerting.ContactPointWebhookPayload;
         /**
          * Additional custom properties to attach to the notifier. Defaults to `map[]`.
          */
@@ -853,6 +960,108 @@ export namespace alerting {
          * The URL to send webhook requests to.
          */
         url: string;
+    }
+
+    export interface ContactPointWebhookHmacConfig {
+        /**
+         * The header in which the HMAC signature will be included. Defaults to `X-Grafana-Alerting-Signature`.
+         */
+        header?: string;
+        /**
+         * The secret key used to generate the HMAC signature.
+         */
+        secret: string;
+        /**
+         * If set, the timestamp will be included in the HMAC signature. The value should be the name of the header to use.
+         */
+        timestampHeader?: string;
+    }
+
+    export interface ContactPointWebhookHttpConfig {
+        /**
+         * OAuth2 configuration options.
+         */
+        oauth2?: outputs.alerting.ContactPointWebhookHttpConfigOauth2;
+    }
+
+    export interface ContactPointWebhookHttpConfigOauth2 {
+        /**
+         * Client ID to use when authenticating.
+         */
+        clientId: string;
+        /**
+         * Client secret to use when authenticating.
+         */
+        clientSecret: string;
+        /**
+         * Optional parameters to append to the access token request.
+         */
+        endpointParams?: {[key: string]: string};
+        /**
+         * Optional proxy configuration for OAuth2 requests.
+         */
+        proxyConfig?: outputs.alerting.ContactPointWebhookHttpConfigOauth2ProxyConfig;
+        /**
+         * Optional scopes to request when obtaining an access token.
+         */
+        scopes?: string[];
+        /**
+         * Optional TLS configuration options for OAuth2 requests.
+         */
+        tlsConfig?: outputs.alerting.ContactPointWebhookHttpConfigOauth2TlsConfig;
+        /**
+         * URL for the access token endpoint.
+         */
+        tokenUrl: string;
+    }
+
+    export interface ContactPointWebhookHttpConfigOauth2ProxyConfig {
+        /**
+         * Comma-separated list of addresses that should not use a proxy.
+         */
+        noProxy?: string;
+        /**
+         * Optional headers to send to proxies during CONNECT requests.
+         */
+        proxyConnectHeader?: {[key: string]: string};
+        /**
+         * Use environment HTTP*PROXY, HTTPS*PROXY and NO_PROXY to determine proxies. Defaults to `false`.
+         */
+        proxyFromEnvironment?: boolean;
+        /**
+         * HTTP proxy server to use to connect to the targets.
+         */
+        proxyUrl?: string;
+    }
+
+    export interface ContactPointWebhookHttpConfigOauth2TlsConfig {
+        /**
+         * Certificate in PEM format to use when verifying the server's certificate chain.
+         */
+        caCertificate?: string;
+        /**
+         * Client certificate in PEM format to use when connecting to the server.
+         */
+        clientCertificate?: string;
+        /**
+         * Client key in PEM format to use when connecting to the server.
+         */
+        clientKey?: string;
+        /**
+         * Do not verify the server's certificate chain and host name. Defaults to `false`.
+         */
+        insecureSkipVerify?: boolean;
+    }
+
+    export interface ContactPointWebhookPayload {
+        /**
+         * Custom payload template.
+         */
+        template: string;
+        /**
+         * Optionally provide a variables to be used in the payload template. They will be available in the template as `.Vars.<variable_name>`.
+         */
+        vars?: {[key: string]: string};
     }
 
     export interface ContactPointWecom {

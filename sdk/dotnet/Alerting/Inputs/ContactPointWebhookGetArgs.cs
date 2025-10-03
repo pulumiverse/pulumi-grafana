@@ -63,6 +63,30 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }
 
+        [Input("headers")]
+        private InputMap<string>? _headers;
+
+        /// <summary>
+        /// Custom headers to attach to the request.
+        /// </summary>
+        public InputMap<string> Headers
+        {
+            get => _headers ?? (_headers = new InputMap<string>());
+            set => _headers = value;
+        }
+
+        /// <summary>
+        /// HMAC signature configuration options.
+        /// </summary>
+        [Input("hmacConfig")]
+        public Input<Inputs.ContactPointWebhookHmacConfigGetArgs>? HmacConfig { get; set; }
+
+        /// <summary>
+        /// Common HTTP client options.
+        /// </summary>
+        [Input("httpConfig")]
+        public Input<Inputs.ContactPointWebhookHttpConfigGetArgs>? HttpConfig { get; set; }
+
         /// <summary>
         /// The HTTP method to use in the request. Defaults to `POST`.
         /// </summary>
@@ -80,6 +104,12 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         /// </summary>
         [Input("message")]
         public Input<string>? Message { get; set; }
+
+        /// <summary>
+        /// Optionally provide a templated payload. Overrides 'Message' and 'Title' field.
+        /// </summary>
+        [Input("payload")]
+        public Input<Inputs.ContactPointWebhookPayloadGetArgs>? Payload { get; set; }
 
         [Input("settings")]
         private InputMap<string>? _settings;

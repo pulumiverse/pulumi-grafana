@@ -35,6 +35,18 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly bool? DisableResolveMessage;
         /// <summary>
+        /// Custom headers to attach to the request.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string>? Headers;
+        /// <summary>
+        /// HMAC signature configuration options.
+        /// </summary>
+        public readonly Outputs.ContactPointWebhookHmacConfig? HmacConfig;
+        /// <summary>
+        /// Common HTTP client options.
+        /// </summary>
+        public readonly Outputs.ContactPointWebhookHttpConfig? HttpConfig;
+        /// <summary>
         /// The HTTP method to use in the request. Defaults to `POST`.
         /// </summary>
         public readonly string? HttpMethod;
@@ -46,6 +58,10 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// Custom message. You can use template variables.
         /// </summary>
         public readonly string? Message;
+        /// <summary>
+        /// Optionally provide a templated payload. Overrides 'Message' and 'Title' field.
+        /// </summary>
+        public readonly Outputs.ContactPointWebhookPayload? Payload;
         /// <summary>
         /// Additional custom properties to attach to the notifier. Defaults to `map[]`.
         /// </summary>
@@ -79,11 +95,19 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
             bool? disableResolveMessage,
 
+            ImmutableDictionary<string, string>? headers,
+
+            Outputs.ContactPointWebhookHmacConfig? hmacConfig,
+
+            Outputs.ContactPointWebhookHttpConfig? httpConfig,
+
             string? httpMethod,
 
             int? maxAlerts,
 
             string? message,
+
+            Outputs.ContactPointWebhookPayload? payload,
 
             ImmutableDictionary<string, string>? settings,
 
@@ -100,9 +124,13 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
             BasicAuthPassword = basicAuthPassword;
             BasicAuthUser = basicAuthUser;
             DisableResolveMessage = disableResolveMessage;
+            Headers = headers;
+            HmacConfig = hmacConfig;
+            HttpConfig = httpConfig;
             HttpMethod = httpMethod;
             MaxAlerts = maxAlerts;
             Message = message;
+            Payload = payload;
             Settings = settings;
             Title = title;
             TlsConfig = tlsConfig;

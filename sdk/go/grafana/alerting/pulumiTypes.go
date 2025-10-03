@@ -13,6 +13,1072 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AlertEnrichmentMetadata struct {
+	// The UID of the folder to save the resource in.
+	FolderUid *string `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// AlertEnrichmentMetadataInput is an input type that accepts AlertEnrichmentMetadataArgs and AlertEnrichmentMetadataOutput values.
+// You can construct a concrete instance of `AlertEnrichmentMetadataInput` via:
+//
+//	AlertEnrichmentMetadataArgs{...}
+type AlertEnrichmentMetadataInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentMetadataOutput() AlertEnrichmentMetadataOutput
+	ToAlertEnrichmentMetadataOutputWithContext(context.Context) AlertEnrichmentMetadataOutput
+}
+
+type AlertEnrichmentMetadataArgs struct {
+	// The UID of the folder to save the resource in.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (AlertEnrichmentMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentMetadata)(nil)).Elem()
+}
+
+func (i AlertEnrichmentMetadataArgs) ToAlertEnrichmentMetadataOutput() AlertEnrichmentMetadataOutput {
+	return i.ToAlertEnrichmentMetadataOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentMetadataArgs) ToAlertEnrichmentMetadataOutputWithContext(ctx context.Context) AlertEnrichmentMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentMetadataOutput)
+}
+
+func (i AlertEnrichmentMetadataArgs) ToAlertEnrichmentMetadataPtrOutput() AlertEnrichmentMetadataPtrOutput {
+	return i.ToAlertEnrichmentMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentMetadataArgs) ToAlertEnrichmentMetadataPtrOutputWithContext(ctx context.Context) AlertEnrichmentMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentMetadataOutput).ToAlertEnrichmentMetadataPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentMetadataPtrInput is an input type that accepts AlertEnrichmentMetadataArgs, AlertEnrichmentMetadataPtr and AlertEnrichmentMetadataPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentMetadataPtrInput` via:
+//
+//	        AlertEnrichmentMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentMetadataPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentMetadataPtrOutput() AlertEnrichmentMetadataPtrOutput
+	ToAlertEnrichmentMetadataPtrOutputWithContext(context.Context) AlertEnrichmentMetadataPtrOutput
+}
+
+type alertEnrichmentMetadataPtrType AlertEnrichmentMetadataArgs
+
+func AlertEnrichmentMetadataPtr(v *AlertEnrichmentMetadataArgs) AlertEnrichmentMetadataPtrInput {
+	return (*alertEnrichmentMetadataPtrType)(v)
+}
+
+func (*alertEnrichmentMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentMetadata)(nil)).Elem()
+}
+
+func (i *alertEnrichmentMetadataPtrType) ToAlertEnrichmentMetadataPtrOutput() AlertEnrichmentMetadataPtrOutput {
+	return i.ToAlertEnrichmentMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentMetadataPtrType) ToAlertEnrichmentMetadataPtrOutputWithContext(ctx context.Context) AlertEnrichmentMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentMetadataPtrOutput)
+}
+
+type AlertEnrichmentMetadataOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentMetadata)(nil)).Elem()
+}
+
+func (o AlertEnrichmentMetadataOutput) ToAlertEnrichmentMetadataOutput() AlertEnrichmentMetadataOutput {
+	return o
+}
+
+func (o AlertEnrichmentMetadataOutput) ToAlertEnrichmentMetadataOutputWithContext(ctx context.Context) AlertEnrichmentMetadataOutput {
+	return o
+}
+
+func (o AlertEnrichmentMetadataOutput) ToAlertEnrichmentMetadataPtrOutput() AlertEnrichmentMetadataPtrOutput {
+	return o.ToAlertEnrichmentMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentMetadataOutput) ToAlertEnrichmentMetadataPtrOutputWithContext(ctx context.Context) AlertEnrichmentMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentMetadata) *AlertEnrichmentMetadata {
+		return &v
+	}).(AlertEnrichmentMetadataPtrOutput)
+}
+
+// The UID of the folder to save the resource in.
+func (o AlertEnrichmentMetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o AlertEnrichmentMetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentMetadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o AlertEnrichmentMetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentMetadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o AlertEnrichmentMetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentMetadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o AlertEnrichmentMetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentMetadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentMetadata)(nil)).Elem()
+}
+
+func (o AlertEnrichmentMetadataPtrOutput) ToAlertEnrichmentMetadataPtrOutput() AlertEnrichmentMetadataPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentMetadataPtrOutput) ToAlertEnrichmentMetadataPtrOutputWithContext(ctx context.Context) AlertEnrichmentMetadataPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentMetadataPtrOutput) Elem() AlertEnrichmentMetadataOutput {
+	return o.ApplyT(func(v *AlertEnrichmentMetadata) AlertEnrichmentMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentMetadata
+		return ret
+	}).(AlertEnrichmentMetadataOutput)
+}
+
+// The UID of the folder to save the resource in.
+func (o AlertEnrichmentMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o AlertEnrichmentMetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o AlertEnrichmentMetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o AlertEnrichmentMetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o AlertEnrichmentMetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentOptions struct {
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// AlertEnrichmentOptionsInput is an input type that accepts AlertEnrichmentOptionsArgs and AlertEnrichmentOptionsOutput values.
+// You can construct a concrete instance of `AlertEnrichmentOptionsInput` via:
+//
+//	AlertEnrichmentOptionsArgs{...}
+type AlertEnrichmentOptionsInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentOptionsOutput() AlertEnrichmentOptionsOutput
+	ToAlertEnrichmentOptionsOutputWithContext(context.Context) AlertEnrichmentOptionsOutput
+}
+
+type AlertEnrichmentOptionsArgs struct {
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (AlertEnrichmentOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentOptions)(nil)).Elem()
+}
+
+func (i AlertEnrichmentOptionsArgs) ToAlertEnrichmentOptionsOutput() AlertEnrichmentOptionsOutput {
+	return i.ToAlertEnrichmentOptionsOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentOptionsArgs) ToAlertEnrichmentOptionsOutputWithContext(ctx context.Context) AlertEnrichmentOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentOptionsOutput)
+}
+
+func (i AlertEnrichmentOptionsArgs) ToAlertEnrichmentOptionsPtrOutput() AlertEnrichmentOptionsPtrOutput {
+	return i.ToAlertEnrichmentOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentOptionsArgs) ToAlertEnrichmentOptionsPtrOutputWithContext(ctx context.Context) AlertEnrichmentOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentOptionsOutput).ToAlertEnrichmentOptionsPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentOptionsPtrInput is an input type that accepts AlertEnrichmentOptionsArgs, AlertEnrichmentOptionsPtr and AlertEnrichmentOptionsPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentOptionsPtrInput` via:
+//
+//	        AlertEnrichmentOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentOptionsPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentOptionsPtrOutput() AlertEnrichmentOptionsPtrOutput
+	ToAlertEnrichmentOptionsPtrOutputWithContext(context.Context) AlertEnrichmentOptionsPtrOutput
+}
+
+type alertEnrichmentOptionsPtrType AlertEnrichmentOptionsArgs
+
+func AlertEnrichmentOptionsPtr(v *AlertEnrichmentOptionsArgs) AlertEnrichmentOptionsPtrInput {
+	return (*alertEnrichmentOptionsPtrType)(v)
+}
+
+func (*alertEnrichmentOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentOptions)(nil)).Elem()
+}
+
+func (i *alertEnrichmentOptionsPtrType) ToAlertEnrichmentOptionsPtrOutput() AlertEnrichmentOptionsPtrOutput {
+	return i.ToAlertEnrichmentOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentOptionsPtrType) ToAlertEnrichmentOptionsPtrOutputWithContext(ctx context.Context) AlertEnrichmentOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentOptionsPtrOutput)
+}
+
+type AlertEnrichmentOptionsOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentOptions)(nil)).Elem()
+}
+
+func (o AlertEnrichmentOptionsOutput) ToAlertEnrichmentOptionsOutput() AlertEnrichmentOptionsOutput {
+	return o
+}
+
+func (o AlertEnrichmentOptionsOutput) ToAlertEnrichmentOptionsOutputWithContext(ctx context.Context) AlertEnrichmentOptionsOutput {
+	return o
+}
+
+func (o AlertEnrichmentOptionsOutput) ToAlertEnrichmentOptionsPtrOutput() AlertEnrichmentOptionsPtrOutput {
+	return o.ToAlertEnrichmentOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentOptionsOutput) ToAlertEnrichmentOptionsPtrOutputWithContext(ctx context.Context) AlertEnrichmentOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentOptions) *AlertEnrichmentOptions {
+		return &v
+	}).(AlertEnrichmentOptionsPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o AlertEnrichmentOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type AlertEnrichmentOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentOptions)(nil)).Elem()
+}
+
+func (o AlertEnrichmentOptionsPtrOutput) ToAlertEnrichmentOptionsPtrOutput() AlertEnrichmentOptionsPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentOptionsPtrOutput) ToAlertEnrichmentOptionsPtrOutputWithContext(ctx context.Context) AlertEnrichmentOptionsPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentOptionsPtrOutput) Elem() AlertEnrichmentOptionsOutput {
+	return o.ApplyT(func(v *AlertEnrichmentOptions) AlertEnrichmentOptions {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentOptions
+		return ret
+	}).(AlertEnrichmentOptionsOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o AlertEnrichmentOptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type AlertEnrichmentSpec struct {
+	// UIDs of alert rules this enrichment applies to. If empty, applies to all alert rules.
+	AlertRuleUids []string `pulumi:"alertRuleUids"`
+	// Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
+	AnnotationMatchers []AlertEnrichmentSpecAnnotationMatcher `pulumi:"annotationMatchers"`
+	// Description of the alert enrichment.
+	Description *string `pulumi:"description"`
+	// Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
+	LabelMatchers []AlertEnrichmentSpecLabelMatcher `pulumi:"labelMatchers"`
+	// Receiver names to match. If empty, applies to all receivers.
+	Receivers []string `pulumi:"receivers"`
+	// Enrichment step. Can be repeated multiple times to define a sequence of steps. Each step must contain exactly one enrichment block.
+	Steps []AlertEnrichmentSpecStep `pulumi:"steps"`
+	// The title of the alert enrichment.
+	Title string `pulumi:"title"`
+}
+
+// AlertEnrichmentSpecInput is an input type that accepts AlertEnrichmentSpecArgs and AlertEnrichmentSpecOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecInput` via:
+//
+//	AlertEnrichmentSpecArgs{...}
+type AlertEnrichmentSpecInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecOutput() AlertEnrichmentSpecOutput
+	ToAlertEnrichmentSpecOutputWithContext(context.Context) AlertEnrichmentSpecOutput
+}
+
+type AlertEnrichmentSpecArgs struct {
+	// UIDs of alert rules this enrichment applies to. If empty, applies to all alert rules.
+	AlertRuleUids pulumi.StringArrayInput `pulumi:"alertRuleUids"`
+	// Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
+	AnnotationMatchers AlertEnrichmentSpecAnnotationMatcherArrayInput `pulumi:"annotationMatchers"`
+	// Description of the alert enrichment.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
+	LabelMatchers AlertEnrichmentSpecLabelMatcherArrayInput `pulumi:"labelMatchers"`
+	// Receiver names to match. If empty, applies to all receivers.
+	Receivers pulumi.StringArrayInput `pulumi:"receivers"`
+	// Enrichment step. Can be repeated multiple times to define a sequence of steps. Each step must contain exactly one enrichment block.
+	Steps AlertEnrichmentSpecStepArrayInput `pulumi:"steps"`
+	// The title of the alert enrichment.
+	Title pulumi.StringInput `pulumi:"title"`
+}
+
+func (AlertEnrichmentSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpec)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecArgs) ToAlertEnrichmentSpecOutput() AlertEnrichmentSpecOutput {
+	return i.ToAlertEnrichmentSpecOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecArgs) ToAlertEnrichmentSpecOutputWithContext(ctx context.Context) AlertEnrichmentSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecOutput)
+}
+
+func (i AlertEnrichmentSpecArgs) ToAlertEnrichmentSpecPtrOutput() AlertEnrichmentSpecPtrOutput {
+	return i.ToAlertEnrichmentSpecPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecArgs) ToAlertEnrichmentSpecPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecOutput).ToAlertEnrichmentSpecPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecPtrInput is an input type that accepts AlertEnrichmentSpecArgs, AlertEnrichmentSpecPtr and AlertEnrichmentSpecPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecPtrInput` via:
+//
+//	        AlertEnrichmentSpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecPtrOutput() AlertEnrichmentSpecPtrOutput
+	ToAlertEnrichmentSpecPtrOutputWithContext(context.Context) AlertEnrichmentSpecPtrOutput
+}
+
+type alertEnrichmentSpecPtrType AlertEnrichmentSpecArgs
+
+func AlertEnrichmentSpecPtr(v *AlertEnrichmentSpecArgs) AlertEnrichmentSpecPtrInput {
+	return (*alertEnrichmentSpecPtrType)(v)
+}
+
+func (*alertEnrichmentSpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpec)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecPtrType) ToAlertEnrichmentSpecPtrOutput() AlertEnrichmentSpecPtrOutput {
+	return i.ToAlertEnrichmentSpecPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecPtrType) ToAlertEnrichmentSpecPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecPtrOutput)
+}
+
+type AlertEnrichmentSpecOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpec)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecOutput) ToAlertEnrichmentSpecOutput() AlertEnrichmentSpecOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecOutput) ToAlertEnrichmentSpecOutputWithContext(ctx context.Context) AlertEnrichmentSpecOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecOutput) ToAlertEnrichmentSpecPtrOutput() AlertEnrichmentSpecPtrOutput {
+	return o.ToAlertEnrichmentSpecPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecOutput) ToAlertEnrichmentSpecPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpec) *AlertEnrichmentSpec {
+		return &v
+	}).(AlertEnrichmentSpecPtrOutput)
+}
+
+// UIDs of alert rules this enrichment applies to. If empty, applies to all alert rules.
+func (o AlertEnrichmentSpecOutput) AlertRuleUids() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpec) []string { return v.AlertRuleUids }).(pulumi.StringArrayOutput)
+}
+
+// Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
+func (o AlertEnrichmentSpecOutput) AnnotationMatchers() AlertEnrichmentSpecAnnotationMatcherArrayOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpec) []AlertEnrichmentSpecAnnotationMatcher { return v.AnnotationMatchers }).(AlertEnrichmentSpecAnnotationMatcherArrayOutput)
+}
+
+// Description of the alert enrichment.
+func (o AlertEnrichmentSpecOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpec) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
+func (o AlertEnrichmentSpecOutput) LabelMatchers() AlertEnrichmentSpecLabelMatcherArrayOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpec) []AlertEnrichmentSpecLabelMatcher { return v.LabelMatchers }).(AlertEnrichmentSpecLabelMatcherArrayOutput)
+}
+
+// Receiver names to match. If empty, applies to all receivers.
+func (o AlertEnrichmentSpecOutput) Receivers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpec) []string { return v.Receivers }).(pulumi.StringArrayOutput)
+}
+
+// Enrichment step. Can be repeated multiple times to define a sequence of steps. Each step must contain exactly one enrichment block.
+func (o AlertEnrichmentSpecOutput) Steps() AlertEnrichmentSpecStepArrayOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpec) []AlertEnrichmentSpecStep { return v.Steps }).(AlertEnrichmentSpecStepArrayOutput)
+}
+
+// The title of the alert enrichment.
+func (o AlertEnrichmentSpecOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpec) string { return v.Title }).(pulumi.StringOutput)
+}
+
+type AlertEnrichmentSpecPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpec)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecPtrOutput) ToAlertEnrichmentSpecPtrOutput() AlertEnrichmentSpecPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecPtrOutput) ToAlertEnrichmentSpecPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecPtrOutput) Elem() AlertEnrichmentSpecOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpec) AlertEnrichmentSpec {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpec
+		return ret
+	}).(AlertEnrichmentSpecOutput)
+}
+
+// UIDs of alert rules this enrichment applies to. If empty, applies to all alert rules.
+func (o AlertEnrichmentSpecPtrOutput) AlertRuleUids() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpec) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AlertRuleUids
+	}).(pulumi.StringArrayOutput)
+}
+
+// Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
+func (o AlertEnrichmentSpecPtrOutput) AnnotationMatchers() AlertEnrichmentSpecAnnotationMatcherArrayOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpec) []AlertEnrichmentSpecAnnotationMatcher {
+		if v == nil {
+			return nil
+		}
+		return v.AnnotationMatchers
+	}).(AlertEnrichmentSpecAnnotationMatcherArrayOutput)
+}
+
+// Description of the alert enrichment.
+func (o AlertEnrichmentSpecPtrOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
+}
+
+// Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
+func (o AlertEnrichmentSpecPtrOutput) LabelMatchers() AlertEnrichmentSpecLabelMatcherArrayOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpec) []AlertEnrichmentSpecLabelMatcher {
+		if v == nil {
+			return nil
+		}
+		return v.LabelMatchers
+	}).(AlertEnrichmentSpecLabelMatcherArrayOutput)
+}
+
+// Receiver names to match. If empty, applies to all receivers.
+func (o AlertEnrichmentSpecPtrOutput) Receivers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpec) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Receivers
+	}).(pulumi.StringArrayOutput)
+}
+
+// Enrichment step. Can be repeated multiple times to define a sequence of steps. Each step must contain exactly one enrichment block.
+func (o AlertEnrichmentSpecPtrOutput) Steps() AlertEnrichmentSpecStepArrayOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpec) []AlertEnrichmentSpecStep {
+		if v == nil {
+			return nil
+		}
+		return v.Steps
+	}).(AlertEnrichmentSpecStepArrayOutput)
+}
+
+// The title of the alert enrichment.
+func (o AlertEnrichmentSpecPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecAnnotationMatcher struct {
+	Name  string `pulumi:"name"`
+	Type  string `pulumi:"type"`
+	Value string `pulumi:"value"`
+}
+
+// AlertEnrichmentSpecAnnotationMatcherInput is an input type that accepts AlertEnrichmentSpecAnnotationMatcherArgs and AlertEnrichmentSpecAnnotationMatcherOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecAnnotationMatcherInput` via:
+//
+//	AlertEnrichmentSpecAnnotationMatcherArgs{...}
+type AlertEnrichmentSpecAnnotationMatcherInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecAnnotationMatcherOutput() AlertEnrichmentSpecAnnotationMatcherOutput
+	ToAlertEnrichmentSpecAnnotationMatcherOutputWithContext(context.Context) AlertEnrichmentSpecAnnotationMatcherOutput
+}
+
+type AlertEnrichmentSpecAnnotationMatcherArgs struct {
+	Name  pulumi.StringInput `pulumi:"name"`
+	Type  pulumi.StringInput `pulumi:"type"`
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AlertEnrichmentSpecAnnotationMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecAnnotationMatcher)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecAnnotationMatcherArgs) ToAlertEnrichmentSpecAnnotationMatcherOutput() AlertEnrichmentSpecAnnotationMatcherOutput {
+	return i.ToAlertEnrichmentSpecAnnotationMatcherOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecAnnotationMatcherArgs) ToAlertEnrichmentSpecAnnotationMatcherOutputWithContext(ctx context.Context) AlertEnrichmentSpecAnnotationMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecAnnotationMatcherOutput)
+}
+
+// AlertEnrichmentSpecAnnotationMatcherArrayInput is an input type that accepts AlertEnrichmentSpecAnnotationMatcherArray and AlertEnrichmentSpecAnnotationMatcherArrayOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecAnnotationMatcherArrayInput` via:
+//
+//	AlertEnrichmentSpecAnnotationMatcherArray{ AlertEnrichmentSpecAnnotationMatcherArgs{...} }
+type AlertEnrichmentSpecAnnotationMatcherArrayInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecAnnotationMatcherArrayOutput() AlertEnrichmentSpecAnnotationMatcherArrayOutput
+	ToAlertEnrichmentSpecAnnotationMatcherArrayOutputWithContext(context.Context) AlertEnrichmentSpecAnnotationMatcherArrayOutput
+}
+
+type AlertEnrichmentSpecAnnotationMatcherArray []AlertEnrichmentSpecAnnotationMatcherInput
+
+func (AlertEnrichmentSpecAnnotationMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecAnnotationMatcher)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecAnnotationMatcherArray) ToAlertEnrichmentSpecAnnotationMatcherArrayOutput() AlertEnrichmentSpecAnnotationMatcherArrayOutput {
+	return i.ToAlertEnrichmentSpecAnnotationMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecAnnotationMatcherArray) ToAlertEnrichmentSpecAnnotationMatcherArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecAnnotationMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecAnnotationMatcherArrayOutput)
+}
+
+type AlertEnrichmentSpecAnnotationMatcherOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecAnnotationMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecAnnotationMatcher)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecAnnotationMatcherOutput) ToAlertEnrichmentSpecAnnotationMatcherOutput() AlertEnrichmentSpecAnnotationMatcherOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecAnnotationMatcherOutput) ToAlertEnrichmentSpecAnnotationMatcherOutputWithContext(ctx context.Context) AlertEnrichmentSpecAnnotationMatcherOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecAnnotationMatcherOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecAnnotationMatcher) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o AlertEnrichmentSpecAnnotationMatcherOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecAnnotationMatcher) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o AlertEnrichmentSpecAnnotationMatcherOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecAnnotationMatcher) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AlertEnrichmentSpecAnnotationMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecAnnotationMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecAnnotationMatcher)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecAnnotationMatcherArrayOutput) ToAlertEnrichmentSpecAnnotationMatcherArrayOutput() AlertEnrichmentSpecAnnotationMatcherArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecAnnotationMatcherArrayOutput) ToAlertEnrichmentSpecAnnotationMatcherArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecAnnotationMatcherArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecAnnotationMatcherArrayOutput) Index(i pulumi.IntInput) AlertEnrichmentSpecAnnotationMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertEnrichmentSpecAnnotationMatcher {
+		return vs[0].([]AlertEnrichmentSpecAnnotationMatcher)[vs[1].(int)]
+	}).(AlertEnrichmentSpecAnnotationMatcherOutput)
+}
+
+type AlertEnrichmentSpecLabelMatcher struct {
+	Name  string `pulumi:"name"`
+	Type  string `pulumi:"type"`
+	Value string `pulumi:"value"`
+}
+
+// AlertEnrichmentSpecLabelMatcherInput is an input type that accepts AlertEnrichmentSpecLabelMatcherArgs and AlertEnrichmentSpecLabelMatcherOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecLabelMatcherInput` via:
+//
+//	AlertEnrichmentSpecLabelMatcherArgs{...}
+type AlertEnrichmentSpecLabelMatcherInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecLabelMatcherOutput() AlertEnrichmentSpecLabelMatcherOutput
+	ToAlertEnrichmentSpecLabelMatcherOutputWithContext(context.Context) AlertEnrichmentSpecLabelMatcherOutput
+}
+
+type AlertEnrichmentSpecLabelMatcherArgs struct {
+	Name  pulumi.StringInput `pulumi:"name"`
+	Type  pulumi.StringInput `pulumi:"type"`
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AlertEnrichmentSpecLabelMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecLabelMatcher)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecLabelMatcherArgs) ToAlertEnrichmentSpecLabelMatcherOutput() AlertEnrichmentSpecLabelMatcherOutput {
+	return i.ToAlertEnrichmentSpecLabelMatcherOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecLabelMatcherArgs) ToAlertEnrichmentSpecLabelMatcherOutputWithContext(ctx context.Context) AlertEnrichmentSpecLabelMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecLabelMatcherOutput)
+}
+
+// AlertEnrichmentSpecLabelMatcherArrayInput is an input type that accepts AlertEnrichmentSpecLabelMatcherArray and AlertEnrichmentSpecLabelMatcherArrayOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecLabelMatcherArrayInput` via:
+//
+//	AlertEnrichmentSpecLabelMatcherArray{ AlertEnrichmentSpecLabelMatcherArgs{...} }
+type AlertEnrichmentSpecLabelMatcherArrayInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecLabelMatcherArrayOutput() AlertEnrichmentSpecLabelMatcherArrayOutput
+	ToAlertEnrichmentSpecLabelMatcherArrayOutputWithContext(context.Context) AlertEnrichmentSpecLabelMatcherArrayOutput
+}
+
+type AlertEnrichmentSpecLabelMatcherArray []AlertEnrichmentSpecLabelMatcherInput
+
+func (AlertEnrichmentSpecLabelMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecLabelMatcher)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecLabelMatcherArray) ToAlertEnrichmentSpecLabelMatcherArrayOutput() AlertEnrichmentSpecLabelMatcherArrayOutput {
+	return i.ToAlertEnrichmentSpecLabelMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecLabelMatcherArray) ToAlertEnrichmentSpecLabelMatcherArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecLabelMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecLabelMatcherArrayOutput)
+}
+
+type AlertEnrichmentSpecLabelMatcherOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecLabelMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecLabelMatcher)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecLabelMatcherOutput) ToAlertEnrichmentSpecLabelMatcherOutput() AlertEnrichmentSpecLabelMatcherOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecLabelMatcherOutput) ToAlertEnrichmentSpecLabelMatcherOutputWithContext(ctx context.Context) AlertEnrichmentSpecLabelMatcherOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecLabelMatcherOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecLabelMatcher) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o AlertEnrichmentSpecLabelMatcherOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecLabelMatcher) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o AlertEnrichmentSpecLabelMatcherOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecLabelMatcher) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AlertEnrichmentSpecLabelMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecLabelMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecLabelMatcher)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecLabelMatcherArrayOutput) ToAlertEnrichmentSpecLabelMatcherArrayOutput() AlertEnrichmentSpecLabelMatcherArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecLabelMatcherArrayOutput) ToAlertEnrichmentSpecLabelMatcherArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecLabelMatcherArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecLabelMatcherArrayOutput) Index(i pulumi.IntInput) AlertEnrichmentSpecLabelMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertEnrichmentSpecLabelMatcher {
+		return vs[0].([]AlertEnrichmentSpecLabelMatcher)[vs[1].(int)]
+	}).(AlertEnrichmentSpecLabelMatcherOutput)
+}
+
+type AlertEnrichmentSpecStep struct {
+	// Assign annotations to an alert.
+	Assign *AlertEnrichmentSpecStepAssign `pulumi:"assign"`
+}
+
+// AlertEnrichmentSpecStepInput is an input type that accepts AlertEnrichmentSpecStepArgs and AlertEnrichmentSpecStepOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepInput` via:
+//
+//	AlertEnrichmentSpecStepArgs{...}
+type AlertEnrichmentSpecStepInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepOutput() AlertEnrichmentSpecStepOutput
+	ToAlertEnrichmentSpecStepOutputWithContext(context.Context) AlertEnrichmentSpecStepOutput
+}
+
+type AlertEnrichmentSpecStepArgs struct {
+	// Assign annotations to an alert.
+	Assign AlertEnrichmentSpecStepAssignPtrInput `pulumi:"assign"`
+}
+
+func (AlertEnrichmentSpecStepArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStep)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepArgs) ToAlertEnrichmentSpecStepOutput() AlertEnrichmentSpecStepOutput {
+	return i.ToAlertEnrichmentSpecStepOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepArgs) ToAlertEnrichmentSpecStepOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepOutput)
+}
+
+// AlertEnrichmentSpecStepArrayInput is an input type that accepts AlertEnrichmentSpecStepArray and AlertEnrichmentSpecStepArrayOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepArrayInput` via:
+//
+//	AlertEnrichmentSpecStepArray{ AlertEnrichmentSpecStepArgs{...} }
+type AlertEnrichmentSpecStepArrayInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepArrayOutput() AlertEnrichmentSpecStepArrayOutput
+	ToAlertEnrichmentSpecStepArrayOutputWithContext(context.Context) AlertEnrichmentSpecStepArrayOutput
+}
+
+type AlertEnrichmentSpecStepArray []AlertEnrichmentSpecStepInput
+
+func (AlertEnrichmentSpecStepArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecStep)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepArray) ToAlertEnrichmentSpecStepArrayOutput() AlertEnrichmentSpecStepArrayOutput {
+	return i.ToAlertEnrichmentSpecStepArrayOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepArray) ToAlertEnrichmentSpecStepArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepArrayOutput)
+}
+
+type AlertEnrichmentSpecStepOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStep)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepOutput) ToAlertEnrichmentSpecStepOutput() AlertEnrichmentSpecStepOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepOutput) ToAlertEnrichmentSpecStepOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepOutput {
+	return o
+}
+
+// Assign annotations to an alert.
+func (o AlertEnrichmentSpecStepOutput) Assign() AlertEnrichmentSpecStepAssignPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStep) *AlertEnrichmentSpecStepAssign { return v.Assign }).(AlertEnrichmentSpecStepAssignPtrOutput)
+}
+
+type AlertEnrichmentSpecStepArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecStep)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepArrayOutput) ToAlertEnrichmentSpecStepArrayOutput() AlertEnrichmentSpecStepArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepArrayOutput) ToAlertEnrichmentSpecStepArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepArrayOutput) Index(i pulumi.IntInput) AlertEnrichmentSpecStepOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertEnrichmentSpecStep {
+		return vs[0].([]AlertEnrichmentSpecStep)[vs[1].(int)]
+	}).(AlertEnrichmentSpecStepOutput)
+}
+
+type AlertEnrichmentSpecStepAssign struct {
+	// Map of annotation names to values to set on matching alerts.
+	Annotations map[string]string `pulumi:"annotations"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepAssignInput is an input type that accepts AlertEnrichmentSpecStepAssignArgs and AlertEnrichmentSpecStepAssignOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepAssignInput` via:
+//
+//	AlertEnrichmentSpecStepAssignArgs{...}
+type AlertEnrichmentSpecStepAssignInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepAssignOutput() AlertEnrichmentSpecStepAssignOutput
+	ToAlertEnrichmentSpecStepAssignOutputWithContext(context.Context) AlertEnrichmentSpecStepAssignOutput
+}
+
+type AlertEnrichmentSpecStepAssignArgs struct {
+	// Map of annotation names to values to set on matching alerts.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepAssignArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepAssign)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepAssignArgs) ToAlertEnrichmentSpecStepAssignOutput() AlertEnrichmentSpecStepAssignOutput {
+	return i.ToAlertEnrichmentSpecStepAssignOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepAssignArgs) ToAlertEnrichmentSpecStepAssignOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepAssignOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepAssignOutput)
+}
+
+func (i AlertEnrichmentSpecStepAssignArgs) ToAlertEnrichmentSpecStepAssignPtrOutput() AlertEnrichmentSpecStepAssignPtrOutput {
+	return i.ToAlertEnrichmentSpecStepAssignPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepAssignArgs) ToAlertEnrichmentSpecStepAssignPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepAssignPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepAssignOutput).ToAlertEnrichmentSpecStepAssignPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepAssignPtrInput is an input type that accepts AlertEnrichmentSpecStepAssignArgs, AlertEnrichmentSpecStepAssignPtr and AlertEnrichmentSpecStepAssignPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepAssignPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepAssignArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepAssignPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepAssignPtrOutput() AlertEnrichmentSpecStepAssignPtrOutput
+	ToAlertEnrichmentSpecStepAssignPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepAssignPtrOutput
+}
+
+type alertEnrichmentSpecStepAssignPtrType AlertEnrichmentSpecStepAssignArgs
+
+func AlertEnrichmentSpecStepAssignPtr(v *AlertEnrichmentSpecStepAssignArgs) AlertEnrichmentSpecStepAssignPtrInput {
+	return (*alertEnrichmentSpecStepAssignPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepAssignPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepAssign)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepAssignPtrType) ToAlertEnrichmentSpecStepAssignPtrOutput() AlertEnrichmentSpecStepAssignPtrOutput {
+	return i.ToAlertEnrichmentSpecStepAssignPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepAssignPtrType) ToAlertEnrichmentSpecStepAssignPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepAssignPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepAssignPtrOutput)
+}
+
+type AlertEnrichmentSpecStepAssignOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepAssignOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepAssign)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepAssignOutput) ToAlertEnrichmentSpecStepAssignOutput() AlertEnrichmentSpecStepAssignOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepAssignOutput) ToAlertEnrichmentSpecStepAssignOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepAssignOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepAssignOutput) ToAlertEnrichmentSpecStepAssignPtrOutput() AlertEnrichmentSpecStepAssignPtrOutput {
+	return o.ToAlertEnrichmentSpecStepAssignPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepAssignOutput) ToAlertEnrichmentSpecStepAssignPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepAssignPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepAssign) *AlertEnrichmentSpecStepAssign {
+		return &v
+	}).(AlertEnrichmentSpecStepAssignPtrOutput)
+}
+
+// Map of annotation names to values to set on matching alerts.
+func (o AlertEnrichmentSpecStepAssignOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepAssign) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepAssignOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepAssign) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepAssignPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepAssignPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepAssign)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepAssignPtrOutput) ToAlertEnrichmentSpecStepAssignPtrOutput() AlertEnrichmentSpecStepAssignPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepAssignPtrOutput) ToAlertEnrichmentSpecStepAssignPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepAssignPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepAssignPtrOutput) Elem() AlertEnrichmentSpecStepAssignOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepAssign) AlertEnrichmentSpecStepAssign {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepAssign
+		return ret
+	}).(AlertEnrichmentSpecStepAssignOutput)
+}
+
+// Map of annotation names to values to set on matching alerts.
+func (o AlertEnrichmentSpecStepAssignPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepAssign) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepAssignPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepAssign) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
 type ContactPointAlertmanager struct {
 	// The password component of the basic auth credentials to use.
 	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
@@ -3443,12 +4509,20 @@ type ContactPointWebhook struct {
 	BasicAuthUser *string `pulumi:"basicAuthUser"`
 	// Whether to disable sending resolve messages. Defaults to `false`.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
+	// Custom headers to attach to the request.
+	Headers map[string]string `pulumi:"headers"`
+	// HMAC signature configuration options.
+	HmacConfig *ContactPointWebhookHmacConfig `pulumi:"hmacConfig"`
+	// Common HTTP client options.
+	HttpConfig *ContactPointWebhookHttpConfig `pulumi:"httpConfig"`
 	// The HTTP method to use in the request. Defaults to `POST`.
 	HttpMethod *string `pulumi:"httpMethod"`
 	// The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
 	MaxAlerts *int `pulumi:"maxAlerts"`
 	// Custom message. You can use template variables.
 	Message *string `pulumi:"message"`
+	// Optionally provide a templated payload. Overrides 'Message' and 'Title' field.
+	Payload *ContactPointWebhookPayload `pulumi:"payload"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
 	Settings map[string]string `pulumi:"settings"`
 	// Templated title of the message.
@@ -3483,12 +4557,20 @@ type ContactPointWebhookArgs struct {
 	BasicAuthUser pulumi.StringPtrInput `pulumi:"basicAuthUser"`
 	// Whether to disable sending resolve messages. Defaults to `false`.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
+	// Custom headers to attach to the request.
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	// HMAC signature configuration options.
+	HmacConfig ContactPointWebhookHmacConfigPtrInput `pulumi:"hmacConfig"`
+	// Common HTTP client options.
+	HttpConfig ContactPointWebhookHttpConfigPtrInput `pulumi:"httpConfig"`
 	// The HTTP method to use in the request. Defaults to `POST`.
 	HttpMethod pulumi.StringPtrInput `pulumi:"httpMethod"`
 	// The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.
 	MaxAlerts pulumi.IntPtrInput `pulumi:"maxAlerts"`
 	// Custom message. You can use template variables.
 	Message pulumi.StringPtrInput `pulumi:"message"`
+	// Optionally provide a templated payload. Overrides 'Message' and 'Title' field.
+	Payload ContactPointWebhookPayloadPtrInput `pulumi:"payload"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// Templated title of the message.
@@ -3577,6 +4659,21 @@ func (o ContactPointWebhookOutput) DisableResolveMessage() pulumi.BoolPtrOutput 
 	return o.ApplyT(func(v ContactPointWebhook) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
 }
 
+// Custom headers to attach to the request.
+func (o ContactPointWebhookOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ContactPointWebhook) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+// HMAC signature configuration options.
+func (o ContactPointWebhookOutput) HmacConfig() ContactPointWebhookHmacConfigPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhook) *ContactPointWebhookHmacConfig { return v.HmacConfig }).(ContactPointWebhookHmacConfigPtrOutput)
+}
+
+// Common HTTP client options.
+func (o ContactPointWebhookOutput) HttpConfig() ContactPointWebhookHttpConfigPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhook) *ContactPointWebhookHttpConfig { return v.HttpConfig }).(ContactPointWebhookHttpConfigPtrOutput)
+}
+
 // The HTTP method to use in the request. Defaults to `POST`.
 func (o ContactPointWebhookOutput) HttpMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointWebhook) *string { return v.HttpMethod }).(pulumi.StringPtrOutput)
@@ -3590,6 +4687,11 @@ func (o ContactPointWebhookOutput) MaxAlerts() pulumi.IntPtrOutput {
 // Custom message. You can use template variables.
 func (o ContactPointWebhookOutput) Message() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContactPointWebhook) *string { return v.Message }).(pulumi.StringPtrOutput)
+}
+
+// Optionally provide a templated payload. Overrides 'Message' and 'Title' field.
+func (o ContactPointWebhookOutput) Payload() ContactPointWebhookPayloadPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhook) *ContactPointWebhookPayload { return v.Payload }).(ContactPointWebhookPayloadPtrOutput)
 }
 
 // Additional custom properties to attach to the notifier. Defaults to `map[]`.
@@ -3635,6 +4737,1117 @@ func (o ContactPointWebhookArrayOutput) Index(i pulumi.IntInput) ContactPointWeb
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContactPointWebhook {
 		return vs[0].([]ContactPointWebhook)[vs[1].(int)]
 	}).(ContactPointWebhookOutput)
+}
+
+type ContactPointWebhookHmacConfig struct {
+	// The header in which the HMAC signature will be included. Defaults to `X-Grafana-Alerting-Signature`.
+	Header *string `pulumi:"header"`
+	// The secret key used to generate the HMAC signature.
+	Secret string `pulumi:"secret"`
+	// If set, the timestamp will be included in the HMAC signature. The value should be the name of the header to use.
+	TimestampHeader *string `pulumi:"timestampHeader"`
+}
+
+// ContactPointWebhookHmacConfigInput is an input type that accepts ContactPointWebhookHmacConfigArgs and ContactPointWebhookHmacConfigOutput values.
+// You can construct a concrete instance of `ContactPointWebhookHmacConfigInput` via:
+//
+//	ContactPointWebhookHmacConfigArgs{...}
+type ContactPointWebhookHmacConfigInput interface {
+	pulumi.Input
+
+	ToContactPointWebhookHmacConfigOutput() ContactPointWebhookHmacConfigOutput
+	ToContactPointWebhookHmacConfigOutputWithContext(context.Context) ContactPointWebhookHmacConfigOutput
+}
+
+type ContactPointWebhookHmacConfigArgs struct {
+	// The header in which the HMAC signature will be included. Defaults to `X-Grafana-Alerting-Signature`.
+	Header pulumi.StringPtrInput `pulumi:"header"`
+	// The secret key used to generate the HMAC signature.
+	Secret pulumi.StringInput `pulumi:"secret"`
+	// If set, the timestamp will be included in the HMAC signature. The value should be the name of the header to use.
+	TimestampHeader pulumi.StringPtrInput `pulumi:"timestampHeader"`
+}
+
+func (ContactPointWebhookHmacConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointWebhookHmacConfig)(nil)).Elem()
+}
+
+func (i ContactPointWebhookHmacConfigArgs) ToContactPointWebhookHmacConfigOutput() ContactPointWebhookHmacConfigOutput {
+	return i.ToContactPointWebhookHmacConfigOutputWithContext(context.Background())
+}
+
+func (i ContactPointWebhookHmacConfigArgs) ToContactPointWebhookHmacConfigOutputWithContext(ctx context.Context) ContactPointWebhookHmacConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHmacConfigOutput)
+}
+
+func (i ContactPointWebhookHmacConfigArgs) ToContactPointWebhookHmacConfigPtrOutput() ContactPointWebhookHmacConfigPtrOutput {
+	return i.ToContactPointWebhookHmacConfigPtrOutputWithContext(context.Background())
+}
+
+func (i ContactPointWebhookHmacConfigArgs) ToContactPointWebhookHmacConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHmacConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHmacConfigOutput).ToContactPointWebhookHmacConfigPtrOutputWithContext(ctx)
+}
+
+// ContactPointWebhookHmacConfigPtrInput is an input type that accepts ContactPointWebhookHmacConfigArgs, ContactPointWebhookHmacConfigPtr and ContactPointWebhookHmacConfigPtrOutput values.
+// You can construct a concrete instance of `ContactPointWebhookHmacConfigPtrInput` via:
+//
+//	        ContactPointWebhookHmacConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContactPointWebhookHmacConfigPtrInput interface {
+	pulumi.Input
+
+	ToContactPointWebhookHmacConfigPtrOutput() ContactPointWebhookHmacConfigPtrOutput
+	ToContactPointWebhookHmacConfigPtrOutputWithContext(context.Context) ContactPointWebhookHmacConfigPtrOutput
+}
+
+type contactPointWebhookHmacConfigPtrType ContactPointWebhookHmacConfigArgs
+
+func ContactPointWebhookHmacConfigPtr(v *ContactPointWebhookHmacConfigArgs) ContactPointWebhookHmacConfigPtrInput {
+	return (*contactPointWebhookHmacConfigPtrType)(v)
+}
+
+func (*contactPointWebhookHmacConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactPointWebhookHmacConfig)(nil)).Elem()
+}
+
+func (i *contactPointWebhookHmacConfigPtrType) ToContactPointWebhookHmacConfigPtrOutput() ContactPointWebhookHmacConfigPtrOutput {
+	return i.ToContactPointWebhookHmacConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *contactPointWebhookHmacConfigPtrType) ToContactPointWebhookHmacConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHmacConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHmacConfigPtrOutput)
+}
+
+type ContactPointWebhookHmacConfigOutput struct{ *pulumi.OutputState }
+
+func (ContactPointWebhookHmacConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointWebhookHmacConfig)(nil)).Elem()
+}
+
+func (o ContactPointWebhookHmacConfigOutput) ToContactPointWebhookHmacConfigOutput() ContactPointWebhookHmacConfigOutput {
+	return o
+}
+
+func (o ContactPointWebhookHmacConfigOutput) ToContactPointWebhookHmacConfigOutputWithContext(ctx context.Context) ContactPointWebhookHmacConfigOutput {
+	return o
+}
+
+func (o ContactPointWebhookHmacConfigOutput) ToContactPointWebhookHmacConfigPtrOutput() ContactPointWebhookHmacConfigPtrOutput {
+	return o.ToContactPointWebhookHmacConfigPtrOutputWithContext(context.Background())
+}
+
+func (o ContactPointWebhookHmacConfigOutput) ToContactPointWebhookHmacConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHmacConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContactPointWebhookHmacConfig) *ContactPointWebhookHmacConfig {
+		return &v
+	}).(ContactPointWebhookHmacConfigPtrOutput)
+}
+
+// The header in which the HMAC signature will be included. Defaults to `X-Grafana-Alerting-Signature`.
+func (o ContactPointWebhookHmacConfigOutput) Header() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhookHmacConfig) *string { return v.Header }).(pulumi.StringPtrOutput)
+}
+
+// The secret key used to generate the HMAC signature.
+func (o ContactPointWebhookHmacConfigOutput) Secret() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointWebhookHmacConfig) string { return v.Secret }).(pulumi.StringOutput)
+}
+
+// If set, the timestamp will be included in the HMAC signature. The value should be the name of the header to use.
+func (o ContactPointWebhookHmacConfigOutput) TimestampHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhookHmacConfig) *string { return v.TimestampHeader }).(pulumi.StringPtrOutput)
+}
+
+type ContactPointWebhookHmacConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (ContactPointWebhookHmacConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactPointWebhookHmacConfig)(nil)).Elem()
+}
+
+func (o ContactPointWebhookHmacConfigPtrOutput) ToContactPointWebhookHmacConfigPtrOutput() ContactPointWebhookHmacConfigPtrOutput {
+	return o
+}
+
+func (o ContactPointWebhookHmacConfigPtrOutput) ToContactPointWebhookHmacConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHmacConfigPtrOutput {
+	return o
+}
+
+func (o ContactPointWebhookHmacConfigPtrOutput) Elem() ContactPointWebhookHmacConfigOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHmacConfig) ContactPointWebhookHmacConfig {
+		if v != nil {
+			return *v
+		}
+		var ret ContactPointWebhookHmacConfig
+		return ret
+	}).(ContactPointWebhookHmacConfigOutput)
+}
+
+// The header in which the HMAC signature will be included. Defaults to `X-Grafana-Alerting-Signature`.
+func (o ContactPointWebhookHmacConfigPtrOutput) Header() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHmacConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Header
+	}).(pulumi.StringPtrOutput)
+}
+
+// The secret key used to generate the HMAC signature.
+func (o ContactPointWebhookHmacConfigPtrOutput) Secret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHmacConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Secret
+	}).(pulumi.StringPtrOutput)
+}
+
+// If set, the timestamp will be included in the HMAC signature. The value should be the name of the header to use.
+func (o ContactPointWebhookHmacConfigPtrOutput) TimestampHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHmacConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TimestampHeader
+	}).(pulumi.StringPtrOutput)
+}
+
+type ContactPointWebhookHttpConfig struct {
+	// OAuth2 configuration options.
+	Oauth2 *ContactPointWebhookHttpConfigOauth2 `pulumi:"oauth2"`
+}
+
+// ContactPointWebhookHttpConfigInput is an input type that accepts ContactPointWebhookHttpConfigArgs and ContactPointWebhookHttpConfigOutput values.
+// You can construct a concrete instance of `ContactPointWebhookHttpConfigInput` via:
+//
+//	ContactPointWebhookHttpConfigArgs{...}
+type ContactPointWebhookHttpConfigInput interface {
+	pulumi.Input
+
+	ToContactPointWebhookHttpConfigOutput() ContactPointWebhookHttpConfigOutput
+	ToContactPointWebhookHttpConfigOutputWithContext(context.Context) ContactPointWebhookHttpConfigOutput
+}
+
+type ContactPointWebhookHttpConfigArgs struct {
+	// OAuth2 configuration options.
+	Oauth2 ContactPointWebhookHttpConfigOauth2PtrInput `pulumi:"oauth2"`
+}
+
+func (ContactPointWebhookHttpConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointWebhookHttpConfig)(nil)).Elem()
+}
+
+func (i ContactPointWebhookHttpConfigArgs) ToContactPointWebhookHttpConfigOutput() ContactPointWebhookHttpConfigOutput {
+	return i.ToContactPointWebhookHttpConfigOutputWithContext(context.Background())
+}
+
+func (i ContactPointWebhookHttpConfigArgs) ToContactPointWebhookHttpConfigOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHttpConfigOutput)
+}
+
+func (i ContactPointWebhookHttpConfigArgs) ToContactPointWebhookHttpConfigPtrOutput() ContactPointWebhookHttpConfigPtrOutput {
+	return i.ToContactPointWebhookHttpConfigPtrOutputWithContext(context.Background())
+}
+
+func (i ContactPointWebhookHttpConfigArgs) ToContactPointWebhookHttpConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHttpConfigOutput).ToContactPointWebhookHttpConfigPtrOutputWithContext(ctx)
+}
+
+// ContactPointWebhookHttpConfigPtrInput is an input type that accepts ContactPointWebhookHttpConfigArgs, ContactPointWebhookHttpConfigPtr and ContactPointWebhookHttpConfigPtrOutput values.
+// You can construct a concrete instance of `ContactPointWebhookHttpConfigPtrInput` via:
+//
+//	        ContactPointWebhookHttpConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContactPointWebhookHttpConfigPtrInput interface {
+	pulumi.Input
+
+	ToContactPointWebhookHttpConfigPtrOutput() ContactPointWebhookHttpConfigPtrOutput
+	ToContactPointWebhookHttpConfigPtrOutputWithContext(context.Context) ContactPointWebhookHttpConfigPtrOutput
+}
+
+type contactPointWebhookHttpConfigPtrType ContactPointWebhookHttpConfigArgs
+
+func ContactPointWebhookHttpConfigPtr(v *ContactPointWebhookHttpConfigArgs) ContactPointWebhookHttpConfigPtrInput {
+	return (*contactPointWebhookHttpConfigPtrType)(v)
+}
+
+func (*contactPointWebhookHttpConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactPointWebhookHttpConfig)(nil)).Elem()
+}
+
+func (i *contactPointWebhookHttpConfigPtrType) ToContactPointWebhookHttpConfigPtrOutput() ContactPointWebhookHttpConfigPtrOutput {
+	return i.ToContactPointWebhookHttpConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *contactPointWebhookHttpConfigPtrType) ToContactPointWebhookHttpConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHttpConfigPtrOutput)
+}
+
+type ContactPointWebhookHttpConfigOutput struct{ *pulumi.OutputState }
+
+func (ContactPointWebhookHttpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointWebhookHttpConfig)(nil)).Elem()
+}
+
+func (o ContactPointWebhookHttpConfigOutput) ToContactPointWebhookHttpConfigOutput() ContactPointWebhookHttpConfigOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOutput) ToContactPointWebhookHttpConfigOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOutput) ToContactPointWebhookHttpConfigPtrOutput() ContactPointWebhookHttpConfigPtrOutput {
+	return o.ToContactPointWebhookHttpConfigPtrOutputWithContext(context.Background())
+}
+
+func (o ContactPointWebhookHttpConfigOutput) ToContactPointWebhookHttpConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContactPointWebhookHttpConfig) *ContactPointWebhookHttpConfig {
+		return &v
+	}).(ContactPointWebhookHttpConfigPtrOutput)
+}
+
+// OAuth2 configuration options.
+func (o ContactPointWebhookHttpConfigOutput) Oauth2() ContactPointWebhookHttpConfigOauth2PtrOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfig) *ContactPointWebhookHttpConfigOauth2 { return v.Oauth2 }).(ContactPointWebhookHttpConfigOauth2PtrOutput)
+}
+
+type ContactPointWebhookHttpConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (ContactPointWebhookHttpConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactPointWebhookHttpConfig)(nil)).Elem()
+}
+
+func (o ContactPointWebhookHttpConfigPtrOutput) ToContactPointWebhookHttpConfigPtrOutput() ContactPointWebhookHttpConfigPtrOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigPtrOutput) ToContactPointWebhookHttpConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigPtrOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigPtrOutput) Elem() ContactPointWebhookHttpConfigOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfig) ContactPointWebhookHttpConfig {
+		if v != nil {
+			return *v
+		}
+		var ret ContactPointWebhookHttpConfig
+		return ret
+	}).(ContactPointWebhookHttpConfigOutput)
+}
+
+// OAuth2 configuration options.
+func (o ContactPointWebhookHttpConfigPtrOutput) Oauth2() ContactPointWebhookHttpConfigOauth2PtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfig) *ContactPointWebhookHttpConfigOauth2 {
+		if v == nil {
+			return nil
+		}
+		return v.Oauth2
+	}).(ContactPointWebhookHttpConfigOauth2PtrOutput)
+}
+
+type ContactPointWebhookHttpConfigOauth2 struct {
+	// Client ID to use when authenticating.
+	ClientId string `pulumi:"clientId"`
+	// Client secret to use when authenticating.
+	ClientSecret string `pulumi:"clientSecret"`
+	// Optional parameters to append to the access token request.
+	EndpointParams map[string]string `pulumi:"endpointParams"`
+	// Optional proxy configuration for OAuth2 requests.
+	ProxyConfig *ContactPointWebhookHttpConfigOauth2ProxyConfig `pulumi:"proxyConfig"`
+	// Optional scopes to request when obtaining an access token.
+	Scopes []string `pulumi:"scopes"`
+	// Optional TLS configuration options for OAuth2 requests.
+	TlsConfig *ContactPointWebhookHttpConfigOauth2TlsConfig `pulumi:"tlsConfig"`
+	// URL for the access token endpoint.
+	TokenUrl string `pulumi:"tokenUrl"`
+}
+
+// ContactPointWebhookHttpConfigOauth2Input is an input type that accepts ContactPointWebhookHttpConfigOauth2Args and ContactPointWebhookHttpConfigOauth2Output values.
+// You can construct a concrete instance of `ContactPointWebhookHttpConfigOauth2Input` via:
+//
+//	ContactPointWebhookHttpConfigOauth2Args{...}
+type ContactPointWebhookHttpConfigOauth2Input interface {
+	pulumi.Input
+
+	ToContactPointWebhookHttpConfigOauth2Output() ContactPointWebhookHttpConfigOauth2Output
+	ToContactPointWebhookHttpConfigOauth2OutputWithContext(context.Context) ContactPointWebhookHttpConfigOauth2Output
+}
+
+type ContactPointWebhookHttpConfigOauth2Args struct {
+	// Client ID to use when authenticating.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// Client secret to use when authenticating.
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// Optional parameters to append to the access token request.
+	EndpointParams pulumi.StringMapInput `pulumi:"endpointParams"`
+	// Optional proxy configuration for OAuth2 requests.
+	ProxyConfig ContactPointWebhookHttpConfigOauth2ProxyConfigPtrInput `pulumi:"proxyConfig"`
+	// Optional scopes to request when obtaining an access token.
+	Scopes pulumi.StringArrayInput `pulumi:"scopes"`
+	// Optional TLS configuration options for OAuth2 requests.
+	TlsConfig ContactPointWebhookHttpConfigOauth2TlsConfigPtrInput `pulumi:"tlsConfig"`
+	// URL for the access token endpoint.
+	TokenUrl pulumi.StringInput `pulumi:"tokenUrl"`
+}
+
+func (ContactPointWebhookHttpConfigOauth2Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointWebhookHttpConfigOauth2)(nil)).Elem()
+}
+
+func (i ContactPointWebhookHttpConfigOauth2Args) ToContactPointWebhookHttpConfigOauth2Output() ContactPointWebhookHttpConfigOauth2Output {
+	return i.ToContactPointWebhookHttpConfigOauth2OutputWithContext(context.Background())
+}
+
+func (i ContactPointWebhookHttpConfigOauth2Args) ToContactPointWebhookHttpConfigOauth2OutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2Output {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHttpConfigOauth2Output)
+}
+
+func (i ContactPointWebhookHttpConfigOauth2Args) ToContactPointWebhookHttpConfigOauth2PtrOutput() ContactPointWebhookHttpConfigOauth2PtrOutput {
+	return i.ToContactPointWebhookHttpConfigOauth2PtrOutputWithContext(context.Background())
+}
+
+func (i ContactPointWebhookHttpConfigOauth2Args) ToContactPointWebhookHttpConfigOauth2PtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHttpConfigOauth2Output).ToContactPointWebhookHttpConfigOauth2PtrOutputWithContext(ctx)
+}
+
+// ContactPointWebhookHttpConfigOauth2PtrInput is an input type that accepts ContactPointWebhookHttpConfigOauth2Args, ContactPointWebhookHttpConfigOauth2Ptr and ContactPointWebhookHttpConfigOauth2PtrOutput values.
+// You can construct a concrete instance of `ContactPointWebhookHttpConfigOauth2PtrInput` via:
+//
+//	        ContactPointWebhookHttpConfigOauth2Args{...}
+//
+//	or:
+//
+//	        nil
+type ContactPointWebhookHttpConfigOauth2PtrInput interface {
+	pulumi.Input
+
+	ToContactPointWebhookHttpConfigOauth2PtrOutput() ContactPointWebhookHttpConfigOauth2PtrOutput
+	ToContactPointWebhookHttpConfigOauth2PtrOutputWithContext(context.Context) ContactPointWebhookHttpConfigOauth2PtrOutput
+}
+
+type contactPointWebhookHttpConfigOauth2PtrType ContactPointWebhookHttpConfigOauth2Args
+
+func ContactPointWebhookHttpConfigOauth2Ptr(v *ContactPointWebhookHttpConfigOauth2Args) ContactPointWebhookHttpConfigOauth2PtrInput {
+	return (*contactPointWebhookHttpConfigOauth2PtrType)(v)
+}
+
+func (*contactPointWebhookHttpConfigOauth2PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactPointWebhookHttpConfigOauth2)(nil)).Elem()
+}
+
+func (i *contactPointWebhookHttpConfigOauth2PtrType) ToContactPointWebhookHttpConfigOauth2PtrOutput() ContactPointWebhookHttpConfigOauth2PtrOutput {
+	return i.ToContactPointWebhookHttpConfigOauth2PtrOutputWithContext(context.Background())
+}
+
+func (i *contactPointWebhookHttpConfigOauth2PtrType) ToContactPointWebhookHttpConfigOauth2PtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHttpConfigOauth2PtrOutput)
+}
+
+type ContactPointWebhookHttpConfigOauth2Output struct{ *pulumi.OutputState }
+
+func (ContactPointWebhookHttpConfigOauth2Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointWebhookHttpConfigOauth2)(nil)).Elem()
+}
+
+func (o ContactPointWebhookHttpConfigOauth2Output) ToContactPointWebhookHttpConfigOauth2Output() ContactPointWebhookHttpConfigOauth2Output {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOauth2Output) ToContactPointWebhookHttpConfigOauth2OutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2Output {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOauth2Output) ToContactPointWebhookHttpConfigOauth2PtrOutput() ContactPointWebhookHttpConfigOauth2PtrOutput {
+	return o.ToContactPointWebhookHttpConfigOauth2PtrOutputWithContext(context.Background())
+}
+
+func (o ContactPointWebhookHttpConfigOauth2Output) ToContactPointWebhookHttpConfigOauth2PtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2PtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContactPointWebhookHttpConfigOauth2) *ContactPointWebhookHttpConfigOauth2 {
+		return &v
+	}).(ContactPointWebhookHttpConfigOauth2PtrOutput)
+}
+
+// Client ID to use when authenticating.
+func (o ContactPointWebhookHttpConfigOauth2Output) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// Client secret to use when authenticating.
+func (o ContactPointWebhookHttpConfigOauth2Output) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// Optional parameters to append to the access token request.
+func (o ContactPointWebhookHttpConfigOauth2Output) EndpointParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2) map[string]string { return v.EndpointParams }).(pulumi.StringMapOutput)
+}
+
+// Optional proxy configuration for OAuth2 requests.
+func (o ContactPointWebhookHttpConfigOauth2Output) ProxyConfig() ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2) *ContactPointWebhookHttpConfigOauth2ProxyConfig {
+		return v.ProxyConfig
+	}).(ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput)
+}
+
+// Optional scopes to request when obtaining an access token.
+func (o ContactPointWebhookHttpConfigOauth2Output) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2) []string { return v.Scopes }).(pulumi.StringArrayOutput)
+}
+
+// Optional TLS configuration options for OAuth2 requests.
+func (o ContactPointWebhookHttpConfigOauth2Output) TlsConfig() ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2) *ContactPointWebhookHttpConfigOauth2TlsConfig {
+		return v.TlsConfig
+	}).(ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput)
+}
+
+// URL for the access token endpoint.
+func (o ContactPointWebhookHttpConfigOauth2Output) TokenUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2) string { return v.TokenUrl }).(pulumi.StringOutput)
+}
+
+type ContactPointWebhookHttpConfigOauth2PtrOutput struct{ *pulumi.OutputState }
+
+func (ContactPointWebhookHttpConfigOauth2PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactPointWebhookHttpConfigOauth2)(nil)).Elem()
+}
+
+func (o ContactPointWebhookHttpConfigOauth2PtrOutput) ToContactPointWebhookHttpConfigOauth2PtrOutput() ContactPointWebhookHttpConfigOauth2PtrOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOauth2PtrOutput) ToContactPointWebhookHttpConfigOauth2PtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2PtrOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOauth2PtrOutput) Elem() ContactPointWebhookHttpConfigOauth2Output {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2) ContactPointWebhookHttpConfigOauth2 {
+		if v != nil {
+			return *v
+		}
+		var ret ContactPointWebhookHttpConfigOauth2
+		return ret
+	}).(ContactPointWebhookHttpConfigOauth2Output)
+}
+
+// Client ID to use when authenticating.
+func (o ContactPointWebhookHttpConfigOauth2PtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client secret to use when authenticating.
+func (o ContactPointWebhookHttpConfigOauth2PtrOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClientSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional parameters to append to the access token request.
+func (o ContactPointWebhookHttpConfigOauth2PtrOutput) EndpointParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.EndpointParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Optional proxy configuration for OAuth2 requests.
+func (o ContactPointWebhookHttpConfigOauth2PtrOutput) ProxyConfig() ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2) *ContactPointWebhookHttpConfigOauth2ProxyConfig {
+		if v == nil {
+			return nil
+		}
+		return v.ProxyConfig
+	}).(ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput)
+}
+
+// Optional scopes to request when obtaining an access token.
+func (o ContactPointWebhookHttpConfigOauth2PtrOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Scopes
+	}).(pulumi.StringArrayOutput)
+}
+
+// Optional TLS configuration options for OAuth2 requests.
+func (o ContactPointWebhookHttpConfigOauth2PtrOutput) TlsConfig() ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2) *ContactPointWebhookHttpConfigOauth2TlsConfig {
+		if v == nil {
+			return nil
+		}
+		return v.TlsConfig
+	}).(ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput)
+}
+
+// URL for the access token endpoint.
+func (o ContactPointWebhookHttpConfigOauth2PtrOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.TokenUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+type ContactPointWebhookHttpConfigOauth2ProxyConfig struct {
+	// Comma-separated list of addresses that should not use a proxy.
+	NoProxy *string `pulumi:"noProxy"`
+	// Optional headers to send to proxies during CONNECT requests.
+	ProxyConnectHeader map[string]string `pulumi:"proxyConnectHeader"`
+	// Use environment HTTP*PROXY, HTTPS*PROXY and NO_PROXY to determine proxies. Defaults to `false`.
+	ProxyFromEnvironment *bool `pulumi:"proxyFromEnvironment"`
+	// HTTP proxy server to use to connect to the targets.
+	ProxyUrl *string `pulumi:"proxyUrl"`
+}
+
+// ContactPointWebhookHttpConfigOauth2ProxyConfigInput is an input type that accepts ContactPointWebhookHttpConfigOauth2ProxyConfigArgs and ContactPointWebhookHttpConfigOauth2ProxyConfigOutput values.
+// You can construct a concrete instance of `ContactPointWebhookHttpConfigOauth2ProxyConfigInput` via:
+//
+//	ContactPointWebhookHttpConfigOauth2ProxyConfigArgs{...}
+type ContactPointWebhookHttpConfigOauth2ProxyConfigInput interface {
+	pulumi.Input
+
+	ToContactPointWebhookHttpConfigOauth2ProxyConfigOutput() ContactPointWebhookHttpConfigOauth2ProxyConfigOutput
+	ToContactPointWebhookHttpConfigOauth2ProxyConfigOutputWithContext(context.Context) ContactPointWebhookHttpConfigOauth2ProxyConfigOutput
+}
+
+type ContactPointWebhookHttpConfigOauth2ProxyConfigArgs struct {
+	// Comma-separated list of addresses that should not use a proxy.
+	NoProxy pulumi.StringPtrInput `pulumi:"noProxy"`
+	// Optional headers to send to proxies during CONNECT requests.
+	ProxyConnectHeader pulumi.StringMapInput `pulumi:"proxyConnectHeader"`
+	// Use environment HTTP*PROXY, HTTPS*PROXY and NO_PROXY to determine proxies. Defaults to `false`.
+	ProxyFromEnvironment pulumi.BoolPtrInput `pulumi:"proxyFromEnvironment"`
+	// HTTP proxy server to use to connect to the targets.
+	ProxyUrl pulumi.StringPtrInput `pulumi:"proxyUrl"`
+}
+
+func (ContactPointWebhookHttpConfigOauth2ProxyConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointWebhookHttpConfigOauth2ProxyConfig)(nil)).Elem()
+}
+
+func (i ContactPointWebhookHttpConfigOauth2ProxyConfigArgs) ToContactPointWebhookHttpConfigOauth2ProxyConfigOutput() ContactPointWebhookHttpConfigOauth2ProxyConfigOutput {
+	return i.ToContactPointWebhookHttpConfigOauth2ProxyConfigOutputWithContext(context.Background())
+}
+
+func (i ContactPointWebhookHttpConfigOauth2ProxyConfigArgs) ToContactPointWebhookHttpConfigOauth2ProxyConfigOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2ProxyConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHttpConfigOauth2ProxyConfigOutput)
+}
+
+func (i ContactPointWebhookHttpConfigOauth2ProxyConfigArgs) ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput() ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput {
+	return i.ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutputWithContext(context.Background())
+}
+
+func (i ContactPointWebhookHttpConfigOauth2ProxyConfigArgs) ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHttpConfigOauth2ProxyConfigOutput).ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutputWithContext(ctx)
+}
+
+// ContactPointWebhookHttpConfigOauth2ProxyConfigPtrInput is an input type that accepts ContactPointWebhookHttpConfigOauth2ProxyConfigArgs, ContactPointWebhookHttpConfigOauth2ProxyConfigPtr and ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput values.
+// You can construct a concrete instance of `ContactPointWebhookHttpConfigOauth2ProxyConfigPtrInput` via:
+//
+//	        ContactPointWebhookHttpConfigOauth2ProxyConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContactPointWebhookHttpConfigOauth2ProxyConfigPtrInput interface {
+	pulumi.Input
+
+	ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput() ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput
+	ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutputWithContext(context.Context) ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput
+}
+
+type contactPointWebhookHttpConfigOauth2ProxyConfigPtrType ContactPointWebhookHttpConfigOauth2ProxyConfigArgs
+
+func ContactPointWebhookHttpConfigOauth2ProxyConfigPtr(v *ContactPointWebhookHttpConfigOauth2ProxyConfigArgs) ContactPointWebhookHttpConfigOauth2ProxyConfigPtrInput {
+	return (*contactPointWebhookHttpConfigOauth2ProxyConfigPtrType)(v)
+}
+
+func (*contactPointWebhookHttpConfigOauth2ProxyConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactPointWebhookHttpConfigOauth2ProxyConfig)(nil)).Elem()
+}
+
+func (i *contactPointWebhookHttpConfigOauth2ProxyConfigPtrType) ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput() ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput {
+	return i.ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *contactPointWebhookHttpConfigOauth2ProxyConfigPtrType) ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput)
+}
+
+type ContactPointWebhookHttpConfigOauth2ProxyConfigOutput struct{ *pulumi.OutputState }
+
+func (ContactPointWebhookHttpConfigOauth2ProxyConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointWebhookHttpConfigOauth2ProxyConfig)(nil)).Elem()
+}
+
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigOutput) ToContactPointWebhookHttpConfigOauth2ProxyConfigOutput() ContactPointWebhookHttpConfigOauth2ProxyConfigOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigOutput) ToContactPointWebhookHttpConfigOauth2ProxyConfigOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2ProxyConfigOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigOutput) ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput() ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput {
+	return o.ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutputWithContext(context.Background())
+}
+
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigOutput) ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContactPointWebhookHttpConfigOauth2ProxyConfig) *ContactPointWebhookHttpConfigOauth2ProxyConfig {
+		return &v
+	}).(ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput)
+}
+
+// Comma-separated list of addresses that should not use a proxy.
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigOutput) NoProxy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2ProxyConfig) *string { return v.NoProxy }).(pulumi.StringPtrOutput)
+}
+
+// Optional headers to send to proxies during CONNECT requests.
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigOutput) ProxyConnectHeader() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2ProxyConfig) map[string]string { return v.ProxyConnectHeader }).(pulumi.StringMapOutput)
+}
+
+// Use environment HTTP*PROXY, HTTPS*PROXY and NO_PROXY to determine proxies. Defaults to `false`.
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigOutput) ProxyFromEnvironment() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2ProxyConfig) *bool { return v.ProxyFromEnvironment }).(pulumi.BoolPtrOutput)
+}
+
+// HTTP proxy server to use to connect to the targets.
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigOutput) ProxyUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2ProxyConfig) *string { return v.ProxyUrl }).(pulumi.StringPtrOutput)
+}
+
+type ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactPointWebhookHttpConfigOauth2ProxyConfig)(nil)).Elem()
+}
+
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput) ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput() ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput) ToContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput) Elem() ContactPointWebhookHttpConfigOauth2ProxyConfigOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2ProxyConfig) ContactPointWebhookHttpConfigOauth2ProxyConfig {
+		if v != nil {
+			return *v
+		}
+		var ret ContactPointWebhookHttpConfigOauth2ProxyConfig
+		return ret
+	}).(ContactPointWebhookHttpConfigOauth2ProxyConfigOutput)
+}
+
+// Comma-separated list of addresses that should not use a proxy.
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput) NoProxy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2ProxyConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NoProxy
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional headers to send to proxies during CONNECT requests.
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput) ProxyConnectHeader() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2ProxyConfig) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.ProxyConnectHeader
+	}).(pulumi.StringMapOutput)
+}
+
+// Use environment HTTP*PROXY, HTTPS*PROXY and NO_PROXY to determine proxies. Defaults to `false`.
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput) ProxyFromEnvironment() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2ProxyConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ProxyFromEnvironment
+	}).(pulumi.BoolPtrOutput)
+}
+
+// HTTP proxy server to use to connect to the targets.
+func (o ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput) ProxyUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2ProxyConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ProxyUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+type ContactPointWebhookHttpConfigOauth2TlsConfig struct {
+	// Certificate in PEM format to use when verifying the server's certificate chain.
+	CaCertificate *string `pulumi:"caCertificate"`
+	// Client certificate in PEM format to use when connecting to the server.
+	ClientCertificate *string `pulumi:"clientCertificate"`
+	// Client key in PEM format to use when connecting to the server.
+	ClientKey *string `pulumi:"clientKey"`
+	// Do not verify the server's certificate chain and host name. Defaults to `false`.
+	InsecureSkipVerify *bool `pulumi:"insecureSkipVerify"`
+}
+
+// ContactPointWebhookHttpConfigOauth2TlsConfigInput is an input type that accepts ContactPointWebhookHttpConfigOauth2TlsConfigArgs and ContactPointWebhookHttpConfigOauth2TlsConfigOutput values.
+// You can construct a concrete instance of `ContactPointWebhookHttpConfigOauth2TlsConfigInput` via:
+//
+//	ContactPointWebhookHttpConfigOauth2TlsConfigArgs{...}
+type ContactPointWebhookHttpConfigOauth2TlsConfigInput interface {
+	pulumi.Input
+
+	ToContactPointWebhookHttpConfigOauth2TlsConfigOutput() ContactPointWebhookHttpConfigOauth2TlsConfigOutput
+	ToContactPointWebhookHttpConfigOauth2TlsConfigOutputWithContext(context.Context) ContactPointWebhookHttpConfigOauth2TlsConfigOutput
+}
+
+type ContactPointWebhookHttpConfigOauth2TlsConfigArgs struct {
+	// Certificate in PEM format to use when verifying the server's certificate chain.
+	CaCertificate pulumi.StringPtrInput `pulumi:"caCertificate"`
+	// Client certificate in PEM format to use when connecting to the server.
+	ClientCertificate pulumi.StringPtrInput `pulumi:"clientCertificate"`
+	// Client key in PEM format to use when connecting to the server.
+	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
+	// Do not verify the server's certificate chain and host name. Defaults to `false`.
+	InsecureSkipVerify pulumi.BoolPtrInput `pulumi:"insecureSkipVerify"`
+}
+
+func (ContactPointWebhookHttpConfigOauth2TlsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointWebhookHttpConfigOauth2TlsConfig)(nil)).Elem()
+}
+
+func (i ContactPointWebhookHttpConfigOauth2TlsConfigArgs) ToContactPointWebhookHttpConfigOauth2TlsConfigOutput() ContactPointWebhookHttpConfigOauth2TlsConfigOutput {
+	return i.ToContactPointWebhookHttpConfigOauth2TlsConfigOutputWithContext(context.Background())
+}
+
+func (i ContactPointWebhookHttpConfigOauth2TlsConfigArgs) ToContactPointWebhookHttpConfigOauth2TlsConfigOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2TlsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHttpConfigOauth2TlsConfigOutput)
+}
+
+func (i ContactPointWebhookHttpConfigOauth2TlsConfigArgs) ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput() ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput {
+	return i.ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutputWithContext(context.Background())
+}
+
+func (i ContactPointWebhookHttpConfigOauth2TlsConfigArgs) ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHttpConfigOauth2TlsConfigOutput).ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutputWithContext(ctx)
+}
+
+// ContactPointWebhookHttpConfigOauth2TlsConfigPtrInput is an input type that accepts ContactPointWebhookHttpConfigOauth2TlsConfigArgs, ContactPointWebhookHttpConfigOauth2TlsConfigPtr and ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput values.
+// You can construct a concrete instance of `ContactPointWebhookHttpConfigOauth2TlsConfigPtrInput` via:
+//
+//	        ContactPointWebhookHttpConfigOauth2TlsConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContactPointWebhookHttpConfigOauth2TlsConfigPtrInput interface {
+	pulumi.Input
+
+	ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput() ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput
+	ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutputWithContext(context.Context) ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput
+}
+
+type contactPointWebhookHttpConfigOauth2TlsConfigPtrType ContactPointWebhookHttpConfigOauth2TlsConfigArgs
+
+func ContactPointWebhookHttpConfigOauth2TlsConfigPtr(v *ContactPointWebhookHttpConfigOauth2TlsConfigArgs) ContactPointWebhookHttpConfigOauth2TlsConfigPtrInput {
+	return (*contactPointWebhookHttpConfigOauth2TlsConfigPtrType)(v)
+}
+
+func (*contactPointWebhookHttpConfigOauth2TlsConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactPointWebhookHttpConfigOauth2TlsConfig)(nil)).Elem()
+}
+
+func (i *contactPointWebhookHttpConfigOauth2TlsConfigPtrType) ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput() ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput {
+	return i.ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *contactPointWebhookHttpConfigOauth2TlsConfigPtrType) ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput)
+}
+
+type ContactPointWebhookHttpConfigOauth2TlsConfigOutput struct{ *pulumi.OutputState }
+
+func (ContactPointWebhookHttpConfigOauth2TlsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointWebhookHttpConfigOauth2TlsConfig)(nil)).Elem()
+}
+
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigOutput) ToContactPointWebhookHttpConfigOauth2TlsConfigOutput() ContactPointWebhookHttpConfigOauth2TlsConfigOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigOutput) ToContactPointWebhookHttpConfigOauth2TlsConfigOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2TlsConfigOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigOutput) ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput() ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput {
+	return o.ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutputWithContext(context.Background())
+}
+
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigOutput) ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContactPointWebhookHttpConfigOauth2TlsConfig) *ContactPointWebhookHttpConfigOauth2TlsConfig {
+		return &v
+	}).(ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput)
+}
+
+// Certificate in PEM format to use when verifying the server's certificate chain.
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigOutput) CaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2TlsConfig) *string { return v.CaCertificate }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate in PEM format to use when connecting to the server.
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigOutput) ClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2TlsConfig) *string { return v.ClientCertificate }).(pulumi.StringPtrOutput)
+}
+
+// Client key in PEM format to use when connecting to the server.
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2TlsConfig) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
+}
+
+// Do not verify the server's certificate chain and host name. Defaults to `false`.
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigOutput) InsecureSkipVerify() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ContactPointWebhookHttpConfigOauth2TlsConfig) *bool { return v.InsecureSkipVerify }).(pulumi.BoolPtrOutput)
+}
+
+type ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactPointWebhookHttpConfigOauth2TlsConfig)(nil)).Elem()
+}
+
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput) ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput() ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput) ToContactPointWebhookHttpConfigOauth2TlsConfigPtrOutputWithContext(ctx context.Context) ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput {
+	return o
+}
+
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput) Elem() ContactPointWebhookHttpConfigOauth2TlsConfigOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2TlsConfig) ContactPointWebhookHttpConfigOauth2TlsConfig {
+		if v != nil {
+			return *v
+		}
+		var ret ContactPointWebhookHttpConfigOauth2TlsConfig
+		return ret
+	}).(ContactPointWebhookHttpConfigOauth2TlsConfigOutput)
+}
+
+// Certificate in PEM format to use when verifying the server's certificate chain.
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput) CaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2TlsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CaCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client certificate in PEM format to use when connecting to the server.
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput) ClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2TlsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client key in PEM format to use when connecting to the server.
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2TlsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Do not verify the server's certificate chain and host name. Defaults to `false`.
+func (o ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput) InsecureSkipVerify() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookHttpConfigOauth2TlsConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.InsecureSkipVerify
+	}).(pulumi.BoolPtrOutput)
+}
+
+type ContactPointWebhookPayload struct {
+	// Custom payload template.
+	Template string `pulumi:"template"`
+	// Optionally provide a variables to be used in the payload template. They will be available in the template as `.Vars.<variable_name>`.
+	Vars map[string]string `pulumi:"vars"`
+}
+
+// ContactPointWebhookPayloadInput is an input type that accepts ContactPointWebhookPayloadArgs and ContactPointWebhookPayloadOutput values.
+// You can construct a concrete instance of `ContactPointWebhookPayloadInput` via:
+//
+//	ContactPointWebhookPayloadArgs{...}
+type ContactPointWebhookPayloadInput interface {
+	pulumi.Input
+
+	ToContactPointWebhookPayloadOutput() ContactPointWebhookPayloadOutput
+	ToContactPointWebhookPayloadOutputWithContext(context.Context) ContactPointWebhookPayloadOutput
+}
+
+type ContactPointWebhookPayloadArgs struct {
+	// Custom payload template.
+	Template pulumi.StringInput `pulumi:"template"`
+	// Optionally provide a variables to be used in the payload template. They will be available in the template as `.Vars.<variable_name>`.
+	Vars pulumi.StringMapInput `pulumi:"vars"`
+}
+
+func (ContactPointWebhookPayloadArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointWebhookPayload)(nil)).Elem()
+}
+
+func (i ContactPointWebhookPayloadArgs) ToContactPointWebhookPayloadOutput() ContactPointWebhookPayloadOutput {
+	return i.ToContactPointWebhookPayloadOutputWithContext(context.Background())
+}
+
+func (i ContactPointWebhookPayloadArgs) ToContactPointWebhookPayloadOutputWithContext(ctx context.Context) ContactPointWebhookPayloadOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookPayloadOutput)
+}
+
+func (i ContactPointWebhookPayloadArgs) ToContactPointWebhookPayloadPtrOutput() ContactPointWebhookPayloadPtrOutput {
+	return i.ToContactPointWebhookPayloadPtrOutputWithContext(context.Background())
+}
+
+func (i ContactPointWebhookPayloadArgs) ToContactPointWebhookPayloadPtrOutputWithContext(ctx context.Context) ContactPointWebhookPayloadPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookPayloadOutput).ToContactPointWebhookPayloadPtrOutputWithContext(ctx)
+}
+
+// ContactPointWebhookPayloadPtrInput is an input type that accepts ContactPointWebhookPayloadArgs, ContactPointWebhookPayloadPtr and ContactPointWebhookPayloadPtrOutput values.
+// You can construct a concrete instance of `ContactPointWebhookPayloadPtrInput` via:
+//
+//	        ContactPointWebhookPayloadArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContactPointWebhookPayloadPtrInput interface {
+	pulumi.Input
+
+	ToContactPointWebhookPayloadPtrOutput() ContactPointWebhookPayloadPtrOutput
+	ToContactPointWebhookPayloadPtrOutputWithContext(context.Context) ContactPointWebhookPayloadPtrOutput
+}
+
+type contactPointWebhookPayloadPtrType ContactPointWebhookPayloadArgs
+
+func ContactPointWebhookPayloadPtr(v *ContactPointWebhookPayloadArgs) ContactPointWebhookPayloadPtrInput {
+	return (*contactPointWebhookPayloadPtrType)(v)
+}
+
+func (*contactPointWebhookPayloadPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactPointWebhookPayload)(nil)).Elem()
+}
+
+func (i *contactPointWebhookPayloadPtrType) ToContactPointWebhookPayloadPtrOutput() ContactPointWebhookPayloadPtrOutput {
+	return i.ToContactPointWebhookPayloadPtrOutputWithContext(context.Background())
+}
+
+func (i *contactPointWebhookPayloadPtrType) ToContactPointWebhookPayloadPtrOutputWithContext(ctx context.Context) ContactPointWebhookPayloadPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointWebhookPayloadPtrOutput)
+}
+
+type ContactPointWebhookPayloadOutput struct{ *pulumi.OutputState }
+
+func (ContactPointWebhookPayloadOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointWebhookPayload)(nil)).Elem()
+}
+
+func (o ContactPointWebhookPayloadOutput) ToContactPointWebhookPayloadOutput() ContactPointWebhookPayloadOutput {
+	return o
+}
+
+func (o ContactPointWebhookPayloadOutput) ToContactPointWebhookPayloadOutputWithContext(ctx context.Context) ContactPointWebhookPayloadOutput {
+	return o
+}
+
+func (o ContactPointWebhookPayloadOutput) ToContactPointWebhookPayloadPtrOutput() ContactPointWebhookPayloadPtrOutput {
+	return o.ToContactPointWebhookPayloadPtrOutputWithContext(context.Background())
+}
+
+func (o ContactPointWebhookPayloadOutput) ToContactPointWebhookPayloadPtrOutputWithContext(ctx context.Context) ContactPointWebhookPayloadPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContactPointWebhookPayload) *ContactPointWebhookPayload {
+		return &v
+	}).(ContactPointWebhookPayloadPtrOutput)
+}
+
+// Custom payload template.
+func (o ContactPointWebhookPayloadOutput) Template() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointWebhookPayload) string { return v.Template }).(pulumi.StringOutput)
+}
+
+// Optionally provide a variables to be used in the payload template. They will be available in the template as `.Vars.<variable_name>`.
+func (o ContactPointWebhookPayloadOutput) Vars() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ContactPointWebhookPayload) map[string]string { return v.Vars }).(pulumi.StringMapOutput)
+}
+
+type ContactPointWebhookPayloadPtrOutput struct{ *pulumi.OutputState }
+
+func (ContactPointWebhookPayloadPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactPointWebhookPayload)(nil)).Elem()
+}
+
+func (o ContactPointWebhookPayloadPtrOutput) ToContactPointWebhookPayloadPtrOutput() ContactPointWebhookPayloadPtrOutput {
+	return o
+}
+
+func (o ContactPointWebhookPayloadPtrOutput) ToContactPointWebhookPayloadPtrOutputWithContext(ctx context.Context) ContactPointWebhookPayloadPtrOutput {
+	return o
+}
+
+func (o ContactPointWebhookPayloadPtrOutput) Elem() ContactPointWebhookPayloadOutput {
+	return o.ApplyT(func(v *ContactPointWebhookPayload) ContactPointWebhookPayload {
+		if v != nil {
+			return *v
+		}
+		var ret ContactPointWebhookPayload
+		return ret
+	}).(ContactPointWebhookPayloadOutput)
+}
+
+// Custom payload template.
+func (o ContactPointWebhookPayloadPtrOutput) Template() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactPointWebhookPayload) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Template
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optionally provide a variables to be used in the payload template. They will be available in the template as `.Vars.<variable_name>`.
+func (o ContactPointWebhookPayloadPtrOutput) Vars() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ContactPointWebhookPayload) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Vars
+	}).(pulumi.StringMapOutput)
 }
 
 type ContactPointWecom struct {
@@ -6076,6 +8289,20 @@ func (o RuleGroupRuleRecordPtrOutput) TargetDatasourceUid() pulumi.StringPtrOutp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentMetadataInput)(nil)).Elem(), AlertEnrichmentMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentMetadataPtrInput)(nil)).Elem(), AlertEnrichmentMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentOptionsInput)(nil)).Elem(), AlertEnrichmentOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentOptionsPtrInput)(nil)).Elem(), AlertEnrichmentOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecInput)(nil)).Elem(), AlertEnrichmentSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecPtrInput)(nil)).Elem(), AlertEnrichmentSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecAnnotationMatcherInput)(nil)).Elem(), AlertEnrichmentSpecAnnotationMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecAnnotationMatcherArrayInput)(nil)).Elem(), AlertEnrichmentSpecAnnotationMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecLabelMatcherInput)(nil)).Elem(), AlertEnrichmentSpecLabelMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecLabelMatcherArrayInput)(nil)).Elem(), AlertEnrichmentSpecLabelMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepInput)(nil)).Elem(), AlertEnrichmentSpecStepArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepArrayInput)(nil)).Elem(), AlertEnrichmentSpecStepArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepAssignInput)(nil)).Elem(), AlertEnrichmentSpecStepAssignArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepAssignPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepAssignArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointAlertmanagerInput)(nil)).Elem(), ContactPointAlertmanagerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointAlertmanagerArrayInput)(nil)).Elem(), ContactPointAlertmanagerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointDingdingInput)(nil)).Elem(), ContactPointDingdingArgs{})
@@ -6118,6 +8345,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebexArrayInput)(nil)).Elem(), ContactPointWebexArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookInput)(nil)).Elem(), ContactPointWebhookArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookArrayInput)(nil)).Elem(), ContactPointWebhookArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookHmacConfigInput)(nil)).Elem(), ContactPointWebhookHmacConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookHmacConfigPtrInput)(nil)).Elem(), ContactPointWebhookHmacConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookHttpConfigInput)(nil)).Elem(), ContactPointWebhookHttpConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookHttpConfigPtrInput)(nil)).Elem(), ContactPointWebhookHttpConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookHttpConfigOauth2Input)(nil)).Elem(), ContactPointWebhookHttpConfigOauth2Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookHttpConfigOauth2PtrInput)(nil)).Elem(), ContactPointWebhookHttpConfigOauth2Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookHttpConfigOauth2ProxyConfigInput)(nil)).Elem(), ContactPointWebhookHttpConfigOauth2ProxyConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookHttpConfigOauth2ProxyConfigPtrInput)(nil)).Elem(), ContactPointWebhookHttpConfigOauth2ProxyConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookHttpConfigOauth2TlsConfigInput)(nil)).Elem(), ContactPointWebhookHttpConfigOauth2TlsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookHttpConfigOauth2TlsConfigPtrInput)(nil)).Elem(), ContactPointWebhookHttpConfigOauth2TlsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookPayloadInput)(nil)).Elem(), ContactPointWebhookPayloadArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWebhookPayloadPtrInput)(nil)).Elem(), ContactPointWebhookPayloadArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWecomInput)(nil)).Elem(), ContactPointWecomArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointWecomArrayInput)(nil)).Elem(), ContactPointWecomArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MuteTimingIntervalInput)(nil)).Elem(), MuteTimingIntervalArgs{})
@@ -6149,6 +8388,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleNotificationSettingsPtrInput)(nil)).Elem(), RuleGroupRuleNotificationSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleRecordInput)(nil)).Elem(), RuleGroupRuleRecordArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleRecordPtrInput)(nil)).Elem(), RuleGroupRuleRecordArgs{})
+	pulumi.RegisterOutputType(AlertEnrichmentMetadataOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentMetadataPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentOptionsOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentOptionsPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecAnnotationMatcherOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecAnnotationMatcherArrayOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecLabelMatcherOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecLabelMatcherArrayOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepArrayOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepAssignOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepAssignPtrOutput{})
 	pulumi.RegisterOutputType(ContactPointAlertmanagerOutput{})
 	pulumi.RegisterOutputType(ContactPointAlertmanagerArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointDingdingOutput{})
@@ -6191,6 +8444,18 @@ func init() {
 	pulumi.RegisterOutputType(ContactPointWebexArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointWebhookOutput{})
 	pulumi.RegisterOutputType(ContactPointWebhookArrayOutput{})
+	pulumi.RegisterOutputType(ContactPointWebhookHmacConfigOutput{})
+	pulumi.RegisterOutputType(ContactPointWebhookHmacConfigPtrOutput{})
+	pulumi.RegisterOutputType(ContactPointWebhookHttpConfigOutput{})
+	pulumi.RegisterOutputType(ContactPointWebhookHttpConfigPtrOutput{})
+	pulumi.RegisterOutputType(ContactPointWebhookHttpConfigOauth2Output{})
+	pulumi.RegisterOutputType(ContactPointWebhookHttpConfigOauth2PtrOutput{})
+	pulumi.RegisterOutputType(ContactPointWebhookHttpConfigOauth2ProxyConfigOutput{})
+	pulumi.RegisterOutputType(ContactPointWebhookHttpConfigOauth2ProxyConfigPtrOutput{})
+	pulumi.RegisterOutputType(ContactPointWebhookHttpConfigOauth2TlsConfigOutput{})
+	pulumi.RegisterOutputType(ContactPointWebhookHttpConfigOauth2TlsConfigPtrOutput{})
+	pulumi.RegisterOutputType(ContactPointWebhookPayloadOutput{})
+	pulumi.RegisterOutputType(ContactPointWebhookPayloadPtrOutput{})
 	pulumi.RegisterOutputType(ContactPointWecomOutput{})
 	pulumi.RegisterOutputType(ContactPointWecomArrayOutput{})
 	pulumi.RegisterOutputType(MuteTimingIntervalOutput{})
