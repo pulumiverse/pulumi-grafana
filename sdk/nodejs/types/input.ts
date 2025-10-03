@@ -93,6 +93,10 @@ export namespace alerting {
          */
         assistantInvestigations?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepAssistantInvestigations>;
         /**
+         * Conditional step with if/then/else.
+         */
+        conditional?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditional>;
+        /**
          * Query Grafana data sources and add results to alerts.
          */
         dataSource?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepDataSource>;
@@ -129,6 +133,327 @@ export namespace alerting {
     }
 
     export interface AlertEnrichmentSpecStepAssistantInvestigations {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditional {
+        /**
+         * Steps when condition is false.
+         */
+        else?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalElse>;
+        /**
+         * Condition to evaluate.
+         */
+        if?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalIf>;
+        /**
+         * Steps when condition is true.
+         */
+        then?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalThen>;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElse {
+        steps?: pulumi.Input<pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalElseStep>[]>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStep {
+        /**
+         * Integrate with Grafana Asserts for enrichment.
+         */
+        asserts?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalElseStepAsserts>;
+        /**
+         * Assign annotations to an alert.
+         */
+        assign?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalElseStepAssign>;
+        /**
+         * Use AI assistant to investigate alerts and add insights.
+         */
+        assistantInvestigations?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations>;
+        /**
+         * Query Grafana data sources and add results to alerts.
+         */
+        dataSource?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalElseStepDataSource>;
+        /**
+         * Generate AI explanation and store in an annotation.
+         */
+        explain?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalElseStepExplain>;
+        /**
+         * Call an external HTTP service for enrichment.
+         */
+        external?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalElseStepExternal>;
+        /**
+         * Analyze alerts for patterns and insights.
+         */
+        sift?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalElseStepSift>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepAsserts {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepAssign {
+        /**
+         * Map of annotation names to values to set on matching alerts.
+         */
+        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepDataSource {
+        /**
+         * Logs query configuration for querying log data sources.
+         */
+        logsQuery?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery>;
+        /**
+         * Raw query configuration for advanced data source queries.
+         */
+        rawQuery?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery>;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery {
+        /**
+         * Data source type (e.g., 'loki').
+         */
+        dataSourceType?: pulumi.Input<string>;
+        /**
+         * UID of the data source to query.
+         */
+        dataSourceUid?: pulumi.Input<string>;
+        /**
+         * Log query expression to execute.
+         */
+        expr?: pulumi.Input<string>;
+        /**
+         * Maximum number of log lines to include. Defaults to 3.
+         */
+        maxLines?: pulumi.Input<number>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery {
+        /**
+         * Reference ID for correlating queries.
+         */
+        refId?: pulumi.Input<string>;
+        /**
+         * Raw request payload for the data source query.
+         */
+        request?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepExplain {
+        /**
+         * Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+         */
+        annotation?: pulumi.Input<string>;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepExternal {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+        /**
+         * HTTP endpoint URL to call for enrichment
+         */
+        url?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepSift {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalIf {
+        /**
+         * Annotation matchers for the condition.
+         */
+        annotationMatchers?: pulumi.Input<pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalIfAnnotationMatcher>[]>;
+        /**
+         * Data source condition.
+         */
+        dataSourceCondition?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalIfDataSourceCondition>;
+        /**
+         * Label matchers for the condition.
+         */
+        labelMatchers?: pulumi.Input<pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalIfLabelMatcher>[]>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalIfAnnotationMatcher {
+        name: pulumi.Input<string>;
+        type: pulumi.Input<string>;
+        value: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalIfDataSourceCondition {
+        /**
+         * Data source request payload.
+         */
+        request?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalIfLabelMatcher {
+        name: pulumi.Input<string>;
+        type: pulumi.Input<string>;
+        value: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThen {
+        steps?: pulumi.Input<pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalThenStep>[]>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStep {
+        /**
+         * Integrate with Grafana Asserts for enrichment.
+         */
+        asserts?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalThenStepAsserts>;
+        /**
+         * Assign annotations to an alert.
+         */
+        assign?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalThenStepAssign>;
+        /**
+         * Use AI assistant to investigate alerts and add insights.
+         */
+        assistantInvestigations?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations>;
+        /**
+         * Query Grafana data sources and add results to alerts.
+         */
+        dataSource?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalThenStepDataSource>;
+        /**
+         * Generate AI explanation and store in an annotation.
+         */
+        explain?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalThenStepExplain>;
+        /**
+         * Call an external HTTP service for enrichment.
+         */
+        external?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalThenStepExternal>;
+        /**
+         * Analyze alerts for patterns and insights.
+         */
+        sift?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalThenStepSift>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepAsserts {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepAssign {
+        /**
+         * Map of annotation names to values to set on matching alerts.
+         */
+        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepDataSource {
+        /**
+         * Logs query configuration for querying log data sources.
+         */
+        logsQuery?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery>;
+        /**
+         * Raw query configuration for advanced data source queries.
+         */
+        rawQuery?: pulumi.Input<inputs.alerting.AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery>;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery {
+        /**
+         * Data source type (e.g., 'loki').
+         */
+        dataSourceType?: pulumi.Input<string>;
+        /**
+         * UID of the data source to query.
+         */
+        dataSourceUid?: pulumi.Input<string>;
+        /**
+         * Log query expression to execute.
+         */
+        expr?: pulumi.Input<string>;
+        /**
+         * Maximum number of log lines to include. Defaults to 3.
+         */
+        maxLines?: pulumi.Input<number>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery {
+        /**
+         * Reference ID for correlating queries.
+         */
+        refId?: pulumi.Input<string>;
+        /**
+         * Raw request payload for the data source query.
+         */
+        request?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepExplain {
+        /**
+         * Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+         */
+        annotation?: pulumi.Input<string>;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepExternal {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: pulumi.Input<string>;
+        /**
+         * HTTP endpoint URL to call for enrichment
+         */
+        url?: pulumi.Input<string>;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepSift {
         /**
          * Maximum execution time (e.g., '30s', '1m')
          */

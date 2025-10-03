@@ -417,6 +417,10 @@
                     "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepAssistantInvestigations:AlertEnrichmentSpecStepAssistantInvestigations",
                     "description": "Use AI assistant to investigate alerts and add insights.\n"
                 },
+                "conditional": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditional:AlertEnrichmentSpecStepConditional",
+                    "description": "Conditional step with if/then/else.\n"
+                },
                 "dataSource": {
                     "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepDataSource:AlertEnrichmentSpecStepDataSource",
                     "description": "Query Grafana data sources and add results to alerts.\n"
@@ -462,6 +466,467 @@
             "type": "object"
         },
         "grafana:alerting/AlertEnrichmentSpecStepAssistantInvestigations:AlertEnrichmentSpecStepAssistantInvestigations": {
+            "properties": {
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditional:AlertEnrichmentSpecStepConditional": {
+            "properties": {
+                "else": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalElse:AlertEnrichmentSpecStepConditionalElse",
+                    "description": "Steps when condition is false.\n"
+                },
+                "if": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalIf:AlertEnrichmentSpecStepConditionalIf",
+                    "description": "Condition to evaluate.\n"
+                },
+                "then": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalThen:AlertEnrichmentSpecStepConditionalThen",
+                    "description": "Steps when condition is true.\n"
+                },
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalElse:AlertEnrichmentSpecStepConditionalElse": {
+            "properties": {
+                "steps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalElseStep:AlertEnrichmentSpecStepConditionalElseStep"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalElseStep:AlertEnrichmentSpecStepConditionalElseStep": {
+            "properties": {
+                "asserts": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepAsserts:AlertEnrichmentSpecStepConditionalElseStepAsserts",
+                    "description": "Integrate with Grafana Asserts for enrichment.\n"
+                },
+                "assign": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepAssign:AlertEnrichmentSpecStepConditionalElseStepAssign",
+                    "description": "Assign annotations to an alert.\n"
+                },
+                "assistantInvestigations": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations:AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations",
+                    "description": "Use AI assistant to investigate alerts and add insights.\n"
+                },
+                "dataSource": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepDataSource:AlertEnrichmentSpecStepConditionalElseStepDataSource",
+                    "description": "Query Grafana data sources and add results to alerts.\n"
+                },
+                "explain": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepExplain:AlertEnrichmentSpecStepConditionalElseStepExplain",
+                    "description": "Generate AI explanation and store in an annotation.\n"
+                },
+                "external": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepExternal:AlertEnrichmentSpecStepConditionalElseStepExternal",
+                    "description": "Call an external HTTP service for enrichment.\n"
+                },
+                "sift": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepSift:AlertEnrichmentSpecStepConditionalElseStepSift",
+                    "description": "Analyze alerts for patterns and insights.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepAsserts:AlertEnrichmentSpecStepConditionalElseStepAsserts": {
+            "properties": {
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepAssign:AlertEnrichmentSpecStepConditionalElseStepAssign": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Map of annotation names to values to set on matching alerts.\n"
+                },
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations:AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations": {
+            "properties": {
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepDataSource:AlertEnrichmentSpecStepConditionalElseStepDataSource": {
+            "properties": {
+                "logsQuery": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery:AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery",
+                    "description": "Logs query configuration for querying log data sources.\n"
+                },
+                "rawQuery": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery:AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery",
+                    "description": "Raw query configuration for advanced data source queries.\n"
+                },
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery:AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery": {
+            "properties": {
+                "dataSourceType": {
+                    "type": "string",
+                    "description": "Data source type (e.g., 'loki').\n"
+                },
+                "dataSourceUid": {
+                    "type": "string",
+                    "description": "UID of the data source to query.\n"
+                },
+                "expr": {
+                    "type": "string",
+                    "description": "Log query expression to execute.\n"
+                },
+                "maxLines": {
+                    "type": "integer",
+                    "description": "Maximum number of log lines to include. Defaults to 3.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "maxLines"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery:AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery": {
+            "properties": {
+                "refId": {
+                    "type": "string",
+                    "description": "Reference ID for correlating queries.\n"
+                },
+                "request": {
+                    "type": "string",
+                    "description": "Raw request payload for the data source query.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "refId"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepExplain:AlertEnrichmentSpecStepConditionalElseStepExplain": {
+            "properties": {
+                "annotation": {
+                    "type": "string",
+                    "description": "Annotation name to set the explanation in. Defaults to 'ai_explanation'.\n"
+                },
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "annotation"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepExternal:AlertEnrichmentSpecStepConditionalElseStepExternal": {
+            "properties": {
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "HTTP endpoint URL to call for enrichment\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalElseStepSift:AlertEnrichmentSpecStepConditionalElseStepSift": {
+            "properties": {
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalIf:AlertEnrichmentSpecStepConditionalIf": {
+            "properties": {
+                "annotationMatchers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalIfAnnotationMatcher:AlertEnrichmentSpecStepConditionalIfAnnotationMatcher"
+                    },
+                    "description": "Annotation matchers for the condition.\n"
+                },
+                "dataSourceCondition": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalIfDataSourceCondition:AlertEnrichmentSpecStepConditionalIfDataSourceCondition",
+                    "description": "Data source condition.\n"
+                },
+                "labelMatchers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalIfLabelMatcher:AlertEnrichmentSpecStepConditionalIfLabelMatcher"
+                    },
+                    "description": "Label matchers for the condition.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalIfAnnotationMatcher:AlertEnrichmentSpecStepConditionalIfAnnotationMatcher": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "type",
+                "value"
+            ]
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalIfDataSourceCondition:AlertEnrichmentSpecStepConditionalIfDataSourceCondition": {
+            "properties": {
+                "request": {
+                    "type": "string",
+                    "description": "Data source request payload.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalIfLabelMatcher:AlertEnrichmentSpecStepConditionalIfLabelMatcher": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "type",
+                "value"
+            ]
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalThen:AlertEnrichmentSpecStepConditionalThen": {
+            "properties": {
+                "steps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalThenStep:AlertEnrichmentSpecStepConditionalThenStep"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalThenStep:AlertEnrichmentSpecStepConditionalThenStep": {
+            "properties": {
+                "asserts": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepAsserts:AlertEnrichmentSpecStepConditionalThenStepAsserts",
+                    "description": "Integrate with Grafana Asserts for enrichment.\n"
+                },
+                "assign": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepAssign:AlertEnrichmentSpecStepConditionalThenStepAssign",
+                    "description": "Assign annotations to an alert.\n"
+                },
+                "assistantInvestigations": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations:AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations",
+                    "description": "Use AI assistant to investigate alerts and add insights.\n"
+                },
+                "dataSource": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepDataSource:AlertEnrichmentSpecStepConditionalThenStepDataSource",
+                    "description": "Query Grafana data sources and add results to alerts.\n"
+                },
+                "explain": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepExplain:AlertEnrichmentSpecStepConditionalThenStepExplain",
+                    "description": "Generate AI explanation and store in an annotation.\n"
+                },
+                "external": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepExternal:AlertEnrichmentSpecStepConditionalThenStepExternal",
+                    "description": "Call an external HTTP service for enrichment.\n"
+                },
+                "sift": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepSift:AlertEnrichmentSpecStepConditionalThenStepSift",
+                    "description": "Analyze alerts for patterns and insights.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepAsserts:AlertEnrichmentSpecStepConditionalThenStepAsserts": {
+            "properties": {
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepAssign:AlertEnrichmentSpecStepConditionalThenStepAssign": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Map of annotation names to values to set on matching alerts.\n"
+                },
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations:AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations": {
+            "properties": {
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepDataSource:AlertEnrichmentSpecStepConditionalThenStepDataSource": {
+            "properties": {
+                "logsQuery": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery:AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery",
+                    "description": "Logs query configuration for querying log data sources.\n"
+                },
+                "rawQuery": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery:AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery",
+                    "description": "Raw query configuration for advanced data source queries.\n"
+                },
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery:AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery": {
+            "properties": {
+                "dataSourceType": {
+                    "type": "string",
+                    "description": "Data source type (e.g., 'loki').\n"
+                },
+                "dataSourceUid": {
+                    "type": "string",
+                    "description": "UID of the data source to query.\n"
+                },
+                "expr": {
+                    "type": "string",
+                    "description": "Log query expression to execute.\n"
+                },
+                "maxLines": {
+                    "type": "integer",
+                    "description": "Maximum number of log lines to include. Defaults to 3.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "maxLines"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery:AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery": {
+            "properties": {
+                "refId": {
+                    "type": "string",
+                    "description": "Reference ID for correlating queries.\n"
+                },
+                "request": {
+                    "type": "string",
+                    "description": "Raw request payload for the data source query.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "refId"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepExplain:AlertEnrichmentSpecStepConditionalThenStepExplain": {
+            "properties": {
+                "annotation": {
+                    "type": "string",
+                    "description": "Annotation name to set the explanation in. Defaults to 'ai_explanation'.\n"
+                },
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "annotation"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepExternal:AlertEnrichmentSpecStepConditionalThenStepExternal": {
+            "properties": {
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "HTTP endpoint URL to call for enrichment\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepConditionalThenStepSift:AlertEnrichmentSpecStepConditionalThenStepSift": {
             "properties": {
                 "timeout": {
                     "type": "string",
@@ -9061,7 +9526,8 @@
                 "tracesPrivateConnectivityInfoServiceName",
                 "tracesStatus",
                 "tracesUrl",
-                "tracesUserId"
+                "tracesUserId",
+                "url"
             ],
             "inputProperties": {
                 "deleteProtection": {

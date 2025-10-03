@@ -422,7 +422,7 @@ namespace Pulumiverse.Grafana.Cloud
         /// Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
         /// </summary>
         [Output("url")]
-        public Output<string?> Url { get; private set; } = null!;
+        public Output<string> Url { get; private set; } = null!;
 
         /// <summary>
         /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.

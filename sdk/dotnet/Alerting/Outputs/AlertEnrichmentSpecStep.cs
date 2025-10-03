@@ -27,6 +27,10 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly Outputs.AlertEnrichmentSpecStepAssistantInvestigations? AssistantInvestigations;
         /// <summary>
+        /// Conditional step with if/then/else.
+        /// </summary>
+        public readonly Outputs.AlertEnrichmentSpecStepConditional? Conditional;
+        /// <summary>
         /// Query Grafana data sources and add results to alerts.
         /// </summary>
         public readonly Outputs.AlertEnrichmentSpecStepDataSource? DataSource;
@@ -51,6 +55,8 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
             Outputs.AlertEnrichmentSpecStepAssistantInvestigations? assistantInvestigations,
 
+            Outputs.AlertEnrichmentSpecStepConditional? conditional,
+
             Outputs.AlertEnrichmentSpecStepDataSource? dataSource,
 
             Outputs.AlertEnrichmentSpecStepExplain? explain,
@@ -62,6 +68,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
             Asserts = asserts;
             Assign = assign;
             AssistantInvestigations = assistantInvestigations;
+            Conditional = conditional;
             DataSource = dataSource;
             Explain = explain;
             External = external;

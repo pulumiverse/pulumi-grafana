@@ -29,7 +29,39 @@
                                 "maxItemsOne": false
                             },
                             "step": {
-                                "maxItemsOne": false
+                                "maxItemsOne": false,
+                                "elem": {
+                                    "fields": {
+                                        "conditional": {
+                                            "fields": {
+                                                "else": {
+                                                    "fields": {
+                                                        "step": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                },
+                                                "if": {
+                                                    "fields": {
+                                                        "annotation_matchers": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "label_matchers": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                },
+                                                "then": {
+                                                    "fields": {
+                                                        "step": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

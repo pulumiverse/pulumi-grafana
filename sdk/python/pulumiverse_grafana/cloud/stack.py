@@ -2198,7 +2198,7 @@ class Stack(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def url(self) -> pulumi.Output[_builtins.str]:
         """
         Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
         """

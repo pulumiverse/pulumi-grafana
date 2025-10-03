@@ -93,6 +93,10 @@ export namespace alerting {
          */
         assistantInvestigations?: outputs.alerting.AlertEnrichmentSpecStepAssistantInvestigations;
         /**
+         * Conditional step with if/then/else.
+         */
+        conditional?: outputs.alerting.AlertEnrichmentSpecStepConditional;
+        /**
          * Query Grafana data sources and add results to alerts.
          */
         dataSource?: outputs.alerting.AlertEnrichmentSpecStepDataSource;
@@ -129,6 +133,327 @@ export namespace alerting {
     }
 
     export interface AlertEnrichmentSpecStepAssistantInvestigations {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditional {
+        /**
+         * Steps when condition is false.
+         */
+        else?: outputs.alerting.AlertEnrichmentSpecStepConditionalElse;
+        /**
+         * Condition to evaluate.
+         */
+        if?: outputs.alerting.AlertEnrichmentSpecStepConditionalIf;
+        /**
+         * Steps when condition is true.
+         */
+        then?: outputs.alerting.AlertEnrichmentSpecStepConditionalThen;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElse {
+        steps?: outputs.alerting.AlertEnrichmentSpecStepConditionalElseStep[];
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStep {
+        /**
+         * Integrate with Grafana Asserts for enrichment.
+         */
+        asserts?: outputs.alerting.AlertEnrichmentSpecStepConditionalElseStepAsserts;
+        /**
+         * Assign annotations to an alert.
+         */
+        assign?: outputs.alerting.AlertEnrichmentSpecStepConditionalElseStepAssign;
+        /**
+         * Use AI assistant to investigate alerts and add insights.
+         */
+        assistantInvestigations?: outputs.alerting.AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations;
+        /**
+         * Query Grafana data sources and add results to alerts.
+         */
+        dataSource?: outputs.alerting.AlertEnrichmentSpecStepConditionalElseStepDataSource;
+        /**
+         * Generate AI explanation and store in an annotation.
+         */
+        explain?: outputs.alerting.AlertEnrichmentSpecStepConditionalElseStepExplain;
+        /**
+         * Call an external HTTP service for enrichment.
+         */
+        external?: outputs.alerting.AlertEnrichmentSpecStepConditionalElseStepExternal;
+        /**
+         * Analyze alerts for patterns and insights.
+         */
+        sift?: outputs.alerting.AlertEnrichmentSpecStepConditionalElseStepSift;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepAsserts {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepAssign {
+        /**
+         * Map of annotation names to values to set on matching alerts.
+         */
+        annotations?: {[key: string]: string};
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepDataSource {
+        /**
+         * Logs query configuration for querying log data sources.
+         */
+        logsQuery?: outputs.alerting.AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery;
+        /**
+         * Raw query configuration for advanced data source queries.
+         */
+        rawQuery?: outputs.alerting.AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery {
+        /**
+         * Data source type (e.g., 'loki').
+         */
+        dataSourceType?: string;
+        /**
+         * UID of the data source to query.
+         */
+        dataSourceUid?: string;
+        /**
+         * Log query expression to execute.
+         */
+        expr?: string;
+        /**
+         * Maximum number of log lines to include. Defaults to 3.
+         */
+        maxLines: number;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery {
+        /**
+         * Reference ID for correlating queries.
+         */
+        refId: string;
+        /**
+         * Raw request payload for the data source query.
+         */
+        request?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepExplain {
+        /**
+         * Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+         */
+        annotation: string;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepExternal {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+        /**
+         * HTTP endpoint URL to call for enrichment
+         */
+        url?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalElseStepSift {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalIf {
+        /**
+         * Annotation matchers for the condition.
+         */
+        annotationMatchers?: outputs.alerting.AlertEnrichmentSpecStepConditionalIfAnnotationMatcher[];
+        /**
+         * Data source condition.
+         */
+        dataSourceCondition?: outputs.alerting.AlertEnrichmentSpecStepConditionalIfDataSourceCondition;
+        /**
+         * Label matchers for the condition.
+         */
+        labelMatchers?: outputs.alerting.AlertEnrichmentSpecStepConditionalIfLabelMatcher[];
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalIfAnnotationMatcher {
+        name: string;
+        type: string;
+        value: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalIfDataSourceCondition {
+        /**
+         * Data source request payload.
+         */
+        request?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalIfLabelMatcher {
+        name: string;
+        type: string;
+        value: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThen {
+        steps?: outputs.alerting.AlertEnrichmentSpecStepConditionalThenStep[];
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStep {
+        /**
+         * Integrate with Grafana Asserts for enrichment.
+         */
+        asserts?: outputs.alerting.AlertEnrichmentSpecStepConditionalThenStepAsserts;
+        /**
+         * Assign annotations to an alert.
+         */
+        assign?: outputs.alerting.AlertEnrichmentSpecStepConditionalThenStepAssign;
+        /**
+         * Use AI assistant to investigate alerts and add insights.
+         */
+        assistantInvestigations?: outputs.alerting.AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations;
+        /**
+         * Query Grafana data sources and add results to alerts.
+         */
+        dataSource?: outputs.alerting.AlertEnrichmentSpecStepConditionalThenStepDataSource;
+        /**
+         * Generate AI explanation and store in an annotation.
+         */
+        explain?: outputs.alerting.AlertEnrichmentSpecStepConditionalThenStepExplain;
+        /**
+         * Call an external HTTP service for enrichment.
+         */
+        external?: outputs.alerting.AlertEnrichmentSpecStepConditionalThenStepExternal;
+        /**
+         * Analyze alerts for patterns and insights.
+         */
+        sift?: outputs.alerting.AlertEnrichmentSpecStepConditionalThenStepSift;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepAsserts {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepAssign {
+        /**
+         * Map of annotation names to values to set on matching alerts.
+         */
+        annotations?: {[key: string]: string};
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepDataSource {
+        /**
+         * Logs query configuration for querying log data sources.
+         */
+        logsQuery?: outputs.alerting.AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery;
+        /**
+         * Raw query configuration for advanced data source queries.
+         */
+        rawQuery?: outputs.alerting.AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery {
+        /**
+         * Data source type (e.g., 'loki').
+         */
+        dataSourceType?: string;
+        /**
+         * UID of the data source to query.
+         */
+        dataSourceUid?: string;
+        /**
+         * Log query expression to execute.
+         */
+        expr?: string;
+        /**
+         * Maximum number of log lines to include. Defaults to 3.
+         */
+        maxLines: number;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery {
+        /**
+         * Reference ID for correlating queries.
+         */
+        refId: string;
+        /**
+         * Raw request payload for the data source query.
+         */
+        request?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepExplain {
+        /**
+         * Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+         */
+        annotation: string;
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepExternal {
+        /**
+         * Maximum execution time (e.g., '30s', '1m')
+         */
+        timeout?: string;
+        /**
+         * HTTP endpoint URL to call for enrichment
+         */
+        url?: string;
+    }
+
+    export interface AlertEnrichmentSpecStepConditionalThenStepSift {
         /**
          * Maximum execution time (e.g., '30s', '1m')
          */

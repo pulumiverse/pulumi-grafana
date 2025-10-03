@@ -32,6 +32,12 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<Inputs.AlertEnrichmentSpecStepAssistantInvestigationsArgs>? AssistantInvestigations { get; set; }
 
         /// <summary>
+        /// Conditional step with if/then/else.
+        /// </summary>
+        [Input("conditional")]
+        public Input<Inputs.AlertEnrichmentSpecStepConditionalArgs>? Conditional { get; set; }
+
+        /// <summary>
         /// Query Grafana data sources and add results to alerts.
         /// </summary>
         [Input("dataSource")]
