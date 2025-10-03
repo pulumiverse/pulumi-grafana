@@ -33,3 +33,7 @@ backend = "aqua:pulumi/pulumi"
 [[tools.python]]
 version = "3.11.8"
 backend = "core:python"
+
+[[tools.yarn]]
+version = "1.22.22"
+backend = "vfox:yarn"
