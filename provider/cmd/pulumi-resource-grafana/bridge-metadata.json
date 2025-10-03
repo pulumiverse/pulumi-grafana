@@ -410,6 +410,19 @@
                 "current": "grafana:k6/projectLimits:ProjectLimits",
                 "majorVersion": 2
             },
+            "grafana_k6_schedule": {
+                "current": "grafana:k6/schedule:Schedule",
+                "majorVersion": 2,
+                "fields": {
+                    "recurrence_rule": {
+                        "fields": {
+                            "byday": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_library_panel": {
                 "current": "grafana:oss/libraryPanel:LibraryPanel",
                 "majorVersion": 2,
@@ -1520,6 +1533,39 @@
                     }
                 }
             },
+            "grafana_k6_schedule": {
+                "current": "grafana:k6/getSchedule:getSchedule",
+                "majorVersion": 2,
+                "fields": {
+                    "recurrence_rule": {
+                        "fields": {
+                            "byday": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
+            "grafana_k6_schedules": {
+                "current": "grafana:k6/getSchedules:getSchedules",
+                "majorVersion": 2,
+                "fields": {
+                    "schedules": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "recurrence_rule": {
+                                    "fields": {
+                                        "byday": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_library_panel": {
                 "current": "grafana:oss/getLibraryPanel:getLibraryPanel",
                 "majorVersion": 2,
@@ -1792,6 +1838,7 @@
             "grafana:k6/project:Project": 1,
             "grafana:k6/projectAllowedLoadZones:ProjectAllowedLoadZones": 1,
             "grafana:k6/projectLimits:ProjectLimits": 1,
+            "grafana:k6/schedule:Schedule": 1,
             "grafana:machineLearning/alert:Alert": 1,
             "grafana:machineLearning/holiday:Holiday": 0,
             "grafana:machineLearning/job:Job": 0,
@@ -1852,6 +1899,8 @@
             "grafana:k6/getProjectAllowedLoadZones:getProjectAllowedLoadZones": 1,
             "grafana:k6/getProjectLimits:getProjectLimits": 1,
             "grafana:k6/getProjects:getProjects": 1,
+            "grafana:k6/getSchedule:getSchedule": 1,
+            "grafana:k6/getSchedules:getSchedules": 1,
             "grafana:onCall/getEscalationChain:getEscalationChain": 0,
             "grafana:onCall/getIntegration:getIntegration": 0,
             "grafana:onCall/getLabel:getLabel": 1,
