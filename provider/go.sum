@@ -1936,8 +1936,8 @@ github.com/grafana/grafana-app-sdk v0.45.0 h1:niFqYovxuw9vnUB9qoxEgmupqriG7Gns9Z
 github.com/grafana/grafana-app-sdk v0.45.0/go.mod h1:1pYGEBrgG8i6pKmmsNXvtAr15jZ4iLtyHU4yj7T6XaI=
 github.com/grafana/grafana-app-sdk/logging v0.43.2 h1:rIWp/KSrFfedrrOl/XlOzL2mA+dhjbXlRq/wu79A54g=
 github.com/grafana/grafana-app-sdk/logging v0.43.2/go.mod h1:Gh/nBWnspK3oDNWtiM5qUF/fardHzOIEez+SPI3JeHA=
-github.com/grafana/grafana-asserts-public-clients/go/gcom v0.0.0-20250811125322-247815da58ca h1:GVzyCTi3rqvjK42b++lFjabG2zsrLvyAbbR43dWP6s0=
-github.com/grafana/grafana-asserts-public-clients/go/gcom v0.0.0-20250811125322-247815da58ca/go.mod h1:EL/5hluCvj6EDjkUfoClLKSKDoCoDowZUety28jhxQI=
+github.com/grafana/grafana-asserts-public-clients/go/gcom v0.0.0-20250916172812-b0f2b75c0d34 h1:HDMrX9/0+imwxhdhV11d0yQ8kM+2SSV4nXykZkCB1AY=
+github.com/grafana/grafana-asserts-public-clients/go/gcom v0.0.0-20250916172812-b0f2b75c0d34/go.mod h1:piOOzeZUPg0tP4sfe1y+MFp5+jGVPri4WOVV4oSJS30=
 github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20250526074454-7ec66e02e4bb h1:rmYEnCXHNQbRsuzc5jCX5qkBqFF37c5RCHlyqAAPJZo=
 github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20250526074454-7ec66e02e4bb/go.mod h1:sYWkB3NhyirQJfy3wtNQ29UYjoHbRlJlYhqN1jNsC5g=
 github.com/grafana/grafana-openapi-client-go v0.0.0-20250617151817-c0f8cbb88d5c h1:jox7J0BnJmcZJp8lp631u4gjDEoIfpi6O3yrpiXNTtg=
@@ -1968,8 +1968,8 @@ github.com/grafana/synthetic-monitoring-agent v0.43.1 h1:Qejsuf25yZzdImVLZ6K1f5c
 github.com/grafana/synthetic-monitoring-agent v0.43.1/go.mod h1:HO4es33UF/5b3i4JdUhVcvs9abUXESMjFxnWP8y6KG0=
 github.com/grafana/synthetic-monitoring-api-go-client v0.17.1 h1:6ZQoQVD0sASxe5OVEk/T/YEOYOuilSA434bX4n3SJLQ=
 github.com/grafana/synthetic-monitoring-api-go-client v0.17.1/go.mod h1:3XfDhlxYkC/Apaug0e0vd4wHx8JZJ4k+v5ybny8ZGfc=
-github.com/grafana/terraform-provider-grafana/v4 v4.8.0 h1:qeuqqVIaztjRE8OqzR+oZXm9dCfwdEwtWMQWy/NrUGg=
-github.com/grafana/terraform-provider-grafana/v4 v4.8.0/go.mod h1:zvngF9sjdLFhC9aTdhZOvwjyMjiB0jqepiKx/cSOBns=
+github.com/grafana/terraform-provider-grafana/v4 v4.9.0 h1:voI7eSGvPhml++bJZyt+90KS6+YxffcFI6tfMvX+vxg=
+github.com/grafana/terraform-provider-grafana/v4 v4.9.0/go.mod h1:2fMcjcpNZpyyXYg9MH2IiohpZAHKIiaSEAEeoGL1f5Q=
 github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.1.0 h1:QGLs/O40yoNK9vmy4rhUGBVyMf1lISBGtXRpsu/Qu/o=
 github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.1.0/go.mod h1:hM2alZsMUni80N33RBe6J0e423LB+odMj7d3EMP9l20=
 github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.3.2 h1:sGm2vDRFUrQJO/Veii4h4zG2vvqG6uWNkBHSTqXOZk0=

@@ -261,6 +261,13 @@
     "types": {
         "grafana:alerting/AlertEnrichmentMetadata:AlertEnrichmentMetadata": {
             "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Annotations of the resource.\n"
+                },
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in.\n"
@@ -289,6 +296,7 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
+                        "annotations",
                         "uid",
                         "url",
                         "uuid",
@@ -326,6 +334,9 @@
                     "type": "string",
                     "description": "Description of the alert enrichment.\n"
                 },
+                "disableProvenance": {
+                    "type": "boolean"
+                },
                 "labelMatchers": {
                     "type": "array",
                     "items": {
@@ -360,6 +371,7 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "description",
+                        "disableProvenance",
                         "title"
                     ]
                 }
@@ -3093,6 +3105,130 @@
                 "metric"
             ]
         },
+        "grafana:assert/CustomModelRulesRules:CustomModelRulesRules": {
+            "properties": {
+                "entities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:assert/CustomModelRulesRulesEntity:CustomModelRulesRulesEntity"
+                    },
+                    "description": "List of entities to define in the custom model rules.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "entities"
+            ]
+        },
+        "grafana:assert/CustomModelRulesRulesEntity:CustomModelRulesRulesEntity": {
+            "properties": {
+                "definedBies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:assert/CustomModelRulesRulesEntityDefinedBy:CustomModelRulesRulesEntityDefinedBy"
+                    },
+                    "description": "List of queries that define this entity.\n"
+                },
+                "disabled": {
+                    "type": "boolean",
+                    "description": "Whether this entity is disabled.\n"
+                },
+                "enrichedBies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of enrichment sources for the entity.\n"
+                },
+                "lookup": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Lookup mappings for the entity.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the entity.\n"
+                },
+                "scope": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Scope labels for the entity.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the entity (e.g., Service, Pod, Namespace).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "definedBies",
+                "name",
+                "type"
+            ]
+        },
+        "grafana:assert/CustomModelRulesRulesEntityDefinedBy:CustomModelRulesRulesEntityDefinedBy": {
+            "properties": {
+                "disabled": {
+                    "type": "boolean",
+                    "description": "Whether this rule is disabled. When true, only the 'query' field is used to match an existing rule to disable; other fields are ignored.\n"
+                },
+                "labelValues": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Label value mappings for the query.\n"
+                },
+                "literals": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Literal value mappings for the query.\n"
+                },
+                "metricValue": {
+                    "type": "string",
+                    "description": "Metric value for the query.\n"
+                },
+                "query": {
+                    "type": "string",
+                    "description": "The Prometheus query that defines this entity.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "query"
+            ]
+        },
+        "grafana:assert/LogConfigMatch:LogConfigMatch": {
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "description": "Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.\n"
+                },
+                "property": {
+                    "type": "string",
+                    "description": "Entity property to match.\n"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Values to match against.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "op",
+                "property",
+                "values"
+            ]
+        },
         "grafana:cloud/AccessPolicyCondition:AccessPolicyCondition": {
             "properties": {
                 "allowedSubnets": {
@@ -4068,6 +4204,13 @@
         },
         "grafana:experimental/AppsDashboardMetadata:AppsDashboardMetadata": {
             "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Annotations of the resource.\n"
+                },
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in.\n"
@@ -4096,6 +4239,7 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
+                        "annotations",
                         "uid",
                         "url",
                         "uuid",
@@ -4138,6 +4282,13 @@
         },
         "grafana:experimental/AppsPlaylistV0Alpha1Metadata:AppsPlaylistV0Alpha1Metadata": {
             "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Annotations of the resource.\n"
+                },
                 "folderUid": {
                     "type": "string",
                     "description": "The UID of the folder to save the resource in.\n"
@@ -4166,6 +4317,7 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
+                        "annotations",
                         "uid",
                         "url",
                         "uuid",
@@ -8415,6 +8567,204 @@
                     "type": "grafana:index/ruleGroup:RuleGroup"
                 }
             ]
+        },
+        "grafana:assert/customModelRules:CustomModelRules": {
+            "description": "Manages Asserts Custom Model Rules through the Grafana API.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.assert.CustomModelRules(\"test\", {\n    name: \"test-anything\",\n    rules: {\n        entities: [{\n            type: \"Service\",\n            name: \"workload | service | job\",\n            scope: {\n                namespace: \"namespace\",\n                env: \"asserts_env\",\n                site: \"asserts_site\",\n            },\n            lookup: {\n                workload: \"workload | deployment | statefulset | daemonset | replicaset\",\n                service: \"service\",\n                job: \"job\",\n                proxy_job: \"job\",\n            },\n            definedBies: [\n                {\n                    query: \"up{job!=''}\",\n                    disabled: false,\n                    labelValues: {\n                        service: \"service\",\n                        job: \"job\",\n                    },\n                    literals: {\n                        _source: \"up_query\",\n                    },\n                },\n                {\n                    query: \"up{job='disabled'}\",\n                    disabled: true,\n                },\n            ],\n        }],\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest = grafana.assert_.CustomModelRules(\"test\",\n    name=\"test-anything\",\n    rules={\n        \"entities\": [{\n            \"type\": \"Service\",\n            \"name\": \"workload | service | job\",\n            \"scope\": {\n                \"namespace\": \"namespace\",\n                \"env\": \"asserts_env\",\n                \"site\": \"asserts_site\",\n            },\n            \"lookup\": {\n                \"workload\": \"workload | deployment | statefulset | daemonset | replicaset\",\n                \"service\": \"service\",\n                \"job\": \"job\",\n                \"proxy_job\": \"job\",\n            },\n            \"defined_bies\": [\n                {\n                    \"query\": \"up{job!=''}\",\n                    \"disabled\": False,\n                    \"label_values\": {\n                        \"service\": \"service\",\n                        \"job\": \"job\",\n                    },\n                    \"literals\": {\n                        \"_source\": \"up_query\",\n                    },\n                },\n                {\n                    \"query\": \"up{job='disabled'}\",\n                    \"disabled\": True,\n                },\n            ],\n        }],\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Assert.CustomModelRules(\"test\", new()\n    {\n        Name = \"test-anything\",\n        Rules = new Grafana.Assert.Inputs.CustomModelRulesRulesArgs\n        {\n            Entities = new[]\n            {\n                new Grafana.Assert.Inputs.CustomModelRulesRulesEntityArgs\n                {\n                    Type = \"Service\",\n                    Name = \"workload | service | job\",\n                    Scope = \n                    {\n                        { \"namespace\", \"namespace\" },\n                        { \"env\", \"asserts_env\" },\n                        { \"site\", \"asserts_site\" },\n                    },\n                    Lookup = \n                    {\n                        { \"workload\", \"workload | deployment | statefulset | daemonset | replicaset\" },\n                        { \"service\", \"service\" },\n                        { \"job\", \"job\" },\n                        { \"proxy_job\", \"job\" },\n                    },\n                    DefinedBies = new[]\n                    {\n                        new Grafana.Assert.Inputs.CustomModelRulesRulesEntityDefinedByArgs\n                        {\n                            Query = \"up{job!=''}\",\n                            Disabled = false,\n                            LabelValues = \n                            {\n                                { \"service\", \"service\" },\n                                { \"job\", \"job\" },\n                            },\n                            Literals = \n                            {\n                                { \"_source\", \"up_query\" },\n                            },\n                        },\n                        new Grafana.Assert.Inputs.CustomModelRulesRulesEntityDefinedByArgs\n                        {\n                            Query = \"up{job='disabled'}\",\n                            Disabled = true,\n                        },\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/assert\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := assert.NewCustomModelRules(ctx, \"test\", \u0026assert.CustomModelRulesArgs{\n\t\t\tName: pulumi.String(\"test-anything\"),\n\t\t\tRules: \u0026assert.CustomModelRulesRulesArgs{\n\t\t\t\tEntities: assert.CustomModelRulesRulesEntityArray{\n\t\t\t\t\t\u0026assert.CustomModelRulesRulesEntityArgs{\n\t\t\t\t\t\tType: pulumi.String(\"Service\"),\n\t\t\t\t\t\tName: pulumi.String(\"workload | service | job\"),\n\t\t\t\t\t\tScope: pulumi.StringMap{\n\t\t\t\t\t\t\t\"namespace\": pulumi.String(\"namespace\"),\n\t\t\t\t\t\t\t\"env\":       pulumi.String(\"asserts_env\"),\n\t\t\t\t\t\t\t\"site\":      pulumi.String(\"asserts_site\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t\tLookup: pulumi.StringMap{\n\t\t\t\t\t\t\t\"workload\":  pulumi.String(\"workload | deployment | statefulset | daemonset | replicaset\"),\n\t\t\t\t\t\t\t\"service\":   pulumi.String(\"service\"),\n\t\t\t\t\t\t\t\"job\":       pulumi.String(\"job\"),\n\t\t\t\t\t\t\t\"proxy_job\": pulumi.String(\"job\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t\tDefinedBies: assert.CustomModelRulesRulesEntityDefinedByArray{\n\t\t\t\t\t\t\t\u0026assert.CustomModelRulesRulesEntityDefinedByArgs{\n\t\t\t\t\t\t\t\tQuery:    pulumi.String(\"up{job!=''}\"),\n\t\t\t\t\t\t\t\tDisabled: pulumi.Bool(false),\n\t\t\t\t\t\t\t\tLabelValues: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\t\"service\": pulumi.String(\"service\"),\n\t\t\t\t\t\t\t\t\t\"job\":     pulumi.String(\"job\"),\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\tLiterals: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\t\"_source\": pulumi.String(\"up_query\"),\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\u0026assert.CustomModelRulesRulesEntityDefinedByArgs{\n\t\t\t\t\t\t\t\tQuery:    pulumi.String(\"up{job='disabled'}\"),\n\t\t\t\t\t\t\t\tDisabled: pulumi.Bool(true),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.assert.CustomModelRules;\nimport com.pulumi.grafana.assert.CustomModelRulesArgs;\nimport com.pulumi.grafana.assert.inputs.CustomModelRulesRulesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new CustomModelRules(\"test\", CustomModelRulesArgs.builder()\n            .name(\"test-anything\")\n            .rules(CustomModelRulesRulesArgs.builder()\n                .entities(CustomModelRulesRulesEntityArgs.builder()\n                    .type(\"Service\")\n                    .name(\"workload | service | job\")\n                    .scope(Map.ofEntries(\n                        Map.entry(\"namespace\", \"namespace\"),\n                        Map.entry(\"env\", \"asserts_env\"),\n                        Map.entry(\"site\", \"asserts_site\")\n                    ))\n                    .lookup(Map.ofEntries(\n                        Map.entry(\"workload\", \"workload | deployment | statefulset | daemonset | replicaset\"),\n                        Map.entry(\"service\", \"service\"),\n                        Map.entry(\"job\", \"job\"),\n                        Map.entry(\"proxy_job\", \"job\")\n                    ))\n                    .definedBies(                    \n                        CustomModelRulesRulesEntityDefinedByArgs.builder()\n                            .query(\"up{job!=''}\")\n                            .disabled(false)\n                            .labelValues(Map.ofEntries(\n                                Map.entry(\"service\", \"service\"),\n                                Map.entry(\"job\", \"job\")\n                            ))\n                            .literals(Map.of(\"_source\", \"up_query\"))\n                            .build(),\n                        CustomModelRulesRulesEntityDefinedByArgs.builder()\n                            .query(\"up{job='disabled'}\")\n                            .disabled(true)\n                            .build())\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:assert:CustomModelRules\n    properties:\n      name: test-anything\n      rules:\n        entities:\n          - type: Service\n            name: workload | service | job\n            scope:\n              namespace: namespace\n              env: asserts_env\n              site: asserts_site\n            lookup:\n              workload: workload | deployment | statefulset | daemonset | replicaset\n              service: service\n              job: job\n              proxy_job: job\n            definedBies:\n              - query: up{job!=''}\n                disabled: false\n                labelValues:\n                  service: service\n                  job: job\n                literals:\n                  _source: up_query\n              - query: up{job='disabled'}\n                disabled: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:assert/customModelRules:CustomModelRules name \"{{ name }}\"\n```\n\n",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the custom model rules.\n"
+                },
+                "rules": {
+                    "$ref": "#/types/grafana:assert/CustomModelRulesRules:CustomModelRulesRules",
+                    "description": "The rules configuration for the custom model rules.\n"
+                }
+            },
+            "required": [
+                "name",
+                "rules"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the custom model rules.\n",
+                    "willReplaceOnChanges": true
+                },
+                "rules": {
+                    "$ref": "#/types/grafana:assert/CustomModelRulesRules:CustomModelRulesRules",
+                    "description": "The rules configuration for the custom model rules.\n"
+                }
+            },
+            "requiredInputs": [
+                "rules"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering CustomModelRules resources.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the custom model rules.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "rules": {
+                        "$ref": "#/types/grafana:assert/CustomModelRulesRules:CustomModelRulesRules",
+                        "description": "The rules configuration for the custom model rules.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:assert/logConfig:LogConfig": {
+            "description": "Manages Asserts Log Configuration through Grafana API.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst production = new grafana.assert.LogConfig(\"production\", {\n    name: \"production\",\n    priority: 1000,\n    defaultConfig: false,\n    dataSourceUid: \"grafanacloud-logs\",\n    errorLabel: \"error\",\n    matches: [\n        {\n            property: \"asserts_entity_type\",\n            op: \"EQUALS\",\n            values: [\"Service\"],\n        },\n        {\n            property: \"environment\",\n            op: \"EQUALS\",\n            values: [\n                \"production\",\n                \"staging\",\n            ],\n        },\n        {\n            property: \"site\",\n            op: \"EQUALS\",\n            values: [\n                \"us-east-1\",\n                \"us-west-2\",\n            ],\n        },\n    ],\n    entityPropertyToLogLabelMapping: {\n        otel_namespace: \"service_namespace\",\n        otel_service: \"service_name\",\n        environment: \"env\",\n        site: \"region\",\n    },\n    filterBySpanId: true,\n    filterByTraceId: true,\n});\nconst development = new grafana.assert.LogConfig(\"development\", {\n    name: \"development\",\n    priority: 2000,\n    defaultConfig: true,\n    dataSourceUid: \"elasticsearch-dev\",\n    errorLabel: \"error\",\n    matches: [\n        {\n            property: \"asserts_entity_type\",\n            op: \"EQUALS\",\n            values: [\"Service\"],\n        },\n        {\n            property: \"environment\",\n            op: \"EQUALS\",\n            values: [\n                \"development\",\n                \"testing\",\n            ],\n        },\n        {\n            property: \"site\",\n            op: \"EQUALS\",\n            values: [\"us-east-1\"],\n        },\n        {\n            property: \"service\",\n            op: \"EQUALS\",\n            values: [\"api\"],\n        },\n    ],\n    entityPropertyToLogLabelMapping: {\n        otel_namespace: \"service_namespace\",\n        otel_service: \"service_name\",\n        environment: \"env\",\n        site: \"region\",\n        service: \"app\",\n    },\n    filterBySpanId: true,\n    filterByTraceId: true,\n});\nconst minimal = new grafana.assert.LogConfig(\"minimal\", {\n    name: \"minimal\",\n    priority: 3000,\n    defaultConfig: false,\n    dataSourceUid: \"loki-minimal\",\n    matches: [{\n        property: \"asserts_entity_type\",\n        op: \"IS_NOT_NULL\",\n        values: [],\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nproduction = grafana.assert_.LogConfig(\"production\",\n    name=\"production\",\n    priority=1000,\n    default_config=False,\n    data_source_uid=\"grafanacloud-logs\",\n    error_label=\"error\",\n    matches=[\n        {\n            \"property\": \"asserts_entity_type\",\n            \"op\": \"EQUALS\",\n            \"values\": [\"Service\"],\n        },\n        {\n            \"property\": \"environment\",\n            \"op\": \"EQUALS\",\n            \"values\": [\n                \"production\",\n                \"staging\",\n            ],\n        },\n        {\n            \"property\": \"site\",\n            \"op\": \"EQUALS\",\n            \"values\": [\n                \"us-east-1\",\n                \"us-west-2\",\n            ],\n        },\n    ],\n    entity_property_to_log_label_mapping={\n        \"otel_namespace\": \"service_namespace\",\n        \"otel_service\": \"service_name\",\n        \"environment\": \"env\",\n        \"site\": \"region\",\n    },\n    filter_by_span_id=True,\n    filter_by_trace_id=True)\ndevelopment = grafana.assert_.LogConfig(\"development\",\n    name=\"development\",\n    priority=2000,\n    default_config=True,\n    data_source_uid=\"elasticsearch-dev\",\n    error_label=\"error\",\n    matches=[\n        {\n            \"property\": \"asserts_entity_type\",\n            \"op\": \"EQUALS\",\n            \"values\": [\"Service\"],\n        },\n        {\n            \"property\": \"environment\",\n            \"op\": \"EQUALS\",\n            \"values\": [\n                \"development\",\n                \"testing\",\n            ],\n        },\n        {\n            \"property\": \"site\",\n            \"op\": \"EQUALS\",\n            \"values\": [\"us-east-1\"],\n        },\n        {\n            \"property\": \"service\",\n            \"op\": \"EQUALS\",\n            \"values\": [\"api\"],\n        },\n    ],\n    entity_property_to_log_label_mapping={\n        \"otel_namespace\": \"service_namespace\",\n        \"otel_service\": \"service_name\",\n        \"environment\": \"env\",\n        \"site\": \"region\",\n        \"service\": \"app\",\n    },\n    filter_by_span_id=True,\n    filter_by_trace_id=True)\nminimal = grafana.assert_.LogConfig(\"minimal\",\n    name=\"minimal\",\n    priority=3000,\n    default_config=False,\n    data_source_uid=\"loki-minimal\",\n    matches=[{\n        \"property\": \"asserts_entity_type\",\n        \"op\": \"IS_NOT_NULL\",\n        \"values\": [],\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var production = new Grafana.Assert.LogConfig(\"production\", new()\n    {\n        Name = \"production\",\n        Priority = 1000,\n        DefaultConfig = false,\n        DataSourceUid = \"grafanacloud-logs\",\n        ErrorLabel = \"error\",\n        Matches = new[]\n        {\n            new Grafana.Assert.Inputs.LogConfigMatchArgs\n            {\n                Property = \"asserts_entity_type\",\n                Op = \"EQUALS\",\n                Values = new[]\n                {\n                    \"Service\",\n                },\n            },\n            new Grafana.Assert.Inputs.LogConfigMatchArgs\n            {\n                Property = \"environment\",\n                Op = \"EQUALS\",\n                Values = new[]\n                {\n                    \"production\",\n                    \"staging\",\n                },\n            },\n            new Grafana.Assert.Inputs.LogConfigMatchArgs\n            {\n                Property = \"site\",\n                Op = \"EQUALS\",\n                Values = new[]\n                {\n                    \"us-east-1\",\n                    \"us-west-2\",\n                },\n            },\n        },\n        EntityPropertyToLogLabelMapping = \n        {\n            { \"otel_namespace\", \"service_namespace\" },\n            { \"otel_service\", \"service_name\" },\n            { \"environment\", \"env\" },\n            { \"site\", \"region\" },\n        },\n        FilterBySpanId = true,\n        FilterByTraceId = true,\n    });\n\n    var development = new Grafana.Assert.LogConfig(\"development\", new()\n    {\n        Name = \"development\",\n        Priority = 2000,\n        DefaultConfig = true,\n        DataSourceUid = \"elasticsearch-dev\",\n        ErrorLabel = \"error\",\n        Matches = new[]\n        {\n            new Grafana.Assert.Inputs.LogConfigMatchArgs\n            {\n                Property = \"asserts_entity_type\",\n                Op = \"EQUALS\",\n                Values = new[]\n                {\n                    \"Service\",\n                },\n            },\n            new Grafana.Assert.Inputs.LogConfigMatchArgs\n            {\n                Property = \"environment\",\n                Op = \"EQUALS\",\n                Values = new[]\n                {\n                    \"development\",\n                    \"testing\",\n                },\n            },\n            new Grafana.Assert.Inputs.LogConfigMatchArgs\n            {\n                Property = \"site\",\n                Op = \"EQUALS\",\n                Values = new[]\n                {\n                    \"us-east-1\",\n                },\n            },\n            new Grafana.Assert.Inputs.LogConfigMatchArgs\n            {\n                Property = \"service\",\n                Op = \"EQUALS\",\n                Values = new[]\n                {\n                    \"api\",\n                },\n            },\n        },\n        EntityPropertyToLogLabelMapping = \n        {\n            { \"otel_namespace\", \"service_namespace\" },\n            { \"otel_service\", \"service_name\" },\n            { \"environment\", \"env\" },\n            { \"site\", \"region\" },\n            { \"service\", \"app\" },\n        },\n        FilterBySpanId = true,\n        FilterByTraceId = true,\n    });\n\n    var minimal = new Grafana.Assert.LogConfig(\"minimal\", new()\n    {\n        Name = \"minimal\",\n        Priority = 3000,\n        DefaultConfig = false,\n        DataSourceUid = \"loki-minimal\",\n        Matches = new[]\n        {\n            new Grafana.Assert.Inputs.LogConfigMatchArgs\n            {\n                Property = \"asserts_entity_type\",\n                Op = \"IS_NOT_NULL\",\n                Values = new() { },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/assert\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := assert.NewLogConfig(ctx, \"production\", \u0026assert.LogConfigArgs{\n\t\t\tName:          pulumi.String(\"production\"),\n\t\t\tPriority:      pulumi.Int(1000),\n\t\t\tDefaultConfig: pulumi.Bool(false),\n\t\t\tDataSourceUid: pulumi.String(\"grafanacloud-logs\"),\n\t\t\tErrorLabel:    pulumi.String(\"error\"),\n\t\t\tMatches: assert.LogConfigMatchArray{\n\t\t\t\t\u0026assert.LogConfigMatchArgs{\n\t\t\t\t\tProperty: pulumi.String(\"asserts_entity_type\"),\n\t\t\t\t\tOp:       pulumi.String(\"EQUALS\"),\n\t\t\t\t\tValues: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"Service\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026assert.LogConfigMatchArgs{\n\t\t\t\t\tProperty: pulumi.String(\"environment\"),\n\t\t\t\t\tOp:       pulumi.String(\"EQUALS\"),\n\t\t\t\t\tValues: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"production\"),\n\t\t\t\t\t\tpulumi.String(\"staging\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026assert.LogConfigMatchArgs{\n\t\t\t\t\tProperty: pulumi.String(\"site\"),\n\t\t\t\t\tOp:       pulumi.String(\"EQUALS\"),\n\t\t\t\t\tValues: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"us-east-1\"),\n\t\t\t\t\t\tpulumi.String(\"us-west-2\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tEntityPropertyToLogLabelMapping: pulumi.StringMap{\n\t\t\t\t\"otel_namespace\": pulumi.String(\"service_namespace\"),\n\t\t\t\t\"otel_service\":   pulumi.String(\"service_name\"),\n\t\t\t\t\"environment\":    pulumi.String(\"env\"),\n\t\t\t\t\"site\":           pulumi.String(\"region\"),\n\t\t\t},\n\t\t\tFilterBySpanId:  pulumi.Bool(true),\n\t\t\tFilterByTraceId: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = assert.NewLogConfig(ctx, \"development\", \u0026assert.LogConfigArgs{\n\t\t\tName:          pulumi.String(\"development\"),\n\t\t\tPriority:      pulumi.Int(2000),\n\t\t\tDefaultConfig: pulumi.Bool(true),\n\t\t\tDataSourceUid: pulumi.String(\"elasticsearch-dev\"),\n\t\t\tErrorLabel:    pulumi.String(\"error\"),\n\t\t\tMatches: assert.LogConfigMatchArray{\n\t\t\t\t\u0026assert.LogConfigMatchArgs{\n\t\t\t\t\tProperty: pulumi.String(\"asserts_entity_type\"),\n\t\t\t\t\tOp:       pulumi.String(\"EQUALS\"),\n\t\t\t\t\tValues: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"Service\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026assert.LogConfigMatchArgs{\n\t\t\t\t\tProperty: pulumi.String(\"environment\"),\n\t\t\t\t\tOp:       pulumi.String(\"EQUALS\"),\n\t\t\t\t\tValues: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"development\"),\n\t\t\t\t\t\tpulumi.String(\"testing\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026assert.LogConfigMatchArgs{\n\t\t\t\t\tProperty: pulumi.String(\"site\"),\n\t\t\t\t\tOp:       pulumi.String(\"EQUALS\"),\n\t\t\t\t\tValues: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"us-east-1\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026assert.LogConfigMatchArgs{\n\t\t\t\t\tProperty: pulumi.String(\"service\"),\n\t\t\t\t\tOp:       pulumi.String(\"EQUALS\"),\n\t\t\t\t\tValues: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"api\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tEntityPropertyToLogLabelMapping: pulumi.StringMap{\n\t\t\t\t\"otel_namespace\": pulumi.String(\"service_namespace\"),\n\t\t\t\t\"otel_service\":   pulumi.String(\"service_name\"),\n\t\t\t\t\"environment\":    pulumi.String(\"env\"),\n\t\t\t\t\"site\":           pulumi.String(\"region\"),\n\t\t\t\t\"service\":        pulumi.String(\"app\"),\n\t\t\t},\n\t\t\tFilterBySpanId:  pulumi.Bool(true),\n\t\t\tFilterByTraceId: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = assert.NewLogConfig(ctx, \"minimal\", \u0026assert.LogConfigArgs{\n\t\t\tName:          pulumi.String(\"minimal\"),\n\t\t\tPriority:      pulumi.Int(3000),\n\t\t\tDefaultConfig: pulumi.Bool(false),\n\t\t\tDataSourceUid: pulumi.String(\"loki-minimal\"),\n\t\t\tMatches: assert.LogConfigMatchArray{\n\t\t\t\t\u0026assert.LogConfigMatchArgs{\n\t\t\t\t\tProperty: pulumi.String(\"asserts_entity_type\"),\n\t\t\t\t\tOp:       pulumi.String(\"IS_NOT_NULL\"),\n\t\t\t\t\tValues:   pulumi.StringArray{},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.assert.LogConfig;\nimport com.pulumi.grafana.assert.LogConfigArgs;\nimport com.pulumi.grafana.assert.inputs.LogConfigMatchArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var production = new LogConfig(\"production\", LogConfigArgs.builder()\n            .name(\"production\")\n            .priority(1000)\n            .defaultConfig(false)\n            .dataSourceUid(\"grafanacloud-logs\")\n            .errorLabel(\"error\")\n            .matches(            \n                LogConfigMatchArgs.builder()\n                    .property(\"asserts_entity_type\")\n                    .op(\"EQUALS\")\n                    .values(\"Service\")\n                    .build(),\n                LogConfigMatchArgs.builder()\n                    .property(\"environment\")\n                    .op(\"EQUALS\")\n                    .values(                    \n                        \"production\",\n                        \"staging\")\n                    .build(),\n                LogConfigMatchArgs.builder()\n                    .property(\"site\")\n                    .op(\"EQUALS\")\n                    .values(                    \n                        \"us-east-1\",\n                        \"us-west-2\")\n                    .build())\n            .entityPropertyToLogLabelMapping(Map.ofEntries(\n                Map.entry(\"otel_namespace\", \"service_namespace\"),\n                Map.entry(\"otel_service\", \"service_name\"),\n                Map.entry(\"environment\", \"env\"),\n                Map.entry(\"site\", \"region\")\n            ))\n            .filterBySpanId(true)\n            .filterByTraceId(true)\n            .build());\n\n        var development = new LogConfig(\"development\", LogConfigArgs.builder()\n            .name(\"development\")\n            .priority(2000)\n            .defaultConfig(true)\n            .dataSourceUid(\"elasticsearch-dev\")\n            .errorLabel(\"error\")\n            .matches(            \n                LogConfigMatchArgs.builder()\n                    .property(\"asserts_entity_type\")\n                    .op(\"EQUALS\")\n                    .values(\"Service\")\n                    .build(),\n                LogConfigMatchArgs.builder()\n                    .property(\"environment\")\n                    .op(\"EQUALS\")\n                    .values(                    \n                        \"development\",\n                        \"testing\")\n                    .build(),\n                LogConfigMatchArgs.builder()\n                    .property(\"site\")\n                    .op(\"EQUALS\")\n                    .values(\"us-east-1\")\n                    .build(),\n                LogConfigMatchArgs.builder()\n                    .property(\"service\")\n                    .op(\"EQUALS\")\n                    .values(\"api\")\n                    .build())\n            .entityPropertyToLogLabelMapping(Map.ofEntries(\n                Map.entry(\"otel_namespace\", \"service_namespace\"),\n                Map.entry(\"otel_service\", \"service_name\"),\n                Map.entry(\"environment\", \"env\"),\n                Map.entry(\"site\", \"region\"),\n                Map.entry(\"service\", \"app\")\n            ))\n            .filterBySpanId(true)\n            .filterByTraceId(true)\n            .build());\n\n        var minimal = new LogConfig(\"minimal\", LogConfigArgs.builder()\n            .name(\"minimal\")\n            .priority(3000)\n            .defaultConfig(false)\n            .dataSourceUid(\"loki-minimal\")\n            .matches(LogConfigMatchArgs.builder()\n                .property(\"asserts_entity_type\")\n                .op(\"IS_NOT_NULL\")\n                .values()\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  production:\n    type: grafana:assert:LogConfig\n    properties:\n      name: production\n      priority: 1000\n      defaultConfig: false\n      dataSourceUid: grafanacloud-logs\n      errorLabel: error\n      matches:\n        - property: asserts_entity_type\n          op: EQUALS\n          values:\n            - Service\n        - property: environment\n          op: EQUALS\n          values:\n            - production\n            - staging\n        - property: site\n          op: EQUALS\n          values:\n            - us-east-1\n            - us-west-2\n      entityPropertyToLogLabelMapping:\n        otel_namespace: service_namespace\n        otel_service: service_name\n        environment: env\n        site: region\n      filterBySpanId: true\n      filterByTraceId: true\n  development:\n    type: grafana:assert:LogConfig\n    properties:\n      name: development\n      priority: 2000\n      defaultConfig: true\n      dataSourceUid: elasticsearch-dev\n      errorLabel: error\n      matches:\n        - property: asserts_entity_type\n          op: EQUALS\n          values:\n            - Service\n        - property: environment\n          op: EQUALS\n          values:\n            - development\n            - testing\n        - property: site\n          op: EQUALS\n          values:\n            - us-east-1\n        - property: service\n          op: EQUALS\n          values:\n            - api\n      entityPropertyToLogLabelMapping:\n        otel_namespace: service_namespace\n        otel_service: service_name\n        environment: env\n        site: region\n        service: app\n      filterBySpanId: true\n      filterByTraceId: true\n  minimal:\n    type: grafana:assert:LogConfig\n    properties:\n      name: minimal\n      priority: 3000\n      defaultConfig: false\n      dataSourceUid: loki-minimal\n      matches:\n        - property: asserts_entity_type\n          op: IS_NOT_NULL\n          values: []\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:assert/logConfig:LogConfig name \"{{ name }}\"\n```\n\n",
+            "properties": {
+                "dataSourceUid": {
+                    "type": "string",
+                    "description": "DataSource to be queried (e.g., a Loki instance).\n"
+                },
+                "defaultConfig": {
+                    "type": "boolean",
+                    "description": "Is it the default config, therefore undeletable?\n"
+                },
+                "entityPropertyToLogLabelMapping": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Mapping of entity properties to log labels.\n"
+                },
+                "errorLabel": {
+                    "type": "string",
+                    "description": "Error label to filter logs.\n"
+                },
+                "filterBySpanId": {
+                    "type": "boolean",
+                    "description": "Filter logs by span ID.\n"
+                },
+                "filterByTraceId": {
+                    "type": "boolean",
+                    "description": "Filter logs by trace ID.\n"
+                },
+                "matches": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:assert/LogConfigMatch:LogConfigMatch"
+                    },
+                    "description": "List of match rules for entity properties.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the log configuration.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority of the log configuration. A lower number means a higher priority.\n"
+                }
+            },
+            "required": [
+                "dataSourceUid",
+                "defaultConfig",
+                "name",
+                "priority"
+            ],
+            "inputProperties": {
+                "dataSourceUid": {
+                    "type": "string",
+                    "description": "DataSource to be queried (e.g., a Loki instance).\n"
+                },
+                "defaultConfig": {
+                    "type": "boolean",
+                    "description": "Is it the default config, therefore undeletable?\n"
+                },
+                "entityPropertyToLogLabelMapping": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Mapping of entity properties to log labels.\n"
+                },
+                "errorLabel": {
+                    "type": "string",
+                    "description": "Error label to filter logs.\n"
+                },
+                "filterBySpanId": {
+                    "type": "boolean",
+                    "description": "Filter logs by span ID.\n"
+                },
+                "filterByTraceId": {
+                    "type": "boolean",
+                    "description": "Filter logs by trace ID.\n"
+                },
+                "matches": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:assert/LogConfigMatch:LogConfigMatch"
+                    },
+                    "description": "List of match rules for entity properties.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the log configuration.\n",
+                    "willReplaceOnChanges": true
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority of the log configuration. A lower number means a higher priority.\n"
+                }
+            },
+            "requiredInputs": [
+                "dataSourceUid",
+                "defaultConfig",
+                "priority"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering LogConfig resources.\n",
+                "properties": {
+                    "dataSourceUid": {
+                        "type": "string",
+                        "description": "DataSource to be queried (e.g., a Loki instance).\n"
+                    },
+                    "defaultConfig": {
+                        "type": "boolean",
+                        "description": "Is it the default config, therefore undeletable?\n"
+                    },
+                    "entityPropertyToLogLabelMapping": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Mapping of entity properties to log labels.\n"
+                    },
+                    "errorLabel": {
+                        "type": "string",
+                        "description": "Error label to filter logs.\n"
+                    },
+                    "filterBySpanId": {
+                        "type": "boolean",
+                        "description": "Filter logs by span ID.\n"
+                    },
+                    "filterByTraceId": {
+                        "type": "boolean",
+                        "description": "Filter logs by trace ID.\n"
+                    },
+                    "matches": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:assert/LogConfigMatch:LogConfigMatch"
+                        },
+                        "description": "List of match rules for entity properties.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the log configuration.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "Priority of the log configuration. A lower number means a higher priority.\n"
+                    }
+                },
+                "type": "object"
+            }
         },
         "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig": {
             "description": "Manages Asserts Alert Configurations through Grafana API.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\n// Basic alert configuration with silencing\nconst prometheusRemoteStorageFailures = new grafana.assert.NotificationAlertsConfig(\"prometheus_remote_storage_failures\", {\n    name: \"PrometheusRemoteStorageFailures\",\n    matchLabels: {\n        alertname: \"PrometheusRemoteStorageFailures\",\n        alertgroup: \"prometheus.alerts\",\n        asserts_env: \"prod\",\n    },\n    silenced: true,\n});\n// High severity alert with specific job and context matching\nconst errorBuildupNotify = new grafana.assert.NotificationAlertsConfig(\"error_buildup_notify\", {\n    name: \"ErrorBuildupNotify\",\n    matchLabels: {\n        alertname: \"ErrorBuildup\",\n        job: \"acai\",\n        asserts_request_type: \"inbound\",\n        asserts_request_context: \"/auth\",\n    },\n    silenced: false,\n});\n// Alert with additional labels and custom duration\nconst paymentTestAlert = new grafana.assert.NotificationAlertsConfig(\"payment_test_alert\", {\n    name: \"PaymentTestAlert\",\n    matchLabels: {\n        alertname: \"PaymentTestAlert\",\n        additional_labels: \"asserts_severity=~\\\"critical\\\"\",\n        alertgroup: \"alex-k8s-integration-test.alerts\",\n    },\n    alertLabels: {\n        testing: \"onetwothree\",\n    },\n    duration: \"5m\",\n    silenced: false,\n});\n// Latency alert for shipping service\nconst highShippingLatency = new grafana.assert.NotificationAlertsConfig(\"high_shipping_latency\", {\n    name: \"high shipping latency\",\n    matchLabels: {\n        alertname: \"LatencyP99ErrorBuildup\",\n        job: \"shipping\",\n        asserts_request_type: \"inbound\",\n    },\n    silenced: false,\n});\n// CPU throttling alert with warning severity\nconst cpuThrottlingSustained = new grafana.assert.NotificationAlertsConfig(\"cpu_throttling_sustained\", {\n    name: \"CPUThrottlingSustained\",\n    matchLabels: {\n        alertname: \"CPUThrottlingSustained\",\n        additional_labels: \"asserts_severity=~\\\"warning\\\"\",\n    },\n    silenced: true,\n});\n// Ingress error rate alert\nconst ingressError = new grafana.assert.NotificationAlertsConfig(\"ingress_error\", {\n    name: \"ingress error\",\n    matchLabels: {\n        alertname: \"ErrorRatioBreach\",\n        job: \"ingress-nginx-controller-metrics\",\n        asserts_request_type: \"inbound\",\n    },\n    silenced: false,\n});\n// MySQL Galera cluster alert\nconst mysqlGaleraNotReady = new grafana.assert.NotificationAlertsConfig(\"mysql_galera_not_ready\", {\n    name: \"MySQLGaleraNotReady\",\n    matchLabels: {\n        alertname: \"MySQLGaleraNotReady\",\n    },\n    silenced: false,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\n# Basic alert configuration with silencing\nprometheus_remote_storage_failures = grafana.assert_.NotificationAlertsConfig(\"prometheus_remote_storage_failures\",\n    name=\"PrometheusRemoteStorageFailures\",\n    match_labels={\n        \"alertname\": \"PrometheusRemoteStorageFailures\",\n        \"alertgroup\": \"prometheus.alerts\",\n        \"asserts_env\": \"prod\",\n    },\n    silenced=True)\n# High severity alert with specific job and context matching\nerror_buildup_notify = grafana.assert_.NotificationAlertsConfig(\"error_buildup_notify\",\n    name=\"ErrorBuildupNotify\",\n    match_labels={\n        \"alertname\": \"ErrorBuildup\",\n        \"job\": \"acai\",\n        \"asserts_request_type\": \"inbound\",\n        \"asserts_request_context\": \"/auth\",\n    },\n    silenced=False)\n# Alert with additional labels and custom duration\npayment_test_alert = grafana.assert_.NotificationAlertsConfig(\"payment_test_alert\",\n    name=\"PaymentTestAlert\",\n    match_labels={\n        \"alertname\": \"PaymentTestAlert\",\n        \"additional_labels\": \"asserts_severity=~\\\"critical\\\"\",\n        \"alertgroup\": \"alex-k8s-integration-test.alerts\",\n    },\n    alert_labels={\n        \"testing\": \"onetwothree\",\n    },\n    duration=\"5m\",\n    silenced=False)\n# Latency alert for shipping service\nhigh_shipping_latency = grafana.assert_.NotificationAlertsConfig(\"high_shipping_latency\",\n    name=\"high shipping latency\",\n    match_labels={\n        \"alertname\": \"LatencyP99ErrorBuildup\",\n        \"job\": \"shipping\",\n        \"asserts_request_type\": \"inbound\",\n    },\n    silenced=False)\n# CPU throttling alert with warning severity\ncpu_throttling_sustained = grafana.assert_.NotificationAlertsConfig(\"cpu_throttling_sustained\",\n    name=\"CPUThrottlingSustained\",\n    match_labels={\n        \"alertname\": \"CPUThrottlingSustained\",\n        \"additional_labels\": \"asserts_severity=~\\\"warning\\\"\",\n    },\n    silenced=True)\n# Ingress error rate alert\ningress_error = grafana.assert_.NotificationAlertsConfig(\"ingress_error\",\n    name=\"ingress error\",\n    match_labels={\n        \"alertname\": \"ErrorRatioBreach\",\n        \"job\": \"ingress-nginx-controller-metrics\",\n        \"asserts_request_type\": \"inbound\",\n    },\n    silenced=False)\n# MySQL Galera cluster alert\nmysql_galera_not_ready = grafana.assert_.NotificationAlertsConfig(\"mysql_galera_not_ready\",\n    name=\"MySQLGaleraNotReady\",\n    match_labels={\n        \"alertname\": \"MySQLGaleraNotReady\",\n    },\n    silenced=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Basic alert configuration with silencing\n    var prometheusRemoteStorageFailures = new Grafana.Assert.NotificationAlertsConfig(\"prometheus_remote_storage_failures\", new()\n    {\n        Name = \"PrometheusRemoteStorageFailures\",\n        MatchLabels = \n        {\n            { \"alertname\", \"PrometheusRemoteStorageFailures\" },\n            { \"alertgroup\", \"prometheus.alerts\" },\n            { \"asserts_env\", \"prod\" },\n        },\n        Silenced = true,\n    });\n\n    // High severity alert with specific job and context matching\n    var errorBuildupNotify = new Grafana.Assert.NotificationAlertsConfig(\"error_buildup_notify\", new()\n    {\n        Name = \"ErrorBuildupNotify\",\n        MatchLabels = \n        {\n            { \"alertname\", \"ErrorBuildup\" },\n            { \"job\", \"acai\" },\n            { \"asserts_request_type\", \"inbound\" },\n            { \"asserts_request_context\", \"/auth\" },\n        },\n        Silenced = false,\n    });\n\n    // Alert with additional labels and custom duration\n    var paymentTestAlert = new Grafana.Assert.NotificationAlertsConfig(\"payment_test_alert\", new()\n    {\n        Name = \"PaymentTestAlert\",\n        MatchLabels = \n        {\n            { \"alertname\", \"PaymentTestAlert\" },\n            { \"additional_labels\", \"asserts_severity=~\\\"critical\\\"\" },\n            { \"alertgroup\", \"alex-k8s-integration-test.alerts\" },\n        },\n        AlertLabels = \n        {\n            { \"testing\", \"onetwothree\" },\n        },\n        Duration = \"5m\",\n        Silenced = false,\n    });\n\n    // Latency alert for shipping service\n    var highShippingLatency = new Grafana.Assert.NotificationAlertsConfig(\"high_shipping_latency\", new()\n    {\n        Name = \"high shipping latency\",\n        MatchLabels = \n        {\n            { \"alertname\", \"LatencyP99ErrorBuildup\" },\n            { \"job\", \"shipping\" },\n            { \"asserts_request_type\", \"inbound\" },\n        },\n        Silenced = false,\n    });\n\n    // CPU throttling alert with warning severity\n    var cpuThrottlingSustained = new Grafana.Assert.NotificationAlertsConfig(\"cpu_throttling_sustained\", new()\n    {\n        Name = \"CPUThrottlingSustained\",\n        MatchLabels = \n        {\n            { \"alertname\", \"CPUThrottlingSustained\" },\n            { \"additional_labels\", \"asserts_severity=~\\\"warning\\\"\" },\n        },\n        Silenced = true,\n    });\n\n    // Ingress error rate alert\n    var ingressError = new Grafana.Assert.NotificationAlertsConfig(\"ingress_error\", new()\n    {\n        Name = \"ingress error\",\n        MatchLabels = \n        {\n            { \"alertname\", \"ErrorRatioBreach\" },\n            { \"job\", \"ingress-nginx-controller-metrics\" },\n            { \"asserts_request_type\", \"inbound\" },\n        },\n        Silenced = false,\n    });\n\n    // MySQL Galera cluster alert\n    var mysqlGaleraNotReady = new Grafana.Assert.NotificationAlertsConfig(\"mysql_galera_not_ready\", new()\n    {\n        Name = \"MySQLGaleraNotReady\",\n        MatchLabels = \n        {\n            { \"alertname\", \"MySQLGaleraNotReady\" },\n        },\n        Silenced = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/assert\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Basic alert configuration with silencing\n\t\t_, err := assert.NewNotificationAlertsConfig(ctx, \"prometheus_remote_storage_failures\", \u0026assert.NotificationAlertsConfigArgs{\n\t\t\tName: pulumi.String(\"PrometheusRemoteStorageFailures\"),\n\t\t\tMatchLabels: pulumi.StringMap{\n\t\t\t\t\"alertname\":   pulumi.String(\"PrometheusRemoteStorageFailures\"),\n\t\t\t\t\"alertgroup\":  pulumi.String(\"prometheus.alerts\"),\n\t\t\t\t\"asserts_env\": pulumi.String(\"prod\"),\n\t\t\t},\n\t\t\tSilenced: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// High severity alert with specific job and context matching\n\t\t_, err = assert.NewNotificationAlertsConfig(ctx, \"error_buildup_notify\", \u0026assert.NotificationAlertsConfigArgs{\n\t\t\tName: pulumi.String(\"ErrorBuildupNotify\"),\n\t\t\tMatchLabels: pulumi.StringMap{\n\t\t\t\t\"alertname\":               pulumi.String(\"ErrorBuildup\"),\n\t\t\t\t\"job\":                     pulumi.String(\"acai\"),\n\t\t\t\t\"asserts_request_type\":    pulumi.String(\"inbound\"),\n\t\t\t\t\"asserts_request_context\": pulumi.String(\"/auth\"),\n\t\t\t},\n\t\t\tSilenced: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Alert with additional labels and custom duration\n\t\t_, err = assert.NewNotificationAlertsConfig(ctx, \"payment_test_alert\", \u0026assert.NotificationAlertsConfigArgs{\n\t\t\tName: pulumi.String(\"PaymentTestAlert\"),\n\t\t\tMatchLabels: pulumi.StringMap{\n\t\t\t\t\"alertname\":         pulumi.String(\"PaymentTestAlert\"),\n\t\t\t\t\"additional_labels\": pulumi.String(\"asserts_severity=~\\\"critical\\\"\"),\n\t\t\t\t\"alertgroup\":        pulumi.String(\"alex-k8s-integration-test.alerts\"),\n\t\t\t},\n\t\t\tAlertLabels: pulumi.StringMap{\n\t\t\t\t\"testing\": pulumi.String(\"onetwothree\"),\n\t\t\t},\n\t\t\tDuration: pulumi.String(\"5m\"),\n\t\t\tSilenced: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Latency alert for shipping service\n\t\t_, err = assert.NewNotificationAlertsConfig(ctx, \"high_shipping_latency\", \u0026assert.NotificationAlertsConfigArgs{\n\t\t\tName: pulumi.String(\"high shipping latency\"),\n\t\t\tMatchLabels: pulumi.StringMap{\n\t\t\t\t\"alertname\":            pulumi.String(\"LatencyP99ErrorBuildup\"),\n\t\t\t\t\"job\":                  pulumi.String(\"shipping\"),\n\t\t\t\t\"asserts_request_type\": pulumi.String(\"inbound\"),\n\t\t\t},\n\t\t\tSilenced: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// CPU throttling alert with warning severity\n\t\t_, err = assert.NewNotificationAlertsConfig(ctx, \"cpu_throttling_sustained\", \u0026assert.NotificationAlertsConfigArgs{\n\t\t\tName: pulumi.String(\"CPUThrottlingSustained\"),\n\t\t\tMatchLabels: pulumi.StringMap{\n\t\t\t\t\"alertname\":         pulumi.String(\"CPUThrottlingSustained\"),\n\t\t\t\t\"additional_labels\": pulumi.String(\"asserts_severity=~\\\"warning\\\"\"),\n\t\t\t},\n\t\t\tSilenced: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Ingress error rate alert\n\t\t_, err = assert.NewNotificationAlertsConfig(ctx, \"ingress_error\", \u0026assert.NotificationAlertsConfigArgs{\n\t\t\tName: pulumi.String(\"ingress error\"),\n\t\t\tMatchLabels: pulumi.StringMap{\n\t\t\t\t\"alertname\":            pulumi.String(\"ErrorRatioBreach\"),\n\t\t\t\t\"job\":                  pulumi.String(\"ingress-nginx-controller-metrics\"),\n\t\t\t\t\"asserts_request_type\": pulumi.String(\"inbound\"),\n\t\t\t},\n\t\t\tSilenced: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// MySQL Galera cluster alert\n\t\t_, err = assert.NewNotificationAlertsConfig(ctx, \"mysql_galera_not_ready\", \u0026assert.NotificationAlertsConfigArgs{\n\t\t\tName: pulumi.String(\"MySQLGaleraNotReady\"),\n\t\t\tMatchLabels: pulumi.StringMap{\n\t\t\t\t\"alertname\": pulumi.String(\"MySQLGaleraNotReady\"),\n\t\t\t},\n\t\t\tSilenced: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.assert.NotificationAlertsConfig;\nimport com.pulumi.grafana.assert.NotificationAlertsConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Basic alert configuration with silencing\n        var prometheusRemoteStorageFailures = new NotificationAlertsConfig(\"prometheusRemoteStorageFailures\", NotificationAlertsConfigArgs.builder()\n            .name(\"PrometheusRemoteStorageFailures\")\n            .matchLabels(Map.ofEntries(\n                Map.entry(\"alertname\", \"PrometheusRemoteStorageFailures\"),\n                Map.entry(\"alertgroup\", \"prometheus.alerts\"),\n                Map.entry(\"asserts_env\", \"prod\")\n            ))\n            .silenced(true)\n            .build());\n\n        // High severity alert with specific job and context matching\n        var errorBuildupNotify = new NotificationAlertsConfig(\"errorBuildupNotify\", NotificationAlertsConfigArgs.builder()\n            .name(\"ErrorBuildupNotify\")\n            .matchLabels(Map.ofEntries(\n                Map.entry(\"alertname\", \"ErrorBuildup\"),\n                Map.entry(\"job\", \"acai\"),\n                Map.entry(\"asserts_request_type\", \"inbound\"),\n                Map.entry(\"asserts_request_context\", \"/auth\")\n            ))\n            .silenced(false)\n            .build());\n\n        // Alert with additional labels and custom duration\n        var paymentTestAlert = new NotificationAlertsConfig(\"paymentTestAlert\", NotificationAlertsConfigArgs.builder()\n            .name(\"PaymentTestAlert\")\n            .matchLabels(Map.ofEntries(\n                Map.entry(\"alertname\", \"PaymentTestAlert\"),\n                Map.entry(\"additional_labels\", \"asserts_severity=~\\\"critical\\\"\"),\n                Map.entry(\"alertgroup\", \"alex-k8s-integration-test.alerts\")\n            ))\n            .alertLabels(Map.of(\"testing\", \"onetwothree\"))\n            .duration(\"5m\")\n            .silenced(false)\n            .build());\n\n        // Latency alert for shipping service\n        var highShippingLatency = new NotificationAlertsConfig(\"highShippingLatency\", NotificationAlertsConfigArgs.builder()\n            .name(\"high shipping latency\")\n            .matchLabels(Map.ofEntries(\n                Map.entry(\"alertname\", \"LatencyP99ErrorBuildup\"),\n                Map.entry(\"job\", \"shipping\"),\n                Map.entry(\"asserts_request_type\", \"inbound\")\n            ))\n            .silenced(false)\n            .build());\n\n        // CPU throttling alert with warning severity\n        var cpuThrottlingSustained = new NotificationAlertsConfig(\"cpuThrottlingSustained\", NotificationAlertsConfigArgs.builder()\n            .name(\"CPUThrottlingSustained\")\n            .matchLabels(Map.ofEntries(\n                Map.entry(\"alertname\", \"CPUThrottlingSustained\"),\n                Map.entry(\"additional_labels\", \"asserts_severity=~\\\"warning\\\"\")\n            ))\n            .silenced(true)\n            .build());\n\n        // Ingress error rate alert\n        var ingressError = new NotificationAlertsConfig(\"ingressError\", NotificationAlertsConfigArgs.builder()\n            .name(\"ingress error\")\n            .matchLabels(Map.ofEntries(\n                Map.entry(\"alertname\", \"ErrorRatioBreach\"),\n                Map.entry(\"job\", \"ingress-nginx-controller-metrics\"),\n                Map.entry(\"asserts_request_type\", \"inbound\")\n            ))\n            .silenced(false)\n            .build());\n\n        // MySQL Galera cluster alert\n        var mysqlGaleraNotReady = new NotificationAlertsConfig(\"mysqlGaleraNotReady\", NotificationAlertsConfigArgs.builder()\n            .name(\"MySQLGaleraNotReady\")\n            .matchLabels(Map.of(\"alertname\", \"MySQLGaleraNotReady\"))\n            .silenced(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Basic alert configuration with silencing\n  prometheusRemoteStorageFailures:\n    type: grafana:assert:NotificationAlertsConfig\n    name: prometheus_remote_storage_failures\n    properties:\n      name: PrometheusRemoteStorageFailures\n      matchLabels:\n        alertname: PrometheusRemoteStorageFailures\n        alertgroup: prometheus.alerts\n        asserts_env: prod\n      silenced: true\n  # High severity alert with specific job and context matching\n  errorBuildupNotify:\n    type: grafana:assert:NotificationAlertsConfig\n    name: error_buildup_notify\n    properties:\n      name: ErrorBuildupNotify\n      matchLabels:\n        alertname: ErrorBuildup\n        job: acai\n        asserts_request_type: inbound\n        asserts_request_context: /auth\n      silenced: false\n  # Alert with additional labels and custom duration\n  paymentTestAlert:\n    type: grafana:assert:NotificationAlertsConfig\n    name: payment_test_alert\n    properties:\n      name: PaymentTestAlert\n      matchLabels:\n        alertname: PaymentTestAlert\n        additional_labels: asserts_severity=~\"critical\"\n        alertgroup: alex-k8s-integration-test.alerts\n      alertLabels:\n        testing: onetwothree\n      duration: 5m\n      silenced: false\n  # Latency alert for shipping service\n  highShippingLatency:\n    type: grafana:assert:NotificationAlertsConfig\n    name: high_shipping_latency\n    properties:\n      name: high shipping latency\n      matchLabels:\n        alertname: LatencyP99ErrorBuildup\n        job: shipping\n        asserts_request_type: inbound\n      silenced: false\n  # CPU throttling alert with warning severity\n  cpuThrottlingSustained:\n    type: grafana:assert:NotificationAlertsConfig\n    name: cpu_throttling_sustained\n    properties:\n      name: CPUThrottlingSustained\n      matchLabels:\n        alertname: CPUThrottlingSustained\n        additional_labels: asserts_severity=~\"warning\"\n      silenced: true\n  # Ingress error rate alert\n  ingressError:\n    type: grafana:assert:NotificationAlertsConfig\n    name: ingress_error\n    properties:\n      name: ingress error\n      matchLabels:\n        alertname: ErrorRatioBreach\n        job: ingress-nginx-controller-metrics\n        asserts_request_type: inbound\n      silenced: false\n  # MySQL Galera cluster alert\n  mysqlGaleraNotReady:\n    type: grafana:assert:NotificationAlertsConfig\n    name: mysql_galera_not_ready\n    properties:\n      name: MySQLGaleraNotReady\n      matchLabels:\n        alertname: MySQLGaleraNotReady\n      silenced: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:assert/notificationAlertsConfig:NotificationAlertsConfig name \"{{ name }}\"\n```\n\n",

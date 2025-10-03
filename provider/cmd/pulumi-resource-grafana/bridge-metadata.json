@@ -93,6 +93,48 @@
                     }
                 }
             },
+            "grafana_asserts_custom_model_rules": {
+                "current": "grafana:assert/customModelRules:CustomModelRules",
+                "majorVersion": 2,
+                "fields": {
+                    "rules": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "entity": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "defined_by": {
+                                                "maxItemsOne": false
+                                            },
+                                            "enriched_by": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "grafana_asserts_log_config": {
+                "current": "grafana:assert/logConfig:LogConfig",
+                "majorVersion": 2,
+                "fields": {
+                    "match": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_asserts_notification_alerts_config": {
                 "current": "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig",
                 "majorVersion": 2
@@ -1907,6 +1949,8 @@
             "grafana:alerting/muteTiming:MuteTiming": 0,
             "grafana:alerting/notificationPolicy:NotificationPolicy": 0,
             "grafana:alerting/ruleGroup:RuleGroup": 0,
+            "grafana:assert/customModelRules:CustomModelRules": 0,
+            "grafana:assert/logConfig:LogConfig": 0,
             "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig": 0,
             "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig": 0,
             "grafana:cloud/accessPolicy:AccessPolicy": 0,
