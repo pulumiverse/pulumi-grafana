@@ -101,18 +101,13 @@ namespace Pulumiverse.Grafana.MachineLearning
     public partial class OutlierDetector : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The algorithm to use and its configuration. See
-        /// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        /// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         /// </summary>
         [Output("algorithm")]
         public Output<Outputs.OutlierDetectorAlgorithm> Algorithm { get; private set; } = null!;
 
         /// <summary>
-        /// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-        /// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-        /// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-        /// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-        /// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+        /// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
         /// </summary>
         [Output("datasourceType")]
         public Output<string> DatasourceType { get; private set; } = null!;
@@ -201,18 +196,13 @@ namespace Pulumiverse.Grafana.MachineLearning
     public sealed class OutlierDetectorArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The algorithm to use and its configuration. See
-        /// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        /// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         /// </summary>
         [Input("algorithm", required: true)]
         public Input<Inputs.OutlierDetectorAlgorithmArgs> Algorithm { get; set; } = null!;
 
         /// <summary>
-        /// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-        /// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-        /// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-        /// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-        /// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+        /// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
         /// </summary>
         [Input("datasourceType", required: true)]
         public Input<string> DatasourceType { get; set; } = null!;
@@ -268,18 +258,13 @@ namespace Pulumiverse.Grafana.MachineLearning
     public sealed class OutlierDetectorState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The algorithm to use and its configuration. See
-        /// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+        /// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         /// </summary>
         [Input("algorithm")]
         public Input<Inputs.OutlierDetectorAlgorithmGetArgs>? Algorithm { get; set; }
 
         /// <summary>
-        /// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-        /// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-        /// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-        /// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-        /// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+        /// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
         /// </summary>
         [Input("datasourceType")]
         public Input<string>? DatasourceType { get; set; }

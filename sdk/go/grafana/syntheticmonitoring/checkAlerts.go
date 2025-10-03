@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // Manages alerts for a check in Grafana Synthetic Monitoring.
@@ -24,7 +24,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/syntheticmonitoring"
 //
 // )
 //

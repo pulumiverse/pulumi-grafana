@@ -84,15 +84,15 @@ export class FolderPermission extends pulumi.CustomResource {
     /**
      * The UID of the folder.
      */
-    public readonly folderUid!: pulumi.Output<string>;
+    declare public readonly folderUid: pulumi.Output<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
-    public readonly permissions!: pulumi.Output<outputs.oss.FolderPermissionPermission[] | undefined>;
+    declare public readonly permissions: pulumi.Output<outputs.oss.FolderPermissionPermission[] | undefined>;
 
     /**
      * Create a FolderPermission resource with the given unique name, arguments, and options.
@@ -107,17 +107,17 @@ export class FolderPermission extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FolderPermissionState | undefined;
-            resourceInputs["folderUid"] = state ? state.folderUid : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["permissions"] = state ? state.permissions : undefined;
+            resourceInputs["folderUid"] = state?.folderUid;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["permissions"] = state?.permissions;
         } else {
             const args = argsOrState as FolderPermissionArgs | undefined;
-            if ((!args || args.folderUid === undefined) && !opts.urn) {
+            if (args?.folderUid === undefined && !opts.urn) {
                 throw new Error("Missing required property 'folderUid'");
             }
-            resourceInputs["folderUid"] = args ? args.folderUid : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["permissions"] = args ? args.permissions : undefined;
+            resourceInputs["folderUid"] = args?.folderUid;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["permissions"] = args?.permissions;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/folderPermission:FolderPermission" }] };

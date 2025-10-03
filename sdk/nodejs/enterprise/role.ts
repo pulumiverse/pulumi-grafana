@@ -82,47 +82,47 @@ export class Role extends pulumi.CustomResource {
     /**
      * Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
      */
-    public readonly autoIncrementVersion!: pulumi.Output<boolean | undefined>;
+    declare public readonly autoIncrementVersion: pulumi.Output<boolean | undefined>;
     /**
      * Description of the role.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Display name of the role. Available with Grafana 8.5+.
      */
-    public readonly displayName!: pulumi.Output<string | undefined>;
+    declare public readonly displayName: pulumi.Output<string | undefined>;
     /**
      * Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
      */
-    public readonly global!: pulumi.Output<boolean | undefined>;
+    declare public readonly global: pulumi.Output<boolean | undefined>;
     /**
      * Group of the role. Available with Grafana 8.5+.
      */
-    public readonly group!: pulumi.Output<string | undefined>;
+    declare public readonly group: pulumi.Output<string | undefined>;
     /**
      * Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
      */
-    public readonly hidden!: pulumi.Output<boolean | undefined>;
+    declare public readonly hidden: pulumi.Output<boolean | undefined>;
     /**
      * Name of the role
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * Specific set of actions granted by the role.
      */
-    public readonly permissions!: pulumi.Output<outputs.enterprise.RolePermission[] | undefined>;
+    declare public readonly permissions: pulumi.Output<outputs.enterprise.RolePermission[] | undefined>;
     /**
      * Unique identifier of the role. Used for assignments.
      */
-    public readonly uid!: pulumi.Output<string>;
+    declare public readonly uid: pulumi.Output<string>;
     /**
      * Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
      */
-    public readonly version!: pulumi.Output<number | undefined>;
+    declare public readonly version: pulumi.Output<number | undefined>;
 
     /**
      * Create a Role resource with the given unique name, arguments, and options.
@@ -137,30 +137,30 @@ export class Role extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RoleState | undefined;
-            resourceInputs["autoIncrementVersion"] = state ? state.autoIncrementVersion : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["displayName"] = state ? state.displayName : undefined;
-            resourceInputs["global"] = state ? state.global : undefined;
-            resourceInputs["group"] = state ? state.group : undefined;
-            resourceInputs["hidden"] = state ? state.hidden : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["permissions"] = state ? state.permissions : undefined;
-            resourceInputs["uid"] = state ? state.uid : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["autoIncrementVersion"] = state?.autoIncrementVersion;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["displayName"] = state?.displayName;
+            resourceInputs["global"] = state?.global;
+            resourceInputs["group"] = state?.group;
+            resourceInputs["hidden"] = state?.hidden;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["permissions"] = state?.permissions;
+            resourceInputs["uid"] = state?.uid;
+            resourceInputs["version"] = state?.version;
         } else {
             const args = argsOrState as RoleArgs | undefined;
-            resourceInputs["autoIncrementVersion"] = args ? args.autoIncrementVersion : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["displayName"] = args ? args.displayName : undefined;
-            resourceInputs["global"] = args ? args.global : undefined;
-            resourceInputs["group"] = args ? args.group : undefined;
-            resourceInputs["hidden"] = args ? args.hidden : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["permissions"] = args ? args.permissions : undefined;
-            resourceInputs["uid"] = args ? args.uid : undefined;
-            resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["autoIncrementVersion"] = args?.autoIncrementVersion;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["displayName"] = args?.displayName;
+            resourceInputs["global"] = args?.global;
+            resourceInputs["group"] = args?.group;
+            resourceInputs["hidden"] = args?.hidden;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["permissions"] = args?.permissions;
+            resourceInputs["uid"] = args?.uid;
+            resourceInputs["version"] = args?.version;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/role:Role" }] };

@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // An outlier detector monitors the results of a query and reports when its values are outside normal bands.
@@ -30,7 +30,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/machinelearning"
 //
 // )
 //
@@ -73,7 +73,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/machinelearning"
 //
 // )
 //
@@ -111,14 +111,9 @@ import (
 type OutlierDetector struct {
 	pulumi.CustomResourceState
 
-	// The algorithm to use and its configuration. See
-	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+	// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm OutlierDetectorAlgorithmOutput `pulumi:"algorithm"`
-	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-	// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-	// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-	// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-	// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
 	DatasourceType pulumi.StringOutput `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
 	DatasourceUid pulumi.StringOutput `pulumi:"datasourceUid"`
@@ -179,14 +174,9 @@ func GetOutlierDetector(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OutlierDetector resources.
 type outlierDetectorState struct {
-	// The algorithm to use and its configuration. See
-	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+	// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm *OutlierDetectorAlgorithm `pulumi:"algorithm"`
-	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-	// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-	// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-	// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-	// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
 	DatasourceType *string `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
 	DatasourceUid *string `pulumi:"datasourceUid"`
@@ -203,14 +193,9 @@ type outlierDetectorState struct {
 }
 
 type OutlierDetectorState struct {
-	// The algorithm to use and its configuration. See
-	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+	// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm OutlierDetectorAlgorithmPtrInput
-	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-	// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-	// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-	// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-	// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
 	DatasourceType pulumi.StringPtrInput
 	// The uid of the datasource to query.
 	DatasourceUid pulumi.StringPtrInput
@@ -231,14 +216,9 @@ func (OutlierDetectorState) ElementType() reflect.Type {
 }
 
 type outlierDetectorArgs struct {
-	// The algorithm to use and its configuration. See
-	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+	// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm OutlierDetectorAlgorithm `pulumi:"algorithm"`
-	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-	// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-	// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-	// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-	// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
 	DatasourceType string `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
 	DatasourceUid string `pulumi:"datasourceUid"`
@@ -256,14 +236,9 @@ type outlierDetectorArgs struct {
 
 // The set of arguments for constructing a OutlierDetector resource.
 type OutlierDetectorArgs struct {
-	// The algorithm to use and its configuration. See
-	// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+	// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 	Algorithm OutlierDetectorAlgorithmInput
-	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-	// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-	// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-	// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-	// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
 	DatasourceType pulumi.StringInput
 	// The uid of the datasource to query.
 	DatasourceUid pulumi.StringInput
@@ -366,17 +341,12 @@ func (o OutlierDetectorOutput) ToOutlierDetectorOutputWithContext(ctx context.Co
 	return o
 }
 
-// The algorithm to use and its configuration. See
-// https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+// The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
 func (o OutlierDetectorOutput) Algorithm() OutlierDetectorAlgorithmOutput {
 	return o.ApplyT(func(v *OutlierDetector) OutlierDetectorAlgorithmOutput { return v.Algorithm }).(OutlierDetectorAlgorithmOutput)
 }
 
-// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
 func (o OutlierDetectorOutput) DatasourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *OutlierDetector) pulumi.StringOutput { return v.DatasourceType }).(pulumi.StringOutput)
 }

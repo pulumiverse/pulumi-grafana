@@ -43,15 +43,15 @@ export class AppsPlaylistV0Alpha1 extends pulumi.CustomResource {
     /**
      * The metadata of the resource.
      */
-    public readonly metadata!: pulumi.Output<outputs.experimental.AppsPlaylistV0Alpha1Metadata | undefined>;
+    declare public readonly metadata: pulumi.Output<outputs.experimental.AppsPlaylistV0Alpha1Metadata | undefined>;
     /**
      * Options for applying the resource.
      */
-    public readonly options!: pulumi.Output<outputs.experimental.AppsPlaylistV0Alpha1Options | undefined>;
+    declare public readonly options: pulumi.Output<outputs.experimental.AppsPlaylistV0Alpha1Options | undefined>;
     /**
      * The spec of the resource.
      */
-    public readonly spec!: pulumi.Output<outputs.experimental.AppsPlaylistV0Alpha1Spec | undefined>;
+    declare public readonly spec: pulumi.Output<outputs.experimental.AppsPlaylistV0Alpha1Spec | undefined>;
 
     /**
      * Create a AppsPlaylistV0Alpha1 resource with the given unique name, arguments, and options.
@@ -66,14 +66,14 @@ export class AppsPlaylistV0Alpha1 extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AppsPlaylistV0Alpha1State | undefined;
-            resourceInputs["metadata"] = state ? state.metadata : undefined;
-            resourceInputs["options"] = state ? state.options : undefined;
-            resourceInputs["spec"] = state ? state.spec : undefined;
+            resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["options"] = state?.options;
+            resourceInputs["spec"] = state?.spec;
         } else {
             const args = argsOrState as AppsPlaylistV0Alpha1Args | undefined;
-            resourceInputs["metadata"] = args ? args.metadata : undefined;
-            resourceInputs["options"] = args ? args.options : undefined;
-            resourceInputs["spec"] = args ? args.spec : undefined;
+            resourceInputs["metadata"] = args?.metadata;
+            resourceInputs["options"] = args?.options;
+            resourceInputs["spec"] = args?.spec;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AppsPlaylistV0Alpha1.__pulumiType, name, resourceInputs, opts);

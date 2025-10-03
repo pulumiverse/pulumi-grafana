@@ -78,23 +78,23 @@ export class ServiceAccountPermissionItem extends pulumi.CustomResource {
     /**
      * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
-    public readonly orgId!: pulumi.Output<string>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * the permission to be assigned
      */
-    public readonly permission!: pulumi.Output<string>;
+    declare public readonly permission: pulumi.Output<string>;
     /**
      * The ID of the service account.
      */
-    public readonly serviceAccountId!: pulumi.Output<string>;
+    declare public readonly serviceAccountId: pulumi.Output<string>;
     /**
      * the team onto which the permission is to be assigned
      */
-    public readonly team!: pulumi.Output<string | undefined>;
+    declare public readonly team: pulumi.Output<string | undefined>;
     /**
      * the user or service account onto which the permission is to be assigned
      */
-    public readonly user!: pulumi.Output<string | undefined>;
+    declare public readonly user: pulumi.Output<string | undefined>;
 
     /**
      * Create a ServiceAccountPermissionItem resource with the given unique name, arguments, and options.
@@ -109,24 +109,24 @@ export class ServiceAccountPermissionItem extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceAccountPermissionItemState | undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["permission"] = state ? state.permission : undefined;
-            resourceInputs["serviceAccountId"] = state ? state.serviceAccountId : undefined;
-            resourceInputs["team"] = state ? state.team : undefined;
-            resourceInputs["user"] = state ? state.user : undefined;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["permission"] = state?.permission;
+            resourceInputs["serviceAccountId"] = state?.serviceAccountId;
+            resourceInputs["team"] = state?.team;
+            resourceInputs["user"] = state?.user;
         } else {
             const args = argsOrState as ServiceAccountPermissionItemArgs | undefined;
-            if ((!args || args.permission === undefined) && !opts.urn) {
+            if (args?.permission === undefined && !opts.urn) {
                 throw new Error("Missing required property 'permission'");
             }
-            if ((!args || args.serviceAccountId === undefined) && !opts.urn) {
+            if (args?.serviceAccountId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountId'");
             }
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["permission"] = args ? args.permission : undefined;
-            resourceInputs["serviceAccountId"] = args ? args.serviceAccountId : undefined;
-            resourceInputs["team"] = args ? args.team : undefined;
-            resourceInputs["user"] = args ? args.user : undefined;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["permission"] = args?.permission;
+            resourceInputs["serviceAccountId"] = args?.serviceAccountId;
+            resourceInputs["team"] = args?.team;
+            resourceInputs["user"] = args?.user;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/serviceAccountPermissionItem:ServiceAccountPermissionItem" }] };

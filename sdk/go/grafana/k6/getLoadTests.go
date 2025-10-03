@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // Retrieves all k6 load tests that belong to a project.
@@ -21,7 +21,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/k6"
 //
 // )
 //

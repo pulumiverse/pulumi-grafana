@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#stacks/)
@@ -28,7 +28,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
 //
 // )
 //
@@ -69,6 +69,8 @@ type Stack struct {
 	AlertmanagerUserId pulumi.IntOutput `pulumi:"alertmanagerUserId"`
 	// Slug of the cluster where this stack resides.
 	ClusterSlug pulumi.StringOutput `pulumi:"clusterSlug"`
+	// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+	DeleteProtection pulumi.BoolPtrOutput `pulumi:"deleteProtection"`
 	// Description of stack.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Name of the Fleet Management instance configured for this stack.
@@ -231,6 +233,8 @@ type stackState struct {
 	AlertmanagerUserId *int `pulumi:"alertmanagerUserId"`
 	// Slug of the cluster where this stack resides.
 	ClusterSlug *string `pulumi:"clusterSlug"`
+	// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+	DeleteProtection *bool `pulumi:"deleteProtection"`
 	// Description of stack.
 	Description *string `pulumi:"description"`
 	// Name of the Fleet Management instance configured for this stack.
@@ -361,6 +365,8 @@ type StackState struct {
 	AlertmanagerUserId pulumi.IntPtrInput
 	// Slug of the cluster where this stack resides.
 	ClusterSlug pulumi.StringPtrInput
+	// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+	DeleteProtection pulumi.BoolPtrInput
 	// Description of stack.
 	Description pulumi.StringPtrInput
 	// Name of the Fleet Management instance configured for this stack.
@@ -483,6 +489,8 @@ func (StackState) ElementType() reflect.Type {
 }
 
 type stackArgs struct {
+	// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+	DeleteProtection *bool `pulumi:"deleteProtection"`
 	// Description of stack.
 	Description *string `pulumi:"description"`
 	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
@@ -503,6 +511,8 @@ type stackArgs struct {
 
 // The set of arguments for constructing a Stack resource.
 type StackArgs struct {
+	// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+	DeleteProtection pulumi.BoolPtrInput
 	// Description of stack.
 	Description pulumi.StringPtrInput
 	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
@@ -636,6 +646,11 @@ func (o StackOutput) AlertmanagerUserId() pulumi.IntOutput {
 // Slug of the cluster where this stack resides.
 func (o StackOutput) ClusterSlug() pulumi.StringOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.ClusterSlug }).(pulumi.StringOutput)
+}
+
+// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+func (o StackOutput) DeleteProtection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Stack) pulumi.BoolPtrOutput { return v.DeleteProtection }).(pulumi.BoolPtrOutput)
 }
 
 // Description of stack.

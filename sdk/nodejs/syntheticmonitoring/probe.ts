@@ -70,43 +70,43 @@ export class Probe extends pulumi.CustomResource {
     /**
      * The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
      */
-    public /*out*/ readonly authToken!: pulumi.Output<string>;
+    declare public /*out*/ readonly authToken: pulumi.Output<string>;
     /**
      * Disables browser checks for this probe. Defaults to `false`.
      */
-    public readonly disableBrowserChecks!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableBrowserChecks: pulumi.Output<boolean | undefined>;
     /**
      * Disables scripted checks for this probe. Defaults to `false`.
      */
-    public readonly disableScriptedChecks!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableScriptedChecks: pulumi.Output<boolean | undefined>;
     /**
      * Custom labels to be included with collected metrics and logs.
      */
-    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Latitude coordinates.
      */
-    public readonly latitude!: pulumi.Output<number>;
+    declare public readonly latitude: pulumi.Output<number>;
     /**
      * Longitude coordinates.
      */
-    public readonly longitude!: pulumi.Output<number>;
+    declare public readonly longitude: pulumi.Output<number>;
     /**
      * Name of the probe.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
      */
-    public readonly public!: pulumi.Output<boolean | undefined>;
+    declare public readonly public: pulumi.Output<boolean | undefined>;
     /**
      * Region of the probe.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The tenant ID of the probe.
      */
-    public /*out*/ readonly tenantId!: pulumi.Output<number>;
+    declare public /*out*/ readonly tenantId: pulumi.Output<number>;
 
     /**
      * Create a Probe resource with the given unique name, arguments, and options.
@@ -121,35 +121,35 @@ export class Probe extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProbeState | undefined;
-            resourceInputs["authToken"] = state ? state.authToken : undefined;
-            resourceInputs["disableBrowserChecks"] = state ? state.disableBrowserChecks : undefined;
-            resourceInputs["disableScriptedChecks"] = state ? state.disableScriptedChecks : undefined;
-            resourceInputs["labels"] = state ? state.labels : undefined;
-            resourceInputs["latitude"] = state ? state.latitude : undefined;
-            resourceInputs["longitude"] = state ? state.longitude : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["public"] = state ? state.public : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["tenantId"] = state ? state.tenantId : undefined;
+            resourceInputs["authToken"] = state?.authToken;
+            resourceInputs["disableBrowserChecks"] = state?.disableBrowserChecks;
+            resourceInputs["disableScriptedChecks"] = state?.disableScriptedChecks;
+            resourceInputs["labels"] = state?.labels;
+            resourceInputs["latitude"] = state?.latitude;
+            resourceInputs["longitude"] = state?.longitude;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["public"] = state?.public;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["tenantId"] = state?.tenantId;
         } else {
             const args = argsOrState as ProbeArgs | undefined;
-            if ((!args || args.latitude === undefined) && !opts.urn) {
+            if (args?.latitude === undefined && !opts.urn) {
                 throw new Error("Missing required property 'latitude'");
             }
-            if ((!args || args.longitude === undefined) && !opts.urn) {
+            if (args?.longitude === undefined && !opts.urn) {
                 throw new Error("Missing required property 'longitude'");
             }
-            if ((!args || args.region === undefined) && !opts.urn) {
+            if (args?.region === undefined && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
-            resourceInputs["disableBrowserChecks"] = args ? args.disableBrowserChecks : undefined;
-            resourceInputs["disableScriptedChecks"] = args ? args.disableScriptedChecks : undefined;
-            resourceInputs["labels"] = args ? args.labels : undefined;
-            resourceInputs["latitude"] = args ? args.latitude : undefined;
-            resourceInputs["longitude"] = args ? args.longitude : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["public"] = args ? args.public : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["disableBrowserChecks"] = args?.disableBrowserChecks;
+            resourceInputs["disableScriptedChecks"] = args?.disableScriptedChecks;
+            resourceInputs["labels"] = args?.labels;
+            resourceInputs["latitude"] = args?.latitude;
+            resourceInputs["longitude"] = args?.longitude;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["public"] = args?.public;
+            resourceInputs["region"] = args?.region;
             resourceInputs["authToken"] = undefined /*out*/;
             resourceInputs["tenantId"] = undefined /*out*/;
         }

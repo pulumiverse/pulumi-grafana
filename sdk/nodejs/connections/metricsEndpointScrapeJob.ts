@@ -60,33 +60,33 @@ export class MetricsEndpointScrapeJob extends pulumi.CustomResource {
     /**
      * Password for basic authentication, use if scrape job is using basic authentication method
      */
-    public readonly authenticationBasicPassword!: pulumi.Output<string | undefined>;
+    declare public readonly authenticationBasicPassword: pulumi.Output<string | undefined>;
     /**
      * Username for basic authentication, use if scrape job is using basic authentication method
      */
-    public readonly authenticationBasicUsername!: pulumi.Output<string | undefined>;
+    declare public readonly authenticationBasicUsername: pulumi.Output<string | undefined>;
     /**
      * Bearer token used for authentication, use if scrape job is using bearer authentication method
      */
-    public readonly authenticationBearerToken!: pulumi.Output<string | undefined>;
+    declare public readonly authenticationBearerToken: pulumi.Output<string | undefined>;
     /**
      * Method to pass authentication credentials: basic or bearer.
      */
-    public readonly authenticationMethod!: pulumi.Output<string>;
+    declare public readonly authenticationMethod: pulumi.Output<string>;
     /**
      * Whether the metrics endpoint scrape job is enabled or not.
      */
-    public readonly enabled!: pulumi.Output<boolean>;
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly enabled: pulumi.Output<boolean>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
      */
-    public readonly scrapeIntervalSeconds!: pulumi.Output<number>;
-    public readonly stackId!: pulumi.Output<string>;
+    declare public readonly scrapeIntervalSeconds: pulumi.Output<number>;
+    declare public readonly stackId: pulumi.Output<string>;
     /**
      * The url to scrape metrics from; a valid HTTPs URL is required.
      */
-    public readonly url!: pulumi.Output<string>;
+    declare public readonly url: pulumi.Output<string>;
 
     /**
      * Create a MetricsEndpointScrapeJob resource with the given unique name, arguments, and options.
@@ -101,35 +101,35 @@ export class MetricsEndpointScrapeJob extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MetricsEndpointScrapeJobState | undefined;
-            resourceInputs["authenticationBasicPassword"] = state ? state.authenticationBasicPassword : undefined;
-            resourceInputs["authenticationBasicUsername"] = state ? state.authenticationBasicUsername : undefined;
-            resourceInputs["authenticationBearerToken"] = state ? state.authenticationBearerToken : undefined;
-            resourceInputs["authenticationMethod"] = state ? state.authenticationMethod : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["scrapeIntervalSeconds"] = state ? state.scrapeIntervalSeconds : undefined;
-            resourceInputs["stackId"] = state ? state.stackId : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["authenticationBasicPassword"] = state?.authenticationBasicPassword;
+            resourceInputs["authenticationBasicUsername"] = state?.authenticationBasicUsername;
+            resourceInputs["authenticationBearerToken"] = state?.authenticationBearerToken;
+            resourceInputs["authenticationMethod"] = state?.authenticationMethod;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["scrapeIntervalSeconds"] = state?.scrapeIntervalSeconds;
+            resourceInputs["stackId"] = state?.stackId;
+            resourceInputs["url"] = state?.url;
         } else {
             const args = argsOrState as MetricsEndpointScrapeJobArgs | undefined;
-            if ((!args || args.authenticationMethod === undefined) && !opts.urn) {
+            if (args?.authenticationMethod === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authenticationMethod'");
             }
-            if ((!args || args.stackId === undefined) && !opts.urn) {
+            if (args?.stackId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'stackId'");
             }
-            if ((!args || args.url === undefined) && !opts.urn) {
+            if (args?.url === undefined && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
             resourceInputs["authenticationBasicPassword"] = args?.authenticationBasicPassword ? pulumi.secret(args.authenticationBasicPassword) : undefined;
-            resourceInputs["authenticationBasicUsername"] = args ? args.authenticationBasicUsername : undefined;
+            resourceInputs["authenticationBasicUsername"] = args?.authenticationBasicUsername;
             resourceInputs["authenticationBearerToken"] = args?.authenticationBearerToken ? pulumi.secret(args.authenticationBearerToken) : undefined;
-            resourceInputs["authenticationMethod"] = args ? args.authenticationMethod : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["scrapeIntervalSeconds"] = args ? args.scrapeIntervalSeconds : undefined;
-            resourceInputs["stackId"] = args ? args.stackId : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["authenticationMethod"] = args?.authenticationMethod;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["scrapeIntervalSeconds"] = args?.scrapeIntervalSeconds;
+            resourceInputs["stackId"] = args?.stackId;
+            resourceInputs["url"] = args?.url;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["authenticationBasicPassword", "authenticationBearerToken"] };

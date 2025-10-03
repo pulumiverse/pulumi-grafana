@@ -259,11 +259,7 @@ namespace Pulumiverse.Grafana.MachineLearning
         public Output<ImmutableDictionary<string, string>?> CustomLabels { get; private set; } = null!;
 
         /// <summary>
-        /// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-        /// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-        /// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-        /// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-        /// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+        /// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
         /// </summary>
         [Output("datasourceType")]
         public Output<string> DatasourceType { get; private set; } = null!;
@@ -287,9 +283,7 @@ namespace Pulumiverse.Grafana.MachineLearning
         public Output<ImmutableArray<string>> Holidays { get; private set; } = null!;
 
         /// <summary>
-        /// The hyperparameters used to fine tune the algorithm. See
-        /// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
-        /// available hyperparameters.
+        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of available hyperparameters.
         /// </summary>
         [Output("hyperParams")]
         public Output<ImmutableDictionary<string, string>?> HyperParams { get; private set; } = null!;
@@ -384,11 +378,7 @@ namespace Pulumiverse.Grafana.MachineLearning
         }
 
         /// <summary>
-        /// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-        /// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-        /// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-        /// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-        /// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+        /// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
         /// </summary>
         [Input("datasourceType", required: true)]
         public Input<string> DatasourceType { get; set; } = null!;
@@ -421,9 +411,7 @@ namespace Pulumiverse.Grafana.MachineLearning
         private InputMap<string>? _hyperParams;
 
         /// <summary>
-        /// The hyperparameters used to fine tune the algorithm. See
-        /// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
-        /// available hyperparameters.
+        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of available hyperparameters.
         /// </summary>
         public InputMap<string> HyperParams
         {
@@ -488,11 +476,7 @@ namespace Pulumiverse.Grafana.MachineLearning
         }
 
         /// <summary>
-        /// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-        /// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-        /// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-        /// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-        /// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+        /// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
         /// </summary>
         [Input("datasourceType")]
         public Input<string>? DatasourceType { get; set; }
@@ -525,9 +509,7 @@ namespace Pulumiverse.Grafana.MachineLearning
         private InputMap<string>? _hyperParams;
 
         /// <summary>
-        /// The hyperparameters used to fine tune the algorithm. See
-        /// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
-        /// available hyperparameters.
+        /// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of available hyperparameters.
         /// </summary>
         public InputMap<string> HyperParams
         {

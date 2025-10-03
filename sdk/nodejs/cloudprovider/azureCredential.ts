@@ -46,36 +46,36 @@ export class AzureCredential extends pulumi.CustomResource {
     /**
      * The list of auto discovery configurations.
      */
-    public readonly autoDiscoveryConfigurations!: pulumi.Output<outputs.cloudProvider.AzureCredentialAutoDiscoveryConfiguration[] | undefined>;
+    declare public readonly autoDiscoveryConfigurations: pulumi.Output<outputs.cloudProvider.AzureCredentialAutoDiscoveryConfiguration[] | undefined>;
     /**
      * The client ID of the Azure Credential.
      */
-    public readonly clientId!: pulumi.Output<string>;
+    declare public readonly clientId: pulumi.Output<string>;
     /**
      * The client secret of the Azure Credential.
      */
-    public readonly clientSecret!: pulumi.Output<string>;
+    declare public readonly clientSecret: pulumi.Output<string>;
     /**
      * The name of the Azure Credential.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The list of tag filters to apply to resources.
      */
-    public readonly resourceDiscoveryTagFilters!: pulumi.Output<outputs.cloudProvider.AzureCredentialResourceDiscoveryTagFilter[] | undefined>;
+    declare public readonly resourceDiscoveryTagFilters: pulumi.Output<outputs.cloudProvider.AzureCredentialResourceDiscoveryTagFilter[] | undefined>;
     /**
      * The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
      */
-    public /*out*/ readonly resourceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly resourceId: pulumi.Output<string>;
     /**
      * The list of resource tags to add to metrics.
      */
-    public readonly resourceTagsToAddToMetrics!: pulumi.Output<string[] | undefined>;
-    public readonly stackId!: pulumi.Output<string>;
+    declare public readonly resourceTagsToAddToMetrics: pulumi.Output<string[] | undefined>;
+    declare public readonly stackId: pulumi.Output<string>;
     /**
      * The tenant ID of the Azure Credential.
      */
-    public readonly tenantId!: pulumi.Output<string>;
+    declare public readonly tenantId: pulumi.Output<string>;
 
     /**
      * Create a AzureCredential resource with the given unique name, arguments, and options.
@@ -90,37 +90,37 @@ export class AzureCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AzureCredentialState | undefined;
-            resourceInputs["autoDiscoveryConfigurations"] = state ? state.autoDiscoveryConfigurations : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["resourceDiscoveryTagFilters"] = state ? state.resourceDiscoveryTagFilters : undefined;
-            resourceInputs["resourceId"] = state ? state.resourceId : undefined;
-            resourceInputs["resourceTagsToAddToMetrics"] = state ? state.resourceTagsToAddToMetrics : undefined;
-            resourceInputs["stackId"] = state ? state.stackId : undefined;
-            resourceInputs["tenantId"] = state ? state.tenantId : undefined;
+            resourceInputs["autoDiscoveryConfigurations"] = state?.autoDiscoveryConfigurations;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientSecret"] = state?.clientSecret;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["resourceDiscoveryTagFilters"] = state?.resourceDiscoveryTagFilters;
+            resourceInputs["resourceId"] = state?.resourceId;
+            resourceInputs["resourceTagsToAddToMetrics"] = state?.resourceTagsToAddToMetrics;
+            resourceInputs["stackId"] = state?.stackId;
+            resourceInputs["tenantId"] = state?.tenantId;
         } else {
             const args = argsOrState as AzureCredentialArgs | undefined;
-            if ((!args || args.clientId === undefined) && !opts.urn) {
+            if (args?.clientId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
             }
-            if ((!args || args.clientSecret === undefined) && !opts.urn) {
+            if (args?.clientSecret === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientSecret'");
             }
-            if ((!args || args.stackId === undefined) && !opts.urn) {
+            if (args?.stackId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'stackId'");
             }
-            if ((!args || args.tenantId === undefined) && !opts.urn) {
+            if (args?.tenantId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'tenantId'");
             }
-            resourceInputs["autoDiscoveryConfigurations"] = args ? args.autoDiscoveryConfigurations : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["autoDiscoveryConfigurations"] = args?.autoDiscoveryConfigurations;
+            resourceInputs["clientId"] = args?.clientId;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["resourceDiscoveryTagFilters"] = args ? args.resourceDiscoveryTagFilters : undefined;
-            resourceInputs["resourceTagsToAddToMetrics"] = args ? args.resourceTagsToAddToMetrics : undefined;
-            resourceInputs["stackId"] = args ? args.stackId : undefined;
-            resourceInputs["tenantId"] = args ? args.tenantId : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["resourceDiscoveryTagFilters"] = args?.resourceDiscoveryTagFilters;
+            resourceInputs["resourceTagsToAddToMetrics"] = args?.resourceTagsToAddToMetrics;
+            resourceInputs["stackId"] = args?.stackId;
+            resourceInputs["tenantId"] = args?.tenantId;
             resourceInputs["resourceId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // Data source for Grafana Stack
@@ -21,7 +21,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
 //
 // )
 //
@@ -75,6 +75,8 @@ type LookupStackResult struct {
 	AlertmanagerUserId int `pulumi:"alertmanagerUserId"`
 	// Slug of the cluster where this stack resides.
 	ClusterSlug string `pulumi:"clusterSlug"`
+	// Whether to enable delete protection for the stack, preventing accidental deletion.
+	DeleteProtection bool `pulumi:"deleteProtection"`
 	// Description of stack.
 	Description string `pulumi:"description"`
 	// Name of the Fleet Management instance configured for this stack.
@@ -254,6 +256,11 @@ func (o LookupStackResultOutput) AlertmanagerUserId() pulumi.IntOutput {
 // Slug of the cluster where this stack resides.
 func (o LookupStackResultOutput) ClusterSlug() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.ClusterSlug }).(pulumi.StringOutput)
+}
+
+// Whether to enable delete protection for the stack, preventing accidental deletion.
+func (o LookupStackResultOutput) DeleteProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupStackResult) bool { return v.DeleteProtection }).(pulumi.BoolOutput)
 }
 
 // Description of stack.

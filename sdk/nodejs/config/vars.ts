@@ -8,8 +8,7 @@ declare var exports: any;
 const __config = new pulumi.Config("grafana");
 
 /**
- * API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
- * the `GRAFANA_AUTH` environment variable.
+ * API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
  */
 export declare const auth: string | undefined;
 Object.defineProperty(exports, "auth", {
@@ -20,8 +19,7 @@ Object.defineProperty(exports, "auth", {
 });
 
 /**
- * Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
- * be set via the `GRAFANA_CA_CERT` environment variable.
+ * Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
  */
 export declare const caCert: string | undefined;
 Object.defineProperty(exports, "caCert", {
@@ -32,8 +30,7 @@ Object.defineProperty(exports, "caCert", {
 });
 
 /**
- * Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
- * variable.
+ * Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
  */
 export declare const cloudAccessPolicyToken: string | undefined;
 Object.defineProperty(exports, "cloudAccessPolicyToken", {
@@ -55,8 +52,7 @@ Object.defineProperty(exports, "cloudApiUrl", {
 });
 
 /**
- * A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
- * environment variable.
+ * A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN` environment variable.
  */
 export declare const cloudProviderAccessToken: string | undefined;
 Object.defineProperty(exports, "cloudProviderAccessToken", {
@@ -67,8 +63,7 @@ Object.defineProperty(exports, "cloudProviderAccessToken", {
 });
 
 /**
- * A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
- * variable.
+ * A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment variable.
  */
 export declare const cloudProviderUrl: string | undefined;
 Object.defineProperty(exports, "cloudProviderUrl", {
@@ -79,8 +74,7 @@ Object.defineProperty(exports, "cloudProviderUrl", {
 });
 
 /**
- * A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
- * environment variable.
+ * A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN` environment variable.
  */
 export declare const connectionsApiAccessToken: string | undefined;
 Object.defineProperty(exports, "connectionsApiAccessToken", {
@@ -102,8 +96,7 @@ Object.defineProperty(exports, "connectionsApiUrl", {
 });
 
 /**
- * A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
- * `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+ * A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
  */
 export declare const fleetManagementAuth: string | undefined;
 Object.defineProperty(exports, "fleetManagementAuth", {
@@ -114,8 +107,7 @@ Object.defineProperty(exports, "fleetManagementAuth", {
 });
 
 /**
- * A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
- * variable.
+ * A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment variable.
  */
 export declare const fleetManagementUrl: string | undefined;
 Object.defineProperty(exports, "fleetManagementUrl", {
@@ -126,8 +118,7 @@ Object.defineProperty(exports, "fleetManagementUrl", {
 });
 
 /**
- * A Grafana Frontend Observability API access token. May alternatively be set via the
- * `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+ * A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
  */
 export declare const frontendO11yApiAccessToken: string | undefined;
 Object.defineProperty(exports, "frontendO11yApiAccessToken", {
@@ -138,8 +129,7 @@ Object.defineProperty(exports, "frontendO11yApiAccessToken", {
 });
 
 /**
- * Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
- * be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+ * Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
  */
 export declare const httpHeaders: {[key: string]: string} | undefined;
 Object.defineProperty(exports, "httpHeaders", {
@@ -205,8 +195,7 @@ Object.defineProperty(exports, "oncallUrl", {
 });
 
 /**
- * The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
- * `GRAFANA_ORG_ID` environment variable.
+ * The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
  */
 export declare const orgId: number | undefined;
 Object.defineProperty(exports, "orgId", {
@@ -217,8 +206,7 @@ Object.defineProperty(exports, "orgId", {
 });
 
 /**
- * The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
- * `GRAFANA_RETRIES` environment variable.
+ * The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRIES` environment variable.
  */
 export declare const retries: number | undefined;
 Object.defineProperty(exports, "retries", {
@@ -229,8 +217,7 @@ Object.defineProperty(exports, "retries", {
 });
 
 /**
- * The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
- * and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+ * The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429 and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
  */
 export declare const retryStatusCodes: string[] | undefined;
 Object.defineProperty(exports, "retryStatusCodes", {
@@ -241,8 +228,7 @@ Object.defineProperty(exports, "retryStatusCodes", {
 });
 
 /**
- * The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
- * set via the `GRAFANA_RETRY_WAIT` environment variable.
+ * The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRY_WAIT` environment variable.
  */
 export declare const retryWait: number | undefined;
 Object.defineProperty(exports, "retryWait", {
@@ -272,8 +258,7 @@ Object.defineProperty(exports, "smUrl", {
 });
 
 /**
- * The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID`
- * environment variable.
+ * The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID` environment variable.
  */
 export declare const stackId: number | undefined;
 Object.defineProperty(exports, "stackId", {
@@ -295,8 +280,7 @@ Object.defineProperty(exports, "storeDashboardSha256", {
 });
 
 /**
- * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
- * set via the `GRAFANA_TLS_CERT` environment variable.
+ * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
  */
 export declare const tlsCert: string | undefined;
 Object.defineProperty(exports, "tlsCert", {
@@ -307,8 +291,7 @@ Object.defineProperty(exports, "tlsCert", {
 });
 
 /**
- * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
- * the `GRAFANA_TLS_KEY` environment variable.
+ * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
  */
 export declare const tlsKey: string | undefined;
 Object.defineProperty(exports, "tlsKey", {

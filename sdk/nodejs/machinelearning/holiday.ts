@@ -90,23 +90,23 @@ export class Holiday extends pulumi.CustomResource {
     /**
      * A list of custom periods for the holiday.
      */
-    public readonly customPeriods!: pulumi.Output<outputs.machineLearning.HolidayCustomPeriod[] | undefined>;
+    declare public readonly customPeriods: pulumi.Output<outputs.machineLearning.HolidayCustomPeriod[] | undefined>;
     /**
      * A description of the holiday.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The timezone to use for events in the iCal file pointed to by ical_url.
      */
-    public readonly icalTimezone!: pulumi.Output<string | undefined>;
+    declare public readonly icalTimezone: pulumi.Output<string | undefined>;
     /**
      * A URL to an iCal file containing all occurrences of the holiday.
      */
-    public readonly icalUrl!: pulumi.Output<string | undefined>;
+    declare public readonly icalUrl: pulumi.Output<string | undefined>;
     /**
      * The name of the holiday.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
 
     /**
      * Create a Holiday resource with the given unique name, arguments, and options.
@@ -121,18 +121,18 @@ export class Holiday extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as HolidayState | undefined;
-            resourceInputs["customPeriods"] = state ? state.customPeriods : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["icalTimezone"] = state ? state.icalTimezone : undefined;
-            resourceInputs["icalUrl"] = state ? state.icalUrl : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["customPeriods"] = state?.customPeriods;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["icalTimezone"] = state?.icalTimezone;
+            resourceInputs["icalUrl"] = state?.icalUrl;
+            resourceInputs["name"] = state?.name;
         } else {
             const args = argsOrState as HolidayArgs | undefined;
-            resourceInputs["customPeriods"] = args ? args.customPeriods : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["icalTimezone"] = args ? args.icalTimezone : undefined;
-            resourceInputs["icalUrl"] = args ? args.icalUrl : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["customPeriods"] = args?.customPeriods;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["icalTimezone"] = args?.icalTimezone;
+            resourceInputs["icalUrl"] = args?.icalUrl;
+            resourceInputs["name"] = args?.name;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Holiday.__pulumiType, name, resourceInputs, opts);

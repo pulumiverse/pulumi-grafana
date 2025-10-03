@@ -1,6 +1,6 @@
 {
     "name": "@pulumiverse/grafana",
-    "version": "1.0.0-alpha.0+dev",
+    "version": "2.0.0-alpha.0+dev",
     "description": "A Pulumi package for creating and managing grafana.",
     "keywords": [
         "pulumi",
@@ -24,7 +24,7 @@
     "pulumi": {
         "resource": true,
         "name": "grafana",
-        "version": "1.0.0-alpha.0+dev",
+        "version": "2.0.0-alpha.0+dev",
         "server": "github://api.github.com/pulumiverse"
     }
 }

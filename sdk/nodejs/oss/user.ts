@@ -65,27 +65,27 @@ export class User extends pulumi.CustomResource {
     /**
      * The email address of the Grafana user.
      */
-    public readonly email!: pulumi.Output<string>;
+    declare public readonly email: pulumi.Output<string>;
     /**
      * Whether to make user an admin. Defaults to `false`.
      */
-    public readonly isAdmin!: pulumi.Output<boolean | undefined>;
+    declare public readonly isAdmin: pulumi.Output<boolean | undefined>;
     /**
      * The username for the Grafana user.
      */
-    public readonly login!: pulumi.Output<string | undefined>;
+    declare public readonly login: pulumi.Output<string | undefined>;
     /**
      * The display name for the Grafana user.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The password for the Grafana user.
      */
-    public readonly password!: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string>;
     /**
      * The numerical ID of the Grafana user.
      */
-    public /*out*/ readonly userId!: pulumi.Output<number>;
+    declare public /*out*/ readonly userId: pulumi.Output<number>;
 
     /**
      * Create a User resource with the given unique name, arguments, and options.
@@ -100,24 +100,24 @@ export class User extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserState | undefined;
-            resourceInputs["email"] = state ? state.email : undefined;
-            resourceInputs["isAdmin"] = state ? state.isAdmin : undefined;
-            resourceInputs["login"] = state ? state.login : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["email"] = state?.email;
+            resourceInputs["isAdmin"] = state?.isAdmin;
+            resourceInputs["login"] = state?.login;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as UserArgs | undefined;
-            if ((!args || args.email === undefined) && !opts.urn) {
+            if (args?.email === undefined && !opts.urn) {
                 throw new Error("Missing required property 'email'");
             }
-            if ((!args || args.password === undefined) && !opts.urn) {
+            if (args?.password === undefined && !opts.urn) {
                 throw new Error("Missing required property 'password'");
             }
-            resourceInputs["email"] = args ? args.email : undefined;
-            resourceInputs["isAdmin"] = args ? args.isAdmin : undefined;
-            resourceInputs["login"] = args ? args.login : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["email"] = args?.email;
+            resourceInputs["isAdmin"] = args?.isAdmin;
+            resourceInputs["login"] = args?.login;
+            resourceInputs["name"] = args?.name;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["userId"] = undefined /*out*/;
         }

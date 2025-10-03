@@ -52,11 +52,11 @@ export class Collector extends pulumi.CustomResource {
     /**
      * Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
      */
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * Remote attributes for the collector
      */
-    public readonly remoteAttributes!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly remoteAttributes: pulumi.Output<{[key: string]: string}>;
 
     /**
      * Create a Collector resource with the given unique name, arguments, and options.
@@ -71,12 +71,12 @@ export class Collector extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CollectorState | undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["remoteAttributes"] = state ? state.remoteAttributes : undefined;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["remoteAttributes"] = state?.remoteAttributes;
         } else {
             const args = argsOrState as CollectorArgs | undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["remoteAttributes"] = args ? args.remoteAttributes : undefined;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["remoteAttributes"] = args?.remoteAttributes;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Collector.__pulumiType, name, resourceInputs, opts);

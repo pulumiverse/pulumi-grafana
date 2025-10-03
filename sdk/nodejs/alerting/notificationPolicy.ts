@@ -38,6 +38,15 @@ import * as utilities from "../utilities";
  *         weekdays: ["monday"],
  *     }],
  * });
+ * const workingHours = new grafana.alerting.MuteTiming("working_hours", {
+ *     name: "Working Hours",
+ *     intervals: [{
+ *         times: [{
+ *             start: "09:00",
+ *             end: "18:00",
+ *         }],
+ *     }],
+ * });
  * const myNotificationPolicy = new grafana.alerting.NotificationPolicy("my_notification_policy", {
  *     groupBies: ["..."],
  *     contactPoint: aContactPoint.name,
@@ -66,6 +75,7 @@ import * as utilities from "../utilities";
  *             contactPoint: aContactPoint.name,
  *             "continue": true,
  *             muteTimings: [aMuteTiming.name],
+ *             activeTimings: [workingHours.name],
  *             groupWait: "45s",
  *             groupInterval: "6m",
  *             repeatInterval: "3h",
@@ -133,32 +143,32 @@ export class NotificationPolicy extends pulumi.CustomResource {
     /**
      * The default contact point to route all unmatched notifications to.
      */
-    public readonly contactPoint!: pulumi.Output<string>;
-    public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
+    declare public readonly contactPoint: pulumi.Output<string>;
+    declare public readonly disableProvenance: pulumi.Output<boolean | undefined>;
     /**
      * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
      */
-    public readonly groupBies!: pulumi.Output<string[]>;
+    declare public readonly groupBies: pulumi.Output<string[]>;
     /**
      * Minimum time interval between two notifications for the same group. Default is 5 minutes.
      */
-    public readonly groupInterval!: pulumi.Output<string | undefined>;
+    declare public readonly groupInterval: pulumi.Output<string | undefined>;
     /**
      * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
      */
-    public readonly groupWait!: pulumi.Output<string | undefined>;
+    declare public readonly groupWait: pulumi.Output<string | undefined>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * Routing rules for specific label sets.
      */
-    public readonly policies!: pulumi.Output<outputs.alerting.NotificationPolicyPolicy[] | undefined>;
+    declare public readonly policies: pulumi.Output<outputs.alerting.NotificationPolicyPolicy[] | undefined>;
     /**
      * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
      */
-    public readonly repeatInterval!: pulumi.Output<string | undefined>;
+    declare public readonly repeatInterval: pulumi.Output<string | undefined>;
 
     /**
      * Create a NotificationPolicy resource with the given unique name, arguments, and options.
@@ -173,30 +183,30 @@ export class NotificationPolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NotificationPolicyState | undefined;
-            resourceInputs["contactPoint"] = state ? state.contactPoint : undefined;
-            resourceInputs["disableProvenance"] = state ? state.disableProvenance : undefined;
-            resourceInputs["groupBies"] = state ? state.groupBies : undefined;
-            resourceInputs["groupInterval"] = state ? state.groupInterval : undefined;
-            resourceInputs["groupWait"] = state ? state.groupWait : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
-            resourceInputs["repeatInterval"] = state ? state.repeatInterval : undefined;
+            resourceInputs["contactPoint"] = state?.contactPoint;
+            resourceInputs["disableProvenance"] = state?.disableProvenance;
+            resourceInputs["groupBies"] = state?.groupBies;
+            resourceInputs["groupInterval"] = state?.groupInterval;
+            resourceInputs["groupWait"] = state?.groupWait;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["policies"] = state?.policies;
+            resourceInputs["repeatInterval"] = state?.repeatInterval;
         } else {
             const args = argsOrState as NotificationPolicyArgs | undefined;
-            if ((!args || args.contactPoint === undefined) && !opts.urn) {
+            if (args?.contactPoint === undefined && !opts.urn) {
                 throw new Error("Missing required property 'contactPoint'");
             }
-            if ((!args || args.groupBies === undefined) && !opts.urn) {
+            if (args?.groupBies === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupBies'");
             }
-            resourceInputs["contactPoint"] = args ? args.contactPoint : undefined;
-            resourceInputs["disableProvenance"] = args ? args.disableProvenance : undefined;
-            resourceInputs["groupBies"] = args ? args.groupBies : undefined;
-            resourceInputs["groupInterval"] = args ? args.groupInterval : undefined;
-            resourceInputs["groupWait"] = args ? args.groupWait : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["policies"] = args ? args.policies : undefined;
-            resourceInputs["repeatInterval"] = args ? args.repeatInterval : undefined;
+            resourceInputs["contactPoint"] = args?.contactPoint;
+            resourceInputs["disableProvenance"] = args?.disableProvenance;
+            resourceInputs["groupBies"] = args?.groupBies;
+            resourceInputs["groupInterval"] = args?.groupInterval;
+            resourceInputs["groupWait"] = args?.groupWait;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["policies"] = args?.policies;
+            resourceInputs["repeatInterval"] = args?.repeatInterval;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/notificationPolicy:NotificationPolicy" }] };

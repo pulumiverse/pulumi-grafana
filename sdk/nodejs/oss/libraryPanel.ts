@@ -73,55 +73,55 @@ export class LibraryPanel extends pulumi.CustomResource {
     /**
      * Timestamp when the library panel was created.
      */
-    public /*out*/ readonly created!: pulumi.Output<string>;
+    declare public /*out*/ readonly created: pulumi.Output<string>;
     /**
      * Numerical IDs of Grafana dashboards containing the library panel.
      */
-    public /*out*/ readonly dashboardIds!: pulumi.Output<number[]>;
+    declare public /*out*/ readonly dashboardIds: pulumi.Output<number[]>;
     /**
      * Description of the library panel.
      */
-    public /*out*/ readonly description!: pulumi.Output<string>;
+    declare public /*out*/ readonly description: pulumi.Output<string>;
     /**
      * Name of the folder containing the library panel.
      */
-    public /*out*/ readonly folderName!: pulumi.Output<string>;
+    declare public /*out*/ readonly folderName: pulumi.Output<string>;
     /**
      * Unique ID (UID) of the folder containing the library panel.
      */
-    public readonly folderUid!: pulumi.Output<string | undefined>;
+    declare public readonly folderUid: pulumi.Output<string | undefined>;
     /**
      * The JSON model for the library panel.
      */
-    public readonly modelJson!: pulumi.Output<string>;
+    declare public readonly modelJson: pulumi.Output<string>;
     /**
      * Name of the library panel.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * The numeric ID of the library panel computed by Grafana.
      */
-    public /*out*/ readonly panelId!: pulumi.Output<number>;
+    declare public /*out*/ readonly panelId: pulumi.Output<number>;
     /**
      * Type of the library panel (eg. text).
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
     /**
      * The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.
      */
-    public readonly uid!: pulumi.Output<string>;
+    declare public readonly uid: pulumi.Output<string>;
     /**
      * Timestamp when the library panel was last modified.
      */
-    public /*out*/ readonly updated!: pulumi.Output<string>;
+    declare public /*out*/ readonly updated: pulumi.Output<string>;
     /**
      * Version of the library panel.
      */
-    public /*out*/ readonly version!: pulumi.Output<number>;
+    declare public /*out*/ readonly version: pulumi.Output<number>;
 
     /**
      * Create a LibraryPanel resource with the given unique name, arguments, and options.
@@ -136,29 +136,29 @@ export class LibraryPanel extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LibraryPanelState | undefined;
-            resourceInputs["created"] = state ? state.created : undefined;
-            resourceInputs["dashboardIds"] = state ? state.dashboardIds : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["folderName"] = state ? state.folderName : undefined;
-            resourceInputs["folderUid"] = state ? state.folderUid : undefined;
-            resourceInputs["modelJson"] = state ? state.modelJson : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["panelId"] = state ? state.panelId : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["uid"] = state ? state.uid : undefined;
-            resourceInputs["updated"] = state ? state.updated : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["created"] = state?.created;
+            resourceInputs["dashboardIds"] = state?.dashboardIds;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["folderName"] = state?.folderName;
+            resourceInputs["folderUid"] = state?.folderUid;
+            resourceInputs["modelJson"] = state?.modelJson;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["panelId"] = state?.panelId;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["uid"] = state?.uid;
+            resourceInputs["updated"] = state?.updated;
+            resourceInputs["version"] = state?.version;
         } else {
             const args = argsOrState as LibraryPanelArgs | undefined;
-            if ((!args || args.modelJson === undefined) && !opts.urn) {
+            if (args?.modelJson === undefined && !opts.urn) {
                 throw new Error("Missing required property 'modelJson'");
             }
-            resourceInputs["folderUid"] = args ? args.folderUid : undefined;
-            resourceInputs["modelJson"] = args ? args.modelJson : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["uid"] = args ? args.uid : undefined;
+            resourceInputs["folderUid"] = args?.folderUid;
+            resourceInputs["modelJson"] = args?.modelJson;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["uid"] = args?.uid;
             resourceInputs["created"] = undefined /*out*/;
             resourceInputs["dashboardIds"] = undefined /*out*/;
             resourceInputs["description"] = undefined /*out*/;

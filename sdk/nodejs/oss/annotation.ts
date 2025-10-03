@@ -58,31 +58,31 @@ export class Annotation extends pulumi.CustomResource {
     /**
      * The UID of the dashboard on which to create the annotation.
      */
-    public readonly dashboardUid!: pulumi.Output<string | undefined>;
+    declare public readonly dashboardUid: pulumi.Output<string | undefined>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * The ID of the dashboard panel on which to create the annotation.
      */
-    public readonly panelId!: pulumi.Output<number | undefined>;
+    declare public readonly panelId: pulumi.Output<number | undefined>;
     /**
      * The tags to associate with the annotation.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The text to associate with the annotation.
      */
-    public readonly text!: pulumi.Output<string>;
+    declare public readonly text: pulumi.Output<string>;
     /**
      * The RFC 3339-formatted time string indicating the annotation's time.
      */
-    public readonly time!: pulumi.Output<string>;
+    declare public readonly time: pulumi.Output<string>;
     /**
      * The RFC 3339-formatted time string indicating the annotation's end time.
      */
-    public readonly timeEnd!: pulumi.Output<string>;
+    declare public readonly timeEnd: pulumi.Output<string>;
 
     /**
      * Create a Annotation resource with the given unique name, arguments, and options.
@@ -97,25 +97,25 @@ export class Annotation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AnnotationState | undefined;
-            resourceInputs["dashboardUid"] = state ? state.dashboardUid : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["panelId"] = state ? state.panelId : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["text"] = state ? state.text : undefined;
-            resourceInputs["time"] = state ? state.time : undefined;
-            resourceInputs["timeEnd"] = state ? state.timeEnd : undefined;
+            resourceInputs["dashboardUid"] = state?.dashboardUid;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["panelId"] = state?.panelId;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["text"] = state?.text;
+            resourceInputs["time"] = state?.time;
+            resourceInputs["timeEnd"] = state?.timeEnd;
         } else {
             const args = argsOrState as AnnotationArgs | undefined;
-            if ((!args || args.text === undefined) && !opts.urn) {
+            if (args?.text === undefined && !opts.urn) {
                 throw new Error("Missing required property 'text'");
             }
-            resourceInputs["dashboardUid"] = args ? args.dashboardUid : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["panelId"] = args ? args.panelId : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["text"] = args ? args.text : undefined;
-            resourceInputs["time"] = args ? args.time : undefined;
-            resourceInputs["timeEnd"] = args ? args.timeEnd : undefined;
+            resourceInputs["dashboardUid"] = args?.dashboardUid;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["panelId"] = args?.panelId;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["text"] = args?.text;
+            resourceInputs["time"] = args?.time;
+            resourceInputs["timeEnd"] = args?.timeEnd;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/annotation:Annotation" }] };

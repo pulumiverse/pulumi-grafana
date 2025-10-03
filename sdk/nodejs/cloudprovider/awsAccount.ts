@@ -66,20 +66,20 @@ export class AwsAccount extends pulumi.CustomResource {
     /**
      * An optional human-readable name for this AWS Account resource.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * A set of regions that this AWS Account resource applies to.
      */
-    public readonly regions!: pulumi.Output<string[]>;
+    declare public readonly regions: pulumi.Output<string[]>;
     /**
      * The ID given by the Grafana Cloud Provider API to this AWS Account resource.
      */
-    public /*out*/ readonly resourceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly resourceId: pulumi.Output<string>;
     /**
      * An IAM Role ARN string to represent with this AWS Account resource.
      */
-    public readonly roleArn!: pulumi.Output<string>;
-    public readonly stackId!: pulumi.Output<string>;
+    declare public readonly roleArn: pulumi.Output<string>;
+    declare public readonly stackId: pulumi.Output<string>;
 
     /**
      * Create a AwsAccount resource with the given unique name, arguments, and options.
@@ -94,26 +94,26 @@ export class AwsAccount extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AwsAccountState | undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["regions"] = state ? state.regions : undefined;
-            resourceInputs["resourceId"] = state ? state.resourceId : undefined;
-            resourceInputs["roleArn"] = state ? state.roleArn : undefined;
-            resourceInputs["stackId"] = state ? state.stackId : undefined;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["regions"] = state?.regions;
+            resourceInputs["resourceId"] = state?.resourceId;
+            resourceInputs["roleArn"] = state?.roleArn;
+            resourceInputs["stackId"] = state?.stackId;
         } else {
             const args = argsOrState as AwsAccountArgs | undefined;
-            if ((!args || args.regions === undefined) && !opts.urn) {
+            if (args?.regions === undefined && !opts.urn) {
                 throw new Error("Missing required property 'regions'");
             }
-            if ((!args || args.roleArn === undefined) && !opts.urn) {
+            if (args?.roleArn === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleArn'");
             }
-            if ((!args || args.stackId === undefined) && !opts.urn) {
+            if (args?.stackId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'stackId'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["regions"] = args ? args.regions : undefined;
-            resourceInputs["roleArn"] = args ? args.roleArn : undefined;
-            resourceInputs["stackId"] = args ? args.stackId : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["regions"] = args?.regions;
+            resourceInputs["roleArn"] = args?.roleArn;
+            resourceInputs["stackId"] = args?.stackId;
             resourceInputs["resourceId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

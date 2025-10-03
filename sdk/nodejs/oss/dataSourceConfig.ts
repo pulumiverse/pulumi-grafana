@@ -98,23 +98,23 @@ export class DataSourceConfig extends pulumi.CustomResource {
     /**
      * Custom HTTP headers
      */
-    public readonly httpHeaders!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly httpHeaders: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
-    public readonly jsonDataEncoded!: pulumi.Output<string | undefined>;
+    declare public readonly jsonDataEncoded: pulumi.Output<string | undefined>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
-    public readonly secureJsonDataEncoded!: pulumi.Output<string | undefined>;
+    declare public readonly secureJsonDataEncoded: pulumi.Output<string | undefined>;
     /**
      * Unique identifier. If unset, this will be automatically generated.
      */
-    public readonly uid!: pulumi.Output<string>;
+    declare public readonly uid: pulumi.Output<string>;
 
     /**
      * Create a DataSourceConfig resource with the given unique name, arguments, and options.
@@ -129,18 +129,18 @@ export class DataSourceConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DataSourceConfigState | undefined;
-            resourceInputs["httpHeaders"] = state ? state.httpHeaders : undefined;
-            resourceInputs["jsonDataEncoded"] = state ? state.jsonDataEncoded : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["secureJsonDataEncoded"] = state ? state.secureJsonDataEncoded : undefined;
-            resourceInputs["uid"] = state ? state.uid : undefined;
+            resourceInputs["httpHeaders"] = state?.httpHeaders;
+            resourceInputs["jsonDataEncoded"] = state?.jsonDataEncoded;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["secureJsonDataEncoded"] = state?.secureJsonDataEncoded;
+            resourceInputs["uid"] = state?.uid;
         } else {
             const args = argsOrState as DataSourceConfigArgs | undefined;
             resourceInputs["httpHeaders"] = args?.httpHeaders ? pulumi.secret(args.httpHeaders) : undefined;
-            resourceInputs["jsonDataEncoded"] = args ? args.jsonDataEncoded : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
+            resourceInputs["jsonDataEncoded"] = args?.jsonDataEncoded;
+            resourceInputs["orgId"] = args?.orgId;
             resourceInputs["secureJsonDataEncoded"] = args?.secureJsonDataEncoded ? pulumi.secret(args.secureJsonDataEncoded) : undefined;
-            resourceInputs["uid"] = args ? args.uid : undefined;
+            resourceInputs["uid"] = args?.uid;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/dataSourceConfig:DataSourceConfig" }] };

@@ -62,11 +62,11 @@ export class EscalationChain extends pulumi.CustomResource {
     /**
      * The name of the escalation chain.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
-    public readonly teamId!: pulumi.Output<string | undefined>;
+    declare public readonly teamId: pulumi.Output<string | undefined>;
 
     /**
      * Create a EscalationChain resource with the given unique name, arguments, and options.
@@ -81,12 +81,12 @@ export class EscalationChain extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EscalationChainState | undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["teamId"] = state ? state.teamId : undefined;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["teamId"] = state?.teamId;
         } else {
             const args = argsOrState as EscalationChainArgs | undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["teamId"] = args ? args.teamId : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["teamId"] = args?.teamId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(EscalationChain.__pulumiType, name, resourceInputs, opts);

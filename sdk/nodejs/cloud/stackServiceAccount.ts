@@ -67,16 +67,16 @@ export class StackServiceAccount extends pulumi.CustomResource {
     /**
      * The disabled status for the service account. Defaults to `false`.
      */
-    public readonly isDisabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly isDisabled: pulumi.Output<boolean | undefined>;
     /**
      * The name of the service account.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The basic role of the service account in the organization.
      */
-    public readonly role!: pulumi.Output<string>;
-    public readonly stackSlug!: pulumi.Output<string>;
+    declare public readonly role: pulumi.Output<string>;
+    declare public readonly stackSlug: pulumi.Output<string>;
 
     /**
      * Create a StackServiceAccount resource with the given unique name, arguments, and options.
@@ -91,22 +91,22 @@ export class StackServiceAccount extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StackServiceAccountState | undefined;
-            resourceInputs["isDisabled"] = state ? state.isDisabled : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
-            resourceInputs["stackSlug"] = state ? state.stackSlug : undefined;
+            resourceInputs["isDisabled"] = state?.isDisabled;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["role"] = state?.role;
+            resourceInputs["stackSlug"] = state?.stackSlug;
         } else {
             const args = argsOrState as StackServiceAccountArgs | undefined;
-            if ((!args || args.role === undefined) && !opts.urn) {
+            if (args?.role === undefined && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            if ((!args || args.stackSlug === undefined) && !opts.urn) {
+            if (args?.stackSlug === undefined && !opts.urn) {
                 throw new Error("Missing required property 'stackSlug'");
             }
-            resourceInputs["isDisabled"] = args ? args.isDisabled : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
-            resourceInputs["stackSlug"] = args ? args.stackSlug : undefined;
+            resourceInputs["isDisabled"] = args?.isDisabled;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["role"] = args?.role;
+            resourceInputs["stackSlug"] = args?.stackSlug;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(StackServiceAccount.__pulumiType, name, resourceInputs, opts);

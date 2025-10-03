@@ -63,59 +63,59 @@ export class OutgoingWebhook extends pulumi.CustomResource {
     /**
      * The auth data of the webhook. Used in Authorization header instead of user/password auth.
      */
-    public readonly authorizationHeader!: pulumi.Output<string | undefined>;
+    declare public readonly authorizationHeader: pulumi.Output<string | undefined>;
     /**
      * The data of the webhook.
      */
-    public readonly data!: pulumi.Output<string | undefined>;
+    declare public readonly data: pulumi.Output<string | undefined>;
     /**
      * Toggle to send the entire webhook payload instead of using the values in the Data field.
      */
-    public readonly forwardWholePayload!: pulumi.Output<boolean | undefined>;
+    declare public readonly forwardWholePayload: pulumi.Output<boolean | undefined>;
     /**
      * Headers to add to the outgoing webhook request.
      */
-    public readonly headers!: pulumi.Output<string | undefined>;
+    declare public readonly headers: pulumi.Output<string | undefined>;
     /**
      * The HTTP method used in the request made by the outgoing webhook. Defaults to `POST`.
      */
-    public readonly httpMethod!: pulumi.Output<string | undefined>;
+    declare public readonly httpMethod: pulumi.Output<string | undefined>;
     /**
      * Restricts the outgoing webhook to only trigger if the event came from a selected integration. If no integrations are selected the outgoing webhook will trigger for any integration.
      */
-    public readonly integrationFilters!: pulumi.Output<string[] | undefined>;
+    declare public readonly integrationFilters: pulumi.Output<string[] | undefined>;
     /**
      * Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
      */
-    public readonly isWebhookEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly isWebhookEnabled: pulumi.Output<boolean | undefined>;
     /**
      * The name of the outgoing webhook.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The auth data of the webhook. Used for Basic authentication
      */
-    public readonly password!: pulumi.Output<string | undefined>;
+    declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
-    public readonly teamId!: pulumi.Output<string | undefined>;
+    declare public readonly teamId: pulumi.Output<string | undefined>;
     /**
      * A template used to dynamically determine whether the webhook should execute based on the content of the payload.
      */
-    public readonly triggerTemplate!: pulumi.Output<string | undefined>;
+    declare public readonly triggerTemplate: pulumi.Output<string | undefined>;
     /**
      * The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
      */
-    public readonly triggerType!: pulumi.Output<string | undefined>;
+    declare public readonly triggerType: pulumi.Output<string | undefined>;
     /**
      * The webhook URL.
      */
-    public readonly url!: pulumi.Output<string>;
+    declare public readonly url: pulumi.Output<string>;
     /**
      * Username to use when making the outgoing webhook request.
      */
-    public readonly user!: pulumi.Output<string | undefined>;
+    declare public readonly user: pulumi.Output<string | undefined>;
 
     /**
      * Create a OutgoingWebhook resource with the given unique name, arguments, and options.
@@ -130,39 +130,39 @@ export class OutgoingWebhook extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OutgoingWebhookState | undefined;
-            resourceInputs["authorizationHeader"] = state ? state.authorizationHeader : undefined;
-            resourceInputs["data"] = state ? state.data : undefined;
-            resourceInputs["forwardWholePayload"] = state ? state.forwardWholePayload : undefined;
-            resourceInputs["headers"] = state ? state.headers : undefined;
-            resourceInputs["httpMethod"] = state ? state.httpMethod : undefined;
-            resourceInputs["integrationFilters"] = state ? state.integrationFilters : undefined;
-            resourceInputs["isWebhookEnabled"] = state ? state.isWebhookEnabled : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["teamId"] = state ? state.teamId : undefined;
-            resourceInputs["triggerTemplate"] = state ? state.triggerTemplate : undefined;
-            resourceInputs["triggerType"] = state ? state.triggerType : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
-            resourceInputs["user"] = state ? state.user : undefined;
+            resourceInputs["authorizationHeader"] = state?.authorizationHeader;
+            resourceInputs["data"] = state?.data;
+            resourceInputs["forwardWholePayload"] = state?.forwardWholePayload;
+            resourceInputs["headers"] = state?.headers;
+            resourceInputs["httpMethod"] = state?.httpMethod;
+            resourceInputs["integrationFilters"] = state?.integrationFilters;
+            resourceInputs["isWebhookEnabled"] = state?.isWebhookEnabled;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["teamId"] = state?.teamId;
+            resourceInputs["triggerTemplate"] = state?.triggerTemplate;
+            resourceInputs["triggerType"] = state?.triggerType;
+            resourceInputs["url"] = state?.url;
+            resourceInputs["user"] = state?.user;
         } else {
             const args = argsOrState as OutgoingWebhookArgs | undefined;
-            if ((!args || args.url === undefined) && !opts.urn) {
+            if (args?.url === undefined && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
             resourceInputs["authorizationHeader"] = args?.authorizationHeader ? pulumi.secret(args.authorizationHeader) : undefined;
-            resourceInputs["data"] = args ? args.data : undefined;
-            resourceInputs["forwardWholePayload"] = args ? args.forwardWholePayload : undefined;
-            resourceInputs["headers"] = args ? args.headers : undefined;
-            resourceInputs["httpMethod"] = args ? args.httpMethod : undefined;
-            resourceInputs["integrationFilters"] = args ? args.integrationFilters : undefined;
-            resourceInputs["isWebhookEnabled"] = args ? args.isWebhookEnabled : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["data"] = args?.data;
+            resourceInputs["forwardWholePayload"] = args?.forwardWholePayload;
+            resourceInputs["headers"] = args?.headers;
+            resourceInputs["httpMethod"] = args?.httpMethod;
+            resourceInputs["integrationFilters"] = args?.integrationFilters;
+            resourceInputs["isWebhookEnabled"] = args?.isWebhookEnabled;
+            resourceInputs["name"] = args?.name;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["teamId"] = args ? args.teamId : undefined;
-            resourceInputs["triggerTemplate"] = args ? args.triggerTemplate : undefined;
-            resourceInputs["triggerType"] = args ? args.triggerType : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
-            resourceInputs["user"] = args ? args.user : undefined;
+            resourceInputs["teamId"] = args?.teamId;
+            resourceInputs["triggerTemplate"] = args?.triggerTemplate;
+            resourceInputs["triggerType"] = args?.triggerType;
+            resourceInputs["url"] = args?.url;
+            resourceInputs["user"] = args?.user;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["authorizationHeader", "password"] };

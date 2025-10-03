@@ -6,13 +6,12 @@ package config
 import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 var _ = internal.GetEnvOrDefault
 
-// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
-// the `GRAFANA_AUTH` environment variable.
+// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
 func GetAuth(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:auth")
 	if err == nil {
@@ -25,8 +24,7 @@ func GetAuth(ctx *pulumi.Context) string {
 	return value
 }
 
-// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
-// be set via the `GRAFANA_CA_CERT` environment variable.
+// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
 func GetCaCert(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:caCert")
 	if err == nil {
@@ -39,8 +37,7 @@ func GetCaCert(ctx *pulumi.Context) string {
 	return value
 }
 
-// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
-// variable.
+// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
 func GetCloudAccessPolicyToken(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:cloudAccessPolicyToken")
 	if err == nil {
@@ -66,20 +63,17 @@ func GetCloudApiUrl(ctx *pulumi.Context) string {
 	return value
 }
 
-// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
-// environment variable.
+// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN` environment variable.
 func GetCloudProviderAccessToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:cloudProviderAccessToken")
 }
 
-// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
-// variable.
+// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment variable.
 func GetCloudProviderUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:cloudProviderUrl")
 }
 
-// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
-// environment variable.
+// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN` environment variable.
 func GetConnectionsApiAccessToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:connectionsApiAccessToken")
 }
@@ -89,26 +83,22 @@ func GetConnectionsApiUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:connectionsApiUrl")
 }
 
-// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
-// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
 func GetFleetManagementAuth(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:fleetManagementAuth")
 }
 
-// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
-// variable.
+// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment variable.
 func GetFleetManagementUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:fleetManagementUrl")
 }
 
-// A Grafana Frontend Observability API access token. May alternatively be set via the
-// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+// A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 func GetFrontendO11yApiAccessToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:frontendO11yApiAccessToken")
 }
 
-// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
-// be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
 func GetHttpHeaders(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:httpHeaders")
 }
@@ -162,14 +152,12 @@ func GetOncallUrl(ctx *pulumi.Context) string {
 	return value
 }
 
-// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
-// `GRAFANA_ORG_ID` environment variable.
+// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
 func GetOrgId(ctx *pulumi.Context) int {
 	return config.GetInt(ctx, "grafana:orgId")
 }
 
-// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
-// `GRAFANA_RETRIES` environment variable.
+// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRIES` environment variable.
 func GetRetries(ctx *pulumi.Context) int {
 	v, err := config.TryInt(ctx, "grafana:retries")
 	if err == nil {
@@ -182,14 +170,12 @@ func GetRetries(ctx *pulumi.Context) int {
 	return value
 }
 
-// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
-// and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429 and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
 func GetRetryStatusCodes(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:retryStatusCodes")
 }
 
-// The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
-// set via the `GRAFANA_RETRY_WAIT` environment variable.
+// The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRY_WAIT` environment variable.
 func GetRetryWait(ctx *pulumi.Context) int {
 	v, err := config.TryInt(ctx, "grafana:retryWait")
 	if err == nil {
@@ -226,8 +212,7 @@ func GetSmUrl(ctx *pulumi.Context) string {
 	return value
 }
 
-// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID`
-// environment variable.
+// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID` environment variable.
 func GetStackId(ctx *pulumi.Context) int {
 	return config.GetInt(ctx, "grafana:stackId")
 }
@@ -245,8 +230,7 @@ func GetStoreDashboardSha256(ctx *pulumi.Context) bool {
 	return value
 }
 
-// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
-// set via the `GRAFANA_TLS_CERT` environment variable.
+// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
 func GetTlsCert(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:tlsCert")
 	if err == nil {
@@ -259,8 +243,7 @@ func GetTlsCert(ctx *pulumi.Context) string {
 	return value
 }
 
-// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
-// the `GRAFANA_TLS_KEY` environment variable.
+// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
 func GetTlsKey(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:tlsKey")
 	if err == nil {

@@ -64,11 +64,11 @@ export class TeamExternalGroup extends pulumi.CustomResource {
     /**
      * The team external groups list
      */
-    public readonly groups!: pulumi.Output<string[]>;
+    declare public readonly groups: pulumi.Output<string[]>;
     /**
      * The Team ID
      */
-    public readonly teamId!: pulumi.Output<string>;
+    declare public readonly teamId: pulumi.Output<string>;
 
     /**
      * Create a TeamExternalGroup resource with the given unique name, arguments, and options.
@@ -83,18 +83,18 @@ export class TeamExternalGroup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TeamExternalGroupState | undefined;
-            resourceInputs["groups"] = state ? state.groups : undefined;
-            resourceInputs["teamId"] = state ? state.teamId : undefined;
+            resourceInputs["groups"] = state?.groups;
+            resourceInputs["teamId"] = state?.teamId;
         } else {
             const args = argsOrState as TeamExternalGroupArgs | undefined;
-            if ((!args || args.groups === undefined) && !opts.urn) {
+            if (args?.groups === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groups'");
             }
-            if ((!args || args.teamId === undefined) && !opts.urn) {
+            if (args?.teamId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'teamId'");
             }
-            resourceInputs["groups"] = args ? args.groups : undefined;
-            resourceInputs["teamId"] = args ? args.teamId : undefined;
+            resourceInputs["groups"] = args?.groups;
+            resourceInputs["teamId"] = args?.teamId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/teamExternalGroup:TeamExternalGroup" }] };

@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // Manages a single assignment for a role. Conflicts with the "enterprise.RoleAssignment" resource which manages the entire set of assignments for a role.
@@ -22,8 +22,8 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/enterprise"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/enterprise"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
 //
 // )
 //

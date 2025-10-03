@@ -86,15 +86,15 @@ export class ServiceAccountPermission extends pulumi.CustomResource {
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
-    public readonly permissions!: pulumi.Output<outputs.oss.ServiceAccountPermissionPermission[] | undefined>;
+    declare public readonly permissions: pulumi.Output<outputs.oss.ServiceAccountPermissionPermission[] | undefined>;
     /**
      * The id of the service account.
      */
-    public readonly serviceAccountId!: pulumi.Output<string>;
+    declare public readonly serviceAccountId: pulumi.Output<string>;
 
     /**
      * Create a ServiceAccountPermission resource with the given unique name, arguments, and options.
@@ -109,17 +109,17 @@ export class ServiceAccountPermission extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceAccountPermissionState | undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["permissions"] = state ? state.permissions : undefined;
-            resourceInputs["serviceAccountId"] = state ? state.serviceAccountId : undefined;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["permissions"] = state?.permissions;
+            resourceInputs["serviceAccountId"] = state?.serviceAccountId;
         } else {
             const args = argsOrState as ServiceAccountPermissionArgs | undefined;
-            if ((!args || args.serviceAccountId === undefined) && !opts.urn) {
+            if (args?.serviceAccountId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountId'");
             }
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["permissions"] = args ? args.permissions : undefined;
-            resourceInputs["serviceAccountId"] = args ? args.serviceAccountId : undefined;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["permissions"] = args?.permissions;
+            resourceInputs["serviceAccountId"] = args?.serviceAccountId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/serviceAccountPermission:ServiceAccountPermission" }] };

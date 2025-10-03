@@ -71,6 +71,10 @@ export interface GetStackResult {
      */
     readonly clusterSlug: string;
     /**
+     * Whether to enable delete protection for the stack, preventing accidental deletion.
+     */
+    readonly deleteProtection: boolean;
+    /**
      * Description of stack.
      */
     readonly description: string;

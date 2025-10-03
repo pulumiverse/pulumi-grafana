@@ -87,15 +87,15 @@ export class DashboardPermission extends pulumi.CustomResource {
     /**
      * UID of the dashboard to apply permissions to.
      */
-    public readonly dashboardUid!: pulumi.Output<string>;
+    declare public readonly dashboardUid: pulumi.Output<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
-    public readonly permissions!: pulumi.Output<outputs.oss.DashboardPermissionPermission[] | undefined>;
+    declare public readonly permissions: pulumi.Output<outputs.oss.DashboardPermissionPermission[] | undefined>;
 
     /**
      * Create a DashboardPermission resource with the given unique name, arguments, and options.
@@ -110,14 +110,14 @@ export class DashboardPermission extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DashboardPermissionState | undefined;
-            resourceInputs["dashboardUid"] = state ? state.dashboardUid : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["permissions"] = state ? state.permissions : undefined;
+            resourceInputs["dashboardUid"] = state?.dashboardUid;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["permissions"] = state?.permissions;
         } else {
             const args = argsOrState as DashboardPermissionArgs | undefined;
-            resourceInputs["dashboardUid"] = args ? args.dashboardUid : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["permissions"] = args ? args.permissions : undefined;
+            resourceInputs["dashboardUid"] = args?.dashboardUid;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["permissions"] = args?.permissions;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/dashboardPermission:DashboardPermission" }] };

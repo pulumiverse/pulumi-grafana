@@ -79,51 +79,51 @@ export class Report extends pulumi.CustomResource {
     /**
      * List of dashboards to render into the report
      */
-    public readonly dashboards!: pulumi.Output<outputs.enterprise.ReportDashboard[] | undefined>;
+    declare public readonly dashboards: pulumi.Output<outputs.enterprise.ReportDashboard[] | undefined>;
     /**
      * Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
      */
-    public readonly formats!: pulumi.Output<string[] | undefined>;
+    declare public readonly formats: pulumi.Output<string[] | undefined>;
     /**
      * Whether to include a link to the dashboard in the report. Defaults to `true`.
      */
-    public readonly includeDashboardLink!: pulumi.Output<boolean | undefined>;
+    declare public readonly includeDashboardLink: pulumi.Output<boolean | undefined>;
     /**
      * Whether to include a CSV file of table panel data. Defaults to `false`.
      */
-    public readonly includeTableCsv!: pulumi.Output<boolean | undefined>;
+    declare public readonly includeTableCsv: pulumi.Output<boolean | undefined>;
     /**
      * Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
      */
-    public readonly layout!: pulumi.Output<string | undefined>;
+    declare public readonly layout: pulumi.Output<string | undefined>;
     /**
      * Message to be sent in the report.
      */
-    public readonly message!: pulumi.Output<string | undefined>;
+    declare public readonly message: pulumi.Output<string | undefined>;
     /**
      * Name of the report.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
      */
-    public readonly orientation!: pulumi.Output<string | undefined>;
+    declare public readonly orientation: pulumi.Output<string | undefined>;
     /**
      * List of recipients of the report.
      */
-    public readonly recipients!: pulumi.Output<string[]>;
+    declare public readonly recipients: pulumi.Output<string[]>;
     /**
      * Reply-to email address of the report.
      */
-    public readonly replyTo!: pulumi.Output<string | undefined>;
+    declare public readonly replyTo: pulumi.Output<string | undefined>;
     /**
      * Schedule of the report.
      */
-    public readonly schedule!: pulumi.Output<outputs.enterprise.ReportSchedule>;
+    declare public readonly schedule: pulumi.Output<outputs.enterprise.ReportSchedule>;
 
     /**
      * Create a Report resource with the given unique name, arguments, and options.
@@ -138,38 +138,38 @@ export class Report extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ReportState | undefined;
-            resourceInputs["dashboards"] = state ? state.dashboards : undefined;
-            resourceInputs["formats"] = state ? state.formats : undefined;
-            resourceInputs["includeDashboardLink"] = state ? state.includeDashboardLink : undefined;
-            resourceInputs["includeTableCsv"] = state ? state.includeTableCsv : undefined;
-            resourceInputs["layout"] = state ? state.layout : undefined;
-            resourceInputs["message"] = state ? state.message : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["orientation"] = state ? state.orientation : undefined;
-            resourceInputs["recipients"] = state ? state.recipients : undefined;
-            resourceInputs["replyTo"] = state ? state.replyTo : undefined;
-            resourceInputs["schedule"] = state ? state.schedule : undefined;
+            resourceInputs["dashboards"] = state?.dashboards;
+            resourceInputs["formats"] = state?.formats;
+            resourceInputs["includeDashboardLink"] = state?.includeDashboardLink;
+            resourceInputs["includeTableCsv"] = state?.includeTableCsv;
+            resourceInputs["layout"] = state?.layout;
+            resourceInputs["message"] = state?.message;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["orientation"] = state?.orientation;
+            resourceInputs["recipients"] = state?.recipients;
+            resourceInputs["replyTo"] = state?.replyTo;
+            resourceInputs["schedule"] = state?.schedule;
         } else {
             const args = argsOrState as ReportArgs | undefined;
-            if ((!args || args.recipients === undefined) && !opts.urn) {
+            if (args?.recipients === undefined && !opts.urn) {
                 throw new Error("Missing required property 'recipients'");
             }
-            if ((!args || args.schedule === undefined) && !opts.urn) {
+            if (args?.schedule === undefined && !opts.urn) {
                 throw new Error("Missing required property 'schedule'");
             }
-            resourceInputs["dashboards"] = args ? args.dashboards : undefined;
-            resourceInputs["formats"] = args ? args.formats : undefined;
-            resourceInputs["includeDashboardLink"] = args ? args.includeDashboardLink : undefined;
-            resourceInputs["includeTableCsv"] = args ? args.includeTableCsv : undefined;
-            resourceInputs["layout"] = args ? args.layout : undefined;
-            resourceInputs["message"] = args ? args.message : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["orientation"] = args ? args.orientation : undefined;
-            resourceInputs["recipients"] = args ? args.recipients : undefined;
-            resourceInputs["replyTo"] = args ? args.replyTo : undefined;
-            resourceInputs["schedule"] = args ? args.schedule : undefined;
+            resourceInputs["dashboards"] = args?.dashboards;
+            resourceInputs["formats"] = args?.formats;
+            resourceInputs["includeDashboardLink"] = args?.includeDashboardLink;
+            resourceInputs["includeTableCsv"] = args?.includeTableCsv;
+            resourceInputs["layout"] = args?.layout;
+            resourceInputs["message"] = args?.message;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["orientation"] = args?.orientation;
+            resourceInputs["recipients"] = args?.recipients;
+            resourceInputs["replyTo"] = args?.replyTo;
+            resourceInputs["schedule"] = args?.schedule;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/report:Report" }] };

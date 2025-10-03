@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // Manages a single permission item for a folder. Conflicts with the "oss.FolderPermission" resource which manages the entire set of permissions for a folder.
@@ -24,7 +24,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
 //
 // )
 //

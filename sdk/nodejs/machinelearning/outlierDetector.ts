@@ -103,42 +103,37 @@ export class OutlierDetector extends pulumi.CustomResource {
     }
 
     /**
-     * The algorithm to use and its configuration. See
-     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
-    public readonly algorithm!: pulumi.Output<outputs.machineLearning.OutlierDetectorAlgorithm>;
+    declare public readonly algorithm: pulumi.Output<outputs.machineLearning.OutlierDetectorAlgorithm>;
     /**
-     * The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-     * grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-     * grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-     * grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-     * grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+     * The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
      */
-    public readonly datasourceType!: pulumi.Output<string>;
+    declare public readonly datasourceType: pulumi.Output<string>;
     /**
      * The uid of the datasource to query.
      */
-    public readonly datasourceUid!: pulumi.Output<string>;
+    declare public readonly datasourceUid: pulumi.Output<string>;
     /**
      * A description of the outlier detector.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The data interval in seconds to monitor.
      */
-    public readonly interval!: pulumi.Output<number | undefined>;
+    declare public readonly interval: pulumi.Output<number | undefined>;
     /**
      * The metric used to query the outlier detector results.
      */
-    public readonly metric!: pulumi.Output<string>;
+    declare public readonly metric: pulumi.Output<string>;
     /**
      * The name of the outlier detector.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * An object representing the query params to query Grafana with.
      */
-    public readonly queryParams!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly queryParams: pulumi.Output<{[key: string]: string}>;
 
     /**
      * Create a OutlierDetector resource with the given unique name, arguments, and options.
@@ -153,39 +148,39 @@ export class OutlierDetector extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OutlierDetectorState | undefined;
-            resourceInputs["algorithm"] = state ? state.algorithm : undefined;
-            resourceInputs["datasourceType"] = state ? state.datasourceType : undefined;
-            resourceInputs["datasourceUid"] = state ? state.datasourceUid : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["interval"] = state ? state.interval : undefined;
-            resourceInputs["metric"] = state ? state.metric : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["queryParams"] = state ? state.queryParams : undefined;
+            resourceInputs["algorithm"] = state?.algorithm;
+            resourceInputs["datasourceType"] = state?.datasourceType;
+            resourceInputs["datasourceUid"] = state?.datasourceUid;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["interval"] = state?.interval;
+            resourceInputs["metric"] = state?.metric;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["queryParams"] = state?.queryParams;
         } else {
             const args = argsOrState as OutlierDetectorArgs | undefined;
-            if ((!args || args.algorithm === undefined) && !opts.urn) {
+            if (args?.algorithm === undefined && !opts.urn) {
                 throw new Error("Missing required property 'algorithm'");
             }
-            if ((!args || args.datasourceType === undefined) && !opts.urn) {
+            if (args?.datasourceType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'datasourceType'");
             }
-            if ((!args || args.datasourceUid === undefined) && !opts.urn) {
+            if (args?.datasourceUid === undefined && !opts.urn) {
                 throw new Error("Missing required property 'datasourceUid'");
             }
-            if ((!args || args.metric === undefined) && !opts.urn) {
+            if (args?.metric === undefined && !opts.urn) {
                 throw new Error("Missing required property 'metric'");
             }
-            if ((!args || args.queryParams === undefined) && !opts.urn) {
+            if (args?.queryParams === undefined && !opts.urn) {
                 throw new Error("Missing required property 'queryParams'");
             }
-            resourceInputs["algorithm"] = args ? args.algorithm : undefined;
-            resourceInputs["datasourceType"] = args ? args.datasourceType : undefined;
-            resourceInputs["datasourceUid"] = args ? args.datasourceUid : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["interval"] = args ? args.interval : undefined;
-            resourceInputs["metric"] = args ? args.metric : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["queryParams"] = args ? args.queryParams : undefined;
+            resourceInputs["algorithm"] = args?.algorithm;
+            resourceInputs["datasourceType"] = args?.datasourceType;
+            resourceInputs["datasourceUid"] = args?.datasourceUid;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["interval"] = args?.interval;
+            resourceInputs["metric"] = args?.metric;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["queryParams"] = args?.queryParams;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(OutlierDetector.__pulumiType, name, resourceInputs, opts);
@@ -197,16 +192,11 @@ export class OutlierDetector extends pulumi.CustomResource {
  */
 export interface OutlierDetectorState {
     /**
-     * The algorithm to use and its configuration. See
-     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     algorithm?: pulumi.Input<inputs.machineLearning.OutlierDetectorAlgorithm>;
     /**
-     * The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-     * grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-     * grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-     * grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-     * grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+     * The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
      */
     datasourceType?: pulumi.Input<string>;
     /**
@@ -240,16 +230,11 @@ export interface OutlierDetectorState {
  */
 export interface OutlierDetectorArgs {
     /**
-     * The algorithm to use and its configuration. See
-     * https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
+     * The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
      */
     algorithm: pulumi.Input<inputs.machineLearning.OutlierDetectorAlgorithm>;
     /**
-     * The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-     * grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-     * grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-     * grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-     * grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+     * The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
      */
     datasourceType: pulumi.Input<string>;
     /**

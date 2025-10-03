@@ -44,71 +44,71 @@ export class OnCallShift extends pulumi.CustomResource {
     /**
      * This parameter takes a list of days in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
      */
-    public readonly byDays!: pulumi.Output<string[] | undefined>;
+    declare public readonly byDays: pulumi.Output<string[] | undefined>;
     /**
      * This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
      */
-    public readonly byMonthdays!: pulumi.Output<number[] | undefined>;
+    declare public readonly byMonthdays: pulumi.Output<number[] | undefined>;
     /**
      * This parameter takes a list of months. Valid values are 1 to 12
      */
-    public readonly byMonths!: pulumi.Output<number[] | undefined>;
+    declare public readonly byMonths: pulumi.Output<number[] | undefined>;
     /**
      * The duration of the event.
      */
-    public readonly duration!: pulumi.Output<number>;
+    declare public readonly duration: pulumi.Output<number>;
     /**
      * The frequency of the event. Can be hourly, daily, weekly, monthly
      */
-    public readonly frequency!: pulumi.Output<string | undefined>;
+    declare public readonly frequency: pulumi.Output<string | undefined>;
     /**
      * The positive integer representing at which intervals the recurrence rule repeats.
      */
-    public readonly interval!: pulumi.Output<number | undefined>;
+    declare public readonly interval: pulumi.Output<number | undefined>;
     /**
      * The priority level. The higher the value, the higher the priority.
      */
-    public readonly level!: pulumi.Output<number | undefined>;
+    declare public readonly level: pulumi.Output<number | undefined>;
     /**
      * The shift's name.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The list of lists with on-call users (for rollingUsers event type)
      */
-    public readonly rollingUsers!: pulumi.Output<string[][] | undefined>;
+    declare public readonly rollingUsers: pulumi.Output<string[][] | undefined>;
     /**
      * The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
      */
-    public readonly start!: pulumi.Output<string>;
+    declare public readonly start: pulumi.Output<string>;
     /**
      * The index of the list of users in rolling_users, from which on-call rotation starts.
      */
-    public readonly startRotationFromUserIndex!: pulumi.Output<number | undefined>;
+    declare public readonly startRotationFromUserIndex: pulumi.Output<number | undefined>;
     /**
      * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
-    public readonly teamId!: pulumi.Output<string | undefined>;
+    declare public readonly teamId: pulumi.Output<string | undefined>;
     /**
      * The shift's timezone.  Overrides schedule's timezone.
      */
-    public readonly timeZone!: pulumi.Output<string | undefined>;
+    declare public readonly timeZone: pulumi.Output<string | undefined>;
     /**
      * The shift's type. Can be rolling*users, recurrent*event, single_event
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * The end time of recurrent on-call shifts (endless if null). This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
      */
-    public readonly until!: pulumi.Output<string | undefined>;
+    declare public readonly until: pulumi.Output<string | undefined>;
     /**
      * The list of on-call users (for single*event and recurrent*event event type).
      */
-    public readonly users!: pulumi.Output<string[] | undefined>;
+    declare public readonly users: pulumi.Output<string[] | undefined>;
     /**
      * Start day of the week in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
      */
-    public readonly weekStart!: pulumi.Output<string | undefined>;
+    declare public readonly weekStart: pulumi.Output<string | undefined>;
 
     /**
      * Create a OnCallShift resource with the given unique name, arguments, and options.
@@ -123,51 +123,51 @@ export class OnCallShift extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OnCallShiftState | undefined;
-            resourceInputs["byDays"] = state ? state.byDays : undefined;
-            resourceInputs["byMonthdays"] = state ? state.byMonthdays : undefined;
-            resourceInputs["byMonths"] = state ? state.byMonths : undefined;
-            resourceInputs["duration"] = state ? state.duration : undefined;
-            resourceInputs["frequency"] = state ? state.frequency : undefined;
-            resourceInputs["interval"] = state ? state.interval : undefined;
-            resourceInputs["level"] = state ? state.level : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["rollingUsers"] = state ? state.rollingUsers : undefined;
-            resourceInputs["start"] = state ? state.start : undefined;
-            resourceInputs["startRotationFromUserIndex"] = state ? state.startRotationFromUserIndex : undefined;
-            resourceInputs["teamId"] = state ? state.teamId : undefined;
-            resourceInputs["timeZone"] = state ? state.timeZone : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["until"] = state ? state.until : undefined;
-            resourceInputs["users"] = state ? state.users : undefined;
-            resourceInputs["weekStart"] = state ? state.weekStart : undefined;
+            resourceInputs["byDays"] = state?.byDays;
+            resourceInputs["byMonthdays"] = state?.byMonthdays;
+            resourceInputs["byMonths"] = state?.byMonths;
+            resourceInputs["duration"] = state?.duration;
+            resourceInputs["frequency"] = state?.frequency;
+            resourceInputs["interval"] = state?.interval;
+            resourceInputs["level"] = state?.level;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["rollingUsers"] = state?.rollingUsers;
+            resourceInputs["start"] = state?.start;
+            resourceInputs["startRotationFromUserIndex"] = state?.startRotationFromUserIndex;
+            resourceInputs["teamId"] = state?.teamId;
+            resourceInputs["timeZone"] = state?.timeZone;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["until"] = state?.until;
+            resourceInputs["users"] = state?.users;
+            resourceInputs["weekStart"] = state?.weekStart;
         } else {
             const args = argsOrState as OnCallShiftArgs | undefined;
-            if ((!args || args.duration === undefined) && !opts.urn) {
+            if (args?.duration === undefined && !opts.urn) {
                 throw new Error("Missing required property 'duration'");
             }
-            if ((!args || args.start === undefined) && !opts.urn) {
+            if (args?.start === undefined && !opts.urn) {
                 throw new Error("Missing required property 'start'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["byDays"] = args ? args.byDays : undefined;
-            resourceInputs["byMonthdays"] = args ? args.byMonthdays : undefined;
-            resourceInputs["byMonths"] = args ? args.byMonths : undefined;
-            resourceInputs["duration"] = args ? args.duration : undefined;
-            resourceInputs["frequency"] = args ? args.frequency : undefined;
-            resourceInputs["interval"] = args ? args.interval : undefined;
-            resourceInputs["level"] = args ? args.level : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["rollingUsers"] = args ? args.rollingUsers : undefined;
-            resourceInputs["start"] = args ? args.start : undefined;
-            resourceInputs["startRotationFromUserIndex"] = args ? args.startRotationFromUserIndex : undefined;
-            resourceInputs["teamId"] = args ? args.teamId : undefined;
-            resourceInputs["timeZone"] = args ? args.timeZone : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["until"] = args ? args.until : undefined;
-            resourceInputs["users"] = args ? args.users : undefined;
-            resourceInputs["weekStart"] = args ? args.weekStart : undefined;
+            resourceInputs["byDays"] = args?.byDays;
+            resourceInputs["byMonthdays"] = args?.byMonthdays;
+            resourceInputs["byMonths"] = args?.byMonths;
+            resourceInputs["duration"] = args?.duration;
+            resourceInputs["frequency"] = args?.frequency;
+            resourceInputs["interval"] = args?.interval;
+            resourceInputs["level"] = args?.level;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["rollingUsers"] = args?.rollingUsers;
+            resourceInputs["start"] = args?.start;
+            resourceInputs["startRotationFromUserIndex"] = args?.startRotationFromUserIndex;
+            resourceInputs["teamId"] = args?.teamId;
+            resourceInputs["timeZone"] = args?.timeZone;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["until"] = args?.until;
+            resourceInputs["users"] = args?.users;
+            resourceInputs["weekStart"] = args?.weekStart;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(OnCallShift.__pulumiType, name, resourceInputs, opts);

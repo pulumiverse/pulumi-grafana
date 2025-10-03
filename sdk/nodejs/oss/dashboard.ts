@@ -70,39 +70,39 @@ export class Dashboard extends pulumi.CustomResource {
     /**
      * The complete dashboard model JSON.
      */
-    public readonly configJson!: pulumi.Output<string>;
+    declare public readonly configJson: pulumi.Output<string>;
     /**
      * The numeric ID of the dashboard computed by Grafana.
      */
-    public /*out*/ readonly dashboardId!: pulumi.Output<number>;
+    declare public /*out*/ readonly dashboardId: pulumi.Output<number>;
     /**
      * The id or UID of the folder to save the dashboard in.
      */
-    public readonly folder!: pulumi.Output<string | undefined>;
+    declare public readonly folder: pulumi.Output<string | undefined>;
     /**
      * Set a commit message for the version history.
      */
-    public readonly message!: pulumi.Output<string | undefined>;
+    declare public readonly message: pulumi.Output<string | undefined>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.
      */
-    public readonly overwrite!: pulumi.Output<boolean | undefined>;
+    declare public readonly overwrite: pulumi.Output<boolean | undefined>;
     /**
      * The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.
      */
-    public /*out*/ readonly uid!: pulumi.Output<string>;
+    declare public /*out*/ readonly uid: pulumi.Output<string>;
     /**
      * The full URL of the dashboard.
      */
-    public /*out*/ readonly url!: pulumi.Output<string>;
+    declare public /*out*/ readonly url: pulumi.Output<string>;
     /**
      * Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your dashboard are not lost.
      */
-    public /*out*/ readonly version!: pulumi.Output<number>;
+    declare public /*out*/ readonly version: pulumi.Output<number>;
 
     /**
      * Create a Dashboard resource with the given unique name, arguments, and options.
@@ -117,25 +117,25 @@ export class Dashboard extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DashboardState | undefined;
-            resourceInputs["configJson"] = state ? state.configJson : undefined;
-            resourceInputs["dashboardId"] = state ? state.dashboardId : undefined;
-            resourceInputs["folder"] = state ? state.folder : undefined;
-            resourceInputs["message"] = state ? state.message : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["overwrite"] = state ? state.overwrite : undefined;
-            resourceInputs["uid"] = state ? state.uid : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["configJson"] = state?.configJson;
+            resourceInputs["dashboardId"] = state?.dashboardId;
+            resourceInputs["folder"] = state?.folder;
+            resourceInputs["message"] = state?.message;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["overwrite"] = state?.overwrite;
+            resourceInputs["uid"] = state?.uid;
+            resourceInputs["url"] = state?.url;
+            resourceInputs["version"] = state?.version;
         } else {
             const args = argsOrState as DashboardArgs | undefined;
-            if ((!args || args.configJson === undefined) && !opts.urn) {
+            if (args?.configJson === undefined && !opts.urn) {
                 throw new Error("Missing required property 'configJson'");
             }
-            resourceInputs["configJson"] = args ? args.configJson : undefined;
-            resourceInputs["folder"] = args ? args.folder : undefined;
-            resourceInputs["message"] = args ? args.message : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["overwrite"] = args ? args.overwrite : undefined;
+            resourceInputs["configJson"] = args?.configJson;
+            resourceInputs["folder"] = args?.folder;
+            resourceInputs["message"] = args?.message;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["overwrite"] = args?.overwrite;
             resourceInputs["dashboardId"] = undefined /*out*/;
             resourceInputs["uid"] = undefined /*out*/;
             resourceInputs["url"] = undefined /*out*/;

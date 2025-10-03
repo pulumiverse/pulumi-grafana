@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -4073,6 +4073,8 @@ func (o MuteTimingIntervalTimeArrayOutput) Index(i pulumi.IntInput) MuteTimingIn
 }
 
 type NotificationPolicyPolicy struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+	ActiveTimings []string `pulumi:"activeTimings"`
 	// The contact point to route notifications that match this rule to.
 	ContactPoint *string `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
@@ -4085,7 +4087,7 @@ type NotificationPolicyPolicy struct {
 	GroupWait *string `pulumi:"groupWait"`
 	// Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
 	Matchers []NotificationPolicyPolicyMatcher `pulumi:"matchers"`
-	// A list of mute timing names to apply to alerts that match this policy.
+	// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 	MuteTimings []string `pulumi:"muteTimings"`
 	// Routing rules for specific label sets.
 	Policies []NotificationPolicyPolicyPolicy `pulumi:"policies"`
@@ -4105,6 +4107,8 @@ type NotificationPolicyPolicyInput interface {
 }
 
 type NotificationPolicyPolicyArgs struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+	ActiveTimings pulumi.StringArrayInput `pulumi:"activeTimings"`
 	// The contact point to route notifications that match this rule to.
 	ContactPoint pulumi.StringPtrInput `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
@@ -4117,7 +4121,7 @@ type NotificationPolicyPolicyArgs struct {
 	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
 	// Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
 	Matchers NotificationPolicyPolicyMatcherArrayInput `pulumi:"matchers"`
-	// A list of mute timing names to apply to alerts that match this policy.
+	// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 	MuteTimings pulumi.StringArrayInput `pulumi:"muteTimings"`
 	// Routing rules for specific label sets.
 	Policies NotificationPolicyPolicyPolicyArrayInput `pulumi:"policies"`
@@ -4176,6 +4180,11 @@ func (o NotificationPolicyPolicyOutput) ToNotificationPolicyPolicyOutputWithCont
 	return o
 }
 
+// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+func (o NotificationPolicyPolicyOutput) ActiveTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicy) []string { return v.ActiveTimings }).(pulumi.StringArrayOutput)
+}
+
 // The contact point to route notifications that match this rule to.
 func (o NotificationPolicyPolicyOutput) ContactPoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NotificationPolicyPolicy) *string { return v.ContactPoint }).(pulumi.StringPtrOutput)
@@ -4206,7 +4215,7 @@ func (o NotificationPolicyPolicyOutput) Matchers() NotificationPolicyPolicyMatch
 	return o.ApplyT(func(v NotificationPolicyPolicy) []NotificationPolicyPolicyMatcher { return v.Matchers }).(NotificationPolicyPolicyMatcherArrayOutput)
 }
 
-// A list of mute timing names to apply to alerts that match this policy.
+// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 func (o NotificationPolicyPolicyOutput) MuteTimings() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NotificationPolicyPolicy) []string { return v.MuteTimings }).(pulumi.StringArrayOutput)
 }
@@ -4357,6 +4366,8 @@ func (o NotificationPolicyPolicyMatcherArrayOutput) Index(i pulumi.IntInput) Not
 }
 
 type NotificationPolicyPolicyPolicy struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+	ActiveTimings []string `pulumi:"activeTimings"`
 	// The contact point to route notifications that match this rule to.
 	ContactPoint *string `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
@@ -4369,7 +4380,7 @@ type NotificationPolicyPolicyPolicy struct {
 	GroupWait *string `pulumi:"groupWait"`
 	// Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
 	Matchers []NotificationPolicyPolicyPolicyMatcher `pulumi:"matchers"`
-	// A list of mute timing names to apply to alerts that match this policy.
+	// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 	MuteTimings []string `pulumi:"muteTimings"`
 	// Routing rules for specific label sets.
 	Policies []NotificationPolicyPolicyPolicyPolicy `pulumi:"policies"`
@@ -4389,6 +4400,8 @@ type NotificationPolicyPolicyPolicyInput interface {
 }
 
 type NotificationPolicyPolicyPolicyArgs struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+	ActiveTimings pulumi.StringArrayInput `pulumi:"activeTimings"`
 	// The contact point to route notifications that match this rule to.
 	ContactPoint pulumi.StringPtrInput `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
@@ -4401,7 +4414,7 @@ type NotificationPolicyPolicyPolicyArgs struct {
 	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
 	// Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
 	Matchers NotificationPolicyPolicyPolicyMatcherArrayInput `pulumi:"matchers"`
-	// A list of mute timing names to apply to alerts that match this policy.
+	// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 	MuteTimings pulumi.StringArrayInput `pulumi:"muteTimings"`
 	// Routing rules for specific label sets.
 	Policies NotificationPolicyPolicyPolicyPolicyArrayInput `pulumi:"policies"`
@@ -4460,6 +4473,11 @@ func (o NotificationPolicyPolicyPolicyOutput) ToNotificationPolicyPolicyPolicyOu
 	return o
 }
 
+// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+func (o NotificationPolicyPolicyPolicyOutput) ActiveTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicy) []string { return v.ActiveTimings }).(pulumi.StringArrayOutput)
+}
+
 // The contact point to route notifications that match this rule to.
 func (o NotificationPolicyPolicyPolicyOutput) ContactPoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NotificationPolicyPolicyPolicy) *string { return v.ContactPoint }).(pulumi.StringPtrOutput)
@@ -4490,7 +4508,7 @@ func (o NotificationPolicyPolicyPolicyOutput) Matchers() NotificationPolicyPolic
 	return o.ApplyT(func(v NotificationPolicyPolicyPolicy) []NotificationPolicyPolicyPolicyMatcher { return v.Matchers }).(NotificationPolicyPolicyPolicyMatcherArrayOutput)
 }
 
-// A list of mute timing names to apply to alerts that match this policy.
+// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 func (o NotificationPolicyPolicyPolicyOutput) MuteTimings() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NotificationPolicyPolicyPolicy) []string { return v.MuteTimings }).(pulumi.StringArrayOutput)
 }
@@ -4641,6 +4659,8 @@ func (o NotificationPolicyPolicyPolicyMatcherArrayOutput) Index(i pulumi.IntInpu
 }
 
 type NotificationPolicyPolicyPolicyPolicy struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+	ActiveTimings []string `pulumi:"activeTimings"`
 	// The contact point to route notifications that match this rule to.
 	ContactPoint *string `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
@@ -4653,7 +4673,7 @@ type NotificationPolicyPolicyPolicyPolicy struct {
 	GroupWait *string `pulumi:"groupWait"`
 	// Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
 	Matchers []NotificationPolicyPolicyPolicyPolicyMatcher `pulumi:"matchers"`
-	// A list of mute timing names to apply to alerts that match this policy.
+	// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 	MuteTimings []string `pulumi:"muteTimings"`
 	// Routing rules for specific label sets.
 	Policies []NotificationPolicyPolicyPolicyPolicyPolicy `pulumi:"policies"`
@@ -4673,6 +4693,8 @@ type NotificationPolicyPolicyPolicyPolicyInput interface {
 }
 
 type NotificationPolicyPolicyPolicyPolicyArgs struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+	ActiveTimings pulumi.StringArrayInput `pulumi:"activeTimings"`
 	// The contact point to route notifications that match this rule to.
 	ContactPoint pulumi.StringPtrInput `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
@@ -4685,7 +4707,7 @@ type NotificationPolicyPolicyPolicyPolicyArgs struct {
 	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
 	// Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
 	Matchers NotificationPolicyPolicyPolicyPolicyMatcherArrayInput `pulumi:"matchers"`
-	// A list of mute timing names to apply to alerts that match this policy.
+	// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 	MuteTimings pulumi.StringArrayInput `pulumi:"muteTimings"`
 	// Routing rules for specific label sets.
 	Policies NotificationPolicyPolicyPolicyPolicyPolicyArrayInput `pulumi:"policies"`
@@ -4744,6 +4766,11 @@ func (o NotificationPolicyPolicyPolicyPolicyOutput) ToNotificationPolicyPolicyPo
 	return o
 }
 
+// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+func (o NotificationPolicyPolicyPolicyPolicyOutput) ActiveTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicy) []string { return v.ActiveTimings }).(pulumi.StringArrayOutput)
+}
+
 // The contact point to route notifications that match this rule to.
 func (o NotificationPolicyPolicyPolicyPolicyOutput) ContactPoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicy) *string { return v.ContactPoint }).(pulumi.StringPtrOutput)
@@ -4776,7 +4803,7 @@ func (o NotificationPolicyPolicyPolicyPolicyOutput) Matchers() NotificationPolic
 	}).(NotificationPolicyPolicyPolicyPolicyMatcherArrayOutput)
 }
 
-// A list of mute timing names to apply to alerts that match this policy.
+// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 func (o NotificationPolicyPolicyPolicyPolicyOutput) MuteTimings() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicy) []string { return v.MuteTimings }).(pulumi.StringArrayOutput)
 }
@@ -4929,6 +4956,8 @@ func (o NotificationPolicyPolicyPolicyPolicyMatcherArrayOutput) Index(i pulumi.I
 }
 
 type NotificationPolicyPolicyPolicyPolicyPolicy struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+	ActiveTimings []string `pulumi:"activeTimings"`
 	// The contact point to route notifications that match this rule to.
 	ContactPoint *string `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
@@ -4941,7 +4970,7 @@ type NotificationPolicyPolicyPolicyPolicyPolicy struct {
 	GroupWait *string `pulumi:"groupWait"`
 	// Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
 	Matchers []NotificationPolicyPolicyPolicyPolicyPolicyMatcher `pulumi:"matchers"`
-	// A list of mute timing names to apply to alerts that match this policy.
+	// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 	MuteTimings []string `pulumi:"muteTimings"`
 	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
 	RepeatInterval *string `pulumi:"repeatInterval"`
@@ -4959,6 +4988,8 @@ type NotificationPolicyPolicyPolicyPolicyPolicyInput interface {
 }
 
 type NotificationPolicyPolicyPolicyPolicyPolicyArgs struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+	ActiveTimings pulumi.StringArrayInput `pulumi:"activeTimings"`
 	// The contact point to route notifications that match this rule to.
 	ContactPoint pulumi.StringPtrInput `pulumi:"contactPoint"`
 	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
@@ -4971,7 +5002,7 @@ type NotificationPolicyPolicyPolicyPolicyPolicyArgs struct {
 	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
 	// Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
 	Matchers NotificationPolicyPolicyPolicyPolicyPolicyMatcherArrayInput `pulumi:"matchers"`
-	// A list of mute timing names to apply to alerts that match this policy.
+	// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 	MuteTimings pulumi.StringArrayInput `pulumi:"muteTimings"`
 	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
 	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
@@ -5028,6 +5059,11 @@ func (o NotificationPolicyPolicyPolicyPolicyPolicyOutput) ToNotificationPolicyPo
 	return o
 }
 
+// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+func (o NotificationPolicyPolicyPolicyPolicyPolicyOutput) ActiveTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicy) []string { return v.ActiveTimings }).(pulumi.StringArrayOutput)
+}
+
 // The contact point to route notifications that match this rule to.
 func (o NotificationPolicyPolicyPolicyPolicyPolicyOutput) ContactPoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicy) *string { return v.ContactPoint }).(pulumi.StringPtrOutput)
@@ -5060,7 +5096,7 @@ func (o NotificationPolicyPolicyPolicyPolicyPolicyOutput) Matchers() Notificatio
 	}).(NotificationPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput)
 }
 
-// A list of mute timing names to apply to alerts that match this policy.
+// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 func (o NotificationPolicyPolicyPolicyPolicyPolicyOutput) MuteTimings() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicy) []string { return v.MuteTimings }).(pulumi.StringArrayOutput)
 }

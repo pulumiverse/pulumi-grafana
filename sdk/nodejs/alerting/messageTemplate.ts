@@ -64,19 +64,19 @@ export class MessageTemplate extends pulumi.CustomResource {
         return obj['__pulumiType'] === MessageTemplate.__pulumiType;
     }
 
-    public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableProvenance: pulumi.Output<boolean | undefined>;
     /**
      * The name of the notification template group.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * The content of the notification template group.
      */
-    public readonly template!: pulumi.Output<string>;
+    declare public readonly template: pulumi.Output<string>;
 
     /**
      * Create a MessageTemplate resource with the given unique name, arguments, and options.
@@ -91,19 +91,19 @@ export class MessageTemplate extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MessageTemplateState | undefined;
-            resourceInputs["disableProvenance"] = state ? state.disableProvenance : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["template"] = state ? state.template : undefined;
+            resourceInputs["disableProvenance"] = state?.disableProvenance;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["template"] = state?.template;
         } else {
             const args = argsOrState as MessageTemplateArgs | undefined;
-            if ((!args || args.template === undefined) && !opts.urn) {
+            if (args?.template === undefined && !opts.urn) {
                 throw new Error("Missing required property 'template'");
             }
-            resourceInputs["disableProvenance"] = args ? args.disableProvenance : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["template"] = args ? args.template : undefined;
+            resourceInputs["disableProvenance"] = args?.disableProvenance;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["template"] = args?.template;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/messageTemplate:MessageTemplate" }] };

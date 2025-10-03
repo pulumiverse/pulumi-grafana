@@ -258,39 +258,39 @@ export class SLO extends pulumi.CustomResource {
      * 			long-term error budget burn rate is high, or when the remaining
      * 			error budget is below a certain threshold. Annotations and Labels support templating.
      */
-    public readonly alerting!: pulumi.Output<outputs.slo.SLOAlerting | undefined>;
+    declare public readonly alerting: pulumi.Output<outputs.slo.SLOAlerting | undefined>;
     /**
      * Description is a free-text field that can provide more context to an SLO.
      */
-    public readonly description!: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * Destination Datasource sets the datasource defined for an SLO
      */
-    public readonly destinationDatasource!: pulumi.Output<outputs.slo.SLODestinationDatasource>;
+    declare public readonly destinationDatasource: pulumi.Output<outputs.slo.SLODestinationDatasource>;
     /**
      * UID for the SLO folder
      */
-    public readonly folderUid!: pulumi.Output<string | undefined>;
+    declare public readonly folderUid: pulumi.Output<string | undefined>;
     /**
      * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
      */
-    public readonly labels!: pulumi.Output<outputs.slo.SLOLabel[] | undefined>;
+    declare public readonly labels: pulumi.Output<outputs.slo.SLOLabel[] | undefined>;
     /**
      * Name should be a short description of your indicator. Consider names like "API Availability"
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
      */
-    public readonly objectives!: pulumi.Output<outputs.slo.SLOObjective[]>;
+    declare public readonly objectives: pulumi.Output<outputs.slo.SLOObjective[]>;
     /**
      * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
      */
-    public readonly queries!: pulumi.Output<outputs.slo.SLOQuery[]>;
+    declare public readonly queries: pulumi.Output<outputs.slo.SLOQuery[]>;
     /**
      * The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
      */
-    public readonly searchExpression!: pulumi.Output<string | undefined>;
+    declare public readonly searchExpression: pulumi.Output<string | undefined>;
 
     /**
      * Create a SLO resource with the given unique name, arguments, and options.
@@ -305,38 +305,38 @@ export class SLO extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SLOState | undefined;
-            resourceInputs["alerting"] = state ? state.alerting : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["destinationDatasource"] = state ? state.destinationDatasource : undefined;
-            resourceInputs["folderUid"] = state ? state.folderUid : undefined;
-            resourceInputs["labels"] = state ? state.labels : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["objectives"] = state ? state.objectives : undefined;
-            resourceInputs["queries"] = state ? state.queries : undefined;
-            resourceInputs["searchExpression"] = state ? state.searchExpression : undefined;
+            resourceInputs["alerting"] = state?.alerting;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["destinationDatasource"] = state?.destinationDatasource;
+            resourceInputs["folderUid"] = state?.folderUid;
+            resourceInputs["labels"] = state?.labels;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["objectives"] = state?.objectives;
+            resourceInputs["queries"] = state?.queries;
+            resourceInputs["searchExpression"] = state?.searchExpression;
         } else {
             const args = argsOrState as SLOArgs | undefined;
-            if ((!args || args.description === undefined) && !opts.urn) {
+            if (args?.description === undefined && !opts.urn) {
                 throw new Error("Missing required property 'description'");
             }
-            if ((!args || args.destinationDatasource === undefined) && !opts.urn) {
+            if (args?.destinationDatasource === undefined && !opts.urn) {
                 throw new Error("Missing required property 'destinationDatasource'");
             }
-            if ((!args || args.objectives === undefined) && !opts.urn) {
+            if (args?.objectives === undefined && !opts.urn) {
                 throw new Error("Missing required property 'objectives'");
             }
-            if ((!args || args.queries === undefined) && !opts.urn) {
+            if (args?.queries === undefined && !opts.urn) {
                 throw new Error("Missing required property 'queries'");
             }
-            resourceInputs["alerting"] = args ? args.alerting : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["destinationDatasource"] = args ? args.destinationDatasource : undefined;
-            resourceInputs["folderUid"] = args ? args.folderUid : undefined;
-            resourceInputs["labels"] = args ? args.labels : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["objectives"] = args ? args.objectives : undefined;
-            resourceInputs["queries"] = args ? args.queries : undefined;
-            resourceInputs["searchExpression"] = args ? args.searchExpression : undefined;
+            resourceInputs["alerting"] = args?.alerting;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["destinationDatasource"] = args?.destinationDatasource;
+            resourceInputs["folderUid"] = args?.folderUid;
+            resourceInputs["labels"] = args?.labels;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["objectives"] = args?.objectives;
+            resourceInputs["queries"] = args?.queries;
+            resourceInputs["searchExpression"] = args?.searchExpression;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/sLO:SLO" }] };

@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // Resource manages Grafana SLOs.
@@ -28,7 +28,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/slo"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/slo"
 //
 // )
 //
@@ -109,7 +109,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/slo"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/slo"
 //
 // )
 //
@@ -189,7 +189,7 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/slo"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/slo"
 //
 // )
 //

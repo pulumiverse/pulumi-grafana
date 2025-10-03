@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // A job defines the queries and model parameters for a machine learning task.
@@ -33,8 +33,8 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/machinelearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
 //
 // )
 //
@@ -99,8 +99,8 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/machinelearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
 //
 // )
 //
@@ -172,8 +172,8 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/machinelearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
 //
 // )
 //
@@ -241,8 +241,8 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/machinelearning"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/machinelearning"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
 //
 // )
 //
@@ -321,11 +321,7 @@ type Job struct {
 
 	// An object representing the custom labels added on the forecast.
 	CustomLabels pulumi.StringMapOutput `pulumi:"customLabels"`
-	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-	// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-	// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-	// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-	// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
 	DatasourceType pulumi.StringOutput `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
 	DatasourceUid pulumi.StringOutput `pulumi:"datasourceUid"`
@@ -333,9 +329,7 @@ type Job struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayOutput `pulumi:"holidays"`
-	// The hyperparameters used to fine tune the algorithm. See
-	// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
-	// available hyperparameters.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of available hyperparameters.
 	HyperParams pulumi.StringMapOutput `pulumi:"hyperParams"`
 	// The data interval in seconds to train the data on.
 	Interval pulumi.IntPtrOutput `pulumi:"interval"`
@@ -393,11 +387,7 @@ func GetJob(ctx *pulumi.Context,
 type jobState struct {
 	// An object representing the custom labels added on the forecast.
 	CustomLabels map[string]string `pulumi:"customLabels"`
-	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-	// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-	// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-	// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-	// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
 	DatasourceType *string `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
 	DatasourceUid *string `pulumi:"datasourceUid"`
@@ -405,9 +395,7 @@ type jobState struct {
 	Description *string `pulumi:"description"`
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays []string `pulumi:"holidays"`
-	// The hyperparameters used to fine tune the algorithm. See
-	// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
-	// available hyperparameters.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of available hyperparameters.
 	HyperParams map[string]string `pulumi:"hyperParams"`
 	// The data interval in seconds to train the data on.
 	Interval *int `pulumi:"interval"`
@@ -424,11 +412,7 @@ type jobState struct {
 type JobState struct {
 	// An object representing the custom labels added on the forecast.
 	CustomLabels pulumi.StringMapInput
-	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-	// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-	// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-	// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-	// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
 	DatasourceType pulumi.StringPtrInput
 	// The uid of the datasource to query.
 	DatasourceUid pulumi.StringPtrInput
@@ -436,9 +420,7 @@ type JobState struct {
 	Description pulumi.StringPtrInput
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayInput
-	// The hyperparameters used to fine tune the algorithm. See
-	// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
-	// available hyperparameters.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of available hyperparameters.
 	HyperParams pulumi.StringMapInput
 	// The data interval in seconds to train the data on.
 	Interval pulumi.IntPtrInput
@@ -459,11 +441,7 @@ func (JobState) ElementType() reflect.Type {
 type jobArgs struct {
 	// An object representing the custom labels added on the forecast.
 	CustomLabels map[string]string `pulumi:"customLabels"`
-	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-	// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-	// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-	// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-	// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
 	DatasourceType string `pulumi:"datasourceType"`
 	// The uid of the datasource to query.
 	DatasourceUid string `pulumi:"datasourceUid"`
@@ -471,9 +449,7 @@ type jobArgs struct {
 	Description *string `pulumi:"description"`
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays []string `pulumi:"holidays"`
-	// The hyperparameters used to fine tune the algorithm. See
-	// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
-	// available hyperparameters.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of available hyperparameters.
 	HyperParams map[string]string `pulumi:"hyperParams"`
 	// The data interval in seconds to train the data on.
 	Interval *int `pulumi:"interval"`
@@ -491,11 +467,7 @@ type jobArgs struct {
 type JobArgs struct {
 	// An object representing the custom labels added on the forecast.
 	CustomLabels pulumi.StringMapInput
-	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-	// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-	// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-	// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-	// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+	// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
 	DatasourceType pulumi.StringInput
 	// The uid of the datasource to query.
 	DatasourceUid pulumi.StringInput
@@ -503,9 +475,7 @@ type JobArgs struct {
 	Description pulumi.StringPtrInput
 	// A list of holiday IDs or names to take into account when training the model.
 	Holidays pulumi.StringArrayInput
-	// The hyperparameters used to fine tune the algorithm. See
-	// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
-	// available hyperparameters.
+	// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of available hyperparameters.
 	HyperParams pulumi.StringMapInput
 	// The data interval in seconds to train the data on.
 	Interval pulumi.IntPtrInput
@@ -611,11 +581,7 @@ func (o JobOutput) CustomLabels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringMapOutput { return v.CustomLabels }).(pulumi.StringMapOutput)
 }
 
-// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource,
-// grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource,
-// grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource,
-// grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource,
-// grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
+// The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
 func (o JobOutput) DatasourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.DatasourceType }).(pulumi.StringOutput)
 }
@@ -635,9 +601,7 @@ func (o JobOutput) Holidays() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringArrayOutput { return v.Holidays }).(pulumi.StringArrayOutput)
 }
 
-// The hyperparameters used to fine tune the algorithm. See
-// https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of
-// available hyperparameters.
+// The hyperparameters used to fine tune the algorithm. See https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/forecasts/models/ for the full list of available hyperparameters.
 func (o JobOutput) HyperParams() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringMapOutput { return v.HyperParams }).(pulumi.StringMapOutput)
 }
