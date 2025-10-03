@@ -13,6 +13,219 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type ScheduleRecurrenceRule struct {
+	// The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+	Bydays []string `pulumi:"bydays"`
+	// How many times the recurrence will repeat.
+	Count *int `pulumi:"count"`
+	// The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY).
+	Frequency *string `pulumi:"frequency"`
+	// The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY). Defaults to 1.
+	Interval *int `pulumi:"interval"`
+	// The end time for the recurrence (RFC3339 format).
+	Until *string `pulumi:"until"`
+}
+
+// ScheduleRecurrenceRuleInput is an input type that accepts ScheduleRecurrenceRuleArgs and ScheduleRecurrenceRuleOutput values.
+// You can construct a concrete instance of `ScheduleRecurrenceRuleInput` via:
+//
+//	ScheduleRecurrenceRuleArgs{...}
+type ScheduleRecurrenceRuleInput interface {
+	pulumi.Input
+
+	ToScheduleRecurrenceRuleOutput() ScheduleRecurrenceRuleOutput
+	ToScheduleRecurrenceRuleOutputWithContext(context.Context) ScheduleRecurrenceRuleOutput
+}
+
+type ScheduleRecurrenceRuleArgs struct {
+	// The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+	Bydays pulumi.StringArrayInput `pulumi:"bydays"`
+	// How many times the recurrence will repeat.
+	Count pulumi.IntPtrInput `pulumi:"count"`
+	// The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY).
+	Frequency pulumi.StringPtrInput `pulumi:"frequency"`
+	// The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY). Defaults to 1.
+	Interval pulumi.IntPtrInput `pulumi:"interval"`
+	// The end time for the recurrence (RFC3339 format).
+	Until pulumi.StringPtrInput `pulumi:"until"`
+}
+
+func (ScheduleRecurrenceRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScheduleRecurrenceRule)(nil)).Elem()
+}
+
+func (i ScheduleRecurrenceRuleArgs) ToScheduleRecurrenceRuleOutput() ScheduleRecurrenceRuleOutput {
+	return i.ToScheduleRecurrenceRuleOutputWithContext(context.Background())
+}
+
+func (i ScheduleRecurrenceRuleArgs) ToScheduleRecurrenceRuleOutputWithContext(ctx context.Context) ScheduleRecurrenceRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScheduleRecurrenceRuleOutput)
+}
+
+func (i ScheduleRecurrenceRuleArgs) ToScheduleRecurrenceRulePtrOutput() ScheduleRecurrenceRulePtrOutput {
+	return i.ToScheduleRecurrenceRulePtrOutputWithContext(context.Background())
+}
+
+func (i ScheduleRecurrenceRuleArgs) ToScheduleRecurrenceRulePtrOutputWithContext(ctx context.Context) ScheduleRecurrenceRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScheduleRecurrenceRuleOutput).ToScheduleRecurrenceRulePtrOutputWithContext(ctx)
+}
+
+// ScheduleRecurrenceRulePtrInput is an input type that accepts ScheduleRecurrenceRuleArgs, ScheduleRecurrenceRulePtr and ScheduleRecurrenceRulePtrOutput values.
+// You can construct a concrete instance of `ScheduleRecurrenceRulePtrInput` via:
+//
+//	        ScheduleRecurrenceRuleArgs{...}
+//
+//	or:
+//
+//	        nil
+type ScheduleRecurrenceRulePtrInput interface {
+	pulumi.Input
+
+	ToScheduleRecurrenceRulePtrOutput() ScheduleRecurrenceRulePtrOutput
+	ToScheduleRecurrenceRulePtrOutputWithContext(context.Context) ScheduleRecurrenceRulePtrOutput
+}
+
+type scheduleRecurrenceRulePtrType ScheduleRecurrenceRuleArgs
+
+func ScheduleRecurrenceRulePtr(v *ScheduleRecurrenceRuleArgs) ScheduleRecurrenceRulePtrInput {
+	return (*scheduleRecurrenceRulePtrType)(v)
+}
+
+func (*scheduleRecurrenceRulePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ScheduleRecurrenceRule)(nil)).Elem()
+}
+
+func (i *scheduleRecurrenceRulePtrType) ToScheduleRecurrenceRulePtrOutput() ScheduleRecurrenceRulePtrOutput {
+	return i.ToScheduleRecurrenceRulePtrOutputWithContext(context.Background())
+}
+
+func (i *scheduleRecurrenceRulePtrType) ToScheduleRecurrenceRulePtrOutputWithContext(ctx context.Context) ScheduleRecurrenceRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScheduleRecurrenceRulePtrOutput)
+}
+
+type ScheduleRecurrenceRuleOutput struct{ *pulumi.OutputState }
+
+func (ScheduleRecurrenceRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScheduleRecurrenceRule)(nil)).Elem()
+}
+
+func (o ScheduleRecurrenceRuleOutput) ToScheduleRecurrenceRuleOutput() ScheduleRecurrenceRuleOutput {
+	return o
+}
+
+func (o ScheduleRecurrenceRuleOutput) ToScheduleRecurrenceRuleOutputWithContext(ctx context.Context) ScheduleRecurrenceRuleOutput {
+	return o
+}
+
+func (o ScheduleRecurrenceRuleOutput) ToScheduleRecurrenceRulePtrOutput() ScheduleRecurrenceRulePtrOutput {
+	return o.ToScheduleRecurrenceRulePtrOutputWithContext(context.Background())
+}
+
+func (o ScheduleRecurrenceRuleOutput) ToScheduleRecurrenceRulePtrOutputWithContext(ctx context.Context) ScheduleRecurrenceRulePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ScheduleRecurrenceRule) *ScheduleRecurrenceRule {
+		return &v
+	}).(ScheduleRecurrenceRulePtrOutput)
+}
+
+// The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+func (o ScheduleRecurrenceRuleOutput) Bydays() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ScheduleRecurrenceRule) []string { return v.Bydays }).(pulumi.StringArrayOutput)
+}
+
+// How many times the recurrence will repeat.
+func (o ScheduleRecurrenceRuleOutput) Count() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ScheduleRecurrenceRule) *int { return v.Count }).(pulumi.IntPtrOutput)
+}
+
+// The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY).
+func (o ScheduleRecurrenceRuleOutput) Frequency() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ScheduleRecurrenceRule) *string { return v.Frequency }).(pulumi.StringPtrOutput)
+}
+
+// The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY). Defaults to 1.
+func (o ScheduleRecurrenceRuleOutput) Interval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ScheduleRecurrenceRule) *int { return v.Interval }).(pulumi.IntPtrOutput)
+}
+
+// The end time for the recurrence (RFC3339 format).
+func (o ScheduleRecurrenceRuleOutput) Until() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ScheduleRecurrenceRule) *string { return v.Until }).(pulumi.StringPtrOutput)
+}
+
+type ScheduleRecurrenceRulePtrOutput struct{ *pulumi.OutputState }
+
+func (ScheduleRecurrenceRulePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ScheduleRecurrenceRule)(nil)).Elem()
+}
+
+func (o ScheduleRecurrenceRulePtrOutput) ToScheduleRecurrenceRulePtrOutput() ScheduleRecurrenceRulePtrOutput {
+	return o
+}
+
+func (o ScheduleRecurrenceRulePtrOutput) ToScheduleRecurrenceRulePtrOutputWithContext(ctx context.Context) ScheduleRecurrenceRulePtrOutput {
+	return o
+}
+
+func (o ScheduleRecurrenceRulePtrOutput) Elem() ScheduleRecurrenceRuleOutput {
+	return o.ApplyT(func(v *ScheduleRecurrenceRule) ScheduleRecurrenceRule {
+		if v != nil {
+			return *v
+		}
+		var ret ScheduleRecurrenceRule
+		return ret
+	}).(ScheduleRecurrenceRuleOutput)
+}
+
+// The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+func (o ScheduleRecurrenceRulePtrOutput) Bydays() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ScheduleRecurrenceRule) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Bydays
+	}).(pulumi.StringArrayOutput)
+}
+
+// How many times the recurrence will repeat.
+func (o ScheduleRecurrenceRulePtrOutput) Count() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ScheduleRecurrenceRule) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Count
+	}).(pulumi.IntPtrOutput)
+}
+
+// The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY).
+func (o ScheduleRecurrenceRulePtrOutput) Frequency() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScheduleRecurrenceRule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Frequency
+	}).(pulumi.StringPtrOutput)
+}
+
+// The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY). Defaults to 1.
+func (o ScheduleRecurrenceRulePtrOutput) Interval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ScheduleRecurrenceRule) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Interval
+	}).(pulumi.IntPtrOutput)
+}
+
+// The end time for the recurrence (RFC3339 format).
+func (o ScheduleRecurrenceRulePtrOutput) Until() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScheduleRecurrenceRule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Until
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetLoadTestsLoadTest struct {
 	BaselineTestRunId string `pulumi:"baselineTestRunId"`
 	Created           string `pulumi:"created"`
@@ -267,13 +480,443 @@ func (o GetProjectsProjectArrayOutput) Index(i pulumi.IntInput) GetProjectsProje
 	}).(GetProjectsProjectOutput)
 }
 
+type GetScheduleRecurrenceRule struct {
+	// The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+	Bydays []string `pulumi:"bydays"`
+	// How many times the recurrence will repeat.
+	Count int `pulumi:"count"`
+	// The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY).
+	Frequency string `pulumi:"frequency"`
+	// The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY).
+	Interval int `pulumi:"interval"`
+	// The end time for the recurrence (RFC3339 format).
+	Until string `pulumi:"until"`
+}
+
+// GetScheduleRecurrenceRuleInput is an input type that accepts GetScheduleRecurrenceRuleArgs and GetScheduleRecurrenceRuleOutput values.
+// You can construct a concrete instance of `GetScheduleRecurrenceRuleInput` via:
+//
+//	GetScheduleRecurrenceRuleArgs{...}
+type GetScheduleRecurrenceRuleInput interface {
+	pulumi.Input
+
+	ToGetScheduleRecurrenceRuleOutput() GetScheduleRecurrenceRuleOutput
+	ToGetScheduleRecurrenceRuleOutputWithContext(context.Context) GetScheduleRecurrenceRuleOutput
+}
+
+type GetScheduleRecurrenceRuleArgs struct {
+	// The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+	Bydays pulumi.StringArrayInput `pulumi:"bydays"`
+	// How many times the recurrence will repeat.
+	Count pulumi.IntInput `pulumi:"count"`
+	// The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY).
+	Frequency pulumi.StringInput `pulumi:"frequency"`
+	// The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY).
+	Interval pulumi.IntInput `pulumi:"interval"`
+	// The end time for the recurrence (RFC3339 format).
+	Until pulumi.StringInput `pulumi:"until"`
+}
+
+func (GetScheduleRecurrenceRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScheduleRecurrenceRule)(nil)).Elem()
+}
+
+func (i GetScheduleRecurrenceRuleArgs) ToGetScheduleRecurrenceRuleOutput() GetScheduleRecurrenceRuleOutput {
+	return i.ToGetScheduleRecurrenceRuleOutputWithContext(context.Background())
+}
+
+func (i GetScheduleRecurrenceRuleArgs) ToGetScheduleRecurrenceRuleOutputWithContext(ctx context.Context) GetScheduleRecurrenceRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScheduleRecurrenceRuleOutput)
+}
+
+func (i GetScheduleRecurrenceRuleArgs) ToGetScheduleRecurrenceRulePtrOutput() GetScheduleRecurrenceRulePtrOutput {
+	return i.ToGetScheduleRecurrenceRulePtrOutputWithContext(context.Background())
+}
+
+func (i GetScheduleRecurrenceRuleArgs) ToGetScheduleRecurrenceRulePtrOutputWithContext(ctx context.Context) GetScheduleRecurrenceRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScheduleRecurrenceRuleOutput).ToGetScheduleRecurrenceRulePtrOutputWithContext(ctx)
+}
+
+// GetScheduleRecurrenceRulePtrInput is an input type that accepts GetScheduleRecurrenceRuleArgs, GetScheduleRecurrenceRulePtr and GetScheduleRecurrenceRulePtrOutput values.
+// You can construct a concrete instance of `GetScheduleRecurrenceRulePtrInput` via:
+//
+//	        GetScheduleRecurrenceRuleArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetScheduleRecurrenceRulePtrInput interface {
+	pulumi.Input
+
+	ToGetScheduleRecurrenceRulePtrOutput() GetScheduleRecurrenceRulePtrOutput
+	ToGetScheduleRecurrenceRulePtrOutputWithContext(context.Context) GetScheduleRecurrenceRulePtrOutput
+}
+
+type getScheduleRecurrenceRulePtrType GetScheduleRecurrenceRuleArgs
+
+func GetScheduleRecurrenceRulePtr(v *GetScheduleRecurrenceRuleArgs) GetScheduleRecurrenceRulePtrInput {
+	return (*getScheduleRecurrenceRulePtrType)(v)
+}
+
+func (*getScheduleRecurrenceRulePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetScheduleRecurrenceRule)(nil)).Elem()
+}
+
+func (i *getScheduleRecurrenceRulePtrType) ToGetScheduleRecurrenceRulePtrOutput() GetScheduleRecurrenceRulePtrOutput {
+	return i.ToGetScheduleRecurrenceRulePtrOutputWithContext(context.Background())
+}
+
+func (i *getScheduleRecurrenceRulePtrType) ToGetScheduleRecurrenceRulePtrOutputWithContext(ctx context.Context) GetScheduleRecurrenceRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScheduleRecurrenceRulePtrOutput)
+}
+
+type GetScheduleRecurrenceRuleOutput struct{ *pulumi.OutputState }
+
+func (GetScheduleRecurrenceRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScheduleRecurrenceRule)(nil)).Elem()
+}
+
+func (o GetScheduleRecurrenceRuleOutput) ToGetScheduleRecurrenceRuleOutput() GetScheduleRecurrenceRuleOutput {
+	return o
+}
+
+func (o GetScheduleRecurrenceRuleOutput) ToGetScheduleRecurrenceRuleOutputWithContext(ctx context.Context) GetScheduleRecurrenceRuleOutput {
+	return o
+}
+
+func (o GetScheduleRecurrenceRuleOutput) ToGetScheduleRecurrenceRulePtrOutput() GetScheduleRecurrenceRulePtrOutput {
+	return o.ToGetScheduleRecurrenceRulePtrOutputWithContext(context.Background())
+}
+
+func (o GetScheduleRecurrenceRuleOutput) ToGetScheduleRecurrenceRulePtrOutputWithContext(ctx context.Context) GetScheduleRecurrenceRulePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetScheduleRecurrenceRule) *GetScheduleRecurrenceRule {
+		return &v
+	}).(GetScheduleRecurrenceRulePtrOutput)
+}
+
+// The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+func (o GetScheduleRecurrenceRuleOutput) Bydays() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetScheduleRecurrenceRule) []string { return v.Bydays }).(pulumi.StringArrayOutput)
+}
+
+// How many times the recurrence will repeat.
+func (o GetScheduleRecurrenceRuleOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScheduleRecurrenceRule) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY).
+func (o GetScheduleRecurrenceRuleOutput) Frequency() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleRecurrenceRule) string { return v.Frequency }).(pulumi.StringOutput)
+}
+
+// The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY).
+func (o GetScheduleRecurrenceRuleOutput) Interval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScheduleRecurrenceRule) int { return v.Interval }).(pulumi.IntOutput)
+}
+
+// The end time for the recurrence (RFC3339 format).
+func (o GetScheduleRecurrenceRuleOutput) Until() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleRecurrenceRule) string { return v.Until }).(pulumi.StringOutput)
+}
+
+type GetScheduleRecurrenceRulePtrOutput struct{ *pulumi.OutputState }
+
+func (GetScheduleRecurrenceRulePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetScheduleRecurrenceRule)(nil)).Elem()
+}
+
+func (o GetScheduleRecurrenceRulePtrOutput) ToGetScheduleRecurrenceRulePtrOutput() GetScheduleRecurrenceRulePtrOutput {
+	return o
+}
+
+func (o GetScheduleRecurrenceRulePtrOutput) ToGetScheduleRecurrenceRulePtrOutputWithContext(ctx context.Context) GetScheduleRecurrenceRulePtrOutput {
+	return o
+}
+
+func (o GetScheduleRecurrenceRulePtrOutput) Elem() GetScheduleRecurrenceRuleOutput {
+	return o.ApplyT(func(v *GetScheduleRecurrenceRule) GetScheduleRecurrenceRule {
+		if v != nil {
+			return *v
+		}
+		var ret GetScheduleRecurrenceRule
+		return ret
+	}).(GetScheduleRecurrenceRuleOutput)
+}
+
+// The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+func (o GetScheduleRecurrenceRulePtrOutput) Bydays() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetScheduleRecurrenceRule) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Bydays
+	}).(pulumi.StringArrayOutput)
+}
+
+// How many times the recurrence will repeat.
+func (o GetScheduleRecurrenceRulePtrOutput) Count() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetScheduleRecurrenceRule) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Count
+	}).(pulumi.IntPtrOutput)
+}
+
+// The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY).
+func (o GetScheduleRecurrenceRulePtrOutput) Frequency() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetScheduleRecurrenceRule) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Frequency
+	}).(pulumi.StringPtrOutput)
+}
+
+// The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY).
+func (o GetScheduleRecurrenceRulePtrOutput) Interval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetScheduleRecurrenceRule) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Interval
+	}).(pulumi.IntPtrOutput)
+}
+
+// The end time for the recurrence (RFC3339 format).
+func (o GetScheduleRecurrenceRulePtrOutput) Until() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetScheduleRecurrenceRule) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Until
+	}).(pulumi.StringPtrOutput)
+}
+
+type GetSchedulesSchedule struct {
+	CreatedBy      string                             `pulumi:"createdBy"`
+	Deactivated    bool                               `pulumi:"deactivated"`
+	Id             string                             `pulumi:"id"`
+	LoadTestId     string                             `pulumi:"loadTestId"`
+	NextRun        string                             `pulumi:"nextRun"`
+	RecurrenceRule GetSchedulesScheduleRecurrenceRule `pulumi:"recurrenceRule"`
+	Starts         string                             `pulumi:"starts"`
+}
+
+// GetSchedulesScheduleInput is an input type that accepts GetSchedulesScheduleArgs and GetSchedulesScheduleOutput values.
+// You can construct a concrete instance of `GetSchedulesScheduleInput` via:
+//
+//	GetSchedulesScheduleArgs{...}
+type GetSchedulesScheduleInput interface {
+	pulumi.Input
+
+	ToGetSchedulesScheduleOutput() GetSchedulesScheduleOutput
+	ToGetSchedulesScheduleOutputWithContext(context.Context) GetSchedulesScheduleOutput
+}
+
+type GetSchedulesScheduleArgs struct {
+	CreatedBy      pulumi.StringInput                      `pulumi:"createdBy"`
+	Deactivated    pulumi.BoolInput                        `pulumi:"deactivated"`
+	Id             pulumi.StringInput                      `pulumi:"id"`
+	LoadTestId     pulumi.StringInput                      `pulumi:"loadTestId"`
+	NextRun        pulumi.StringInput                      `pulumi:"nextRun"`
+	RecurrenceRule GetSchedulesScheduleRecurrenceRuleInput `pulumi:"recurrenceRule"`
+	Starts         pulumi.StringInput                      `pulumi:"starts"`
+}
+
+func (GetSchedulesScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSchedulesSchedule)(nil)).Elem()
+}
+
+func (i GetSchedulesScheduleArgs) ToGetSchedulesScheduleOutput() GetSchedulesScheduleOutput {
+	return i.ToGetSchedulesScheduleOutputWithContext(context.Background())
+}
+
+func (i GetSchedulesScheduleArgs) ToGetSchedulesScheduleOutputWithContext(ctx context.Context) GetSchedulesScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSchedulesScheduleOutput)
+}
+
+// GetSchedulesScheduleArrayInput is an input type that accepts GetSchedulesScheduleArray and GetSchedulesScheduleArrayOutput values.
+// You can construct a concrete instance of `GetSchedulesScheduleArrayInput` via:
+//
+//	GetSchedulesScheduleArray{ GetSchedulesScheduleArgs{...} }
+type GetSchedulesScheduleArrayInput interface {
+	pulumi.Input
+
+	ToGetSchedulesScheduleArrayOutput() GetSchedulesScheduleArrayOutput
+	ToGetSchedulesScheduleArrayOutputWithContext(context.Context) GetSchedulesScheduleArrayOutput
+}
+
+type GetSchedulesScheduleArray []GetSchedulesScheduleInput
+
+func (GetSchedulesScheduleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSchedulesSchedule)(nil)).Elem()
+}
+
+func (i GetSchedulesScheduleArray) ToGetSchedulesScheduleArrayOutput() GetSchedulesScheduleArrayOutput {
+	return i.ToGetSchedulesScheduleArrayOutputWithContext(context.Background())
+}
+
+func (i GetSchedulesScheduleArray) ToGetSchedulesScheduleArrayOutputWithContext(ctx context.Context) GetSchedulesScheduleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSchedulesScheduleArrayOutput)
+}
+
+type GetSchedulesScheduleOutput struct{ *pulumi.OutputState }
+
+func (GetSchedulesScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSchedulesSchedule)(nil)).Elem()
+}
+
+func (o GetSchedulesScheduleOutput) ToGetSchedulesScheduleOutput() GetSchedulesScheduleOutput {
+	return o
+}
+
+func (o GetSchedulesScheduleOutput) ToGetSchedulesScheduleOutputWithContext(ctx context.Context) GetSchedulesScheduleOutput {
+	return o
+}
+
+func (o GetSchedulesScheduleOutput) CreatedBy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSchedulesSchedule) string { return v.CreatedBy }).(pulumi.StringOutput)
+}
+
+func (o GetSchedulesScheduleOutput) Deactivated() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSchedulesSchedule) bool { return v.Deactivated }).(pulumi.BoolOutput)
+}
+
+func (o GetSchedulesScheduleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSchedulesSchedule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetSchedulesScheduleOutput) LoadTestId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSchedulesSchedule) string { return v.LoadTestId }).(pulumi.StringOutput)
+}
+
+func (o GetSchedulesScheduleOutput) NextRun() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSchedulesSchedule) string { return v.NextRun }).(pulumi.StringOutput)
+}
+
+func (o GetSchedulesScheduleOutput) RecurrenceRule() GetSchedulesScheduleRecurrenceRuleOutput {
+	return o.ApplyT(func(v GetSchedulesSchedule) GetSchedulesScheduleRecurrenceRule { return v.RecurrenceRule }).(GetSchedulesScheduleRecurrenceRuleOutput)
+}
+
+func (o GetSchedulesScheduleOutput) Starts() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSchedulesSchedule) string { return v.Starts }).(pulumi.StringOutput)
+}
+
+type GetSchedulesScheduleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSchedulesScheduleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSchedulesSchedule)(nil)).Elem()
+}
+
+func (o GetSchedulesScheduleArrayOutput) ToGetSchedulesScheduleArrayOutput() GetSchedulesScheduleArrayOutput {
+	return o
+}
+
+func (o GetSchedulesScheduleArrayOutput) ToGetSchedulesScheduleArrayOutputWithContext(ctx context.Context) GetSchedulesScheduleArrayOutput {
+	return o
+}
+
+func (o GetSchedulesScheduleArrayOutput) Index(i pulumi.IntInput) GetSchedulesScheduleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSchedulesSchedule {
+		return vs[0].([]GetSchedulesSchedule)[vs[1].(int)]
+	}).(GetSchedulesScheduleOutput)
+}
+
+type GetSchedulesScheduleRecurrenceRule struct {
+	Bydays    []string `pulumi:"bydays"`
+	Count     int      `pulumi:"count"`
+	Frequency string   `pulumi:"frequency"`
+	Interval  int      `pulumi:"interval"`
+	Until     string   `pulumi:"until"`
+}
+
+// GetSchedulesScheduleRecurrenceRuleInput is an input type that accepts GetSchedulesScheduleRecurrenceRuleArgs and GetSchedulesScheduleRecurrenceRuleOutput values.
+// You can construct a concrete instance of `GetSchedulesScheduleRecurrenceRuleInput` via:
+//
+//	GetSchedulesScheduleRecurrenceRuleArgs{...}
+type GetSchedulesScheduleRecurrenceRuleInput interface {
+	pulumi.Input
+
+	ToGetSchedulesScheduleRecurrenceRuleOutput() GetSchedulesScheduleRecurrenceRuleOutput
+	ToGetSchedulesScheduleRecurrenceRuleOutputWithContext(context.Context) GetSchedulesScheduleRecurrenceRuleOutput
+}
+
+type GetSchedulesScheduleRecurrenceRuleArgs struct {
+	Bydays    pulumi.StringArrayInput `pulumi:"bydays"`
+	Count     pulumi.IntInput         `pulumi:"count"`
+	Frequency pulumi.StringInput      `pulumi:"frequency"`
+	Interval  pulumi.IntInput         `pulumi:"interval"`
+	Until     pulumi.StringInput      `pulumi:"until"`
+}
+
+func (GetSchedulesScheduleRecurrenceRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSchedulesScheduleRecurrenceRule)(nil)).Elem()
+}
+
+func (i GetSchedulesScheduleRecurrenceRuleArgs) ToGetSchedulesScheduleRecurrenceRuleOutput() GetSchedulesScheduleRecurrenceRuleOutput {
+	return i.ToGetSchedulesScheduleRecurrenceRuleOutputWithContext(context.Background())
+}
+
+func (i GetSchedulesScheduleRecurrenceRuleArgs) ToGetSchedulesScheduleRecurrenceRuleOutputWithContext(ctx context.Context) GetSchedulesScheduleRecurrenceRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSchedulesScheduleRecurrenceRuleOutput)
+}
+
+type GetSchedulesScheduleRecurrenceRuleOutput struct{ *pulumi.OutputState }
+
+func (GetSchedulesScheduleRecurrenceRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSchedulesScheduleRecurrenceRule)(nil)).Elem()
+}
+
+func (o GetSchedulesScheduleRecurrenceRuleOutput) ToGetSchedulesScheduleRecurrenceRuleOutput() GetSchedulesScheduleRecurrenceRuleOutput {
+	return o
+}
+
+func (o GetSchedulesScheduleRecurrenceRuleOutput) ToGetSchedulesScheduleRecurrenceRuleOutputWithContext(ctx context.Context) GetSchedulesScheduleRecurrenceRuleOutput {
+	return o
+}
+
+func (o GetSchedulesScheduleRecurrenceRuleOutput) Bydays() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSchedulesScheduleRecurrenceRule) []string { return v.Bydays }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSchedulesScheduleRecurrenceRuleOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSchedulesScheduleRecurrenceRule) int { return v.Count }).(pulumi.IntOutput)
+}
+
+func (o GetSchedulesScheduleRecurrenceRuleOutput) Frequency() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSchedulesScheduleRecurrenceRule) string { return v.Frequency }).(pulumi.StringOutput)
+}
+
+func (o GetSchedulesScheduleRecurrenceRuleOutput) Interval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSchedulesScheduleRecurrenceRule) int { return v.Interval }).(pulumi.IntOutput)
+}
+
+func (o GetSchedulesScheduleRecurrenceRuleOutput) Until() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSchedulesScheduleRecurrenceRule) string { return v.Until }).(pulumi.StringOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ScheduleRecurrenceRuleInput)(nil)).Elem(), ScheduleRecurrenceRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScheduleRecurrenceRulePtrInput)(nil)).Elem(), ScheduleRecurrenceRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadTestsLoadTestInput)(nil)).Elem(), GetLoadTestsLoadTestArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadTestsLoadTestArrayInput)(nil)).Elem(), GetLoadTestsLoadTestArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsProjectInput)(nil)).Elem(), GetProjectsProjectArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsProjectArrayInput)(nil)).Elem(), GetProjectsProjectArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScheduleRecurrenceRuleInput)(nil)).Elem(), GetScheduleRecurrenceRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScheduleRecurrenceRulePtrInput)(nil)).Elem(), GetScheduleRecurrenceRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSchedulesScheduleInput)(nil)).Elem(), GetSchedulesScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSchedulesScheduleArrayInput)(nil)).Elem(), GetSchedulesScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSchedulesScheduleRecurrenceRuleInput)(nil)).Elem(), GetSchedulesScheduleRecurrenceRuleArgs{})
+	pulumi.RegisterOutputType(ScheduleRecurrenceRuleOutput{})
+	pulumi.RegisterOutputType(ScheduleRecurrenceRulePtrOutput{})
 	pulumi.RegisterOutputType(GetLoadTestsLoadTestOutput{})
 	pulumi.RegisterOutputType(GetLoadTestsLoadTestArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsProjectOutput{})
 	pulumi.RegisterOutputType(GetProjectsProjectArrayOutput{})
+	pulumi.RegisterOutputType(GetScheduleRecurrenceRuleOutput{})
+	pulumi.RegisterOutputType(GetScheduleRecurrenceRulePtrOutput{})
+	pulumi.RegisterOutputType(GetSchedulesScheduleOutput{})
+	pulumi.RegisterOutputType(GetSchedulesScheduleArrayOutput{})
+	pulumi.RegisterOutputType(GetSchedulesScheduleRecurrenceRuleOutput{})
 }

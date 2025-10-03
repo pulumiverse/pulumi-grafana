@@ -3305,6 +3305,41 @@
                 }
             }
         },
+        "grafana:k6/ScheduleRecurrenceRule:ScheduleRecurrenceRule": {
+            "properties": {
+                "bydays": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.\n"
+                },
+                "count": {
+                    "type": "integer",
+                    "description": "How many times the recurrence will repeat.\n"
+                },
+                "frequency": {
+                    "type": "string",
+                    "description": "The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY).\n"
+                },
+                "interval": {
+                    "type": "integer",
+                    "description": "The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY). Defaults to 1.\n"
+                },
+                "until": {
+                    "type": "string",
+                    "description": "The end time for the recurrence (RFC3339 format).\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "interval"
+                    ]
+                }
+            }
+        },
         "grafana:k6/getLoadTestsLoadTest:getLoadTestsLoadTest": {
             "properties": {
                 "baselineTestRunId": {
@@ -3374,6 +3409,121 @@
                 "isDefault",
                 "name",
                 "updated"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "grafana:k6/getScheduleRecurrenceRule:getScheduleRecurrenceRule": {
+            "properties": {
+                "bydays": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.\n"
+                },
+                "count": {
+                    "type": "integer",
+                    "description": "How many times the recurrence will repeat.\n"
+                },
+                "frequency": {
+                    "type": "string",
+                    "description": "The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY).\n"
+                },
+                "interval": {
+                    "type": "integer",
+                    "description": "The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY).\n"
+                },
+                "until": {
+                    "type": "string",
+                    "description": "The end time for the recurrence (RFC3339 format).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "bydays",
+                "count",
+                "frequency",
+                "interval",
+                "until"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "grafana:k6/getSchedulesSchedule:getSchedulesSchedule": {
+            "properties": {
+                "createdBy": {
+                    "type": "string"
+                },
+                "deactivated": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "loadTestId": {
+                    "type": "string"
+                },
+                "nextRun": {
+                    "type": "string"
+                },
+                "recurrenceRule": {
+                    "$ref": "#/types/grafana:k6/getSchedulesScheduleRecurrenceRule:getSchedulesScheduleRecurrenceRule"
+                },
+                "starts": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdBy",
+                "deactivated",
+                "id",
+                "loadTestId",
+                "nextRun",
+                "recurrenceRule",
+                "starts"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "grafana:k6/getSchedulesScheduleRecurrenceRule:getSchedulesScheduleRecurrenceRule": {
+            "properties": {
+                "bydays": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "count": {
+                    "type": "integer"
+                },
+                "frequency": {
+                    "type": "string"
+                },
+                "interval": {
+                    "type": "integer"
+                },
+                "until": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "bydays",
+                "count",
+                "frequency",
+                "interval",
+                "until"
             ],
             "language": {
                 "nodejs": {
@@ -11075,6 +11225,90 @@
                 "type": "object"
             }
         },
+        "grafana:k6/schedule:Schedule": {
+            "description": "Manages a k6 schedule for automated test execution.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  scheduleProject:\n    type: grafana:k6:Project\n    name: schedule_project\n    properties:\n      name: Terraform Schedule Resource Project\n  scheduledTest:\n    type: grafana:k6:LoadTest\n    name: scheduled_test\n    properties:\n      projectId: ${scheduleProject.id}\n      name: Terraform Scheduled Resource Test\n      script: |\n        export default function() {\n          console.log('Hello from scheduled k6 test!');\n        }\n    options:\n      dependsOn:\n        - ${scheduleProject}\n  daily:\n    type: grafana:k6:Schedule\n    properties:\n      loadTestId: ${scheduledTest.id}\n      starts: 2024-12-25T10:00:00Z\n      recurrenceRule:\n        - frequency: DAILY\n          interval: 1\n  weekly:\n    type: grafana:k6:Schedule\n    properties:\n      loadTestId: ${scheduledTest.id}\n      starts: 2024-12-25T09:00:00Z\n      recurrenceRule:\n        - frequency: WEEKLY\n          interval: 1\n          bydays:\n            - MO\n            - WE\n            - FR\n  # Example with YEARLY frequency and count\n  yearly:\n    type: grafana:k6:Schedule\n    properties:\n      loadTestId: ${scheduledTest.id}\n      starts: 2024-01-01T12:00:00Z\n      recurrenceRule:\n        - frequency: YEARLY\n          interval: 1\n          count: 5\n  # One-time schedule without recurrence\n  oneTime:\n    type: grafana:k6:Schedule\n    name: one_time\n    properties:\n      loadTestId: ${scheduledTest.id}\n      starts: 2024-12-25T15:00:00Z\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:k6/schedule:Schedule name \"{{ load_test_id }}\"\n```\n\n",
+            "properties": {
+                "createdBy": {
+                    "type": "string",
+                    "description": "The email of the user who created the schedule.\n"
+                },
+                "deactivated": {
+                    "type": "boolean",
+                    "description": "Whether the schedule is deactivated.\n"
+                },
+                "loadTestId": {
+                    "type": "string",
+                    "description": "The identifier of the load test to schedule.\n"
+                },
+                "nextRun": {
+                    "type": "string",
+                    "description": "The next scheduled execution time.\n"
+                },
+                "recurrenceRule": {
+                    "$ref": "#/types/grafana:k6/ScheduleRecurrenceRule:ScheduleRecurrenceRule",
+                    "description": "The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.\n"
+                },
+                "starts": {
+                    "type": "string",
+                    "description": "The start time for the schedule (RFC3339 format).\n"
+                }
+            },
+            "required": [
+                "createdBy",
+                "deactivated",
+                "loadTestId",
+                "nextRun",
+                "starts"
+            ],
+            "inputProperties": {
+                "loadTestId": {
+                    "type": "string",
+                    "description": "The identifier of the load test to schedule.\n"
+                },
+                "recurrenceRule": {
+                    "$ref": "#/types/grafana:k6/ScheduleRecurrenceRule:ScheduleRecurrenceRule",
+                    "description": "The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.\n"
+                },
+                "starts": {
+                    "type": "string",
+                    "description": "The start time for the schedule (RFC3339 format).\n"
+                }
+            },
+            "requiredInputs": [
+                "loadTestId",
+                "starts"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Schedule resources.\n",
+                "properties": {
+                    "createdBy": {
+                        "type": "string",
+                        "description": "The email of the user who created the schedule.\n"
+                    },
+                    "deactivated": {
+                        "type": "boolean",
+                        "description": "Whether the schedule is deactivated.\n"
+                    },
+                    "loadTestId": {
+                        "type": "string",
+                        "description": "The identifier of the load test to schedule.\n"
+                    },
+                    "nextRun": {
+                        "type": "string",
+                        "description": "The next scheduled execution time.\n"
+                    },
+                    "recurrenceRule": {
+                        "$ref": "#/types/grafana:k6/ScheduleRecurrenceRule:ScheduleRecurrenceRule",
+                        "description": "The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.\n"
+                    },
+                    "starts": {
+                        "type": "string",
+                        "description": "The start time for the schedule (RFC3339 format).\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:machineLearning/alert:Alert": {
             "description": "## Example Usage\n\n### Forecast Alert\n\nThis alert uses a forecast.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst testAlertJob = new grafana.machinelearning.Job(\"test_alert_job\", {\n    name: \"Test Job\",\n    metric: \"tf_test_alert_job\",\n    datasourceType: \"prometheus\",\n    datasourceUid: \"abcd12345\",\n    queryParams: {\n        expr: \"grafanacloud_grafana_instance_active_user_count\",\n    },\n});\nconst testJobAlert = new grafana.machinelearning.Alert(\"test_job_alert\", {\n    jobId: testAlertJob.id,\n    title: \"Test Alert\",\n    anomalyCondition: \"any\",\n    threshold: \"\u003e0.8\",\n    window: \"15m\",\n    noDataState: \"OK\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest_alert_job = grafana.machinelearning.Job(\"test_alert_job\",\n    name=\"Test Job\",\n    metric=\"tf_test_alert_job\",\n    datasource_type=\"prometheus\",\n    datasource_uid=\"abcd12345\",\n    query_params={\n        \"expr\": \"grafanacloud_grafana_instance_active_user_count\",\n    })\ntest_job_alert = grafana.machinelearning.Alert(\"test_job_alert\",\n    job_id=test_alert_job.id,\n    title=\"Test Alert\",\n    anomaly_condition=\"any\",\n    threshold=\"\u003e0.8\",\n    window=\"15m\",\n    no_data_state=\"OK\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testAlertJob = new Grafana.MachineLearning.Job(\"test_alert_job\", new()\n    {\n        Name = \"Test Job\",\n        Metric = \"tf_test_alert_job\",\n        DatasourceType = \"prometheus\",\n        DatasourceUid = \"abcd12345\",\n        QueryParams = \n        {\n            { \"expr\", \"grafanacloud_grafana_instance_active_user_count\" },\n        },\n    });\n\n    var testJobAlert = new Grafana.MachineLearning.Alert(\"test_job_alert\", new()\n    {\n        JobId = testAlertJob.Id,\n        Title = \"Test Alert\",\n        AnomalyCondition = \"any\",\n        Threshold = \"\u003e0.8\",\n        Window = \"15m\",\n        NoDataState = \"OK\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/machinelearning\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestAlertJob, err := machinelearning.NewJob(ctx, \"test_alert_job\", \u0026machinelearning.JobArgs{\n\t\t\tName:           pulumi.String(\"Test Job\"),\n\t\t\tMetric:         pulumi.String(\"tf_test_alert_job\"),\n\t\t\tDatasourceType: pulumi.String(\"prometheus\"),\n\t\t\tDatasourceUid:  pulumi.String(\"abcd12345\"),\n\t\t\tQueryParams: pulumi.StringMap{\n\t\t\t\t\"expr\": pulumi.String(\"grafanacloud_grafana_instance_active_user_count\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = machinelearning.NewAlert(ctx, \"test_job_alert\", \u0026machinelearning.AlertArgs{\n\t\t\tJobId:            testAlertJob.ID(),\n\t\t\tTitle:            pulumi.String(\"Test Alert\"),\n\t\t\tAnomalyCondition: pulumi.String(\"any\"),\n\t\t\tThreshold:        pulumi.String(\"\u003e0.8\"),\n\t\t\tWindow:           pulumi.String(\"15m\"),\n\t\t\tNoDataState:      pulumi.String(\"OK\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.machineLearning.Job;\nimport com.pulumi.grafana.machineLearning.JobArgs;\nimport com.pulumi.grafana.machineLearning.Alert;\nimport com.pulumi.grafana.machineLearning.AlertArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testAlertJob = new Job(\"testAlertJob\", JobArgs.builder()\n            .name(\"Test Job\")\n            .metric(\"tf_test_alert_job\")\n            .datasourceType(\"prometheus\")\n            .datasourceUid(\"abcd12345\")\n            .queryParams(Map.of(\"expr\", \"grafanacloud_grafana_instance_active_user_count\"))\n            .build());\n\n        var testJobAlert = new Alert(\"testJobAlert\", AlertArgs.builder()\n            .jobId(testAlertJob.id())\n            .title(\"Test Alert\")\n            .anomalyCondition(\"any\")\n            .threshold(\"\u003e0.8\")\n            .window(\"15m\")\n            .noDataState(\"OK\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testAlertJob:\n    type: grafana:machineLearning:Job\n    name: test_alert_job\n    properties:\n      name: Test Job\n      metric: tf_test_alert_job\n      datasourceType: prometheus\n      datasourceUid: abcd12345\n      queryParams:\n        expr: grafanacloud_grafana_instance_active_user_count\n  testJobAlert:\n    type: grafana:machineLearning:Alert\n    name: test_job_alert\n    properties:\n      jobId: ${testAlertJob.id}\n      title: Test Alert\n      anomalyCondition: any\n      threshold: '\u003e0.8'\n      window: 15m\n      noDataState: OK\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Outlier Alert\n\nThis alert uses an outlier detector.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst testAlertOutlierDetector = new grafana.machinelearning.OutlierDetector(\"test_alert_outlier_detector\", {\n    name: \"Test Outlier\",\n    metric: \"tf_test_alert_outlier\",\n    datasourceType: \"prometheus\",\n    datasourceUid: \"AbCd12345\",\n    queryParams: {\n        expr: \"grafanacloud_grafana_instance_active_user_count\",\n    },\n    interval: 300,\n    algorithm: {\n        name: \"dbscan\",\n        sensitivity: 0.5,\n        config: {\n            epsilon: 1,\n        },\n    },\n});\nconst testOutlierAlert = new grafana.machinelearning.Alert(\"test_outlier_alert\", {\n    outlierId: testAlertOutlierDetector.id,\n    title: \"Test Alert\",\n    window: \"1h\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest_alert_outlier_detector = grafana.machinelearning.OutlierDetector(\"test_alert_outlier_detector\",\n    name=\"Test Outlier\",\n    metric=\"tf_test_alert_outlier\",\n    datasource_type=\"prometheus\",\n    datasource_uid=\"AbCd12345\",\n    query_params={\n        \"expr\": \"grafanacloud_grafana_instance_active_user_count\",\n    },\n    interval=300,\n    algorithm={\n        \"name\": \"dbscan\",\n        \"sensitivity\": 0.5,\n        \"config\": {\n            \"epsilon\": 1,\n        },\n    })\ntest_outlier_alert = grafana.machinelearning.Alert(\"test_outlier_alert\",\n    outlier_id=test_alert_outlier_detector.id,\n    title=\"Test Alert\",\n    window=\"1h\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testAlertOutlierDetector = new Grafana.MachineLearning.OutlierDetector(\"test_alert_outlier_detector\", new()\n    {\n        Name = \"Test Outlier\",\n        Metric = \"tf_test_alert_outlier\",\n        DatasourceType = \"prometheus\",\n        DatasourceUid = \"AbCd12345\",\n        QueryParams = \n        {\n            { \"expr\", \"grafanacloud_grafana_instance_active_user_count\" },\n        },\n        Interval = 300,\n        Algorithm = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmArgs\n        {\n            Name = \"dbscan\",\n            Sensitivity = 0.5,\n            Config = new Grafana.MachineLearning.Inputs.OutlierDetectorAlgorithmConfigArgs\n            {\n                Epsilon = 1,\n            },\n        },\n    });\n\n    var testOutlierAlert = new Grafana.MachineLearning.Alert(\"test_outlier_alert\", new()\n    {\n        OutlierId = testAlertOutlierDetector.Id,\n        Title = \"Test Alert\",\n        Window = \"1h\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/machinelearning\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestAlertOutlierDetector, err := machinelearning.NewOutlierDetector(ctx, \"test_alert_outlier_detector\", \u0026machinelearning.OutlierDetectorArgs{\n\t\t\tName:           pulumi.String(\"Test Outlier\"),\n\t\t\tMetric:         pulumi.String(\"tf_test_alert_outlier\"),\n\t\t\tDatasourceType: pulumi.String(\"prometheus\"),\n\t\t\tDatasourceUid:  pulumi.String(\"AbCd12345\"),\n\t\t\tQueryParams: pulumi.StringMap{\n\t\t\t\t\"expr\": pulumi.String(\"grafanacloud_grafana_instance_active_user_count\"),\n\t\t\t},\n\t\t\tInterval: pulumi.Int(300),\n\t\t\tAlgorithm: \u0026machinelearning.OutlierDetectorAlgorithmArgs{\n\t\t\t\tName:        pulumi.String(\"dbscan\"),\n\t\t\t\tSensitivity: pulumi.Float64(0.5),\n\t\t\t\tConfig: \u0026machinelearning.OutlierDetectorAlgorithmConfigArgs{\n\t\t\t\t\tEpsilon: pulumi.Float64(1),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = machinelearning.NewAlert(ctx, \"test_outlier_alert\", \u0026machinelearning.AlertArgs{\n\t\t\tOutlierId: testAlertOutlierDetector.ID(),\n\t\t\tTitle:     pulumi.String(\"Test Alert\"),\n\t\t\tWindow:    pulumi.String(\"1h\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.machineLearning.OutlierDetector;\nimport com.pulumi.grafana.machineLearning.OutlierDetectorArgs;\nimport com.pulumi.grafana.machineLearning.inputs.OutlierDetectorAlgorithmArgs;\nimport com.pulumi.grafana.machineLearning.inputs.OutlierDetectorAlgorithmConfigArgs;\nimport com.pulumi.grafana.machineLearning.Alert;\nimport com.pulumi.grafana.machineLearning.AlertArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testAlertOutlierDetector = new OutlierDetector(\"testAlertOutlierDetector\", OutlierDetectorArgs.builder()\n            .name(\"Test Outlier\")\n            .metric(\"tf_test_alert_outlier\")\n            .datasourceType(\"prometheus\")\n            .datasourceUid(\"AbCd12345\")\n            .queryParams(Map.of(\"expr\", \"grafanacloud_grafana_instance_active_user_count\"))\n            .interval(300)\n            .algorithm(OutlierDetectorAlgorithmArgs.builder()\n                .name(\"dbscan\")\n                .sensitivity(0.5)\n                .config(OutlierDetectorAlgorithmConfigArgs.builder()\n                    .epsilon(1.0)\n                    .build())\n                .build())\n            .build());\n\n        var testOutlierAlert = new Alert(\"testOutlierAlert\", AlertArgs.builder()\n            .outlierId(testAlertOutlierDetector.id())\n            .title(\"Test Alert\")\n            .window(\"1h\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testAlertOutlierDetector:\n    type: grafana:machineLearning:OutlierDetector\n    name: test_alert_outlier_detector\n    properties:\n      name: Test Outlier\n      metric: tf_test_alert_outlier\n      datasourceType: prometheus\n      datasourceUid: AbCd12345\n      queryParams:\n        expr: grafanacloud_grafana_instance_active_user_count\n      interval: 300\n      algorithm:\n        name: dbscan\n        sensitivity: 0.5\n        config:\n          epsilon: 1\n  testOutlierAlert:\n    type: grafana:machineLearning:Alert\n    name: test_outlier_alert\n    properties:\n      outlierId: ${testAlertOutlierDetector.id}\n      title: Test Alert\n      window: 1h\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:machineLearning/alert:Alert name \"{{ id }}\"\n```\n\n",
             "properties": {
@@ -17208,6 +17442,92 @@
                 "required": [
                     "id",
                     "projects"
+                ],
+                "type": "object"
+            }
+        },
+        "grafana:k6/getSchedule:getSchedule": {
+            "description": "Retrieves a k6 schedule.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  scheduleProject:\n    type: grafana:k6:Project\n    name: schedule_project\n    properties:\n      name: Terraform Schedule Test Project\n  scheduleLoadTest:\n    type: grafana:k6:LoadTest\n    name: schedule_load_test\n    properties:\n      projectId: ${scheduleProject.id}\n      name: Terraform Test Load Test for Schedule\n      script: |\n        export default function() {\n          console.log('Hello from k6 schedule test!');\n        }\n    options:\n      dependsOn:\n        - ${scheduleProject}\n  testSchedule:\n    type: grafana:k6:Schedule\n    name: test_schedule\n    properties:\n      loadTestId: ${scheduleLoadTest.id}\n      starts: 2024-12-25T10:00:00Z\n      recurrenceRule:\n        - frequency: MONTHLY\n          interval: 12\n          count: 100\n    options:\n      dependsOn:\n        - ${scheduleLoadTest}\nvariables:\n  fromLoadTest:\n    fn::invoke:\n      function: grafana:k6:getSchedule\n      arguments:\n        loadTestId: ${scheduleLoadTest.id}\noutputs:\n  completeScheduleInfo:\n    id: ${fromLoadTest.id}\n    loadTestId: ${fromLoadTest.loadTestId}\n    starts: ${fromLoadTest.starts}\n    deactivated: ${fromLoadTest.deactivated}\n    nextRun: ${fromLoadTest.nextRun}\n    createdBy: ${fromLoadTest.createdBy}\n    recurrenceRule: ${fromLoadTest.recurrenceRule}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getSchedule.\n",
+                "properties": {
+                    "loadTestId": {
+                        "type": "string",
+                        "description": "The identifier of the load test to retrieve the schedule for.\n"
+                    },
+                    "recurrenceRule": {
+                        "$ref": "#/types/grafana:k6/getScheduleRecurrenceRule:getScheduleRecurrenceRule",
+                        "description": "The schedule recurrence settings. If null, the test will run only once on the starts date.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loadTestId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSchedule.\n",
+                "properties": {
+                    "createdBy": {
+                        "description": "The email of the user who created the schedule.\n",
+                        "type": "string"
+                    },
+                    "deactivated": {
+                        "description": "Whether the schedule is deactivated.\n",
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "description": "Numeric identifier of the schedule.\n",
+                        "type": "string"
+                    },
+                    "loadTestId": {
+                        "description": "The identifier of the load test to retrieve the schedule for.\n",
+                        "type": "string"
+                    },
+                    "nextRun": {
+                        "description": "The next scheduled execution time.\n",
+                        "type": "string"
+                    },
+                    "recurrenceRule": {
+                        "$ref": "#/types/grafana:k6/getScheduleRecurrenceRule:getScheduleRecurrenceRule",
+                        "description": "The schedule recurrence settings. If null, the test will run only once on the starts date.\n"
+                    },
+                    "starts": {
+                        "description": "The start time for the schedule (RFC3339 format).\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "createdBy",
+                    "deactivated",
+                    "id",
+                    "loadTestId",
+                    "nextRun",
+                    "starts"
+                ],
+                "type": "object"
+            }
+        },
+        "grafana:k6/getSchedules:getSchedules": {
+            "description": "Retrieves all k6 schedules.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  schedulesProject:\n    type: grafana:k6:Project\n    name: schedules_project\n    properties:\n      name: Terraform Schedules Test Project\n  schedulesLoadTest:\n    type: grafana:k6:LoadTest\n    name: schedules_load_test\n    properties:\n      projectId: ${schedulesProject.id}\n      name: Terraform Test Load Test for Schedules\n      script: |\n        export default function() {\n          console.log('Hello from k6 schedules test!');\n        }\n    options:\n      dependsOn:\n        - ${schedulesProject}\n  schedulesLoadTest2:\n    type: grafana:k6:LoadTest\n    name: schedules_load_test_2\n    properties:\n      projectId: ${schedulesProject.id}\n      name: Terraform Test Load Test for Schedules (2)\n      script: |\n        export default function() {\n          console.log('Hello from k6 schedules test!');\n        }\n    options:\n      dependsOn:\n        - ${schedulesProject}\n  testSchedule1:\n    type: grafana:k6:Schedule\n    name: test_schedule_1\n    properties:\n      loadTestId: ${schedulesLoadTest.id}\n      starts: 2029-12-25T10:00:00Z\n      recurrenceRule:\n        - frequency: MONTHLY\n          interval: 15\n          count: 100\n    options:\n      dependsOn:\n        - ${schedulesLoadTest}\n  testSchedule2:\n    type: grafana:k6:Schedule\n    name: test_schedule_2\n    properties:\n      loadTestId: ${schedulesLoadTest2.id}\n      starts: 2023-12-26T14:00:00Z\n      recurrenceRule:\n        - frequency: WEEKLY\n          interval: 2\n          until: 2047-01-31T23:59:59Z\n    options:\n      dependsOn:\n        - ${schedulesLoadTest2}\nvariables:\n  fromLoadTestId:\n    fn::invoke:\n      function: grafana:k6:getSchedules\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "outputs": {
+                "description": "A collection of values returned by getSchedules.\n",
+                "properties": {
+                    "id": {
+                        "description": "The identifier for this data source.\n",
+                        "type": "string"
+                    },
+                    "schedules": {
+                        "description": "List of k6 schedules.\n",
+                        "items": {
+                            "$ref": "#/types/grafana:k6/getSchedulesSchedule:getSchedulesSchedule"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "id",
+                    "schedules"
                 ],
                 "type": "object"
             }
