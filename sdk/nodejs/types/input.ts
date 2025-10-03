@@ -1263,6 +1263,10 @@ export namespace alerting {
 
     export interface RuleGroupRuleNotificationSettings {
         /**
+         * A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+         */
+        activeTimings?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
          * The contact point to route notifications that match this rule to.
          */
         contactPoint: pulumi.Input<string>;

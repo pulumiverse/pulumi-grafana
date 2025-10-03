@@ -2078,6 +2078,13 @@
         },
         "grafana:alerting/RuleGroupRuleNotificationSettings:RuleGroupRuleNotificationSettings": {
             "properties": {
+                "activeTimings": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later\n"
+                },
                 "contactPoint": {
                     "type": "string",
                     "description": "The contact point to route notifications that match this rule to.\n"

@@ -819,6 +819,9 @@
                                     "maxItemsOne": true,
                                     "elem": {
                                         "fields": {
+                                            "active_timings": {
+                                                "maxItemsOne": false
+                                            },
                                             "group_by": {
                                                 "maxItemsOne": false
                                             },

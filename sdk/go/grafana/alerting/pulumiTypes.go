@@ -5650,6 +5650,8 @@ func (o RuleGroupRuleDataRelativeTimeRangeOutput) To() pulumi.IntOutput {
 }
 
 type RuleGroupRuleNotificationSettings struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+	ActiveTimings []string `pulumi:"activeTimings"`
 	// The contact point to route notifications that match this rule to.
 	ContactPoint string `pulumi:"contactPoint"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
@@ -5676,6 +5678,8 @@ type RuleGroupRuleNotificationSettingsInput interface {
 }
 
 type RuleGroupRuleNotificationSettingsArgs struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+	ActiveTimings pulumi.StringArrayInput `pulumi:"activeTimings"`
 	// The contact point to route notifications that match this rule to.
 	ContactPoint pulumi.StringInput `pulumi:"contactPoint"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.
@@ -5767,6 +5771,11 @@ func (o RuleGroupRuleNotificationSettingsOutput) ToRuleGroupRuleNotificationSett
 	}).(RuleGroupRuleNotificationSettingsPtrOutput)
 }
 
+// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+func (o RuleGroupRuleNotificationSettingsOutput) ActiveTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleGroupRuleNotificationSettings) []string { return v.ActiveTimings }).(pulumi.StringArrayOutput)
+}
+
 // The contact point to route notifications that match this rule to.
 func (o RuleGroupRuleNotificationSettingsOutput) ContactPoint() pulumi.StringOutput {
 	return o.ApplyT(func(v RuleGroupRuleNotificationSettings) string { return v.ContactPoint }).(pulumi.StringOutput)
@@ -5819,6 +5828,16 @@ func (o RuleGroupRuleNotificationSettingsPtrOutput) Elem() RuleGroupRuleNotifica
 		var ret RuleGroupRuleNotificationSettings
 		return ret
 	}).(RuleGroupRuleNotificationSettingsOutput)
+}
+
+// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+func (o RuleGroupRuleNotificationSettingsPtrOutput) ActiveTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleGroupRuleNotificationSettings) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveTimings
+	}).(pulumi.StringArrayOutput)
 }
 
 // The contact point to route notifications that match this rule to.
