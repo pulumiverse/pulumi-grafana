@@ -295,7 +295,7 @@ export class Stack extends pulumi.CustomResource {
     /**
      * Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
      */
-    declare public readonly url: pulumi.Output<string | undefined>;
+    declare public readonly url: pulumi.Output<string>;
     /**
      * Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
      */

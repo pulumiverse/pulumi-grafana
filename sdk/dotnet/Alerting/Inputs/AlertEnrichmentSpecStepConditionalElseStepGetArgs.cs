@@ -11,59 +11,53 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Alerting.Inputs
 {
 
-    public sealed class AlertEnrichmentSpecStepGetArgs : global::Pulumi.ResourceArgs
+    public sealed class AlertEnrichmentSpecStepConditionalElseStepGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Integrate with Grafana Asserts for enrichment.
         /// </summary>
         [Input("asserts")]
-        public Input<Inputs.AlertEnrichmentSpecStepAssertsGetArgs>? Asserts { get; set; }
+        public Input<Inputs.AlertEnrichmentSpecStepConditionalElseStepAssertsGetArgs>? Asserts { get; set; }
 
         /// <summary>
         /// Assign annotations to an alert.
         /// </summary>
         [Input("assign")]
-        public Input<Inputs.AlertEnrichmentSpecStepAssignGetArgs>? Assign { get; set; }
+        public Input<Inputs.AlertEnrichmentSpecStepConditionalElseStepAssignGetArgs>? Assign { get; set; }
 
         /// <summary>
         /// Use AI assistant to investigate alerts and add insights.
         /// </summary>
         [Input("assistantInvestigations")]
-        public Input<Inputs.AlertEnrichmentSpecStepAssistantInvestigationsGetArgs>? AssistantInvestigations { get; set; }
-
-        /// <summary>
-        /// Conditional step with if/then/else.
-        /// </summary>
-        [Input("conditional")]
-        public Input<Inputs.AlertEnrichmentSpecStepConditionalGetArgs>? Conditional { get; set; }
+        public Input<Inputs.AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsGetArgs>? AssistantInvestigations { get; set; }
 
         /// <summary>
         /// Query Grafana data sources and add results to alerts.
         /// </summary>
         [Input("dataSource")]
-        public Input<Inputs.AlertEnrichmentSpecStepDataSourceGetArgs>? DataSource { get; set; }
+        public Input<Inputs.AlertEnrichmentSpecStepConditionalElseStepDataSourceGetArgs>? DataSource { get; set; }
 
         /// <summary>
         /// Generate AI explanation and store in an annotation.
         /// </summary>
         [Input("explain")]
-        public Input<Inputs.AlertEnrichmentSpecStepExplainGetArgs>? Explain { get; set; }
+        public Input<Inputs.AlertEnrichmentSpecStepConditionalElseStepExplainGetArgs>? Explain { get; set; }
 
         /// <summary>
         /// Call an external HTTP service for enrichment.
         /// </summary>
         [Input("external")]
-        public Input<Inputs.AlertEnrichmentSpecStepExternalGetArgs>? External { get; set; }
+        public Input<Inputs.AlertEnrichmentSpecStepConditionalElseStepExternalGetArgs>? External { get; set; }
 
         /// <summary>
         /// Analyze alerts for patterns and insights.
         /// </summary>
         [Input("sift")]
-        public Input<Inputs.AlertEnrichmentSpecStepSiftGetArgs>? Sift { get; set; }
+        public Input<Inputs.AlertEnrichmentSpecStepConditionalElseStepSiftGetArgs>? Sift { get; set; }
 
-        public AlertEnrichmentSpecStepGetArgs()
+        public AlertEnrichmentSpecStepConditionalElseStepGetArgs()
         {
         }
-        public static new AlertEnrichmentSpecStepGetArgs Empty => new AlertEnrichmentSpecStepGetArgs();
+        public static new AlertEnrichmentSpecStepConditionalElseStepGetArgs Empty => new AlertEnrichmentSpecStepConditionalElseStepGetArgs();
     }
 }

@@ -833,6 +833,8 @@ type AlertEnrichmentSpecStep struct {
 	Assign *AlertEnrichmentSpecStepAssign `pulumi:"assign"`
 	// Use AI assistant to investigate alerts and add insights.
 	AssistantInvestigations *AlertEnrichmentSpecStepAssistantInvestigations `pulumi:"assistantInvestigations"`
+	// Conditional step with if/then/else.
+	Conditional *AlertEnrichmentSpecStepConditional `pulumi:"conditional"`
 	// Query Grafana data sources and add results to alerts.
 	DataSource *AlertEnrichmentSpecStepDataSource `pulumi:"dataSource"`
 	// Generate AI explanation and store in an annotation.
@@ -861,6 +863,8 @@ type AlertEnrichmentSpecStepArgs struct {
 	Assign AlertEnrichmentSpecStepAssignPtrInput `pulumi:"assign"`
 	// Use AI assistant to investigate alerts and add insights.
 	AssistantInvestigations AlertEnrichmentSpecStepAssistantInvestigationsPtrInput `pulumi:"assistantInvestigations"`
+	// Conditional step with if/then/else.
+	Conditional AlertEnrichmentSpecStepConditionalPtrInput `pulumi:"conditional"`
 	// Query Grafana data sources and add results to alerts.
 	DataSource AlertEnrichmentSpecStepDataSourcePtrInput `pulumi:"dataSource"`
 	// Generate AI explanation and store in an annotation.
@@ -937,6 +941,11 @@ func (o AlertEnrichmentSpecStepOutput) AssistantInvestigations() AlertEnrichment
 	return o.ApplyT(func(v AlertEnrichmentSpecStep) *AlertEnrichmentSpecStepAssistantInvestigations {
 		return v.AssistantInvestigations
 	}).(AlertEnrichmentSpecStepAssistantInvestigationsPtrOutput)
+}
+
+// Conditional step with if/then/else.
+func (o AlertEnrichmentSpecStepOutput) Conditional() AlertEnrichmentSpecStepConditionalPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStep) *AlertEnrichmentSpecStepConditional { return v.Conditional }).(AlertEnrichmentSpecStepConditionalPtrOutput)
 }
 
 // Query Grafana data sources and add results to alerts.
@@ -1402,6 +1411,4146 @@ func (o AlertEnrichmentSpecStepAssistantInvestigationsPtrOutput) Elem() AlertEnr
 // Maximum execution time (e.g., '30s', '1m')
 func (o AlertEnrichmentSpecStepAssistantInvestigationsPtrOutput) Timeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertEnrichmentSpecStepAssistantInvestigations) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditional struct {
+	// Steps when condition is false.
+	Else *AlertEnrichmentSpecStepConditionalElse `pulumi:"else"`
+	// Condition to evaluate.
+	If *AlertEnrichmentSpecStepConditionalIf `pulumi:"if"`
+	// Steps when condition is true.
+	Then *AlertEnrichmentSpecStepConditionalThen `pulumi:"then"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepConditionalInput is an input type that accepts AlertEnrichmentSpecStepConditionalArgs and AlertEnrichmentSpecStepConditionalOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalArgs{...}
+type AlertEnrichmentSpecStepConditionalInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalOutput() AlertEnrichmentSpecStepConditionalOutput
+	ToAlertEnrichmentSpecStepConditionalOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalOutput
+}
+
+type AlertEnrichmentSpecStepConditionalArgs struct {
+	// Steps when condition is false.
+	Else AlertEnrichmentSpecStepConditionalElsePtrInput `pulumi:"else"`
+	// Condition to evaluate.
+	If AlertEnrichmentSpecStepConditionalIfPtrInput `pulumi:"if"`
+	// Steps when condition is true.
+	Then AlertEnrichmentSpecStepConditionalThenPtrInput `pulumi:"then"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepConditionalArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditional)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalArgs) ToAlertEnrichmentSpecStepConditionalOutput() AlertEnrichmentSpecStepConditionalOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalArgs) ToAlertEnrichmentSpecStepConditionalOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalArgs) ToAlertEnrichmentSpecStepConditionalPtrOutput() AlertEnrichmentSpecStepConditionalPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalArgs) ToAlertEnrichmentSpecStepConditionalPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalOutput).ToAlertEnrichmentSpecStepConditionalPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalArgs, AlertEnrichmentSpecStepConditionalPtr and AlertEnrichmentSpecStepConditionalPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalPtrOutput() AlertEnrichmentSpecStepConditionalPtrOutput
+	ToAlertEnrichmentSpecStepConditionalPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalPtrType AlertEnrichmentSpecStepConditionalArgs
+
+func AlertEnrichmentSpecStepConditionalPtr(v *AlertEnrichmentSpecStepConditionalArgs) AlertEnrichmentSpecStepConditionalPtrInput {
+	return (*alertEnrichmentSpecStepConditionalPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditional)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalPtrType) ToAlertEnrichmentSpecStepConditionalPtrOutput() AlertEnrichmentSpecStepConditionalPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalPtrType) ToAlertEnrichmentSpecStepConditionalPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditional)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalOutput) ToAlertEnrichmentSpecStepConditionalOutput() AlertEnrichmentSpecStepConditionalOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalOutput) ToAlertEnrichmentSpecStepConditionalOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalOutput) ToAlertEnrichmentSpecStepConditionalPtrOutput() AlertEnrichmentSpecStepConditionalPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalOutput) ToAlertEnrichmentSpecStepConditionalPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditional) *AlertEnrichmentSpecStepConditional {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalPtrOutput)
+}
+
+// Steps when condition is false.
+func (o AlertEnrichmentSpecStepConditionalOutput) Else() AlertEnrichmentSpecStepConditionalElsePtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditional) *AlertEnrichmentSpecStepConditionalElse { return v.Else }).(AlertEnrichmentSpecStepConditionalElsePtrOutput)
+}
+
+// Condition to evaluate.
+func (o AlertEnrichmentSpecStepConditionalOutput) If() AlertEnrichmentSpecStepConditionalIfPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditional) *AlertEnrichmentSpecStepConditionalIf { return v.If }).(AlertEnrichmentSpecStepConditionalIfPtrOutput)
+}
+
+// Steps when condition is true.
+func (o AlertEnrichmentSpecStepConditionalOutput) Then() AlertEnrichmentSpecStepConditionalThenPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditional) *AlertEnrichmentSpecStepConditionalThen { return v.Then }).(AlertEnrichmentSpecStepConditionalThenPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditional) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditional)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalPtrOutput) ToAlertEnrichmentSpecStepConditionalPtrOutput() AlertEnrichmentSpecStepConditionalPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalPtrOutput) ToAlertEnrichmentSpecStepConditionalPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalPtrOutput) Elem() AlertEnrichmentSpecStepConditionalOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditional) AlertEnrichmentSpecStepConditional {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditional
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalOutput)
+}
+
+// Steps when condition is false.
+func (o AlertEnrichmentSpecStepConditionalPtrOutput) Else() AlertEnrichmentSpecStepConditionalElsePtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditional) *AlertEnrichmentSpecStepConditionalElse {
+		if v == nil {
+			return nil
+		}
+		return v.Else
+	}).(AlertEnrichmentSpecStepConditionalElsePtrOutput)
+}
+
+// Condition to evaluate.
+func (o AlertEnrichmentSpecStepConditionalPtrOutput) If() AlertEnrichmentSpecStepConditionalIfPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditional) *AlertEnrichmentSpecStepConditionalIf {
+		if v == nil {
+			return nil
+		}
+		return v.If
+	}).(AlertEnrichmentSpecStepConditionalIfPtrOutput)
+}
+
+// Steps when condition is true.
+func (o AlertEnrichmentSpecStepConditionalPtrOutput) Then() AlertEnrichmentSpecStepConditionalThenPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditional) *AlertEnrichmentSpecStepConditionalThen {
+		if v == nil {
+			return nil
+		}
+		return v.Then
+	}).(AlertEnrichmentSpecStepConditionalThenPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditional) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElse struct {
+	Steps []AlertEnrichmentSpecStepConditionalElseStep `pulumi:"steps"`
+}
+
+// AlertEnrichmentSpecStepConditionalElseInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseArgs and AlertEnrichmentSpecStepConditionalElseOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalElseArgs{...}
+type AlertEnrichmentSpecStepConditionalElseInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseOutput() AlertEnrichmentSpecStepConditionalElseOutput
+	ToAlertEnrichmentSpecStepConditionalElseOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseOutput
+}
+
+type AlertEnrichmentSpecStepConditionalElseArgs struct {
+	Steps AlertEnrichmentSpecStepConditionalElseStepArrayInput `pulumi:"steps"`
+}
+
+func (AlertEnrichmentSpecStepConditionalElseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElse)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseArgs) ToAlertEnrichmentSpecStepConditionalElseOutput() AlertEnrichmentSpecStepConditionalElseOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseArgs) ToAlertEnrichmentSpecStepConditionalElseOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseArgs) ToAlertEnrichmentSpecStepConditionalElsePtrOutput() AlertEnrichmentSpecStepConditionalElsePtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElsePtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseArgs) ToAlertEnrichmentSpecStepConditionalElsePtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElsePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseOutput).ToAlertEnrichmentSpecStepConditionalElsePtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalElsePtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseArgs, AlertEnrichmentSpecStepConditionalElsePtr and AlertEnrichmentSpecStepConditionalElsePtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElsePtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalElseArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalElsePtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElsePtrOutput() AlertEnrichmentSpecStepConditionalElsePtrOutput
+	ToAlertEnrichmentSpecStepConditionalElsePtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElsePtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalElsePtrType AlertEnrichmentSpecStepConditionalElseArgs
+
+func AlertEnrichmentSpecStepConditionalElsePtr(v *AlertEnrichmentSpecStepConditionalElseArgs) AlertEnrichmentSpecStepConditionalElsePtrInput {
+	return (*alertEnrichmentSpecStepConditionalElsePtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalElsePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElse)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalElsePtrType) ToAlertEnrichmentSpecStepConditionalElsePtrOutput() AlertEnrichmentSpecStepConditionalElsePtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElsePtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalElsePtrType) ToAlertEnrichmentSpecStepConditionalElsePtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElsePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElsePtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElse)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseOutput) ToAlertEnrichmentSpecStepConditionalElseOutput() AlertEnrichmentSpecStepConditionalElseOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseOutput) ToAlertEnrichmentSpecStepConditionalElseOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseOutput) ToAlertEnrichmentSpecStepConditionalElsePtrOutput() AlertEnrichmentSpecStepConditionalElsePtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalElsePtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseOutput) ToAlertEnrichmentSpecStepConditionalElsePtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElsePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalElse) *AlertEnrichmentSpecStepConditionalElse {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalElsePtrOutput)
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseOutput) Steps() AlertEnrichmentSpecStepConditionalElseStepArrayOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElse) []AlertEnrichmentSpecStepConditionalElseStep {
+		return v.Steps
+	}).(AlertEnrichmentSpecStepConditionalElseStepArrayOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElsePtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElsePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElse)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElsePtrOutput) ToAlertEnrichmentSpecStepConditionalElsePtrOutput() AlertEnrichmentSpecStepConditionalElsePtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElsePtrOutput) ToAlertEnrichmentSpecStepConditionalElsePtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElsePtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElsePtrOutput) Elem() AlertEnrichmentSpecStepConditionalElseOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElse) AlertEnrichmentSpecStepConditionalElse {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalElse
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalElseOutput)
+}
+
+func (o AlertEnrichmentSpecStepConditionalElsePtrOutput) Steps() AlertEnrichmentSpecStepConditionalElseStepArrayOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElse) []AlertEnrichmentSpecStepConditionalElseStep {
+		if v == nil {
+			return nil
+		}
+		return v.Steps
+	}).(AlertEnrichmentSpecStepConditionalElseStepArrayOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStep struct {
+	// Integrate with Grafana Asserts for enrichment.
+	Asserts *AlertEnrichmentSpecStepConditionalElseStepAsserts `pulumi:"asserts"`
+	// Assign annotations to an alert.
+	Assign *AlertEnrichmentSpecStepConditionalElseStepAssign `pulumi:"assign"`
+	// Use AI assistant to investigate alerts and add insights.
+	AssistantInvestigations *AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations `pulumi:"assistantInvestigations"`
+	// Query Grafana data sources and add results to alerts.
+	DataSource *AlertEnrichmentSpecStepConditionalElseStepDataSource `pulumi:"dataSource"`
+	// Generate AI explanation and store in an annotation.
+	Explain *AlertEnrichmentSpecStepConditionalElseStepExplain `pulumi:"explain"`
+	// Call an external HTTP service for enrichment.
+	External *AlertEnrichmentSpecStepConditionalElseStepExternal `pulumi:"external"`
+	// Analyze alerts for patterns and insights.
+	Sift *AlertEnrichmentSpecStepConditionalElseStepSift `pulumi:"sift"`
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepArgs and AlertEnrichmentSpecStepConditionalElseStepOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalElseStepArgs{...}
+type AlertEnrichmentSpecStepConditionalElseStepInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepOutput() AlertEnrichmentSpecStepConditionalElseStepOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepOutput
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepArgs struct {
+	// Integrate with Grafana Asserts for enrichment.
+	Asserts AlertEnrichmentSpecStepConditionalElseStepAssertsPtrInput `pulumi:"asserts"`
+	// Assign annotations to an alert.
+	Assign AlertEnrichmentSpecStepConditionalElseStepAssignPtrInput `pulumi:"assign"`
+	// Use AI assistant to investigate alerts and add insights.
+	AssistantInvestigations AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrInput `pulumi:"assistantInvestigations"`
+	// Query Grafana data sources and add results to alerts.
+	DataSource AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrInput `pulumi:"dataSource"`
+	// Generate AI explanation and store in an annotation.
+	Explain AlertEnrichmentSpecStepConditionalElseStepExplainPtrInput `pulumi:"explain"`
+	// Call an external HTTP service for enrichment.
+	External AlertEnrichmentSpecStepConditionalElseStepExternalPtrInput `pulumi:"external"`
+	// Analyze alerts for patterns and insights.
+	Sift AlertEnrichmentSpecStepConditionalElseStepSiftPtrInput `pulumi:"sift"`
+}
+
+func (AlertEnrichmentSpecStepConditionalElseStepArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStep)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepArgs) ToAlertEnrichmentSpecStepConditionalElseStepOutput() AlertEnrichmentSpecStepConditionalElseStepOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepArgs) ToAlertEnrichmentSpecStepConditionalElseStepOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepOutput)
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepArrayInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepArray and AlertEnrichmentSpecStepConditionalElseStepArrayOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepArrayInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalElseStepArray{ AlertEnrichmentSpecStepConditionalElseStepArgs{...} }
+type AlertEnrichmentSpecStepConditionalElseStepArrayInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepArrayOutput() AlertEnrichmentSpecStepConditionalElseStepArrayOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepArrayOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepArrayOutput
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepArray []AlertEnrichmentSpecStepConditionalElseStepInput
+
+func (AlertEnrichmentSpecStepConditionalElseStepArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecStepConditionalElseStep)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepArray) ToAlertEnrichmentSpecStepConditionalElseStepArrayOutput() AlertEnrichmentSpecStepConditionalElseStepArrayOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepArrayOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepArray) ToAlertEnrichmentSpecStepConditionalElseStepArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepArrayOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStep)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepOutput) ToAlertEnrichmentSpecStepConditionalElseStepOutput() AlertEnrichmentSpecStepConditionalElseStepOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepOutput) ToAlertEnrichmentSpecStepConditionalElseStepOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepOutput {
+	return o
+}
+
+// Integrate with Grafana Asserts for enrichment.
+func (o AlertEnrichmentSpecStepConditionalElseStepOutput) Asserts() AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStep) *AlertEnrichmentSpecStepConditionalElseStepAsserts {
+		return v.Asserts
+	}).(AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput)
+}
+
+// Assign annotations to an alert.
+func (o AlertEnrichmentSpecStepConditionalElseStepOutput) Assign() AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStep) *AlertEnrichmentSpecStepConditionalElseStepAssign {
+		return v.Assign
+	}).(AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput)
+}
+
+// Use AI assistant to investigate alerts and add insights.
+func (o AlertEnrichmentSpecStepConditionalElseStepOutput) AssistantInvestigations() AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStep) *AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations {
+		return v.AssistantInvestigations
+	}).(AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput)
+}
+
+// Query Grafana data sources and add results to alerts.
+func (o AlertEnrichmentSpecStepConditionalElseStepOutput) DataSource() AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStep) *AlertEnrichmentSpecStepConditionalElseStepDataSource {
+		return v.DataSource
+	}).(AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput)
+}
+
+// Generate AI explanation and store in an annotation.
+func (o AlertEnrichmentSpecStepConditionalElseStepOutput) Explain() AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStep) *AlertEnrichmentSpecStepConditionalElseStepExplain {
+		return v.Explain
+	}).(AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput)
+}
+
+// Call an external HTTP service for enrichment.
+func (o AlertEnrichmentSpecStepConditionalElseStepOutput) External() AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStep) *AlertEnrichmentSpecStepConditionalElseStepExternal {
+		return v.External
+	}).(AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput)
+}
+
+// Analyze alerts for patterns and insights.
+func (o AlertEnrichmentSpecStepConditionalElseStepOutput) Sift() AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStep) *AlertEnrichmentSpecStepConditionalElseStepSift {
+		return v.Sift
+	}).(AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecStepConditionalElseStep)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepArrayOutput) ToAlertEnrichmentSpecStepConditionalElseStepArrayOutput() AlertEnrichmentSpecStepConditionalElseStepArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepArrayOutput) ToAlertEnrichmentSpecStepConditionalElseStepArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepArrayOutput) Index(i pulumi.IntInput) AlertEnrichmentSpecStepConditionalElseStepOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertEnrichmentSpecStepConditionalElseStep {
+		return vs[0].([]AlertEnrichmentSpecStepConditionalElseStep)[vs[1].(int)]
+	}).(AlertEnrichmentSpecStepConditionalElseStepOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepAsserts struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepAssertsInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepAssertsArgs and AlertEnrichmentSpecStepConditionalElseStepAssertsOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepAssertsInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalElseStepAssertsArgs{...}
+type AlertEnrichmentSpecStepConditionalElseStepAssertsInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepAssertsOutput() AlertEnrichmentSpecStepConditionalElseStepAssertsOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepAssertsOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepAssertsOutput
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepAssertsArgs struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepConditionalElseStepAssertsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepAsserts)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepAssertsArgs) ToAlertEnrichmentSpecStepConditionalElseStepAssertsOutput() AlertEnrichmentSpecStepConditionalElseStepAssertsOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepAssertsOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepAssertsArgs) ToAlertEnrichmentSpecStepConditionalElseStepAssertsOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssertsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepAssertsOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepAssertsArgs) ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepAssertsArgs) ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepAssertsOutput).ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepAssertsPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepAssertsArgs, AlertEnrichmentSpecStepConditionalElseStepAssertsPtr and AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepAssertsPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalElseStepAssertsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalElseStepAssertsPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalElseStepAssertsPtrType AlertEnrichmentSpecStepConditionalElseStepAssertsArgs
+
+func AlertEnrichmentSpecStepConditionalElseStepAssertsPtr(v *AlertEnrichmentSpecStepConditionalElseStepAssertsArgs) AlertEnrichmentSpecStepConditionalElseStepAssertsPtrInput {
+	return (*alertEnrichmentSpecStepConditionalElseStepAssertsPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalElseStepAssertsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepAsserts)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepAssertsPtrType) ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepAssertsPtrType) ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepAssertsOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepAssertsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepAsserts)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssertsOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssertsOutput() AlertEnrichmentSpecStepConditionalElseStepAssertsOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssertsOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssertsOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssertsOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssertsOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssertsOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalElseStepAsserts) *AlertEnrichmentSpecStepConditionalElseStepAsserts {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepAssertsOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepAsserts) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepAsserts)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput) Elem() AlertEnrichmentSpecStepConditionalElseStepAssertsOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepAsserts) AlertEnrichmentSpecStepConditionalElseStepAsserts {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalElseStepAsserts
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalElseStepAssertsOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepAsserts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepAssign struct {
+	// Map of annotation names to values to set on matching alerts.
+	Annotations map[string]string `pulumi:"annotations"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepAssignInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepAssignArgs and AlertEnrichmentSpecStepConditionalElseStepAssignOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepAssignInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalElseStepAssignArgs{...}
+type AlertEnrichmentSpecStepConditionalElseStepAssignInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepAssignOutput() AlertEnrichmentSpecStepConditionalElseStepAssignOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepAssignOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepAssignOutput
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepAssignArgs struct {
+	// Map of annotation names to values to set on matching alerts.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepConditionalElseStepAssignArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepAssign)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepAssignArgs) ToAlertEnrichmentSpecStepConditionalElseStepAssignOutput() AlertEnrichmentSpecStepConditionalElseStepAssignOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepAssignOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepAssignArgs) ToAlertEnrichmentSpecStepConditionalElseStepAssignOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssignOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepAssignOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepAssignArgs) ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepAssignArgs) ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepAssignOutput).ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepAssignPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepAssignArgs, AlertEnrichmentSpecStepConditionalElseStepAssignPtr and AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepAssignPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalElseStepAssignArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalElseStepAssignPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalElseStepAssignPtrType AlertEnrichmentSpecStepConditionalElseStepAssignArgs
+
+func AlertEnrichmentSpecStepConditionalElseStepAssignPtr(v *AlertEnrichmentSpecStepConditionalElseStepAssignArgs) AlertEnrichmentSpecStepConditionalElseStepAssignPtrInput {
+	return (*alertEnrichmentSpecStepConditionalElseStepAssignPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalElseStepAssignPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepAssign)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepAssignPtrType) ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepAssignPtrType) ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepAssignOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepAssignOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepAssign)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssignOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssignOutput() AlertEnrichmentSpecStepConditionalElseStepAssignOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssignOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssignOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssignOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssignOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssignOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalElseStepAssign) *AlertEnrichmentSpecStepConditionalElseStepAssign {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput)
+}
+
+// Map of annotation names to values to set on matching alerts.
+func (o AlertEnrichmentSpecStepConditionalElseStepAssignOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepAssign) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepAssignOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepAssign) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepAssign)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssignPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput) Elem() AlertEnrichmentSpecStepConditionalElseStepAssignOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepAssign) AlertEnrichmentSpecStepConditionalElseStepAssign {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalElseStepAssign
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalElseStepAssignOutput)
+}
+
+// Map of annotation names to values to set on matching alerts.
+func (o AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepAssign) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepAssign) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs and AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs{...}
+type AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput() AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs) ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput() AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs) ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs) ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs) ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput).ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs, AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtr and AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrType AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs
+
+func AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtr(v *AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs) AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrInput {
+	return (*alertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrType) ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrType) ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput() AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations) *AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput() AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput) Elem() AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations) AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepDataSource struct {
+	// Logs query configuration for querying log data sources.
+	LogsQuery *AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery `pulumi:"logsQuery"`
+	// Raw query configuration for advanced data source queries.
+	RawQuery *AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery `pulumi:"rawQuery"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepDataSourceInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs and AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepDataSourceInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs{...}
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepDataSourceOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepDataSourceOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs struct {
+	// Logs query configuration for querying log data sources.
+	LogsQuery AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrInput `pulumi:"logsQuery"`
+	// Raw query configuration for advanced data source queries.
+	RawQuery AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrInput `pulumi:"rawQuery"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepDataSource)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepDataSourceOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs) ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs) ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput).ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs, AlertEnrichmentSpecStepConditionalElseStepDataSourcePtr and AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalElseStepDataSourcePtrType AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs
+
+func AlertEnrichmentSpecStepConditionalElseStepDataSourcePtr(v *AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs) AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrInput {
+	return (*alertEnrichmentSpecStepConditionalElseStepDataSourcePtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalElseStepDataSourcePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepDataSource)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepDataSourcePtrType) ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepDataSourcePtrType) ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepDataSource)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalElseStepDataSource) *AlertEnrichmentSpecStepConditionalElseStepDataSource {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput)
+}
+
+// Logs query configuration for querying log data sources.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput) LogsQuery() AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepDataSource) *AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery {
+		return v.LogsQuery
+	}).(AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput)
+}
+
+// Raw query configuration for advanced data source queries.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput) RawQuery() AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepDataSource) *AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery {
+		return v.RawQuery
+	}).(AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepDataSource) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepDataSource)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput) Elem() AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepDataSource) AlertEnrichmentSpecStepConditionalElseStepDataSource {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalElseStepDataSource
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput)
+}
+
+// Logs query configuration for querying log data sources.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput) LogsQuery() AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepDataSource) *AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery {
+		if v == nil {
+			return nil
+		}
+		return v.LogsQuery
+	}).(AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput)
+}
+
+// Raw query configuration for advanced data source queries.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput) RawQuery() AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepDataSource) *AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery {
+		if v == nil {
+			return nil
+		}
+		return v.RawQuery
+	}).(AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepDataSource) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery struct {
+	// Data source type (e.g., 'loki').
+	DataSourceType *string `pulumi:"dataSourceType"`
+	// UID of the data source to query.
+	DataSourceUid *string `pulumi:"dataSourceUid"`
+	// Log query expression to execute.
+	Expr *string `pulumi:"expr"`
+	// Maximum number of log lines to include. Defaults to 3.
+	MaxLines *int `pulumi:"maxLines"`
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs and AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs{...}
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs struct {
+	// Data source type (e.g., 'loki').
+	DataSourceType pulumi.StringPtrInput `pulumi:"dataSourceType"`
+	// UID of the data source to query.
+	DataSourceUid pulumi.StringPtrInput `pulumi:"dataSourceUid"`
+	// Log query expression to execute.
+	Expr pulumi.StringPtrInput `pulumi:"expr"`
+	// Maximum number of log lines to include. Defaults to 3.
+	MaxLines pulumi.IntPtrInput `pulumi:"maxLines"`
+}
+
+func (AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput).ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs, AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtr and AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrType AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs
+
+func AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtr(v *AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs) AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrInput {
+	return (*alertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrType) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrType) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery) *AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput)
+}
+
+// Data source type (e.g., 'loki').
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput) DataSourceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery) *string { return v.DataSourceType }).(pulumi.StringPtrOutput)
+}
+
+// UID of the data source to query.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput) DataSourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery) *string { return v.DataSourceUid }).(pulumi.StringPtrOutput)
+}
+
+// Log query expression to execute.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput) Expr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery) *string { return v.Expr }).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of log lines to include. Defaults to 3.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput) MaxLines() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery) *int { return v.MaxLines }).(pulumi.IntPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput) Elem() AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery) AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput)
+}
+
+// Data source type (e.g., 'loki').
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput) DataSourceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DataSourceType
+	}).(pulumi.StringPtrOutput)
+}
+
+// UID of the data source to query.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput) DataSourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DataSourceUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// Log query expression to execute.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput) Expr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Expr
+	}).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of log lines to include. Defaults to 3.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput) MaxLines() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxLines
+	}).(pulumi.IntPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery struct {
+	// Reference ID for correlating queries.
+	RefId *string `pulumi:"refId"`
+	// Raw request payload for the data source query.
+	Request *string `pulumi:"request"`
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs and AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs{...}
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs struct {
+	// Reference ID for correlating queries.
+	RefId pulumi.StringPtrInput `pulumi:"refId"`
+	// Raw request payload for the data source query.
+	Request pulumi.StringPtrInput `pulumi:"request"`
+}
+
+func (AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput).ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs, AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtr and AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrType AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs
+
+func AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtr(v *AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs) AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrInput {
+	return (*alertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrType) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrType) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery) *AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput)
+}
+
+// Reference ID for correlating queries.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput) RefId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery) *string { return v.RefId }).(pulumi.StringPtrOutput)
+}
+
+// Raw request payload for the data source query.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput) Request() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery) *string { return v.Request }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput() AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput) Elem() AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery) AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput)
+}
+
+// Reference ID for correlating queries.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput) RefId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RefId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Raw request payload for the data source query.
+func (o AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput) Request() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Request
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepExplain struct {
+	// Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+	Annotation *string `pulumi:"annotation"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepExplainInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepExplainArgs and AlertEnrichmentSpecStepConditionalElseStepExplainOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepExplainInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalElseStepExplainArgs{...}
+type AlertEnrichmentSpecStepConditionalElseStepExplainInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepExplainOutput() AlertEnrichmentSpecStepConditionalElseStepExplainOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepExplainOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepExplainOutput
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepExplainArgs struct {
+	// Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+	Annotation pulumi.StringPtrInput `pulumi:"annotation"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepConditionalElseStepExplainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepExplain)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepExplainArgs) ToAlertEnrichmentSpecStepConditionalElseStepExplainOutput() AlertEnrichmentSpecStepConditionalElseStepExplainOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepExplainOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepExplainArgs) ToAlertEnrichmentSpecStepConditionalElseStepExplainOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepExplainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepExplainOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepExplainArgs) ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput() AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepExplainArgs) ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepExplainOutput).ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepExplainPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepExplainArgs, AlertEnrichmentSpecStepConditionalElseStepExplainPtr and AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepExplainPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalElseStepExplainArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalElseStepExplainPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput() AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalElseStepExplainPtrType AlertEnrichmentSpecStepConditionalElseStepExplainArgs
+
+func AlertEnrichmentSpecStepConditionalElseStepExplainPtr(v *AlertEnrichmentSpecStepConditionalElseStepExplainArgs) AlertEnrichmentSpecStepConditionalElseStepExplainPtrInput {
+	return (*alertEnrichmentSpecStepConditionalElseStepExplainPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalElseStepExplainPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepExplain)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepExplainPtrType) ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput() AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepExplainPtrType) ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepExplainOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepExplainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepExplain)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExplainOutput) ToAlertEnrichmentSpecStepConditionalElseStepExplainOutput() AlertEnrichmentSpecStepConditionalElseStepExplainOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExplainOutput) ToAlertEnrichmentSpecStepConditionalElseStepExplainOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepExplainOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExplainOutput) ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput() AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExplainOutput) ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalElseStepExplain) *AlertEnrichmentSpecStepConditionalElseStepExplain {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput)
+}
+
+// Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+func (o AlertEnrichmentSpecStepConditionalElseStepExplainOutput) Annotation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepExplain) *string { return v.Annotation }).(pulumi.StringPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepExplainOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepExplain) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepExplain)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput() AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepExplainPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput) Elem() AlertEnrichmentSpecStepConditionalElseStepExplainOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepExplain) AlertEnrichmentSpecStepConditionalElseStepExplain {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalElseStepExplain
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalElseStepExplainOutput)
+}
+
+// Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+func (o AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput) Annotation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepExplain) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotation
+	}).(pulumi.StringPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepExplain) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepExternal struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+	// HTTP endpoint URL to call for enrichment
+	Url *string `pulumi:"url"`
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepExternalInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepExternalArgs and AlertEnrichmentSpecStepConditionalElseStepExternalOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepExternalInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalElseStepExternalArgs{...}
+type AlertEnrichmentSpecStepConditionalElseStepExternalInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepExternalOutput() AlertEnrichmentSpecStepConditionalElseStepExternalOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepExternalOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepExternalOutput
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepExternalArgs struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+	// HTTP endpoint URL to call for enrichment
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+func (AlertEnrichmentSpecStepConditionalElseStepExternalArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepExternal)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepExternalArgs) ToAlertEnrichmentSpecStepConditionalElseStepExternalOutput() AlertEnrichmentSpecStepConditionalElseStepExternalOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepExternalOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepExternalArgs) ToAlertEnrichmentSpecStepConditionalElseStepExternalOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepExternalOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepExternalOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepExternalArgs) ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput() AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepExternalArgs) ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepExternalOutput).ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepExternalPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepExternalArgs, AlertEnrichmentSpecStepConditionalElseStepExternalPtr and AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepExternalPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalElseStepExternalArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalElseStepExternalPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput() AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalElseStepExternalPtrType AlertEnrichmentSpecStepConditionalElseStepExternalArgs
+
+func AlertEnrichmentSpecStepConditionalElseStepExternalPtr(v *AlertEnrichmentSpecStepConditionalElseStepExternalArgs) AlertEnrichmentSpecStepConditionalElseStepExternalPtrInput {
+	return (*alertEnrichmentSpecStepConditionalElseStepExternalPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalElseStepExternalPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepExternal)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepExternalPtrType) ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput() AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepExternalPtrType) ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepExternalOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepExternalOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepExternal)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExternalOutput) ToAlertEnrichmentSpecStepConditionalElseStepExternalOutput() AlertEnrichmentSpecStepConditionalElseStepExternalOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExternalOutput) ToAlertEnrichmentSpecStepConditionalElseStepExternalOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepExternalOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExternalOutput) ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput() AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExternalOutput) ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalElseStepExternal) *AlertEnrichmentSpecStepConditionalElseStepExternal {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepExternalOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepExternal) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+// HTTP endpoint URL to call for enrichment
+func (o AlertEnrichmentSpecStepConditionalElseStepExternalOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepExternal) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepExternal)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput() AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepExternalPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput) Elem() AlertEnrichmentSpecStepConditionalElseStepExternalOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepExternal) AlertEnrichmentSpecStepConditionalElseStepExternal {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalElseStepExternal
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalElseStepExternalOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepExternal) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+// HTTP endpoint URL to call for enrichment
+func (o AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepExternal) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepSift struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepSiftInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepSiftArgs and AlertEnrichmentSpecStepConditionalElseStepSiftOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepSiftInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalElseStepSiftArgs{...}
+type AlertEnrichmentSpecStepConditionalElseStepSiftInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepSiftOutput() AlertEnrichmentSpecStepConditionalElseStepSiftOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepSiftOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepSiftOutput
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepSiftArgs struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepConditionalElseStepSiftArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepSift)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepSiftArgs) ToAlertEnrichmentSpecStepConditionalElseStepSiftOutput() AlertEnrichmentSpecStepConditionalElseStepSiftOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepSiftOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepSiftArgs) ToAlertEnrichmentSpecStepConditionalElseStepSiftOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepSiftOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepSiftOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepSiftArgs) ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput() AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalElseStepSiftArgs) ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepSiftOutput).ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalElseStepSiftPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalElseStepSiftArgs, AlertEnrichmentSpecStepConditionalElseStepSiftPtr and AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalElseStepSiftPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalElseStepSiftArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalElseStepSiftPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput() AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput
+	ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalElseStepSiftPtrType AlertEnrichmentSpecStepConditionalElseStepSiftArgs
+
+func AlertEnrichmentSpecStepConditionalElseStepSiftPtr(v *AlertEnrichmentSpecStepConditionalElseStepSiftArgs) AlertEnrichmentSpecStepConditionalElseStepSiftPtrInput {
+	return (*alertEnrichmentSpecStepConditionalElseStepSiftPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalElseStepSiftPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepSift)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepSiftPtrType) ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput() AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalElseStepSiftPtrType) ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepSiftOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepSiftOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepSift)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepSiftOutput) ToAlertEnrichmentSpecStepConditionalElseStepSiftOutput() AlertEnrichmentSpecStepConditionalElseStepSiftOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepSiftOutput) ToAlertEnrichmentSpecStepConditionalElseStepSiftOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepSiftOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepSiftOutput) ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput() AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepSiftOutput) ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalElseStepSift) *AlertEnrichmentSpecStepConditionalElseStepSift {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepSiftOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalElseStepSift) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalElseStepSift)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput() AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput) ToAlertEnrichmentSpecStepConditionalElseStepSiftPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput) Elem() AlertEnrichmentSpecStepConditionalElseStepSiftOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepSift) AlertEnrichmentSpecStepConditionalElseStepSift {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalElseStepSift
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalElseStepSiftOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalElseStepSift) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalIf struct {
+	// Annotation matchers for the condition.
+	AnnotationMatchers []AlertEnrichmentSpecStepConditionalIfAnnotationMatcher `pulumi:"annotationMatchers"`
+	// Data source condition.
+	DataSourceCondition *AlertEnrichmentSpecStepConditionalIfDataSourceCondition `pulumi:"dataSourceCondition"`
+	// Label matchers for the condition.
+	LabelMatchers []AlertEnrichmentSpecStepConditionalIfLabelMatcher `pulumi:"labelMatchers"`
+}
+
+// AlertEnrichmentSpecStepConditionalIfInput is an input type that accepts AlertEnrichmentSpecStepConditionalIfArgs and AlertEnrichmentSpecStepConditionalIfOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalIfInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalIfArgs{...}
+type AlertEnrichmentSpecStepConditionalIfInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalIfOutput() AlertEnrichmentSpecStepConditionalIfOutput
+	ToAlertEnrichmentSpecStepConditionalIfOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalIfOutput
+}
+
+type AlertEnrichmentSpecStepConditionalIfArgs struct {
+	// Annotation matchers for the condition.
+	AnnotationMatchers AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayInput `pulumi:"annotationMatchers"`
+	// Data source condition.
+	DataSourceCondition AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrInput `pulumi:"dataSourceCondition"`
+	// Label matchers for the condition.
+	LabelMatchers AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayInput `pulumi:"labelMatchers"`
+}
+
+func (AlertEnrichmentSpecStepConditionalIfArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIf)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfArgs) ToAlertEnrichmentSpecStepConditionalIfOutput() AlertEnrichmentSpecStepConditionalIfOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalIfOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfArgs) ToAlertEnrichmentSpecStepConditionalIfOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalIfOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfArgs) ToAlertEnrichmentSpecStepConditionalIfPtrOutput() AlertEnrichmentSpecStepConditionalIfPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalIfPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfArgs) ToAlertEnrichmentSpecStepConditionalIfPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalIfOutput).ToAlertEnrichmentSpecStepConditionalIfPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalIfPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalIfArgs, AlertEnrichmentSpecStepConditionalIfPtr and AlertEnrichmentSpecStepConditionalIfPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalIfPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalIfArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalIfPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalIfPtrOutput() AlertEnrichmentSpecStepConditionalIfPtrOutput
+	ToAlertEnrichmentSpecStepConditionalIfPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalIfPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalIfPtrType AlertEnrichmentSpecStepConditionalIfArgs
+
+func AlertEnrichmentSpecStepConditionalIfPtr(v *AlertEnrichmentSpecStepConditionalIfArgs) AlertEnrichmentSpecStepConditionalIfPtrInput {
+	return (*alertEnrichmentSpecStepConditionalIfPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalIfPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalIf)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalIfPtrType) ToAlertEnrichmentSpecStepConditionalIfPtrOutput() AlertEnrichmentSpecStepConditionalIfPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalIfPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalIfPtrType) ToAlertEnrichmentSpecStepConditionalIfPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalIfPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalIfOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalIfOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIf)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfOutput) ToAlertEnrichmentSpecStepConditionalIfOutput() AlertEnrichmentSpecStepConditionalIfOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfOutput) ToAlertEnrichmentSpecStepConditionalIfOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfOutput) ToAlertEnrichmentSpecStepConditionalIfPtrOutput() AlertEnrichmentSpecStepConditionalIfPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalIfPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfOutput) ToAlertEnrichmentSpecStepConditionalIfPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalIf) *AlertEnrichmentSpecStepConditionalIf {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalIfPtrOutput)
+}
+
+// Annotation matchers for the condition.
+func (o AlertEnrichmentSpecStepConditionalIfOutput) AnnotationMatchers() AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalIf) []AlertEnrichmentSpecStepConditionalIfAnnotationMatcher {
+		return v.AnnotationMatchers
+	}).(AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput)
+}
+
+// Data source condition.
+func (o AlertEnrichmentSpecStepConditionalIfOutput) DataSourceCondition() AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalIf) *AlertEnrichmentSpecStepConditionalIfDataSourceCondition {
+		return v.DataSourceCondition
+	}).(AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput)
+}
+
+// Label matchers for the condition.
+func (o AlertEnrichmentSpecStepConditionalIfOutput) LabelMatchers() AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalIf) []AlertEnrichmentSpecStepConditionalIfLabelMatcher {
+		return v.LabelMatchers
+	}).(AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalIfPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalIfPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalIf)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfPtrOutput) ToAlertEnrichmentSpecStepConditionalIfPtrOutput() AlertEnrichmentSpecStepConditionalIfPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfPtrOutput) ToAlertEnrichmentSpecStepConditionalIfPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfPtrOutput) Elem() AlertEnrichmentSpecStepConditionalIfOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalIf) AlertEnrichmentSpecStepConditionalIf {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalIf
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalIfOutput)
+}
+
+// Annotation matchers for the condition.
+func (o AlertEnrichmentSpecStepConditionalIfPtrOutput) AnnotationMatchers() AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalIf) []AlertEnrichmentSpecStepConditionalIfAnnotationMatcher {
+		if v == nil {
+			return nil
+		}
+		return v.AnnotationMatchers
+	}).(AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput)
+}
+
+// Data source condition.
+func (o AlertEnrichmentSpecStepConditionalIfPtrOutput) DataSourceCondition() AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalIf) *AlertEnrichmentSpecStepConditionalIfDataSourceCondition {
+		if v == nil {
+			return nil
+		}
+		return v.DataSourceCondition
+	}).(AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput)
+}
+
+// Label matchers for the condition.
+func (o AlertEnrichmentSpecStepConditionalIfPtrOutput) LabelMatchers() AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalIf) []AlertEnrichmentSpecStepConditionalIfLabelMatcher {
+		if v == nil {
+			return nil
+		}
+		return v.LabelMatchers
+	}).(AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalIfAnnotationMatcher struct {
+	Name  string `pulumi:"name"`
+	Type  string `pulumi:"type"`
+	Value string `pulumi:"value"`
+}
+
+// AlertEnrichmentSpecStepConditionalIfAnnotationMatcherInput is an input type that accepts AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArgs and AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalIfAnnotationMatcherInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArgs{...}
+type AlertEnrichmentSpecStepConditionalIfAnnotationMatcherInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput() AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput
+	ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput
+}
+
+type AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArgs struct {
+	Name  pulumi.StringInput `pulumi:"name"`
+	Type  pulumi.StringInput `pulumi:"type"`
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfAnnotationMatcher)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArgs) ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput() AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArgs) ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput)
+}
+
+// AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayInput is an input type that accepts AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArray and AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArray{ AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArgs{...} }
+type AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput() AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput
+	ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput
+}
+
+type AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArray []AlertEnrichmentSpecStepConditionalIfAnnotationMatcherInput
+
+func (AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecStepConditionalIfAnnotationMatcher)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArray) ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput() AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArray) ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfAnnotationMatcher)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput) ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput() AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput) ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalIfAnnotationMatcher) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalIfAnnotationMatcher) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalIfAnnotationMatcher) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecStepConditionalIfAnnotationMatcher)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput) ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput() AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput) ToAlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput) Index(i pulumi.IntInput) AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertEnrichmentSpecStepConditionalIfAnnotationMatcher {
+		return vs[0].([]AlertEnrichmentSpecStepConditionalIfAnnotationMatcher)[vs[1].(int)]
+	}).(AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalIfDataSourceCondition struct {
+	// Data source request payload.
+	Request *string `pulumi:"request"`
+}
+
+// AlertEnrichmentSpecStepConditionalIfDataSourceConditionInput is an input type that accepts AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs and AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalIfDataSourceConditionInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs{...}
+type AlertEnrichmentSpecStepConditionalIfDataSourceConditionInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput() AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput
+	ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput
+}
+
+type AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs struct {
+	// Data source request payload.
+	Request pulumi.StringPtrInput `pulumi:"request"`
+}
+
+func (AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfDataSourceCondition)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs) ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput() AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs) ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs) ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput() AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs) ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput).ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs, AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtr and AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput() AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput
+	ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalIfDataSourceConditionPtrType AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs
+
+func AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtr(v *AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs) AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrInput {
+	return (*alertEnrichmentSpecStepConditionalIfDataSourceConditionPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalIfDataSourceConditionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalIfDataSourceCondition)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalIfDataSourceConditionPtrType) ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput() AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalIfDataSourceConditionPtrType) ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfDataSourceCondition)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput) ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput() AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput) ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput) ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput() AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput) ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalIfDataSourceCondition) *AlertEnrichmentSpecStepConditionalIfDataSourceCondition {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput)
+}
+
+// Data source request payload.
+func (o AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput) Request() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalIfDataSourceCondition) *string { return v.Request }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalIfDataSourceCondition)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput) ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput() AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput) ToAlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput) Elem() AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalIfDataSourceCondition) AlertEnrichmentSpecStepConditionalIfDataSourceCondition {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalIfDataSourceCondition
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput)
+}
+
+// Data source request payload.
+func (o AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput) Request() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalIfDataSourceCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Request
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalIfLabelMatcher struct {
+	Name  string `pulumi:"name"`
+	Type  string `pulumi:"type"`
+	Value string `pulumi:"value"`
+}
+
+// AlertEnrichmentSpecStepConditionalIfLabelMatcherInput is an input type that accepts AlertEnrichmentSpecStepConditionalIfLabelMatcherArgs and AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalIfLabelMatcherInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalIfLabelMatcherArgs{...}
+type AlertEnrichmentSpecStepConditionalIfLabelMatcherInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalIfLabelMatcherOutput() AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput
+	ToAlertEnrichmentSpecStepConditionalIfLabelMatcherOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput
+}
+
+type AlertEnrichmentSpecStepConditionalIfLabelMatcherArgs struct {
+	Name  pulumi.StringInput `pulumi:"name"`
+	Type  pulumi.StringInput `pulumi:"type"`
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AlertEnrichmentSpecStepConditionalIfLabelMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfLabelMatcher)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfLabelMatcherArgs) ToAlertEnrichmentSpecStepConditionalIfLabelMatcherOutput() AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalIfLabelMatcherOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfLabelMatcherArgs) ToAlertEnrichmentSpecStepConditionalIfLabelMatcherOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput)
+}
+
+// AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayInput is an input type that accepts AlertEnrichmentSpecStepConditionalIfLabelMatcherArray and AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalIfLabelMatcherArray{ AlertEnrichmentSpecStepConditionalIfLabelMatcherArgs{...} }
+type AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput() AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput
+	ToAlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput
+}
+
+type AlertEnrichmentSpecStepConditionalIfLabelMatcherArray []AlertEnrichmentSpecStepConditionalIfLabelMatcherInput
+
+func (AlertEnrichmentSpecStepConditionalIfLabelMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecStepConditionalIfLabelMatcher)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfLabelMatcherArray) ToAlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput() AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalIfLabelMatcherArray) ToAlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfLabelMatcher)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput) ToAlertEnrichmentSpecStepConditionalIfLabelMatcherOutput() AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput) ToAlertEnrichmentSpecStepConditionalIfLabelMatcherOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalIfLabelMatcher) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalIfLabelMatcher) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalIfLabelMatcher) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecStepConditionalIfLabelMatcher)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput) ToAlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput() AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput) ToAlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput) Index(i pulumi.IntInput) AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertEnrichmentSpecStepConditionalIfLabelMatcher {
+		return vs[0].([]AlertEnrichmentSpecStepConditionalIfLabelMatcher)[vs[1].(int)]
+	}).(AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThen struct {
+	Steps []AlertEnrichmentSpecStepConditionalThenStep `pulumi:"steps"`
+}
+
+// AlertEnrichmentSpecStepConditionalThenInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenArgs and AlertEnrichmentSpecStepConditionalThenOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalThenArgs{...}
+type AlertEnrichmentSpecStepConditionalThenInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenOutput() AlertEnrichmentSpecStepConditionalThenOutput
+	ToAlertEnrichmentSpecStepConditionalThenOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenOutput
+}
+
+type AlertEnrichmentSpecStepConditionalThenArgs struct {
+	Steps AlertEnrichmentSpecStepConditionalThenStepArrayInput `pulumi:"steps"`
+}
+
+func (AlertEnrichmentSpecStepConditionalThenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThen)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenArgs) ToAlertEnrichmentSpecStepConditionalThenOutput() AlertEnrichmentSpecStepConditionalThenOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenArgs) ToAlertEnrichmentSpecStepConditionalThenOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenArgs) ToAlertEnrichmentSpecStepConditionalThenPtrOutput() AlertEnrichmentSpecStepConditionalThenPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenArgs) ToAlertEnrichmentSpecStepConditionalThenPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenOutput).ToAlertEnrichmentSpecStepConditionalThenPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalThenPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenArgs, AlertEnrichmentSpecStepConditionalThenPtr and AlertEnrichmentSpecStepConditionalThenPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalThenArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalThenPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenPtrOutput() AlertEnrichmentSpecStepConditionalThenPtrOutput
+	ToAlertEnrichmentSpecStepConditionalThenPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalThenPtrType AlertEnrichmentSpecStepConditionalThenArgs
+
+func AlertEnrichmentSpecStepConditionalThenPtr(v *AlertEnrichmentSpecStepConditionalThenArgs) AlertEnrichmentSpecStepConditionalThenPtrInput {
+	return (*alertEnrichmentSpecStepConditionalThenPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalThenPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThen)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenPtrType) ToAlertEnrichmentSpecStepConditionalThenPtrOutput() AlertEnrichmentSpecStepConditionalThenPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenPtrType) ToAlertEnrichmentSpecStepConditionalThenPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThen)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenOutput) ToAlertEnrichmentSpecStepConditionalThenOutput() AlertEnrichmentSpecStepConditionalThenOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenOutput) ToAlertEnrichmentSpecStepConditionalThenOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenOutput) ToAlertEnrichmentSpecStepConditionalThenPtrOutput() AlertEnrichmentSpecStepConditionalThenPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalThenPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenOutput) ToAlertEnrichmentSpecStepConditionalThenPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalThen) *AlertEnrichmentSpecStepConditionalThen {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalThenPtrOutput)
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenOutput) Steps() AlertEnrichmentSpecStepConditionalThenStepArrayOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThen) []AlertEnrichmentSpecStepConditionalThenStep {
+		return v.Steps
+	}).(AlertEnrichmentSpecStepConditionalThenStepArrayOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThen)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenPtrOutput) ToAlertEnrichmentSpecStepConditionalThenPtrOutput() AlertEnrichmentSpecStepConditionalThenPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenPtrOutput) ToAlertEnrichmentSpecStepConditionalThenPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenPtrOutput) Elem() AlertEnrichmentSpecStepConditionalThenOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThen) AlertEnrichmentSpecStepConditionalThen {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalThen
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalThenOutput)
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenPtrOutput) Steps() AlertEnrichmentSpecStepConditionalThenStepArrayOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThen) []AlertEnrichmentSpecStepConditionalThenStep {
+		if v == nil {
+			return nil
+		}
+		return v.Steps
+	}).(AlertEnrichmentSpecStepConditionalThenStepArrayOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStep struct {
+	// Integrate with Grafana Asserts for enrichment.
+	Asserts *AlertEnrichmentSpecStepConditionalThenStepAsserts `pulumi:"asserts"`
+	// Assign annotations to an alert.
+	Assign *AlertEnrichmentSpecStepConditionalThenStepAssign `pulumi:"assign"`
+	// Use AI assistant to investigate alerts and add insights.
+	AssistantInvestigations *AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations `pulumi:"assistantInvestigations"`
+	// Query Grafana data sources and add results to alerts.
+	DataSource *AlertEnrichmentSpecStepConditionalThenStepDataSource `pulumi:"dataSource"`
+	// Generate AI explanation and store in an annotation.
+	Explain *AlertEnrichmentSpecStepConditionalThenStepExplain `pulumi:"explain"`
+	// Call an external HTTP service for enrichment.
+	External *AlertEnrichmentSpecStepConditionalThenStepExternal `pulumi:"external"`
+	// Analyze alerts for patterns and insights.
+	Sift *AlertEnrichmentSpecStepConditionalThenStepSift `pulumi:"sift"`
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepArgs and AlertEnrichmentSpecStepConditionalThenStepOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalThenStepArgs{...}
+type AlertEnrichmentSpecStepConditionalThenStepInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepOutput() AlertEnrichmentSpecStepConditionalThenStepOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepOutput
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepArgs struct {
+	// Integrate with Grafana Asserts for enrichment.
+	Asserts AlertEnrichmentSpecStepConditionalThenStepAssertsPtrInput `pulumi:"asserts"`
+	// Assign annotations to an alert.
+	Assign AlertEnrichmentSpecStepConditionalThenStepAssignPtrInput `pulumi:"assign"`
+	// Use AI assistant to investigate alerts and add insights.
+	AssistantInvestigations AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrInput `pulumi:"assistantInvestigations"`
+	// Query Grafana data sources and add results to alerts.
+	DataSource AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrInput `pulumi:"dataSource"`
+	// Generate AI explanation and store in an annotation.
+	Explain AlertEnrichmentSpecStepConditionalThenStepExplainPtrInput `pulumi:"explain"`
+	// Call an external HTTP service for enrichment.
+	External AlertEnrichmentSpecStepConditionalThenStepExternalPtrInput `pulumi:"external"`
+	// Analyze alerts for patterns and insights.
+	Sift AlertEnrichmentSpecStepConditionalThenStepSiftPtrInput `pulumi:"sift"`
+}
+
+func (AlertEnrichmentSpecStepConditionalThenStepArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStep)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepArgs) ToAlertEnrichmentSpecStepConditionalThenStepOutput() AlertEnrichmentSpecStepConditionalThenStepOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepArgs) ToAlertEnrichmentSpecStepConditionalThenStepOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepOutput)
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepArrayInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepArray and AlertEnrichmentSpecStepConditionalThenStepArrayOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepArrayInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalThenStepArray{ AlertEnrichmentSpecStepConditionalThenStepArgs{...} }
+type AlertEnrichmentSpecStepConditionalThenStepArrayInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepArrayOutput() AlertEnrichmentSpecStepConditionalThenStepArrayOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepArrayOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepArrayOutput
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepArray []AlertEnrichmentSpecStepConditionalThenStepInput
+
+func (AlertEnrichmentSpecStepConditionalThenStepArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecStepConditionalThenStep)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepArray) ToAlertEnrichmentSpecStepConditionalThenStepArrayOutput() AlertEnrichmentSpecStepConditionalThenStepArrayOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepArrayOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepArray) ToAlertEnrichmentSpecStepConditionalThenStepArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepArrayOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStep)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepOutput) ToAlertEnrichmentSpecStepConditionalThenStepOutput() AlertEnrichmentSpecStepConditionalThenStepOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepOutput) ToAlertEnrichmentSpecStepConditionalThenStepOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepOutput {
+	return o
+}
+
+// Integrate with Grafana Asserts for enrichment.
+func (o AlertEnrichmentSpecStepConditionalThenStepOutput) Asserts() AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStep) *AlertEnrichmentSpecStepConditionalThenStepAsserts {
+		return v.Asserts
+	}).(AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput)
+}
+
+// Assign annotations to an alert.
+func (o AlertEnrichmentSpecStepConditionalThenStepOutput) Assign() AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStep) *AlertEnrichmentSpecStepConditionalThenStepAssign {
+		return v.Assign
+	}).(AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput)
+}
+
+// Use AI assistant to investigate alerts and add insights.
+func (o AlertEnrichmentSpecStepConditionalThenStepOutput) AssistantInvestigations() AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStep) *AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations {
+		return v.AssistantInvestigations
+	}).(AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput)
+}
+
+// Query Grafana data sources and add results to alerts.
+func (o AlertEnrichmentSpecStepConditionalThenStepOutput) DataSource() AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStep) *AlertEnrichmentSpecStepConditionalThenStepDataSource {
+		return v.DataSource
+	}).(AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput)
+}
+
+// Generate AI explanation and store in an annotation.
+func (o AlertEnrichmentSpecStepConditionalThenStepOutput) Explain() AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStep) *AlertEnrichmentSpecStepConditionalThenStepExplain {
+		return v.Explain
+	}).(AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput)
+}
+
+// Call an external HTTP service for enrichment.
+func (o AlertEnrichmentSpecStepConditionalThenStepOutput) External() AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStep) *AlertEnrichmentSpecStepConditionalThenStepExternal {
+		return v.External
+	}).(AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput)
+}
+
+// Analyze alerts for patterns and insights.
+func (o AlertEnrichmentSpecStepConditionalThenStepOutput) Sift() AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStep) *AlertEnrichmentSpecStepConditionalThenStepSift {
+		return v.Sift
+	}).(AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertEnrichmentSpecStepConditionalThenStep)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepArrayOutput) ToAlertEnrichmentSpecStepConditionalThenStepArrayOutput() AlertEnrichmentSpecStepConditionalThenStepArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepArrayOutput) ToAlertEnrichmentSpecStepConditionalThenStepArrayOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepArrayOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepArrayOutput) Index(i pulumi.IntInput) AlertEnrichmentSpecStepConditionalThenStepOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertEnrichmentSpecStepConditionalThenStep {
+		return vs[0].([]AlertEnrichmentSpecStepConditionalThenStep)[vs[1].(int)]
+	}).(AlertEnrichmentSpecStepConditionalThenStepOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepAsserts struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepAssertsInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepAssertsArgs and AlertEnrichmentSpecStepConditionalThenStepAssertsOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepAssertsInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalThenStepAssertsArgs{...}
+type AlertEnrichmentSpecStepConditionalThenStepAssertsInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepAssertsOutput() AlertEnrichmentSpecStepConditionalThenStepAssertsOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepAssertsOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepAssertsOutput
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepAssertsArgs struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepConditionalThenStepAssertsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepAsserts)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepAssertsArgs) ToAlertEnrichmentSpecStepConditionalThenStepAssertsOutput() AlertEnrichmentSpecStepConditionalThenStepAssertsOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepAssertsOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepAssertsArgs) ToAlertEnrichmentSpecStepConditionalThenStepAssertsOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssertsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepAssertsOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepAssertsArgs) ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepAssertsArgs) ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepAssertsOutput).ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepAssertsPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepAssertsArgs, AlertEnrichmentSpecStepConditionalThenStepAssertsPtr and AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepAssertsPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalThenStepAssertsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalThenStepAssertsPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalThenStepAssertsPtrType AlertEnrichmentSpecStepConditionalThenStepAssertsArgs
+
+func AlertEnrichmentSpecStepConditionalThenStepAssertsPtr(v *AlertEnrichmentSpecStepConditionalThenStepAssertsArgs) AlertEnrichmentSpecStepConditionalThenStepAssertsPtrInput {
+	return (*alertEnrichmentSpecStepConditionalThenStepAssertsPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalThenStepAssertsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepAsserts)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepAssertsPtrType) ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepAssertsPtrType) ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepAssertsOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepAssertsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepAsserts)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssertsOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssertsOutput() AlertEnrichmentSpecStepConditionalThenStepAssertsOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssertsOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssertsOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssertsOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssertsOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssertsOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalThenStepAsserts) *AlertEnrichmentSpecStepConditionalThenStepAsserts {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepAssertsOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepAsserts) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepAsserts)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput) Elem() AlertEnrichmentSpecStepConditionalThenStepAssertsOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepAsserts) AlertEnrichmentSpecStepConditionalThenStepAsserts {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalThenStepAsserts
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalThenStepAssertsOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepAsserts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepAssign struct {
+	// Map of annotation names to values to set on matching alerts.
+	Annotations map[string]string `pulumi:"annotations"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepAssignInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepAssignArgs and AlertEnrichmentSpecStepConditionalThenStepAssignOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepAssignInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalThenStepAssignArgs{...}
+type AlertEnrichmentSpecStepConditionalThenStepAssignInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepAssignOutput() AlertEnrichmentSpecStepConditionalThenStepAssignOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepAssignOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepAssignOutput
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepAssignArgs struct {
+	// Map of annotation names to values to set on matching alerts.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepConditionalThenStepAssignArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepAssign)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepAssignArgs) ToAlertEnrichmentSpecStepConditionalThenStepAssignOutput() AlertEnrichmentSpecStepConditionalThenStepAssignOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepAssignOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepAssignArgs) ToAlertEnrichmentSpecStepConditionalThenStepAssignOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssignOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepAssignOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepAssignArgs) ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepAssignArgs) ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepAssignOutput).ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepAssignPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepAssignArgs, AlertEnrichmentSpecStepConditionalThenStepAssignPtr and AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepAssignPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalThenStepAssignArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalThenStepAssignPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalThenStepAssignPtrType AlertEnrichmentSpecStepConditionalThenStepAssignArgs
+
+func AlertEnrichmentSpecStepConditionalThenStepAssignPtr(v *AlertEnrichmentSpecStepConditionalThenStepAssignArgs) AlertEnrichmentSpecStepConditionalThenStepAssignPtrInput {
+	return (*alertEnrichmentSpecStepConditionalThenStepAssignPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalThenStepAssignPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepAssign)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepAssignPtrType) ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepAssignPtrType) ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepAssignOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepAssignOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepAssign)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssignOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssignOutput() AlertEnrichmentSpecStepConditionalThenStepAssignOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssignOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssignOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssignOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssignOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssignOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalThenStepAssign) *AlertEnrichmentSpecStepConditionalThenStepAssign {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput)
+}
+
+// Map of annotation names to values to set on matching alerts.
+func (o AlertEnrichmentSpecStepConditionalThenStepAssignOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepAssign) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepAssignOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepAssign) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepAssign)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssignPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput) Elem() AlertEnrichmentSpecStepConditionalThenStepAssignOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepAssign) AlertEnrichmentSpecStepConditionalThenStepAssign {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalThenStepAssign
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalThenStepAssignOutput)
+}
+
+// Map of annotation names to values to set on matching alerts.
+func (o AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepAssign) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepAssign) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs and AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs{...}
+type AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput() AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs) ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput() AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs) ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs) ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs) ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput).ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs, AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtr and AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrType AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs
+
+func AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtr(v *AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs) AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrInput {
+	return (*alertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrType) ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrType) ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput() AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations) *AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput() AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput) Elem() AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations) AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepDataSource struct {
+	// Logs query configuration for querying log data sources.
+	LogsQuery *AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery `pulumi:"logsQuery"`
+	// Raw query configuration for advanced data source queries.
+	RawQuery *AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery `pulumi:"rawQuery"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepDataSourceInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs and AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepDataSourceInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs{...}
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepDataSourceOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepDataSourceOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs struct {
+	// Logs query configuration for querying log data sources.
+	LogsQuery AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrInput `pulumi:"logsQuery"`
+	// Raw query configuration for advanced data source queries.
+	RawQuery AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrInput `pulumi:"rawQuery"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepDataSource)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepDataSourceOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs) ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs) ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput).ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs, AlertEnrichmentSpecStepConditionalThenStepDataSourcePtr and AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalThenStepDataSourcePtrType AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs
+
+func AlertEnrichmentSpecStepConditionalThenStepDataSourcePtr(v *AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs) AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrInput {
+	return (*alertEnrichmentSpecStepConditionalThenStepDataSourcePtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalThenStepDataSourcePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepDataSource)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepDataSourcePtrType) ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepDataSourcePtrType) ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepDataSource)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalThenStepDataSource) *AlertEnrichmentSpecStepConditionalThenStepDataSource {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput)
+}
+
+// Logs query configuration for querying log data sources.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput) LogsQuery() AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepDataSource) *AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery {
+		return v.LogsQuery
+	}).(AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput)
+}
+
+// Raw query configuration for advanced data source queries.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput) RawQuery() AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepDataSource) *AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery {
+		return v.RawQuery
+	}).(AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepDataSource) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepDataSource)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput) Elem() AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepDataSource) AlertEnrichmentSpecStepConditionalThenStepDataSource {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalThenStepDataSource
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput)
+}
+
+// Logs query configuration for querying log data sources.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput) LogsQuery() AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepDataSource) *AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery {
+		if v == nil {
+			return nil
+		}
+		return v.LogsQuery
+	}).(AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput)
+}
+
+// Raw query configuration for advanced data source queries.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput) RawQuery() AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepDataSource) *AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery {
+		if v == nil {
+			return nil
+		}
+		return v.RawQuery
+	}).(AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepDataSource) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery struct {
+	// Data source type (e.g., 'loki').
+	DataSourceType *string `pulumi:"dataSourceType"`
+	// UID of the data source to query.
+	DataSourceUid *string `pulumi:"dataSourceUid"`
+	// Log query expression to execute.
+	Expr *string `pulumi:"expr"`
+	// Maximum number of log lines to include. Defaults to 3.
+	MaxLines *int `pulumi:"maxLines"`
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs and AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs{...}
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs struct {
+	// Data source type (e.g., 'loki').
+	DataSourceType pulumi.StringPtrInput `pulumi:"dataSourceType"`
+	// UID of the data source to query.
+	DataSourceUid pulumi.StringPtrInput `pulumi:"dataSourceUid"`
+	// Log query expression to execute.
+	Expr pulumi.StringPtrInput `pulumi:"expr"`
+	// Maximum number of log lines to include. Defaults to 3.
+	MaxLines pulumi.IntPtrInput `pulumi:"maxLines"`
+}
+
+func (AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput).ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs, AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtr and AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrType AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs
+
+func AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtr(v *AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs) AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrInput {
+	return (*alertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrType) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrType) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery) *AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput)
+}
+
+// Data source type (e.g., 'loki').
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput) DataSourceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery) *string { return v.DataSourceType }).(pulumi.StringPtrOutput)
+}
+
+// UID of the data source to query.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput) DataSourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery) *string { return v.DataSourceUid }).(pulumi.StringPtrOutput)
+}
+
+// Log query expression to execute.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput) Expr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery) *string { return v.Expr }).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of log lines to include. Defaults to 3.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput) MaxLines() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery) *int { return v.MaxLines }).(pulumi.IntPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput) Elem() AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery) AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput)
+}
+
+// Data source type (e.g., 'loki').
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput) DataSourceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DataSourceType
+	}).(pulumi.StringPtrOutput)
+}
+
+// UID of the data source to query.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput) DataSourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DataSourceUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// Log query expression to execute.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput) Expr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Expr
+	}).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of log lines to include. Defaults to 3.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput) MaxLines() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxLines
+	}).(pulumi.IntPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery struct {
+	// Reference ID for correlating queries.
+	RefId *string `pulumi:"refId"`
+	// Raw request payload for the data source query.
+	Request *string `pulumi:"request"`
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs and AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs{...}
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs struct {
+	// Reference ID for correlating queries.
+	RefId pulumi.StringPtrInput `pulumi:"refId"`
+	// Raw request payload for the data source query.
+	Request pulumi.StringPtrInput `pulumi:"request"`
+}
+
+func (AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput).ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs, AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtr and AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrType AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs
+
+func AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtr(v *AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs) AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrInput {
+	return (*alertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrType) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrType) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery) *AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput)
+}
+
+// Reference ID for correlating queries.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput) RefId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery) *string { return v.RefId }).(pulumi.StringPtrOutput)
+}
+
+// Raw request payload for the data source query.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput) Request() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery) *string { return v.Request }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput() AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput) Elem() AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery) AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput)
+}
+
+// Reference ID for correlating queries.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput) RefId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RefId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Raw request payload for the data source query.
+func (o AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput) Request() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Request
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepExplain struct {
+	// Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+	Annotation *string `pulumi:"annotation"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepExplainInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepExplainArgs and AlertEnrichmentSpecStepConditionalThenStepExplainOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepExplainInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalThenStepExplainArgs{...}
+type AlertEnrichmentSpecStepConditionalThenStepExplainInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepExplainOutput() AlertEnrichmentSpecStepConditionalThenStepExplainOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepExplainOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepExplainOutput
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepExplainArgs struct {
+	// Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+	Annotation pulumi.StringPtrInput `pulumi:"annotation"`
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepConditionalThenStepExplainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepExplain)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepExplainArgs) ToAlertEnrichmentSpecStepConditionalThenStepExplainOutput() AlertEnrichmentSpecStepConditionalThenStepExplainOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepExplainOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepExplainArgs) ToAlertEnrichmentSpecStepConditionalThenStepExplainOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepExplainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepExplainOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepExplainArgs) ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput() AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepExplainArgs) ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepExplainOutput).ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepExplainPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepExplainArgs, AlertEnrichmentSpecStepConditionalThenStepExplainPtr and AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepExplainPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalThenStepExplainArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalThenStepExplainPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput() AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalThenStepExplainPtrType AlertEnrichmentSpecStepConditionalThenStepExplainArgs
+
+func AlertEnrichmentSpecStepConditionalThenStepExplainPtr(v *AlertEnrichmentSpecStepConditionalThenStepExplainArgs) AlertEnrichmentSpecStepConditionalThenStepExplainPtrInput {
+	return (*alertEnrichmentSpecStepConditionalThenStepExplainPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalThenStepExplainPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepExplain)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepExplainPtrType) ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput() AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepExplainPtrType) ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepExplainOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepExplainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepExplain)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExplainOutput) ToAlertEnrichmentSpecStepConditionalThenStepExplainOutput() AlertEnrichmentSpecStepConditionalThenStepExplainOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExplainOutput) ToAlertEnrichmentSpecStepConditionalThenStepExplainOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepExplainOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExplainOutput) ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput() AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExplainOutput) ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalThenStepExplain) *AlertEnrichmentSpecStepConditionalThenStepExplain {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput)
+}
+
+// Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+func (o AlertEnrichmentSpecStepConditionalThenStepExplainOutput) Annotation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepExplain) *string { return v.Annotation }).(pulumi.StringPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepExplainOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepExplain) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepExplain)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput() AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepExplainPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput) Elem() AlertEnrichmentSpecStepConditionalThenStepExplainOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepExplain) AlertEnrichmentSpecStepConditionalThenStepExplain {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalThenStepExplain
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalThenStepExplainOutput)
+}
+
+// Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+func (o AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput) Annotation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepExplain) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotation
+	}).(pulumi.StringPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepExplain) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepExternal struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+	// HTTP endpoint URL to call for enrichment
+	Url *string `pulumi:"url"`
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepExternalInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepExternalArgs and AlertEnrichmentSpecStepConditionalThenStepExternalOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepExternalInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalThenStepExternalArgs{...}
+type AlertEnrichmentSpecStepConditionalThenStepExternalInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepExternalOutput() AlertEnrichmentSpecStepConditionalThenStepExternalOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepExternalOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepExternalOutput
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepExternalArgs struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+	// HTTP endpoint URL to call for enrichment
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+func (AlertEnrichmentSpecStepConditionalThenStepExternalArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepExternal)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepExternalArgs) ToAlertEnrichmentSpecStepConditionalThenStepExternalOutput() AlertEnrichmentSpecStepConditionalThenStepExternalOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepExternalOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepExternalArgs) ToAlertEnrichmentSpecStepConditionalThenStepExternalOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepExternalOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepExternalOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepExternalArgs) ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput() AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepExternalArgs) ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepExternalOutput).ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepExternalPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepExternalArgs, AlertEnrichmentSpecStepConditionalThenStepExternalPtr and AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepExternalPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalThenStepExternalArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalThenStepExternalPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput() AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalThenStepExternalPtrType AlertEnrichmentSpecStepConditionalThenStepExternalArgs
+
+func AlertEnrichmentSpecStepConditionalThenStepExternalPtr(v *AlertEnrichmentSpecStepConditionalThenStepExternalArgs) AlertEnrichmentSpecStepConditionalThenStepExternalPtrInput {
+	return (*alertEnrichmentSpecStepConditionalThenStepExternalPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalThenStepExternalPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepExternal)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepExternalPtrType) ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput() AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepExternalPtrType) ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepExternalOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepExternalOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepExternal)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExternalOutput) ToAlertEnrichmentSpecStepConditionalThenStepExternalOutput() AlertEnrichmentSpecStepConditionalThenStepExternalOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExternalOutput) ToAlertEnrichmentSpecStepConditionalThenStepExternalOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepExternalOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExternalOutput) ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput() AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExternalOutput) ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalThenStepExternal) *AlertEnrichmentSpecStepConditionalThenStepExternal {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepExternalOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepExternal) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+// HTTP endpoint URL to call for enrichment
+func (o AlertEnrichmentSpecStepConditionalThenStepExternalOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepExternal) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepExternal)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput() AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepExternalPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput) Elem() AlertEnrichmentSpecStepConditionalThenStepExternalOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepExternal) AlertEnrichmentSpecStepConditionalThenStepExternal {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalThenStepExternal
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalThenStepExternalOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepExternal) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+// HTTP endpoint URL to call for enrichment
+func (o AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepExternal) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepSift struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout *string `pulumi:"timeout"`
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepSiftInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepSiftArgs and AlertEnrichmentSpecStepConditionalThenStepSiftOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepSiftInput` via:
+//
+//	AlertEnrichmentSpecStepConditionalThenStepSiftArgs{...}
+type AlertEnrichmentSpecStepConditionalThenStepSiftInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepSiftOutput() AlertEnrichmentSpecStepConditionalThenStepSiftOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepSiftOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepSiftOutput
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepSiftArgs struct {
+	// Maximum execution time (e.g., '30s', '1m')
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (AlertEnrichmentSpecStepConditionalThenStepSiftArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepSift)(nil)).Elem()
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepSiftArgs) ToAlertEnrichmentSpecStepConditionalThenStepSiftOutput() AlertEnrichmentSpecStepConditionalThenStepSiftOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepSiftOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepSiftArgs) ToAlertEnrichmentSpecStepConditionalThenStepSiftOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepSiftOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepSiftOutput)
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepSiftArgs) ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput() AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEnrichmentSpecStepConditionalThenStepSiftArgs) ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepSiftOutput).ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutputWithContext(ctx)
+}
+
+// AlertEnrichmentSpecStepConditionalThenStepSiftPtrInput is an input type that accepts AlertEnrichmentSpecStepConditionalThenStepSiftArgs, AlertEnrichmentSpecStepConditionalThenStepSiftPtr and AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput values.
+// You can construct a concrete instance of `AlertEnrichmentSpecStepConditionalThenStepSiftPtrInput` via:
+//
+//	        AlertEnrichmentSpecStepConditionalThenStepSiftArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEnrichmentSpecStepConditionalThenStepSiftPtrInput interface {
+	pulumi.Input
+
+	ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput() AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput
+	ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutputWithContext(context.Context) AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput
+}
+
+type alertEnrichmentSpecStepConditionalThenStepSiftPtrType AlertEnrichmentSpecStepConditionalThenStepSiftArgs
+
+func AlertEnrichmentSpecStepConditionalThenStepSiftPtr(v *AlertEnrichmentSpecStepConditionalThenStepSiftArgs) AlertEnrichmentSpecStepConditionalThenStepSiftPtrInput {
+	return (*alertEnrichmentSpecStepConditionalThenStepSiftPtrType)(v)
+}
+
+func (*alertEnrichmentSpecStepConditionalThenStepSiftPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepSift)(nil)).Elem()
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepSiftPtrType) ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput() AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput {
+	return i.ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEnrichmentSpecStepConditionalThenStepSiftPtrType) ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepSiftOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepSiftOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepSift)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepSiftOutput) ToAlertEnrichmentSpecStepConditionalThenStepSiftOutput() AlertEnrichmentSpecStepConditionalThenStepSiftOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepSiftOutput) ToAlertEnrichmentSpecStepConditionalThenStepSiftOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepSiftOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepSiftOutput) ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput() AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput {
+	return o.ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepSiftOutput) ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEnrichmentSpecStepConditionalThenStepSift) *AlertEnrichmentSpecStepConditionalThenStepSift {
+		return &v
+	}).(AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepSiftOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpecStepConditionalThenStepSift) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEnrichmentSpecStepConditionalThenStepSift)(nil)).Elem()
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput() AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput) ToAlertEnrichmentSpecStepConditionalThenStepSiftPtrOutputWithContext(ctx context.Context) AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput {
+	return o
+}
+
+func (o AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput) Elem() AlertEnrichmentSpecStepConditionalThenStepSiftOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepSift) AlertEnrichmentSpecStepConditionalThenStepSift {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEnrichmentSpecStepConditionalThenStepSift
+		return ret
+	}).(AlertEnrichmentSpecStepConditionalThenStepSiftOutput)
+}
+
+// Maximum execution time (e.g., '30s', '1m')
+func (o AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpecStepConditionalThenStepSift) *string {
 		if v == nil {
 			return nil
 		}
@@ -9615,6 +13764,60 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepAssignPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepAssignArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepAssistantInvestigationsInput)(nil)).Elem(), AlertEnrichmentSpecStepAssistantInvestigationsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepAssistantInvestigationsPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepAssistantInvestigationsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElsePtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepArrayInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepAssertsInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepAssertsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepAssertsPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepAssertsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepAssignInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepAssignArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepAssignPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepAssignArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepDataSourceInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepDataSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepExplainInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepExplainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepExplainPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepExplainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepExternalInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepExternalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepExternalPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepExternalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepSiftInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepSiftArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalElseStepSiftPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalElseStepSiftArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalIfArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalIfArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfAnnotationMatcherInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfDataSourceConditionInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalIfDataSourceConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfLabelMatcherInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalIfLabelMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalIfLabelMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepArrayInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepAssertsInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepAssertsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepAssertsPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepAssertsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepAssignInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepAssignArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepAssignPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepAssignArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepDataSourceInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepDataSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepExplainInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepExplainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepExplainPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepExplainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepExternalInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepExternalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepExternalPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepExternalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepSiftInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepSiftArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepConditionalThenStepSiftPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepConditionalThenStepSiftArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepDataSourceInput)(nil)).Elem(), AlertEnrichmentSpecStepDataSourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepDataSourcePtrInput)(nil)).Elem(), AlertEnrichmentSpecStepDataSourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepDataSourceLogsQueryInput)(nil)).Elem(), AlertEnrichmentSpecStepDataSourceLogsQueryArgs{})
@@ -9730,6 +13933,60 @@ func init() {
 	pulumi.RegisterOutputType(AlertEnrichmentSpecStepAssignPtrOutput{})
 	pulumi.RegisterOutputType(AlertEnrichmentSpecStepAssistantInvestigationsOutput{})
 	pulumi.RegisterOutputType(AlertEnrichmentSpecStepAssistantInvestigationsPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElsePtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepArrayOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepAssertsOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepAssertsPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepAssignOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepAssignPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigationsPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepDataSourceOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepDataSourcePtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQueryPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQueryPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepExplainOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepExplainPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepExternalOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepExternalPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepSiftOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalElseStepSiftPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalIfOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalIfPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalIfAnnotationMatcherOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalIfAnnotationMatcherArrayOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalIfDataSourceConditionOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalIfDataSourceConditionPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalIfLabelMatcherOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalIfLabelMatcherArrayOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepArrayOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepAssertsOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepAssertsPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepAssignOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepAssignPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigationsPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepDataSourceOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepDataSourcePtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQueryPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQueryPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepExplainOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepExplainPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepExternalOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepExternalPtrOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepSiftOutput{})
+	pulumi.RegisterOutputType(AlertEnrichmentSpecStepConditionalThenStepSiftPtrOutput{})
 	pulumi.RegisterOutputType(AlertEnrichmentSpecStepDataSourceOutput{})
 	pulumi.RegisterOutputType(AlertEnrichmentSpecStepDataSourcePtrOutput{})
 	pulumi.RegisterOutputType(AlertEnrichmentSpecStepDataSourceLogsQueryOutput{})

@@ -181,7 +181,7 @@ type Stack struct {
 	TracesUrl    pulumi.StringOutput `pulumi:"tracesUrl"`
 	TracesUserId pulumi.IntOutput    `pulumi:"tracesUserId"`
 	// Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
-	Url pulumi.StringPtrOutput `pulumi:"url"`
+	Url pulumi.StringOutput `pulumi:"url"`
 	// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
 	WaitForReadiness pulumi.BoolPtrOutput `pulumi:"waitForReadiness"`
 	// How long to wait for readiness (if enabled). Defaults to `5m0s`.
@@ -949,8 +949,8 @@ func (o StackOutput) TracesUserId() pulumi.IntOutput {
 }
 
 // Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
-func (o StackOutput) Url() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Stack) pulumi.StringPtrOutput { return v.Url }).(pulumi.StringPtrOutput)
+func (o StackOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }
 
 // Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.

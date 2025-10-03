@@ -12,63 +12,56 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 {
 
     [OutputType]
-    public sealed class AlertEnrichmentSpecStep
+    public sealed class AlertEnrichmentSpecStepConditionalElseStep
     {
         /// <summary>
         /// Integrate with Grafana Asserts for enrichment.
         /// </summary>
-        public readonly Outputs.AlertEnrichmentSpecStepAsserts? Asserts;
+        public readonly Outputs.AlertEnrichmentSpecStepConditionalElseStepAsserts? Asserts;
         /// <summary>
         /// Assign annotations to an alert.
         /// </summary>
-        public readonly Outputs.AlertEnrichmentSpecStepAssign? Assign;
+        public readonly Outputs.AlertEnrichmentSpecStepConditionalElseStepAssign? Assign;
         /// <summary>
         /// Use AI assistant to investigate alerts and add insights.
         /// </summary>
-        public readonly Outputs.AlertEnrichmentSpecStepAssistantInvestigations? AssistantInvestigations;
-        /// <summary>
-        /// Conditional step with if/then/else.
-        /// </summary>
-        public readonly Outputs.AlertEnrichmentSpecStepConditional? Conditional;
+        public readonly Outputs.AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations? AssistantInvestigations;
         /// <summary>
         /// Query Grafana data sources and add results to alerts.
         /// </summary>
-        public readonly Outputs.AlertEnrichmentSpecStepDataSource? DataSource;
+        public readonly Outputs.AlertEnrichmentSpecStepConditionalElseStepDataSource? DataSource;
         /// <summary>
         /// Generate AI explanation and store in an annotation.
         /// </summary>
-        public readonly Outputs.AlertEnrichmentSpecStepExplain? Explain;
+        public readonly Outputs.AlertEnrichmentSpecStepConditionalElseStepExplain? Explain;
         /// <summary>
         /// Call an external HTTP service for enrichment.
         /// </summary>
-        public readonly Outputs.AlertEnrichmentSpecStepExternal? External;
+        public readonly Outputs.AlertEnrichmentSpecStepConditionalElseStepExternal? External;
         /// <summary>
         /// Analyze alerts for patterns and insights.
         /// </summary>
-        public readonly Outputs.AlertEnrichmentSpecStepSift? Sift;
+        public readonly Outputs.AlertEnrichmentSpecStepConditionalElseStepSift? Sift;
 
         [OutputConstructor]
-        private AlertEnrichmentSpecStep(
-            Outputs.AlertEnrichmentSpecStepAsserts? asserts,
+        private AlertEnrichmentSpecStepConditionalElseStep(
+            Outputs.AlertEnrichmentSpecStepConditionalElseStepAsserts? asserts,
 
-            Outputs.AlertEnrichmentSpecStepAssign? assign,
+            Outputs.AlertEnrichmentSpecStepConditionalElseStepAssign? assign,
 
-            Outputs.AlertEnrichmentSpecStepAssistantInvestigations? assistantInvestigations,
+            Outputs.AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations? assistantInvestigations,
 
-            Outputs.AlertEnrichmentSpecStepConditional? conditional,
+            Outputs.AlertEnrichmentSpecStepConditionalElseStepDataSource? dataSource,
 
-            Outputs.AlertEnrichmentSpecStepDataSource? dataSource,
+            Outputs.AlertEnrichmentSpecStepConditionalElseStepExplain? explain,
 
-            Outputs.AlertEnrichmentSpecStepExplain? explain,
+            Outputs.AlertEnrichmentSpecStepConditionalElseStepExternal? external,
 
-            Outputs.AlertEnrichmentSpecStepExternal? external,
-
-            Outputs.AlertEnrichmentSpecStepSift? sift)
+            Outputs.AlertEnrichmentSpecStepConditionalElseStepSift? sift)
         {
             Asserts = asserts;
             Assign = assign;
             AssistantInvestigations = assistantInvestigations;
-            Conditional = conditional;
             DataSource = dataSource;
             Explain = explain;
             External = external;
