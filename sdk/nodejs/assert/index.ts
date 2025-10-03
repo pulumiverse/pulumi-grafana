@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { CustomModelRulesArgs, CustomModelRulesState } from "./customModelRules";
+export type CustomModelRules = import("./customModelRules").CustomModelRules;
+export const CustomModelRules: typeof import("./customModelRules").CustomModelRules = null as any;
+utilities.lazyLoad(exports, ["CustomModelRules"], () => require("./customModelRules"));
+
+export { LogConfigArgs, LogConfigState } from "./logConfig";
+export type LogConfig = import("./logConfig").LogConfig;
+export const LogConfig: typeof import("./logConfig").LogConfig = null as any;
+utilities.lazyLoad(exports, ["LogConfig"], () => require("./logConfig"));
+
 export { NotificationAlertsConfigArgs, NotificationAlertsConfigState } from "./notificationAlertsConfig";
 export type NotificationAlertsConfig = import("./notificationAlertsConfig").NotificationAlertsConfig;
 export const NotificationAlertsConfig: typeof import("./notificationAlertsConfig").NotificationAlertsConfig = null as any;
@@ -20,6 +30,10 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "grafana:assert/customModelRules:CustomModelRules":
+                return new CustomModelRules(name, <any>undefined, { urn })
+            case "grafana:assert/logConfig:LogConfig":
+                return new LogConfig(name, <any>undefined, { urn })
             case "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig":
                 return new NotificationAlertsConfig(name, <any>undefined, { urn })
             case "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig":
@@ -29,5 +43,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("grafana", "assert/customModelRules", _module)
+pulumi.runtime.registerResourceModule("grafana", "assert/logConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/notificationAlertsConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/suppressedAssertionsConfig", _module)

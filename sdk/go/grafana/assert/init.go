@@ -21,6 +21,10 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "grafana:assert/customModelRules:CustomModelRules":
+		r = &CustomModelRules{}
+	case "grafana:assert/logConfig:LogConfig":
+		r = &LogConfig{}
 	case "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig":
 		r = &NotificationAlertsConfig{}
 	case "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig":
@@ -38,6 +42,16 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"assert/customModelRules",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"assert/logConfig",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"assert/notificationAlertsConfig",

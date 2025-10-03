@@ -113,6 +113,22 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "assert/customModelRules",
+  "fqn": "pulumiverse_grafana.assert_",
+  "classes": {
+   "grafana:assert/customModelRules:CustomModelRules": "CustomModelRules"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "assert/logConfig",
+  "fqn": "pulumiverse_grafana.assert_",
+  "classes": {
+   "grafana:assert/logConfig:LogConfig": "LogConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "assert/notificationAlertsConfig",
   "fqn": "pulumiverse_grafana.assert_",
   "classes": {

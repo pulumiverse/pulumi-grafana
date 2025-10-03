@@ -14,6 +14,8 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type AppsDashboardMetadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
 	// The UID of the folder to save the resource in.
 	FolderUid *string `pulumi:"folderUid"`
 	// The unique identifier of the resource.
@@ -38,6 +40,8 @@ type AppsDashboardMetadataInput interface {
 }
 
 type AppsDashboardMetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The UID of the folder to save the resource in.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
 	// The unique identifier of the resource.
@@ -127,6 +131,11 @@ func (o AppsDashboardMetadataOutput) ToAppsDashboardMetadataPtrOutputWithContext
 	}).(AppsDashboardMetadataPtrOutput)
 }
 
+// Annotations of the resource.
+func (o AppsDashboardMetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AppsDashboardMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
 // The UID of the folder to save the resource in.
 func (o AppsDashboardMetadataOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AppsDashboardMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
@@ -174,6 +183,16 @@ func (o AppsDashboardMetadataPtrOutput) Elem() AppsDashboardMetadataOutput {
 		var ret AppsDashboardMetadata
 		return ret
 	}).(AppsDashboardMetadataOutput)
+}
+
+// Annotations of the resource.
+func (o AppsDashboardMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AppsDashboardMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
 }
 
 // The UID of the folder to save the resource in.
@@ -539,6 +558,8 @@ func (o AppsDashboardSpecPtrOutput) Title() pulumi.StringPtrOutput {
 }
 
 type AppsPlaylistV0Alpha1Metadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
 	// The UID of the folder to save the resource in.
 	FolderUid *string `pulumi:"folderUid"`
 	// The unique identifier of the resource.
@@ -563,6 +584,8 @@ type AppsPlaylistV0Alpha1MetadataInput interface {
 }
 
 type AppsPlaylistV0Alpha1MetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The UID of the folder to save the resource in.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
 	// The unique identifier of the resource.
@@ -652,6 +675,11 @@ func (o AppsPlaylistV0Alpha1MetadataOutput) ToAppsPlaylistV0Alpha1MetadataPtrOut
 	}).(AppsPlaylistV0Alpha1MetadataPtrOutput)
 }
 
+// Annotations of the resource.
+func (o AppsPlaylistV0Alpha1MetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AppsPlaylistV0Alpha1Metadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
 // The UID of the folder to save the resource in.
 func (o AppsPlaylistV0Alpha1MetadataOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AppsPlaylistV0Alpha1Metadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
@@ -699,6 +727,16 @@ func (o AppsPlaylistV0Alpha1MetadataPtrOutput) Elem() AppsPlaylistV0Alpha1Metada
 		var ret AppsPlaylistV0Alpha1Metadata
 		return ret
 	}).(AppsPlaylistV0Alpha1MetadataOutput)
+}
+
+// Annotations of the resource.
+func (o AppsPlaylistV0Alpha1MetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AppsPlaylistV0Alpha1Metadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
 }
 
 // The UID of the folder to save the resource in.

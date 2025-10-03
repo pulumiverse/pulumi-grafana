@@ -195,6 +195,10 @@ if not MYPY:
         """
         The unique identifier of the resource.
         """
+        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+        """
+        Annotations of the resource.
+        """
         folder_uid: NotRequired[pulumi.Input[_builtins.str]]
         """
         The UID of the folder to save the resource in.
@@ -218,18 +222,22 @@ elif False:
 class AlertEnrichmentMetadataArgs:
     def __init__(__self__, *,
                  uid: pulumi.Input[_builtins.str],
+                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  uuid: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] uid: The unique identifier of the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Annotations of the resource.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder to save the resource in.
         :param pulumi.Input[_builtins.str] url: The full URL of the resource.
         :param pulumi.Input[_builtins.str] uuid: The globally unique identifier of a resource, used by the API for tracking.
         :param pulumi.Input[_builtins.str] version: The version of the resource.
         """
         pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
         if folder_uid is not None:
             pulumi.set(__self__, "folder_uid", folder_uid)
         if url is not None:
@@ -250,6 +258,18 @@ class AlertEnrichmentMetadataArgs:
     @uid.setter
     def uid(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "annotations", value)
 
     @_builtins.property
     @pulumi.getter(name="folderUid")
@@ -350,6 +370,7 @@ if not MYPY:
         """
         Description of the alert enrichment.
         """
+        disable_provenance: NotRequired[pulumi.Input[_builtins.bool]]
         label_matchers: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlertEnrichmentSpecLabelMatcherArgsDict']]]]
         """
         Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
@@ -372,6 +393,7 @@ class AlertEnrichmentSpecArgs:
                  alert_rule_uids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  annotation_matchers: Optional[pulumi.Input[Sequence[pulumi.Input['AlertEnrichmentSpecAnnotationMatcherArgs']]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 disable_provenance: Optional[pulumi.Input[_builtins.bool]] = None,
                  label_matchers: Optional[pulumi.Input[Sequence[pulumi.Input['AlertEnrichmentSpecLabelMatcherArgs']]]] = None,
                  receivers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  steps: Optional[pulumi.Input[Sequence[pulumi.Input['AlertEnrichmentSpecStepArgs']]]] = None):
@@ -391,6 +413,8 @@ class AlertEnrichmentSpecArgs:
             pulumi.set(__self__, "annotation_matchers", annotation_matchers)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_provenance is not None:
+            pulumi.set(__self__, "disable_provenance", disable_provenance)
         if label_matchers is not None:
             pulumi.set(__self__, "label_matchers", label_matchers)
         if receivers is not None:
@@ -445,6 +469,15 @@ class AlertEnrichmentSpecArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="disableProvenance")
+    def disable_provenance(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "disable_provenance")
+
+    @disable_provenance.setter
+    def disable_provenance(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "disable_provenance", value)
 
     @_builtins.property
     @pulumi.getter(name="labelMatchers")

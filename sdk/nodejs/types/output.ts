@@ -8,6 +8,10 @@ import * as outputs from "../types/output";
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
+         * Annotations of the resource.
+         */
+        annotations: {[key: string]: string};
+        /**
          * The UID of the folder to save the resource in.
          */
         folderUid?: string;
@@ -49,6 +53,7 @@ export namespace alerting {
          * Description of the alert enrichment.
          */
         description: string;
+        disableProvenance: boolean;
         /**
          * Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
          */
@@ -1955,6 +1960,85 @@ export namespace alerting {
 
 }
 
+export namespace assert {
+    export interface CustomModelRulesRules {
+        /**
+         * List of entities to define in the custom model rules.
+         */
+        entities: outputs.assert.CustomModelRulesRulesEntity[];
+    }
+
+    export interface CustomModelRulesRulesEntity {
+        /**
+         * List of queries that define this entity.
+         */
+        definedBies: outputs.assert.CustomModelRulesRulesEntityDefinedBy[];
+        /**
+         * Whether this entity is disabled.
+         */
+        disabled?: boolean;
+        /**
+         * List of enrichment sources for the entity.
+         */
+        enrichedBies?: string[];
+        /**
+         * Lookup mappings for the entity.
+         */
+        lookup?: {[key: string]: string};
+        /**
+         * The name of the entity.
+         */
+        name: string;
+        /**
+         * Scope labels for the entity.
+         */
+        scope?: {[key: string]: string};
+        /**
+         * The type of the entity (e.g., Service, Pod, Namespace).
+         */
+        type: string;
+    }
+
+    export interface CustomModelRulesRulesEntityDefinedBy {
+        /**
+         * Whether this rule is disabled. When true, only the 'query' field is used to match an existing rule to disable; other fields are ignored.
+         */
+        disabled?: boolean;
+        /**
+         * Label value mappings for the query.
+         */
+        labelValues?: {[key: string]: string};
+        /**
+         * Literal value mappings for the query.
+         */
+        literals?: {[key: string]: string};
+        /**
+         * Metric value for the query.
+         */
+        metricValue?: string;
+        /**
+         * The Prometheus query that defines this entity.
+         */
+        query: string;
+    }
+
+    export interface LogConfigMatch {
+        /**
+         * Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.
+         */
+        op: string;
+        /**
+         * Entity property to match.
+         */
+        property: string;
+        /**
+         * Values to match against.
+         */
+        values: string[];
+    }
+
+}
+
 export namespace cloud {
     export interface AccessPolicyCondition {
         /**
@@ -2459,6 +2543,10 @@ export namespace enterprise {
 export namespace experimental {
     export interface AppsDashboardMetadata {
         /**
+         * Annotations of the resource.
+         */
+        annotations: {[key: string]: string};
+        /**
          * The UID of the folder to save the resource in.
          */
         folderUid?: string;
@@ -2503,6 +2591,10 @@ export namespace experimental {
     }
 
     export interface AppsPlaylistV0Alpha1Metadata {
+        /**
+         * Annotations of the resource.
+         */
+        annotations: {[key: string]: string};
         /**
          * The UID of the folder to save the resource in.
          */

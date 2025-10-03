@@ -14,6 +14,8 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type AlertEnrichmentMetadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
 	// The UID of the folder to save the resource in.
 	FolderUid *string `pulumi:"folderUid"`
 	// The unique identifier of the resource.
@@ -38,6 +40,8 @@ type AlertEnrichmentMetadataInput interface {
 }
 
 type AlertEnrichmentMetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// The UID of the folder to save the resource in.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
 	// The unique identifier of the resource.
@@ -127,6 +131,11 @@ func (o AlertEnrichmentMetadataOutput) ToAlertEnrichmentMetadataPtrOutputWithCon
 	}).(AlertEnrichmentMetadataPtrOutput)
 }
 
+// Annotations of the resource.
+func (o AlertEnrichmentMetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AlertEnrichmentMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
 // The UID of the folder to save the resource in.
 func (o AlertEnrichmentMetadataOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertEnrichmentMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
@@ -174,6 +183,16 @@ func (o AlertEnrichmentMetadataPtrOutput) Elem() AlertEnrichmentMetadataOutput {
 		var ret AlertEnrichmentMetadata
 		return ret
 	}).(AlertEnrichmentMetadataOutput)
+}
+
+// Annotations of the resource.
+func (o AlertEnrichmentMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AlertEnrichmentMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
 }
 
 // The UID of the folder to save the resource in.
@@ -369,7 +388,8 @@ type AlertEnrichmentSpec struct {
 	// Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
 	AnnotationMatchers []AlertEnrichmentSpecAnnotationMatcher `pulumi:"annotationMatchers"`
 	// Description of the alert enrichment.
-	Description *string `pulumi:"description"`
+	Description       *string `pulumi:"description"`
+	DisableProvenance *bool   `pulumi:"disableProvenance"`
 	// Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
 	LabelMatchers []AlertEnrichmentSpecLabelMatcher `pulumi:"labelMatchers"`
 	// Receiver names to match. If empty, applies to all receivers.
@@ -397,7 +417,8 @@ type AlertEnrichmentSpecArgs struct {
 	// Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
 	AnnotationMatchers AlertEnrichmentSpecAnnotationMatcherArrayInput `pulumi:"annotationMatchers"`
 	// Description of the alert enrichment.
-	Description pulumi.StringPtrInput `pulumi:"description"`
+	Description       pulumi.StringPtrInput `pulumi:"description"`
+	DisableProvenance pulumi.BoolPtrInput   `pulumi:"disableProvenance"`
 	// Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
 	LabelMatchers AlertEnrichmentSpecLabelMatcherArrayInput `pulumi:"labelMatchers"`
 	// Receiver names to match. If empty, applies to all receivers.
@@ -500,6 +521,10 @@ func (o AlertEnrichmentSpecOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertEnrichmentSpec) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+func (o AlertEnrichmentSpecOutput) DisableProvenance() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AlertEnrichmentSpec) *bool { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
+}
+
 // Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
 func (o AlertEnrichmentSpecOutput) LabelMatchers() AlertEnrichmentSpecLabelMatcherArrayOutput {
 	return o.ApplyT(func(v AlertEnrichmentSpec) []AlertEnrichmentSpecLabelMatcher { return v.LabelMatchers }).(AlertEnrichmentSpecLabelMatcherArrayOutput)
@@ -572,6 +597,15 @@ func (o AlertEnrichmentSpecPtrOutput) Description() pulumi.StringPtrOutput {
 		}
 		return v.Description
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertEnrichmentSpecPtrOutput) DisableProvenance() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AlertEnrichmentSpec) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableProvenance
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).

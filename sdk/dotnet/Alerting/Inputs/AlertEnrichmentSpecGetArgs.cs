@@ -43,6 +43,9 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        [Input("disableProvenance")]
+        public Input<bool>? DisableProvenance { get; set; }
+
         [Input("labelMatchers")]
         private InputList<Inputs.AlertEnrichmentSpecLabelMatcherGetArgs>? _labelMatchers;
 

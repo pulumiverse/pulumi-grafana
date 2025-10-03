@@ -124,18 +124,22 @@ class AlertEnrichmentMetadata(dict):
 
     def __init__(__self__, *,
                  uid: _builtins.str,
+                 annotations: Optional[Mapping[str, _builtins.str]] = None,
                  folder_uid: Optional[_builtins.str] = None,
                  url: Optional[_builtins.str] = None,
                  uuid: Optional[_builtins.str] = None,
                  version: Optional[_builtins.str] = None):
         """
         :param _builtins.str uid: The unique identifier of the resource.
+        :param Mapping[str, _builtins.str] annotations: Annotations of the resource.
         :param _builtins.str folder_uid: The UID of the folder to save the resource in.
         :param _builtins.str url: The full URL of the resource.
         :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
         :param _builtins.str version: The version of the resource.
         """
         pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
         if folder_uid is not None:
             pulumi.set(__self__, "folder_uid", folder_uid)
         if url is not None:
@@ -152,6 +156,14 @@ class AlertEnrichmentMetadata(dict):
         The unique identifier of the resource.
         """
         return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
 
     @_builtins.property
     @pulumi.getter(name="folderUid")
@@ -214,6 +226,8 @@ class AlertEnrichmentSpec(dict):
             suggest = "alert_rule_uids"
         elif key == "annotationMatchers":
             suggest = "annotation_matchers"
+        elif key == "disableProvenance":
+            suggest = "disable_provenance"
         elif key == "labelMatchers":
             suggest = "label_matchers"
 
@@ -233,6 +247,7 @@ class AlertEnrichmentSpec(dict):
                  alert_rule_uids: Optional[Sequence[_builtins.str]] = None,
                  annotation_matchers: Optional[Sequence['outputs.AlertEnrichmentSpecAnnotationMatcher']] = None,
                  description: Optional[_builtins.str] = None,
+                 disable_provenance: Optional[_builtins.bool] = None,
                  label_matchers: Optional[Sequence['outputs.AlertEnrichmentSpecLabelMatcher']] = None,
                  receivers: Optional[Sequence[_builtins.str]] = None,
                  steps: Optional[Sequence['outputs.AlertEnrichmentSpecStep']] = None):
@@ -252,6 +267,8 @@ class AlertEnrichmentSpec(dict):
             pulumi.set(__self__, "annotation_matchers", annotation_matchers)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_provenance is not None:
+            pulumi.set(__self__, "disable_provenance", disable_provenance)
         if label_matchers is not None:
             pulumi.set(__self__, "label_matchers", label_matchers)
         if receivers is not None:
@@ -290,6 +307,11 @@ class AlertEnrichmentSpec(dict):
         Description of the alert enrichment.
         """
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="disableProvenance")
+    def disable_provenance(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "disable_provenance")
 
     @_builtins.property
     @pulumi.getter(name="labelMatchers")
