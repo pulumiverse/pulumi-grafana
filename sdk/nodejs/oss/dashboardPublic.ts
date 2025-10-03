@@ -100,35 +100,35 @@ export class DashboardPublic extends pulumi.CustomResource {
     /**
      * A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
      */
-    public readonly accessToken!: pulumi.Output<string>;
+    declare public readonly accessToken: pulumi.Output<string>;
     /**
      * Set to `true` to show annotations. The default value is `false`.
      */
-    public readonly annotationsEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly annotationsEnabled: pulumi.Output<boolean | undefined>;
     /**
      * The unique identifier of the original dashboard.
      */
-    public readonly dashboardUid!: pulumi.Output<string>;
+    declare public readonly dashboardUid: pulumi.Output<string>;
     /**
      * Set to `true` to enable the public dashboard. The default value is `false`.
      */
-    public readonly isEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly isEnabled: pulumi.Output<boolean | undefined>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * Set the share mode. The default value is `public`.
      */
-    public readonly share!: pulumi.Output<string | undefined>;
+    declare public readonly share: pulumi.Output<string | undefined>;
     /**
      * Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
      */
-    public readonly timeSelectionEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly timeSelectionEnabled: pulumi.Output<boolean | undefined>;
     /**
      * The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
      */
-    public readonly uid!: pulumi.Output<string>;
+    declare public readonly uid: pulumi.Output<string>;
 
     /**
      * Create a DashboardPublic resource with the given unique name, arguments, and options.
@@ -143,27 +143,27 @@ export class DashboardPublic extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DashboardPublicState | undefined;
-            resourceInputs["accessToken"] = state ? state.accessToken : undefined;
-            resourceInputs["annotationsEnabled"] = state ? state.annotationsEnabled : undefined;
-            resourceInputs["dashboardUid"] = state ? state.dashboardUid : undefined;
-            resourceInputs["isEnabled"] = state ? state.isEnabled : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["share"] = state ? state.share : undefined;
-            resourceInputs["timeSelectionEnabled"] = state ? state.timeSelectionEnabled : undefined;
-            resourceInputs["uid"] = state ? state.uid : undefined;
+            resourceInputs["accessToken"] = state?.accessToken;
+            resourceInputs["annotationsEnabled"] = state?.annotationsEnabled;
+            resourceInputs["dashboardUid"] = state?.dashboardUid;
+            resourceInputs["isEnabled"] = state?.isEnabled;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["share"] = state?.share;
+            resourceInputs["timeSelectionEnabled"] = state?.timeSelectionEnabled;
+            resourceInputs["uid"] = state?.uid;
         } else {
             const args = argsOrState as DashboardPublicArgs | undefined;
-            if ((!args || args.dashboardUid === undefined) && !opts.urn) {
+            if (args?.dashboardUid === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dashboardUid'");
             }
-            resourceInputs["accessToken"] = args ? args.accessToken : undefined;
-            resourceInputs["annotationsEnabled"] = args ? args.annotationsEnabled : undefined;
-            resourceInputs["dashboardUid"] = args ? args.dashboardUid : undefined;
-            resourceInputs["isEnabled"] = args ? args.isEnabled : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["share"] = args ? args.share : undefined;
-            resourceInputs["timeSelectionEnabled"] = args ? args.timeSelectionEnabled : undefined;
-            resourceInputs["uid"] = args ? args.uid : undefined;
+            resourceInputs["accessToken"] = args?.accessToken;
+            resourceInputs["annotationsEnabled"] = args?.annotationsEnabled;
+            resourceInputs["dashboardUid"] = args?.dashboardUid;
+            resourceInputs["isEnabled"] = args?.isEnabled;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["share"] = args?.share;
+            resourceInputs["timeSelectionEnabled"] = args?.timeSelectionEnabled;
+            resourceInputs["uid"] = args?.uid;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/dashboardPublic:DashboardPublic" }] };

@@ -34,8 +34,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<string?> _auth = new __Value<string?>(() => __config.Get("auth") ?? Utilities.GetEnv("GRAFANA_AUTH"));
         /// <summary>
-        /// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
-        /// the `GRAFANA_AUTH` environment variable.
+        /// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
         /// </summary>
         public static string? Auth
         {
@@ -45,8 +44,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<string?> _caCert = new __Value<string?>(() => __config.Get("caCert") ?? Utilities.GetEnv("GRAFANA_CA_CERT"));
         /// <summary>
-        /// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
-        /// be set via the `GRAFANA_CA_CERT` environment variable.
+        /// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
         /// </summary>
         public static string? CaCert
         {
@@ -56,8 +54,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<string?> _cloudAccessPolicyToken = new __Value<string?>(() => __config.Get("cloudAccessPolicyToken") ?? Utilities.GetEnv("GRAFANA_CLOUD_ACCESS_POLICY_TOKEN"));
         /// <summary>
-        /// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
-        /// variable.
+        /// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
         /// </summary>
         public static string? CloudAccessPolicyToken
         {
@@ -77,8 +74,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<string?> _cloudProviderAccessToken = new __Value<string?>(() => __config.Get("cloudProviderAccessToken"));
         /// <summary>
-        /// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
-        /// environment variable.
+        /// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN` environment variable.
         /// </summary>
         public static string? CloudProviderAccessToken
         {
@@ -88,8 +84,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<string?> _cloudProviderUrl = new __Value<string?>(() => __config.Get("cloudProviderUrl"));
         /// <summary>
-        /// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
-        /// variable.
+        /// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment variable.
         /// </summary>
         public static string? CloudProviderUrl
         {
@@ -99,8 +94,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<string?> _connectionsApiAccessToken = new __Value<string?>(() => __config.Get("connectionsApiAccessToken"));
         /// <summary>
-        /// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
-        /// environment variable.
+        /// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN` environment variable.
         /// </summary>
         public static string? ConnectionsApiAccessToken
         {
@@ -120,8 +114,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<string?> _fleetManagementAuth = new __Value<string?>(() => __config.Get("fleetManagementAuth"));
         /// <summary>
-        /// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
-        /// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+        /// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
         /// </summary>
         public static string? FleetManagementAuth
         {
@@ -131,8 +124,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<string?> _fleetManagementUrl = new __Value<string?>(() => __config.Get("fleetManagementUrl"));
         /// <summary>
-        /// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
-        /// variable.
+        /// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment variable.
         /// </summary>
         public static string? FleetManagementUrl
         {
@@ -142,8 +134,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<string?> _frontendO11yApiAccessToken = new __Value<string?>(() => __config.Get("frontendO11yApiAccessToken"));
         /// <summary>
-        /// A Grafana Frontend Observability API access token. May alternatively be set via the
-        /// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+        /// A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
         /// </summary>
         public static string? FrontendO11yApiAccessToken
         {
@@ -153,8 +144,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<ImmutableDictionary<string, string>?> _httpHeaders = new __Value<ImmutableDictionary<string, string>?>(() => __config.GetObject<ImmutableDictionary<string, string>>("httpHeaders"));
         /// <summary>
-        /// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
-        /// be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+        /// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
         /// </summary>
         public static ImmutableDictionary<string, string>? HttpHeaders
         {
@@ -214,8 +204,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<int?> _orgId = new __Value<int?>(() => __config.GetInt32("orgId"));
         /// <summary>
-        /// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
-        /// `GRAFANA_ORG_ID` environment variable.
+        /// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
         /// </summary>
         public static int? OrgId
         {
@@ -225,8 +214,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<int?> _retries = new __Value<int?>(() => __config.GetInt32("retries") ?? Utilities.GetEnvInt32("GRAFANA_RETRIES"));
         /// <summary>
-        /// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
-        /// `GRAFANA_RETRIES` environment variable.
+        /// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRIES` environment variable.
         /// </summary>
         public static int? Retries
         {
@@ -236,8 +224,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<ImmutableArray<string>> _retryStatusCodes = new __Value<ImmutableArray<string>>(() => __config.GetObject<ImmutableArray<string>>("retryStatusCodes"));
         /// <summary>
-        /// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
-        /// and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+        /// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429 and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
         /// </summary>
         public static ImmutableArray<string> RetryStatusCodes
         {
@@ -247,8 +234,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<int?> _retryWait = new __Value<int?>(() => __config.GetInt32("retryWait") ?? Utilities.GetEnvInt32("GRAFANA_RETRY_WAIT"));
         /// <summary>
-        /// The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
-        /// set via the `GRAFANA_RETRY_WAIT` environment variable.
+        /// The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRY_WAIT` environment variable.
         /// </summary>
         public static int? RetryWait
         {
@@ -275,8 +261,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<int?> _stackId = new __Value<int?>(() => __config.GetInt32("stackId"));
         /// <summary>
-        /// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID`
-        /// environment variable.
+        /// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID` environment variable.
         /// </summary>
         public static int? StackId
         {
@@ -296,8 +281,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<string?> _tlsCert = new __Value<string?>(() => __config.Get("tlsCert") ?? Utilities.GetEnv("GRAFANA_TLS_CERT"));
         /// <summary>
-        /// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
-        /// set via the `GRAFANA_TLS_CERT` environment variable.
+        /// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
         /// </summary>
         public static string? TlsCert
         {
@@ -307,8 +291,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<string?> _tlsKey = new __Value<string?>(() => __config.Get("tlsKey") ?? Utilities.GetEnv("GRAFANA_TLS_KEY"));
         /// <summary>
-        /// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
-        /// the `GRAFANA_TLS_KEY` environment variable.
+        /// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
         /// </summary>
         public static string? TlsKey
         {

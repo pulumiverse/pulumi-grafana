@@ -86,6 +86,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> ClusterSlug { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+        /// </summary>
+        [Output("deleteProtection")]
+        public Output<bool?> DeleteProtection { get; private set; } = null!;
+
+        /// <summary>
         /// Description of stack.
         /// </summary>
         [Output("description")]
@@ -478,6 +484,12 @@ namespace Pulumiverse.Grafana.Cloud
     public sealed class StackArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+        /// </summary>
+        [Input("deleteProtection")]
+        public Input<bool>? DeleteProtection { get; set; }
+
+        /// <summary>
         /// Description of stack.
         /// </summary>
         [Input("description")]
@@ -574,6 +586,12 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Input("clusterSlug")]
         public Input<string>? ClusterSlug { get; set; }
+
+        /// <summary>
+        /// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+        /// </summary>
+        [Input("deleteProtection")]
+        public Input<bool>? DeleteProtection { get; set; }
 
         /// <summary>
         /// Description of stack.

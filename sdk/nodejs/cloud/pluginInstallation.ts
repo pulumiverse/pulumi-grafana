@@ -65,15 +65,15 @@ export class PluginInstallation extends pulumi.CustomResource {
     /**
      * Slug of the plugin to be installed.
      */
-    public readonly slug!: pulumi.Output<string>;
+    declare public readonly slug: pulumi.Output<string>;
     /**
      * The stack id to which the plugin should be installed.
      */
-    public readonly stackSlug!: pulumi.Output<string>;
+    declare public readonly stackSlug: pulumi.Output<string>;
     /**
      * Version of the plugin to be installed.
      */
-    public readonly version!: pulumi.Output<string>;
+    declare public readonly version: pulumi.Output<string>;
 
     /**
      * Create a PluginInstallation resource with the given unique name, arguments, and options.
@@ -88,23 +88,23 @@ export class PluginInstallation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PluginInstallationState | undefined;
-            resourceInputs["slug"] = state ? state.slug : undefined;
-            resourceInputs["stackSlug"] = state ? state.stackSlug : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["slug"] = state?.slug;
+            resourceInputs["stackSlug"] = state?.stackSlug;
+            resourceInputs["version"] = state?.version;
         } else {
             const args = argsOrState as PluginInstallationArgs | undefined;
-            if ((!args || args.slug === undefined) && !opts.urn) {
+            if (args?.slug === undefined && !opts.urn) {
                 throw new Error("Missing required property 'slug'");
             }
-            if ((!args || args.stackSlug === undefined) && !opts.urn) {
+            if (args?.stackSlug === undefined && !opts.urn) {
                 throw new Error("Missing required property 'stackSlug'");
             }
-            if ((!args || args.version === undefined) && !opts.urn) {
+            if (args?.version === undefined && !opts.urn) {
                 throw new Error("Missing required property 'version'");
             }
-            resourceInputs["slug"] = args ? args.slug : undefined;
-            resourceInputs["stackSlug"] = args ? args.stackSlug : undefined;
-            resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["slug"] = args?.slug;
+            resourceInputs["stackSlug"] = args?.stackSlug;
+            resourceInputs["version"] = args?.version;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(PluginInstallation.__pulumiType, name, resourceInputs, opts);

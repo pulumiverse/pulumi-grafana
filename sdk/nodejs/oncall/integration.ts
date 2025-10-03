@@ -47,35 +47,35 @@ export class Integration extends pulumi.CustomResource {
     /**
      * The Default route for all alerts from the given integration
      */
-    public readonly defaultRoute!: pulumi.Output<outputs.onCall.IntegrationDefaultRoute>;
+    declare public readonly defaultRoute: pulumi.Output<outputs.onCall.IntegrationDefaultRoute>;
     /**
      * A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
      */
-    public readonly dynamicLabels!: pulumi.Output<{[key: string]: string}[] | undefined>;
+    declare public readonly dynamicLabels: pulumi.Output<{[key: string]: string}[] | undefined>;
     /**
      * A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `grafana.onCall.getLabel` datasource).
      */
-    public readonly labels!: pulumi.Output<{[key: string]: string}[] | undefined>;
+    declare public readonly labels: pulumi.Output<{[key: string]: string}[] | undefined>;
     /**
      * The link for using in an integrated tool.
      */
-    public /*out*/ readonly link!: pulumi.Output<string>;
+    declare public /*out*/ readonly link: pulumi.Output<string>;
     /**
      * The name of the service integration.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
-    public readonly teamId!: pulumi.Output<string | undefined>;
+    declare public readonly teamId: pulumi.Output<string | undefined>;
     /**
      * Jinja2 templates for Alert payload. An empty templates block will be ignored.
      */
-    public readonly templates!: pulumi.Output<outputs.onCall.IntegrationTemplates | undefined>;
+    declare public readonly templates: pulumi.Output<outputs.onCall.IntegrationTemplates | undefined>;
     /**
      * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a Integration resource with the given unique name, arguments, and options.
@@ -90,29 +90,29 @@ export class Integration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IntegrationState | undefined;
-            resourceInputs["defaultRoute"] = state ? state.defaultRoute : undefined;
-            resourceInputs["dynamicLabels"] = state ? state.dynamicLabels : undefined;
-            resourceInputs["labels"] = state ? state.labels : undefined;
-            resourceInputs["link"] = state ? state.link : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["teamId"] = state ? state.teamId : undefined;
-            resourceInputs["templates"] = state ? state.templates : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["defaultRoute"] = state?.defaultRoute;
+            resourceInputs["dynamicLabels"] = state?.dynamicLabels;
+            resourceInputs["labels"] = state?.labels;
+            resourceInputs["link"] = state?.link;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["teamId"] = state?.teamId;
+            resourceInputs["templates"] = state?.templates;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as IntegrationArgs | undefined;
-            if ((!args || args.defaultRoute === undefined) && !opts.urn) {
+            if (args?.defaultRoute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'defaultRoute'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["defaultRoute"] = args ? args.defaultRoute : undefined;
-            resourceInputs["dynamicLabels"] = args ? args.dynamicLabels : undefined;
-            resourceInputs["labels"] = args ? args.labels : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["teamId"] = args ? args.teamId : undefined;
-            resourceInputs["templates"] = args ? args.templates : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["defaultRoute"] = args?.defaultRoute;
+            resourceInputs["dynamicLabels"] = args?.dynamicLabels;
+            resourceInputs["labels"] = args?.labels;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["teamId"] = args?.teamId;
+            resourceInputs["templates"] = args?.templates;
+            resourceInputs["type"] = args?.type;
             resourceInputs["link"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

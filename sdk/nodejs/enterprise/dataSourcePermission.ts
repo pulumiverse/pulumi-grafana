@@ -103,15 +103,15 @@ export class DataSourcePermission extends pulumi.CustomResource {
     /**
      * UID of the datasource to apply permissions to.
      */
-    public readonly datasourceUid!: pulumi.Output<string>;
+    declare public readonly datasourceUid: pulumi.Output<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
-    public readonly permissions!: pulumi.Output<outputs.enterprise.DataSourcePermissionPermission[] | undefined>;
+    declare public readonly permissions: pulumi.Output<outputs.enterprise.DataSourcePermissionPermission[] | undefined>;
 
     /**
      * Create a DataSourcePermission resource with the given unique name, arguments, and options.
@@ -126,17 +126,17 @@ export class DataSourcePermission extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DataSourcePermissionState | undefined;
-            resourceInputs["datasourceUid"] = state ? state.datasourceUid : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["permissions"] = state ? state.permissions : undefined;
+            resourceInputs["datasourceUid"] = state?.datasourceUid;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["permissions"] = state?.permissions;
         } else {
             const args = argsOrState as DataSourcePermissionArgs | undefined;
-            if ((!args || args.datasourceUid === undefined) && !opts.urn) {
+            if (args?.datasourceUid === undefined && !opts.urn) {
                 throw new Error("Missing required property 'datasourceUid'");
             }
-            resourceInputs["datasourceUid"] = args ? args.datasourceUid : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["permissions"] = args ? args.permissions : undefined;
+            resourceInputs["datasourceUid"] = args?.datasourceUid;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["permissions"] = args?.permissions;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/dataSourcePermission:DataSourcePermission" }] };

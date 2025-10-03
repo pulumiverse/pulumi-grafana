@@ -64,27 +64,27 @@ export class ServiceAccountToken extends pulumi.CustomResource {
     /**
      * The expiration date of the service account token.
      */
-    public /*out*/ readonly expiration!: pulumi.Output<string>;
+    declare public /*out*/ readonly expiration: pulumi.Output<string>;
     /**
      * The status of the service account token.
      */
-    public /*out*/ readonly hasExpired!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly hasExpired: pulumi.Output<boolean>;
     /**
      * The key of the service account token.
      */
-    public /*out*/ readonly key!: pulumi.Output<string>;
+    declare public /*out*/ readonly key: pulumi.Output<string>;
     /**
      * The name of the service account token.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
      */
-    public readonly secondsToLive!: pulumi.Output<number | undefined>;
+    declare public readonly secondsToLive: pulumi.Output<number | undefined>;
     /**
      * The ID of the service account to which the token belongs.
      */
-    public readonly serviceAccountId!: pulumi.Output<string>;
+    declare public readonly serviceAccountId: pulumi.Output<string>;
 
     /**
      * Create a ServiceAccountToken resource with the given unique name, arguments, and options.
@@ -99,20 +99,20 @@ export class ServiceAccountToken extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceAccountTokenState | undefined;
-            resourceInputs["expiration"] = state ? state.expiration : undefined;
-            resourceInputs["hasExpired"] = state ? state.hasExpired : undefined;
-            resourceInputs["key"] = state ? state.key : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["secondsToLive"] = state ? state.secondsToLive : undefined;
-            resourceInputs["serviceAccountId"] = state ? state.serviceAccountId : undefined;
+            resourceInputs["expiration"] = state?.expiration;
+            resourceInputs["hasExpired"] = state?.hasExpired;
+            resourceInputs["key"] = state?.key;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["secondsToLive"] = state?.secondsToLive;
+            resourceInputs["serviceAccountId"] = state?.serviceAccountId;
         } else {
             const args = argsOrState as ServiceAccountTokenArgs | undefined;
-            if ((!args || args.serviceAccountId === undefined) && !opts.urn) {
+            if (args?.serviceAccountId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountId'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["secondsToLive"] = args ? args.secondsToLive : undefined;
-            resourceInputs["serviceAccountId"] = args ? args.serviceAccountId : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["secondsToLive"] = args?.secondsToLive;
+            resourceInputs["serviceAccountId"] = args?.serviceAccountId;
             resourceInputs["expiration"] = undefined /*out*/;
             resourceInputs["hasExpired"] = undefined /*out*/;
             resourceInputs["key"] = undefined /*out*/;

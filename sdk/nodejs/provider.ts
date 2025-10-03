@@ -26,93 +26,82 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     /**
-     * API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
-     * the `GRAFANA_AUTH` environment variable.
+     * API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
      */
-    public readonly auth!: pulumi.Output<string | undefined>;
+    declare public readonly auth: pulumi.Output<string | undefined>;
     /**
-     * Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
-     * be set via the `GRAFANA_CA_CERT` environment variable.
+     * Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
      */
-    public readonly caCert!: pulumi.Output<string | undefined>;
+    declare public readonly caCert: pulumi.Output<string | undefined>;
     /**
-     * Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
-     * variable.
+     * Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
      */
-    public readonly cloudAccessPolicyToken!: pulumi.Output<string | undefined>;
+    declare public readonly cloudAccessPolicyToken: pulumi.Output<string | undefined>;
     /**
      * Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
      */
-    public readonly cloudApiUrl!: pulumi.Output<string | undefined>;
+    declare public readonly cloudApiUrl: pulumi.Output<string | undefined>;
     /**
-     * A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
-     * environment variable.
+     * A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN` environment variable.
      */
-    public readonly cloudProviderAccessToken!: pulumi.Output<string | undefined>;
+    declare public readonly cloudProviderAccessToken: pulumi.Output<string | undefined>;
     /**
-     * A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
-     * variable.
+     * A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment variable.
      */
-    public readonly cloudProviderUrl!: pulumi.Output<string | undefined>;
+    declare public readonly cloudProviderUrl: pulumi.Output<string | undefined>;
     /**
-     * A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
-     * environment variable.
+     * A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN` environment variable.
      */
-    public readonly connectionsApiAccessToken!: pulumi.Output<string | undefined>;
+    declare public readonly connectionsApiAccessToken: pulumi.Output<string | undefined>;
     /**
      * A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
      */
-    public readonly connectionsApiUrl!: pulumi.Output<string | undefined>;
+    declare public readonly connectionsApiUrl: pulumi.Output<string | undefined>;
     /**
-     * A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
-     * `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+     * A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
      */
-    public readonly fleetManagementAuth!: pulumi.Output<string | undefined>;
+    declare public readonly fleetManagementAuth: pulumi.Output<string | undefined>;
     /**
-     * A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
-     * variable.
+     * A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment variable.
      */
-    public readonly fleetManagementUrl!: pulumi.Output<string | undefined>;
+    declare public readonly fleetManagementUrl: pulumi.Output<string | undefined>;
     /**
-     * A Grafana Frontend Observability API access token. May alternatively be set via the
-     * `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+     * A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
      */
-    public readonly frontendO11yApiAccessToken!: pulumi.Output<string | undefined>;
+    declare public readonly frontendO11yApiAccessToken: pulumi.Output<string | undefined>;
     /**
      * The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
      */
-    public readonly k6AccessToken!: pulumi.Output<string | undefined>;
+    declare public readonly k6AccessToken: pulumi.Output<string | undefined>;
     /**
      * The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
      */
-    public readonly k6Url!: pulumi.Output<string | undefined>;
+    declare public readonly k6Url: pulumi.Output<string | undefined>;
     /**
      * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
      */
-    public readonly oncallAccessToken!: pulumi.Output<string | undefined>;
+    declare public readonly oncallAccessToken: pulumi.Output<string | undefined>;
     /**
      * An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
      */
-    public readonly oncallUrl!: pulumi.Output<string | undefined>;
+    declare public readonly oncallUrl: pulumi.Output<string | undefined>;
     /**
      * A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
      */
-    public readonly smAccessToken!: pulumi.Output<string | undefined>;
-    public readonly smUrl!: pulumi.Output<string | undefined>;
+    declare public readonly smAccessToken: pulumi.Output<string | undefined>;
+    declare public readonly smUrl: pulumi.Output<string | undefined>;
     /**
-     * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
-     * set via the `GRAFANA_TLS_CERT` environment variable.
+     * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
      */
-    public readonly tlsCert!: pulumi.Output<string | undefined>;
+    declare public readonly tlsCert: pulumi.Output<string | undefined>;
     /**
-     * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
-     * the `GRAFANA_TLS_KEY` environment variable.
+     * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
      */
-    public readonly tlsKey!: pulumi.Output<string | undefined>;
+    declare public readonly tlsKey: pulumi.Output<string | undefined>;
     /**
      * The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
      */
-    public readonly url!: pulumi.Output<string | undefined>;
+    declare public readonly url: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -126,33 +115,33 @@ export class Provider extends pulumi.ProviderResource {
         opts = opts || {};
         {
             resourceInputs["auth"] = (args?.auth ? pulumi.secret(args.auth) : undefined) ?? utilities.getEnv("GRAFANA_AUTH");
-            resourceInputs["caCert"] = (args ? args.caCert : undefined) ?? utilities.getEnv("GRAFANA_CA_CERT");
+            resourceInputs["caCert"] = (args?.caCert) ?? utilities.getEnv("GRAFANA_CA_CERT");
             resourceInputs["cloudAccessPolicyToken"] = (args?.cloudAccessPolicyToken ? pulumi.secret(args.cloudAccessPolicyToken) : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_ACCESS_POLICY_TOKEN");
-            resourceInputs["cloudApiUrl"] = (args ? args.cloudApiUrl : undefined) ?? utilities.getEnv("GRAFANA_CLOUD_API_URL");
+            resourceInputs["cloudApiUrl"] = (args?.cloudApiUrl) ?? utilities.getEnv("GRAFANA_CLOUD_API_URL");
             resourceInputs["cloudProviderAccessToken"] = args?.cloudProviderAccessToken ? pulumi.secret(args.cloudProviderAccessToken) : undefined;
-            resourceInputs["cloudProviderUrl"] = args ? args.cloudProviderUrl : undefined;
+            resourceInputs["cloudProviderUrl"] = args?.cloudProviderUrl;
             resourceInputs["connectionsApiAccessToken"] = args?.connectionsApiAccessToken ? pulumi.secret(args.connectionsApiAccessToken) : undefined;
-            resourceInputs["connectionsApiUrl"] = args ? args.connectionsApiUrl : undefined;
+            resourceInputs["connectionsApiUrl"] = args?.connectionsApiUrl;
             resourceInputs["fleetManagementAuth"] = args?.fleetManagementAuth ? pulumi.secret(args.fleetManagementAuth) : undefined;
-            resourceInputs["fleetManagementUrl"] = args ? args.fleetManagementUrl : undefined;
+            resourceInputs["fleetManagementUrl"] = args?.fleetManagementUrl;
             resourceInputs["frontendO11yApiAccessToken"] = args?.frontendO11yApiAccessToken ? pulumi.secret(args.frontendO11yApiAccessToken) : undefined;
             resourceInputs["httpHeaders"] = pulumi.output(args?.httpHeaders ? pulumi.secret(args.httpHeaders) : undefined).apply(JSON.stringify);
-            resourceInputs["insecureSkipVerify"] = pulumi.output((args ? args.insecureSkipVerify : undefined) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
+            resourceInputs["insecureSkipVerify"] = pulumi.output((args?.insecureSkipVerify) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
             resourceInputs["k6AccessToken"] = args?.k6AccessToken ? pulumi.secret(args.k6AccessToken) : undefined;
-            resourceInputs["k6Url"] = args ? args.k6Url : undefined;
+            resourceInputs["k6Url"] = args?.k6Url;
             resourceInputs["oncallAccessToken"] = (args?.oncallAccessToken ? pulumi.secret(args.oncallAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_ACCESS_TOKEN");
-            resourceInputs["oncallUrl"] = (args ? args.oncallUrl : undefined) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
-            resourceInputs["orgId"] = pulumi.output(args ? args.orgId : undefined).apply(JSON.stringify);
-            resourceInputs["retries"] = pulumi.output((args ? args.retries : undefined) ?? utilities.getEnvNumber("GRAFANA_RETRIES")).apply(JSON.stringify);
-            resourceInputs["retryStatusCodes"] = pulumi.output(args ? args.retryStatusCodes : undefined).apply(JSON.stringify);
-            resourceInputs["retryWait"] = pulumi.output((args ? args.retryWait : undefined) ?? utilities.getEnvNumber("GRAFANA_RETRY_WAIT")).apply(JSON.stringify);
+            resourceInputs["oncallUrl"] = (args?.oncallUrl) ?? utilities.getEnv("GRAFANA_ONCALL_URL");
+            resourceInputs["orgId"] = pulumi.output(args?.orgId).apply(JSON.stringify);
+            resourceInputs["retries"] = pulumi.output((args?.retries) ?? utilities.getEnvNumber("GRAFANA_RETRIES")).apply(JSON.stringify);
+            resourceInputs["retryStatusCodes"] = pulumi.output(args?.retryStatusCodes).apply(JSON.stringify);
+            resourceInputs["retryWait"] = pulumi.output((args?.retryWait) ?? utilities.getEnvNumber("GRAFANA_RETRY_WAIT")).apply(JSON.stringify);
             resourceInputs["smAccessToken"] = (args?.smAccessToken ? pulumi.secret(args.smAccessToken) : undefined) ?? utilities.getEnv("GRAFANA_SM_ACCESS_TOKEN");
-            resourceInputs["smUrl"] = (args ? args.smUrl : undefined) ?? utilities.getEnv("GRAFANA_SM_URL");
-            resourceInputs["stackId"] = pulumi.output(args ? args.stackId : undefined).apply(JSON.stringify);
-            resourceInputs["storeDashboardSha256"] = pulumi.output((args ? args.storeDashboardSha256 : undefined) ?? utilities.getEnvBoolean("GRAFANA_STORE_DASHBOARD_SHA256")).apply(JSON.stringify);
-            resourceInputs["tlsCert"] = (args ? args.tlsCert : undefined) ?? utilities.getEnv("GRAFANA_TLS_CERT");
+            resourceInputs["smUrl"] = (args?.smUrl) ?? utilities.getEnv("GRAFANA_SM_URL");
+            resourceInputs["stackId"] = pulumi.output(args?.stackId).apply(JSON.stringify);
+            resourceInputs["storeDashboardSha256"] = pulumi.output((args?.storeDashboardSha256) ?? utilities.getEnvBoolean("GRAFANA_STORE_DASHBOARD_SHA256")).apply(JSON.stringify);
+            resourceInputs["tlsCert"] = (args?.tlsCert) ?? utilities.getEnv("GRAFANA_TLS_CERT");
             resourceInputs["tlsKey"] = (args?.tlsKey ? pulumi.secret(args.tlsKey) : undefined) ?? utilities.getEnv("GRAFANA_TLS_KEY");
-            resourceInputs["url"] = (args ? args.url : undefined) ?? utilities.getEnv("GRAFANA_URL");
+            resourceInputs["url"] = (args?.url) ?? utilities.getEnv("GRAFANA_URL");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["auth", "cloudAccessPolicyToken", "cloudProviderAccessToken", "connectionsApiAccessToken", "fleetManagementAuth", "frontendO11yApiAccessToken", "k6AccessToken", "oncallAccessToken", "smAccessToken", "tlsKey"] };
@@ -175,18 +164,15 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     /**
-     * API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
-     * the `GRAFANA_AUTH` environment variable.
+     * API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
      */
     auth?: pulumi.Input<string>;
     /**
-     * Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
-     * be set via the `GRAFANA_CA_CERT` environment variable.
+     * Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
      */
     caCert?: pulumi.Input<string>;
     /**
-     * Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
-     * variable.
+     * Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
      */
     cloudAccessPolicyToken?: pulumi.Input<string>;
     /**
@@ -194,18 +180,15 @@ export interface ProviderArgs {
      */
     cloudApiUrl?: pulumi.Input<string>;
     /**
-     * A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
-     * environment variable.
+     * A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN` environment variable.
      */
     cloudProviderAccessToken?: pulumi.Input<string>;
     /**
-     * A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
-     * variable.
+     * A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment variable.
      */
     cloudProviderUrl?: pulumi.Input<string>;
     /**
-     * A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
-     * environment variable.
+     * A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN` environment variable.
      */
     connectionsApiAccessToken?: pulumi.Input<string>;
     /**
@@ -213,23 +196,19 @@ export interface ProviderArgs {
      */
     connectionsApiUrl?: pulumi.Input<string>;
     /**
-     * A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
-     * `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+     * A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
      */
     fleetManagementAuth?: pulumi.Input<string>;
     /**
-     * A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
-     * variable.
+     * A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment variable.
      */
     fleetManagementUrl?: pulumi.Input<string>;
     /**
-     * A Grafana Frontend Observability API access token. May alternatively be set via the
-     * `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+     * A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
      */
     frontendO11yApiAccessToken?: pulumi.Input<string>;
     /**
-     * Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
-     * be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+     * Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
      */
     httpHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -253,23 +232,19 @@ export interface ProviderArgs {
      */
     oncallUrl?: pulumi.Input<string>;
     /**
-     * The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
-     * `GRAFANA_ORG_ID` environment variable.
+     * The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
      */
     orgId?: pulumi.Input<number>;
     /**
-     * The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
-     * `GRAFANA_RETRIES` environment variable.
+     * The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRIES` environment variable.
      */
     retries?: pulumi.Input<number>;
     /**
-     * The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
-     * and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+     * The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429 and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
      */
     retryStatusCodes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
-     * set via the `GRAFANA_RETRY_WAIT` environment variable.
+     * The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRY_WAIT` environment variable.
      */
     retryWait?: pulumi.Input<number>;
     /**
@@ -278,8 +253,7 @@ export interface ProviderArgs {
     smAccessToken?: pulumi.Input<string>;
     smUrl?: pulumi.Input<string>;
     /**
-     * The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID`
-     * environment variable.
+     * The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID` environment variable.
      */
     stackId?: pulumi.Input<number>;
     /**
@@ -287,13 +261,11 @@ export interface ProviderArgs {
      */
     storeDashboardSha256?: pulumi.Input<boolean>;
     /**
-     * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
-     * set via the `GRAFANA_TLS_CERT` environment variable.
+     * Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
      */
     tlsCert?: pulumi.Input<string>;
     /**
-     * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
-     * the `GRAFANA_TLS_KEY` environment variable.
+     * Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
      */
     tlsKey?: pulumi.Input<string>;
     /**

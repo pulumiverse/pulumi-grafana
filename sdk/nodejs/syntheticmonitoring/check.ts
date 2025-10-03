@@ -421,47 +421,47 @@ export class Check extends pulumi.CustomResource {
     /**
      * Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `none`.
      */
-    public readonly alertSensitivity!: pulumi.Output<string | undefined>;
+    declare public readonly alertSensitivity: pulumi.Output<string | undefined>;
     /**
      * Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
      */
-    public readonly basicMetricsOnly!: pulumi.Output<boolean | undefined>;
+    declare public readonly basicMetricsOnly: pulumi.Output<boolean | undefined>;
     /**
      * Whether to enable the check. Defaults to `true`.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
      */
-    public readonly frequency!: pulumi.Output<number | undefined>;
+    declare public readonly frequency: pulumi.Output<number | undefined>;
     /**
      * Name used for job label.
      */
-    public readonly job!: pulumi.Output<string>;
+    declare public readonly job: pulumi.Output<string>;
     /**
      * Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
      */
-    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * List of probe location IDs where this target will be checked from.
      */
-    public readonly probes!: pulumi.Output<number[]>;
+    declare public readonly probes: pulumi.Output<number[]>;
     /**
      * Check settings. Should contain exactly one nested block.
      */
-    public readonly settings!: pulumi.Output<outputs.syntheticMonitoring.CheckSettings>;
+    declare public readonly settings: pulumi.Output<outputs.syntheticMonitoring.CheckSettings>;
     /**
      * Hostname to ping.
      */
-    public readonly target!: pulumi.Output<string>;
+    declare public readonly target: pulumi.Output<string>;
     /**
      * The tenant ID of the check.
      */
-    public /*out*/ readonly tenantId!: pulumi.Output<number>;
+    declare public /*out*/ readonly tenantId: pulumi.Output<number>;
     /**
      * Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
      */
-    public readonly timeout!: pulumi.Output<number | undefined>;
+    declare public readonly timeout: pulumi.Output<number | undefined>;
 
     /**
      * Create a Check resource with the given unique name, arguments, and options.
@@ -476,41 +476,41 @@ export class Check extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CheckState | undefined;
-            resourceInputs["alertSensitivity"] = state ? state.alertSensitivity : undefined;
-            resourceInputs["basicMetricsOnly"] = state ? state.basicMetricsOnly : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["frequency"] = state ? state.frequency : undefined;
-            resourceInputs["job"] = state ? state.job : undefined;
-            resourceInputs["labels"] = state ? state.labels : undefined;
-            resourceInputs["probes"] = state ? state.probes : undefined;
-            resourceInputs["settings"] = state ? state.settings : undefined;
-            resourceInputs["target"] = state ? state.target : undefined;
-            resourceInputs["tenantId"] = state ? state.tenantId : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["alertSensitivity"] = state?.alertSensitivity;
+            resourceInputs["basicMetricsOnly"] = state?.basicMetricsOnly;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["frequency"] = state?.frequency;
+            resourceInputs["job"] = state?.job;
+            resourceInputs["labels"] = state?.labels;
+            resourceInputs["probes"] = state?.probes;
+            resourceInputs["settings"] = state?.settings;
+            resourceInputs["target"] = state?.target;
+            resourceInputs["tenantId"] = state?.tenantId;
+            resourceInputs["timeout"] = state?.timeout;
         } else {
             const args = argsOrState as CheckArgs | undefined;
-            if ((!args || args.job === undefined) && !opts.urn) {
+            if (args?.job === undefined && !opts.urn) {
                 throw new Error("Missing required property 'job'");
             }
-            if ((!args || args.probes === undefined) && !opts.urn) {
+            if (args?.probes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'probes'");
             }
-            if ((!args || args.settings === undefined) && !opts.urn) {
+            if (args?.settings === undefined && !opts.urn) {
                 throw new Error("Missing required property 'settings'");
             }
-            if ((!args || args.target === undefined) && !opts.urn) {
+            if (args?.target === undefined && !opts.urn) {
                 throw new Error("Missing required property 'target'");
             }
-            resourceInputs["alertSensitivity"] = args ? args.alertSensitivity : undefined;
-            resourceInputs["basicMetricsOnly"] = args ? args.basicMetricsOnly : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["frequency"] = args ? args.frequency : undefined;
-            resourceInputs["job"] = args ? args.job : undefined;
-            resourceInputs["labels"] = args ? args.labels : undefined;
-            resourceInputs["probes"] = args ? args.probes : undefined;
-            resourceInputs["settings"] = args ? args.settings : undefined;
-            resourceInputs["target"] = args ? args.target : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["alertSensitivity"] = args?.alertSensitivity;
+            resourceInputs["basicMetricsOnly"] = args?.basicMetricsOnly;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["frequency"] = args?.frequency;
+            resourceInputs["job"] = args?.job;
+            resourceInputs["labels"] = args?.labels;
+            resourceInputs["probes"] = args?.probes;
+            resourceInputs["settings"] = args?.settings;
+            resourceInputs["target"] = args?.target;
+            resourceInputs["timeout"] = args?.timeout;
             resourceInputs["tenantId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

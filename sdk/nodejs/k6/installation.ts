@@ -89,27 +89,27 @@ export class Installation extends pulumi.CustomResource {
     /**
      * The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
      */
-    public readonly cloudAccessPolicyToken!: pulumi.Output<string>;
+    declare public readonly cloudAccessPolicyToken: pulumi.Output<string>;
     /**
      * The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
      */
-    public readonly grafanaSaToken!: pulumi.Output<string>;
+    declare public readonly grafanaSaToken: pulumi.Output<string>;
     /**
      * The user to use for the installation.
      */
-    public readonly grafanaUser!: pulumi.Output<string>;
+    declare public readonly grafanaUser: pulumi.Output<string>;
     /**
      * Generated token to access the k6 API.
      */
-    public /*out*/ readonly k6AccessToken!: pulumi.Output<string>;
+    declare public /*out*/ readonly k6AccessToken: pulumi.Output<string>;
     /**
      * The identifier of the k6 organization.
      */
-    public /*out*/ readonly k6Organization!: pulumi.Output<string>;
+    declare public /*out*/ readonly k6Organization: pulumi.Output<string>;
     /**
      * The identifier of the stack to install k6 on.
      */
-    public readonly stackId!: pulumi.Output<string>;
+    declare public readonly stackId: pulumi.Output<string>;
 
     /**
      * Create a Installation resource with the given unique name, arguments, and options.
@@ -124,30 +124,30 @@ export class Installation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstallationState | undefined;
-            resourceInputs["cloudAccessPolicyToken"] = state ? state.cloudAccessPolicyToken : undefined;
-            resourceInputs["grafanaSaToken"] = state ? state.grafanaSaToken : undefined;
-            resourceInputs["grafanaUser"] = state ? state.grafanaUser : undefined;
-            resourceInputs["k6AccessToken"] = state ? state.k6AccessToken : undefined;
-            resourceInputs["k6Organization"] = state ? state.k6Organization : undefined;
-            resourceInputs["stackId"] = state ? state.stackId : undefined;
+            resourceInputs["cloudAccessPolicyToken"] = state?.cloudAccessPolicyToken;
+            resourceInputs["grafanaSaToken"] = state?.grafanaSaToken;
+            resourceInputs["grafanaUser"] = state?.grafanaUser;
+            resourceInputs["k6AccessToken"] = state?.k6AccessToken;
+            resourceInputs["k6Organization"] = state?.k6Organization;
+            resourceInputs["stackId"] = state?.stackId;
         } else {
             const args = argsOrState as InstallationArgs | undefined;
-            if ((!args || args.cloudAccessPolicyToken === undefined) && !opts.urn) {
+            if (args?.cloudAccessPolicyToken === undefined && !opts.urn) {
                 throw new Error("Missing required property 'cloudAccessPolicyToken'");
             }
-            if ((!args || args.grafanaSaToken === undefined) && !opts.urn) {
+            if (args?.grafanaSaToken === undefined && !opts.urn) {
                 throw new Error("Missing required property 'grafanaSaToken'");
             }
-            if ((!args || args.grafanaUser === undefined) && !opts.urn) {
+            if (args?.grafanaUser === undefined && !opts.urn) {
                 throw new Error("Missing required property 'grafanaUser'");
             }
-            if ((!args || args.stackId === undefined) && !opts.urn) {
+            if (args?.stackId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'stackId'");
             }
             resourceInputs["cloudAccessPolicyToken"] = args?.cloudAccessPolicyToken ? pulumi.secret(args.cloudAccessPolicyToken) : undefined;
             resourceInputs["grafanaSaToken"] = args?.grafanaSaToken ? pulumi.secret(args.grafanaSaToken) : undefined;
-            resourceInputs["grafanaUser"] = args ? args.grafanaUser : undefined;
-            resourceInputs["stackId"] = args ? args.stackId : undefined;
+            resourceInputs["grafanaUser"] = args?.grafanaUser;
+            resourceInputs["stackId"] = args?.stackId;
             resourceInputs["k6AccessToken"] = undefined /*out*/;
             resourceInputs["k6Organization"] = undefined /*out*/;
         }

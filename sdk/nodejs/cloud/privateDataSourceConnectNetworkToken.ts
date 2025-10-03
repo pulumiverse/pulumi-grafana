@@ -74,32 +74,32 @@ export class PrivateDataSourceConnectNetworkToken extends pulumi.CustomResource 
     /**
      * Creation date of the private data source network token.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Display name of the private data source network token. Defaults to the name.
      */
-    public readonly displayName!: pulumi.Output<string | undefined>;
+    declare public readonly displayName: pulumi.Output<string | undefined>;
     /**
      * Expiration date of the private data source network token. Does not expire by default.
      */
-    public readonly expiresAt!: pulumi.Output<string | undefined>;
+    declare public readonly expiresAt: pulumi.Output<string | undefined>;
     /**
      * Name of the private data source network token.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * ID of the private data source network for which to create a token.
      */
-    public readonly pdcNetworkId!: pulumi.Output<string>;
+    declare public readonly pdcNetworkId: pulumi.Output<string>;
     /**
      * Region of the private data source network. Should be set to the same region as the private data source network. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
-    public readonly region!: pulumi.Output<string>;
-    public /*out*/ readonly token!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string>;
+    declare public /*out*/ readonly token: pulumi.Output<string>;
     /**
      * Last update date of the private data source network token.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a PrivateDataSourceConnectNetworkToken resource with the given unique name, arguments, and options.
@@ -114,27 +114,27 @@ export class PrivateDataSourceConnectNetworkToken extends pulumi.CustomResource 
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivateDataSourceConnectNetworkTokenState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["displayName"] = state ? state.displayName : undefined;
-            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["pdcNetworkId"] = state ? state.pdcNetworkId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["token"] = state ? state.token : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["displayName"] = state?.displayName;
+            resourceInputs["expiresAt"] = state?.expiresAt;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["pdcNetworkId"] = state?.pdcNetworkId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["token"] = state?.token;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as PrivateDataSourceConnectNetworkTokenArgs | undefined;
-            if ((!args || args.pdcNetworkId === undefined) && !opts.urn) {
+            if (args?.pdcNetworkId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pdcNetworkId'");
             }
-            if ((!args || args.region === undefined) && !opts.urn) {
+            if (args?.region === undefined && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
-            resourceInputs["displayName"] = args ? args.displayName : undefined;
-            resourceInputs["expiresAt"] = args ? args.expiresAt : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["pdcNetworkId"] = args ? args.pdcNetworkId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["displayName"] = args?.displayName;
+            resourceInputs["expiresAt"] = args?.expiresAt;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["pdcNetworkId"] = args?.pdcNetworkId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["token"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

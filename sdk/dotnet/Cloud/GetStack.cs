@@ -172,6 +172,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string ClusterSlug;
         /// <summary>
+        /// Whether to enable delete protection for the stack, preventing accidental deletion.
+        /// </summary>
+        public readonly bool DeleteProtection;
+        /// <summary>
         /// Description of stack.
         /// </summary>
         public readonly string Description;
@@ -398,6 +402,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             string clusterSlug,
 
+            bool deleteProtection,
+
             string description,
 
             string fleetManagementName,
@@ -532,6 +538,7 @@ namespace Pulumiverse.Grafana.Cloud
             AlertmanagerUrl = alertmanagerUrl;
             AlertmanagerUserId = alertmanagerUserId;
             ClusterSlug = clusterSlug;
+            DeleteProtection = deleteProtection;
             Description = description;
             FleetManagementName = fleetManagementName;
             FleetManagementPrivateConnectivityInfoPrivateDns = fleetManagementPrivateConnectivityInfoPrivateDns;

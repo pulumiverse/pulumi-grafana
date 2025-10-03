@@ -63,19 +63,19 @@ export class ScimConfig extends pulumi.CustomResource {
     /**
      * Whether to allow non-provisioned users to access Grafana.
      */
-    public readonly allowNonProvisionedUsers!: pulumi.Output<boolean>;
+    declare public readonly allowNonProvisionedUsers: pulumi.Output<boolean>;
     /**
      * Whether group synchronization is enabled.
      */
-    public readonly enableGroupSync!: pulumi.Output<boolean>;
+    declare public readonly enableGroupSync: pulumi.Output<boolean>;
     /**
      * Whether user synchronization is enabled.
      */
-    public readonly enableUserSync!: pulumi.Output<boolean>;
+    declare public readonly enableUserSync: pulumi.Output<boolean>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
 
     /**
      * Create a ScimConfig resource with the given unique name, arguments, and options.
@@ -90,25 +90,25 @@ export class ScimConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ScimConfigState | undefined;
-            resourceInputs["allowNonProvisionedUsers"] = state ? state.allowNonProvisionedUsers : undefined;
-            resourceInputs["enableGroupSync"] = state ? state.enableGroupSync : undefined;
-            resourceInputs["enableUserSync"] = state ? state.enableUserSync : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
+            resourceInputs["allowNonProvisionedUsers"] = state?.allowNonProvisionedUsers;
+            resourceInputs["enableGroupSync"] = state?.enableGroupSync;
+            resourceInputs["enableUserSync"] = state?.enableUserSync;
+            resourceInputs["orgId"] = state?.orgId;
         } else {
             const args = argsOrState as ScimConfigArgs | undefined;
-            if ((!args || args.allowNonProvisionedUsers === undefined) && !opts.urn) {
+            if (args?.allowNonProvisionedUsers === undefined && !opts.urn) {
                 throw new Error("Missing required property 'allowNonProvisionedUsers'");
             }
-            if ((!args || args.enableGroupSync === undefined) && !opts.urn) {
+            if (args?.enableGroupSync === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enableGroupSync'");
             }
-            if ((!args || args.enableUserSync === undefined) && !opts.urn) {
+            if (args?.enableUserSync === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enableUserSync'");
             }
-            resourceInputs["allowNonProvisionedUsers"] = args ? args.allowNonProvisionedUsers : undefined;
-            resourceInputs["enableGroupSync"] = args ? args.enableGroupSync : undefined;
-            resourceInputs["enableUserSync"] = args ? args.enableUserSync : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
+            resourceInputs["allowNonProvisionedUsers"] = args?.allowNonProvisionedUsers;
+            resourceInputs["enableGroupSync"] = args?.enableGroupSync;
+            resourceInputs["enableUserSync"] = args?.enableUserSync;
+            resourceInputs["orgId"] = args?.orgId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ScimConfig.__pulumiType, name, resourceInputs, opts);

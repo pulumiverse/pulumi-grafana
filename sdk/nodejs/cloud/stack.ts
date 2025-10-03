@@ -64,242 +64,246 @@ export class Stack extends pulumi.CustomResource {
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
      */
-    public /*out*/ readonly alertmanagerIpAllowListCname!: pulumi.Output<string>;
+    declare public /*out*/ readonly alertmanagerIpAllowListCname: pulumi.Output<string>;
     /**
      * Name of the Alertmanager instance configured for this stack.
      */
-    public /*out*/ readonly alertmanagerName!: pulumi.Output<string>;
+    declare public /*out*/ readonly alertmanagerName: pulumi.Output<string>;
     /**
      * Status of the Alertmanager instance configured for this stack.
      */
-    public /*out*/ readonly alertmanagerStatus!: pulumi.Output<string>;
+    declare public /*out*/ readonly alertmanagerStatus: pulumi.Output<string>;
     /**
      * Base URL of the Alertmanager instance configured for this stack.
      */
-    public /*out*/ readonly alertmanagerUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly alertmanagerUrl: pulumi.Output<string>;
     /**
      * User ID of the Alertmanager instance configured for this stack.
      */
-    public /*out*/ readonly alertmanagerUserId!: pulumi.Output<number>;
+    declare public /*out*/ readonly alertmanagerUserId: pulumi.Output<number>;
     /**
      * Slug of the cluster where this stack resides.
      */
-    public /*out*/ readonly clusterSlug!: pulumi.Output<string>;
+    declare public /*out*/ readonly clusterSlug: pulumi.Output<string>;
+    /**
+     * Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+     */
+    declare public readonly deleteProtection: pulumi.Output<boolean | undefined>;
     /**
      * Description of stack.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Name of the Fleet Management instance configured for this stack.
      */
-    public /*out*/ readonly fleetManagementName!: pulumi.Output<string>;
+    declare public /*out*/ readonly fleetManagementName: pulumi.Output<string>;
     /**
      * Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly fleetManagementPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    declare public /*out*/ readonly fleetManagementPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
     /**
      * Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly fleetManagementPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
+    declare public /*out*/ readonly fleetManagementPrivateConnectivityInfoServiceName: pulumi.Output<string>;
     /**
      * Status of the Fleet Management instance configured for this stack.
      */
-    public /*out*/ readonly fleetManagementStatus!: pulumi.Output<string>;
+    declare public /*out*/ readonly fleetManagementStatus: pulumi.Output<string>;
     /**
      * Base URL of the Fleet Management instance configured for this stack.
      */
-    public /*out*/ readonly fleetManagementUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly fleetManagementUrl: pulumi.Output<string>;
     /**
      * User ID of the Fleet Management instance configured for this stack.
      */
-    public /*out*/ readonly fleetManagementUserId!: pulumi.Output<number>;
+    declare public /*out*/ readonly fleetManagementUserId: pulumi.Output<number>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
      */
-    public /*out*/ readonly grafanasIpAllowListCname!: pulumi.Output<string>;
+    declare public /*out*/ readonly grafanasIpAllowListCname: pulumi.Output<string>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
      */
-    public /*out*/ readonly graphiteIpAllowListCname!: pulumi.Output<string>;
-    public /*out*/ readonly graphiteName!: pulumi.Output<string>;
+    declare public /*out*/ readonly graphiteIpAllowListCname: pulumi.Output<string>;
+    declare public /*out*/ readonly graphiteName: pulumi.Output<string>;
     /**
      * Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly graphitePrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    declare public /*out*/ readonly graphitePrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
     /**
      * Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly graphitePrivateConnectivityInfoServiceName!: pulumi.Output<string>;
-    public /*out*/ readonly graphiteStatus!: pulumi.Output<string>;
-    public /*out*/ readonly graphiteUrl!: pulumi.Output<string>;
-    public /*out*/ readonly graphiteUserId!: pulumi.Output<number>;
+    declare public /*out*/ readonly graphitePrivateConnectivityInfoServiceName: pulumi.Output<string>;
+    declare public /*out*/ readonly graphiteStatus: pulumi.Output<string>;
+    declare public /*out*/ readonly graphiteUrl: pulumi.Output<string>;
+    declare public /*out*/ readonly graphiteUserId: pulumi.Output<number>;
     /**
      * Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
      */
-    public /*out*/ readonly influxUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly influxUrl: pulumi.Output<string>;
     /**
      * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
      */
-    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
      */
-    public /*out*/ readonly logsIpAllowListCname!: pulumi.Output<string>;
-    public /*out*/ readonly logsName!: pulumi.Output<string>;
+    declare public /*out*/ readonly logsIpAllowListCname: pulumi.Output<string>;
+    declare public /*out*/ readonly logsName: pulumi.Output<string>;
     /**
      * Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly logsPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    declare public /*out*/ readonly logsPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
     /**
      * Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly logsPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
-    public /*out*/ readonly logsStatus!: pulumi.Output<string>;
-    public /*out*/ readonly logsUrl!: pulumi.Output<string>;
-    public /*out*/ readonly logsUserId!: pulumi.Output<number>;
+    declare public /*out*/ readonly logsPrivateConnectivityInfoServiceName: pulumi.Output<string>;
+    declare public /*out*/ readonly logsStatus: pulumi.Output<string>;
+    declare public /*out*/ readonly logsUrl: pulumi.Output<string>;
+    declare public /*out*/ readonly logsUserId: pulumi.Output<number>;
     /**
      * Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Base URL of the OnCall API instance configured for this stack.
      */
-    public /*out*/ readonly oncallApiUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly oncallApiUrl: pulumi.Output<string>;
     /**
      * Organization id to assign to this stack.
      */
-    public /*out*/ readonly orgId!: pulumi.Output<number>;
+    declare public /*out*/ readonly orgId: pulumi.Output<number>;
     /**
      * Organization name to assign to this stack.
      */
-    public /*out*/ readonly orgName!: pulumi.Output<string>;
+    declare public /*out*/ readonly orgName: pulumi.Output<string>;
     /**
      * Organization slug to assign to this stack.
      */
-    public /*out*/ readonly orgSlug!: pulumi.Output<string>;
+    declare public /*out*/ readonly orgSlug: pulumi.Output<string>;
     /**
      * Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly otlpPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    declare public /*out*/ readonly otlpPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
     /**
      * Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly otlpPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
+    declare public /*out*/ readonly otlpPrivateConnectivityInfoServiceName: pulumi.Output<string>;
     /**
      * Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
      */
-    public /*out*/ readonly otlpUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly otlpUrl: pulumi.Output<string>;
     /**
      * Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly pdcApiPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    declare public /*out*/ readonly pdcApiPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
     /**
      * Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly pdcApiPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
+    declare public /*out*/ readonly pdcApiPrivateConnectivityInfoServiceName: pulumi.Output<string>;
     /**
      * Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly pdcGatewayPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    declare public /*out*/ readonly pdcGatewayPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
     /**
      * Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly pdcGatewayPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
+    declare public /*out*/ readonly pdcGatewayPrivateConnectivityInfoServiceName: pulumi.Output<string>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
      */
-    public /*out*/ readonly profilesIpAllowListCname!: pulumi.Output<string>;
-    public /*out*/ readonly profilesName!: pulumi.Output<string>;
+    declare public /*out*/ readonly profilesIpAllowListCname: pulumi.Output<string>;
+    declare public /*out*/ readonly profilesName: pulumi.Output<string>;
     /**
      * Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly profilesPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    declare public /*out*/ readonly profilesPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
     /**
      * Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly profilesPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
-    public /*out*/ readonly profilesStatus!: pulumi.Output<string>;
-    public /*out*/ readonly profilesUrl!: pulumi.Output<string>;
-    public /*out*/ readonly profilesUserId!: pulumi.Output<number>;
+    declare public /*out*/ readonly profilesPrivateConnectivityInfoServiceName: pulumi.Output<string>;
+    declare public /*out*/ readonly profilesStatus: pulumi.Output<string>;
+    declare public /*out*/ readonly profilesUrl: pulumi.Output<string>;
+    declare public /*out*/ readonly profilesUserId: pulumi.Output<number>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
      */
-    public /*out*/ readonly prometheusIpAllowListCname!: pulumi.Output<string>;
+    declare public /*out*/ readonly prometheusIpAllowListCname: pulumi.Output<string>;
     /**
      * Prometheus name for this instance.
      */
-    public /*out*/ readonly prometheusName!: pulumi.Output<string>;
+    declare public /*out*/ readonly prometheusName: pulumi.Output<string>;
     /**
      * Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly prometheusPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    declare public /*out*/ readonly prometheusPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
     /**
      * Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly prometheusPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
+    declare public /*out*/ readonly prometheusPrivateConnectivityInfoServiceName: pulumi.Output<string>;
     /**
      * Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
      */
-    public /*out*/ readonly prometheusRemoteEndpoint!: pulumi.Output<string>;
+    declare public /*out*/ readonly prometheusRemoteEndpoint: pulumi.Output<string>;
     /**
      * Use this URL to send prometheus metrics to Grafana cloud
      */
-    public /*out*/ readonly prometheusRemoteWriteEndpoint!: pulumi.Output<string>;
+    declare public /*out*/ readonly prometheusRemoteWriteEndpoint: pulumi.Output<string>;
     /**
      * Prometheus status for this instance.
      */
-    public /*out*/ readonly prometheusStatus!: pulumi.Output<string>;
+    declare public /*out*/ readonly prometheusStatus: pulumi.Output<string>;
     /**
      * Prometheus url for this instance.
      */
-    public /*out*/ readonly prometheusUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly prometheusUrl: pulumi.Output<string>;
     /**
      * Prometheus user ID. Used for e.g. remote_write.
      */
-    public /*out*/ readonly prometheusUserId!: pulumi.Output<number>;
+    declare public /*out*/ readonly prometheusUserId: pulumi.Output<number>;
     /**
      * Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
-    public readonly regionSlug!: pulumi.Output<string | undefined>;
+    declare public readonly regionSlug: pulumi.Output<string | undefined>;
     /**
      * Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
      */
-    public readonly slug!: pulumi.Output<string>;
+    declare public readonly slug: pulumi.Output<string>;
     /**
      * Status of the stack.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
      */
-    public /*out*/ readonly tracesIpAllowListCname!: pulumi.Output<string>;
-    public /*out*/ readonly tracesName!: pulumi.Output<string>;
+    declare public /*out*/ readonly tracesIpAllowListCname: pulumi.Output<string>;
+    declare public /*out*/ readonly tracesName: pulumi.Output<string>;
     /**
      * Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly tracesPrivateConnectivityInfoPrivateDns!: pulumi.Output<string>;
+    declare public /*out*/ readonly tracesPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
     /**
      * Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
      */
-    public /*out*/ readonly tracesPrivateConnectivityInfoServiceName!: pulumi.Output<string>;
-    public /*out*/ readonly tracesStatus!: pulumi.Output<string>;
+    declare public /*out*/ readonly tracesPrivateConnectivityInfoServiceName: pulumi.Output<string>;
+    declare public /*out*/ readonly tracesStatus: pulumi.Output<string>;
     /**
      * Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
      */
-    public /*out*/ readonly tracesUrl!: pulumi.Output<string>;
-    public /*out*/ readonly tracesUserId!: pulumi.Output<number>;
+    declare public /*out*/ readonly tracesUrl: pulumi.Output<string>;
+    declare public /*out*/ readonly tracesUserId: pulumi.Output<number>;
     /**
      * Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
      */
-    public readonly url!: pulumi.Output<string | undefined>;
+    declare public readonly url: pulumi.Output<string | undefined>;
     /**
      * Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
      */
-    public readonly waitForReadiness!: pulumi.Output<boolean | undefined>;
+    declare public readonly waitForReadiness: pulumi.Output<boolean | undefined>;
     /**
      * How long to wait for readiness (if enabled). Defaults to `5m0s`.
      */
-    public readonly waitForReadinessTimeout!: pulumi.Output<string | undefined>;
+    declare public readonly waitForReadinessTimeout: pulumi.Output<string | undefined>;
 
     /**
      * Create a Stack resource with the given unique name, arguments, and options.
@@ -314,90 +318,92 @@ export class Stack extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StackState | undefined;
-            resourceInputs["alertmanagerIpAllowListCname"] = state ? state.alertmanagerIpAllowListCname : undefined;
-            resourceInputs["alertmanagerName"] = state ? state.alertmanagerName : undefined;
-            resourceInputs["alertmanagerStatus"] = state ? state.alertmanagerStatus : undefined;
-            resourceInputs["alertmanagerUrl"] = state ? state.alertmanagerUrl : undefined;
-            resourceInputs["alertmanagerUserId"] = state ? state.alertmanagerUserId : undefined;
-            resourceInputs["clusterSlug"] = state ? state.clusterSlug : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["fleetManagementName"] = state ? state.fleetManagementName : undefined;
-            resourceInputs["fleetManagementPrivateConnectivityInfoPrivateDns"] = state ? state.fleetManagementPrivateConnectivityInfoPrivateDns : undefined;
-            resourceInputs["fleetManagementPrivateConnectivityInfoServiceName"] = state ? state.fleetManagementPrivateConnectivityInfoServiceName : undefined;
-            resourceInputs["fleetManagementStatus"] = state ? state.fleetManagementStatus : undefined;
-            resourceInputs["fleetManagementUrl"] = state ? state.fleetManagementUrl : undefined;
-            resourceInputs["fleetManagementUserId"] = state ? state.fleetManagementUserId : undefined;
-            resourceInputs["grafanasIpAllowListCname"] = state ? state.grafanasIpAllowListCname : undefined;
-            resourceInputs["graphiteIpAllowListCname"] = state ? state.graphiteIpAllowListCname : undefined;
-            resourceInputs["graphiteName"] = state ? state.graphiteName : undefined;
-            resourceInputs["graphitePrivateConnectivityInfoPrivateDns"] = state ? state.graphitePrivateConnectivityInfoPrivateDns : undefined;
-            resourceInputs["graphitePrivateConnectivityInfoServiceName"] = state ? state.graphitePrivateConnectivityInfoServiceName : undefined;
-            resourceInputs["graphiteStatus"] = state ? state.graphiteStatus : undefined;
-            resourceInputs["graphiteUrl"] = state ? state.graphiteUrl : undefined;
-            resourceInputs["graphiteUserId"] = state ? state.graphiteUserId : undefined;
-            resourceInputs["influxUrl"] = state ? state.influxUrl : undefined;
-            resourceInputs["labels"] = state ? state.labels : undefined;
-            resourceInputs["logsIpAllowListCname"] = state ? state.logsIpAllowListCname : undefined;
-            resourceInputs["logsName"] = state ? state.logsName : undefined;
-            resourceInputs["logsPrivateConnectivityInfoPrivateDns"] = state ? state.logsPrivateConnectivityInfoPrivateDns : undefined;
-            resourceInputs["logsPrivateConnectivityInfoServiceName"] = state ? state.logsPrivateConnectivityInfoServiceName : undefined;
-            resourceInputs["logsStatus"] = state ? state.logsStatus : undefined;
-            resourceInputs["logsUrl"] = state ? state.logsUrl : undefined;
-            resourceInputs["logsUserId"] = state ? state.logsUserId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["oncallApiUrl"] = state ? state.oncallApiUrl : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["orgName"] = state ? state.orgName : undefined;
-            resourceInputs["orgSlug"] = state ? state.orgSlug : undefined;
-            resourceInputs["otlpPrivateConnectivityInfoPrivateDns"] = state ? state.otlpPrivateConnectivityInfoPrivateDns : undefined;
-            resourceInputs["otlpPrivateConnectivityInfoServiceName"] = state ? state.otlpPrivateConnectivityInfoServiceName : undefined;
-            resourceInputs["otlpUrl"] = state ? state.otlpUrl : undefined;
-            resourceInputs["pdcApiPrivateConnectivityInfoPrivateDns"] = state ? state.pdcApiPrivateConnectivityInfoPrivateDns : undefined;
-            resourceInputs["pdcApiPrivateConnectivityInfoServiceName"] = state ? state.pdcApiPrivateConnectivityInfoServiceName : undefined;
-            resourceInputs["pdcGatewayPrivateConnectivityInfoPrivateDns"] = state ? state.pdcGatewayPrivateConnectivityInfoPrivateDns : undefined;
-            resourceInputs["pdcGatewayPrivateConnectivityInfoServiceName"] = state ? state.pdcGatewayPrivateConnectivityInfoServiceName : undefined;
-            resourceInputs["profilesIpAllowListCname"] = state ? state.profilesIpAllowListCname : undefined;
-            resourceInputs["profilesName"] = state ? state.profilesName : undefined;
-            resourceInputs["profilesPrivateConnectivityInfoPrivateDns"] = state ? state.profilesPrivateConnectivityInfoPrivateDns : undefined;
-            resourceInputs["profilesPrivateConnectivityInfoServiceName"] = state ? state.profilesPrivateConnectivityInfoServiceName : undefined;
-            resourceInputs["profilesStatus"] = state ? state.profilesStatus : undefined;
-            resourceInputs["profilesUrl"] = state ? state.profilesUrl : undefined;
-            resourceInputs["profilesUserId"] = state ? state.profilesUserId : undefined;
-            resourceInputs["prometheusIpAllowListCname"] = state ? state.prometheusIpAllowListCname : undefined;
-            resourceInputs["prometheusName"] = state ? state.prometheusName : undefined;
-            resourceInputs["prometheusPrivateConnectivityInfoPrivateDns"] = state ? state.prometheusPrivateConnectivityInfoPrivateDns : undefined;
-            resourceInputs["prometheusPrivateConnectivityInfoServiceName"] = state ? state.prometheusPrivateConnectivityInfoServiceName : undefined;
-            resourceInputs["prometheusRemoteEndpoint"] = state ? state.prometheusRemoteEndpoint : undefined;
-            resourceInputs["prometheusRemoteWriteEndpoint"] = state ? state.prometheusRemoteWriteEndpoint : undefined;
-            resourceInputs["prometheusStatus"] = state ? state.prometheusStatus : undefined;
-            resourceInputs["prometheusUrl"] = state ? state.prometheusUrl : undefined;
-            resourceInputs["prometheusUserId"] = state ? state.prometheusUserId : undefined;
-            resourceInputs["regionSlug"] = state ? state.regionSlug : undefined;
-            resourceInputs["slug"] = state ? state.slug : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["tracesIpAllowListCname"] = state ? state.tracesIpAllowListCname : undefined;
-            resourceInputs["tracesName"] = state ? state.tracesName : undefined;
-            resourceInputs["tracesPrivateConnectivityInfoPrivateDns"] = state ? state.tracesPrivateConnectivityInfoPrivateDns : undefined;
-            resourceInputs["tracesPrivateConnectivityInfoServiceName"] = state ? state.tracesPrivateConnectivityInfoServiceName : undefined;
-            resourceInputs["tracesStatus"] = state ? state.tracesStatus : undefined;
-            resourceInputs["tracesUrl"] = state ? state.tracesUrl : undefined;
-            resourceInputs["tracesUserId"] = state ? state.tracesUserId : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
-            resourceInputs["waitForReadiness"] = state ? state.waitForReadiness : undefined;
-            resourceInputs["waitForReadinessTimeout"] = state ? state.waitForReadinessTimeout : undefined;
+            resourceInputs["alertmanagerIpAllowListCname"] = state?.alertmanagerIpAllowListCname;
+            resourceInputs["alertmanagerName"] = state?.alertmanagerName;
+            resourceInputs["alertmanagerStatus"] = state?.alertmanagerStatus;
+            resourceInputs["alertmanagerUrl"] = state?.alertmanagerUrl;
+            resourceInputs["alertmanagerUserId"] = state?.alertmanagerUserId;
+            resourceInputs["clusterSlug"] = state?.clusterSlug;
+            resourceInputs["deleteProtection"] = state?.deleteProtection;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["fleetManagementName"] = state?.fleetManagementName;
+            resourceInputs["fleetManagementPrivateConnectivityInfoPrivateDns"] = state?.fleetManagementPrivateConnectivityInfoPrivateDns;
+            resourceInputs["fleetManagementPrivateConnectivityInfoServiceName"] = state?.fleetManagementPrivateConnectivityInfoServiceName;
+            resourceInputs["fleetManagementStatus"] = state?.fleetManagementStatus;
+            resourceInputs["fleetManagementUrl"] = state?.fleetManagementUrl;
+            resourceInputs["fleetManagementUserId"] = state?.fleetManagementUserId;
+            resourceInputs["grafanasIpAllowListCname"] = state?.grafanasIpAllowListCname;
+            resourceInputs["graphiteIpAllowListCname"] = state?.graphiteIpAllowListCname;
+            resourceInputs["graphiteName"] = state?.graphiteName;
+            resourceInputs["graphitePrivateConnectivityInfoPrivateDns"] = state?.graphitePrivateConnectivityInfoPrivateDns;
+            resourceInputs["graphitePrivateConnectivityInfoServiceName"] = state?.graphitePrivateConnectivityInfoServiceName;
+            resourceInputs["graphiteStatus"] = state?.graphiteStatus;
+            resourceInputs["graphiteUrl"] = state?.graphiteUrl;
+            resourceInputs["graphiteUserId"] = state?.graphiteUserId;
+            resourceInputs["influxUrl"] = state?.influxUrl;
+            resourceInputs["labels"] = state?.labels;
+            resourceInputs["logsIpAllowListCname"] = state?.logsIpAllowListCname;
+            resourceInputs["logsName"] = state?.logsName;
+            resourceInputs["logsPrivateConnectivityInfoPrivateDns"] = state?.logsPrivateConnectivityInfoPrivateDns;
+            resourceInputs["logsPrivateConnectivityInfoServiceName"] = state?.logsPrivateConnectivityInfoServiceName;
+            resourceInputs["logsStatus"] = state?.logsStatus;
+            resourceInputs["logsUrl"] = state?.logsUrl;
+            resourceInputs["logsUserId"] = state?.logsUserId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["oncallApiUrl"] = state?.oncallApiUrl;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["orgName"] = state?.orgName;
+            resourceInputs["orgSlug"] = state?.orgSlug;
+            resourceInputs["otlpPrivateConnectivityInfoPrivateDns"] = state?.otlpPrivateConnectivityInfoPrivateDns;
+            resourceInputs["otlpPrivateConnectivityInfoServiceName"] = state?.otlpPrivateConnectivityInfoServiceName;
+            resourceInputs["otlpUrl"] = state?.otlpUrl;
+            resourceInputs["pdcApiPrivateConnectivityInfoPrivateDns"] = state?.pdcApiPrivateConnectivityInfoPrivateDns;
+            resourceInputs["pdcApiPrivateConnectivityInfoServiceName"] = state?.pdcApiPrivateConnectivityInfoServiceName;
+            resourceInputs["pdcGatewayPrivateConnectivityInfoPrivateDns"] = state?.pdcGatewayPrivateConnectivityInfoPrivateDns;
+            resourceInputs["pdcGatewayPrivateConnectivityInfoServiceName"] = state?.pdcGatewayPrivateConnectivityInfoServiceName;
+            resourceInputs["profilesIpAllowListCname"] = state?.profilesIpAllowListCname;
+            resourceInputs["profilesName"] = state?.profilesName;
+            resourceInputs["profilesPrivateConnectivityInfoPrivateDns"] = state?.profilesPrivateConnectivityInfoPrivateDns;
+            resourceInputs["profilesPrivateConnectivityInfoServiceName"] = state?.profilesPrivateConnectivityInfoServiceName;
+            resourceInputs["profilesStatus"] = state?.profilesStatus;
+            resourceInputs["profilesUrl"] = state?.profilesUrl;
+            resourceInputs["profilesUserId"] = state?.profilesUserId;
+            resourceInputs["prometheusIpAllowListCname"] = state?.prometheusIpAllowListCname;
+            resourceInputs["prometheusName"] = state?.prometheusName;
+            resourceInputs["prometheusPrivateConnectivityInfoPrivateDns"] = state?.prometheusPrivateConnectivityInfoPrivateDns;
+            resourceInputs["prometheusPrivateConnectivityInfoServiceName"] = state?.prometheusPrivateConnectivityInfoServiceName;
+            resourceInputs["prometheusRemoteEndpoint"] = state?.prometheusRemoteEndpoint;
+            resourceInputs["prometheusRemoteWriteEndpoint"] = state?.prometheusRemoteWriteEndpoint;
+            resourceInputs["prometheusStatus"] = state?.prometheusStatus;
+            resourceInputs["prometheusUrl"] = state?.prometheusUrl;
+            resourceInputs["prometheusUserId"] = state?.prometheusUserId;
+            resourceInputs["regionSlug"] = state?.regionSlug;
+            resourceInputs["slug"] = state?.slug;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["tracesIpAllowListCname"] = state?.tracesIpAllowListCname;
+            resourceInputs["tracesName"] = state?.tracesName;
+            resourceInputs["tracesPrivateConnectivityInfoPrivateDns"] = state?.tracesPrivateConnectivityInfoPrivateDns;
+            resourceInputs["tracesPrivateConnectivityInfoServiceName"] = state?.tracesPrivateConnectivityInfoServiceName;
+            resourceInputs["tracesStatus"] = state?.tracesStatus;
+            resourceInputs["tracesUrl"] = state?.tracesUrl;
+            resourceInputs["tracesUserId"] = state?.tracesUserId;
+            resourceInputs["url"] = state?.url;
+            resourceInputs["waitForReadiness"] = state?.waitForReadiness;
+            resourceInputs["waitForReadinessTimeout"] = state?.waitForReadinessTimeout;
         } else {
             const args = argsOrState as StackArgs | undefined;
-            if ((!args || args.slug === undefined) && !opts.urn) {
+            if (args?.slug === undefined && !opts.urn) {
                 throw new Error("Missing required property 'slug'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["labels"] = args ? args.labels : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["regionSlug"] = args ? args.regionSlug : undefined;
-            resourceInputs["slug"] = args ? args.slug : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
-            resourceInputs["waitForReadiness"] = args ? args.waitForReadiness : undefined;
-            resourceInputs["waitForReadinessTimeout"] = args ? args.waitForReadinessTimeout : undefined;
+            resourceInputs["deleteProtection"] = args?.deleteProtection;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["labels"] = args?.labels;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["regionSlug"] = args?.regionSlug;
+            resourceInputs["slug"] = args?.slug;
+            resourceInputs["url"] = args?.url;
+            resourceInputs["waitForReadiness"] = args?.waitForReadiness;
+            resourceInputs["waitForReadinessTimeout"] = args?.waitForReadinessTimeout;
             resourceInputs["alertmanagerIpAllowListCname"] = undefined /*out*/;
             resourceInputs["alertmanagerName"] = undefined /*out*/;
             resourceInputs["alertmanagerStatus"] = undefined /*out*/;
@@ -495,6 +501,10 @@ export interface StackState {
      * Slug of the cluster where this stack resides.
      */
     clusterSlug?: pulumi.Input<string>;
+    /**
+     * Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+     */
+    deleteProtection?: pulumi.Input<boolean>;
     /**
      * Description of stack.
      */
@@ -716,6 +726,10 @@ export interface StackState {
  * The set of arguments for constructing a Stack resource.
  */
 export interface StackArgs {
+    /**
+     * Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+     */
+    deleteProtection?: pulumi.Input<boolean>;
     /**
      * Description of stack.
      */

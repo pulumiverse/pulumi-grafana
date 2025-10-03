@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // Sets up the k6 App on a Grafana Cloud instance and generates a token.
@@ -38,8 +38,8 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/k6"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/k6"
 //
 // )
 //

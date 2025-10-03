@@ -70,36 +70,36 @@ export class Team extends pulumi.CustomResource {
     /**
      * An email address for the team.
      */
-    public readonly email!: pulumi.Output<string | undefined>;
-    public readonly ignoreExternallySyncedMembers!: pulumi.Output<boolean | undefined>;
+    declare public readonly email: pulumi.Output<string | undefined>;
+    declare public readonly ignoreExternallySyncedMembers: pulumi.Output<boolean | undefined>;
     /**
-     * A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
-     * must already exist in Grafana.
+     * A set of email addresses corresponding to users who should be given membership
+     * to the team. Note: users specified here must already exist in Grafana.
      */
-    public readonly members!: pulumi.Output<string[] | undefined>;
+    declare public readonly members: pulumi.Output<string[] | undefined>;
     /**
      * The display name for the Grafana team created.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
-    public readonly preferences!: pulumi.Output<outputs.oss.TeamPreferences | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
+    declare public readonly preferences: pulumi.Output<outputs.oss.TeamPreferences | undefined>;
     /**
      * The team id assigned to this team by Grafana.
      */
-    public /*out*/ readonly teamId!: pulumi.Output<number>;
+    declare public /*out*/ readonly teamId: pulumi.Output<number>;
     /**
-     * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
-     * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-     * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+     * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+     * 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+     * 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      */
-    public readonly teamSync!: pulumi.Output<outputs.oss.TeamTeamSync | undefined>;
+    declare public readonly teamSync: pulumi.Output<outputs.oss.TeamTeamSync | undefined>;
     /**
      * The team uid assigned to this team by Grafana.
      */
-    public /*out*/ readonly teamUid!: pulumi.Output<string>;
+    declare public /*out*/ readonly teamUid: pulumi.Output<string>;
 
     /**
      * Create a Team resource with the given unique name, arguments, and options.
@@ -114,24 +114,24 @@ export class Team extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TeamState | undefined;
-            resourceInputs["email"] = state ? state.email : undefined;
-            resourceInputs["ignoreExternallySyncedMembers"] = state ? state.ignoreExternallySyncedMembers : undefined;
-            resourceInputs["members"] = state ? state.members : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["preferences"] = state ? state.preferences : undefined;
-            resourceInputs["teamId"] = state ? state.teamId : undefined;
-            resourceInputs["teamSync"] = state ? state.teamSync : undefined;
-            resourceInputs["teamUid"] = state ? state.teamUid : undefined;
+            resourceInputs["email"] = state?.email;
+            resourceInputs["ignoreExternallySyncedMembers"] = state?.ignoreExternallySyncedMembers;
+            resourceInputs["members"] = state?.members;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["preferences"] = state?.preferences;
+            resourceInputs["teamId"] = state?.teamId;
+            resourceInputs["teamSync"] = state?.teamSync;
+            resourceInputs["teamUid"] = state?.teamUid;
         } else {
             const args = argsOrState as TeamArgs | undefined;
-            resourceInputs["email"] = args ? args.email : undefined;
-            resourceInputs["ignoreExternallySyncedMembers"] = args ? args.ignoreExternallySyncedMembers : undefined;
-            resourceInputs["members"] = args ? args.members : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["preferences"] = args ? args.preferences : undefined;
-            resourceInputs["teamSync"] = args ? args.teamSync : undefined;
+            resourceInputs["email"] = args?.email;
+            resourceInputs["ignoreExternallySyncedMembers"] = args?.ignoreExternallySyncedMembers;
+            resourceInputs["members"] = args?.members;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["preferences"] = args?.preferences;
+            resourceInputs["teamSync"] = args?.teamSync;
             resourceInputs["teamId"] = undefined /*out*/;
             resourceInputs["teamUid"] = undefined /*out*/;
         }
@@ -152,8 +152,8 @@ export interface TeamState {
     email?: pulumi.Input<string>;
     ignoreExternallySyncedMembers?: pulumi.Input<boolean>;
     /**
-     * A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
-     * must already exist in Grafana.
+     * A set of email addresses corresponding to users who should be given membership
+     * to the team. Note: users specified here must already exist in Grafana.
      */
     members?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -170,9 +170,9 @@ export interface TeamState {
      */
     teamId?: pulumi.Input<number>;
     /**
-     * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
-     * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-     * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+     * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+     * 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+     * 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      */
     teamSync?: pulumi.Input<inputs.oss.TeamTeamSync>;
     /**
@@ -191,8 +191,8 @@ export interface TeamArgs {
     email?: pulumi.Input<string>;
     ignoreExternallySyncedMembers?: pulumi.Input<boolean>;
     /**
-     * A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
-     * must already exist in Grafana.
+     * A set of email addresses corresponding to users who should be given membership
+     * to the team. Note: users specified here must already exist in Grafana.
      */
     members?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -205,9 +205,9 @@ export interface TeamArgs {
     orgId?: pulumi.Input<string>;
     preferences?: pulumi.Input<inputs.oss.TeamPreferences>;
     /**
-     * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
-     * documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-     * API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+     * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+     * 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+     * 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      */
     teamSync?: pulumi.Input<inputs.oss.TeamTeamSync>;
 }

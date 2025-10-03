@@ -69,13 +69,13 @@ export class Organization extends pulumi.CustomResource {
         return obj['__pulumiType'] === Organization.__pulumiType;
     }
 
-    public readonly adminUser!: pulumi.Output<string | undefined>;
+    declare public readonly adminUser: pulumi.Output<string | undefined>;
     /**
      * A list of email addresses corresponding to users who should be given admin
      * access to the organization. Note: users specified here must already exist in
      * Grafana unless 'create_users' is set to true.
      */
-    public readonly admins!: pulumi.Output<string[] | undefined>;
+    declare public readonly admins: pulumi.Output<string[] | undefined>;
     /**
      * Whether or not to create Grafana users specified in the organization's
      * membership if they don't already exist in Grafana. If unspecified, this
@@ -85,33 +85,33 @@ export class Organization extends pulumi.CustomResource {
      * already exist in Grafana.
      * Defaults to `true`.
      */
-    public readonly createUsers!: pulumi.Output<boolean | undefined>;
+    declare public readonly createUsers: pulumi.Output<boolean | undefined>;
     /**
      * A list of email addresses corresponding to users who should be given editor
      * access to the organization. Note: users specified here must already exist in
      * Grafana unless 'create_users' is set to true.
      */
-    public readonly editors!: pulumi.Output<string[] | undefined>;
+    declare public readonly editors: pulumi.Output<string[] | undefined>;
     /**
      * The display name for the Grafana organization created.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The organization id assigned to this organization by Grafana.
      */
-    public /*out*/ readonly orgId!: pulumi.Output<number>;
+    declare public /*out*/ readonly orgId: pulumi.Output<number>;
     /**
      * A list of email addresses corresponding to users who should be given none access to the organization.
      * Note: users specified here must already exist in Grafana, unless 'create_users' is
      * set to true. This feature is only available in Grafana 10.2+.
      */
-    public readonly usersWithoutAccesses!: pulumi.Output<string[] | undefined>;
+    declare public readonly usersWithoutAccesses: pulumi.Output<string[] | undefined>;
     /**
      * A list of email addresses corresponding to users who should be given viewer
      * access to the organization. Note: users specified here must already exist in
      * Grafana unless 'create_users' is set to true.
      */
-    public readonly viewers!: pulumi.Output<string[] | undefined>;
+    declare public readonly viewers: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a Organization resource with the given unique name, arguments, and options.
@@ -126,23 +126,23 @@ export class Organization extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OrganizationState | undefined;
-            resourceInputs["adminUser"] = state ? state.adminUser : undefined;
-            resourceInputs["admins"] = state ? state.admins : undefined;
-            resourceInputs["createUsers"] = state ? state.createUsers : undefined;
-            resourceInputs["editors"] = state ? state.editors : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["usersWithoutAccesses"] = state ? state.usersWithoutAccesses : undefined;
-            resourceInputs["viewers"] = state ? state.viewers : undefined;
+            resourceInputs["adminUser"] = state?.adminUser;
+            resourceInputs["admins"] = state?.admins;
+            resourceInputs["createUsers"] = state?.createUsers;
+            resourceInputs["editors"] = state?.editors;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["usersWithoutAccesses"] = state?.usersWithoutAccesses;
+            resourceInputs["viewers"] = state?.viewers;
         } else {
             const args = argsOrState as OrganizationArgs | undefined;
-            resourceInputs["adminUser"] = args ? args.adminUser : undefined;
-            resourceInputs["admins"] = args ? args.admins : undefined;
-            resourceInputs["createUsers"] = args ? args.createUsers : undefined;
-            resourceInputs["editors"] = args ? args.editors : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["usersWithoutAccesses"] = args ? args.usersWithoutAccesses : undefined;
-            resourceInputs["viewers"] = args ? args.viewers : undefined;
+            resourceInputs["adminUser"] = args?.adminUser;
+            resourceInputs["admins"] = args?.admins;
+            resourceInputs["createUsers"] = args?.createUsers;
+            resourceInputs["editors"] = args?.editors;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["usersWithoutAccesses"] = args?.usersWithoutAccesses;
+            resourceInputs["viewers"] = args?.viewers;
             resourceInputs["orgId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

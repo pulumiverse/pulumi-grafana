@@ -108,37 +108,37 @@ export class AwsCloudwatchScrapeJob extends pulumi.CustomResource {
     /**
      * The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
      */
-    public readonly awsAccountResourceId!: pulumi.Output<string>;
+    declare public readonly awsAccountResourceId: pulumi.Output<string>;
     /**
      * Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
-    public readonly customNamespaces!: pulumi.Output<outputs.cloudProvider.AwsCloudwatchScrapeJobCustomNamespace[] | undefined>;
+    declare public readonly customNamespaces: pulumi.Output<outputs.cloudProvider.AwsCloudwatchScrapeJobCustomNamespace[] | undefined>;
     /**
      * When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
      */
-    public /*out*/ readonly disabledReason!: pulumi.Output<string>;
+    declare public /*out*/ readonly disabledReason: pulumi.Output<string>;
     /**
      * Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
      */
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
      */
-    public readonly exportTags!: pulumi.Output<boolean>;
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly exportTags: pulumi.Output<boolean>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
      */
-    public readonly regionsSubsetOverrides!: pulumi.Output<string[]>;
+    declare public readonly regionsSubsetOverrides: pulumi.Output<string[]>;
     /**
      * One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
-    public readonly services!: pulumi.Output<outputs.cloudProvider.AwsCloudwatchScrapeJobService[] | undefined>;
-    public readonly stackId!: pulumi.Output<string>;
+    declare public readonly services: pulumi.Output<outputs.cloudProvider.AwsCloudwatchScrapeJobService[] | undefined>;
+    declare public readonly stackId: pulumi.Output<string>;
     /**
      * A set of static labels to add to all metrics exported by this scrape job.
      */
-    public readonly staticLabels!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly staticLabels: pulumi.Output<{[key: string]: string}>;
 
     /**
      * Create a AwsCloudwatchScrapeJob resource with the given unique name, arguments, and options.
@@ -153,33 +153,33 @@ export class AwsCloudwatchScrapeJob extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AwsCloudwatchScrapeJobState | undefined;
-            resourceInputs["awsAccountResourceId"] = state ? state.awsAccountResourceId : undefined;
-            resourceInputs["customNamespaces"] = state ? state.customNamespaces : undefined;
-            resourceInputs["disabledReason"] = state ? state.disabledReason : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["exportTags"] = state ? state.exportTags : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["regionsSubsetOverrides"] = state ? state.regionsSubsetOverrides : undefined;
-            resourceInputs["services"] = state ? state.services : undefined;
-            resourceInputs["stackId"] = state ? state.stackId : undefined;
-            resourceInputs["staticLabels"] = state ? state.staticLabels : undefined;
+            resourceInputs["awsAccountResourceId"] = state?.awsAccountResourceId;
+            resourceInputs["customNamespaces"] = state?.customNamespaces;
+            resourceInputs["disabledReason"] = state?.disabledReason;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["exportTags"] = state?.exportTags;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["regionsSubsetOverrides"] = state?.regionsSubsetOverrides;
+            resourceInputs["services"] = state?.services;
+            resourceInputs["stackId"] = state?.stackId;
+            resourceInputs["staticLabels"] = state?.staticLabels;
         } else {
             const args = argsOrState as AwsCloudwatchScrapeJobArgs | undefined;
-            if ((!args || args.awsAccountResourceId === undefined) && !opts.urn) {
+            if (args?.awsAccountResourceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'awsAccountResourceId'");
             }
-            if ((!args || args.stackId === undefined) && !opts.urn) {
+            if (args?.stackId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'stackId'");
             }
-            resourceInputs["awsAccountResourceId"] = args ? args.awsAccountResourceId : undefined;
-            resourceInputs["customNamespaces"] = args ? args.customNamespaces : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["exportTags"] = args ? args.exportTags : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["regionsSubsetOverrides"] = args ? args.regionsSubsetOverrides : undefined;
-            resourceInputs["services"] = args ? args.services : undefined;
-            resourceInputs["stackId"] = args ? args.stackId : undefined;
-            resourceInputs["staticLabels"] = args ? args.staticLabels : undefined;
+            resourceInputs["awsAccountResourceId"] = args?.awsAccountResourceId;
+            resourceInputs["customNamespaces"] = args?.customNamespaces;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["exportTags"] = args?.exportTags;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["regionsSubsetOverrides"] = args?.regionsSubsetOverrides;
+            resourceInputs["services"] = args?.services;
+            resourceInputs["stackId"] = args?.stackId;
+            resourceInputs["staticLabels"] = args?.staticLabels;
             resourceInputs["disabledReason"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

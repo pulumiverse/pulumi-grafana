@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // Sets the global notification policy for Grafana.
@@ -29,7 +29,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/alerting"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting"
 //
 // )
 //
@@ -56,6 +56,22 @@ import (
 //					&alerting.MuteTimingIntervalArgs{
 //						Weekdays: pulumi.StringArray{
 //							pulumi.String("monday"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			workingHours, err := alerting.NewMuteTiming(ctx, "working_hours", &alerting.MuteTimingArgs{
+//				Name: pulumi.String("Working Hours"),
+//				Intervals: alerting.MuteTimingIntervalArray{
+//					&alerting.MuteTimingIntervalArgs{
+//						Times: alerting.MuteTimingIntervalTimeArray{
+//							&alerting.MuteTimingIntervalTimeArgs{
+//								Start: pulumi.String("09:00"),
+//								End:   pulumi.String("18:00"),
+//							},
 //						},
 //					},
 //				},
@@ -94,6 +110,9 @@ import (
 //						Continue:     pulumi.Bool(true),
 //						MuteTimings: pulumi.StringArray{
 //							aMuteTiming.Name,
+//						},
+//						ActiveTimings: pulumi.StringArray{
+//							workingHours.Name,
 //						},
 //						GroupWait:      pulumi.String("45s"),
 //						GroupInterval:  pulumi.String("6m"),

@@ -62,13 +62,13 @@ export class StackServiceAccountToken extends pulumi.CustomResource {
         return obj['__pulumiType'] === StackServiceAccountToken.__pulumiType;
     }
 
-    public /*out*/ readonly expiration!: pulumi.Output<string>;
-    public /*out*/ readonly hasExpired!: pulumi.Output<boolean>;
-    public /*out*/ readonly key!: pulumi.Output<string>;
-    public readonly name!: pulumi.Output<string>;
-    public readonly secondsToLive!: pulumi.Output<number | undefined>;
-    public readonly serviceAccountId!: pulumi.Output<string>;
-    public readonly stackSlug!: pulumi.Output<string>;
+    declare public /*out*/ readonly expiration: pulumi.Output<string>;
+    declare public /*out*/ readonly hasExpired: pulumi.Output<boolean>;
+    declare public /*out*/ readonly key: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public readonly secondsToLive: pulumi.Output<number | undefined>;
+    declare public readonly serviceAccountId: pulumi.Output<string>;
+    declare public readonly stackSlug: pulumi.Output<string>;
 
     /**
      * Create a StackServiceAccountToken resource with the given unique name, arguments, and options.
@@ -83,25 +83,25 @@ export class StackServiceAccountToken extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StackServiceAccountTokenState | undefined;
-            resourceInputs["expiration"] = state ? state.expiration : undefined;
-            resourceInputs["hasExpired"] = state ? state.hasExpired : undefined;
-            resourceInputs["key"] = state ? state.key : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["secondsToLive"] = state ? state.secondsToLive : undefined;
-            resourceInputs["serviceAccountId"] = state ? state.serviceAccountId : undefined;
-            resourceInputs["stackSlug"] = state ? state.stackSlug : undefined;
+            resourceInputs["expiration"] = state?.expiration;
+            resourceInputs["hasExpired"] = state?.hasExpired;
+            resourceInputs["key"] = state?.key;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["secondsToLive"] = state?.secondsToLive;
+            resourceInputs["serviceAccountId"] = state?.serviceAccountId;
+            resourceInputs["stackSlug"] = state?.stackSlug;
         } else {
             const args = argsOrState as StackServiceAccountTokenArgs | undefined;
-            if ((!args || args.serviceAccountId === undefined) && !opts.urn) {
+            if (args?.serviceAccountId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountId'");
             }
-            if ((!args || args.stackSlug === undefined) && !opts.urn) {
+            if (args?.stackSlug === undefined && !opts.urn) {
                 throw new Error("Missing required property 'stackSlug'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["secondsToLive"] = args ? args.secondsToLive : undefined;
-            resourceInputs["serviceAccountId"] = args ? args.serviceAccountId : undefined;
-            resourceInputs["stackSlug"] = args ? args.stackSlug : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["secondsToLive"] = args?.secondsToLive;
+            resourceInputs["serviceAccountId"] = args?.serviceAccountId;
+            resourceInputs["stackSlug"] = args?.stackSlug;
             resourceInputs["expiration"] = undefined /*out*/;
             resourceInputs["hasExpired"] = undefined /*out*/;
             resourceInputs["key"] = undefined /*out*/;

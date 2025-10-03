@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // Sets up Synthetic Monitoring on a Grafana cloud stack and generates a token.
@@ -34,8 +34,8 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/cloud"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/syntheticmonitoring"
 //
 // )
 //

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
@@ -22,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/oss"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
 //
 // )
 //
@@ -68,8 +68,8 @@ type Team struct {
 	// An email address for the team.
 	Email                         pulumi.StringPtrOutput `pulumi:"email"`
 	IgnoreExternallySyncedMembers pulumi.BoolPtrOutput   `pulumi:"ignoreExternallySyncedMembers"`
-	// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
-	// must already exist in Grafana.
+	// A set of email addresses corresponding to users who should be given membership
+	// to the team. Note: users specified here must already exist in Grafana.
 	Members pulumi.StringArrayOutput `pulumi:"members"`
 	// The display name for the Grafana team created.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -78,9 +78,9 @@ type Team struct {
 	Preferences TeamPreferencesPtrOutput `pulumi:"preferences"`
 	// The team id assigned to this team by Grafana.
 	TeamId pulumi.IntOutput `pulumi:"teamId"`
-	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
-	// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-	// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+	// 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+	// 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 	TeamSync TeamTeamSyncPtrOutput `pulumi:"teamSync"`
 	// The team uid assigned to this team by Grafana.
 	TeamUid pulumi.StringOutput `pulumi:"teamUid"`
@@ -125,8 +125,8 @@ type teamState struct {
 	// An email address for the team.
 	Email                         *string `pulumi:"email"`
 	IgnoreExternallySyncedMembers *bool   `pulumi:"ignoreExternallySyncedMembers"`
-	// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
-	// must already exist in Grafana.
+	// A set of email addresses corresponding to users who should be given membership
+	// to the team. Note: users specified here must already exist in Grafana.
 	Members []string `pulumi:"members"`
 	// The display name for the Grafana team created.
 	Name *string `pulumi:"name"`
@@ -135,9 +135,9 @@ type teamState struct {
 	Preferences *TeamPreferences `pulumi:"preferences"`
 	// The team id assigned to this team by Grafana.
 	TeamId *int `pulumi:"teamId"`
-	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
-	// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-	// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+	// 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+	// 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 	TeamSync *TeamTeamSync `pulumi:"teamSync"`
 	// The team uid assigned to this team by Grafana.
 	TeamUid *string `pulumi:"teamUid"`
@@ -147,8 +147,8 @@ type TeamState struct {
 	// An email address for the team.
 	Email                         pulumi.StringPtrInput
 	IgnoreExternallySyncedMembers pulumi.BoolPtrInput
-	// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
-	// must already exist in Grafana.
+	// A set of email addresses corresponding to users who should be given membership
+	// to the team. Note: users specified here must already exist in Grafana.
 	Members pulumi.StringArrayInput
 	// The display name for the Grafana team created.
 	Name pulumi.StringPtrInput
@@ -157,9 +157,9 @@ type TeamState struct {
 	Preferences TeamPreferencesPtrInput
 	// The team id assigned to this team by Grafana.
 	TeamId pulumi.IntPtrInput
-	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
-	// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-	// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+	// 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+	// 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 	TeamSync TeamTeamSyncPtrInput
 	// The team uid assigned to this team by Grafana.
 	TeamUid pulumi.StringPtrInput
@@ -173,17 +173,17 @@ type teamArgs struct {
 	// An email address for the team.
 	Email                         *string `pulumi:"email"`
 	IgnoreExternallySyncedMembers *bool   `pulumi:"ignoreExternallySyncedMembers"`
-	// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
-	// must already exist in Grafana.
+	// A set of email addresses corresponding to users who should be given membership
+	// to the team. Note: users specified here must already exist in Grafana.
 	Members []string `pulumi:"members"`
 	// The display name for the Grafana team created.
 	Name *string `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId       *string          `pulumi:"orgId"`
 	Preferences *TeamPreferences `pulumi:"preferences"`
-	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
-	// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-	// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+	// 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+	// 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 	TeamSync *TeamTeamSync `pulumi:"teamSync"`
 }
 
@@ -192,17 +192,17 @@ type TeamArgs struct {
 	// An email address for the team.
 	Email                         pulumi.StringPtrInput
 	IgnoreExternallySyncedMembers pulumi.BoolPtrInput
-	// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
-	// must already exist in Grafana.
+	// A set of email addresses corresponding to users who should be given membership
+	// to the team. Note: users specified here must already exist in Grafana.
 	Members pulumi.StringArrayInput
 	// The display name for the Grafana team created.
 	Name pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId       pulumi.StringPtrInput
 	Preferences TeamPreferencesPtrInput
-	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
-	// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-	// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+	// 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+	// 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 	TeamSync TeamTeamSyncPtrInput
 }
 
@@ -302,8 +302,8 @@ func (o TeamOutput) IgnoreExternallySyncedMembers() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Team) pulumi.BoolPtrOutput { return v.IgnoreExternallySyncedMembers }).(pulumi.BoolPtrOutput)
 }
 
-// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
-// must already exist in Grafana.
+// A set of email addresses corresponding to users who should be given membership
+// to the team. Note: users specified here must already exist in Grafana.
 func (o TeamOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
 }
@@ -327,9 +327,9 @@ func (o TeamOutput) TeamId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Team) pulumi.IntOutput { return v.TeamId }).(pulumi.IntOutput)
 }
 
-// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
-// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+//   - [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+//   - [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
 func (o TeamOutput) TeamSync() TeamTeamSyncPtrOutput {
 	return o.ApplyT(func(v *Team) TeamTeamSyncPtrOutput { return v.TeamSync }).(TeamTeamSyncPtrOutput)
 }

@@ -60,23 +60,23 @@ export class ProjectLimits extends pulumi.CustomResource {
     /**
      * Maximum duration of a test in seconds.
      */
-    public readonly durationMaxPerTest!: pulumi.Output<number | undefined>;
+    declare public readonly durationMaxPerTest: pulumi.Output<number | undefined>;
     /**
      * The identifier of the project to manage limits for.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Maximum number of concurrent browser virtual users (VUs) used in one test.
      */
-    public readonly vuBrowserMaxPerTest!: pulumi.Output<number | undefined>;
+    declare public readonly vuBrowserMaxPerTest: pulumi.Output<number | undefined>;
     /**
      * Maximum number of concurrent virtual users (VUs) used in one test.
      */
-    public readonly vuMaxPerTest!: pulumi.Output<number | undefined>;
+    declare public readonly vuMaxPerTest: pulumi.Output<number | undefined>;
     /**
      * Maximum amount of virtual user hours (VU/h) used per one calendar month.
      */
-    public readonly vuhMaxPerMonth!: pulumi.Output<number | undefined>;
+    declare public readonly vuhMaxPerMonth: pulumi.Output<number | undefined>;
 
     /**
      * Create a ProjectLimits resource with the given unique name, arguments, and options.
@@ -91,21 +91,21 @@ export class ProjectLimits extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProjectLimitsState | undefined;
-            resourceInputs["durationMaxPerTest"] = state ? state.durationMaxPerTest : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["vuBrowserMaxPerTest"] = state ? state.vuBrowserMaxPerTest : undefined;
-            resourceInputs["vuMaxPerTest"] = state ? state.vuMaxPerTest : undefined;
-            resourceInputs["vuhMaxPerMonth"] = state ? state.vuhMaxPerMonth : undefined;
+            resourceInputs["durationMaxPerTest"] = state?.durationMaxPerTest;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["vuBrowserMaxPerTest"] = state?.vuBrowserMaxPerTest;
+            resourceInputs["vuMaxPerTest"] = state?.vuMaxPerTest;
+            resourceInputs["vuhMaxPerMonth"] = state?.vuhMaxPerMonth;
         } else {
             const args = argsOrState as ProjectLimitsArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["durationMaxPerTest"] = args ? args.durationMaxPerTest : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["vuBrowserMaxPerTest"] = args ? args.vuBrowserMaxPerTest : undefined;
-            resourceInputs["vuMaxPerTest"] = args ? args.vuMaxPerTest : undefined;
-            resourceInputs["vuhMaxPerMonth"] = args ? args.vuhMaxPerMonth : undefined;
+            resourceInputs["durationMaxPerTest"] = args?.durationMaxPerTest;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["vuBrowserMaxPerTest"] = args?.vuBrowserMaxPerTest;
+            resourceInputs["vuMaxPerTest"] = args?.vuMaxPerTest;
+            resourceInputs["vuhMaxPerMonth"] = args?.vuhMaxPerMonth;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ProjectLimits.__pulumiType, name, resourceInputs, opts);

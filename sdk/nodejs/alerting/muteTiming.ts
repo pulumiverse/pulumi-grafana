@@ -86,19 +86,19 @@ export class MuteTiming extends pulumi.CustomResource {
         return obj['__pulumiType'] === MuteTiming.__pulumiType;
     }
 
-    public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableProvenance: pulumi.Output<boolean | undefined>;
     /**
      * The time intervals at which to mute notifications. Use an empty block to mute all the time.
      */
-    public readonly intervals!: pulumi.Output<outputs.alerting.MuteTimingInterval[] | undefined>;
+    declare public readonly intervals: pulumi.Output<outputs.alerting.MuteTimingInterval[] | undefined>;
     /**
      * The name of the mute timing.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
 
     /**
      * Create a MuteTiming resource with the given unique name, arguments, and options.
@@ -113,16 +113,16 @@ export class MuteTiming extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MuteTimingState | undefined;
-            resourceInputs["disableProvenance"] = state ? state.disableProvenance : undefined;
-            resourceInputs["intervals"] = state ? state.intervals : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
+            resourceInputs["disableProvenance"] = state?.disableProvenance;
+            resourceInputs["intervals"] = state?.intervals;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
         } else {
             const args = argsOrState as MuteTimingArgs | undefined;
-            resourceInputs["disableProvenance"] = args ? args.disableProvenance : undefined;
-            resourceInputs["intervals"] = args ? args.intervals : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
+            resourceInputs["disableProvenance"] = args?.disableProvenance;
+            resourceInputs["intervals"] = args?.intervals;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["orgId"] = args?.orgId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/muteTiming:MuteTiming" }] };

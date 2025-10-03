@@ -84,11 +84,11 @@ export class CheckAlerts extends pulumi.CustomResource {
     /**
      * List of alerts for the check.
      */
-    public readonly alerts!: pulumi.Output<outputs.syntheticMonitoring.CheckAlertsAlert[]>;
+    declare public readonly alerts: pulumi.Output<outputs.syntheticMonitoring.CheckAlertsAlert[]>;
     /**
      * The ID of the check to manage alerts for.
      */
-    public readonly checkId!: pulumi.Output<number>;
+    declare public readonly checkId: pulumi.Output<number>;
 
     /**
      * Create a CheckAlerts resource with the given unique name, arguments, and options.
@@ -103,18 +103,18 @@ export class CheckAlerts extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CheckAlertsState | undefined;
-            resourceInputs["alerts"] = state ? state.alerts : undefined;
-            resourceInputs["checkId"] = state ? state.checkId : undefined;
+            resourceInputs["alerts"] = state?.alerts;
+            resourceInputs["checkId"] = state?.checkId;
         } else {
             const args = argsOrState as CheckAlertsArgs | undefined;
-            if ((!args || args.alerts === undefined) && !opts.urn) {
+            if (args?.alerts === undefined && !opts.urn) {
                 throw new Error("Missing required property 'alerts'");
             }
-            if ((!args || args.checkId === undefined) && !opts.urn) {
+            if (args?.checkId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'checkId'");
             }
-            resourceInputs["alerts"] = args ? args.alerts : undefined;
-            resourceInputs["checkId"] = args ? args.checkId : undefined;
+            resourceInputs["alerts"] = args?.alerts;
+            resourceInputs["checkId"] = args?.checkId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CheckAlerts.__pulumiType, name, resourceInputs, opts);

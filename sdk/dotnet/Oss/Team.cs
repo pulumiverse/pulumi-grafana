@@ -68,8 +68,8 @@ namespace Pulumiverse.Grafana.Oss
         public Output<bool?> IgnoreExternallySyncedMembers { get; private set; } = null!;
 
         /// <summary>
-        /// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
-        /// must already exist in Grafana.
+        /// A set of email addresses corresponding to users who should be given membership
+        /// to the team. Note: users specified here must already exist in Grafana.
         /// </summary>
         [Output("members")]
         public Output<ImmutableArray<string>> Members { get; private set; } = null!;
@@ -96,9 +96,9 @@ namespace Pulumiverse.Grafana.Oss
         public Output<int> TeamId { get; private set; } = null!;
 
         /// <summary>
-        /// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
-        /// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-        /// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+        /// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+        /// 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+        /// 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
         /// </summary>
         [Output("teamSync")]
         public Output<Outputs.TeamTeamSync?> TeamSync { get; private set; } = null!;
@@ -173,8 +173,8 @@ namespace Pulumiverse.Grafana.Oss
         private InputList<string>? _members;
 
         /// <summary>
-        /// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
-        /// must already exist in Grafana.
+        /// A set of email addresses corresponding to users who should be given membership
+        /// to the team. Note: users specified here must already exist in Grafana.
         /// </summary>
         public InputList<string> Members
         {
@@ -198,9 +198,9 @@ namespace Pulumiverse.Grafana.Oss
         public Input<Inputs.TeamPreferencesArgs>? Preferences { get; set; }
 
         /// <summary>
-        /// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
-        /// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-        /// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+        /// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+        /// 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+        /// 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
         /// </summary>
         [Input("teamSync")]
         public Input<Inputs.TeamTeamSyncArgs>? TeamSync { get; set; }
@@ -226,8 +226,8 @@ namespace Pulumiverse.Grafana.Oss
         private InputList<string>? _members;
 
         /// <summary>
-        /// A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here
-        /// must already exist in Grafana.
+        /// A set of email addresses corresponding to users who should be given membership
+        /// to the team. Note: users specified here must already exist in Grafana.
         /// </summary>
         public InputList<string> Members
         {
@@ -257,9 +257,9 @@ namespace Pulumiverse.Grafana.Oss
         public Input<int>? TeamId { get; set; }
 
         /// <summary>
-        /// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise. * [Official
-        /// documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/) * [HTTP
-        /// API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+        /// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+        /// 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+        /// 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
         /// </summary>
         [Input("teamSync")]
         public Input<Inputs.TeamTeamSyncGetArgs>? TeamSync { get; set; }

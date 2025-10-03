@@ -70,27 +70,27 @@ export class Folder extends pulumi.CustomResource {
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
      */
-    public readonly parentFolderUid!: pulumi.Output<string | undefined>;
+    declare public readonly parentFolderUid: pulumi.Output<string | undefined>;
     /**
      * Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
      */
-    public readonly preventDestroyIfNotEmpty!: pulumi.Output<boolean | undefined>;
+    declare public readonly preventDestroyIfNotEmpty: pulumi.Output<boolean | undefined>;
     /**
      * The title of the folder.
      */
-    public readonly title!: pulumi.Output<string>;
+    declare public readonly title: pulumi.Output<string>;
     /**
      * Unique identifier.
      */
-    public readonly uid!: pulumi.Output<string>;
+    declare public readonly uid: pulumi.Output<string>;
     /**
      * The full URL of the folder.
      */
-    public /*out*/ readonly url!: pulumi.Output<string>;
+    declare public /*out*/ readonly url: pulumi.Output<string>;
 
     /**
      * Create a Folder resource with the given unique name, arguments, and options.
@@ -105,22 +105,22 @@ export class Folder extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FolderState | undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["parentFolderUid"] = state ? state.parentFolderUid : undefined;
-            resourceInputs["preventDestroyIfNotEmpty"] = state ? state.preventDestroyIfNotEmpty : undefined;
-            resourceInputs["title"] = state ? state.title : undefined;
-            resourceInputs["uid"] = state ? state.uid : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["parentFolderUid"] = state?.parentFolderUid;
+            resourceInputs["preventDestroyIfNotEmpty"] = state?.preventDestroyIfNotEmpty;
+            resourceInputs["title"] = state?.title;
+            resourceInputs["uid"] = state?.uid;
+            resourceInputs["url"] = state?.url;
         } else {
             const args = argsOrState as FolderArgs | undefined;
-            if ((!args || args.title === undefined) && !opts.urn) {
+            if (args?.title === undefined && !opts.urn) {
                 throw new Error("Missing required property 'title'");
             }
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["parentFolderUid"] = args ? args.parentFolderUid : undefined;
-            resourceInputs["preventDestroyIfNotEmpty"] = args ? args.preventDestroyIfNotEmpty : undefined;
-            resourceInputs["title"] = args ? args.title : undefined;
-            resourceInputs["uid"] = args ? args.uid : undefined;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["parentFolderUid"] = args?.parentFolderUid;
+            resourceInputs["preventDestroyIfNotEmpty"] = args?.preventDestroyIfNotEmpty;
+            resourceInputs["title"] = args?.title;
+            resourceInputs["uid"] = args?.uid;
             resourceInputs["url"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

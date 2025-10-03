@@ -74,31 +74,31 @@ export class PrivateDataSourceConnectNetwork extends pulumi.CustomResource {
     /**
      * Creation date of the private data source connect network.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Display name of the PDC network. Defaults to the name.
      */
-    public readonly displayName!: pulumi.Output<string | undefined>;
+    declare public readonly displayName: pulumi.Output<string | undefined>;
     /**
      * Name of the PDC network.**Note:** The name must be lowercase and can contain hyphens or underscores. See full requirements here: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#request-body
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * ID of the private data source connect network.
      */
-    public /*out*/ readonly pdcNetworkId!: pulumi.Output<string>;
+    declare public /*out*/ readonly pdcNetworkId: pulumi.Output<string>;
     /**
      * The region where your stack is deployed. Use the instances list API to get the region for your instance - use the regionSlug property: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-stacks
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The identifier of the stack.
      */
-    public readonly stackIdentifier!: pulumi.Output<string>;
+    declare public readonly stackIdentifier: pulumi.Output<string>;
     /**
      * Last update date of the private data source connect network.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a PrivateDataSourceConnectNetwork resource with the given unique name, arguments, and options.
@@ -113,25 +113,25 @@ export class PrivateDataSourceConnectNetwork extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivateDataSourceConnectNetworkState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["displayName"] = state ? state.displayName : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["pdcNetworkId"] = state ? state.pdcNetworkId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["stackIdentifier"] = state ? state.stackIdentifier : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["displayName"] = state?.displayName;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["pdcNetworkId"] = state?.pdcNetworkId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["stackIdentifier"] = state?.stackIdentifier;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as PrivateDataSourceConnectNetworkArgs | undefined;
-            if ((!args || args.region === undefined) && !opts.urn) {
+            if (args?.region === undefined && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
-            if ((!args || args.stackIdentifier === undefined) && !opts.urn) {
+            if (args?.stackIdentifier === undefined && !opts.urn) {
                 throw new Error("Missing required property 'stackIdentifier'");
             }
-            resourceInputs["displayName"] = args ? args.displayName : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["stackIdentifier"] = args ? args.stackIdentifier : undefined;
+            resourceInputs["displayName"] = args?.displayName;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["stackIdentifier"] = args?.stackIdentifier;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["pdcNetworkId"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

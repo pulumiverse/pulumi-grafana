@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen"
 
-	grafana "github.com/pulumiverse/pulumi-grafana/provider"
+	grafana "github.com/pulumiverse/pulumi-grafana/provider/v2"
 )
 
 func main() {

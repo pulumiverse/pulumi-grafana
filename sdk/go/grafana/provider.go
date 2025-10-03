@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // The provider type for the grafana package. By default, resources use package-wide configuration
@@ -18,36 +18,27 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
-	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
-	// the `GRAFANA_AUTH` environment variable.
+	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
 	Auth pulumi.StringPtrOutput `pulumi:"auth"`
-	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
-	// be set via the `GRAFANA_CA_CERT` environment variable.
+	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert pulumi.StringPtrOutput `pulumi:"caCert"`
-	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
-	// variable.
+	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
 	CloudAccessPolicyToken pulumi.StringPtrOutput `pulumi:"cloudAccessPolicyToken"`
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl pulumi.StringPtrOutput `pulumi:"cloudApiUrl"`
-	// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
-	// environment variable.
+	// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN` environment variable.
 	CloudProviderAccessToken pulumi.StringPtrOutput `pulumi:"cloudProviderAccessToken"`
-	// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
-	// variable.
+	// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment variable.
 	CloudProviderUrl pulumi.StringPtrOutput `pulumi:"cloudProviderUrl"`
-	// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
-	// environment variable.
+	// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN` environment variable.
 	ConnectionsApiAccessToken pulumi.StringPtrOutput `pulumi:"connectionsApiAccessToken"`
 	// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
 	ConnectionsApiUrl pulumi.StringPtrOutput `pulumi:"connectionsApiUrl"`
-	// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
-	// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+	// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
 	FleetManagementAuth pulumi.StringPtrOutput `pulumi:"fleetManagementAuth"`
-	// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
-	// variable.
+	// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment variable.
 	FleetManagementUrl pulumi.StringPtrOutput `pulumi:"fleetManagementUrl"`
-	// A Grafana Frontend Observability API access token. May alternatively be set via the
-	// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+	// A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 	FrontendO11yApiAccessToken pulumi.StringPtrOutput `pulumi:"frontendO11yApiAccessToken"`
 	// The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
 	K6AccessToken pulumi.StringPtrOutput `pulumi:"k6AccessToken"`
@@ -60,11 +51,9 @@ type Provider struct {
 	// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
 	SmAccessToken pulumi.StringPtrOutput `pulumi:"smAccessToken"`
 	SmUrl         pulumi.StringPtrOutput `pulumi:"smUrl"`
-	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
-	// set via the `GRAFANA_TLS_CERT` environment variable.
+	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
 	TlsCert pulumi.StringPtrOutput `pulumi:"tlsCert"`
-	// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
-	// the `GRAFANA_TLS_KEY` environment variable.
+	// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
 	TlsKey pulumi.StringPtrOutput `pulumi:"tlsKey"`
 	// The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
 	Url pulumi.StringPtrOutput `pulumi:"url"`
@@ -208,39 +197,29 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
-	// the `GRAFANA_AUTH` environment variable.
+	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
 	Auth *string `pulumi:"auth"`
-	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
-	// be set via the `GRAFANA_CA_CERT` environment variable.
+	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert *string `pulumi:"caCert"`
-	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
-	// variable.
+	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
 	CloudAccessPolicyToken *string `pulumi:"cloudAccessPolicyToken"`
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl *string `pulumi:"cloudApiUrl"`
-	// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
-	// environment variable.
+	// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN` environment variable.
 	CloudProviderAccessToken *string `pulumi:"cloudProviderAccessToken"`
-	// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
-	// variable.
+	// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment variable.
 	CloudProviderUrl *string `pulumi:"cloudProviderUrl"`
-	// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
-	// environment variable.
+	// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN` environment variable.
 	ConnectionsApiAccessToken *string `pulumi:"connectionsApiAccessToken"`
 	// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
 	ConnectionsApiUrl *string `pulumi:"connectionsApiUrl"`
-	// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
-	// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+	// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
 	FleetManagementAuth *string `pulumi:"fleetManagementAuth"`
-	// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
-	// variable.
+	// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment variable.
 	FleetManagementUrl *string `pulumi:"fleetManagementUrl"`
-	// A Grafana Frontend Observability API access token. May alternatively be set via the
-	// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+	// A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 	FrontendO11yApiAccessToken *string `pulumi:"frontendO11yApiAccessToken"`
-	// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
-	// be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+	// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
 	HttpHeaders map[string]string `pulumi:"httpHeaders"`
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 	InsecureSkipVerify *bool `pulumi:"insecureSkipVerify"`
@@ -252,31 +231,24 @@ type providerArgs struct {
 	OncallAccessToken *string `pulumi:"oncallAccessToken"`
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
 	OncallUrl *string `pulumi:"oncallUrl"`
-	// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
-	// `GRAFANA_ORG_ID` environment variable.
+	// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
 	OrgId *int `pulumi:"orgId"`
-	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
-	// `GRAFANA_RETRIES` environment variable.
+	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRIES` environment variable.
 	Retries *int `pulumi:"retries"`
-	// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
-	// and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+	// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429 and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
 	RetryStatusCodes []string `pulumi:"retryStatusCodes"`
-	// The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
-	// set via the `GRAFANA_RETRY_WAIT` environment variable.
+	// The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRY_WAIT` environment variable.
 	RetryWait *int `pulumi:"retryWait"`
 	// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
 	SmAccessToken *string `pulumi:"smAccessToken"`
 	SmUrl         *string `pulumi:"smUrl"`
-	// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID`
-	// environment variable.
+	// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID` environment variable.
 	StackId *int `pulumi:"stackId"`
 	// Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
 	StoreDashboardSha256 *bool `pulumi:"storeDashboardSha256"`
-	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
-	// set via the `GRAFANA_TLS_CERT` environment variable.
+	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
 	TlsCert *string `pulumi:"tlsCert"`
-	// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
-	// the `GRAFANA_TLS_KEY` environment variable.
+	// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
 	TlsKey *string `pulumi:"tlsKey"`
 	// The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
 	Url *string `pulumi:"url"`
@@ -284,39 +256,29 @@ type providerArgs struct {
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
-	// the `GRAFANA_AUTH` environment variable.
+	// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
 	Auth pulumi.StringPtrInput
-	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
-	// be set via the `GRAFANA_CA_CERT` environment variable.
+	// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
 	CaCert pulumi.StringPtrInput
-	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
-	// variable.
+	// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
 	CloudAccessPolicyToken pulumi.StringPtrInput
 	// Grafana Cloud's API URL. May alternatively be set via the `GRAFANA_CLOUD_API_URL` environment variable.
 	CloudApiUrl pulumi.StringPtrInput
-	// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
-	// environment variable.
+	// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN` environment variable.
 	CloudProviderAccessToken pulumi.StringPtrInput
-	// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
-	// variable.
+	// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment variable.
 	CloudProviderUrl pulumi.StringPtrInput
-	// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
-	// environment variable.
+	// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN` environment variable.
 	ConnectionsApiAccessToken pulumi.StringPtrInput
 	// A Grafana Connections API address. May alternatively be set via the `GRAFANA_CONNECTIONS_API_URL` environment variable.
 	ConnectionsApiUrl pulumi.StringPtrInput
-	// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
-	// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+	// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
 	FleetManagementAuth pulumi.StringPtrInput
-	// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
-	// variable.
+	// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment variable.
 	FleetManagementUrl pulumi.StringPtrInput
-	// A Grafana Frontend Observability API access token. May alternatively be set via the
-	// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+	// A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 	FrontendO11yApiAccessToken pulumi.StringPtrInput
-	// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
-	// be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+	// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
 	HttpHeaders pulumi.StringMapInput
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
 	InsecureSkipVerify pulumi.BoolPtrInput
@@ -328,31 +290,24 @@ type ProviderArgs struct {
 	OncallAccessToken pulumi.StringPtrInput
 	// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
 	OncallUrl pulumi.StringPtrInput
-	// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
-	// `GRAFANA_ORG_ID` environment variable.
+	// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
 	OrgId pulumi.IntPtrInput
-	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
-	// `GRAFANA_RETRIES` environment variable.
+	// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRIES` environment variable.
 	Retries pulumi.IntPtrInput
-	// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
-	// and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+	// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429 and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
 	RetryStatusCodes pulumi.StringArrayInput
-	// The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
-	// set via the `GRAFANA_RETRY_WAIT` environment variable.
+	// The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRY_WAIT` environment variable.
 	RetryWait pulumi.IntPtrInput
 	// A Synthetic Monitoring access token. May alternatively be set via the `GRAFANA_SM_ACCESS_TOKEN` environment variable.
 	SmAccessToken pulumi.StringPtrInput
 	SmUrl         pulumi.StringPtrInput
-	// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID`
-	// environment variable.
+	// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID` environment variable.
 	StackId pulumi.IntPtrInput
 	// Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate.
 	StoreDashboardSha256 pulumi.BoolPtrInput
-	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
-	// set via the `GRAFANA_TLS_CERT` environment variable.
+	// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
 	TlsCert pulumi.StringPtrInput
-	// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
-	// the `GRAFANA_TLS_KEY` environment variable.
+	// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
 	TlsKey pulumi.StringPtrInput
 	// The root URL of a Grafana server. May alternatively be set via the `GRAFANA_URL` environment variable.
 	Url pulumi.StringPtrInput
@@ -418,20 +373,17 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
-// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
-// the `GRAFANA_AUTH` environment variable.
+// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
 func (o ProviderOutput) Auth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Auth }).(pulumi.StringPtrOutput)
 }
 
-// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
-// be set via the `GRAFANA_CA_CERT` environment variable.
+// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
 func (o ProviderOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CaCert }).(pulumi.StringPtrOutput)
 }
 
-// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
-// variable.
+// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
 func (o ProviderOutput) CloudAccessPolicyToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudAccessPolicyToken }).(pulumi.StringPtrOutput)
 }
@@ -441,20 +393,17 @@ func (o ProviderOutput) CloudApiUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudApiUrl }).(pulumi.StringPtrOutput)
 }
 
-// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
-// environment variable.
+// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN` environment variable.
 func (o ProviderOutput) CloudProviderAccessToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudProviderAccessToken }).(pulumi.StringPtrOutput)
 }
 
-// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
-// variable.
+// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment variable.
 func (o ProviderOutput) CloudProviderUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CloudProviderUrl }).(pulumi.StringPtrOutput)
 }
 
-// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
-// environment variable.
+// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN` environment variable.
 func (o ProviderOutput) ConnectionsApiAccessToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ConnectionsApiAccessToken }).(pulumi.StringPtrOutput)
 }
@@ -464,20 +413,17 @@ func (o ProviderOutput) ConnectionsApiUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ConnectionsApiUrl }).(pulumi.StringPtrOutput)
 }
 
-// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
-// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
 func (o ProviderOutput) FleetManagementAuth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.FleetManagementAuth }).(pulumi.StringPtrOutput)
 }
 
-// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
-// variable.
+// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment variable.
 func (o ProviderOutput) FleetManagementUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.FleetManagementUrl }).(pulumi.StringPtrOutput)
 }
 
-// A Grafana Frontend Observability API access token. May alternatively be set via the
-// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+// A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 func (o ProviderOutput) FrontendO11yApiAccessToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.FrontendO11yApiAccessToken }).(pulumi.StringPtrOutput)
 }
@@ -511,14 +457,12 @@ func (o ProviderOutput) SmUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.SmUrl }).(pulumi.StringPtrOutput)
 }
 
-// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
-// set via the `GRAFANA_TLS_CERT` environment variable.
+// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
 func (o ProviderOutput) TlsCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.TlsCert }).(pulumi.StringPtrOutput)
 }
 
-// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
-// the `GRAFANA_TLS_KEY` environment variable.
+// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
 func (o ProviderOutput) TlsKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.TlsKey }).(pulumi.StringPtrOutput)
 }

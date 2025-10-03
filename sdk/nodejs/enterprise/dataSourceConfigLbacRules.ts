@@ -85,11 +85,11 @@ export class DataSourceConfigLbacRules extends pulumi.CustomResource {
     /**
      * The UID of the datasource.
      */
-    public readonly datasourceUid!: pulumi.Output<string>;
+    declare public readonly datasourceUid: pulumi.Output<string>;
     /**
      * JSON-encoded LBAC rules for the data source. Map of team UIDs to lists of rule strings.
      */
-    public readonly rules!: pulumi.Output<string>;
+    declare public readonly rules: pulumi.Output<string>;
 
     /**
      * Create a DataSourceConfigLbacRules resource with the given unique name, arguments, and options.
@@ -104,18 +104,18 @@ export class DataSourceConfigLbacRules extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DataSourceConfigLbacRulesState | undefined;
-            resourceInputs["datasourceUid"] = state ? state.datasourceUid : undefined;
-            resourceInputs["rules"] = state ? state.rules : undefined;
+            resourceInputs["datasourceUid"] = state?.datasourceUid;
+            resourceInputs["rules"] = state?.rules;
         } else {
             const args = argsOrState as DataSourceConfigLbacRulesArgs | undefined;
-            if ((!args || args.datasourceUid === undefined) && !opts.urn) {
+            if (args?.datasourceUid === undefined && !opts.urn) {
                 throw new Error("Missing required property 'datasourceUid'");
             }
-            if ((!args || args.rules === undefined) && !opts.urn) {
+            if (args?.rules === undefined && !opts.urn) {
                 throw new Error("Missing required property 'rules'");
             }
-            resourceInputs["datasourceUid"] = args ? args.datasourceUid : undefined;
-            resourceInputs["rules"] = args ? args.rules : undefined;
+            resourceInputs["datasourceUid"] = args?.datasourceUid;
+            resourceInputs["rules"] = args?.rules;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DataSourceConfigLbacRules.__pulumiType, name, resourceInputs, opts);

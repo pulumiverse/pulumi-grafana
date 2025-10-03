@@ -58,23 +58,23 @@ export class OrganizationPreferences extends pulumi.CustomResource {
     /**
      * The Organization home dashboard UID. This is only available in Grafana 9.0+.
      */
-    public readonly homeDashboardUid!: pulumi.Output<string | undefined>;
+    declare public readonly homeDashboardUid: pulumi.Output<string | undefined>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
      */
-    public readonly theme!: pulumi.Output<string | undefined>;
+    declare public readonly theme: pulumi.Output<string | undefined>;
     /**
      * The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
      */
-    public readonly timezone!: pulumi.Output<string | undefined>;
+    declare public readonly timezone: pulumi.Output<string | undefined>;
     /**
      * The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
      */
-    public readonly weekStart!: pulumi.Output<string | undefined>;
+    declare public readonly weekStart: pulumi.Output<string | undefined>;
 
     /**
      * Create a OrganizationPreferences resource with the given unique name, arguments, and options.
@@ -89,18 +89,18 @@ export class OrganizationPreferences extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OrganizationPreferencesState | undefined;
-            resourceInputs["homeDashboardUid"] = state ? state.homeDashboardUid : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["theme"] = state ? state.theme : undefined;
-            resourceInputs["timezone"] = state ? state.timezone : undefined;
-            resourceInputs["weekStart"] = state ? state.weekStart : undefined;
+            resourceInputs["homeDashboardUid"] = state?.homeDashboardUid;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["theme"] = state?.theme;
+            resourceInputs["timezone"] = state?.timezone;
+            resourceInputs["weekStart"] = state?.weekStart;
         } else {
             const args = argsOrState as OrganizationPreferencesArgs | undefined;
-            resourceInputs["homeDashboardUid"] = args ? args.homeDashboardUid : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["theme"] = args ? args.theme : undefined;
-            resourceInputs["timezone"] = args ? args.timezone : undefined;
-            resourceInputs["weekStart"] = args ? args.weekStart : undefined;
+            resourceInputs["homeDashboardUid"] = args?.homeDashboardUid;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["theme"] = args?.theme;
+            resourceInputs["timezone"] = args?.timezone;
+            resourceInputs["weekStart"] = args?.weekStart;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/organizationPreferences:OrganizationPreferences" }] };

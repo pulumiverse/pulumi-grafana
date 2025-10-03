@@ -103,43 +103,43 @@ export class Alert extends pulumi.CustomResource {
     /**
      * Annotations to add to the alert generated in Grafana.
      */
-    public readonly annotations!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly annotations: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The condition for when to consider a point as anomalous.
      */
-    public readonly anomalyCondition!: pulumi.Output<string | undefined>;
+    declare public readonly anomalyCondition: pulumi.Output<string | undefined>;
     /**
      * How long values must be anomalous before firing an alert.
      */
-    public readonly for!: pulumi.Output<string>;
+    declare public readonly for: pulumi.Output<string>;
     /**
      * The forecast this alert belongs to.
      */
-    public readonly jobId!: pulumi.Output<string | undefined>;
+    declare public readonly jobId: pulumi.Output<string | undefined>;
     /**
      * Labels to add to the alert generated in Grafana.
      */
-    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * How the alert should be processed when no data is returned by the underlying series
      */
-    public readonly noDataState!: pulumi.Output<string | undefined>;
+    declare public readonly noDataState: pulumi.Output<string | undefined>;
     /**
      * The forecast this alert belongs to.
      */
-    public readonly outlierId!: pulumi.Output<string | undefined>;
+    declare public readonly outlierId: pulumi.Output<string | undefined>;
     /**
      * The threshold of points over the window that need to be anomalous to alert.
      */
-    public readonly threshold!: pulumi.Output<string | undefined>;
+    declare public readonly threshold: pulumi.Output<string | undefined>;
     /**
      * The title of the alert.
      */
-    public readonly title!: pulumi.Output<string>;
+    declare public readonly title: pulumi.Output<string>;
     /**
      * How much time to average values over
      */
-    public readonly window!: pulumi.Output<string>;
+    declare public readonly window: pulumi.Output<string>;
 
     /**
      * Create a Alert resource with the given unique name, arguments, and options.
@@ -154,31 +154,31 @@ export class Alert extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AlertState | undefined;
-            resourceInputs["annotations"] = state ? state.annotations : undefined;
-            resourceInputs["anomalyCondition"] = state ? state.anomalyCondition : undefined;
-            resourceInputs["for"] = state ? state.for : undefined;
-            resourceInputs["jobId"] = state ? state.jobId : undefined;
-            resourceInputs["labels"] = state ? state.labels : undefined;
-            resourceInputs["noDataState"] = state ? state.noDataState : undefined;
-            resourceInputs["outlierId"] = state ? state.outlierId : undefined;
-            resourceInputs["threshold"] = state ? state.threshold : undefined;
-            resourceInputs["title"] = state ? state.title : undefined;
-            resourceInputs["window"] = state ? state.window : undefined;
+            resourceInputs["annotations"] = state?.annotations;
+            resourceInputs["anomalyCondition"] = state?.anomalyCondition;
+            resourceInputs["for"] = state?.for;
+            resourceInputs["jobId"] = state?.jobId;
+            resourceInputs["labels"] = state?.labels;
+            resourceInputs["noDataState"] = state?.noDataState;
+            resourceInputs["outlierId"] = state?.outlierId;
+            resourceInputs["threshold"] = state?.threshold;
+            resourceInputs["title"] = state?.title;
+            resourceInputs["window"] = state?.window;
         } else {
             const args = argsOrState as AlertArgs | undefined;
-            if ((!args || args.title === undefined) && !opts.urn) {
+            if (args?.title === undefined && !opts.urn) {
                 throw new Error("Missing required property 'title'");
             }
-            resourceInputs["annotations"] = args ? args.annotations : undefined;
-            resourceInputs["anomalyCondition"] = args ? args.anomalyCondition : undefined;
-            resourceInputs["for"] = args ? args.for : undefined;
-            resourceInputs["jobId"] = args ? args.jobId : undefined;
-            resourceInputs["labels"] = args ? args.labels : undefined;
-            resourceInputs["noDataState"] = args ? args.noDataState : undefined;
-            resourceInputs["outlierId"] = args ? args.outlierId : undefined;
-            resourceInputs["threshold"] = args ? args.threshold : undefined;
-            resourceInputs["title"] = args ? args.title : undefined;
-            resourceInputs["window"] = args ? args.window : undefined;
+            resourceInputs["annotations"] = args?.annotations;
+            resourceInputs["anomalyCondition"] = args?.anomalyCondition;
+            resourceInputs["for"] = args?.for;
+            resourceInputs["jobId"] = args?.jobId;
+            resourceInputs["labels"] = args?.labels;
+            resourceInputs["noDataState"] = args?.noDataState;
+            resourceInputs["outlierId"] = args?.outlierId;
+            resourceInputs["threshold"] = args?.threshold;
+            resourceInputs["title"] = args?.title;
+            resourceInputs["window"] = args?.window;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Alert.__pulumiType, name, resourceInputs, opts);

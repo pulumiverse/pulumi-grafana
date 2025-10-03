@@ -942,6 +942,10 @@ export namespace alerting {
 
     export interface NotificationPolicyPolicy {
         /**
+         * A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+         */
+        activeTimings?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
          * The contact point to route notifications that match this rule to.
          */
         contactPoint?: pulumi.Input<string>;
@@ -966,7 +970,7 @@ export namespace alerting {
          */
         matchers?: pulumi.Input<pulumi.Input<inputs.alerting.NotificationPolicyPolicyMatcher>[]>;
         /**
-         * A list of mute timing names to apply to alerts that match this policy.
+         * A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
          */
         muteTimings?: pulumi.Input<pulumi.Input<string>[]>;
         /**
@@ -996,6 +1000,10 @@ export namespace alerting {
 
     export interface NotificationPolicyPolicyPolicy {
         /**
+         * A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+         */
+        activeTimings?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
          * The contact point to route notifications that match this rule to.
          */
         contactPoint?: pulumi.Input<string>;
@@ -1020,7 +1028,7 @@ export namespace alerting {
          */
         matchers?: pulumi.Input<pulumi.Input<inputs.alerting.NotificationPolicyPolicyPolicyMatcher>[]>;
         /**
-         * A list of mute timing names to apply to alerts that match this policy.
+         * A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
          */
         muteTimings?: pulumi.Input<pulumi.Input<string>[]>;
         /**
@@ -1050,6 +1058,10 @@ export namespace alerting {
 
     export interface NotificationPolicyPolicyPolicyPolicy {
         /**
+         * A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+         */
+        activeTimings?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
          * The contact point to route notifications that match this rule to.
          */
         contactPoint?: pulumi.Input<string>;
@@ -1074,7 +1086,7 @@ export namespace alerting {
          */
         matchers?: pulumi.Input<pulumi.Input<inputs.alerting.NotificationPolicyPolicyPolicyPolicyMatcher>[]>;
         /**
-         * A list of mute timing names to apply to alerts that match this policy.
+         * A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
          */
         muteTimings?: pulumi.Input<pulumi.Input<string>[]>;
         /**
@@ -1104,6 +1116,10 @@ export namespace alerting {
 
     export interface NotificationPolicyPolicyPolicyPolicyPolicy {
         /**
+         * A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+         */
+        activeTimings?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
          * The contact point to route notifications that match this rule to.
          */
         contactPoint?: pulumi.Input<string>;
@@ -1128,7 +1144,7 @@ export namespace alerting {
          */
         matchers?: pulumi.Input<pulumi.Input<inputs.alerting.NotificationPolicyPolicyPolicyPolicyPolicyMatcher>[]>;
         /**
-         * A list of mute timing names to apply to alerts that match this policy.
+         * A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
          */
         muteTimings?: pulumi.Input<pulumi.Input<string>[]>;
         /**

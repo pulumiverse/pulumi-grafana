@@ -61,27 +61,27 @@ export class LoadTest extends pulumi.CustomResource {
     /**
      * Identifier of a baseline test run used for results comparison.
      */
-    public readonly baselineTestRunId!: pulumi.Output<string | undefined>;
+    declare public readonly baselineTestRunId: pulumi.Output<string | undefined>;
     /**
      * The date when the load test was created.
      */
-    public /*out*/ readonly created!: pulumi.Output<string>;
+    declare public /*out*/ readonly created: pulumi.Output<string>;
     /**
      * Human-friendly identifier of the load test.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The identifier of the project this load test belongs to.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The k6 test script content. Can be provided inline or via the `file()` function.
      */
-    public readonly script!: pulumi.Output<string>;
+    declare public readonly script: pulumi.Output<string>;
     /**
      * The date when the load test was last updated.
      */
-    public /*out*/ readonly updated!: pulumi.Output<string>;
+    declare public /*out*/ readonly updated: pulumi.Output<string>;
 
     /**
      * Create a LoadTest resource with the given unique name, arguments, and options.
@@ -96,24 +96,24 @@ export class LoadTest extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LoadTestState | undefined;
-            resourceInputs["baselineTestRunId"] = state ? state.baselineTestRunId : undefined;
-            resourceInputs["created"] = state ? state.created : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["script"] = state ? state.script : undefined;
-            resourceInputs["updated"] = state ? state.updated : undefined;
+            resourceInputs["baselineTestRunId"] = state?.baselineTestRunId;
+            resourceInputs["created"] = state?.created;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["script"] = state?.script;
+            resourceInputs["updated"] = state?.updated;
         } else {
             const args = argsOrState as LoadTestArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.script === undefined) && !opts.urn) {
+            if (args?.script === undefined && !opts.urn) {
                 throw new Error("Missing required property 'script'");
             }
-            resourceInputs["baselineTestRunId"] = args ? args.baselineTestRunId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["script"] = args ? args.script : undefined;
+            resourceInputs["baselineTestRunId"] = args?.baselineTestRunId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["script"] = args?.script;
             resourceInputs["created"] = undefined /*out*/;
             resourceInputs["updated"] = undefined /*out*/;
         }

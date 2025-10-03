@@ -103,23 +103,23 @@ export class UserNotificationRule extends pulumi.CustomResource {
     /**
      * A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
      */
-    public readonly duration!: pulumi.Output<number | undefined>;
+    declare public readonly duration: pulumi.Output<number | undefined>;
     /**
      * Boolean value which indicates if a rule is “important”
      */
-    public readonly important!: pulumi.Output<boolean>;
+    declare public readonly important: pulumi.Output<boolean>;
     /**
      * Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
      */
-    public readonly position!: pulumi.Output<number | undefined>;
+    declare public readonly position: pulumi.Output<number | undefined>;
     /**
      * The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notifyByMsteams` is only available for Grafana Cloud customers.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * User ID
      */
-    public readonly userId!: pulumi.Output<string>;
+    declare public readonly userId: pulumi.Output<string>;
 
     /**
      * Create a UserNotificationRule resource with the given unique name, arguments, and options.
@@ -134,24 +134,24 @@ export class UserNotificationRule extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserNotificationRuleState | undefined;
-            resourceInputs["duration"] = state ? state.duration : undefined;
-            resourceInputs["important"] = state ? state.important : undefined;
-            resourceInputs["position"] = state ? state.position : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["duration"] = state?.duration;
+            resourceInputs["important"] = state?.important;
+            resourceInputs["position"] = state?.position;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as UserNotificationRuleArgs | undefined;
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            if ((!args || args.userId === undefined) && !opts.urn) {
+            if (args?.userId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userId'");
             }
-            resourceInputs["duration"] = args ? args.duration : undefined;
-            resourceInputs["important"] = args ? args.important : undefined;
-            resourceInputs["position"] = args ? args.position : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["userId"] = args ? args.userId : undefined;
+            resourceInputs["duration"] = args?.duration;
+            resourceInputs["important"] = args?.important;
+            resourceInputs["position"] = args?.position;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["userId"] = args?.userId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UserNotificationRule.__pulumiType, name, resourceInputs, opts);

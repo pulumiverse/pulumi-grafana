@@ -62,6 +62,25 @@ namespace Pulumiverse.Grafana.Alerting
     ///         },
     ///     });
     /// 
+    ///     var workingHours = new Grafana.Alerting.MuteTiming("working_hours", new()
+    ///     {
+    ///         Name = "Working Hours",
+    ///         Intervals = new[]
+    ///         {
+    ///             new Grafana.Alerting.Inputs.MuteTimingIntervalArgs
+    ///             {
+    ///                 Times = new[]
+    ///                 {
+    ///                     new Grafana.Alerting.Inputs.MuteTimingIntervalTimeArgs
+    ///                     {
+    ///                         Start = "09:00",
+    ///                         End = "18:00",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
     ///     var myNotificationPolicy = new Grafana.Alerting.NotificationPolicy("my_notification_policy", new()
     ///     {
     ///         GroupBies = new[]
@@ -102,6 +121,10 @@ namespace Pulumiverse.Grafana.Alerting
     ///                 MuteTimings = new[]
     ///                 {
     ///                     aMuteTiming.Name,
+    ///                 },
+    ///                 ActiveTimings = new[]
+    ///                 {
+    ///                     workingHours.Name,
     ///                 },
     ///                 GroupWait = "45s",
     ///                 GroupInterval = "6m",

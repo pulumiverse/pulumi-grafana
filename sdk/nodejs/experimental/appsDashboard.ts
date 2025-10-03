@@ -43,15 +43,15 @@ export class AppsDashboard extends pulumi.CustomResource {
     /**
      * The metadata of the resource.
      */
-    public readonly metadata!: pulumi.Output<outputs.experimental.AppsDashboardMetadata | undefined>;
+    declare public readonly metadata: pulumi.Output<outputs.experimental.AppsDashboardMetadata | undefined>;
     /**
      * Options for applying the resource.
      */
-    public readonly options!: pulumi.Output<outputs.experimental.AppsDashboardOptions | undefined>;
+    declare public readonly options: pulumi.Output<outputs.experimental.AppsDashboardOptions | undefined>;
     /**
      * The spec of the resource.
      */
-    public readonly spec!: pulumi.Output<outputs.experimental.AppsDashboardSpec | undefined>;
+    declare public readonly spec: pulumi.Output<outputs.experimental.AppsDashboardSpec | undefined>;
 
     /**
      * Create a AppsDashboard resource with the given unique name, arguments, and options.
@@ -66,14 +66,14 @@ export class AppsDashboard extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AppsDashboardState | undefined;
-            resourceInputs["metadata"] = state ? state.metadata : undefined;
-            resourceInputs["options"] = state ? state.options : undefined;
-            resourceInputs["spec"] = state ? state.spec : undefined;
+            resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["options"] = state?.options;
+            resourceInputs["spec"] = state?.spec;
         } else {
             const args = argsOrState as AppsDashboardArgs | undefined;
-            resourceInputs["metadata"] = args ? args.metadata : undefined;
-            resourceInputs["options"] = args ? args.options : undefined;
-            resourceInputs["spec"] = args ? args.spec : undefined;
+            resourceInputs["metadata"] = args?.metadata;
+            resourceInputs["options"] = args?.options;
+            resourceInputs["spec"] = args?.spec;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AppsDashboard.__pulumiType, name, resourceInputs, opts);

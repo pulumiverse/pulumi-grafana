@@ -85,32 +85,32 @@ export class AccessPolicyToken extends pulumi.CustomResource {
     /**
      * ID of the access policy for which to create a token.
      */
-    public readonly accessPolicyId!: pulumi.Output<string>;
+    declare public readonly accessPolicyId: pulumi.Output<string>;
     /**
      * Creation date of the access policy token.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Display name of the access policy token. Defaults to the name.
      */
-    public readonly displayName!: pulumi.Output<string | undefined>;
+    declare public readonly displayName: pulumi.Output<string | undefined>;
     /**
      * Expiration date of the access policy token. Does not expire by default.
      */
-    public readonly expiresAt!: pulumi.Output<string | undefined>;
+    declare public readonly expiresAt: pulumi.Output<string | undefined>;
     /**
      * Name of the access policy token.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
-    public readonly region!: pulumi.Output<string>;
-    public /*out*/ readonly token!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string>;
+    declare public /*out*/ readonly token: pulumi.Output<string>;
     /**
      * Last update date of the access policy token.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a AccessPolicyToken resource with the given unique name, arguments, and options.
@@ -125,27 +125,27 @@ export class AccessPolicyToken extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AccessPolicyTokenState | undefined;
-            resourceInputs["accessPolicyId"] = state ? state.accessPolicyId : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["displayName"] = state ? state.displayName : undefined;
-            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["token"] = state ? state.token : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["accessPolicyId"] = state?.accessPolicyId;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["displayName"] = state?.displayName;
+            resourceInputs["expiresAt"] = state?.expiresAt;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["token"] = state?.token;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as AccessPolicyTokenArgs | undefined;
-            if ((!args || args.accessPolicyId === undefined) && !opts.urn) {
+            if (args?.accessPolicyId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'accessPolicyId'");
             }
-            if ((!args || args.region === undefined) && !opts.urn) {
+            if (args?.region === undefined && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
-            resourceInputs["accessPolicyId"] = args ? args.accessPolicyId : undefined;
-            resourceInputs["displayName"] = args ? args.displayName : undefined;
-            resourceInputs["expiresAt"] = args ? args.expiresAt : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["accessPolicyId"] = args?.accessPolicyId;
+            resourceInputs["displayName"] = args?.displayName;
+            resourceInputs["expiresAt"] = args?.expiresAt;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["region"] = args?.region;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["token"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

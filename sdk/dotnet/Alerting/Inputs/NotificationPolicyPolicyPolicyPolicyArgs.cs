@@ -13,6 +13,18 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
 
     public sealed class NotificationPolicyPolicyPolicyPolicyArgs : global::Pulumi.ResourceArgs
     {
+        [Input("activeTimings")]
+        private InputList<string>? _activeTimings;
+
+        /// <summary>
+        /// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+        /// </summary>
+        public InputList<string> ActiveTimings
+        {
+            get => _activeTimings ?? (_activeTimings = new InputList<string>());
+            set => _activeTimings = value;
+        }
+
         /// <summary>
         /// The contact point to route notifications that match this rule to.
         /// </summary>
@@ -65,7 +77,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         private InputList<string>? _muteTimings;
 
         /// <summary>
-        /// A list of mute timing names to apply to alerts that match this policy.
+        /// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
         /// </summary>
         public InputList<string> MuteTimings
         {

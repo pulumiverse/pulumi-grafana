@@ -20,22 +20,19 @@ namespace Pulumiverse.Grafana
     public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
-        /// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
-        /// the `GRAFANA_AUTH` environment variable.
+        /// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
         /// </summary>
         [Output("auth")]
         public Output<string?> Auth { get; private set; } = null!;
 
         /// <summary>
-        /// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
-        /// be set via the `GRAFANA_CA_CERT` environment variable.
+        /// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
         /// </summary>
         [Output("caCert")]
         public Output<string?> CaCert { get; private set; } = null!;
 
         /// <summary>
-        /// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
-        /// variable.
+        /// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
         /// </summary>
         [Output("cloudAccessPolicyToken")]
         public Output<string?> CloudAccessPolicyToken { get; private set; } = null!;
@@ -47,22 +44,19 @@ namespace Pulumiverse.Grafana
         public Output<string?> CloudApiUrl { get; private set; } = null!;
 
         /// <summary>
-        /// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
-        /// environment variable.
+        /// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN` environment variable.
         /// </summary>
         [Output("cloudProviderAccessToken")]
         public Output<string?> CloudProviderAccessToken { get; private set; } = null!;
 
         /// <summary>
-        /// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
-        /// variable.
+        /// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment variable.
         /// </summary>
         [Output("cloudProviderUrl")]
         public Output<string?> CloudProviderUrl { get; private set; } = null!;
 
         /// <summary>
-        /// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
-        /// environment variable.
+        /// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN` environment variable.
         /// </summary>
         [Output("connectionsApiAccessToken")]
         public Output<string?> ConnectionsApiAccessToken { get; private set; } = null!;
@@ -74,22 +68,19 @@ namespace Pulumiverse.Grafana
         public Output<string?> ConnectionsApiUrl { get; private set; } = null!;
 
         /// <summary>
-        /// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
-        /// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+        /// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
         /// </summary>
         [Output("fleetManagementAuth")]
         public Output<string?> FleetManagementAuth { get; private set; } = null!;
 
         /// <summary>
-        /// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
-        /// variable.
+        /// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment variable.
         /// </summary>
         [Output("fleetManagementUrl")]
         public Output<string?> FleetManagementUrl { get; private set; } = null!;
 
         /// <summary>
-        /// A Grafana Frontend Observability API access token. May alternatively be set via the
-        /// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+        /// A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
         /// </summary>
         [Output("frontendO11yApiAccessToken")]
         public Output<string?> FrontendO11yApiAccessToken { get; private set; } = null!;
@@ -128,15 +119,13 @@ namespace Pulumiverse.Grafana
         public Output<string?> SmUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
-        /// set via the `GRAFANA_TLS_CERT` environment variable.
+        /// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
         /// </summary>
         [Output("tlsCert")]
         public Output<string?> TlsCert { get; private set; } = null!;
 
         /// <summary>
-        /// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
-        /// the `GRAFANA_TLS_KEY` environment variable.
+        /// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
         /// </summary>
         [Output("tlsKey")]
         public Output<string?> TlsKey { get; private set; } = null!;
@@ -199,8 +188,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _auth;
 
         /// <summary>
-        /// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via
-        /// the `GRAFANA_AUTH` environment variable.
+        /// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
         /// </summary>
         public Input<string>? Auth
         {
@@ -213,8 +201,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively
-        /// be set via the `GRAFANA_CA_CERT` environment variable.
+        /// Certificate CA bundle (file path or literal value) to use to verify the Grafana server's certificate. May alternatively be set via the `GRAFANA_CA_CERT` environment variable.
         /// </summary>
         [Input("caCert")]
         public Input<string>? CaCert { get; set; }
@@ -223,8 +210,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _cloudAccessPolicyToken;
 
         /// <summary>
-        /// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment
-        /// variable.
+        /// Access Policy Token for Grafana Cloud. May alternatively be set via the `GRAFANA_CLOUD_ACCESS_POLICY_TOKEN` environment variable.
         /// </summary>
         public Input<string>? CloudAccessPolicyToken
         {
@@ -246,8 +232,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _cloudProviderAccessToken;
 
         /// <summary>
-        /// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN`
-        /// environment variable.
+        /// A Grafana Cloud Provider access token. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_ACCESS_TOKEN` environment variable.
         /// </summary>
         public Input<string>? CloudProviderAccessToken
         {
@@ -260,8 +245,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment
-        /// variable.
+        /// A Grafana Cloud Provider backend address. May alternatively be set via the `GRAFANA_CLOUD_PROVIDER_URL` environment variable.
         /// </summary>
         [Input("cloudProviderUrl")]
         public Input<string>? CloudProviderUrl { get; set; }
@@ -270,8 +254,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _connectionsApiAccessToken;
 
         /// <summary>
-        /// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN`
-        /// environment variable.
+        /// A Grafana Connections API access token. May alternatively be set via the `GRAFANA_CONNECTIONS_API_ACCESS_TOKEN` environment variable.
         /// </summary>
         public Input<string>? ConnectionsApiAccessToken
         {
@@ -293,8 +276,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _fleetManagementAuth;
 
         /// <summary>
-        /// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the
-        /// `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
+        /// A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
         /// </summary>
         public Input<string>? FleetManagementAuth
         {
@@ -307,8 +289,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment
-        /// variable.
+        /// A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment variable.
         /// </summary>
         [Input("fleetManagementUrl")]
         public Input<string>? FleetManagementUrl { get; set; }
@@ -317,8 +298,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _frontendO11yApiAccessToken;
 
         /// <summary>
-        /// A Grafana Frontend Observability API access token. May alternatively be set via the
-        /// `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+        /// A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
         /// </summary>
         public Input<string>? FrontendO11yApiAccessToken
         {
@@ -334,8 +314,7 @@ namespace Pulumiverse.Grafana
         private InputMap<string>? _httpHeaders;
 
         /// <summary>
-        /// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively
-        /// be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
+        /// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
         /// </summary>
         public InputMap<string> HttpHeaders
         {
@@ -398,15 +377,13 @@ namespace Pulumiverse.Grafana
         public Input<string>? OncallUrl { get; set; }
 
         /// <summary>
-        /// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the
-        /// `GRAFANA_ORG_ID` environment variable.
+        /// The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
         /// </summary>
         [Input("orgId", json: true)]
         public Input<int>? OrgId { get; set; }
 
         /// <summary>
-        /// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the
-        /// `GRAFANA_RETRIES` environment variable.
+        /// The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRIES` environment variable.
         /// </summary>
         [Input("retries", json: true)]
         public Input<int>? Retries { get; set; }
@@ -415,8 +392,7 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _retryStatusCodes;
 
         /// <summary>
-        /// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429
-        /// and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+        /// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429 and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
         /// </summary>
         public InputList<string> RetryStatusCodes
         {
@@ -425,8 +401,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be
-        /// set via the `GRAFANA_RETRY_WAIT` environment variable.
+        /// The amount of time in seconds to wait between retries for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRY_WAIT` environment variable.
         /// </summary>
         [Input("retryWait", json: true)]
         public Input<int>? RetryWait { get; set; }
@@ -451,8 +426,7 @@ namespace Pulumiverse.Grafana
         public Input<string>? SmUrl { get; set; }
 
         /// <summary>
-        /// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID`
-        /// environment variable.
+        /// The Grafana stack ID, if you are using a Grafana Cloud stack. May alternatively be set via the `GRAFANA_STACK_ID` environment variable.
         /// </summary>
         [Input("stackId", json: true)]
         public Input<int>? StackId { get; set; }
@@ -464,8 +438,7 @@ namespace Pulumiverse.Grafana
         public Input<bool>? StoreDashboardSha256 { get; set; }
 
         /// <summary>
-        /// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be
-        /// set via the `GRAFANA_TLS_CERT` environment variable.
+        /// Client TLS certificate (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_CERT` environment variable.
         /// </summary>
         [Input("tlsCert")]
         public Input<string>? TlsCert { get; set; }
@@ -474,8 +447,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _tlsKey;
 
         /// <summary>
-        /// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via
-        /// the `GRAFANA_TLS_KEY` environment variable.
+        /// Client TLS key (file path or literal value) to use to authenticate to the Grafana server. May alternatively be set via the `GRAFANA_TLS_KEY` environment variable.
         /// </summary>
         public Input<string>? TlsKey
         {

@@ -144,27 +144,27 @@ export class RuleGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === RuleGroup.__pulumiType;
     }
 
-    public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableProvenance: pulumi.Output<boolean | undefined>;
     /**
      * The UID of the folder that the group belongs to.
      */
-    public readonly folderUid!: pulumi.Output<string>;
+    declare public readonly folderUid: pulumi.Output<string>;
     /**
      * The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
      */
-    public readonly intervalSeconds!: pulumi.Output<number>;
+    declare public readonly intervalSeconds: pulumi.Output<number>;
     /**
      * The name of the rule group.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * The rules within the group.
      */
-    public readonly rules!: pulumi.Output<outputs.alerting.RuleGroupRule[]>;
+    declare public readonly rules: pulumi.Output<outputs.alerting.RuleGroupRule[]>;
 
     /**
      * Create a RuleGroup resource with the given unique name, arguments, and options.
@@ -179,29 +179,29 @@ export class RuleGroup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RuleGroupState | undefined;
-            resourceInputs["disableProvenance"] = state ? state.disableProvenance : undefined;
-            resourceInputs["folderUid"] = state ? state.folderUid : undefined;
-            resourceInputs["intervalSeconds"] = state ? state.intervalSeconds : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["rules"] = state ? state.rules : undefined;
+            resourceInputs["disableProvenance"] = state?.disableProvenance;
+            resourceInputs["folderUid"] = state?.folderUid;
+            resourceInputs["intervalSeconds"] = state?.intervalSeconds;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["rules"] = state?.rules;
         } else {
             const args = argsOrState as RuleGroupArgs | undefined;
-            if ((!args || args.folderUid === undefined) && !opts.urn) {
+            if (args?.folderUid === undefined && !opts.urn) {
                 throw new Error("Missing required property 'folderUid'");
             }
-            if ((!args || args.intervalSeconds === undefined) && !opts.urn) {
+            if (args?.intervalSeconds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'intervalSeconds'");
             }
-            if ((!args || args.rules === undefined) && !opts.urn) {
+            if (args?.rules === undefined && !opts.urn) {
                 throw new Error("Missing required property 'rules'");
             }
-            resourceInputs["disableProvenance"] = args ? args.disableProvenance : undefined;
-            resourceInputs["folderUid"] = args ? args.folderUid : undefined;
-            resourceInputs["intervalSeconds"] = args ? args.intervalSeconds : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["rules"] = args ? args.rules : undefined;
+            resourceInputs["disableProvenance"] = args?.disableProvenance;
+            resourceInputs["folderUid"] = args?.folderUid;
+            resourceInputs["intervalSeconds"] = args?.intervalSeconds;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["rules"] = args?.rules;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/ruleGroup:RuleGroup" }] };

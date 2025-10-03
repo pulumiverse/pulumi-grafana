@@ -46,39 +46,39 @@ export class Schedule extends pulumi.CustomResource {
     /**
      * Enable overrides via web UI (it will ignore ical*url*overrides).
      */
-    public readonly enableWebOverrides!: pulumi.Output<boolean | undefined>;
+    declare public readonly enableWebOverrides: pulumi.Output<boolean | undefined>;
     /**
      * The URL of external iCal calendar which override primary events.
      */
-    public readonly icalUrlOverrides!: pulumi.Output<string | undefined>;
+    declare public readonly icalUrlOverrides: pulumi.Output<string | undefined>;
     /**
      * The URL of the external calendar iCal file.
      */
-    public readonly icalUrlPrimary!: pulumi.Output<string | undefined>;
+    declare public readonly icalUrlPrimary: pulumi.Output<string | undefined>;
     /**
      * The schedule's name.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The list of ID's of on-call shifts.
      */
-    public readonly shifts!: pulumi.Output<string[] | undefined>;
+    declare public readonly shifts: pulumi.Output<string[] | undefined>;
     /**
      * The Slack-specific settings for a schedule.
      */
-    public readonly slack!: pulumi.Output<outputs.onCall.ScheduleSlack | undefined>;
+    declare public readonly slack: pulumi.Output<outputs.onCall.ScheduleSlack | undefined>;
     /**
      * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
-    public readonly teamId!: pulumi.Output<string | undefined>;
+    declare public readonly teamId: pulumi.Output<string | undefined>;
     /**
      * The schedule's time zone.
      */
-    public readonly timeZone!: pulumi.Output<string | undefined>;
+    declare public readonly timeZone: pulumi.Output<string | undefined>;
     /**
      * The schedule's type. Valid values are `ical`, `calendar`, `web`.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a Schedule resource with the given unique name, arguments, and options.
@@ -93,29 +93,29 @@ export class Schedule extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ScheduleState | undefined;
-            resourceInputs["enableWebOverrides"] = state ? state.enableWebOverrides : undefined;
-            resourceInputs["icalUrlOverrides"] = state ? state.icalUrlOverrides : undefined;
-            resourceInputs["icalUrlPrimary"] = state ? state.icalUrlPrimary : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["shifts"] = state ? state.shifts : undefined;
-            resourceInputs["slack"] = state ? state.slack : undefined;
-            resourceInputs["teamId"] = state ? state.teamId : undefined;
-            resourceInputs["timeZone"] = state ? state.timeZone : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["enableWebOverrides"] = state?.enableWebOverrides;
+            resourceInputs["icalUrlOverrides"] = state?.icalUrlOverrides;
+            resourceInputs["icalUrlPrimary"] = state?.icalUrlPrimary;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["shifts"] = state?.shifts;
+            resourceInputs["slack"] = state?.slack;
+            resourceInputs["teamId"] = state?.teamId;
+            resourceInputs["timeZone"] = state?.timeZone;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as ScheduleArgs | undefined;
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["enableWebOverrides"] = args ? args.enableWebOverrides : undefined;
-            resourceInputs["icalUrlOverrides"] = args ? args.icalUrlOverrides : undefined;
-            resourceInputs["icalUrlPrimary"] = args ? args.icalUrlPrimary : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["shifts"] = args ? args.shifts : undefined;
-            resourceInputs["slack"] = args ? args.slack : undefined;
-            resourceInputs["teamId"] = args ? args.teamId : undefined;
-            resourceInputs["timeZone"] = args ? args.timeZone : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["enableWebOverrides"] = args?.enableWebOverrides;
+            resourceInputs["icalUrlOverrides"] = args?.icalUrlOverrides;
+            resourceInputs["icalUrlPrimary"] = args?.icalUrlPrimary;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["shifts"] = args?.shifts;
+            resourceInputs["slack"] = args?.slack;
+            resourceInputs["teamId"] = args?.teamId;
+            resourceInputs["timeZone"] = args?.timeZone;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Schedule.__pulumiType, name, resourceInputs, opts);

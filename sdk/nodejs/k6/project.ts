@@ -53,23 +53,23 @@ export class Project extends pulumi.CustomResource {
     /**
      * The date when the project was created.
      */
-    public /*out*/ readonly created!: pulumi.Output<string>;
+    declare public /*out*/ readonly created: pulumi.Output<string>;
     /**
      * The Grafana folder uid.
      */
-    public /*out*/ readonly grafanaFolderUid!: pulumi.Output<string>;
+    declare public /*out*/ readonly grafanaFolderUid: pulumi.Output<string>;
     /**
      * Use this project as default for running tests when no explicit project identifier is provided.
      */
-    public /*out*/ readonly isDefault!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly isDefault: pulumi.Output<boolean>;
     /**
      * Human-friendly identifier of the project.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The date when the project was last updated.
      */
-    public /*out*/ readonly updated!: pulumi.Output<string>;
+    declare public /*out*/ readonly updated: pulumi.Output<string>;
 
     /**
      * Create a Project resource with the given unique name, arguments, and options.
@@ -84,14 +84,14 @@ export class Project extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProjectState | undefined;
-            resourceInputs["created"] = state ? state.created : undefined;
-            resourceInputs["grafanaFolderUid"] = state ? state.grafanaFolderUid : undefined;
-            resourceInputs["isDefault"] = state ? state.isDefault : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["updated"] = state ? state.updated : undefined;
+            resourceInputs["created"] = state?.created;
+            resourceInputs["grafanaFolderUid"] = state?.grafanaFolderUid;
+            resourceInputs["isDefault"] = state?.isDefault;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["updated"] = state?.updated;
         } else {
             const args = argsOrState as ProjectArgs | undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["name"] = args?.name;
             resourceInputs["created"] = undefined /*out*/;
             resourceInputs["grafanaFolderUid"] = undefined /*out*/;
             resourceInputs["isDefault"] = undefined /*out*/;

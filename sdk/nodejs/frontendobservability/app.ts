@@ -44,21 +44,21 @@ export class App extends pulumi.CustomResource {
     /**
      * A list of allowed origins for CORS.
      */
-    public readonly allowedOrigins!: pulumi.Output<string[]>;
+    declare public readonly allowedOrigins: pulumi.Output<string[]>;
     /**
      * The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
      */
-    public /*out*/ readonly collectorEndpoint!: pulumi.Output<string>;
+    declare public /*out*/ readonly collectorEndpoint: pulumi.Output<string>;
     /**
      * The extra attributes to append in each signal.
      */
-    public readonly extraLogAttributes!: pulumi.Output<{[key: string]: string}>;
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly extraLogAttributes: pulumi.Output<{[key: string]: string}>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
      */
-    public readonly settings!: pulumi.Output<{[key: string]: string}>;
-    public readonly stackId!: pulumi.Output<number>;
+    declare public readonly settings: pulumi.Output<{[key: string]: string}>;
+    declare public readonly stackId: pulumi.Output<number>;
 
     /**
      * Create a App resource with the given unique name, arguments, and options.
@@ -73,31 +73,31 @@ export class App extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AppState | undefined;
-            resourceInputs["allowedOrigins"] = state ? state.allowedOrigins : undefined;
-            resourceInputs["collectorEndpoint"] = state ? state.collectorEndpoint : undefined;
-            resourceInputs["extraLogAttributes"] = state ? state.extraLogAttributes : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["settings"] = state ? state.settings : undefined;
-            resourceInputs["stackId"] = state ? state.stackId : undefined;
+            resourceInputs["allowedOrigins"] = state?.allowedOrigins;
+            resourceInputs["collectorEndpoint"] = state?.collectorEndpoint;
+            resourceInputs["extraLogAttributes"] = state?.extraLogAttributes;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["settings"] = state?.settings;
+            resourceInputs["stackId"] = state?.stackId;
         } else {
             const args = argsOrState as AppArgs | undefined;
-            if ((!args || args.allowedOrigins === undefined) && !opts.urn) {
+            if (args?.allowedOrigins === undefined && !opts.urn) {
                 throw new Error("Missing required property 'allowedOrigins'");
             }
-            if ((!args || args.extraLogAttributes === undefined) && !opts.urn) {
+            if (args?.extraLogAttributes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'extraLogAttributes'");
             }
-            if ((!args || args.settings === undefined) && !opts.urn) {
+            if (args?.settings === undefined && !opts.urn) {
                 throw new Error("Missing required property 'settings'");
             }
-            if ((!args || args.stackId === undefined) && !opts.urn) {
+            if (args?.stackId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'stackId'");
             }
-            resourceInputs["allowedOrigins"] = args ? args.allowedOrigins : undefined;
-            resourceInputs["extraLogAttributes"] = args ? args.extraLogAttributes : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["settings"] = args ? args.settings : undefined;
-            resourceInputs["stackId"] = args ? args.stackId : undefined;
+            resourceInputs["allowedOrigins"] = args?.allowedOrigins;
+            resourceInputs["extraLogAttributes"] = args?.extraLogAttributes;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["settings"] = args?.settings;
+            resourceInputs["stackId"] = args?.stackId;
             resourceInputs["collectorEndpoint"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

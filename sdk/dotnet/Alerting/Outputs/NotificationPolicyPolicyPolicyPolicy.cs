@@ -15,6 +15,10 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
     public sealed class NotificationPolicyPolicyPolicyPolicy
     {
         /// <summary>
+        /// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+        /// </summary>
+        public readonly ImmutableArray<string> ActiveTimings;
+        /// <summary>
         /// The contact point to route notifications that match this rule to.
         /// </summary>
         public readonly string? ContactPoint;
@@ -39,7 +43,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.NotificationPolicyPolicyPolicyPolicyMatcher> Matchers;
         /// <summary>
-        /// A list of mute timing names to apply to alerts that match this policy.
+        /// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
         /// </summary>
         public readonly ImmutableArray<string> MuteTimings;
         /// <summary>
@@ -53,6 +57,8 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
         [OutputConstructor]
         private NotificationPolicyPolicyPolicyPolicy(
+            ImmutableArray<string> activeTimings,
+
             string? contactPoint,
 
             bool? @continue,
@@ -71,6 +77,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
             string? repeatInterval)
         {
+            ActiveTimings = activeTimings;
             ContactPoint = contactPoint;
             Continue = @continue;
             GroupBies = groupBies;

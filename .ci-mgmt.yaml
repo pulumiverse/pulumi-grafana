@@ -1,7 +1,7 @@
 template: external-bridged-provider
 provider: grafana
 organization: pulumiverse
-major-version: 1
+major-version: 2
 providerDefaultBranch: main
 upstreamProviderOrg: grafana
 publishRegistry: false

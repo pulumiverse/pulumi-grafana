@@ -81,35 +81,35 @@ export class Route extends pulumi.CustomResource {
     /**
      * The ID of the escalation chain.
      */
-    public readonly escalationChainId!: pulumi.Output<string>;
+    declare public readonly escalationChainId: pulumi.Output<string>;
     /**
      * The ID of the integration.
      */
-    public readonly integrationId!: pulumi.Output<string>;
+    declare public readonly integrationId: pulumi.Output<string>;
     /**
      * MS teams-specific settings for a route.
      */
-    public readonly msteams!: pulumi.Output<outputs.onCall.RouteMsteams | undefined>;
+    declare public readonly msteams: pulumi.Output<outputs.onCall.RouteMsteams | undefined>;
     /**
      * The position of the route (starts from 0).
      */
-    public readonly position!: pulumi.Output<number>;
+    declare public readonly position: pulumi.Output<number>;
     /**
      * Python Regex query. Route is chosen for an alert if there is a match inside the alert payload.
      */
-    public readonly routingRegex!: pulumi.Output<string>;
+    declare public readonly routingRegex: pulumi.Output<string>;
     /**
      * The type of route. Can be jinja2, regex Defaults to `regex`.
      */
-    public readonly routingType!: pulumi.Output<string | undefined>;
+    declare public readonly routingType: pulumi.Output<string | undefined>;
     /**
      * Slack-specific settings for a route.
      */
-    public readonly slack!: pulumi.Output<outputs.onCall.RouteSlack | undefined>;
+    declare public readonly slack: pulumi.Output<outputs.onCall.RouteSlack | undefined>;
     /**
      * Telegram-specific settings for a route.
      */
-    public readonly telegram!: pulumi.Output<outputs.onCall.RouteTelegram | undefined>;
+    declare public readonly telegram: pulumi.Output<outputs.onCall.RouteTelegram | undefined>;
 
     /**
      * Create a Route resource with the given unique name, arguments, and options.
@@ -124,36 +124,36 @@ export class Route extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouteState | undefined;
-            resourceInputs["escalationChainId"] = state ? state.escalationChainId : undefined;
-            resourceInputs["integrationId"] = state ? state.integrationId : undefined;
-            resourceInputs["msteams"] = state ? state.msteams : undefined;
-            resourceInputs["position"] = state ? state.position : undefined;
-            resourceInputs["routingRegex"] = state ? state.routingRegex : undefined;
-            resourceInputs["routingType"] = state ? state.routingType : undefined;
-            resourceInputs["slack"] = state ? state.slack : undefined;
-            resourceInputs["telegram"] = state ? state.telegram : undefined;
+            resourceInputs["escalationChainId"] = state?.escalationChainId;
+            resourceInputs["integrationId"] = state?.integrationId;
+            resourceInputs["msteams"] = state?.msteams;
+            resourceInputs["position"] = state?.position;
+            resourceInputs["routingRegex"] = state?.routingRegex;
+            resourceInputs["routingType"] = state?.routingType;
+            resourceInputs["slack"] = state?.slack;
+            resourceInputs["telegram"] = state?.telegram;
         } else {
             const args = argsOrState as RouteArgs | undefined;
-            if ((!args || args.escalationChainId === undefined) && !opts.urn) {
+            if (args?.escalationChainId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'escalationChainId'");
             }
-            if ((!args || args.integrationId === undefined) && !opts.urn) {
+            if (args?.integrationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'integrationId'");
             }
-            if ((!args || args.position === undefined) && !opts.urn) {
+            if (args?.position === undefined && !opts.urn) {
                 throw new Error("Missing required property 'position'");
             }
-            if ((!args || args.routingRegex === undefined) && !opts.urn) {
+            if (args?.routingRegex === undefined && !opts.urn) {
                 throw new Error("Missing required property 'routingRegex'");
             }
-            resourceInputs["escalationChainId"] = args ? args.escalationChainId : undefined;
-            resourceInputs["integrationId"] = args ? args.integrationId : undefined;
-            resourceInputs["msteams"] = args ? args.msteams : undefined;
-            resourceInputs["position"] = args ? args.position : undefined;
-            resourceInputs["routingRegex"] = args ? args.routingRegex : undefined;
-            resourceInputs["routingType"] = args ? args.routingType : undefined;
-            resourceInputs["slack"] = args ? args.slack : undefined;
-            resourceInputs["telegram"] = args ? args.telegram : undefined;
+            resourceInputs["escalationChainId"] = args?.escalationChainId;
+            resourceInputs["integrationId"] = args?.integrationId;
+            resourceInputs["msteams"] = args?.msteams;
+            resourceInputs["position"] = args?.position;
+            resourceInputs["routingRegex"] = args?.routingRegex;
+            resourceInputs["routingType"] = args?.routingType;
+            resourceInputs["slack"] = args?.slack;
+            resourceInputs["telegram"] = args?.telegram;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Route.__pulumiType, name, resourceInputs, opts);

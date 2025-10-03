@@ -124,63 +124,63 @@ export class DataSource extends pulumi.CustomResource {
     /**
      * The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
      */
-    public readonly accessMode!: pulumi.Output<string | undefined>;
+    declare public readonly accessMode: pulumi.Output<string | undefined>;
     /**
      * Whether to enable basic auth for the data source. Defaults to `false`.
      */
-    public readonly basicAuthEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly basicAuthEnabled: pulumi.Output<boolean | undefined>;
     /**
      * Basic auth username. Defaults to ``.
      */
-    public readonly basicAuthUsername!: pulumi.Output<string | undefined>;
+    declare public readonly basicAuthUsername: pulumi.Output<string | undefined>;
     /**
      * (Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.
      */
-    public readonly databaseName!: pulumi.Output<string | undefined>;
+    declare public readonly databaseName: pulumi.Output<string | undefined>;
     /**
      * Custom HTTP headers
      */
-    public readonly httpHeaders!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly httpHeaders: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
      */
-    public readonly isDefault!: pulumi.Output<boolean | undefined>;
+    declare public readonly isDefault: pulumi.Output<boolean | undefined>;
     /**
      * Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
-    public readonly jsonDataEncoded!: pulumi.Output<string | undefined>;
+    declare public readonly jsonDataEncoded: pulumi.Output<string | undefined>;
     /**
      * A unique name for the data source.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * (Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.
      */
-    public readonly privateDataSourceConnectNetworkId!: pulumi.Output<string | undefined>;
+    declare public readonly privateDataSourceConnectNetworkId: pulumi.Output<string | undefined>;
     /**
      * Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
      */
-    public readonly secureJsonDataEncoded!: pulumi.Output<string | undefined>;
+    declare public readonly secureJsonDataEncoded: pulumi.Output<string | undefined>;
     /**
      * The data source type. Must be one of the supported data source keywords.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * Unique identifier. If unset, this will be automatically generated.
      */
-    public readonly uid!: pulumi.Output<string>;
+    declare public readonly uid: pulumi.Output<string>;
     /**
      * The URL for the data source. The type of URL required varies depending on the chosen data source type.
      */
-    public readonly url!: pulumi.Output<string | undefined>;
+    declare public readonly url: pulumi.Output<string | undefined>;
     /**
      * (Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.
      */
-    public readonly username!: pulumi.Output<string | undefined>;
+    declare public readonly username: pulumi.Output<string | undefined>;
 
     /**
      * Create a DataSource resource with the given unique name, arguments, and options.
@@ -195,41 +195,41 @@ export class DataSource extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DataSourceState | undefined;
-            resourceInputs["accessMode"] = state ? state.accessMode : undefined;
-            resourceInputs["basicAuthEnabled"] = state ? state.basicAuthEnabled : undefined;
-            resourceInputs["basicAuthUsername"] = state ? state.basicAuthUsername : undefined;
-            resourceInputs["databaseName"] = state ? state.databaseName : undefined;
-            resourceInputs["httpHeaders"] = state ? state.httpHeaders : undefined;
-            resourceInputs["isDefault"] = state ? state.isDefault : undefined;
-            resourceInputs["jsonDataEncoded"] = state ? state.jsonDataEncoded : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["privateDataSourceConnectNetworkId"] = state ? state.privateDataSourceConnectNetworkId : undefined;
-            resourceInputs["secureJsonDataEncoded"] = state ? state.secureJsonDataEncoded : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["uid"] = state ? state.uid : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["accessMode"] = state?.accessMode;
+            resourceInputs["basicAuthEnabled"] = state?.basicAuthEnabled;
+            resourceInputs["basicAuthUsername"] = state?.basicAuthUsername;
+            resourceInputs["databaseName"] = state?.databaseName;
+            resourceInputs["httpHeaders"] = state?.httpHeaders;
+            resourceInputs["isDefault"] = state?.isDefault;
+            resourceInputs["jsonDataEncoded"] = state?.jsonDataEncoded;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["privateDataSourceConnectNetworkId"] = state?.privateDataSourceConnectNetworkId;
+            resourceInputs["secureJsonDataEncoded"] = state?.secureJsonDataEncoded;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["uid"] = state?.uid;
+            resourceInputs["url"] = state?.url;
+            resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as DataSourceArgs | undefined;
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["accessMode"] = args ? args.accessMode : undefined;
-            resourceInputs["basicAuthEnabled"] = args ? args.basicAuthEnabled : undefined;
-            resourceInputs["basicAuthUsername"] = args ? args.basicAuthUsername : undefined;
-            resourceInputs["databaseName"] = args ? args.databaseName : undefined;
+            resourceInputs["accessMode"] = args?.accessMode;
+            resourceInputs["basicAuthEnabled"] = args?.basicAuthEnabled;
+            resourceInputs["basicAuthUsername"] = args?.basicAuthUsername;
+            resourceInputs["databaseName"] = args?.databaseName;
             resourceInputs["httpHeaders"] = args?.httpHeaders ? pulumi.secret(args.httpHeaders) : undefined;
-            resourceInputs["isDefault"] = args ? args.isDefault : undefined;
-            resourceInputs["jsonDataEncoded"] = args ? args.jsonDataEncoded : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["privateDataSourceConnectNetworkId"] = args ? args.privateDataSourceConnectNetworkId : undefined;
+            resourceInputs["isDefault"] = args?.isDefault;
+            resourceInputs["jsonDataEncoded"] = args?.jsonDataEncoded;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["privateDataSourceConnectNetworkId"] = args?.privateDataSourceConnectNetworkId;
             resourceInputs["secureJsonDataEncoded"] = args?.secureJsonDataEncoded ? pulumi.secret(args.secureJsonDataEncoded) : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["uid"] = args ? args.uid : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["uid"] = args?.uid;
+            resourceInputs["url"] = args?.url;
+            resourceInputs["username"] = args?.username;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/dataSource:DataSource" }] };

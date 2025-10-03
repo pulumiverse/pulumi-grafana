@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/internal"
+	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
 // Synthetic Monitoring checks are tests that run on selected probes at defined
@@ -30,7 +30,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/syntheticmonitoring"
 //
 // )
 //
@@ -71,7 +71,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/syntheticmonitoring"
 //
 // )
 //
@@ -149,7 +149,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/syntheticmonitoring"
 //
 // )
 //
@@ -190,7 +190,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/syntheticmonitoring"
 //
 // )
 //
@@ -305,7 +305,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/syntheticmonitoring"
 //
 // )
 //
@@ -346,7 +346,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/syntheticmonitoring"
 //
 // )
 //
@@ -392,7 +392,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/syntheticmonitoring"
 //
 // )
 //
@@ -433,7 +433,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/syntheticmonitoring"
 //
 // )
 //
@@ -522,7 +522,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/syntheticmonitoring"
 //
 // )
 //
@@ -565,7 +565,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/go/grafana/syntheticmonitoring"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/syntheticmonitoring"
 //
 // )
 //

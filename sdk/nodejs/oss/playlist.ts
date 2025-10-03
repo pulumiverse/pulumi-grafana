@@ -74,16 +74,16 @@ export class Playlist extends pulumi.CustomResource {
         return obj['__pulumiType'] === Playlist.__pulumiType;
     }
 
-    public readonly interval!: pulumi.Output<string>;
-    public readonly items!: pulumi.Output<outputs.oss.PlaylistItem[]>;
+    declare public readonly interval: pulumi.Output<string>;
+    declare public readonly items: pulumi.Output<outputs.oss.PlaylistItem[]>;
     /**
      * The name of the playlist.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
 
     /**
      * Create a Playlist resource with the given unique name, arguments, and options.
@@ -98,22 +98,22 @@ export class Playlist extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PlaylistState | undefined;
-            resourceInputs["interval"] = state ? state.interval : undefined;
-            resourceInputs["items"] = state ? state.items : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
+            resourceInputs["interval"] = state?.interval;
+            resourceInputs["items"] = state?.items;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["orgId"] = state?.orgId;
         } else {
             const args = argsOrState as PlaylistArgs | undefined;
-            if ((!args || args.interval === undefined) && !opts.urn) {
+            if (args?.interval === undefined && !opts.urn) {
                 throw new Error("Missing required property 'interval'");
             }
-            if ((!args || args.items === undefined) && !opts.urn) {
+            if (args?.items === undefined && !opts.urn) {
                 throw new Error("Missing required property 'items'");
             }
-            resourceInputs["interval"] = args ? args.interval : undefined;
-            resourceInputs["items"] = args ? args.items : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
+            resourceInputs["interval"] = args?.interval;
+            resourceInputs["items"] = args?.items;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["orgId"] = args?.orgId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/playlist:Playlist" }] };

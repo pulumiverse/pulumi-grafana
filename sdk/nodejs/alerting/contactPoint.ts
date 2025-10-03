@@ -76,96 +76,96 @@ export class ContactPoint extends pulumi.CustomResource {
     /**
      * A contact point that sends notifications to other Alertmanager instances.
      */
-    public readonly alertmanagers!: pulumi.Output<outputs.alerting.ContactPointAlertmanager[] | undefined>;
+    declare public readonly alertmanagers: pulumi.Output<outputs.alerting.ContactPointAlertmanager[] | undefined>;
     /**
      * A contact point that sends notifications to DingDing.
      */
-    public readonly dingdings!: pulumi.Output<outputs.alerting.ContactPointDingding[] | undefined>;
-    public readonly disableProvenance!: pulumi.Output<boolean | undefined>;
+    declare public readonly dingdings: pulumi.Output<outputs.alerting.ContactPointDingding[] | undefined>;
+    declare public readonly disableProvenance: pulumi.Output<boolean | undefined>;
     /**
      * A contact point that sends notifications as Discord messages
      */
-    public readonly discords!: pulumi.Output<outputs.alerting.ContactPointDiscord[] | undefined>;
+    declare public readonly discords: pulumi.Output<outputs.alerting.ContactPointDiscord[] | undefined>;
     /**
      * A contact point that sends notifications to an email address.
      */
-    public readonly emails!: pulumi.Output<outputs.alerting.ContactPointEmail[] | undefined>;
+    declare public readonly emails: pulumi.Output<outputs.alerting.ContactPointEmail[] | undefined>;
     /**
      * A contact point that sends notifications to Google Chat.
      */
-    public readonly googlechats!: pulumi.Output<outputs.alerting.ContactPointGooglechat[] | undefined>;
+    declare public readonly googlechats: pulumi.Output<outputs.alerting.ContactPointGooglechat[] | undefined>;
     /**
      * A contact point that publishes notifications to Apache Kafka topics.
      */
-    public readonly kafkas!: pulumi.Output<outputs.alerting.ContactPointKafka[] | undefined>;
+    declare public readonly kafkas: pulumi.Output<outputs.alerting.ContactPointKafka[] | undefined>;
     /**
      * A contact point that sends notifications to LINE.me.
      */
-    public readonly lines!: pulumi.Output<outputs.alerting.ContactPointLine[] | undefined>;
+    declare public readonly lines: pulumi.Output<outputs.alerting.ContactPointLine[] | undefined>;
     /**
      * The name of the contact point.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * A contact point that sends notifications to Grafana On-Call.
      */
-    public readonly oncalls!: pulumi.Output<outputs.alerting.ContactPointOncall[] | undefined>;
+    declare public readonly oncalls: pulumi.Output<outputs.alerting.ContactPointOncall[] | undefined>;
     /**
      * A contact point that sends notifications to OpsGenie.
      */
-    public readonly opsgenies!: pulumi.Output<outputs.alerting.ContactPointOpsgeny[] | undefined>;
+    declare public readonly opsgenies: pulumi.Output<outputs.alerting.ContactPointOpsgeny[] | undefined>;
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * A contact point that sends notifications to PagerDuty.
      */
-    public readonly pagerduties!: pulumi.Output<outputs.alerting.ContactPointPagerduty[] | undefined>;
+    declare public readonly pagerduties: pulumi.Output<outputs.alerting.ContactPointPagerduty[] | undefined>;
     /**
      * A contact point that sends notifications to Pushover.
      */
-    public readonly pushovers!: pulumi.Output<outputs.alerting.ContactPointPushover[] | undefined>;
+    declare public readonly pushovers: pulumi.Output<outputs.alerting.ContactPointPushover[] | undefined>;
     /**
      * A contact point that sends notifications to SensuGo.
      */
-    public readonly sensugos!: pulumi.Output<outputs.alerting.ContactPointSensugo[] | undefined>;
+    declare public readonly sensugos: pulumi.Output<outputs.alerting.ContactPointSensugo[] | undefined>;
     /**
      * A contact point that sends notifications to Slack.
      */
-    public readonly slacks!: pulumi.Output<outputs.alerting.ContactPointSlack[] | undefined>;
+    declare public readonly slacks: pulumi.Output<outputs.alerting.ContactPointSlack[] | undefined>;
     /**
      * A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.
      */
-    public readonly sns!: pulumi.Output<outputs.alerting.ContactPointSn[] | undefined>;
+    declare public readonly sns: pulumi.Output<outputs.alerting.ContactPointSn[] | undefined>;
     /**
      * A contact point that sends notifications to Microsoft Teams.
      */
-    public readonly teams!: pulumi.Output<outputs.alerting.ContactPointTeam[] | undefined>;
+    declare public readonly teams: pulumi.Output<outputs.alerting.ContactPointTeam[] | undefined>;
     /**
      * A contact point that sends notifications to Telegram.
      */
-    public readonly telegrams!: pulumi.Output<outputs.alerting.ContactPointTelegram[] | undefined>;
+    declare public readonly telegrams: pulumi.Output<outputs.alerting.ContactPointTelegram[] | undefined>;
     /**
      * A contact point that sends notifications to Threema.
      */
-    public readonly threemas!: pulumi.Output<outputs.alerting.ContactPointThreema[] | undefined>;
+    declare public readonly threemas: pulumi.Output<outputs.alerting.ContactPointThreema[] | undefined>;
     /**
      * A contact point that sends notifications to VictorOps (now known as Splunk OnCall).
      */
-    public readonly victorops!: pulumi.Output<outputs.alerting.ContactPointVictorop[] | undefined>;
+    declare public readonly victorops: pulumi.Output<outputs.alerting.ContactPointVictorop[] | undefined>;
     /**
      * A contact point that sends notifications to Cisco Webex.
      */
-    public readonly webexes!: pulumi.Output<outputs.alerting.ContactPointWebex[] | undefined>;
+    declare public readonly webexes: pulumi.Output<outputs.alerting.ContactPointWebex[] | undefined>;
     /**
      * A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
      */
-    public readonly webhooks!: pulumi.Output<outputs.alerting.ContactPointWebhook[] | undefined>;
+    declare public readonly webhooks: pulumi.Output<outputs.alerting.ContactPointWebhook[] | undefined>;
     /**
      * A contact point that sends notifications to WeCom.
      */
-    public readonly wecoms!: pulumi.Output<outputs.alerting.ContactPointWecom[] | undefined>;
+    declare public readonly wecoms: pulumi.Output<outputs.alerting.ContactPointWecom[] | undefined>;
 
     /**
      * Create a ContactPoint resource with the given unique name, arguments, and options.
@@ -180,56 +180,56 @@ export class ContactPoint extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ContactPointState | undefined;
-            resourceInputs["alertmanagers"] = state ? state.alertmanagers : undefined;
-            resourceInputs["dingdings"] = state ? state.dingdings : undefined;
-            resourceInputs["disableProvenance"] = state ? state.disableProvenance : undefined;
-            resourceInputs["discords"] = state ? state.discords : undefined;
-            resourceInputs["emails"] = state ? state.emails : undefined;
-            resourceInputs["googlechats"] = state ? state.googlechats : undefined;
-            resourceInputs["kafkas"] = state ? state.kafkas : undefined;
-            resourceInputs["lines"] = state ? state.lines : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["oncalls"] = state ? state.oncalls : undefined;
-            resourceInputs["opsgenies"] = state ? state.opsgenies : undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["pagerduties"] = state ? state.pagerduties : undefined;
-            resourceInputs["pushovers"] = state ? state.pushovers : undefined;
-            resourceInputs["sensugos"] = state ? state.sensugos : undefined;
-            resourceInputs["slacks"] = state ? state.slacks : undefined;
-            resourceInputs["sns"] = state ? state.sns : undefined;
-            resourceInputs["teams"] = state ? state.teams : undefined;
-            resourceInputs["telegrams"] = state ? state.telegrams : undefined;
-            resourceInputs["threemas"] = state ? state.threemas : undefined;
-            resourceInputs["victorops"] = state ? state.victorops : undefined;
-            resourceInputs["webexes"] = state ? state.webexes : undefined;
-            resourceInputs["webhooks"] = state ? state.webhooks : undefined;
-            resourceInputs["wecoms"] = state ? state.wecoms : undefined;
+            resourceInputs["alertmanagers"] = state?.alertmanagers;
+            resourceInputs["dingdings"] = state?.dingdings;
+            resourceInputs["disableProvenance"] = state?.disableProvenance;
+            resourceInputs["discords"] = state?.discords;
+            resourceInputs["emails"] = state?.emails;
+            resourceInputs["googlechats"] = state?.googlechats;
+            resourceInputs["kafkas"] = state?.kafkas;
+            resourceInputs["lines"] = state?.lines;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["oncalls"] = state?.oncalls;
+            resourceInputs["opsgenies"] = state?.opsgenies;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["pagerduties"] = state?.pagerduties;
+            resourceInputs["pushovers"] = state?.pushovers;
+            resourceInputs["sensugos"] = state?.sensugos;
+            resourceInputs["slacks"] = state?.slacks;
+            resourceInputs["sns"] = state?.sns;
+            resourceInputs["teams"] = state?.teams;
+            resourceInputs["telegrams"] = state?.telegrams;
+            resourceInputs["threemas"] = state?.threemas;
+            resourceInputs["victorops"] = state?.victorops;
+            resourceInputs["webexes"] = state?.webexes;
+            resourceInputs["webhooks"] = state?.webhooks;
+            resourceInputs["wecoms"] = state?.wecoms;
         } else {
             const args = argsOrState as ContactPointArgs | undefined;
-            resourceInputs["alertmanagers"] = args ? args.alertmanagers : undefined;
-            resourceInputs["dingdings"] = args ? args.dingdings : undefined;
-            resourceInputs["disableProvenance"] = args ? args.disableProvenance : undefined;
-            resourceInputs["discords"] = args ? args.discords : undefined;
-            resourceInputs["emails"] = args ? args.emails : undefined;
-            resourceInputs["googlechats"] = args ? args.googlechats : undefined;
-            resourceInputs["kafkas"] = args ? args.kafkas : undefined;
-            resourceInputs["lines"] = args ? args.lines : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["oncalls"] = args ? args.oncalls : undefined;
-            resourceInputs["opsgenies"] = args ? args.opsgenies : undefined;
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["pagerduties"] = args ? args.pagerduties : undefined;
-            resourceInputs["pushovers"] = args ? args.pushovers : undefined;
-            resourceInputs["sensugos"] = args ? args.sensugos : undefined;
-            resourceInputs["slacks"] = args ? args.slacks : undefined;
-            resourceInputs["sns"] = args ? args.sns : undefined;
-            resourceInputs["teams"] = args ? args.teams : undefined;
-            resourceInputs["telegrams"] = args ? args.telegrams : undefined;
-            resourceInputs["threemas"] = args ? args.threemas : undefined;
-            resourceInputs["victorops"] = args ? args.victorops : undefined;
-            resourceInputs["webexes"] = args ? args.webexes : undefined;
-            resourceInputs["webhooks"] = args ? args.webhooks : undefined;
-            resourceInputs["wecoms"] = args ? args.wecoms : undefined;
+            resourceInputs["alertmanagers"] = args?.alertmanagers;
+            resourceInputs["dingdings"] = args?.dingdings;
+            resourceInputs["disableProvenance"] = args?.disableProvenance;
+            resourceInputs["discords"] = args?.discords;
+            resourceInputs["emails"] = args?.emails;
+            resourceInputs["googlechats"] = args?.googlechats;
+            resourceInputs["kafkas"] = args?.kafkas;
+            resourceInputs["lines"] = args?.lines;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["oncalls"] = args?.oncalls;
+            resourceInputs["opsgenies"] = args?.opsgenies;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["pagerduties"] = args?.pagerduties;
+            resourceInputs["pushovers"] = args?.pushovers;
+            resourceInputs["sensugos"] = args?.sensugos;
+            resourceInputs["slacks"] = args?.slacks;
+            resourceInputs["sns"] = args?.sns;
+            resourceInputs["teams"] = args?.teams;
+            resourceInputs["telegrams"] = args?.telegrams;
+            resourceInputs["threemas"] = args?.threemas;
+            resourceInputs["victorops"] = args?.victorops;
+            resourceInputs["webexes"] = args?.webexes;
+            resourceInputs["webhooks"] = args?.webhooks;
+            resourceInputs["wecoms"] = args?.wecoms;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/contactPoint:ContactPoint" }] };

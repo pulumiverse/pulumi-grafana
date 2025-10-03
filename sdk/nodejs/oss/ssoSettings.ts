@@ -147,19 +147,19 @@ export class SsoSettings extends pulumi.CustomResource {
     /**
      * The LDAP settings set. Required for the ldap provider.
      */
-    public readonly ldapSettings!: pulumi.Output<outputs.oss.SsoSettingsLdapSettings | undefined>;
+    declare public readonly ldapSettings: pulumi.Output<outputs.oss.SsoSettingsLdapSettings | undefined>;
     /**
      * The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
      */
-    public readonly oauth2Settings!: pulumi.Output<outputs.oss.SsoSettingsOauth2Settings | undefined>;
+    declare public readonly oauth2Settings: pulumi.Output<outputs.oss.SsoSettingsOauth2Settings | undefined>;
     /**
      * The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
      */
-    public readonly providerName!: pulumi.Output<string>;
+    declare public readonly providerName: pulumi.Output<string>;
     /**
      * The SAML settings set. Required for the saml provider.
      */
-    public readonly samlSettings!: pulumi.Output<outputs.oss.SsoSettingsSamlSettings | undefined>;
+    declare public readonly samlSettings: pulumi.Output<outputs.oss.SsoSettingsSamlSettings | undefined>;
 
     /**
      * Create a SsoSettings resource with the given unique name, arguments, and options.
@@ -174,19 +174,19 @@ export class SsoSettings extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SsoSettingsState | undefined;
-            resourceInputs["ldapSettings"] = state ? state.ldapSettings : undefined;
-            resourceInputs["oauth2Settings"] = state ? state.oauth2Settings : undefined;
-            resourceInputs["providerName"] = state ? state.providerName : undefined;
-            resourceInputs["samlSettings"] = state ? state.samlSettings : undefined;
+            resourceInputs["ldapSettings"] = state?.ldapSettings;
+            resourceInputs["oauth2Settings"] = state?.oauth2Settings;
+            resourceInputs["providerName"] = state?.providerName;
+            resourceInputs["samlSettings"] = state?.samlSettings;
         } else {
             const args = argsOrState as SsoSettingsArgs | undefined;
-            if ((!args || args.providerName === undefined) && !opts.urn) {
+            if (args?.providerName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            resourceInputs["ldapSettings"] = args ? args.ldapSettings : undefined;
-            resourceInputs["oauth2Settings"] = args ? args.oauth2Settings : undefined;
-            resourceInputs["providerName"] = args ? args.providerName : undefined;
-            resourceInputs["samlSettings"] = args ? args.samlSettings : undefined;
+            resourceInputs["ldapSettings"] = args?.ldapSettings;
+            resourceInputs["oauth2Settings"] = args?.oauth2Settings;
+            resourceInputs["providerName"] = args?.providerName;
+            resourceInputs["samlSettings"] = args?.samlSettings;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/ssoSettings:SsoSettings" }] };

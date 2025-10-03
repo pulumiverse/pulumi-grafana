@@ -87,36 +87,36 @@ export class AccessPolicy extends pulumi.CustomResource {
     /**
      * Conditions for the access policy.
      */
-    public readonly conditions!: pulumi.Output<outputs.cloud.AccessPolicyCondition[] | undefined>;
+    declare public readonly conditions: pulumi.Output<outputs.cloud.AccessPolicyCondition[] | undefined>;
     /**
      * Creation date of the access policy.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Display name of the access policy. Defaults to the name.
      */
-    public readonly displayName!: pulumi.Output<string | undefined>;
+    declare public readonly displayName: pulumi.Output<string | undefined>;
     /**
      * Name of the access policy.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * ID of the access policy.
      */
-    public /*out*/ readonly policyId!: pulumi.Output<string>;
-    public readonly realms!: pulumi.Output<outputs.cloud.AccessPolicyRealm[]>;
+    declare public /*out*/ readonly policyId: pulumi.Output<string>;
+    declare public readonly realms: pulumi.Output<outputs.cloud.AccessPolicyRealm[]>;
     /**
      * Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
      */
-    public readonly scopes!: pulumi.Output<string[]>;
+    declare public readonly scopes: pulumi.Output<string[]>;
     /**
      * Last update date of the access policy.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a AccessPolicy resource with the given unique name, arguments, and options.
@@ -131,32 +131,32 @@ export class AccessPolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AccessPolicyState | undefined;
-            resourceInputs["conditions"] = state ? state.conditions : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["displayName"] = state ? state.displayName : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["policyId"] = state ? state.policyId : undefined;
-            resourceInputs["realms"] = state ? state.realms : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["scopes"] = state ? state.scopes : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["conditions"] = state?.conditions;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["displayName"] = state?.displayName;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["policyId"] = state?.policyId;
+            resourceInputs["realms"] = state?.realms;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["scopes"] = state?.scopes;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as AccessPolicyArgs | undefined;
-            if ((!args || args.realms === undefined) && !opts.urn) {
+            if (args?.realms === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realms'");
             }
-            if ((!args || args.region === undefined) && !opts.urn) {
+            if (args?.region === undefined && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
-            if ((!args || args.scopes === undefined) && !opts.urn) {
+            if (args?.scopes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'scopes'");
             }
-            resourceInputs["conditions"] = args ? args.conditions : undefined;
-            resourceInputs["displayName"] = args ? args.displayName : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realms"] = args ? args.realms : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["scopes"] = args ? args.scopes : undefined;
+            resourceInputs["conditions"] = args?.conditions;
+            resourceInputs["displayName"] = args?.displayName;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realms"] = args?.realms;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["scopes"] = args?.scopes;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["policyId"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

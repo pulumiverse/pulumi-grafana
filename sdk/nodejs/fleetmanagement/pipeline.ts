@@ -52,19 +52,19 @@ export class Pipeline extends pulumi.CustomResource {
     /**
      * Configuration contents of the pipeline to be used by collectors
      */
-    public readonly contents!: pulumi.Output<string>;
+    declare public readonly contents: pulumi.Output<string>;
     /**
      * Whether the pipeline is enabled for collectors
      */
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * Used to match against collectors and assign pipelines to them; follows the syntax of Prometheus Alertmanager matchers
      */
-    public readonly matchers!: pulumi.Output<string[]>;
+    declare public readonly matchers: pulumi.Output<string[]>;
     /**
      * Name of the pipeline which is the unique identifier for the pipeline
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
 
     /**
      * Create a Pipeline resource with the given unique name, arguments, and options.
@@ -79,19 +79,19 @@ export class Pipeline extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PipelineState | undefined;
-            resourceInputs["contents"] = state ? state.contents : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["matchers"] = state ? state.matchers : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["contents"] = state?.contents;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["matchers"] = state?.matchers;
+            resourceInputs["name"] = state?.name;
         } else {
             const args = argsOrState as PipelineArgs | undefined;
-            if ((!args || args.contents === undefined) && !opts.urn) {
+            if (args?.contents === undefined && !opts.urn) {
                 throw new Error("Missing required property 'contents'");
             }
-            resourceInputs["contents"] = args ? args.contents : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["matchers"] = args ? args.matchers : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["contents"] = args?.contents;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["matchers"] = args?.matchers;
+            resourceInputs["name"] = args?.name;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Pipeline.__pulumiType, name, resourceInputs, opts);

@@ -85,23 +85,23 @@ export class RoleAssignment extends pulumi.CustomResource {
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    public readonly orgId!: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
      * Grafana RBAC role UID.
      */
-    public readonly roleUid!: pulumi.Output<string>;
+    declare public readonly roleUid: pulumi.Output<string>;
     /**
      * IDs of service accounts that the role should be assigned to.
      */
-    public readonly serviceAccounts!: pulumi.Output<string[] | undefined>;
+    declare public readonly serviceAccounts: pulumi.Output<string[] | undefined>;
     /**
      * IDs of teams that the role should be assigned to.
      */
-    public readonly teams!: pulumi.Output<string[] | undefined>;
+    declare public readonly teams: pulumi.Output<string[] | undefined>;
     /**
      * IDs of users that the role should be assigned to.
      */
-    public readonly users!: pulumi.Output<number[] | undefined>;
+    declare public readonly users: pulumi.Output<number[] | undefined>;
 
     /**
      * Create a RoleAssignment resource with the given unique name, arguments, and options.
@@ -116,21 +116,21 @@ export class RoleAssignment extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RoleAssignmentState | undefined;
-            resourceInputs["orgId"] = state ? state.orgId : undefined;
-            resourceInputs["roleUid"] = state ? state.roleUid : undefined;
-            resourceInputs["serviceAccounts"] = state ? state.serviceAccounts : undefined;
-            resourceInputs["teams"] = state ? state.teams : undefined;
-            resourceInputs["users"] = state ? state.users : undefined;
+            resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["roleUid"] = state?.roleUid;
+            resourceInputs["serviceAccounts"] = state?.serviceAccounts;
+            resourceInputs["teams"] = state?.teams;
+            resourceInputs["users"] = state?.users;
         } else {
             const args = argsOrState as RoleAssignmentArgs | undefined;
-            if ((!args || args.roleUid === undefined) && !opts.urn) {
+            if (args?.roleUid === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleUid'");
             }
-            resourceInputs["orgId"] = args ? args.orgId : undefined;
-            resourceInputs["roleUid"] = args ? args.roleUid : undefined;
-            resourceInputs["serviceAccounts"] = args ? args.serviceAccounts : undefined;
-            resourceInputs["teams"] = args ? args.teams : undefined;
-            resourceInputs["users"] = args ? args.users : undefined;
+            resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["roleUid"] = args?.roleUid;
+            resourceInputs["serviceAccounts"] = args?.serviceAccounts;
+            resourceInputs["teams"] = args?.teams;
+            resourceInputs["users"] = args?.users;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "grafana:index/roleAssignment:RoleAssignment" }] };

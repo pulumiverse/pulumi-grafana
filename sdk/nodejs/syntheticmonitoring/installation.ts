@@ -92,19 +92,19 @@ export class Installation extends pulumi.CustomResource {
     /**
      * The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/) with the following scopes: `stacks:read`, `metrics:write`, `logs:write`, `traces:write`. This is used to publish metrics and logs to Grafana Cloud stack.
      */
-    public readonly metricsPublisherKey!: pulumi.Output<string>;
+    declare public readonly metricsPublisherKey: pulumi.Output<string>;
     /**
      * Generated token to access the SM API.
      */
-    public /*out*/ readonly smAccessToken!: pulumi.Output<string>;
+    declare public /*out*/ readonly smAccessToken: pulumi.Output<string>;
     /**
      * The ID or slug of the stack to install SM on.
      */
-    public readonly stackId!: pulumi.Output<string>;
+    declare public readonly stackId: pulumi.Output<string>;
     /**
      * The URL of the SM API to install SM on. This depends on the stack region, find the list of API URLs here: https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url. A static mapping exists in the provider but it may not contain all the regions. If it does contain the stack's region, this field is computed automatically and readable.
      */
-    public readonly stackSmApiUrl!: pulumi.Output<string>;
+    declare public readonly stackSmApiUrl: pulumi.Output<string>;
 
     /**
      * Create a Installation resource with the given unique name, arguments, and options.
@@ -119,21 +119,21 @@ export class Installation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstallationState | undefined;
-            resourceInputs["metricsPublisherKey"] = state ? state.metricsPublisherKey : undefined;
-            resourceInputs["smAccessToken"] = state ? state.smAccessToken : undefined;
-            resourceInputs["stackId"] = state ? state.stackId : undefined;
-            resourceInputs["stackSmApiUrl"] = state ? state.stackSmApiUrl : undefined;
+            resourceInputs["metricsPublisherKey"] = state?.metricsPublisherKey;
+            resourceInputs["smAccessToken"] = state?.smAccessToken;
+            resourceInputs["stackId"] = state?.stackId;
+            resourceInputs["stackSmApiUrl"] = state?.stackSmApiUrl;
         } else {
             const args = argsOrState as InstallationArgs | undefined;
-            if ((!args || args.metricsPublisherKey === undefined) && !opts.urn) {
+            if (args?.metricsPublisherKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'metricsPublisherKey'");
             }
-            if ((!args || args.stackId === undefined) && !opts.urn) {
+            if (args?.stackId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'stackId'");
             }
             resourceInputs["metricsPublisherKey"] = args?.metricsPublisherKey ? pulumi.secret(args.metricsPublisherKey) : undefined;
-            resourceInputs["stackId"] = args ? args.stackId : undefined;
-            resourceInputs["stackSmApiUrl"] = args ? args.stackSmApiUrl : undefined;
+            resourceInputs["stackId"] = args?.stackId;
+            resourceInputs["stackSmApiUrl"] = args?.stackSmApiUrl;
             resourceInputs["smAccessToken"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
