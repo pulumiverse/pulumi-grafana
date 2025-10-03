@@ -62,6 +62,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///                 Threshold = 14,
     ///                 Period = "",
     ///             },
+    ///             new Grafana.SyntheticMonitoring.Inputs.CheckAlertsAlertArgs
+    ///             {
+    ///                 Name = "HTTPRequestDurationTooHighAvg",
+    ///                 Threshold = 5000,
+    ///                 Period = "10m",
+    ///             },
     ///         },
     ///     });
     /// 

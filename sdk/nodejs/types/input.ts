@@ -2667,6 +2667,10 @@ export namespace oss {
          */
         loginAttributePath?: pulumi.Input<string>;
         /**
+         * Indicates the type of user interaction when the user logs in with the IdP. Available values are `login`, `consent` and `selectAccount`.
+         */
+        loginPrompt?: pulumi.Input<string>;
+        /**
          * Helpful if you use more than one identity providers or SSO protocols.
          */
         name?: pulumi.Input<string>;

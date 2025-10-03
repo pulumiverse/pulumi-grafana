@@ -1289,6 +1289,8 @@ type SsoSettingsOauth2Settings struct {
 	IdTokenAttributeName *string `pulumi:"idTokenAttributeName"`
 	// JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
 	LoginAttributePath *string `pulumi:"loginAttributePath"`
+	// Indicates the type of user interaction when the user logs in with the IdP. Available values are `login`, `consent` and `selectAccount`.
+	LoginPrompt *string `pulumi:"loginPrompt"`
 	// Helpful if you use more than one identity providers or SSO protocols.
 	Name *string `pulumi:"name"`
 	// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
@@ -1383,6 +1385,8 @@ type SsoSettingsOauth2SettingsArgs struct {
 	IdTokenAttributeName pulumi.StringPtrInput `pulumi:"idTokenAttributeName"`
 	// JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
 	LoginAttributePath pulumi.StringPtrInput `pulumi:"loginAttributePath"`
+	// Indicates the type of user interaction when the user logs in with the IdP. Available values are `login`, `consent` and `selectAccount`.
+	LoginPrompt pulumi.StringPtrInput `pulumi:"loginPrompt"`
 	// Helpful if you use more than one identity providers or SSO protocols.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
@@ -1603,6 +1607,11 @@ func (o SsoSettingsOauth2SettingsOutput) IdTokenAttributeName() pulumi.StringPtr
 // JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
 func (o SsoSettingsOauth2SettingsOutput) LoginAttributePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.LoginAttributePath }).(pulumi.StringPtrOutput)
+}
+
+// Indicates the type of user interaction when the user logs in with the IdP. Available values are `login`, `consent` and `selectAccount`.
+func (o SsoSettingsOauth2SettingsOutput) LoginPrompt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsOauth2Settings) *string { return v.LoginPrompt }).(pulumi.StringPtrOutput)
 }
 
 // Helpful if you use more than one identity providers or SSO protocols.
@@ -1931,6 +1940,16 @@ func (o SsoSettingsOauth2SettingsPtrOutput) LoginAttributePath() pulumi.StringPt
 			return nil
 		}
 		return v.LoginAttributePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// Indicates the type of user interaction when the user logs in with the IdP. Available values are `login`, `consent` and `selectAccount`.
+func (o SsoSettingsOauth2SettingsPtrOutput) LoginPrompt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsOauth2Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LoginPrompt
 	}).(pulumi.StringPtrOutput)
 }
 

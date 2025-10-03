@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
@@ -49,6 +48,16 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = oncall.NewOutgoingWebhook(ctx, "test-acc-outgoing_webhook-incident", &oncall.OutgoingWebhookArgs{
+//				Name:        pulumi.String("my outgoing incident webhook"),
+//				Preset:      pulumi.String("incident_webhook"),
+//				HttpMethod:  pulumi.String("POST"),
+//				Url:         pulumi.String("https://example.com/"),
+//				TriggerType: pulumi.String("incident declared"),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -81,14 +90,16 @@ type OutgoingWebhook struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The auth data of the webhook. Used for Basic authentication
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+	Preset pulumi.StringPtrOutput `pulumi:"preset"`
 	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
 	TriggerTemplate pulumi.StringPtrOutput `pulumi:"triggerTemplate"`
-	// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+	// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
 	TriggerType pulumi.StringPtrOutput `pulumi:"triggerType"`
-	// The webhook URL.
-	Url pulumi.StringOutput `pulumi:"url"`
+	// The webhook URL. Required when not using a preset that controls this field.
+	Url pulumi.StringPtrOutput `pulumi:"url"`
 	// Username to use when making the outgoing webhook request.
 	User pulumi.StringPtrOutput `pulumi:"user"`
 }
@@ -97,12 +108,9 @@ type OutgoingWebhook struct {
 func NewOutgoingWebhook(ctx *pulumi.Context,
 	name string, args *OutgoingWebhookArgs, opts ...pulumi.ResourceOption) (*OutgoingWebhook, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &OutgoingWebhookArgs{}
 	}
 
-	if args.Url == nil {
-		return nil, errors.New("invalid value for required argument 'Url'")
-	}
 	if args.AuthorizationHeader != nil {
 		args.AuthorizationHeader = pulumi.ToSecret(args.AuthorizationHeader).(pulumi.StringPtrInput)
 	}
@@ -155,13 +163,15 @@ type outgoingWebhookState struct {
 	Name *string `pulumi:"name"`
 	// The auth data of the webhook. Used for Basic authentication
 	Password *string `pulumi:"password"`
+	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+	Preset *string `pulumi:"preset"`
 	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId *string `pulumi:"teamId"`
 	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
 	TriggerTemplate *string `pulumi:"triggerTemplate"`
-	// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+	// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
 	TriggerType *string `pulumi:"triggerType"`
-	// The webhook URL.
+	// The webhook URL. Required when not using a preset that controls this field.
 	Url *string `pulumi:"url"`
 	// Username to use when making the outgoing webhook request.
 	User *string `pulumi:"user"`
@@ -186,13 +196,15 @@ type OutgoingWebhookState struct {
 	Name pulumi.StringPtrInput
 	// The auth data of the webhook. Used for Basic authentication
 	Password pulumi.StringPtrInput
+	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+	Preset pulumi.StringPtrInput
 	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrInput
 	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
 	TriggerTemplate pulumi.StringPtrInput
-	// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+	// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
 	TriggerType pulumi.StringPtrInput
-	// The webhook URL.
+	// The webhook URL. Required when not using a preset that controls this field.
 	Url pulumi.StringPtrInput
 	// Username to use when making the outgoing webhook request.
 	User pulumi.StringPtrInput
@@ -221,14 +233,16 @@ type outgoingWebhookArgs struct {
 	Name *string `pulumi:"name"`
 	// The auth data of the webhook. Used for Basic authentication
 	Password *string `pulumi:"password"`
+	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+	Preset *string `pulumi:"preset"`
 	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId *string `pulumi:"teamId"`
 	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
 	TriggerTemplate *string `pulumi:"triggerTemplate"`
-	// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+	// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
 	TriggerType *string `pulumi:"triggerType"`
-	// The webhook URL.
-	Url string `pulumi:"url"`
+	// The webhook URL. Required when not using a preset that controls this field.
+	Url *string `pulumi:"url"`
 	// Username to use when making the outgoing webhook request.
 	User *string `pulumi:"user"`
 }
@@ -253,14 +267,16 @@ type OutgoingWebhookArgs struct {
 	Name pulumi.StringPtrInput
 	// The auth data of the webhook. Used for Basic authentication
 	Password pulumi.StringPtrInput
+	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+	Preset pulumi.StringPtrInput
 	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrInput
 	// A template used to dynamically determine whether the webhook should execute based on the content of the payload.
 	TriggerTemplate pulumi.StringPtrInput
-	// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+	// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
 	TriggerType pulumi.StringPtrInput
-	// The webhook URL.
-	Url pulumi.StringInput
+	// The webhook URL. Required when not using a preset that controls this field.
+	Url pulumi.StringPtrInput
 	// Username to use when making the outgoing webhook request.
 	User pulumi.StringPtrInput
 }
@@ -397,6 +413,11 @@ func (o OutgoingWebhookOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OutgoingWebhook) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+func (o OutgoingWebhookOutput) Preset() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OutgoingWebhook) pulumi.StringPtrOutput { return v.Preset }).(pulumi.StringPtrOutput)
+}
+
 // The ID of the OnCall team (using the `onCall.getTeam` datasource).
 func (o OutgoingWebhookOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OutgoingWebhook) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
@@ -407,14 +428,14 @@ func (o OutgoingWebhookOutput) TriggerTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OutgoingWebhook) pulumi.StringPtrOutput { return v.TriggerTemplate }).(pulumi.StringPtrOutput)
 }
 
-// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
 func (o OutgoingWebhookOutput) TriggerType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OutgoingWebhook) pulumi.StringPtrOutput { return v.TriggerType }).(pulumi.StringPtrOutput)
 }
 
-// The webhook URL.
-func (o OutgoingWebhookOutput) Url() pulumi.StringOutput {
-	return o.ApplyT(func(v *OutgoingWebhook) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
+// The webhook URL. Required when not using a preset that controls this field.
+func (o OutgoingWebhookOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OutgoingWebhook) pulumi.StringPtrOutput { return v.Url }).(pulumi.StringPtrOutput)
 }
 
 // Username to use when making the outgoing webhook request.

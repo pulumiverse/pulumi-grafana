@@ -350,6 +350,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "k6/projectAllowedLoadZones",
+  "fqn": "pulumiverse_grafana.k6",
+  "classes": {
+   "grafana:k6/projectAllowedLoadZones:ProjectAllowedLoadZones": "ProjectAllowedLoadZones"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "k6/projectLimits",
   "fqn": "pulumiverse_grafana.k6",
   "classes": {

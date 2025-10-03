@@ -61,6 +61,11 @@ import (
 //						Threshold: pulumi.Float64(14),
 //						Period:    pulumi.String(""),
 //					},
+//					&syntheticmonitoring.CheckAlertsAlertArgs{
+//						Name:      pulumi.String("HTTPRequestDurationTooHighAvg"),
+//						Threshold: pulumi.Float64(5000),
+//						Period:    pulumi.String("10m"),
+//					},
 //				},
 //			})
 //			if err != nil {

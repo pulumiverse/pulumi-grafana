@@ -141,6 +141,11 @@ class CheckAlerts(pulumi.CustomResource):
                     "threshold": 14,
                     "period": "",
                 },
+                {
+                    "name": "HTTPRequestDurationTooHighAvg",
+                    "threshold": 5000,
+                    "period": "10m",
+                },
             ])
         ```
 
@@ -196,6 +201,11 @@ class CheckAlerts(pulumi.CustomResource):
                     "name": "TLSTargetCertificateCloseToExpiring",
                     "threshold": 14,
                     "period": "",
+                },
+                {
+                    "name": "HTTPRequestDurationTooHighAvg",
+                    "threshold": 5000,
+                    "period": "10m",
                 },
             ])
         ```

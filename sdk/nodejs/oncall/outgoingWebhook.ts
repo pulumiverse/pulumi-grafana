@@ -24,6 +24,13 @@ import * as utilities from "../utilities";
  *     url: "https://example.com/",
  *     teamId: myTeamGetTeam.then(myTeamGetTeam => myTeamGetTeam.id),
  * });
+ * const test_acc_outgoingWebhook_incident = new grafana.oncall.OutgoingWebhook("test-acc-outgoing_webhook-incident", {
+ *     name: "my outgoing incident webhook",
+ *     preset: "incident_webhook",
+ *     httpMethod: "POST",
+ *     url: "https://example.com/",
+ *     triggerType: "incident declared",
+ * });
  * ```
  *
  * ## Import
@@ -97,6 +104,10 @@ export class OutgoingWebhook extends pulumi.CustomResource {
      */
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
+     * The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+     */
+    declare public readonly preset: pulumi.Output<string | undefined>;
+    /**
      * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     declare public readonly teamId: pulumi.Output<string | undefined>;
@@ -105,13 +116,13 @@ export class OutgoingWebhook extends pulumi.CustomResource {
      */
     declare public readonly triggerTemplate: pulumi.Output<string | undefined>;
     /**
-     * The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+     * The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
      */
     declare public readonly triggerType: pulumi.Output<string | undefined>;
     /**
-     * The webhook URL.
+     * The webhook URL. Required when not using a preset that controls this field.
      */
-    declare public readonly url: pulumi.Output<string>;
+    declare public readonly url: pulumi.Output<string | undefined>;
     /**
      * Username to use when making the outgoing webhook request.
      */
@@ -124,7 +135,7 @@ export class OutgoingWebhook extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: OutgoingWebhookArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: OutgoingWebhookArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: OutgoingWebhookArgs | OutgoingWebhookState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -139,6 +150,7 @@ export class OutgoingWebhook extends pulumi.CustomResource {
             resourceInputs["isWebhookEnabled"] = state?.isWebhookEnabled;
             resourceInputs["name"] = state?.name;
             resourceInputs["password"] = state?.password;
+            resourceInputs["preset"] = state?.preset;
             resourceInputs["teamId"] = state?.teamId;
             resourceInputs["triggerTemplate"] = state?.triggerTemplate;
             resourceInputs["triggerType"] = state?.triggerType;
@@ -146,9 +158,6 @@ export class OutgoingWebhook extends pulumi.CustomResource {
             resourceInputs["user"] = state?.user;
         } else {
             const args = argsOrState as OutgoingWebhookArgs | undefined;
-            if (args?.url === undefined && !opts.urn) {
-                throw new Error("Missing required property 'url'");
-            }
             resourceInputs["authorizationHeader"] = args?.authorizationHeader ? pulumi.secret(args.authorizationHeader) : undefined;
             resourceInputs["data"] = args?.data;
             resourceInputs["forwardWholePayload"] = args?.forwardWholePayload;
@@ -158,6 +167,7 @@ export class OutgoingWebhook extends pulumi.CustomResource {
             resourceInputs["isWebhookEnabled"] = args?.isWebhookEnabled;
             resourceInputs["name"] = args?.name;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["preset"] = args?.preset;
             resourceInputs["teamId"] = args?.teamId;
             resourceInputs["triggerTemplate"] = args?.triggerTemplate;
             resourceInputs["triggerType"] = args?.triggerType;
@@ -212,6 +222,10 @@ export interface OutgoingWebhookState {
      */
     password?: pulumi.Input<string>;
     /**
+     * The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+     */
+    preset?: pulumi.Input<string>;
+    /**
      * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     teamId?: pulumi.Input<string>;
@@ -220,11 +234,11 @@ export interface OutgoingWebhookState {
      */
     triggerTemplate?: pulumi.Input<string>;
     /**
-     * The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+     * The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
      */
     triggerType?: pulumi.Input<string>;
     /**
-     * The webhook URL.
+     * The webhook URL. Required when not using a preset that controls this field.
      */
     url?: pulumi.Input<string>;
     /**
@@ -274,6 +288,10 @@ export interface OutgoingWebhookArgs {
      */
     password?: pulumi.Input<string>;
     /**
+     * The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+     */
+    preset?: pulumi.Input<string>;
+    /**
      * The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
      */
     teamId?: pulumi.Input<string>;
@@ -282,13 +300,13 @@ export interface OutgoingWebhookArgs {
      */
     triggerTemplate?: pulumi.Input<string>;
     /**
-     * The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+     * The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
      */
     triggerType?: pulumi.Input<string>;
     /**
-     * The webhook URL.
+     * The webhook URL. Required when not using a preset that controls this field.
      */
-    url: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
     /**
      * Username to use when making the outgoing webhook request.
      */

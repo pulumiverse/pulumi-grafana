@@ -99,6 +99,10 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly string? LoginAttributePath;
         /// <summary>
+        /// Indicates the type of user interaction when the user logs in with the IdP. Available values are `login`, `consent` and `select_account`.
+        /// </summary>
+        public readonly string? LoginPrompt;
+        /// <summary>
         /// Helpful if you use more than one identity providers or SSO protocols.
         /// </summary>
         public readonly string? Name;
@@ -219,6 +223,8 @@ namespace Pulumiverse.Grafana.Oss.Outputs
 
             string? loginAttributePath,
 
+            string? loginPrompt,
+
             string? name,
 
             string? nameAttributePath,
@@ -278,6 +284,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
             GroupsAttributePath = groupsAttributePath;
             IdTokenAttributeName = idTokenAttributeName;
             LoginAttributePath = loginAttributePath;
+            LoginPrompt = loginPrompt;
             Name = name;
             NameAttributePath = nameAttributePath;
             OrgAttributePath = orgAttributePath;
