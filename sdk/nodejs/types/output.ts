@@ -1938,6 +1938,70 @@ export namespace k6 {
         updated: string;
     }
 
+    export interface GetScheduleRecurrenceRule {
+        /**
+         * The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+         */
+        bydays: string[];
+        /**
+         * How many times the recurrence will repeat.
+         */
+        count: number;
+        /**
+         * The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY).
+         */
+        frequency: string;
+        /**
+         * The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY).
+         */
+        interval: number;
+        /**
+         * The end time for the recurrence (RFC3339 format).
+         */
+        until: string;
+    }
+
+    export interface GetSchedulesSchedule {
+        createdBy: string;
+        deactivated: boolean;
+        id: string;
+        loadTestId: string;
+        nextRun: string;
+        recurrenceRule: outputs.k6.GetSchedulesScheduleRecurrenceRule;
+        starts: string;
+    }
+
+    export interface GetSchedulesScheduleRecurrenceRule {
+        bydays: string[];
+        count: number;
+        frequency: string;
+        interval: number;
+        until: string;
+    }
+
+    export interface ScheduleRecurrenceRule {
+        /**
+         * The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+         */
+        bydays?: string[];
+        /**
+         * How many times the recurrence will repeat.
+         */
+        count?: number;
+        /**
+         * The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY).
+         */
+        frequency?: string;
+        /**
+         * The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY). Defaults to 1.
+         */
+        interval: number;
+        /**
+         * The end time for the recurrence (RFC3339 format).
+         */
+        until?: string;
+    }
+
 }
 
 export namespace machineLearning {

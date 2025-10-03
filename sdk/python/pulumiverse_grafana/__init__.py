@@ -366,6 +366,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "k6/schedule",
+  "fqn": "pulumiverse_grafana.k6",
+  "classes": {
+   "grafana:k6/schedule:Schedule": "Schedule"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "machineLearning/alert",
   "fqn": "pulumiverse_grafana.machinelearning",
   "classes": {

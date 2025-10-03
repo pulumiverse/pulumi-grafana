@@ -13,11 +13,83 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 __all__ = [
+    'ScheduleRecurrenceRule',
     'GetLoadTestsLoadTestResult',
     'GetProjectsProjectResult',
+    'GetScheduleRecurrenceRuleResult',
+    'GetSchedulesScheduleResult',
+    'GetSchedulesScheduleRecurrenceRuleResult',
 ]
+
+@pulumi.output_type
+class ScheduleRecurrenceRule(dict):
+    def __init__(__self__, *,
+                 bydays: Optional[Sequence[_builtins.str]] = None,
+                 count: Optional[_builtins.int] = None,
+                 frequency: Optional[_builtins.str] = None,
+                 interval: Optional[_builtins.int] = None,
+                 until: Optional[_builtins.str] = None):
+        """
+        :param Sequence[_builtins.str] bydays: The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+        :param _builtins.int count: How many times the recurrence will repeat.
+        :param _builtins.str frequency: The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY).
+        :param _builtins.int interval: The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY). Defaults to 1.
+        :param _builtins.str until: The end time for the recurrence (RFC3339 format).
+        """
+        if bydays is not None:
+            pulumi.set(__self__, "bydays", bydays)
+        if count is not None:
+            pulumi.set(__self__, "count", count)
+        if frequency is not None:
+            pulumi.set(__self__, "frequency", frequency)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if until is not None:
+            pulumi.set(__self__, "until", until)
+
+    @_builtins.property
+    @pulumi.getter
+    def bydays(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+        """
+        return pulumi.get(self, "bydays")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> Optional[_builtins.int]:
+        """
+        How many times the recurrence will repeat.
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def frequency(self) -> Optional[_builtins.str]:
+        """
+        The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY).
+        """
+        return pulumi.get(self, "frequency")
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> Optional[_builtins.int]:
+        """
+        The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY). Defaults to 1.
+        """
+        return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def until(self) -> Optional[_builtins.str]:
+        """
+        The end time for the recurrence (RFC3339 format).
+        """
+        return pulumi.get(self, "until")
+
 
 @pulumi.output_type
 class GetLoadTestsLoadTestResult(dict):
@@ -118,5 +190,161 @@ class GetProjectsProjectResult(dict):
     @pulumi.getter
     def updated(self) -> _builtins.str:
         return pulumi.get(self, "updated")
+
+
+@pulumi.output_type
+class GetScheduleRecurrenceRuleResult(dict):
+    def __init__(__self__, *,
+                 bydays: Sequence[_builtins.str],
+                 count: _builtins.int,
+                 frequency: _builtins.str,
+                 interval: _builtins.int,
+                 until: _builtins.str):
+        """
+        :param Sequence[_builtins.str] bydays: The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+        :param _builtins.int count: How many times the recurrence will repeat.
+        :param _builtins.str frequency: The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY).
+        :param _builtins.int interval: The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY).
+        :param _builtins.str until: The end time for the recurrence (RFC3339 format).
+        """
+        pulumi.set(__self__, "bydays", bydays)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "frequency", frequency)
+        pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "until", until)
+
+    @_builtins.property
+    @pulumi.getter
+    def bydays(self) -> Sequence[_builtins.str]:
+        """
+        The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+        """
+        return pulumi.get(self, "bydays")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        How many times the recurrence will repeat.
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def frequency(self) -> _builtins.str:
+        """
+        The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY).
+        """
+        return pulumi.get(self, "frequency")
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> _builtins.int:
+        """
+        The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY).
+        """
+        return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def until(self) -> _builtins.str:
+        """
+        The end time for the recurrence (RFC3339 format).
+        """
+        return pulumi.get(self, "until")
+
+
+@pulumi.output_type
+class GetSchedulesScheduleResult(dict):
+    def __init__(__self__, *,
+                 created_by: _builtins.str,
+                 deactivated: _builtins.bool,
+                 id: _builtins.str,
+                 load_test_id: _builtins.str,
+                 next_run: _builtins.str,
+                 recurrence_rule: 'outputs.GetSchedulesScheduleRecurrenceRuleResult',
+                 starts: _builtins.str):
+        pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "deactivated", deactivated)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "load_test_id", load_test_id)
+        pulumi.set(__self__, "next_run", next_run)
+        pulumi.set(__self__, "recurrence_rule", recurrence_rule)
+        pulumi.set(__self__, "starts", starts)
+
+    @_builtins.property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> _builtins.str:
+        return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter
+    def deactivated(self) -> _builtins.bool:
+        return pulumi.get(self, "deactivated")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="loadTestId")
+    def load_test_id(self) -> _builtins.str:
+        return pulumi.get(self, "load_test_id")
+
+    @_builtins.property
+    @pulumi.getter(name="nextRun")
+    def next_run(self) -> _builtins.str:
+        return pulumi.get(self, "next_run")
+
+    @_builtins.property
+    @pulumi.getter(name="recurrenceRule")
+    def recurrence_rule(self) -> 'outputs.GetSchedulesScheduleRecurrenceRuleResult':
+        return pulumi.get(self, "recurrence_rule")
+
+    @_builtins.property
+    @pulumi.getter
+    def starts(self) -> _builtins.str:
+        return pulumi.get(self, "starts")
+
+
+@pulumi.output_type
+class GetSchedulesScheduleRecurrenceRuleResult(dict):
+    def __init__(__self__, *,
+                 bydays: Sequence[_builtins.str],
+                 count: _builtins.int,
+                 frequency: _builtins.str,
+                 interval: _builtins.int,
+                 until: _builtins.str):
+        pulumi.set(__self__, "bydays", bydays)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "frequency", frequency)
+        pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "until", until)
+
+    @_builtins.property
+    @pulumi.getter
+    def bydays(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "bydays")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def frequency(self) -> _builtins.str:
+        return pulumi.get(self, "frequency")
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> _builtins.int:
+        return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def until(self) -> _builtins.str:
+        return pulumi.get(self, "until")
 
 

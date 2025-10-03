@@ -31,6 +31,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ProjectAllowedLoadZones{}
 	case "grafana:k6/projectLimits:ProjectLimits":
 		r = &ProjectLimits{}
+	case "grafana:k6/schedule:Schedule":
+		r = &Schedule{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -67,6 +69,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"k6/projectLimits",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"k6/schedule",
 		&module{version},
 	)
 }

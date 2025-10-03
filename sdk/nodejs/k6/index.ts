@@ -35,6 +35,16 @@ export const getProjects: typeof import("./getProjects").getProjects = null as a
 export const getProjectsOutput: typeof import("./getProjects").getProjectsOutput = null as any;
 utilities.lazyLoad(exports, ["getProjects","getProjectsOutput"], () => require("./getProjects"));
 
+export { GetScheduleArgs, GetScheduleResult, GetScheduleOutputArgs } from "./getSchedule";
+export const getSchedule: typeof import("./getSchedule").getSchedule = null as any;
+export const getScheduleOutput: typeof import("./getSchedule").getScheduleOutput = null as any;
+utilities.lazyLoad(exports, ["getSchedule","getScheduleOutput"], () => require("./getSchedule"));
+
+export { GetSchedulesResult } from "./getSchedules";
+export const getSchedules: typeof import("./getSchedules").getSchedules = null as any;
+export const getSchedulesOutput: typeof import("./getSchedules").getSchedulesOutput = null as any;
+utilities.lazyLoad(exports, ["getSchedules","getSchedulesOutput"], () => require("./getSchedules"));
+
 export { InstallationArgs, InstallationState } from "./installation";
 export type Installation = import("./installation").Installation;
 export const Installation: typeof import("./installation").Installation = null as any;
@@ -60,6 +70,11 @@ export type ProjectLimits = import("./projectLimits").ProjectLimits;
 export const ProjectLimits: typeof import("./projectLimits").ProjectLimits = null as any;
 utilities.lazyLoad(exports, ["ProjectLimits"], () => require("./projectLimits"));
 
+export { ScheduleArgs, ScheduleState } from "./schedule";
+export type Schedule = import("./schedule").Schedule;
+export const Schedule: typeof import("./schedule").Schedule = null as any;
+utilities.lazyLoad(exports, ["Schedule"], () => require("./schedule"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -75,6 +90,8 @@ const _module = {
                 return new ProjectAllowedLoadZones(name, <any>undefined, { urn })
             case "grafana:k6/projectLimits:ProjectLimits":
                 return new ProjectLimits(name, <any>undefined, { urn })
+            case "grafana:k6/schedule:Schedule":
+                return new Schedule(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -85,3 +102,4 @@ pulumi.runtime.registerResourceModule("grafana", "k6/loadTest", _module)
 pulumi.runtime.registerResourceModule("grafana", "k6/project", _module)
 pulumi.runtime.registerResourceModule("grafana", "k6/projectAllowedLoadZones", _module)
 pulumi.runtime.registerResourceModule("grafana", "k6/projectLimits", _module)
+pulumi.runtime.registerResourceModule("grafana", "k6/schedule", _module)

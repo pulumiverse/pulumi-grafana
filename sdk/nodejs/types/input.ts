@@ -2102,6 +2102,74 @@ export namespace fleetManagement {
 }
 
 export namespace k6 {
+    export interface GetScheduleRecurrenceRule {
+        /**
+         * The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+         */
+        bydays?: string[];
+        /**
+         * How many times the recurrence will repeat.
+         */
+        count?: number;
+        /**
+         * The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY).
+         */
+        frequency?: string;
+        /**
+         * The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY).
+         */
+        interval?: number;
+        /**
+         * The end time for the recurrence (RFC3339 format).
+         */
+        until?: string;
+    }
+
+    export interface GetScheduleRecurrenceRuleArgs {
+        /**
+         * The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+         */
+        bydays?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * How many times the recurrence will repeat.
+         */
+        count?: pulumi.Input<number>;
+        /**
+         * The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY).
+         */
+        frequency?: pulumi.Input<string>;
+        /**
+         * The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY).
+         */
+        interval?: pulumi.Input<number>;
+        /**
+         * The end time for the recurrence (RFC3339 format).
+         */
+        until?: pulumi.Input<string>;
+    }
+
+    export interface ScheduleRecurrenceRule {
+        /**
+         * The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+         */
+        bydays?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * How many times the recurrence will repeat.
+         */
+        count?: pulumi.Input<number>;
+        /**
+         * The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY).
+         */
+        frequency?: pulumi.Input<string>;
+        /**
+         * The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY). Defaults to 1.
+         */
+        interval?: pulumi.Input<number>;
+        /**
+         * The end time for the recurrence (RFC3339 format).
+         */
+        until?: pulumi.Input<string>;
+    }
 }
 
 export namespace machineLearning {
