@@ -218,7 +218,6 @@ func Provider() tfbridge.ProviderInfo {
 			// Alerting
 			"grafana_apps_alertenrichment_alertenrichment_v1beta1": {
 				Tok: grafanaResource(alertingMod, "AlertEnrichment"),
-				//ComputeID: tfbridge.DelegateIDField("id", "grafana", "https://github.com/pulumiverse/pulumi-grafana"),
 			},
 			"grafana_contact_point": {
 				Tok: grafanaResource(alertingMod, "ContactPoint"),
