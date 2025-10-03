@@ -210,14 +210,16 @@ func Provider() tfbridge.ProviderInfo {
 		Resources: map[string]*tfbridge.ResourceInfo{
 			// Experimental - these can still change over time
 			"grafana_apps_dashboard_dashboard_v1beta1": {
-				Tok:       grafanaResource(experimentalMod, "AppsDashboard"),
-				ComputeID: tfbridge.DelegateIDField("id", "grafana", "https://github.com/pulumiverse/pulumi-grafana"),
+				Tok: grafanaResource(experimentalMod, "AppsDashboard"),
 			},
 			"grafana_apps_playlist_playlist_v0alpha1": {
-				Tok:       grafanaResource(experimentalMod, "AppsPlaylistV0Alpha1"),
-				ComputeID: tfbridge.DelegateIDField("id", "grafana", "https://github.com/pulumiverse/pulumi-grafana"),
+				Tok: grafanaResource(experimentalMod, "AppsPlaylistV0Alpha1"),
 			},
 			// Alerting
+			"grafana_apps_alertenrichment_alertenrichment_v1beta1": {
+				Tok: grafanaResource(alertingMod, "AlertEnrichment"),
+				//ComputeID: tfbridge.DelegateIDField("id", "grafana", "https://github.com/pulumiverse/pulumi-grafana"),
+			},
 			"grafana_contact_point": {
 				Tok: grafanaResource(alertingMod, "ContactPoint"),
 				Aliases: []tfbridge.AliasInfo{

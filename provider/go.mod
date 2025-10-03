@@ -5,7 +5,7 @@ go 1.25
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250530111747-935112552988
 
 require (
-	github.com/grafana/terraform-provider-grafana/v4 v4.5.3
+	github.com/grafana/terraform-provider-grafana/v4 v4.6.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.114.0
 	github.com/pulumi/pulumi/sdk/v3 v3.190.0
 )
@@ -111,10 +111,11 @@ require (
 	github.com/grafana/fleet-management-api v1.0.0 // indirect
 	github.com/grafana/grafana-app-sdk v0.45.0 // indirect
 	github.com/grafana/grafana-app-sdk/logging v0.43.2 // indirect
-	github.com/grafana/grafana-asserts-public-clients/go/gcom v0.0.0-20250805165836-14e16b51b910 // indirect
+	github.com/grafana/grafana-asserts-public-clients/go/gcom v0.0.0-20250811125322-247815da58ca // indirect
 	github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20250526074454-7ec66e02e4bb // indirect
 	github.com/grafana/grafana-openapi-client-go v0.0.0-20250617151817-c0f8cbb88d5c // indirect
 	github.com/grafana/grafana-plugin-sdk-go v0.275.0 // indirect
+	github.com/grafana/grafana/apps/alerting/alertenrichment v0.0.0-20250904171753-3d6d6326866f // indirect
 	github.com/grafana/grafana/apps/dashboard v0.0.0-20250424064802-2fbb2d6f5d27 // indirect
 	github.com/grafana/grafana/apps/playlist v0.0.0-20250424064802-2fbb2d6f5d27 // indirect
 	github.com/grafana/grafana/pkg/apimachinery v0.0.0-20250901080157-a0280d701b28 // indirect

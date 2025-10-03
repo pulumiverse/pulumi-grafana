@@ -10,6 +10,31 @@
                     }
                 }
             },
+            "grafana_apps_alertenrichment_alertenrichment_v1beta1": {
+                "current": "grafana:alerting/alertEnrichment:AlertEnrichment",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "alert_rule_uids": {
+                                "maxItemsOne": false
+                            },
+                            "annotation_matchers": {
+                                "maxItemsOne": false
+                            },
+                            "label_matchers": {
+                                "maxItemsOne": false
+                            },
+                            "receivers": {
+                                "maxItemsOne": false
+                            },
+                            "step": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_apps_dashboard_dashboard_v1beta1": {
                 "current": "grafana:experimental/appsDashboard:AppsDashboard",
                 "majorVersion": 2,
@@ -301,7 +326,40 @@
                         "maxItemsOne": false
                     },
                     "webhook": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "hmac_config": {
+                                    "maxItemsOne": true
+                                },
+                                "http_config": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "oauth2": {
+                                                "maxItemsOne": true,
+                                                "elem": {
+                                                    "fields": {
+                                                        "proxy_config": {
+                                                            "maxItemsOne": true
+                                                        },
+                                                        "scopes": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "tls_config": {
+                                                            "maxItemsOne": true
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "payload": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
                     },
                     "wecom": {
                         "maxItemsOne": false
@@ -1808,6 +1866,7 @@
     "auto-settings": {},
     "mux": {
         "resources": {
+            "grafana:alerting/alertEnrichment:AlertEnrichment": 1,
             "grafana:alerting/contactPoint:ContactPoint": 0,
             "grafana:alerting/messageTemplate:MessageTemplate": 0,
             "grafana:alerting/muteTiming:MuteTiming": 0,

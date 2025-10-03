@@ -259,6 +259,167 @@
         }
     },
     "types": {
+        "grafana:alerting/AlertEnrichmentMetadata:AlertEnrichmentMetadata": {
+            "properties": {
+                "folderUid": {
+                    "type": "string",
+                    "description": "The UID of the folder to save the resource in.\n"
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "The unique identifier of the resource.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The full URL of the resource.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "The globally unique identifier of a resource, used by the API for tracking.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the resource.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "uid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "uid",
+                        "url",
+                        "uuid",
+                        "version"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/AlertEnrichmentOptions:AlertEnrichmentOptions": {
+            "properties": {
+                "overwrite": {
+                    "type": "boolean",
+                    "description": "Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpec:AlertEnrichmentSpec": {
+            "properties": {
+                "alertRuleUids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "UIDs of alert rules this enrichment applies to. If empty, applies to all alert rules.\n"
+                },
+                "annotationMatchers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecAnnotationMatcher:AlertEnrichmentSpecAnnotationMatcher"
+                    },
+                    "description": "Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description of the alert enrichment.\n"
+                },
+                "labelMatchers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecLabelMatcher:AlertEnrichmentSpecLabelMatcher"
+                    },
+                    "description": "Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).\n"
+                },
+                "receivers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Receiver names to match. If empty, applies to all receivers.\n"
+                },
+                "steps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStep:AlertEnrichmentSpecStep"
+                    },
+                    "description": "Enrichment step. Can be repeated multiple times to define a sequence of steps. Each step must contain exactly one enrichment block.\n"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the alert enrichment.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "title"
+            ]
+        },
+        "grafana:alerting/AlertEnrichmentSpecAnnotationMatcher:AlertEnrichmentSpecAnnotationMatcher": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "type",
+                "value"
+            ]
+        },
+        "grafana:alerting/AlertEnrichmentSpecLabelMatcher:AlertEnrichmentSpecLabelMatcher": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "type",
+                "value"
+            ]
+        },
+        "grafana:alerting/AlertEnrichmentSpecStep:AlertEnrichmentSpecStep": {
+            "properties": {
+                "assign": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepAssign:AlertEnrichmentSpecStepAssign",
+                    "description": "Assign annotations to an alert.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepAssign:AlertEnrichmentSpecStepAssign": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Map of annotation names to values to set on matching alerts.\n"
+                },
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
         "grafana:alerting/ContactPointAlertmanager:ContactPointAlertmanager": {
             "properties": {
                 "basicAuthPassword": {
@@ -1451,6 +1612,21 @@
                     "type": "boolean",
                     "description": "Whether to disable sending resolve messages. Defaults to `false`.\n"
                 },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Custom headers to attach to the request.\n"
+                },
+                "hmacConfig": {
+                    "$ref": "#/types/grafana:alerting/ContactPointWebhookHmacConfig:ContactPointWebhookHmacConfig",
+                    "description": "HMAC signature configuration options.\n"
+                },
+                "httpConfig": {
+                    "$ref": "#/types/grafana:alerting/ContactPointWebhookHttpConfig:ContactPointWebhookHttpConfig",
+                    "description": "Common HTTP client options.\n"
+                },
                 "httpMethod": {
                     "type": "string",
                     "description": "The HTTP method to use in the request. Defaults to `POST`.\n"
@@ -1462,6 +1638,10 @@
                 "message": {
                     "type": "string",
                     "description": "Custom message. You can use template variables.\n"
+                },
+                "payload": {
+                    "$ref": "#/types/grafana:alerting/ContactPointWebhookPayload:ContactPointWebhookPayload",
+                    "description": "Optionally provide a templated payload. Overrides 'Message' and 'Title' field.\n"
                 },
                 "settings": {
                     "type": "object",
@@ -1504,6 +1684,148 @@
                     ]
                 }
             }
+        },
+        "grafana:alerting/ContactPointWebhookHmacConfig:ContactPointWebhookHmacConfig": {
+            "properties": {
+                "header": {
+                    "type": "string",
+                    "description": "The header in which the HMAC signature will be included. Defaults to `X-Grafana-Alerting-Signature`.\n"
+                },
+                "secret": {
+                    "type": "string",
+                    "description": "The secret key used to generate the HMAC signature.\n",
+                    "secret": true
+                },
+                "timestampHeader": {
+                    "type": "string",
+                    "description": "If set, the timestamp will be included in the HMAC signature. The value should be the name of the header to use.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "secret"
+            ]
+        },
+        "grafana:alerting/ContactPointWebhookHttpConfig:ContactPointWebhookHttpConfig": {
+            "properties": {
+                "oauth2": {
+                    "$ref": "#/types/grafana:alerting/ContactPointWebhookHttpConfigOauth2:ContactPointWebhookHttpConfigOauth2",
+                    "description": "OAuth2 configuration options.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/ContactPointWebhookHttpConfigOauth2:ContactPointWebhookHttpConfigOauth2": {
+            "properties": {
+                "clientId": {
+                    "type": "string",
+                    "description": "Client ID to use when authenticating.\n"
+                },
+                "clientSecret": {
+                    "type": "string",
+                    "description": "Client secret to use when authenticating.\n",
+                    "secret": true
+                },
+                "endpointParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Optional parameters to append to the access token request.\n"
+                },
+                "proxyConfig": {
+                    "$ref": "#/types/grafana:alerting/ContactPointWebhookHttpConfigOauth2ProxyConfig:ContactPointWebhookHttpConfigOauth2ProxyConfig",
+                    "description": "Optional proxy configuration for OAuth2 requests.\n"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Optional scopes to request when obtaining an access token.\n"
+                },
+                "tlsConfig": {
+                    "$ref": "#/types/grafana:alerting/ContactPointWebhookHttpConfigOauth2TlsConfig:ContactPointWebhookHttpConfigOauth2TlsConfig",
+                    "description": "Optional TLS configuration options for OAuth2 requests.\n"
+                },
+                "tokenUrl": {
+                    "type": "string",
+                    "description": "URL for the access token endpoint.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "clientId",
+                "clientSecret",
+                "tokenUrl"
+            ]
+        },
+        "grafana:alerting/ContactPointWebhookHttpConfigOauth2ProxyConfig:ContactPointWebhookHttpConfigOauth2ProxyConfig": {
+            "properties": {
+                "noProxy": {
+                    "type": "string",
+                    "description": "Comma-separated list of addresses that should not use a proxy.\n"
+                },
+                "proxyConnectHeader": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Optional headers to send to proxies during CONNECT requests.\n"
+                },
+                "proxyFromEnvironment": {
+                    "type": "boolean",
+                    "description": "Use environment HTTP*PROXY, HTTPS*PROXY and NO_PROXY to determine proxies. Defaults to `false`.\n"
+                },
+                "proxyUrl": {
+                    "type": "string",
+                    "description": "HTTP proxy server to use to connect to the targets.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/ContactPointWebhookHttpConfigOauth2TlsConfig:ContactPointWebhookHttpConfigOauth2TlsConfig": {
+            "properties": {
+                "caCertificate": {
+                    "type": "string",
+                    "description": "Certificate in PEM format to use when verifying the server's certificate chain.\n",
+                    "secret": true
+                },
+                "clientCertificate": {
+                    "type": "string",
+                    "description": "Client certificate in PEM format to use when connecting to the server.\n",
+                    "secret": true
+                },
+                "clientKey": {
+                    "type": "string",
+                    "description": "Client key in PEM format to use when connecting to the server.\n",
+                    "secret": true
+                },
+                "insecureSkipVerify": {
+                    "type": "boolean",
+                    "description": "Do not verify the server's certificate chain and host name. Defaults to `false`.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/ContactPointWebhookPayload:ContactPointWebhookPayload": {
+            "properties": {
+                "template": {
+                    "type": "string",
+                    "description": "Custom payload template.\n"
+                },
+                "vars": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Optionally provide a variables to be used in the payload template. They will be available in the template as `.Vars.\u003cvariable_name\u003e`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "template"
+            ]
         },
         "grafana:alerting/ContactPointWecom:ContactPointWecom": {
             "properties": {
@@ -6513,6 +6835,55 @@
         }
     },
     "resources": {
+        "grafana:alerting/alertEnrichment:AlertEnrichment": {
+            "description": "This resource is currently under development. Documentation will be provided in a future release.\n",
+            "properties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentMetadata:AlertEnrichmentMetadata",
+                    "description": "The metadata of the resource."
+                },
+                "options": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentOptions:AlertEnrichmentOptions",
+                    "description": "Options for applying the resource."
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpec:AlertEnrichmentSpec",
+                    "description": "The spec of the resource."
+                }
+            },
+            "inputProperties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentMetadata:AlertEnrichmentMetadata",
+                    "description": "The metadata of the resource."
+                },
+                "options": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentOptions:AlertEnrichmentOptions",
+                    "description": "Options for applying the resource."
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpec:AlertEnrichmentSpec",
+                    "description": "The spec of the resource."
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AlertEnrichment resources.\n",
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/types/grafana:alerting/AlertEnrichmentMetadata:AlertEnrichmentMetadata",
+                        "description": "The metadata of the resource."
+                    },
+                    "options": {
+                        "$ref": "#/types/grafana:alerting/AlertEnrichmentOptions:AlertEnrichmentOptions",
+                        "description": "Options for applying the resource."
+                    },
+                    "spec": {
+                        "$ref": "#/types/grafana:alerting/AlertEnrichmentSpec:AlertEnrichmentSpec",
+                        "description": "The spec of the resource."
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:alerting/contactPoint:ContactPoint": {
             "description": "Manages Grafana Alerting contact points.\n\n* Official documentation\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#contact-points)\n\nThis resource requires Grafana 9.1.0 or later.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst myContactPoint = new grafana.alerting.ContactPoint(\"my_contact_point\", {\n    name: \"My Contact Point\",\n    emails: [{\n        addresses: [\n            \"one@company.org\",\n            \"two@company.org\",\n        ],\n        message: \"{{ len .Alerts.Firing }} firing.\",\n        subject: \"{{ template \\\"default.title\\\" .}}\",\n        singleEmail: true,\n        disableResolveMessage: false,\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nmy_contact_point = grafana.alerting.ContactPoint(\"my_contact_point\",\n    name=\"My Contact Point\",\n    emails=[{\n        \"addresses\": [\n            \"one@company.org\",\n            \"two@company.org\",\n        ],\n        \"message\": \"{{ len .Alerts.Firing }} firing.\",\n        \"subject\": \"{{ template \\\"default.title\\\" .}}\",\n        \"single_email\": True,\n        \"disable_resolve_message\": False,\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myContactPoint = new Grafana.Alerting.ContactPoint(\"my_contact_point\", new()\n    {\n        Name = \"My Contact Point\",\n        Emails = new[]\n        {\n            new Grafana.Alerting.Inputs.ContactPointEmailArgs\n            {\n                Addresses = new[]\n                {\n                    \"one@company.org\",\n                    \"two@company.org\",\n                },\n                Message = \"{{ len .Alerts.Firing }} firing.\",\n                Subject = \"{{ template \\\"default.title\\\" .}}\",\n                SingleEmail = true,\n                DisableResolveMessage = false,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := alerting.NewContactPoint(ctx, \"my_contact_point\", \u0026alerting.ContactPointArgs{\n\t\t\tName: pulumi.String(\"My Contact Point\"),\n\t\t\tEmails: alerting.ContactPointEmailArray{\n\t\t\t\t\u0026alerting.ContactPointEmailArgs{\n\t\t\t\t\tAddresses: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"one@company.org\"),\n\t\t\t\t\t\tpulumi.String(\"two@company.org\"),\n\t\t\t\t\t},\n\t\t\t\t\tMessage:               pulumi.String(\"{{ len .Alerts.Firing }} firing.\"),\n\t\t\t\t\tSubject:               pulumi.String(\"{{ template \\\"default.title\\\" .}}\"),\n\t\t\t\t\tSingleEmail:           pulumi.Bool(true),\n\t\t\t\t\tDisableResolveMessage: pulumi.Bool(false),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.alerting.ContactPoint;\nimport com.pulumi.grafana.alerting.ContactPointArgs;\nimport com.pulumi.grafana.alerting.inputs.ContactPointEmailArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myContactPoint = new ContactPoint(\"myContactPoint\", ContactPointArgs.builder()\n            .name(\"My Contact Point\")\n            .emails(ContactPointEmailArgs.builder()\n                .addresses(                \n                    \"one@company.org\",\n                    \"two@company.org\")\n                .message(\"{{ len .Alerts.Firing }} firing.\")\n                .subject(\"{{ template \\\"default.title\\\" .}}\")\n                .singleEmail(true)\n                .disableResolveMessage(false)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myContactPoint:\n    type: grafana:alerting:ContactPoint\n    name: my_contact_point\n    properties:\n      name: My Contact Point\n      emails:\n        - addresses:\n            - one@company.org\n            - two@company.org\n          message: '{{ len .Alerts.Firing }} firing.'\n          subject: '{{ template \"default.title\" .}}'\n          singleEmail: true\n          disableResolveMessage: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:alerting/contactPoint:ContactPoint name \"{{ name }}\"\n```\n\n```sh\n$ pulumi import grafana:alerting/contactPoint:ContactPoint name \"{{ orgID }}:{{ name }}\"\n```\n\n",
             "properties": {
