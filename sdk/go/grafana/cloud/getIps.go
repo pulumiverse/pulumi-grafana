@@ -56,6 +56,8 @@ type GetIpsResult struct {
 	HostedLogs []string `pulumi:"hostedLogs"`
 	// Set of IP addresses that are used for hosted metrics.
 	HostedMetrics []string `pulumi:"hostedMetrics"`
+	// Set of IP addresses that are used for hosted profiles.
+	HostedProfiles []string `pulumi:"hostedProfiles"`
 	// Set of IP addresses that are used for hosted traces.
 	HostedTraces []string `pulumi:"hostedTraces"`
 	// The provider-assigned unique ID for this managed resource.
@@ -102,6 +104,11 @@ func (o GetIpsResultOutput) HostedLogs() pulumi.StringArrayOutput {
 // Set of IP addresses that are used for hosted metrics.
 func (o GetIpsResultOutput) HostedMetrics() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetIpsResult) []string { return v.HostedMetrics }).(pulumi.StringArrayOutput)
+}
+
+// Set of IP addresses that are used for hosted profiles.
+func (o GetIpsResultOutput) HostedProfiles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetIpsResult) []string { return v.HostedProfiles }).(pulumi.StringArrayOutput)
 }
 
 // Set of IP addresses that are used for hosted traces.

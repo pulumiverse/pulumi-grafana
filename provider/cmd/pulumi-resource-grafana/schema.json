@@ -355,7 +355,15 @@
             "type": "object",
             "required": [
                 "title"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "description",
+                        "title"
+                    ]
+                }
+            }
         },
         "grafana:alerting/AlertEnrichmentSpecAnnotationMatcher:AlertEnrichmentSpecAnnotationMatcher": {
             "properties": {
@@ -397,9 +405,42 @@
         },
         "grafana:alerting/AlertEnrichmentSpecStep:AlertEnrichmentSpecStep": {
             "properties": {
+                "asserts": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepAsserts:AlertEnrichmentSpecStepAsserts",
+                    "description": "Integrate with Grafana Asserts for enrichment.\n"
+                },
                 "assign": {
                     "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepAssign:AlertEnrichmentSpecStepAssign",
                     "description": "Assign annotations to an alert.\n"
+                },
+                "assistantInvestigations": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepAssistantInvestigations:AlertEnrichmentSpecStepAssistantInvestigations",
+                    "description": "Use AI assistant to investigate alerts and add insights.\n"
+                },
+                "dataSource": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepDataSource:AlertEnrichmentSpecStepDataSource",
+                    "description": "Query Grafana data sources and add results to alerts.\n"
+                },
+                "explain": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepExplain:AlertEnrichmentSpecStepExplain",
+                    "description": "Generate AI explanation and store in an annotation.\n"
+                },
+                "external": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepExternal:AlertEnrichmentSpecStepExternal",
+                    "description": "Call an external HTTP service for enrichment.\n"
+                },
+                "sift": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepSift:AlertEnrichmentSpecStepSift",
+                    "description": "Analyze alerts for patterns and insights.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepAsserts:AlertEnrichmentSpecStepAsserts": {
+            "properties": {
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
                 }
             },
             "type": "object"
@@ -413,6 +454,122 @@
                     },
                     "description": "Map of annotation names to values to set on matching alerts.\n"
                 },
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepAssistantInvestigations:AlertEnrichmentSpecStepAssistantInvestigations": {
+            "properties": {
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepDataSource:AlertEnrichmentSpecStepDataSource": {
+            "properties": {
+                "logsQuery": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepDataSourceLogsQuery:AlertEnrichmentSpecStepDataSourceLogsQuery",
+                    "description": "Logs query configuration for querying log data sources.\n"
+                },
+                "rawQuery": {
+                    "$ref": "#/types/grafana:alerting/AlertEnrichmentSpecStepDataSourceRawQuery:AlertEnrichmentSpecStepDataSourceRawQuery",
+                    "description": "Raw query configuration for advanced data source queries.\n"
+                },
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepDataSourceLogsQuery:AlertEnrichmentSpecStepDataSourceLogsQuery": {
+            "properties": {
+                "dataSourceType": {
+                    "type": "string",
+                    "description": "Data source type (e.g., 'loki').\n"
+                },
+                "dataSourceUid": {
+                    "type": "string",
+                    "description": "UID of the data source to query.\n"
+                },
+                "expr": {
+                    "type": "string",
+                    "description": "Log query expression to execute.\n"
+                },
+                "maxLines": {
+                    "type": "integer",
+                    "description": "Maximum number of log lines to include. Defaults to 3.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "maxLines"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepDataSourceRawQuery:AlertEnrichmentSpecStepDataSourceRawQuery": {
+            "properties": {
+                "refId": {
+                    "type": "string",
+                    "description": "Reference ID for correlating queries.\n"
+                },
+                "request": {
+                    "type": "string",
+                    "description": "Raw request payload for the data source query.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "refId"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepExplain:AlertEnrichmentSpecStepExplain": {
+            "properties": {
+                "annotation": {
+                    "type": "string",
+                    "description": "Annotation name to set the explanation in. Defaults to 'ai_explanation'.\n"
+                },
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "annotation"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepExternal:AlertEnrichmentSpecStepExternal": {
+            "properties": {
+                "timeout": {
+                    "type": "string",
+                    "description": "Maximum execution time (e.g., '30s', '1m')\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "HTTP endpoint URL to call for enrichment\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:alerting/AlertEnrichmentSpecStepSift:AlertEnrichmentSpecStepSift": {
+            "properties": {
                 "timeout": {
                     "type": "string",
                     "description": "Maximum execution time (e.g., '30s', '1m')\n"
@@ -11011,7 +11168,7 @@
             ]
         },
         "grafana:experimental/appsDashboard:AppsDashboard": {
-            "description": "Manages Grafana dashboards using the new Grafana APIs.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)\n",
+            "description": "Manages Grafana dashboards using the new Grafana APIs.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  example:\n    type: grafana:experimental:AppsDashboard\n    properties:\n      metadata:\n        - uid: example-dashboard\n      spec:\n        - title: Example Dashboard\n          json:\n            fn::toJSON:\n              title: Example Dashboard\n              uid: example-dashboard\n              panels: []\n              schemaVersion: 42\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "metadata": {
                     "$ref": "#/types/grafana:experimental/AppsDashboardMetadata:AppsDashboardMetadata",
@@ -11060,7 +11217,7 @@
             }
         },
         "grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1": {
-            "description": "Manages Grafana playlists using the new Grafana APIs.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/apis/)\n",
+            "description": "Manages Grafana playlists using the new Grafana APIs.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/apis/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  example:\n    type: grafana:experimental:AppsPlaylistV0Alpha1\n    properties:\n      metadata:\n        - uid: example-playlist\n      spec:\n        - title: Example Playlist\n          interval: 5m\n          items:\n            - type: dashboard_by_uid\n              value: example-dashboard-uid\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "metadata": {
                     "$ref": "#/types/grafana:experimental/AppsPlaylistV0Alpha1Metadata:AppsPlaylistV0Alpha1Metadata",
@@ -16576,6 +16733,13 @@
                         },
                         "type": "array"
                     },
+                    "hostedProfiles": {
+                        "description": "Set of IP addresses that are used for hosted profiles.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
                     "hostedTraces": {
                         "description": "Set of IP addresses that are used for hosted traces.\n",
                         "items": {
@@ -16593,6 +16757,7 @@
                     "hostedGrafanas",
                     "hostedLogs",
                     "hostedMetrics",
+                    "hostedProfiles",
                     "hostedTraces",
                     "id"
                 ],

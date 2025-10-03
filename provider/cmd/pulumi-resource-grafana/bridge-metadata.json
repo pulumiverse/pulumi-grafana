@@ -1323,6 +1323,9 @@
                     "hosted_metrics": {
                         "maxItemsOne": false
                     },
+                    "hosted_profiles": {
+                        "maxItemsOne": false
+                    },
                     "hosted_traces": {
                         "maxItemsOne": false
                     }

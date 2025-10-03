@@ -27,8 +27,24 @@ __all__ = [
     'AlertEnrichmentSpecLabelMatcherArgsDict',
     'AlertEnrichmentSpecStepArgs',
     'AlertEnrichmentSpecStepArgsDict',
+    'AlertEnrichmentSpecStepAssertsArgs',
+    'AlertEnrichmentSpecStepAssertsArgsDict',
     'AlertEnrichmentSpecStepAssignArgs',
     'AlertEnrichmentSpecStepAssignArgsDict',
+    'AlertEnrichmentSpecStepAssistantInvestigationsArgs',
+    'AlertEnrichmentSpecStepAssistantInvestigationsArgsDict',
+    'AlertEnrichmentSpecStepDataSourceArgs',
+    'AlertEnrichmentSpecStepDataSourceArgsDict',
+    'AlertEnrichmentSpecStepDataSourceLogsQueryArgs',
+    'AlertEnrichmentSpecStepDataSourceLogsQueryArgsDict',
+    'AlertEnrichmentSpecStepDataSourceRawQueryArgs',
+    'AlertEnrichmentSpecStepDataSourceRawQueryArgsDict',
+    'AlertEnrichmentSpecStepExplainArgs',
+    'AlertEnrichmentSpecStepExplainArgsDict',
+    'AlertEnrichmentSpecStepExternalArgs',
+    'AlertEnrichmentSpecStepExternalArgsDict',
+    'AlertEnrichmentSpecStepSiftArgs',
+    'AlertEnrichmentSpecStepSiftArgsDict',
     'ContactPointAlertmanagerArgs',
     'ContactPointAlertmanagerArgsDict',
     'ContactPointDingdingArgs',
@@ -507,9 +523,33 @@ class AlertEnrichmentSpecLabelMatcherArgs:
 
 if not MYPY:
     class AlertEnrichmentSpecStepArgsDict(TypedDict):
+        asserts: NotRequired[pulumi.Input['AlertEnrichmentSpecStepAssertsArgsDict']]
+        """
+        Integrate with Grafana Asserts for enrichment.
+        """
         assign: NotRequired[pulumi.Input['AlertEnrichmentSpecStepAssignArgsDict']]
         """
         Assign annotations to an alert.
+        """
+        assistant_investigations: NotRequired[pulumi.Input['AlertEnrichmentSpecStepAssistantInvestigationsArgsDict']]
+        """
+        Use AI assistant to investigate alerts and add insights.
+        """
+        data_source: NotRequired[pulumi.Input['AlertEnrichmentSpecStepDataSourceArgsDict']]
+        """
+        Query Grafana data sources and add results to alerts.
+        """
+        explain: NotRequired[pulumi.Input['AlertEnrichmentSpecStepExplainArgsDict']]
+        """
+        Generate AI explanation and store in an annotation.
+        """
+        external: NotRequired[pulumi.Input['AlertEnrichmentSpecStepExternalArgsDict']]
+        """
+        Call an external HTTP service for enrichment.
+        """
+        sift: NotRequired[pulumi.Input['AlertEnrichmentSpecStepSiftArgsDict']]
+        """
+        Analyze alerts for patterns and insights.
         """
 elif False:
     AlertEnrichmentSpecStepArgsDict: TypeAlias = Mapping[str, Any]
@@ -517,12 +557,48 @@ elif False:
 @pulumi.input_type
 class AlertEnrichmentSpecStepArgs:
     def __init__(__self__, *,
-                 assign: Optional[pulumi.Input['AlertEnrichmentSpecStepAssignArgs']] = None):
+                 asserts: Optional[pulumi.Input['AlertEnrichmentSpecStepAssertsArgs']] = None,
+                 assign: Optional[pulumi.Input['AlertEnrichmentSpecStepAssignArgs']] = None,
+                 assistant_investigations: Optional[pulumi.Input['AlertEnrichmentSpecStepAssistantInvestigationsArgs']] = None,
+                 data_source: Optional[pulumi.Input['AlertEnrichmentSpecStepDataSourceArgs']] = None,
+                 explain: Optional[pulumi.Input['AlertEnrichmentSpecStepExplainArgs']] = None,
+                 external: Optional[pulumi.Input['AlertEnrichmentSpecStepExternalArgs']] = None,
+                 sift: Optional[pulumi.Input['AlertEnrichmentSpecStepSiftArgs']] = None):
         """
+        :param pulumi.Input['AlertEnrichmentSpecStepAssertsArgs'] asserts: Integrate with Grafana Asserts for enrichment.
         :param pulumi.Input['AlertEnrichmentSpecStepAssignArgs'] assign: Assign annotations to an alert.
+        :param pulumi.Input['AlertEnrichmentSpecStepAssistantInvestigationsArgs'] assistant_investigations: Use AI assistant to investigate alerts and add insights.
+        :param pulumi.Input['AlertEnrichmentSpecStepDataSourceArgs'] data_source: Query Grafana data sources and add results to alerts.
+        :param pulumi.Input['AlertEnrichmentSpecStepExplainArgs'] explain: Generate AI explanation and store in an annotation.
+        :param pulumi.Input['AlertEnrichmentSpecStepExternalArgs'] external: Call an external HTTP service for enrichment.
+        :param pulumi.Input['AlertEnrichmentSpecStepSiftArgs'] sift: Analyze alerts for patterns and insights.
         """
+        if asserts is not None:
+            pulumi.set(__self__, "asserts", asserts)
         if assign is not None:
             pulumi.set(__self__, "assign", assign)
+        if assistant_investigations is not None:
+            pulumi.set(__self__, "assistant_investigations", assistant_investigations)
+        if data_source is not None:
+            pulumi.set(__self__, "data_source", data_source)
+        if explain is not None:
+            pulumi.set(__self__, "explain", explain)
+        if external is not None:
+            pulumi.set(__self__, "external", external)
+        if sift is not None:
+            pulumi.set(__self__, "sift", sift)
+
+    @_builtins.property
+    @pulumi.getter
+    def asserts(self) -> Optional[pulumi.Input['AlertEnrichmentSpecStepAssertsArgs']]:
+        """
+        Integrate with Grafana Asserts for enrichment.
+        """
+        return pulumi.get(self, "asserts")
+
+    @asserts.setter
+    def asserts(self, value: Optional[pulumi.Input['AlertEnrichmentSpecStepAssertsArgs']]):
+        pulumi.set(self, "asserts", value)
 
     @_builtins.property
     @pulumi.getter
@@ -535,6 +611,98 @@ class AlertEnrichmentSpecStepArgs:
     @assign.setter
     def assign(self, value: Optional[pulumi.Input['AlertEnrichmentSpecStepAssignArgs']]):
         pulumi.set(self, "assign", value)
+
+    @_builtins.property
+    @pulumi.getter(name="assistantInvestigations")
+    def assistant_investigations(self) -> Optional[pulumi.Input['AlertEnrichmentSpecStepAssistantInvestigationsArgs']]:
+        """
+        Use AI assistant to investigate alerts and add insights.
+        """
+        return pulumi.get(self, "assistant_investigations")
+
+    @assistant_investigations.setter
+    def assistant_investigations(self, value: Optional[pulumi.Input['AlertEnrichmentSpecStepAssistantInvestigationsArgs']]):
+        pulumi.set(self, "assistant_investigations", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataSource")
+    def data_source(self) -> Optional[pulumi.Input['AlertEnrichmentSpecStepDataSourceArgs']]:
+        """
+        Query Grafana data sources and add results to alerts.
+        """
+        return pulumi.get(self, "data_source")
+
+    @data_source.setter
+    def data_source(self, value: Optional[pulumi.Input['AlertEnrichmentSpecStepDataSourceArgs']]):
+        pulumi.set(self, "data_source", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def explain(self) -> Optional[pulumi.Input['AlertEnrichmentSpecStepExplainArgs']]:
+        """
+        Generate AI explanation and store in an annotation.
+        """
+        return pulumi.get(self, "explain")
+
+    @explain.setter
+    def explain(self, value: Optional[pulumi.Input['AlertEnrichmentSpecStepExplainArgs']]):
+        pulumi.set(self, "explain", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def external(self) -> Optional[pulumi.Input['AlertEnrichmentSpecStepExternalArgs']]:
+        """
+        Call an external HTTP service for enrichment.
+        """
+        return pulumi.get(self, "external")
+
+    @external.setter
+    def external(self, value: Optional[pulumi.Input['AlertEnrichmentSpecStepExternalArgs']]):
+        pulumi.set(self, "external", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def sift(self) -> Optional[pulumi.Input['AlertEnrichmentSpecStepSiftArgs']]:
+        """
+        Analyze alerts for patterns and insights.
+        """
+        return pulumi.get(self, "sift")
+
+    @sift.setter
+    def sift(self, value: Optional[pulumi.Input['AlertEnrichmentSpecStepSiftArgs']]):
+        pulumi.set(self, "sift", value)
+
+
+if not MYPY:
+    class AlertEnrichmentSpecStepAssertsArgsDict(TypedDict):
+        timeout: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Maximum execution time (e.g., '30s', '1m')
+        """
+elif False:
+    AlertEnrichmentSpecStepAssertsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AlertEnrichmentSpecStepAssertsArgs:
+    def __init__(__self__, *,
+                 timeout: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] timeout: Maximum execution time (e.g., '30s', '1m')
+        """
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Maximum execution time (e.g., '30s', '1m')
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "timeout", value)
 
 
 if not MYPY:
@@ -575,6 +743,390 @@ class AlertEnrichmentSpecStepAssignArgs:
     @annotations.setter
     def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "annotations", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Maximum execution time (e.g., '30s', '1m')
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "timeout", value)
+
+
+if not MYPY:
+    class AlertEnrichmentSpecStepAssistantInvestigationsArgsDict(TypedDict):
+        timeout: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Maximum execution time (e.g., '30s', '1m')
+        """
+elif False:
+    AlertEnrichmentSpecStepAssistantInvestigationsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AlertEnrichmentSpecStepAssistantInvestigationsArgs:
+    def __init__(__self__, *,
+                 timeout: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] timeout: Maximum execution time (e.g., '30s', '1m')
+        """
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Maximum execution time (e.g., '30s', '1m')
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "timeout", value)
+
+
+if not MYPY:
+    class AlertEnrichmentSpecStepDataSourceArgsDict(TypedDict):
+        logs_query: NotRequired[pulumi.Input['AlertEnrichmentSpecStepDataSourceLogsQueryArgsDict']]
+        """
+        Logs query configuration for querying log data sources.
+        """
+        raw_query: NotRequired[pulumi.Input['AlertEnrichmentSpecStepDataSourceRawQueryArgsDict']]
+        """
+        Raw query configuration for advanced data source queries.
+        """
+        timeout: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Maximum execution time (e.g., '30s', '1m')
+        """
+elif False:
+    AlertEnrichmentSpecStepDataSourceArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AlertEnrichmentSpecStepDataSourceArgs:
+    def __init__(__self__, *,
+                 logs_query: Optional[pulumi.Input['AlertEnrichmentSpecStepDataSourceLogsQueryArgs']] = None,
+                 raw_query: Optional[pulumi.Input['AlertEnrichmentSpecStepDataSourceRawQueryArgs']] = None,
+                 timeout: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input['AlertEnrichmentSpecStepDataSourceLogsQueryArgs'] logs_query: Logs query configuration for querying log data sources.
+        :param pulumi.Input['AlertEnrichmentSpecStepDataSourceRawQueryArgs'] raw_query: Raw query configuration for advanced data source queries.
+        :param pulumi.Input[_builtins.str] timeout: Maximum execution time (e.g., '30s', '1m')
+        """
+        if logs_query is not None:
+            pulumi.set(__self__, "logs_query", logs_query)
+        if raw_query is not None:
+            pulumi.set(__self__, "raw_query", raw_query)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter(name="logsQuery")
+    def logs_query(self) -> Optional[pulumi.Input['AlertEnrichmentSpecStepDataSourceLogsQueryArgs']]:
+        """
+        Logs query configuration for querying log data sources.
+        """
+        return pulumi.get(self, "logs_query")
+
+    @logs_query.setter
+    def logs_query(self, value: Optional[pulumi.Input['AlertEnrichmentSpecStepDataSourceLogsQueryArgs']]):
+        pulumi.set(self, "logs_query", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rawQuery")
+    def raw_query(self) -> Optional[pulumi.Input['AlertEnrichmentSpecStepDataSourceRawQueryArgs']]:
+        """
+        Raw query configuration for advanced data source queries.
+        """
+        return pulumi.get(self, "raw_query")
+
+    @raw_query.setter
+    def raw_query(self, value: Optional[pulumi.Input['AlertEnrichmentSpecStepDataSourceRawQueryArgs']]):
+        pulumi.set(self, "raw_query", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Maximum execution time (e.g., '30s', '1m')
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "timeout", value)
+
+
+if not MYPY:
+    class AlertEnrichmentSpecStepDataSourceLogsQueryArgsDict(TypedDict):
+        data_source_type: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Data source type (e.g., 'loki').
+        """
+        data_source_uid: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        UID of the data source to query.
+        """
+        expr: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Log query expression to execute.
+        """
+        max_lines: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        Maximum number of log lines to include. Defaults to 3.
+        """
+elif False:
+    AlertEnrichmentSpecStepDataSourceLogsQueryArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AlertEnrichmentSpecStepDataSourceLogsQueryArgs:
+    def __init__(__self__, *,
+                 data_source_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_source_uid: Optional[pulumi.Input[_builtins.str]] = None,
+                 expr: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_lines: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] data_source_type: Data source type (e.g., 'loki').
+        :param pulumi.Input[_builtins.str] data_source_uid: UID of the data source to query.
+        :param pulumi.Input[_builtins.str] expr: Log query expression to execute.
+        :param pulumi.Input[_builtins.int] max_lines: Maximum number of log lines to include. Defaults to 3.
+        """
+        if data_source_type is not None:
+            pulumi.set(__self__, "data_source_type", data_source_type)
+        if data_source_uid is not None:
+            pulumi.set(__self__, "data_source_uid", data_source_uid)
+        if expr is not None:
+            pulumi.set(__self__, "expr", expr)
+        if max_lines is not None:
+            pulumi.set(__self__, "max_lines", max_lines)
+
+    @_builtins.property
+    @pulumi.getter(name="dataSourceType")
+    def data_source_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Data source type (e.g., 'loki').
+        """
+        return pulumi.get(self, "data_source_type")
+
+    @data_source_type.setter
+    def data_source_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "data_source_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataSourceUid")
+    def data_source_uid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        UID of the data source to query.
+        """
+        return pulumi.get(self, "data_source_uid")
+
+    @data_source_uid.setter
+    def data_source_uid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "data_source_uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def expr(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Log query expression to execute.
+        """
+        return pulumi.get(self, "expr")
+
+    @expr.setter
+    def expr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "expr", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxLines")
+    def max_lines(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Maximum number of log lines to include. Defaults to 3.
+        """
+        return pulumi.get(self, "max_lines")
+
+    @max_lines.setter
+    def max_lines(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_lines", value)
+
+
+if not MYPY:
+    class AlertEnrichmentSpecStepDataSourceRawQueryArgsDict(TypedDict):
+        ref_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Reference ID for correlating queries.
+        """
+        request: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Raw request payload for the data source query.
+        """
+elif False:
+    AlertEnrichmentSpecStepDataSourceRawQueryArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AlertEnrichmentSpecStepDataSourceRawQueryArgs:
+    def __init__(__self__, *,
+                 ref_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 request: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] ref_id: Reference ID for correlating queries.
+        :param pulumi.Input[_builtins.str] request: Raw request payload for the data source query.
+        """
+        if ref_id is not None:
+            pulumi.set(__self__, "ref_id", ref_id)
+        if request is not None:
+            pulumi.set(__self__, "request", request)
+
+    @_builtins.property
+    @pulumi.getter(name="refId")
+    def ref_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Reference ID for correlating queries.
+        """
+        return pulumi.get(self, "ref_id")
+
+    @ref_id.setter
+    def ref_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ref_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def request(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Raw request payload for the data source query.
+        """
+        return pulumi.get(self, "request")
+
+    @request.setter
+    def request(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "request", value)
+
+
+if not MYPY:
+    class AlertEnrichmentSpecStepExplainArgsDict(TypedDict):
+        annotation: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+        """
+        timeout: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Maximum execution time (e.g., '30s', '1m')
+        """
+elif False:
+    AlertEnrichmentSpecStepExplainArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AlertEnrichmentSpecStepExplainArgs:
+    def __init__(__self__, *,
+                 annotation: Optional[pulumi.Input[_builtins.str]] = None,
+                 timeout: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] annotation: Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+        :param pulumi.Input[_builtins.str] timeout: Maximum execution time (e.g., '30s', '1m')
+        """
+        if annotation is not None:
+            pulumi.set(__self__, "annotation", annotation)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotation(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+        """
+        return pulumi.get(self, "annotation")
+
+    @annotation.setter
+    def annotation(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "annotation", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Maximum execution time (e.g., '30s', '1m')
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "timeout", value)
+
+
+if not MYPY:
+    class AlertEnrichmentSpecStepExternalArgsDict(TypedDict):
+        timeout: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Maximum execution time (e.g., '30s', '1m')
+        """
+        url: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        HTTP endpoint URL to call for enrichment
+        """
+elif False:
+    AlertEnrichmentSpecStepExternalArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AlertEnrichmentSpecStepExternalArgs:
+    def __init__(__self__, *,
+                 timeout: Optional[pulumi.Input[_builtins.str]] = None,
+                 url: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] timeout: Maximum execution time (e.g., '30s', '1m')
+        :param pulumi.Input[_builtins.str] url: HTTP endpoint URL to call for enrichment
+        """
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Maximum execution time (e.g., '30s', '1m')
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "timeout", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        HTTP endpoint URL to call for enrichment
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "url", value)
+
+
+if not MYPY:
+    class AlertEnrichmentSpecStepSiftArgsDict(TypedDict):
+        timeout: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Maximum execution time (e.g., '30s', '1m')
+        """
+elif False:
+    AlertEnrichmentSpecStepSiftArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AlertEnrichmentSpecStepSiftArgs:
+    def __init__(__self__, *,
+                 timeout: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] timeout: Maximum execution time (e.g., '30s', '1m')
+        """
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
 
     @_builtins.property
     @pulumi.getter

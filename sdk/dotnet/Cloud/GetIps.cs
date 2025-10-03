@@ -97,6 +97,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly ImmutableArray<string> HostedMetrics;
         /// <summary>
+        /// Set of IP addresses that are used for hosted profiles.
+        /// </summary>
+        public readonly ImmutableArray<string> HostedProfiles;
+        /// <summary>
         /// Set of IP addresses that are used for hosted traces.
         /// </summary>
         public readonly ImmutableArray<string> HostedTraces;
@@ -115,6 +119,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             ImmutableArray<string> hostedMetrics,
 
+            ImmutableArray<string> hostedProfiles,
+
             ImmutableArray<string> hostedTraces,
 
             string id)
@@ -123,6 +129,7 @@ namespace Pulumiverse.Grafana.Cloud
             HostedGrafanas = hostedGrafanas;
             HostedLogs = hostedLogs;
             HostedMetrics = hostedMetrics;
+            HostedProfiles = hostedProfiles;
             HostedTraces = hostedTraces;
             Id = id;
         }
