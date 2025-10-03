@@ -6,6 +6,7 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .alert_enrichment import *
 from .contact_point import *
 from .message_template import *
 from .mute_timing import *

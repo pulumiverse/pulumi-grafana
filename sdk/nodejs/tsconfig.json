@@ -13,6 +13,7 @@
         "strict": true
     },
     "files": [
+        "alerting/alertEnrichment.ts",
         "alerting/contactPoint.ts",
         "alerting/index.ts",
         "alerting/messageTemplate.ts",

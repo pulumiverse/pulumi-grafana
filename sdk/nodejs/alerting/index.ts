@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AlertEnrichmentArgs, AlertEnrichmentState } from "./alertEnrichment";
+export type AlertEnrichment = import("./alertEnrichment").AlertEnrichment;
+export const AlertEnrichment: typeof import("./alertEnrichment").AlertEnrichment = null as any;
+utilities.lazyLoad(exports, ["AlertEnrichment"], () => require("./alertEnrichment"));
+
 export { ContactPointArgs, ContactPointState } from "./contactPoint";
 export type ContactPoint = import("./contactPoint").ContactPoint;
 export const ContactPoint: typeof import("./contactPoint").ContactPoint = null as any;
@@ -35,6 +40,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "grafana:alerting/alertEnrichment:AlertEnrichment":
+                return new AlertEnrichment(name, <any>undefined, { urn })
             case "grafana:alerting/contactPoint:ContactPoint":
                 return new ContactPoint(name, <any>undefined, { urn })
             case "grafana:alerting/messageTemplate:MessageTemplate":
@@ -50,6 +57,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("grafana", "alerting/alertEnrichment", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/contactPoint", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/messageTemplate", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/muteTiming", _module)

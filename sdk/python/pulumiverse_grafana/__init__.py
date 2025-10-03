@@ -65,6 +65,14 @@ _utilities.register(
 [
  {
   "pkg": "grafana",
+  "mod": "alerting/alertEnrichment",
+  "fqn": "pulumiverse_grafana.alerting",
+  "classes": {
+   "grafana:alerting/alertEnrichment:AlertEnrichment": "AlertEnrichment"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "alerting/contactPoint",
   "fqn": "pulumiverse_grafana.alerting",
   "classes": {
