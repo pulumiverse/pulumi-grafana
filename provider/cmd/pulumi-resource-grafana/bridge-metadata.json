@@ -36,6 +36,14 @@
                     }
                 }
             },
+            "grafana_asserts_notification_alerts_config": {
+                "current": "grafana:index/assertsNotificationAlertsConfig:AssertsNotificationAlertsConfig",
+                "majorVersion": 2
+            },
+            "grafana_asserts_suppressed_assertions_config": {
+                "current": "grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig",
+                "majorVersion": 2
+            },
             "grafana_cloud_access_policy": {
                 "current": "grafana:cloud/accessPolicy:AccessPolicy",
                 "majorVersion": 2,
@@ -1833,6 +1841,8 @@
             "grafana:fleetManagement/collector:Collector": 1,
             "grafana:fleetManagement/pipeline:Pipeline": 1,
             "grafana:frontendObservability/app:App": 1,
+            "grafana:index/assertsNotificationAlertsConfig:AssertsNotificationAlertsConfig": 0,
+            "grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig": 0,
             "grafana:k6/installation:Installation": 0,
             "grafana:k6/loadTest:LoadTest": 1,
             "grafana:k6/project:Project": 1,
