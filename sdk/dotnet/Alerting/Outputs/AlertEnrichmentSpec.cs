@@ -26,6 +26,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// Description of the alert enrichment.
         /// </summary>
         public readonly string? Description;
+        public readonly bool? DisableProvenance;
         /// <summary>
         /// Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
         /// </summary>
@@ -51,6 +52,8 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
             string? description,
 
+            bool? disableProvenance,
+
             ImmutableArray<Outputs.AlertEnrichmentSpecLabelMatcher> labelMatchers,
 
             ImmutableArray<string> receivers,
@@ -62,6 +65,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
             AlertRuleUids = alertRuleUids;
             AnnotationMatchers = annotationMatchers;
             Description = description;
+            DisableProvenance = disableProvenance;
             LabelMatchers = labelMatchers;
             Receivers = receivers;
             Steps = steps;

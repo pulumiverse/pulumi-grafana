@@ -13,6 +13,18 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
 
     public sealed class AlertEnrichmentMetadataGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("annotations")]
+        private InputMap<string>? _annotations;
+
+        /// <summary>
+        /// Annotations of the resource.
+        /// </summary>
+        public InputMap<string> Annotations
+        {
+            get => _annotations ?? (_annotations = new InputMap<string>());
+            set => _annotations = value;
+        }
+
         /// <summary>
         /// The UID of the folder to save the resource in.
         /// </summary>

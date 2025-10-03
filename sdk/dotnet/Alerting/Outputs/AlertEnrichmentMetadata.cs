@@ -15,6 +15,10 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
     public sealed class AlertEnrichmentMetadata
     {
         /// <summary>
+        /// Annotations of the resource.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string>? Annotations;
+        /// <summary>
         /// The UID of the folder to save the resource in.
         /// </summary>
         public readonly string? FolderUid;
@@ -37,6 +41,8 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
         [OutputConstructor]
         private AlertEnrichmentMetadata(
+            ImmutableDictionary<string, string>? annotations,
+
             string? folderUid,
 
             string uid,
@@ -47,6 +53,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
             string? version)
         {
+            Annotations = annotations;
             FolderUid = folderUid;
             Uid = uid;
             Url = url;

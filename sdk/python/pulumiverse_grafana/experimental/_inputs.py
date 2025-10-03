@@ -39,6 +39,10 @@ if not MYPY:
         """
         The unique identifier of the resource.
         """
+        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+        """
+        Annotations of the resource.
+        """
         folder_uid: NotRequired[pulumi.Input[_builtins.str]]
         """
         The UID of the folder to save the resource in.
@@ -62,18 +66,22 @@ elif False:
 class AppsDashboardMetadataArgs:
     def __init__(__self__, *,
                  uid: pulumi.Input[_builtins.str],
+                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  uuid: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] uid: The unique identifier of the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Annotations of the resource.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder to save the resource in.
         :param pulumi.Input[_builtins.str] url: The full URL of the resource.
         :param pulumi.Input[_builtins.str] uuid: The globally unique identifier of a resource, used by the API for tracking.
         :param pulumi.Input[_builtins.str] version: The version of the resource.
         """
         pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
         if folder_uid is not None:
             pulumi.set(__self__, "folder_uid", folder_uid)
         if url is not None:
@@ -94,6 +102,18 @@ class AppsDashboardMetadataArgs:
     @uid.setter
     def uid(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "annotations", value)
 
     @_builtins.property
     @pulumi.getter(name="folderUid")
@@ -253,6 +273,10 @@ if not MYPY:
         """
         The unique identifier of the resource.
         """
+        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+        """
+        Annotations of the resource.
+        """
         folder_uid: NotRequired[pulumi.Input[_builtins.str]]
         """
         The UID of the folder to save the resource in.
@@ -276,18 +300,22 @@ elif False:
 class AppsPlaylistV0Alpha1MetadataArgs:
     def __init__(__self__, *,
                  uid: pulumi.Input[_builtins.str],
+                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  uuid: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] uid: The unique identifier of the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Annotations of the resource.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder to save the resource in.
         :param pulumi.Input[_builtins.str] url: The full URL of the resource.
         :param pulumi.Input[_builtins.str] uuid: The globally unique identifier of a resource, used by the API for tracking.
         :param pulumi.Input[_builtins.str] version: The version of the resource.
         """
         pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
         if folder_uid is not None:
             pulumi.set(__self__, "folder_uid", folder_uid)
         if url is not None:
@@ -308,6 +336,18 @@ class AppsPlaylistV0Alpha1MetadataArgs:
     @uid.setter
     def uid(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "annotations", value)
 
     @_builtins.property
     @pulumi.getter(name="folderUid")

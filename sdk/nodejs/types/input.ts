@@ -8,6 +8,10 @@ import * as outputs from "../types/output";
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
+         * Annotations of the resource.
+         */
+        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
          * The UID of the folder to save the resource in.
          */
         folderUid?: pulumi.Input<string>;
@@ -49,6 +53,7 @@ export namespace alerting {
          * Description of the alert enrichment.
          */
         description?: pulumi.Input<string>;
+        disableProvenance?: pulumi.Input<boolean>;
         /**
          * Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
          */
@@ -1954,6 +1959,84 @@ export namespace alerting {
     }
 }
 
+export namespace assert {
+    export interface CustomModelRulesRules {
+        /**
+         * List of entities to define in the custom model rules.
+         */
+        entities: pulumi.Input<pulumi.Input<inputs.assert.CustomModelRulesRulesEntity>[]>;
+    }
+
+    export interface CustomModelRulesRulesEntity {
+        /**
+         * List of queries that define this entity.
+         */
+        definedBies: pulumi.Input<pulumi.Input<inputs.assert.CustomModelRulesRulesEntityDefinedBy>[]>;
+        /**
+         * Whether this entity is disabled.
+         */
+        disabled?: pulumi.Input<boolean>;
+        /**
+         * List of enrichment sources for the entity.
+         */
+        enrichedBies?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Lookup mappings for the entity.
+         */
+        lookup?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * The name of the entity.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * Scope labels for the entity.
+         */
+        scope?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * The type of the entity (e.g., Service, Pod, Namespace).
+         */
+        type: pulumi.Input<string>;
+    }
+
+    export interface CustomModelRulesRulesEntityDefinedBy {
+        /**
+         * Whether this rule is disabled. When true, only the 'query' field is used to match an existing rule to disable; other fields are ignored.
+         */
+        disabled?: pulumi.Input<boolean>;
+        /**
+         * Label value mappings for the query.
+         */
+        labelValues?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Literal value mappings for the query.
+         */
+        literals?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Metric value for the query.
+         */
+        metricValue?: pulumi.Input<string>;
+        /**
+         * The Prometheus query that defines this entity.
+         */
+        query: pulumi.Input<string>;
+    }
+
+    export interface LogConfigMatch {
+        /**
+         * Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.
+         */
+        op: pulumi.Input<string>;
+        /**
+         * Entity property to match.
+         */
+        property: pulumi.Input<string>;
+        /**
+         * Values to match against.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+}
+
 export namespace cloud {
     export interface AccessPolicyCondition {
         /**
@@ -2650,6 +2733,10 @@ export namespace enterprise {
 export namespace experimental {
     export interface AppsDashboardMetadata {
         /**
+         * Annotations of the resource.
+         */
+        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
          * The UID of the folder to save the resource in.
          */
         folderUid?: pulumi.Input<string>;
@@ -2694,6 +2781,10 @@ export namespace experimental {
     }
 
     export interface AppsPlaylistV0Alpha1Metadata {
+        /**
+         * Annotations of the resource.
+         */
+        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * The UID of the folder to save the resource in.
          */

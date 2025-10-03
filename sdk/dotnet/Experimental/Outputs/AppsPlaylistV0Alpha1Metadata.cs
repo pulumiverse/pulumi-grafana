@@ -15,6 +15,10 @@ namespace Pulumiverse.Grafana.Experimental.Outputs
     public sealed class AppsPlaylistV0Alpha1Metadata
     {
         /// <summary>
+        /// Annotations of the resource.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string>? Annotations;
+        /// <summary>
         /// The UID of the folder to save the resource in.
         /// </summary>
         public readonly string? FolderUid;
@@ -37,6 +41,8 @@ namespace Pulumiverse.Grafana.Experimental.Outputs
 
         [OutputConstructor]
         private AppsPlaylistV0Alpha1Metadata(
+            ImmutableDictionary<string, string>? annotations,
+
             string? folderUid,
 
             string uid,
@@ -47,6 +53,7 @@ namespace Pulumiverse.Grafana.Experimental.Outputs
 
             string? version)
         {
+            Annotations = annotations;
             FolderUid = folderUid;
             Uid = uid;
             Url = url;
