@@ -397,6 +397,15 @@
                 "current": "grafana:k6/project:Project",
                 "majorVersion": 2
             },
+            "grafana_k6_project_allowed_load_zones": {
+                "current": "grafana:k6/projectAllowedLoadZones:ProjectAllowedLoadZones",
+                "majorVersion": 2,
+                "fields": {
+                    "allowed_load_zones": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "grafana_k6_project_limits": {
                 "current": "grafana:k6/projectLimits:ProjectLimits",
                 "majorVersion": 2
@@ -1486,6 +1495,15 @@
                 "current": "grafana:k6/getProject:getProject",
                 "majorVersion": 2
             },
+            "grafana_k6_project_allowed_load_zones": {
+                "current": "grafana:k6/getProjectAllowedLoadZones:getProjectAllowedLoadZones",
+                "majorVersion": 2,
+                "fields": {
+                    "allowed_load_zones": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "grafana_k6_project_limits": {
                 "current": "grafana:k6/getProjectLimits:getProjectLimits",
                 "majorVersion": 2
@@ -1769,6 +1787,7 @@
             "grafana:k6/installation:Installation": 0,
             "grafana:k6/loadTest:LoadTest": 1,
             "grafana:k6/project:Project": 1,
+            "grafana:k6/projectAllowedLoadZones:ProjectAllowedLoadZones": 1,
             "grafana:k6/projectLimits:ProjectLimits": 1,
             "grafana:machineLearning/alert:Alert": 1,
             "grafana:machineLearning/holiday:Holiday": 0,
@@ -1827,6 +1846,7 @@
             "grafana:k6/getLoadTest:getLoadTest": 1,
             "grafana:k6/getLoadTests:getLoadTests": 1,
             "grafana:k6/getProject:getProject": 1,
+            "grafana:k6/getProjectAllowedLoadZones:getProjectAllowedLoadZones": 1,
             "grafana:k6/getProjectLimits:getProjectLimits": 1,
             "grafana:k6/getProjects:getProjects": 1,
             "grafana:onCall/getEscalationChain:getEscalationChain": 0,
