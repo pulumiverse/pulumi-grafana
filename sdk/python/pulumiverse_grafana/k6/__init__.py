@@ -9,10 +9,12 @@ import typing
 from .get_load_test import *
 from .get_load_tests import *
 from .get_project import *
+from .get_project_allowed_load_zones import *
 from .get_project_limits import *
 from .get_projects import *
 from .installation import *
 from .load_test import *
 from .project import *
+from .project_allowed_load_zones import *
 from .project_limits import *
 from . import outputs

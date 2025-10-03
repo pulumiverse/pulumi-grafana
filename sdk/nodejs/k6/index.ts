@@ -20,6 +20,11 @@ export const getProject: typeof import("./getProject").getProject = null as any;
 export const getProjectOutput: typeof import("./getProject").getProjectOutput = null as any;
 utilities.lazyLoad(exports, ["getProject","getProjectOutput"], () => require("./getProject"));
 
+export { GetProjectAllowedLoadZonesArgs, GetProjectAllowedLoadZonesResult, GetProjectAllowedLoadZonesOutputArgs } from "./getProjectAllowedLoadZones";
+export const getProjectAllowedLoadZones: typeof import("./getProjectAllowedLoadZones").getProjectAllowedLoadZones = null as any;
+export const getProjectAllowedLoadZonesOutput: typeof import("./getProjectAllowedLoadZones").getProjectAllowedLoadZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectAllowedLoadZones","getProjectAllowedLoadZonesOutput"], () => require("./getProjectAllowedLoadZones"));
+
 export { GetProjectLimitsArgs, GetProjectLimitsResult, GetProjectLimitsOutputArgs } from "./getProjectLimits";
 export const getProjectLimits: typeof import("./getProjectLimits").getProjectLimits = null as any;
 export const getProjectLimitsOutput: typeof import("./getProjectLimits").getProjectLimitsOutput = null as any;
@@ -45,6 +50,11 @@ export type Project = import("./project").Project;
 export const Project: typeof import("./project").Project = null as any;
 utilities.lazyLoad(exports, ["Project"], () => require("./project"));
 
+export { ProjectAllowedLoadZonesArgs, ProjectAllowedLoadZonesState } from "./projectAllowedLoadZones";
+export type ProjectAllowedLoadZones = import("./projectAllowedLoadZones").ProjectAllowedLoadZones;
+export const ProjectAllowedLoadZones: typeof import("./projectAllowedLoadZones").ProjectAllowedLoadZones = null as any;
+utilities.lazyLoad(exports, ["ProjectAllowedLoadZones"], () => require("./projectAllowedLoadZones"));
+
 export { ProjectLimitsArgs, ProjectLimitsState } from "./projectLimits";
 export type ProjectLimits = import("./projectLimits").ProjectLimits;
 export const ProjectLimits: typeof import("./projectLimits").ProjectLimits = null as any;
@@ -61,6 +71,8 @@ const _module = {
                 return new LoadTest(name, <any>undefined, { urn })
             case "grafana:k6/project:Project":
                 return new Project(name, <any>undefined, { urn })
+            case "grafana:k6/projectAllowedLoadZones:ProjectAllowedLoadZones":
+                return new ProjectAllowedLoadZones(name, <any>undefined, { urn })
             case "grafana:k6/projectLimits:ProjectLimits":
                 return new ProjectLimits(name, <any>undefined, { urn })
             default:
@@ -71,4 +83,5 @@ const _module = {
 pulumi.runtime.registerResourceModule("grafana", "k6/installation", _module)
 pulumi.runtime.registerResourceModule("grafana", "k6/loadTest", _module)
 pulumi.runtime.registerResourceModule("grafana", "k6/project", _module)
+pulumi.runtime.registerResourceModule("grafana", "k6/projectAllowedLoadZones", _module)
 pulumi.runtime.registerResourceModule("grafana", "k6/projectLimits", _module)

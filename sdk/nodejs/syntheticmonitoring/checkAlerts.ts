@@ -43,6 +43,11 @@ import * as utilities from "../utilities";
  *             threshold: 14,
  *             period: "",
  *         },
+ *         {
+ *             name: "HTTPRequestDurationTooHighAvg",
+ *             threshold: 5000,
+ *             period: "10m",
+ *         },
  *     ],
  * });
  * ```

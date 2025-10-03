@@ -156,6 +156,12 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<string>? LoginAttributePath { get; set; }
 
         /// <summary>
+        /// Indicates the type of user interaction when the user logs in with the IdP. Available values are `login`, `consent` and `select_account`.
+        /// </summary>
+        [Input("loginPrompt")]
+        public Input<string>? LoginPrompt { get; set; }
+
+        /// <summary>
         /// Helpful if you use more than one identity providers or SSO protocols.
         /// </summary>
         [Input("name")]

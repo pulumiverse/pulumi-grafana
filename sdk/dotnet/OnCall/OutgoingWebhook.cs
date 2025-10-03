@@ -41,6 +41,15 @@ namespace Pulumiverse.Grafana.OnCall
     ///         TeamId = myTeamGetTeam.Apply(getTeamResult =&gt; getTeamResult.Id),
     ///     });
     /// 
+    ///     var test_acc_outgoingWebhook_incident = new Grafana.OnCall.OutgoingWebhook("test-acc-outgoing_webhook-incident", new()
+    ///     {
+    ///         Name = "my outgoing incident webhook",
+    ///         Preset = "incident_webhook",
+    ///         HttpMethod = "POST",
+    ///         Url = "https://example.com/",
+    ///         TriggerType = "incident declared",
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -108,6 +117,12 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
+        /// The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        /// </summary>
+        [Output("preset")]
+        public Output<string?> Preset { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
         /// </summary>
         [Output("teamId")]
@@ -120,16 +135,16 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string?> TriggerTemplate { get; private set; } = null!;
 
         /// <summary>
-        /// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        /// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
         /// </summary>
         [Output("triggerType")]
         public Output<string?> TriggerType { get; private set; } = null!;
 
         /// <summary>
-        /// The webhook URL.
+        /// The webhook URL. Required when not using a preset that controls this field.
         /// </summary>
         [Output("url")]
-        public Output<string> Url { get; private set; } = null!;
+        public Output<string?> Url { get; private set; } = null!;
 
         /// <summary>
         /// Username to use when making the outgoing webhook request.
@@ -145,7 +160,7 @@ namespace Pulumiverse.Grafana.OnCall
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public OutgoingWebhook(string name, OutgoingWebhookArgs args, CustomResourceOptions? options = null)
+        public OutgoingWebhook(string name, OutgoingWebhookArgs? args = null, CustomResourceOptions? options = null)
             : base("grafana:onCall/outgoingWebhook:OutgoingWebhook", name, args ?? new OutgoingWebhookArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -270,6 +285,12 @@ namespace Pulumiverse.Grafana.OnCall
         }
 
         /// <summary>
+        /// The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        /// </summary>
+        [Input("preset")]
+        public Input<string>? Preset { get; set; }
+
+        /// <summary>
         /// The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
         /// </summary>
         [Input("teamId")]
@@ -282,16 +303,16 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? TriggerTemplate { get; set; }
 
         /// <summary>
-        /// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        /// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
         /// </summary>
         [Input("triggerType")]
         public Input<string>? TriggerType { get; set; }
 
         /// <summary>
-        /// The webhook URL.
+        /// The webhook URL. Required when not using a preset that controls this field.
         /// </summary>
-        [Input("url", required: true)]
-        public Input<string> Url { get; set; } = null!;
+        [Input("url")]
+        public Input<string>? Url { get; set; }
 
         /// <summary>
         /// Username to use when making the outgoing webhook request.
@@ -388,6 +409,12 @@ namespace Pulumiverse.Grafana.OnCall
         }
 
         /// <summary>
+        /// The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        /// </summary>
+        [Input("preset")]
+        public Input<string>? Preset { get; set; }
+
+        /// <summary>
         /// The ID of the OnCall team (using the `grafana.onCall.getTeam` datasource).
         /// </summary>
         [Input("teamId")]
@@ -400,13 +427,13 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? TriggerTemplate { get; set; }
 
         /// <summary>
-        /// The type of event that will cause this outgoing webhook to execute. The types of triggers are: `escalation`, `alert group created`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`. Defaults to `escalation`.
+        /// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
         /// </summary>
         [Input("triggerType")]
         public Input<string>? TriggerType { get; set; }
 
         /// <summary>
-        /// The webhook URL.
+        /// The webhook URL. Required when not using a preset that controls this field.
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }

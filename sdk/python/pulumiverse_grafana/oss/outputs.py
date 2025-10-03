@@ -829,6 +829,8 @@ class SsoSettingsOauth2Settings(dict):
             suggest = "id_token_attribute_name"
         elif key == "loginAttributePath":
             suggest = "login_attribute_path"
+        elif key == "loginPrompt":
+            suggest = "login_prompt"
         elif key == "nameAttributePath":
             suggest = "name_attribute_path"
         elif key == "orgAttributePath":
@@ -897,6 +899,7 @@ class SsoSettingsOauth2Settings(dict):
                  groups_attribute_path: Optional[_builtins.str] = None,
                  id_token_attribute_name: Optional[_builtins.str] = None,
                  login_attribute_path: Optional[_builtins.str] = None,
+                 login_prompt: Optional[_builtins.str] = None,
                  name: Optional[_builtins.str] = None,
                  name_attribute_path: Optional[_builtins.str] = None,
                  org_attribute_path: Optional[_builtins.str] = None,
@@ -938,6 +941,7 @@ class SsoSettingsOauth2Settings(dict):
         :param _builtins.str groups_attribute_path: JMESPath expression to use for user group lookup. If you configure allowed*groups, you must also configure groups*attribute_path.
         :param _builtins.str id_token_attribute_name: The name of the key used to extract the ID token from the returned OAuth2 token. Only applicable to Generic OAuth.
         :param _builtins.str login_attribute_path: JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
+        :param _builtins.str login_prompt: Indicates the type of user interaction when the user logs in with the IdP. Available values are `login`, `consent` and `select_account`.
         :param _builtins.str name: Helpful if you use more than one identity providers or SSO protocols.
         :param _builtins.str name_attribute_path: JMESPath expression to use for user name lookup from the user ID token. This name will be used as the user’s display name. Only applicable to Generic OAuth.
         :param _builtins.str org_attribute_path: JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "org_mapping"). Only applicable to Generic OAuth and Okta.
@@ -999,6 +1003,8 @@ class SsoSettingsOauth2Settings(dict):
             pulumi.set(__self__, "id_token_attribute_name", id_token_attribute_name)
         if login_attribute_path is not None:
             pulumi.set(__self__, "login_attribute_path", login_attribute_path)
+        if login_prompt is not None:
+            pulumi.set(__self__, "login_prompt", login_prompt)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if name_attribute_path is not None:
@@ -1205,6 +1211,14 @@ class SsoSettingsOauth2Settings(dict):
         JMESPath expression to use for user login lookup from the user ID token. Only applicable to Generic OAuth.
         """
         return pulumi.get(self, "login_attribute_path")
+
+    @_builtins.property
+    @pulumi.getter(name="loginPrompt")
+    def login_prompt(self) -> Optional[_builtins.str]:
+        """
+        Indicates the type of user interaction when the user logs in with the IdP. Available values are `login`, `consent` and `select_account`.
+        """
+        return pulumi.get(self, "login_prompt")
 
     @_builtins.property
     @pulumi.getter

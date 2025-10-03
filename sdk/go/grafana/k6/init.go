@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LoadTest{}
 	case "grafana:k6/project:Project":
 		r = &Project{}
+	case "grafana:k6/projectAllowedLoadZones:ProjectAllowedLoadZones":
+		r = &ProjectAllowedLoadZones{}
 	case "grafana:k6/projectLimits:ProjectLimits":
 		r = &ProjectLimits{}
 	default:
@@ -55,6 +57,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"k6/project",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"k6/projectAllowedLoadZones",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -2591,6 +2591,10 @@ export namespace oss {
          */
         loginAttributePath?: string;
         /**
+         * Indicates the type of user interaction when the user logs in with the IdP. Available values are `login`, `consent` and `selectAccount`.
+         */
+        loginPrompt?: string;
+        /**
          * Helpful if you use more than one identity providers or SSO protocols.
          */
         name?: string;
