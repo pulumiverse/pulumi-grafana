@@ -31,9 +31,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := enterprise.NewScimConfig(ctx, "default", &enterprise.ScimConfigArgs{
-//				EnableUserSync:           pulumi.Bool(true),
-//				EnableGroupSync:          pulumi.Bool(false),
-//				AllowNonProvisionedUsers: pulumi.Bool(false),
+//				EnableUserSync:            pulumi.Bool(true),
+//				EnableGroupSync:           pulumi.Bool(false),
+//				RejectNonProvisionedUsers: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
@@ -56,14 +56,14 @@ import (
 type ScimConfig struct {
 	pulumi.CustomResourceState
 
-	// Whether to allow non-provisioned users to access Grafana.
-	AllowNonProvisionedUsers pulumi.BoolOutput `pulumi:"allowNonProvisionedUsers"`
 	// Whether group synchronization is enabled.
 	EnableGroupSync pulumi.BoolOutput `pulumi:"enableGroupSync"`
 	// Whether user synchronization is enabled.
 	EnableUserSync pulumi.BoolOutput `pulumi:"enableUserSync"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
+	RejectNonProvisionedUsers pulumi.BoolOutput `pulumi:"rejectNonProvisionedUsers"`
 }
 
 // NewScimConfig registers a new resource with the given unique name, arguments, and options.
@@ -73,14 +73,14 @@ func NewScimConfig(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.AllowNonProvisionedUsers == nil {
-		return nil, errors.New("invalid value for required argument 'AllowNonProvisionedUsers'")
-	}
 	if args.EnableGroupSync == nil {
 		return nil, errors.New("invalid value for required argument 'EnableGroupSync'")
 	}
 	if args.EnableUserSync == nil {
 		return nil, errors.New("invalid value for required argument 'EnableUserSync'")
+	}
+	if args.RejectNonProvisionedUsers == nil {
+		return nil, errors.New("invalid value for required argument 'RejectNonProvisionedUsers'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ScimConfig
@@ -105,25 +105,25 @@ func GetScimConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ScimConfig resources.
 type scimConfigState struct {
-	// Whether to allow non-provisioned users to access Grafana.
-	AllowNonProvisionedUsers *bool `pulumi:"allowNonProvisionedUsers"`
 	// Whether group synchronization is enabled.
 	EnableGroupSync *bool `pulumi:"enableGroupSync"`
 	// Whether user synchronization is enabled.
 	EnableUserSync *bool `pulumi:"enableUserSync"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
+	// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
+	RejectNonProvisionedUsers *bool `pulumi:"rejectNonProvisionedUsers"`
 }
 
 type ScimConfigState struct {
-	// Whether to allow non-provisioned users to access Grafana.
-	AllowNonProvisionedUsers pulumi.BoolPtrInput
 	// Whether group synchronization is enabled.
 	EnableGroupSync pulumi.BoolPtrInput
 	// Whether user synchronization is enabled.
 	EnableUserSync pulumi.BoolPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
+	// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
+	RejectNonProvisionedUsers pulumi.BoolPtrInput
 }
 
 func (ScimConfigState) ElementType() reflect.Type {
@@ -131,26 +131,26 @@ func (ScimConfigState) ElementType() reflect.Type {
 }
 
 type scimConfigArgs struct {
-	// Whether to allow non-provisioned users to access Grafana.
-	AllowNonProvisionedUsers bool `pulumi:"allowNonProvisionedUsers"`
 	// Whether group synchronization is enabled.
 	EnableGroupSync bool `pulumi:"enableGroupSync"`
 	// Whether user synchronization is enabled.
 	EnableUserSync bool `pulumi:"enableUserSync"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
+	// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
+	RejectNonProvisionedUsers bool `pulumi:"rejectNonProvisionedUsers"`
 }
 
 // The set of arguments for constructing a ScimConfig resource.
 type ScimConfigArgs struct {
-	// Whether to allow non-provisioned users to access Grafana.
-	AllowNonProvisionedUsers pulumi.BoolInput
 	// Whether group synchronization is enabled.
 	EnableGroupSync pulumi.BoolInput
 	// Whether user synchronization is enabled.
 	EnableUserSync pulumi.BoolInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
+	// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
+	RejectNonProvisionedUsers pulumi.BoolInput
 }
 
 func (ScimConfigArgs) ElementType() reflect.Type {
@@ -240,11 +240,6 @@ func (o ScimConfigOutput) ToScimConfigOutputWithContext(ctx context.Context) Sci
 	return o
 }
 
-// Whether to allow non-provisioned users to access Grafana.
-func (o ScimConfigOutput) AllowNonProvisionedUsers() pulumi.BoolOutput {
-	return o.ApplyT(func(v *ScimConfig) pulumi.BoolOutput { return v.AllowNonProvisionedUsers }).(pulumi.BoolOutput)
-}
-
 // Whether group synchronization is enabled.
 func (o ScimConfigOutput) EnableGroupSync() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ScimConfig) pulumi.BoolOutput { return v.EnableGroupSync }).(pulumi.BoolOutput)
@@ -258,6 +253,11 @@ func (o ScimConfigOutput) EnableUserSync() pulumi.BoolOutput {
 // The Organization ID. If not set, the Org ID defined in the provider block will be used.
 func (o ScimConfigOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ScimConfig) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+}
+
+// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
+func (o ScimConfigOutput) RejectNonProvisionedUsers() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ScimConfig) pulumi.BoolOutput { return v.RejectNonProvisionedUsers }).(pulumi.BoolOutput)
 }
 
 type ScimConfigArrayOutput struct{ *pulumi.OutputState }

@@ -18,7 +18,7 @@ import * as utilities from "../utilities";
  * const _default = new grafana.enterprise.ScimConfig("default", {
  *     enableUserSync: true,
  *     enableGroupSync: false,
- *     allowNonProvisionedUsers: false,
+ *     rejectNonProvisionedUsers: false,
  * });
  * ```
  *
@@ -61,10 +61,6 @@ export class ScimConfig extends pulumi.CustomResource {
     }
 
     /**
-     * Whether to allow non-provisioned users to access Grafana.
-     */
-    declare public readonly allowNonProvisionedUsers: pulumi.Output<boolean>;
-    /**
      * Whether group synchronization is enabled.
      */
     declare public readonly enableGroupSync: pulumi.Output<boolean>;
@@ -76,6 +72,10 @@ export class ScimConfig extends pulumi.CustomResource {
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
     declare public readonly orgId: pulumi.Output<string | undefined>;
+    /**
+     * Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
+     */
+    declare public readonly rejectNonProvisionedUsers: pulumi.Output<boolean>;
 
     /**
      * Create a ScimConfig resource with the given unique name, arguments, and options.
@@ -90,25 +90,25 @@ export class ScimConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ScimConfigState | undefined;
-            resourceInputs["allowNonProvisionedUsers"] = state?.allowNonProvisionedUsers;
             resourceInputs["enableGroupSync"] = state?.enableGroupSync;
             resourceInputs["enableUserSync"] = state?.enableUserSync;
             resourceInputs["orgId"] = state?.orgId;
+            resourceInputs["rejectNonProvisionedUsers"] = state?.rejectNonProvisionedUsers;
         } else {
             const args = argsOrState as ScimConfigArgs | undefined;
-            if (args?.allowNonProvisionedUsers === undefined && !opts.urn) {
-                throw new Error("Missing required property 'allowNonProvisionedUsers'");
-            }
             if (args?.enableGroupSync === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enableGroupSync'");
             }
             if (args?.enableUserSync === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enableUserSync'");
             }
-            resourceInputs["allowNonProvisionedUsers"] = args?.allowNonProvisionedUsers;
+            if (args?.rejectNonProvisionedUsers === undefined && !opts.urn) {
+                throw new Error("Missing required property 'rejectNonProvisionedUsers'");
+            }
             resourceInputs["enableGroupSync"] = args?.enableGroupSync;
             resourceInputs["enableUserSync"] = args?.enableUserSync;
             resourceInputs["orgId"] = args?.orgId;
+            resourceInputs["rejectNonProvisionedUsers"] = args?.rejectNonProvisionedUsers;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ScimConfig.__pulumiType, name, resourceInputs, opts);
@@ -119,10 +119,6 @@ export class ScimConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ScimConfig resources.
  */
 export interface ScimConfigState {
-    /**
-     * Whether to allow non-provisioned users to access Grafana.
-     */
-    allowNonProvisionedUsers?: pulumi.Input<boolean>;
     /**
      * Whether group synchronization is enabled.
      */
@@ -135,16 +131,16 @@ export interface ScimConfigState {
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
     orgId?: pulumi.Input<string>;
+    /**
+     * Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
+     */
+    rejectNonProvisionedUsers?: pulumi.Input<boolean>;
 }
 
 /**
  * The set of arguments for constructing a ScimConfig resource.
  */
 export interface ScimConfigArgs {
-    /**
-     * Whether to allow non-provisioned users to access Grafana.
-     */
-    allowNonProvisionedUsers: pulumi.Input<boolean>;
     /**
      * Whether group synchronization is enabled.
      */
@@ -157,4 +153,8 @@ export interface ScimConfigArgs {
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
     orgId?: pulumi.Input<string>;
+    /**
+     * Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
+     */
+    rejectNonProvisionedUsers: pulumi.Input<boolean>;
 }

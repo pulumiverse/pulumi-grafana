@@ -29,7 +29,7 @@ namespace Pulumiverse.Grafana.Enterprise
     ///     {
     ///         EnableUserSync = true,
     ///         EnableGroupSync = false,
-    ///         AllowNonProvisionedUsers = false,
+    ///         RejectNonProvisionedUsers = false,
     ///     });
     /// 
     /// });
@@ -49,12 +49,6 @@ namespace Pulumiverse.Grafana.Enterprise
     public partial class ScimConfig : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Whether to allow non-provisioned users to access Grafana.
-        /// </summary>
-        [Output("allowNonProvisionedUsers")]
-        public Output<bool> AllowNonProvisionedUsers { get; private set; } = null!;
-
-        /// <summary>
         /// Whether group synchronization is enabled.
         /// </summary>
         [Output("enableGroupSync")]
@@ -71,6 +65,12 @@ namespace Pulumiverse.Grafana.Enterprise
         /// </summary>
         [Output("orgId")]
         public Output<string?> OrgId { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
+        /// </summary>
+        [Output("rejectNonProvisionedUsers")]
+        public Output<bool> RejectNonProvisionedUsers { get; private set; } = null!;
 
 
         /// <summary>
@@ -120,12 +120,6 @@ namespace Pulumiverse.Grafana.Enterprise
     public sealed class ScimConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether to allow non-provisioned users to access Grafana.
-        /// </summary>
-        [Input("allowNonProvisionedUsers", required: true)]
-        public Input<bool> AllowNonProvisionedUsers { get; set; } = null!;
-
-        /// <summary>
         /// Whether group synchronization is enabled.
         /// </summary>
         [Input("enableGroupSync", required: true)]
@@ -143,6 +137,12 @@ namespace Pulumiverse.Grafana.Enterprise
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 
+        /// <summary>
+        /// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
+        /// </summary>
+        [Input("rejectNonProvisionedUsers", required: true)]
+        public Input<bool> RejectNonProvisionedUsers { get; set; } = null!;
+
         public ScimConfigArgs()
         {
         }
@@ -151,12 +151,6 @@ namespace Pulumiverse.Grafana.Enterprise
 
     public sealed class ScimConfigState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Whether to allow non-provisioned users to access Grafana.
-        /// </summary>
-        [Input("allowNonProvisionedUsers")]
-        public Input<bool>? AllowNonProvisionedUsers { get; set; }
-
         /// <summary>
         /// Whether group synchronization is enabled.
         /// </summary>
@@ -174,6 +168,12 @@ namespace Pulumiverse.Grafana.Enterprise
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
+
+        /// <summary>
+        /// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
+        /// </summary>
+        [Input("rejectNonProvisionedUsers")]
+        public Input<bool>? RejectNonProvisionedUsers { get; set; }
 
         public ScimConfigState()
         {
