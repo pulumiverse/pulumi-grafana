@@ -34,8 +34,8 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         /// <summary>
         /// ID of the Webex Teams room where to send the messages.
         /// </summary>
-        [Input("roomId")]
-        public Input<string>? RoomId { get; set; }
+        [Input("roomId", required: true)]
+        public Input<string> RoomId { get; set; } = null!;
 
         [Input("settings")]
         private InputMap<string>? _settings;
@@ -53,7 +53,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
             }
         }
 
-        [Input("token")]
+        [Input("token", required: true)]
         private Input<string>? _token;
 
         /// <summary>

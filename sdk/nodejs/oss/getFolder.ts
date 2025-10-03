@@ -23,11 +23,13 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
-export function getFolder(args: GetFolderArgs, opts?: pulumi.InvokeOptions): Promise<GetFolderResult> {
+export function getFolder(args?: GetFolderArgs, opts?: pulumi.InvokeOptions): Promise<GetFolderResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:oss/getFolder:getFolder", {
         "orgId": args.orgId,
         "title": args.title,
+        "uid": args.uid,
     }, opts);
 }
 
@@ -40,9 +42,13 @@ export interface GetFolderArgs {
      */
     orgId?: string;
     /**
-     * The title of the folder.
+     * The title of the folder. If not set, only the uid is used to find the folder.
      */
-    title: string;
+    title?: string;
+    /**
+     * The uid of the folder. If not set, only the title of the folder is used to find the folder.
+     */
+    uid?: string;
 }
 
 /**
@@ -62,11 +68,11 @@ export interface GetFolderResult {
      */
     readonly parentFolderUid: string;
     /**
-     * The title of the folder.
+     * The title of the folder. If not set, only the uid is used to find the folder.
      */
-    readonly title: string;
+    readonly title?: string;
     /**
-     * Unique identifier.
+     * The uid of the folder. If not set, only the title of the folder is used to find the folder.
      */
     readonly uid: string;
     /**
@@ -93,11 +99,13 @@ export interface GetFolderResult {
  * });
  * ```
  */
-export function getFolderOutput(args: GetFolderOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFolderResult> {
+export function getFolderOutput(args?: GetFolderOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFolderResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:oss/getFolder:getFolder", {
         "orgId": args.orgId,
         "title": args.title,
+        "uid": args.uid,
     }, opts);
 }
 
@@ -110,7 +118,11 @@ export interface GetFolderOutputArgs {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * The title of the folder.
+     * The title of the folder. If not set, only the uid is used to find the folder.
      */
-    title: pulumi.Input<string>;
+    title?: pulumi.Input<string>;
+    /**
+     * The uid of the folder. If not set, only the title of the folder is used to find the folder.
+     */
+    uid?: pulumi.Input<string>;
 }

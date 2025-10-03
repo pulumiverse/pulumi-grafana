@@ -61,9 +61,8 @@ type PluginInstallation struct {
 	// Slug of the plugin to be installed.
 	Slug pulumi.StringOutput `pulumi:"slug"`
 	// The stack id to which the plugin should be installed.
-	StackSlug pulumi.StringOutput `pulumi:"stackSlug"`
-	// Version of the plugin to be installed.
-	Version pulumi.StringOutput `pulumi:"version"`
+	StackSlug pulumi.StringOutput    `pulumi:"stackSlug"`
+	Version   pulumi.StringPtrOutput `pulumi:"version"`
 }
 
 // NewPluginInstallation registers a new resource with the given unique name, arguments, and options.
@@ -78,9 +77,6 @@ func NewPluginInstallation(ctx *pulumi.Context,
 	}
 	if args.StackSlug == nil {
 		return nil, errors.New("invalid value for required argument 'StackSlug'")
-	}
-	if args.Version == nil {
-		return nil, errors.New("invalid value for required argument 'Version'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource PluginInstallation
@@ -109,8 +105,7 @@ type pluginInstallationState struct {
 	Slug *string `pulumi:"slug"`
 	// The stack id to which the plugin should be installed.
 	StackSlug *string `pulumi:"stackSlug"`
-	// Version of the plugin to be installed.
-	Version *string `pulumi:"version"`
+	Version   *string `pulumi:"version"`
 }
 
 type PluginInstallationState struct {
@@ -118,8 +113,7 @@ type PluginInstallationState struct {
 	Slug pulumi.StringPtrInput
 	// The stack id to which the plugin should be installed.
 	StackSlug pulumi.StringPtrInput
-	// Version of the plugin to be installed.
-	Version pulumi.StringPtrInput
+	Version   pulumi.StringPtrInput
 }
 
 func (PluginInstallationState) ElementType() reflect.Type {
@@ -130,9 +124,8 @@ type pluginInstallationArgs struct {
 	// Slug of the plugin to be installed.
 	Slug string `pulumi:"slug"`
 	// The stack id to which the plugin should be installed.
-	StackSlug string `pulumi:"stackSlug"`
-	// Version of the plugin to be installed.
-	Version string `pulumi:"version"`
+	StackSlug string  `pulumi:"stackSlug"`
+	Version   *string `pulumi:"version"`
 }
 
 // The set of arguments for constructing a PluginInstallation resource.
@@ -141,8 +134,7 @@ type PluginInstallationArgs struct {
 	Slug pulumi.StringInput
 	// The stack id to which the plugin should be installed.
 	StackSlug pulumi.StringInput
-	// Version of the plugin to be installed.
-	Version pulumi.StringInput
+	Version   pulumi.StringPtrInput
 }
 
 func (PluginInstallationArgs) ElementType() reflect.Type {
@@ -242,9 +234,8 @@ func (o PluginInstallationOutput) StackSlug() pulumi.StringOutput {
 	return o.ApplyT(func(v *PluginInstallation) pulumi.StringOutput { return v.StackSlug }).(pulumi.StringOutput)
 }
 
-// Version of the plugin to be installed.
-func (o PluginInstallationOutput) Version() pulumi.StringOutput {
-	return o.ApplyT(func(v *PluginInstallation) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
+func (o PluginInstallationOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PluginInstallation) pulumi.StringPtrOutput { return v.Version }).(pulumi.StringPtrOutput)
 }
 
 type PluginInstallationArrayOutput struct{ *pulumi.OutputState }

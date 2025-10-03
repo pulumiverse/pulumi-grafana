@@ -3289,11 +3289,11 @@ type ContactPointWebex struct {
 	// The templated title of the message to send.
 	Message *string `pulumi:"message"`
 	// ID of the Webex Teams room where to send the messages.
-	RoomId *string `pulumi:"roomId"`
+	RoomId string `pulumi:"roomId"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
 	Settings map[string]string `pulumi:"settings"`
 	// The bearer token used to authorize the client.
-	Token *string `pulumi:"token"`
+	Token string `pulumi:"token"`
 	// The UID of the contact point.
 	Uid *string `pulumi:"uid"`
 }
@@ -3317,11 +3317,11 @@ type ContactPointWebexArgs struct {
 	// The templated title of the message to send.
 	Message pulumi.StringPtrInput `pulumi:"message"`
 	// ID of the Webex Teams room where to send the messages.
-	RoomId pulumi.StringPtrInput `pulumi:"roomId"`
+	RoomId pulumi.StringInput `pulumi:"roomId"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
 	Settings pulumi.StringMapInput `pulumi:"settings"`
 	// The bearer token used to authorize the client.
-	Token pulumi.StringPtrInput `pulumi:"token"`
+	Token pulumi.StringInput `pulumi:"token"`
 	// The UID of the contact point.
 	Uid pulumi.StringPtrInput `pulumi:"uid"`
 }
@@ -3393,8 +3393,8 @@ func (o ContactPointWebexOutput) Message() pulumi.StringPtrOutput {
 }
 
 // ID of the Webex Teams room where to send the messages.
-func (o ContactPointWebexOutput) RoomId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ContactPointWebex) *string { return v.RoomId }).(pulumi.StringPtrOutput)
+func (o ContactPointWebexOutput) RoomId() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointWebex) string { return v.RoomId }).(pulumi.StringOutput)
 }
 
 // Additional custom properties to attach to the notifier. Defaults to `map[]`.
@@ -3403,8 +3403,8 @@ func (o ContactPointWebexOutput) Settings() pulumi.StringMapOutput {
 }
 
 // The bearer token used to authorize the client.
-func (o ContactPointWebexOutput) Token() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ContactPointWebex) *string { return v.Token }).(pulumi.StringPtrOutput)
+func (o ContactPointWebexOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointWebex) string { return v.Token }).(pulumi.StringOutput)
 }
 
 // The UID of the contact point.

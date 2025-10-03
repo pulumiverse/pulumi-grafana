@@ -2705,12 +2705,12 @@ class ContactPointWebex(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "apiUrl":
+        if key == "roomId":
+            suggest = "room_id"
+        elif key == "apiUrl":
             suggest = "api_url"
         elif key == "disableResolveMessage":
             suggest = "disable_resolve_message"
-        elif key == "roomId":
-            suggest = "room_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ContactPointWebex. Access the value via the '{suggest}' property getter instead.")
@@ -2724,36 +2724,50 @@ class ContactPointWebex(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 room_id: _builtins.str,
+                 token: _builtins.str,
                  api_url: Optional[_builtins.str] = None,
                  disable_resolve_message: Optional[_builtins.bool] = None,
                  message: Optional[_builtins.str] = None,
-                 room_id: Optional[_builtins.str] = None,
                  settings: Optional[Mapping[str, _builtins.str]] = None,
-                 token: Optional[_builtins.str] = None,
                  uid: Optional[_builtins.str] = None):
         """
+        :param _builtins.str room_id: ID of the Webex Teams room where to send the messages.
+        :param _builtins.str token: The bearer token used to authorize the client.
         :param _builtins.str api_url: The URL to send webhook requests to.
         :param _builtins.bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
         :param _builtins.str message: The templated title of the message to send.
-        :param _builtins.str room_id: ID of the Webex Teams room where to send the messages.
         :param Mapping[str, _builtins.str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
-        :param _builtins.str token: The bearer token used to authorize the client.
         :param _builtins.str uid: The UID of the contact point.
         """
+        pulumi.set(__self__, "room_id", room_id)
+        pulumi.set(__self__, "token", token)
         if api_url is not None:
             pulumi.set(__self__, "api_url", api_url)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
         if message is not None:
             pulumi.set(__self__, "message", message)
-        if room_id is not None:
-            pulumi.set(__self__, "room_id", room_id)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
-        if token is not None:
-            pulumi.set(__self__, "token", token)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
+
+    @_builtins.property
+    @pulumi.getter(name="roomId")
+    def room_id(self) -> _builtins.str:
+        """
+        ID of the Webex Teams room where to send the messages.
+        """
+        return pulumi.get(self, "room_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> _builtins.str:
+        """
+        The bearer token used to authorize the client.
+        """
+        return pulumi.get(self, "token")
 
     @_builtins.property
     @pulumi.getter(name="apiUrl")
@@ -2780,28 +2794,12 @@ class ContactPointWebex(dict):
         return pulumi.get(self, "message")
 
     @_builtins.property
-    @pulumi.getter(name="roomId")
-    def room_id(self) -> Optional[_builtins.str]:
-        """
-        ID of the Webex Teams room where to send the messages.
-        """
-        return pulumi.get(self, "room_id")
-
-    @_builtins.property
     @pulumi.getter
     def settings(self) -> Optional[Mapping[str, _builtins.str]]:
         """
         Additional custom properties to attach to the notifier. Defaults to `map[]`.
         """
         return pulumi.get(self, "settings")
-
-    @_builtins.property
-    @pulumi.getter
-    def token(self) -> Optional[_builtins.str]:
-        """
-        The bearer token used to authorize the client.
-        """
-        return pulumi.get(self, "token")
 
     @_builtins.property
     @pulumi.getter

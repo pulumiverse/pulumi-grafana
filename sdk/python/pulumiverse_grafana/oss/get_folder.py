@@ -72,9 +72,9 @@ class GetFolderResult:
 
     @_builtins.property
     @pulumi.getter
-    def title(self) -> _builtins.str:
+    def title(self) -> Optional[_builtins.str]:
         """
-        The title of the folder.
+        The title of the folder. If not set, only the uid is used to find the folder.
         """
         return pulumi.get(self, "title")
 
@@ -82,7 +82,7 @@ class GetFolderResult:
     @pulumi.getter
     def uid(self) -> _builtins.str:
         """
-        Unique identifier.
+        The uid of the folder. If not set, only the title of the folder is used to find the folder.
         """
         return pulumi.get(self, "uid")
 
@@ -111,6 +111,7 @@ class AwaitableGetFolderResult(GetFolderResult):
 
 def get_folder(org_id: Optional[_builtins.str] = None,
                title: Optional[_builtins.str] = None,
+               uid: Optional[_builtins.str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFolderResult:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
@@ -131,11 +132,13 @@ def get_folder(org_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-    :param _builtins.str title: The title of the folder.
+    :param _builtins.str title: The title of the folder. If not set, only the uid is used to find the folder.
+    :param _builtins.str uid: The uid of the folder. If not set, only the title of the folder is used to find the folder.
     """
     __args__ = dict()
     __args__['orgId'] = org_id
     __args__['title'] = title
+    __args__['uid'] = uid
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:oss/getFolder:getFolder', __args__, opts=opts, typ=GetFolderResult).value
 
@@ -147,7 +150,8 @@ def get_folder(org_id: Optional[_builtins.str] = None,
         uid=pulumi.get(__ret__, 'uid'),
         url=pulumi.get(__ret__, 'url'))
 def get_folder_output(org_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      title: Optional[pulumi.Input[_builtins.str]] = None,
+                      title: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                      uid: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFolderResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
@@ -168,11 +172,13 @@ def get_folder_output(org_id: Optional[pulumi.Input[Optional[_builtins.str]]] = 
 
 
     :param _builtins.str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-    :param _builtins.str title: The title of the folder.
+    :param _builtins.str title: The title of the folder. If not set, only the uid is used to find the folder.
+    :param _builtins.str uid: The uid of the folder. If not set, only the title of the folder is used to find the folder.
     """
     __args__ = dict()
     __args__['orgId'] = org_id
     __args__['title'] = title
+    __args__['uid'] = uid
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:oss/getFolder:getFolder', __args__, opts=opts, typ=GetFolderResult)
     return __ret__.apply(lambda __response__: GetFolderResult(

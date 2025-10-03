@@ -57,8 +57,10 @@ func LookupFolder(ctx *pulumi.Context, args *LookupFolderArgs, opts ...pulumi.In
 type LookupFolderArgs struct {
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// The title of the folder.
-	Title string `pulumi:"title"`
+	// The title of the folder. If not set, only the uid is used to find the folder.
+	Title *string `pulumi:"title"`
+	// The uid of the folder. If not set, only the title of the folder is used to find the folder.
+	Uid *string `pulumi:"uid"`
 }
 
 // A collection of values returned by getFolder.
@@ -69,9 +71,9 @@ type LookupFolderResult struct {
 	OrgId *string `pulumi:"orgId"`
 	// The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
 	ParentFolderUid string `pulumi:"parentFolderUid"`
-	// The title of the folder.
-	Title string `pulumi:"title"`
-	// Unique identifier.
+	// The title of the folder. If not set, only the uid is used to find the folder.
+	Title *string `pulumi:"title"`
+	// The uid of the folder. If not set, only the title of the folder is used to find the folder.
 	Uid string `pulumi:"uid"`
 	// The full URL of the folder.
 	Url string `pulumi:"url"`
@@ -90,8 +92,10 @@ func LookupFolderOutput(ctx *pulumi.Context, args LookupFolderOutputArgs, opts .
 type LookupFolderOutputArgs struct {
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
-	// The title of the folder.
-	Title pulumi.StringInput `pulumi:"title"`
+	// The title of the folder. If not set, only the uid is used to find the folder.
+	Title pulumi.StringPtrInput `pulumi:"title"`
+	// The uid of the folder. If not set, only the title of the folder is used to find the folder.
+	Uid pulumi.StringPtrInput `pulumi:"uid"`
 }
 
 func (LookupFolderOutputArgs) ElementType() reflect.Type {
@@ -128,12 +132,12 @@ func (o LookupFolderResultOutput) ParentFolderUid() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFolderResult) string { return v.ParentFolderUid }).(pulumi.StringOutput)
 }
 
-// The title of the folder.
-func (o LookupFolderResultOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFolderResult) string { return v.Title }).(pulumi.StringOutput)
+// The title of the folder. If not set, only the uid is used to find the folder.
+func (o LookupFolderResultOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFolderResult) *string { return v.Title }).(pulumi.StringPtrOutput)
 }
 
-// Unique identifier.
+// The uid of the folder. If not set, only the title of the folder is used to find the folder.
 func (o LookupFolderResultOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFolderResult) string { return v.Uid }).(pulumi.StringOutput)
 }

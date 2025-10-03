@@ -21,16 +21,16 @@ class PluginInstallationArgs:
     def __init__(__self__, *,
                  slug: pulumi.Input[_builtins.str],
                  stack_slug: pulumi.Input[_builtins.str],
-                 version: pulumi.Input[_builtins.str]):
+                 version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PluginInstallation resource.
         :param pulumi.Input[_builtins.str] slug: Slug of the plugin to be installed.
         :param pulumi.Input[_builtins.str] stack_slug: The stack id to which the plugin should be installed.
-        :param pulumi.Input[_builtins.str] version: Version of the plugin to be installed.
         """
         pulumi.set(__self__, "slug", slug)
         pulumi.set(__self__, "stack_slug", stack_slug)
-        pulumi.set(__self__, "version", version)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
 
     @_builtins.property
     @pulumi.getter
@@ -58,14 +58,11 @@ class PluginInstallationArgs:
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> pulumi.Input[_builtins.str]:
-        """
-        Version of the plugin to be installed.
-        """
+    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: pulumi.Input[_builtins.str]):
+    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "version", value)
 
 
@@ -79,7 +76,6 @@ class _PluginInstallationState:
         Input properties used for looking up and filtering PluginInstallation resources.
         :param pulumi.Input[_builtins.str] slug: Slug of the plugin to be installed.
         :param pulumi.Input[_builtins.str] stack_slug: The stack id to which the plugin should be installed.
-        :param pulumi.Input[_builtins.str] version: Version of the plugin to be installed.
         """
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
@@ -115,9 +111,6 @@ class _PluginInstallationState:
     @_builtins.property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Version of the plugin to be installed.
-        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -168,7 +161,6 @@ class PluginInstallation(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] slug: Slug of the plugin to be installed.
         :param pulumi.Input[_builtins.str] stack_slug: The stack id to which the plugin should be installed.
-        :param pulumi.Input[_builtins.str] version: Version of the plugin to be installed.
         """
         ...
     @overload
@@ -238,8 +230,6 @@ class PluginInstallation(pulumi.CustomResource):
             if stack_slug is None and not opts.urn:
                 raise TypeError("Missing required property 'stack_slug'")
             __props__.__dict__["stack_slug"] = stack_slug
-            if version is None and not opts.urn:
-                raise TypeError("Missing required property 'version'")
             __props__.__dict__["version"] = version
         super(PluginInstallation, __self__).__init__(
             'grafana:cloud/pluginInstallation:PluginInstallation',
@@ -263,7 +253,6 @@ class PluginInstallation(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] slug: Slug of the plugin to be installed.
         :param pulumi.Input[_builtins.str] stack_slug: The stack id to which the plugin should be installed.
-        :param pulumi.Input[_builtins.str] version: Version of the plugin to be installed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -292,9 +281,6 @@ class PluginInstallation(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> pulumi.Output[_builtins.str]:
-        """
-        Version of the plugin to be installed.
-        """
+    def version(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "version")
 

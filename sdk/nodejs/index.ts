@@ -11,6 +11,7 @@ import { Provider } from "./provider";
 
 // Export sub-modules:
 import * as alerting from "./alerting";
+import * as assert from "./assert";
 import * as cloud from "./cloud";
 import * as cloudprovider from "./cloudprovider";
 import * as config from "./config";
@@ -29,6 +30,7 @@ import * as types from "./types";
 
 export {
     alerting,
+    assert,
     cloud,
     cloudprovider,
     config,

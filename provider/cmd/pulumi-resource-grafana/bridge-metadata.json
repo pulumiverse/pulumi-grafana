@@ -36,6 +36,14 @@
                     }
                 }
             },
+            "grafana_asserts_notification_alerts_config": {
+                "current": "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig",
+                "majorVersion": 2
+            },
+            "grafana_asserts_suppressed_assertions_config": {
+                "current": "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig",
+                "majorVersion": 2
+            },
             "grafana_cloud_access_policy": {
                 "current": "grafana:cloud/accessPolicy:AccessPolicy",
                 "majorVersion": 2,
@@ -1805,6 +1813,8 @@
             "grafana:alerting/muteTiming:MuteTiming": 0,
             "grafana:alerting/notificationPolicy:NotificationPolicy": 0,
             "grafana:alerting/ruleGroup:RuleGroup": 0,
+            "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig": 0,
+            "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig": 0,
             "grafana:cloud/accessPolicy:AccessPolicy": 0,
             "grafana:cloud/accessPolicyToken:AccessPolicyToken": 0,
             "grafana:cloud/orgMember:OrgMember": 1,
