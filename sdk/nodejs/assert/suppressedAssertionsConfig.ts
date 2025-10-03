@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages Asserts Disabled Alert Configurations through Grafana API.
@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * // Basic suppressed alert configuration for maintenance
- * const maintenanceWindow = new grafana.AssertsSuppressedAssertionsConfig("maintenance_window", {
+ * const maintenanceWindow = new grafana.assert.SuppressedAssertionsConfig("maintenance_window", {
  *     name: "MaintenanceWindow",
  *     matchLabels: {
  *         service: "api-service",
@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * // Suppress specific alertname during deployment
- * const deploymentSuppression = new grafana.AssertsSuppressedAssertionsConfig("deployment_suppression", {
+ * const deploymentSuppression = new grafana.assert.SuppressedAssertionsConfig("deployment_suppression", {
  *     name: "DeploymentSuppression",
  *     matchLabels: {
  *         alertname: "HighLatency",
@@ -31,7 +31,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * // Suppress alerts for specific test environment
- * const testEnvironmentSuppression = new grafana.AssertsSuppressedAssertionsConfig("test_environment_suppression", {
+ * const testEnvironmentSuppression = new grafana.assert.SuppressedAssertionsConfig("test_environment_suppression", {
  *     name: "TestEnvironmentSuppression",
  *     matchLabels: {
  *         alertgroup: "test.alerts",
@@ -43,12 +43,12 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig name "{{ name }}"
+ * $ pulumi import grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig name "{{ name }}"
  * ```
  */
-export class AssertsSuppressedAssertionsConfig extends pulumi.CustomResource {
+export class SuppressedAssertionsConfig extends pulumi.CustomResource {
     /**
-     * Get an existing AssertsSuppressedAssertionsConfig resource's state with the given name, ID, and optional extra
+     * Get an existing SuppressedAssertionsConfig resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -56,22 +56,22 @@ export class AssertsSuppressedAssertionsConfig extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AssertsSuppressedAssertionsConfigState, opts?: pulumi.CustomResourceOptions): AssertsSuppressedAssertionsConfig {
-        return new AssertsSuppressedAssertionsConfig(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SuppressedAssertionsConfigState, opts?: pulumi.CustomResourceOptions): SuppressedAssertionsConfig {
+        return new SuppressedAssertionsConfig(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig';
+    public static readonly __pulumiType = 'grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig';
 
     /**
-     * Returns true if the given object is an instance of AssertsSuppressedAssertionsConfig.  This is designed to work even
+     * Returns true if the given object is an instance of SuppressedAssertionsConfig.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AssertsSuppressedAssertionsConfig {
+    public static isInstance(obj: any): obj is SuppressedAssertionsConfig {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AssertsSuppressedAssertionsConfig.__pulumiType;
+        return obj['__pulumiType'] === SuppressedAssertionsConfig.__pulumiType;
     }
 
     /**
@@ -84,34 +84,34 @@ export class AssertsSuppressedAssertionsConfig extends pulumi.CustomResource {
     declare public readonly name: pulumi.Output<string>;
 
     /**
-     * Create a AssertsSuppressedAssertionsConfig resource with the given unique name, arguments, and options.
+     * Create a SuppressedAssertionsConfig resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: AssertsSuppressedAssertionsConfigArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AssertsSuppressedAssertionsConfigArgs | AssertsSuppressedAssertionsConfigState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: SuppressedAssertionsConfigArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: SuppressedAssertionsConfigArgs | SuppressedAssertionsConfigState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AssertsSuppressedAssertionsConfigState | undefined;
+            const state = argsOrState as SuppressedAssertionsConfigState | undefined;
             resourceInputs["matchLabels"] = state?.matchLabels;
             resourceInputs["name"] = state?.name;
         } else {
-            const args = argsOrState as AssertsSuppressedAssertionsConfigArgs | undefined;
+            const args = argsOrState as SuppressedAssertionsConfigArgs | undefined;
             resourceInputs["matchLabels"] = args?.matchLabels;
             resourceInputs["name"] = args?.name;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AssertsSuppressedAssertionsConfig.__pulumiType, name, resourceInputs, opts);
+        super(SuppressedAssertionsConfig.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AssertsSuppressedAssertionsConfig resources.
+ * Input properties used for looking up and filtering SuppressedAssertionsConfig resources.
  */
-export interface AssertsSuppressedAssertionsConfigState {
+export interface SuppressedAssertionsConfigState {
     /**
      * Labels to match for this disabled alert configuration.
      */
@@ -123,9 +123,9 @@ export interface AssertsSuppressedAssertionsConfigState {
 }
 
 /**
- * The set of arguments for constructing a AssertsSuppressedAssertionsConfig resource.
+ * The set of arguments for constructing a SuppressedAssertionsConfig resource.
  */
-export interface AssertsSuppressedAssertionsConfigArgs {
+export interface SuppressedAssertionsConfigArgs {
     /**
      * Labels to match for this disabled alert configuration.
      */

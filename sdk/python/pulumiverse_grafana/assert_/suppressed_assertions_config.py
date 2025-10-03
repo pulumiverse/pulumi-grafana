@@ -12,17 +12,17 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['AssertsSuppressedAssertionsConfigArgs', 'AssertsSuppressedAssertionsConfig']
+__all__ = ['SuppressedAssertionsConfigArgs', 'SuppressedAssertionsConfig']
 
 @pulumi.input_type
-class AssertsSuppressedAssertionsConfigArgs:
+class SuppressedAssertionsConfigArgs:
     def __init__(__self__, *,
                  match_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        The set of arguments for constructing a AssertsSuppressedAssertionsConfig resource.
+        The set of arguments for constructing a SuppressedAssertionsConfig resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] match_labels: Labels to match for this disabled alert configuration.
         :param pulumi.Input[_builtins.str] name: The name of the disabled alert configuration.
         """
@@ -57,12 +57,12 @@ class AssertsSuppressedAssertionsConfigArgs:
 
 
 @pulumi.input_type
-class _AssertsSuppressedAssertionsConfigState:
+class _SuppressedAssertionsConfigState:
     def __init__(__self__, *,
                  match_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering AssertsSuppressedAssertionsConfig resources.
+        Input properties used for looking up and filtering SuppressedAssertionsConfig resources.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] match_labels: Labels to match for this disabled alert configuration.
         :param pulumi.Input[_builtins.str] name: The name of the disabled alert configuration.
         """
@@ -96,8 +96,8 @@ class _AssertsSuppressedAssertionsConfigState:
         pulumi.set(self, "name", value)
 
 
-@pulumi.type_token("grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig")
-class AssertsSuppressedAssertionsConfig(pulumi.CustomResource):
+@pulumi.type_token("grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig")
+class SuppressedAssertionsConfig(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -115,14 +115,14 @@ class AssertsSuppressedAssertionsConfig(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         # Basic suppressed alert configuration for maintenance
-        maintenance_window = grafana.AssertsSuppressedAssertionsConfig("maintenance_window",
+        maintenance_window = grafana.assert_.SuppressedAssertionsConfig("maintenance_window",
             name="MaintenanceWindow",
             match_labels={
                 "service": "api-service",
                 "maintenance": "true",
             })
         # Suppress specific alertname during deployment
-        deployment_suppression = grafana.AssertsSuppressedAssertionsConfig("deployment_suppression",
+        deployment_suppression = grafana.assert_.SuppressedAssertionsConfig("deployment_suppression",
             name="DeploymentSuppression",
             match_labels={
                 "alertname": "HighLatency",
@@ -130,7 +130,7 @@ class AssertsSuppressedAssertionsConfig(pulumi.CustomResource):
                 "env": "staging",
             })
         # Suppress alerts for specific test environment
-        test_environment_suppression = grafana.AssertsSuppressedAssertionsConfig("test_environment_suppression",
+        test_environment_suppression = grafana.assert_.SuppressedAssertionsConfig("test_environment_suppression",
             name="TestEnvironmentSuppression",
             match_labels={
                 "alertgroup": "test.alerts",
@@ -141,7 +141,7 @@ class AssertsSuppressedAssertionsConfig(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig name "{{ name }}"
+        $ pulumi import grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig name "{{ name }}"
         ```
 
         :param str resource_name: The name of the resource.
@@ -153,7 +153,7 @@ class AssertsSuppressedAssertionsConfig(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[AssertsSuppressedAssertionsConfigArgs] = None,
+                 args: Optional[SuppressedAssertionsConfigArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages Asserts Disabled Alert Configurations through Grafana API.
@@ -165,14 +165,14 @@ class AssertsSuppressedAssertionsConfig(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         # Basic suppressed alert configuration for maintenance
-        maintenance_window = grafana.AssertsSuppressedAssertionsConfig("maintenance_window",
+        maintenance_window = grafana.assert_.SuppressedAssertionsConfig("maintenance_window",
             name="MaintenanceWindow",
             match_labels={
                 "service": "api-service",
                 "maintenance": "true",
             })
         # Suppress specific alertname during deployment
-        deployment_suppression = grafana.AssertsSuppressedAssertionsConfig("deployment_suppression",
+        deployment_suppression = grafana.assert_.SuppressedAssertionsConfig("deployment_suppression",
             name="DeploymentSuppression",
             match_labels={
                 "alertname": "HighLatency",
@@ -180,7 +180,7 @@ class AssertsSuppressedAssertionsConfig(pulumi.CustomResource):
                 "env": "staging",
             })
         # Suppress alerts for specific test environment
-        test_environment_suppression = grafana.AssertsSuppressedAssertionsConfig("test_environment_suppression",
+        test_environment_suppression = grafana.assert_.SuppressedAssertionsConfig("test_environment_suppression",
             name="TestEnvironmentSuppression",
             match_labels={
                 "alertgroup": "test.alerts",
@@ -191,16 +191,16 @@ class AssertsSuppressedAssertionsConfig(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig name "{{ name }}"
+        $ pulumi import grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig name "{{ name }}"
         ```
 
         :param str resource_name: The name of the resource.
-        :param AssertsSuppressedAssertionsConfigArgs args: The arguments to use to populate this resource's properties.
+        :param SuppressedAssertionsConfigArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AssertsSuppressedAssertionsConfigArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(SuppressedAssertionsConfigArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -218,12 +218,12 @@ class AssertsSuppressedAssertionsConfig(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AssertsSuppressedAssertionsConfigArgs.__new__(AssertsSuppressedAssertionsConfigArgs)
+            __props__ = SuppressedAssertionsConfigArgs.__new__(SuppressedAssertionsConfigArgs)
 
             __props__.__dict__["match_labels"] = match_labels
             __props__.__dict__["name"] = name
-        super(AssertsSuppressedAssertionsConfig, __self__).__init__(
-            'grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig',
+        super(SuppressedAssertionsConfig, __self__).__init__(
+            'grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig',
             resource_name,
             __props__,
             opts)
@@ -233,9 +233,9 @@ class AssertsSuppressedAssertionsConfig(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             match_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None) -> 'AssertsSuppressedAssertionsConfig':
+            name: Optional[pulumi.Input[_builtins.str]] = None) -> 'SuppressedAssertionsConfig':
         """
-        Get an existing AssertsSuppressedAssertionsConfig resource's state with the given name, id, and optional extra
+        Get an existing SuppressedAssertionsConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -246,11 +246,11 @@ class AssertsSuppressedAssertionsConfig(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _AssertsSuppressedAssertionsConfigState.__new__(_AssertsSuppressedAssertionsConfigState)
+        __props__ = _SuppressedAssertionsConfigState.__new__(_SuppressedAssertionsConfigState)
 
         __props__.__dict__["match_labels"] = match_labels
         __props__.__dict__["name"] = name
-        return AssertsSuppressedAssertionsConfig(resource_name, opts=opts, __props__=__props__)
+        return SuppressedAssertionsConfig(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="matchLabels")

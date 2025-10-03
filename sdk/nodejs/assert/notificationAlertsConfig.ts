@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages Asserts Alert Configurations through Grafana API.
@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * // Basic alert configuration with silencing
- * const prometheusRemoteStorageFailures = new grafana.AssertsNotificationAlertsConfig("prometheus_remote_storage_failures", {
+ * const prometheusRemoteStorageFailures = new grafana.assert.NotificationAlertsConfig("prometheus_remote_storage_failures", {
  *     name: "PrometheusRemoteStorageFailures",
  *     matchLabels: {
  *         alertname: "PrometheusRemoteStorageFailures",
@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  *     silenced: true,
  * });
  * // High severity alert with specific job and context matching
- * const errorBuildupNotify = new grafana.AssertsNotificationAlertsConfig("error_buildup_notify", {
+ * const errorBuildupNotify = new grafana.assert.NotificationAlertsConfig("error_buildup_notify", {
  *     name: "ErrorBuildupNotify",
  *     matchLabels: {
  *         alertname: "ErrorBuildup",
@@ -35,7 +35,7 @@ import * as utilities from "./utilities";
  *     silenced: false,
  * });
  * // Alert with additional labels and custom duration
- * const paymentTestAlert = new grafana.AssertsNotificationAlertsConfig("payment_test_alert", {
+ * const paymentTestAlert = new grafana.assert.NotificationAlertsConfig("payment_test_alert", {
  *     name: "PaymentTestAlert",
  *     matchLabels: {
  *         alertname: "PaymentTestAlert",
@@ -49,7 +49,7 @@ import * as utilities from "./utilities";
  *     silenced: false,
  * });
  * // Latency alert for shipping service
- * const highShippingLatency = new grafana.AssertsNotificationAlertsConfig("high_shipping_latency", {
+ * const highShippingLatency = new grafana.assert.NotificationAlertsConfig("high_shipping_latency", {
  *     name: "high shipping latency",
  *     matchLabels: {
  *         alertname: "LatencyP99ErrorBuildup",
@@ -59,7 +59,7 @@ import * as utilities from "./utilities";
  *     silenced: false,
  * });
  * // CPU throttling alert with warning severity
- * const cpuThrottlingSustained = new grafana.AssertsNotificationAlertsConfig("cpu_throttling_sustained", {
+ * const cpuThrottlingSustained = new grafana.assert.NotificationAlertsConfig("cpu_throttling_sustained", {
  *     name: "CPUThrottlingSustained",
  *     matchLabels: {
  *         alertname: "CPUThrottlingSustained",
@@ -68,7 +68,7 @@ import * as utilities from "./utilities";
  *     silenced: true,
  * });
  * // Ingress error rate alert
- * const ingressError = new grafana.AssertsNotificationAlertsConfig("ingress_error", {
+ * const ingressError = new grafana.assert.NotificationAlertsConfig("ingress_error", {
  *     name: "ingress error",
  *     matchLabels: {
  *         alertname: "ErrorRatioBreach",
@@ -78,7 +78,7 @@ import * as utilities from "./utilities";
  *     silenced: false,
  * });
  * // MySQL Galera cluster alert
- * const mysqlGaleraNotReady = new grafana.AssertsNotificationAlertsConfig("mysql_galera_not_ready", {
+ * const mysqlGaleraNotReady = new grafana.assert.NotificationAlertsConfig("mysql_galera_not_ready", {
  *     name: "MySQLGaleraNotReady",
  *     matchLabels: {
  *         alertname: "MySQLGaleraNotReady",
@@ -90,12 +90,12 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:index/assertsNotificationAlertsConfig:AssertsNotificationAlertsConfig name "{{ name }}"
+ * $ pulumi import grafana:assert/notificationAlertsConfig:NotificationAlertsConfig name "{{ name }}"
  * ```
  */
-export class AssertsNotificationAlertsConfig extends pulumi.CustomResource {
+export class NotificationAlertsConfig extends pulumi.CustomResource {
     /**
-     * Get an existing AssertsNotificationAlertsConfig resource's state with the given name, ID, and optional extra
+     * Get an existing NotificationAlertsConfig resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -103,22 +103,22 @@ export class AssertsNotificationAlertsConfig extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AssertsNotificationAlertsConfigState, opts?: pulumi.CustomResourceOptions): AssertsNotificationAlertsConfig {
-        return new AssertsNotificationAlertsConfig(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: NotificationAlertsConfigState, opts?: pulumi.CustomResourceOptions): NotificationAlertsConfig {
+        return new NotificationAlertsConfig(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/assertsNotificationAlertsConfig:AssertsNotificationAlertsConfig';
+    public static readonly __pulumiType = 'grafana:assert/notificationAlertsConfig:NotificationAlertsConfig';
 
     /**
-     * Returns true if the given object is an instance of AssertsNotificationAlertsConfig.  This is designed to work even
+     * Returns true if the given object is an instance of NotificationAlertsConfig.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AssertsNotificationAlertsConfig {
+    public static isInstance(obj: any): obj is NotificationAlertsConfig {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AssertsNotificationAlertsConfig.__pulumiType;
+        return obj['__pulumiType'] === NotificationAlertsConfig.__pulumiType;
     }
 
     /**
@@ -143,25 +143,25 @@ export class AssertsNotificationAlertsConfig extends pulumi.CustomResource {
     declare public readonly silenced: pulumi.Output<boolean | undefined>;
 
     /**
-     * Create a AssertsNotificationAlertsConfig resource with the given unique name, arguments, and options.
+     * Create a NotificationAlertsConfig resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: AssertsNotificationAlertsConfigArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AssertsNotificationAlertsConfigArgs | AssertsNotificationAlertsConfigState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: NotificationAlertsConfigArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: NotificationAlertsConfigArgs | NotificationAlertsConfigState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AssertsNotificationAlertsConfigState | undefined;
+            const state = argsOrState as NotificationAlertsConfigState | undefined;
             resourceInputs["alertLabels"] = state?.alertLabels;
             resourceInputs["duration"] = state?.duration;
             resourceInputs["matchLabels"] = state?.matchLabels;
             resourceInputs["name"] = state?.name;
             resourceInputs["silenced"] = state?.silenced;
         } else {
-            const args = argsOrState as AssertsNotificationAlertsConfigArgs | undefined;
+            const args = argsOrState as NotificationAlertsConfigArgs | undefined;
             resourceInputs["alertLabels"] = args?.alertLabels;
             resourceInputs["duration"] = args?.duration;
             resourceInputs["matchLabels"] = args?.matchLabels;
@@ -169,14 +169,14 @@ export class AssertsNotificationAlertsConfig extends pulumi.CustomResource {
             resourceInputs["silenced"] = args?.silenced;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AssertsNotificationAlertsConfig.__pulumiType, name, resourceInputs, opts);
+        super(NotificationAlertsConfig.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AssertsNotificationAlertsConfig resources.
+ * Input properties used for looking up and filtering NotificationAlertsConfig resources.
  */
-export interface AssertsNotificationAlertsConfigState {
+export interface NotificationAlertsConfigState {
     /**
      * Labels to add to alerts generated by this configuration.
      */
@@ -200,9 +200,9 @@ export interface AssertsNotificationAlertsConfigState {
 }
 
 /**
- * The set of arguments for constructing a AssertsNotificationAlertsConfig resource.
+ * The set of arguments for constructing a NotificationAlertsConfig resource.
  */
-export interface AssertsNotificationAlertsConfigArgs {
+export interface NotificationAlertsConfigArgs {
     /**
      * Labels to add to alerts generated by this configuration.
      */

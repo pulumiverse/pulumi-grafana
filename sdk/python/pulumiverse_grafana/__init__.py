@@ -6,14 +6,14 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .asserts_notification_alerts_config import *
-from .asserts_suppressed_assertions_config import *
 from .provider import *
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
     import pulumiverse_grafana.alerting as __alerting
     alerting = __alerting
+    import pulumiverse_grafana.assert_ as __assert_
+    assert_ = __assert_
     import pulumiverse_grafana.cloud as __cloud
     cloud = __cloud
     import pulumiverse_grafana.cloudprovider as __cloudprovider
@@ -44,6 +44,7 @@ if typing.TYPE_CHECKING:
     syntheticmonitoring = __syntheticmonitoring
 else:
     alerting = _utilities.lazy_import('pulumiverse_grafana.alerting')
+    assert_ = _utilities.lazy_import('pulumiverse_grafana.assert_')
     cloud = _utilities.lazy_import('pulumiverse_grafana.cloud')
     cloudprovider = _utilities.lazy_import('pulumiverse_grafana.cloudprovider')
     config = _utilities.lazy_import('pulumiverse_grafana.config')
@@ -100,6 +101,22 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.alerting",
   "classes": {
    "grafana:alerting/ruleGroup:RuleGroup": "RuleGroup"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "assert/notificationAlertsConfig",
+  "fqn": "pulumiverse_grafana.assert_",
+  "classes": {
+   "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig": "NotificationAlertsConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "assert/suppressedAssertionsConfig",
+  "fqn": "pulumiverse_grafana.assert_",
+  "classes": {
+   "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig": "SuppressedAssertionsConfig"
   }
  },
  {
@@ -324,22 +341,6 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/assertsNotificationAlertsConfig",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/assertsNotificationAlertsConfig:AssertsNotificationAlertsConfig": "AssertsNotificationAlertsConfig"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/assertsSuppressedAssertionsConfig",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig": "AssertsSuppressedAssertionsConfig"
   }
  },
  {

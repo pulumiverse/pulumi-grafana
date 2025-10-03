@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Assert
 {
     /// <summary>
     /// Manages Asserts Disabled Alert Configurations through Grafana API.
@@ -24,7 +24,7 @@ namespace Pulumiverse.Grafana
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Basic suppressed alert configuration for maintenance
-    ///     var maintenanceWindow = new Grafana.AssertsSuppressedAssertionsConfig("maintenance_window", new()
+    ///     var maintenanceWindow = new Grafana.Assert.SuppressedAssertionsConfig("maintenance_window", new()
     ///     {
     ///         Name = "MaintenanceWindow",
     ///         MatchLabels = 
@@ -35,7 +35,7 @@ namespace Pulumiverse.Grafana
     ///     });
     /// 
     ///     // Suppress specific alertname during deployment
-    ///     var deploymentSuppression = new Grafana.AssertsSuppressedAssertionsConfig("deployment_suppression", new()
+    ///     var deploymentSuppression = new Grafana.Assert.SuppressedAssertionsConfig("deployment_suppression", new()
     ///     {
     ///         Name = "DeploymentSuppression",
     ///         MatchLabels = 
@@ -47,7 +47,7 @@ namespace Pulumiverse.Grafana
     ///     });
     /// 
     ///     // Suppress alerts for specific test environment
-    ///     var testEnvironmentSuppression = new Grafana.AssertsSuppressedAssertionsConfig("test_environment_suppression", new()
+    ///     var testEnvironmentSuppression = new Grafana.Assert.SuppressedAssertionsConfig("test_environment_suppression", new()
     ///     {
     ///         Name = "TestEnvironmentSuppression",
     ///         MatchLabels = 
@@ -63,11 +63,11 @@ namespace Pulumiverse.Grafana
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig name "{{ name }}"
+    /// $ pulumi import grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig name "{{ name }}"
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig")]
-    public partial class AssertsSuppressedAssertionsConfig : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig")]
+    public partial class SuppressedAssertionsConfig : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Labels to match for this disabled alert configuration.
@@ -83,19 +83,19 @@ namespace Pulumiverse.Grafana
 
 
         /// <summary>
-        /// Create a AssertsSuppressedAssertionsConfig resource with the given unique name, arguments, and options.
+        /// Create a SuppressedAssertionsConfig resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AssertsSuppressedAssertionsConfig(string name, AssertsSuppressedAssertionsConfigArgs? args = null, CustomResourceOptions? options = null)
-            : base("grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig", name, args ?? new AssertsSuppressedAssertionsConfigArgs(), MakeResourceOptions(options, ""))
+        public SuppressedAssertionsConfig(string name, SuppressedAssertionsConfigArgs? args = null, CustomResourceOptions? options = null)
+            : base("grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig", name, args ?? new SuppressedAssertionsConfigArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AssertsSuppressedAssertionsConfig(string name, Input<string> id, AssertsSuppressedAssertionsConfigState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/assertsSuppressedAssertionsConfig:AssertsSuppressedAssertionsConfig", name, state, MakeResourceOptions(options, id))
+        private SuppressedAssertionsConfig(string name, Input<string> id, SuppressedAssertionsConfigState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -112,7 +112,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing AssertsSuppressedAssertionsConfig resource's state with the given name, ID, and optional extra
+        /// Get an existing SuppressedAssertionsConfig resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -120,13 +120,13 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AssertsSuppressedAssertionsConfig Get(string name, Input<string> id, AssertsSuppressedAssertionsConfigState? state = null, CustomResourceOptions? options = null)
+        public static SuppressedAssertionsConfig Get(string name, Input<string> id, SuppressedAssertionsConfigState? state = null, CustomResourceOptions? options = null)
         {
-            return new AssertsSuppressedAssertionsConfig(name, id, state, options);
+            return new SuppressedAssertionsConfig(name, id, state, options);
         }
     }
 
-    public sealed class AssertsSuppressedAssertionsConfigArgs : global::Pulumi.ResourceArgs
+    public sealed class SuppressedAssertionsConfigArgs : global::Pulumi.ResourceArgs
     {
         [Input("matchLabels")]
         private InputMap<string>? _matchLabels;
@@ -146,13 +146,13 @@ namespace Pulumiverse.Grafana
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        public AssertsSuppressedAssertionsConfigArgs()
+        public SuppressedAssertionsConfigArgs()
         {
         }
-        public static new AssertsSuppressedAssertionsConfigArgs Empty => new AssertsSuppressedAssertionsConfigArgs();
+        public static new SuppressedAssertionsConfigArgs Empty => new SuppressedAssertionsConfigArgs();
     }
 
-    public sealed class AssertsSuppressedAssertionsConfigState : global::Pulumi.ResourceArgs
+    public sealed class SuppressedAssertionsConfigState : global::Pulumi.ResourceArgs
     {
         [Input("matchLabels")]
         private InputMap<string>? _matchLabels;
@@ -172,9 +172,9 @@ namespace Pulumiverse.Grafana
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        public AssertsSuppressedAssertionsConfigState()
+        public SuppressedAssertionsConfigState()
         {
         }
-        public static new AssertsSuppressedAssertionsConfigState Empty => new AssertsSuppressedAssertionsConfigState();
+        public static new SuppressedAssertionsConfigState Empty => new SuppressedAssertionsConfigState();
     }
 }
