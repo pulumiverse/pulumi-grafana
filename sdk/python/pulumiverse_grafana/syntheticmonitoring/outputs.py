@@ -48,19 +48,40 @@ __all__ = [
 
 @pulumi.output_type
 class CheckAlertsAlert(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "runbookUrl":
+            suggest = "runbook_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CheckAlertsAlert. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CheckAlertsAlert.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CheckAlertsAlert.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: _builtins.str,
                  threshold: _builtins.float,
-                 period: Optional[_builtins.str] = None):
+                 period: Optional[_builtins.str] = None,
+                 runbook_url: Optional[_builtins.str] = None):
         """
         :param _builtins.str name: Name of the alert. Required.
         :param _builtins.float threshold: Threshold value for the alert.
         :param _builtins.str period: Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
+        :param _builtins.str runbook_url: URL to runbook documentation for this alert.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "threshold", threshold)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if runbook_url is not None:
+            pulumi.set(__self__, "runbook_url", runbook_url)
 
     @_builtins.property
     @pulumi.getter
@@ -85,6 +106,14 @@ class CheckAlertsAlert(dict):
         Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
         """
         return pulumi.get(self, "period")
+
+    @_builtins.property
+    @pulumi.getter(name="runbookUrl")
+    def runbook_url(self) -> Optional[_builtins.str]:
+        """
+        URL to runbook documentation for this alert.
+        """
+        return pulumi.get(self, "runbook_url")
 
 
 @pulumi.output_type

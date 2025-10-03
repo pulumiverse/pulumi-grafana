@@ -26,6 +26,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         public Input<string>? Period { get; set; }
 
         /// <summary>
+        /// URL to runbook documentation for this alert.
+        /// </summary>
+        [Input("runbookUrl")]
+        public Input<string>? RunbookUrl { get; set; }
+
+        /// <summary>
         /// Threshold value for the alert.
         /// </summary>
         [Input("threshold", required: true)]

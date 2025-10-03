@@ -89,6 +89,10 @@ if not MYPY:
         """
         Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
         """
+        runbook_url: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        URL to runbook documentation for this alert.
+        """
 elif False:
     CheckAlertsAlertArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -97,16 +101,20 @@ class CheckAlertsAlertArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  threshold: pulumi.Input[_builtins.float],
-                 period: Optional[pulumi.Input[_builtins.str]] = None):
+                 period: Optional[pulumi.Input[_builtins.str]] = None,
+                 runbook_url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the alert. Required.
         :param pulumi.Input[_builtins.float] threshold: Threshold value for the alert.
         :param pulumi.Input[_builtins.str] period: Period for the alert. Required and must be one of: `5m`, `10m`, `15m`, `20m`, `30m`, `1h`.
+        :param pulumi.Input[_builtins.str] runbook_url: URL to runbook documentation for this alert.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "threshold", threshold)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if runbook_url is not None:
+            pulumi.set(__self__, "runbook_url", runbook_url)
 
     @_builtins.property
     @pulumi.getter
@@ -143,6 +151,18 @@ class CheckAlertsAlertArgs:
     @period.setter
     def period(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "period", value)
+
+    @_builtins.property
+    @pulumi.getter(name="runbookUrl")
+    def runbook_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        URL to runbook documentation for this alert.
+        """
+        return pulumi.get(self, "runbook_url")
+
+    @runbook_url.setter
+    def runbook_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "runbook_url", value)
 
 
 if not MYPY:
