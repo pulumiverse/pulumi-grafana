@@ -284,6 +284,11 @@ import (
 //								Regexp:       pulumi.String("application/soap*"),
 //								AllowMissing: pulumi.Bool(true),
 //							},
+//							&syntheticmonitoring.CheckSettingsHttpFailIfHeaderMatchesRegexpArgs{
+//								Header:       pulumi.String("Content-Type"),
+//								Regexp:       pulumi.String("application/json"),
+//								AllowMissing: pulumi.Bool(true),
+//							},
 //						},
 //					},
 //				},

@@ -38,6 +38,12 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<string>? AssertionAttributeEmail { get; set; }
 
         /// <summary>
+        /// Friendly name of the attribute within the SAML assertion to use as the external user ID. Only used for SCIM provisioned users.
+        /// </summary>
+        [Input("assertionAttributeExternalUid")]
+        public Input<string>? AssertionAttributeExternalUid { get; set; }
+
+        /// <summary>
         /// Friendly name or name of the attribute within the SAML assertion to use as the user groups.
         /// </summary>
         [Input("assertionAttributeGroups")]

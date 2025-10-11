@@ -1899,6 +1899,10 @@ if not MYPY:
         """
         Friendly name or name of the attribute within the SAML assertion to use as the user email.
         """
+        assertion_attribute_external_uid: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Friendly name of the attribute within the SAML assertion to use as the external user ID. Only used for SCIM provisioned users.
+        """
         assertion_attribute_groups: NotRequired[pulumi.Input[_builtins.str]]
         """
         Friendly name or name of the attribute within the SAML assertion to use as the user groups.
@@ -2041,6 +2045,7 @@ class SsoSettingsSamlSettingsArgs:
                  allow_sign_up: Optional[pulumi.Input[_builtins.bool]] = None,
                  allowed_organizations: Optional[pulumi.Input[_builtins.str]] = None,
                  assertion_attribute_email: Optional[pulumi.Input[_builtins.str]] = None,
+                 assertion_attribute_external_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  assertion_attribute_groups: Optional[pulumi.Input[_builtins.str]] = None,
                  assertion_attribute_login: Optional[pulumi.Input[_builtins.str]] = None,
                  assertion_attribute_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2079,6 +2084,7 @@ class SsoSettingsSamlSettingsArgs:
         :param pulumi.Input[_builtins.bool] allow_sign_up: Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
         :param pulumi.Input[_builtins.str] allowed_organizations: List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
         :param pulumi.Input[_builtins.str] assertion_attribute_email: Friendly name or name of the attribute within the SAML assertion to use as the user email.
+        :param pulumi.Input[_builtins.str] assertion_attribute_external_uid: Friendly name of the attribute within the SAML assertion to use as the external user ID. Only used for SCIM provisioned users.
         :param pulumi.Input[_builtins.str] assertion_attribute_groups: Friendly name or name of the attribute within the SAML assertion to use as the user groups.
         :param pulumi.Input[_builtins.str] assertion_attribute_login: Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
         :param pulumi.Input[_builtins.str] assertion_attribute_name: Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
@@ -2121,6 +2127,8 @@ class SsoSettingsSamlSettingsArgs:
             pulumi.set(__self__, "allowed_organizations", allowed_organizations)
         if assertion_attribute_email is not None:
             pulumi.set(__self__, "assertion_attribute_email", assertion_attribute_email)
+        if assertion_attribute_external_uid is not None:
+            pulumi.set(__self__, "assertion_attribute_external_uid", assertion_attribute_external_uid)
         if assertion_attribute_groups is not None:
             pulumi.set(__self__, "assertion_attribute_groups", assertion_attribute_groups)
         if assertion_attribute_login is not None:
@@ -2235,6 +2243,18 @@ class SsoSettingsSamlSettingsArgs:
     @assertion_attribute_email.setter
     def assertion_attribute_email(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "assertion_attribute_email", value)
+
+    @_builtins.property
+    @pulumi.getter(name="assertionAttributeExternalUid")
+    def assertion_attribute_external_uid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Friendly name of the attribute within the SAML assertion to use as the external user ID. Only used for SCIM provisioned users.
+        """
+        return pulumi.get(self, "assertion_attribute_external_uid")
+
+    @assertion_attribute_external_uid.setter
+    def assertion_attribute_external_uid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "assertion_attribute_external_uid", value)
 
     @_builtins.property
     @pulumi.getter(name="assertionAttributeGroups")

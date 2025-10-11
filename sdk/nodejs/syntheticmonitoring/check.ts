@@ -182,11 +182,18 @@ import * as utilities from "../utilities";
  *             ],
  *             failIfBodyMatchesRegexps: [".*bad stuff.*"],
  *             failIfBodyNotMatchesRegexps: [".*good stuff.*"],
- *             failIfHeaderMatchesRegexps: [{
- *                 header: "Content-Type",
- *                 regexp: "application/soap*",
- *                 allowMissing: true,
- *             }],
+ *             failIfHeaderMatchesRegexps: [
+ *                 {
+ *                     header: "Content-Type",
+ *                     regexp: "application/soap*",
+ *                     allowMissing: true,
+ *                 },
+ *                 {
+ *                     header: "Content-Type",
+ *                     regexp: "application/json",
+ *                     allowMissing: true,
+ *                 },
+ *             ],
  *         },
  *     },
  * });
