@@ -31,6 +31,10 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly string? AssertionAttributeEmail;
         /// <summary>
+        /// Friendly name of the attribute within the SAML assertion to use as the external user ID. Only used for SCIM provisioned users.
+        /// </summary>
+        public readonly string? AssertionAttributeExternalUid;
+        /// <summary>
         /// Friendly name or name of the attribute within the SAML assertion to use as the user groups.
         /// </summary>
         public readonly string? AssertionAttributeGroups;
@@ -173,6 +177,8 @@ namespace Pulumiverse.Grafana.Oss.Outputs
 
             string? assertionAttributeEmail,
 
+            string? assertionAttributeExternalUid,
+
             string? assertionAttributeGroups,
 
             string? assertionAttributeLogin,
@@ -243,6 +249,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
             AllowSignUp = allowSignUp;
             AllowedOrganizations = allowedOrganizations;
             AssertionAttributeEmail = assertionAttributeEmail;
+            AssertionAttributeExternalUid = assertionAttributeExternalUid;
             AssertionAttributeGroups = assertionAttributeGroups;
             AssertionAttributeLogin = assertionAttributeLogin;
             AssertionAttributeName = assertionAttributeName;

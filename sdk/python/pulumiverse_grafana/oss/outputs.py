@@ -1386,6 +1386,8 @@ class SsoSettingsSamlSettings(dict):
             suggest = "allowed_organizations"
         elif key == "assertionAttributeEmail":
             suggest = "assertion_attribute_email"
+        elif key == "assertionAttributeExternalUid":
+            suggest = "assertion_attribute_external_uid"
         elif key == "assertionAttributeGroups":
             suggest = "assertion_attribute_groups"
         elif key == "assertionAttributeLogin":
@@ -1463,6 +1465,7 @@ class SsoSettingsSamlSettings(dict):
                  allow_sign_up: Optional[_builtins.bool] = None,
                  allowed_organizations: Optional[_builtins.str] = None,
                  assertion_attribute_email: Optional[_builtins.str] = None,
+                 assertion_attribute_external_uid: Optional[_builtins.str] = None,
                  assertion_attribute_groups: Optional[_builtins.str] = None,
                  assertion_attribute_login: Optional[_builtins.str] = None,
                  assertion_attribute_name: Optional[_builtins.str] = None,
@@ -1501,6 +1504,7 @@ class SsoSettingsSamlSettings(dict):
         :param _builtins.bool allow_sign_up: Whether to allow new Grafana user creation through SAML login. If set to false, then only existing Grafana users can log in with SAML.
         :param _builtins.str allowed_organizations: List of comma- or space-separated organizations. User should be a member of at least one organization to log in.
         :param _builtins.str assertion_attribute_email: Friendly name or name of the attribute within the SAML assertion to use as the user email.
+        :param _builtins.str assertion_attribute_external_uid: Friendly name of the attribute within the SAML assertion to use as the external user ID. Only used for SCIM provisioned users.
         :param _builtins.str assertion_attribute_groups: Friendly name or name of the attribute within the SAML assertion to use as the user groups.
         :param _builtins.str assertion_attribute_login: Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
         :param _builtins.str assertion_attribute_name: Friendly name or name of the attribute within the SAML assertion to use as the user name. Alternatively, this can be a template with variables that match the names of attributes within the SAML assertion.
@@ -1543,6 +1547,8 @@ class SsoSettingsSamlSettings(dict):
             pulumi.set(__self__, "allowed_organizations", allowed_organizations)
         if assertion_attribute_email is not None:
             pulumi.set(__self__, "assertion_attribute_email", assertion_attribute_email)
+        if assertion_attribute_external_uid is not None:
+            pulumi.set(__self__, "assertion_attribute_external_uid", assertion_attribute_external_uid)
         if assertion_attribute_groups is not None:
             pulumi.set(__self__, "assertion_attribute_groups", assertion_attribute_groups)
         if assertion_attribute_login is not None:
@@ -1641,6 +1647,14 @@ class SsoSettingsSamlSettings(dict):
         Friendly name or name of the attribute within the SAML assertion to use as the user email.
         """
         return pulumi.get(self, "assertion_attribute_email")
+
+    @_builtins.property
+    @pulumi.getter(name="assertionAttributeExternalUid")
+    def assertion_attribute_external_uid(self) -> Optional[_builtins.str]:
+        """
+        Friendly name of the attribute within the SAML assertion to use as the external user ID. Only used for SCIM provisioned users.
+        """
+        return pulumi.get(self, "assertion_attribute_external_uid")
 
     @_builtins.property
     @pulumi.getter(name="assertionAttributeGroups")

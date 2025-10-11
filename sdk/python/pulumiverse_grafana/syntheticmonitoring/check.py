@@ -560,11 +560,18 @@ class Check(pulumi.CustomResource):
                     ],
                     "fail_if_body_matches_regexps": [".*bad stuff.*"],
                     "fail_if_body_not_matches_regexps": [".*good stuff.*"],
-                    "fail_if_header_matches_regexps": [{
-                        "header": "Content-Type",
-                        "regexp": "application/soap*",
-                        "allow_missing": True,
-                    }],
+                    "fail_if_header_matches_regexps": [
+                        {
+                            "header": "Content-Type",
+                            "regexp": "application/soap*",
+                            "allow_missing": True,
+                        },
+                        {
+                            "header": "Content-Type",
+                            "regexp": "application/json",
+                            "allow_missing": True,
+                        },
+                    ],
                 },
             })
         ```
@@ -963,11 +970,18 @@ class Check(pulumi.CustomResource):
                     ],
                     "fail_if_body_matches_regexps": [".*bad stuff.*"],
                     "fail_if_body_not_matches_regexps": [".*good stuff.*"],
-                    "fail_if_header_matches_regexps": [{
-                        "header": "Content-Type",
-                        "regexp": "application/soap*",
-                        "allow_missing": True,
-                    }],
+                    "fail_if_header_matches_regexps": [
+                        {
+                            "header": "Content-Type",
+                            "regexp": "application/soap*",
+                            "allow_missing": True,
+                        },
+                        {
+                            "header": "Content-Type",
+                            "regexp": "application/json",
+                            "allow_missing": True,
+                        },
+                    ],
                 },
             })
         ```

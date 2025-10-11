@@ -2152,6 +2152,8 @@ type SsoSettingsSamlSettings struct {
 	AllowedOrganizations *string `pulumi:"allowedOrganizations"`
 	// Friendly name or name of the attribute within the SAML assertion to use as the user email.
 	AssertionAttributeEmail *string `pulumi:"assertionAttributeEmail"`
+	// Friendly name of the attribute within the SAML assertion to use as the external user ID. Only used for SCIM provisioned users.
+	AssertionAttributeExternalUid *string `pulumi:"assertionAttributeExternalUid"`
 	// Friendly name or name of the attribute within the SAML assertion to use as the user groups.
 	AssertionAttributeGroups *string `pulumi:"assertionAttributeGroups"`
 	// Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
@@ -2240,6 +2242,8 @@ type SsoSettingsSamlSettingsArgs struct {
 	AllowedOrganizations pulumi.StringPtrInput `pulumi:"allowedOrganizations"`
 	// Friendly name or name of the attribute within the SAML assertion to use as the user email.
 	AssertionAttributeEmail pulumi.StringPtrInput `pulumi:"assertionAttributeEmail"`
+	// Friendly name of the attribute within the SAML assertion to use as the external user ID. Only used for SCIM provisioned users.
+	AssertionAttributeExternalUid pulumi.StringPtrInput `pulumi:"assertionAttributeExternalUid"`
 	// Friendly name or name of the attribute within the SAML assertion to use as the user groups.
 	AssertionAttributeGroups pulumi.StringPtrInput `pulumi:"assertionAttributeGroups"`
 	// Friendly name or name of the attribute within the SAML assertion to use as the user login handle.
@@ -2403,6 +2407,11 @@ func (o SsoSettingsSamlSettingsOutput) AllowedOrganizations() pulumi.StringPtrOu
 // Friendly name or name of the attribute within the SAML assertion to use as the user email.
 func (o SsoSettingsSamlSettingsOutput) AssertionAttributeEmail() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.AssertionAttributeEmail }).(pulumi.StringPtrOutput)
+}
+
+// Friendly name of the attribute within the SAML assertion to use as the external user ID. Only used for SCIM provisioned users.
+func (o SsoSettingsSamlSettingsOutput) AssertionAttributeExternalUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsoSettingsSamlSettings) *string { return v.AssertionAttributeExternalUid }).(pulumi.StringPtrOutput)
 }
 
 // Friendly name or name of the attribute within the SAML assertion to use as the user groups.
@@ -2631,6 +2640,16 @@ func (o SsoSettingsSamlSettingsPtrOutput) AssertionAttributeEmail() pulumi.Strin
 			return nil
 		}
 		return v.AssertionAttributeEmail
+	}).(pulumi.StringPtrOutput)
+}
+
+// Friendly name of the attribute within the SAML assertion to use as the external user ID. Only used for SCIM provisioned users.
+func (o SsoSettingsSamlSettingsPtrOutput) AssertionAttributeExternalUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SsoSettingsSamlSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AssertionAttributeExternalUid
 	}).(pulumi.StringPtrOutput)
 }
 
