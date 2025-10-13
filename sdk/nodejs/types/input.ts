@@ -3575,6 +3575,10 @@ export namespace oss {
          */
         assertionAttributeEmail?: pulumi.Input<string>;
         /**
+         * Friendly name of the attribute within the SAML assertion to use as the external user ID. Only used for SCIM provisioned users.
+         */
+        assertionAttributeExternalUid?: pulumi.Input<string>;
+        /**
          * Friendly name or name of the attribute within the SAML assertion to use as the user groups.
          */
         assertionAttributeGroups?: pulumi.Input<string>;

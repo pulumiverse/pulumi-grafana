@@ -284,6 +284,12 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     ///                         Regexp = "application/soap*",
     ///                         AllowMissing = true,
     ///                     },
+    ///                     new Grafana.SyntheticMonitoring.Inputs.CheckSettingsHttpFailIfHeaderMatchesRegexpArgs
+    ///                     {
+    ///                         Header = "Content-Type",
+    ///                         Regexp = "application/json",
+    ///                         AllowMissing = true,
+    ///                     },
     ///                 },
     ///             },
     ///         },
