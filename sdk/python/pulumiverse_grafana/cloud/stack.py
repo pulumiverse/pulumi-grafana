@@ -33,7 +33,7 @@ class StackArgs:
         :param pulumi.Input[_builtins.str] slug: Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         :param pulumi.Input[_builtins.bool] delete_protection: Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
         :param pulumi.Input[_builtins.str] description: Description of stack.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-._]+$" and stacks cannot have more than 10 labels.
         :param pulumi.Input[_builtins.str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         :param pulumi.Input[_builtins.str] region_slug: Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         :param pulumi.Input[_builtins.str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
@@ -98,7 +98,7 @@ class StackArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-._]+$" and stacks cannot have more than 10 labels.
         """
         return pulumi.get(self, "labels")
 
@@ -263,7 +263,7 @@ class _StackState:
         :param pulumi.Input[_builtins.str] graphite_private_connectivity_info_private_dns: Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] graphite_private_connectivity_info_service_name: Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] influx_url: Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-._]+$" and stacks cannot have more than 10 labels.
         :param pulumi.Input[_builtins.str] logs_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
         :param pulumi.Input[_builtins.str] logs_private_connectivity_info_private_dns: Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] logs_private_connectivity_info_service_name: Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
@@ -715,7 +715,7 @@ class _StackState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-._]+$" and stacks cannot have more than 10 labels.
         """
         return pulumi.get(self, "labels")
 
@@ -1315,7 +1315,7 @@ class Stack(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] delete_protection: Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
         :param pulumi.Input[_builtins.str] description: Description of stack.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-._]+$" and stacks cannot have more than 10 labels.
         :param pulumi.Input[_builtins.str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         :param pulumi.Input[_builtins.str] region_slug: Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         :param pulumi.Input[_builtins.str] slug: Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
@@ -1572,7 +1572,7 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] graphite_private_connectivity_info_private_dns: Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] graphite_private_connectivity_info_service_name: Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] influx_url: Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-._]+$" and stacks cannot have more than 10 labels.
         :param pulumi.Input[_builtins.str] logs_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
         :param pulumi.Input[_builtins.str] logs_private_connectivity_info_private_dns: Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] logs_private_connectivity_info_service_name: Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
@@ -1865,7 +1865,7 @@ class Stack(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         """
-        A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-.]+$" and stacks cannot have more than 10 labels.
+        A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-._]+$" and stacks cannot have more than 10 labels.
         """
         return pulumi.get(self, "labels")
 

@@ -14,42 +14,6 @@ namespace Pulumiverse.Grafana.Oss
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Grafana.Oss.Playlist("test", new()
-    ///     {
-    ///         Name = "My Playlist!",
-    ///         Interval = "5m",
-    ///         Items = new[]
-    ///         {
-    ///             new Grafana.Oss.Inputs.PlaylistItemArgs
-    ///             {
-    ///                 Order = 2,
-    ///                 Title = "Terraform Dashboard By Tag",
-    ///                 Type = "dashboard_by_tag",
-    ///                 Value = "terraform",
-    ///             },
-    ///             new Grafana.Oss.Inputs.PlaylistItemArgs
-    ///             {
-    ///                 Order = 1,
-    ///                 Title = "Terraform Dashboard By UID",
-    ///                 Type = "dashboard_by_uid",
-    ///                 Value = "cIBgcSjkk",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// ```sh

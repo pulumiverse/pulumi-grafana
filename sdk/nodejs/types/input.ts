@@ -5,6 +5,87 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppsProductactivationAppo11yconfigV1alpha1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsProductactivationAppo11yconfigV1alpha1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsProductactivationAppo11yconfigV1alpha1Spec {
+    /**
+     * Whether application observability is enabled.
+     */
+    enabled: pulumi.Input<boolean>;
+}
+
+export interface AppsProductactivationK8so11yconfigV1alpha1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsProductactivationK8so11yconfigV1alpha1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsProductactivationK8so11yconfigV1alpha1Spec {
+    /**
+     * Whether Kubernetes observability is enabled.
+     */
+    enabled: pulumi.Input<boolean>;
+}
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -3230,7 +3311,6 @@ export namespace oss {
     export interface PlaylistItem {
         id?: pulumi.Input<string>;
         order: pulumi.Input<number>;
-        title: pulumi.Input<string>;
         type?: pulumi.Input<string>;
         value?: pulumi.Input<string>;
     }

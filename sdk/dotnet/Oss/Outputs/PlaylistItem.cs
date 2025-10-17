@@ -16,7 +16,6 @@ namespace Pulumiverse.Grafana.Oss.Outputs
     {
         public readonly string? Id;
         public readonly int Order;
-        public readonly string Title;
         public readonly string? Type;
         public readonly string? Value;
 
@@ -26,15 +25,12 @@ namespace Pulumiverse.Grafana.Oss.Outputs
 
             int order,
 
-            string title,
-
             string? type,
 
             string? value)
         {
             Id = id;
             Order = order;
-            Title = title;
             Type = type;
             Value = value;
         }

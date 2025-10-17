@@ -25,6 +25,7 @@ namespace Pulumiverse.Grafana.K6
     /// * stacks:write
     /// * subscriptions:read
     /// * orgs:read
+    /// * stack-service-accounts:write
     /// 
     /// ## Example Usage
     /// 

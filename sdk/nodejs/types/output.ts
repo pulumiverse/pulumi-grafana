@@ -5,6 +5,88 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppsProductactivationAppo11yconfigV1alpha1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations: {[key: string]: string};
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: string;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: string;
+    /**
+     * The full URL of the resource.
+     */
+    url: string;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid: string;
+    /**
+     * The version of the resource.
+     */
+    version: string;
+}
+
+export interface AppsProductactivationAppo11yconfigV1alpha1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: boolean;
+}
+
+export interface AppsProductactivationAppo11yconfigV1alpha1Spec {
+    /**
+     * Whether application observability is enabled.
+     */
+    enabled: boolean;
+}
+
+export interface AppsProductactivationK8so11yconfigV1alpha1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations: {[key: string]: string};
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: string;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: string;
+    /**
+     * The full URL of the resource.
+     */
+    url: string;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid: string;
+    /**
+     * The version of the resource.
+     */
+    version: string;
+}
+
+export interface AppsProductactivationK8so11yconfigV1alpha1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: boolean;
+}
+
+export interface AppsProductactivationK8so11yconfigV1alpha1Spec {
+    /**
+     * Whether Kubernetes observability is enabled.
+     */
+    enabled: boolean;
+}
+
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -3151,7 +3233,6 @@ export namespace oss {
     export interface PlaylistItem {
         id: string;
         order: number;
-        title: string;
         type?: string;
         value?: string;
     }

@@ -176,7 +176,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> InfluxUrl { get; private set; } = null!;
 
         /// <summary>
-        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
@@ -499,7 +499,7 @@ namespace Pulumiverse.Grafana.Cloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -681,7 +681,7 @@ namespace Pulumiverse.Grafana.Cloud
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+        /// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
         /// </summary>
         public InputMap<string> Labels
         {

@@ -186,12 +186,10 @@ class FolderPermissionPermission(dict):
 class PlaylistItem(dict):
     def __init__(__self__, *,
                  order: _builtins.int,
-                 title: _builtins.str,
                  id: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None,
                  value: Optional[_builtins.str] = None):
         pulumi.set(__self__, "order", order)
-        pulumi.set(__self__, "title", title)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if type is not None:
@@ -203,11 +201,6 @@ class PlaylistItem(dict):
     @pulumi.getter
     def order(self) -> _builtins.int:
         return pulumi.get(self, "order")
-
-    @_builtins.property
-    @pulumi.getter
-    def title(self) -> _builtins.str:
-        return pulumi.get(self, "title")
 
     @_builtins.property
     @pulumi.getter

@@ -228,7 +228,6 @@ class FolderPermissionPermissionArgs:
 if not MYPY:
     class PlaylistItemArgsDict(TypedDict):
         order: pulumi.Input[_builtins.int]
-        title: pulumi.Input[_builtins.str]
         id: NotRequired[pulumi.Input[_builtins.str]]
         type: NotRequired[pulumi.Input[_builtins.str]]
         value: NotRequired[pulumi.Input[_builtins.str]]
@@ -239,12 +238,10 @@ elif False:
 class PlaylistItemArgs:
     def __init__(__self__, *,
                  order: pulumi.Input[_builtins.int],
-                 title: pulumi.Input[_builtins.str],
                  id: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  value: Optional[pulumi.Input[_builtins.str]] = None):
         pulumi.set(__self__, "order", order)
-        pulumi.set(__self__, "title", title)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if type is not None:
@@ -260,15 +257,6 @@ class PlaylistItemArgs:
     @order.setter
     def order(self, value: pulumi.Input[_builtins.int]):
         pulumi.set(self, "order", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def title(self) -> pulumi.Input[_builtins.str]:
-        return pulumi.get(self, "title")
-
-    @title.setter
-    def title(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "title", value)
 
     @_builtins.property
     @pulumi.getter

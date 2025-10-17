@@ -20,6 +20,8 @@
         "alerting/muteTiming.ts",
         "alerting/notificationPolicy.ts",
         "alerting/ruleGroup.ts",
+        "appsProductactivationAppo11yconfigV1alpha1.ts",
+        "appsProductactivationK8so11yconfigV1alpha1.ts",
         "assert/customModelRules.ts",
         "assert/index.ts",
         "assert/logConfig.ts",

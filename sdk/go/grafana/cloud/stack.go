@@ -99,7 +99,7 @@ type Stack struct {
 	GraphiteUserId                             pulumi.IntOutput    `pulumi:"graphiteUserId"`
 	// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
 	InfluxUrl pulumi.StringOutput `pulumi:"influxUrl"`
-	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
 	LogsIpAllowListCname pulumi.StringOutput `pulumi:"logsIpAllowListCname"`
@@ -263,7 +263,7 @@ type stackState struct {
 	GraphiteUserId                             *int    `pulumi:"graphiteUserId"`
 	// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
 	InfluxUrl *string `pulumi:"influxUrl"`
-	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
 	Labels map[string]string `pulumi:"labels"`
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
 	LogsIpAllowListCname *string `pulumi:"logsIpAllowListCname"`
@@ -395,7 +395,7 @@ type StackState struct {
 	GraphiteUserId                             pulumi.IntPtrInput
 	// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
 	InfluxUrl pulumi.StringPtrInput
-	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
 	Labels pulumi.StringMapInput
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
 	LogsIpAllowListCname pulumi.StringPtrInput
@@ -493,7 +493,7 @@ type stackArgs struct {
 	DeleteProtection *bool `pulumi:"deleteProtection"`
 	// Description of stack.
 	Description *string `pulumi:"description"`
-	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
 	Labels map[string]string `pulumi:"labels"`
 	// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 	Name *string `pulumi:"name"`
@@ -515,7 +515,7 @@ type StackArgs struct {
 	DeleteProtection pulumi.BoolPtrInput
 	// Description of stack.
 	Description pulumi.StringPtrInput
-	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+	// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
 	Labels pulumi.StringMapInput
 	// Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
 	Name pulumi.StringPtrInput
@@ -729,7 +729,7 @@ func (o StackOutput) InfluxUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.InfluxUrl }).(pulumi.StringOutput)
 }
 
-// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+// A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
 func (o StackOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }

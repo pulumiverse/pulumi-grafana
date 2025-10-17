@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  * * stacks:write
  * * subscriptions:read
  * * orgs:read
+ * * stack-service-accounts:write
  *
  * ## Example Usage
  *
