@@ -264,7 +264,6 @@ func (o FolderPermissionPermissionArrayOutput) Index(i pulumi.IntInput) FolderPe
 type PlaylistItem struct {
 	Id    *string `pulumi:"id"`
 	Order int     `pulumi:"order"`
-	Title string  `pulumi:"title"`
 	Type  *string `pulumi:"type"`
 	Value *string `pulumi:"value"`
 }
@@ -283,7 +282,6 @@ type PlaylistItemInput interface {
 type PlaylistItemArgs struct {
 	Id    pulumi.StringPtrInput `pulumi:"id"`
 	Order pulumi.IntInput       `pulumi:"order"`
-	Title pulumi.StringInput    `pulumi:"title"`
 	Type  pulumi.StringPtrInput `pulumi:"type"`
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
@@ -345,10 +343,6 @@ func (o PlaylistItemOutput) Id() pulumi.StringPtrOutput {
 
 func (o PlaylistItemOutput) Order() pulumi.IntOutput {
 	return o.ApplyT(func(v PlaylistItem) int { return v.Order }).(pulumi.IntOutput)
-}
-
-func (o PlaylistItemOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v PlaylistItem) string { return v.Title }).(pulumi.StringOutput)
 }
 
 func (o PlaylistItemOutput) Type() pulumi.StringPtrOutput {

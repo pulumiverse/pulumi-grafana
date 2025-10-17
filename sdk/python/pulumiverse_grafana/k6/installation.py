@@ -214,6 +214,7 @@ class Installation(pulumi.CustomResource):
         * stacks:write
         * subscriptions:read
         * orgs:read
+        * stack-service-accounts:write
 
         ## Example Usage
 
@@ -279,6 +280,7 @@ class Installation(pulumi.CustomResource):
         * stacks:write
         * subscriptions:read
         * orgs:read
+        * stack-service-accounts:write
 
         ## Example Usage
 

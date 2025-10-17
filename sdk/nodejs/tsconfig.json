@@ -37,6 +37,8 @@
         "cloud/pluginInstallation.ts",
         "cloud/privateDataSourceConnectNetwork.ts",
         "cloud/privateDataSourceConnectNetworkToken.ts",
+        "cloud/productActivationAppO11yConfigV1Alpha1.ts",
+        "cloud/productActivationK8sO11yConfigV1Alpha1.ts",
         "cloud/stack.ts",
         "cloud/stackServiceAccount.ts",
         "cloud/stackServiceAccountToken.ts",

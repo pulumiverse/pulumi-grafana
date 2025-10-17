@@ -19,9 +19,6 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         [Input("order", required: true)]
         public Input<int> Order { get; set; } = null!;
 
-        [Input("title", required: true)]
-        public Input<string> Title { get; set; } = null!;
-
         [Input("type")]
         public Input<string>? Type { get; set; }
 

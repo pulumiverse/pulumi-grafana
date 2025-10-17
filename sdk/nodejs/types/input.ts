@@ -2064,6 +2064,87 @@ export namespace cloud {
         selector: pulumi.Input<string>;
     }
 
+    export interface ProductActivationAppO11yConfigV1Alpha1Metadata {
+        /**
+         * Annotations of the resource.
+         */
+        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * The UID of the folder to save the resource in.
+         */
+        folderUid?: pulumi.Input<string>;
+        /**
+         * The unique identifier of the resource.
+         */
+        uid: pulumi.Input<string>;
+        /**
+         * The full URL of the resource.
+         */
+        url?: pulumi.Input<string>;
+        /**
+         * The globally unique identifier of a resource, used by the API for tracking.
+         */
+        uuid?: pulumi.Input<string>;
+        /**
+         * The version of the resource.
+         */
+        version?: pulumi.Input<string>;
+    }
+
+    export interface ProductActivationAppO11yConfigV1Alpha1Options {
+        /**
+         * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+         */
+        overwrite?: pulumi.Input<boolean>;
+    }
+
+    export interface ProductActivationAppO11yConfigV1Alpha1Spec {
+        /**
+         * Whether application observability is enabled.
+         */
+        enabled: pulumi.Input<boolean>;
+    }
+
+    export interface ProductActivationK8sO11yConfigV1Alpha1Metadata {
+        /**
+         * Annotations of the resource.
+         */
+        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * The UID of the folder to save the resource in.
+         */
+        folderUid?: pulumi.Input<string>;
+        /**
+         * The unique identifier of the resource.
+         */
+        uid: pulumi.Input<string>;
+        /**
+         * The full URL of the resource.
+         */
+        url?: pulumi.Input<string>;
+        /**
+         * The globally unique identifier of a resource, used by the API for tracking.
+         */
+        uuid?: pulumi.Input<string>;
+        /**
+         * The version of the resource.
+         */
+        version?: pulumi.Input<string>;
+    }
+
+    export interface ProductActivationK8sO11yConfigV1Alpha1Options {
+        /**
+         * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+         */
+        overwrite?: pulumi.Input<boolean>;
+    }
+
+    export interface ProductActivationK8sO11yConfigV1Alpha1Spec {
+        /**
+         * Whether Kubernetes observability is enabled.
+         */
+        enabled: pulumi.Input<boolean>;
+    }
 }
 
 export namespace cloudProvider {
@@ -3230,7 +3311,6 @@ export namespace oss {
     export interface PlaylistItem {
         id?: pulumi.Input<string>;
         order: pulumi.Input<number>;
-        title: pulumi.Input<string>;
         type?: pulumi.Input<string>;
         value?: pulumi.Input<string>;
     }

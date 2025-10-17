@@ -21,6 +21,18 @@ __all__ = [
     'AccessPolicyRealmArgsDict',
     'AccessPolicyRealmLabelPolicyArgs',
     'AccessPolicyRealmLabelPolicyArgsDict',
+    'ProductActivationAppO11yConfigV1Alpha1MetadataArgs',
+    'ProductActivationAppO11yConfigV1Alpha1MetadataArgsDict',
+    'ProductActivationAppO11yConfigV1Alpha1OptionsArgs',
+    'ProductActivationAppO11yConfigV1Alpha1OptionsArgsDict',
+    'ProductActivationAppO11yConfigV1Alpha1SpecArgs',
+    'ProductActivationAppO11yConfigV1Alpha1SpecArgsDict',
+    'ProductActivationK8sO11yConfigV1Alpha1MetadataArgs',
+    'ProductActivationK8sO11yConfigV1Alpha1MetadataArgsDict',
+    'ProductActivationK8sO11yConfigV1Alpha1OptionsArgs',
+    'ProductActivationK8sO11yConfigV1Alpha1OptionsArgsDict',
+    'ProductActivationK8sO11yConfigV1Alpha1SpecArgs',
+    'ProductActivationK8sO11yConfigV1Alpha1SpecArgsDict',
 ]
 
 MYPY = False
@@ -148,5 +160,393 @@ class AccessPolicyRealmLabelPolicyArgs:
     @selector.setter
     def selector(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "selector", value)
+
+
+if not MYPY:
+    class ProductActivationAppO11yConfigV1Alpha1MetadataArgsDict(TypedDict):
+        uid: pulumi.Input[_builtins.str]
+        """
+        The unique identifier of the resource.
+        """
+        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+        """
+        Annotations of the resource.
+        """
+        folder_uid: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The UID of the folder to save the resource in.
+        """
+        url: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The full URL of the resource.
+        """
+        uuid: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The globally unique identifier of a resource, used by the API for tracking.
+        """
+        version: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The version of the resource.
+        """
+elif False:
+    ProductActivationAppO11yConfigV1Alpha1MetadataArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ProductActivationAppO11yConfigV1Alpha1MetadataArgs:
+    def __init__(__self__, *,
+                 uid: pulumi.Input[_builtins.str],
+                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
+                 url: Optional[pulumi.Input[_builtins.str]] = None,
+                 uuid: Optional[pulumi.Input[_builtins.str]] = None,
+                 version: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] uid: The unique identifier of the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Annotations of the resource.
+        :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder to save the resource in.
+        :param pulumi.Input[_builtins.str] url: The full URL of the resource.
+        :param pulumi.Input[_builtins.str] uuid: The globally unique identifier of a resource, used by the API for tracking.
+        :param pulumi.Input[_builtins.str] version: The version of the resource.
+        """
+        pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> pulumi.Input[_builtins.str]:
+        """
+        The unique identifier of the resource.
+        """
+        return pulumi.get(self, "uid")
+
+    @uid.setter
+    def uid(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "annotations", value)
+
+    @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The UID of the folder to save the resource in.
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @folder_uid.setter
+    def folder_uid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "folder_uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The full URL of the resource.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "url", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The globally unique identifier of a resource, used by the API for tracking.
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "uuid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The version of the resource.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+
+if not MYPY:
+    class ProductActivationAppO11yConfigV1Alpha1OptionsArgsDict(TypedDict):
+        overwrite: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+elif False:
+    ProductActivationAppO11yConfigV1Alpha1OptionsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ProductActivationAppO11yConfigV1Alpha1OptionsArgs:
+    def __init__(__self__, *,
+                 overwrite: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        if overwrite is not None:
+            pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter
+    def overwrite(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        return pulumi.get(self, "overwrite")
+
+    @overwrite.setter
+    def overwrite(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "overwrite", value)
+
+
+if not MYPY:
+    class ProductActivationAppO11yConfigV1Alpha1SpecArgsDict(TypedDict):
+        enabled: pulumi.Input[_builtins.bool]
+        """
+        Whether application observability is enabled.
+        """
+elif False:
+    ProductActivationAppO11yConfigV1Alpha1SpecArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ProductActivationAppO11yConfigV1Alpha1SpecArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[_builtins.bool]):
+        """
+        :param pulumi.Input[_builtins.bool] enabled: Whether application observability is enabled.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[_builtins.bool]:
+        """
+        Whether application observability is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[_builtins.bool]):
+        pulumi.set(self, "enabled", value)
+
+
+if not MYPY:
+    class ProductActivationK8sO11yConfigV1Alpha1MetadataArgsDict(TypedDict):
+        uid: pulumi.Input[_builtins.str]
+        """
+        The unique identifier of the resource.
+        """
+        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+        """
+        Annotations of the resource.
+        """
+        folder_uid: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The UID of the folder to save the resource in.
+        """
+        url: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The full URL of the resource.
+        """
+        uuid: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The globally unique identifier of a resource, used by the API for tracking.
+        """
+        version: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The version of the resource.
+        """
+elif False:
+    ProductActivationK8sO11yConfigV1Alpha1MetadataArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ProductActivationK8sO11yConfigV1Alpha1MetadataArgs:
+    def __init__(__self__, *,
+                 uid: pulumi.Input[_builtins.str],
+                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
+                 url: Optional[pulumi.Input[_builtins.str]] = None,
+                 uuid: Optional[pulumi.Input[_builtins.str]] = None,
+                 version: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] uid: The unique identifier of the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Annotations of the resource.
+        :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder to save the resource in.
+        :param pulumi.Input[_builtins.str] url: The full URL of the resource.
+        :param pulumi.Input[_builtins.str] uuid: The globally unique identifier of a resource, used by the API for tracking.
+        :param pulumi.Input[_builtins.str] version: The version of the resource.
+        """
+        pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> pulumi.Input[_builtins.str]:
+        """
+        The unique identifier of the resource.
+        """
+        return pulumi.get(self, "uid")
+
+    @uid.setter
+    def uid(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "annotations", value)
+
+    @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The UID of the folder to save the resource in.
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @folder_uid.setter
+    def folder_uid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "folder_uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The full URL of the resource.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "url", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The globally unique identifier of a resource, used by the API for tracking.
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "uuid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The version of the resource.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+
+if not MYPY:
+    class ProductActivationK8sO11yConfigV1Alpha1OptionsArgsDict(TypedDict):
+        overwrite: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+elif False:
+    ProductActivationK8sO11yConfigV1Alpha1OptionsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ProductActivationK8sO11yConfigV1Alpha1OptionsArgs:
+    def __init__(__self__, *,
+                 overwrite: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        if overwrite is not None:
+            pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter
+    def overwrite(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        return pulumi.get(self, "overwrite")
+
+    @overwrite.setter
+    def overwrite(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "overwrite", value)
+
+
+if not MYPY:
+    class ProductActivationK8sO11yConfigV1Alpha1SpecArgsDict(TypedDict):
+        enabled: pulumi.Input[_builtins.bool]
+        """
+        Whether Kubernetes observability is enabled.
+        """
+elif False:
+    ProductActivationK8sO11yConfigV1Alpha1SpecArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ProductActivationK8sO11yConfigV1Alpha1SpecArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[_builtins.bool]):
+        """
+        :param pulumi.Input[_builtins.bool] enabled: Whether Kubernetes observability is enabled.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[_builtins.bool]:
+        """
+        Whether Kubernetes observability is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[_builtins.bool]):
+        pulumi.set(self, "enabled", value)
 
 

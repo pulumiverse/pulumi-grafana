@@ -142,7 +142,7 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly influxUrl: pulumi.Output<string>;
     /**
-     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
      */
     declare public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -558,7 +558,7 @@ export interface StackState {
      */
     influxUrl?: pulumi.Input<string>;
     /**
-     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -735,7 +735,7 @@ export interface StackArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

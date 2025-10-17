@@ -3279,6 +3279,140 @@
                 "selector"
             ]
         },
+        "grafana:cloud/ProductActivationAppO11yConfigV1Alpha1Metadata:ProductActivationAppO11yConfigV1Alpha1Metadata": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Annotations of the resource.\n"
+                },
+                "folderUid": {
+                    "type": "string",
+                    "description": "The UID of the folder to save the resource in.\n"
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "The unique identifier of the resource.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The full URL of the resource.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "The globally unique identifier of a resource, used by the API for tracking.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the resource.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "uid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "annotations",
+                        "uid",
+                        "url",
+                        "uuid",
+                        "version"
+                    ]
+                }
+            }
+        },
+        "grafana:cloud/ProductActivationAppO11yConfigV1Alpha1Options:ProductActivationAppO11yConfigV1Alpha1Options": {
+            "properties": {
+                "overwrite": {
+                    "type": "boolean",
+                    "description": "Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:cloud/ProductActivationAppO11yConfigV1Alpha1Spec:ProductActivationAppO11yConfigV1Alpha1Spec": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether application observability is enabled.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled"
+            ]
+        },
+        "grafana:cloud/ProductActivationK8sO11yConfigV1Alpha1Metadata:ProductActivationK8sO11yConfigV1Alpha1Metadata": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Annotations of the resource.\n"
+                },
+                "folderUid": {
+                    "type": "string",
+                    "description": "The UID of the folder to save the resource in.\n"
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "The unique identifier of the resource.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The full URL of the resource.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "The globally unique identifier of a resource, used by the API for tracking.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the resource.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "uid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "annotations",
+                        "uid",
+                        "url",
+                        "uuid",
+                        "version"
+                    ]
+                }
+            }
+        },
+        "grafana:cloud/ProductActivationK8sO11yConfigV1Alpha1Options:ProductActivationK8sO11yConfigV1Alpha1Options": {
+            "properties": {
+                "overwrite": {
+                    "type": "boolean",
+                    "description": "Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:cloud/ProductActivationK8sO11yConfigV1Alpha1Spec:ProductActivationK8sO11yConfigV1Alpha1Spec": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether Kubernetes observability is enabled.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled"
+            ]
+        },
         "grafana:cloud/getAccessPoliciesAccessPolicy:getAccessPoliciesAccessPolicy": {
             "properties": {
                 "displayName": {
@@ -5057,9 +5191,6 @@
                 "order": {
                     "type": "integer"
                 },
-                "title": {
-                    "type": "string"
-                },
                 "type": {
                     "type": "string"
                 },
@@ -5069,15 +5200,13 @@
             },
             "type": "object",
             "required": [
-                "order",
-                "title"
+                "order"
             ],
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
                         "id",
-                        "order",
-                        "title"
+                        "order"
                     ]
                 }
             }
@@ -9539,6 +9668,104 @@
                 "type": "object"
             }
         },
+        "grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1": {
+            "description": "Manages Grafana Application Observability configurations using the Grafana APIs.\n\nThis resource allows you to enable or disable application observability features.\n\n**Note**: This is a singleton resource. The UID is automatically set to \"global\" and there can only be one per namespace.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  example:\n    type: grafana:cloud:ProductActivationAppO11yConfigV1Alpha1\n    properties:\n      metadata:\n        - uid: global\n      spec:\n        - enabled: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n#!/bin/bash\n\nImport an existing app observability config by its UID\n\n```sh\n$ pulumi import grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1 example my-app-o11y-config\n```\n\n",
+            "properties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:cloud/ProductActivationAppO11yConfigV1Alpha1Metadata:ProductActivationAppO11yConfigV1Alpha1Metadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:cloud/ProductActivationAppO11yConfigV1Alpha1Options:ProductActivationAppO11yConfigV1Alpha1Options",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:cloud/ProductActivationAppO11yConfigV1Alpha1Spec:ProductActivationAppO11yConfigV1Alpha1Spec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "inputProperties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:cloud/ProductActivationAppO11yConfigV1Alpha1Metadata:ProductActivationAppO11yConfigV1Alpha1Metadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:cloud/ProductActivationAppO11yConfigV1Alpha1Options:ProductActivationAppO11yConfigV1Alpha1Options",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:cloud/ProductActivationAppO11yConfigV1Alpha1Spec:ProductActivationAppO11yConfigV1Alpha1Spec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ProductActivationAppO11yConfigV1Alpha1 resources.\n",
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/types/grafana:cloud/ProductActivationAppO11yConfigV1Alpha1Metadata:ProductActivationAppO11yConfigV1Alpha1Metadata",
+                        "description": "The metadata of the resource.\n"
+                    },
+                    "options": {
+                        "$ref": "#/types/grafana:cloud/ProductActivationAppO11yConfigV1Alpha1Options:ProductActivationAppO11yConfigV1Alpha1Options",
+                        "description": "Options for applying the resource.\n"
+                    },
+                    "spec": {
+                        "$ref": "#/types/grafana:cloud/ProductActivationAppO11yConfigV1Alpha1Spec:ProductActivationAppO11yConfigV1Alpha1Spec",
+                        "description": "The spec of the resource.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1": {
+            "description": "Manages Grafana Kubernetes Observability configurations using the Grafana APIs.\n\nThis resource allows you to enable or disable Kubernetes observability features.\n\n**Note**: This is a singleton resource. The UID is automatically set to \"global\" and there can only be one per namespace.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  example:\n    type: grafana:cloud:ProductActivationK8sO11yConfigV1Alpha1\n    properties:\n      metadata:\n        - uid: global\n      spec:\n        - enabled: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n#!/bin/bash\n\nImport an existing Kubernetes observability config by its UID\n\n```sh\n$ pulumi import grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1 example my-k8s-o11y-config\n```\n\n",
+            "properties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:cloud/ProductActivationK8sO11yConfigV1Alpha1Metadata:ProductActivationK8sO11yConfigV1Alpha1Metadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:cloud/ProductActivationK8sO11yConfigV1Alpha1Options:ProductActivationK8sO11yConfigV1Alpha1Options",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:cloud/ProductActivationK8sO11yConfigV1Alpha1Spec:ProductActivationK8sO11yConfigV1Alpha1Spec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "inputProperties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:cloud/ProductActivationK8sO11yConfigV1Alpha1Metadata:ProductActivationK8sO11yConfigV1Alpha1Metadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:cloud/ProductActivationK8sO11yConfigV1Alpha1Options:ProductActivationK8sO11yConfigV1Alpha1Options",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:cloud/ProductActivationK8sO11yConfigV1Alpha1Spec:ProductActivationK8sO11yConfigV1Alpha1Spec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ProductActivationK8sO11yConfigV1Alpha1 resources.\n",
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/types/grafana:cloud/ProductActivationK8sO11yConfigV1Alpha1Metadata:ProductActivationK8sO11yConfigV1Alpha1Metadata",
+                        "description": "The metadata of the resource.\n"
+                    },
+                    "options": {
+                        "$ref": "#/types/grafana:cloud/ProductActivationK8sO11yConfigV1Alpha1Options:ProductActivationK8sO11yConfigV1Alpha1Options",
+                        "description": "Options for applying the resource.\n"
+                    },
+                    "spec": {
+                        "$ref": "#/types/grafana:cloud/ProductActivationK8sO11yConfigV1Alpha1Spec:ProductActivationK8sO11yConfigV1Alpha1Spec",
+                        "description": "The spec of the resource.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:cloud/stack:Stack": {
             "description": "* [Official documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#stacks/)\n\nRequired access policy scopes:\n\n* stacks:read\n* stacks:write\n* stacks:delete\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.cloud.Stack(\"test\", {\n    name: \"gcloudstacktest\",\n    slug: \"gcloudstacktest\",\n    regionSlug: \"eu\",\n    description: \"Test Grafana Cloud Stack\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest = grafana.cloud.Stack(\"test\",\n    name=\"gcloudstacktest\",\n    slug=\"gcloudstacktest\",\n    region_slug=\"eu\",\n    description=\"Test Grafana Cloud Stack\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Cloud.Stack(\"test\", new()\n    {\n        Name = \"gcloudstacktest\",\n        Slug = \"gcloudstacktest\",\n        RegionSlug = \"eu\",\n        Description = \"Test Grafana Cloud Stack\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloud.NewStack(ctx, \"test\", \u0026cloud.StackArgs{\n\t\t\tName:        pulumi.String(\"gcloudstacktest\"),\n\t\t\tSlug:        pulumi.String(\"gcloudstacktest\"),\n\t\t\tRegionSlug:  pulumi.String(\"eu\"),\n\t\t\tDescription: pulumi.String(\"Test Grafana Cloud Stack\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.Stack;\nimport com.pulumi.grafana.cloud.StackArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Stack(\"test\", StackArgs.builder()\n            .name(\"gcloudstacktest\")\n            .slug(\"gcloudstacktest\")\n            .regionSlug(\"eu\")\n            .description(\"Test Grafana Cloud Stack\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:cloud:Stack\n    properties:\n      name: gcloudstacktest\n      slug: gcloudstacktest\n      regionSlug: eu\n      description: Test Grafana Cloud Stack\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:cloud/stack:Stack name \"{{ stackSlugOrID }}\"\n```\n\n",
             "properties": {
@@ -9635,7 +9862,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "A map of labels to assign to the stack. Label keys and values must match the following regexp: \"^[a-zA-Z0-9/\\-.]+$\" and stacks cannot have more than 10 labels.\n"
+                    "description": "A map of labels to assign to the stack. Label keys and values must match the following regexp: \"^[a-zA-Z0-9/\\-._]+$\" and stacks cannot have more than 10 labels.\n"
                 },
                 "logsIpAllowListCname": {
                     "type": "string",
@@ -9901,7 +10128,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "A map of labels to assign to the stack. Label keys and values must match the following regexp: \"^[a-zA-Z0-9/\\-.]+$\" and stacks cannot have more than 10 labels.\n"
+                    "description": "A map of labels to assign to the stack. Label keys and values must match the following regexp: \"^[a-zA-Z0-9/\\-._]+$\" and stacks cannot have more than 10 labels.\n"
                 },
                 "name": {
                     "type": "string",
@@ -10028,7 +10255,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "A map of labels to assign to the stack. Label keys and values must match the following regexp: \"^[a-zA-Z0-9/\\-.]+$\" and stacks cannot have more than 10 labels.\n"
+                        "description": "A map of labels to assign to the stack. Label keys and values must match the following regexp: \"^[a-zA-Z0-9/\\-._]+$\" and stacks cannot have more than 10 labels.\n"
                     },
                     "logsIpAllowListCname": {
                         "type": "string",
@@ -12335,7 +12562,7 @@
             }
         },
         "grafana:k6/installation:Installation": {
-            "description": "Sets up the k6 App on a Grafana Cloud instance and generates a token. \nOnce a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install k6.\nThis resource cannot be imported but it can be used on an existing k6 App installation without issues.\n\n**Note that this resource must be used on a provider configured with Grafana Cloud credentials.**\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/testing/k6/)\n\nRequired access policy scopes:\n\n* stacks:read\n* stacks:write\n* subscriptions:read\n* orgs:read\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst config = new pulumi.Config();\n// Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\nconst cloudAccessPolicyToken = config.requireObject\u003cany\u003e(\"cloudAccessPolicyToken\");\nconst stackSlug = config.requireObject\u003cany\u003e(\"stackSlug\");\nconst cloudRegion = config.get(\"cloudRegion\") || \"us\";\nconst k6Stack = new grafana.cloud.Stack(\"k6_stack\", {\n    name: stackSlug,\n    slug: stackSlug,\n    regionSlug: cloudRegion,\n});\n// Step 2: Create a Service Account and a token to install the k6 App\nconst k6Sa = new grafana.cloud.StackServiceAccount(\"k6_sa\", {\n    stackSlug: stackSlug,\n    name: `${stackSlug}-k6-app`,\n    role: \"Admin\",\n    isDisabled: false,\n});\nconst k6SaToken = new grafana.cloud.StackServiceAccountToken(\"k6_sa_token\", {\n    stackSlug: stackSlug,\n    name: `${stackSlug}-k6-app-token`,\n    serviceAccountId: k6Sa.id,\n});\n// Step 3: Install the k6 App on the stack\nconst k6Installation = new grafana.k6.Installation(\"k6_installation\", {\n    cloudAccessPolicyToken: cloudAccessPolicyToken,\n    stackId: k6Stack.id,\n    grafanaSaToken: k6SaToken.key,\n    grafanaUser: \"admin\",\n});\nconst myK6Project = new grafana.k6.Project(\"my_k6_project\", {name: \"k6 Project created with TF\"});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nconfig = pulumi.Config()\n# Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\ncloud_access_policy_token = config.require_object(\"cloudAccessPolicyToken\")\nstack_slug = config.require_object(\"stackSlug\")\ncloud_region = config.get(\"cloudRegion\")\nif cloud_region is None:\n    cloud_region = \"us\"\nk6_stack = grafana.cloud.Stack(\"k6_stack\",\n    name=stack_slug,\n    slug=stack_slug,\n    region_slug=cloud_region)\n# Step 2: Create a Service Account and a token to install the k6 App\nk6_sa = grafana.cloud.StackServiceAccount(\"k6_sa\",\n    stack_slug=stack_slug,\n    name=f\"{stack_slug}-k6-app\",\n    role=\"Admin\",\n    is_disabled=False)\nk6_sa_token = grafana.cloud.StackServiceAccountToken(\"k6_sa_token\",\n    stack_slug=stack_slug,\n    name=f\"{stack_slug}-k6-app-token\",\n    service_account_id=k6_sa.id)\n# Step 3: Install the k6 App on the stack\nk6_installation = grafana.k6.Installation(\"k6_installation\",\n    cloud_access_policy_token=cloud_access_policy_token,\n    stack_id=k6_stack.id,\n    grafana_sa_token=k6_sa_token.key,\n    grafana_user=\"admin\")\nmy_k6_project = grafana.k6.Project(\"my_k6_project\", name=\"k6 Project created with TF\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    // Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\n    var cloudAccessPolicyToken = config.RequireObject\u003cdynamic\u003e(\"cloudAccessPolicyToken\");\n    var stackSlug = config.RequireObject\u003cdynamic\u003e(\"stackSlug\");\n    var cloudRegion = config.Get(\"cloudRegion\") ?? \"us\";\n    var k6Stack = new Grafana.Cloud.Stack(\"k6_stack\", new()\n    {\n        Name = stackSlug,\n        Slug = stackSlug,\n        RegionSlug = cloudRegion,\n    });\n\n    // Step 2: Create a Service Account and a token to install the k6 App\n    var k6Sa = new Grafana.Cloud.StackServiceAccount(\"k6_sa\", new()\n    {\n        StackSlug = stackSlug,\n        Name = $\"{stackSlug}-k6-app\",\n        Role = \"Admin\",\n        IsDisabled = false,\n    });\n\n    var k6SaToken = new Grafana.Cloud.StackServiceAccountToken(\"k6_sa_token\", new()\n    {\n        StackSlug = stackSlug,\n        Name = $\"{stackSlug}-k6-app-token\",\n        ServiceAccountId = k6Sa.Id,\n    });\n\n    // Step 3: Install the k6 App on the stack\n    var k6Installation = new Grafana.K6.Installation(\"k6_installation\", new()\n    {\n        CloudAccessPolicyToken = cloudAccessPolicyToken,\n        StackId = k6Stack.Id,\n        GrafanaSaToken = k6SaToken.Key,\n        GrafanaUser = \"admin\",\n    });\n\n    var myK6Project = new Grafana.K6.Project(\"my_k6_project\", new()\n    {\n        Name = \"k6 Project created with TF\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\t// Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\n\t\tcloudAccessPolicyToken := cfg.RequireObject(\"cloudAccessPolicyToken\")\n\t\tstackSlug := cfg.RequireObject(\"stackSlug\")\n\t\tcloudRegion := \"us\"\n\t\tif param := cfg.Get(\"cloudRegion\"); param != \"\" {\n\t\t\tcloudRegion = param\n\t\t}\n\t\tk6Stack, err := cloud.NewStack(ctx, \"k6_stack\", \u0026cloud.StackArgs{\n\t\t\tName:       pulumi.Any(stackSlug),\n\t\t\tSlug:       pulumi.Any(stackSlug),\n\t\t\tRegionSlug: pulumi.String(cloudRegion),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Step 2: Create a Service Account and a token to install the k6 App\n\t\tk6Sa, err := cloud.NewStackServiceAccount(ctx, \"k6_sa\", \u0026cloud.StackServiceAccountArgs{\n\t\t\tStackSlug:  pulumi.Any(stackSlug),\n\t\t\tName:       pulumi.Sprintf(\"%v-k6-app\", stackSlug),\n\t\t\tRole:       pulumi.String(\"Admin\"),\n\t\t\tIsDisabled: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tk6SaToken, err := cloud.NewStackServiceAccountToken(ctx, \"k6_sa_token\", \u0026cloud.StackServiceAccountTokenArgs{\n\t\t\tStackSlug:        pulumi.Any(stackSlug),\n\t\t\tName:             pulumi.Sprintf(\"%v-k6-app-token\", stackSlug),\n\t\t\tServiceAccountId: k6Sa.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Step 3: Install the k6 App on the stack\n\t\t_, err = k6.NewInstallation(ctx, \"k6_installation\", \u0026k6.InstallationArgs{\n\t\t\tCloudAccessPolicyToken: pulumi.Any(cloudAccessPolicyToken),\n\t\t\tStackId:                k6Stack.ID(),\n\t\t\tGrafanaSaToken:         k6SaToken.Key,\n\t\t\tGrafanaUser:            pulumi.String(\"admin\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewProject(ctx, \"my_k6_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"k6 Project created with TF\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.Stack;\nimport com.pulumi.grafana.cloud.StackArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccount;\nimport com.pulumi.grafana.cloud.StackServiceAccountArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccountToken;\nimport com.pulumi.grafana.cloud.StackServiceAccountTokenArgs;\nimport com.pulumi.grafana.k6.Installation;\nimport com.pulumi.grafana.k6.InstallationArgs;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var cloudAccessPolicyToken = config.get(\"cloudAccessPolicyToken\");\n        final var stackSlug = config.get(\"stackSlug\");\n        final var cloudRegion = config.get(\"cloudRegion\").orElse(\"us\");\n        var k6Stack = new Stack(\"k6Stack\", StackArgs.builder()\n            .name(stackSlug)\n            .slug(stackSlug)\n            .regionSlug(cloudRegion)\n            .build());\n\n        // Step 2: Create a Service Account and a token to install the k6 App\n        var k6Sa = new StackServiceAccount(\"k6Sa\", StackServiceAccountArgs.builder()\n            .stackSlug(stackSlug)\n            .name(String.format(\"%s-k6-app\", stackSlug))\n            .role(\"Admin\")\n            .isDisabled(false)\n            .build());\n\n        var k6SaToken = new StackServiceAccountToken(\"k6SaToken\", StackServiceAccountTokenArgs.builder()\n            .stackSlug(stackSlug)\n            .name(String.format(\"%s-k6-app-token\", stackSlug))\n            .serviceAccountId(k6Sa.id())\n            .build());\n\n        // Step 3: Install the k6 App on the stack\n        var k6Installation = new Installation(\"k6Installation\", InstallationArgs.builder()\n            .cloudAccessPolicyToken(cloudAccessPolicyToken)\n            .stackId(k6Stack.id())\n            .grafanaSaToken(k6SaToken.key())\n            .grafanaUser(\"admin\")\n            .build());\n\n        var myK6Project = new Project(\"myK6Project\", ProjectArgs.builder()\n            .name(\"k6 Project created with TF\")\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  cloudAccessPolicyToken:\n    type: dynamic\n  stackSlug:\n    type: dynamic\n  cloudRegion:\n    type: string\n    default: us\nresources:\n  k6Stack:\n    type: grafana:cloud:Stack\n    name: k6_stack\n    properties:\n      name: ${stackSlug}\n      slug: ${stackSlug}\n      regionSlug: ${cloudRegion}\n  # Step 2: Create a Service Account and a token to install the k6 App\n  k6Sa:\n    type: grafana:cloud:StackServiceAccount\n    name: k6_sa\n    properties:\n      stackSlug: ${stackSlug}\n      name: ${stackSlug}-k6-app\n      role: Admin\n      isDisabled: false\n  k6SaToken:\n    type: grafana:cloud:StackServiceAccountToken\n    name: k6_sa_token\n    properties:\n      stackSlug: ${stackSlug}\n      name: ${stackSlug}-k6-app-token\n      serviceAccountId: ${k6Sa.id}\n  # Step 3: Install the k6 App on the stack\n  k6Installation:\n    type: grafana:k6:Installation\n    name: k6_installation\n    properties:\n      cloudAccessPolicyToken: ${cloudAccessPolicyToken}\n      stackId: ${k6Stack.id}\n      grafanaSaToken: ${k6SaToken.key}\n      grafanaUser: admin\n  myK6Project:\n    type: grafana:k6:Project\n    name: my_k6_project\n    properties:\n      name: k6 Project created with TF\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Sets up the k6 App on a Grafana Cloud instance and generates a token. \nOnce a Grafana Cloud stack is created, a user can either use this resource or go into the UI to install k6.\nThis resource cannot be imported but it can be used on an existing k6 App installation without issues.\n\n**Note that this resource must be used on a provider configured with Grafana Cloud credentials.**\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/testing/k6/)\n\nRequired access policy scopes:\n\n* stacks:read\n* stacks:write\n* subscriptions:read\n* orgs:read\n* stack-service-accounts:write\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst config = new pulumi.Config();\n// Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\nconst cloudAccessPolicyToken = config.requireObject\u003cany\u003e(\"cloudAccessPolicyToken\");\nconst stackSlug = config.requireObject\u003cany\u003e(\"stackSlug\");\nconst cloudRegion = config.get(\"cloudRegion\") || \"us\";\nconst k6Stack = new grafana.cloud.Stack(\"k6_stack\", {\n    name: stackSlug,\n    slug: stackSlug,\n    regionSlug: cloudRegion,\n});\n// Step 2: Create a Service Account and a token to install the k6 App\nconst k6Sa = new grafana.cloud.StackServiceAccount(\"k6_sa\", {\n    stackSlug: stackSlug,\n    name: `${stackSlug}-k6-app`,\n    role: \"Admin\",\n    isDisabled: false,\n});\nconst k6SaToken = new grafana.cloud.StackServiceAccountToken(\"k6_sa_token\", {\n    stackSlug: stackSlug,\n    name: `${stackSlug}-k6-app-token`,\n    serviceAccountId: k6Sa.id,\n});\n// Step 3: Install the k6 App on the stack\nconst k6Installation = new grafana.k6.Installation(\"k6_installation\", {\n    cloudAccessPolicyToken: cloudAccessPolicyToken,\n    stackId: k6Stack.id,\n    grafanaSaToken: k6SaToken.key,\n    grafanaUser: \"admin\",\n});\nconst myK6Project = new grafana.k6.Project(\"my_k6_project\", {name: \"k6 Project created with TF\"});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nconfig = pulumi.Config()\n# Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\ncloud_access_policy_token = config.require_object(\"cloudAccessPolicyToken\")\nstack_slug = config.require_object(\"stackSlug\")\ncloud_region = config.get(\"cloudRegion\")\nif cloud_region is None:\n    cloud_region = \"us\"\nk6_stack = grafana.cloud.Stack(\"k6_stack\",\n    name=stack_slug,\n    slug=stack_slug,\n    region_slug=cloud_region)\n# Step 2: Create a Service Account and a token to install the k6 App\nk6_sa = grafana.cloud.StackServiceAccount(\"k6_sa\",\n    stack_slug=stack_slug,\n    name=f\"{stack_slug}-k6-app\",\n    role=\"Admin\",\n    is_disabled=False)\nk6_sa_token = grafana.cloud.StackServiceAccountToken(\"k6_sa_token\",\n    stack_slug=stack_slug,\n    name=f\"{stack_slug}-k6-app-token\",\n    service_account_id=k6_sa.id)\n# Step 3: Install the k6 App on the stack\nk6_installation = grafana.k6.Installation(\"k6_installation\",\n    cloud_access_policy_token=cloud_access_policy_token,\n    stack_id=k6_stack.id,\n    grafana_sa_token=k6_sa_token.key,\n    grafana_user=\"admin\")\nmy_k6_project = grafana.k6.Project(\"my_k6_project\", name=\"k6 Project created with TF\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    // Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\n    var cloudAccessPolicyToken = config.RequireObject\u003cdynamic\u003e(\"cloudAccessPolicyToken\");\n    var stackSlug = config.RequireObject\u003cdynamic\u003e(\"stackSlug\");\n    var cloudRegion = config.Get(\"cloudRegion\") ?? \"us\";\n    var k6Stack = new Grafana.Cloud.Stack(\"k6_stack\", new()\n    {\n        Name = stackSlug,\n        Slug = stackSlug,\n        RegionSlug = cloudRegion,\n    });\n\n    // Step 2: Create a Service Account and a token to install the k6 App\n    var k6Sa = new Grafana.Cloud.StackServiceAccount(\"k6_sa\", new()\n    {\n        StackSlug = stackSlug,\n        Name = $\"{stackSlug}-k6-app\",\n        Role = \"Admin\",\n        IsDisabled = false,\n    });\n\n    var k6SaToken = new Grafana.Cloud.StackServiceAccountToken(\"k6_sa_token\", new()\n    {\n        StackSlug = stackSlug,\n        Name = $\"{stackSlug}-k6-app-token\",\n        ServiceAccountId = k6Sa.Id,\n    });\n\n    // Step 3: Install the k6 App on the stack\n    var k6Installation = new Grafana.K6.Installation(\"k6_installation\", new()\n    {\n        CloudAccessPolicyToken = cloudAccessPolicyToken,\n        StackId = k6Stack.Id,\n        GrafanaSaToken = k6SaToken.Key,\n        GrafanaUser = \"admin\",\n    });\n\n    var myK6Project = new Grafana.K6.Project(\"my_k6_project\", new()\n    {\n        Name = \"k6 Project created with TF\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\t// Cloud Access Policy token for Grafana Cloud with the following scopes: stacks:read|write|delete, stack-service-accounts:write\n\t\tcloudAccessPolicyToken := cfg.RequireObject(\"cloudAccessPolicyToken\")\n\t\tstackSlug := cfg.RequireObject(\"stackSlug\")\n\t\tcloudRegion := \"us\"\n\t\tif param := cfg.Get(\"cloudRegion\"); param != \"\" {\n\t\t\tcloudRegion = param\n\t\t}\n\t\tk6Stack, err := cloud.NewStack(ctx, \"k6_stack\", \u0026cloud.StackArgs{\n\t\t\tName:       pulumi.Any(stackSlug),\n\t\t\tSlug:       pulumi.Any(stackSlug),\n\t\t\tRegionSlug: pulumi.String(cloudRegion),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Step 2: Create a Service Account and a token to install the k6 App\n\t\tk6Sa, err := cloud.NewStackServiceAccount(ctx, \"k6_sa\", \u0026cloud.StackServiceAccountArgs{\n\t\t\tStackSlug:  pulumi.Any(stackSlug),\n\t\t\tName:       pulumi.Sprintf(\"%v-k6-app\", stackSlug),\n\t\t\tRole:       pulumi.String(\"Admin\"),\n\t\t\tIsDisabled: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tk6SaToken, err := cloud.NewStackServiceAccountToken(ctx, \"k6_sa_token\", \u0026cloud.StackServiceAccountTokenArgs{\n\t\t\tStackSlug:        pulumi.Any(stackSlug),\n\t\t\tName:             pulumi.Sprintf(\"%v-k6-app-token\", stackSlug),\n\t\t\tServiceAccountId: k6Sa.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Step 3: Install the k6 App on the stack\n\t\t_, err = k6.NewInstallation(ctx, \"k6_installation\", \u0026k6.InstallationArgs{\n\t\t\tCloudAccessPolicyToken: pulumi.Any(cloudAccessPolicyToken),\n\t\t\tStackId:                k6Stack.ID(),\n\t\t\tGrafanaSaToken:         k6SaToken.Key,\n\t\t\tGrafanaUser:            pulumi.String(\"admin\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewProject(ctx, \"my_k6_project\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"k6 Project created with TF\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.Stack;\nimport com.pulumi.grafana.cloud.StackArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccount;\nimport com.pulumi.grafana.cloud.StackServiceAccountArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccountToken;\nimport com.pulumi.grafana.cloud.StackServiceAccountTokenArgs;\nimport com.pulumi.grafana.k6.Installation;\nimport com.pulumi.grafana.k6.InstallationArgs;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var cloudAccessPolicyToken = config.get(\"cloudAccessPolicyToken\");\n        final var stackSlug = config.get(\"stackSlug\");\n        final var cloudRegion = config.get(\"cloudRegion\").orElse(\"us\");\n        var k6Stack = new Stack(\"k6Stack\", StackArgs.builder()\n            .name(stackSlug)\n            .slug(stackSlug)\n            .regionSlug(cloudRegion)\n            .build());\n\n        // Step 2: Create a Service Account and a token to install the k6 App\n        var k6Sa = new StackServiceAccount(\"k6Sa\", StackServiceAccountArgs.builder()\n            .stackSlug(stackSlug)\n            .name(String.format(\"%s-k6-app\", stackSlug))\n            .role(\"Admin\")\n            .isDisabled(false)\n            .build());\n\n        var k6SaToken = new StackServiceAccountToken(\"k6SaToken\", StackServiceAccountTokenArgs.builder()\n            .stackSlug(stackSlug)\n            .name(String.format(\"%s-k6-app-token\", stackSlug))\n            .serviceAccountId(k6Sa.id())\n            .build());\n\n        // Step 3: Install the k6 App on the stack\n        var k6Installation = new Installation(\"k6Installation\", InstallationArgs.builder()\n            .cloudAccessPolicyToken(cloudAccessPolicyToken)\n            .stackId(k6Stack.id())\n            .grafanaSaToken(k6SaToken.key())\n            .grafanaUser(\"admin\")\n            .build());\n\n        var myK6Project = new Project(\"myK6Project\", ProjectArgs.builder()\n            .name(\"k6 Project created with TF\")\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  cloudAccessPolicyToken:\n    type: dynamic\n  stackSlug:\n    type: dynamic\n  cloudRegion:\n    type: string\n    default: us\nresources:\n  k6Stack:\n    type: grafana:cloud:Stack\n    name: k6_stack\n    properties:\n      name: ${stackSlug}\n      slug: ${stackSlug}\n      regionSlug: ${cloudRegion}\n  # Step 2: Create a Service Account and a token to install the k6 App\n  k6Sa:\n    type: grafana:cloud:StackServiceAccount\n    name: k6_sa\n    properties:\n      stackSlug: ${stackSlug}\n      name: ${stackSlug}-k6-app\n      role: Admin\n      isDisabled: false\n  k6SaToken:\n    type: grafana:cloud:StackServiceAccountToken\n    name: k6_sa_token\n    properties:\n      stackSlug: ${stackSlug}\n      name: ${stackSlug}-k6-app-token\n      serviceAccountId: ${k6Sa.id}\n  # Step 3: Install the k6 App on the stack\n  k6Installation:\n    type: grafana:k6:Installation\n    name: k6_installation\n    properties:\n      cloudAccessPolicyToken: ${cloudAccessPolicyToken}\n      stackId: ${k6Stack.id}\n      grafanaSaToken: ${k6SaToken.key}\n      grafanaUser: admin\n  myK6Project:\n    type: grafana:k6:Project\n    name: my_k6_project\n    properties:\n      name: k6 Project created with TF\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "cloudAccessPolicyToken": {
                     "type": "string",
@@ -16151,7 +16378,7 @@
             ]
         },
         "grafana:oss/playlist:Playlist": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.oss.Playlist(\"test\", {\n    name: \"My Playlist!\",\n    interval: \"5m\",\n    items: [\n        {\n            order: 2,\n            title: \"Terraform Dashboard By Tag\",\n            type: \"dashboard_by_tag\",\n            value: \"terraform\",\n        },\n        {\n            order: 1,\n            title: \"Terraform Dashboard By UID\",\n            type: \"dashboard_by_uid\",\n            value: \"cIBgcSjkk\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest = grafana.oss.Playlist(\"test\",\n    name=\"My Playlist!\",\n    interval=\"5m\",\n    items=[\n        {\n            \"order\": 2,\n            \"title\": \"Terraform Dashboard By Tag\",\n            \"type\": \"dashboard_by_tag\",\n            \"value\": \"terraform\",\n        },\n        {\n            \"order\": 1,\n            \"title\": \"Terraform Dashboard By UID\",\n            \"type\": \"dashboard_by_uid\",\n            \"value\": \"cIBgcSjkk\",\n        },\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Oss.Playlist(\"test\", new()\n    {\n        Name = \"My Playlist!\",\n        Interval = \"5m\",\n        Items = new[]\n        {\n            new Grafana.Oss.Inputs.PlaylistItemArgs\n            {\n                Order = 2,\n                Title = \"Terraform Dashboard By Tag\",\n                Type = \"dashboard_by_tag\",\n                Value = \"terraform\",\n            },\n            new Grafana.Oss.Inputs.PlaylistItemArgs\n            {\n                Order = 1,\n                Title = \"Terraform Dashboard By UID\",\n                Type = \"dashboard_by_uid\",\n                Value = \"cIBgcSjkk\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oss.NewPlaylist(ctx, \"test\", \u0026oss.PlaylistArgs{\n\t\t\tName:     pulumi.String(\"My Playlist!\"),\n\t\t\tInterval: pulumi.String(\"5m\"),\n\t\t\tItems: oss.PlaylistItemArray{\n\t\t\t\t\u0026oss.PlaylistItemArgs{\n\t\t\t\t\tOrder: pulumi.Int(2),\n\t\t\t\t\tTitle: pulumi.String(\"Terraform Dashboard By Tag\"),\n\t\t\t\t\tType:  pulumi.String(\"dashboard_by_tag\"),\n\t\t\t\t\tValue: pulumi.String(\"terraform\"),\n\t\t\t\t},\n\t\t\t\t\u0026oss.PlaylistItemArgs{\n\t\t\t\t\tOrder: pulumi.Int(1),\n\t\t\t\t\tTitle: pulumi.String(\"Terraform Dashboard By UID\"),\n\t\t\t\t\tType:  pulumi.String(\"dashboard_by_uid\"),\n\t\t\t\t\tValue: pulumi.String(\"cIBgcSjkk\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.Playlist;\nimport com.pulumi.grafana.oss.PlaylistArgs;\nimport com.pulumi.grafana.oss.inputs.PlaylistItemArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Playlist(\"test\", PlaylistArgs.builder()\n            .name(\"My Playlist!\")\n            .interval(\"5m\")\n            .items(            \n                PlaylistItemArgs.builder()\n                    .order(2)\n                    .title(\"Terraform Dashboard By Tag\")\n                    .type(\"dashboard_by_tag\")\n                    .value(\"terraform\")\n                    .build(),\n                PlaylistItemArgs.builder()\n                    .order(1)\n                    .title(\"Terraform Dashboard By UID\")\n                    .type(\"dashboard_by_uid\")\n                    .value(\"cIBgcSjkk\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:oss:Playlist\n    properties:\n      name: My Playlist!\n      interval: 5m\n      items:\n        - order: 2\n          title: Terraform Dashboard By Tag\n          type: dashboard_by_tag\n          value: terraform\n        - order: 1\n          title: Terraform Dashboard By UID\n          type: dashboard_by_uid\n          value: cIBgcSjkk\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:oss/playlist:Playlist name \"{{ uid }}\"\n```\n\n```sh\n$ pulumi import grafana:oss/playlist:Playlist name \"{{ orgID }}:{{ uid }}\"\n```\n\n",
+            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  test:\n    type: grafana:oss:Playlist\n    properties:\n      name: My Playlist!\n      interval: 5m\n      items:\n        - order: 2\n          title: Terraform Dashboard By Tag\n          type: dashboard_by_tag\n          value: terraform\n        - order: 1\n          title: Terraform Dashboard By UID\n          type: dashboard_by_uid\n          value: cIBgcSjkk\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:oss/playlist:Playlist name \"{{ uid }}\"\n```\n\n```sh\n$ pulumi import grafana:oss/playlist:Playlist name \"{{ orgID }}:{{ uid }}\"\n```\n\n",
             "properties": {
                 "interval": {
                     "type": "string"
@@ -17805,7 +18032,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "A map of labels to assign to the stack. Label keys and values must match the following regexp: \"^[a-zA-Z0-9/\\-.]+$\" and stacks cannot have more than 10 labels.\n",
+                        "description": "A map of labels to assign to the stack. Label keys and values must match the following regexp: \"^[a-zA-Z0-9/\\-._]+$\" and stacks cannot have more than 10 labels.\n",
                         "type": "object"
                     },
                     "logsIpAllowListCname": {

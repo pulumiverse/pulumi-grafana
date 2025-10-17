@@ -131,7 +131,7 @@ export interface GetStackResult {
      */
     readonly influxUrl: string;
     /**
-     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-.]+$" and stacks cannot have more than 10 labels.
+     * A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\-._]+$" and stacks cannot have more than 10 labels.
      */
     readonly labels: {[key: string]: string};
     /**

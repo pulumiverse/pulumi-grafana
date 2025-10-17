@@ -33,6 +33,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &PrivateDataSourceConnectNetwork{}
 	case "grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken":
 		r = &PrivateDataSourceConnectNetworkToken{}
+	case "grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1":
+		r = &ProductActivationAppO11yConfigV1Alpha1{}
+	case "grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1":
+		r = &ProductActivationK8sO11yConfigV1Alpha1{}
 	case "grafana:cloud/stack:Stack":
 		r = &Stack{}
 	case "grafana:cloud/stackServiceAccount:StackServiceAccount":
@@ -80,6 +84,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"cloud/privateDataSourceConnectNetworkToken",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"cloud/productActivationAppO11yConfigV1Alpha1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"cloud/productActivationK8sO11yConfigV1Alpha1",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -319,6 +319,1018 @@ func (o AccessPolicyRealmLabelPolicyArrayOutput) Index(i pulumi.IntInput) Access
 	}).(AccessPolicyRealmLabelPolicyOutput)
 }
 
+type ProductActivationAppO11yConfigV1Alpha1Metadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The UID of the folder to save the resource in.
+	FolderUid *string `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// ProductActivationAppO11yConfigV1Alpha1MetadataInput is an input type that accepts ProductActivationAppO11yConfigV1Alpha1MetadataArgs and ProductActivationAppO11yConfigV1Alpha1MetadataOutput values.
+// You can construct a concrete instance of `ProductActivationAppO11yConfigV1Alpha1MetadataInput` via:
+//
+//	ProductActivationAppO11yConfigV1Alpha1MetadataArgs{...}
+type ProductActivationAppO11yConfigV1Alpha1MetadataInput interface {
+	pulumi.Input
+
+	ToProductActivationAppO11yConfigV1Alpha1MetadataOutput() ProductActivationAppO11yConfigV1Alpha1MetadataOutput
+	ToProductActivationAppO11yConfigV1Alpha1MetadataOutputWithContext(context.Context) ProductActivationAppO11yConfigV1Alpha1MetadataOutput
+}
+
+type ProductActivationAppO11yConfigV1Alpha1MetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The UID of the folder to save the resource in.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (ProductActivationAppO11yConfigV1Alpha1MetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationAppO11yConfigV1Alpha1Metadata)(nil)).Elem()
+}
+
+func (i ProductActivationAppO11yConfigV1Alpha1MetadataArgs) ToProductActivationAppO11yConfigV1Alpha1MetadataOutput() ProductActivationAppO11yConfigV1Alpha1MetadataOutput {
+	return i.ToProductActivationAppO11yConfigV1Alpha1MetadataOutputWithContext(context.Background())
+}
+
+func (i ProductActivationAppO11yConfigV1Alpha1MetadataArgs) ToProductActivationAppO11yConfigV1Alpha1MetadataOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1MetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationAppO11yConfigV1Alpha1MetadataOutput)
+}
+
+func (i ProductActivationAppO11yConfigV1Alpha1MetadataArgs) ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput() ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput {
+	return i.ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutputWithContext(context.Background())
+}
+
+func (i ProductActivationAppO11yConfigV1Alpha1MetadataArgs) ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationAppO11yConfigV1Alpha1MetadataOutput).ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutputWithContext(ctx)
+}
+
+// ProductActivationAppO11yConfigV1Alpha1MetadataPtrInput is an input type that accepts ProductActivationAppO11yConfigV1Alpha1MetadataArgs, ProductActivationAppO11yConfigV1Alpha1MetadataPtr and ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput values.
+// You can construct a concrete instance of `ProductActivationAppO11yConfigV1Alpha1MetadataPtrInput` via:
+//
+//	        ProductActivationAppO11yConfigV1Alpha1MetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProductActivationAppO11yConfigV1Alpha1MetadataPtrInput interface {
+	pulumi.Input
+
+	ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput() ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput
+	ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutputWithContext(context.Context) ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput
+}
+
+type productActivationAppO11yConfigV1Alpha1MetadataPtrType ProductActivationAppO11yConfigV1Alpha1MetadataArgs
+
+func ProductActivationAppO11yConfigV1Alpha1MetadataPtr(v *ProductActivationAppO11yConfigV1Alpha1MetadataArgs) ProductActivationAppO11yConfigV1Alpha1MetadataPtrInput {
+	return (*productActivationAppO11yConfigV1Alpha1MetadataPtrType)(v)
+}
+
+func (*productActivationAppO11yConfigV1Alpha1MetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationAppO11yConfigV1Alpha1Metadata)(nil)).Elem()
+}
+
+func (i *productActivationAppO11yConfigV1Alpha1MetadataPtrType) ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput() ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput {
+	return i.ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *productActivationAppO11yConfigV1Alpha1MetadataPtrType) ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput)
+}
+
+type ProductActivationAppO11yConfigV1Alpha1MetadataOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationAppO11yConfigV1Alpha1MetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationAppO11yConfigV1Alpha1Metadata)(nil)).Elem()
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataOutput) ToProductActivationAppO11yConfigV1Alpha1MetadataOutput() ProductActivationAppO11yConfigV1Alpha1MetadataOutput {
+	return o
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataOutput) ToProductActivationAppO11yConfigV1Alpha1MetadataOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1MetadataOutput {
+	return o
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataOutput) ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput() ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput {
+	return o.ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutputWithContext(context.Background())
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataOutput) ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProductActivationAppO11yConfigV1Alpha1Metadata) *ProductActivationAppO11yConfigV1Alpha1Metadata {
+		return &v
+	}).(ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput)
+}
+
+// Annotations of the resource.
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ProductActivationAppO11yConfigV1Alpha1Metadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in.
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationAppO11yConfigV1Alpha1Metadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v ProductActivationAppO11yConfigV1Alpha1Metadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationAppO11yConfigV1Alpha1Metadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationAppO11yConfigV1Alpha1Metadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationAppO11yConfigV1Alpha1Metadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationAppO11yConfigV1Alpha1Metadata)(nil)).Elem()
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput) ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput() ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput {
+	return o
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput) ToProductActivationAppO11yConfigV1Alpha1MetadataPtrOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput {
+	return o
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput) Elem() ProductActivationAppO11yConfigV1Alpha1MetadataOutput {
+	return o.ApplyT(func(v *ProductActivationAppO11yConfigV1Alpha1Metadata) ProductActivationAppO11yConfigV1Alpha1Metadata {
+		if v != nil {
+			return *v
+		}
+		var ret ProductActivationAppO11yConfigV1Alpha1Metadata
+		return ret
+	}).(ProductActivationAppO11yConfigV1Alpha1MetadataOutput)
+}
+
+// Annotations of the resource.
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ProductActivationAppO11yConfigV1Alpha1Metadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in.
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationAppO11yConfigV1Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationAppO11yConfigV1Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationAppO11yConfigV1Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationAppO11yConfigV1Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationAppO11yConfigV1Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type ProductActivationAppO11yConfigV1Alpha1Options struct {
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// ProductActivationAppO11yConfigV1Alpha1OptionsInput is an input type that accepts ProductActivationAppO11yConfigV1Alpha1OptionsArgs and ProductActivationAppO11yConfigV1Alpha1OptionsOutput values.
+// You can construct a concrete instance of `ProductActivationAppO11yConfigV1Alpha1OptionsInput` via:
+//
+//	ProductActivationAppO11yConfigV1Alpha1OptionsArgs{...}
+type ProductActivationAppO11yConfigV1Alpha1OptionsInput interface {
+	pulumi.Input
+
+	ToProductActivationAppO11yConfigV1Alpha1OptionsOutput() ProductActivationAppO11yConfigV1Alpha1OptionsOutput
+	ToProductActivationAppO11yConfigV1Alpha1OptionsOutputWithContext(context.Context) ProductActivationAppO11yConfigV1Alpha1OptionsOutput
+}
+
+type ProductActivationAppO11yConfigV1Alpha1OptionsArgs struct {
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (ProductActivationAppO11yConfigV1Alpha1OptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationAppO11yConfigV1Alpha1Options)(nil)).Elem()
+}
+
+func (i ProductActivationAppO11yConfigV1Alpha1OptionsArgs) ToProductActivationAppO11yConfigV1Alpha1OptionsOutput() ProductActivationAppO11yConfigV1Alpha1OptionsOutput {
+	return i.ToProductActivationAppO11yConfigV1Alpha1OptionsOutputWithContext(context.Background())
+}
+
+func (i ProductActivationAppO11yConfigV1Alpha1OptionsArgs) ToProductActivationAppO11yConfigV1Alpha1OptionsOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1OptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationAppO11yConfigV1Alpha1OptionsOutput)
+}
+
+func (i ProductActivationAppO11yConfigV1Alpha1OptionsArgs) ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput() ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput {
+	return i.ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutputWithContext(context.Background())
+}
+
+func (i ProductActivationAppO11yConfigV1Alpha1OptionsArgs) ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationAppO11yConfigV1Alpha1OptionsOutput).ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutputWithContext(ctx)
+}
+
+// ProductActivationAppO11yConfigV1Alpha1OptionsPtrInput is an input type that accepts ProductActivationAppO11yConfigV1Alpha1OptionsArgs, ProductActivationAppO11yConfigV1Alpha1OptionsPtr and ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput values.
+// You can construct a concrete instance of `ProductActivationAppO11yConfigV1Alpha1OptionsPtrInput` via:
+//
+//	        ProductActivationAppO11yConfigV1Alpha1OptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProductActivationAppO11yConfigV1Alpha1OptionsPtrInput interface {
+	pulumi.Input
+
+	ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput() ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput
+	ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutputWithContext(context.Context) ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput
+}
+
+type productActivationAppO11yConfigV1Alpha1OptionsPtrType ProductActivationAppO11yConfigV1Alpha1OptionsArgs
+
+func ProductActivationAppO11yConfigV1Alpha1OptionsPtr(v *ProductActivationAppO11yConfigV1Alpha1OptionsArgs) ProductActivationAppO11yConfigV1Alpha1OptionsPtrInput {
+	return (*productActivationAppO11yConfigV1Alpha1OptionsPtrType)(v)
+}
+
+func (*productActivationAppO11yConfigV1Alpha1OptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationAppO11yConfigV1Alpha1Options)(nil)).Elem()
+}
+
+func (i *productActivationAppO11yConfigV1Alpha1OptionsPtrType) ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput() ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput {
+	return i.ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *productActivationAppO11yConfigV1Alpha1OptionsPtrType) ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput)
+}
+
+type ProductActivationAppO11yConfigV1Alpha1OptionsOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationAppO11yConfigV1Alpha1OptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationAppO11yConfigV1Alpha1Options)(nil)).Elem()
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1OptionsOutput) ToProductActivationAppO11yConfigV1Alpha1OptionsOutput() ProductActivationAppO11yConfigV1Alpha1OptionsOutput {
+	return o
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1OptionsOutput) ToProductActivationAppO11yConfigV1Alpha1OptionsOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1OptionsOutput {
+	return o
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1OptionsOutput) ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput() ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput {
+	return o.ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutputWithContext(context.Background())
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1OptionsOutput) ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProductActivationAppO11yConfigV1Alpha1Options) *ProductActivationAppO11yConfigV1Alpha1Options {
+		return &v
+	}).(ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o ProductActivationAppO11yConfigV1Alpha1OptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProductActivationAppO11yConfigV1Alpha1Options) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationAppO11yConfigV1Alpha1Options)(nil)).Elem()
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput) ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput() ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput {
+	return o
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput) ToProductActivationAppO11yConfigV1Alpha1OptionsPtrOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput {
+	return o
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput) Elem() ProductActivationAppO11yConfigV1Alpha1OptionsOutput {
+	return o.ApplyT(func(v *ProductActivationAppO11yConfigV1Alpha1Options) ProductActivationAppO11yConfigV1Alpha1Options {
+		if v != nil {
+			return *v
+		}
+		var ret ProductActivationAppO11yConfigV1Alpha1Options
+		return ret
+	}).(ProductActivationAppO11yConfigV1Alpha1OptionsOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProductActivationAppO11yConfigV1Alpha1Options) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type ProductActivationAppO11yConfigV1Alpha1Spec struct {
+	// Whether application observability is enabled.
+	Enabled bool `pulumi:"enabled"`
+}
+
+// ProductActivationAppO11yConfigV1Alpha1SpecInput is an input type that accepts ProductActivationAppO11yConfigV1Alpha1SpecArgs and ProductActivationAppO11yConfigV1Alpha1SpecOutput values.
+// You can construct a concrete instance of `ProductActivationAppO11yConfigV1Alpha1SpecInput` via:
+//
+//	ProductActivationAppO11yConfigV1Alpha1SpecArgs{...}
+type ProductActivationAppO11yConfigV1Alpha1SpecInput interface {
+	pulumi.Input
+
+	ToProductActivationAppO11yConfigV1Alpha1SpecOutput() ProductActivationAppO11yConfigV1Alpha1SpecOutput
+	ToProductActivationAppO11yConfigV1Alpha1SpecOutputWithContext(context.Context) ProductActivationAppO11yConfigV1Alpha1SpecOutput
+}
+
+type ProductActivationAppO11yConfigV1Alpha1SpecArgs struct {
+	// Whether application observability is enabled.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+}
+
+func (ProductActivationAppO11yConfigV1Alpha1SpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationAppO11yConfigV1Alpha1Spec)(nil)).Elem()
+}
+
+func (i ProductActivationAppO11yConfigV1Alpha1SpecArgs) ToProductActivationAppO11yConfigV1Alpha1SpecOutput() ProductActivationAppO11yConfigV1Alpha1SpecOutput {
+	return i.ToProductActivationAppO11yConfigV1Alpha1SpecOutputWithContext(context.Background())
+}
+
+func (i ProductActivationAppO11yConfigV1Alpha1SpecArgs) ToProductActivationAppO11yConfigV1Alpha1SpecOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1SpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationAppO11yConfigV1Alpha1SpecOutput)
+}
+
+func (i ProductActivationAppO11yConfigV1Alpha1SpecArgs) ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutput() ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput {
+	return i.ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutputWithContext(context.Background())
+}
+
+func (i ProductActivationAppO11yConfigV1Alpha1SpecArgs) ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationAppO11yConfigV1Alpha1SpecOutput).ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutputWithContext(ctx)
+}
+
+// ProductActivationAppO11yConfigV1Alpha1SpecPtrInput is an input type that accepts ProductActivationAppO11yConfigV1Alpha1SpecArgs, ProductActivationAppO11yConfigV1Alpha1SpecPtr and ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput values.
+// You can construct a concrete instance of `ProductActivationAppO11yConfigV1Alpha1SpecPtrInput` via:
+//
+//	        ProductActivationAppO11yConfigV1Alpha1SpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProductActivationAppO11yConfigV1Alpha1SpecPtrInput interface {
+	pulumi.Input
+
+	ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutput() ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput
+	ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutputWithContext(context.Context) ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput
+}
+
+type productActivationAppO11yConfigV1Alpha1SpecPtrType ProductActivationAppO11yConfigV1Alpha1SpecArgs
+
+func ProductActivationAppO11yConfigV1Alpha1SpecPtr(v *ProductActivationAppO11yConfigV1Alpha1SpecArgs) ProductActivationAppO11yConfigV1Alpha1SpecPtrInput {
+	return (*productActivationAppO11yConfigV1Alpha1SpecPtrType)(v)
+}
+
+func (*productActivationAppO11yConfigV1Alpha1SpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationAppO11yConfigV1Alpha1Spec)(nil)).Elem()
+}
+
+func (i *productActivationAppO11yConfigV1Alpha1SpecPtrType) ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutput() ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput {
+	return i.ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutputWithContext(context.Background())
+}
+
+func (i *productActivationAppO11yConfigV1Alpha1SpecPtrType) ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput)
+}
+
+type ProductActivationAppO11yConfigV1Alpha1SpecOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationAppO11yConfigV1Alpha1SpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationAppO11yConfigV1Alpha1Spec)(nil)).Elem()
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1SpecOutput) ToProductActivationAppO11yConfigV1Alpha1SpecOutput() ProductActivationAppO11yConfigV1Alpha1SpecOutput {
+	return o
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1SpecOutput) ToProductActivationAppO11yConfigV1Alpha1SpecOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1SpecOutput {
+	return o
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1SpecOutput) ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutput() ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput {
+	return o.ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutputWithContext(context.Background())
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1SpecOutput) ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProductActivationAppO11yConfigV1Alpha1Spec) *ProductActivationAppO11yConfigV1Alpha1Spec {
+		return &v
+	}).(ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput)
+}
+
+// Whether application observability is enabled.
+func (o ProductActivationAppO11yConfigV1Alpha1SpecOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v ProductActivationAppO11yConfigV1Alpha1Spec) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+type ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationAppO11yConfigV1Alpha1Spec)(nil)).Elem()
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput) ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutput() ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput {
+	return o
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput) ToProductActivationAppO11yConfigV1Alpha1SpecPtrOutputWithContext(ctx context.Context) ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput {
+	return o
+}
+
+func (o ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput) Elem() ProductActivationAppO11yConfigV1Alpha1SpecOutput {
+	return o.ApplyT(func(v *ProductActivationAppO11yConfigV1Alpha1Spec) ProductActivationAppO11yConfigV1Alpha1Spec {
+		if v != nil {
+			return *v
+		}
+		var ret ProductActivationAppO11yConfigV1Alpha1Spec
+		return ret
+	}).(ProductActivationAppO11yConfigV1Alpha1SpecOutput)
+}
+
+// Whether application observability is enabled.
+func (o ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProductActivationAppO11yConfigV1Alpha1Spec) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+type ProductActivationK8sO11yConfigV1Alpha1Metadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The UID of the folder to save the resource in.
+	FolderUid *string `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// ProductActivationK8sO11yConfigV1Alpha1MetadataInput is an input type that accepts ProductActivationK8sO11yConfigV1Alpha1MetadataArgs and ProductActivationK8sO11yConfigV1Alpha1MetadataOutput values.
+// You can construct a concrete instance of `ProductActivationK8sO11yConfigV1Alpha1MetadataInput` via:
+//
+//	ProductActivationK8sO11yConfigV1Alpha1MetadataArgs{...}
+type ProductActivationK8sO11yConfigV1Alpha1MetadataInput interface {
+	pulumi.Input
+
+	ToProductActivationK8sO11yConfigV1Alpha1MetadataOutput() ProductActivationK8sO11yConfigV1Alpha1MetadataOutput
+	ToProductActivationK8sO11yConfigV1Alpha1MetadataOutputWithContext(context.Context) ProductActivationK8sO11yConfigV1Alpha1MetadataOutput
+}
+
+type ProductActivationK8sO11yConfigV1Alpha1MetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The UID of the folder to save the resource in.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (ProductActivationK8sO11yConfigV1Alpha1MetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationK8sO11yConfigV1Alpha1Metadata)(nil)).Elem()
+}
+
+func (i ProductActivationK8sO11yConfigV1Alpha1MetadataArgs) ToProductActivationK8sO11yConfigV1Alpha1MetadataOutput() ProductActivationK8sO11yConfigV1Alpha1MetadataOutput {
+	return i.ToProductActivationK8sO11yConfigV1Alpha1MetadataOutputWithContext(context.Background())
+}
+
+func (i ProductActivationK8sO11yConfigV1Alpha1MetadataArgs) ToProductActivationK8sO11yConfigV1Alpha1MetadataOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1MetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationK8sO11yConfigV1Alpha1MetadataOutput)
+}
+
+func (i ProductActivationK8sO11yConfigV1Alpha1MetadataArgs) ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput() ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput {
+	return i.ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutputWithContext(context.Background())
+}
+
+func (i ProductActivationK8sO11yConfigV1Alpha1MetadataArgs) ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationK8sO11yConfigV1Alpha1MetadataOutput).ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutputWithContext(ctx)
+}
+
+// ProductActivationK8sO11yConfigV1Alpha1MetadataPtrInput is an input type that accepts ProductActivationK8sO11yConfigV1Alpha1MetadataArgs, ProductActivationK8sO11yConfigV1Alpha1MetadataPtr and ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput values.
+// You can construct a concrete instance of `ProductActivationK8sO11yConfigV1Alpha1MetadataPtrInput` via:
+//
+//	        ProductActivationK8sO11yConfigV1Alpha1MetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProductActivationK8sO11yConfigV1Alpha1MetadataPtrInput interface {
+	pulumi.Input
+
+	ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput() ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput
+	ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutputWithContext(context.Context) ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput
+}
+
+type productActivationK8sO11yConfigV1Alpha1MetadataPtrType ProductActivationK8sO11yConfigV1Alpha1MetadataArgs
+
+func ProductActivationK8sO11yConfigV1Alpha1MetadataPtr(v *ProductActivationK8sO11yConfigV1Alpha1MetadataArgs) ProductActivationK8sO11yConfigV1Alpha1MetadataPtrInput {
+	return (*productActivationK8sO11yConfigV1Alpha1MetadataPtrType)(v)
+}
+
+func (*productActivationK8sO11yConfigV1Alpha1MetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationK8sO11yConfigV1Alpha1Metadata)(nil)).Elem()
+}
+
+func (i *productActivationK8sO11yConfigV1Alpha1MetadataPtrType) ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput() ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput {
+	return i.ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *productActivationK8sO11yConfigV1Alpha1MetadataPtrType) ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput)
+}
+
+type ProductActivationK8sO11yConfigV1Alpha1MetadataOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationK8sO11yConfigV1Alpha1MetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationK8sO11yConfigV1Alpha1Metadata)(nil)).Elem()
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataOutput) ToProductActivationK8sO11yConfigV1Alpha1MetadataOutput() ProductActivationK8sO11yConfigV1Alpha1MetadataOutput {
+	return o
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataOutput) ToProductActivationK8sO11yConfigV1Alpha1MetadataOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1MetadataOutput {
+	return o
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataOutput) ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput() ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput {
+	return o.ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutputWithContext(context.Background())
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataOutput) ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProductActivationK8sO11yConfigV1Alpha1Metadata) *ProductActivationK8sO11yConfigV1Alpha1Metadata {
+		return &v
+	}).(ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput)
+}
+
+// Annotations of the resource.
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ProductActivationK8sO11yConfigV1Alpha1Metadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in.
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationK8sO11yConfigV1Alpha1Metadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v ProductActivationK8sO11yConfigV1Alpha1Metadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationK8sO11yConfigV1Alpha1Metadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationK8sO11yConfigV1Alpha1Metadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationK8sO11yConfigV1Alpha1Metadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationK8sO11yConfigV1Alpha1Metadata)(nil)).Elem()
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput) ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput() ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput {
+	return o
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput) ToProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput {
+	return o
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput) Elem() ProductActivationK8sO11yConfigV1Alpha1MetadataOutput {
+	return o.ApplyT(func(v *ProductActivationK8sO11yConfigV1Alpha1Metadata) ProductActivationK8sO11yConfigV1Alpha1Metadata {
+		if v != nil {
+			return *v
+		}
+		var ret ProductActivationK8sO11yConfigV1Alpha1Metadata
+		return ret
+	}).(ProductActivationK8sO11yConfigV1Alpha1MetadataOutput)
+}
+
+// Annotations of the resource.
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ProductActivationK8sO11yConfigV1Alpha1Metadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in.
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationK8sO11yConfigV1Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationK8sO11yConfigV1Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationK8sO11yConfigV1Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationK8sO11yConfigV1Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationK8sO11yConfigV1Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type ProductActivationK8sO11yConfigV1Alpha1Options struct {
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// ProductActivationK8sO11yConfigV1Alpha1OptionsInput is an input type that accepts ProductActivationK8sO11yConfigV1Alpha1OptionsArgs and ProductActivationK8sO11yConfigV1Alpha1OptionsOutput values.
+// You can construct a concrete instance of `ProductActivationK8sO11yConfigV1Alpha1OptionsInput` via:
+//
+//	ProductActivationK8sO11yConfigV1Alpha1OptionsArgs{...}
+type ProductActivationK8sO11yConfigV1Alpha1OptionsInput interface {
+	pulumi.Input
+
+	ToProductActivationK8sO11yConfigV1Alpha1OptionsOutput() ProductActivationK8sO11yConfigV1Alpha1OptionsOutput
+	ToProductActivationK8sO11yConfigV1Alpha1OptionsOutputWithContext(context.Context) ProductActivationK8sO11yConfigV1Alpha1OptionsOutput
+}
+
+type ProductActivationK8sO11yConfigV1Alpha1OptionsArgs struct {
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (ProductActivationK8sO11yConfigV1Alpha1OptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationK8sO11yConfigV1Alpha1Options)(nil)).Elem()
+}
+
+func (i ProductActivationK8sO11yConfigV1Alpha1OptionsArgs) ToProductActivationK8sO11yConfigV1Alpha1OptionsOutput() ProductActivationK8sO11yConfigV1Alpha1OptionsOutput {
+	return i.ToProductActivationK8sO11yConfigV1Alpha1OptionsOutputWithContext(context.Background())
+}
+
+func (i ProductActivationK8sO11yConfigV1Alpha1OptionsArgs) ToProductActivationK8sO11yConfigV1Alpha1OptionsOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1OptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationK8sO11yConfigV1Alpha1OptionsOutput)
+}
+
+func (i ProductActivationK8sO11yConfigV1Alpha1OptionsArgs) ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput() ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput {
+	return i.ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutputWithContext(context.Background())
+}
+
+func (i ProductActivationK8sO11yConfigV1Alpha1OptionsArgs) ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationK8sO11yConfigV1Alpha1OptionsOutput).ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutputWithContext(ctx)
+}
+
+// ProductActivationK8sO11yConfigV1Alpha1OptionsPtrInput is an input type that accepts ProductActivationK8sO11yConfigV1Alpha1OptionsArgs, ProductActivationK8sO11yConfigV1Alpha1OptionsPtr and ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput values.
+// You can construct a concrete instance of `ProductActivationK8sO11yConfigV1Alpha1OptionsPtrInput` via:
+//
+//	        ProductActivationK8sO11yConfigV1Alpha1OptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProductActivationK8sO11yConfigV1Alpha1OptionsPtrInput interface {
+	pulumi.Input
+
+	ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput() ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput
+	ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutputWithContext(context.Context) ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput
+}
+
+type productActivationK8sO11yConfigV1Alpha1OptionsPtrType ProductActivationK8sO11yConfigV1Alpha1OptionsArgs
+
+func ProductActivationK8sO11yConfigV1Alpha1OptionsPtr(v *ProductActivationK8sO11yConfigV1Alpha1OptionsArgs) ProductActivationK8sO11yConfigV1Alpha1OptionsPtrInput {
+	return (*productActivationK8sO11yConfigV1Alpha1OptionsPtrType)(v)
+}
+
+func (*productActivationK8sO11yConfigV1Alpha1OptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationK8sO11yConfigV1Alpha1Options)(nil)).Elem()
+}
+
+func (i *productActivationK8sO11yConfigV1Alpha1OptionsPtrType) ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput() ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput {
+	return i.ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *productActivationK8sO11yConfigV1Alpha1OptionsPtrType) ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput)
+}
+
+type ProductActivationK8sO11yConfigV1Alpha1OptionsOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationK8sO11yConfigV1Alpha1OptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationK8sO11yConfigV1Alpha1Options)(nil)).Elem()
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1OptionsOutput) ToProductActivationK8sO11yConfigV1Alpha1OptionsOutput() ProductActivationK8sO11yConfigV1Alpha1OptionsOutput {
+	return o
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1OptionsOutput) ToProductActivationK8sO11yConfigV1Alpha1OptionsOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1OptionsOutput {
+	return o
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1OptionsOutput) ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput() ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput {
+	return o.ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutputWithContext(context.Background())
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1OptionsOutput) ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProductActivationK8sO11yConfigV1Alpha1Options) *ProductActivationK8sO11yConfigV1Alpha1Options {
+		return &v
+	}).(ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o ProductActivationK8sO11yConfigV1Alpha1OptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProductActivationK8sO11yConfigV1Alpha1Options) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationK8sO11yConfigV1Alpha1Options)(nil)).Elem()
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput) ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput() ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput {
+	return o
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput) ToProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput {
+	return o
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput) Elem() ProductActivationK8sO11yConfigV1Alpha1OptionsOutput {
+	return o.ApplyT(func(v *ProductActivationK8sO11yConfigV1Alpha1Options) ProductActivationK8sO11yConfigV1Alpha1Options {
+		if v != nil {
+			return *v
+		}
+		var ret ProductActivationK8sO11yConfigV1Alpha1Options
+		return ret
+	}).(ProductActivationK8sO11yConfigV1Alpha1OptionsOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProductActivationK8sO11yConfigV1Alpha1Options) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type ProductActivationK8sO11yConfigV1Alpha1Spec struct {
+	// Whether Kubernetes observability is enabled.
+	Enabled bool `pulumi:"enabled"`
+}
+
+// ProductActivationK8sO11yConfigV1Alpha1SpecInput is an input type that accepts ProductActivationK8sO11yConfigV1Alpha1SpecArgs and ProductActivationK8sO11yConfigV1Alpha1SpecOutput values.
+// You can construct a concrete instance of `ProductActivationK8sO11yConfigV1Alpha1SpecInput` via:
+//
+//	ProductActivationK8sO11yConfigV1Alpha1SpecArgs{...}
+type ProductActivationK8sO11yConfigV1Alpha1SpecInput interface {
+	pulumi.Input
+
+	ToProductActivationK8sO11yConfigV1Alpha1SpecOutput() ProductActivationK8sO11yConfigV1Alpha1SpecOutput
+	ToProductActivationK8sO11yConfigV1Alpha1SpecOutputWithContext(context.Context) ProductActivationK8sO11yConfigV1Alpha1SpecOutput
+}
+
+type ProductActivationK8sO11yConfigV1Alpha1SpecArgs struct {
+	// Whether Kubernetes observability is enabled.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+}
+
+func (ProductActivationK8sO11yConfigV1Alpha1SpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationK8sO11yConfigV1Alpha1Spec)(nil)).Elem()
+}
+
+func (i ProductActivationK8sO11yConfigV1Alpha1SpecArgs) ToProductActivationK8sO11yConfigV1Alpha1SpecOutput() ProductActivationK8sO11yConfigV1Alpha1SpecOutput {
+	return i.ToProductActivationK8sO11yConfigV1Alpha1SpecOutputWithContext(context.Background())
+}
+
+func (i ProductActivationK8sO11yConfigV1Alpha1SpecArgs) ToProductActivationK8sO11yConfigV1Alpha1SpecOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1SpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationK8sO11yConfigV1Alpha1SpecOutput)
+}
+
+func (i ProductActivationK8sO11yConfigV1Alpha1SpecArgs) ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput() ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput {
+	return i.ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutputWithContext(context.Background())
+}
+
+func (i ProductActivationK8sO11yConfigV1Alpha1SpecArgs) ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationK8sO11yConfigV1Alpha1SpecOutput).ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutputWithContext(ctx)
+}
+
+// ProductActivationK8sO11yConfigV1Alpha1SpecPtrInput is an input type that accepts ProductActivationK8sO11yConfigV1Alpha1SpecArgs, ProductActivationK8sO11yConfigV1Alpha1SpecPtr and ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput values.
+// You can construct a concrete instance of `ProductActivationK8sO11yConfigV1Alpha1SpecPtrInput` via:
+//
+//	        ProductActivationK8sO11yConfigV1Alpha1SpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProductActivationK8sO11yConfigV1Alpha1SpecPtrInput interface {
+	pulumi.Input
+
+	ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput() ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput
+	ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutputWithContext(context.Context) ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput
+}
+
+type productActivationK8sO11yConfigV1Alpha1SpecPtrType ProductActivationK8sO11yConfigV1Alpha1SpecArgs
+
+func ProductActivationK8sO11yConfigV1Alpha1SpecPtr(v *ProductActivationK8sO11yConfigV1Alpha1SpecArgs) ProductActivationK8sO11yConfigV1Alpha1SpecPtrInput {
+	return (*productActivationK8sO11yConfigV1Alpha1SpecPtrType)(v)
+}
+
+func (*productActivationK8sO11yConfigV1Alpha1SpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationK8sO11yConfigV1Alpha1Spec)(nil)).Elem()
+}
+
+func (i *productActivationK8sO11yConfigV1Alpha1SpecPtrType) ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput() ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput {
+	return i.ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutputWithContext(context.Background())
+}
+
+func (i *productActivationK8sO11yConfigV1Alpha1SpecPtrType) ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput)
+}
+
+type ProductActivationK8sO11yConfigV1Alpha1SpecOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationK8sO11yConfigV1Alpha1SpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationK8sO11yConfigV1Alpha1Spec)(nil)).Elem()
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1SpecOutput) ToProductActivationK8sO11yConfigV1Alpha1SpecOutput() ProductActivationK8sO11yConfigV1Alpha1SpecOutput {
+	return o
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1SpecOutput) ToProductActivationK8sO11yConfigV1Alpha1SpecOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1SpecOutput {
+	return o
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1SpecOutput) ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput() ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput {
+	return o.ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutputWithContext(context.Background())
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1SpecOutput) ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProductActivationK8sO11yConfigV1Alpha1Spec) *ProductActivationK8sO11yConfigV1Alpha1Spec {
+		return &v
+	}).(ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput)
+}
+
+// Whether Kubernetes observability is enabled.
+func (o ProductActivationK8sO11yConfigV1Alpha1SpecOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v ProductActivationK8sO11yConfigV1Alpha1Spec) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+type ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationK8sO11yConfigV1Alpha1Spec)(nil)).Elem()
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput) ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput() ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput {
+	return o
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput) ToProductActivationK8sO11yConfigV1Alpha1SpecPtrOutputWithContext(ctx context.Context) ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput {
+	return o
+}
+
+func (o ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput) Elem() ProductActivationK8sO11yConfigV1Alpha1SpecOutput {
+	return o.ApplyT(func(v *ProductActivationK8sO11yConfigV1Alpha1Spec) ProductActivationK8sO11yConfigV1Alpha1Spec {
+		if v != nil {
+			return *v
+		}
+		var ret ProductActivationK8sO11yConfigV1Alpha1Spec
+		return ret
+	}).(ProductActivationK8sO11yConfigV1Alpha1SpecOutput)
+}
+
+// Whether Kubernetes observability is enabled.
+func (o ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProductActivationK8sO11yConfigV1Alpha1Spec) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
 type GetAccessPoliciesAccessPolicy struct {
 	DisplayName string `pulumi:"displayName"`
 	Id          string `pulumi:"id"`
@@ -564,6 +1576,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessPolicyRealmArrayInput)(nil)).Elem(), AccessPolicyRealmArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessPolicyRealmLabelPolicyInput)(nil)).Elem(), AccessPolicyRealmLabelPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessPolicyRealmLabelPolicyArrayInput)(nil)).Elem(), AccessPolicyRealmLabelPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationAppO11yConfigV1Alpha1MetadataInput)(nil)).Elem(), ProductActivationAppO11yConfigV1Alpha1MetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationAppO11yConfigV1Alpha1MetadataPtrInput)(nil)).Elem(), ProductActivationAppO11yConfigV1Alpha1MetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationAppO11yConfigV1Alpha1OptionsInput)(nil)).Elem(), ProductActivationAppO11yConfigV1Alpha1OptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationAppO11yConfigV1Alpha1OptionsPtrInput)(nil)).Elem(), ProductActivationAppO11yConfigV1Alpha1OptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationAppO11yConfigV1Alpha1SpecInput)(nil)).Elem(), ProductActivationAppO11yConfigV1Alpha1SpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationAppO11yConfigV1Alpha1SpecPtrInput)(nil)).Elem(), ProductActivationAppO11yConfigV1Alpha1SpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationK8sO11yConfigV1Alpha1MetadataInput)(nil)).Elem(), ProductActivationK8sO11yConfigV1Alpha1MetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationK8sO11yConfigV1Alpha1MetadataPtrInput)(nil)).Elem(), ProductActivationK8sO11yConfigV1Alpha1MetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationK8sO11yConfigV1Alpha1OptionsInput)(nil)).Elem(), ProductActivationK8sO11yConfigV1Alpha1OptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationK8sO11yConfigV1Alpha1OptionsPtrInput)(nil)).Elem(), ProductActivationK8sO11yConfigV1Alpha1OptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationK8sO11yConfigV1Alpha1SpecInput)(nil)).Elem(), ProductActivationK8sO11yConfigV1Alpha1SpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationK8sO11yConfigV1Alpha1SpecPtrInput)(nil)).Elem(), ProductActivationK8sO11yConfigV1Alpha1SpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessPoliciesAccessPolicyInput)(nil)).Elem(), GetAccessPoliciesAccessPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccessPoliciesAccessPolicyArrayInput)(nil)).Elem(), GetAccessPoliciesAccessPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkInput)(nil)).Elem(), GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArgs{})
@@ -574,6 +1598,18 @@ func init() {
 	pulumi.RegisterOutputType(AccessPolicyRealmArrayOutput{})
 	pulumi.RegisterOutputType(AccessPolicyRealmLabelPolicyOutput{})
 	pulumi.RegisterOutputType(AccessPolicyRealmLabelPolicyArrayOutput{})
+	pulumi.RegisterOutputType(ProductActivationAppO11yConfigV1Alpha1MetadataOutput{})
+	pulumi.RegisterOutputType(ProductActivationAppO11yConfigV1Alpha1MetadataPtrOutput{})
+	pulumi.RegisterOutputType(ProductActivationAppO11yConfigV1Alpha1OptionsOutput{})
+	pulumi.RegisterOutputType(ProductActivationAppO11yConfigV1Alpha1OptionsPtrOutput{})
+	pulumi.RegisterOutputType(ProductActivationAppO11yConfigV1Alpha1SpecOutput{})
+	pulumi.RegisterOutputType(ProductActivationAppO11yConfigV1Alpha1SpecPtrOutput{})
+	pulumi.RegisterOutputType(ProductActivationK8sO11yConfigV1Alpha1MetadataOutput{})
+	pulumi.RegisterOutputType(ProductActivationK8sO11yConfigV1Alpha1MetadataPtrOutput{})
+	pulumi.RegisterOutputType(ProductActivationK8sO11yConfigV1Alpha1OptionsOutput{})
+	pulumi.RegisterOutputType(ProductActivationK8sO11yConfigV1Alpha1OptionsPtrOutput{})
+	pulumi.RegisterOutputType(ProductActivationK8sO11yConfigV1Alpha1SpecOutput{})
+	pulumi.RegisterOutputType(ProductActivationK8sO11yConfigV1Alpha1SpecPtrOutput{})
 	pulumi.RegisterOutputType(GetAccessPoliciesAccessPolicyOutput{})
 	pulumi.RegisterOutputType(GetAccessPoliciesAccessPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkOutput{})

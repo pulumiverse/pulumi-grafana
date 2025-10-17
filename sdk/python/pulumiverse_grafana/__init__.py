@@ -193,6 +193,22 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloud/productActivationAppO11yConfigV1Alpha1",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1": "ProductActivationAppO11yConfigV1Alpha1"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/productActivationK8sO11yConfigV1Alpha1",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1": "ProductActivationK8sO11yConfigV1Alpha1"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloud/stack",
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {

@@ -10,32 +10,6 @@ import * as utilities from "../utilities";
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = new grafana.oss.Playlist("test", {
- *     name: "My Playlist!",
- *     interval: "5m",
- *     items: [
- *         {
- *             order: 2,
- *             title: "Terraform Dashboard By Tag",
- *             type: "dashboard_by_tag",
- *             value: "terraform",
- *         },
- *         {
- *             order: 1,
- *             title: "Terraform Dashboard By UID",
- *             type: "dashboard_by_uid",
- *             value: "cIBgcSjkk",
- *         },
- *     ],
- * });
- * ```
- *
  * ## Import
  *
  * ```sh
