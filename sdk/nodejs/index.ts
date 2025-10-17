@@ -5,16 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { AppsProductactivationAppo11yconfigV1alpha1Args, AppsProductactivationAppo11yconfigV1alpha1State } from "./appsProductactivationAppo11yconfigV1alpha1";
-export type AppsProductactivationAppo11yconfigV1alpha1 = import("./appsProductactivationAppo11yconfigV1alpha1").AppsProductactivationAppo11yconfigV1alpha1;
-export const AppsProductactivationAppo11yconfigV1alpha1: typeof import("./appsProductactivationAppo11yconfigV1alpha1").AppsProductactivationAppo11yconfigV1alpha1 = null as any;
-utilities.lazyLoad(exports, ["AppsProductactivationAppo11yconfigV1alpha1"], () => require("./appsProductactivationAppo11yconfigV1alpha1"));
-
-export { AppsProductactivationK8so11yconfigV1alpha1Args, AppsProductactivationK8so11yconfigV1alpha1State } from "./appsProductactivationK8so11yconfigV1alpha1";
-export type AppsProductactivationK8so11yconfigV1alpha1 = import("./appsProductactivationK8so11yconfigV1alpha1").AppsProductactivationK8so11yconfigV1alpha1;
-export const AppsProductactivationK8so11yconfigV1alpha1: typeof import("./appsProductactivationK8so11yconfigV1alpha1").AppsProductactivationK8so11yconfigV1alpha1 = null as any;
-utilities.lazyLoad(exports, ["AppsProductactivationK8so11yconfigV1alpha1"], () => require("./appsProductactivationK8so11yconfigV1alpha1"));
-
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -57,22 +47,6 @@ export {
     syntheticmonitoring,
     types,
 };
-
-const _module = {
-    version: utilities.getVersion(),
-    construct: (name: string, type: string, urn: string): pulumi.Resource => {
-        switch (type) {
-            case "grafana:index/appsProductactivationAppo11yconfigV1alpha1:AppsProductactivationAppo11yconfigV1alpha1":
-                return new AppsProductactivationAppo11yconfigV1alpha1(name, <any>undefined, { urn })
-            case "grafana:index/appsProductactivationK8so11yconfigV1alpha1:AppsProductactivationK8so11yconfigV1alpha1":
-                return new AppsProductactivationK8so11yconfigV1alpha1(name, <any>undefined, { urn })
-            default:
-                throw new Error(`unknown resource type ${type}`);
-        }
-    },
-};
-pulumi.runtime.registerResourceModule("grafana", "index/appsProductactivationAppo11yconfigV1alpha1", _module)
-pulumi.runtime.registerResourceModule("grafana", "index/appsProductactivationK8so11yconfigV1alpha1", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

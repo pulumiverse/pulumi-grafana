@@ -8,21 +8,20 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Cloud.Inputs
 {
 
-    [OutputType]
-    public sealed class AppsProductactivationAppo11yconfigV1alpha1Options
+    public sealed class ProductActivationAppO11yConfigV1Alpha1OptionsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         /// </summary>
-        public readonly bool? Overwrite;
+        [Input("overwrite")]
+        public Input<bool>? Overwrite { get; set; }
 
-        [OutputConstructor]
-        private AppsProductactivationAppo11yconfigV1alpha1Options(bool? overwrite)
+        public ProductActivationAppO11yConfigV1Alpha1OptionsGetArgs()
         {
-            Overwrite = overwrite;
         }
+        public static new ProductActivationAppO11yConfigV1Alpha1OptionsGetArgs Empty => new ProductActivationAppO11yConfigV1Alpha1OptionsGetArgs();
     }
 }

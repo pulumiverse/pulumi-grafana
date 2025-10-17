@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Cloud.Inputs
 {
 
-    public sealed class AppsProductactivationAppo11yconfigV1alpha1SpecArgs : global::Pulumi.ResourceArgs
+    public sealed class ProductActivationAppO11yConfigV1Alpha1SpecGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether application observability is enabled.
@@ -19,9 +19,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
-        public AppsProductactivationAppo11yconfigV1alpha1SpecArgs()
+        public ProductActivationAppO11yConfigV1Alpha1SpecGetArgs()
         {
         }
-        public static new AppsProductactivationAppo11yconfigV1alpha1SpecArgs Empty => new AppsProductactivationAppo11yconfigV1alpha1SpecArgs();
+        public static new ProductActivationAppO11yConfigV1Alpha1SpecGetArgs Empty => new ProductActivationAppO11yConfigV1Alpha1SpecGetArgs();
     }
 }

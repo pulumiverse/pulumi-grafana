@@ -60,6 +60,16 @@ export type PrivateDataSourceConnectNetworkToken = import("./privateDataSourceCo
 export const PrivateDataSourceConnectNetworkToken: typeof import("./privateDataSourceConnectNetworkToken").PrivateDataSourceConnectNetworkToken = null as any;
 utilities.lazyLoad(exports, ["PrivateDataSourceConnectNetworkToken"], () => require("./privateDataSourceConnectNetworkToken"));
 
+export { ProductActivationAppO11yConfigV1Alpha1Args, ProductActivationAppO11yConfigV1Alpha1State } from "./productActivationAppO11yConfigV1Alpha1";
+export type ProductActivationAppO11yConfigV1Alpha1 = import("./productActivationAppO11yConfigV1Alpha1").ProductActivationAppO11yConfigV1Alpha1;
+export const ProductActivationAppO11yConfigV1Alpha1: typeof import("./productActivationAppO11yConfigV1Alpha1").ProductActivationAppO11yConfigV1Alpha1 = null as any;
+utilities.lazyLoad(exports, ["ProductActivationAppO11yConfigV1Alpha1"], () => require("./productActivationAppO11yConfigV1Alpha1"));
+
+export { ProductActivationK8sO11yConfigV1Alpha1Args, ProductActivationK8sO11yConfigV1Alpha1State } from "./productActivationK8sO11yConfigV1Alpha1";
+export type ProductActivationK8sO11yConfigV1Alpha1 = import("./productActivationK8sO11yConfigV1Alpha1").ProductActivationK8sO11yConfigV1Alpha1;
+export const ProductActivationK8sO11yConfigV1Alpha1: typeof import("./productActivationK8sO11yConfigV1Alpha1").ProductActivationK8sO11yConfigV1Alpha1 = null as any;
+utilities.lazyLoad(exports, ["ProductActivationK8sO11yConfigV1Alpha1"], () => require("./productActivationK8sO11yConfigV1Alpha1"));
+
 export { StackArgs, StackState } from "./stack";
 export type Stack = import("./stack").Stack;
 export const Stack: typeof import("./stack").Stack = null as any;
@@ -92,6 +102,10 @@ const _module = {
                 return new PrivateDataSourceConnectNetwork(name, <any>undefined, { urn })
             case "grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken":
                 return new PrivateDataSourceConnectNetworkToken(name, <any>undefined, { urn })
+            case "grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1":
+                return new ProductActivationAppO11yConfigV1Alpha1(name, <any>undefined, { urn })
+            case "grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1":
+                return new ProductActivationK8sO11yConfigV1Alpha1(name, <any>undefined, { urn })
             case "grafana:cloud/stack:Stack":
                 return new Stack(name, <any>undefined, { urn })
             case "grafana:cloud/stackServiceAccount:StackServiceAccount":
@@ -109,6 +123,8 @@ pulumi.runtime.registerResourceModule("grafana", "cloud/orgMember", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/pluginInstallation", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/privateDataSourceConnectNetwork", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/privateDataSourceConnectNetworkToken", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloud/productActivationAppO11yConfigV1Alpha1", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloud/productActivationK8sO11yConfigV1Alpha1", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stack", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stackServiceAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stackServiceAccountToken", _module)

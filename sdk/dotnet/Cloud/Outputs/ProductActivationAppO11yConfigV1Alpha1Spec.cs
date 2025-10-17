@@ -8,21 +8,21 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Cloud.Outputs
 {
 
     [OutputType]
-    public sealed class AppsProductactivationK8so11yconfigV1alpha1Options
+    public sealed class ProductActivationAppO11yConfigV1Alpha1Spec
     {
         /// <summary>
-        /// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        /// Whether application observability is enabled.
         /// </summary>
-        public readonly bool? Overwrite;
+        public readonly bool Enabled;
 
         [OutputConstructor]
-        private AppsProductactivationK8so11yconfigV1alpha1Options(bool? overwrite)
+        private ProductActivationAppO11yConfigV1Alpha1Spec(bool enabled)
         {
-            Overwrite = overwrite;
+            Enabled = enabled;
         }
     }
 }

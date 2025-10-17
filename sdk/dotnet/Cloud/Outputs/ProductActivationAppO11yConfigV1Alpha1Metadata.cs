@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Cloud.Outputs
 {
 
     [OutputType]
-    public sealed class AppsProductactivationAppo11yconfigV1alpha1Metadata
+    public sealed class ProductActivationAppO11yConfigV1Alpha1Metadata
     {
         /// <summary>
         /// Annotations of the resource.
@@ -40,7 +40,7 @@ namespace Pulumiverse.Grafana.Outputs
         public readonly string? Version;
 
         [OutputConstructor]
-        private AppsProductactivationAppo11yconfigV1alpha1Metadata(
+        private ProductActivationAppO11yConfigV1Alpha1Metadata(
             ImmutableDictionary<string, string>? annotations,
 
             string? folderUid,

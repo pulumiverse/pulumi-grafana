@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Cloud.Outputs
 {
 
     [OutputType]
-    public sealed class AppsProductactivationK8so11yconfigV1alpha1Spec
+    public sealed class ProductActivationK8sO11yConfigV1Alpha1Spec
     {
         /// <summary>
         /// Whether Kubernetes observability is enabled.
@@ -20,7 +20,7 @@ namespace Pulumiverse.Grafana.Outputs
         public readonly bool Enabled;
 
         [OutputConstructor]
-        private AppsProductactivationK8so11yconfigV1alpha1Spec(bool enabled)
+        private ProductActivationK8sO11yConfigV1Alpha1Spec(bool enabled)
         {
             Enabled = enabled;
         }

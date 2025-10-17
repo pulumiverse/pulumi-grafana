@@ -94,11 +94,11 @@
                 }
             },
             "grafana_apps_productactivation_appo11yconfig_v1alpha1": {
-                "current": "grafana:index/appsProductactivationAppo11yconfigV1alpha1:AppsProductactivationAppo11yconfigV1alpha1",
+                "current": "grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1",
                 "majorVersion": 2
             },
             "grafana_apps_productactivation_k8so11yconfig_v1alpha1": {
-                "current": "grafana:index/appsProductactivationK8so11yconfigV1alpha1:AppsProductactivationK8so11yconfigV1alpha1",
+                "current": "grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1",
                 "majorVersion": 2
             },
             "grafana_asserts_custom_model_rules": {
@@ -1967,6 +1967,8 @@
             "grafana:cloud/pluginInstallation:PluginInstallation": 0,
             "grafana:cloud/privateDataSourceConnectNetwork:PrivateDataSourceConnectNetwork": 0,
             "grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken": 0,
+            "grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1": 1,
+            "grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1": 1,
             "grafana:cloud/stack:Stack": 0,
             "grafana:cloud/stackServiceAccount:StackServiceAccount": 0,
             "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": 0,
@@ -1989,8 +1991,6 @@
             "grafana:fleetManagement/collector:Collector": 1,
             "grafana:fleetManagement/pipeline:Pipeline": 1,
             "grafana:frontendObservability/app:App": 1,
-            "grafana:index/appsProductactivationAppo11yconfigV1alpha1:AppsProductactivationAppo11yconfigV1alpha1": 1,
-            "grafana:index/appsProductactivationK8so11yconfigV1alpha1:AppsProductactivationK8so11yconfigV1alpha1": 1,
             "grafana:k6/installation:Installation": 0,
             "grafana:k6/loadTest:LoadTest": 1,
             "grafana:k6/project:Project": 1,

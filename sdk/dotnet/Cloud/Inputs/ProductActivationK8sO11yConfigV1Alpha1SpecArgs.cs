@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Cloud.Inputs
 {
 
-    public sealed class AppsProductactivationK8so11yconfigV1alpha1SpecGetArgs : global::Pulumi.ResourceArgs
+    public sealed class ProductActivationK8sO11yConfigV1Alpha1SpecArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether Kubernetes observability is enabled.
@@ -19,9 +19,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
-        public AppsProductactivationK8so11yconfigV1alpha1SpecGetArgs()
+        public ProductActivationK8sO11yConfigV1Alpha1SpecArgs()
         {
         }
-        public static new AppsProductactivationK8so11yconfigV1alpha1SpecGetArgs Empty => new AppsProductactivationK8so11yconfigV1alpha1SpecGetArgs();
+        public static new ProductActivationK8sO11yConfigV1Alpha1SpecArgs Empty => new ProductActivationK8sO11yConfigV1Alpha1SpecArgs();
     }
 }

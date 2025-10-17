@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Cloud
 {
     /// <summary>
     /// Manages Grafana Application Observability configurations using the Grafana APIs.
@@ -24,45 +24,45 @@ namespace Pulumiverse.Grafana
     /// Import an existing app observability config by its UID
     /// 
     /// ```sh
-    /// $ pulumi import grafana:index/appsProductactivationAppo11yconfigV1alpha1:AppsProductactivationAppo11yconfigV1alpha1 example my-app-o11y-config
+    /// $ pulumi import grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1 example my-app-o11y-config
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/appsProductactivationAppo11yconfigV1alpha1:AppsProductactivationAppo11yconfigV1alpha1")]
-    public partial class AppsProductactivationAppo11yconfigV1alpha1 : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1")]
+    public partial class ProductActivationAppO11yConfigV1Alpha1 : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Output("metadata")]
-        public Output<Outputs.AppsProductactivationAppo11yconfigV1alpha1Metadata?> Metadata { get; private set; } = null!;
+        public Output<Outputs.ProductActivationAppO11yConfigV1Alpha1Metadata?> Metadata { get; private set; } = null!;
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Output("options")]
-        public Output<Outputs.AppsProductactivationAppo11yconfigV1alpha1Options?> Options { get; private set; } = null!;
+        public Output<Outputs.ProductActivationAppO11yConfigV1Alpha1Options?> Options { get; private set; } = null!;
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Output("spec")]
-        public Output<Outputs.AppsProductactivationAppo11yconfigV1alpha1Spec?> Spec { get; private set; } = null!;
+        public Output<Outputs.ProductActivationAppO11yConfigV1Alpha1Spec?> Spec { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a AppsProductactivationAppo11yconfigV1alpha1 resource with the given unique name, arguments, and options.
+        /// Create a ProductActivationAppO11yConfigV1Alpha1 resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AppsProductactivationAppo11yconfigV1alpha1(string name, AppsProductactivationAppo11yconfigV1alpha1Args? args = null, CustomResourceOptions? options = null)
-            : base("grafana:index/appsProductactivationAppo11yconfigV1alpha1:AppsProductactivationAppo11yconfigV1alpha1", name, args ?? new AppsProductactivationAppo11yconfigV1alpha1Args(), MakeResourceOptions(options, ""))
+        public ProductActivationAppO11yConfigV1Alpha1(string name, ProductActivationAppO11yConfigV1Alpha1Args? args = null, CustomResourceOptions? options = null)
+            : base("grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1", name, args ?? new ProductActivationAppO11yConfigV1Alpha1Args(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AppsProductactivationAppo11yconfigV1alpha1(string name, Input<string> id, AppsProductactivationAppo11yconfigV1alpha1State? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/appsProductactivationAppo11yconfigV1alpha1:AppsProductactivationAppo11yconfigV1alpha1", name, state, MakeResourceOptions(options, id))
+        private ProductActivationAppO11yConfigV1Alpha1(string name, Input<string> id, ProductActivationAppO11yConfigV1Alpha1State? state = null, CustomResourceOptions? options = null)
+            : base("grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -79,7 +79,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing AppsProductactivationAppo11yconfigV1alpha1 resource's state with the given name, ID, and optional extra
+        /// Get an existing ProductActivationAppO11yConfigV1Alpha1 resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -87,61 +87,61 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AppsProductactivationAppo11yconfigV1alpha1 Get(string name, Input<string> id, AppsProductactivationAppo11yconfigV1alpha1State? state = null, CustomResourceOptions? options = null)
+        public static ProductActivationAppO11yConfigV1Alpha1 Get(string name, Input<string> id, ProductActivationAppO11yConfigV1Alpha1State? state = null, CustomResourceOptions? options = null)
         {
-            return new AppsProductactivationAppo11yconfigV1alpha1(name, id, state, options);
+            return new ProductActivationAppO11yConfigV1Alpha1(name, id, state, options);
         }
     }
 
-    public sealed class AppsProductactivationAppo11yconfigV1alpha1Args : global::Pulumi.ResourceArgs
+    public sealed class ProductActivationAppO11yConfigV1Alpha1Args : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Input("metadata")]
-        public Input<Inputs.AppsProductactivationAppo11yconfigV1alpha1MetadataArgs>? Metadata { get; set; }
+        public Input<Inputs.ProductActivationAppO11yConfigV1Alpha1MetadataArgs>? Metadata { get; set; }
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Input("options")]
-        public Input<Inputs.AppsProductactivationAppo11yconfigV1alpha1OptionsArgs>? Options { get; set; }
+        public Input<Inputs.ProductActivationAppO11yConfigV1Alpha1OptionsArgs>? Options { get; set; }
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Input("spec")]
-        public Input<Inputs.AppsProductactivationAppo11yconfigV1alpha1SpecArgs>? Spec { get; set; }
+        public Input<Inputs.ProductActivationAppO11yConfigV1Alpha1SpecArgs>? Spec { get; set; }
 
-        public AppsProductactivationAppo11yconfigV1alpha1Args()
+        public ProductActivationAppO11yConfigV1Alpha1Args()
         {
         }
-        public static new AppsProductactivationAppo11yconfigV1alpha1Args Empty => new AppsProductactivationAppo11yconfigV1alpha1Args();
+        public static new ProductActivationAppO11yConfigV1Alpha1Args Empty => new ProductActivationAppO11yConfigV1Alpha1Args();
     }
 
-    public sealed class AppsProductactivationAppo11yconfigV1alpha1State : global::Pulumi.ResourceArgs
+    public sealed class ProductActivationAppO11yConfigV1Alpha1State : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Input("metadata")]
-        public Input<Inputs.AppsProductactivationAppo11yconfigV1alpha1MetadataGetArgs>? Metadata { get; set; }
+        public Input<Inputs.ProductActivationAppO11yConfigV1Alpha1MetadataGetArgs>? Metadata { get; set; }
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Input("options")]
-        public Input<Inputs.AppsProductactivationAppo11yconfigV1alpha1OptionsGetArgs>? Options { get; set; }
+        public Input<Inputs.ProductActivationAppO11yConfigV1Alpha1OptionsGetArgs>? Options { get; set; }
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Input("spec")]
-        public Input<Inputs.AppsProductactivationAppo11yconfigV1alpha1SpecGetArgs>? Spec { get; set; }
+        public Input<Inputs.ProductActivationAppO11yConfigV1Alpha1SpecGetArgs>? Spec { get; set; }
 
-        public AppsProductactivationAppo11yconfigV1alpha1State()
+        public ProductActivationAppO11yConfigV1Alpha1State()
         {
         }
-        public static new AppsProductactivationAppo11yconfigV1alpha1State Empty => new AppsProductactivationAppo11yconfigV1alpha1State();
+        public static new ProductActivationAppO11yConfigV1Alpha1State Empty => new ProductActivationAppO11yConfigV1Alpha1State();
     }
 }

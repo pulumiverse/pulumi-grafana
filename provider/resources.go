@@ -275,6 +275,14 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 
+			// Cloud
+			"grafana_apps_productactivation_appo11yconfig_v1alpha1": {
+				Tok: grafanaResource(cloudMod, "ProductActivationAppO11yConfigV1Alpha1"),
+			},
+			"grafana_apps_productactivation_k8so11yconfig_v1alpha1": {
+				Tok: grafanaResource(cloudMod, "ProductActivationK8sO11yConfigV1Alpha1"),
+			},
+
 			// Enterprise
 			"grafana_data_source_config_lbac_rules": {
 				Tok: grafanaResource(enterpriseMod, "DataSourceConfigLbacRules"),
