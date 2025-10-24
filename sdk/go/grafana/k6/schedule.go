@@ -24,13 +24,15 @@ type Schedule struct {
 
 	// The email of the user who created the schedule.
 	CreatedBy pulumi.StringOutput `pulumi:"createdBy"`
+	// The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
+	Cron ScheduleCronPtrOutput `pulumi:"cron"`
 	// Whether the schedule is deactivated.
 	Deactivated pulumi.BoolOutput `pulumi:"deactivated"`
 	// The identifier of the load test to schedule.
 	LoadTestId pulumi.StringOutput `pulumi:"loadTestId"`
 	// The next scheduled execution time.
 	NextRun pulumi.StringOutput `pulumi:"nextRun"`
-	// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+	// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
 	RecurrenceRule ScheduleRecurrenceRulePtrOutput `pulumi:"recurrenceRule"`
 	// The start time for the schedule (RFC3339 format).
 	Starts pulumi.StringOutput `pulumi:"starts"`
@@ -74,13 +76,15 @@ func GetSchedule(ctx *pulumi.Context,
 type scheduleState struct {
 	// The email of the user who created the schedule.
 	CreatedBy *string `pulumi:"createdBy"`
+	// The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
+	Cron *ScheduleCron `pulumi:"cron"`
 	// Whether the schedule is deactivated.
 	Deactivated *bool `pulumi:"deactivated"`
 	// The identifier of the load test to schedule.
 	LoadTestId *string `pulumi:"loadTestId"`
 	// The next scheduled execution time.
 	NextRun *string `pulumi:"nextRun"`
-	// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+	// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
 	RecurrenceRule *ScheduleRecurrenceRule `pulumi:"recurrenceRule"`
 	// The start time for the schedule (RFC3339 format).
 	Starts *string `pulumi:"starts"`
@@ -89,13 +93,15 @@ type scheduleState struct {
 type ScheduleState struct {
 	// The email of the user who created the schedule.
 	CreatedBy pulumi.StringPtrInput
+	// The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
+	Cron ScheduleCronPtrInput
 	// Whether the schedule is deactivated.
 	Deactivated pulumi.BoolPtrInput
 	// The identifier of the load test to schedule.
 	LoadTestId pulumi.StringPtrInput
 	// The next scheduled execution time.
 	NextRun pulumi.StringPtrInput
-	// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+	// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
 	RecurrenceRule ScheduleRecurrenceRulePtrInput
 	// The start time for the schedule (RFC3339 format).
 	Starts pulumi.StringPtrInput
@@ -106,9 +112,11 @@ func (ScheduleState) ElementType() reflect.Type {
 }
 
 type scheduleArgs struct {
+	// The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
+	Cron *ScheduleCron `pulumi:"cron"`
 	// The identifier of the load test to schedule.
 	LoadTestId string `pulumi:"loadTestId"`
-	// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+	// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
 	RecurrenceRule *ScheduleRecurrenceRule `pulumi:"recurrenceRule"`
 	// The start time for the schedule (RFC3339 format).
 	Starts string `pulumi:"starts"`
@@ -116,9 +124,11 @@ type scheduleArgs struct {
 
 // The set of arguments for constructing a Schedule resource.
 type ScheduleArgs struct {
+	// The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
+	Cron ScheduleCronPtrInput
 	// The identifier of the load test to schedule.
 	LoadTestId pulumi.StringInput
-	// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+	// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
 	RecurrenceRule ScheduleRecurrenceRulePtrInput
 	// The start time for the schedule (RFC3339 format).
 	Starts pulumi.StringInput
@@ -216,6 +226,11 @@ func (o ScheduleOutput) CreatedBy() pulumi.StringOutput {
 	return o.ApplyT(func(v *Schedule) pulumi.StringOutput { return v.CreatedBy }).(pulumi.StringOutput)
 }
 
+// The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
+func (o ScheduleOutput) Cron() ScheduleCronPtrOutput {
+	return o.ApplyT(func(v *Schedule) ScheduleCronPtrOutput { return v.Cron }).(ScheduleCronPtrOutput)
+}
+
 // Whether the schedule is deactivated.
 func (o ScheduleOutput) Deactivated() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Schedule) pulumi.BoolOutput { return v.Deactivated }).(pulumi.BoolOutput)
@@ -231,7 +246,7 @@ func (o ScheduleOutput) NextRun() pulumi.StringOutput {
 	return o.ApplyT(func(v *Schedule) pulumi.StringOutput { return v.NextRun }).(pulumi.StringOutput)
 }
 
-// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
 func (o ScheduleOutput) RecurrenceRule() ScheduleRecurrenceRulePtrOutput {
 	return o.ApplyT(func(v *Schedule) ScheduleRecurrenceRulePtrOutput { return v.RecurrenceRule }).(ScheduleRecurrenceRulePtrOutput)
 }

@@ -104,7 +104,7 @@ export class OutgoingWebhook extends pulumi.CustomResource {
      */
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
-     * The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+     * The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `grafanaAssistant`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
      */
     declare public readonly preset: pulumi.Output<string | undefined>;
     /**
@@ -222,7 +222,7 @@ export interface OutgoingWebhookState {
      */
     password?: pulumi.Input<string>;
     /**
-     * The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+     * The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `grafanaAssistant`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
      */
     preset?: pulumi.Input<string>;
     /**
@@ -288,7 +288,7 @@ export interface OutgoingWebhookArgs {
      */
     password?: pulumi.Input<string>;
     /**
-     * The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+     * The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `grafanaAssistant`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
      */
     preset?: pulumi.Input<string>;
     /**

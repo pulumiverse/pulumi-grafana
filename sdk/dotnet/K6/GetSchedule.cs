@@ -35,6 +35,12 @@ namespace Pulumiverse.Grafana.K6
     public sealed class GetScheduleArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
+        /// </summary>
+        [Input("cron")]
+        public Inputs.GetScheduleCronArgs? Cron { get; set; }
+
+        /// <summary>
         /// The identifier of the load test to retrieve the schedule for.
         /// </summary>
         [Input("loadTestId", required: true)]
@@ -54,6 +60,12 @@ namespace Pulumiverse.Grafana.K6
 
     public sealed class GetScheduleInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
+        /// </summary>
+        [Input("cron")]
+        public Input<Inputs.GetScheduleCronInputArgs>? Cron { get; set; }
+
         /// <summary>
         /// The identifier of the load test to retrieve the schedule for.
         /// </summary>
@@ -80,6 +92,10 @@ namespace Pulumiverse.Grafana.K6
         /// The email of the user who created the schedule.
         /// </summary>
         public readonly string CreatedBy;
+        /// <summary>
+        /// The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
+        /// </summary>
+        public readonly Outputs.GetScheduleCronResult? Cron;
         /// <summary>
         /// Whether the schedule is deactivated.
         /// </summary>
@@ -109,6 +125,8 @@ namespace Pulumiverse.Grafana.K6
         private GetScheduleResult(
             string createdBy,
 
+            Outputs.GetScheduleCronResult? cron,
+
             bool deactivated,
 
             string id,
@@ -122,6 +140,7 @@ namespace Pulumiverse.Grafana.K6
             string starts)
         {
             CreatedBy = createdBy;
+            Cron = cron;
             Deactivated = deactivated;
             Id = id;
             LoadTestId = loadTestId;

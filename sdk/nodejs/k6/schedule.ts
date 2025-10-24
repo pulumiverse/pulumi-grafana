@@ -48,6 +48,10 @@ export class Schedule extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdBy: pulumi.Output<string>;
     /**
+     * The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
+     */
+    declare public readonly cron: pulumi.Output<outputs.k6.ScheduleCron | undefined>;
+    /**
      * Whether the schedule is deactivated.
      */
     declare public /*out*/ readonly deactivated: pulumi.Output<boolean>;
@@ -60,7 +64,7 @@ export class Schedule extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly nextRun: pulumi.Output<string>;
     /**
-     * The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+     * The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
      */
     declare public readonly recurrenceRule: pulumi.Output<outputs.k6.ScheduleRecurrenceRule | undefined>;
     /**
@@ -82,6 +86,7 @@ export class Schedule extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ScheduleState | undefined;
             resourceInputs["createdBy"] = state?.createdBy;
+            resourceInputs["cron"] = state?.cron;
             resourceInputs["deactivated"] = state?.deactivated;
             resourceInputs["loadTestId"] = state?.loadTestId;
             resourceInputs["nextRun"] = state?.nextRun;
@@ -95,6 +100,7 @@ export class Schedule extends pulumi.CustomResource {
             if (args?.starts === undefined && !opts.urn) {
                 throw new Error("Missing required property 'starts'");
             }
+            resourceInputs["cron"] = args?.cron;
             resourceInputs["loadTestId"] = args?.loadTestId;
             resourceInputs["recurrenceRule"] = args?.recurrenceRule;
             resourceInputs["starts"] = args?.starts;
@@ -116,6 +122,10 @@ export interface ScheduleState {
      */
     createdBy?: pulumi.Input<string>;
     /**
+     * The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
+     */
+    cron?: pulumi.Input<inputs.k6.ScheduleCron>;
+    /**
      * Whether the schedule is deactivated.
      */
     deactivated?: pulumi.Input<boolean>;
@@ -128,7 +138,7 @@ export interface ScheduleState {
      */
     nextRun?: pulumi.Input<string>;
     /**
-     * The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+     * The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
      */
     recurrenceRule?: pulumi.Input<inputs.k6.ScheduleRecurrenceRule>;
     /**
@@ -142,11 +152,15 @@ export interface ScheduleState {
  */
 export interface ScheduleArgs {
     /**
+     * The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
+     */
+    cron?: pulumi.Input<inputs.k6.ScheduleCron>;
+    /**
      * The identifier of the load test to schedule.
      */
     loadTestId: pulumi.Input<string>;
     /**
-     * The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+     * The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrenceRule` and `cron` can be set.
      */
     recurrenceRule?: pulumi.Input<inputs.k6.ScheduleRecurrenceRule>;
     /**

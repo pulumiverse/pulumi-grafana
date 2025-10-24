@@ -90,7 +90,7 @@ type OutgoingWebhook struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The auth data of the webhook. Used for Basic authentication
 	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `grafanaAssistant`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
 	Preset pulumi.StringPtrOutput `pulumi:"preset"`
 	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
@@ -163,7 +163,7 @@ type outgoingWebhookState struct {
 	Name *string `pulumi:"name"`
 	// The auth data of the webhook. Used for Basic authentication
 	Password *string `pulumi:"password"`
-	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `grafanaAssistant`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
 	Preset *string `pulumi:"preset"`
 	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId *string `pulumi:"teamId"`
@@ -196,7 +196,7 @@ type OutgoingWebhookState struct {
 	Name pulumi.StringPtrInput
 	// The auth data of the webhook. Used for Basic authentication
 	Password pulumi.StringPtrInput
-	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `grafanaAssistant`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
 	Preset pulumi.StringPtrInput
 	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrInput
@@ -233,7 +233,7 @@ type outgoingWebhookArgs struct {
 	Name *string `pulumi:"name"`
 	// The auth data of the webhook. Used for Basic authentication
 	Password *string `pulumi:"password"`
-	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `grafanaAssistant`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
 	Preset *string `pulumi:"preset"`
 	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId *string `pulumi:"teamId"`
@@ -267,7 +267,7 @@ type OutgoingWebhookArgs struct {
 	Name pulumi.StringPtrInput
 	// The auth data of the webhook. Used for Basic authentication
 	Password pulumi.StringPtrInput
-	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+	// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `grafanaAssistant`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
 	Preset pulumi.StringPtrInput
 	// The ID of the OnCall team (using the `onCall.getTeam` datasource).
 	TeamId pulumi.StringPtrInput
@@ -413,7 +413,7 @@ func (o OutgoingWebhookOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OutgoingWebhook) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
+// The preset of the outgoing webhook. Possible values are: `simpleWebhook`, `advancedWebhook`, `grafanaSift`, `grafanaAssistant`, `incidentWebhook`. If no preset is set, the default preset is `advancedWebhook`.
 func (o OutgoingWebhookOutput) Preset() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OutgoingWebhook) pulumi.StringPtrOutput { return v.Preset }).(pulumi.StringPtrOutput)
 }

@@ -2758,6 +2758,17 @@ export namespace k6 {
         updated: string;
     }
 
+    export interface GetScheduleCron {
+        /**
+         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+         */
+        schedule: string;
+        /**
+         * The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+         */
+        timezone: string;
+    }
+
     export interface GetScheduleRecurrenceRule {
         /**
          * The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
@@ -2783,6 +2794,7 @@ export namespace k6 {
 
     export interface GetSchedulesSchedule {
         createdBy: string;
+        cron: outputs.k6.GetSchedulesScheduleCron;
         deactivated: boolean;
         id: string;
         loadTestId: string;
@@ -2791,12 +2803,28 @@ export namespace k6 {
         starts: string;
     }
 
+    export interface GetSchedulesScheduleCron {
+        schedule: string;
+        timezone: string;
+    }
+
     export interface GetSchedulesScheduleRecurrenceRule {
         bydays: string[];
         count: number;
         frequency: string;
         interval: number;
         until: string;
+    }
+
+    export interface ScheduleCron {
+        /**
+         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+         */
+        schedule?: string;
+        /**
+         * The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+         */
+        timezone?: string;
     }
 
     export interface ScheduleRecurrenceRule {

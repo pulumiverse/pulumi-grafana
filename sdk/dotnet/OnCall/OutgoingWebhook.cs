@@ -117,7 +117,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        /// The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
         /// </summary>
         [Output("preset")]
         public Output<string?> Preset { get; private set; } = null!;
@@ -285,7 +285,7 @@ namespace Pulumiverse.Grafana.OnCall
         }
 
         /// <summary>
-        /// The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        /// The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
         /// </summary>
         [Input("preset")]
         public Input<string>? Preset { get; set; }
@@ -409,7 +409,7 @@ namespace Pulumiverse.Grafana.OnCall
         }
 
         /// <summary>
-        /// The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        /// The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
         /// </summary>
         [Input("preset")]
         public Input<string>? Preset { get; set; }
