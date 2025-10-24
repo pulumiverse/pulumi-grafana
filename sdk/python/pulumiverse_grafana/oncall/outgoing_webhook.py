@@ -45,7 +45,7 @@ class OutgoingWebhookArgs:
         :param pulumi.Input[_builtins.bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the outgoing webhook.
         :param pulumi.Input[_builtins.str] password: The auth data of the webhook. Used for Basic authentication
-        :param pulumi.Input[_builtins.str] preset: The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        :param pulumi.Input[_builtins.str] preset: The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
         :param pulumi.Input[_builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
         :param pulumi.Input[_builtins.str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
         :param pulumi.Input[_builtins.str] trigger_type: The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
@@ -195,7 +195,7 @@ class OutgoingWebhookArgs:
     @pulumi.getter
     def preset(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
         """
         return pulumi.get(self, "preset")
 
@@ -293,7 +293,7 @@ class _OutgoingWebhookState:
         :param pulumi.Input[_builtins.bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the outgoing webhook.
         :param pulumi.Input[_builtins.str] password: The auth data of the webhook. Used for Basic authentication
-        :param pulumi.Input[_builtins.str] preset: The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        :param pulumi.Input[_builtins.str] preset: The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
         :param pulumi.Input[_builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
         :param pulumi.Input[_builtins.str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
         :param pulumi.Input[_builtins.str] trigger_type: The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
@@ -443,7 +443,7 @@ class _OutgoingWebhookState:
     @pulumi.getter
     def preset(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
         """
         return pulumi.get(self, "preset")
 
@@ -575,7 +575,7 @@ class OutgoingWebhook(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the outgoing webhook.
         :param pulumi.Input[_builtins.str] password: The auth data of the webhook. Used for Basic authentication
-        :param pulumi.Input[_builtins.str] preset: The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        :param pulumi.Input[_builtins.str] preset: The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
         :param pulumi.Input[_builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
         :param pulumi.Input[_builtins.str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
         :param pulumi.Input[_builtins.str] trigger_type: The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
@@ -715,7 +715,7 @@ class OutgoingWebhook(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_webhook_enabled: Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the outgoing webhook.
         :param pulumi.Input[_builtins.str] password: The auth data of the webhook. Used for Basic authentication
-        :param pulumi.Input[_builtins.str] preset: The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        :param pulumi.Input[_builtins.str] preset: The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
         :param pulumi.Input[_builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
         :param pulumi.Input[_builtins.str] trigger_template: A template used to dynamically determine whether the webhook should execute based on the content of the payload.
         :param pulumi.Input[_builtins.str] trigger_type: The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
@@ -819,7 +819,7 @@ class OutgoingWebhook(pulumi.CustomResource):
     @pulumi.getter
     def preset(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
         """
         return pulumi.get(self, "preset")
 

@@ -23,15 +23,19 @@ class ScheduleArgs:
     def __init__(__self__, *,
                  load_test_id: pulumi.Input[_builtins.str],
                  starts: pulumi.Input[_builtins.str],
+                 cron: Optional[pulumi.Input['ScheduleCronArgs']] = None,
                  recurrence_rule: Optional[pulumi.Input['ScheduleRecurrenceRuleArgs']] = None):
         """
         The set of arguments for constructing a Schedule resource.
         :param pulumi.Input[_builtins.str] load_test_id: The identifier of the load test to schedule.
         :param pulumi.Input[_builtins.str] starts: The start time for the schedule (RFC3339 format).
-        :param pulumi.Input['ScheduleRecurrenceRuleArgs'] recurrence_rule: The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+        :param pulumi.Input['ScheduleCronArgs'] cron: The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
+        :param pulumi.Input['ScheduleRecurrenceRuleArgs'] recurrence_rule: The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         """
         pulumi.set(__self__, "load_test_id", load_test_id)
         pulumi.set(__self__, "starts", starts)
+        if cron is not None:
+            pulumi.set(__self__, "cron", cron)
         if recurrence_rule is not None:
             pulumi.set(__self__, "recurrence_rule", recurrence_rule)
 
@@ -60,10 +64,22 @@ class ScheduleArgs:
         pulumi.set(self, "starts", value)
 
     @_builtins.property
+    @pulumi.getter
+    def cron(self) -> Optional[pulumi.Input['ScheduleCronArgs']]:
+        """
+        The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
+        """
+        return pulumi.get(self, "cron")
+
+    @cron.setter
+    def cron(self, value: Optional[pulumi.Input['ScheduleCronArgs']]):
+        pulumi.set(self, "cron", value)
+
+    @_builtins.property
     @pulumi.getter(name="recurrenceRule")
     def recurrence_rule(self) -> Optional[pulumi.Input['ScheduleRecurrenceRuleArgs']]:
         """
-        The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+        The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         """
         return pulumi.get(self, "recurrence_rule")
 
@@ -76,6 +92,7 @@ class ScheduleArgs:
 class _ScheduleState:
     def __init__(__self__, *,
                  created_by: Optional[pulumi.Input[_builtins.str]] = None,
+                 cron: Optional[pulumi.Input['ScheduleCronArgs']] = None,
                  deactivated: Optional[pulumi.Input[_builtins.bool]] = None,
                  load_test_id: Optional[pulumi.Input[_builtins.str]] = None,
                  next_run: Optional[pulumi.Input[_builtins.str]] = None,
@@ -84,14 +101,17 @@ class _ScheduleState:
         """
         Input properties used for looking up and filtering Schedule resources.
         :param pulumi.Input[_builtins.str] created_by: The email of the user who created the schedule.
+        :param pulumi.Input['ScheduleCronArgs'] cron: The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         :param pulumi.Input[_builtins.bool] deactivated: Whether the schedule is deactivated.
         :param pulumi.Input[_builtins.str] load_test_id: The identifier of the load test to schedule.
         :param pulumi.Input[_builtins.str] next_run: The next scheduled execution time.
-        :param pulumi.Input['ScheduleRecurrenceRuleArgs'] recurrence_rule: The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+        :param pulumi.Input['ScheduleRecurrenceRuleArgs'] recurrence_rule: The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         :param pulumi.Input[_builtins.str] starts: The start time for the schedule (RFC3339 format).
         """
         if created_by is not None:
             pulumi.set(__self__, "created_by", created_by)
+        if cron is not None:
+            pulumi.set(__self__, "cron", cron)
         if deactivated is not None:
             pulumi.set(__self__, "deactivated", deactivated)
         if load_test_id is not None:
@@ -114,6 +134,18 @@ class _ScheduleState:
     @created_by.setter
     def created_by(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "created_by", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cron(self) -> Optional[pulumi.Input['ScheduleCronArgs']]:
+        """
+        The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
+        """
+        return pulumi.get(self, "cron")
+
+    @cron.setter
+    def cron(self, value: Optional[pulumi.Input['ScheduleCronArgs']]):
+        pulumi.set(self, "cron", value)
 
     @_builtins.property
     @pulumi.getter
@@ -155,7 +187,7 @@ class _ScheduleState:
     @pulumi.getter(name="recurrenceRule")
     def recurrence_rule(self) -> Optional[pulumi.Input['ScheduleRecurrenceRuleArgs']]:
         """
-        The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+        The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         """
         return pulumi.get(self, "recurrence_rule")
 
@@ -182,6 +214,7 @@ class Schedule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cron: Optional[pulumi.Input[Union['ScheduleCronArgs', 'ScheduleCronArgsDict']]] = None,
                  load_test_id: Optional[pulumi.Input[_builtins.str]] = None,
                  recurrence_rule: Optional[pulumi.Input[Union['ScheduleRecurrenceRuleArgs', 'ScheduleRecurrenceRuleArgsDict']]] = None,
                  starts: Optional[pulumi.Input[_builtins.str]] = None,
@@ -197,8 +230,9 @@ class Schedule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['ScheduleCronArgs', 'ScheduleCronArgsDict']] cron: The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         :param pulumi.Input[_builtins.str] load_test_id: The identifier of the load test to schedule.
-        :param pulumi.Input[Union['ScheduleRecurrenceRuleArgs', 'ScheduleRecurrenceRuleArgsDict']] recurrence_rule: The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+        :param pulumi.Input[Union['ScheduleRecurrenceRuleArgs', 'ScheduleRecurrenceRuleArgsDict']] recurrence_rule: The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         :param pulumi.Input[_builtins.str] starts: The start time for the schedule (RFC3339 format).
         """
         ...
@@ -231,6 +265,7 @@ class Schedule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cron: Optional[pulumi.Input[Union['ScheduleCronArgs', 'ScheduleCronArgsDict']]] = None,
                  load_test_id: Optional[pulumi.Input[_builtins.str]] = None,
                  recurrence_rule: Optional[pulumi.Input[Union['ScheduleRecurrenceRuleArgs', 'ScheduleRecurrenceRuleArgsDict']]] = None,
                  starts: Optional[pulumi.Input[_builtins.str]] = None,
@@ -243,6 +278,7 @@ class Schedule(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ScheduleArgs.__new__(ScheduleArgs)
 
+            __props__.__dict__["cron"] = cron
             if load_test_id is None and not opts.urn:
                 raise TypeError("Missing required property 'load_test_id'")
             __props__.__dict__["load_test_id"] = load_test_id
@@ -264,6 +300,7 @@ class Schedule(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_by: Optional[pulumi.Input[_builtins.str]] = None,
+            cron: Optional[pulumi.Input[Union['ScheduleCronArgs', 'ScheduleCronArgsDict']]] = None,
             deactivated: Optional[pulumi.Input[_builtins.bool]] = None,
             load_test_id: Optional[pulumi.Input[_builtins.str]] = None,
             next_run: Optional[pulumi.Input[_builtins.str]] = None,
@@ -277,10 +314,11 @@ class Schedule(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_by: The email of the user who created the schedule.
+        :param pulumi.Input[Union['ScheduleCronArgs', 'ScheduleCronArgsDict']] cron: The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         :param pulumi.Input[_builtins.bool] deactivated: Whether the schedule is deactivated.
         :param pulumi.Input[_builtins.str] load_test_id: The identifier of the load test to schedule.
         :param pulumi.Input[_builtins.str] next_run: The next scheduled execution time.
-        :param pulumi.Input[Union['ScheduleRecurrenceRuleArgs', 'ScheduleRecurrenceRuleArgsDict']] recurrence_rule: The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+        :param pulumi.Input[Union['ScheduleRecurrenceRuleArgs', 'ScheduleRecurrenceRuleArgsDict']] recurrence_rule: The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         :param pulumi.Input[_builtins.str] starts: The start time for the schedule (RFC3339 format).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -288,6 +326,7 @@ class Schedule(pulumi.CustomResource):
         __props__ = _ScheduleState.__new__(_ScheduleState)
 
         __props__.__dict__["created_by"] = created_by
+        __props__.__dict__["cron"] = cron
         __props__.__dict__["deactivated"] = deactivated
         __props__.__dict__["load_test_id"] = load_test_id
         __props__.__dict__["next_run"] = next_run
@@ -302,6 +341,14 @@ class Schedule(pulumi.CustomResource):
         The email of the user who created the schedule.
         """
         return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter
+    def cron(self) -> pulumi.Output[Optional['outputs.ScheduleCron']]:
+        """
+        The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
+        """
+        return pulumi.get(self, "cron")
 
     @_builtins.property
     @pulumi.getter
@@ -331,7 +378,7 @@ class Schedule(pulumi.CustomResource):
     @pulumi.getter(name="recurrenceRule")
     def recurrence_rule(self) -> pulumi.Output[Optional['outputs.ScheduleRecurrenceRule']]:
         """
-        The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+        The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         """
         return pulumi.get(self, "recurrence_rule")
 

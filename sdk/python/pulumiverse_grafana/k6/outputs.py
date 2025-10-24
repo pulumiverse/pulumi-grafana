@@ -16,13 +16,47 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'ScheduleCron',
     'ScheduleRecurrenceRule',
     'GetLoadTestsLoadTestResult',
     'GetProjectsProjectResult',
+    'GetScheduleCronResult',
     'GetScheduleRecurrenceRuleResult',
     'GetSchedulesScheduleResult',
+    'GetSchedulesScheduleCronResult',
     'GetSchedulesScheduleRecurrenceRuleResult',
 ]
+
+@pulumi.output_type
+class ScheduleCron(dict):
+    def __init__(__self__, *,
+                 schedule: Optional[_builtins.str] = None,
+                 timezone: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str schedule: A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+        :param _builtins.str timezone: The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+        """
+        if schedule is not None:
+            pulumi.set(__self__, "schedule", schedule)
+        if timezone is not None:
+            pulumi.set(__self__, "timezone", timezone)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> Optional[_builtins.str]:
+        """
+        A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+        """
+        return pulumi.get(self, "schedule")
+
+    @_builtins.property
+    @pulumi.getter
+    def timezone(self) -> Optional[_builtins.str]:
+        """
+        The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+        """
+        return pulumi.get(self, "timezone")
+
 
 @pulumi.output_type
 class ScheduleRecurrenceRule(dict):
@@ -193,6 +227,35 @@ class GetProjectsProjectResult(dict):
 
 
 @pulumi.output_type
+class GetScheduleCronResult(dict):
+    def __init__(__self__, *,
+                 schedule: _builtins.str,
+                 timezone: _builtins.str):
+        """
+        :param _builtins.str schedule: A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+        :param _builtins.str timezone: The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+        """
+        pulumi.set(__self__, "schedule", schedule)
+        pulumi.set(__self__, "timezone", timezone)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> _builtins.str:
+        """
+        A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+        """
+        return pulumi.get(self, "schedule")
+
+    @_builtins.property
+    @pulumi.getter
+    def timezone(self) -> _builtins.str:
+        """
+        The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+        """
+        return pulumi.get(self, "timezone")
+
+
+@pulumi.output_type
 class GetScheduleRecurrenceRuleResult(dict):
     def __init__(__self__, *,
                  bydays: Sequence[_builtins.str],
@@ -258,6 +321,7 @@ class GetScheduleRecurrenceRuleResult(dict):
 class GetSchedulesScheduleResult(dict):
     def __init__(__self__, *,
                  created_by: _builtins.str,
+                 cron: 'outputs.GetSchedulesScheduleCronResult',
                  deactivated: _builtins.bool,
                  id: _builtins.str,
                  load_test_id: _builtins.str,
@@ -265,6 +329,7 @@ class GetSchedulesScheduleResult(dict):
                  recurrence_rule: 'outputs.GetSchedulesScheduleRecurrenceRuleResult',
                  starts: _builtins.str):
         pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "cron", cron)
         pulumi.set(__self__, "deactivated", deactivated)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "load_test_id", load_test_id)
@@ -276,6 +341,11 @@ class GetSchedulesScheduleResult(dict):
     @pulumi.getter(name="createdBy")
     def created_by(self) -> _builtins.str:
         return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter
+    def cron(self) -> 'outputs.GetSchedulesScheduleCronResult':
+        return pulumi.get(self, "cron")
 
     @_builtins.property
     @pulumi.getter
@@ -306,6 +376,25 @@ class GetSchedulesScheduleResult(dict):
     @pulumi.getter
     def starts(self) -> _builtins.str:
         return pulumi.get(self, "starts")
+
+
+@pulumi.output_type
+class GetSchedulesScheduleCronResult(dict):
+    def __init__(__self__, *,
+                 schedule: _builtins.str,
+                 timezone: _builtins.str):
+        pulumi.set(__self__, "schedule", schedule)
+        pulumi.set(__self__, "timezone", timezone)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> _builtins.str:
+        return pulumi.get(self, "schedule")
+
+    @_builtins.property
+    @pulumi.getter
+    def timezone(self) -> _builtins.str:
+        return pulumi.get(self, "timezone")
 
 
 @pulumi.output_type

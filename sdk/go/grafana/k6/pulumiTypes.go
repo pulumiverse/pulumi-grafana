@@ -13,6 +13,162 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type ScheduleCron struct {
+	// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+	Schedule *string `pulumi:"schedule"`
+	// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+	Timezone *string `pulumi:"timezone"`
+}
+
+// ScheduleCronInput is an input type that accepts ScheduleCronArgs and ScheduleCronOutput values.
+// You can construct a concrete instance of `ScheduleCronInput` via:
+//
+//	ScheduleCronArgs{...}
+type ScheduleCronInput interface {
+	pulumi.Input
+
+	ToScheduleCronOutput() ScheduleCronOutput
+	ToScheduleCronOutputWithContext(context.Context) ScheduleCronOutput
+}
+
+type ScheduleCronArgs struct {
+	// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+	Schedule pulumi.StringPtrInput `pulumi:"schedule"`
+	// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+	Timezone pulumi.StringPtrInput `pulumi:"timezone"`
+}
+
+func (ScheduleCronArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScheduleCron)(nil)).Elem()
+}
+
+func (i ScheduleCronArgs) ToScheduleCronOutput() ScheduleCronOutput {
+	return i.ToScheduleCronOutputWithContext(context.Background())
+}
+
+func (i ScheduleCronArgs) ToScheduleCronOutputWithContext(ctx context.Context) ScheduleCronOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScheduleCronOutput)
+}
+
+func (i ScheduleCronArgs) ToScheduleCronPtrOutput() ScheduleCronPtrOutput {
+	return i.ToScheduleCronPtrOutputWithContext(context.Background())
+}
+
+func (i ScheduleCronArgs) ToScheduleCronPtrOutputWithContext(ctx context.Context) ScheduleCronPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScheduleCronOutput).ToScheduleCronPtrOutputWithContext(ctx)
+}
+
+// ScheduleCronPtrInput is an input type that accepts ScheduleCronArgs, ScheduleCronPtr and ScheduleCronPtrOutput values.
+// You can construct a concrete instance of `ScheduleCronPtrInput` via:
+//
+//	        ScheduleCronArgs{...}
+//
+//	or:
+//
+//	        nil
+type ScheduleCronPtrInput interface {
+	pulumi.Input
+
+	ToScheduleCronPtrOutput() ScheduleCronPtrOutput
+	ToScheduleCronPtrOutputWithContext(context.Context) ScheduleCronPtrOutput
+}
+
+type scheduleCronPtrType ScheduleCronArgs
+
+func ScheduleCronPtr(v *ScheduleCronArgs) ScheduleCronPtrInput {
+	return (*scheduleCronPtrType)(v)
+}
+
+func (*scheduleCronPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ScheduleCron)(nil)).Elem()
+}
+
+func (i *scheduleCronPtrType) ToScheduleCronPtrOutput() ScheduleCronPtrOutput {
+	return i.ToScheduleCronPtrOutputWithContext(context.Background())
+}
+
+func (i *scheduleCronPtrType) ToScheduleCronPtrOutputWithContext(ctx context.Context) ScheduleCronPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScheduleCronPtrOutput)
+}
+
+type ScheduleCronOutput struct{ *pulumi.OutputState }
+
+func (ScheduleCronOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScheduleCron)(nil)).Elem()
+}
+
+func (o ScheduleCronOutput) ToScheduleCronOutput() ScheduleCronOutput {
+	return o
+}
+
+func (o ScheduleCronOutput) ToScheduleCronOutputWithContext(ctx context.Context) ScheduleCronOutput {
+	return o
+}
+
+func (o ScheduleCronOutput) ToScheduleCronPtrOutput() ScheduleCronPtrOutput {
+	return o.ToScheduleCronPtrOutputWithContext(context.Background())
+}
+
+func (o ScheduleCronOutput) ToScheduleCronPtrOutputWithContext(ctx context.Context) ScheduleCronPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ScheduleCron) *ScheduleCron {
+		return &v
+	}).(ScheduleCronPtrOutput)
+}
+
+// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+func (o ScheduleCronOutput) Schedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ScheduleCron) *string { return v.Schedule }).(pulumi.StringPtrOutput)
+}
+
+// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+func (o ScheduleCronOutput) Timezone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ScheduleCron) *string { return v.Timezone }).(pulumi.StringPtrOutput)
+}
+
+type ScheduleCronPtrOutput struct{ *pulumi.OutputState }
+
+func (ScheduleCronPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ScheduleCron)(nil)).Elem()
+}
+
+func (o ScheduleCronPtrOutput) ToScheduleCronPtrOutput() ScheduleCronPtrOutput {
+	return o
+}
+
+func (o ScheduleCronPtrOutput) ToScheduleCronPtrOutputWithContext(ctx context.Context) ScheduleCronPtrOutput {
+	return o
+}
+
+func (o ScheduleCronPtrOutput) Elem() ScheduleCronOutput {
+	return o.ApplyT(func(v *ScheduleCron) ScheduleCron {
+		if v != nil {
+			return *v
+		}
+		var ret ScheduleCron
+		return ret
+	}).(ScheduleCronOutput)
+}
+
+// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+func (o ScheduleCronPtrOutput) Schedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScheduleCron) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Schedule
+	}).(pulumi.StringPtrOutput)
+}
+
+// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+func (o ScheduleCronPtrOutput) Timezone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScheduleCron) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timezone
+	}).(pulumi.StringPtrOutput)
+}
+
 type ScheduleRecurrenceRule struct {
 	// The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
 	Bydays []string `pulumi:"bydays"`
@@ -480,6 +636,162 @@ func (o GetProjectsProjectArrayOutput) Index(i pulumi.IntInput) GetProjectsProje
 	}).(GetProjectsProjectOutput)
 }
 
+type GetScheduleCron struct {
+	// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+	Schedule string `pulumi:"schedule"`
+	// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+	Timezone string `pulumi:"timezone"`
+}
+
+// GetScheduleCronInput is an input type that accepts GetScheduleCronArgs and GetScheduleCronOutput values.
+// You can construct a concrete instance of `GetScheduleCronInput` via:
+//
+//	GetScheduleCronArgs{...}
+type GetScheduleCronInput interface {
+	pulumi.Input
+
+	ToGetScheduleCronOutput() GetScheduleCronOutput
+	ToGetScheduleCronOutputWithContext(context.Context) GetScheduleCronOutput
+}
+
+type GetScheduleCronArgs struct {
+	// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+	Schedule pulumi.StringInput `pulumi:"schedule"`
+	// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+	Timezone pulumi.StringInput `pulumi:"timezone"`
+}
+
+func (GetScheduleCronArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScheduleCron)(nil)).Elem()
+}
+
+func (i GetScheduleCronArgs) ToGetScheduleCronOutput() GetScheduleCronOutput {
+	return i.ToGetScheduleCronOutputWithContext(context.Background())
+}
+
+func (i GetScheduleCronArgs) ToGetScheduleCronOutputWithContext(ctx context.Context) GetScheduleCronOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScheduleCronOutput)
+}
+
+func (i GetScheduleCronArgs) ToGetScheduleCronPtrOutput() GetScheduleCronPtrOutput {
+	return i.ToGetScheduleCronPtrOutputWithContext(context.Background())
+}
+
+func (i GetScheduleCronArgs) ToGetScheduleCronPtrOutputWithContext(ctx context.Context) GetScheduleCronPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScheduleCronOutput).ToGetScheduleCronPtrOutputWithContext(ctx)
+}
+
+// GetScheduleCronPtrInput is an input type that accepts GetScheduleCronArgs, GetScheduleCronPtr and GetScheduleCronPtrOutput values.
+// You can construct a concrete instance of `GetScheduleCronPtrInput` via:
+//
+//	        GetScheduleCronArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetScheduleCronPtrInput interface {
+	pulumi.Input
+
+	ToGetScheduleCronPtrOutput() GetScheduleCronPtrOutput
+	ToGetScheduleCronPtrOutputWithContext(context.Context) GetScheduleCronPtrOutput
+}
+
+type getScheduleCronPtrType GetScheduleCronArgs
+
+func GetScheduleCronPtr(v *GetScheduleCronArgs) GetScheduleCronPtrInput {
+	return (*getScheduleCronPtrType)(v)
+}
+
+func (*getScheduleCronPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetScheduleCron)(nil)).Elem()
+}
+
+func (i *getScheduleCronPtrType) ToGetScheduleCronPtrOutput() GetScheduleCronPtrOutput {
+	return i.ToGetScheduleCronPtrOutputWithContext(context.Background())
+}
+
+func (i *getScheduleCronPtrType) ToGetScheduleCronPtrOutputWithContext(ctx context.Context) GetScheduleCronPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScheduleCronPtrOutput)
+}
+
+type GetScheduleCronOutput struct{ *pulumi.OutputState }
+
+func (GetScheduleCronOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScheduleCron)(nil)).Elem()
+}
+
+func (o GetScheduleCronOutput) ToGetScheduleCronOutput() GetScheduleCronOutput {
+	return o
+}
+
+func (o GetScheduleCronOutput) ToGetScheduleCronOutputWithContext(ctx context.Context) GetScheduleCronOutput {
+	return o
+}
+
+func (o GetScheduleCronOutput) ToGetScheduleCronPtrOutput() GetScheduleCronPtrOutput {
+	return o.ToGetScheduleCronPtrOutputWithContext(context.Background())
+}
+
+func (o GetScheduleCronOutput) ToGetScheduleCronPtrOutputWithContext(ctx context.Context) GetScheduleCronPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetScheduleCron) *GetScheduleCron {
+		return &v
+	}).(GetScheduleCronPtrOutput)
+}
+
+// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+func (o GetScheduleCronOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleCron) string { return v.Schedule }).(pulumi.StringOutput)
+}
+
+// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+func (o GetScheduleCronOutput) Timezone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScheduleCron) string { return v.Timezone }).(pulumi.StringOutput)
+}
+
+type GetScheduleCronPtrOutput struct{ *pulumi.OutputState }
+
+func (GetScheduleCronPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetScheduleCron)(nil)).Elem()
+}
+
+func (o GetScheduleCronPtrOutput) ToGetScheduleCronPtrOutput() GetScheduleCronPtrOutput {
+	return o
+}
+
+func (o GetScheduleCronPtrOutput) ToGetScheduleCronPtrOutputWithContext(ctx context.Context) GetScheduleCronPtrOutput {
+	return o
+}
+
+func (o GetScheduleCronPtrOutput) Elem() GetScheduleCronOutput {
+	return o.ApplyT(func(v *GetScheduleCron) GetScheduleCron {
+		if v != nil {
+			return *v
+		}
+		var ret GetScheduleCron
+		return ret
+	}).(GetScheduleCronOutput)
+}
+
+// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+func (o GetScheduleCronPtrOutput) Schedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetScheduleCron) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Schedule
+	}).(pulumi.StringPtrOutput)
+}
+
+// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+func (o GetScheduleCronPtrOutput) Timezone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetScheduleCron) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Timezone
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetScheduleRecurrenceRule struct {
 	// The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
 	Bydays []string `pulumi:"bydays"`
@@ -695,6 +1007,7 @@ func (o GetScheduleRecurrenceRulePtrOutput) Until() pulumi.StringPtrOutput {
 
 type GetSchedulesSchedule struct {
 	CreatedBy      string                             `pulumi:"createdBy"`
+	Cron           GetSchedulesScheduleCron           `pulumi:"cron"`
 	Deactivated    bool                               `pulumi:"deactivated"`
 	Id             string                             `pulumi:"id"`
 	LoadTestId     string                             `pulumi:"loadTestId"`
@@ -716,6 +1029,7 @@ type GetSchedulesScheduleInput interface {
 
 type GetSchedulesScheduleArgs struct {
 	CreatedBy      pulumi.StringInput                      `pulumi:"createdBy"`
+	Cron           GetSchedulesScheduleCronInput           `pulumi:"cron"`
 	Deactivated    pulumi.BoolInput                        `pulumi:"deactivated"`
 	Id             pulumi.StringInput                      `pulumi:"id"`
 	LoadTestId     pulumi.StringInput                      `pulumi:"loadTestId"`
@@ -779,6 +1093,10 @@ func (o GetSchedulesScheduleOutput) CreatedBy() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSchedulesSchedule) string { return v.CreatedBy }).(pulumi.StringOutput)
 }
 
+func (o GetSchedulesScheduleOutput) Cron() GetSchedulesScheduleCronOutput {
+	return o.ApplyT(func(v GetSchedulesSchedule) GetSchedulesScheduleCron { return v.Cron }).(GetSchedulesScheduleCronOutput)
+}
+
 func (o GetSchedulesScheduleOutput) Deactivated() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSchedulesSchedule) bool { return v.Deactivated }).(pulumi.BoolOutput)
 }
@@ -821,6 +1139,61 @@ func (o GetSchedulesScheduleArrayOutput) Index(i pulumi.IntInput) GetSchedulesSc
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSchedulesSchedule {
 		return vs[0].([]GetSchedulesSchedule)[vs[1].(int)]
 	}).(GetSchedulesScheduleOutput)
+}
+
+type GetSchedulesScheduleCron struct {
+	Schedule string `pulumi:"schedule"`
+	Timezone string `pulumi:"timezone"`
+}
+
+// GetSchedulesScheduleCronInput is an input type that accepts GetSchedulesScheduleCronArgs and GetSchedulesScheduleCronOutput values.
+// You can construct a concrete instance of `GetSchedulesScheduleCronInput` via:
+//
+//	GetSchedulesScheduleCronArgs{...}
+type GetSchedulesScheduleCronInput interface {
+	pulumi.Input
+
+	ToGetSchedulesScheduleCronOutput() GetSchedulesScheduleCronOutput
+	ToGetSchedulesScheduleCronOutputWithContext(context.Context) GetSchedulesScheduleCronOutput
+}
+
+type GetSchedulesScheduleCronArgs struct {
+	Schedule pulumi.StringInput `pulumi:"schedule"`
+	Timezone pulumi.StringInput `pulumi:"timezone"`
+}
+
+func (GetSchedulesScheduleCronArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSchedulesScheduleCron)(nil)).Elem()
+}
+
+func (i GetSchedulesScheduleCronArgs) ToGetSchedulesScheduleCronOutput() GetSchedulesScheduleCronOutput {
+	return i.ToGetSchedulesScheduleCronOutputWithContext(context.Background())
+}
+
+func (i GetSchedulesScheduleCronArgs) ToGetSchedulesScheduleCronOutputWithContext(ctx context.Context) GetSchedulesScheduleCronOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSchedulesScheduleCronOutput)
+}
+
+type GetSchedulesScheduleCronOutput struct{ *pulumi.OutputState }
+
+func (GetSchedulesScheduleCronOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSchedulesScheduleCron)(nil)).Elem()
+}
+
+func (o GetSchedulesScheduleCronOutput) ToGetSchedulesScheduleCronOutput() GetSchedulesScheduleCronOutput {
+	return o
+}
+
+func (o GetSchedulesScheduleCronOutput) ToGetSchedulesScheduleCronOutputWithContext(ctx context.Context) GetSchedulesScheduleCronOutput {
+	return o
+}
+
+func (o GetSchedulesScheduleCronOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSchedulesScheduleCron) string { return v.Schedule }).(pulumi.StringOutput)
+}
+
+func (o GetSchedulesScheduleCronOutput) Timezone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSchedulesScheduleCron) string { return v.Timezone }).(pulumi.StringOutput)
 }
 
 type GetSchedulesScheduleRecurrenceRule struct {
@@ -897,26 +1270,36 @@ func (o GetSchedulesScheduleRecurrenceRuleOutput) Until() pulumi.StringOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ScheduleCronInput)(nil)).Elem(), ScheduleCronArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScheduleCronPtrInput)(nil)).Elem(), ScheduleCronArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScheduleRecurrenceRuleInput)(nil)).Elem(), ScheduleRecurrenceRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScheduleRecurrenceRulePtrInput)(nil)).Elem(), ScheduleRecurrenceRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadTestsLoadTestInput)(nil)).Elem(), GetLoadTestsLoadTestArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadTestsLoadTestArrayInput)(nil)).Elem(), GetLoadTestsLoadTestArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsProjectInput)(nil)).Elem(), GetProjectsProjectArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsProjectArrayInput)(nil)).Elem(), GetProjectsProjectArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScheduleCronInput)(nil)).Elem(), GetScheduleCronArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScheduleCronPtrInput)(nil)).Elem(), GetScheduleCronArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScheduleRecurrenceRuleInput)(nil)).Elem(), GetScheduleRecurrenceRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScheduleRecurrenceRulePtrInput)(nil)).Elem(), GetScheduleRecurrenceRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSchedulesScheduleInput)(nil)).Elem(), GetSchedulesScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSchedulesScheduleArrayInput)(nil)).Elem(), GetSchedulesScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSchedulesScheduleCronInput)(nil)).Elem(), GetSchedulesScheduleCronArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSchedulesScheduleRecurrenceRuleInput)(nil)).Elem(), GetSchedulesScheduleRecurrenceRuleArgs{})
+	pulumi.RegisterOutputType(ScheduleCronOutput{})
+	pulumi.RegisterOutputType(ScheduleCronPtrOutput{})
 	pulumi.RegisterOutputType(ScheduleRecurrenceRuleOutput{})
 	pulumi.RegisterOutputType(ScheduleRecurrenceRulePtrOutput{})
 	pulumi.RegisterOutputType(GetLoadTestsLoadTestOutput{})
 	pulumi.RegisterOutputType(GetLoadTestsLoadTestArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsProjectOutput{})
 	pulumi.RegisterOutputType(GetProjectsProjectArrayOutput{})
+	pulumi.RegisterOutputType(GetScheduleCronOutput{})
+	pulumi.RegisterOutputType(GetScheduleCronPtrOutput{})
 	pulumi.RegisterOutputType(GetScheduleRecurrenceRuleOutput{})
 	pulumi.RegisterOutputType(GetScheduleRecurrenceRulePtrOutput{})
 	pulumi.RegisterOutputType(GetSchedulesScheduleOutput{})
 	pulumi.RegisterOutputType(GetSchedulesScheduleArrayOutput{})
+	pulumi.RegisterOutputType(GetSchedulesScheduleCronOutput{})
 	pulumi.RegisterOutputType(GetSchedulesScheduleRecurrenceRuleOutput{})
 }

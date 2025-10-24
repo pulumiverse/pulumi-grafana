@@ -12,6 +12,7 @@ import * as utilities from "../utilities";
 export function getSchedule(args: GetScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetScheduleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:k6/getSchedule:getSchedule", {
+        "cron": args.cron,
         "loadTestId": args.loadTestId,
         "recurrenceRule": args.recurrenceRule,
     }, opts);
@@ -21,6 +22,10 @@ export function getSchedule(args: GetScheduleArgs, opts?: pulumi.InvokeOptions):
  * A collection of arguments for invoking getSchedule.
  */
 export interface GetScheduleArgs {
+    /**
+     * The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
+     */
+    cron?: inputs.k6.GetScheduleCron;
     /**
      * The identifier of the load test to retrieve the schedule for.
      */
@@ -39,6 +44,10 @@ export interface GetScheduleResult {
      * The email of the user who created the schedule.
      */
     readonly createdBy: string;
+    /**
+     * The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
+     */
+    readonly cron?: outputs.k6.GetScheduleCron;
     /**
      * Whether the schedule is deactivated.
      */
@@ -70,6 +79,7 @@ export interface GetScheduleResult {
 export function getScheduleOutput(args: GetScheduleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetScheduleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:k6/getSchedule:getSchedule", {
+        "cron": args.cron,
         "loadTestId": args.loadTestId,
         "recurrenceRule": args.recurrenceRule,
     }, opts);
@@ -79,6 +89,10 @@ export function getScheduleOutput(args: GetScheduleOutputArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSchedule.
  */
 export interface GetScheduleOutputArgs {
+    /**
+     * The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
+     */
+    cron?: pulumi.Input<inputs.k6.GetScheduleCronArgs>;
     /**
      * The identifier of the load test to retrieve the schedule for.
      */

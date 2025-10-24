@@ -4542,6 +4542,19 @@
                 }
             }
         },
+        "grafana:k6/ScheduleCron:ScheduleCron": {
+            "properties": {
+                "schedule": {
+                    "type": "string",
+                    "description": "A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.\n"
+                },
+                "timezone": {
+                    "type": "string",
+                    "description": "The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.\n"
+                }
+            },
+            "type": "object"
+        },
         "grafana:k6/ScheduleRecurrenceRule:ScheduleRecurrenceRule": {
             "properties": {
                 "bydays": {
@@ -4653,6 +4666,28 @@
                 }
             }
         },
+        "grafana:k6/getScheduleCron:getScheduleCron": {
+            "properties": {
+                "schedule": {
+                    "type": "string",
+                    "description": "A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.\n"
+                },
+                "timezone": {
+                    "type": "string",
+                    "description": "The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "schedule",
+                "timezone"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "grafana:k6/getScheduleRecurrenceRule:getScheduleRecurrenceRule": {
             "properties": {
                 "bydays": {
@@ -4698,6 +4733,9 @@
                 "createdBy": {
                     "type": "string"
                 },
+                "cron": {
+                    "$ref": "#/types/grafana:k6/getSchedulesScheduleCron:getSchedulesScheduleCron"
+                },
                 "deactivated": {
                     "type": "boolean"
                 },
@@ -4720,12 +4758,33 @@
             "type": "object",
             "required": [
                 "createdBy",
+                "cron",
                 "deactivated",
                 "id",
                 "loadTestId",
                 "nextRun",
                 "recurrenceRule",
                 "starts"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "grafana:k6/getSchedulesScheduleCron:getSchedulesScheduleCron": {
+            "properties": {
+                "schedule": {
+                    "type": "string"
+                },
+                "timezone": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "schedule",
+                "timezone"
             ],
             "language": {
                 "nodejs": {
@@ -12954,11 +13013,15 @@
             }
         },
         "grafana:k6/schedule:Schedule": {
-            "description": "Manages a k6 schedule for automated test execution.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  scheduleProject:\n    type: grafana:k6:Project\n    name: schedule_project\n    properties:\n      name: Terraform Schedule Resource Project\n  scheduledTest:\n    type: grafana:k6:LoadTest\n    name: scheduled_test\n    properties:\n      projectId: ${scheduleProject.id}\n      name: Terraform Scheduled Resource Test\n      script: |\n        export default function() {\n          console.log('Hello from scheduled k6 test!');\n        }\n    options:\n      dependsOn:\n        - ${scheduleProject}\n  daily:\n    type: grafana:k6:Schedule\n    properties:\n      loadTestId: ${scheduledTest.id}\n      starts: 2024-12-25T10:00:00Z\n      recurrenceRule:\n        - frequency: DAILY\n          interval: 1\n  weekly:\n    type: grafana:k6:Schedule\n    properties:\n      loadTestId: ${scheduledTest.id}\n      starts: 2024-12-25T09:00:00Z\n      recurrenceRule:\n        - frequency: WEEKLY\n          interval: 1\n          bydays:\n            - MO\n            - WE\n            - FR\n  # Example with YEARLY frequency and count\n  yearly:\n    type: grafana:k6:Schedule\n    properties:\n      loadTestId: ${scheduledTest.id}\n      starts: 2024-01-01T12:00:00Z\n      recurrenceRule:\n        - frequency: YEARLY\n          interval: 1\n          count: 5\n  # One-time schedule without recurrence\n  oneTime:\n    type: grafana:k6:Schedule\n    name: one_time\n    properties:\n      loadTestId: ${scheduledTest.id}\n      starts: 2024-12-25T15:00:00Z\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:k6/schedule:Schedule name \"{{ load_test_id }}\"\n```\n\n",
+            "description": "Manages a k6 schedule for automated test execution.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  scheduleProject:\n    type: grafana:k6:Project\n    name: schedule_project\n    properties:\n      name: Terraform Schedule Resource Project\n  scheduledTest:\n    type: grafana:k6:LoadTest\n    name: scheduled_test\n    properties:\n      projectId: ${scheduleProject.id}\n      name: Terraform Scheduled Resource Test\n      script: |\n        export default function() {\n          console.log('Hello from scheduled k6 test!');\n        }\n    options:\n      dependsOn:\n        - ${scheduleProject}\n  cronMonthly:\n    type: grafana:k6:Schedule\n    name: cron_monthly\n    properties:\n      loadTestId: ${scheduledTest.id}\n      starts: 2024-12-25T10:00:00Z\n      cron:\n        - schedule: 0 10 1 * *\n          timezone: UTC\n  daily:\n    type: grafana:k6:Schedule\n    properties:\n      loadTestId: ${scheduledTest.id}\n      starts: 2024-12-25T10:00:00Z\n      recurrenceRule:\n        - frequency: DAILY\n          interval: 1\n  weekly:\n    type: grafana:k6:Schedule\n    properties:\n      loadTestId: ${scheduledTest.id}\n      starts: 2024-12-25T09:00:00Z\n      recurrenceRule:\n        - frequency: WEEKLY\n          interval: 1\n          bydays:\n            - MO\n            - WE\n            - FR\n  # Example with YEARLY frequency and count\n  yearly:\n    type: grafana:k6:Schedule\n    properties:\n      loadTestId: ${scheduledTest.id}\n      starts: 2024-01-01T12:00:00Z\n      recurrenceRule:\n        - frequency: YEARLY\n          interval: 1\n          count: 5\n  # One-time schedule without recurrence\n  oneTime:\n    type: grafana:k6:Schedule\n    name: one_time\n    properties:\n      loadTestId: ${scheduledTest.id}\n      starts: 2024-12-25T15:00:00Z\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:k6/schedule:Schedule name \"{{ load_test_id }}\"\n```\n\n",
             "properties": {
                 "createdBy": {
                     "type": "string",
                     "description": "The email of the user who created the schedule.\n"
+                },
+                "cron": {
+                    "$ref": "#/types/grafana:k6/ScheduleCron:ScheduleCron",
+                    "description": "The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.\n"
                 },
                 "deactivated": {
                     "type": "boolean",
@@ -12974,7 +13037,7 @@
                 },
                 "recurrenceRule": {
                     "$ref": "#/types/grafana:k6/ScheduleRecurrenceRule:ScheduleRecurrenceRule",
-                    "description": "The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.\n"
+                    "description": "The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.\n"
                 },
                 "starts": {
                     "type": "string",
@@ -12989,13 +13052,17 @@
                 "starts"
             ],
             "inputProperties": {
+                "cron": {
+                    "$ref": "#/types/grafana:k6/ScheduleCron:ScheduleCron",
+                    "description": "The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.\n"
+                },
                 "loadTestId": {
                     "type": "string",
                     "description": "The identifier of the load test to schedule.\n"
                 },
                 "recurrenceRule": {
                     "$ref": "#/types/grafana:k6/ScheduleRecurrenceRule:ScheduleRecurrenceRule",
-                    "description": "The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.\n"
+                    "description": "The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.\n"
                 },
                 "starts": {
                     "type": "string",
@@ -13013,6 +13080,10 @@
                         "type": "string",
                         "description": "The email of the user who created the schedule.\n"
                     },
+                    "cron": {
+                        "$ref": "#/types/grafana:k6/ScheduleCron:ScheduleCron",
+                        "description": "The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.\n"
+                    },
                     "deactivated": {
                         "type": "boolean",
                         "description": "Whether the schedule is deactivated.\n"
@@ -13027,7 +13098,7 @@
                     },
                     "recurrenceRule": {
                         "$ref": "#/types/grafana:k6/ScheduleRecurrenceRule:ScheduleRecurrenceRule",
-                        "description": "The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.\n"
+                        "description": "The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.\n"
                     },
                     "starts": {
                         "type": "string",
@@ -14340,7 +14411,7 @@
                 },
                 "preset": {
                     "type": "string",
-                    "description": "The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.\n"
+                    "description": "The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.\n"
                 },
                 "teamId": {
                     "type": "string",
@@ -14410,7 +14481,7 @@
                 },
                 "preset": {
                     "type": "string",
-                    "description": "The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.\n"
+                    "description": "The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.\n"
                 },
                 "teamId": {
                     "type": "string",
@@ -14479,7 +14550,7 @@
                     },
                     "preset": {
                         "type": "string",
-                        "description": "The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.\n"
+                        "description": "The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.\n"
                     },
                     "teamId": {
                         "type": "string",
@@ -16378,7 +16449,7 @@
             ]
         },
         "grafana:oss/playlist:Playlist": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  test:\n    type: grafana:oss:Playlist\n    properties:\n      name: My Playlist!\n      interval: 5m\n      items:\n        - order: 2\n          title: Terraform Dashboard By Tag\n          type: dashboard_by_tag\n          value: terraform\n        - order: 1\n          title: Terraform Dashboard By UID\n          type: dashboard_by_uid\n          value: cIBgcSjkk\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:oss/playlist:Playlist name \"{{ uid }}\"\n```\n\n```sh\n$ pulumi import grafana:oss/playlist:Playlist name \"{{ orgID }}:{{ uid }}\"\n```\n\n",
+            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.oss.Playlist(\"test\", {\n    name: \"My Playlist!\",\n    interval: \"5m\",\n    items: [\n        {\n            order: 2,\n            type: \"dashboard_by_tag\",\n            value: \"terraform\",\n        },\n        {\n            order: 1,\n            type: \"dashboard_by_uid\",\n            value: \"cIBgcSjkk\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest = grafana.oss.Playlist(\"test\",\n    name=\"My Playlist!\",\n    interval=\"5m\",\n    items=[\n        {\n            \"order\": 2,\n            \"type\": \"dashboard_by_tag\",\n            \"value\": \"terraform\",\n        },\n        {\n            \"order\": 1,\n            \"type\": \"dashboard_by_uid\",\n            \"value\": \"cIBgcSjkk\",\n        },\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Oss.Playlist(\"test\", new()\n    {\n        Name = \"My Playlist!\",\n        Interval = \"5m\",\n        Items = new[]\n        {\n            new Grafana.Oss.Inputs.PlaylistItemArgs\n            {\n                Order = 2,\n                Type = \"dashboard_by_tag\",\n                Value = \"terraform\",\n            },\n            new Grafana.Oss.Inputs.PlaylistItemArgs\n            {\n                Order = 1,\n                Type = \"dashboard_by_uid\",\n                Value = \"cIBgcSjkk\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oss.NewPlaylist(ctx, \"test\", \u0026oss.PlaylistArgs{\n\t\t\tName:     pulumi.String(\"My Playlist!\"),\n\t\t\tInterval: pulumi.String(\"5m\"),\n\t\t\tItems: oss.PlaylistItemArray{\n\t\t\t\t\u0026oss.PlaylistItemArgs{\n\t\t\t\t\tOrder: pulumi.Int(2),\n\t\t\t\t\tType:  pulumi.String(\"dashboard_by_tag\"),\n\t\t\t\t\tValue: pulumi.String(\"terraform\"),\n\t\t\t\t},\n\t\t\t\t\u0026oss.PlaylistItemArgs{\n\t\t\t\t\tOrder: pulumi.Int(1),\n\t\t\t\t\tType:  pulumi.String(\"dashboard_by_uid\"),\n\t\t\t\t\tValue: pulumi.String(\"cIBgcSjkk\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.Playlist;\nimport com.pulumi.grafana.oss.PlaylistArgs;\nimport com.pulumi.grafana.oss.inputs.PlaylistItemArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Playlist(\"test\", PlaylistArgs.builder()\n            .name(\"My Playlist!\")\n            .interval(\"5m\")\n            .items(            \n                PlaylistItemArgs.builder()\n                    .order(2)\n                    .type(\"dashboard_by_tag\")\n                    .value(\"terraform\")\n                    .build(),\n                PlaylistItemArgs.builder()\n                    .order(1)\n                    .type(\"dashboard_by_uid\")\n                    .value(\"cIBgcSjkk\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:oss:Playlist\n    properties:\n      name: My Playlist!\n      interval: 5m\n      items:\n        - order: 2\n          type: dashboard_by_tag\n          value: terraform\n        - order: 1\n          type: dashboard_by_uid\n          value: cIBgcSjkk\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:oss/playlist:Playlist name \"{{ uid }}\"\n```\n\n```sh\n$ pulumi import grafana:oss/playlist:Playlist name \"{{ orgID }}:{{ uid }}\"\n```\n\n",
             "properties": {
                 "interval": {
                     "type": "string"
@@ -19196,10 +19267,14 @@
             }
         },
         "grafana:k6/getSchedule:getSchedule": {
-            "description": "Retrieves a k6 schedule.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  scheduleProject:\n    type: grafana:k6:Project\n    name: schedule_project\n    properties:\n      name: Terraform Schedule Test Project\n  scheduleLoadTest:\n    type: grafana:k6:LoadTest\n    name: schedule_load_test\n    properties:\n      projectId: ${scheduleProject.id}\n      name: Terraform Test Load Test for Schedule\n      script: |\n        export default function() {\n          console.log('Hello from k6 schedule test!');\n        }\n    options:\n      dependsOn:\n        - ${scheduleProject}\n  testSchedule:\n    type: grafana:k6:Schedule\n    name: test_schedule\n    properties:\n      loadTestId: ${scheduleLoadTest.id}\n      starts: 2024-12-25T10:00:00Z\n      recurrenceRule:\n        - frequency: MONTHLY\n          interval: 12\n          count: 100\n    options:\n      dependsOn:\n        - ${scheduleLoadTest}\nvariables:\n  fromLoadTest:\n    fn::invoke:\n      function: grafana:k6:getSchedule\n      arguments:\n        loadTestId: ${scheduleLoadTest.id}\noutputs:\n  completeScheduleInfo:\n    id: ${fromLoadTest.id}\n    loadTestId: ${fromLoadTest.loadTestId}\n    starts: ${fromLoadTest.starts}\n    deactivated: ${fromLoadTest.deactivated}\n    nextRun: ${fromLoadTest.nextRun}\n    createdBy: ${fromLoadTest.createdBy}\n    recurrenceRule: ${fromLoadTest.recurrenceRule}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Retrieves a k6 schedule.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  scheduleProject:\n    type: grafana:k6:Project\n    name: schedule_project\n    properties:\n      name: Terraform Schedule Test Project\n  scheduleLoadTest:\n    type: grafana:k6:LoadTest\n    name: schedule_load_test\n    properties:\n      projectId: ${scheduleProject.id}\n      name: Terraform Test Load Test for Schedule\n      script: |\n        export default function() {\n          console.log('Hello from k6 schedule test!');\n        }\n    options:\n      dependsOn:\n        - ${scheduleProject}\n  testSchedule:\n    type: grafana:k6:Schedule\n    name: test_schedule\n    properties:\n      loadTestId: ${scheduleLoadTest.id}\n      starts: 2024-12-25T10:00:00Z\n      recurrenceRule:\n        - frequency: MONTHLY\n          interval: 12\n          count: 100\n    options:\n      dependsOn:\n        - ${scheduleLoadTest}\nvariables:\n  fromLoadTest:\n    fn::invoke:\n      function: grafana:k6:getSchedule\n      arguments:\n        loadTestId: ${scheduleLoadTest.id}\noutputs:\n  completeScheduleInfo:\n    id: ${fromLoadTest.id}\n    loadTestId: ${fromLoadTest.loadTestId}\n    starts: ${fromLoadTest.starts}\n    deactivated: ${fromLoadTest.deactivated}\n    nextRun: ${fromLoadTest.nextRun}\n    createdBy: ${fromLoadTest.createdBy}\n    recurrenceRule: ${fromLoadTest.recurrenceRule}\n    cron: ${fromLoadTest.cron}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getSchedule.\n",
                 "properties": {
+                    "cron": {
+                        "$ref": "#/types/grafana:k6/getScheduleCron:getScheduleCron",
+                        "description": "The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.\n"
+                    },
                     "loadTestId": {
                         "type": "string",
                         "description": "The identifier of the load test to retrieve the schedule for.\n"
@@ -19220,6 +19295,10 @@
                     "createdBy": {
                         "description": "The email of the user who created the schedule.\n",
                         "type": "string"
+                    },
+                    "cron": {
+                        "$ref": "#/types/grafana:k6/getScheduleCron:getScheduleCron",
+                        "description": "The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.\n"
                     },
                     "deactivated": {
                         "description": "Whether the schedule is deactivated.\n",
@@ -19258,7 +19337,7 @@
             }
         },
         "grafana:k6/getSchedules:getSchedules": {
-            "description": "Retrieves all k6 schedules.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  schedulesProject:\n    type: grafana:k6:Project\n    name: schedules_project\n    properties:\n      name: Terraform Schedules Test Project\n  schedulesLoadTest:\n    type: grafana:k6:LoadTest\n    name: schedules_load_test\n    properties:\n      projectId: ${schedulesProject.id}\n      name: Terraform Test Load Test for Schedules\n      script: |\n        export default function() {\n          console.log('Hello from k6 schedules test!');\n        }\n    options:\n      dependsOn:\n        - ${schedulesProject}\n  schedulesLoadTest2:\n    type: grafana:k6:LoadTest\n    name: schedules_load_test_2\n    properties:\n      projectId: ${schedulesProject.id}\n      name: Terraform Test Load Test for Schedules (2)\n      script: |\n        export default function() {\n          console.log('Hello from k6 schedules test!');\n        }\n    options:\n      dependsOn:\n        - ${schedulesProject}\n  testSchedule1:\n    type: grafana:k6:Schedule\n    name: test_schedule_1\n    properties:\n      loadTestId: ${schedulesLoadTest.id}\n      starts: 2029-12-25T10:00:00Z\n      recurrenceRule:\n        - frequency: MONTHLY\n          interval: 15\n          count: 100\n    options:\n      dependsOn:\n        - ${schedulesLoadTest}\n  testSchedule2:\n    type: grafana:k6:Schedule\n    name: test_schedule_2\n    properties:\n      loadTestId: ${schedulesLoadTest2.id}\n      starts: 2023-12-26T14:00:00Z\n      recurrenceRule:\n        - frequency: WEEKLY\n          interval: 2\n          until: 2047-01-31T23:59:59Z\n    options:\n      dependsOn:\n        - ${schedulesLoadTest2}\nvariables:\n  fromLoadTestId:\n    fn::invoke:\n      function: grafana:k6:getSchedules\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Retrieves all k6 schedules.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  schedulesProject:\n    type: grafana:k6:Project\n    name: schedules_project\n    properties:\n      name: Terraform Schedules Test Project\n  schedulesLoadTest:\n    type: grafana:k6:LoadTest\n    name: schedules_load_test\n    properties:\n      projectId: ${schedulesProject.id}\n      name: Terraform Test Load Test for Schedules\n      script: |\n        export default function() {\n          console.log('Hello from k6 schedules test!');\n        }\n    options:\n      dependsOn:\n        - ${schedulesProject}\n  schedulesLoadTest2:\n    type: grafana:k6:LoadTest\n    name: schedules_load_test_2\n    properties:\n      projectId: ${schedulesProject.id}\n      name: Terraform Test Load Test for Schedules (2)\n      script: |\n        export default function() {\n          console.log('Hello from k6 schedules test!');\n        }\n    options:\n      dependsOn:\n        - ${schedulesProject}\n  schedulesLoadTest3:\n    type: grafana:k6:LoadTest\n    name: schedules_load_test_3\n    properties:\n      projectId: ${schedulesProject.id}\n      name: Terraform Test Load Test for Schedules (3)\n      script: |\n        export default function() {\n          console.log('Hello from k6 schedules test!');\n        }\n    options:\n      dependsOn:\n        - ${schedulesProject}\n  testSchedule1:\n    type: grafana:k6:Schedule\n    name: test_schedule_1\n    properties:\n      loadTestId: ${schedulesLoadTest.id}\n      starts: 2029-12-25T10:00:00Z\n      recurrenceRule:\n        - frequency: MONTHLY\n          interval: 15\n          count: 100\n    options:\n      dependsOn:\n        - ${schedulesLoadTest}\n  testSchedule2:\n    type: grafana:k6:Schedule\n    name: test_schedule_2\n    properties:\n      loadTestId: ${schedulesLoadTest2.id}\n      starts: 2023-12-26T14:00:00Z\n      recurrenceRule:\n        - frequency: WEEKLY\n          interval: 2\n          until: 2047-01-31T23:59:59Z\n    options:\n      dependsOn:\n        - ${schedulesLoadTest2}\n  testSchedule3:\n    type: grafana:k6:Schedule\n    name: test_schedule_3\n    properties:\n      loadTestId: ${schedulesLoadTest3.id}\n      starts: 2023-12-26T14:00:00Z\n      cron:\n        - schedule: 0 10 1 12 6\n          timezone: UTC\n    options:\n      dependsOn:\n        - ${schedulesLoadTest3}\nvariables:\n  fromLoadTestId:\n    fn::invoke:\n      function: grafana:k6:getSchedules\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "outputs": {
                 "description": "A collection of values returned by getSchedules.\n",
                 "properties": {

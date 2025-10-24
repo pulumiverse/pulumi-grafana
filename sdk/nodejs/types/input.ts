@@ -2920,6 +2920,28 @@ export namespace fleetManagement {
 }
 
 export namespace k6 {
+    export interface GetScheduleCron {
+        /**
+         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+         */
+        schedule?: string;
+        /**
+         * The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+         */
+        timezone?: string;
+    }
+
+    export interface GetScheduleCronArgs {
+        /**
+         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+         */
+        schedule?: pulumi.Input<string>;
+        /**
+         * The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+         */
+        timezone?: pulumi.Input<string>;
+    }
+
     export interface GetScheduleRecurrenceRule {
         /**
          * The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
@@ -2964,6 +2986,17 @@ export namespace k6 {
          * The end time for the recurrence (RFC3339 format).
          */
         until?: pulumi.Input<string>;
+    }
+
+    export interface ScheduleCron {
+        /**
+         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+         */
+        schedule?: pulumi.Input<string>;
+        /**
+         * The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+         */
+        timezone?: pulumi.Input<string>;
     }
 
     export interface ScheduleRecurrenceRule {

@@ -24,6 +24,8 @@ func LookupSchedule(ctx *pulumi.Context, args *LookupScheduleArgs, opts ...pulum
 
 // A collection of arguments for invoking getSchedule.
 type LookupScheduleArgs struct {
+	// The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
+	Cron *GetScheduleCron `pulumi:"cron"`
 	// The identifier of the load test to retrieve the schedule for.
 	LoadTestId string `pulumi:"loadTestId"`
 	// The schedule recurrence settings. If null, the test will run only once on the starts date.
@@ -34,6 +36,8 @@ type LookupScheduleArgs struct {
 type LookupScheduleResult struct {
 	// The email of the user who created the schedule.
 	CreatedBy string `pulumi:"createdBy"`
+	// The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
+	Cron *GetScheduleCron `pulumi:"cron"`
 	// Whether the schedule is deactivated.
 	Deactivated bool `pulumi:"deactivated"`
 	// Numeric identifier of the schedule.
@@ -59,6 +63,8 @@ func LookupScheduleOutput(ctx *pulumi.Context, args LookupScheduleOutputArgs, op
 
 // A collection of arguments for invoking getSchedule.
 type LookupScheduleOutputArgs struct {
+	// The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
+	Cron GetScheduleCronPtrInput `pulumi:"cron"`
 	// The identifier of the load test to retrieve the schedule for.
 	LoadTestId pulumi.StringInput `pulumi:"loadTestId"`
 	// The schedule recurrence settings. If null, the test will run only once on the starts date.
@@ -87,6 +93,11 @@ func (o LookupScheduleResultOutput) ToLookupScheduleResultOutputWithContext(ctx 
 // The email of the user who created the schedule.
 func (o LookupScheduleResultOutput) CreatedBy() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupScheduleResult) string { return v.CreatedBy }).(pulumi.StringOutput)
+}
+
+// The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
+func (o LookupScheduleResultOutput) Cron() GetScheduleCronPtrOutput {
+	return o.ApplyT(func(v LookupScheduleResult) *GetScheduleCron { return v.Cron }).(GetScheduleCronPtrOutput)
 }
 
 // Whether the schedule is deactivated.

@@ -15,6 +15,45 @@ import (
 // * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := oss.NewPlaylist(ctx, "test", &oss.PlaylistArgs{
+//				Name:     pulumi.String("My Playlist!"),
+//				Interval: pulumi.String("5m"),
+//				Items: oss.PlaylistItemArray{
+//					&oss.PlaylistItemArgs{
+//						Order: pulumi.Int(2),
+//						Type:  pulumi.String("dashboard_by_tag"),
+//						Value: pulumi.String("terraform"),
+//					},
+//					&oss.PlaylistItemArgs{
+//						Order: pulumi.Int(1),
+//						Type:  pulumi.String("dashboard_by_uid"),
+//						Value: pulumi.String("cIBgcSjkk"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // ```sh

@@ -15,6 +15,7 @@ namespace Pulumiverse.Grafana.K6.Outputs
     public sealed class GetSchedulesScheduleResult
     {
         public readonly string CreatedBy;
+        public readonly Outputs.GetSchedulesScheduleCronResult Cron;
         public readonly bool Deactivated;
         public readonly string Id;
         public readonly string LoadTestId;
@@ -25,6 +26,8 @@ namespace Pulumiverse.Grafana.K6.Outputs
         [OutputConstructor]
         private GetSchedulesScheduleResult(
             string createdBy,
+
+            Outputs.GetSchedulesScheduleCronResult cron,
 
             bool deactivated,
 
@@ -39,6 +42,7 @@ namespace Pulumiverse.Grafana.K6.Outputs
             string starts)
         {
             CreatedBy = createdBy;
+            Cron = cron;
             Deactivated = deactivated;
             Id = id;
             LoadTestId = loadTestId;

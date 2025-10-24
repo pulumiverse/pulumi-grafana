@@ -159,6 +159,29 @@ class Playlist(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.oss.Playlist("test",
+            name="My Playlist!",
+            interval="5m",
+            items=[
+                {
+                    "order": 2,
+                    "type": "dashboard_by_tag",
+                    "value": "terraform",
+                },
+                {
+                    "order": 1,
+                    "type": "dashboard_by_uid",
+                    "value": "cIBgcSjkk",
+                },
+            ])
+        ```
+
         ## Import
 
         ```sh
@@ -183,6 +206,29 @@ class Playlist(pulumi.CustomResource):
         """
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.oss.Playlist("test",
+            name="My Playlist!",
+            interval="5m",
+            items=[
+                {
+                    "order": 2,
+                    "type": "dashboard_by_tag",
+                    "value": "terraform",
+                },
+                {
+                    "order": 1,
+                    "type": "dashboard_by_uid",
+                    "value": "cIBgcSjkk",
+                },
+            ])
+        ```
 
         ## Import
 

@@ -28,10 +28,13 @@ class GetScheduleResult:
     """
     A collection of values returned by getSchedule.
     """
-    def __init__(__self__, created_by=None, deactivated=None, id=None, load_test_id=None, next_run=None, recurrence_rule=None, starts=None):
+    def __init__(__self__, created_by=None, cron=None, deactivated=None, id=None, load_test_id=None, next_run=None, recurrence_rule=None, starts=None):
         if created_by and not isinstance(created_by, str):
             raise TypeError("Expected argument 'created_by' to be a str")
         pulumi.set(__self__, "created_by", created_by)
+        if cron and not isinstance(cron, dict):
+            raise TypeError("Expected argument 'cron' to be a dict")
+        pulumi.set(__self__, "cron", cron)
         if deactivated and not isinstance(deactivated, bool):
             raise TypeError("Expected argument 'deactivated' to be a bool")
         pulumi.set(__self__, "deactivated", deactivated)
@@ -58,6 +61,14 @@ class GetScheduleResult:
         The email of the user who created the schedule.
         """
         return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter
+    def cron(self) -> Optional['outputs.GetScheduleCronResult']:
+        """
+        The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
+        """
+        return pulumi.get(self, "cron")
 
     @_builtins.property
     @pulumi.getter
@@ -115,6 +126,7 @@ class AwaitableGetScheduleResult(GetScheduleResult):
             yield self
         return GetScheduleResult(
             created_by=self.created_by,
+            cron=self.cron,
             deactivated=self.deactivated,
             id=self.id,
             load_test_id=self.load_test_id,
@@ -123,17 +135,20 @@ class AwaitableGetScheduleResult(GetScheduleResult):
             starts=self.starts)
 
 
-def get_schedule(load_test_id: Optional[_builtins.str] = None,
+def get_schedule(cron: Optional[Union['GetScheduleCronArgs', 'GetScheduleCronArgsDict']] = None,
+                 load_test_id: Optional[_builtins.str] = None,
                  recurrence_rule: Optional[Union['GetScheduleRecurrenceRuleArgs', 'GetScheduleRecurrenceRuleArgsDict']] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetScheduleResult:
     """
     Retrieves a k6 schedule.
 
 
+    :param Union['GetScheduleCronArgs', 'GetScheduleCronArgsDict'] cron: The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
     :param _builtins.str load_test_id: The identifier of the load test to retrieve the schedule for.
     :param Union['GetScheduleRecurrenceRuleArgs', 'GetScheduleRecurrenceRuleArgsDict'] recurrence_rule: The schedule recurrence settings. If null, the test will run only once on the starts date.
     """
     __args__ = dict()
+    __args__['cron'] = cron
     __args__['loadTestId'] = load_test_id
     __args__['recurrenceRule'] = recurrence_rule
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -141,29 +156,34 @@ def get_schedule(load_test_id: Optional[_builtins.str] = None,
 
     return AwaitableGetScheduleResult(
         created_by=pulumi.get(__ret__, 'created_by'),
+        cron=pulumi.get(__ret__, 'cron'),
         deactivated=pulumi.get(__ret__, 'deactivated'),
         id=pulumi.get(__ret__, 'id'),
         load_test_id=pulumi.get(__ret__, 'load_test_id'),
         next_run=pulumi.get(__ret__, 'next_run'),
         recurrence_rule=pulumi.get(__ret__, 'recurrence_rule'),
         starts=pulumi.get(__ret__, 'starts'))
-def get_schedule_output(load_test_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_schedule_output(cron: Optional[pulumi.Input[Optional[Union['GetScheduleCronArgs', 'GetScheduleCronArgsDict']]]] = None,
+                        load_test_id: Optional[pulumi.Input[_builtins.str]] = None,
                         recurrence_rule: Optional[pulumi.Input[Optional[Union['GetScheduleRecurrenceRuleArgs', 'GetScheduleRecurrenceRuleArgsDict']]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetScheduleResult]:
     """
     Retrieves a k6 schedule.
 
 
+    :param Union['GetScheduleCronArgs', 'GetScheduleCronArgsDict'] cron: The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
     :param _builtins.str load_test_id: The identifier of the load test to retrieve the schedule for.
     :param Union['GetScheduleRecurrenceRuleArgs', 'GetScheduleRecurrenceRuleArgsDict'] recurrence_rule: The schedule recurrence settings. If null, the test will run only once on the starts date.
     """
     __args__ = dict()
+    __args__['cron'] = cron
     __args__['loadTestId'] = load_test_id
     __args__['recurrenceRule'] = recurrence_rule
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:k6/getSchedule:getSchedule', __args__, opts=opts, typ=GetScheduleResult)
     return __ret__.apply(lambda __response__: GetScheduleResult(
         created_by=pulumi.get(__response__, 'created_by'),
+        cron=pulumi.get(__response__, 'cron'),
         deactivated=pulumi.get(__response__, 'deactivated'),
         id=pulumi.get(__response__, 'id'),
         load_test_id=pulumi.get(__response__, 'load_test_id'),

@@ -29,6 +29,12 @@ namespace Pulumiverse.Grafana.K6
         public Output<string> CreatedBy { get; private set; } = null!;
 
         /// <summary>
+        /// The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
+        /// </summary>
+        [Output("cron")]
+        public Output<Outputs.ScheduleCron?> Cron { get; private set; } = null!;
+
+        /// <summary>
         /// Whether the schedule is deactivated.
         /// </summary>
         [Output("deactivated")]
@@ -47,7 +53,7 @@ namespace Pulumiverse.Grafana.K6
         public Output<string> NextRun { get; private set; } = null!;
 
         /// <summary>
-        /// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+        /// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         /// </summary>
         [Output("recurrenceRule")]
         public Output<Outputs.ScheduleRecurrenceRule?> RecurrenceRule { get; private set; } = null!;
@@ -106,13 +112,19 @@ namespace Pulumiverse.Grafana.K6
     public sealed class ScheduleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
+        /// </summary>
+        [Input("cron")]
+        public Input<Inputs.ScheduleCronArgs>? Cron { get; set; }
+
+        /// <summary>
         /// The identifier of the load test to schedule.
         /// </summary>
         [Input("loadTestId", required: true)]
         public Input<string> LoadTestId { get; set; } = null!;
 
         /// <summary>
-        /// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+        /// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         /// </summary>
         [Input("recurrenceRule")]
         public Input<Inputs.ScheduleRecurrenceRuleArgs>? RecurrenceRule { get; set; }
@@ -138,6 +150,12 @@ namespace Pulumiverse.Grafana.K6
         public Input<string>? CreatedBy { get; set; }
 
         /// <summary>
+        /// The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
+        /// </summary>
+        [Input("cron")]
+        public Input<Inputs.ScheduleCronGetArgs>? Cron { get; set; }
+
+        /// <summary>
         /// Whether the schedule is deactivated.
         /// </summary>
         [Input("deactivated")]
@@ -156,7 +174,7 @@ namespace Pulumiverse.Grafana.K6
         public Input<string>? NextRun { get; set; }
 
         /// <summary>
-        /// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date.
+        /// The schedule recurrence settings. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         /// </summary>
         [Input("recurrenceRule")]
         public Input<Inputs.ScheduleRecurrenceRuleGetArgs>? RecurrenceRule { get; set; }
