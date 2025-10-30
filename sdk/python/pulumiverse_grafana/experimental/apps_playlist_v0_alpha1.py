@@ -146,6 +146,26 @@ class AppsPlaylistV0Alpha1(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/apis/)
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        example = grafana.experimental.AppsPlaylistV0Alpha1("example",
+            metadata={
+                "uid": "example-playlist",
+            },
+            spec={
+                "title": "Example Playlist",
+                "interval": "5m",
+                "items": [{
+                    "type": "dashboard_by_uid",
+                    "value": "example-dashboard-uid",
+                }],
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['AppsPlaylistV0Alpha1MetadataArgs', 'AppsPlaylistV0Alpha1MetadataArgsDict']] metadata: The metadata of the resource.
@@ -163,6 +183,26 @@ class AppsPlaylistV0Alpha1(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/apis/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        example = grafana.experimental.AppsPlaylistV0Alpha1("example",
+            metadata={
+                "uid": "example-playlist",
+            },
+            spec={
+                "title": "Example Playlist",
+                "interval": "5m",
+                "items": [{
+                    "type": "dashboard_by_uid",
+                    "value": "example-dashboard-uid",
+                }],
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param AppsPlaylistV0Alpha1Args args: The arguments to use to populate this resource's properties.

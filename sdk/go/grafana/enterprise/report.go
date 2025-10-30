@@ -33,7 +33,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			test, err := oss.NewDashboard(ctx, "test", &oss.DashboardArgs{
-//				ConfigJson: pulumi.String("{\n  \"uid\": \"report-dashboard\",\n  \"title\": \"report-dashboard\"\n}\n"),
+//				ConfigJson: pulumi.String("{\n  \\\"uid\\\": \\\"report-dashboard\\\",\n  \\\"title\\\": \\\"report-dashboard\\\"\n}\n"),
 //				Message:    pulumi.String("inital commit."),
 //			})
 //			if err != nil {

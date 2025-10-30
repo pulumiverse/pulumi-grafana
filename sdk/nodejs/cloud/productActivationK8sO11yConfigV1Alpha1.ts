@@ -13,6 +13,22 @@ import * as utilities from "../utilities";
  *
  * **Note**: This is a singleton resource. The UID is automatically set to "global" and there can only be one per namespace.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const example = new grafana.cloud.ProductActivationK8sO11yConfigV1Alpha1("example", {
+ *     metadata: {
+ *         uid: "global",
+ *     },
+ *     spec: {
+ *         enabled: true,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * #!/bin/bash

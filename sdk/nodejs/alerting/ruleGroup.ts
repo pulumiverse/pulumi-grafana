@@ -66,38 +66,38 @@ import * as utilities from "../utilities";
  *                 },
  *                 datasourceUid: "-100",
  *                 model: `{
- *     "conditions": [
+ *     \\"conditions\\": [
  *         {
- *         "evaluator": {
- *             "params": [
+ *         \\"evaluator\\": {
+ *             \\"params\\": [
  *             3
  *             ],
- *             "type": "gt"
+ *             \\"type\\": \\"gt\\"
  *         },
- *         "operator": {
- *             "type": "and"
+ *         \\"operator\\": {
+ *             \\"type\\": \\"and\\"
  *         },
- *         "query": {
- *             "params": [
- *             "A"
+ *         \\"query\\": {
+ *             \\"params\\": [
+ *             \\"A\\"
  *             ]
  *         },
- *         "reducer": {
- *             "params": [],
- *             "type": "last"
+ *         \\"reducer\\": {
+ *             \\"params\\": [],
+ *             \\"type\\": \\"last\\"
  *         },
- *         "type": "query"
+ *         \\"type\\": \\"query\\"
  *         }
  *     ],
- *     "datasource": {
- *         "type": "__expr__",
- *         "uid": "-100"
+ *     \\"datasource\\": {
+ *         \\"type\\": \\"__expr__\\",
+ *         \\"uid\\": \\"-100\\"
  *     },
- *     "hide": false,
- *     "intervalMs": 1000,
- *     "maxDataPoints": 43200,
- *     "refId": "B",
- *     "type": "classic_conditions"
+ *     \\"hide\\": false,
+ *     \\"intervalMs\\": 1000,
+ *     \\"maxDataPoints\\": 43200,
+ *     \\"refId\\": \\"B\\",
+ *     \\"type\\": \\"classic_conditions\\"
  * }
  * `,
  *             },

@@ -146,6 +146,28 @@ class AppsDashboard(pulumi.CustomResource):
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        example = grafana.experimental.AppsDashboard("example",
+            metadata={
+                "uid": "example-dashboard",
+            },
+            spec={
+                "title": "Example Dashboard",
+                "json": json.dumps({
+                    "title": "Example Dashboard",
+                    "uid": "example-dashboard",
+                    "panels": [],
+                    "schemaVersion": 42,
+                }),
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['AppsDashboardMetadataArgs', 'AppsDashboardMetadataArgsDict']] metadata: The metadata of the resource.
@@ -163,6 +185,28 @@ class AppsDashboard(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        example = grafana.experimental.AppsDashboard("example",
+            metadata={
+                "uid": "example-dashboard",
+            },
+            spec={
+                "title": "Example Dashboard",
+                "json": json.dumps({
+                    "title": "Example Dashboard",
+                    "uid": "example-dashboard",
+                    "panels": [],
+                    "schemaVersion": 42,
+                }),
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param AppsDashboardArgs args: The arguments to use to populate this resource's properties.

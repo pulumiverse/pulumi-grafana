@@ -12,6 +12,85 @@ import (
 )
 
 // Retrieves a k6 schedule.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/k6"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			scheduleProject, err := k6.NewProject(ctx, "schedule_project", &k6.ProjectArgs{
+//				Name: pulumi.String("Terraform Schedule Test Project"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			scheduleLoadTest, err := k6.NewLoadTest(ctx, "schedule_load_test", &k6.LoadTestArgs{
+//				ProjectId: scheduleProject.ID(),
+//				Name:      pulumi.String("Terraform Test Load Test for Schedule"),
+//				Script:    pulumi.String("export default function() {\n  console.log('Hello from k6 schedule test!');\n}\n"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				scheduleProject,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_, err = k6.NewSchedule(ctx, "test_schedule", &k6.ScheduleArgs{
+//				LoadTestId: scheduleLoadTest.ID(),
+//				Starts:     pulumi.String("2024-12-25T10:00:00Z"),
+//				RecurrenceRule: &k6.ScheduleRecurrenceRuleArgs{
+//					Frequency: pulumi.String("MONTHLY"),
+//					Interval:  pulumi.Int(12),
+//					Count:     pulumi.Int(100),
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				scheduleLoadTest,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			fromLoadTest := k6.LookupScheduleOutput(ctx, k6.GetScheduleOutputArgs{
+//				LoadTestId: scheduleLoadTest.ID(),
+//			}, nil)
+//			ctx.Export("completeScheduleInfo", pulumi.Map{
+//				"id": fromLoadTest.ApplyT(func(fromLoadTest k6.GetScheduleResult) (*string, error) {
+//					return &fromLoadTest.Id, nil
+//				}).(pulumi.StringPtrOutput),
+//				"loadTestId": fromLoadTest.ApplyT(func(fromLoadTest k6.GetScheduleResult) (*string, error) {
+//					return &fromLoadTest.LoadTestId, nil
+//				}).(pulumi.StringPtrOutput),
+//				"starts": fromLoadTest.ApplyT(func(fromLoadTest k6.GetScheduleResult) (*string, error) {
+//					return &fromLoadTest.Starts, nil
+//				}).(pulumi.StringPtrOutput),
+//				"deactivated": fromLoadTest.ApplyT(func(fromLoadTest k6.GetScheduleResult) (*bool, error) {
+//					return &fromLoadTest.Deactivated, nil
+//				}).(pulumi.BoolPtrOutput),
+//				"nextRun": fromLoadTest.ApplyT(func(fromLoadTest k6.GetScheduleResult) (*string, error) {
+//					return &fromLoadTest.NextRun, nil
+//				}).(pulumi.StringPtrOutput),
+//				"createdBy": fromLoadTest.ApplyT(func(fromLoadTest k6.GetScheduleResult) (*string, error) {
+//					return &fromLoadTest.CreatedBy, nil
+//				}).(pulumi.StringPtrOutput),
+//				"recurrenceRule": fromLoadTest.ApplyT(func(fromLoadTest k6.GetScheduleResult) (k6.GetScheduleRecurrenceRule, error) {
+//					return fromLoadTest.RecurrenceRule, nil
+//				}).(k6.GetScheduleRecurrenceRuleOutput),
+//				"cron": fromLoadTest.ApplyT(func(fromLoadTest k6.GetScheduleResult) (k6.GetScheduleCron, error) {
+//					return fromLoadTest.Cron, nil
+//				}).(k6.GetScheduleCronOutput),
+//			})
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupSchedule(ctx *pulumi.Context, args *LookupScheduleArgs, opts ...pulumi.InvokeOption) (*LookupScheduleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupScheduleResult

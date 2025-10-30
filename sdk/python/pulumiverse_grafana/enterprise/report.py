@@ -449,8 +449,8 @@ class Report(pulumi.CustomResource):
 
         test = grafana.oss.Dashboard("test",
             config_json=\"\"\"{
-          "uid": "report-dashboard",
-          "title": "report-dashboard"
+          \\"uid\\": \\"report-dashboard\\",
+          \\"title\\": \\"report-dashboard\\"
         }
         \"\"\",
             message="inital commit.")
@@ -510,8 +510,8 @@ class Report(pulumi.CustomResource):
 
         test = grafana.oss.Dashboard("test",
             config_json=\"\"\"{
-          "uid": "report-dashboard",
-          "title": "report-dashboard"
+          \\"uid\\": \\"report-dashboard\\",
+          \\"title\\": \\"report-dashboard\\"
         }
         \"\"\",
             message="inital commit.")

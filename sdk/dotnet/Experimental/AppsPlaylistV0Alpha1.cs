@@ -15,6 +15,40 @@ namespace Pulumiverse.Grafana.Experimental
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/apis/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Grafana.Experimental.AppsPlaylistV0Alpha1("example", new()
+    ///     {
+    ///         Metadata = new Grafana.Experimental.Inputs.AppsPlaylistV0Alpha1MetadataArgs
+    ///         {
+    ///             Uid = "example-playlist",
+    ///         },
+    ///         Spec = new Grafana.Experimental.Inputs.AppsPlaylistV0Alpha1SpecArgs
+    ///         {
+    ///             Title = "Example Playlist",
+    ///             Interval = "5m",
+    ///             Items = new[]
+    ///             {
+    ///                 new Grafana.Experimental.Inputs.AppsPlaylistV0Alpha1SpecItemArgs
+    ///                 {
+    ///                     Type = "dashboard_by_uid",
+    ///                     Value = "example-dashboard-uid",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [GrafanaResourceType("grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1")]
     public partial class AppsPlaylistV0Alpha1 : global::Pulumi.CustomResource
