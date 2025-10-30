@@ -14,18 +14,234 @@ namespace Pulumiverse.Grafana.K6
     {
         /// <summary>
         /// Retrieves a k6 schedule.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var scheduleProject = new Grafana.K6.Project("schedule_project", new()
+        ///     {
+        ///         Name = "Terraform Schedule Test Project",
+        ///     });
+        /// 
+        ///     var scheduleLoadTest = new Grafana.K6.LoadTest("schedule_load_test", new()
+        ///     {
+        ///         ProjectId = scheduleProject.Id,
+        ///         Name = "Terraform Test Load Test for Schedule",
+        ///         Script = @"export default function() {
+        ///   console.log('Hello from k6 schedule test!');
+        /// }
+        /// ",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             scheduleProject,
+        ///         },
+        ///     });
+        /// 
+        ///     var testSchedule = new Grafana.K6.Schedule("test_schedule", new()
+        ///     {
+        ///         LoadTestId = scheduleLoadTest.Id,
+        ///         Starts = "2024-12-25T10:00:00Z",
+        ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
+        ///         {
+        ///             Frequency = "MONTHLY",
+        ///             Interval = 12,
+        ///             Count = 100,
+        ///         },
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             scheduleLoadTest,
+        ///         },
+        ///     });
+        /// 
+        ///     var fromLoadTest = Grafana.K6.GetSchedule.Invoke(new()
+        ///     {
+        ///         LoadTestId = scheduleLoadTest.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["completeScheduleInfo"] = 
+        ///         {
+        ///             { "id", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.Id) },
+        ///             { "loadTestId", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.LoadTestId) },
+        ///             { "starts", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.Starts) },
+        ///             { "deactivated", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.Deactivated) },
+        ///             { "nextRun", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.NextRun) },
+        ///             { "createdBy", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.CreatedBy) },
+        ///             { "recurrenceRule", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.RecurrenceRule) },
+        ///             { "cron", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.Cron) },
+        ///         },
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetScheduleResult> InvokeAsync(GetScheduleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetScheduleResult>("grafana:k6/getSchedule:getSchedule", args ?? new GetScheduleArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieves a k6 schedule.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var scheduleProject = new Grafana.K6.Project("schedule_project", new()
+        ///     {
+        ///         Name = "Terraform Schedule Test Project",
+        ///     });
+        /// 
+        ///     var scheduleLoadTest = new Grafana.K6.LoadTest("schedule_load_test", new()
+        ///     {
+        ///         ProjectId = scheduleProject.Id,
+        ///         Name = "Terraform Test Load Test for Schedule",
+        ///         Script = @"export default function() {
+        ///   console.log('Hello from k6 schedule test!');
+        /// }
+        /// ",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             scheduleProject,
+        ///         },
+        ///     });
+        /// 
+        ///     var testSchedule = new Grafana.K6.Schedule("test_schedule", new()
+        ///     {
+        ///         LoadTestId = scheduleLoadTest.Id,
+        ///         Starts = "2024-12-25T10:00:00Z",
+        ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
+        ///         {
+        ///             Frequency = "MONTHLY",
+        ///             Interval = 12,
+        ///             Count = 100,
+        ///         },
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             scheduleLoadTest,
+        ///         },
+        ///     });
+        /// 
+        ///     var fromLoadTest = Grafana.K6.GetSchedule.Invoke(new()
+        ///     {
+        ///         LoadTestId = scheduleLoadTest.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["completeScheduleInfo"] = 
+        ///         {
+        ///             { "id", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.Id) },
+        ///             { "loadTestId", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.LoadTestId) },
+        ///             { "starts", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.Starts) },
+        ///             { "deactivated", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.Deactivated) },
+        ///             { "nextRun", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.NextRun) },
+        ///             { "createdBy", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.CreatedBy) },
+        ///             { "recurrenceRule", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.RecurrenceRule) },
+        ///             { "cron", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.Cron) },
+        ///         },
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetScheduleResult> Invoke(GetScheduleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetScheduleResult>("grafana:k6/getSchedule:getSchedule", args ?? new GetScheduleInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieves a k6 schedule.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var scheduleProject = new Grafana.K6.Project("schedule_project", new()
+        ///     {
+        ///         Name = "Terraform Schedule Test Project",
+        ///     });
+        /// 
+        ///     var scheduleLoadTest = new Grafana.K6.LoadTest("schedule_load_test", new()
+        ///     {
+        ///         ProjectId = scheduleProject.Id,
+        ///         Name = "Terraform Test Load Test for Schedule",
+        ///         Script = @"export default function() {
+        ///   console.log('Hello from k6 schedule test!');
+        /// }
+        /// ",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             scheduleProject,
+        ///         },
+        ///     });
+        /// 
+        ///     var testSchedule = new Grafana.K6.Schedule("test_schedule", new()
+        ///     {
+        ///         LoadTestId = scheduleLoadTest.Id,
+        ///         Starts = "2024-12-25T10:00:00Z",
+        ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
+        ///         {
+        ///             Frequency = "MONTHLY",
+        ///             Interval = 12,
+        ///             Count = 100,
+        ///         },
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             scheduleLoadTest,
+        ///         },
+        ///     });
+        /// 
+        ///     var fromLoadTest = Grafana.K6.GetSchedule.Invoke(new()
+        ///     {
+        ///         LoadTestId = scheduleLoadTest.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["completeScheduleInfo"] = 
+        ///         {
+        ///             { "id", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.Id) },
+        ///             { "loadTestId", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.LoadTestId) },
+        ///             { "starts", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.Starts) },
+        ///             { "deactivated", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.Deactivated) },
+        ///             { "nextRun", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.NextRun) },
+        ///             { "createdBy", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.CreatedBy) },
+        ///             { "recurrenceRule", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.RecurrenceRule) },
+        ///             { "cron", fromLoadTest.Apply(getScheduleResult =&gt; getScheduleResult.Cron) },
+        ///         },
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetScheduleResult> Invoke(GetScheduleInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetScheduleResult>("grafana:k6/getSchedule:getSchedule", args ?? new GetScheduleInvokeArgs(), options.WithDefaults());

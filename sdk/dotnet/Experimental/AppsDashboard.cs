@@ -15,6 +15,41 @@ namespace Pulumiverse.Grafana.Experimental
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Grafana.Experimental.AppsDashboard("example", new()
+    ///     {
+    ///         Metadata = new Grafana.Experimental.Inputs.AppsDashboardMetadataArgs
+    ///         {
+    ///             Uid = "example-dashboard",
+    ///         },
+    ///         Spec = new Grafana.Experimental.Inputs.AppsDashboardSpecArgs
+    ///         {
+    ///             Title = "Example Dashboard",
+    ///             Json = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["title"] = "Example Dashboard",
+    ///                 ["uid"] = "example-dashboard",
+    ///                 ["panels"] = new[]
+    ///                 {
+    ///                 },
+    ///                 ["schemaVersion"] = 42,
+    ///             }),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [GrafanaResourceType("grafana:experimental/appsDashboard:AppsDashboard")]
     public partial class AppsDashboard : global::Pulumi.CustomResource

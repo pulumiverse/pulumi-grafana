@@ -15,6 +15,50 @@ import (
 //
 // * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/experimental"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"title":         "Example Dashboard",
+//				"uid":           "example-dashboard",
+//				"panels":        []interface{}{},
+//				"schemaVersion": 42,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = experimental.NewAppsDashboard(ctx, "example", &experimental.AppsDashboardArgs{
+//				Metadata: &experimental.AppsDashboardMetadataArgs{
+//					Uid: pulumi.String("example-dashboard"),
+//				},
+//				Spec: &experimental.AppsDashboardSpecArgs{
+//					Title: pulumi.String("Example Dashboard"),
+//					Json:  pulumi.String(json0),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type AppsDashboard struct {
 	pulumi.CustomResourceState
 

@@ -222,6 +222,62 @@ class Schedule(pulumi.CustomResource):
         """
         Manages a k6 schedule for automated test execution.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        schedule_project = grafana.k6.Project("schedule_project", name="Terraform Schedule Resource Project")
+        scheduled_test = grafana.k6.LoadTest("scheduled_test",
+            project_id=schedule_project.id,
+            name="Terraform Scheduled Resource Test",
+            script=\"\"\"export default function() {
+          console.log('Hello from scheduled k6 test!');
+        }
+        \"\"\",
+            opts = pulumi.ResourceOptions(depends_on=[schedule_project]))
+        cron_monthly = grafana.k6.Schedule("cron_monthly",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T10:00:00Z",
+            cron={
+                "schedule": "0 10 1 * *",
+                "timezone": "UTC",
+            })
+        daily = grafana.k6.Schedule("daily",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T10:00:00Z",
+            recurrence_rule={
+                "frequency": "DAILY",
+                "interval": 1,
+            })
+        weekly = grafana.k6.Schedule("weekly",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T09:00:00Z",
+            recurrence_rule={
+                "frequency": "WEEKLY",
+                "interval": 1,
+                "bydays": [
+                    "MO",
+                    "WE",
+                    "FR",
+                ],
+            })
+        # Example with YEARLY frequency and count
+        yearly = grafana.k6.Schedule("yearly",
+            load_test_id=scheduled_test.id,
+            starts="2024-01-01T12:00:00Z",
+            recurrence_rule={
+                "frequency": "YEARLY",
+                "interval": 1,
+                "count": 5,
+            })
+        # One-time schedule without recurrence
+        one_time = grafana.k6.Schedule("one_time",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T15:00:00Z")
+        ```
+
         ## Import
 
         ```sh
@@ -243,6 +299,62 @@ class Schedule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a k6 schedule for automated test execution.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        schedule_project = grafana.k6.Project("schedule_project", name="Terraform Schedule Resource Project")
+        scheduled_test = grafana.k6.LoadTest("scheduled_test",
+            project_id=schedule_project.id,
+            name="Terraform Scheduled Resource Test",
+            script=\"\"\"export default function() {
+          console.log('Hello from scheduled k6 test!');
+        }
+        \"\"\",
+            opts = pulumi.ResourceOptions(depends_on=[schedule_project]))
+        cron_monthly = grafana.k6.Schedule("cron_monthly",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T10:00:00Z",
+            cron={
+                "schedule": "0 10 1 * *",
+                "timezone": "UTC",
+            })
+        daily = grafana.k6.Schedule("daily",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T10:00:00Z",
+            recurrence_rule={
+                "frequency": "DAILY",
+                "interval": 1,
+            })
+        weekly = grafana.k6.Schedule("weekly",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T09:00:00Z",
+            recurrence_rule={
+                "frequency": "WEEKLY",
+                "interval": 1,
+                "bydays": [
+                    "MO",
+                    "WE",
+                    "FR",
+                ],
+            })
+        # Example with YEARLY frequency and count
+        yearly = grafana.k6.Schedule("yearly",
+            load_test_id=scheduled_test.id,
+            starts="2024-01-01T12:00:00Z",
+            recurrence_rule={
+                "frequency": "YEARLY",
+                "interval": 1,
+                "count": 5,
+            })
+        # One-time schedule without recurrence
+        one_time = grafana.k6.Schedule("one_time",
+            load_test_id=scheduled_test.id,
+            starts="2024-12-25T15:00:00Z")
+        ```
 
         ## Import
 

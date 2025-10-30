@@ -233,8 +233,8 @@ class Folder(pulumi.CustomResource):
         test_folder_dashboard = grafana.oss.Dashboard("test_folder",
             folder=test_folder.id,
             config_json=\"\"\"{
-          "title": "Dashboard in folder",
-          "uid": "dashboard-in-folder"
+          \\"title\\": \\"Dashboard in folder\\",
+          \\"uid\\": \\"dashboard-in-folder\\"
         }
         \"\"\")
         test_folder_with_uid = grafana.oss.Folder("test_folder_with_uid",
@@ -280,8 +280,8 @@ class Folder(pulumi.CustomResource):
         test_folder_dashboard = grafana.oss.Dashboard("test_folder",
             folder=test_folder.id,
             config_json=\"\"\"{
-          "title": "Dashboard in folder",
-          "uid": "dashboard-in-folder"
+          \\"title\\": \\"Dashboard in folder\\",
+          \\"uid\\": \\"dashboard-in-folder\\"
         }
         \"\"\")
         test_folder_with_uid = grafana.oss.Folder("test_folder_with_uid",

@@ -11,6 +11,27 @@ import * as utilities from "../utilities";
  *
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/apis/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const example = new grafana.experimental.AppsPlaylistV0Alpha1("example", {
+ *     metadata: {
+ *         uid: "example-playlist",
+ *     },
+ *     spec: {
+ *         title: "Example Playlist",
+ *         interval: "5m",
+ *         items: [{
+ *             type: "dashboard_by_uid",
+ *             value: "example-dashboard-uid",
+ *         }],
+ *     },
+ * });
+ * ```
  */
 export class AppsPlaylistV0Alpha1 extends pulumi.CustomResource {
     /**

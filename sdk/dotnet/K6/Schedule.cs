@@ -13,6 +13,99 @@ namespace Pulumiverse.Grafana.K6
     /// <summary>
     /// Manages a k6 schedule for automated test execution.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var scheduleProject = new Grafana.K6.Project("schedule_project", new()
+    ///     {
+    ///         Name = "Terraform Schedule Resource Project",
+    ///     });
+    /// 
+    ///     var scheduledTest = new Grafana.K6.LoadTest("scheduled_test", new()
+    ///     {
+    ///         ProjectId = scheduleProject.Id,
+    ///         Name = "Terraform Scheduled Resource Test",
+    ///         Script = @"export default function() {
+    ///   console.log('Hello from scheduled k6 test!');
+    /// }
+    /// ",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             scheduleProject,
+    ///         },
+    ///     });
+    /// 
+    ///     var cronMonthly = new Grafana.K6.Schedule("cron_monthly", new()
+    ///     {
+    ///         LoadTestId = scheduledTest.Id,
+    ///         Starts = "2024-12-25T10:00:00Z",
+    ///         Cron = new Grafana.K6.Inputs.ScheduleCronArgs
+    ///         {
+    ///             Schedule = "0 10 1 * *",
+    ///             Timezone = "UTC",
+    ///         },
+    ///     });
+    /// 
+    ///     var daily = new Grafana.K6.Schedule("daily", new()
+    ///     {
+    ///         LoadTestId = scheduledTest.Id,
+    ///         Starts = "2024-12-25T10:00:00Z",
+    ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
+    ///         {
+    ///             Frequency = "DAILY",
+    ///             Interval = 1,
+    ///         },
+    ///     });
+    /// 
+    ///     var weekly = new Grafana.K6.Schedule("weekly", new()
+    ///     {
+    ///         LoadTestId = scheduledTest.Id,
+    ///         Starts = "2024-12-25T09:00:00Z",
+    ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
+    ///         {
+    ///             Frequency = "WEEKLY",
+    ///             Interval = 1,
+    ///             Bydays = new[]
+    ///             {
+    ///                 "MO",
+    ///                 "WE",
+    ///                 "FR",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // Example with YEARLY frequency and count
+    ///     var yearly = new Grafana.K6.Schedule("yearly", new()
+    ///     {
+    ///         LoadTestId = scheduledTest.Id,
+    ///         Starts = "2024-01-01T12:00:00Z",
+    ///         RecurrenceRule = new Grafana.K6.Inputs.ScheduleRecurrenceRuleArgs
+    ///         {
+    ///             Frequency = "YEARLY",
+    ///             Interval = 1,
+    ///             Count = 5,
+    ///         },
+    ///     });
+    /// 
+    ///     // One-time schedule without recurrence
+    ///     var oneTime = new Grafana.K6.Schedule("one_time", new()
+    ///     {
+    ///         LoadTestId = scheduledTest.Id,
+    ///         Starts = "2024-12-25T15:00:00Z",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// ```sh

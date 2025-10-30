@@ -17,6 +17,37 @@ import (
 //
 // **Note**: This is a singleton resource. The UID is automatically set to "global" and there can only be one per namespace.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloud.NewProductActivationK8sO11yConfigV1Alpha1(ctx, "example", &cloud.ProductActivationK8sO11yConfigV1Alpha1Args{
+//				Metadata: &cloud.ProductActivationK8sO11yConfigV1Alpha1MetadataArgs{
+//					Uid: pulumi.String("global"),
+//				},
+//				Spec: &cloud.ProductActivationK8sO11yConfigV1Alpha1SpecArgs{
+//					Enabled: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // #!/bin/bash

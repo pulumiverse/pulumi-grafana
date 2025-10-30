@@ -14,6 +14,101 @@ import (
 
 // Manages a k6 schedule for automated test execution.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/k6"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			scheduleProject, err := k6.NewProject(ctx, "schedule_project", &k6.ProjectArgs{
+//				Name: pulumi.String("Terraform Schedule Resource Project"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			scheduledTest, err := k6.NewLoadTest(ctx, "scheduled_test", &k6.LoadTestArgs{
+//				ProjectId: scheduleProject.ID(),
+//				Name:      pulumi.String("Terraform Scheduled Resource Test"),
+//				Script:    pulumi.String("export default function() {\n  console.log('Hello from scheduled k6 test!');\n}\n"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				scheduleProject,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_, err = k6.NewSchedule(ctx, "cron_monthly", &k6.ScheduleArgs{
+//				LoadTestId: scheduledTest.ID(),
+//				Starts:     pulumi.String("2024-12-25T10:00:00Z"),
+//				Cron: &k6.ScheduleCronArgs{
+//					Schedule: pulumi.String("0 10 1 * *"),
+//					Timezone: pulumi.String("UTC"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = k6.NewSchedule(ctx, "daily", &k6.ScheduleArgs{
+//				LoadTestId: scheduledTest.ID(),
+//				Starts:     pulumi.String("2024-12-25T10:00:00Z"),
+//				RecurrenceRule: &k6.ScheduleRecurrenceRuleArgs{
+//					Frequency: pulumi.String("DAILY"),
+//					Interval:  pulumi.Int(1),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = k6.NewSchedule(ctx, "weekly", &k6.ScheduleArgs{
+//				LoadTestId: scheduledTest.ID(),
+//				Starts:     pulumi.String("2024-12-25T09:00:00Z"),
+//				RecurrenceRule: &k6.ScheduleRecurrenceRuleArgs{
+//					Frequency: pulumi.String("WEEKLY"),
+//					Interval:  pulumi.Int(1),
+//					Bydays: pulumi.StringArray{
+//						pulumi.String("MO"),
+//						pulumi.String("WE"),
+//						pulumi.String("FR"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Example with YEARLY frequency and count
+//			_, err = k6.NewSchedule(ctx, "yearly", &k6.ScheduleArgs{
+//				LoadTestId: scheduledTest.ID(),
+//				Starts:     pulumi.String("2024-01-01T12:00:00Z"),
+//				RecurrenceRule: &k6.ScheduleRecurrenceRuleArgs{
+//					Frequency: pulumi.String("YEARLY"),
+//					Interval:  pulumi.Int(1),
+//					Count:     pulumi.Int(5),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// One-time schedule without recurrence
+//			_, err = k6.NewSchedule(ctx, "one_time", &k6.ScheduleArgs{
+//				LoadTestId: scheduledTest.ID(),
+//				Starts:     pulumi.String("2024-12-25T15:00:00Z"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // ```sh

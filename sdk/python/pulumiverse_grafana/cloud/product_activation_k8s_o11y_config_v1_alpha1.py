@@ -147,6 +147,21 @@ class ProductActivationK8sO11yConfigV1Alpha1(pulumi.CustomResource):
 
         **Note**: This is a singleton resource. The UID is automatically set to "global" and there can only be one per namespace.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        example = grafana.cloud.ProductActivationK8sO11yConfigV1Alpha1("example",
+            metadata={
+                "uid": "global",
+            },
+            spec={
+                "enabled": True,
+            })
+        ```
+
         ## Import
 
         #!/bin/bash
@@ -175,6 +190,21 @@ class ProductActivationK8sO11yConfigV1Alpha1(pulumi.CustomResource):
         This resource allows you to enable or disable Kubernetes observability features.
 
         **Note**: This is a singleton resource. The UID is automatically set to "global" and there can only be one per namespace.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        example = grafana.cloud.ProductActivationK8sO11yConfigV1Alpha1("example",
+            metadata={
+                "uid": "global",
+            },
+            spec={
+                "enabled": True,
+            })
+        ```
 
         ## Import
 

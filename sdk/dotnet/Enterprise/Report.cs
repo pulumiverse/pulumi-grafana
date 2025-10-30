@@ -29,8 +29,8 @@ namespace Pulumiverse.Grafana.Enterprise
     ///     var test = new Grafana.Oss.Dashboard("test", new()
     ///     {
     ///         ConfigJson = @"{
-    ///   ""uid"": ""report-dashboard"",
-    ///   ""title"": ""report-dashboard""
+    ///   \""uid\"": \""report-dashboard\"",
+    ///   \""title\"": \""report-dashboard\""
     /// }
     /// ",
     ///         Message = "inital commit.",

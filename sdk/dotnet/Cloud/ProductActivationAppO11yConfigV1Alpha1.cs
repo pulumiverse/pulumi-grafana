@@ -17,6 +17,31 @@ namespace Pulumiverse.Grafana.Cloud
     /// 
     /// **Note**: This is a singleton resource. The UID is automatically set to "global" and there can only be one per namespace.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Grafana.Cloud.ProductActivationAppO11yConfigV1Alpha1("example", new()
+    ///     {
+    ///         Metadata = new Grafana.Cloud.Inputs.ProductActivationAppO11yConfigV1Alpha1MetadataArgs
+    ///         {
+    ///             Uid = "global",
+    ///         },
+    ///         Spec = new Grafana.Cloud.Inputs.ProductActivationAppO11yConfigV1Alpha1SpecArgs
+    ///         {
+    ///             Enabled = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// #!/bin/bash

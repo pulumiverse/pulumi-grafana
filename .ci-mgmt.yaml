@@ -5,14 +5,6 @@ major-version: 2
 providerDefaultBranch: main
 upstreamProviderOrg: grafana
 publishRegistry: false
-plugins:
-    - name: terraform
-      version: "1.0.19"
-      kind: converter
-    - name: random
-      version: "4.16.7"
-    - name: aws
-      version: "6.56.1"
 languages:
     - dotnet
     - go

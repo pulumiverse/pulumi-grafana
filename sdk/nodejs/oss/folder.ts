@@ -18,8 +18,8 @@ import * as utilities from "../utilities";
  * const testFolderDashboard = new grafana.oss.Dashboard("test_folder", {
  *     folder: testFolder.id,
  *     configJson: `{
- *   "title": "Dashboard in folder",
- *   "uid": "dashboard-in-folder"
+ *   \\"title\\": \\"Dashboard in folder\\",
+ *   \\"uid\\": \\"dashboard-in-folder\\"
  * }
  * `,
  * });
