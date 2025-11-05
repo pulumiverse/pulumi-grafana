@@ -11,6 +11,28 @@ import * as utilities from "../utilities";
  *
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const example = new grafana.experimental.AppsDashboard("example", {
+ *     metadata: {
+ *         uid: "example-dashboard",
+ *     },
+ *     spec: {
+ *         title: "Example Dashboard",
+ *         json: JSON.stringify({
+ *             title: "Example Dashboard",
+ *             uid: "example-dashboard",
+ *             panels: [],
+ *             schemaVersion: 42,
+ *         }),
+ *     },
+ * });
+ * ```
  */
 export class AppsDashboard extends pulumi.CustomResource {
     /**

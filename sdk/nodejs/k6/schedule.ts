@@ -9,6 +9,69 @@ import * as utilities from "../utilities";
 /**
  * Manages a k6 schedule for automated test execution.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const scheduleProject = new grafana.k6.Project("schedule_project", {name: "Terraform Schedule Resource Project"});
+ * const scheduledTest = new grafana.k6.LoadTest("scheduled_test", {
+ *     projectId: scheduleProject.id,
+ *     name: "Terraform Scheduled Resource Test",
+ *     script: `export default function() {
+ *   console.log('Hello from scheduled k6 test!');
+ * }
+ * `,
+ * }, {
+ *     dependsOn: [scheduleProject],
+ * });
+ * const cronMonthly = new grafana.k6.Schedule("cron_monthly", {
+ *     loadTestId: scheduledTest.id,
+ *     starts: "2024-12-25T10:00:00Z",
+ *     cron: {
+ *         schedule: "0 10 1 * *",
+ *         timezone: "UTC",
+ *     },
+ * });
+ * const daily = new grafana.k6.Schedule("daily", {
+ *     loadTestId: scheduledTest.id,
+ *     starts: "2024-12-25T10:00:00Z",
+ *     recurrenceRule: {
+ *         frequency: "DAILY",
+ *         interval: 1,
+ *     },
+ * });
+ * const weekly = new grafana.k6.Schedule("weekly", {
+ *     loadTestId: scheduledTest.id,
+ *     starts: "2024-12-25T09:00:00Z",
+ *     recurrenceRule: {
+ *         frequency: "WEEKLY",
+ *         interval: 1,
+ *         bydays: [
+ *             "MO",
+ *             "WE",
+ *             "FR",
+ *         ],
+ *     },
+ * });
+ * // Example with YEARLY frequency and count
+ * const yearly = new grafana.k6.Schedule("yearly", {
+ *     loadTestId: scheduledTest.id,
+ *     starts: "2024-01-01T12:00:00Z",
+ *     recurrenceRule: {
+ *         frequency: "YEARLY",
+ *         interval: 1,
+ *         count: 5,
+ *     },
+ * });
+ * // One-time schedule without recurrence
+ * const oneTime = new grafana.k6.Schedule("one_time", {
+ *     loadTestId: scheduledTest.id,
+ *     starts: "2024-12-25T15:00:00Z",
+ * });
+ * ```
+ *
  * ## Import
  *
  * ```sh

@@ -273,40 +273,6 @@ class AwsResourceMetadataScrapeJob(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_grafana as grafana
-        import pulumiverse_grafana as grafana
-
-        test = grafana.cloud.get_stack(slug="gcloudstacktest")
-        test_get_role = aws.iam.get_role(name="my-role")
-        test_aws_account = grafana.cloudprovider.AwsAccount("test",
-            stack_id=test.id,
-            role_arn=test_get_role.arn,
-            regions=[
-                "us-east-1",
-                "us-east-2",
-                "us-west-1",
-            ])
-        test_aws_resource_metadata_scrape_job = grafana.cloudprovider.AwsResourceMetadataScrapeJob("test",
-            stack_id=test.id,
-            name="my-aws-resource-metadata-scrape-job",
-            aws_account_resource_id=test_aws_account.resource_id,
-            services=[{
-                "name": "AWS/EC2",
-                "scrape_interval_seconds": 300,
-                "resource_discovery_tag_filters": [{
-                    "key": "k8s.io/cluster-autoscaler/enabled",
-                    "value": "true",
-                }],
-            }],
-            static_labels={
-                "label1": "value1",
-                "label2": "value2",
-            })
-        ```
-
         ## Import
 
         ```sh
@@ -329,40 +295,6 @@ class AwsResourceMetadataScrapeJob(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_grafana as grafana
-        import pulumiverse_grafana as grafana
-
-        test = grafana.cloud.get_stack(slug="gcloudstacktest")
-        test_get_role = aws.iam.get_role(name="my-role")
-        test_aws_account = grafana.cloudprovider.AwsAccount("test",
-            stack_id=test.id,
-            role_arn=test_get_role.arn,
-            regions=[
-                "us-east-1",
-                "us-east-2",
-                "us-west-1",
-            ])
-        test_aws_resource_metadata_scrape_job = grafana.cloudprovider.AwsResourceMetadataScrapeJob("test",
-            stack_id=test.id,
-            name="my-aws-resource-metadata-scrape-job",
-            aws_account_resource_id=test_aws_account.resource_id,
-            services=[{
-                "name": "AWS/EC2",
-                "scrape_interval_seconds": 300,
-                "resource_discovery_tag_filters": [{
-                    "key": "k8s.io/cluster-autoscaler/enabled",
-                    "value": "true",
-                }],
-            }],
-            static_labels={
-                "label1": "value1",
-                "label2": "value2",
-            })
-        ```
 
         ## Import
 

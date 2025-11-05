@@ -7,28 +7,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = grafana.cloud.getStack({
- *     slug: "gcloudstacktest",
- * });
- * const testGetRole = aws.iam.getRole({
- *     name: "my-role",
- * });
- * const testAwsAccount = new grafana.cloudprovider.AwsAccount("test", {
- *     stackId: test.then(test => test.id),
- *     roleArn: testGetRole.then(testGetRole => testGetRole.arn),
- *     regions: [
- *         "us-east-1",
- *         "us-east-2",
- *         "us-west-1",
- *     ],
- * });
- * ```
- *
  * ## Import
  *
  * ```sh

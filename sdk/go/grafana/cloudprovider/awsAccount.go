@@ -14,50 +14,6 @@ import (
 
 // ## Example Usage
 //
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloudprovider"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			test, err := cloud.LookupStack(ctx, &cloud.LookupStackArgs{
-//				Slug: "gcloudstacktest",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			testGetRole, err := iam.LookupRole(ctx, &iam.LookupRoleArgs{
-//				Name: "my-role",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cloudprovider.NewAwsAccount(ctx, "test", &cloudprovider.AwsAccountArgs{
-//				StackId: pulumi.String(test.Id),
-//				RoleArn: pulumi.String(testGetRole.Arn),
-//				Regions: pulumi.StringArray{
-//					pulumi.String("us-east-1"),
-//					pulumi.String("us-east-2"),
-//					pulumi.String("us-west-1"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // ```sh

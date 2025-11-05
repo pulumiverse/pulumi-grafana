@@ -8,6 +8,49 @@ import * as utilities from "../utilities";
 
 /**
  * Retrieves a k6 schedule.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const scheduleProject = new grafana.k6.Project("schedule_project", {name: "Terraform Schedule Test Project"});
+ * const scheduleLoadTest = new grafana.k6.LoadTest("schedule_load_test", {
+ *     projectId: scheduleProject.id,
+ *     name: "Terraform Test Load Test for Schedule",
+ *     script: `export default function() {
+ *   console.log('Hello from k6 schedule test!');
+ * }
+ * `,
+ * }, {
+ *     dependsOn: [scheduleProject],
+ * });
+ * const testSchedule = new grafana.k6.Schedule("test_schedule", {
+ *     loadTestId: scheduleLoadTest.id,
+ *     starts: "2024-12-25T10:00:00Z",
+ *     recurrenceRule: {
+ *         frequency: "MONTHLY",
+ *         interval: 12,
+ *         count: 100,
+ *     },
+ * }, {
+ *     dependsOn: [scheduleLoadTest],
+ * });
+ * const fromLoadTest = grafana.k6.getScheduleOutput({
+ *     loadTestId: scheduleLoadTest.id,
+ * });
+ * export const completeScheduleInfo = {
+ *     id: fromLoadTest.apply(fromLoadTest => fromLoadTest.id),
+ *     loadTestId: fromLoadTest.apply(fromLoadTest => fromLoadTest.loadTestId),
+ *     starts: fromLoadTest.apply(fromLoadTest => fromLoadTest.starts),
+ *     deactivated: fromLoadTest.apply(fromLoadTest => fromLoadTest.deactivated),
+ *     nextRun: fromLoadTest.apply(fromLoadTest => fromLoadTest.nextRun),
+ *     createdBy: fromLoadTest.apply(fromLoadTest => fromLoadTest.createdBy),
+ *     recurrenceRule: fromLoadTest.apply(fromLoadTest => fromLoadTest.recurrenceRule),
+ *     cron: fromLoadTest.apply(fromLoadTest => fromLoadTest.cron),
+ * };
+ * ```
  */
 export function getSchedule(args: GetScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetScheduleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -75,6 +118,49 @@ export interface GetScheduleResult {
 }
 /**
  * Retrieves a k6 schedule.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const scheduleProject = new grafana.k6.Project("schedule_project", {name: "Terraform Schedule Test Project"});
+ * const scheduleLoadTest = new grafana.k6.LoadTest("schedule_load_test", {
+ *     projectId: scheduleProject.id,
+ *     name: "Terraform Test Load Test for Schedule",
+ *     script: `export default function() {
+ *   console.log('Hello from k6 schedule test!');
+ * }
+ * `,
+ * }, {
+ *     dependsOn: [scheduleProject],
+ * });
+ * const testSchedule = new grafana.k6.Schedule("test_schedule", {
+ *     loadTestId: scheduleLoadTest.id,
+ *     starts: "2024-12-25T10:00:00Z",
+ *     recurrenceRule: {
+ *         frequency: "MONTHLY",
+ *         interval: 12,
+ *         count: 100,
+ *     },
+ * }, {
+ *     dependsOn: [scheduleLoadTest],
+ * });
+ * const fromLoadTest = grafana.k6.getScheduleOutput({
+ *     loadTestId: scheduleLoadTest.id,
+ * });
+ * export const completeScheduleInfo = {
+ *     id: fromLoadTest.apply(fromLoadTest => fromLoadTest.id),
+ *     loadTestId: fromLoadTest.apply(fromLoadTest => fromLoadTest.loadTestId),
+ *     starts: fromLoadTest.apply(fromLoadTest => fromLoadTest.starts),
+ *     deactivated: fromLoadTest.apply(fromLoadTest => fromLoadTest.deactivated),
+ *     nextRun: fromLoadTest.apply(fromLoadTest => fromLoadTest.nextRun),
+ *     createdBy: fromLoadTest.apply(fromLoadTest => fromLoadTest.createdBy),
+ *     recurrenceRule: fromLoadTest.apply(fromLoadTest => fromLoadTest.recurrenceRule),
+ *     cron: fromLoadTest.apply(fromLoadTest => fromLoadTest.cron),
+ * };
+ * ```
  */
 export function getScheduleOutput(args: GetScheduleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetScheduleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -15,6 +15,44 @@ import (
 //
 // * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/apis/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/experimental"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := experimental.NewAppsPlaylistV0Alpha1(ctx, "example", &experimental.AppsPlaylistV0Alpha1Args{
+//				Metadata: &experimental.AppsPlaylistV0Alpha1MetadataArgs{
+//					Uid: pulumi.String("example-playlist"),
+//				},
+//				Spec: &experimental.AppsPlaylistV0Alpha1SpecArgs{
+//					Title:    pulumi.String("Example Playlist"),
+//					Interval: pulumi.String("5m"),
+//					Items: experimental.AppsPlaylistV0Alpha1SpecItemArray{
+//						&experimental.AppsPlaylistV0Alpha1SpecItemArgs{
+//							Type:  pulumi.String("dashboard_by_uid"),
+//							Value: pulumi.String("example-dashboard-uid"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type AppsPlaylistV0Alpha1 struct {
 	pulumi.CustomResourceState
 

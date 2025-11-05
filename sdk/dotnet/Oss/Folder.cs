@@ -33,8 +33,8 @@ namespace Pulumiverse.Grafana.Oss
     ///     {
     ///         Folder = testFolder.Id,
     ///         ConfigJson = @"{
-    ///   ""title"": ""Dashboard in folder"",
-    ///   ""uid"": ""dashboard-in-folder""
+    ///   \""title\"": \""Dashboard in folder\"",
+    ///   \""uid\"": \""dashboard-in-folder\""
     /// }
     /// ",
     ///     });

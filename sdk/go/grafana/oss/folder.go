@@ -37,7 +37,7 @@ import (
 //			}
 //			_, err = oss.NewDashboard(ctx, "test_folder", &oss.DashboardArgs{
 //				Folder:     testFolder.ID(),
-//				ConfigJson: pulumi.String("{\n  \"title\": \"Dashboard in folder\",\n  \"uid\": \"dashboard-in-folder\"\n}\n"),
+//				ConfigJson: pulumi.String("{\n  \\\"title\\\": \\\"Dashboard in folder\\\",\n  \\\"uid\\\": \\\"dashboard-in-folder\\\"\n}\n"),
 //			})
 //			if err != nil {
 //				return err

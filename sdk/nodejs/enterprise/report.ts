@@ -20,8 +20,8 @@ import * as utilities from "../utilities";
  *
  * const test = new grafana.oss.Dashboard("test", {
  *     configJson: `{
- *   "uid": "report-dashboard",
- *   "title": "report-dashboard"
+ *   \\"uid\\": \\"report-dashboard\\",
+ *   \\"title\\": \\"report-dashboard\\"
  * }
  * `,
  *     message: "inital commit.",

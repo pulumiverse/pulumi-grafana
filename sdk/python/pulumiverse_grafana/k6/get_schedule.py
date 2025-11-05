@@ -142,6 +142,44 @@ def get_schedule(cron: Optional[Union['GetScheduleCronArgs', 'GetScheduleCronArg
     """
     Retrieves a k6 schedule.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    schedule_project = grafana.k6.Project("schedule_project", name="Terraform Schedule Test Project")
+    schedule_load_test = grafana.k6.LoadTest("schedule_load_test",
+        project_id=schedule_project.id,
+        name="Terraform Test Load Test for Schedule",
+        script=\"\"\"export default function() {
+      console.log('Hello from k6 schedule test!');
+    }
+    \"\"\",
+        opts = pulumi.ResourceOptions(depends_on=[schedule_project]))
+    test_schedule = grafana.k6.Schedule("test_schedule",
+        load_test_id=schedule_load_test.id,
+        starts="2024-12-25T10:00:00Z",
+        recurrence_rule={
+            "frequency": "MONTHLY",
+            "interval": 12,
+            "count": 100,
+        },
+        opts = pulumi.ResourceOptions(depends_on=[schedule_load_test]))
+    from_load_test = grafana.k6.get_schedule_output(load_test_id=schedule_load_test.id)
+    pulumi.export("completeScheduleInfo", {
+        "id": from_load_test.id,
+        "loadTestId": from_load_test.load_test_id,
+        "starts": from_load_test.starts,
+        "deactivated": from_load_test.deactivated,
+        "nextRun": from_load_test.next_run,
+        "createdBy": from_load_test.created_by,
+        "recurrenceRule": from_load_test.recurrence_rule,
+        "cron": from_load_test.cron,
+    })
+    ```
+
 
     :param Union['GetScheduleCronArgs', 'GetScheduleCronArgsDict'] cron: The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
     :param _builtins.str load_test_id: The identifier of the load test to retrieve the schedule for.
@@ -169,6 +207,44 @@ def get_schedule_output(cron: Optional[pulumi.Input[Optional[Union['GetScheduleC
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetScheduleResult]:
     """
     Retrieves a k6 schedule.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    schedule_project = grafana.k6.Project("schedule_project", name="Terraform Schedule Test Project")
+    schedule_load_test = grafana.k6.LoadTest("schedule_load_test",
+        project_id=schedule_project.id,
+        name="Terraform Test Load Test for Schedule",
+        script=\"\"\"export default function() {
+      console.log('Hello from k6 schedule test!');
+    }
+    \"\"\",
+        opts = pulumi.ResourceOptions(depends_on=[schedule_project]))
+    test_schedule = grafana.k6.Schedule("test_schedule",
+        load_test_id=schedule_load_test.id,
+        starts="2024-12-25T10:00:00Z",
+        recurrence_rule={
+            "frequency": "MONTHLY",
+            "interval": 12,
+            "count": 100,
+        },
+        opts = pulumi.ResourceOptions(depends_on=[schedule_load_test]))
+    from_load_test = grafana.k6.get_schedule_output(load_test_id=schedule_load_test.id)
+    pulumi.export("completeScheduleInfo", {
+        "id": from_load_test.id,
+        "loadTestId": from_load_test.load_test_id,
+        "starts": from_load_test.starts,
+        "deactivated": from_load_test.deactivated,
+        "nextRun": from_load_test.next_run,
+        "createdBy": from_load_test.created_by,
+        "recurrenceRule": from_load_test.recurrence_rule,
+        "cron": from_load_test.cron,
+    })
+    ```
 
 
     :param Union['GetScheduleCronArgs', 'GetScheduleCronArgsDict'] cron: The cron schedule to trigger the test periodically. If null, the test will run only once on the 'starts' date.
