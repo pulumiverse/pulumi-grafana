@@ -9,45 +9,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const test = grafana.cloud.getStack({
- *     slug: "gcloudstacktest",
- * });
- * const testGetRole = aws.iam.getRole({
- *     name: "my-role",
- * });
- * const testAwsAccount = new grafana.cloudprovider.AwsAccount("test", {
- *     stackId: test.then(test => test.id),
- *     roleArn: testGetRole.then(testGetRole => testGetRole.arn),
- *     regions: [
- *         "us-east-1",
- *         "us-east-2",
- *         "us-west-1",
- *     ],
- * });
- * const testAwsResourceMetadataScrapeJob = new grafana.cloudprovider.AwsResourceMetadataScrapeJob("test", {
- *     stackId: test.then(test => test.id),
- *     name: "my-aws-resource-metadata-scrape-job",
- *     awsAccountResourceId: testAwsAccount.resourceId,
- *     services: [{
- *         name: "AWS/EC2",
- *         scrapeIntervalSeconds: 300,
- *         resourceDiscoveryTagFilters: [{
- *             key: "k8s.io/cluster-autoscaler/enabled",
- *             value: "true",
- *         }],
- *     }],
- *     staticLabels: {
- *         label1: "value1",
- *         label2: "value2",
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * ```sh

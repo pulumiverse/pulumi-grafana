@@ -179,24 +179,6 @@ class AwsAccount(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_grafana as grafana
-        import pulumiverse_grafana as grafana
-
-        test = grafana.cloud.get_stack(slug="gcloudstacktest")
-        test_get_role = aws.iam.get_role(name="my-role")
-        test_aws_account = grafana.cloudprovider.AwsAccount("test",
-            stack_id=test.id,
-            role_arn=test_get_role.arn,
-            regions=[
-                "us-east-1",
-                "us-east-2",
-                "us-west-1",
-            ])
-        ```
-
         ## Import
 
         ```sh
@@ -217,24 +199,6 @@ class AwsAccount(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_grafana as grafana
-        import pulumiverse_grafana as grafana
-
-        test = grafana.cloud.get_stack(slug="gcloudstacktest")
-        test_get_role = aws.iam.get_role(name="my-role")
-        test_aws_account = grafana.cloudprovider.AwsAccount("test",
-            stack_id=test.id,
-            role_arn=test_get_role.arn,
-            regions=[
-                "us-east-1",
-                "us-east-2",
-                "us-west-1",
-            ])
-        ```
 
         ## Import
 

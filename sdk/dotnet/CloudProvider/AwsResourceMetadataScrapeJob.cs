@@ -13,69 +13,6 @@ namespace Pulumiverse.Grafana.CloudProvider
     /// <summary>
     /// ## Example Usage
     /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Aws = Pulumi.Aws;
-    /// using Grafana = Pulumi.Grafana;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = Grafana.Cloud.GetStack.Invoke(new()
-    ///     {
-    ///         Slug = "gcloudstacktest",
-    ///     });
-    /// 
-    ///     var testGetRole = Aws.Iam.GetRole.Invoke(new()
-    ///     {
-    ///         Name = "my-role",
-    ///     });
-    /// 
-    ///     var testAwsAccount = new Grafana.CloudProvider.AwsAccount("test", new()
-    ///     {
-    ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
-    ///         RoleArn = testGetRole.Apply(getRoleResult =&gt; getRoleResult.Arn),
-    ///         Regions = new[]
-    ///         {
-    ///             "us-east-1",
-    ///             "us-east-2",
-    ///             "us-west-1",
-    ///         },
-    ///     });
-    /// 
-    ///     var testAwsResourceMetadataScrapeJob = new Grafana.CloudProvider.AwsResourceMetadataScrapeJob("test", new()
-    ///     {
-    ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
-    ///         Name = "my-aws-resource-metadata-scrape-job",
-    ///         AwsAccountResourceId = testAwsAccount.ResourceId,
-    ///         Services = new[]
-    ///         {
-    ///             new Grafana.CloudProvider.Inputs.AwsResourceMetadataScrapeJobServiceArgs
-    ///             {
-    ///                 Name = "AWS/EC2",
-    ///                 ScrapeIntervalSeconds = 300,
-    ///                 ResourceDiscoveryTagFilters = new[]
-    ///                 {
-    ///                     new Grafana.CloudProvider.Inputs.AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs
-    ///                     {
-    ///                         Key = "k8s.io/cluster-autoscaler/enabled",
-    ///                         Value = "true",
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///         StaticLabels = 
-    ///         {
-    ///             { "label1", "value1" },
-    ///             { "label2", "value2" },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// ```sh

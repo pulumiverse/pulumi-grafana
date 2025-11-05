@@ -13,41 +13,6 @@ namespace Pulumiverse.Grafana.CloudProvider
     /// <summary>
     /// ## Example Usage
     /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Aws = Pulumi.Aws;
-    /// using Grafana = Pulumi.Grafana;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = Grafana.Cloud.GetStack.Invoke(new()
-    ///     {
-    ///         Slug = "gcloudstacktest",
-    ///     });
-    /// 
-    ///     var testGetRole = Aws.Iam.GetRole.Invoke(new()
-    ///     {
-    ///         Name = "my-role",
-    ///     });
-    /// 
-    ///     var testAwsAccount = new Grafana.CloudProvider.AwsAccount("test", new()
-    ///     {
-    ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
-    ///         RoleArn = testGetRole.Apply(getRoleResult =&gt; getRoleResult.Arn),
-    ///         Regions = new[]
-    ///         {
-    ///             "us-east-1",
-    ///             "us-east-2",
-    ///             "us-west-1",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// ```sh
