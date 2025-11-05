@@ -151,6 +151,21 @@
                 "current": "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig",
                 "majorVersion": 2
             },
+            "grafana_asserts_thresholds": {
+                "current": "grafana:assert/thresholds:Thresholds",
+                "majorVersion": 2,
+                "fields": {
+                    "health_thresholds": {
+                        "maxItemsOne": false
+                    },
+                    "request_thresholds": {
+                        "maxItemsOne": false
+                    },
+                    "resource_thresholds": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "grafana_cloud_access_policy": {
                 "current": "grafana:cloud/accessPolicy:AccessPolicy",
                 "majorVersion": 2,
@@ -1961,6 +1976,7 @@
             "grafana:assert/logConfig:LogConfig": 0,
             "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig": 0,
             "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig": 0,
+            "grafana:assert/thresholds:Thresholds": 0,
             "grafana:cloud/accessPolicy:AccessPolicy": 0,
             "grafana:cloud/accessPolicyToken:AccessPolicyToken": 0,
             "grafana:cloud/orgMember:OrgMember": 1,

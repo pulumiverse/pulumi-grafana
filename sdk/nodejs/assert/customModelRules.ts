@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages Asserts Custom Model Rules through the Grafana API.
+ * Manages Knowledge Graph Custom Model Rules through the Grafana API.
  *
  * ## Example Usage
  *

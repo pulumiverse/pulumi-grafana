@@ -68,7 +68,7 @@ namespace Pulumiverse.Grafana.OnCall
         /// The schedule's time zone.
         /// </summary>
         [Output("timeZone")]
-        public Output<string?> TimeZone { get; private set; } = null!;
+        public Output<string> TimeZone { get; private set; } = null!;
 
         /// <summary>
         /// The schedule's type. Valid values are `ical`, `calendar`, `web`.

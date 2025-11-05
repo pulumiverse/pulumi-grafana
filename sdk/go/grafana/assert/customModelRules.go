@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
-// Manages Asserts Custom Model Rules through the Grafana API.
+// Manages Knowledge Graph Custom Model Rules through the Grafana API.
 //
 // ## Example Usage
 //

@@ -14,13 +14,13 @@ namespace Pulumiverse.Grafana.K6.Inputs
     public sealed class GetScheduleCronInputArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+        /// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
         /// </summary>
         [Input("schedule", required: true)]
         public Input<string> Schedule { get; set; } = null!;
 
         /// <summary>
-        /// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+        /// The timezone of the cron expression. For example, `UTC` or `Europe/London`.
         /// </summary>
         [Input("timezone", required: true)]
         public Input<string> Timezone { get; set; } = null!;

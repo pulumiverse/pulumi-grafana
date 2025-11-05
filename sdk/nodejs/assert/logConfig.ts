@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages Asserts Log Configuration through Grafana API.
+ * Manages Knowledge Graph Log Configuration through Grafana API.
  *
  * ## Example Usage
  *

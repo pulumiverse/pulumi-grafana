@@ -2035,6 +2035,75 @@ export namespace assert {
          */
         values: pulumi.Input<pulumi.Input<string>[]>;
     }
+
+    export interface ThresholdsHealthThreshold {
+        /**
+         * Optional alert category label for the health threshold.
+         */
+        alertCategory?: pulumi.Input<string>;
+        /**
+         * Assertion name.
+         */
+        assertionName: pulumi.Input<string>;
+        /**
+         * Entity type for the health threshold (e.g., Service, Pod, Namespace, Volume).
+         */
+        entityType: pulumi.Input<string>;
+        /**
+         * Prometheus expression.
+         */
+        expression: pulumi.Input<string>;
+    }
+
+    export interface ThresholdsRequestThreshold {
+        /**
+         * Assertion name (e.g., RequestRateAnomaly, ErrorRatioBreach).
+         */
+        assertionName: pulumi.Input<string>;
+        /**
+         * Entity name the threshold applies to.
+         */
+        entityName: pulumi.Input<string>;
+        /**
+         * Request context (e.g., path or context identifier).
+         */
+        requestContext: pulumi.Input<string>;
+        /**
+         * Request type (e.g., inbound/outbound).
+         */
+        requestType: pulumi.Input<string>;
+        /**
+         * Threshold value.
+         */
+        value: pulumi.Input<number>;
+    }
+
+    export interface ThresholdsResourceThreshold {
+        /**
+         * Assertion name (e.g., Saturation, ResourceRateBreach).
+         */
+        assertionName: pulumi.Input<string>;
+        /**
+         * Container name.
+         */
+        containerName: pulumi.Input<string>;
+        /**
+         * Resource type (e.g., container/pod/node).
+         */
+        resourceType: pulumi.Input<string>;
+        /**
+         * Severity (warning or critical).
+         */
+        severity: pulumi.Input<string>;
+        /**
+         * Data source for the threshold (e.g., metrics/logs).
+         */
+        source: pulumi.Input<string>;
+        /**
+         * Threshold value.
+         */
+        value: pulumi.Input<number>;
+    }
 }
 
 export namespace cloud {
@@ -2922,22 +2991,22 @@ export namespace fleetManagement {
 export namespace k6 {
     export interface GetScheduleCron {
         /**
-         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
          */
         schedule?: string;
         /**
-         * The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+         * The timezone of the cron expression. For example, `UTC` or `Europe/London`.
          */
         timezone?: string;
     }
 
     export interface GetScheduleCronArgs {
         /**
-         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
          */
         schedule?: pulumi.Input<string>;
         /**
-         * The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+         * The timezone of the cron expression. For example, `UTC` or `Europe/London`.
          */
         timezone?: pulumi.Input<string>;
     }
@@ -2990,11 +3059,11 @@ export namespace k6 {
 
     export interface ScheduleCron {
         /**
-         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
          */
         schedule?: pulumi.Input<string>;
         /**
-         * The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+         * The timezone of the cron expression. For example, `UTC` or `Europe/London`.
          */
         timezone?: pulumi.Input<string>;
     }

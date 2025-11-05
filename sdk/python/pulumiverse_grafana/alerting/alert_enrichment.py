@@ -141,7 +141,9 @@ class AlertEnrichment(pulumi.CustomResource):
                  spec: Optional[pulumi.Input[Union['AlertEnrichmentSpecArgs', 'AlertEnrichmentSpecArgsDict']]] = None,
                  __props__=None):
         """
-        This resource is currently under development. Documentation will be provided in a future release.
+        Manages [Grafana Cloud Alert Enrichment](https://grafana.com/docs/grafana-cloud/alerting-and-irm/alerting/configure-notifications/alert-enrichment/).
+
+        Alert enrichment is currently in private preview. Grafana Labs offers support on a best-effort basis, and breaking changes might occur prior to the feature being made generally available
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -156,7 +158,9 @@ class AlertEnrichment(pulumi.CustomResource):
                  args: Optional[AlertEnrichmentArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource is currently under development. Documentation will be provided in a future release.
+        Manages [Grafana Cloud Alert Enrichment](https://grafana.com/docs/grafana-cloud/alerting-and-irm/alerting/configure-notifications/alert-enrichment/).
+
+        Alert enrichment is currently in private preview. Grafana Labs offers support on a best-effort basis, and breaking changes might occur prior to the feature being made generally available
 
         :param str resource_name: The name of the resource.
         :param AlertEnrichmentArgs args: The arguments to use to populate this resource's properties.

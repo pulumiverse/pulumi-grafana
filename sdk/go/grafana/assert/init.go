@@ -29,6 +29,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NotificationAlertsConfig{}
 	case "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig":
 		r = &SuppressedAssertionsConfig{}
+	case "grafana:assert/thresholds:Thresholds":
+		r = &Thresholds{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -60,6 +62,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"assert/suppressedAssertionsConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"assert/thresholds",
 		&module{version},
 	)
 }

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
-// Manages Asserts Alert Configurations through Grafana API.
+// Manages Knowledge Graph Alert Configurations through Grafana API.
 //
 // ## Example Usage
 //

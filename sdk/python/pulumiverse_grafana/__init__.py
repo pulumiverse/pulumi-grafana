@@ -145,6 +145,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "assert/thresholds",
+  "fqn": "pulumiverse_grafana.assert_",
+  "classes": {
+   "grafana:assert/thresholds:Thresholds": "Thresholds"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloud/accessPolicy",
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {

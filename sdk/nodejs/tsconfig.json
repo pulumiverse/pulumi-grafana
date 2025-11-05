@@ -25,6 +25,7 @@
         "assert/logConfig.ts",
         "assert/notificationAlertsConfig.ts",
         "assert/suppressedAssertionsConfig.ts",
+        "assert/thresholds.ts",
         "cloud/accessPolicy.ts",
         "cloud/accessPolicyToken.ts",
         "cloud/getAccessPolicies.ts",

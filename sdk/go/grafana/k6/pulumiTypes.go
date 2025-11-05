@@ -14,9 +14,9 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ScheduleCron struct {
-	// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+	// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
 	Schedule *string `pulumi:"schedule"`
-	// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+	// The timezone of the cron expression. For example, `UTC` or `Europe/London`.
 	Timezone *string `pulumi:"timezone"`
 }
 
@@ -32,9 +32,9 @@ type ScheduleCronInput interface {
 }
 
 type ScheduleCronArgs struct {
-	// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+	// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
 	Schedule pulumi.StringPtrInput `pulumi:"schedule"`
-	// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+	// The timezone of the cron expression. For example, `UTC` or `Europe/London`.
 	Timezone pulumi.StringPtrInput `pulumi:"timezone"`
 }
 
@@ -115,12 +115,12 @@ func (o ScheduleCronOutput) ToScheduleCronPtrOutputWithContext(ctx context.Conte
 	}).(ScheduleCronPtrOutput)
 }
 
-// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
 func (o ScheduleCronOutput) Schedule() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ScheduleCron) *string { return v.Schedule }).(pulumi.StringPtrOutput)
 }
 
-// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+// The timezone of the cron expression. For example, `UTC` or `Europe/London`.
 func (o ScheduleCronOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ScheduleCron) *string { return v.Timezone }).(pulumi.StringPtrOutput)
 }
@@ -149,7 +149,7 @@ func (o ScheduleCronPtrOutput) Elem() ScheduleCronOutput {
 	}).(ScheduleCronOutput)
 }
 
-// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
 func (o ScheduleCronPtrOutput) Schedule() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ScheduleCron) *string {
 		if v == nil {
@@ -159,7 +159,7 @@ func (o ScheduleCronPtrOutput) Schedule() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+// The timezone of the cron expression. For example, `UTC` or `Europe/London`.
 func (o ScheduleCronPtrOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ScheduleCron) *string {
 		if v == nil {
@@ -637,9 +637,9 @@ func (o GetProjectsProjectArrayOutput) Index(i pulumi.IntInput) GetProjectsProje
 }
 
 type GetScheduleCron struct {
-	// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+	// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
 	Schedule string `pulumi:"schedule"`
-	// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+	// The timezone of the cron expression. For example, `UTC` or `Europe/London`.
 	Timezone string `pulumi:"timezone"`
 }
 
@@ -655,9 +655,9 @@ type GetScheduleCronInput interface {
 }
 
 type GetScheduleCronArgs struct {
-	// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+	// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
 	Schedule pulumi.StringInput `pulumi:"schedule"`
-	// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+	// The timezone of the cron expression. For example, `UTC` or `Europe/London`.
 	Timezone pulumi.StringInput `pulumi:"timezone"`
 }
 
@@ -738,12 +738,12 @@ func (o GetScheduleCronOutput) ToGetScheduleCronPtrOutputWithContext(ctx context
 	}).(GetScheduleCronPtrOutput)
 }
 
-// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
 func (o GetScheduleCronOutput) Schedule() pulumi.StringOutput {
 	return o.ApplyT(func(v GetScheduleCron) string { return v.Schedule }).(pulumi.StringOutput)
 }
 
-// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+// The timezone of the cron expression. For example, `UTC` or `Europe/London`.
 func (o GetScheduleCronOutput) Timezone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetScheduleCron) string { return v.Timezone }).(pulumi.StringOutput)
 }
@@ -772,7 +772,7 @@ func (o GetScheduleCronPtrOutput) Elem() GetScheduleCronOutput {
 	}).(GetScheduleCronOutput)
 }
 
-// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+// A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
 func (o GetScheduleCronPtrOutput) Schedule() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetScheduleCron) *string {
 		if v == nil {
@@ -782,7 +782,7 @@ func (o GetScheduleCronPtrOutput) Schedule() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+// The timezone of the cron expression. For example, `UTC` or `Europe/London`.
 func (o GetScheduleCronPtrOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetScheduleCron) *string {
 		if v == nil {

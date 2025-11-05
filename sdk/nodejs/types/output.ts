@@ -2037,6 +2037,75 @@ export namespace assert {
         values: string[];
     }
 
+    export interface ThresholdsHealthThreshold {
+        /**
+         * Optional alert category label for the health threshold.
+         */
+        alertCategory?: string;
+        /**
+         * Assertion name.
+         */
+        assertionName: string;
+        /**
+         * Entity type for the health threshold (e.g., Service, Pod, Namespace, Volume).
+         */
+        entityType: string;
+        /**
+         * Prometheus expression.
+         */
+        expression: string;
+    }
+
+    export interface ThresholdsRequestThreshold {
+        /**
+         * Assertion name (e.g., RequestRateAnomaly, ErrorRatioBreach).
+         */
+        assertionName: string;
+        /**
+         * Entity name the threshold applies to.
+         */
+        entityName: string;
+        /**
+         * Request context (e.g., path or context identifier).
+         */
+        requestContext: string;
+        /**
+         * Request type (e.g., inbound/outbound).
+         */
+        requestType: string;
+        /**
+         * Threshold value.
+         */
+        value: number;
+    }
+
+    export interface ThresholdsResourceThreshold {
+        /**
+         * Assertion name (e.g., Saturation, ResourceRateBreach).
+         */
+        assertionName: string;
+        /**
+         * Container name.
+         */
+        containerName: string;
+        /**
+         * Resource type (e.g., container/pod/node).
+         */
+        resourceType: string;
+        /**
+         * Severity (warning or critical).
+         */
+        severity: string;
+        /**
+         * Data source for the threshold (e.g., metrics/logs).
+         */
+        source: string;
+        /**
+         * Threshold value.
+         */
+        value: number;
+    }
+
 }
 
 export namespace cloud {
@@ -2760,11 +2829,11 @@ export namespace k6 {
 
     export interface GetScheduleCron {
         /**
-         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
          */
         schedule: string;
         /**
-         * The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+         * The timezone of the cron expression. For example, `UTC` or `Europe/London`.
          */
         timezone: string;
     }
@@ -2818,11 +2887,11 @@ export namespace k6 {
 
     export interface ScheduleCron {
         /**
-         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+         * A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
          */
         schedule?: string;
         /**
-         * The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+         * The timezone of the cron expression. For example, `UTC` or `Europe/London`.
          */
         timezone?: string;
     }

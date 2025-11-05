@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Assert
 {
     /// <summary>
-    /// Manages Asserts Disabled Alert Configurations through Grafana API.
+    /// Manages Knowledge Graph Disabled Alert Configurations through Grafana API.
     /// 
     /// ## Example Usage
     /// 
