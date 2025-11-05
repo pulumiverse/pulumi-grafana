@@ -20,6 +20,9 @@ __all__ = [
     'CustomModelRulesRulesEntity',
     'CustomModelRulesRulesEntityDefinedBy',
     'LogConfigMatch',
+    'ThresholdsHealthThreshold',
+    'ThresholdsRequestThreshold',
+    'ThresholdsResourceThreshold',
 ]
 
 @pulumi.output_type
@@ -270,5 +273,257 @@ class LogConfigMatch(dict):
         Values to match against.
         """
         return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class ThresholdsHealthThreshold(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "assertionName":
+            suggest = "assertion_name"
+        elif key == "entityType":
+            suggest = "entity_type"
+        elif key == "alertCategory":
+            suggest = "alert_category"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThresholdsHealthThreshold. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThresholdsHealthThreshold.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThresholdsHealthThreshold.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 assertion_name: _builtins.str,
+                 entity_type: _builtins.str,
+                 expression: _builtins.str,
+                 alert_category: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str assertion_name: Assertion name.
+        :param _builtins.str entity_type: Entity type for the health threshold (e.g., Service, Pod, Namespace, Volume).
+        :param _builtins.str expression: Prometheus expression.
+        :param _builtins.str alert_category: Optional alert category label for the health threshold.
+        """
+        pulumi.set(__self__, "assertion_name", assertion_name)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "expression", expression)
+        if alert_category is not None:
+            pulumi.set(__self__, "alert_category", alert_category)
+
+    @_builtins.property
+    @pulumi.getter(name="assertionName")
+    def assertion_name(self) -> _builtins.str:
+        """
+        Assertion name.
+        """
+        return pulumi.get(self, "assertion_name")
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> _builtins.str:
+        """
+        Entity type for the health threshold (e.g., Service, Pod, Namespace, Volume).
+        """
+        return pulumi.get(self, "entity_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def expression(self) -> _builtins.str:
+        """
+        Prometheus expression.
+        """
+        return pulumi.get(self, "expression")
+
+    @_builtins.property
+    @pulumi.getter(name="alertCategory")
+    def alert_category(self) -> Optional[_builtins.str]:
+        """
+        Optional alert category label for the health threshold.
+        """
+        return pulumi.get(self, "alert_category")
+
+
+@pulumi.output_type
+class ThresholdsRequestThreshold(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "assertionName":
+            suggest = "assertion_name"
+        elif key == "entityName":
+            suggest = "entity_name"
+        elif key == "requestContext":
+            suggest = "request_context"
+        elif key == "requestType":
+            suggest = "request_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThresholdsRequestThreshold. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThresholdsRequestThreshold.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThresholdsRequestThreshold.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 assertion_name: _builtins.str,
+                 entity_name: _builtins.str,
+                 request_context: _builtins.str,
+                 request_type: _builtins.str,
+                 value: _builtins.float):
+        """
+        :param _builtins.str assertion_name: Assertion name (e.g., RequestRateAnomaly, ErrorRatioBreach).
+        :param _builtins.str entity_name: Entity name the threshold applies to.
+        :param _builtins.str request_context: Request context (e.g., path or context identifier).
+        :param _builtins.str request_type: Request type (e.g., inbound/outbound).
+        :param _builtins.float value: Threshold value.
+        """
+        pulumi.set(__self__, "assertion_name", assertion_name)
+        pulumi.set(__self__, "entity_name", entity_name)
+        pulumi.set(__self__, "request_context", request_context)
+        pulumi.set(__self__, "request_type", request_type)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="assertionName")
+    def assertion_name(self) -> _builtins.str:
+        """
+        Assertion name (e.g., RequestRateAnomaly, ErrorRatioBreach).
+        """
+        return pulumi.get(self, "assertion_name")
+
+    @_builtins.property
+    @pulumi.getter(name="entityName")
+    def entity_name(self) -> _builtins.str:
+        """
+        Entity name the threshold applies to.
+        """
+        return pulumi.get(self, "entity_name")
+
+    @_builtins.property
+    @pulumi.getter(name="requestContext")
+    def request_context(self) -> _builtins.str:
+        """
+        Request context (e.g., path or context identifier).
+        """
+        return pulumi.get(self, "request_context")
+
+    @_builtins.property
+    @pulumi.getter(name="requestType")
+    def request_type(self) -> _builtins.str:
+        """
+        Request type (e.g., inbound/outbound).
+        """
+        return pulumi.get(self, "request_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.float:
+        """
+        Threshold value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ThresholdsResourceThreshold(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "assertionName":
+            suggest = "assertion_name"
+        elif key == "containerName":
+            suggest = "container_name"
+        elif key == "resourceType":
+            suggest = "resource_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThresholdsResourceThreshold. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThresholdsResourceThreshold.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThresholdsResourceThreshold.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 assertion_name: _builtins.str,
+                 container_name: _builtins.str,
+                 resource_type: _builtins.str,
+                 severity: _builtins.str,
+                 source: _builtins.str,
+                 value: _builtins.float):
+        """
+        :param _builtins.str assertion_name: Assertion name (e.g., Saturation, ResourceRateBreach).
+        :param _builtins.str container_name: Container name.
+        :param _builtins.str resource_type: Resource type (e.g., container/pod/node).
+        :param _builtins.str severity: Severity (warning or critical).
+        :param _builtins.str source: Data source for the threshold (e.g., metrics/logs).
+        :param _builtins.float value: Threshold value.
+        """
+        pulumi.set(__self__, "assertion_name", assertion_name)
+        pulumi.set(__self__, "container_name", container_name)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="assertionName")
+    def assertion_name(self) -> _builtins.str:
+        """
+        Assertion name (e.g., Saturation, ResourceRateBreach).
+        """
+        return pulumi.get(self, "assertion_name")
+
+    @_builtins.property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> _builtins.str:
+        """
+        Container name.
+        """
+        return pulumi.get(self, "container_name")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        Resource type (e.g., container/pod/node).
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        Severity (warning or critical).
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter
+    def source(self) -> _builtins.str:
+        """
+        Data source for the threshold (e.g., metrics/logs).
+        """
+        return pulumi.get(self, "source")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.float:
+        """
+        Threshold value.
+        """
+        return pulumi.get(self, "value")
 
 

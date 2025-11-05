@@ -10,5 +10,6 @@ from .custom_model_rules import *
 from .log_config import *
 from .notification_alerts_config import *
 from .suppressed_assertions_config import *
+from .thresholds import *
 from ._inputs import *
 from . import outputs

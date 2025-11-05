@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Assert
 {
     /// <summary>
-    /// Manages Asserts Log Configuration through Grafana API.
+    /// Manages Knowledge Graph Log Configuration through Grafana API.
     /// 
     /// ## Example Usage
     /// 

@@ -11,7 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
-// This resource is currently under development. Documentation will be provided in a future release.
+// Manages [Grafana Cloud Alert Enrichment](https://grafana.com/docs/grafana-cloud/alerting-and-irm/alerting/configure-notifications/alert-enrichment/).
+//
+// Alert enrichment is currently in private preview. Grafana Labs offers support on a best-effort basis, and breaking changes might occur prior to the feature being made generally available
 type AlertEnrichment struct {
 	pulumi.CustomResourceState
 

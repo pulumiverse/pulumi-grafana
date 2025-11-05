@@ -205,7 +205,7 @@ class NotificationAlertsConfig(pulumi.CustomResource):
                  silenced: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        Manages Asserts Alert Configurations through Grafana API.
+        Manages Knowledge Graph Alert Configurations through Grafana API.
 
         ## Example Usage
 
@@ -301,7 +301,7 @@ class NotificationAlertsConfig(pulumi.CustomResource):
                  args: Optional[NotificationAlertsConfigArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Asserts Alert Configurations through Grafana API.
+        Manages Knowledge Graph Alert Configurations through Grafana API.
 
         ## Example Usage
 

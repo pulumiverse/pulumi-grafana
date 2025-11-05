@@ -25,6 +25,11 @@ export type SuppressedAssertionsConfig = import("./suppressedAssertionsConfig").
 export const SuppressedAssertionsConfig: typeof import("./suppressedAssertionsConfig").SuppressedAssertionsConfig = null as any;
 utilities.lazyLoad(exports, ["SuppressedAssertionsConfig"], () => require("./suppressedAssertionsConfig"));
 
+export { ThresholdsArgs, ThresholdsState } from "./thresholds";
+export type Thresholds = import("./thresholds").Thresholds;
+export const Thresholds: typeof import("./thresholds").Thresholds = null as any;
+utilities.lazyLoad(exports, ["Thresholds"], () => require("./thresholds"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -38,6 +43,8 @@ const _module = {
                 return new NotificationAlertsConfig(name, <any>undefined, { urn })
             case "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig":
                 return new SuppressedAssertionsConfig(name, <any>undefined, { urn })
+            case "grafana:assert/thresholds:Thresholds":
+                return new Thresholds(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -47,3 +54,4 @@ pulumi.runtime.registerResourceModule("grafana", "assert/customModelRules", _mod
 pulumi.runtime.registerResourceModule("grafana", "assert/logConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/notificationAlertsConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/suppressedAssertionsConfig", _module)
+pulumi.runtime.registerResourceModule("grafana", "assert/thresholds", _module)

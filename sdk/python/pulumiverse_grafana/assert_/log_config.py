@@ -336,7 +336,7 @@ class LogConfig(pulumi.CustomResource):
                  priority: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
-        Manages Asserts Log Configuration through Grafana API.
+        Manages Knowledge Graph Log Configuration through Grafana API.
 
         ## Example Usage
 
@@ -458,7 +458,7 @@ class LogConfig(pulumi.CustomResource):
                  args: LogConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Asserts Log Configuration through Grafana API.
+        Manages Knowledge Graph Log Configuration through Grafana API.
 
         ## Example Usage
 

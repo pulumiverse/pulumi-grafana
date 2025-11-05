@@ -107,7 +107,7 @@ class CustomModelRules(pulumi.CustomResource):
                  rules: Optional[pulumi.Input[Union['CustomModelRulesRulesArgs', 'CustomModelRulesRulesArgsDict']]] = None,
                  __props__=None):
         """
-        Manages Asserts Custom Model Rules through the Grafana API.
+        Manages Knowledge Graph Custom Model Rules through the Grafana API.
 
         ## Example Usage
 
@@ -171,7 +171,7 @@ class CustomModelRules(pulumi.CustomResource):
                  args: CustomModelRulesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Asserts Custom Model Rules through the Grafana API.
+        Manages Knowledge Graph Custom Model Rules through the Grafana API.
 
         ## Example Usage
 

@@ -106,7 +106,7 @@ class SuppressedAssertionsConfig(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages Asserts Disabled Alert Configurations through Grafana API.
+        Manages Knowledge Graph Disabled Alert Configurations through Grafana API.
 
         ## Example Usage
 
@@ -156,7 +156,7 @@ class SuppressedAssertionsConfig(pulumi.CustomResource):
                  args: Optional[SuppressedAssertionsConfigArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Asserts Disabled Alert Configurations through Grafana API.
+        Manages Knowledge Graph Disabled Alert Configurations through Grafana API.
 
         ## Example Usage
 

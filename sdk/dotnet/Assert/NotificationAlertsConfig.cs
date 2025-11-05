@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Assert
 {
     /// <summary>
-    /// Manages Asserts Alert Configurations through Grafana API.
+    /// Manages Knowledge Graph Alert Configurations through Grafana API.
     /// 
     /// ## Example Usage
     /// 

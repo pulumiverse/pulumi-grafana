@@ -74,7 +74,7 @@ export class Schedule extends pulumi.CustomResource {
     /**
      * The schedule's time zone.
      */
-    declare public readonly timeZone: pulumi.Output<string | undefined>;
+    declare public readonly timeZone: pulumi.Output<string>;
     /**
      * The schedule's type. Valid values are `ical`, `calendar`, `web`.
      */

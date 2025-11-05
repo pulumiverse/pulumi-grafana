@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Assert
 {
     /// <summary>
-    /// Manages Asserts Custom Model Rules through the Grafana API.
+    /// Manages Knowledge Graph Custom Model Rules through the Grafana API.
     /// 
     /// ## Example Usage
     /// 

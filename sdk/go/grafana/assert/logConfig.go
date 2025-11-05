@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
-// Manages Asserts Log Configuration through Grafana API.
+// Manages Knowledge Graph Log Configuration through Grafana API.
 //
 // ## Example Usage
 //

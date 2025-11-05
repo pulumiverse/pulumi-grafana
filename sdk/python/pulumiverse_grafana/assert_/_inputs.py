@@ -23,6 +23,12 @@ __all__ = [
     'CustomModelRulesRulesEntityDefinedByArgsDict',
     'LogConfigMatchArgs',
     'LogConfigMatchArgsDict',
+    'ThresholdsHealthThresholdArgs',
+    'ThresholdsHealthThresholdArgsDict',
+    'ThresholdsRequestThresholdArgs',
+    'ThresholdsRequestThresholdArgsDict',
+    'ThresholdsResourceThresholdArgs',
+    'ThresholdsResourceThresholdArgsDict',
 ]
 
 MYPY = False
@@ -385,5 +391,327 @@ class LogConfigMatchArgs:
     @values.setter
     def values(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         pulumi.set(self, "values", value)
+
+
+if not MYPY:
+    class ThresholdsHealthThresholdArgsDict(TypedDict):
+        assertion_name: pulumi.Input[_builtins.str]
+        """
+        Assertion name.
+        """
+        entity_type: pulumi.Input[_builtins.str]
+        """
+        Entity type for the health threshold (e.g., Service, Pod, Namespace, Volume).
+        """
+        expression: pulumi.Input[_builtins.str]
+        """
+        Prometheus expression.
+        """
+        alert_category: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Optional alert category label for the health threshold.
+        """
+elif False:
+    ThresholdsHealthThresholdArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ThresholdsHealthThresholdArgs:
+    def __init__(__self__, *,
+                 assertion_name: pulumi.Input[_builtins.str],
+                 entity_type: pulumi.Input[_builtins.str],
+                 expression: pulumi.Input[_builtins.str],
+                 alert_category: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] assertion_name: Assertion name.
+        :param pulumi.Input[_builtins.str] entity_type: Entity type for the health threshold (e.g., Service, Pod, Namespace, Volume).
+        :param pulumi.Input[_builtins.str] expression: Prometheus expression.
+        :param pulumi.Input[_builtins.str] alert_category: Optional alert category label for the health threshold.
+        """
+        pulumi.set(__self__, "assertion_name", assertion_name)
+        pulumi.set(__self__, "entity_type", entity_type)
+        pulumi.set(__self__, "expression", expression)
+        if alert_category is not None:
+            pulumi.set(__self__, "alert_category", alert_category)
+
+    @_builtins.property
+    @pulumi.getter(name="assertionName")
+    def assertion_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Assertion name.
+        """
+        return pulumi.get(self, "assertion_name")
+
+    @assertion_name.setter
+    def assertion_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "assertion_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="entityType")
+    def entity_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Entity type for the health threshold (e.g., Service, Pod, Namespace, Volume).
+        """
+        return pulumi.get(self, "entity_type")
+
+    @entity_type.setter
+    def entity_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "entity_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def expression(self) -> pulumi.Input[_builtins.str]:
+        """
+        Prometheus expression.
+        """
+        return pulumi.get(self, "expression")
+
+    @expression.setter
+    def expression(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "expression", value)
+
+    @_builtins.property
+    @pulumi.getter(name="alertCategory")
+    def alert_category(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Optional alert category label for the health threshold.
+        """
+        return pulumi.get(self, "alert_category")
+
+    @alert_category.setter
+    def alert_category(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "alert_category", value)
+
+
+if not MYPY:
+    class ThresholdsRequestThresholdArgsDict(TypedDict):
+        assertion_name: pulumi.Input[_builtins.str]
+        """
+        Assertion name (e.g., RequestRateAnomaly, ErrorRatioBreach).
+        """
+        entity_name: pulumi.Input[_builtins.str]
+        """
+        Entity name the threshold applies to.
+        """
+        request_context: pulumi.Input[_builtins.str]
+        """
+        Request context (e.g., path or context identifier).
+        """
+        request_type: pulumi.Input[_builtins.str]
+        """
+        Request type (e.g., inbound/outbound).
+        """
+        value: pulumi.Input[_builtins.float]
+        """
+        Threshold value.
+        """
+elif False:
+    ThresholdsRequestThresholdArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ThresholdsRequestThresholdArgs:
+    def __init__(__self__, *,
+                 assertion_name: pulumi.Input[_builtins.str],
+                 entity_name: pulumi.Input[_builtins.str],
+                 request_context: pulumi.Input[_builtins.str],
+                 request_type: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.float]):
+        """
+        :param pulumi.Input[_builtins.str] assertion_name: Assertion name (e.g., RequestRateAnomaly, ErrorRatioBreach).
+        :param pulumi.Input[_builtins.str] entity_name: Entity name the threshold applies to.
+        :param pulumi.Input[_builtins.str] request_context: Request context (e.g., path or context identifier).
+        :param pulumi.Input[_builtins.str] request_type: Request type (e.g., inbound/outbound).
+        :param pulumi.Input[_builtins.float] value: Threshold value.
+        """
+        pulumi.set(__self__, "assertion_name", assertion_name)
+        pulumi.set(__self__, "entity_name", entity_name)
+        pulumi.set(__self__, "request_context", request_context)
+        pulumi.set(__self__, "request_type", request_type)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="assertionName")
+    def assertion_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Assertion name (e.g., RequestRateAnomaly, ErrorRatioBreach).
+        """
+        return pulumi.get(self, "assertion_name")
+
+    @assertion_name.setter
+    def assertion_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "assertion_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="entityName")
+    def entity_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Entity name the threshold applies to.
+        """
+        return pulumi.get(self, "entity_name")
+
+    @entity_name.setter
+    def entity_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "entity_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="requestContext")
+    def request_context(self) -> pulumi.Input[_builtins.str]:
+        """
+        Request context (e.g., path or context identifier).
+        """
+        return pulumi.get(self, "request_context")
+
+    @request_context.setter
+    def request_context(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "request_context", value)
+
+    @_builtins.property
+    @pulumi.getter(name="requestType")
+    def request_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Request type (e.g., inbound/outbound).
+        """
+        return pulumi.get(self, "request_type")
+
+    @request_type.setter
+    def request_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "request_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.float]:
+        """
+        Threshold value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.float]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class ThresholdsResourceThresholdArgsDict(TypedDict):
+        assertion_name: pulumi.Input[_builtins.str]
+        """
+        Assertion name (e.g., Saturation, ResourceRateBreach).
+        """
+        container_name: pulumi.Input[_builtins.str]
+        """
+        Container name.
+        """
+        resource_type: pulumi.Input[_builtins.str]
+        """
+        Resource type (e.g., container/pod/node).
+        """
+        severity: pulumi.Input[_builtins.str]
+        """
+        Severity (warning or critical).
+        """
+        source: pulumi.Input[_builtins.str]
+        """
+        Data source for the threshold (e.g., metrics/logs).
+        """
+        value: pulumi.Input[_builtins.float]
+        """
+        Threshold value.
+        """
+elif False:
+    ThresholdsResourceThresholdArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ThresholdsResourceThresholdArgs:
+    def __init__(__self__, *,
+                 assertion_name: pulumi.Input[_builtins.str],
+                 container_name: pulumi.Input[_builtins.str],
+                 resource_type: pulumi.Input[_builtins.str],
+                 severity: pulumi.Input[_builtins.str],
+                 source: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.float]):
+        """
+        :param pulumi.Input[_builtins.str] assertion_name: Assertion name (e.g., Saturation, ResourceRateBreach).
+        :param pulumi.Input[_builtins.str] container_name: Container name.
+        :param pulumi.Input[_builtins.str] resource_type: Resource type (e.g., container/pod/node).
+        :param pulumi.Input[_builtins.str] severity: Severity (warning or critical).
+        :param pulumi.Input[_builtins.str] source: Data source for the threshold (e.g., metrics/logs).
+        :param pulumi.Input[_builtins.float] value: Threshold value.
+        """
+        pulumi.set(__self__, "assertion_name", assertion_name)
+        pulumi.set(__self__, "container_name", container_name)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="assertionName")
+    def assertion_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Assertion name (e.g., Saturation, ResourceRateBreach).
+        """
+        return pulumi.get(self, "assertion_name")
+
+    @assertion_name.setter
+    def assertion_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "assertion_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Container name.
+        """
+        return pulumi.get(self, "container_name")
+
+    @container_name.setter
+    def container_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "container_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Resource type (e.g., container/pod/node).
+        """
+        return pulumi.get(self, "resource_type")
+
+    @resource_type.setter
+    def resource_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "resource_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> pulumi.Input[_builtins.str]:
+        """
+        Severity (warning or critical).
+        """
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "severity", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def source(self) -> pulumi.Input[_builtins.str]:
+        """
+        Data source for the threshold (e.g., metrics/logs).
+        """
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "source", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.float]:
+        """
+        Threshold value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.float]):
+        pulumi.set(self, "value", value)
 
 

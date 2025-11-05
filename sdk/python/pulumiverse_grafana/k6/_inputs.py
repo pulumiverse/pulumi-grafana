@@ -31,11 +31,11 @@ if not MYPY:
     class ScheduleCronArgsDict(TypedDict):
         schedule: NotRequired[pulumi.Input[_builtins.str]]
         """
-        A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+        A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
         """
         timezone: NotRequired[pulumi.Input[_builtins.str]]
         """
-        The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+        The timezone of the cron expression. For example, `UTC` or `Europe/London`.
         """
 elif False:
     ScheduleCronArgsDict: TypeAlias = Mapping[str, Any]
@@ -46,8 +46,8 @@ class ScheduleCronArgs:
                  schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  timezone: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] schedule: A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
-        :param pulumi.Input[_builtins.str] timezone: The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+        :param pulumi.Input[_builtins.str] schedule: A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
+        :param pulumi.Input[_builtins.str] timezone: The timezone of the cron expression. For example, `UTC` or `Europe/London`.
         """
         if schedule is not None:
             pulumi.set(__self__, "schedule", schedule)
@@ -58,7 +58,7 @@ class ScheduleCronArgs:
     @pulumi.getter
     def schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+        A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
         """
         return pulumi.get(self, "schedule")
 
@@ -70,7 +70,7 @@ class ScheduleCronArgs:
     @pulumi.getter
     def timezone(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+        The timezone of the cron expression. For example, `UTC` or `Europe/London`.
         """
         return pulumi.get(self, "timezone")
 
@@ -195,11 +195,11 @@ if not MYPY:
     class GetScheduleCronArgsDict(TypedDict):
         schedule: _builtins.str
         """
-        A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+        A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
         """
         timezone: _builtins.str
         """
-        The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+        The timezone of the cron expression. For example, `UTC` or `Europe/London`.
         """
 elif False:
     GetScheduleCronArgsDict: TypeAlias = Mapping[str, Any]
@@ -210,8 +210,8 @@ class GetScheduleCronArgs:
                  schedule: _builtins.str,
                  timezone: _builtins.str):
         """
-        :param _builtins.str schedule: A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
-        :param _builtins.str timezone: The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+        :param _builtins.str schedule: A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
+        :param _builtins.str timezone: The timezone of the cron expression. For example, `UTC` or `Europe/London`.
         """
         pulumi.set(__self__, "schedule", schedule)
         pulumi.set(__self__, "timezone", timezone)
@@ -220,7 +220,7 @@ class GetScheduleCronArgs:
     @pulumi.getter
     def schedule(self) -> _builtins.str:
         """
-        A cron expression with exactly 5 entries, or an alias. The allowed aliases are: @yearly, @annually, @monthly, @weekly, @daily, @hourly.
+        A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
         """
         return pulumi.get(self, "schedule")
 
@@ -232,7 +232,7 @@ class GetScheduleCronArgs:
     @pulumi.getter
     def timezone(self) -> _builtins.str:
         """
-        The timezone of the cron expression. For example, 'UTC' or 'Europe/London'.
+        The timezone of the cron expression. For example, `UTC` or `Europe/London`.
         """
         return pulumi.get(self, "timezone")
 

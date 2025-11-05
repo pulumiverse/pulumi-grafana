@@ -549,6 +549,405 @@ func (o LogConfigMatchArrayOutput) Index(i pulumi.IntInput) LogConfigMatchOutput
 	}).(LogConfigMatchOutput)
 }
 
+type ThresholdsHealthThreshold struct {
+	// Optional alert category label for the health threshold.
+	AlertCategory *string `pulumi:"alertCategory"`
+	// Assertion name.
+	AssertionName string `pulumi:"assertionName"`
+	// Entity type for the health threshold (e.g., Service, Pod, Namespace, Volume).
+	EntityType string `pulumi:"entityType"`
+	// Prometheus expression.
+	Expression string `pulumi:"expression"`
+}
+
+// ThresholdsHealthThresholdInput is an input type that accepts ThresholdsHealthThresholdArgs and ThresholdsHealthThresholdOutput values.
+// You can construct a concrete instance of `ThresholdsHealthThresholdInput` via:
+//
+//	ThresholdsHealthThresholdArgs{...}
+type ThresholdsHealthThresholdInput interface {
+	pulumi.Input
+
+	ToThresholdsHealthThresholdOutput() ThresholdsHealthThresholdOutput
+	ToThresholdsHealthThresholdOutputWithContext(context.Context) ThresholdsHealthThresholdOutput
+}
+
+type ThresholdsHealthThresholdArgs struct {
+	// Optional alert category label for the health threshold.
+	AlertCategory pulumi.StringPtrInput `pulumi:"alertCategory"`
+	// Assertion name.
+	AssertionName pulumi.StringInput `pulumi:"assertionName"`
+	// Entity type for the health threshold (e.g., Service, Pod, Namespace, Volume).
+	EntityType pulumi.StringInput `pulumi:"entityType"`
+	// Prometheus expression.
+	Expression pulumi.StringInput `pulumi:"expression"`
+}
+
+func (ThresholdsHealthThresholdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ThresholdsHealthThreshold)(nil)).Elem()
+}
+
+func (i ThresholdsHealthThresholdArgs) ToThresholdsHealthThresholdOutput() ThresholdsHealthThresholdOutput {
+	return i.ToThresholdsHealthThresholdOutputWithContext(context.Background())
+}
+
+func (i ThresholdsHealthThresholdArgs) ToThresholdsHealthThresholdOutputWithContext(ctx context.Context) ThresholdsHealthThresholdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ThresholdsHealthThresholdOutput)
+}
+
+// ThresholdsHealthThresholdArrayInput is an input type that accepts ThresholdsHealthThresholdArray and ThresholdsHealthThresholdArrayOutput values.
+// You can construct a concrete instance of `ThresholdsHealthThresholdArrayInput` via:
+//
+//	ThresholdsHealthThresholdArray{ ThresholdsHealthThresholdArgs{...} }
+type ThresholdsHealthThresholdArrayInput interface {
+	pulumi.Input
+
+	ToThresholdsHealthThresholdArrayOutput() ThresholdsHealthThresholdArrayOutput
+	ToThresholdsHealthThresholdArrayOutputWithContext(context.Context) ThresholdsHealthThresholdArrayOutput
+}
+
+type ThresholdsHealthThresholdArray []ThresholdsHealthThresholdInput
+
+func (ThresholdsHealthThresholdArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ThresholdsHealthThreshold)(nil)).Elem()
+}
+
+func (i ThresholdsHealthThresholdArray) ToThresholdsHealthThresholdArrayOutput() ThresholdsHealthThresholdArrayOutput {
+	return i.ToThresholdsHealthThresholdArrayOutputWithContext(context.Background())
+}
+
+func (i ThresholdsHealthThresholdArray) ToThresholdsHealthThresholdArrayOutputWithContext(ctx context.Context) ThresholdsHealthThresholdArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ThresholdsHealthThresholdArrayOutput)
+}
+
+type ThresholdsHealthThresholdOutput struct{ *pulumi.OutputState }
+
+func (ThresholdsHealthThresholdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ThresholdsHealthThreshold)(nil)).Elem()
+}
+
+func (o ThresholdsHealthThresholdOutput) ToThresholdsHealthThresholdOutput() ThresholdsHealthThresholdOutput {
+	return o
+}
+
+func (o ThresholdsHealthThresholdOutput) ToThresholdsHealthThresholdOutputWithContext(ctx context.Context) ThresholdsHealthThresholdOutput {
+	return o
+}
+
+// Optional alert category label for the health threshold.
+func (o ThresholdsHealthThresholdOutput) AlertCategory() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ThresholdsHealthThreshold) *string { return v.AlertCategory }).(pulumi.StringPtrOutput)
+}
+
+// Assertion name.
+func (o ThresholdsHealthThresholdOutput) AssertionName() pulumi.StringOutput {
+	return o.ApplyT(func(v ThresholdsHealthThreshold) string { return v.AssertionName }).(pulumi.StringOutput)
+}
+
+// Entity type for the health threshold (e.g., Service, Pod, Namespace, Volume).
+func (o ThresholdsHealthThresholdOutput) EntityType() pulumi.StringOutput {
+	return o.ApplyT(func(v ThresholdsHealthThreshold) string { return v.EntityType }).(pulumi.StringOutput)
+}
+
+// Prometheus expression.
+func (o ThresholdsHealthThresholdOutput) Expression() pulumi.StringOutput {
+	return o.ApplyT(func(v ThresholdsHealthThreshold) string { return v.Expression }).(pulumi.StringOutput)
+}
+
+type ThresholdsHealthThresholdArrayOutput struct{ *pulumi.OutputState }
+
+func (ThresholdsHealthThresholdArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ThresholdsHealthThreshold)(nil)).Elem()
+}
+
+func (o ThresholdsHealthThresholdArrayOutput) ToThresholdsHealthThresholdArrayOutput() ThresholdsHealthThresholdArrayOutput {
+	return o
+}
+
+func (o ThresholdsHealthThresholdArrayOutput) ToThresholdsHealthThresholdArrayOutputWithContext(ctx context.Context) ThresholdsHealthThresholdArrayOutput {
+	return o
+}
+
+func (o ThresholdsHealthThresholdArrayOutput) Index(i pulumi.IntInput) ThresholdsHealthThresholdOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ThresholdsHealthThreshold {
+		return vs[0].([]ThresholdsHealthThreshold)[vs[1].(int)]
+	}).(ThresholdsHealthThresholdOutput)
+}
+
+type ThresholdsRequestThreshold struct {
+	// Assertion name (e.g., RequestRateAnomaly, ErrorRatioBreach).
+	AssertionName string `pulumi:"assertionName"`
+	// Entity name the threshold applies to.
+	EntityName string `pulumi:"entityName"`
+	// Request context (e.g., path or context identifier).
+	RequestContext string `pulumi:"requestContext"`
+	// Request type (e.g., inbound/outbound).
+	RequestType string `pulumi:"requestType"`
+	// Threshold value.
+	Value float64 `pulumi:"value"`
+}
+
+// ThresholdsRequestThresholdInput is an input type that accepts ThresholdsRequestThresholdArgs and ThresholdsRequestThresholdOutput values.
+// You can construct a concrete instance of `ThresholdsRequestThresholdInput` via:
+//
+//	ThresholdsRequestThresholdArgs{...}
+type ThresholdsRequestThresholdInput interface {
+	pulumi.Input
+
+	ToThresholdsRequestThresholdOutput() ThresholdsRequestThresholdOutput
+	ToThresholdsRequestThresholdOutputWithContext(context.Context) ThresholdsRequestThresholdOutput
+}
+
+type ThresholdsRequestThresholdArgs struct {
+	// Assertion name (e.g., RequestRateAnomaly, ErrorRatioBreach).
+	AssertionName pulumi.StringInput `pulumi:"assertionName"`
+	// Entity name the threshold applies to.
+	EntityName pulumi.StringInput `pulumi:"entityName"`
+	// Request context (e.g., path or context identifier).
+	RequestContext pulumi.StringInput `pulumi:"requestContext"`
+	// Request type (e.g., inbound/outbound).
+	RequestType pulumi.StringInput `pulumi:"requestType"`
+	// Threshold value.
+	Value pulumi.Float64Input `pulumi:"value"`
+}
+
+func (ThresholdsRequestThresholdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ThresholdsRequestThreshold)(nil)).Elem()
+}
+
+func (i ThresholdsRequestThresholdArgs) ToThresholdsRequestThresholdOutput() ThresholdsRequestThresholdOutput {
+	return i.ToThresholdsRequestThresholdOutputWithContext(context.Background())
+}
+
+func (i ThresholdsRequestThresholdArgs) ToThresholdsRequestThresholdOutputWithContext(ctx context.Context) ThresholdsRequestThresholdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ThresholdsRequestThresholdOutput)
+}
+
+// ThresholdsRequestThresholdArrayInput is an input type that accepts ThresholdsRequestThresholdArray and ThresholdsRequestThresholdArrayOutput values.
+// You can construct a concrete instance of `ThresholdsRequestThresholdArrayInput` via:
+//
+//	ThresholdsRequestThresholdArray{ ThresholdsRequestThresholdArgs{...} }
+type ThresholdsRequestThresholdArrayInput interface {
+	pulumi.Input
+
+	ToThresholdsRequestThresholdArrayOutput() ThresholdsRequestThresholdArrayOutput
+	ToThresholdsRequestThresholdArrayOutputWithContext(context.Context) ThresholdsRequestThresholdArrayOutput
+}
+
+type ThresholdsRequestThresholdArray []ThresholdsRequestThresholdInput
+
+func (ThresholdsRequestThresholdArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ThresholdsRequestThreshold)(nil)).Elem()
+}
+
+func (i ThresholdsRequestThresholdArray) ToThresholdsRequestThresholdArrayOutput() ThresholdsRequestThresholdArrayOutput {
+	return i.ToThresholdsRequestThresholdArrayOutputWithContext(context.Background())
+}
+
+func (i ThresholdsRequestThresholdArray) ToThresholdsRequestThresholdArrayOutputWithContext(ctx context.Context) ThresholdsRequestThresholdArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ThresholdsRequestThresholdArrayOutput)
+}
+
+type ThresholdsRequestThresholdOutput struct{ *pulumi.OutputState }
+
+func (ThresholdsRequestThresholdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ThresholdsRequestThreshold)(nil)).Elem()
+}
+
+func (o ThresholdsRequestThresholdOutput) ToThresholdsRequestThresholdOutput() ThresholdsRequestThresholdOutput {
+	return o
+}
+
+func (o ThresholdsRequestThresholdOutput) ToThresholdsRequestThresholdOutputWithContext(ctx context.Context) ThresholdsRequestThresholdOutput {
+	return o
+}
+
+// Assertion name (e.g., RequestRateAnomaly, ErrorRatioBreach).
+func (o ThresholdsRequestThresholdOutput) AssertionName() pulumi.StringOutput {
+	return o.ApplyT(func(v ThresholdsRequestThreshold) string { return v.AssertionName }).(pulumi.StringOutput)
+}
+
+// Entity name the threshold applies to.
+func (o ThresholdsRequestThresholdOutput) EntityName() pulumi.StringOutput {
+	return o.ApplyT(func(v ThresholdsRequestThreshold) string { return v.EntityName }).(pulumi.StringOutput)
+}
+
+// Request context (e.g., path or context identifier).
+func (o ThresholdsRequestThresholdOutput) RequestContext() pulumi.StringOutput {
+	return o.ApplyT(func(v ThresholdsRequestThreshold) string { return v.RequestContext }).(pulumi.StringOutput)
+}
+
+// Request type (e.g., inbound/outbound).
+func (o ThresholdsRequestThresholdOutput) RequestType() pulumi.StringOutput {
+	return o.ApplyT(func(v ThresholdsRequestThreshold) string { return v.RequestType }).(pulumi.StringOutput)
+}
+
+// Threshold value.
+func (o ThresholdsRequestThresholdOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v ThresholdsRequestThreshold) float64 { return v.Value }).(pulumi.Float64Output)
+}
+
+type ThresholdsRequestThresholdArrayOutput struct{ *pulumi.OutputState }
+
+func (ThresholdsRequestThresholdArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ThresholdsRequestThreshold)(nil)).Elem()
+}
+
+func (o ThresholdsRequestThresholdArrayOutput) ToThresholdsRequestThresholdArrayOutput() ThresholdsRequestThresholdArrayOutput {
+	return o
+}
+
+func (o ThresholdsRequestThresholdArrayOutput) ToThresholdsRequestThresholdArrayOutputWithContext(ctx context.Context) ThresholdsRequestThresholdArrayOutput {
+	return o
+}
+
+func (o ThresholdsRequestThresholdArrayOutput) Index(i pulumi.IntInput) ThresholdsRequestThresholdOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ThresholdsRequestThreshold {
+		return vs[0].([]ThresholdsRequestThreshold)[vs[1].(int)]
+	}).(ThresholdsRequestThresholdOutput)
+}
+
+type ThresholdsResourceThreshold struct {
+	// Assertion name (e.g., Saturation, ResourceRateBreach).
+	AssertionName string `pulumi:"assertionName"`
+	// Container name.
+	ContainerName string `pulumi:"containerName"`
+	// Resource type (e.g., container/pod/node).
+	ResourceType string `pulumi:"resourceType"`
+	// Severity (warning or critical).
+	Severity string `pulumi:"severity"`
+	// Data source for the threshold (e.g., metrics/logs).
+	Source string `pulumi:"source"`
+	// Threshold value.
+	Value float64 `pulumi:"value"`
+}
+
+// ThresholdsResourceThresholdInput is an input type that accepts ThresholdsResourceThresholdArgs and ThresholdsResourceThresholdOutput values.
+// You can construct a concrete instance of `ThresholdsResourceThresholdInput` via:
+//
+//	ThresholdsResourceThresholdArgs{...}
+type ThresholdsResourceThresholdInput interface {
+	pulumi.Input
+
+	ToThresholdsResourceThresholdOutput() ThresholdsResourceThresholdOutput
+	ToThresholdsResourceThresholdOutputWithContext(context.Context) ThresholdsResourceThresholdOutput
+}
+
+type ThresholdsResourceThresholdArgs struct {
+	// Assertion name (e.g., Saturation, ResourceRateBreach).
+	AssertionName pulumi.StringInput `pulumi:"assertionName"`
+	// Container name.
+	ContainerName pulumi.StringInput `pulumi:"containerName"`
+	// Resource type (e.g., container/pod/node).
+	ResourceType pulumi.StringInput `pulumi:"resourceType"`
+	// Severity (warning or critical).
+	Severity pulumi.StringInput `pulumi:"severity"`
+	// Data source for the threshold (e.g., metrics/logs).
+	Source pulumi.StringInput `pulumi:"source"`
+	// Threshold value.
+	Value pulumi.Float64Input `pulumi:"value"`
+}
+
+func (ThresholdsResourceThresholdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ThresholdsResourceThreshold)(nil)).Elem()
+}
+
+func (i ThresholdsResourceThresholdArgs) ToThresholdsResourceThresholdOutput() ThresholdsResourceThresholdOutput {
+	return i.ToThresholdsResourceThresholdOutputWithContext(context.Background())
+}
+
+func (i ThresholdsResourceThresholdArgs) ToThresholdsResourceThresholdOutputWithContext(ctx context.Context) ThresholdsResourceThresholdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ThresholdsResourceThresholdOutput)
+}
+
+// ThresholdsResourceThresholdArrayInput is an input type that accepts ThresholdsResourceThresholdArray and ThresholdsResourceThresholdArrayOutput values.
+// You can construct a concrete instance of `ThresholdsResourceThresholdArrayInput` via:
+//
+//	ThresholdsResourceThresholdArray{ ThresholdsResourceThresholdArgs{...} }
+type ThresholdsResourceThresholdArrayInput interface {
+	pulumi.Input
+
+	ToThresholdsResourceThresholdArrayOutput() ThresholdsResourceThresholdArrayOutput
+	ToThresholdsResourceThresholdArrayOutputWithContext(context.Context) ThresholdsResourceThresholdArrayOutput
+}
+
+type ThresholdsResourceThresholdArray []ThresholdsResourceThresholdInput
+
+func (ThresholdsResourceThresholdArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ThresholdsResourceThreshold)(nil)).Elem()
+}
+
+func (i ThresholdsResourceThresholdArray) ToThresholdsResourceThresholdArrayOutput() ThresholdsResourceThresholdArrayOutput {
+	return i.ToThresholdsResourceThresholdArrayOutputWithContext(context.Background())
+}
+
+func (i ThresholdsResourceThresholdArray) ToThresholdsResourceThresholdArrayOutputWithContext(ctx context.Context) ThresholdsResourceThresholdArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ThresholdsResourceThresholdArrayOutput)
+}
+
+type ThresholdsResourceThresholdOutput struct{ *pulumi.OutputState }
+
+func (ThresholdsResourceThresholdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ThresholdsResourceThreshold)(nil)).Elem()
+}
+
+func (o ThresholdsResourceThresholdOutput) ToThresholdsResourceThresholdOutput() ThresholdsResourceThresholdOutput {
+	return o
+}
+
+func (o ThresholdsResourceThresholdOutput) ToThresholdsResourceThresholdOutputWithContext(ctx context.Context) ThresholdsResourceThresholdOutput {
+	return o
+}
+
+// Assertion name (e.g., Saturation, ResourceRateBreach).
+func (o ThresholdsResourceThresholdOutput) AssertionName() pulumi.StringOutput {
+	return o.ApplyT(func(v ThresholdsResourceThreshold) string { return v.AssertionName }).(pulumi.StringOutput)
+}
+
+// Container name.
+func (o ThresholdsResourceThresholdOutput) ContainerName() pulumi.StringOutput {
+	return o.ApplyT(func(v ThresholdsResourceThreshold) string { return v.ContainerName }).(pulumi.StringOutput)
+}
+
+// Resource type (e.g., container/pod/node).
+func (o ThresholdsResourceThresholdOutput) ResourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v ThresholdsResourceThreshold) string { return v.ResourceType }).(pulumi.StringOutput)
+}
+
+// Severity (warning or critical).
+func (o ThresholdsResourceThresholdOutput) Severity() pulumi.StringOutput {
+	return o.ApplyT(func(v ThresholdsResourceThreshold) string { return v.Severity }).(pulumi.StringOutput)
+}
+
+// Data source for the threshold (e.g., metrics/logs).
+func (o ThresholdsResourceThresholdOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v ThresholdsResourceThreshold) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// Threshold value.
+func (o ThresholdsResourceThresholdOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v ThresholdsResourceThreshold) float64 { return v.Value }).(pulumi.Float64Output)
+}
+
+type ThresholdsResourceThresholdArrayOutput struct{ *pulumi.OutputState }
+
+func (ThresholdsResourceThresholdArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ThresholdsResourceThreshold)(nil)).Elem()
+}
+
+func (o ThresholdsResourceThresholdArrayOutput) ToThresholdsResourceThresholdArrayOutput() ThresholdsResourceThresholdArrayOutput {
+	return o
+}
+
+func (o ThresholdsResourceThresholdArrayOutput) ToThresholdsResourceThresholdArrayOutputWithContext(ctx context.Context) ThresholdsResourceThresholdArrayOutput {
+	return o
+}
+
+func (o ThresholdsResourceThresholdArrayOutput) Index(i pulumi.IntInput) ThresholdsResourceThresholdOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ThresholdsResourceThreshold {
+		return vs[0].([]ThresholdsResourceThreshold)[vs[1].(int)]
+	}).(ThresholdsResourceThresholdOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomModelRulesRulesInput)(nil)).Elem(), CustomModelRulesRulesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomModelRulesRulesPtrInput)(nil)).Elem(), CustomModelRulesRulesArgs{})
@@ -558,6 +957,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomModelRulesRulesEntityDefinedByArrayInput)(nil)).Elem(), CustomModelRulesRulesEntityDefinedByArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogConfigMatchInput)(nil)).Elem(), LogConfigMatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogConfigMatchArrayInput)(nil)).Elem(), LogConfigMatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsHealthThresholdInput)(nil)).Elem(), ThresholdsHealthThresholdArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsHealthThresholdArrayInput)(nil)).Elem(), ThresholdsHealthThresholdArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsRequestThresholdInput)(nil)).Elem(), ThresholdsRequestThresholdArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsRequestThresholdArrayInput)(nil)).Elem(), ThresholdsRequestThresholdArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsResourceThresholdInput)(nil)).Elem(), ThresholdsResourceThresholdArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsResourceThresholdArrayInput)(nil)).Elem(), ThresholdsResourceThresholdArray{})
 	pulumi.RegisterOutputType(CustomModelRulesRulesOutput{})
 	pulumi.RegisterOutputType(CustomModelRulesRulesPtrOutput{})
 	pulumi.RegisterOutputType(CustomModelRulesRulesEntityOutput{})
@@ -566,4 +971,10 @@ func init() {
 	pulumi.RegisterOutputType(CustomModelRulesRulesEntityDefinedByArrayOutput{})
 	pulumi.RegisterOutputType(LogConfigMatchOutput{})
 	pulumi.RegisterOutputType(LogConfigMatchArrayOutput{})
+	pulumi.RegisterOutputType(ThresholdsHealthThresholdOutput{})
+	pulumi.RegisterOutputType(ThresholdsHealthThresholdArrayOutput{})
+	pulumi.RegisterOutputType(ThresholdsRequestThresholdOutput{})
+	pulumi.RegisterOutputType(ThresholdsRequestThresholdArrayOutput{})
+	pulumi.RegisterOutputType(ThresholdsResourceThresholdOutput{})
+	pulumi.RegisterOutputType(ThresholdsResourceThresholdArrayOutput{})
 }

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages Asserts Alert Configurations through Grafana API.
+ * Manages Knowledge Graph Alert Configurations through Grafana API.
  *
  * ## Example Usage
  *

@@ -526,7 +526,7 @@ class Schedule(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="timeZone")
-    def time_zone(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def time_zone(self) -> pulumi.Output[_builtins.str]:
         """
         The schedule's time zone.
         """
