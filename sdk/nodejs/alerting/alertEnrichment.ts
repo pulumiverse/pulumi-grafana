@@ -10,6 +10,140 @@ import * as utilities from "../utilities";
  * Manages [Grafana Cloud Alert Enrichment](https://grafana.com/docs/grafana-cloud/alerting-and-irm/alerting/configure-notifications/alert-enrichment/).
  *
  * Alert enrichment is currently in private preview. Grafana Labs offers support on a best-effort basis, and breaking changes might occur prior to the feature being made generally available
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const enrichment = new grafana.alerting.AlertEnrichment("enrichment", {
+ *     metadata: {
+ *         uid: "test_enrichment",
+ *     },
+ *     spec: {
+ *         title: "Comprehensive alert enrichment",
+ *         description: "Demonstrates many enrichment steps and configurations",
+ *         alertRuleUids: [
+ *             "alert-rule-1",
+ *             "alert-rule-2",
+ *         ],
+ *         receivers: [
+ *             "webhook",
+ *             "slack-critical",
+ *         ],
+ *         labelMatchers: [
+ *             {
+ *                 type: "=",
+ *                 name: "severity",
+ *                 value: "critical",
+ *             },
+ *             {
+ *                 type: "=~",
+ *                 name: "team",
+ *                 value: "alerting|alerting-team",
+ *             },
+ *         ],
+ *         annotationMatchers: [{
+ *             type: "!=",
+ *             name: "runbook_url",
+ *             value: "",
+ *         }],
+ *         steps: [
+ *             {
+ *                 assign: {
+ *                     timeout: "30s",
+ *                     annotations: {
+ *                         priority: "high",
+ *                         runbook_url: "https://runbooks.grafana.com/alert-handling",
+ *                     },
+ *                 },
+ *             },
+ *             {
+ *                 external: {
+ *                     url: "https://some-api.grafana.com/alert-enrichment",
+ *                 },
+ *             },
+ *             {
+ *                 dataSource: {
+ *                     timeout: "30s",
+ *                     logsQuery: {
+ *                         dataSourceType: "loki",
+ *                         dataSourceUid: "loki-uid-123",
+ *                         expr: "{job=\"my-app\"} |= \"error\"",
+ *                         maxLines: 5,
+ *                     },
+ *                 },
+ *             },
+ *             {
+ *                 dataSource: {
+ *                     timeout: "30s",
+ *                     rawQuery: {
+ *                         refId: "A",
+ *                         request: JSON.stringify({
+ *                             datasource: {
+ *                                 type: "prometheus",
+ *                                 uid: "prometheus-uid-456",
+ *                             },
+ *                             expr: "rate(http_requests_total[5m])",
+ *                             refId: "A",
+ *                             intervalMs: 1000,
+ *                             maxDataPoints: 43200,
+ *                         }),
+ *                     },
+ *                 },
+ *             },
+ *             {
+ *                 sift: {},
+ *             },
+ *             {
+ *                 explain: {
+ *                     annotation: "ai_explanation",
+ *                 },
+ *             },
+ *             {
+ *                 assistantInvestigations: {},
+ *             },
+ *             {
+ *                 conditional: {
+ *                     "if": {
+ *                         labelMatchers: [{
+ *                             type: "=",
+ *                             name: "severity",
+ *                             value: "critical",
+ *                         }],
+ *                     },
+ *                     then: {
+ *                         steps: [
+ *                             {
+ *                                 assign: {
+ *                                     annotations: {
+ *                                         escalation_level: "immediate",
+ *                                     },
+ *                                 },
+ *                             },
+ *                             {
+ *                                 external: {
+ *                                     url: "https://irm.grafana.com/create-incident",
+ *                                 },
+ *                             },
+ *                         ],
+ *                     },
+ *                     "else": {
+ *                         steps: [{
+ *                             assign: {
+ *                                 annotations: {
+ *                                     escalation_level: "standard",
+ *                                 },
+ *                             },
+ *                         }],
+ *                     },
+ *                 },
+ *             },
+ *         ],
+ *     },
+ * });
+ * ```
  */
 export class AlertEnrichment extends pulumi.CustomResource {
     /**

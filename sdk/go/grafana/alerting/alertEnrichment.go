@@ -14,6 +14,168 @@ import (
 // Manages [Grafana Cloud Alert Enrichment](https://grafana.com/docs/grafana-cloud/alerting-and-irm/alerting/configure-notifications/alert-enrichment/).
 //
 // Alert enrichment is currently in private preview. Grafana Labs offers support on a best-effort basis, and breaking changes might occur prior to the feature being made generally available
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"datasource": map[string]interface{}{
+//					"type": "prometheus",
+//					"uid":  "prometheus-uid-456",
+//				},
+//				"expr":          "rate(http_requests_total[5m])",
+//				"refId":         "A",
+//				"intervalMs":    1000,
+//				"maxDataPoints": 43200,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = alerting.NewAlertEnrichment(ctx, "enrichment", &alerting.AlertEnrichmentArgs{
+//				Metadata: &alerting.AlertEnrichmentMetadataArgs{
+//					Uid: pulumi.String("test_enrichment"),
+//				},
+//				Spec: &alerting.AlertEnrichmentSpecArgs{
+//					Title:       pulumi.String("Comprehensive alert enrichment"),
+//					Description: pulumi.String("Demonstrates many enrichment steps and configurations"),
+//					AlertRuleUids: pulumi.StringArray{
+//						pulumi.String("alert-rule-1"),
+//						pulumi.String("alert-rule-2"),
+//					},
+//					Receivers: pulumi.StringArray{
+//						pulumi.String("webhook"),
+//						pulumi.String("slack-critical"),
+//					},
+//					LabelMatchers: alerting.AlertEnrichmentSpecLabelMatcherArray{
+//						&alerting.AlertEnrichmentSpecLabelMatcherArgs{
+//							Type:  pulumi.String("="),
+//							Name:  pulumi.String("severity"),
+//							Value: pulumi.String("critical"),
+//						},
+//						&alerting.AlertEnrichmentSpecLabelMatcherArgs{
+//							Type:  pulumi.String("=~"),
+//							Name:  pulumi.String("team"),
+//							Value: pulumi.String("alerting|alerting-team"),
+//						},
+//					},
+//					AnnotationMatchers: alerting.AlertEnrichmentSpecAnnotationMatcherArray{
+//						&alerting.AlertEnrichmentSpecAnnotationMatcherArgs{
+//							Type:  pulumi.String("!="),
+//							Name:  pulumi.String("runbook_url"),
+//							Value: pulumi.String(""),
+//						},
+//					},
+//					Steps: alerting.AlertEnrichmentSpecStepArray{
+//						&alerting.AlertEnrichmentSpecStepArgs{
+//							Assign: &alerting.AlertEnrichmentSpecStepAssignArgs{
+//								Timeout: pulumi.String("30s"),
+//								Annotations: pulumi.StringMap{
+//									"priority":    pulumi.String("high"),
+//									"runbook_url": pulumi.String("https://runbooks.grafana.com/alert-handling"),
+//								},
+//							},
+//						},
+//						&alerting.AlertEnrichmentSpecStepArgs{
+//							External: &alerting.AlertEnrichmentSpecStepExternalArgs{
+//								Url: pulumi.String("https://some-api.grafana.com/alert-enrichment"),
+//							},
+//						},
+//						&alerting.AlertEnrichmentSpecStepArgs{
+//							DataSource: &alerting.AlertEnrichmentSpecStepDataSourceArgs{
+//								Timeout: pulumi.String("30s"),
+//								LogsQuery: &alerting.AlertEnrichmentSpecStepDataSourceLogsQueryArgs{
+//									DataSourceType: pulumi.String("loki"),
+//									DataSourceUid:  pulumi.String("loki-uid-123"),
+//									Expr:           pulumi.String("{job=\"my-app\"} |= \"error\""),
+//									MaxLines:       pulumi.Int(5),
+//								},
+//							},
+//						},
+//						&alerting.AlertEnrichmentSpecStepArgs{
+//							DataSource: &alerting.AlertEnrichmentSpecStepDataSourceArgs{
+//								Timeout: pulumi.String("30s"),
+//								RawQuery: &alerting.AlertEnrichmentSpecStepDataSourceRawQueryArgs{
+//									RefId:   pulumi.String("A"),
+//									Request: pulumi.String(json0),
+//								},
+//							},
+//						},
+//						&alerting.AlertEnrichmentSpecStepArgs{
+//							Sift: &alerting.AlertEnrichmentSpecStepSiftArgs{},
+//						},
+//						&alerting.AlertEnrichmentSpecStepArgs{
+//							Explain: &alerting.AlertEnrichmentSpecStepExplainArgs{
+//								Annotation: pulumi.String("ai_explanation"),
+//							},
+//						},
+//						&alerting.AlertEnrichmentSpecStepArgs{
+//							AssistantInvestigations: &alerting.AlertEnrichmentSpecStepAssistantInvestigationsArgs{},
+//						},
+//						&alerting.AlertEnrichmentSpecStepArgs{
+//							Conditional: &alerting.AlertEnrichmentSpecStepConditionalArgs{
+//								If: &alerting.AlertEnrichmentSpecStepConditionalIfArgs{
+//									LabelMatchers: alerting.AlertEnrichmentSpecStepConditionalIfLabelMatcherArray{
+//										&alerting.AlertEnrichmentSpecStepConditionalIfLabelMatcherArgs{
+//											Type:  pulumi.String("="),
+//											Name:  pulumi.String("severity"),
+//											Value: pulumi.String("critical"),
+//										},
+//									},
+//								},
+//								Then: &alerting.AlertEnrichmentSpecStepConditionalThenArgs{
+//									Steps: alerting.AlertEnrichmentSpecStepConditionalThenStepArray{
+//										&alerting.AlertEnrichmentSpecStepConditionalThenStepArgs{
+//											Assign: &alerting.AlertEnrichmentSpecStepConditionalThenStepAssignArgs{
+//												Annotations: pulumi.StringMap{
+//													"escalation_level": pulumi.String("immediate"),
+//												},
+//											},
+//										},
+//										&alerting.AlertEnrichmentSpecStepConditionalThenStepArgs{
+//											External: &alerting.AlertEnrichmentSpecStepConditionalThenStepExternalArgs{
+//												Url: pulumi.String("https://irm.grafana.com/create-incident"),
+//											},
+//										},
+//									},
+//								},
+//								Else: &alerting.AlertEnrichmentSpecStepConditionalElseArgs{
+//									Steps: alerting.AlertEnrichmentSpecStepConditionalElseStepArray{
+//										&alerting.AlertEnrichmentSpecStepConditionalElseStepArgs{
+//											Assign: &alerting.AlertEnrichmentSpecStepConditionalElseStepAssignArgs{
+//												Annotations: pulumi.StringMap{
+//													"escalation_level": pulumi.String("standard"),
+//												},
+//											},
+//										},
+//									},
+//								},
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type AlertEnrichment struct {
 	pulumi.CustomResourceState
 

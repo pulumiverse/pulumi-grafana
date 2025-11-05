@@ -145,6 +145,140 @@ class AlertEnrichment(pulumi.CustomResource):
 
         Alert enrichment is currently in private preview. Grafana Labs offers support on a best-effort basis, and breaking changes might occur prior to the feature being made generally available
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        enrichment = grafana.alerting.AlertEnrichment("enrichment",
+            metadata={
+                "uid": "test_enrichment",
+            },
+            spec={
+                "title": "Comprehensive alert enrichment",
+                "description": "Demonstrates many enrichment steps and configurations",
+                "alert_rule_uids": [
+                    "alert-rule-1",
+                    "alert-rule-2",
+                ],
+                "receivers": [
+                    "webhook",
+                    "slack-critical",
+                ],
+                "label_matchers": [
+                    {
+                        "type": "=",
+                        "name": "severity",
+                        "value": "critical",
+                    },
+                    {
+                        "type": "=~",
+                        "name": "team",
+                        "value": "alerting|alerting-team",
+                    },
+                ],
+                "annotation_matchers": [{
+                    "type": "!=",
+                    "name": "runbook_url",
+                    "value": "",
+                }],
+                "steps": [
+                    {
+                        "assign": {
+                            "timeout": "30s",
+                            "annotations": {
+                                "priority": "high",
+                                "runbook_url": "https://runbooks.grafana.com/alert-handling",
+                            },
+                        },
+                    },
+                    {
+                        "external": {
+                            "url": "https://some-api.grafana.com/alert-enrichment",
+                        },
+                    },
+                    {
+                        "data_source": {
+                            "timeout": "30s",
+                            "logs_query": {
+                                "data_source_type": "loki",
+                                "data_source_uid": "loki-uid-123",
+                                "expr": "{job=\\"my-app\\"} |= \\"error\\"",
+                                "max_lines": 5,
+                            },
+                        },
+                    },
+                    {
+                        "data_source": {
+                            "timeout": "30s",
+                            "raw_query": {
+                                "ref_id": "A",
+                                "request": json.dumps({
+                                    "datasource": {
+                                        "type": "prometheus",
+                                        "uid": "prometheus-uid-456",
+                                    },
+                                    "expr": "rate(http_requests_total[5m])",
+                                    "refId": "A",
+                                    "intervalMs": 1000,
+                                    "maxDataPoints": 43200,
+                                }),
+                            },
+                        },
+                    },
+                    {
+                        "sift": {},
+                    },
+                    {
+                        "explain": {
+                            "annotation": "ai_explanation",
+                        },
+                    },
+                    {
+                        "assistant_investigations": {},
+                    },
+                    {
+                        "conditional": {
+                            "if_": {
+                                "label_matchers": [{
+                                    "type": "=",
+                                    "name": "severity",
+                                    "value": "critical",
+                                }],
+                            },
+                            "then": {
+                                "steps": [
+                                    {
+                                        "assign": {
+                                            "annotations": {
+                                                "escalation_level": "immediate",
+                                            },
+                                        },
+                                    },
+                                    {
+                                        "external": {
+                                            "url": "https://irm.grafana.com/create-incident",
+                                        },
+                                    },
+                                ],
+                            },
+                            "else_": {
+                                "steps": [{
+                                    "assign": {
+                                        "annotations": {
+                                            "escalation_level": "standard",
+                                        },
+                                    },
+                                }],
+                            },
+                        },
+                    },
+                ],
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['AlertEnrichmentMetadataArgs', 'AlertEnrichmentMetadataArgsDict']] metadata: The metadata of the resource.
@@ -161,6 +295,140 @@ class AlertEnrichment(pulumi.CustomResource):
         Manages [Grafana Cloud Alert Enrichment](https://grafana.com/docs/grafana-cloud/alerting-and-irm/alerting/configure-notifications/alert-enrichment/).
 
         Alert enrichment is currently in private preview. Grafana Labs offers support on a best-effort basis, and breaking changes might occur prior to the feature being made generally available
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        enrichment = grafana.alerting.AlertEnrichment("enrichment",
+            metadata={
+                "uid": "test_enrichment",
+            },
+            spec={
+                "title": "Comprehensive alert enrichment",
+                "description": "Demonstrates many enrichment steps and configurations",
+                "alert_rule_uids": [
+                    "alert-rule-1",
+                    "alert-rule-2",
+                ],
+                "receivers": [
+                    "webhook",
+                    "slack-critical",
+                ],
+                "label_matchers": [
+                    {
+                        "type": "=",
+                        "name": "severity",
+                        "value": "critical",
+                    },
+                    {
+                        "type": "=~",
+                        "name": "team",
+                        "value": "alerting|alerting-team",
+                    },
+                ],
+                "annotation_matchers": [{
+                    "type": "!=",
+                    "name": "runbook_url",
+                    "value": "",
+                }],
+                "steps": [
+                    {
+                        "assign": {
+                            "timeout": "30s",
+                            "annotations": {
+                                "priority": "high",
+                                "runbook_url": "https://runbooks.grafana.com/alert-handling",
+                            },
+                        },
+                    },
+                    {
+                        "external": {
+                            "url": "https://some-api.grafana.com/alert-enrichment",
+                        },
+                    },
+                    {
+                        "data_source": {
+                            "timeout": "30s",
+                            "logs_query": {
+                                "data_source_type": "loki",
+                                "data_source_uid": "loki-uid-123",
+                                "expr": "{job=\\"my-app\\"} |= \\"error\\"",
+                                "max_lines": 5,
+                            },
+                        },
+                    },
+                    {
+                        "data_source": {
+                            "timeout": "30s",
+                            "raw_query": {
+                                "ref_id": "A",
+                                "request": json.dumps({
+                                    "datasource": {
+                                        "type": "prometheus",
+                                        "uid": "prometheus-uid-456",
+                                    },
+                                    "expr": "rate(http_requests_total[5m])",
+                                    "refId": "A",
+                                    "intervalMs": 1000,
+                                    "maxDataPoints": 43200,
+                                }),
+                            },
+                        },
+                    },
+                    {
+                        "sift": {},
+                    },
+                    {
+                        "explain": {
+                            "annotation": "ai_explanation",
+                        },
+                    },
+                    {
+                        "assistant_investigations": {},
+                    },
+                    {
+                        "conditional": {
+                            "if_": {
+                                "label_matchers": [{
+                                    "type": "=",
+                                    "name": "severity",
+                                    "value": "critical",
+                                }],
+                            },
+                            "then": {
+                                "steps": [
+                                    {
+                                        "assign": {
+                                            "annotations": {
+                                                "escalation_level": "immediate",
+                                            },
+                                        },
+                                    },
+                                    {
+                                        "external": {
+                                            "url": "https://irm.grafana.com/create-incident",
+                                        },
+                                    },
+                                ],
+                            },
+                            "else_": {
+                                "steps": [{
+                                    "assign": {
+                                        "annotations": {
+                                            "escalation_level": "standard",
+                                        },
+                                    },
+                                }],
+                            },
+                        },
+                    },
+                ],
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param AlertEnrichmentArgs args: The arguments to use to populate this resource's properties.

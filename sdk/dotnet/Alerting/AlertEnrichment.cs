@@ -14,6 +14,198 @@ namespace Pulumiverse.Grafana.Alerting
     /// Manages [Grafana Cloud Alert Enrichment](https://grafana.com/docs/grafana-cloud/alerting-and-irm/alerting/configure-notifications/alert-enrichment/).
     /// 
     /// Alert enrichment is currently in private preview. Grafana Labs offers support on a best-effort basis, and breaking changes might occur prior to the feature being made generally available
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var enrichment = new Grafana.Alerting.AlertEnrichment("enrichment", new()
+    ///     {
+    ///         Metadata = new Grafana.Alerting.Inputs.AlertEnrichmentMetadataArgs
+    ///         {
+    ///             Uid = "test_enrichment",
+    ///         },
+    ///         Spec = new Grafana.Alerting.Inputs.AlertEnrichmentSpecArgs
+    ///         {
+    ///             Title = "Comprehensive alert enrichment",
+    ///             Description = "Demonstrates many enrichment steps and configurations",
+    ///             AlertRuleUids = new[]
+    ///             {
+    ///                 "alert-rule-1",
+    ///                 "alert-rule-2",
+    ///             },
+    ///             Receivers = new[]
+    ///             {
+    ///                 "webhook",
+    ///                 "slack-critical",
+    ///             },
+    ///             LabelMatchers = new[]
+    ///             {
+    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecLabelMatcherArgs
+    ///                 {
+    ///                     Type = "=",
+    ///                     Name = "severity",
+    ///                     Value = "critical",
+    ///                 },
+    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecLabelMatcherArgs
+    ///                 {
+    ///                     Type = "=~",
+    ///                     Name = "team",
+    ///                     Value = "alerting|alerting-team",
+    ///                 },
+    ///             },
+    ///             AnnotationMatchers = new[]
+    ///             {
+    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecAnnotationMatcherArgs
+    ///                 {
+    ///                     Type = "!=",
+    ///                     Name = "runbook_url",
+    ///                     Value = "",
+    ///                 },
+    ///             },
+    ///             Steps = new[]
+    ///             {
+    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 {
+    ///                     Assign = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepAssignArgs
+    ///                     {
+    ///                         Timeout = "30s",
+    ///                         Annotations = 
+    ///                         {
+    ///                             { "priority", "high" },
+    ///                             { "runbook_url", "https://runbooks.grafana.com/alert-handling" },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 {
+    ///                     External = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepExternalArgs
+    ///                     {
+    ///                         Url = "https://some-api.grafana.com/alert-enrichment",
+    ///                     },
+    ///                 },
+    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 {
+    ///                     DataSource = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepDataSourceArgs
+    ///                     {
+    ///                         Timeout = "30s",
+    ///                         LogsQuery = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepDataSourceLogsQueryArgs
+    ///                         {
+    ///                             DataSourceType = "loki",
+    ///                             DataSourceUid = "loki-uid-123",
+    ///                             Expr = "{job=\"my-app\"} |= \"error\"",
+    ///                             MaxLines = 5,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 {
+    ///                     DataSource = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepDataSourceArgs
+    ///                     {
+    ///                         Timeout = "30s",
+    ///                         RawQuery = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepDataSourceRawQueryArgs
+    ///                         {
+    ///                             RefId = "A",
+    ///                             Request = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                             {
+    ///                                 ["datasource"] = new Dictionary&lt;string, object?&gt;
+    ///                                 {
+    ///                                     ["type"] = "prometheus",
+    ///                                     ["uid"] = "prometheus-uid-456",
+    ///                                 },
+    ///                                 ["expr"] = "rate(http_requests_total[5m])",
+    ///                                 ["refId"] = "A",
+    ///                                 ["intervalMs"] = 1000,
+    ///                                 ["maxDataPoints"] = 43200,
+    ///                             }),
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 {
+    ///                     Sift = null,
+    ///                 },
+    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 {
+    ///                     Explain = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepExplainArgs
+    ///                     {
+    ///                         Annotation = "ai_explanation",
+    ///                     },
+    ///                 },
+    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 {
+    ///                     AssistantInvestigations = null,
+    ///                 },
+    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 {
+    ///                     Conditional = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalArgs
+    ///                     {
+    ///                         If = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalIfArgs
+    ///                         {
+    ///                             LabelMatchers = new[]
+    ///                             {
+    ///                                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalIfLabelMatcherArgs
+    ///                                 {
+    ///                                     Type = "=",
+    ///                                     Name = "severity",
+    ///                                     Value = "critical",
+    ///                                 },
+    ///                             },
+    ///                         },
+    ///                         Then = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalThenArgs
+    ///                         {
+    ///                             Steps = new[]
+    ///                             {
+    ///                                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalThenStepArgs
+    ///                                 {
+    ///                                     Assign = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalThenStepAssignArgs
+    ///                                     {
+    ///                                         Annotations = 
+    ///                                         {
+    ///                                             { "escalation_level", "immediate" },
+    ///                                         },
+    ///                                     },
+    ///                                 },
+    ///                                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalThenStepArgs
+    ///                                 {
+    ///                                     External = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalThenStepExternalArgs
+    ///                                     {
+    ///                                         Url = "https://irm.grafana.com/create-incident",
+    ///                                     },
+    ///                                 },
+    ///                             },
+    ///                         },
+    ///                         Else = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalElseArgs
+    ///                         {
+    ///                             Steps = new[]
+    ///                             {
+    ///                                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalElseStepArgs
+    ///                                 {
+    ///                                     Assign = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalElseStepAssignArgs
+    ///                                     {
+    ///                                         Annotations = 
+    ///                                         {
+    ///                                             { "escalation_level", "standard" },
+    ///                                         },
+    ///                                     },
+    ///                                 },
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [GrafanaResourceType("grafana:alerting/alertEnrichment:AlertEnrichment")]
     public partial class AlertEnrichment : global::Pulumi.CustomResource
