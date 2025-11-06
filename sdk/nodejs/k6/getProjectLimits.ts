@@ -14,6 +14,13 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const testProjectLimits = new grafana.k6.Project("test_project_limits", {name: "Terraform Project Test Limits"});
+ * const testLimits = new grafana.k6.ProjectLimits("test_limits", {
+ *     projectId: testProjectLimits.id,
+ *     vuhMaxPerMonth: 10000,
+ *     vuMaxPerTest: 10000,
+ *     vuBrowserMaxPerTest: 1000,
+ *     durationMaxPerTest: 3600,
+ * });
  * const fromProjectId = grafana.k6.getProjectLimitsOutput({
  *     projectId: testProjectLimits.id,
  * });
@@ -75,6 +82,13 @@ export interface GetProjectLimitsResult {
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const testProjectLimits = new grafana.k6.Project("test_project_limits", {name: "Terraform Project Test Limits"});
+ * const testLimits = new grafana.k6.ProjectLimits("test_limits", {
+ *     projectId: testProjectLimits.id,
+ *     vuhMaxPerMonth: 10000,
+ *     vuMaxPerTest: 10000,
+ *     vuBrowserMaxPerTest: 1000,
+ *     durationMaxPerTest: 3600,
+ * });
  * const fromProjectId = grafana.k6.getProjectLimitsOutput({
  *     projectId: testProjectLimits.id,
  * });

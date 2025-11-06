@@ -79,6 +79,14 @@ export class Escalation extends pulumi.CustomResource {
      */
     declare public readonly notifyToTeamMembers: pulumi.Output<string | undefined>;
     /**
+     * Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+     */
+    declare public readonly numAlertsInWindow: pulumi.Output<number | undefined>;
+    /**
+     * Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+     */
+    declare public readonly numMinutesInWindow: pulumi.Output<number | undefined>;
+    /**
      * The list of ID's of users for notifyPersons type step.
      */
     declare public readonly personsToNotifies: pulumi.Output<string[] | undefined>;
@@ -95,7 +103,7 @@ export class Escalation extends pulumi.CustomResource {
      */
     declare public readonly severity: pulumi.Output<string | undefined>;
     /**
-     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
      */
     declare public readonly type: pulumi.Output<string>;
 
@@ -121,6 +129,8 @@ export class Escalation extends pulumi.CustomResource {
             resourceInputs["notifyIfTimeTo"] = state?.notifyIfTimeTo;
             resourceInputs["notifyOnCallFromSchedule"] = state?.notifyOnCallFromSchedule;
             resourceInputs["notifyToTeamMembers"] = state?.notifyToTeamMembers;
+            resourceInputs["numAlertsInWindow"] = state?.numAlertsInWindow;
+            resourceInputs["numMinutesInWindow"] = state?.numMinutesInWindow;
             resourceInputs["personsToNotifies"] = state?.personsToNotifies;
             resourceInputs["personsToNotifyNextEachTimes"] = state?.personsToNotifyNextEachTimes;
             resourceInputs["position"] = state?.position;
@@ -146,6 +156,8 @@ export class Escalation extends pulumi.CustomResource {
             resourceInputs["notifyIfTimeTo"] = args?.notifyIfTimeTo;
             resourceInputs["notifyOnCallFromSchedule"] = args?.notifyOnCallFromSchedule;
             resourceInputs["notifyToTeamMembers"] = args?.notifyToTeamMembers;
+            resourceInputs["numAlertsInWindow"] = args?.numAlertsInWindow;
+            resourceInputs["numMinutesInWindow"] = args?.numMinutesInWindow;
             resourceInputs["personsToNotifies"] = args?.personsToNotifies;
             resourceInputs["personsToNotifyNextEachTimes"] = args?.personsToNotifyNextEachTimes;
             resourceInputs["position"] = args?.position;
@@ -198,6 +210,14 @@ export interface EscalationState {
      */
     notifyToTeamMembers?: pulumi.Input<string>;
     /**
+     * Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+     */
+    numAlertsInWindow?: pulumi.Input<number>;
+    /**
+     * Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+     */
+    numMinutesInWindow?: pulumi.Input<number>;
+    /**
      * The list of ID's of users for notifyPersons type step.
      */
     personsToNotifies?: pulumi.Input<pulumi.Input<string>[]>;
@@ -214,7 +234,7 @@ export interface EscalationState {
      */
     severity?: pulumi.Input<string>;
     /**
-     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
      */
     type?: pulumi.Input<string>;
 }
@@ -260,6 +280,14 @@ export interface EscalationArgs {
      */
     notifyToTeamMembers?: pulumi.Input<string>;
     /**
+     * Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+     */
+    numAlertsInWindow?: pulumi.Input<number>;
+    /**
+     * Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+     */
+    numMinutesInWindow?: pulumi.Input<number>;
+    /**
      * The list of ID's of users for notifyPersons type step.
      */
     personsToNotifies?: pulumi.Input<pulumi.Input<string>[]>;
@@ -276,7 +304,7 @@ export interface EscalationArgs {
      */
     severity?: pulumi.Input<string>;
     /**
-     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
      */
     type: pulumi.Input<string>;
 }

@@ -5,7 +5,7 @@ go 1.25
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250530111747-935112552988
 
 require (
-	github.com/grafana/terraform-provider-grafana/v4 v4.12.1
+	github.com/grafana/terraform-provider-grafana/v4 v4.12.2
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.114.0
 	github.com/pulumi/pulumi/sdk/v3 v3.190.0
 )
@@ -107,7 +107,7 @@ require (
 	github.com/googleapis/enterprise-certificate-proxy v0.3.4 // indirect
 	github.com/googleapis/gax-go/v2 v2.14.1 // indirect
 	github.com/gorilla/mux v1.8.1 // indirect
-	github.com/grafana/amixr-api-go-client v0.0.25 // indirect
+	github.com/grafana/amixr-api-go-client v0.0.27 // indirect
 	github.com/grafana/authlib/claims v0.0.0-20250120084028-e3328c576437 // indirect
 	github.com/grafana/fleet-management-api v1.0.0 // indirect
 	github.com/grafana/grafana-app-sdk v0.45.0 // indirect

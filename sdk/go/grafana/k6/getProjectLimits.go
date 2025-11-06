@@ -33,6 +33,16 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = k6.NewProjectLimits(ctx, "test_limits", &k6.ProjectLimitsArgs{
+//				ProjectId:           testProjectLimits.ID(),
+//				VuhMaxPerMonth:      pulumi.Int(10000),
+//				VuMaxPerTest:        pulumi.Int(10000),
+//				VuBrowserMaxPerTest: pulumi.Int(1000),
+//				DurationMaxPerTest:  pulumi.Int(3600),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_ = k6.LookupProjectLimitsOutput(ctx, k6.GetProjectLimitsOutputArgs{
 //				ProjectId: testProjectLimits.ID(),
 //			}, nil)

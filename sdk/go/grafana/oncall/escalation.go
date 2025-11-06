@@ -41,6 +41,10 @@ type Escalation struct {
 	NotifyOnCallFromSchedule pulumi.StringPtrOutput `pulumi:"notifyOnCallFromSchedule"`
 	// The ID of a Team for a notify*team*members type step.
 	NotifyToTeamMembers pulumi.StringPtrOutput `pulumi:"notifyToTeamMembers"`
+	// Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+	NumAlertsInWindow pulumi.IntPtrOutput `pulumi:"numAlertsInWindow"`
+	// Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+	NumMinutesInWindow pulumi.IntPtrOutput `pulumi:"numMinutesInWindow"`
 	// The list of ID's of users for notifyPersons type step.
 	PersonsToNotifies pulumi.StringArrayOutput `pulumi:"personsToNotifies"`
 	// The list of ID's of users for notify*person*next*each*time type step.
@@ -49,7 +53,7 @@ type Escalation struct {
 	Position pulumi.IntOutput `pulumi:"position"`
 	// The severity of the incident for declareIncident type step.
 	Severity pulumi.StringPtrOutput `pulumi:"severity"`
-	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -110,6 +114,10 @@ type escalationState struct {
 	NotifyOnCallFromSchedule *string `pulumi:"notifyOnCallFromSchedule"`
 	// The ID of a Team for a notify*team*members type step.
 	NotifyToTeamMembers *string `pulumi:"notifyToTeamMembers"`
+	// Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+	NumAlertsInWindow *int `pulumi:"numAlertsInWindow"`
+	// Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+	NumMinutesInWindow *int `pulumi:"numMinutesInWindow"`
 	// The list of ID's of users for notifyPersons type step.
 	PersonsToNotifies []string `pulumi:"personsToNotifies"`
 	// The list of ID's of users for notify*person*next*each*time type step.
@@ -118,7 +126,7 @@ type escalationState struct {
 	Position *int `pulumi:"position"`
 	// The severity of the incident for declareIncident type step.
 	Severity *string `pulumi:"severity"`
-	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
 	Type *string `pulumi:"type"`
 }
 
@@ -141,6 +149,10 @@ type EscalationState struct {
 	NotifyOnCallFromSchedule pulumi.StringPtrInput
 	// The ID of a Team for a notify*team*members type step.
 	NotifyToTeamMembers pulumi.StringPtrInput
+	// Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+	NumAlertsInWindow pulumi.IntPtrInput
+	// Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+	NumMinutesInWindow pulumi.IntPtrInput
 	// The list of ID's of users for notifyPersons type step.
 	PersonsToNotifies pulumi.StringArrayInput
 	// The list of ID's of users for notify*person*next*each*time type step.
@@ -149,7 +161,7 @@ type EscalationState struct {
 	Position pulumi.IntPtrInput
 	// The severity of the incident for declareIncident type step.
 	Severity pulumi.StringPtrInput
-	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
 	Type pulumi.StringPtrInput
 }
 
@@ -176,6 +188,10 @@ type escalationArgs struct {
 	NotifyOnCallFromSchedule *string `pulumi:"notifyOnCallFromSchedule"`
 	// The ID of a Team for a notify*team*members type step.
 	NotifyToTeamMembers *string `pulumi:"notifyToTeamMembers"`
+	// Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+	NumAlertsInWindow *int `pulumi:"numAlertsInWindow"`
+	// Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+	NumMinutesInWindow *int `pulumi:"numMinutesInWindow"`
 	// The list of ID's of users for notifyPersons type step.
 	PersonsToNotifies []string `pulumi:"personsToNotifies"`
 	// The list of ID's of users for notify*person*next*each*time type step.
@@ -184,7 +200,7 @@ type escalationArgs struct {
 	Position int `pulumi:"position"`
 	// The severity of the incident for declareIncident type step.
 	Severity *string `pulumi:"severity"`
-	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
 	Type string `pulumi:"type"`
 }
 
@@ -208,6 +224,10 @@ type EscalationArgs struct {
 	NotifyOnCallFromSchedule pulumi.StringPtrInput
 	// The ID of a Team for a notify*team*members type step.
 	NotifyToTeamMembers pulumi.StringPtrInput
+	// Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+	NumAlertsInWindow pulumi.IntPtrInput
+	// Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+	NumMinutesInWindow pulumi.IntPtrInput
 	// The list of ID's of users for notifyPersons type step.
 	PersonsToNotifies pulumi.StringArrayInput
 	// The list of ID's of users for notify*person*next*each*time type step.
@@ -216,7 +236,7 @@ type EscalationArgs struct {
 	Position pulumi.IntInput
 	// The severity of the incident for declareIncident type step.
 	Severity pulumi.StringPtrInput
-	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+	// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
 	Type pulumi.StringInput
 }
 
@@ -352,6 +372,16 @@ func (o EscalationOutput) NotifyToTeamMembers() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Escalation) pulumi.StringPtrOutput { return v.NotifyToTeamMembers }).(pulumi.StringPtrOutput)
 }
 
+// Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+func (o EscalationOutput) NumAlertsInWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Escalation) pulumi.IntPtrOutput { return v.NumAlertsInWindow }).(pulumi.IntPtrOutput)
+}
+
+// Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+func (o EscalationOutput) NumMinutesInWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Escalation) pulumi.IntPtrOutput { return v.NumMinutesInWindow }).(pulumi.IntPtrOutput)
+}
+
 // The list of ID's of users for notifyPersons type step.
 func (o EscalationOutput) PersonsToNotifies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Escalation) pulumi.StringArrayOutput { return v.PersonsToNotifies }).(pulumi.StringArrayOutput)
@@ -372,7 +402,7 @@ func (o EscalationOutput) Severity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Escalation) pulumi.StringPtrOutput { return v.Severity }).(pulumi.StringPtrOutput)
 }
 
-// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
 func (o EscalationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Escalation) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
