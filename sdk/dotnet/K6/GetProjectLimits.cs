@@ -31,6 +31,15 @@ namespace Pulumiverse.Grafana.K6
         ///         Name = "Terraform Project Test Limits",
         ///     });
         /// 
+        ///     var testLimits = new Grafana.K6.ProjectLimits("test_limits", new()
+        ///     {
+        ///         ProjectId = testProjectLimits.Id,
+        ///         VuhMaxPerMonth = 10000,
+        ///         VuMaxPerTest = 10000,
+        ///         VuBrowserMaxPerTest = 1000,
+        ///         DurationMaxPerTest = 3600,
+        ///     });
+        /// 
         ///     var fromProjectId = Grafana.K6.GetProjectLimits.Invoke(new()
         ///     {
         ///         ProjectId = testProjectLimits.Id,
@@ -61,6 +70,15 @@ namespace Pulumiverse.Grafana.K6
         ///         Name = "Terraform Project Test Limits",
         ///     });
         /// 
+        ///     var testLimits = new Grafana.K6.ProjectLimits("test_limits", new()
+        ///     {
+        ///         ProjectId = testProjectLimits.Id,
+        ///         VuhMaxPerMonth = 10000,
+        ///         VuMaxPerTest = 10000,
+        ///         VuBrowserMaxPerTest = 1000,
+        ///         DurationMaxPerTest = 3600,
+        ///     });
+        /// 
         ///     var fromProjectId = Grafana.K6.GetProjectLimits.Invoke(new()
         ///     {
         ///         ProjectId = testProjectLimits.Id,
@@ -89,6 +107,15 @@ namespace Pulumiverse.Grafana.K6
         ///     var testProjectLimits = new Grafana.K6.Project("test_project_limits", new()
         ///     {
         ///         Name = "Terraform Project Test Limits",
+        ///     });
+        /// 
+        ///     var testLimits = new Grafana.K6.ProjectLimits("test_limits", new()
+        ///     {
+        ///         ProjectId = testProjectLimits.Id,
+        ///         VuhMaxPerMonth = 10000,
+        ///         VuMaxPerTest = 10000,
+        ///         VuBrowserMaxPerTest = 1000,
+        ///         DurationMaxPerTest = 3600,
         ///     });
         /// 
         ///     var fromProjectId = Grafana.K6.GetProjectLimits.Invoke(new()

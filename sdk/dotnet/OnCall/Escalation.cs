@@ -78,6 +78,18 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string?> NotifyToTeamMembers { get; private set; } = null!;
 
         /// <summary>
+        /// Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+        /// </summary>
+        [Output("numAlertsInWindow")]
+        public Output<int?> NumAlertsInWindow { get; private set; } = null!;
+
+        /// <summary>
+        /// Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+        /// </summary>
+        [Output("numMinutesInWindow")]
+        public Output<int?> NumMinutesInWindow { get; private set; } = null!;
+
+        /// <summary>
         /// The list of ID's of users for notify_persons type step.
         /// </summary>
         [Output("personsToNotifies")]
@@ -102,7 +114,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string?> Severity { get; private set; } = null!;
 
         /// <summary>
-        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -208,6 +220,18 @@ namespace Pulumiverse.Grafana.OnCall
         [Input("notifyToTeamMembers")]
         public Input<string>? NotifyToTeamMembers { get; set; }
 
+        /// <summary>
+        /// Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+        /// </summary>
+        [Input("numAlertsInWindow")]
+        public Input<int>? NumAlertsInWindow { get; set; }
+
+        /// <summary>
+        /// Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+        /// </summary>
+        [Input("numMinutesInWindow")]
+        public Input<int>? NumMinutesInWindow { get; set; }
+
         [Input("personsToNotifies")]
         private InputList<string>? _personsToNotifies;
 
@@ -245,7 +269,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? Severity { get; set; }
 
         /// <summary>
-        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -312,6 +336,18 @@ namespace Pulumiverse.Grafana.OnCall
         [Input("notifyToTeamMembers")]
         public Input<string>? NotifyToTeamMembers { get; set; }
 
+        /// <summary>
+        /// Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+        /// </summary>
+        [Input("numAlertsInWindow")]
+        public Input<int>? NumAlertsInWindow { get; set; }
+
+        /// <summary>
+        /// Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+        /// </summary>
+        [Input("numMinutesInWindow")]
+        public Input<int>? NumMinutesInWindow { get; set; }
+
         [Input("personsToNotifies")]
         private InputList<string>? _personsToNotifies;
 
@@ -349,7 +385,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? Severity { get; set; }
 
         /// <summary>
-        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

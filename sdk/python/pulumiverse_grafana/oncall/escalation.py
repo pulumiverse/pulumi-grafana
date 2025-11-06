@@ -30,6 +30,8 @@ class EscalationArgs:
                  notify_if_time_to: Optional[pulumi.Input[_builtins.str]] = None,
                  notify_on_call_from_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  notify_to_team_members: Optional[pulumi.Input[_builtins.str]] = None,
+                 num_alerts_in_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 num_minutes_in_window: Optional[pulumi.Input[_builtins.int]] = None,
                  persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  severity: Optional[pulumi.Input[_builtins.str]] = None):
@@ -37,7 +39,7 @@ class EscalationArgs:
         The set of arguments for constructing a Escalation resource.
         :param pulumi.Input[_builtins.str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[_builtins.int] position: The position of the escalation step (starts from 0).
-        :param pulumi.Input[_builtins.str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+        :param pulumi.Input[_builtins.str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
         :param pulumi.Input[_builtins.str] action_to_trigger: The ID of an Action for trigger_webhook type step.
         :param pulumi.Input[_builtins.int] duration: The duration of delay for wait type step. (60-86400) seconds
         :param pulumi.Input[_builtins.str] group_to_notify: The ID of a User Group for notify*user*group type step.
@@ -46,6 +48,8 @@ class EscalationArgs:
         :param pulumi.Input[_builtins.str] notify_if_time_to: The end of the time interval for notify*if*time*from*to type step in UTC (for example 18:00:00Z).
         :param pulumi.Input[_builtins.str] notify_on_call_from_schedule: ID of a Schedule for notify*on*call*from*schedule type step.
         :param pulumi.Input[_builtins.str] notify_to_team_members: The ID of a Team for a notify*team*members type step.
+        :param pulumi.Input[_builtins.int] num_alerts_in_window: Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+        :param pulumi.Input[_builtins.int] num_minutes_in_window: Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] persons_to_notifies: The list of ID's of users for notify_persons type step.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] persons_to_notify_next_each_times: The list of ID's of users for notify*person*next*each*time type step.
         :param pulumi.Input[_builtins.str] severity: The severity of the incident for declare_incident type step.
@@ -69,6 +73,10 @@ class EscalationArgs:
             pulumi.set(__self__, "notify_on_call_from_schedule", notify_on_call_from_schedule)
         if notify_to_team_members is not None:
             pulumi.set(__self__, "notify_to_team_members", notify_to_team_members)
+        if num_alerts_in_window is not None:
+            pulumi.set(__self__, "num_alerts_in_window", num_alerts_in_window)
+        if num_minutes_in_window is not None:
+            pulumi.set(__self__, "num_minutes_in_window", num_minutes_in_window)
         if persons_to_notifies is not None:
             pulumi.set(__self__, "persons_to_notifies", persons_to_notifies)
         if persons_to_notify_next_each_times is not None:
@@ -104,7 +112,7 @@ class EscalationArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+        The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
         """
         return pulumi.get(self, "type")
 
@@ -209,6 +217,30 @@ class EscalationArgs:
         pulumi.set(self, "notify_to_team_members", value)
 
     @_builtins.property
+    @pulumi.getter(name="numAlertsInWindow")
+    def num_alerts_in_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+        """
+        return pulumi.get(self, "num_alerts_in_window")
+
+    @num_alerts_in_window.setter
+    def num_alerts_in_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "num_alerts_in_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="numMinutesInWindow")
+    def num_minutes_in_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+        """
+        return pulumi.get(self, "num_minutes_in_window")
+
+    @num_minutes_in_window.setter
+    def num_minutes_in_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "num_minutes_in_window", value)
+
+    @_builtins.property
     @pulumi.getter(name="personsToNotifies")
     def persons_to_notifies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -257,6 +289,8 @@ class _EscalationState:
                  notify_if_time_to: Optional[pulumi.Input[_builtins.str]] = None,
                  notify_on_call_from_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  notify_to_team_members: Optional[pulumi.Input[_builtins.str]] = None,
+                 num_alerts_in_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 num_minutes_in_window: Optional[pulumi.Input[_builtins.int]] = None,
                  persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  position: Optional[pulumi.Input[_builtins.int]] = None,
@@ -273,11 +307,13 @@ class _EscalationState:
         :param pulumi.Input[_builtins.str] notify_if_time_to: The end of the time interval for notify*if*time*from*to type step in UTC (for example 18:00:00Z).
         :param pulumi.Input[_builtins.str] notify_on_call_from_schedule: ID of a Schedule for notify*on*call*from*schedule type step.
         :param pulumi.Input[_builtins.str] notify_to_team_members: The ID of a Team for a notify*team*members type step.
+        :param pulumi.Input[_builtins.int] num_alerts_in_window: Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+        :param pulumi.Input[_builtins.int] num_minutes_in_window: Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] persons_to_notifies: The list of ID's of users for notify_persons type step.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] persons_to_notify_next_each_times: The list of ID's of users for notify*person*next*each*time type step.
         :param pulumi.Input[_builtins.int] position: The position of the escalation step (starts from 0).
         :param pulumi.Input[_builtins.str] severity: The severity of the incident for declare_incident type step.
-        :param pulumi.Input[_builtins.str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+        :param pulumi.Input[_builtins.str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
         """
         if action_to_trigger is not None:
             pulumi.set(__self__, "action_to_trigger", action_to_trigger)
@@ -297,6 +333,10 @@ class _EscalationState:
             pulumi.set(__self__, "notify_on_call_from_schedule", notify_on_call_from_schedule)
         if notify_to_team_members is not None:
             pulumi.set(__self__, "notify_to_team_members", notify_to_team_members)
+        if num_alerts_in_window is not None:
+            pulumi.set(__self__, "num_alerts_in_window", num_alerts_in_window)
+        if num_minutes_in_window is not None:
+            pulumi.set(__self__, "num_minutes_in_window", num_minutes_in_window)
         if persons_to_notifies is not None:
             pulumi.set(__self__, "persons_to_notifies", persons_to_notifies)
         if persons_to_notify_next_each_times is not None:
@@ -417,6 +457,30 @@ class _EscalationState:
         pulumi.set(self, "notify_to_team_members", value)
 
     @_builtins.property
+    @pulumi.getter(name="numAlertsInWindow")
+    def num_alerts_in_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+        """
+        return pulumi.get(self, "num_alerts_in_window")
+
+    @num_alerts_in_window.setter
+    def num_alerts_in_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "num_alerts_in_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="numMinutesInWindow")
+    def num_minutes_in_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+        """
+        return pulumi.get(self, "num_minutes_in_window")
+
+    @num_minutes_in_window.setter
+    def num_minutes_in_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "num_minutes_in_window", value)
+
+    @_builtins.property
     @pulumi.getter(name="personsToNotifies")
     def persons_to_notifies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -468,7 +532,7 @@ class _EscalationState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+        The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
         """
         return pulumi.get(self, "type")
 
@@ -492,6 +556,8 @@ class Escalation(pulumi.CustomResource):
                  notify_if_time_to: Optional[pulumi.Input[_builtins.str]] = None,
                  notify_on_call_from_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  notify_to_team_members: Optional[pulumi.Input[_builtins.str]] = None,
+                 num_alerts_in_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 num_minutes_in_window: Optional[pulumi.Input[_builtins.int]] = None,
                  persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  position: Optional[pulumi.Input[_builtins.int]] = None,
@@ -519,11 +585,13 @@ class Escalation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] notify_if_time_to: The end of the time interval for notify*if*time*from*to type step in UTC (for example 18:00:00Z).
         :param pulumi.Input[_builtins.str] notify_on_call_from_schedule: ID of a Schedule for notify*on*call*from*schedule type step.
         :param pulumi.Input[_builtins.str] notify_to_team_members: The ID of a Team for a notify*team*members type step.
+        :param pulumi.Input[_builtins.int] num_alerts_in_window: Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+        :param pulumi.Input[_builtins.int] num_minutes_in_window: Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] persons_to_notifies: The list of ID's of users for notify_persons type step.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] persons_to_notify_next_each_times: The list of ID's of users for notify*person*next*each*time type step.
         :param pulumi.Input[_builtins.int] position: The position of the escalation step (starts from 0).
         :param pulumi.Input[_builtins.str] severity: The severity of the incident for declare_incident type step.
-        :param pulumi.Input[_builtins.str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+        :param pulumi.Input[_builtins.str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
         """
         ...
     @overload
@@ -565,6 +633,8 @@ class Escalation(pulumi.CustomResource):
                  notify_if_time_to: Optional[pulumi.Input[_builtins.str]] = None,
                  notify_on_call_from_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  notify_to_team_members: Optional[pulumi.Input[_builtins.str]] = None,
+                 num_alerts_in_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 num_minutes_in_window: Optional[pulumi.Input[_builtins.int]] = None,
                  persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  position: Optional[pulumi.Input[_builtins.int]] = None,
@@ -590,6 +660,8 @@ class Escalation(pulumi.CustomResource):
             __props__.__dict__["notify_if_time_to"] = notify_if_time_to
             __props__.__dict__["notify_on_call_from_schedule"] = notify_on_call_from_schedule
             __props__.__dict__["notify_to_team_members"] = notify_to_team_members
+            __props__.__dict__["num_alerts_in_window"] = num_alerts_in_window
+            __props__.__dict__["num_minutes_in_window"] = num_minutes_in_window
             __props__.__dict__["persons_to_notifies"] = persons_to_notifies
             __props__.__dict__["persons_to_notify_next_each_times"] = persons_to_notify_next_each_times
             if position is None and not opts.urn:
@@ -618,6 +690,8 @@ class Escalation(pulumi.CustomResource):
             notify_if_time_to: Optional[pulumi.Input[_builtins.str]] = None,
             notify_on_call_from_schedule: Optional[pulumi.Input[_builtins.str]] = None,
             notify_to_team_members: Optional[pulumi.Input[_builtins.str]] = None,
+            num_alerts_in_window: Optional[pulumi.Input[_builtins.int]] = None,
+            num_minutes_in_window: Optional[pulumi.Input[_builtins.int]] = None,
             persons_to_notifies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             persons_to_notify_next_each_times: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             position: Optional[pulumi.Input[_builtins.int]] = None,
@@ -639,11 +713,13 @@ class Escalation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] notify_if_time_to: The end of the time interval for notify*if*time*from*to type step in UTC (for example 18:00:00Z).
         :param pulumi.Input[_builtins.str] notify_on_call_from_schedule: ID of a Schedule for notify*on*call*from*schedule type step.
         :param pulumi.Input[_builtins.str] notify_to_team_members: The ID of a Team for a notify*team*members type step.
+        :param pulumi.Input[_builtins.int] num_alerts_in_window: Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+        :param pulumi.Input[_builtins.int] num_minutes_in_window: Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] persons_to_notifies: The list of ID's of users for notify_persons type step.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] persons_to_notify_next_each_times: The list of ID's of users for notify*person*next*each*time type step.
         :param pulumi.Input[_builtins.int] position: The position of the escalation step (starts from 0).
         :param pulumi.Input[_builtins.str] severity: The severity of the incident for declare_incident type step.
-        :param pulumi.Input[_builtins.str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+        :param pulumi.Input[_builtins.str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -658,6 +734,8 @@ class Escalation(pulumi.CustomResource):
         __props__.__dict__["notify_if_time_to"] = notify_if_time_to
         __props__.__dict__["notify_on_call_from_schedule"] = notify_on_call_from_schedule
         __props__.__dict__["notify_to_team_members"] = notify_to_team_members
+        __props__.__dict__["num_alerts_in_window"] = num_alerts_in_window
+        __props__.__dict__["num_minutes_in_window"] = num_minutes_in_window
         __props__.__dict__["persons_to_notifies"] = persons_to_notifies
         __props__.__dict__["persons_to_notify_next_each_times"] = persons_to_notify_next_each_times
         __props__.__dict__["position"] = position
@@ -738,6 +816,22 @@ class Escalation(pulumi.CustomResource):
         return pulumi.get(self, "notify_to_team_members")
 
     @_builtins.property
+    @pulumi.getter(name="numAlertsInWindow")
+    def num_alerts_in_window(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.
+        """
+        return pulumi.get(self, "num_alerts_in_window")
+
+    @_builtins.property
+    @pulumi.getter(name="numMinutesInWindow")
+    def num_minutes_in_window(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.
+        """
+        return pulumi.get(self, "num_minutes_in_window")
+
+    @_builtins.property
     @pulumi.getter(name="personsToNotifies")
     def persons_to_notifies(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
@@ -773,7 +867,7 @@ class Escalation(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident
+        The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
         """
         return pulumi.get(self, "type")
 

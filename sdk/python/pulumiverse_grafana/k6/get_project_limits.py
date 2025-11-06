@@ -122,6 +122,12 @@ def get_project_limits(project_id: Optional[_builtins.str] = None,
     import pulumiverse_grafana as grafana
 
     test_project_limits = grafana.k6.Project("test_project_limits", name="Terraform Project Test Limits")
+    test_limits = grafana.k6.ProjectLimits("test_limits",
+        project_id=test_project_limits.id,
+        vuh_max_per_month=10000,
+        vu_max_per_test=10000,
+        vu_browser_max_per_test=1000,
+        duration_max_per_test=3600)
     from_project_id = grafana.k6.get_project_limits_output(project_id=test_project_limits.id)
     ```
 
@@ -153,6 +159,12 @@ def get_project_limits_output(project_id: Optional[pulumi.Input[_builtins.str]] 
     import pulumiverse_grafana as grafana
 
     test_project_limits = grafana.k6.Project("test_project_limits", name="Terraform Project Test Limits")
+    test_limits = grafana.k6.ProjectLimits("test_limits",
+        project_id=test_project_limits.id,
+        vuh_max_per_month=10000,
+        vu_max_per_test=10000,
+        vu_browser_max_per_test=1000,
+        duration_max_per_test=3600)
     from_project_id = grafana.k6.get_project_limits_output(project_id=test_project_limits.id)
     ```
 
