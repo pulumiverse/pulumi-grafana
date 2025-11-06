@@ -1928,8 +1928,8 @@ github.com/gopherjs/gopherjs v0.0.0-20181103185306-d547d1d9531e h1:JKmoR8x90Iww1
 github.com/gopherjs/gopherjs v0.0.0-20181103185306-d547d1d9531e/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
 github.com/gorilla/mux v1.8.1 h1:TuBL49tXwgrFYWhqrNgrUNEY92u81SPhu7sTdzQEiWY=
 github.com/gorilla/mux v1.8.1/go.mod h1:AKf9I4AEqPTmMytcMc0KkNouC66V3BtZ4qD5fmWSiMQ=
-github.com/grafana/amixr-api-go-client v0.0.25 h1:tAQeJRuq9ihHotxq6/oEB6lIhuAdM+MUP0uPkNn1I3A=
-github.com/grafana/amixr-api-go-client v0.0.25/go.mod h1:ihgLhTVimmjASuZ06y/mQxPcYH3toAIuUVGK6flHsMU=
+github.com/grafana/amixr-api-go-client v0.0.27 h1:tmw7JcbX3D0N52mK60kYvAdRNFKH0aOb+9FKPaye2sc=
+github.com/grafana/amixr-api-go-client v0.0.27/go.mod h1:ihgLhTVimmjASuZ06y/mQxPcYH3toAIuUVGK6flHsMU=
 github.com/grafana/authlib/claims v0.0.0-20250120084028-e3328c576437 h1:OlwbIVFcYgMjnQhpbZwRPVNrvZKTodvPMqwb8yEqVW0=
 github.com/grafana/authlib/claims v0.0.0-20250120084028-e3328c576437/go.mod h1:r+F8H6awwjNQt/KPZ2GNwjk8TvsJ7/gxzkXN26GlL/A=
 github.com/grafana/fleet-management-api v1.0.0 h1:twb0kBgeNRcvQi7iDXq7AFhlM2mWcN76kTXleJuPA38=
@@ -1970,8 +1970,8 @@ github.com/grafana/synthetic-monitoring-agent v0.43.1 h1:Qejsuf25yZzdImVLZ6K1f5c
 github.com/grafana/synthetic-monitoring-agent v0.43.1/go.mod h1:HO4es33UF/5b3i4JdUhVcvs9abUXESMjFxnWP8y6KG0=
 github.com/grafana/synthetic-monitoring-api-go-client v0.17.1 h1:6ZQoQVD0sASxe5OVEk/T/YEOYOuilSA434bX4n3SJLQ=
 github.com/grafana/synthetic-monitoring-api-go-client v0.17.1/go.mod h1:3XfDhlxYkC/Apaug0e0vd4wHx8JZJ4k+v5ybny8ZGfc=
-github.com/grafana/terraform-provider-grafana/v4 v4.12.1 h1:AKjwR4/F3pSvLERQO/TlfNbNppmbCnNlF8f3Q58crj4=
-github.com/grafana/terraform-provider-grafana/v4 v4.12.1/go.mod h1:V/wDwgFj7tPYBC+0PCnkMMuLaCztG8rSRypg6NCwhQo=
+github.com/grafana/terraform-provider-grafana/v4 v4.12.2 h1:QmtsrGSGLTo2sXbWCWkYulsL/XYQgwrzjHVBsQmPU3Y=
+github.com/grafana/terraform-provider-grafana/v4 v4.12.2/go.mod h1:a/Uk33a4UkY7KKEL+RomJW7N5GlqZSX9sxTlC4f9MP8=
 github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.1.0 h1:QGLs/O40yoNK9vmy4rhUGBVyMf1lISBGtXRpsu/Qu/o=
 github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.1.0/go.mod h1:hM2alZsMUni80N33RBe6J0e423LB+odMj7d3EMP9l20=
 github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.3.2 h1:sGm2vDRFUrQJO/Veii4h4zG2vvqG6uWNkBHSTqXOZk0=

@@ -13889,6 +13889,14 @@
                     "type": "string",
                     "description": "The ID of a Team for a notify*team*members type step.\n"
                 },
+                "numAlertsInWindow": {
+                    "type": "integer",
+                    "description": "Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.\n"
+                },
+                "numMinutesInWindow": {
+                    "type": "integer",
+                    "description": "Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.\n"
+                },
                 "personsToNotifies": {
                     "type": "array",
                     "items": {
@@ -13913,7 +13921,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident\n"
+                    "description": "The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident\n"
                 }
             },
             "required": [
@@ -13959,6 +13967,14 @@
                     "type": "string",
                     "description": "The ID of a Team for a notify*team*members type step.\n"
                 },
+                "numAlertsInWindow": {
+                    "type": "integer",
+                    "description": "Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.\n"
+                },
+                "numMinutesInWindow": {
+                    "type": "integer",
+                    "description": "Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.\n"
+                },
                 "personsToNotifies": {
                     "type": "array",
                     "items": {
@@ -13983,7 +13999,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident\n"
+                    "description": "The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident\n"
                 }
             },
             "requiredInputs": [
@@ -14031,6 +14047,14 @@
                         "type": "string",
                         "description": "The ID of a Team for a notify*team*members type step.\n"
                     },
+                    "numAlertsInWindow": {
+                        "type": "integer",
+                        "description": "Number of alerts that must occur within the time window to continue escalation for notify*if*num*alerts*in_window type step.\n"
+                    },
+                    "numMinutesInWindow": {
+                        "type": "integer",
+                        "description": "Time window in minutes to count alerts for notify*if*num*alerts*in_window type step.\n"
+                    },
                     "personsToNotifies": {
                         "type": "array",
                         "items": {
@@ -14055,7 +14079,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, repeat*escalation, notify*team*members, declare*incident\n"
+                        "description": "The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident\n"
                     }
                 },
                 "type": "object"
@@ -19348,7 +19372,7 @@
             }
         },
         "grafana:k6/getProjectLimits:getProjectLimits": {
-            "description": "Retrieves a k6 project limits.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst testProjectLimits = new grafana.k6.Project(\"test_project_limits\", {name: \"Terraform Project Test Limits\"});\nconst fromProjectId = grafana.k6.getProjectLimitsOutput({\n    projectId: testProjectLimits.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest_project_limits = grafana.k6.Project(\"test_project_limits\", name=\"Terraform Project Test Limits\")\nfrom_project_id = grafana.k6.get_project_limits_output(project_id=test_project_limits.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testProjectLimits = new Grafana.K6.Project(\"test_project_limits\", new()\n    {\n        Name = \"Terraform Project Test Limits\",\n    });\n\n    var fromProjectId = Grafana.K6.GetProjectLimits.Invoke(new()\n    {\n        ProjectId = testProjectLimits.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestProjectLimits, err := k6.NewProject(ctx, \"test_project_limits\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Project Test Limits\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = k6.LookupProjectLimitsOutput(ctx, k6.GetProjectLimitsOutputArgs{\n\t\t\tProjectId: testProjectLimits.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetProjectLimitsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testProjectLimits = new Project(\"testProjectLimits\", ProjectArgs.builder()\n            .name(\"Terraform Project Test Limits\")\n            .build());\n\n        final var fromProjectId = K6Functions.getProjectLimits(GetProjectLimitsArgs.builder()\n            .projectId(testProjectLimits.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testProjectLimits:\n    type: grafana:k6:Project\n    name: test_project_limits\n    properties:\n      name: Terraform Project Test Limits\nvariables:\n  fromProjectId:\n    fn::invoke:\n      function: grafana:k6:getProjectLimits\n      arguments:\n        projectId: ${testProjectLimits.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Retrieves a k6 project limits.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst testProjectLimits = new grafana.k6.Project(\"test_project_limits\", {name: \"Terraform Project Test Limits\"});\nconst testLimits = new grafana.k6.ProjectLimits(\"test_limits\", {\n    projectId: testProjectLimits.id,\n    vuhMaxPerMonth: 10000,\n    vuMaxPerTest: 10000,\n    vuBrowserMaxPerTest: 1000,\n    durationMaxPerTest: 3600,\n});\nconst fromProjectId = grafana.k6.getProjectLimitsOutput({\n    projectId: testProjectLimits.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest_project_limits = grafana.k6.Project(\"test_project_limits\", name=\"Terraform Project Test Limits\")\ntest_limits = grafana.k6.ProjectLimits(\"test_limits\",\n    project_id=test_project_limits.id,\n    vuh_max_per_month=10000,\n    vu_max_per_test=10000,\n    vu_browser_max_per_test=1000,\n    duration_max_per_test=3600)\nfrom_project_id = grafana.k6.get_project_limits_output(project_id=test_project_limits.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testProjectLimits = new Grafana.K6.Project(\"test_project_limits\", new()\n    {\n        Name = \"Terraform Project Test Limits\",\n    });\n\n    var testLimits = new Grafana.K6.ProjectLimits(\"test_limits\", new()\n    {\n        ProjectId = testProjectLimits.Id,\n        VuhMaxPerMonth = 10000,\n        VuMaxPerTest = 10000,\n        VuBrowserMaxPerTest = 1000,\n        DurationMaxPerTest = 3600,\n    });\n\n    var fromProjectId = Grafana.K6.GetProjectLimits.Invoke(new()\n    {\n        ProjectId = testProjectLimits.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/k6\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestProjectLimits, err := k6.NewProject(ctx, \"test_project_limits\", \u0026k6.ProjectArgs{\n\t\t\tName: pulumi.String(\"Terraform Project Test Limits\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k6.NewProjectLimits(ctx, \"test_limits\", \u0026k6.ProjectLimitsArgs{\n\t\t\tProjectId:           testProjectLimits.ID(),\n\t\t\tVuhMaxPerMonth:      pulumi.Int(10000),\n\t\t\tVuMaxPerTest:        pulumi.Int(10000),\n\t\t\tVuBrowserMaxPerTest: pulumi.Int(1000),\n\t\t\tDurationMaxPerTest:  pulumi.Int(3600),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = k6.LookupProjectLimitsOutput(ctx, k6.GetProjectLimitsOutputArgs{\n\t\t\tProjectId: testProjectLimits.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.k6.Project;\nimport com.pulumi.grafana.k6.ProjectArgs;\nimport com.pulumi.grafana.k6.ProjectLimits;\nimport com.pulumi.grafana.k6.ProjectLimitsArgs;\nimport com.pulumi.grafana.k6.K6Functions;\nimport com.pulumi.grafana.k6.inputs.GetProjectLimitsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testProjectLimits = new Project(\"testProjectLimits\", ProjectArgs.builder()\n            .name(\"Terraform Project Test Limits\")\n            .build());\n\n        var testLimits = new ProjectLimits(\"testLimits\", ProjectLimitsArgs.builder()\n            .projectId(testProjectLimits.id())\n            .vuhMaxPerMonth(10000)\n            .vuMaxPerTest(10000)\n            .vuBrowserMaxPerTest(1000)\n            .durationMaxPerTest(3600)\n            .build());\n\n        final var fromProjectId = K6Functions.getProjectLimits(GetProjectLimitsArgs.builder()\n            .projectId(testProjectLimits.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testProjectLimits:\n    type: grafana:k6:Project\n    name: test_project_limits\n    properties:\n      name: Terraform Project Test Limits\n  testLimits:\n    type: grafana:k6:ProjectLimits\n    name: test_limits\n    properties:\n      projectId: ${testProjectLimits.id}\n      vuhMaxPerMonth: 10000\n      vuMaxPerTest: 10000\n      vuBrowserMaxPerTest: 1000\n      durationMaxPerTest: 3600\nvariables:\n  fromProjectId:\n    fn::invoke:\n      function: grafana:k6:getProjectLimits\n      arguments:\n        projectId: ${testProjectLimits.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getProjectLimits.\n",
                 "properties": {
