@@ -20,6 +20,8 @@
         "alerting/muteTiming.ts",
         "alerting/notificationPolicy.ts",
         "alerting/ruleGroup.ts",
+        "appsRulesAlertruleV0alpha1.ts",
+        "appsRulesRecordingruleV0alpha1.ts",
         "assert/customModelRules.ts",
         "assert/index.ts",
         "assert/logConfig.ts",

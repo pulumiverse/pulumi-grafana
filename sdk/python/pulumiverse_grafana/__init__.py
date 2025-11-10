@@ -6,7 +6,11 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .apps_rules_alertrule_v0alpha1 import *
+from .apps_rules_recordingrule_v0alpha1 import *
 from .provider import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -389,6 +393,22 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsRulesAlertruleV0alpha1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsRulesAlertruleV0alpha1:AppsRulesAlertruleV0alpha1": "AppsRulesAlertruleV0alpha1"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsRulesRecordingruleV0alpha1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsRulesRecordingruleV0alpha1:AppsRulesRecordingruleV0alpha1": "AppsRulesRecordingruleV0alpha1"
   }
  },
  {

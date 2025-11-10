@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AppsRulesAlertruleV0alpha1Args, AppsRulesAlertruleV0alpha1State } from "./appsRulesAlertruleV0alpha1";
+export type AppsRulesAlertruleV0alpha1 = import("./appsRulesAlertruleV0alpha1").AppsRulesAlertruleV0alpha1;
+export const AppsRulesAlertruleV0alpha1: typeof import("./appsRulesAlertruleV0alpha1").AppsRulesAlertruleV0alpha1 = null as any;
+utilities.lazyLoad(exports, ["AppsRulesAlertruleV0alpha1"], () => require("./appsRulesAlertruleV0alpha1"));
+
+export { AppsRulesRecordingruleV0alpha1Args, AppsRulesRecordingruleV0alpha1State } from "./appsRulesRecordingruleV0alpha1";
+export type AppsRulesRecordingruleV0alpha1 = import("./appsRulesRecordingruleV0alpha1").AppsRulesRecordingruleV0alpha1;
+export const AppsRulesRecordingruleV0alpha1: typeof import("./appsRulesRecordingruleV0alpha1").AppsRulesRecordingruleV0alpha1 = null as any;
+utilities.lazyLoad(exports, ["AppsRulesRecordingruleV0alpha1"], () => require("./appsRulesRecordingruleV0alpha1"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -47,6 +57,22 @@ export {
     syntheticmonitoring,
     types,
 };
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "grafana:index/appsRulesAlertruleV0alpha1:AppsRulesAlertruleV0alpha1":
+                return new AppsRulesAlertruleV0alpha1(name, <any>undefined, { urn })
+            case "grafana:index/appsRulesRecordingruleV0alpha1:AppsRulesRecordingruleV0alpha1":
+                return new AppsRulesRecordingruleV0alpha1(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("grafana", "index/appsRulesAlertruleV0alpha1", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/appsRulesRecordingruleV0alpha1", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

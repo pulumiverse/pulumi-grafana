@@ -5,6 +5,205 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppsRulesAlertruleV0alpha1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations: {[key: string]: string};
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: string;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: string;
+    /**
+     * The full URL of the resource.
+     */
+    url: string;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid: string;
+    /**
+     * The version of the resource.
+     */
+    version: string;
+}
+
+export interface AppsRulesAlertruleV0alpha1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: boolean;
+}
+
+export interface AppsRulesAlertruleV0alpha1Spec {
+    /**
+     * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts.
+     */
+    annotations?: {[key: string]: string};
+    /**
+     * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+     */
+    execErrState: string;
+    /**
+     * A sequence of stages that describe the contents of the rule.
+     */
+    expressions: any;
+    /**
+     * The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+     */
+    for?: string;
+    /**
+     * The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+     */
+    keepFiringFor?: string;
+    /**
+     * Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+     */
+    labels?: {[key: string]: string};
+    /**
+     * The number of missing series evaluations that must occur before the rule is considered to be resolved.
+     */
+    missingSeriesEvalsToResolve?: number;
+    /**
+     * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+     */
+    noDataState: string;
+    /**
+     * Notification settings for the rule. If specified, it overrides the notification policies.
+     */
+    notificationSettings?: outputs.AppsRulesAlertruleV0alpha1SpecNotificationSettings;
+    /**
+     * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+     */
+    panelRef?: any;
+    /**
+     * Sets whether the rule should be paused or not.
+     */
+    paused?: boolean;
+    /**
+     * The title of the alert rule.
+     */
+    title: string;
+    /**
+     * The trigger configuration for the alert rule.
+     */
+    trigger?: outputs.AppsRulesAlertruleV0alpha1SpecTrigger;
+}
+
+export interface AppsRulesAlertruleV0alpha1SpecNotificationSettings {
+    /**
+     * A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+     */
+    activeTimings?: string[];
+    /**
+     * The contact point to route notifications that match this rule to.
+     */
+    contactPoint: string;
+    /**
+     * A list of alert labels to group alerts into notifications by.
+     */
+    groupBies?: string[];
+    /**
+     * Minimum time interval between two notifications for the same group.
+     */
+    groupInterval?: string;
+    /**
+     * Time to wait to buffer alerts of the same group before sending a notification.
+     */
+    groupWait?: string;
+    /**
+     * A list of mute timing names to apply to alerts that match this policy.
+     */
+    muteTimings?: string[];
+    /**
+     * Minimum time interval for re-sending a notification if an alert is still firing.
+     */
+    repeatInterval?: string;
+}
+
+export interface AppsRulesAlertruleV0alpha1SpecTrigger {
+    /**
+     * The interval at which the alert rule should be evaluated.
+     */
+    interval: string;
+}
+
+export interface AppsRulesRecordingruleV0alpha1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations: {[key: string]: string};
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: string;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: string;
+    /**
+     * The full URL of the resource.
+     */
+    url: string;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid: string;
+    /**
+     * The version of the resource.
+     */
+    version: string;
+}
+
+export interface AppsRulesRecordingruleV0alpha1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: boolean;
+}
+
+export interface AppsRulesRecordingruleV0alpha1Spec {
+    /**
+     * A sequence of stages that describe the contents of the rule.
+     */
+    expressions: any;
+    /**
+     * Key-value pairs to attach to the recorded metric.
+     */
+    labels?: {[key: string]: string};
+    /**
+     * The name of the metric to write to.
+     */
+    metric: string;
+    /**
+     * Sets whether the recording rule should be paused or not.
+     */
+    paused?: boolean;
+    /**
+     * The UID of the datasource to write the metric to.
+     */
+    targetDatasourceUid: string;
+    /**
+     * The title of the recording rule.
+     */
+    title: string;
+    /**
+     * The trigger configuration for the recording rule.
+     */
+    trigger?: outputs.AppsRulesRecordingruleV0alpha1SpecTrigger;
+}
+
+export interface AppsRulesRecordingruleV0alpha1SpecTrigger {
+    /**
+     * The interval at which the recording rule should be evaluated.
+     */
+    interval: string;
+}
+
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
