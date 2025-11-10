@@ -4637,6 +4637,296 @@
                 }
             }
         },
+        "grafana:index/AppsRulesAlertruleV0alpha1Metadata:AppsRulesAlertruleV0alpha1Metadata": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Annotations of the resource.\n"
+                },
+                "folderUid": {
+                    "type": "string",
+                    "description": "The UID of the folder to save the resource in.\n"
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "The unique identifier of the resource.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The full URL of the resource.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "The globally unique identifier of a resource, used by the API for tracking.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the resource.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "uid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "annotations",
+                        "uid",
+                        "url",
+                        "uuid",
+                        "version"
+                    ]
+                }
+            }
+        },
+        "grafana:index/AppsRulesAlertruleV0alpha1Options:AppsRulesAlertruleV0alpha1Options": {
+            "properties": {
+                "overwrite": {
+                    "type": "boolean",
+                    "description": "Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:index/AppsRulesAlertruleV0alpha1Spec:AppsRulesAlertruleV0alpha1Spec": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts.\n"
+                },
+                "execErrState": {
+                    "type": "string",
+                    "description": "Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.\n"
+                },
+                "expressions": {
+                    "$ref": "pulumi.json#/Any",
+                    "description": "A sequence of stages that describe the contents of the rule.\n"
+                },
+                "for": {
+                    "type": "string",
+                    "description": "The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.\n"
+                },
+                "keepFiringFor": {
+                    "type": "string",
+                    "description": "The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.\n"
+                },
+                "missingSeriesEvalsToResolve": {
+                    "type": "integer",
+                    "description": "The number of missing series evaluations that must occur before the rule is considered to be resolved.\n"
+                },
+                "noDataState": {
+                    "type": "string",
+                    "description": "Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.\n"
+                },
+                "notificationSettings": {
+                    "$ref": "#/types/grafana:index/AppsRulesAlertruleV0alpha1SpecNotificationSettings:AppsRulesAlertruleV0alpha1SpecNotificationSettings",
+                    "description": "Notification settings for the rule. If specified, it overrides the notification policies.\n"
+                },
+                "panelRef": {
+                    "$ref": "pulumi.json#/Any",
+                    "description": "Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.\n"
+                },
+                "paused": {
+                    "type": "boolean",
+                    "description": "Sets whether the rule should be paused or not.\n"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the alert rule.\n"
+                },
+                "trigger": {
+                    "$ref": "#/types/grafana:index/AppsRulesAlertruleV0alpha1SpecTrigger:AppsRulesAlertruleV0alpha1SpecTrigger",
+                    "description": "The trigger configuration for the alert rule.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "execErrState",
+                "expressions",
+                "noDataState",
+                "title"
+            ]
+        },
+        "grafana:index/AppsRulesAlertruleV0alpha1SpecNotificationSettings:AppsRulesAlertruleV0alpha1SpecNotificationSettings": {
+            "properties": {
+                "activeTimings": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.\n"
+                },
+                "contactPoint": {
+                    "type": "string",
+                    "description": "The contact point to route notifications that match this rule to.\n"
+                },
+                "groupBies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of alert labels to group alerts into notifications by.\n"
+                },
+                "groupInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval between two notifications for the same group.\n"
+                },
+                "groupWait": {
+                    "type": "string",
+                    "description": "Time to wait to buffer alerts of the same group before sending a notification.\n"
+                },
+                "muteTimings": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of mute timing names to apply to alerts that match this policy.\n"
+                },
+                "repeatInterval": {
+                    "type": "string",
+                    "description": "Minimum time interval for re-sending a notification if an alert is still firing.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "contactPoint"
+            ]
+        },
+        "grafana:index/AppsRulesAlertruleV0alpha1SpecTrigger:AppsRulesAlertruleV0alpha1SpecTrigger": {
+            "properties": {
+                "interval": {
+                    "type": "string",
+                    "description": "The interval at which the alert rule should be evaluated.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "interval"
+            ]
+        },
+        "grafana:index/AppsRulesRecordingruleV0alpha1Metadata:AppsRulesRecordingruleV0alpha1Metadata": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Annotations of the resource.\n"
+                },
+                "folderUid": {
+                    "type": "string",
+                    "description": "The UID of the folder to save the resource in.\n"
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "The unique identifier of the resource.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The full URL of the resource.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "The globally unique identifier of a resource, used by the API for tracking.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the resource.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "uid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "annotations",
+                        "uid",
+                        "url",
+                        "uuid",
+                        "version"
+                    ]
+                }
+            }
+        },
+        "grafana:index/AppsRulesRecordingruleV0alpha1Options:AppsRulesRecordingruleV0alpha1Options": {
+            "properties": {
+                "overwrite": {
+                    "type": "boolean",
+                    "description": "Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:index/AppsRulesRecordingruleV0alpha1Spec:AppsRulesRecordingruleV0alpha1Spec": {
+            "properties": {
+                "expressions": {
+                    "$ref": "pulumi.json#/Any",
+                    "description": "A sequence of stages that describe the contents of the rule.\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Key-value pairs to attach to the recorded metric.\n"
+                },
+                "metric": {
+                    "type": "string",
+                    "description": "The name of the metric to write to.\n"
+                },
+                "paused": {
+                    "type": "boolean",
+                    "description": "Sets whether the recording rule should be paused or not.\n"
+                },
+                "targetDatasourceUid": {
+                    "type": "string",
+                    "description": "The UID of the datasource to write the metric to.\n"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the recording rule.\n"
+                },
+                "trigger": {
+                    "$ref": "#/types/grafana:index/AppsRulesRecordingruleV0alpha1SpecTrigger:AppsRulesRecordingruleV0alpha1SpecTrigger",
+                    "description": "The trigger configuration for the recording rule.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "expressions",
+                "metric",
+                "targetDatasourceUid",
+                "title"
+            ]
+        },
+        "grafana:index/AppsRulesRecordingruleV0alpha1SpecTrigger:AppsRulesRecordingruleV0alpha1SpecTrigger": {
+            "properties": {
+                "interval": {
+                    "type": "string",
+                    "description": "The interval at which the recording rule should be evaluated.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "interval"
+            ]
+        },
         "grafana:k6/ScheduleCron:ScheduleCron": {
             "properties": {
                 "schedule": {
@@ -12786,6 +13076,104 @@
                     },
                     "stackId": {
                         "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:index/appsRulesAlertruleV0alpha1:AppsRulesAlertruleV0alpha1": {
+            "description": "Manages Grafana Alert Rules.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst alertruleFolder = new grafana.oss.Folder(\"alertrule_folder\", {title: \"Alert Rule Folder\"});\nconst example = new grafana.AppsRulesAlertruleV0alpha1(\"example\", {\n    metadata: {\n        uid: \"example-alert-rule\",\n        folderUid: alertruleFolder.uid,\n    },\n    spec: {\n        title: \"Example Alert Rule\",\n        trigger: {\n            interval: \"1m\",\n        },\n        paused: true,\n        expressions: {\n            A: {\n                model: {\n                    datasource: {\n                        type: \"prometheus\",\n                        uid: \"ds_uid\",\n                    },\n                    editorMode: \"code\",\n                    expr: \"count(up{})\",\n                    instant: true,\n                    intervalMs: 1000,\n                    legendFormat: \"__auto\",\n                    maxDataPoints: 43200,\n                    range: false,\n                    refId: \"A\",\n                },\n                datasourceUid: \"ds_uid\",\n                relativeTimeRange: {\n                    from: \"600s\",\n                    to: \"0s\",\n                },\n                queryType: \"\",\n                source: true,\n            },\n            B: {\n                model: {\n                    conditions: [{\n                        evaluator: {\n                            params: [1],\n                            type: \"gt\",\n                        },\n                        operator: {\n                            type: \"and\",\n                        },\n                        query: {\n                            params: [\"C\"],\n                        },\n                        reducer: {\n                            params: [],\n                            type: \"last\",\n                        },\n                        type: \"query\",\n                    }],\n                    datasource: {\n                        type: \"__expr__\",\n                        uid: \"__expr__\",\n                    },\n                    expression: \"A\",\n                    intervalMs: 1000,\n                    maxDataPoints: 43200,\n                    refId: \"C\",\n                    type: \"threshold\",\n                },\n                datasourceUid: \"__expr__\",\n                queryType: \"\",\n                source: false,\n            },\n        },\n        \"for\": \"5m\",\n        labels: {\n            severity: \"critical\",\n        },\n        annotations: {\n            runbook_url: \"https://example.com\",\n        },\n        noDataState: \"KeepLast\",\n        execErrState: \"KeepLast\",\n        missingSeriesEvalsToResolve: 5,\n        notificationSettings: {\n            contactPoint: \"grafana-default-email\",\n        },\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nalertrule_folder = grafana.oss.Folder(\"alertrule_folder\", title=\"Alert Rule Folder\")\nexample = grafana.AppsRulesAlertruleV0alpha1(\"example\",\n    metadata={\n        \"uid\": \"example-alert-rule\",\n        \"folder_uid\": alertrule_folder.uid,\n    },\n    spec={\n        \"title\": \"Example Alert Rule\",\n        \"trigger\": {\n            \"interval\": \"1m\",\n        },\n        \"paused\": True,\n        \"expressions\": {\n            \"A\": {\n                \"model\": {\n                    \"datasource\": {\n                        \"type\": \"prometheus\",\n                        \"uid\": \"ds_uid\",\n                    },\n                    \"editorMode\": \"code\",\n                    \"expr\": \"count(up{})\",\n                    \"instant\": True,\n                    \"intervalMs\": 1000,\n                    \"legendFormat\": \"__auto\",\n                    \"maxDataPoints\": 43200,\n                    \"range\": False,\n                    \"refId\": \"A\",\n                },\n                \"datasourceUid\": \"ds_uid\",\n                \"relativeTimeRange\": {\n                    \"from\": \"600s\",\n                    \"to\": \"0s\",\n                },\n                \"queryType\": \"\",\n                \"source\": True,\n            },\n            \"B\": {\n                \"model\": {\n                    \"conditions\": [{\n                        \"evaluator\": {\n                            \"params\": [1],\n                            \"type\": \"gt\",\n                        },\n                        \"operator\": {\n                            \"type\": \"and\",\n                        },\n                        \"query\": {\n                            \"params\": [\"C\"],\n                        },\n                        \"reducer\": {\n                            \"params\": [],\n                            \"type\": \"last\",\n                        },\n                        \"type\": \"query\",\n                    }],\n                    \"datasource\": {\n                        \"type\": \"__expr__\",\n                        \"uid\": \"__expr__\",\n                    },\n                    \"expression\": \"A\",\n                    \"intervalMs\": 1000,\n                    \"maxDataPoints\": 43200,\n                    \"refId\": \"C\",\n                    \"type\": \"threshold\",\n                },\n                \"datasourceUid\": \"__expr__\",\n                \"queryType\": \"\",\n                \"source\": False,\n            },\n        },\n        \"for_\": \"5m\",\n        \"labels\": {\n            \"severity\": \"critical\",\n        },\n        \"annotations\": {\n            \"runbook_url\": \"https://example.com\",\n        },\n        \"no_data_state\": \"KeepLast\",\n        \"exec_err_state\": \"KeepLast\",\n        \"missing_series_evals_to_resolve\": 5,\n        \"notification_settings\": {\n            \"contact_point\": \"grafana-default-email\",\n        },\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var alertruleFolder = new Grafana.Oss.Folder(\"alertrule_folder\", new()\n    {\n        Title = \"Alert Rule Folder\",\n    });\n\n    var example = new Grafana.AppsRulesAlertruleV0alpha1(\"example\", new()\n    {\n        Metadata = new Grafana.Inputs.AppsRulesAlertruleV0alpha1MetadataArgs\n        {\n            Uid = \"example-alert-rule\",\n            FolderUid = alertruleFolder.Uid,\n        },\n        Spec = new Grafana.Inputs.AppsRulesAlertruleV0alpha1SpecArgs\n        {\n            Title = \"Example Alert Rule\",\n            Trigger = new Grafana.Inputs.AppsRulesAlertruleV0alpha1SpecTriggerArgs\n            {\n                Interval = \"1m\",\n            },\n            Paused = true,\n            Expressions = new Dictionary\u003cstring, object?\u003e\n            {\n                [\"A\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"model\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"datasource\"] = new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"type\"] = \"prometheus\",\n                            [\"uid\"] = \"ds_uid\",\n                        },\n                        [\"editorMode\"] = \"code\",\n                        [\"expr\"] = \"count(up{})\",\n                        [\"instant\"] = true,\n                        [\"intervalMs\"] = 1000,\n                        [\"legendFormat\"] = \"__auto\",\n                        [\"maxDataPoints\"] = 43200,\n                        [\"range\"] = false,\n                        [\"refId\"] = \"A\",\n                    },\n                    [\"datasourceUid\"] = \"ds_uid\",\n                    [\"relativeTimeRange\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"from\"] = \"600s\",\n                        [\"to\"] = \"0s\",\n                    },\n                    [\"queryType\"] = \"\",\n                    [\"source\"] = true,\n                },\n                [\"B\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"model\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"conditions\"] = new[]\n                        {\n                            new Dictionary\u003cstring, object?\u003e\n                            {\n                                [\"evaluator\"] = new Dictionary\u003cstring, object?\u003e\n                                {\n                                    [\"params\"] = new[]\n                                    {\n                                        1,\n                                    },\n                                    [\"type\"] = \"gt\",\n                                },\n                                [\"operator\"] = new Dictionary\u003cstring, object?\u003e\n                                {\n                                    [\"type\"] = \"and\",\n                                },\n                                [\"query\"] = new Dictionary\u003cstring, object?\u003e\n                                {\n                                    [\"params\"] = new[]\n                                    {\n                                        \"C\",\n                                    },\n                                },\n                                [\"reducer\"] = new Dictionary\u003cstring, object?\u003e\n                                {\n                                    [\"params\"] = new[]\n                                    {\n                                    },\n                                    [\"type\"] = \"last\",\n                                },\n                                [\"type\"] = \"query\",\n                            },\n                        },\n                        [\"datasource\"] = new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"type\"] = \"__expr__\",\n                            [\"uid\"] = \"__expr__\",\n                        },\n                        [\"expression\"] = \"A\",\n                        [\"intervalMs\"] = 1000,\n                        [\"maxDataPoints\"] = 43200,\n                        [\"refId\"] = \"C\",\n                        [\"type\"] = \"threshold\",\n                    },\n                    [\"datasourceUid\"] = \"__expr__\",\n                    [\"queryType\"] = \"\",\n                    [\"source\"] = false,\n                },\n            },\n            For = \"5m\",\n            Labels = \n            {\n                { \"severity\", \"critical\" },\n            },\n            Annotations = \n            {\n                { \"runbook_url\", \"https://example.com\" },\n            },\n            NoDataState = \"KeepLast\",\n            ExecErrState = \"KeepLast\",\n            MissingSeriesEvalsToResolve = 5,\n            NotificationSettings = new Grafana.Inputs.AppsRulesAlertruleV0alpha1SpecNotificationSettingsArgs\n            {\n                ContactPoint = \"grafana-default-email\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\talertruleFolder, err := oss.NewFolder(ctx, \"alertrule_folder\", \u0026oss.FolderArgs{\n\t\t\tTitle: pulumi.String(\"Alert Rule Folder\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewAppsRulesAlertruleV0alpha1(ctx, \"example\", \u0026grafana.AppsRulesAlertruleV0alpha1Args{\n\t\t\tMetadata: \u0026grafana.AppsRulesAlertruleV0alpha1MetadataArgs{\n\t\t\t\tUid:       pulumi.String(\"example-alert-rule\"),\n\t\t\t\tFolderUid: alertruleFolder.Uid,\n\t\t\t},\n\t\t\tSpec: \u0026grafana.AppsRulesAlertruleV0alpha1SpecArgs{\n\t\t\t\tTitle: pulumi.String(\"Example Alert Rule\"),\n\t\t\t\tTrigger: \u0026grafana.AppsRulesAlertruleV0alpha1SpecTriggerArgs{\n\t\t\t\t\tInterval: pulumi.String(\"1m\"),\n\t\t\t\t},\n\t\t\t\tPaused: pulumi.Bool(true),\n\t\t\t\tExpressions: pulumi.Any(map[string]interface{}{\n\t\t\t\t\t\"A\": map[string]interface{}{\n\t\t\t\t\t\t\"model\": map[string]interface{}{\n\t\t\t\t\t\t\t\"datasource\": map[string]interface{}{\n\t\t\t\t\t\t\t\t\"type\": \"prometheus\",\n\t\t\t\t\t\t\t\t\"uid\":  \"ds_uid\",\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\"editorMode\":    \"code\",\n\t\t\t\t\t\t\t\"expr\":          \"count(up{})\",\n\t\t\t\t\t\t\t\"instant\":       true,\n\t\t\t\t\t\t\t\"intervalMs\":    1000,\n\t\t\t\t\t\t\t\"legendFormat\":  \"__auto\",\n\t\t\t\t\t\t\t\"maxDataPoints\": 43200,\n\t\t\t\t\t\t\t\"range\":         false,\n\t\t\t\t\t\t\t\"refId\":         \"A\",\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"datasourceUid\": \"ds_uid\",\n\t\t\t\t\t\t\"relativeTimeRange\": map[string]interface{}{\n\t\t\t\t\t\t\t\"from\": \"600s\",\n\t\t\t\t\t\t\t\"to\":   \"0s\",\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"queryType\": \"\",\n\t\t\t\t\t\t\"source\":    true,\n\t\t\t\t\t},\n\t\t\t\t\t\"B\": map[string]interface{}{\n\t\t\t\t\t\t\"model\": map[string]interface{}{\n\t\t\t\t\t\t\t\"conditions\": []map[string]interface{}{\n\t\t\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\t\t\"evaluator\": map[string]interface{}{\n\t\t\t\t\t\t\t\t\t\t\"params\": []float64{\n\t\t\t\t\t\t\t\t\t\t\t1,\n\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"type\": \"gt\",\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"operator\": map[string]interface{}{\n\t\t\t\t\t\t\t\t\t\t\"type\": \"and\",\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"query\": map[string]interface{}{\n\t\t\t\t\t\t\t\t\t\t\"params\": []string{\n\t\t\t\t\t\t\t\t\t\t\t\"C\",\n\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"reducer\": map[string]interface{}{\n\t\t\t\t\t\t\t\t\t\t\"params\": []interface{}{},\n\t\t\t\t\t\t\t\t\t\t\"type\":   \"last\",\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"type\": \"query\",\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\"datasource\": map[string]interface{}{\n\t\t\t\t\t\t\t\t\"type\": \"__expr__\",\n\t\t\t\t\t\t\t\t\"uid\":  \"__expr__\",\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\"expression\":    \"A\",\n\t\t\t\t\t\t\t\"intervalMs\":    1000,\n\t\t\t\t\t\t\t\"maxDataPoints\": 43200,\n\t\t\t\t\t\t\t\"refId\":         \"C\",\n\t\t\t\t\t\t\t\"type\":          \"threshold\",\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"datasourceUid\": \"__expr__\",\n\t\t\t\t\t\t\"queryType\":     \"\",\n\t\t\t\t\t\t\"source\":        false,\n\t\t\t\t\t},\n\t\t\t\t}),\n\t\t\t\tFor: pulumi.String(\"5m\"),\n\t\t\t\tLabels: pulumi.StringMap{\n\t\t\t\t\t\"severity\": pulumi.String(\"critical\"),\n\t\t\t\t},\n\t\t\t\tAnnotations: pulumi.StringMap{\n\t\t\t\t\t\"runbook_url\": pulumi.String(\"https://example.com\"),\n\t\t\t\t},\n\t\t\t\tNoDataState:                 pulumi.String(\"KeepLast\"),\n\t\t\t\tExecErrState:                pulumi.String(\"KeepLast\"),\n\t\t\t\tMissingSeriesEvalsToResolve: pulumi.Int(5),\n\t\t\t\tNotificationSettings: \u0026grafana.AppsRulesAlertruleV0alpha1SpecNotificationSettingsArgs{\n\t\t\t\t\tContactPoint: pulumi.String(\"grafana-default-email\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.Folder;\nimport com.pulumi.grafana.oss.FolderArgs;\nimport com.pulumi.grafana.AppsRulesAlertruleV0alpha1;\nimport com.pulumi.grafana.AppsRulesAlertruleV0alpha1Args;\nimport com.pulumi.grafana.inputs.AppsRulesAlertruleV0alpha1MetadataArgs;\nimport com.pulumi.grafana.inputs.AppsRulesAlertruleV0alpha1SpecArgs;\nimport com.pulumi.grafana.inputs.AppsRulesAlertruleV0alpha1SpecTriggerArgs;\nimport com.pulumi.grafana.inputs.AppsRulesAlertruleV0alpha1SpecNotificationSettingsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var alertruleFolder = new Folder(\"alertruleFolder\", FolderArgs.builder()\n            .title(\"Alert Rule Folder\")\n            .build());\n\n        var example = new AppsRulesAlertruleV0alpha1(\"example\", AppsRulesAlertruleV0alpha1Args.builder()\n            .metadata(AppsRulesAlertruleV0alpha1MetadataArgs.builder()\n                .uid(\"example-alert-rule\")\n                .folderUid(alertruleFolder.uid())\n                .build())\n            .spec(AppsRulesAlertruleV0alpha1SpecArgs.builder()\n                .title(\"Example Alert Rule\")\n                .trigger(AppsRulesAlertruleV0alpha1SpecTriggerArgs.builder()\n                    .interval(\"1m\")\n                    .build())\n                .paused(true)\n                .expressions(Map.ofEntries(\n                    Map.entry(\"A\", Map.ofEntries(\n                        Map.entry(\"model\", Map.ofEntries(\n                            Map.entry(\"datasource\", Map.ofEntries(\n                                Map.entry(\"type\", \"prometheus\"),\n                                Map.entry(\"uid\", \"ds_uid\")\n                            )),\n                            Map.entry(\"editorMode\", \"code\"),\n                            Map.entry(\"expr\", \"count(up{})\"),\n                            Map.entry(\"instant\", true),\n                            Map.entry(\"intervalMs\", 1000),\n                            Map.entry(\"legendFormat\", \"__auto\"),\n                            Map.entry(\"maxDataPoints\", 43200),\n                            Map.entry(\"range\", false),\n                            Map.entry(\"refId\", \"A\")\n                        )),\n                        Map.entry(\"datasourceUid\", \"ds_uid\"),\n                        Map.entry(\"relativeTimeRange\", Map.ofEntries(\n                            Map.entry(\"from\", \"600s\"),\n                            Map.entry(\"to\", \"0s\")\n                        )),\n                        Map.entry(\"queryType\", \"\"),\n                        Map.entry(\"source\", true)\n                    )),\n                    Map.entry(\"B\", Map.ofEntries(\n                        Map.entry(\"model\", Map.ofEntries(\n                            Map.entry(\"conditions\", Map.ofEntries(\n                                Map.entry(\"evaluator\", Map.ofEntries(\n                                    Map.entry(\"params\", 1),\n                                    Map.entry(\"type\", \"gt\")\n                                )),\n                                Map.entry(\"operator\", Map.of(\"type\", \"and\")),\n                                Map.entry(\"query\", Map.of(\"params\", \"C\")),\n                                Map.entry(\"reducer\", Map.ofEntries(\n                                    Map.entry(\"params\", ),\n                                    Map.entry(\"type\", \"last\")\n                                )),\n                                Map.entry(\"type\", \"query\")\n                            )),\n                            Map.entry(\"datasource\", Map.ofEntries(\n                                Map.entry(\"type\", \"__expr__\"),\n                                Map.entry(\"uid\", \"__expr__\")\n                            )),\n                            Map.entry(\"expression\", \"A\"),\n                            Map.entry(\"intervalMs\", 1000),\n                            Map.entry(\"maxDataPoints\", 43200),\n                            Map.entry(\"refId\", \"C\"),\n                            Map.entry(\"type\", \"threshold\")\n                        )),\n                        Map.entry(\"datasourceUid\", \"__expr__\"),\n                        Map.entry(\"queryType\", \"\"),\n                        Map.entry(\"source\", false)\n                    ))\n                ))\n                .for_(\"5m\")\n                .labels(Map.of(\"severity\", \"critical\"))\n                .annotations(Map.of(\"runbook_url\", \"https://example.com\"))\n                .noDataState(\"KeepLast\")\n                .execErrState(\"KeepLast\")\n                .missingSeriesEvalsToResolve(5)\n                .notificationSettings(AppsRulesAlertruleV0alpha1SpecNotificationSettingsArgs.builder()\n                    .contactPoint(\"grafana-default-email\")\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  alertruleFolder:\n    type: grafana:oss:Folder\n    name: alertrule_folder\n    properties:\n      title: Alert Rule Folder\n  example:\n    type: grafana:AppsRulesAlertruleV0alpha1\n    properties:\n      metadata:\n        uid: example-alert-rule\n        folderUid: ${alertruleFolder.uid}\n      spec:\n        title: Example Alert Rule\n        trigger:\n          interval: 1m\n        paused: true\n        expressions:\n          A:\n            model:\n              datasource:\n                type: prometheus\n                uid: ds_uid\n              editorMode: code\n              expr: count(up{})\n              instant: true\n              intervalMs: 1000\n              legendFormat: __auto\n              maxDataPoints: 43200\n              range: false\n              refId: A\n            datasourceUid: ds_uid\n            relativeTimeRange:\n              from: 600s\n              to: 0s\n            queryType: \"\"\n            source: true\n          B:\n            model:\n              conditions:\n                - evaluator:\n                    params:\n                      - 1\n                    type: gt\n                  operator:\n                    type: and\n                  query:\n                    params:\n                      - C\n                  reducer:\n                    params: []\n                    type: last\n                  type: query\n              datasource:\n                type: __expr__\n                uid: __expr__\n              expression: A\n              intervalMs: 1000\n              maxDataPoints: 43200\n              refId: C\n              type: threshold\n            datasourceUid: __expr__\n            queryType: \"\"\n            source: false\n        for: 5m\n        labels:\n          severity: critical\n        annotations:\n          runbook_url: https://example.com\n        noDataState: KeepLast\n        execErrState: KeepLast\n        missingSeriesEvalsToResolve: 5\n        notificationSettings:\n          contactPoint: grafana-default-email\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:index/AppsRulesAlertruleV0alpha1Metadata:AppsRulesAlertruleV0alpha1Metadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:index/AppsRulesAlertruleV0alpha1Options:AppsRulesAlertruleV0alpha1Options",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:index/AppsRulesAlertruleV0alpha1Spec:AppsRulesAlertruleV0alpha1Spec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "inputProperties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:index/AppsRulesAlertruleV0alpha1Metadata:AppsRulesAlertruleV0alpha1Metadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:index/AppsRulesAlertruleV0alpha1Options:AppsRulesAlertruleV0alpha1Options",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:index/AppsRulesAlertruleV0alpha1Spec:AppsRulesAlertruleV0alpha1Spec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AppsRulesAlertruleV0alpha1 resources.\n",
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/types/grafana:index/AppsRulesAlertruleV0alpha1Metadata:AppsRulesAlertruleV0alpha1Metadata",
+                        "description": "The metadata of the resource.\n"
+                    },
+                    "options": {
+                        "$ref": "#/types/grafana:index/AppsRulesAlertruleV0alpha1Options:AppsRulesAlertruleV0alpha1Options",
+                        "description": "Options for applying the resource.\n"
+                    },
+                    "spec": {
+                        "$ref": "#/types/grafana:index/AppsRulesAlertruleV0alpha1Spec:AppsRulesAlertruleV0alpha1Spec",
+                        "description": "The spec of the resource.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:index/appsRulesRecordingruleV0alpha1:AppsRulesRecordingruleV0alpha1": {
+            "description": "Manages Grafana Recording Rules.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst recordingruleFolder = new grafana.oss.Folder(\"recordingrule_folder\", {title: \"Alert Rule Folder\"});\nconst example = new grafana.AppsRulesRecordingruleV0alpha1(\"example\", {\n    metadata: {\n        uid: \"example-recording-rule\",\n        folderUid: recordingruleFolder.uid,\n    },\n    spec: {\n        title: \"Example Recording Rule\",\n        trigger: {\n            interval: \"1m\",\n        },\n        paused: true,\n        expressions: {\n            A: {\n                model: {\n                    editorMode: \"code\",\n                    expr: \"count(up{})\",\n                    instant: true,\n                    intervalMs: 1000,\n                    legendFormat: \"__auto\",\n                    maxDataPoints: 43200,\n                    range: false,\n                    refId: \"A\",\n                },\n                datasourceUid: \"ds_uid\",\n                relativeTimeRange: {\n                    from: \"600s\",\n                    to: \"0s\",\n                },\n                queryType: \"\",\n                source: true,\n            },\n        },\n        targetDatasourceUid: \"target_ds_uid\",\n        metric: \"tf-metric\",\n        labels: {\n            foo: \"bar\",\n        },\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nrecordingrule_folder = grafana.oss.Folder(\"recordingrule_folder\", title=\"Alert Rule Folder\")\nexample = grafana.AppsRulesRecordingruleV0alpha1(\"example\",\n    metadata={\n        \"uid\": \"example-recording-rule\",\n        \"folder_uid\": recordingrule_folder.uid,\n    },\n    spec={\n        \"title\": \"Example Recording Rule\",\n        \"trigger\": {\n            \"interval\": \"1m\",\n        },\n        \"paused\": True,\n        \"expressions\": {\n            \"A\": {\n                \"model\": {\n                    \"editorMode\": \"code\",\n                    \"expr\": \"count(up{})\",\n                    \"instant\": True,\n                    \"intervalMs\": 1000,\n                    \"legendFormat\": \"__auto\",\n                    \"maxDataPoints\": 43200,\n                    \"range\": False,\n                    \"refId\": \"A\",\n                },\n                \"datasourceUid\": \"ds_uid\",\n                \"relativeTimeRange\": {\n                    \"from\": \"600s\",\n                    \"to\": \"0s\",\n                },\n                \"queryType\": \"\",\n                \"source\": True,\n            },\n        },\n        \"target_datasource_uid\": \"target_ds_uid\",\n        \"metric\": \"tf-metric\",\n        \"labels\": {\n            \"foo\": \"bar\",\n        },\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var recordingruleFolder = new Grafana.Oss.Folder(\"recordingrule_folder\", new()\n    {\n        Title = \"Alert Rule Folder\",\n    });\n\n    var example = new Grafana.AppsRulesRecordingruleV0alpha1(\"example\", new()\n    {\n        Metadata = new Grafana.Inputs.AppsRulesRecordingruleV0alpha1MetadataArgs\n        {\n            Uid = \"example-recording-rule\",\n            FolderUid = recordingruleFolder.Uid,\n        },\n        Spec = new Grafana.Inputs.AppsRulesRecordingruleV0alpha1SpecArgs\n        {\n            Title = \"Example Recording Rule\",\n            Trigger = new Grafana.Inputs.AppsRulesRecordingruleV0alpha1SpecTriggerArgs\n            {\n                Interval = \"1m\",\n            },\n            Paused = true,\n            Expressions = new Dictionary\u003cstring, object?\u003e\n            {\n                [\"A\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"model\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"editorMode\"] = \"code\",\n                        [\"expr\"] = \"count(up{})\",\n                        [\"instant\"] = true,\n                        [\"intervalMs\"] = 1000,\n                        [\"legendFormat\"] = \"__auto\",\n                        [\"maxDataPoints\"] = 43200,\n                        [\"range\"] = false,\n                        [\"refId\"] = \"A\",\n                    },\n                    [\"datasourceUid\"] = \"ds_uid\",\n                    [\"relativeTimeRange\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"from\"] = \"600s\",\n                        [\"to\"] = \"0s\",\n                    },\n                    [\"queryType\"] = \"\",\n                    [\"source\"] = true,\n                },\n            },\n            TargetDatasourceUid = \"target_ds_uid\",\n            Metric = \"tf-metric\",\n            Labels = \n            {\n                { \"foo\", \"bar\" },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trecordingruleFolder, err := oss.NewFolder(ctx, \"recordingrule_folder\", \u0026oss.FolderArgs{\n\t\t\tTitle: pulumi.String(\"Alert Rule Folder\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = grafana.NewAppsRulesRecordingruleV0alpha1(ctx, \"example\", \u0026grafana.AppsRulesRecordingruleV0alpha1Args{\n\t\t\tMetadata: \u0026grafana.AppsRulesRecordingruleV0alpha1MetadataArgs{\n\t\t\t\tUid:       pulumi.String(\"example-recording-rule\"),\n\t\t\t\tFolderUid: recordingruleFolder.Uid,\n\t\t\t},\n\t\t\tSpec: \u0026grafana.AppsRulesRecordingruleV0alpha1SpecArgs{\n\t\t\t\tTitle: pulumi.String(\"Example Recording Rule\"),\n\t\t\t\tTrigger: \u0026grafana.AppsRulesRecordingruleV0alpha1SpecTriggerArgs{\n\t\t\t\t\tInterval: pulumi.String(\"1m\"),\n\t\t\t\t},\n\t\t\t\tPaused: pulumi.Bool(true),\n\t\t\t\tExpressions: pulumi.Any(map[string]interface{}{\n\t\t\t\t\t\"A\": map[string]interface{}{\n\t\t\t\t\t\t\"model\": map[string]interface{}{\n\t\t\t\t\t\t\t\"editorMode\":    \"code\",\n\t\t\t\t\t\t\t\"expr\":          \"count(up{})\",\n\t\t\t\t\t\t\t\"instant\":       true,\n\t\t\t\t\t\t\t\"intervalMs\":    1000,\n\t\t\t\t\t\t\t\"legendFormat\":  \"__auto\",\n\t\t\t\t\t\t\t\"maxDataPoints\": 43200,\n\t\t\t\t\t\t\t\"range\":         false,\n\t\t\t\t\t\t\t\"refId\":         \"A\",\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"datasourceUid\": \"ds_uid\",\n\t\t\t\t\t\t\"relativeTimeRange\": map[string]interface{}{\n\t\t\t\t\t\t\t\"from\": \"600s\",\n\t\t\t\t\t\t\t\"to\":   \"0s\",\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"queryType\": \"\",\n\t\t\t\t\t\t\"source\":    true,\n\t\t\t\t\t},\n\t\t\t\t}),\n\t\t\t\tTargetDatasourceUid: pulumi.String(\"target_ds_uid\"),\n\t\t\t\tMetric:              pulumi.String(\"tf-metric\"),\n\t\t\t\tLabels: pulumi.StringMap{\n\t\t\t\t\t\"foo\": pulumi.String(\"bar\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.Folder;\nimport com.pulumi.grafana.oss.FolderArgs;\nimport com.pulumi.grafana.AppsRulesRecordingruleV0alpha1;\nimport com.pulumi.grafana.AppsRulesRecordingruleV0alpha1Args;\nimport com.pulumi.grafana.inputs.AppsRulesRecordingruleV0alpha1MetadataArgs;\nimport com.pulumi.grafana.inputs.AppsRulesRecordingruleV0alpha1SpecArgs;\nimport com.pulumi.grafana.inputs.AppsRulesRecordingruleV0alpha1SpecTriggerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var recordingruleFolder = new Folder(\"recordingruleFolder\", FolderArgs.builder()\n            .title(\"Alert Rule Folder\")\n            .build());\n\n        var example = new AppsRulesRecordingruleV0alpha1(\"example\", AppsRulesRecordingruleV0alpha1Args.builder()\n            .metadata(AppsRulesRecordingruleV0alpha1MetadataArgs.builder()\n                .uid(\"example-recording-rule\")\n                .folderUid(recordingruleFolder.uid())\n                .build())\n            .spec(AppsRulesRecordingruleV0alpha1SpecArgs.builder()\n                .title(\"Example Recording Rule\")\n                .trigger(AppsRulesRecordingruleV0alpha1SpecTriggerArgs.builder()\n                    .interval(\"1m\")\n                    .build())\n                .paused(true)\n                .expressions(Map.of(\"A\", Map.ofEntries(\n                    Map.entry(\"model\", Map.ofEntries(\n                        Map.entry(\"editorMode\", \"code\"),\n                        Map.entry(\"expr\", \"count(up{})\"),\n                        Map.entry(\"instant\", true),\n                        Map.entry(\"intervalMs\", 1000),\n                        Map.entry(\"legendFormat\", \"__auto\"),\n                        Map.entry(\"maxDataPoints\", 43200),\n                        Map.entry(\"range\", false),\n                        Map.entry(\"refId\", \"A\")\n                    )),\n                    Map.entry(\"datasourceUid\", \"ds_uid\"),\n                    Map.entry(\"relativeTimeRange\", Map.ofEntries(\n                        Map.entry(\"from\", \"600s\"),\n                        Map.entry(\"to\", \"0s\")\n                    )),\n                    Map.entry(\"queryType\", \"\"),\n                    Map.entry(\"source\", true)\n                )))\n                .targetDatasourceUid(\"target_ds_uid\")\n                .metric(\"tf-metric\")\n                .labels(Map.of(\"foo\", \"bar\"))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  recordingruleFolder:\n    type: grafana:oss:Folder\n    name: recordingrule_folder\n    properties:\n      title: Alert Rule Folder\n  example:\n    type: grafana:AppsRulesRecordingruleV0alpha1\n    properties:\n      metadata:\n        uid: example-recording-rule\n        folderUid: ${recordingruleFolder.uid}\n      spec:\n        title: Example Recording Rule\n        trigger:\n          interval: 1m\n        paused: true\n        expressions:\n          A:\n            model:\n              editorMode: code\n              expr: count(up{})\n              instant: true\n              intervalMs: 1000\n              legendFormat: __auto\n              maxDataPoints: 43200\n              range: false\n              refId: A\n            datasourceUid: ds_uid\n            relativeTimeRange:\n              from: 600s\n              to: 0s\n            queryType: \"\"\n            source: true\n        targetDatasourceUid: target_ds_uid\n        metric: tf-metric\n        labels:\n          foo: bar\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:index/AppsRulesRecordingruleV0alpha1Metadata:AppsRulesRecordingruleV0alpha1Metadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:index/AppsRulesRecordingruleV0alpha1Options:AppsRulesRecordingruleV0alpha1Options",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:index/AppsRulesRecordingruleV0alpha1Spec:AppsRulesRecordingruleV0alpha1Spec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "inputProperties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:index/AppsRulesRecordingruleV0alpha1Metadata:AppsRulesRecordingruleV0alpha1Metadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:index/AppsRulesRecordingruleV0alpha1Options:AppsRulesRecordingruleV0alpha1Options",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:index/AppsRulesRecordingruleV0alpha1Spec:AppsRulesRecordingruleV0alpha1Spec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AppsRulesRecordingruleV0alpha1 resources.\n",
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/types/grafana:index/AppsRulesRecordingruleV0alpha1Metadata:AppsRulesRecordingruleV0alpha1Metadata",
+                        "description": "The metadata of the resource.\n"
+                    },
+                    "options": {
+                        "$ref": "#/types/grafana:index/AppsRulesRecordingruleV0alpha1Options:AppsRulesRecordingruleV0alpha1Options",
+                        "description": "Options for applying the resource.\n"
+                    },
+                    "spec": {
+                        "$ref": "#/types/grafana:index/AppsRulesRecordingruleV0alpha1Spec:AppsRulesRecordingruleV0alpha1Spec",
+                        "description": "The spec of the resource.\n"
                     }
                 },
                 "type": "object"

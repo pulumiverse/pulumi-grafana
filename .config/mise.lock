@@ -11,13 +11,13 @@ version = "0.6.0"
 backend = "github:pulumi/schema-tools"
 
 [[tools.go]]
-version = "1.25.4"
+version = "1.25.3"
 backend = "core:go"
 
 [tools.go.platforms.linux-x64]
-checksum = "sha256:9fa5ffeda4170de60f67f3aa0f824e426421ba724c21e133c1e35d6159ca1bec"
-size = 59766394
-url = "https://dl.google.com/go/go1.25.4.linux-amd64.tar.gz"
+checksum = "sha256:0335f314b6e7bfe08c3d0cfaa7c19db961b7b99fb20be62b0a826c992ad14e0f"
+size = 59767979
+url = "https://dl.google.com/go/go1.25.3.linux-amd64.tar.gz"
 
 [[tools.gradle]]
 version = "7.6.6"
