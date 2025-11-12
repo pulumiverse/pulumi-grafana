@@ -20,7 +20,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<string>? Color { get; set; }
 
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }
@@ -44,7 +44,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<string>? IconUrl { get; set; }
 
         /// <summary>
-        /// Describes how to ping the slack channel that messages are being sent to. Options are `here` for an @here ping, `channel` for @channel, or empty for no ping.
+        /// Describes how to ping the slack channel that messages are being sent to. Options are `Here` for an @here ping, `Channel` for @channel, or empty for no ping.
         /// </summary>
         [Input("mentionChannel")]
         public Input<string>? MentionChannel { get; set; }

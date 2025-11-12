@@ -21,7 +21,7 @@ namespace Pulumiverse.Grafana.Slo.Outputs
         public readonly Outputs.SLOQueryGrafanaQueries? GrafanaQueries;
         public readonly Outputs.SLOQueryRatio? Ratio;
         /// <summary>
-        /// Query type must be one of: "freeform", "query", "ratio", "grafana_queries" or "threshold"
+        /// Query type must be one of: "freeform", "query", "ratio", "GrafanaQueries" or "threshold"
         /// </summary>
         public readonly string Type;
 

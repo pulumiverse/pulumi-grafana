@@ -80,7 +80,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     public sealed class GetProbesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// If true, only probes that are not deprecated will be returned. Defaults to `true`.
+        /// If true, only probes that are not deprecated will be returned. Defaults to `True`.
         /// </summary>
         [Input("filterDeprecated")]
         public bool? FilterDeprecated { get; set; }
@@ -94,7 +94,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     public sealed class GetProbesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// If true, only probes that are not deprecated will be returned. Defaults to `true`.
+        /// If true, only probes that are not deprecated will be returned. Defaults to `True`.
         /// </summary>
         [Input("filterDeprecated")]
         public Input<bool>? FilterDeprecated { get; set; }
@@ -110,7 +110,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     public sealed class GetProbesResult
     {
         /// <summary>
-        /// If true, only probes that are not deprecated will be returned. Defaults to `true`.
+        /// If true, only probes that are not deprecated will be returned. Defaults to `True`.
         /// </summary>
         public readonly bool? FilterDeprecated;
         /// <summary>

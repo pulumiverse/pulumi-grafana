@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         /// </summary>
         public readonly string? Service;
         /// <summary>
-        /// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+        /// Whether or not TLS is used when the connection is initiated. Defaults to `False`.
         /// </summary>
         public readonly bool? Tls;
         /// <summary>

@@ -73,6 +73,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "alerting/alertRuleV0Alpha1",
+  "fqn": "pulumiverse_grafana.alerting",
+  "classes": {
+   "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1": "AlertRuleV0Alpha1"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "alerting/contactPoint",
   "fqn": "pulumiverse_grafana.alerting",
   "classes": {
@@ -101,6 +109,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.alerting",
   "classes": {
    "grafana:alerting/notificationPolicy:NotificationPolicy": "NotificationPolicy"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/recordingRuleV0Alpha1",
+  "fqn": "pulumiverse_grafana.alerting",
+  "classes": {
+   "grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1": "RecordingRuleV0Alpha1"
   }
  },
  {

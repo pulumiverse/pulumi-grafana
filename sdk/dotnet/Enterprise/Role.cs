@@ -70,7 +70,7 @@ namespace Pulumiverse.Grafana.Enterprise
     public partial class Role : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `Version` should be set.
         /// </summary>
         [Output("autoIncrementVersion")]
         public Output<bool?> AutoIncrementVersion { get; private set; } = null!;
@@ -88,7 +88,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Output<string?> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
+        /// Boolean to state whether the role is available across all organizations or not. Defaults to `False`.
         /// </summary>
         [Output("global")]
         public Output<bool?> Global { get; private set; } = null!;
@@ -100,7 +100,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Output<string?> Group { get; private set; } = null!;
 
         /// <summary>
-        /// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
+        /// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `False`.
         /// </summary>
         [Output("hidden")]
         public Output<bool?> Hidden { get; private set; } = null!;
@@ -130,7 +130,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Output<string> Uid { get; private set; } = null!;
 
         /// <summary>
-        /// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
+        /// Version of the role. A role is updated only on version increase. This field or `AutoIncrementVersion` should be set.
         /// </summary>
         [Output("version")]
         public Output<int?> Version { get; private set; } = null!;
@@ -187,7 +187,7 @@ namespace Pulumiverse.Grafana.Enterprise
     public sealed class RoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `Version` should be set.
         /// </summary>
         [Input("autoIncrementVersion")]
         public Input<bool>? AutoIncrementVersion { get; set; }
@@ -205,7 +205,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
+        /// Boolean to state whether the role is available across all organizations or not. Defaults to `False`.
         /// </summary>
         [Input("global")]
         public Input<bool>? Global { get; set; }
@@ -217,7 +217,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? Group { get; set; }
 
         /// <summary>
-        /// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
+        /// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `False`.
         /// </summary>
         [Input("hidden")]
         public Input<bool>? Hidden { get; set; }
@@ -253,7 +253,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? Uid { get; set; }
 
         /// <summary>
-        /// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
+        /// Version of the role. A role is updated only on version increase. This field or `AutoIncrementVersion` should be set.
         /// </summary>
         [Input("version")]
         public Input<int>? Version { get; set; }
@@ -267,7 +267,7 @@ namespace Pulumiverse.Grafana.Enterprise
     public sealed class RoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
+        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `Version` should be set.
         /// </summary>
         [Input("autoIncrementVersion")]
         public Input<bool>? AutoIncrementVersion { get; set; }
@@ -285,7 +285,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
+        /// Boolean to state whether the role is available across all organizations or not. Defaults to `False`.
         /// </summary>
         [Input("global")]
         public Input<bool>? Global { get; set; }
@@ -297,7 +297,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? Group { get; set; }
 
         /// <summary>
-        /// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `false`.
+        /// Boolean to state whether the role should be visible in the Grafana UI or not. Available with Grafana 8.5+. Defaults to `False`.
         /// </summary>
         [Input("hidden")]
         public Input<bool>? Hidden { get; set; }
@@ -333,7 +333,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? Uid { get; set; }
 
         /// <summary>
-        /// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
+        /// Version of the role. A role is updated only on version increase. This field or `AutoIncrementVersion` should be set.
         /// </summary>
         [Input("version")]
         public Input<int>? Version { get; set; }

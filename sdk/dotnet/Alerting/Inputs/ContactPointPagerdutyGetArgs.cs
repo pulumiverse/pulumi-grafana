@@ -50,7 +50,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         }
 
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }
@@ -94,7 +94,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         }
 
         /// <summary>
-        /// The PagerDuty event severity level. Default is `critical`.
+        /// The PagerDuty event severity level. Default is `Critical`.
         /// </summary>
         [Input("severity")]
         public Input<string>? Severity { get; set; }

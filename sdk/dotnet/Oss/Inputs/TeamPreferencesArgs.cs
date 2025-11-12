@@ -20,19 +20,19 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<string>? HomeDashboardUid { get; set; }
 
         /// <summary>
-        /// The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
+        /// The default theme for this team. Available themes are `Light`, `Dark`, `System`, or an empty string for the default theme.
         /// </summary>
         [Input("theme")]
         public Input<string>? Theme { get; set; }
 
         /// <summary>
-        /// The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
+        /// The default timezone for this team. Available values are `Utc`, `Browser`, or an empty string for the default.
         /// </summary>
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+        /// The default week start day for this team. Available values are `Sunday`, `Monday`, `Saturday`, or an empty string for the default.
         /// </summary>
         [Input("weekStart")]
         public Input<string>? WeekStart { get; set; }

@@ -28,7 +28,7 @@ namespace Pulumiverse.Grafana.Cloud.Inputs
         }
 
         /// <summary>
-        /// Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+        /// Whether a policy applies to a Cloud org or a specific stack. Should be one of `Org` or `Stack`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

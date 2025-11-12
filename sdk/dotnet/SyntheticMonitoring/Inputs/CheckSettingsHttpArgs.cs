@@ -48,7 +48,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         public Input<string>? CacheBustingQueryParamName { get; set; }
 
         /// <summary>
-        /// Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+        /// Check fails if the response body is not compressed using this compression algorithm. One of `None`, `Identity`, `Br`, `Gzip`, `Deflate`.
         /// </summary>
         [Input("compression")]
         public Input<string>? Compression { get; set; }
@@ -102,13 +102,13 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         }
 
         /// <summary>
-        /// Fail if SSL is not present. Defaults to `false`.
+        /// Fail if SSL is not present. Defaults to `False`.
         /// </summary>
         [Input("failIfNotSsl")]
         public Input<bool>? FailIfNotSsl { get; set; }
 
         /// <summary>
-        /// Fail if SSL is present. Defaults to `false`.
+        /// Fail if SSL is present. Defaults to `False`.
         /// </summary>
         [Input("failIfSsl")]
         public Input<bool>? FailIfSsl { get; set; }
@@ -138,7 +138,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         public Input<string>? Method { get; set; }
 
         /// <summary>
-        /// Do not follow redirects. Defaults to `false`.
+        /// Do not follow redirects. Defaults to `False`.
         /// </summary>
         [Input("noFollowRedirects")]
         public Input<bool>? NoFollowRedirects { get; set; }

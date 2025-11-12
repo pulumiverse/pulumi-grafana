@@ -155,7 +155,7 @@ namespace Pulumiverse.Grafana.Oss
     public sealed class GetDashboardArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
+        /// The numerical ID of the Grafana dashboard. Specify either this or `Uid`. Defaults to `-1`.
         /// </summary>
         [Input("dashboardId")]
         public int? DashboardId { get; set; }
@@ -167,7 +167,7 @@ namespace Pulumiverse.Grafana.Oss
         public string? OrgId { get; set; }
 
         /// <summary>
-        /// The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
+        /// The uid of the Grafana dashboard. Specify either this or `DashboardId`. Defaults to ``.
         /// </summary>
         [Input("uid")]
         public string? Uid { get; set; }
@@ -181,7 +181,7 @@ namespace Pulumiverse.Grafana.Oss
     public sealed class GetDashboardInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
+        /// The numerical ID of the Grafana dashboard. Specify either this or `Uid`. Defaults to `-1`.
         /// </summary>
         [Input("dashboardId")]
         public Input<int>? DashboardId { get; set; }
@@ -193,7 +193,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
+        /// The uid of the Grafana dashboard. Specify either this or `DashboardId`. Defaults to ``.
         /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }
@@ -213,7 +213,7 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public readonly string ConfigJson;
         /// <summary>
-        /// The numerical ID of the Grafana dashboard. Specify either this or `uid`. Defaults to `-1`.
+        /// The numerical ID of the Grafana dashboard. Specify either this or `Uid`. Defaults to `-1`.
         /// </summary>
         public readonly int? DashboardId;
         /// <summary>
@@ -241,7 +241,7 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public readonly string Title;
         /// <summary>
-        /// The uid of the Grafana dashboard. Specify either this or `dashboard_id`. Defaults to ``.
+        /// The uid of the Grafana dashboard. Specify either this or `DashboardId`. Defaults to ``.
         /// </summary>
         public readonly string? Uid;
         /// <summary>

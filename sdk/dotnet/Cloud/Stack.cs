@@ -86,7 +86,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> ClusterSlug { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+        /// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `True`.
         /// </summary>
         [Output("deleteProtection")]
         public Output<bool?> DeleteProtection { get; private set; } = null!;
@@ -170,7 +170,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<int> GraphiteUserId { get; private set; } = null!;
 
         /// <summary>
-        /// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
+        /// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`PrometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
         /// </summary>
         [Output("influxUrl")]
         public Output<string> InfluxUrl { get; private set; } = null!;
@@ -254,7 +254,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> OtlpPrivateConnectivityInfoServiceName { get; private set; } = null!;
 
         /// <summary>
-        /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`Id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         /// </summary>
         [Output("otlpUrl")]
         public Output<string> OtlpUrl { get; private set; } = null!;
@@ -425,7 +425,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> Url { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
+        /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `True`.
         /// </summary>
         [Output("waitForReadiness")]
         public Output<bool?> WaitForReadiness { get; private set; } = null!;
@@ -484,7 +484,7 @@ namespace Pulumiverse.Grafana.Cloud
     public sealed class StackArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+        /// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `True`.
         /// </summary>
         [Input("deleteProtection")]
         public Input<bool>? DeleteProtection { get; set; }
@@ -532,7 +532,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
+        /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `True`.
         /// </summary>
         [Input("waitForReadiness")]
         public Input<bool>? WaitForReadiness { get; set; }
@@ -588,7 +588,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<string>? ClusterSlug { get; set; }
 
         /// <summary>
-        /// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
+        /// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `True`.
         /// </summary>
         [Input("deleteProtection")]
         public Input<bool>? DeleteProtection { get; set; }
@@ -672,7 +672,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<int>? GraphiteUserId { get; set; }
 
         /// <summary>
-        /// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
+        /// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`PrometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
         /// </summary>
         [Input("influxUrl")]
         public Input<string>? InfluxUrl { get; set; }
@@ -762,7 +762,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<string>? OtlpPrivateConnectivityInfoServiceName { get; set; }
 
         /// <summary>
-        /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`Id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         /// </summary>
         [Input("otlpUrl")]
         public Input<string>? OtlpUrl { get; set; }
@@ -933,7 +933,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
+        /// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `True`.
         /// </summary>
         [Input("waitForReadiness")]
         public Input<bool>? WaitForReadiness { get; set; }

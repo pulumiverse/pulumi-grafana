@@ -24,7 +24,7 @@ namespace Pulumiverse.Grafana.OnCall
     public partial class Escalation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of an Action for trigger_webhook type step.
+        /// The ID of an Action for TriggerWebhook type step.
         /// </summary>
         [Output("actionToTrigger")]
         public Output<string?> ActionToTrigger { get; private set; } = null!;
@@ -90,7 +90,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<int?> NumMinutesInWindow { get; private set; } = null!;
 
         /// <summary>
-        /// The list of ID's of users for notify_persons type step.
+        /// The list of ID's of users for NotifyPersons type step.
         /// </summary>
         [Output("personsToNotifies")]
         public Output<ImmutableArray<string>> PersonsToNotifies { get; private set; } = null!;
@@ -108,7 +108,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<int> Position { get; private set; } = null!;
 
         /// <summary>
-        /// The severity of the incident for declare_incident type step.
+        /// The severity of the incident for DeclareIncident type step.
         /// </summary>
         [Output("severity")]
         public Output<string?> Severity { get; private set; } = null!;
@@ -167,7 +167,7 @@ namespace Pulumiverse.Grafana.OnCall
     public sealed class EscalationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of an Action for trigger_webhook type step.
+        /// The ID of an Action for TriggerWebhook type step.
         /// </summary>
         [Input("actionToTrigger")]
         public Input<string>? ActionToTrigger { get; set; }
@@ -236,7 +236,7 @@ namespace Pulumiverse.Grafana.OnCall
         private InputList<string>? _personsToNotifies;
 
         /// <summary>
-        /// The list of ID's of users for notify_persons type step.
+        /// The list of ID's of users for NotifyPersons type step.
         /// </summary>
         public InputList<string> PersonsToNotifies
         {
@@ -263,7 +263,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<int> Position { get; set; } = null!;
 
         /// <summary>
-        /// The severity of the incident for declare_incident type step.
+        /// The severity of the incident for DeclareIncident type step.
         /// </summary>
         [Input("severity")]
         public Input<string>? Severity { get; set; }
@@ -283,7 +283,7 @@ namespace Pulumiverse.Grafana.OnCall
     public sealed class EscalationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of an Action for trigger_webhook type step.
+        /// The ID of an Action for TriggerWebhook type step.
         /// </summary>
         [Input("actionToTrigger")]
         public Input<string>? ActionToTrigger { get; set; }
@@ -352,7 +352,7 @@ namespace Pulumiverse.Grafana.OnCall
         private InputList<string>? _personsToNotifies;
 
         /// <summary>
-        /// The list of ID's of users for notify_persons type step.
+        /// The list of ID's of users for NotifyPersons type step.
         /// </summary>
         public InputList<string> PersonsToNotifies
         {
@@ -379,7 +379,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<int>? Position { get; set; }
 
         /// <summary>
-        /// The severity of the incident for declare_incident type step.
+        /// The severity of the incident for DeclareIncident type step.
         /// </summary>
         [Input("severity")]
         public Input<string>? Severity { get; set; }

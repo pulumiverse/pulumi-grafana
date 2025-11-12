@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.OnCall.Inputs
     public sealed class RouteTelegramGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable notification in Telegram. Defaults to `true`.
+        /// Enable notification in Telegram. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

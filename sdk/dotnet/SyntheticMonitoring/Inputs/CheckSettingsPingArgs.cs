@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
     public sealed class CheckSettingsPingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+        /// Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `False`.
         /// </summary>
         [Input("dontFragment")]
         public Input<bool>? DontFragment { get; set; }

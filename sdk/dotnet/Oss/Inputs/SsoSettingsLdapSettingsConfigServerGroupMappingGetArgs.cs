@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Oss.Inputs
     public sealed class SsoSettingsLdapSettingsConfigServerGroupMappingGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If set to true, it makes the user of group_dn Grafana server admin.
+        /// If set to true, it makes the user of GroupDn Grafana server admin.
         /// </summary>
         [Input("grafanaAdmin")]
         public Input<bool>? GrafanaAdmin { get; set; }
@@ -32,7 +32,7 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<int>? OrgId { get; set; }
 
         /// <summary>
-        /// Assign users of group_dn the organization role Admin, Editor, or Viewer.
+        /// Assign users of GroupDn the organization role Admin, Editor, or Viewer.
         /// </summary>
         [Input("orgRole", required: true)]
         public Input<string> OrgRole { get; set; } = null!;

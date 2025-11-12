@@ -111,7 +111,7 @@ namespace Pulumiverse.Grafana.Oss
         public Output<string> AccessToken { get; private set; } = null!;
 
         /// <summary>
-        /// Set to `true` to show annotations. The default value is `false`.
+        /// Set to `True` to show annotations. The default value is `False`.
         /// </summary>
         [Output("annotationsEnabled")]
         public Output<bool?> AnnotationsEnabled { get; private set; } = null!;
@@ -123,7 +123,7 @@ namespace Pulumiverse.Grafana.Oss
         public Output<string> DashboardUid { get; private set; } = null!;
 
         /// <summary>
-        /// Set to `true` to enable the public dashboard. The default value is `false`.
+        /// Set to `True` to enable the public dashboard. The default value is `False`.
         /// </summary>
         [Output("isEnabled")]
         public Output<bool?> IsEnabled { get; private set; } = null!;
@@ -135,13 +135,13 @@ namespace Pulumiverse.Grafana.Oss
         public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// Set the share mode. The default value is `public`.
+        /// Set the share mode. The default value is `Public`.
         /// </summary>
         [Output("share")]
         public Output<string?> Share { get; private set; } = null!;
 
         /// <summary>
-        /// Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
+        /// Set to `True` to enable the time picker in the public dashboard. The default value is `False`.
         /// </summary>
         [Output("timeSelectionEnabled")]
         public Output<bool?> TimeSelectionEnabled { get; private set; } = null!;
@@ -210,7 +210,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? AccessToken { get; set; }
 
         /// <summary>
-        /// Set to `true` to show annotations. The default value is `false`.
+        /// Set to `True` to show annotations. The default value is `False`.
         /// </summary>
         [Input("annotationsEnabled")]
         public Input<bool>? AnnotationsEnabled { get; set; }
@@ -222,7 +222,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string> DashboardUid { get; set; } = null!;
 
         /// <summary>
-        /// Set to `true` to enable the public dashboard. The default value is `false`.
+        /// Set to `True` to enable the public dashboard. The default value is `False`.
         /// </summary>
         [Input("isEnabled")]
         public Input<bool>? IsEnabled { get; set; }
@@ -234,13 +234,13 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// Set the share mode. The default value is `public`.
+        /// Set the share mode. The default value is `Public`.
         /// </summary>
         [Input("share")]
         public Input<string>? Share { get; set; }
 
         /// <summary>
-        /// Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
+        /// Set to `True` to enable the time picker in the public dashboard. The default value is `False`.
         /// </summary>
         [Input("timeSelectionEnabled")]
         public Input<bool>? TimeSelectionEnabled { get; set; }
@@ -266,7 +266,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? AccessToken { get; set; }
 
         /// <summary>
-        /// Set to `true` to show annotations. The default value is `false`.
+        /// Set to `True` to show annotations. The default value is `False`.
         /// </summary>
         [Input("annotationsEnabled")]
         public Input<bool>? AnnotationsEnabled { get; set; }
@@ -278,7 +278,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? DashboardUid { get; set; }
 
         /// <summary>
-        /// Set to `true` to enable the public dashboard. The default value is `false`.
+        /// Set to `True` to enable the public dashboard. The default value is `False`.
         /// </summary>
         [Input("isEnabled")]
         public Input<bool>? IsEnabled { get; set; }
@@ -290,13 +290,13 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// Set the share mode. The default value is `public`.
+        /// Set the share mode. The default value is `Public`.
         /// </summary>
         [Input("share")]
         public Input<string>? Share { get; set; }
 
         /// <summary>
-        /// Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
+        /// Set to `True` to enable the time picker in the public dashboard. The default value is `False`.
         /// </summary>
         [Input("timeSelectionEnabled")]
         public Input<bool>? TimeSelectionEnabled { get; set; }

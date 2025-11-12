@@ -71,7 +71,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The list of lists with on-call users (for rolling_users event type)
+        /// The list of lists with on-call users (for RollingUsers event type)
         /// </summary>
         [Output("rollingUsers")]
         public Output<ImmutableArray<ImmutableArray<string>>> RollingUsers { get; private set; } = null!;
@@ -241,7 +241,7 @@ namespace Pulumiverse.Grafana.OnCall
         private InputList<ImmutableArray<string>>? _rollingUsers;
 
         /// <summary>
-        /// The list of lists with on-call users (for rolling_users event type)
+        /// The list of lists with on-call users (for RollingUsers event type)
         /// </summary>
         public InputList<ImmutableArray<string>> RollingUsers
         {
@@ -381,7 +381,7 @@ namespace Pulumiverse.Grafana.OnCall
         private InputList<ImmutableArray<string>>? _rollingUsers;
 
         /// <summary>
-        /// The list of lists with on-call users (for rolling_users event type)
+        /// The list of lists with on-call users (for RollingUsers event type)
         /// </summary>
         public InputList<ImmutableArray<string>> RollingUsers
         {

@@ -35,7 +35,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly string? AllowedOrganizations;
         /// <summary>
-        /// The user information endpoint of your OAuth2 provider. Required for okta and generic_oauth providers.
+        /// The user information endpoint of your OAuth2 provider. Required for okta and GenericOauth providers.
         /// </summary>
         public readonly string? ApiUrl;
         /// <summary>
@@ -43,7 +43,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly string? AuthStyle;
         /// <summary>
-        /// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        /// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and GenericOauth providers.
         /// </summary>
         public readonly string? AuthUrl;
         /// <summary>
@@ -83,7 +83,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly bool? EmptyScopes;
         /// <summary>
-        /// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+        /// Define whether this configuration is enabled for the specified provider. Defaults to `True`.
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
@@ -99,7 +99,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly string? LoginAttributePath;
         /// <summary>
-        /// Indicates the type of user interaction when the user logs in with the IdP. Available values are `login`, `consent` and `select_account`.
+        /// Indicates the type of user interaction when the user logs in with the IdP. Available values are `Login`, `Consent` and `SelectAccount`.
         /// </summary>
         public readonly string? LoginPrompt;
         /// <summary>
@@ -111,7 +111,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly string? NameAttributePath;
         /// <summary>
-        /// JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "org_mapping"). Only applicable to Generic OAuth and Okta.
+        /// JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "OrgMapping"). Only applicable to Generic OAuth and Okta.
         /// </summary>
         public readonly string? OrgAttributePath;
         /// <summary>
@@ -143,7 +143,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly string? TeamIds;
         /// <summary>
-        /// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teams_url endpoint. Only applicable to Generic OAuth.
+        /// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the TeamsUrl endpoint. Only applicable to Generic OAuth.
         /// </summary>
         public readonly string? TeamIdsAttributePath;
         /// <summary>
@@ -167,7 +167,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly bool? TlsSkipVerifyInsecure;
         /// <summary>
-        /// The token endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        /// The token endpoint of your OAuth2 provider. Required for azuread, okta and GenericOauth providers.
         /// </summary>
         public readonly string? TokenUrl;
         /// <summary>

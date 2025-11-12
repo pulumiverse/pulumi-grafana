@@ -197,7 +197,7 @@ namespace Pulumiverse.Grafana.Slo
     /// 
     /// ### Grafana Queries - Any supported datasource
     /// 
-    /// Grafana Queries use the grafana_queries field. It expects a JSON string list of valid grafana query JSON objects, the same as you'll find assigned to a Grafana Dashboard panel `targets` field.
+    /// Grafana Queries use the GrafanaQueries field. It expects a JSON string list of valid grafana query JSON objects, the same as you'll find assigned to a Grafana Dashboard panel `Targets` field.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

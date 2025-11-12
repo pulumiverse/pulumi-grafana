@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         /// </summary>
         public readonly string Send;
         /// <summary>
-        /// Upgrade TCP connection to TLS. Defaults to `false`.
+        /// Upgrade TCP connection to TLS. Defaults to `False`.
         /// </summary>
         public readonly bool? StartTls;
 

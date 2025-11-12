@@ -53,7 +53,7 @@ namespace Pulumiverse.Grafana.Cloud
     public partial class StackServiceAccount : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The disabled status for the service account. Defaults to `false`.
+        /// The disabled status for the service account. Defaults to `False`.
         /// </summary>
         [Output("isDisabled")]
         public Output<bool?> IsDisabled { get; private set; } = null!;
@@ -121,7 +121,7 @@ namespace Pulumiverse.Grafana.Cloud
     public sealed class StackServiceAccountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The disabled status for the service account. Defaults to `false`.
+        /// The disabled status for the service account. Defaults to `False`.
         /// </summary>
         [Input("isDisabled")]
         public Input<bool>? IsDisabled { get; set; }
@@ -150,7 +150,7 @@ namespace Pulumiverse.Grafana.Cloud
     public sealed class StackServiceAccountState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The disabled status for the service account. Defaults to `false`.
+        /// The disabled status for the service account. Defaults to `False`.
         /// </summary>
         [Input("isDisabled")]
         public Input<bool>? IsDisabled { get; set; }

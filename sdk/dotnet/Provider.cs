@@ -20,7 +20,7 @@ namespace Pulumiverse.Grafana
     public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
-        /// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
+        /// API token, basic auth in the `username:password` format or `Anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
         /// </summary>
         [Output("auth")]
         public Output<string?> Auth { get; private set; } = null!;
@@ -188,7 +188,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _auth;
 
         /// <summary>
-        /// API token, basic auth in the `username:password` format or `anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
+        /// API token, basic auth in the `username:password` format or `Anonymous` (string literal). May alternatively be set via the `GRAFANA_AUTH` environment variable.
         /// </summary>
         public Input<string>? Auth
         {
@@ -392,7 +392,7 @@ namespace Pulumiverse.Grafana
         private InputList<string>? _retryStatusCodes;
 
         /// <summary>
-        /// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429 and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
+        /// The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `X` as a digit wildcard. Defaults to 429 and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
         /// </summary>
         public InputList<string> RetryStatusCodes
         {

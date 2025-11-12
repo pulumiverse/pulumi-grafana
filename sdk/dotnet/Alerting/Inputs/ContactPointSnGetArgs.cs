@@ -36,7 +36,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<string>? AssumeRoleArn { get; set; }
 
         /// <summary>
-        /// The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.
+        /// The authentication provider to use. Valid values are `Default`, `Arn` and `Keys`. Default is `Default`. Defaults to `Default`.
         /// </summary>
         [Input("authProvider")]
         public Input<string>? AuthProvider { get; set; }
@@ -45,7 +45,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<string>? Body { get; set; }
 
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }
@@ -57,7 +57,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<string>? ExternalId { get; set; }
 
         /// <summary>
-        /// The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.
+        /// The format of the message to send. Valid values are `Text`, `Body` and `Json`. Default is `Text`. Defaults to `Text`.
         /// </summary>
         [Input("messageFormat")]
         public Input<string>? MessageFormat { get; set; }

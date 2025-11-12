@@ -101,6 +101,33 @@
                 "current": "grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1",
                 "majorVersion": 2
             },
+            "grafana_apps_rules_alertrule_v0alpha1": {
+                "current": "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "notification_settings": {
+                                "fields": {
+                                    "active_timings": {
+                                        "maxItemsOne": false
+                                    },
+                                    "group_by": {
+                                        "maxItemsOne": false
+                                    },
+                                    "mute_timings": {
+                                        "maxItemsOne": false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "grafana_apps_rules_recordingrule_v0alpha1": {
+                "current": "grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1",
+                "majorVersion": 2
+            },
             "grafana_asserts_custom_model_rules": {
                 "current": "grafana:assert/customModelRules:CustomModelRules",
                 "majorVersion": 2,
@@ -1967,10 +1994,12 @@
     "mux": {
         "resources": {
             "grafana:alerting/alertEnrichment:AlertEnrichment": 1,
+            "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1": 1,
             "grafana:alerting/contactPoint:ContactPoint": 0,
             "grafana:alerting/messageTemplate:MessageTemplate": 0,
             "grafana:alerting/muteTiming:MuteTiming": 0,
             "grafana:alerting/notificationPolicy:NotificationPolicy": 0,
+            "grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1": 1,
             "grafana:alerting/ruleGroup:RuleGroup": 0,
             "grafana:assert/customModelRules:CustomModelRules": 0,
             "grafana:assert/logConfig:LogConfig": 0,

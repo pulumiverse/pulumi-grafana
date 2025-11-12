@@ -13,7 +13,7 @@ namespace Pulumiverse.Grafana.MachineLearning
     /// <summary>
     /// A holiday describes time periods where a time series is expected to behave differently to normal.
     /// 
-    /// To use a holiday in a job, use its id in the `holidays` attribute of a `grafana.machineLearning.Job`:
+    /// To use a holiday in a job, use its id in the `Holidays` attribute of a `grafana.machineLearning.Job`:
     /// 
     /// ### iCal Holiday
     /// 

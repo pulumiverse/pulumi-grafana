@@ -19,7 +19,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Addresses;
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
         /// <summary>
@@ -31,7 +31,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Settings;
         /// <summary>
-        /// Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `false`.
+        /// Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `False`.
         /// </summary>
         public readonly bool? SingleEmail;
         /// <summary>

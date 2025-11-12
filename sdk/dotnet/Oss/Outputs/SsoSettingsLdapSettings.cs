@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly Outputs.SsoSettingsLdapSettingsConfig Config;
         /// <summary>
-        /// Define whether this configuration is enabled for LDAP. Defaults to `true`.
+        /// Define whether this configuration is enabled for LDAP. Defaults to `True`.
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>

@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana.Slo.Inputs
         public Input<Inputs.SLOQueryRatioArgs>? Ratio { get; set; }
 
         /// <summary>
-        /// Query type must be one of: "freeform", "query", "ratio", "grafana_queries" or "threshold"
+        /// Query type must be one of: "freeform", "query", "ratio", "GrafanaQueries" or "threshold"
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

@@ -71,7 +71,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string> TimeZone { get; private set; } = null!;
 
         /// <summary>
-        /// The schedule's type. Valid values are `ical`, `calendar`, `web`.
+        /// The schedule's type. Valid values are `Ical`, `Calendar`, `Web`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -178,7 +178,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? TimeZone { get; set; }
 
         /// <summary>
-        /// The schedule's type. Valid values are `ical`, `calendar`, `web`.
+        /// The schedule's type. Valid values are `Ical`, `Calendar`, `Web`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -246,7 +246,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? TimeZone { get; set; }
 
         /// <summary>
-        /// The schedule's type. Valid values are `ical`, `calendar`, `web`.
+        /// The schedule's type. Valid values are `Ical`, `Calendar`, `Web`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

@@ -6570,6 +6570,1130 @@ func (o AlertEnrichmentSpecStepSiftPtrOutput) Timeout() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type AlertRuleV0Alpha1Metadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The UID of the folder to save the resource in.
+	FolderUid *string `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// AlertRuleV0Alpha1MetadataInput is an input type that accepts AlertRuleV0Alpha1MetadataArgs and AlertRuleV0Alpha1MetadataOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1MetadataInput` via:
+//
+//	AlertRuleV0Alpha1MetadataArgs{...}
+type AlertRuleV0Alpha1MetadataInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1MetadataOutput() AlertRuleV0Alpha1MetadataOutput
+	ToAlertRuleV0Alpha1MetadataOutputWithContext(context.Context) AlertRuleV0Alpha1MetadataOutput
+}
+
+type AlertRuleV0Alpha1MetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The UID of the folder to save the resource in.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (AlertRuleV0Alpha1MetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1Metadata)(nil)).Elem()
+}
+
+func (i AlertRuleV0Alpha1MetadataArgs) ToAlertRuleV0Alpha1MetadataOutput() AlertRuleV0Alpha1MetadataOutput {
+	return i.ToAlertRuleV0Alpha1MetadataOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1MetadataArgs) ToAlertRuleV0Alpha1MetadataOutputWithContext(ctx context.Context) AlertRuleV0Alpha1MetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1MetadataOutput)
+}
+
+func (i AlertRuleV0Alpha1MetadataArgs) ToAlertRuleV0Alpha1MetadataPtrOutput() AlertRuleV0Alpha1MetadataPtrOutput {
+	return i.ToAlertRuleV0Alpha1MetadataPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1MetadataArgs) ToAlertRuleV0Alpha1MetadataPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1MetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1MetadataOutput).ToAlertRuleV0Alpha1MetadataPtrOutputWithContext(ctx)
+}
+
+// AlertRuleV0Alpha1MetadataPtrInput is an input type that accepts AlertRuleV0Alpha1MetadataArgs, AlertRuleV0Alpha1MetadataPtr and AlertRuleV0Alpha1MetadataPtrOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1MetadataPtrInput` via:
+//
+//	        AlertRuleV0Alpha1MetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleV0Alpha1MetadataPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1MetadataPtrOutput() AlertRuleV0Alpha1MetadataPtrOutput
+	ToAlertRuleV0Alpha1MetadataPtrOutputWithContext(context.Context) AlertRuleV0Alpha1MetadataPtrOutput
+}
+
+type alertRuleV0Alpha1MetadataPtrType AlertRuleV0Alpha1MetadataArgs
+
+func AlertRuleV0Alpha1MetadataPtr(v *AlertRuleV0Alpha1MetadataArgs) AlertRuleV0Alpha1MetadataPtrInput {
+	return (*alertRuleV0Alpha1MetadataPtrType)(v)
+}
+
+func (*alertRuleV0Alpha1MetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1Metadata)(nil)).Elem()
+}
+
+func (i *alertRuleV0Alpha1MetadataPtrType) ToAlertRuleV0Alpha1MetadataPtrOutput() AlertRuleV0Alpha1MetadataPtrOutput {
+	return i.ToAlertRuleV0Alpha1MetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleV0Alpha1MetadataPtrType) ToAlertRuleV0Alpha1MetadataPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1MetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1MetadataPtrOutput)
+}
+
+type AlertRuleV0Alpha1MetadataOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1MetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1Metadata)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1MetadataOutput) ToAlertRuleV0Alpha1MetadataOutput() AlertRuleV0Alpha1MetadataOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1MetadataOutput) ToAlertRuleV0Alpha1MetadataOutputWithContext(ctx context.Context) AlertRuleV0Alpha1MetadataOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1MetadataOutput) ToAlertRuleV0Alpha1MetadataPtrOutput() AlertRuleV0Alpha1MetadataPtrOutput {
+	return o.ToAlertRuleV0Alpha1MetadataPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleV0Alpha1MetadataOutput) ToAlertRuleV0Alpha1MetadataPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1MetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleV0Alpha1Metadata) *AlertRuleV0Alpha1Metadata {
+		return &v
+	}).(AlertRuleV0Alpha1MetadataPtrOutput)
+}
+
+// Annotations of the resource.
+func (o AlertRuleV0Alpha1MetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Metadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in.
+func (o AlertRuleV0Alpha1MetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Metadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o AlertRuleV0Alpha1MetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Metadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o AlertRuleV0Alpha1MetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Metadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o AlertRuleV0Alpha1MetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Metadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o AlertRuleV0Alpha1MetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Metadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleV0Alpha1MetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1MetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1Metadata)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1MetadataPtrOutput) ToAlertRuleV0Alpha1MetadataPtrOutput() AlertRuleV0Alpha1MetadataPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1MetadataPtrOutput) ToAlertRuleV0Alpha1MetadataPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1MetadataPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1MetadataPtrOutput) Elem() AlertRuleV0Alpha1MetadataOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Metadata) AlertRuleV0Alpha1Metadata {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleV0Alpha1Metadata
+		return ret
+	}).(AlertRuleV0Alpha1MetadataOutput)
+}
+
+// Annotations of the resource.
+func (o AlertRuleV0Alpha1MetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Metadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in.
+func (o AlertRuleV0Alpha1MetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o AlertRuleV0Alpha1MetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o AlertRuleV0Alpha1MetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o AlertRuleV0Alpha1MetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o AlertRuleV0Alpha1MetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleV0Alpha1Options struct {
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// AlertRuleV0Alpha1OptionsInput is an input type that accepts AlertRuleV0Alpha1OptionsArgs and AlertRuleV0Alpha1OptionsOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1OptionsInput` via:
+//
+//	AlertRuleV0Alpha1OptionsArgs{...}
+type AlertRuleV0Alpha1OptionsInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1OptionsOutput() AlertRuleV0Alpha1OptionsOutput
+	ToAlertRuleV0Alpha1OptionsOutputWithContext(context.Context) AlertRuleV0Alpha1OptionsOutput
+}
+
+type AlertRuleV0Alpha1OptionsArgs struct {
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (AlertRuleV0Alpha1OptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1Options)(nil)).Elem()
+}
+
+func (i AlertRuleV0Alpha1OptionsArgs) ToAlertRuleV0Alpha1OptionsOutput() AlertRuleV0Alpha1OptionsOutput {
+	return i.ToAlertRuleV0Alpha1OptionsOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1OptionsArgs) ToAlertRuleV0Alpha1OptionsOutputWithContext(ctx context.Context) AlertRuleV0Alpha1OptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1OptionsOutput)
+}
+
+func (i AlertRuleV0Alpha1OptionsArgs) ToAlertRuleV0Alpha1OptionsPtrOutput() AlertRuleV0Alpha1OptionsPtrOutput {
+	return i.ToAlertRuleV0Alpha1OptionsPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1OptionsArgs) ToAlertRuleV0Alpha1OptionsPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1OptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1OptionsOutput).ToAlertRuleV0Alpha1OptionsPtrOutputWithContext(ctx)
+}
+
+// AlertRuleV0Alpha1OptionsPtrInput is an input type that accepts AlertRuleV0Alpha1OptionsArgs, AlertRuleV0Alpha1OptionsPtr and AlertRuleV0Alpha1OptionsPtrOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1OptionsPtrInput` via:
+//
+//	        AlertRuleV0Alpha1OptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleV0Alpha1OptionsPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1OptionsPtrOutput() AlertRuleV0Alpha1OptionsPtrOutput
+	ToAlertRuleV0Alpha1OptionsPtrOutputWithContext(context.Context) AlertRuleV0Alpha1OptionsPtrOutput
+}
+
+type alertRuleV0Alpha1OptionsPtrType AlertRuleV0Alpha1OptionsArgs
+
+func AlertRuleV0Alpha1OptionsPtr(v *AlertRuleV0Alpha1OptionsArgs) AlertRuleV0Alpha1OptionsPtrInput {
+	return (*alertRuleV0Alpha1OptionsPtrType)(v)
+}
+
+func (*alertRuleV0Alpha1OptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1Options)(nil)).Elem()
+}
+
+func (i *alertRuleV0Alpha1OptionsPtrType) ToAlertRuleV0Alpha1OptionsPtrOutput() AlertRuleV0Alpha1OptionsPtrOutput {
+	return i.ToAlertRuleV0Alpha1OptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleV0Alpha1OptionsPtrType) ToAlertRuleV0Alpha1OptionsPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1OptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1OptionsPtrOutput)
+}
+
+type AlertRuleV0Alpha1OptionsOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1OptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1Options)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1OptionsOutput) ToAlertRuleV0Alpha1OptionsOutput() AlertRuleV0Alpha1OptionsOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1OptionsOutput) ToAlertRuleV0Alpha1OptionsOutputWithContext(ctx context.Context) AlertRuleV0Alpha1OptionsOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1OptionsOutput) ToAlertRuleV0Alpha1OptionsPtrOutput() AlertRuleV0Alpha1OptionsPtrOutput {
+	return o.ToAlertRuleV0Alpha1OptionsPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleV0Alpha1OptionsOutput) ToAlertRuleV0Alpha1OptionsPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1OptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleV0Alpha1Options) *AlertRuleV0Alpha1Options {
+		return &v
+	}).(AlertRuleV0Alpha1OptionsPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o AlertRuleV0Alpha1OptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Options) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type AlertRuleV0Alpha1OptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1OptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1Options)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1OptionsPtrOutput) ToAlertRuleV0Alpha1OptionsPtrOutput() AlertRuleV0Alpha1OptionsPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1OptionsPtrOutput) ToAlertRuleV0Alpha1OptionsPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1OptionsPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1OptionsPtrOutput) Elem() AlertRuleV0Alpha1OptionsOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Options) AlertRuleV0Alpha1Options {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleV0Alpha1Options
+		return ret
+	}).(AlertRuleV0Alpha1OptionsOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o AlertRuleV0Alpha1OptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Options) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type AlertRuleV0Alpha1Spec struct {
+	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts.
+	Annotations map[string]string `pulumi:"annotations"`
+	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+	ExecErrState string `pulumi:"execErrState"`
+	// A sequence of stages that describe the contents of the rule.
+	Expressions interface{} `pulumi:"expressions"`
+	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+	For *string `pulumi:"for"`
+	// The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+	KeepFiringFor *string `pulumi:"keepFiringFor"`
+	// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+	Labels map[string]string `pulumi:"labels"`
+	// The number of missing series evaluations that must occur before the rule is considered to be resolved.
+	MissingSeriesEvalsToResolve *int `pulumi:"missingSeriesEvalsToResolve"`
+	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+	NoDataState string `pulumi:"noDataState"`
+	// Notification settings for the rule. If specified, it overrides the notification policies.
+	NotificationSettings *AlertRuleV0Alpha1SpecNotificationSettings `pulumi:"notificationSettings"`
+	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+	PanelRef interface{} `pulumi:"panelRef"`
+	// Sets whether the rule should be paused or not.
+	Paused *bool `pulumi:"paused"`
+	// The title of the alert rule.
+	Title string `pulumi:"title"`
+	// The trigger configuration for the alert rule.
+	Trigger *AlertRuleV0Alpha1SpecTrigger `pulumi:"trigger"`
+}
+
+// AlertRuleV0Alpha1SpecInput is an input type that accepts AlertRuleV0Alpha1SpecArgs and AlertRuleV0Alpha1SpecOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1SpecInput` via:
+//
+//	AlertRuleV0Alpha1SpecArgs{...}
+type AlertRuleV0Alpha1SpecInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1SpecOutput() AlertRuleV0Alpha1SpecOutput
+	ToAlertRuleV0Alpha1SpecOutputWithContext(context.Context) AlertRuleV0Alpha1SpecOutput
+}
+
+type AlertRuleV0Alpha1SpecArgs struct {
+	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+	ExecErrState pulumi.StringInput `pulumi:"execErrState"`
+	// A sequence of stages that describe the contents of the rule.
+	Expressions pulumi.Input `pulumi:"expressions"`
+	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+	For pulumi.StringPtrInput `pulumi:"for"`
+	// The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+	KeepFiringFor pulumi.StringPtrInput `pulumi:"keepFiringFor"`
+	// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// The number of missing series evaluations that must occur before the rule is considered to be resolved.
+	MissingSeriesEvalsToResolve pulumi.IntPtrInput `pulumi:"missingSeriesEvalsToResolve"`
+	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+	NoDataState pulumi.StringInput `pulumi:"noDataState"`
+	// Notification settings for the rule. If specified, it overrides the notification policies.
+	NotificationSettings AlertRuleV0Alpha1SpecNotificationSettingsPtrInput `pulumi:"notificationSettings"`
+	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+	PanelRef pulumi.Input `pulumi:"panelRef"`
+	// Sets whether the rule should be paused or not.
+	Paused pulumi.BoolPtrInput `pulumi:"paused"`
+	// The title of the alert rule.
+	Title pulumi.StringInput `pulumi:"title"`
+	// The trigger configuration for the alert rule.
+	Trigger AlertRuleV0Alpha1SpecTriggerPtrInput `pulumi:"trigger"`
+}
+
+func (AlertRuleV0Alpha1SpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1Spec)(nil)).Elem()
+}
+
+func (i AlertRuleV0Alpha1SpecArgs) ToAlertRuleV0Alpha1SpecOutput() AlertRuleV0Alpha1SpecOutput {
+	return i.ToAlertRuleV0Alpha1SpecOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1SpecArgs) ToAlertRuleV0Alpha1SpecOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecOutput)
+}
+
+func (i AlertRuleV0Alpha1SpecArgs) ToAlertRuleV0Alpha1SpecPtrOutput() AlertRuleV0Alpha1SpecPtrOutput {
+	return i.ToAlertRuleV0Alpha1SpecPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1SpecArgs) ToAlertRuleV0Alpha1SpecPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecOutput).ToAlertRuleV0Alpha1SpecPtrOutputWithContext(ctx)
+}
+
+// AlertRuleV0Alpha1SpecPtrInput is an input type that accepts AlertRuleV0Alpha1SpecArgs, AlertRuleV0Alpha1SpecPtr and AlertRuleV0Alpha1SpecPtrOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1SpecPtrInput` via:
+//
+//	        AlertRuleV0Alpha1SpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleV0Alpha1SpecPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1SpecPtrOutput() AlertRuleV0Alpha1SpecPtrOutput
+	ToAlertRuleV0Alpha1SpecPtrOutputWithContext(context.Context) AlertRuleV0Alpha1SpecPtrOutput
+}
+
+type alertRuleV0Alpha1SpecPtrType AlertRuleV0Alpha1SpecArgs
+
+func AlertRuleV0Alpha1SpecPtr(v *AlertRuleV0Alpha1SpecArgs) AlertRuleV0Alpha1SpecPtrInput {
+	return (*alertRuleV0Alpha1SpecPtrType)(v)
+}
+
+func (*alertRuleV0Alpha1SpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1Spec)(nil)).Elem()
+}
+
+func (i *alertRuleV0Alpha1SpecPtrType) ToAlertRuleV0Alpha1SpecPtrOutput() AlertRuleV0Alpha1SpecPtrOutput {
+	return i.ToAlertRuleV0Alpha1SpecPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleV0Alpha1SpecPtrType) ToAlertRuleV0Alpha1SpecPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1SpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1Spec)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1SpecOutput) ToAlertRuleV0Alpha1SpecOutput() AlertRuleV0Alpha1SpecOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecOutput) ToAlertRuleV0Alpha1SpecOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecOutput) ToAlertRuleV0Alpha1SpecPtrOutput() AlertRuleV0Alpha1SpecPtrOutput {
+	return o.ToAlertRuleV0Alpha1SpecPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleV0Alpha1SpecOutput) ToAlertRuleV0Alpha1SpecPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleV0Alpha1Spec) *AlertRuleV0Alpha1Spec {
+		return &v
+	}).(AlertRuleV0Alpha1SpecPtrOutput)
+}
+
+// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts.
+func (o AlertRuleV0Alpha1SpecOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+func (o AlertRuleV0Alpha1SpecOutput) ExecErrState() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) string { return v.ExecErrState }).(pulumi.StringOutput)
+}
+
+// A sequence of stages that describe the contents of the rule.
+func (o AlertRuleV0Alpha1SpecOutput) Expressions() pulumi.AnyOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) interface{} { return v.Expressions }).(pulumi.AnyOutput)
+}
+
+// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+func (o AlertRuleV0Alpha1SpecOutput) For() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) *string { return v.For }).(pulumi.StringPtrOutput)
+}
+
+// The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+func (o AlertRuleV0Alpha1SpecOutput) KeepFiringFor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) *string { return v.KeepFiringFor }).(pulumi.StringPtrOutput)
+}
+
+// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+func (o AlertRuleV0Alpha1SpecOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// The number of missing series evaluations that must occur before the rule is considered to be resolved.
+func (o AlertRuleV0Alpha1SpecOutput) MissingSeriesEvalsToResolve() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) *int { return v.MissingSeriesEvalsToResolve }).(pulumi.IntPtrOutput)
+}
+
+// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+func (o AlertRuleV0Alpha1SpecOutput) NoDataState() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) string { return v.NoDataState }).(pulumi.StringOutput)
+}
+
+// Notification settings for the rule. If specified, it overrides the notification policies.
+func (o AlertRuleV0Alpha1SpecOutput) NotificationSettings() AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) *AlertRuleV0Alpha1SpecNotificationSettings {
+		return v.NotificationSettings
+	}).(AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput)
+}
+
+// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+func (o AlertRuleV0Alpha1SpecOutput) PanelRef() pulumi.AnyOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) interface{} { return v.PanelRef }).(pulumi.AnyOutput)
+}
+
+// Sets whether the rule should be paused or not.
+func (o AlertRuleV0Alpha1SpecOutput) Paused() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) *bool { return v.Paused }).(pulumi.BoolPtrOutput)
+}
+
+// The title of the alert rule.
+func (o AlertRuleV0Alpha1SpecOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) string { return v.Title }).(pulumi.StringOutput)
+}
+
+// The trigger configuration for the alert rule.
+func (o AlertRuleV0Alpha1SpecOutput) Trigger() AlertRuleV0Alpha1SpecTriggerPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) *AlertRuleV0Alpha1SpecTrigger { return v.Trigger }).(AlertRuleV0Alpha1SpecTriggerPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1SpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1Spec)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1SpecPtrOutput) ToAlertRuleV0Alpha1SpecPtrOutput() AlertRuleV0Alpha1SpecPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecPtrOutput) ToAlertRuleV0Alpha1SpecPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecPtrOutput) Elem() AlertRuleV0Alpha1SpecOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) AlertRuleV0Alpha1Spec {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleV0Alpha1Spec
+		return ret
+	}).(AlertRuleV0Alpha1SpecOutput)
+}
+
+// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts.
+func (o AlertRuleV0Alpha1SpecPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+func (o AlertRuleV0Alpha1SpecPtrOutput) ExecErrState() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ExecErrState
+	}).(pulumi.StringPtrOutput)
+}
+
+// A sequence of stages that describe the contents of the rule.
+func (o AlertRuleV0Alpha1SpecPtrOutput) Expressions() pulumi.AnyOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.Expressions
+	}).(pulumi.AnyOutput)
+}
+
+// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+func (o AlertRuleV0Alpha1SpecPtrOutput) For() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) *string {
+		if v == nil {
+			return nil
+		}
+		return v.For
+	}).(pulumi.StringPtrOutput)
+}
+
+// The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+func (o AlertRuleV0Alpha1SpecPtrOutput) KeepFiringFor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KeepFiringFor
+	}).(pulumi.StringPtrOutput)
+}
+
+// Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+func (o AlertRuleV0Alpha1SpecPtrOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(pulumi.StringMapOutput)
+}
+
+// The number of missing series evaluations that must occur before the rule is considered to be resolved.
+func (o AlertRuleV0Alpha1SpecPtrOutput) MissingSeriesEvalsToResolve() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MissingSeriesEvalsToResolve
+	}).(pulumi.IntPtrOutput)
+}
+
+// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+func (o AlertRuleV0Alpha1SpecPtrOutput) NoDataState() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NoDataState
+	}).(pulumi.StringPtrOutput)
+}
+
+// Notification settings for the rule. If specified, it overrides the notification policies.
+func (o AlertRuleV0Alpha1SpecPtrOutput) NotificationSettings() AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) *AlertRuleV0Alpha1SpecNotificationSettings {
+		if v == nil {
+			return nil
+		}
+		return v.NotificationSettings
+	}).(AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput)
+}
+
+// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+func (o AlertRuleV0Alpha1SpecPtrOutput) PanelRef() pulumi.AnyOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.PanelRef
+	}).(pulumi.AnyOutput)
+}
+
+// Sets whether the rule should be paused or not.
+func (o AlertRuleV0Alpha1SpecPtrOutput) Paused() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Paused
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The title of the alert rule.
+func (o AlertRuleV0Alpha1SpecPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
+}
+
+// The trigger configuration for the alert rule.
+func (o AlertRuleV0Alpha1SpecPtrOutput) Trigger() AlertRuleV0Alpha1SpecTriggerPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) *AlertRuleV0Alpha1SpecTrigger {
+		if v == nil {
+			return nil
+		}
+		return v.Trigger
+	}).(AlertRuleV0Alpha1SpecTriggerPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecNotificationSettings struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+	ActiveTimings []string `pulumi:"activeTimings"`
+	// The contact point to route notifications that match this rule to.
+	ContactPoint string `pulumi:"contactPoint"`
+	// A list of alert labels to group alerts into notifications by.
+	GroupBies []string `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group.
+	GroupInterval *string `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification.
+	GroupWait *string `pulumi:"groupWait"`
+	// A list of mute timing names to apply to alerts that match this policy.
+	MuteTimings []string `pulumi:"muteTimings"`
+	// Minimum time interval for re-sending a notification if an alert is still firing.
+	RepeatInterval *string `pulumi:"repeatInterval"`
+}
+
+// AlertRuleV0Alpha1SpecNotificationSettingsInput is an input type that accepts AlertRuleV0Alpha1SpecNotificationSettingsArgs and AlertRuleV0Alpha1SpecNotificationSettingsOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1SpecNotificationSettingsInput` via:
+//
+//	AlertRuleV0Alpha1SpecNotificationSettingsArgs{...}
+type AlertRuleV0Alpha1SpecNotificationSettingsInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1SpecNotificationSettingsOutput() AlertRuleV0Alpha1SpecNotificationSettingsOutput
+	ToAlertRuleV0Alpha1SpecNotificationSettingsOutputWithContext(context.Context) AlertRuleV0Alpha1SpecNotificationSettingsOutput
+}
+
+type AlertRuleV0Alpha1SpecNotificationSettingsArgs struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+	ActiveTimings pulumi.StringArrayInput `pulumi:"activeTimings"`
+	// The contact point to route notifications that match this rule to.
+	ContactPoint pulumi.StringInput `pulumi:"contactPoint"`
+	// A list of alert labels to group alerts into notifications by.
+	GroupBies pulumi.StringArrayInput `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group.
+	GroupInterval pulumi.StringPtrInput `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification.
+	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
+	// A list of mute timing names to apply to alerts that match this policy.
+	MuteTimings pulumi.StringArrayInput `pulumi:"muteTimings"`
+	// Minimum time interval for re-sending a notification if an alert is still firing.
+	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
+}
+
+func (AlertRuleV0Alpha1SpecNotificationSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettings)(nil)).Elem()
+}
+
+func (i AlertRuleV0Alpha1SpecNotificationSettingsArgs) ToAlertRuleV0Alpha1SpecNotificationSettingsOutput() AlertRuleV0Alpha1SpecNotificationSettingsOutput {
+	return i.ToAlertRuleV0Alpha1SpecNotificationSettingsOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1SpecNotificationSettingsArgs) ToAlertRuleV0Alpha1SpecNotificationSettingsOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecNotificationSettingsOutput)
+}
+
+func (i AlertRuleV0Alpha1SpecNotificationSettingsArgs) ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput {
+	return i.ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1SpecNotificationSettingsArgs) ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecNotificationSettingsOutput).ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutputWithContext(ctx)
+}
+
+// AlertRuleV0Alpha1SpecNotificationSettingsPtrInput is an input type that accepts AlertRuleV0Alpha1SpecNotificationSettingsArgs, AlertRuleV0Alpha1SpecNotificationSettingsPtr and AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1SpecNotificationSettingsPtrInput` via:
+//
+//	        AlertRuleV0Alpha1SpecNotificationSettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleV0Alpha1SpecNotificationSettingsPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput
+	ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutputWithContext(context.Context) AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput
+}
+
+type alertRuleV0Alpha1SpecNotificationSettingsPtrType AlertRuleV0Alpha1SpecNotificationSettingsArgs
+
+func AlertRuleV0Alpha1SpecNotificationSettingsPtr(v *AlertRuleV0Alpha1SpecNotificationSettingsArgs) AlertRuleV0Alpha1SpecNotificationSettingsPtrInput {
+	return (*alertRuleV0Alpha1SpecNotificationSettingsPtrType)(v)
+}
+
+func (*alertRuleV0Alpha1SpecNotificationSettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1SpecNotificationSettings)(nil)).Elem()
+}
+
+func (i *alertRuleV0Alpha1SpecNotificationSettingsPtrType) ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput {
+	return i.ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleV0Alpha1SpecNotificationSettingsPtrType) ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecNotificationSettingsOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1SpecNotificationSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettings)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsOutput() AlertRuleV0Alpha1SpecNotificationSettingsOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput {
+	return o.ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleV0Alpha1SpecNotificationSettings) *AlertRuleV0Alpha1SpecNotificationSettings {
+		return &v
+	}).(AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput)
+}
+
+// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) ActiveTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) []string { return v.ActiveTimings }).(pulumi.StringArrayOutput)
+}
+
+// The contact point to route notifications that match this rule to.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) ContactPoint() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) string { return v.ContactPoint }).(pulumi.StringOutput)
+}
+
+// A list of alert labels to group alerts into notifications by.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) []string { return v.GroupBies }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) *string { return v.GroupInterval }).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) *string { return v.GroupWait }).(pulumi.StringPtrOutput)
+}
+
+// A list of mute timing names to apply to alerts that match this policy.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) MuteTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) []string { return v.MuteTimings }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) *string { return v.RepeatInterval }).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1SpecNotificationSettings)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) Elem() AlertRuleV0Alpha1SpecNotificationSettingsOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) AlertRuleV0Alpha1SpecNotificationSettings {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleV0Alpha1SpecNotificationSettings
+		return ret
+	}).(AlertRuleV0Alpha1SpecNotificationSettingsOutput)
+}
+
+// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) ActiveTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveTimings
+	}).(pulumi.StringArrayOutput)
+}
+
+// The contact point to route notifications that match this rule to.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) ContactPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ContactPoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// A list of alert labels to group alerts into notifications by.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) []string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupBies
+	}).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupWait
+	}).(pulumi.StringPtrOutput)
+}
+
+// A list of mute timing names to apply to alerts that match this policy.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) MuteTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) []string {
+		if v == nil {
+			return nil
+		}
+		return v.MuteTimings
+	}).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RepeatInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecTrigger struct {
+	// The interval at which the alert rule should be evaluated.
+	Interval string `pulumi:"interval"`
+}
+
+// AlertRuleV0Alpha1SpecTriggerInput is an input type that accepts AlertRuleV0Alpha1SpecTriggerArgs and AlertRuleV0Alpha1SpecTriggerOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1SpecTriggerInput` via:
+//
+//	AlertRuleV0Alpha1SpecTriggerArgs{...}
+type AlertRuleV0Alpha1SpecTriggerInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1SpecTriggerOutput() AlertRuleV0Alpha1SpecTriggerOutput
+	ToAlertRuleV0Alpha1SpecTriggerOutputWithContext(context.Context) AlertRuleV0Alpha1SpecTriggerOutput
+}
+
+type AlertRuleV0Alpha1SpecTriggerArgs struct {
+	// The interval at which the alert rule should be evaluated.
+	Interval pulumi.StringInput `pulumi:"interval"`
+}
+
+func (AlertRuleV0Alpha1SpecTriggerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1SpecTrigger)(nil)).Elem()
+}
+
+func (i AlertRuleV0Alpha1SpecTriggerArgs) ToAlertRuleV0Alpha1SpecTriggerOutput() AlertRuleV0Alpha1SpecTriggerOutput {
+	return i.ToAlertRuleV0Alpha1SpecTriggerOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1SpecTriggerArgs) ToAlertRuleV0Alpha1SpecTriggerOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecTriggerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecTriggerOutput)
+}
+
+func (i AlertRuleV0Alpha1SpecTriggerArgs) ToAlertRuleV0Alpha1SpecTriggerPtrOutput() AlertRuleV0Alpha1SpecTriggerPtrOutput {
+	return i.ToAlertRuleV0Alpha1SpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1SpecTriggerArgs) ToAlertRuleV0Alpha1SpecTriggerPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecTriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecTriggerOutput).ToAlertRuleV0Alpha1SpecTriggerPtrOutputWithContext(ctx)
+}
+
+// AlertRuleV0Alpha1SpecTriggerPtrInput is an input type that accepts AlertRuleV0Alpha1SpecTriggerArgs, AlertRuleV0Alpha1SpecTriggerPtr and AlertRuleV0Alpha1SpecTriggerPtrOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1SpecTriggerPtrInput` via:
+//
+//	        AlertRuleV0Alpha1SpecTriggerArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleV0Alpha1SpecTriggerPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1SpecTriggerPtrOutput() AlertRuleV0Alpha1SpecTriggerPtrOutput
+	ToAlertRuleV0Alpha1SpecTriggerPtrOutputWithContext(context.Context) AlertRuleV0Alpha1SpecTriggerPtrOutput
+}
+
+type alertRuleV0Alpha1SpecTriggerPtrType AlertRuleV0Alpha1SpecTriggerArgs
+
+func AlertRuleV0Alpha1SpecTriggerPtr(v *AlertRuleV0Alpha1SpecTriggerArgs) AlertRuleV0Alpha1SpecTriggerPtrInput {
+	return (*alertRuleV0Alpha1SpecTriggerPtrType)(v)
+}
+
+func (*alertRuleV0Alpha1SpecTriggerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1SpecTrigger)(nil)).Elem()
+}
+
+func (i *alertRuleV0Alpha1SpecTriggerPtrType) ToAlertRuleV0Alpha1SpecTriggerPtrOutput() AlertRuleV0Alpha1SpecTriggerPtrOutput {
+	return i.ToAlertRuleV0Alpha1SpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleV0Alpha1SpecTriggerPtrType) ToAlertRuleV0Alpha1SpecTriggerPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecTriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecTriggerPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecTriggerOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1SpecTriggerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1SpecTrigger)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1SpecTriggerOutput) ToAlertRuleV0Alpha1SpecTriggerOutput() AlertRuleV0Alpha1SpecTriggerOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecTriggerOutput) ToAlertRuleV0Alpha1SpecTriggerOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecTriggerOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecTriggerOutput) ToAlertRuleV0Alpha1SpecTriggerPtrOutput() AlertRuleV0Alpha1SpecTriggerPtrOutput {
+	return o.ToAlertRuleV0Alpha1SpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleV0Alpha1SpecTriggerOutput) ToAlertRuleV0Alpha1SpecTriggerPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecTriggerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleV0Alpha1SpecTrigger) *AlertRuleV0Alpha1SpecTrigger {
+		return &v
+	}).(AlertRuleV0Alpha1SpecTriggerPtrOutput)
+}
+
+// The interval at which the alert rule should be evaluated.
+func (o AlertRuleV0Alpha1SpecTriggerOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecTrigger) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+type AlertRuleV0Alpha1SpecTriggerPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1SpecTriggerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1SpecTrigger)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1SpecTriggerPtrOutput) ToAlertRuleV0Alpha1SpecTriggerPtrOutput() AlertRuleV0Alpha1SpecTriggerPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecTriggerPtrOutput) ToAlertRuleV0Alpha1SpecTriggerPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecTriggerPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecTriggerPtrOutput) Elem() AlertRuleV0Alpha1SpecTriggerOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecTrigger) AlertRuleV0Alpha1SpecTrigger {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleV0Alpha1SpecTrigger
+		return ret
+	}).(AlertRuleV0Alpha1SpecTriggerOutput)
+}
+
+// The interval at which the alert rule should be evaluated.
+func (o AlertRuleV0Alpha1SpecTriggerPtrOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecTrigger) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Interval
+	}).(pulumi.StringPtrOutput)
+}
+
 type ContactPointAlertmanager struct {
 	// The password component of the basic auth credentials to use.
 	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
@@ -12945,6 +14069,763 @@ func (o NotificationPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput) Index(i pu
 	}).(NotificationPolicyPolicyPolicyPolicyPolicyMatcherOutput)
 }
 
+type RecordingRuleV0Alpha1Metadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The UID of the folder to save the resource in.
+	FolderUid *string `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// RecordingRuleV0Alpha1MetadataInput is an input type that accepts RecordingRuleV0Alpha1MetadataArgs and RecordingRuleV0Alpha1MetadataOutput values.
+// You can construct a concrete instance of `RecordingRuleV0Alpha1MetadataInput` via:
+//
+//	RecordingRuleV0Alpha1MetadataArgs{...}
+type RecordingRuleV0Alpha1MetadataInput interface {
+	pulumi.Input
+
+	ToRecordingRuleV0Alpha1MetadataOutput() RecordingRuleV0Alpha1MetadataOutput
+	ToRecordingRuleV0Alpha1MetadataOutputWithContext(context.Context) RecordingRuleV0Alpha1MetadataOutput
+}
+
+type RecordingRuleV0Alpha1MetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The UID of the folder to save the resource in.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (RecordingRuleV0Alpha1MetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleV0Alpha1Metadata)(nil)).Elem()
+}
+
+func (i RecordingRuleV0Alpha1MetadataArgs) ToRecordingRuleV0Alpha1MetadataOutput() RecordingRuleV0Alpha1MetadataOutput {
+	return i.ToRecordingRuleV0Alpha1MetadataOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleV0Alpha1MetadataArgs) ToRecordingRuleV0Alpha1MetadataOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1MetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleV0Alpha1MetadataOutput)
+}
+
+func (i RecordingRuleV0Alpha1MetadataArgs) ToRecordingRuleV0Alpha1MetadataPtrOutput() RecordingRuleV0Alpha1MetadataPtrOutput {
+	return i.ToRecordingRuleV0Alpha1MetadataPtrOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleV0Alpha1MetadataArgs) ToRecordingRuleV0Alpha1MetadataPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1MetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleV0Alpha1MetadataOutput).ToRecordingRuleV0Alpha1MetadataPtrOutputWithContext(ctx)
+}
+
+// RecordingRuleV0Alpha1MetadataPtrInput is an input type that accepts RecordingRuleV0Alpha1MetadataArgs, RecordingRuleV0Alpha1MetadataPtr and RecordingRuleV0Alpha1MetadataPtrOutput values.
+// You can construct a concrete instance of `RecordingRuleV0Alpha1MetadataPtrInput` via:
+//
+//	        RecordingRuleV0Alpha1MetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type RecordingRuleV0Alpha1MetadataPtrInput interface {
+	pulumi.Input
+
+	ToRecordingRuleV0Alpha1MetadataPtrOutput() RecordingRuleV0Alpha1MetadataPtrOutput
+	ToRecordingRuleV0Alpha1MetadataPtrOutputWithContext(context.Context) RecordingRuleV0Alpha1MetadataPtrOutput
+}
+
+type recordingRuleV0Alpha1MetadataPtrType RecordingRuleV0Alpha1MetadataArgs
+
+func RecordingRuleV0Alpha1MetadataPtr(v *RecordingRuleV0Alpha1MetadataArgs) RecordingRuleV0Alpha1MetadataPtrInput {
+	return (*recordingRuleV0Alpha1MetadataPtrType)(v)
+}
+
+func (*recordingRuleV0Alpha1MetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleV0Alpha1Metadata)(nil)).Elem()
+}
+
+func (i *recordingRuleV0Alpha1MetadataPtrType) ToRecordingRuleV0Alpha1MetadataPtrOutput() RecordingRuleV0Alpha1MetadataPtrOutput {
+	return i.ToRecordingRuleV0Alpha1MetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *recordingRuleV0Alpha1MetadataPtrType) ToRecordingRuleV0Alpha1MetadataPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1MetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleV0Alpha1MetadataPtrOutput)
+}
+
+type RecordingRuleV0Alpha1MetadataOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleV0Alpha1MetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleV0Alpha1Metadata)(nil)).Elem()
+}
+
+func (o RecordingRuleV0Alpha1MetadataOutput) ToRecordingRuleV0Alpha1MetadataOutput() RecordingRuleV0Alpha1MetadataOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1MetadataOutput) ToRecordingRuleV0Alpha1MetadataOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1MetadataOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1MetadataOutput) ToRecordingRuleV0Alpha1MetadataPtrOutput() RecordingRuleV0Alpha1MetadataPtrOutput {
+	return o.ToRecordingRuleV0Alpha1MetadataPtrOutputWithContext(context.Background())
+}
+
+func (o RecordingRuleV0Alpha1MetadataOutput) ToRecordingRuleV0Alpha1MetadataPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1MetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RecordingRuleV0Alpha1Metadata) *RecordingRuleV0Alpha1Metadata {
+		return &v
+	}).(RecordingRuleV0Alpha1MetadataPtrOutput)
+}
+
+// Annotations of the resource.
+func (o RecordingRuleV0Alpha1MetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Metadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in.
+func (o RecordingRuleV0Alpha1MetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Metadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o RecordingRuleV0Alpha1MetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Metadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o RecordingRuleV0Alpha1MetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Metadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o RecordingRuleV0Alpha1MetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Metadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o RecordingRuleV0Alpha1MetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Metadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type RecordingRuleV0Alpha1MetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleV0Alpha1MetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleV0Alpha1Metadata)(nil)).Elem()
+}
+
+func (o RecordingRuleV0Alpha1MetadataPtrOutput) ToRecordingRuleV0Alpha1MetadataPtrOutput() RecordingRuleV0Alpha1MetadataPtrOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1MetadataPtrOutput) ToRecordingRuleV0Alpha1MetadataPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1MetadataPtrOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1MetadataPtrOutput) Elem() RecordingRuleV0Alpha1MetadataOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Metadata) RecordingRuleV0Alpha1Metadata {
+		if v != nil {
+			return *v
+		}
+		var ret RecordingRuleV0Alpha1Metadata
+		return ret
+	}).(RecordingRuleV0Alpha1MetadataOutput)
+}
+
+// Annotations of the resource.
+func (o RecordingRuleV0Alpha1MetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Metadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in.
+func (o RecordingRuleV0Alpha1MetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o RecordingRuleV0Alpha1MetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o RecordingRuleV0Alpha1MetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o RecordingRuleV0Alpha1MetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o RecordingRuleV0Alpha1MetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Metadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type RecordingRuleV0Alpha1Options struct {
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// RecordingRuleV0Alpha1OptionsInput is an input type that accepts RecordingRuleV0Alpha1OptionsArgs and RecordingRuleV0Alpha1OptionsOutput values.
+// You can construct a concrete instance of `RecordingRuleV0Alpha1OptionsInput` via:
+//
+//	RecordingRuleV0Alpha1OptionsArgs{...}
+type RecordingRuleV0Alpha1OptionsInput interface {
+	pulumi.Input
+
+	ToRecordingRuleV0Alpha1OptionsOutput() RecordingRuleV0Alpha1OptionsOutput
+	ToRecordingRuleV0Alpha1OptionsOutputWithContext(context.Context) RecordingRuleV0Alpha1OptionsOutput
+}
+
+type RecordingRuleV0Alpha1OptionsArgs struct {
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (RecordingRuleV0Alpha1OptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleV0Alpha1Options)(nil)).Elem()
+}
+
+func (i RecordingRuleV0Alpha1OptionsArgs) ToRecordingRuleV0Alpha1OptionsOutput() RecordingRuleV0Alpha1OptionsOutput {
+	return i.ToRecordingRuleV0Alpha1OptionsOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleV0Alpha1OptionsArgs) ToRecordingRuleV0Alpha1OptionsOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1OptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleV0Alpha1OptionsOutput)
+}
+
+func (i RecordingRuleV0Alpha1OptionsArgs) ToRecordingRuleV0Alpha1OptionsPtrOutput() RecordingRuleV0Alpha1OptionsPtrOutput {
+	return i.ToRecordingRuleV0Alpha1OptionsPtrOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleV0Alpha1OptionsArgs) ToRecordingRuleV0Alpha1OptionsPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1OptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleV0Alpha1OptionsOutput).ToRecordingRuleV0Alpha1OptionsPtrOutputWithContext(ctx)
+}
+
+// RecordingRuleV0Alpha1OptionsPtrInput is an input type that accepts RecordingRuleV0Alpha1OptionsArgs, RecordingRuleV0Alpha1OptionsPtr and RecordingRuleV0Alpha1OptionsPtrOutput values.
+// You can construct a concrete instance of `RecordingRuleV0Alpha1OptionsPtrInput` via:
+//
+//	        RecordingRuleV0Alpha1OptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RecordingRuleV0Alpha1OptionsPtrInput interface {
+	pulumi.Input
+
+	ToRecordingRuleV0Alpha1OptionsPtrOutput() RecordingRuleV0Alpha1OptionsPtrOutput
+	ToRecordingRuleV0Alpha1OptionsPtrOutputWithContext(context.Context) RecordingRuleV0Alpha1OptionsPtrOutput
+}
+
+type recordingRuleV0Alpha1OptionsPtrType RecordingRuleV0Alpha1OptionsArgs
+
+func RecordingRuleV0Alpha1OptionsPtr(v *RecordingRuleV0Alpha1OptionsArgs) RecordingRuleV0Alpha1OptionsPtrInput {
+	return (*recordingRuleV0Alpha1OptionsPtrType)(v)
+}
+
+func (*recordingRuleV0Alpha1OptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleV0Alpha1Options)(nil)).Elem()
+}
+
+func (i *recordingRuleV0Alpha1OptionsPtrType) ToRecordingRuleV0Alpha1OptionsPtrOutput() RecordingRuleV0Alpha1OptionsPtrOutput {
+	return i.ToRecordingRuleV0Alpha1OptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *recordingRuleV0Alpha1OptionsPtrType) ToRecordingRuleV0Alpha1OptionsPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1OptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleV0Alpha1OptionsPtrOutput)
+}
+
+type RecordingRuleV0Alpha1OptionsOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleV0Alpha1OptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleV0Alpha1Options)(nil)).Elem()
+}
+
+func (o RecordingRuleV0Alpha1OptionsOutput) ToRecordingRuleV0Alpha1OptionsOutput() RecordingRuleV0Alpha1OptionsOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1OptionsOutput) ToRecordingRuleV0Alpha1OptionsOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1OptionsOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1OptionsOutput) ToRecordingRuleV0Alpha1OptionsPtrOutput() RecordingRuleV0Alpha1OptionsPtrOutput {
+	return o.ToRecordingRuleV0Alpha1OptionsPtrOutputWithContext(context.Background())
+}
+
+func (o RecordingRuleV0Alpha1OptionsOutput) ToRecordingRuleV0Alpha1OptionsPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1OptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RecordingRuleV0Alpha1Options) *RecordingRuleV0Alpha1Options {
+		return &v
+	}).(RecordingRuleV0Alpha1OptionsPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o RecordingRuleV0Alpha1OptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Options) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type RecordingRuleV0Alpha1OptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleV0Alpha1OptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleV0Alpha1Options)(nil)).Elem()
+}
+
+func (o RecordingRuleV0Alpha1OptionsPtrOutput) ToRecordingRuleV0Alpha1OptionsPtrOutput() RecordingRuleV0Alpha1OptionsPtrOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1OptionsPtrOutput) ToRecordingRuleV0Alpha1OptionsPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1OptionsPtrOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1OptionsPtrOutput) Elem() RecordingRuleV0Alpha1OptionsOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Options) RecordingRuleV0Alpha1Options {
+		if v != nil {
+			return *v
+		}
+		var ret RecordingRuleV0Alpha1Options
+		return ret
+	}).(RecordingRuleV0Alpha1OptionsOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o RecordingRuleV0Alpha1OptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Options) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type RecordingRuleV0Alpha1Spec struct {
+	// A sequence of stages that describe the contents of the rule.
+	Expressions interface{} `pulumi:"expressions"`
+	// Key-value pairs to attach to the recorded metric.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the metric to write to.
+	Metric string `pulumi:"metric"`
+	// Sets whether the recording rule should be paused or not.
+	Paused *bool `pulumi:"paused"`
+	// The UID of the datasource to write the metric to.
+	TargetDatasourceUid string `pulumi:"targetDatasourceUid"`
+	// The title of the recording rule.
+	Title string `pulumi:"title"`
+	// The trigger configuration for the recording rule.
+	Trigger *RecordingRuleV0Alpha1SpecTrigger `pulumi:"trigger"`
+}
+
+// RecordingRuleV0Alpha1SpecInput is an input type that accepts RecordingRuleV0Alpha1SpecArgs and RecordingRuleV0Alpha1SpecOutput values.
+// You can construct a concrete instance of `RecordingRuleV0Alpha1SpecInput` via:
+//
+//	RecordingRuleV0Alpha1SpecArgs{...}
+type RecordingRuleV0Alpha1SpecInput interface {
+	pulumi.Input
+
+	ToRecordingRuleV0Alpha1SpecOutput() RecordingRuleV0Alpha1SpecOutput
+	ToRecordingRuleV0Alpha1SpecOutputWithContext(context.Context) RecordingRuleV0Alpha1SpecOutput
+}
+
+type RecordingRuleV0Alpha1SpecArgs struct {
+	// A sequence of stages that describe the contents of the rule.
+	Expressions pulumi.Input `pulumi:"expressions"`
+	// Key-value pairs to attach to the recorded metric.
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// The name of the metric to write to.
+	Metric pulumi.StringInput `pulumi:"metric"`
+	// Sets whether the recording rule should be paused or not.
+	Paused pulumi.BoolPtrInput `pulumi:"paused"`
+	// The UID of the datasource to write the metric to.
+	TargetDatasourceUid pulumi.StringInput `pulumi:"targetDatasourceUid"`
+	// The title of the recording rule.
+	Title pulumi.StringInput `pulumi:"title"`
+	// The trigger configuration for the recording rule.
+	Trigger RecordingRuleV0Alpha1SpecTriggerPtrInput `pulumi:"trigger"`
+}
+
+func (RecordingRuleV0Alpha1SpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleV0Alpha1Spec)(nil)).Elem()
+}
+
+func (i RecordingRuleV0Alpha1SpecArgs) ToRecordingRuleV0Alpha1SpecOutput() RecordingRuleV0Alpha1SpecOutput {
+	return i.ToRecordingRuleV0Alpha1SpecOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleV0Alpha1SpecArgs) ToRecordingRuleV0Alpha1SpecOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1SpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleV0Alpha1SpecOutput)
+}
+
+func (i RecordingRuleV0Alpha1SpecArgs) ToRecordingRuleV0Alpha1SpecPtrOutput() RecordingRuleV0Alpha1SpecPtrOutput {
+	return i.ToRecordingRuleV0Alpha1SpecPtrOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleV0Alpha1SpecArgs) ToRecordingRuleV0Alpha1SpecPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1SpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleV0Alpha1SpecOutput).ToRecordingRuleV0Alpha1SpecPtrOutputWithContext(ctx)
+}
+
+// RecordingRuleV0Alpha1SpecPtrInput is an input type that accepts RecordingRuleV0Alpha1SpecArgs, RecordingRuleV0Alpha1SpecPtr and RecordingRuleV0Alpha1SpecPtrOutput values.
+// You can construct a concrete instance of `RecordingRuleV0Alpha1SpecPtrInput` via:
+//
+//	        RecordingRuleV0Alpha1SpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type RecordingRuleV0Alpha1SpecPtrInput interface {
+	pulumi.Input
+
+	ToRecordingRuleV0Alpha1SpecPtrOutput() RecordingRuleV0Alpha1SpecPtrOutput
+	ToRecordingRuleV0Alpha1SpecPtrOutputWithContext(context.Context) RecordingRuleV0Alpha1SpecPtrOutput
+}
+
+type recordingRuleV0Alpha1SpecPtrType RecordingRuleV0Alpha1SpecArgs
+
+func RecordingRuleV0Alpha1SpecPtr(v *RecordingRuleV0Alpha1SpecArgs) RecordingRuleV0Alpha1SpecPtrInput {
+	return (*recordingRuleV0Alpha1SpecPtrType)(v)
+}
+
+func (*recordingRuleV0Alpha1SpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleV0Alpha1Spec)(nil)).Elem()
+}
+
+func (i *recordingRuleV0Alpha1SpecPtrType) ToRecordingRuleV0Alpha1SpecPtrOutput() RecordingRuleV0Alpha1SpecPtrOutput {
+	return i.ToRecordingRuleV0Alpha1SpecPtrOutputWithContext(context.Background())
+}
+
+func (i *recordingRuleV0Alpha1SpecPtrType) ToRecordingRuleV0Alpha1SpecPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1SpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleV0Alpha1SpecPtrOutput)
+}
+
+type RecordingRuleV0Alpha1SpecOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleV0Alpha1SpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleV0Alpha1Spec)(nil)).Elem()
+}
+
+func (o RecordingRuleV0Alpha1SpecOutput) ToRecordingRuleV0Alpha1SpecOutput() RecordingRuleV0Alpha1SpecOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1SpecOutput) ToRecordingRuleV0Alpha1SpecOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1SpecOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1SpecOutput) ToRecordingRuleV0Alpha1SpecPtrOutput() RecordingRuleV0Alpha1SpecPtrOutput {
+	return o.ToRecordingRuleV0Alpha1SpecPtrOutputWithContext(context.Background())
+}
+
+func (o RecordingRuleV0Alpha1SpecOutput) ToRecordingRuleV0Alpha1SpecPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1SpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RecordingRuleV0Alpha1Spec) *RecordingRuleV0Alpha1Spec {
+		return &v
+	}).(RecordingRuleV0Alpha1SpecPtrOutput)
+}
+
+// A sequence of stages that describe the contents of the rule.
+func (o RecordingRuleV0Alpha1SpecOutput) Expressions() pulumi.AnyOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Spec) interface{} { return v.Expressions }).(pulumi.AnyOutput)
+}
+
+// Key-value pairs to attach to the recorded metric.
+func (o RecordingRuleV0Alpha1SpecOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Spec) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// The name of the metric to write to.
+func (o RecordingRuleV0Alpha1SpecOutput) Metric() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Spec) string { return v.Metric }).(pulumi.StringOutput)
+}
+
+// Sets whether the recording rule should be paused or not.
+func (o RecordingRuleV0Alpha1SpecOutput) Paused() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Spec) *bool { return v.Paused }).(pulumi.BoolPtrOutput)
+}
+
+// The UID of the datasource to write the metric to.
+func (o RecordingRuleV0Alpha1SpecOutput) TargetDatasourceUid() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Spec) string { return v.TargetDatasourceUid }).(pulumi.StringOutput)
+}
+
+// The title of the recording rule.
+func (o RecordingRuleV0Alpha1SpecOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Spec) string { return v.Title }).(pulumi.StringOutput)
+}
+
+// The trigger configuration for the recording rule.
+func (o RecordingRuleV0Alpha1SpecOutput) Trigger() RecordingRuleV0Alpha1SpecTriggerPtrOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Spec) *RecordingRuleV0Alpha1SpecTrigger { return v.Trigger }).(RecordingRuleV0Alpha1SpecTriggerPtrOutput)
+}
+
+type RecordingRuleV0Alpha1SpecPtrOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleV0Alpha1SpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleV0Alpha1Spec)(nil)).Elem()
+}
+
+func (o RecordingRuleV0Alpha1SpecPtrOutput) ToRecordingRuleV0Alpha1SpecPtrOutput() RecordingRuleV0Alpha1SpecPtrOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1SpecPtrOutput) ToRecordingRuleV0Alpha1SpecPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1SpecPtrOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1SpecPtrOutput) Elem() RecordingRuleV0Alpha1SpecOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Spec) RecordingRuleV0Alpha1Spec {
+		if v != nil {
+			return *v
+		}
+		var ret RecordingRuleV0Alpha1Spec
+		return ret
+	}).(RecordingRuleV0Alpha1SpecOutput)
+}
+
+// A sequence of stages that describe the contents of the rule.
+func (o RecordingRuleV0Alpha1SpecPtrOutput) Expressions() pulumi.AnyOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Spec) interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.Expressions
+	}).(pulumi.AnyOutput)
+}
+
+// Key-value pairs to attach to the recorded metric.
+func (o RecordingRuleV0Alpha1SpecPtrOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Spec) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(pulumi.StringMapOutput)
+}
+
+// The name of the metric to write to.
+func (o RecordingRuleV0Alpha1SpecPtrOutput) Metric() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Spec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Metric
+	}).(pulumi.StringPtrOutput)
+}
+
+// Sets whether the recording rule should be paused or not.
+func (o RecordingRuleV0Alpha1SpecPtrOutput) Paused() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Spec) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Paused
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The UID of the datasource to write the metric to.
+func (o RecordingRuleV0Alpha1SpecPtrOutput) TargetDatasourceUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Spec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.TargetDatasourceUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The title of the recording rule.
+func (o RecordingRuleV0Alpha1SpecPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Spec) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
+}
+
+// The trigger configuration for the recording rule.
+func (o RecordingRuleV0Alpha1SpecPtrOutput) Trigger() RecordingRuleV0Alpha1SpecTriggerPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Spec) *RecordingRuleV0Alpha1SpecTrigger {
+		if v == nil {
+			return nil
+		}
+		return v.Trigger
+	}).(RecordingRuleV0Alpha1SpecTriggerPtrOutput)
+}
+
+type RecordingRuleV0Alpha1SpecTrigger struct {
+	// The interval at which the recording rule should be evaluated.
+	Interval string `pulumi:"interval"`
+}
+
+// RecordingRuleV0Alpha1SpecTriggerInput is an input type that accepts RecordingRuleV0Alpha1SpecTriggerArgs and RecordingRuleV0Alpha1SpecTriggerOutput values.
+// You can construct a concrete instance of `RecordingRuleV0Alpha1SpecTriggerInput` via:
+//
+//	RecordingRuleV0Alpha1SpecTriggerArgs{...}
+type RecordingRuleV0Alpha1SpecTriggerInput interface {
+	pulumi.Input
+
+	ToRecordingRuleV0Alpha1SpecTriggerOutput() RecordingRuleV0Alpha1SpecTriggerOutput
+	ToRecordingRuleV0Alpha1SpecTriggerOutputWithContext(context.Context) RecordingRuleV0Alpha1SpecTriggerOutput
+}
+
+type RecordingRuleV0Alpha1SpecTriggerArgs struct {
+	// The interval at which the recording rule should be evaluated.
+	Interval pulumi.StringInput `pulumi:"interval"`
+}
+
+func (RecordingRuleV0Alpha1SpecTriggerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleV0Alpha1SpecTrigger)(nil)).Elem()
+}
+
+func (i RecordingRuleV0Alpha1SpecTriggerArgs) ToRecordingRuleV0Alpha1SpecTriggerOutput() RecordingRuleV0Alpha1SpecTriggerOutput {
+	return i.ToRecordingRuleV0Alpha1SpecTriggerOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleV0Alpha1SpecTriggerArgs) ToRecordingRuleV0Alpha1SpecTriggerOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1SpecTriggerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleV0Alpha1SpecTriggerOutput)
+}
+
+func (i RecordingRuleV0Alpha1SpecTriggerArgs) ToRecordingRuleV0Alpha1SpecTriggerPtrOutput() RecordingRuleV0Alpha1SpecTriggerPtrOutput {
+	return i.ToRecordingRuleV0Alpha1SpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i RecordingRuleV0Alpha1SpecTriggerArgs) ToRecordingRuleV0Alpha1SpecTriggerPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1SpecTriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleV0Alpha1SpecTriggerOutput).ToRecordingRuleV0Alpha1SpecTriggerPtrOutputWithContext(ctx)
+}
+
+// RecordingRuleV0Alpha1SpecTriggerPtrInput is an input type that accepts RecordingRuleV0Alpha1SpecTriggerArgs, RecordingRuleV0Alpha1SpecTriggerPtr and RecordingRuleV0Alpha1SpecTriggerPtrOutput values.
+// You can construct a concrete instance of `RecordingRuleV0Alpha1SpecTriggerPtrInput` via:
+//
+//	        RecordingRuleV0Alpha1SpecTriggerArgs{...}
+//
+//	or:
+//
+//	        nil
+type RecordingRuleV0Alpha1SpecTriggerPtrInput interface {
+	pulumi.Input
+
+	ToRecordingRuleV0Alpha1SpecTriggerPtrOutput() RecordingRuleV0Alpha1SpecTriggerPtrOutput
+	ToRecordingRuleV0Alpha1SpecTriggerPtrOutputWithContext(context.Context) RecordingRuleV0Alpha1SpecTriggerPtrOutput
+}
+
+type recordingRuleV0Alpha1SpecTriggerPtrType RecordingRuleV0Alpha1SpecTriggerArgs
+
+func RecordingRuleV0Alpha1SpecTriggerPtr(v *RecordingRuleV0Alpha1SpecTriggerArgs) RecordingRuleV0Alpha1SpecTriggerPtrInput {
+	return (*recordingRuleV0Alpha1SpecTriggerPtrType)(v)
+}
+
+func (*recordingRuleV0Alpha1SpecTriggerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleV0Alpha1SpecTrigger)(nil)).Elem()
+}
+
+func (i *recordingRuleV0Alpha1SpecTriggerPtrType) ToRecordingRuleV0Alpha1SpecTriggerPtrOutput() RecordingRuleV0Alpha1SpecTriggerPtrOutput {
+	return i.ToRecordingRuleV0Alpha1SpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i *recordingRuleV0Alpha1SpecTriggerPtrType) ToRecordingRuleV0Alpha1SpecTriggerPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1SpecTriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordingRuleV0Alpha1SpecTriggerPtrOutput)
+}
+
+type RecordingRuleV0Alpha1SpecTriggerOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleV0Alpha1SpecTriggerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecordingRuleV0Alpha1SpecTrigger)(nil)).Elem()
+}
+
+func (o RecordingRuleV0Alpha1SpecTriggerOutput) ToRecordingRuleV0Alpha1SpecTriggerOutput() RecordingRuleV0Alpha1SpecTriggerOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1SpecTriggerOutput) ToRecordingRuleV0Alpha1SpecTriggerOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1SpecTriggerOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1SpecTriggerOutput) ToRecordingRuleV0Alpha1SpecTriggerPtrOutput() RecordingRuleV0Alpha1SpecTriggerPtrOutput {
+	return o.ToRecordingRuleV0Alpha1SpecTriggerPtrOutputWithContext(context.Background())
+}
+
+func (o RecordingRuleV0Alpha1SpecTriggerOutput) ToRecordingRuleV0Alpha1SpecTriggerPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1SpecTriggerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RecordingRuleV0Alpha1SpecTrigger) *RecordingRuleV0Alpha1SpecTrigger {
+		return &v
+	}).(RecordingRuleV0Alpha1SpecTriggerPtrOutput)
+}
+
+// The interval at which the recording rule should be evaluated.
+func (o RecordingRuleV0Alpha1SpecTriggerOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1SpecTrigger) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+type RecordingRuleV0Alpha1SpecTriggerPtrOutput struct{ *pulumi.OutputState }
+
+func (RecordingRuleV0Alpha1SpecTriggerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordingRuleV0Alpha1SpecTrigger)(nil)).Elem()
+}
+
+func (o RecordingRuleV0Alpha1SpecTriggerPtrOutput) ToRecordingRuleV0Alpha1SpecTriggerPtrOutput() RecordingRuleV0Alpha1SpecTriggerPtrOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1SpecTriggerPtrOutput) ToRecordingRuleV0Alpha1SpecTriggerPtrOutputWithContext(ctx context.Context) RecordingRuleV0Alpha1SpecTriggerPtrOutput {
+	return o
+}
+
+func (o RecordingRuleV0Alpha1SpecTriggerPtrOutput) Elem() RecordingRuleV0Alpha1SpecTriggerOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1SpecTrigger) RecordingRuleV0Alpha1SpecTrigger {
+		if v != nil {
+			return *v
+		}
+		var ret RecordingRuleV0Alpha1SpecTrigger
+		return ret
+	}).(RecordingRuleV0Alpha1SpecTriggerOutput)
+}
+
+// The interval at which the recording rule should be evaluated.
+func (o RecordingRuleV0Alpha1SpecTriggerPtrOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1SpecTrigger) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Interval
+	}).(pulumi.StringPtrOutput)
+}
+
 type RuleGroupRule struct {
 	// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
 	Annotations map[string]string `pulumi:"annotations"`
@@ -13864,6 +15745,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepExternalPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepExternalArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepSiftInput)(nil)).Elem(), AlertEnrichmentSpecStepSiftArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEnrichmentSpecStepSiftPtrInput)(nil)).Elem(), AlertEnrichmentSpecStepSiftArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1MetadataInput)(nil)).Elem(), AlertRuleV0Alpha1MetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1MetadataPtrInput)(nil)).Elem(), AlertRuleV0Alpha1MetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1OptionsInput)(nil)).Elem(), AlertRuleV0Alpha1OptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1OptionsPtrInput)(nil)).Elem(), AlertRuleV0Alpha1OptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecInput)(nil)).Elem(), AlertRuleV0Alpha1SpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecPtrInput)(nil)).Elem(), AlertRuleV0Alpha1SpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsInput)(nil)).Elem(), AlertRuleV0Alpha1SpecNotificationSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsPtrInput)(nil)).Elem(), AlertRuleV0Alpha1SpecNotificationSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecTriggerInput)(nil)).Elem(), AlertRuleV0Alpha1SpecTriggerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecTriggerPtrInput)(nil)).Elem(), AlertRuleV0Alpha1SpecTriggerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointAlertmanagerInput)(nil)).Elem(), ContactPointAlertmanagerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointAlertmanagerArrayInput)(nil)).Elem(), ContactPointAlertmanagerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointDingdingInput)(nil)).Elem(), ContactPointDingdingArgs{})
@@ -13940,6 +15831,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyArrayInput)(nil)).Elem(), NotificationPolicyPolicyPolicyPolicyPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyMatcherInput)(nil)).Elem(), NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyMatcherArrayInput)(nil)).Elem(), NotificationPolicyPolicyPolicyPolicyPolicyMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleV0Alpha1MetadataInput)(nil)).Elem(), RecordingRuleV0Alpha1MetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleV0Alpha1MetadataPtrInput)(nil)).Elem(), RecordingRuleV0Alpha1MetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleV0Alpha1OptionsInput)(nil)).Elem(), RecordingRuleV0Alpha1OptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleV0Alpha1OptionsPtrInput)(nil)).Elem(), RecordingRuleV0Alpha1OptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleV0Alpha1SpecInput)(nil)).Elem(), RecordingRuleV0Alpha1SpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleV0Alpha1SpecPtrInput)(nil)).Elem(), RecordingRuleV0Alpha1SpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleV0Alpha1SpecTriggerInput)(nil)).Elem(), RecordingRuleV0Alpha1SpecTriggerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleV0Alpha1SpecTriggerPtrInput)(nil)).Elem(), RecordingRuleV0Alpha1SpecTriggerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleInput)(nil)).Elem(), RuleGroupRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleArrayInput)(nil)).Elem(), RuleGroupRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleGroupRuleDataInput)(nil)).Elem(), RuleGroupRuleDataArgs{})
@@ -14033,6 +15932,16 @@ func init() {
 	pulumi.RegisterOutputType(AlertEnrichmentSpecStepExternalPtrOutput{})
 	pulumi.RegisterOutputType(AlertEnrichmentSpecStepSiftOutput{})
 	pulumi.RegisterOutputType(AlertEnrichmentSpecStepSiftPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1MetadataOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1MetadataPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1OptionsOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1OptionsPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecNotificationSettingsOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecTriggerOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecTriggerPtrOutput{})
 	pulumi.RegisterOutputType(ContactPointAlertmanagerOutput{})
 	pulumi.RegisterOutputType(ContactPointAlertmanagerArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointDingdingOutput{})
@@ -14109,6 +16018,14 @@ func init() {
 	pulumi.RegisterOutputType(NotificationPolicyPolicyPolicyPolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(NotificationPolicyPolicyPolicyPolicyPolicyMatcherOutput{})
 	pulumi.RegisterOutputType(NotificationPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput{})
+	pulumi.RegisterOutputType(RecordingRuleV0Alpha1MetadataOutput{})
+	pulumi.RegisterOutputType(RecordingRuleV0Alpha1MetadataPtrOutput{})
+	pulumi.RegisterOutputType(RecordingRuleV0Alpha1OptionsOutput{})
+	pulumi.RegisterOutputType(RecordingRuleV0Alpha1OptionsPtrOutput{})
+	pulumi.RegisterOutputType(RecordingRuleV0Alpha1SpecOutput{})
+	pulumi.RegisterOutputType(RecordingRuleV0Alpha1SpecPtrOutput{})
+	pulumi.RegisterOutputType(RecordingRuleV0Alpha1SpecTriggerOutput{})
+	pulumi.RegisterOutputType(RecordingRuleV0Alpha1SpecTriggerPtrOutput{})
 	pulumi.RegisterOutputType(RuleGroupRuleOutput{})
 	pulumi.RegisterOutputType(RuleGroupRuleArrayOutput{})
 	pulumi.RegisterOutputType(RuleGroupRuleDataOutput{})

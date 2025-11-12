@@ -31,7 +31,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         /// </summary>
         public readonly string? CacheBustingQueryParamName;
         /// <summary>
-        /// Check fails if the response body is not compressed using this compression algorithm. One of `none`, `identity`, `br`, `gzip`, `deflate`.
+        /// Check fails if the response body is not compressed using this compression algorithm. One of `None`, `Identity`, `Br`, `Gzip`, `Deflate`.
         /// </summary>
         public readonly string? Compression;
         /// <summary>
@@ -51,11 +51,11 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.CheckSettingsHttpFailIfHeaderNotMatchesRegexp> FailIfHeaderNotMatchesRegexps;
         /// <summary>
-        /// Fail if SSL is not present. Defaults to `false`.
+        /// Fail if SSL is not present. Defaults to `False`.
         /// </summary>
         public readonly bool? FailIfNotSsl;
         /// <summary>
-        /// Fail if SSL is present. Defaults to `false`.
+        /// Fail if SSL is present. Defaults to `False`.
         /// </summary>
         public readonly bool? FailIfSsl;
         /// <summary>
@@ -71,7 +71,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         /// </summary>
         public readonly string? Method;
         /// <summary>
-        /// Do not follow redirects. Defaults to `false`.
+        /// Do not follow redirects. Defaults to `False`.
         /// </summary>
         public readonly bool? NoFollowRedirects;
         /// <summary>

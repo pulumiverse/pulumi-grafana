@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "grafana:alerting/alertEnrichment:AlertEnrichment":
 		r = &AlertEnrichment{}
+	case "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1":
+		r = &AlertRuleV0Alpha1{}
 	case "grafana:alerting/contactPoint:ContactPoint":
 		r = &ContactPoint{}
 	case "grafana:alerting/messageTemplate:MessageTemplate":
@@ -31,6 +33,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MuteTiming{}
 	case "grafana:alerting/notificationPolicy:NotificationPolicy":
 		r = &NotificationPolicy{}
+	case "grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1":
+		r = &RecordingRuleV0Alpha1{}
 	case "grafana:alerting/ruleGroup:RuleGroup":
 		r = &RuleGroup{}
 	default:
@@ -53,6 +57,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"grafana",
+		"alerting/alertRuleV0Alpha1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
 		"alerting/contactPoint",
 		&module{version},
 	)
@@ -69,6 +78,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"alerting/notificationPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"alerting/recordingRuleV0Alpha1",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

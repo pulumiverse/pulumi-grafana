@@ -14,11 +14,13 @@
     },
     "files": [
         "alerting/alertEnrichment.ts",
+        "alerting/alertRuleV0Alpha1.ts",
         "alerting/contactPoint.ts",
         "alerting/index.ts",
         "alerting/messageTemplate.ts",
         "alerting/muteTiming.ts",
         "alerting/notificationPolicy.ts",
+        "alerting/recordingRuleV0Alpha1.ts",
         "alerting/ruleGroup.ts",
         "assert/customModelRules.ts",
         "assert/index.ts",

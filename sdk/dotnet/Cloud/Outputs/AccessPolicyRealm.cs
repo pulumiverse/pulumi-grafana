@@ -20,7 +20,7 @@ namespace Pulumiverse.Grafana.Cloud.Outputs
         public readonly string Identifier;
         public readonly ImmutableArray<Outputs.AccessPolicyRealmLabelPolicy> LabelPolicies;
         /// <summary>
-        /// Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+        /// Whether a policy applies to a Cloud org or a specific stack. Should be one of `Org` or `Stack`.
         /// </summary>
         public readonly string Type;
 

@@ -127,13 +127,13 @@ namespace Pulumiverse.Grafana.Oss
     public partial class DataSource : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
+        /// The method by which Grafana will access the data source: `Proxy` or `Direct`. Defaults to `Proxy`.
         /// </summary>
         [Output("accessMode")]
         public Output<string?> AccessMode { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to enable basic auth for the data source. Defaults to `false`.
+        /// Whether to enable basic auth for the data source. Defaults to `False`.
         /// </summary>
         [Output("basicAuthEnabled")]
         public Output<bool?> BasicAuthEnabled { get; private set; } = null!;
@@ -157,7 +157,7 @@ namespace Pulumiverse.Grafana.Oss
         public Output<ImmutableDictionary<string, string>?> HttpHeaders { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
+        /// Whether to set the data source as default. This should only be `True` to a single data source. Defaults to `False`.
         /// </summary>
         [Output("isDefault")]
         public Output<bool?> IsDefault { get; private set; } = null!;
@@ -273,13 +273,13 @@ namespace Pulumiverse.Grafana.Oss
     public sealed class DataSourceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
+        /// The method by which Grafana will access the data source: `Proxy` or `Direct`. Defaults to `Proxy`.
         /// </summary>
         [Input("accessMode")]
         public Input<string>? AccessMode { get; set; }
 
         /// <summary>
-        /// Whether to enable basic auth for the data source. Defaults to `false`.
+        /// Whether to enable basic auth for the data source. Defaults to `False`.
         /// </summary>
         [Input("basicAuthEnabled")]
         public Input<bool>? BasicAuthEnabled { get; set; }
@@ -313,7 +313,7 @@ namespace Pulumiverse.Grafana.Oss
         }
 
         /// <summary>
-        /// Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
+        /// Whether to set the data source as default. This should only be `True` to a single data source. Defaults to `False`.
         /// </summary>
         [Input("isDefault")]
         public Input<bool>? IsDefault { get; set; }
@@ -391,13 +391,13 @@ namespace Pulumiverse.Grafana.Oss
     public sealed class DataSourceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
+        /// The method by which Grafana will access the data source: `Proxy` or `Direct`. Defaults to `Proxy`.
         /// </summary>
         [Input("accessMode")]
         public Input<string>? AccessMode { get; set; }
 
         /// <summary>
-        /// Whether to enable basic auth for the data source. Defaults to `false`.
+        /// Whether to enable basic auth for the data source. Defaults to `False`.
         /// </summary>
         [Input("basicAuthEnabled")]
         public Input<bool>? BasicAuthEnabled { get; set; }
@@ -431,7 +431,7 @@ namespace Pulumiverse.Grafana.Oss
         }
 
         /// <summary>
-        /// Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.
+        /// Whether to set the data source as default. This should only be `True` to a single data source. Defaults to `False`.
         /// </summary>
         [Input("isDefault")]
         public Input<bool>? IsDefault { get; set; }

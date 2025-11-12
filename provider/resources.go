@@ -215,9 +215,16 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_apps_playlist_playlist_v0alpha1": {
 				Tok: grafanaResource(experimentalMod, "AppsPlaylistV0Alpha1"),
 			},
+
 			// Alerting
 			"grafana_apps_alertenrichment_alertenrichment_v1beta1": {
 				Tok: grafanaResource(alertingMod, "AlertEnrichment"),
+			},
+			"grafana_apps_rules_alertrule_v0alpha1": {
+				Tok: grafanaResource(alertingMod, "AlertRuleV0Alpha1"),
+			},
+			"grafana_apps_rules_recordingrule_v0alpha1": {
+				Tok: grafanaResource(alertingMod, "RecordingRuleV0Alpha1"),
 			},
 			"grafana_contact_point": {
 				Tok: grafanaResource(alertingMod, "ContactPoint"),

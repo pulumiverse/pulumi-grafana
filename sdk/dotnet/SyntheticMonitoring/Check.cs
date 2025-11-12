@@ -585,19 +585,19 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     public partial class Check : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `none`.
+        /// Can be set to `None`, `Low`, `Medium`, or `High` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `None`.
         /// </summary>
         [Output("alertSensitivity")]
         public Output<string?> AlertSensitivity { get; private set; } = null!;
 
         /// <summary>
-        /// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
+        /// Metrics are reduced by default. Set this to `False` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `True`.
         /// </summary>
         [Output("basicMetricsOnly")]
         public Output<bool?> BasicMetricsOnly { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to enable the check. Defaults to `true`.
+        /// Whether to enable the check. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -698,19 +698,19 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     public sealed class CheckArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `none`.
+        /// Can be set to `None`, `Low`, `Medium`, or `High` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `None`.
         /// </summary>
         [Input("alertSensitivity")]
         public Input<string>? AlertSensitivity { get; set; }
 
         /// <summary>
-        /// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
+        /// Metrics are reduced by default. Set this to `False` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `True`.
         /// </summary>
         [Input("basicMetricsOnly")]
         public Input<bool>? BasicMetricsOnly { get; set; }
 
         /// <summary>
-        /// Whether to enable the check. Defaults to `true`.
+        /// Whether to enable the check. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -778,19 +778,19 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     public sealed class CheckState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `none`.
+        /// Can be set to `None`, `Low`, `Medium`, or `High` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `None`.
         /// </summary>
         [Input("alertSensitivity")]
         public Input<string>? AlertSensitivity { get; set; }
 
         /// <summary>
-        /// Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
+        /// Metrics are reduced by default. Set this to `False` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `True`.
         /// </summary>
         [Input("basicMetricsOnly")]
         public Input<bool>? BasicMetricsOnly { get; set; }
 
         /// <summary>
-        /// Whether to enable the check. Defaults to `true`.
+        /// Whether to enable the check. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         public Input<string> Send { get; set; } = null!;
 
         /// <summary>
-        /// Upgrade TCP connection to TLS. Defaults to `false`.
+        /// Upgrade TCP connection to TLS. Defaults to `False`.
         /// </summary>
         [Input("startTls")]
         public Input<bool>? StartTls { get; set; }

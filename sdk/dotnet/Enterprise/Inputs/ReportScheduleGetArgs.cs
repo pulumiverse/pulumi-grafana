@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Enterprise.Inputs
     {
         /// <summary>
         /// Custom interval of the report.
-        /// **Note:** This field is only available when frequency is set to `custom`.
+        /// **Note:** This field is only available when frequency is set to `Custom`.
         /// </summary>
         [Input("customInterval")]
         public Input<string>? CustomInterval { get; set; }
@@ -27,13 +27,13 @@ namespace Pulumiverse.Grafana.Enterprise.Inputs
         public Input<string>? EndTime { get; set; }
 
         /// <summary>
-        /// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
+        /// Frequency of the report. Allowed values: `Never`, `Once`, `Hourly`, `Daily`, `Weekly`, `Monthly`, `Custom`.
         /// </summary>
         [Input("frequency", required: true)]
         public Input<string> Frequency { get; set; } = null!;
 
         /// <summary>
-        /// Send the report on the last day of the month Defaults to `false`.
+        /// Send the report on the last day of the month Defaults to `False`.
         /// </summary>
         [Input("lastDayOfMonth")]
         public Input<bool>? LastDayOfMonth { get; set; }
@@ -51,7 +51,7 @@ namespace Pulumiverse.Grafana.Enterprise.Inputs
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// Whether to send the report only on work days. Defaults to `false`.
+        /// Whether to send the report only on work days. Defaults to `False`.
         /// </summary>
         [Input("workdaysOnly")]
         public Input<bool>? WorkdaysOnly { get; set; }

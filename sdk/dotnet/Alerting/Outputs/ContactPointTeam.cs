@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
     public sealed class ContactPointTeam
     {
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
         /// <summary>

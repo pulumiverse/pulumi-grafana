@@ -15,11 +15,11 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
     public sealed class RuleGroupRule
     {
         /// <summary>
-        /// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
+        /// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `Summary` or `RunbookUrl`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Annotations;
         /// <summary>
-        /// The `ref_id` of the query node in the `data` field to use as the alert condition.
+        /// The `RefId` of the query node in the `Data` field to use as the alert condition.
         /// </summary>
         public readonly string? Condition;
         /// <summary>
@@ -35,7 +35,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly string? For;
         /// <summary>
-        /// Sets whether the alert should be paused or not. Defaults to `false`.
+        /// Sets whether the alert should be paused or not. Defaults to `False`.
         /// </summary>
         public readonly bool? IsPaused;
         /// <summary>

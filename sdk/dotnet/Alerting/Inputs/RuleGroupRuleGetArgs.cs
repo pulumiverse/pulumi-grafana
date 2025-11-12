@@ -17,7 +17,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         private InputMap<string>? _annotations;
 
         /// <summary>
-        /// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
+        /// Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `Summary` or `RunbookUrl`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.
         /// </summary>
         public InputMap<string> Annotations
         {
@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         }
 
         /// <summary>
-        /// The `ref_id` of the query node in the `data` field to use as the alert condition.
+        /// The `RefId` of the query node in the `Data` field to use as the alert condition.
         /// </summary>
         [Input("condition")]
         public Input<string>? Condition { get; set; }
@@ -56,7 +56,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<string>? For { get; set; }
 
         /// <summary>
-        /// Sets whether the alert should be paused or not. Defaults to `false`.
+        /// Sets whether the alert should be paused or not. Defaults to `False`.
         /// </summary>
         [Input("isPaused")]
         public Input<bool>? IsPaused { get; set; }

@@ -81,7 +81,7 @@ namespace Pulumiverse.Grafana.Oss
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `ApiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
         /// </summary>
         [Output("secondsToLive")]
         public Output<int?> SecondsToLive { get; private set; } = null!;
@@ -154,7 +154,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `ApiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
         /// </summary>
         [Input("secondsToLive")]
         public Input<int>? SecondsToLive { get; set; }
@@ -208,7 +208,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `ApiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
         /// </summary>
         [Input("secondsToLive")]
         public Input<int>? SecondsToLive { get; set; }

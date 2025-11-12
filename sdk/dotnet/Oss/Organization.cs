@@ -80,7 +80,7 @@ namespace Pulumiverse.Grafana.Oss
         /// and email set to the email of the user, and a random password. Setting this
         /// option to false will cause an error to be thrown for any users that do not
         /// already exist in Grafana.
-        /// Defaults to `true`.
+        /// Defaults to `True`.
         /// </summary>
         [Output("createUsers")]
         public Output<bool?> CreateUsers { get; private set; } = null!;
@@ -196,7 +196,7 @@ namespace Pulumiverse.Grafana.Oss
         /// and email set to the email of the user, and a random password. Setting this
         /// option to false will cause an error to be thrown for any users that do not
         /// already exist in Grafana.
-        /// Defaults to `true`.
+        /// Defaults to `True`.
         /// </summary>
         [Input("createUsers")]
         public Input<bool>? CreateUsers { get; set; }
@@ -281,7 +281,7 @@ namespace Pulumiverse.Grafana.Oss
         /// and email set to the email of the user, and a random password. Setting this
         /// option to false will cause an error to be thrown for any users that do not
         /// already exist in Grafana.
-        /// Defaults to `true`.
+        /// Defaults to `True`.
         /// </summary>
         [Input("createUsers")]
         public Input<bool>? CreateUsers { get; set; }

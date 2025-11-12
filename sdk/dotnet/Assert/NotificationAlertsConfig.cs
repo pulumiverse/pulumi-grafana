@@ -154,7 +154,7 @@ namespace Pulumiverse.Grafana.Assert
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Whether this alert configuration is silenced. Defaults to `false`.
+        /// Whether this alert configuration is silenced. Defaults to `False`.
         /// </summary>
         [Output("silenced")]
         public Output<bool?> Silenced { get; private set; } = null!;
@@ -243,7 +243,7 @@ namespace Pulumiverse.Grafana.Assert
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Whether this alert configuration is silenced. Defaults to `false`.
+        /// Whether this alert configuration is silenced. Defaults to `False`.
         /// </summary>
         [Input("silenced")]
         public Input<bool>? Silenced { get; set; }
@@ -293,7 +293,7 @@ namespace Pulumiverse.Grafana.Assert
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Whether this alert configuration is silenced. Defaults to `false`.
+        /// Whether this alert configuration is silenced. Defaults to `False`.
         /// </summary>
         [Input("silenced")]
         public Input<bool>? Silenced { get; set; }

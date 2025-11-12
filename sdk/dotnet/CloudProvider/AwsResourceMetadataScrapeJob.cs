@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana.CloudProvider
     public partial class AwsResourceMetadataScrapeJob : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.
+        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `ResourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
         /// </summary>
         [Output("awsAccountResourceId")]
         public Output<string> AwsAccountResourceId { get; private set; } = null!;
@@ -35,7 +35,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         public Output<string> DisabledReason { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
+        /// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
@@ -50,7 +50,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         public Output<ImmutableArray<string>> RegionsSubsetOverrides { get; private set; } = null!;
 
         /// <summary>
-        /// One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `Name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         [Output("services")]
         public Output<ImmutableArray<Outputs.AwsResourceMetadataScrapeJobService>> Services { get; private set; } = null!;
@@ -112,13 +112,13 @@ namespace Pulumiverse.Grafana.CloudProvider
     public sealed class AwsResourceMetadataScrapeJobArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.
+        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `ResourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
         /// </summary>
         [Input("awsAccountResourceId", required: true)]
         public Input<string> AwsAccountResourceId { get; set; } = null!;
 
         /// <summary>
-        /// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
+        /// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -142,7 +142,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         private InputList<Inputs.AwsResourceMetadataScrapeJobServiceArgs>? _services;
 
         /// <summary>
-        /// One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `Name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         public InputList<Inputs.AwsResourceMetadataScrapeJobServiceArgs> Services
         {
@@ -174,7 +174,7 @@ namespace Pulumiverse.Grafana.CloudProvider
     public sealed class AwsResourceMetadataScrapeJobState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.
+        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `ResourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
         /// </summary>
         [Input("awsAccountResourceId")]
         public Input<string>? AwsAccountResourceId { get; set; }
@@ -186,7 +186,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         public Input<string>? DisabledReason { get; set; }
 
         /// <summary>
-        /// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
+        /// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -210,7 +210,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         private InputList<Inputs.AwsResourceMetadataScrapeJobServiceGetArgs>? _services;
 
         /// <summary>
-        /// One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `Name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         public InputList<Inputs.AwsResourceMetadataScrapeJobServiceGetArgs> Services
         {

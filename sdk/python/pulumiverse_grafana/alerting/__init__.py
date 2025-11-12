@@ -7,10 +7,12 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .alert_enrichment import *
+from .alert_rule_v0_alpha1 import *
 from .contact_point import *
 from .message_template import *
 from .mute_timing import *
 from .notification_policy import *
+from .recording_rule_v0_alpha1 import *
 from .rule_group import *
 from ._inputs import *
 from . import outputs

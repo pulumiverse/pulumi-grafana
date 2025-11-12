@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         /// </summary>
         public readonly int? MaxUnknownHops;
         /// <summary>
-        /// Reverse lookup hostnames from IP addresses Defaults to `true`.
+        /// Reverse lookup hostnames from IP addresses Defaults to `True`.
         /// </summary>
         public readonly bool? PtrLookup;
 

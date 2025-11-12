@@ -58,6 +58,11 @@ __all__ = [
     'AlertEnrichmentSpecStepExplain',
     'AlertEnrichmentSpecStepExternal',
     'AlertEnrichmentSpecStepSift',
+    'AlertRuleV0Alpha1Metadata',
+    'AlertRuleV0Alpha1Options',
+    'AlertRuleV0Alpha1Spec',
+    'AlertRuleV0Alpha1SpecNotificationSettings',
+    'AlertRuleV0Alpha1SpecTrigger',
     'ContactPointAlertmanager',
     'ContactPointDingding',
     'ContactPointDiscord',
@@ -96,6 +101,10 @@ __all__ = [
     'NotificationPolicyPolicyPolicyPolicyMatcher',
     'NotificationPolicyPolicyPolicyPolicyPolicy',
     'NotificationPolicyPolicyPolicyPolicyPolicyMatcher',
+    'RecordingRuleV0Alpha1Metadata',
+    'RecordingRuleV0Alpha1Options',
+    'RecordingRuleV0Alpha1Spec',
+    'RecordingRuleV0Alpha1SpecTrigger',
     'RuleGroupRule',
     'RuleGroupRuleData',
     'RuleGroupRuleDataRelativeTimeRange',
@@ -1973,6 +1982,445 @@ class AlertEnrichmentSpecStepSift(dict):
         Maximum execution time (e.g., '30s', '1m')
         """
         return pulumi.get(self, "timeout")
+
+
+@pulumi.output_type
+class AlertRuleV0Alpha1Metadata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "folderUid":
+            suggest = "folder_uid"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertRuleV0Alpha1Metadata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertRuleV0Alpha1Metadata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertRuleV0Alpha1Metadata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 uid: _builtins.str,
+                 annotations: Optional[Mapping[str, _builtins.str]] = None,
+                 folder_uid: Optional[_builtins.str] = None,
+                 url: Optional[_builtins.str] = None,
+                 uuid: Optional[_builtins.str] = None,
+                 version: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str uid: The unique identifier of the resource.
+        :param Mapping[str, _builtins.str] annotations: Annotations of the resource.
+        :param _builtins.str folder_uid: The UID of the folder to save the resource in.
+        :param _builtins.str url: The full URL of the resource.
+        :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
+        :param _builtins.str version: The version of the resource.
+        """
+        pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.str:
+        """
+        The unique identifier of the resource.
+        """
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[_builtins.str]:
+        """
+        The UID of the folder to save the resource in.
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[_builtins.str]:
+        """
+        The full URL of the resource.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[_builtins.str]:
+        """
+        The globally unique identifier of a resource, used by the API for tracking.
+        """
+        return pulumi.get(self, "uuid")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        The version of the resource.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class AlertRuleV0Alpha1Options(dict):
+    def __init__(__self__, *,
+                 overwrite: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.bool overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        if overwrite is not None:
+            pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter
+    def overwrite(self) -> Optional[_builtins.bool]:
+        """
+        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        return pulumi.get(self, "overwrite")
+
+
+@pulumi.output_type
+class AlertRuleV0Alpha1Spec(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "execErrState":
+            suggest = "exec_err_state"
+        elif key == "noDataState":
+            suggest = "no_data_state"
+        elif key == "for":
+            suggest = "for_"
+        elif key == "keepFiringFor":
+            suggest = "keep_firing_for"
+        elif key == "missingSeriesEvalsToResolve":
+            suggest = "missing_series_evals_to_resolve"
+        elif key == "notificationSettings":
+            suggest = "notification_settings"
+        elif key == "panelRef":
+            suggest = "panel_ref"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertRuleV0Alpha1Spec. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertRuleV0Alpha1Spec.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertRuleV0Alpha1Spec.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 exec_err_state: _builtins.str,
+                 expressions: Any,
+                 no_data_state: _builtins.str,
+                 title: _builtins.str,
+                 annotations: Optional[Mapping[str, _builtins.str]] = None,
+                 for_: Optional[_builtins.str] = None,
+                 keep_firing_for: Optional[_builtins.str] = None,
+                 labels: Optional[Mapping[str, _builtins.str]] = None,
+                 missing_series_evals_to_resolve: Optional[_builtins.int] = None,
+                 notification_settings: Optional['outputs.AlertRuleV0Alpha1SpecNotificationSettings'] = None,
+                 panel_ref: Optional[Any] = None,
+                 paused: Optional[_builtins.bool] = None,
+                 trigger: Optional['outputs.AlertRuleV0Alpha1SpecTrigger'] = None):
+        """
+        :param _builtins.str exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+        :param Any expressions: A sequence of stages that describe the contents of the rule.
+        :param _builtins.str no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+        :param _builtins.str title: The title of the alert rule.
+        :param Mapping[str, _builtins.str] annotations: Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts.
+        :param _builtins.str for_: The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+        :param _builtins.str keep_firing_for: The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+        :param Mapping[str, _builtins.str] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+        :param _builtins.int missing_series_evals_to_resolve: The number of missing series evaluations that must occur before the rule is considered to be resolved.
+        :param 'AlertRuleV0Alpha1SpecNotificationSettingsArgs' notification_settings: Notification settings for the rule. If specified, it overrides the notification policies.
+        :param Any panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+        :param _builtins.bool paused: Sets whether the rule should be paused or not.
+        :param 'AlertRuleV0Alpha1SpecTriggerArgs' trigger: The trigger configuration for the alert rule.
+        """
+        pulumi.set(__self__, "exec_err_state", exec_err_state)
+        pulumi.set(__self__, "expressions", expressions)
+        pulumi.set(__self__, "no_data_state", no_data_state)
+        pulumi.set(__self__, "title", title)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if for_ is not None:
+            pulumi.set(__self__, "for_", for_)
+        if keep_firing_for is not None:
+            pulumi.set(__self__, "keep_firing_for", keep_firing_for)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if missing_series_evals_to_resolve is not None:
+            pulumi.set(__self__, "missing_series_evals_to_resolve", missing_series_evals_to_resolve)
+        if notification_settings is not None:
+            pulumi.set(__self__, "notification_settings", notification_settings)
+        if panel_ref is not None:
+            pulumi.set(__self__, "panel_ref", panel_ref)
+        if paused is not None:
+            pulumi.set(__self__, "paused", paused)
+        if trigger is not None:
+            pulumi.set(__self__, "trigger", trigger)
+
+    @_builtins.property
+    @pulumi.getter(name="execErrState")
+    def exec_err_state(self) -> _builtins.str:
+        """
+        Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+        """
+        return pulumi.get(self, "exec_err_state")
+
+    @_builtins.property
+    @pulumi.getter
+    def expressions(self) -> Any:
+        """
+        A sequence of stages that describe the contents of the rule.
+        """
+        return pulumi.get(self, "expressions")
+
+    @_builtins.property
+    @pulumi.getter(name="noDataState")
+    def no_data_state(self) -> _builtins.str:
+        """
+        Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+        """
+        return pulumi.get(self, "no_data_state")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The title of the alert rule.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts.
+        """
+        return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter(name="for")
+    def for_(self) -> Optional[_builtins.str]:
+        """
+        The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+        """
+        return pulumi.get(self, "for_")
+
+    @_builtins.property
+    @pulumi.getter(name="keepFiringFor")
+    def keep_firing_for(self) -> Optional[_builtins.str]:
+        """
+        The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+        """
+        return pulumi.get(self, "keep_firing_for")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+        """
+        return pulumi.get(self, "labels")
+
+    @_builtins.property
+    @pulumi.getter(name="missingSeriesEvalsToResolve")
+    def missing_series_evals_to_resolve(self) -> Optional[_builtins.int]:
+        """
+        The number of missing series evaluations that must occur before the rule is considered to be resolved.
+        """
+        return pulumi.get(self, "missing_series_evals_to_resolve")
+
+    @_builtins.property
+    @pulumi.getter(name="notificationSettings")
+    def notification_settings(self) -> Optional['outputs.AlertRuleV0Alpha1SpecNotificationSettings']:
+        """
+        Notification settings for the rule. If specified, it overrides the notification policies.
+        """
+        return pulumi.get(self, "notification_settings")
+
+    @_builtins.property
+    @pulumi.getter(name="panelRef")
+    def panel_ref(self) -> Optional[Any]:
+        """
+        Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+        """
+        return pulumi.get(self, "panel_ref")
+
+    @_builtins.property
+    @pulumi.getter
+    def paused(self) -> Optional[_builtins.bool]:
+        """
+        Sets whether the rule should be paused or not.
+        """
+        return pulumi.get(self, "paused")
+
+    @_builtins.property
+    @pulumi.getter
+    def trigger(self) -> Optional['outputs.AlertRuleV0Alpha1SpecTrigger']:
+        """
+        The trigger configuration for the alert rule.
+        """
+        return pulumi.get(self, "trigger")
+
+
+@pulumi.output_type
+class AlertRuleV0Alpha1SpecNotificationSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "contactPoint":
+            suggest = "contact_point"
+        elif key == "activeTimings":
+            suggest = "active_timings"
+        elif key == "groupBies":
+            suggest = "group_bies"
+        elif key == "groupInterval":
+            suggest = "group_interval"
+        elif key == "groupWait":
+            suggest = "group_wait"
+        elif key == "muteTimings":
+            suggest = "mute_timings"
+        elif key == "repeatInterval":
+            suggest = "repeat_interval"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertRuleV0Alpha1SpecNotificationSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertRuleV0Alpha1SpecNotificationSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertRuleV0Alpha1SpecNotificationSettings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 contact_point: _builtins.str,
+                 active_timings: Optional[Sequence[_builtins.str]] = None,
+                 group_bies: Optional[Sequence[_builtins.str]] = None,
+                 group_interval: Optional[_builtins.str] = None,
+                 group_wait: Optional[_builtins.str] = None,
+                 mute_timings: Optional[Sequence[_builtins.str]] = None,
+                 repeat_interval: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str contact_point: The contact point to route notifications that match this rule to.
+        :param Sequence[_builtins.str] active_timings: A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+        :param Sequence[_builtins.str] group_bies: A list of alert labels to group alerts into notifications by.
+        :param _builtins.str group_interval: Minimum time interval between two notifications for the same group.
+        :param _builtins.str group_wait: Time to wait to buffer alerts of the same group before sending a notification.
+        :param Sequence[_builtins.str] mute_timings: A list of mute timing names to apply to alerts that match this policy.
+        :param _builtins.str repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing.
+        """
+        pulumi.set(__self__, "contact_point", contact_point)
+        if active_timings is not None:
+            pulumi.set(__self__, "active_timings", active_timings)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
+        if group_interval is not None:
+            pulumi.set(__self__, "group_interval", group_interval)
+        if group_wait is not None:
+            pulumi.set(__self__, "group_wait", group_wait)
+        if mute_timings is not None:
+            pulumi.set(__self__, "mute_timings", mute_timings)
+        if repeat_interval is not None:
+            pulumi.set(__self__, "repeat_interval", repeat_interval)
+
+    @_builtins.property
+    @pulumi.getter(name="contactPoint")
+    def contact_point(self) -> _builtins.str:
+        """
+        The contact point to route notifications that match this rule to.
+        """
+        return pulumi.get(self, "contact_point")
+
+    @_builtins.property
+    @pulumi.getter(name="activeTimings")
+    def active_timings(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+        """
+        return pulumi.get(self, "active_timings")
+
+    @_builtins.property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of alert labels to group alerts into notifications by.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @_builtins.property
+    @pulumi.getter(name="groupInterval")
+    def group_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval between two notifications for the same group.
+        """
+        return pulumi.get(self, "group_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="groupWait")
+    def group_wait(self) -> Optional[_builtins.str]:
+        """
+        Time to wait to buffer alerts of the same group before sending a notification.
+        """
+        return pulumi.get(self, "group_wait")
+
+    @_builtins.property
+    @pulumi.getter(name="muteTimings")
+    def mute_timings(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of mute timing names to apply to alerts that match this policy.
+        """
+        return pulumi.get(self, "mute_timings")
+
+    @_builtins.property
+    @pulumi.getter(name="repeatInterval")
+    def repeat_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing.
+        """
+        return pulumi.get(self, "repeat_interval")
+
+
+@pulumi.output_type
+class AlertRuleV0Alpha1SpecTrigger(dict):
+    def __init__(__self__, *,
+                 interval: _builtins.str):
+        """
+        :param _builtins.str interval: The interval at which the alert rule should be evaluated.
+        """
+        pulumi.set(__self__, "interval", interval)
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> _builtins.str:
+        """
+        The interval at which the alert rule should be evaluated.
+        """
+        return pulumi.get(self, "interval")
 
 
 @pulumi.output_type
@@ -6420,6 +6868,242 @@ class NotificationPolicyPolicyPolicyPolicyPolicyMatcher(dict):
         The label value to match against.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class RecordingRuleV0Alpha1Metadata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "folderUid":
+            suggest = "folder_uid"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RecordingRuleV0Alpha1Metadata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RecordingRuleV0Alpha1Metadata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RecordingRuleV0Alpha1Metadata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 uid: _builtins.str,
+                 annotations: Optional[Mapping[str, _builtins.str]] = None,
+                 folder_uid: Optional[_builtins.str] = None,
+                 url: Optional[_builtins.str] = None,
+                 uuid: Optional[_builtins.str] = None,
+                 version: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str uid: The unique identifier of the resource.
+        :param Mapping[str, _builtins.str] annotations: Annotations of the resource.
+        :param _builtins.str folder_uid: The UID of the folder to save the resource in.
+        :param _builtins.str url: The full URL of the resource.
+        :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
+        :param _builtins.str version: The version of the resource.
+        """
+        pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.str:
+        """
+        The unique identifier of the resource.
+        """
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Annotations of the resource.
+        """
+        return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[_builtins.str]:
+        """
+        The UID of the folder to save the resource in.
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[_builtins.str]:
+        """
+        The full URL of the resource.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[_builtins.str]:
+        """
+        The globally unique identifier of a resource, used by the API for tracking.
+        """
+        return pulumi.get(self, "uuid")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        The version of the resource.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class RecordingRuleV0Alpha1Options(dict):
+    def __init__(__self__, *,
+                 overwrite: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.bool overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        if overwrite is not None:
+            pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter
+    def overwrite(self) -> Optional[_builtins.bool]:
+        """
+        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+        """
+        return pulumi.get(self, "overwrite")
+
+
+@pulumi.output_type
+class RecordingRuleV0Alpha1Spec(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "targetDatasourceUid":
+            suggest = "target_datasource_uid"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RecordingRuleV0Alpha1Spec. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RecordingRuleV0Alpha1Spec.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RecordingRuleV0Alpha1Spec.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 expressions: Any,
+                 metric: _builtins.str,
+                 target_datasource_uid: _builtins.str,
+                 title: _builtins.str,
+                 labels: Optional[Mapping[str, _builtins.str]] = None,
+                 paused: Optional[_builtins.bool] = None,
+                 trigger: Optional['outputs.RecordingRuleV0Alpha1SpecTrigger'] = None):
+        """
+        :param Any expressions: A sequence of stages that describe the contents of the rule.
+        :param _builtins.str metric: The name of the metric to write to.
+        :param _builtins.str target_datasource_uid: The UID of the datasource to write the metric to.
+        :param _builtins.str title: The title of the recording rule.
+        :param Mapping[str, _builtins.str] labels: Key-value pairs to attach to the recorded metric.
+        :param _builtins.bool paused: Sets whether the recording rule should be paused or not.
+        :param 'RecordingRuleV0Alpha1SpecTriggerArgs' trigger: The trigger configuration for the recording rule.
+        """
+        pulumi.set(__self__, "expressions", expressions)
+        pulumi.set(__self__, "metric", metric)
+        pulumi.set(__self__, "target_datasource_uid", target_datasource_uid)
+        pulumi.set(__self__, "title", title)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if paused is not None:
+            pulumi.set(__self__, "paused", paused)
+        if trigger is not None:
+            pulumi.set(__self__, "trigger", trigger)
+
+    @_builtins.property
+    @pulumi.getter
+    def expressions(self) -> Any:
+        """
+        A sequence of stages that describe the contents of the rule.
+        """
+        return pulumi.get(self, "expressions")
+
+    @_builtins.property
+    @pulumi.getter
+    def metric(self) -> _builtins.str:
+        """
+        The name of the metric to write to.
+        """
+        return pulumi.get(self, "metric")
+
+    @_builtins.property
+    @pulumi.getter(name="targetDatasourceUid")
+    def target_datasource_uid(self) -> _builtins.str:
+        """
+        The UID of the datasource to write the metric to.
+        """
+        return pulumi.get(self, "target_datasource_uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The title of the recording rule.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Key-value pairs to attach to the recorded metric.
+        """
+        return pulumi.get(self, "labels")
+
+    @_builtins.property
+    @pulumi.getter
+    def paused(self) -> Optional[_builtins.bool]:
+        """
+        Sets whether the recording rule should be paused or not.
+        """
+        return pulumi.get(self, "paused")
+
+    @_builtins.property
+    @pulumi.getter
+    def trigger(self) -> Optional['outputs.RecordingRuleV0Alpha1SpecTrigger']:
+        """
+        The trigger configuration for the recording rule.
+        """
+        return pulumi.get(self, "trigger")
+
+
+@pulumi.output_type
+class RecordingRuleV0Alpha1SpecTrigger(dict):
+    def __init__(__self__, *,
+                 interval: _builtins.str):
+        """
+        :param _builtins.str interval: The interval at which the recording rule should be evaluated.
+        """
+        pulumi.set(__self__, "interval", interval)
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> _builtins.str:
+        """
+        The interval at which the recording rule should be evaluated.
+        """
+        return pulumi.get(self, "interval")
 
 
 @pulumi.output_type

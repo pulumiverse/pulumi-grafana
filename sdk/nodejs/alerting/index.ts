@@ -10,6 +10,11 @@ export type AlertEnrichment = import("./alertEnrichment").AlertEnrichment;
 export const AlertEnrichment: typeof import("./alertEnrichment").AlertEnrichment = null as any;
 utilities.lazyLoad(exports, ["AlertEnrichment"], () => require("./alertEnrichment"));
 
+export { AlertRuleV0Alpha1Args, AlertRuleV0Alpha1State } from "./alertRuleV0Alpha1";
+export type AlertRuleV0Alpha1 = import("./alertRuleV0Alpha1").AlertRuleV0Alpha1;
+export const AlertRuleV0Alpha1: typeof import("./alertRuleV0Alpha1").AlertRuleV0Alpha1 = null as any;
+utilities.lazyLoad(exports, ["AlertRuleV0Alpha1"], () => require("./alertRuleV0Alpha1"));
+
 export { ContactPointArgs, ContactPointState } from "./contactPoint";
 export type ContactPoint = import("./contactPoint").ContactPoint;
 export const ContactPoint: typeof import("./contactPoint").ContactPoint = null as any;
@@ -30,6 +35,11 @@ export type NotificationPolicy = import("./notificationPolicy").NotificationPoli
 export const NotificationPolicy: typeof import("./notificationPolicy").NotificationPolicy = null as any;
 utilities.lazyLoad(exports, ["NotificationPolicy"], () => require("./notificationPolicy"));
 
+export { RecordingRuleV0Alpha1Args, RecordingRuleV0Alpha1State } from "./recordingRuleV0Alpha1";
+export type RecordingRuleV0Alpha1 = import("./recordingRuleV0Alpha1").RecordingRuleV0Alpha1;
+export const RecordingRuleV0Alpha1: typeof import("./recordingRuleV0Alpha1").RecordingRuleV0Alpha1 = null as any;
+utilities.lazyLoad(exports, ["RecordingRuleV0Alpha1"], () => require("./recordingRuleV0Alpha1"));
+
 export { RuleGroupArgs, RuleGroupState } from "./ruleGroup";
 export type RuleGroup = import("./ruleGroup").RuleGroup;
 export const RuleGroup: typeof import("./ruleGroup").RuleGroup = null as any;
@@ -42,6 +52,8 @@ const _module = {
         switch (type) {
             case "grafana:alerting/alertEnrichment:AlertEnrichment":
                 return new AlertEnrichment(name, <any>undefined, { urn })
+            case "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1":
+                return new AlertRuleV0Alpha1(name, <any>undefined, { urn })
             case "grafana:alerting/contactPoint:ContactPoint":
                 return new ContactPoint(name, <any>undefined, { urn })
             case "grafana:alerting/messageTemplate:MessageTemplate":
@@ -50,6 +62,8 @@ const _module = {
                 return new MuteTiming(name, <any>undefined, { urn })
             case "grafana:alerting/notificationPolicy:NotificationPolicy":
                 return new NotificationPolicy(name, <any>undefined, { urn })
+            case "grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1":
+                return new RecordingRuleV0Alpha1(name, <any>undefined, { urn })
             case "grafana:alerting/ruleGroup:RuleGroup":
                 return new RuleGroup(name, <any>undefined, { urn })
             default:
@@ -58,8 +72,10 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("grafana", "alerting/alertEnrichment", _module)
+pulumi.runtime.registerResourceModule("grafana", "alerting/alertRuleV0Alpha1", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/contactPoint", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/messageTemplate", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/muteTiming", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/notificationPolicy", _module)
+pulumi.runtime.registerResourceModule("grafana", "alerting/recordingRuleV0Alpha1", _module)
 pulumi.runtime.registerResourceModule("grafana", "alerting/ruleGroup", _module)

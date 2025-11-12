@@ -44,7 +44,7 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<string>? AllowedOrganizations { get; set; }
 
         /// <summary>
-        /// The user information endpoint of your OAuth2 provider. Required for okta and generic_oauth providers.
+        /// The user information endpoint of your OAuth2 provider. Required for okta and GenericOauth providers.
         /// </summary>
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }
@@ -56,7 +56,7 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<string>? AuthStyle { get; set; }
 
         /// <summary>
-        /// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        /// The authorization endpoint of your OAuth2 provider. Required for azuread, okta and GenericOauth providers.
         /// </summary>
         [Input("authUrl")]
         public Input<string>? AuthUrl { get; set; }
@@ -132,7 +132,7 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<bool>? EmptyScopes { get; set; }
 
         /// <summary>
-        /// Define whether this configuration is enabled for the specified provider. Defaults to `true`.
+        /// Define whether this configuration is enabled for the specified provider. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -156,7 +156,7 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<string>? LoginAttributePath { get; set; }
 
         /// <summary>
-        /// Indicates the type of user interaction when the user logs in with the IdP. Available values are `login`, `consent` and `select_account`.
+        /// Indicates the type of user interaction when the user logs in with the IdP. Available values are `Login`, `Consent` and `SelectAccount`.
         /// </summary>
         [Input("loginPrompt")]
         public Input<string>? LoginPrompt { get; set; }
@@ -174,7 +174,7 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<string>? NameAttributePath { get; set; }
 
         /// <summary>
-        /// JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "org_mapping"). Only applicable to Generic OAuth and Okta.
+        /// JMESPath expression to use for the organization mapping lookup from the user ID token. The extracted list will be used for the organization mapping (to match "Organization" in the "OrgMapping"). Only applicable to Generic OAuth and Okta.
         /// </summary>
         [Input("orgAttributePath")]
         public Input<string>? OrgAttributePath { get; set; }
@@ -222,7 +222,7 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<string>? TeamIds { get; set; }
 
         /// <summary>
-        /// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the teams_url endpoint. Only applicable to Generic OAuth.
+        /// The JMESPath expression to use for Grafana Team Id lookup within the results returned by the TeamsUrl endpoint. Only applicable to Generic OAuth.
         /// </summary>
         [Input("teamIdsAttributePath")]
         public Input<string>? TeamIdsAttributePath { get; set; }
@@ -258,7 +258,7 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<bool>? TlsSkipVerifyInsecure { get; set; }
 
         /// <summary>
-        /// The token endpoint of your OAuth2 provider. Required for azuread, okta and generic_oauth providers.
+        /// The token endpoint of your OAuth2 provider. Required for azuread, okta and GenericOauth providers.
         /// </summary>
         [Input("tokenUrl")]
         public Input<string>? TokenUrl { get; set; }

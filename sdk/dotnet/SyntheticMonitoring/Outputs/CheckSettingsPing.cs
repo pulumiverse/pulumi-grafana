@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
     public sealed class CheckSettingsPing
     {
         /// <summary>
-        /// Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `false`.
+        /// Set the DF-bit in the IP-header. Only works with ipV4. Defaults to `False`.
         /// </summary>
         public readonly bool? DontFragment;
         /// <summary>

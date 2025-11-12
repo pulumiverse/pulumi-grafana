@@ -57,7 +57,7 @@ namespace Pulumiverse.Grafana.Oss
         public Output<string> Email { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to make user an admin. Defaults to `false`.
+        /// Whether to make user an admin. Defaults to `False`.
         /// </summary>
         [Output("isAdmin")]
         public Output<bool?> IsAdmin { get; private set; } = null!;
@@ -148,7 +148,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string> Email { get; set; } = null!;
 
         /// <summary>
-        /// Whether to make user an admin. Defaults to `false`.
+        /// Whether to make user an admin. Defaults to `False`.
         /// </summary>
         [Input("isAdmin")]
         public Input<bool>? IsAdmin { get; set; }
@@ -196,7 +196,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? Email { get; set; }
 
         /// <summary>
-        /// Whether to make user an admin. Defaults to `false`.
+        /// Whether to make user an admin. Defaults to `False`.
         /// </summary>
         [Input("isAdmin")]
         public Input<bool>? IsAdmin { get; set; }

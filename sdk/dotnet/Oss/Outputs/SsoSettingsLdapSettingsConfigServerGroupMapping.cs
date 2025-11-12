@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
     public sealed class SsoSettingsLdapSettingsConfigServerGroupMapping
     {
         /// <summary>
-        /// If set to true, it makes the user of group_dn Grafana server admin.
+        /// If set to true, it makes the user of GroupDn Grafana server admin.
         /// </summary>
         public readonly bool? GrafanaAdmin;
         /// <summary>
@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly int? OrgId;
         /// <summary>
-        /// Assign users of group_dn the organization role Admin, Editor, or Viewer.
+        /// Assign users of GroupDn the organization role Admin, Editor, or Viewer.
         /// </summary>
         public readonly string OrgRole;
 

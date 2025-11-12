@@ -35,7 +35,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Details;
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
         /// <summary>
@@ -51,7 +51,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Settings;
         /// <summary>
-        /// The PagerDuty event severity level. Default is `critical`.
+        /// The PagerDuty event severity level. Default is `Critical`.
         /// </summary>
         public readonly string? Severity;
         /// <summary>

@@ -16,7 +16,7 @@ namespace Pulumiverse.Grafana.Enterprise.Outputs
     {
         /// <summary>
         /// Custom interval of the report.
-        /// **Note:** This field is only available when frequency is set to `custom`.
+        /// **Note:** This field is only available when frequency is set to `Custom`.
         /// </summary>
         public readonly string? CustomInterval;
         /// <summary>
@@ -24,11 +24,11 @@ namespace Pulumiverse.Grafana.Enterprise.Outputs
         /// </summary>
         public readonly string? EndTime;
         /// <summary>
-        /// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
+        /// Frequency of the report. Allowed values: `Never`, `Once`, `Hourly`, `Daily`, `Weekly`, `Monthly`, `Custom`.
         /// </summary>
         public readonly string Frequency;
         /// <summary>
-        /// Send the report on the last day of the month Defaults to `false`.
+        /// Send the report on the last day of the month Defaults to `False`.
         /// </summary>
         public readonly bool? LastDayOfMonth;
         /// <summary>
@@ -40,7 +40,7 @@ namespace Pulumiverse.Grafana.Enterprise.Outputs
         /// </summary>
         public readonly string? Timezone;
         /// <summary>
-        /// Whether to send the report only on work days. Defaults to `false`.
+        /// Whether to send the report only on work days. Defaults to `False`.
         /// </summary>
         public readonly bool? WorkdaysOnly;
 

@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.OnCall.Outputs
     public sealed class IntegrationDefaultRouteMsteams
     {
         /// <summary>
-        /// Enable notification in MS teams. Defaults to `true`.
+        /// Enable notification in MS teams. Defaults to `True`.
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
