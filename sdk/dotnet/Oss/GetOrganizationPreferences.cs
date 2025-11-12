@@ -125,15 +125,15 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public readonly string? OrgId;
         /// <summary>
-        /// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+        /// The Organization theme. Available values are `Light`, `Dark`, `System`, or an empty string for the default.
         /// </summary>
         public readonly string Theme;
         /// <summary>
-        /// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+        /// The Organization timezone. Available values are `Utc`, `Browser`, or an empty string for the default.
         /// </summary>
         public readonly string Timezone;
         /// <summary>
-        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+        /// The Organization week start day. Available values are `Sunday`, `Monday`, `Saturday`, or an empty string for the default.
         /// </summary>
         public readonly string WeekStart;
 

@@ -114,7 +114,7 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<string>? ClientSecret { get; set; }
 
         /// <summary>
-        /// Define whether this configuration is enabled for SAML. Defaults to `true`.
+        /// Define whether this configuration is enabled for SAML. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

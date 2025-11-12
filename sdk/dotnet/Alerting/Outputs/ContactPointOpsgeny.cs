@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly string? Description;
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
         /// <summary>
@@ -35,7 +35,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly string? Message;
         /// <summary>
-        /// Whether to allow the alert priority to be configured via the value of the `og_priority` annotation on the alert.
+        /// Whether to allow the alert priority to be configured via the value of the `OgPriority` annotation on the alert.
         /// </summary>
         public readonly bool? OverridePriority;
         /// <summary>
@@ -43,7 +43,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.ContactPointOpsgenyResponder> Responders;
         /// <summary>
-        /// Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
+        /// Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `Tags`, `Details`, `Both`, or empty to use the default behavior of Tags.
         /// </summary>
         public readonly string? SendTagsAs;
         /// <summary>

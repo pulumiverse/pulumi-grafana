@@ -63,13 +63,13 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         public Output<string> AuthToken { get; private set; } = null!;
 
         /// <summary>
-        /// Disables browser checks for this probe. Defaults to `false`.
+        /// Disables browser checks for this probe. Defaults to `False`.
         /// </summary>
         [Output("disableBrowserChecks")]
         public Output<bool?> DisableBrowserChecks { get; private set; } = null!;
 
         /// <summary>
-        /// Disables scripted checks for this probe. Defaults to `false`.
+        /// Disables scripted checks for this probe. Defaults to `False`.
         /// </summary>
         [Output("disableScriptedChecks")]
         public Output<bool?> DisableScriptedChecks { get; private set; } = null!;
@@ -99,7 +99,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
+        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `True`. Defaults to `False`.
         /// </summary>
         [Output("public")]
         public Output<bool?> Public { get; private set; } = null!;
@@ -168,13 +168,13 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     public sealed class ProbeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Disables browser checks for this probe. Defaults to `false`.
+        /// Disables browser checks for this probe. Defaults to `False`.
         /// </summary>
         [Input("disableBrowserChecks")]
         public Input<bool>? DisableBrowserChecks { get; set; }
 
         /// <summary>
-        /// Disables scripted checks for this probe. Defaults to `false`.
+        /// Disables scripted checks for this probe. Defaults to `False`.
         /// </summary>
         [Input("disableScriptedChecks")]
         public Input<bool>? DisableScriptedChecks { get; set; }
@@ -210,7 +210,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
+        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `True`. Defaults to `False`.
         /// </summary>
         [Input("public")]
         public Input<bool>? Public { get; set; }
@@ -246,13 +246,13 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         }
 
         /// <summary>
-        /// Disables browser checks for this probe. Defaults to `false`.
+        /// Disables browser checks for this probe. Defaults to `False`.
         /// </summary>
         [Input("disableBrowserChecks")]
         public Input<bool>? DisableBrowserChecks { get; set; }
 
         /// <summary>
-        /// Disables scripted checks for this probe. Defaults to `false`.
+        /// Disables scripted checks for this probe. Defaults to `False`.
         /// </summary>
         [Input("disableScriptedChecks")]
         public Input<bool>? DisableScriptedChecks { get; set; }
@@ -288,7 +288,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
+        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `True`. Defaults to `False`.
         /// </summary>
         [Input("public")]
         public Input<bool>? Public { get; set; }

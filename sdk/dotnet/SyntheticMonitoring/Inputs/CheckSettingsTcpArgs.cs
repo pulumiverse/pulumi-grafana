@@ -38,7 +38,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         public Input<string>? SourceIpAddress { get; set; }
 
         /// <summary>
-        /// Whether or not TLS is used when the connection is initiated. Defaults to `false`.
+        /// Whether or not TLS is used when the connection is initiated. Defaults to `False`.
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }

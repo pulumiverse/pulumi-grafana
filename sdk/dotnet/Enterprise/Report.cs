@@ -79,25 +79,25 @@ namespace Pulumiverse.Grafana.Enterprise
         public Output<ImmutableArray<Outputs.ReportDashboard>> Dashboards { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+        /// Specifies what kind of attachment to generate for the report. Allowed values: `Pdf`, `Csv`, `Image`.
         /// </summary>
         [Output("formats")]
         public Output<ImmutableArray<string>> Formats { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to include a link to the dashboard in the report. Defaults to `true`.
+        /// Whether to include a link to the dashboard in the report. Defaults to `True`.
         /// </summary>
         [Output("includeDashboardLink")]
         public Output<bool?> IncludeDashboardLink { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to include a CSV file of table panel data. Defaults to `false`.
+        /// Whether to include a CSV file of table panel data. Defaults to `False`.
         /// </summary>
         [Output("includeTableCsv")]
         public Output<bool?> IncludeTableCsv { get; private set; } = null!;
 
         /// <summary>
-        /// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+        /// Layout of the report. Allowed values: `Simple`, `Grid`. Defaults to `Grid`.
         /// </summary>
         [Output("layout")]
         public Output<string?> Layout { get; private set; } = null!;
@@ -121,7 +121,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+        /// Orientation of the report. Allowed values: `Landscape`, `Portrait`. Defaults to `Landscape`.
         /// </summary>
         [Output("orientation")]
         public Output<string?> Orientation { get; private set; } = null!;
@@ -211,7 +211,7 @@ namespace Pulumiverse.Grafana.Enterprise
         private InputList<string>? _formats;
 
         /// <summary>
-        /// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+        /// Specifies what kind of attachment to generate for the report. Allowed values: `Pdf`, `Csv`, `Image`.
         /// </summary>
         public InputList<string> Formats
         {
@@ -220,19 +220,19 @@ namespace Pulumiverse.Grafana.Enterprise
         }
 
         /// <summary>
-        /// Whether to include a link to the dashboard in the report. Defaults to `true`.
+        /// Whether to include a link to the dashboard in the report. Defaults to `True`.
         /// </summary>
         [Input("includeDashboardLink")]
         public Input<bool>? IncludeDashboardLink { get; set; }
 
         /// <summary>
-        /// Whether to include a CSV file of table panel data. Defaults to `false`.
+        /// Whether to include a CSV file of table panel data. Defaults to `False`.
         /// </summary>
         [Input("includeTableCsv")]
         public Input<bool>? IncludeTableCsv { get; set; }
 
         /// <summary>
-        /// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+        /// Layout of the report. Allowed values: `Simple`, `Grid`. Defaults to `Grid`.
         /// </summary>
         [Input("layout")]
         public Input<string>? Layout { get; set; }
@@ -256,7 +256,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+        /// Orientation of the report. Allowed values: `Landscape`, `Portrait`. Defaults to `Landscape`.
         /// </summary>
         [Input("orientation")]
         public Input<string>? Orientation { get; set; }
@@ -309,7 +309,7 @@ namespace Pulumiverse.Grafana.Enterprise
         private InputList<string>? _formats;
 
         /// <summary>
-        /// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
+        /// Specifies what kind of attachment to generate for the report. Allowed values: `Pdf`, `Csv`, `Image`.
         /// </summary>
         public InputList<string> Formats
         {
@@ -318,19 +318,19 @@ namespace Pulumiverse.Grafana.Enterprise
         }
 
         /// <summary>
-        /// Whether to include a link to the dashboard in the report. Defaults to `true`.
+        /// Whether to include a link to the dashboard in the report. Defaults to `True`.
         /// </summary>
         [Input("includeDashboardLink")]
         public Input<bool>? IncludeDashboardLink { get; set; }
 
         /// <summary>
-        /// Whether to include a CSV file of table panel data. Defaults to `false`.
+        /// Whether to include a CSV file of table panel data. Defaults to `False`.
         /// </summary>
         [Input("includeTableCsv")]
         public Input<bool>? IncludeTableCsv { get; set; }
 
         /// <summary>
-        /// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+        /// Layout of the report. Allowed values: `Simple`, `Grid`. Defaults to `Grid`.
         /// </summary>
         [Input("layout")]
         public Input<string>? Layout { get; set; }
@@ -354,7 +354,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+        /// Orientation of the report. Allowed values: `Landscape`, `Portrait`. Defaults to `Landscape`.
         /// </summary>
         [Input("orientation")]
         public Input<string>? Orientation { get; set; }

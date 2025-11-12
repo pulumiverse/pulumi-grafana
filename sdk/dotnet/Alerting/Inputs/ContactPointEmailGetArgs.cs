@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         }
 
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }
@@ -54,7 +54,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         }
 
         /// <summary>
-        /// Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `false`.
+        /// Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `False`.
         /// </summary>
         [Input("singleEmail")]
         public Input<bool>? SingleEmail { get; set; }

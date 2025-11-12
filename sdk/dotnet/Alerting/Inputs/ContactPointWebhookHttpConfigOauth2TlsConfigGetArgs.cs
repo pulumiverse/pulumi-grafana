@@ -62,7 +62,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         }
 
         /// <summary>
-        /// Do not verify the server's certificate chain and host name. Defaults to `false`.
+        /// Do not verify the server's certificate chain and host name. Defaults to `False`.
         /// </summary>
         [Input("insecureSkipVerify")]
         public Input<bool>? InsecureSkipVerify { get; set; }

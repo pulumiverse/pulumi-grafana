@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly string? ClientKey;
         /// <summary>
-        /// Do not verify the server's certificate chain and host name. Defaults to `false`.
+        /// Do not verify the server's certificate chain and host name. Defaults to `False`.
         /// </summary>
         public readonly bool? InsecureSkipVerify;
 

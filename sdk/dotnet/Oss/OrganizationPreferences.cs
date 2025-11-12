@@ -56,19 +56,19 @@ namespace Pulumiverse.Grafana.Oss
         public Output<string?> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+        /// The Organization theme. Available values are `Light`, `Dark`, `System`, or an empty string for the default.
         /// </summary>
         [Output("theme")]
         public Output<string?> Theme { get; private set; } = null!;
 
         /// <summary>
-        /// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+        /// The Organization timezone. Available values are `Utc`, `Browser`, or an empty string for the default.
         /// </summary>
         [Output("timezone")]
         public Output<string?> Timezone { get; private set; } = null!;
 
         /// <summary>
-        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+        /// The Organization week start day. Available values are `Sunday`, `Monday`, `Saturday`, or an empty string for the default. Defaults to ``.
         /// </summary>
         [Output("weekStart")]
         public Output<string?> WeekStart { get; private set; } = null!;
@@ -137,19 +137,19 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+        /// The Organization theme. Available values are `Light`, `Dark`, `System`, or an empty string for the default.
         /// </summary>
         [Input("theme")]
         public Input<string>? Theme { get; set; }
 
         /// <summary>
-        /// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+        /// The Organization timezone. Available values are `Utc`, `Browser`, or an empty string for the default.
         /// </summary>
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+        /// The Organization week start day. Available values are `Sunday`, `Monday`, `Saturday`, or an empty string for the default. Defaults to ``.
         /// </summary>
         [Input("weekStart")]
         public Input<string>? WeekStart { get; set; }
@@ -175,19 +175,19 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+        /// The Organization theme. Available values are `Light`, `Dark`, `System`, or an empty string for the default.
         /// </summary>
         [Input("theme")]
         public Input<string>? Theme { get; set; }
 
         /// <summary>
-        /// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+        /// The Organization timezone. Available values are `Utc`, `Browser`, or an empty string for the default.
         /// </summary>
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }
 
         /// <summary>
-        /// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
+        /// The Organization week start day. Available values are `Sunday`, `Monday`, `Saturday`, or an empty string for the default. Defaults to ``.
         /// </summary>
         [Input("weekStart")]
         public Input<string>? WeekStart { get; set; }

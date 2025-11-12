@@ -17,9 +17,9 @@ namespace Pulumiverse.Grafana.Oss
     /// The required arguments for this resource vary depending on the type of data
     /// source selected (via the 'type' argument).
     /// 
-    /// Use this resource for configuring multiple datasources, when that configuration (`json_data_encoded` field) requires circular references like in the example below.
+    /// Use this resource for configuring multiple datasources, when that configuration (`JsonDataEncoded` field) requires circular references like in the example below.
     /// 
-    /// &gt; When using the `grafana.oss.DataSourceConfig` resource, the corresponding `grafana.oss.DataSource` resources must have the `json_data_encoded` and `http_headers` fields ignored. Otherwise, an infinite update loop will occur. See the example below.
+    /// &gt; When using the `grafana.oss.DataSourceConfig` resource, the corresponding `grafana.oss.DataSource` resources must have the `JsonDataEncoded` and `HttpHeaders` fields ignored. Otherwise, an infinite update loop will occur. See the example below.
     /// 
     /// ## Example Usage
     /// 

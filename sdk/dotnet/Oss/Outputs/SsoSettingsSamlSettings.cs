@@ -75,7 +75,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly string? ClientSecret;
         /// <summary>
-        /// Define whether this configuration is enabled for SAML. Defaults to `true`.
+        /// Define whether this configuration is enabled for SAML. Defaults to `True`.
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>

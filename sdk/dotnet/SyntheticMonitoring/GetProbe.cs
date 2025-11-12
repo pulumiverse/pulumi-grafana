@@ -147,7 +147,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`.
+        /// Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `True`.
         /// </summary>
         public readonly bool Public;
         /// <summary>

@@ -20,7 +20,7 @@ namespace Pulumiverse.Grafana.OnCall.Inputs
         public Input<string>? ChannelId { get; set; }
 
         /// <summary>
-        /// Enable notification in Slack. Defaults to `true`.
+        /// Enable notification in Slack. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

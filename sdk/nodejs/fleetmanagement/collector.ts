@@ -15,6 +15,8 @@ import * as utilities from "../utilities";
  * * fleet-management:read
  * * fleet-management:write
  *
+ * ## Example Usage
+ *
  * ## Import
  *
  * ```sh

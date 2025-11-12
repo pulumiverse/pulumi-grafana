@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
     public sealed class ContactPointGooglechatGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }

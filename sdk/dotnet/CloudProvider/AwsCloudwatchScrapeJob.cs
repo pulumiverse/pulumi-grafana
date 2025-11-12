@@ -23,13 +23,13 @@ namespace Pulumiverse.Grafana.CloudProvider
     public partial class AwsCloudwatchScrapeJob : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.
+        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `ResourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
         /// </summary>
         [Output("awsAccountResourceId")]
         public Output<string> AwsAccountResourceId { get; private set; } = null!;
 
         /// <summary>
-        /// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `Name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         [Output("customNamespaces")]
         public Output<ImmutableArray<Outputs.AwsCloudwatchScrapeJobCustomNamespace>> CustomNamespaces { get; private set; } = null!;
@@ -41,13 +41,13 @@ namespace Pulumiverse.Grafana.CloudProvider
         public Output<string> DisabledReason { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
+        /// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_&lt;service_name&gt;_info`. Defaults to `true`.
+        /// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_&lt;service_name&gt;_info`. Defaults to `True`.
         /// </summary>
         [Output("exportTags")]
         public Output<bool> ExportTags { get; private set; } = null!;
@@ -62,7 +62,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         public Output<ImmutableArray<string>> RegionsSubsetOverrides { get; private set; } = null!;
 
         /// <summary>
-        /// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `Name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         [Output("services")]
         public Output<ImmutableArray<Outputs.AwsCloudwatchScrapeJobService>> Services { get; private set; } = null!;
@@ -124,7 +124,7 @@ namespace Pulumiverse.Grafana.CloudProvider
     public sealed class AwsCloudwatchScrapeJobArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.
+        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `ResourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
         /// </summary>
         [Input("awsAccountResourceId", required: true)]
         public Input<string> AwsAccountResourceId { get; set; } = null!;
@@ -133,7 +133,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         private InputList<Inputs.AwsCloudwatchScrapeJobCustomNamespaceArgs>? _customNamespaces;
 
         /// <summary>
-        /// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `Name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         public InputList<Inputs.AwsCloudwatchScrapeJobCustomNamespaceArgs> CustomNamespaces
         {
@@ -142,13 +142,13 @@ namespace Pulumiverse.Grafana.CloudProvider
         }
 
         /// <summary>
-        /// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
+        /// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_&lt;service_name&gt;_info`. Defaults to `true`.
+        /// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_&lt;service_name&gt;_info`. Defaults to `True`.
         /// </summary>
         [Input("exportTags")]
         public Input<bool>? ExportTags { get; set; }
@@ -172,7 +172,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         private InputList<Inputs.AwsCloudwatchScrapeJobServiceArgs>? _services;
 
         /// <summary>
-        /// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `Name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         public InputList<Inputs.AwsCloudwatchScrapeJobServiceArgs> Services
         {
@@ -204,7 +204,7 @@ namespace Pulumiverse.Grafana.CloudProvider
     public sealed class AwsCloudwatchScrapeJobState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `grafana.cloudProvider.AwsAccount` resource.
+        /// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `ResourceId` attribute of the `grafana.cloudProvider.AwsAccount` resource.
         /// </summary>
         [Input("awsAccountResourceId")]
         public Input<string>? AwsAccountResourceId { get; set; }
@@ -213,7 +213,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         private InputList<Inputs.AwsCloudwatchScrapeJobCustomNamespaceGetArgs>? _customNamespaces;
 
         /// <summary>
-        /// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `Name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         public InputList<Inputs.AwsCloudwatchScrapeJobCustomNamespaceGetArgs> CustomNamespaces
         {
@@ -228,13 +228,13 @@ namespace Pulumiverse.Grafana.CloudProvider
         public Input<string>? DisabledReason { get; set; }
 
         /// <summary>
-        /// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
+        /// Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_&lt;service_name&gt;_info`. Defaults to `true`.
+        /// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_&lt;service_name&gt;_info`. Defaults to `True`.
         /// </summary>
         [Input("exportTags")]
         public Input<bool>? ExportTags { get; set; }
@@ -258,7 +258,7 @@ namespace Pulumiverse.Grafana.CloudProvider
         private InputList<Inputs.AwsCloudwatchScrapeJobServiceGetArgs>? _services;
 
         /// <summary>
-        /// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        /// One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `Name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         public InputList<Inputs.AwsCloudwatchScrapeJobServiceGetArgs> Services
         {

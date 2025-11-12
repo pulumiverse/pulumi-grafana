@@ -124,7 +124,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<int?> Position { get; private set; } = null!;
 
         /// <summary>
-        /// The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notify_by_msteams` is only available for Grafana Cloud customers.
+        /// The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `NotifyByMsteams` is only available for Grafana Cloud customers.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -201,7 +201,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<int>? Position { get; set; }
 
         /// <summary>
-        /// The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notify_by_msteams` is only available for Grafana Cloud customers.
+        /// The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `NotifyByMsteams` is only available for Grafana Cloud customers.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -239,7 +239,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<int>? Position { get; set; }
 
         /// <summary>
-        /// The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notify_by_msteams` is only available for Grafana Cloud customers.
+        /// The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `NotifyByMsteams` is only available for Grafana Cloud customers.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

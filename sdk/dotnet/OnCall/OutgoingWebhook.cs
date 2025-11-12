@@ -99,7 +99,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<ImmutableArray<string>> IntegrationFilters { get; private set; } = null!;
 
         /// <summary>
-        /// Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
+        /// Controls whether the outgoing webhook will trigger or is ignored. Defaults to `True`.
         /// </summary>
         [Output("isWebhookEnabled")]
         public Output<bool?> IsWebhookEnabled { get; private set; } = null!;
@@ -117,7 +117,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        /// The preset of the outgoing webhook. Possible values are: `SimpleWebhook`, `AdvancedWebhook`, `GrafanaSift`, `GrafanaAssistant`, `IncidentWebhook`. If no preset is set, the default preset is `AdvancedWebhook`.
         /// </summary>
         [Output("preset")]
         public Output<string?> Preset { get; private set; } = null!;
@@ -135,7 +135,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string?> TriggerTemplate { get; private set; } = null!;
 
         /// <summary>
-        /// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
+        /// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `Escalation`, `alert group created`, `status change`, `Acknowledge`, `Resolve`, `Silence`, `Unsilence`, `Unresolve`, `Unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `Escalation`.
         /// </summary>
         [Output("triggerType")]
         public Output<string?> TriggerType { get; private set; } = null!;
@@ -257,7 +257,7 @@ namespace Pulumiverse.Grafana.OnCall
         }
 
         /// <summary>
-        /// Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
+        /// Controls whether the outgoing webhook will trigger or is ignored. Defaults to `True`.
         /// </summary>
         [Input("isWebhookEnabled")]
         public Input<bool>? IsWebhookEnabled { get; set; }
@@ -285,7 +285,7 @@ namespace Pulumiverse.Grafana.OnCall
         }
 
         /// <summary>
-        /// The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        /// The preset of the outgoing webhook. Possible values are: `SimpleWebhook`, `AdvancedWebhook`, `GrafanaSift`, `GrafanaAssistant`, `IncidentWebhook`. If no preset is set, the default preset is `AdvancedWebhook`.
         /// </summary>
         [Input("preset")]
         public Input<string>? Preset { get; set; }
@@ -303,7 +303,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? TriggerTemplate { get; set; }
 
         /// <summary>
-        /// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
+        /// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `Escalation`, `alert group created`, `status change`, `Acknowledge`, `Resolve`, `Silence`, `Unsilence`, `Unresolve`, `Unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `Escalation`.
         /// </summary>
         [Input("triggerType")]
         public Input<string>? TriggerType { get; set; }
@@ -381,7 +381,7 @@ namespace Pulumiverse.Grafana.OnCall
         }
 
         /// <summary>
-        /// Controls whether the outgoing webhook will trigger or is ignored. Defaults to `true`.
+        /// Controls whether the outgoing webhook will trigger or is ignored. Defaults to `True`.
         /// </summary>
         [Input("isWebhookEnabled")]
         public Input<bool>? IsWebhookEnabled { get; set; }
@@ -409,7 +409,7 @@ namespace Pulumiverse.Grafana.OnCall
         }
 
         /// <summary>
-        /// The preset of the outgoing webhook. Possible values are: `simple_webhook`, `advanced_webhook`, `grafana_sift`, `grafana_assistant`, `incident_webhook`. If no preset is set, the default preset is `advanced_webhook`.
+        /// The preset of the outgoing webhook. Possible values are: `SimpleWebhook`, `AdvancedWebhook`, `GrafanaSift`, `GrafanaAssistant`, `IncidentWebhook`. If no preset is set, the default preset is `AdvancedWebhook`.
         /// </summary>
         [Input("preset")]
         public Input<string>? Preset { get; set; }
@@ -427,7 +427,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? TriggerTemplate { get; set; }
 
         /// <summary>
-        /// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `escalation`, `alert group created`, `status change`, `acknowledge`, `resolve`, `silence`, `unsilence`, `unresolve`, `unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `escalation`.
+        /// The type of event that will cause this outgoing webhook to execute. The events available will depend on the preset used. For alert group webhooks, the possible triggers are: `Escalation`, `alert group created`, `status change`, `Acknowledge`, `Resolve`, `Silence`, `Unsilence`, `Unresolve`, `Unacknowledge`, `resolution note added`, `personal notification`; for incident webhooks: `incident declared`, `incident changed`, `incident resolved`. Defaults to `Escalation`.
         /// </summary>
         [Input("triggerType")]
         public Input<string>? TriggerType { get; set; }

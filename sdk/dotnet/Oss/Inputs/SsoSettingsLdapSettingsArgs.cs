@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<Inputs.SsoSettingsLdapSettingsConfigArgs> Config { get; set; } = null!;
 
         /// <summary>
-        /// Define whether this configuration is enabled for LDAP. Defaults to `true`.
+        /// Define whether this configuration is enabled for LDAP. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

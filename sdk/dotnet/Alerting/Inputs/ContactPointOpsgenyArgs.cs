@@ -42,7 +42,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }
@@ -54,7 +54,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<string>? Message { get; set; }
 
         /// <summary>
-        /// Whether to allow the alert priority to be configured via the value of the `og_priority` annotation on the alert.
+        /// Whether to allow the alert priority to be configured via the value of the `OgPriority` annotation on the alert.
         /// </summary>
         [Input("overridePriority")]
         public Input<bool>? OverridePriority { get; set; }
@@ -72,7 +72,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         }
 
         /// <summary>
-        /// Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.
+        /// Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `Tags`, `Details`, `Both`, or empty to use the default behavior of Tags.
         /// </summary>
         [Input("sendTagsAs")]
         public Input<string>? SendTagsAs { get; set; }

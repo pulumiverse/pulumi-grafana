@@ -255,7 +255,7 @@ namespace Pulumiverse.Grafana.Enterprise
         /// </summary>
         public readonly string Uid;
         /// <summary>
-        /// Version of the role. A role is updated only on version increase. This field or `auto_increment_version` should be set.
+        /// Version of the role. A role is updated only on version increase. This field or `AutoIncrementVersion` should be set.
         /// </summary>
         public readonly int Version;
 

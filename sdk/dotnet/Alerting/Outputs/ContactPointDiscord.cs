@@ -19,7 +19,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly string? AvatarUrl;
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
         /// <summary>
@@ -43,7 +43,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly string Url;
         /// <summary>
-        /// Whether to use the bot account's plain username instead of "Grafana." Defaults to `false`.
+        /// Whether to use the bot account's plain username instead of "Grafana." Defaults to `False`.
         /// </summary>
         public readonly bool? UseDiscordUsername;
 

@@ -14,15 +14,15 @@ namespace Pulumiverse.Grafana.MachineLearning
     /// A job defines the queries and model parameters for a machine learning task.
     /// 
     /// See [the Grafana Cloud docs](https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/dynamic-alerting/forecasting/config/) for more information
-    /// on available hyperparameters for use in the `hyper_params` field.
+    /// on available hyperparameters for use in the `HyperParams` field.
     /// 
     /// ## Example Usage
     /// 
     /// ### Basic Forecast
     /// 
-    /// This forecast uses a Prometheus datasource, where the source query is defined in the `expr` field of the `query_params` attribute.
+    /// This forecast uses a Prometheus datasource, where the source query is defined in the `Expr` field of the `QueryParams` attribute.
     /// 
-    /// Other datasources are supported, but the structure `query_params` may differ.
+    /// Other datasources are supported, but the structure `QueryParams` may differ.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

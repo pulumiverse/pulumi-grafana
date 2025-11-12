@@ -228,7 +228,7 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
+        /// Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`PrometheusUserId` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
         /// </summary>
         public readonly string InfluxUrl;
         /// <summary>
@@ -280,7 +280,7 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string OtlpPrivateConnectivityInfoServiceName;
         /// <summary>
-        /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        /// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`Id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
         /// </summary>
         public readonly string OtlpUrl;
         /// <summary>

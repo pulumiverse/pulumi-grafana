@@ -15,11 +15,11 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
     public sealed class ContactPointKafka
     {
         /// <summary>
-        /// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+        /// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `V2`.
         /// </summary>
         public readonly string? ApiVersion;
         /// <summary>
-        /// The Id of cluster to use when contacting the Kafka REST Server. Required api_version to be 'v3'
+        /// The Id of cluster to use when contacting the Kafka REST Server. Required ApiVersion to be 'v3'
         /// </summary>
         public readonly string? ClusterId;
         /// <summary>
@@ -31,7 +31,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly string? Details;
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         public readonly bool? DisableResolveMessage;
         /// <summary>

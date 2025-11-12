@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
     public sealed class CheckSettingsHttpFailIfHeaderMatchesRegexp
     {
         /// <summary>
-        /// Allow header to be missing from responses. Defaults to `false`.
+        /// Allow header to be missing from responses. Defaults to `False`.
         /// </summary>
         public readonly bool? AllowMissing;
         /// <summary>

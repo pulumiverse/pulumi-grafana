@@ -14,13 +14,13 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
     public sealed class ContactPointKafkaGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.
+        /// The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `V2`.
         /// </summary>
         [Input("apiVersion")]
         public Input<string>? ApiVersion { get; set; }
 
         /// <summary>
-        /// The Id of cluster to use when contacting the Kafka REST Server. Required api_version to be 'v3'
+        /// The Id of cluster to use when contacting the Kafka REST Server. Required ApiVersion to be 'v3'
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
@@ -38,7 +38,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<string>? Details { get; set; }
 
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }

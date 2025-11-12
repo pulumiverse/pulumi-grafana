@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<bool>? DisableNotifications { get; set; }
 
         /// <summary>
-        /// Whether to disable sending resolve messages. Defaults to `false`.
+        /// Whether to disable sending resolve messages. Defaults to `False`.
         /// </summary>
         [Input("disableResolveMessage")]
         public Input<bool>? DisableResolveMessage { get; set; }

@@ -42,7 +42,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         }
 
         /// <summary>
-        /// Disable target certificate validation. Defaults to `false`.
+        /// Disable target certificate validation. Defaults to `False`.
         /// </summary>
         [Input("insecureSkipVerify")]
         public Input<bool>? InsecureSkipVerify { get; set; }

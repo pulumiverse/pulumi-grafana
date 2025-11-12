@@ -212,7 +212,7 @@ namespace Pulumiverse.Grafana.Oss
     public sealed class GetDataSourceResult
     {
         /// <summary>
-        /// The method by which Grafana will access the data source: `proxy` or `direct`.
+        /// The method by which Grafana will access the data source: `Proxy` or `Direct`.
         /// </summary>
         public readonly string AccessMode;
         /// <summary>
@@ -232,7 +232,7 @@ namespace Pulumiverse.Grafana.Oss
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Whether to set the data source as default. This should only be `true` to a single data source.
+        /// Whether to set the data source as default. This should only be `True` to a single data source.
         /// </summary>
         public readonly bool IsDefault;
         /// <summary>

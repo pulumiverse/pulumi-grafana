@@ -107,7 +107,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string> RoutingRegex { get; private set; } = null!;
 
         /// <summary>
-        /// The type of route. Can be jinja2, regex Defaults to `regex`.
+        /// The type of route. Can be jinja2, regex Defaults to `Regex`.
         /// </summary>
         [Output("routingType")]
         public Output<string?> RoutingType { get; private set; } = null!;
@@ -202,7 +202,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string> RoutingRegex { get; set; } = null!;
 
         /// <summary>
-        /// The type of route. Can be jinja2, regex Defaults to `regex`.
+        /// The type of route. Can be jinja2, regex Defaults to `Regex`.
         /// </summary>
         [Input("routingType")]
         public Input<string>? RoutingType { get; set; }
@@ -258,7 +258,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? RoutingRegex { get; set; }
 
         /// <summary>
-        /// The type of route. Can be jinja2, regex Defaults to `regex`.
+        /// The type of route. Can be jinja2, regex Defaults to `Regex`.
         /// </summary>
         [Input("routingType")]
         public Input<string>? RoutingType { get; set; }

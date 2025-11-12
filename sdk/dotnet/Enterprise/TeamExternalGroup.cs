@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Enterprise
 {
     /// <summary>
-    /// Equivalent to the the `team_sync` attribute of the `grafana.oss.Team` resource. Use one or the other to configure a team's external groups syncing config.
+    /// Equivalent to the the `TeamSync` attribute of the `grafana.oss.Team` resource. Use one or the other to configure a team's external groups syncing config.
     /// 
     /// ## Example Usage
     /// 

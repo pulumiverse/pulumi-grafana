@@ -26,7 +26,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Inputs
         public Input<int>? MaxUnknownHops { get; set; }
 
         /// <summary>
-        /// Reverse lookup hostnames from IP addresses Defaults to `true`.
+        /// Reverse lookup hostnames from IP addresses Defaults to `True`.
         /// </summary>
         [Input("ptrLookup")]
         public Input<bool>? PtrLookup { get; set; }

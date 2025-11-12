@@ -27,7 +27,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring.Outputs
         /// </summary>
         public readonly string? ClientKey;
         /// <summary>
-        /// Disable target certificate validation. Defaults to `false`.
+        /// Disable target certificate validation. Defaults to `False`.
         /// </summary>
         public readonly bool? InsecureSkipVerify;
         /// <summary>

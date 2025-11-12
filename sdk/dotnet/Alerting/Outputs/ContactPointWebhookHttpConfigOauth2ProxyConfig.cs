@@ -23,7 +23,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string>? ProxyConnectHeader;
         /// <summary>
-        /// Use environment HTTP*PROXY, HTTPS*PROXY and NO_PROXY to determine proxies. Defaults to `false`.
+        /// Use environment HTTP*PROXY, HTTPS*PROXY and NO_PROXY to determine proxies. Defaults to `False`.
         /// </summary>
         public readonly bool? ProxyFromEnvironment;
         /// <summary>

@@ -116,6 +116,8 @@ class Collector(pulumi.CustomResource):
         * fleet-management:read
         * fleet-management:write
 
+        ## Example Usage
+
         ## Import
 
         ```sh
@@ -143,6 +145,8 @@ class Collector(pulumi.CustomResource):
 
         * fleet-management:read
         * fleet-management:write
+
+        ## Example Usage
 
         ## Import
 
