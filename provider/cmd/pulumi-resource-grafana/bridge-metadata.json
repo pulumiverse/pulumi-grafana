@@ -222,6 +222,10 @@
                     }
                 }
             },
+            "grafana_cloud_access_policy_rotating_token": {
+                "current": "grafana:cloud/accessPolicyRotatingToken:AccessPolicyRotatingToken",
+                "majorVersion": 2
+            },
             "grafana_cloud_access_policy_token": {
                 "current": "grafana:cloud/accessPolicyToken:AccessPolicyToken",
                 "majorVersion": 2
@@ -2007,6 +2011,7 @@
             "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig": 0,
             "grafana:assert/thresholds:Thresholds": 0,
             "grafana:cloud/accessPolicy:AccessPolicy": 0,
+            "grafana:cloud/accessPolicyRotatingToken:AccessPolicyRotatingToken": 0,
             "grafana:cloud/accessPolicyToken:AccessPolicyToken": 0,
             "grafana:cloud/orgMember:OrgMember": 1,
             "grafana:cloud/pluginInstallation:PluginInstallation": 0,

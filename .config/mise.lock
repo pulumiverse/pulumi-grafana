@@ -11,18 +11,8 @@ version = "0.6.0"
 backend = "github:pulumi/schema-tools"
 
 [[tools.go]]
-version = "1.25.4"
+version = "1.25.3"
 backend = "core:go"
-
-[tools.go.platforms.linux-x64]
-checksum = "sha256:9fa5ffeda4170de60f67f3aa0f824e426421ba724c21e133c1e35d6159ca1bec"
-size = 59766394
-url = "https://dl.google.com/go/go1.25.4.linux-amd64.tar.gz"
-
-[tools.go.platforms.macos-arm64]
-checksum = "sha256:c1b04e74251fe1dfbc5382e73d0c6d96f49642d8aebb7ee10a7ecd4cae36ebd2"
-size = 58026727
-url = "https://dl.google.com/go/go1.25.4.darwin-arm64.tar.gz"
 
 [[tools.gradle]]
 version = "7.6.6"
@@ -69,7 +59,7 @@ version = "3.11.8"
 backend = "core:python"
 
 [[tools."vfox-pulumi:pulumi/pulumi-aws"]]
-version = "7.11.0"
+version = "7.11.1"
 backend = "vfox-pulumi:pulumi/pulumi-aws"
 
 [[tools."vfox-pulumi:pulumi/pulumi-converter-terraform"]]
