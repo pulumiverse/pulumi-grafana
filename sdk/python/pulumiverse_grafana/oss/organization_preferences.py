@@ -28,8 +28,8 @@ class OrganizationPreferencesArgs:
         The set of arguments for constructing a OrganizationPreferences resource.
         :param pulumi.Input[_builtins.str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[_builtins.str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
-        :param pulumi.Input[_builtins.str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+        :param pulumi.Input[_builtins.str] theme: The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
+        :param pulumi.Input[_builtins.str] timezone: The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
         :param pulumi.Input[_builtins.str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         if home_dashboard_uid is not None:
@@ -71,7 +71,7 @@ class OrganizationPreferencesArgs:
     @pulumi.getter
     def theme(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+        The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
         """
         return pulumi.get(self, "theme")
 
@@ -83,7 +83,7 @@ class OrganizationPreferencesArgs:
     @pulumi.getter
     def timezone(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+        The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
         """
         return pulumi.get(self, "timezone")
 
@@ -116,8 +116,8 @@ class _OrganizationPreferencesState:
         Input properties used for looking up and filtering OrganizationPreferences resources.
         :param pulumi.Input[_builtins.str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[_builtins.str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
-        :param pulumi.Input[_builtins.str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+        :param pulumi.Input[_builtins.str] theme: The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
+        :param pulumi.Input[_builtins.str] timezone: The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
         :param pulumi.Input[_builtins.str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         if home_dashboard_uid is not None:
@@ -159,7 +159,7 @@ class _OrganizationPreferencesState:
     @pulumi.getter
     def theme(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+        The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
         """
         return pulumi.get(self, "theme")
 
@@ -171,7 +171,7 @@ class _OrganizationPreferencesState:
     @pulumi.getter
     def timezone(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+        The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
         """
         return pulumi.get(self, "timezone")
 
@@ -230,8 +230,8 @@ class OrganizationPreferences(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[_builtins.str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
-        :param pulumi.Input[_builtins.str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+        :param pulumi.Input[_builtins.str] theme: The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
+        :param pulumi.Input[_builtins.str] timezone: The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
         :param pulumi.Input[_builtins.str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         ...
@@ -322,8 +322,8 @@ class OrganizationPreferences(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[_builtins.str] theme: The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
-        :param pulumi.Input[_builtins.str] timezone: The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+        :param pulumi.Input[_builtins.str] theme: The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
+        :param pulumi.Input[_builtins.str] timezone: The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
         :param pulumi.Input[_builtins.str] week_start: The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -357,7 +357,7 @@ class OrganizationPreferences(pulumi.CustomResource):
     @pulumi.getter
     def theme(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+        The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
         """
         return pulumi.get(self, "theme")
 
@@ -365,7 +365,7 @@ class OrganizationPreferences(pulumi.CustomResource):
     @pulumi.getter
     def timezone(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+        The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
         """
         return pulumi.get(self, "timezone")
 

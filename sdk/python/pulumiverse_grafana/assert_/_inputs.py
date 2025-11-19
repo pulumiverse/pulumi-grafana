@@ -328,7 +328,7 @@ if not MYPY:
     class LogConfigMatchArgsDict(TypedDict):
         op: pulumi.Input[_builtins.str]
         """
-        Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.
+        Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
         """
         property: pulumi.Input[_builtins.str]
         """
@@ -348,7 +348,7 @@ class LogConfigMatchArgs:
                  property: pulumi.Input[_builtins.str],
                  values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         """
-        :param pulumi.Input[_builtins.str] op: Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.
+        :param pulumi.Input[_builtins.str] op: Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
         :param pulumi.Input[_builtins.str] property: Entity property to match.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: Values to match against.
         """
@@ -360,7 +360,7 @@ class LogConfigMatchArgs:
     @pulumi.getter
     def op(self) -> pulumi.Input[_builtins.str]:
         """
-        Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.
+        Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
         """
         return pulumi.get(self, "op")
 

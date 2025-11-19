@@ -177,6 +177,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloud/accessPolicyRotatingToken",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/accessPolicyRotatingToken:AccessPolicyRotatingToken": "AccessPolicyRotatingToken"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloud/accessPolicyToken",
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {

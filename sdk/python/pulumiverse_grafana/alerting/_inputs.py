@@ -3009,9 +3009,9 @@ if not MYPY:
         """
         Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
         """
-        expressions: Any
+        expressions: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]
         """
-        A sequence of stages that describe the contents of the rule.
+        A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
         """
         no_data_state: pulumi.Input[_builtins.str]
         """
@@ -3064,7 +3064,7 @@ elif False:
 class AlertRuleV0Alpha1SpecArgs:
     def __init__(__self__, *,
                  exec_err_state: pulumi.Input[_builtins.str],
-                 expressions: Any,
+                 expressions: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]],
                  no_data_state: pulumi.Input[_builtins.str],
                  title: pulumi.Input[_builtins.str],
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -3078,7 +3078,7 @@ class AlertRuleV0Alpha1SpecArgs:
                  trigger: Optional[pulumi.Input['AlertRuleV0Alpha1SpecTriggerArgs']] = None):
         """
         :param pulumi.Input[_builtins.str] exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
-        :param Any expressions: A sequence of stages that describe the contents of the rule.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] expressions: A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
         :param pulumi.Input[_builtins.str] no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
         :param pulumi.Input[_builtins.str] title: The title of the alert rule.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts.
@@ -3128,14 +3128,14 @@ class AlertRuleV0Alpha1SpecArgs:
 
     @_builtins.property
     @pulumi.getter
-    def expressions(self) -> Any:
+    def expressions(self) -> pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]:
         """
-        A sequence of stages that describe the contents of the rule.
+        A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
         """
         return pulumi.get(self, "expressions")
 
     @expressions.setter
-    def expressions(self, value: Any):
+    def expressions(self, value: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]):
         pulumi.set(self, "expressions", value)
 
     @_builtins.property
@@ -9873,9 +9873,9 @@ class RecordingRuleV0Alpha1OptionsArgs:
 
 if not MYPY:
     class RecordingRuleV0Alpha1SpecArgsDict(TypedDict):
-        expressions: Any
+        expressions: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]
         """
-        A sequence of stages that describe the contents of the rule.
+        A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
         """
         metric: pulumi.Input[_builtins.str]
         """
@@ -9907,7 +9907,7 @@ elif False:
 @pulumi.input_type
 class RecordingRuleV0Alpha1SpecArgs:
     def __init__(__self__, *,
-                 expressions: Any,
+                 expressions: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]],
                  metric: pulumi.Input[_builtins.str],
                  target_datasource_uid: pulumi.Input[_builtins.str],
                  title: pulumi.Input[_builtins.str],
@@ -9915,7 +9915,7 @@ class RecordingRuleV0Alpha1SpecArgs:
                  paused: Optional[pulumi.Input[_builtins.bool]] = None,
                  trigger: Optional[pulumi.Input['RecordingRuleV0Alpha1SpecTriggerArgs']] = None):
         """
-        :param Any expressions: A sequence of stages that describe the contents of the rule.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] expressions: A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
         :param pulumi.Input[_builtins.str] metric: The name of the metric to write to.
         :param pulumi.Input[_builtins.str] target_datasource_uid: The UID of the datasource to write the metric to.
         :param pulumi.Input[_builtins.str] title: The title of the recording rule.
@@ -9936,14 +9936,14 @@ class RecordingRuleV0Alpha1SpecArgs:
 
     @_builtins.property
     @pulumi.getter
-    def expressions(self) -> Any:
+    def expressions(self) -> pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]:
         """
-        A sequence of stages that describe the contents of the rule.
+        A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
         """
         return pulumi.get(self, "expressions")
 
     @expressions.setter
-    def expressions(self, value: Any):
+    def expressions(self, value: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]):
         pulumi.set(self, "expressions", value)
 
     @_builtins.property

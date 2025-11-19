@@ -54,9 +54,9 @@ type OrganizationPreferences struct {
 	HomeDashboardUid pulumi.StringPtrOutput `pulumi:"homeDashboardUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
-	// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+	// The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
 	Theme pulumi.StringPtrOutput `pulumi:"theme"`
-	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+	// The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
 	Timezone pulumi.StringPtrOutput `pulumi:"timezone"`
 	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
 	WeekStart pulumi.StringPtrOutput `pulumi:"weekStart"`
@@ -102,9 +102,9 @@ type organizationPreferencesState struct {
 	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+	// The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
 	Theme *string `pulumi:"theme"`
-	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+	// The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
 	Timezone *string `pulumi:"timezone"`
 	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
 	WeekStart *string `pulumi:"weekStart"`
@@ -115,9 +115,9 @@ type OrganizationPreferencesState struct {
 	HomeDashboardUid pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
-	// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+	// The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
 	Theme pulumi.StringPtrInput
-	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+	// The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
 	Timezone pulumi.StringPtrInput
 	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
 	WeekStart pulumi.StringPtrInput
@@ -132,9 +132,9 @@ type organizationPreferencesArgs struct {
 	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+	// The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
 	Theme *string `pulumi:"theme"`
-	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+	// The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
 	Timezone *string `pulumi:"timezone"`
 	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
 	WeekStart *string `pulumi:"weekStart"`
@@ -146,9 +146,9 @@ type OrganizationPreferencesArgs struct {
 	HomeDashboardUid pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId pulumi.StringPtrInput
-	// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+	// The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
 	Theme pulumi.StringPtrInput
-	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+	// The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
 	Timezone pulumi.StringPtrInput
 	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default. Defaults to ``.
 	WeekStart pulumi.StringPtrInput
@@ -251,12 +251,12 @@ func (o OrganizationPreferencesOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OrganizationPreferences) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
-// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+// The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
 func (o OrganizationPreferencesOutput) Theme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OrganizationPreferences) pulumi.StringPtrOutput { return v.Theme }).(pulumi.StringPtrOutput)
 }
 
-// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+// The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
 func (o OrganizationPreferencesOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OrganizationPreferences) pulumi.StringPtrOutput { return v.Timezone }).(pulumi.StringPtrOutput)
 }

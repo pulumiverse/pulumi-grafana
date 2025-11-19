@@ -147,6 +147,7 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumiverse_grafana as grafana
 
         recordingrule_folder = grafana.oss.Folder("recordingrule_folder", title="Alert Rule Folder")
@@ -162,7 +163,7 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
                 },
                 "paused": True,
                 "expressions": {
-                    "A": {
+                    "A": json.dumps({
                         "model": {
                             "editorMode": "code",
                             "expr": "count(up{})",
@@ -173,14 +174,14 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
                             "range": False,
                             "refId": "A",
                         },
-                        "datasourceUid": "ds_uid",
-                        "relativeTimeRange": {
+                        "datasource_uid": "ds_uid",
+                        "relative_time_range": {
                             "from": "600s",
                             "to": "0s",
                         },
-                        "queryType": "",
+                        "query_type": "",
                         "source": True,
-                    },
+                    }),
                 },
                 "target_datasource_uid": "target_ds_uid",
                 "metric": "tf-metric",
@@ -209,6 +210,7 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumiverse_grafana as grafana
 
         recordingrule_folder = grafana.oss.Folder("recordingrule_folder", title="Alert Rule Folder")
@@ -224,7 +226,7 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
                 },
                 "paused": True,
                 "expressions": {
-                    "A": {
+                    "A": json.dumps({
                         "model": {
                             "editorMode": "code",
                             "expr": "count(up{})",
@@ -235,14 +237,14 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
                             "range": False,
                             "refId": "A",
                         },
-                        "datasourceUid": "ds_uid",
-                        "relativeTimeRange": {
+                        "datasource_uid": "ds_uid",
+                        "relative_time_range": {
                             "from": "600s",
                             "to": "0s",
                         },
-                        "queryType": "",
+                        "query_type": "",
                         "source": True,
-                    },
+                    }),
                 },
                 "target_datasource_uid": "target_ds_uid",
                 "metric": "tf-metric",

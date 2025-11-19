@@ -2131,7 +2131,7 @@ class AlertRuleV0Alpha1Spec(dict):
 
     def __init__(__self__, *,
                  exec_err_state: _builtins.str,
-                 expressions: Any,
+                 expressions: Mapping[str, _builtins.str],
                  no_data_state: _builtins.str,
                  title: _builtins.str,
                  annotations: Optional[Mapping[str, _builtins.str]] = None,
@@ -2145,7 +2145,7 @@ class AlertRuleV0Alpha1Spec(dict):
                  trigger: Optional['outputs.AlertRuleV0Alpha1SpecTrigger'] = None):
         """
         :param _builtins.str exec_err_state: Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
-        :param Any expressions: A sequence of stages that describe the contents of the rule.
+        :param Mapping[str, _builtins.str] expressions: A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
         :param _builtins.str no_data_state: Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
         :param _builtins.str title: The title of the alert rule.
         :param Mapping[str, _builtins.str] annotations: Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts.
@@ -2191,9 +2191,9 @@ class AlertRuleV0Alpha1Spec(dict):
 
     @_builtins.property
     @pulumi.getter
-    def expressions(self) -> Any:
+    def expressions(self) -> Mapping[str, _builtins.str]:
         """
-        A sequence of stages that describe the contents of the rule.
+        A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
         """
         return pulumi.get(self, "expressions")
 
@@ -7004,7 +7004,7 @@ class RecordingRuleV0Alpha1Spec(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 expressions: Any,
+                 expressions: Mapping[str, _builtins.str],
                  metric: _builtins.str,
                  target_datasource_uid: _builtins.str,
                  title: _builtins.str,
@@ -7012,7 +7012,7 @@ class RecordingRuleV0Alpha1Spec(dict):
                  paused: Optional[_builtins.bool] = None,
                  trigger: Optional['outputs.RecordingRuleV0Alpha1SpecTrigger'] = None):
         """
-        :param Any expressions: A sequence of stages that describe the contents of the rule.
+        :param Mapping[str, _builtins.str] expressions: A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
         :param _builtins.str metric: The name of the metric to write to.
         :param _builtins.str target_datasource_uid: The UID of the datasource to write the metric to.
         :param _builtins.str title: The title of the recording rule.
@@ -7033,9 +7033,9 @@ class RecordingRuleV0Alpha1Spec(dict):
 
     @_builtins.property
     @pulumi.getter
-    def expressions(self) -> Any:
+    def expressions(self) -> Mapping[str, _builtins.str]:
         """
-        A sequence of stages that describe the contents of the rule.
+        A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
         """
         return pulumi.get(self, "expressions")
 

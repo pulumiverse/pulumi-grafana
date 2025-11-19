@@ -10,6 +10,11 @@ export type AccessPolicy = import("./accessPolicy").AccessPolicy;
 export const AccessPolicy: typeof import("./accessPolicy").AccessPolicy = null as any;
 utilities.lazyLoad(exports, ["AccessPolicy"], () => require("./accessPolicy"));
 
+export { AccessPolicyRotatingTokenArgs, AccessPolicyRotatingTokenState } from "./accessPolicyRotatingToken";
+export type AccessPolicyRotatingToken = import("./accessPolicyRotatingToken").AccessPolicyRotatingToken;
+export const AccessPolicyRotatingToken: typeof import("./accessPolicyRotatingToken").AccessPolicyRotatingToken = null as any;
+utilities.lazyLoad(exports, ["AccessPolicyRotatingToken"], () => require("./accessPolicyRotatingToken"));
+
 export { AccessPolicyTokenArgs, AccessPolicyTokenState } from "./accessPolicyToken";
 export type AccessPolicyToken = import("./accessPolicyToken").AccessPolicyToken;
 export const AccessPolicyToken: typeof import("./accessPolicyToken").AccessPolicyToken = null as any;
@@ -92,6 +97,8 @@ const _module = {
         switch (type) {
             case "grafana:cloud/accessPolicy:AccessPolicy":
                 return new AccessPolicy(name, <any>undefined, { urn })
+            case "grafana:cloud/accessPolicyRotatingToken:AccessPolicyRotatingToken":
+                return new AccessPolicyRotatingToken(name, <any>undefined, { urn })
             case "grafana:cloud/accessPolicyToken:AccessPolicyToken":
                 return new AccessPolicyToken(name, <any>undefined, { urn })
             case "grafana:cloud/orgMember:OrgMember":
@@ -118,6 +125,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicy", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicyRotatingToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicyToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/orgMember", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/pluginInstallation", _module)

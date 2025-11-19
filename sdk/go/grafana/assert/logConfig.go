@@ -37,14 +37,14 @@ import (
 //				Matches: assert.LogConfigMatchArray{
 //					&assert.LogConfigMatchArgs{
 //						Property: pulumi.String("asserts_entity_type"),
-//						Op:       pulumi.String("EQUALS"),
+//						Op:       pulumi.String("="),
 //						Values: pulumi.StringArray{
 //							pulumi.String("Service"),
 //						},
 //					},
 //					&assert.LogConfigMatchArgs{
 //						Property: pulumi.String("environment"),
-//						Op:       pulumi.String("EQUALS"),
+//						Op:       pulumi.String("="),
 //						Values: pulumi.StringArray{
 //							pulumi.String("production"),
 //							pulumi.String("staging"),
@@ -52,7 +52,7 @@ import (
 //					},
 //					&assert.LogConfigMatchArgs{
 //						Property: pulumi.String("site"),
-//						Op:       pulumi.String("EQUALS"),
+//						Op:       pulumi.String("="),
 //						Values: pulumi.StringArray{
 //							pulumi.String("us-east-1"),
 //							pulumi.String("us-west-2"),
@@ -80,14 +80,14 @@ import (
 //				Matches: assert.LogConfigMatchArray{
 //					&assert.LogConfigMatchArgs{
 //						Property: pulumi.String("asserts_entity_type"),
-//						Op:       pulumi.String("EQUALS"),
+//						Op:       pulumi.String("="),
 //						Values: pulumi.StringArray{
 //							pulumi.String("Service"),
 //						},
 //					},
 //					&assert.LogConfigMatchArgs{
 //						Property: pulumi.String("environment"),
-//						Op:       pulumi.String("EQUALS"),
+//						Op:       pulumi.String("="),
 //						Values: pulumi.StringArray{
 //							pulumi.String("development"),
 //							pulumi.String("testing"),
@@ -95,14 +95,14 @@ import (
 //					},
 //					&assert.LogConfigMatchArgs{
 //						Property: pulumi.String("site"),
-//						Op:       pulumi.String("EQUALS"),
+//						Op:       pulumi.String("="),
 //						Values: pulumi.StringArray{
 //							pulumi.String("us-east-1"),
 //						},
 //					},
 //					&assert.LogConfigMatchArgs{
 //						Property: pulumi.String("service"),
-//						Op:       pulumi.String("EQUALS"),
+//						Op:       pulumi.String("="),
 //						Values: pulumi.StringArray{
 //							pulumi.String("api"),
 //						},
@@ -129,7 +129,7 @@ import (
 //				Matches: assert.LogConfigMatchArray{
 //					&assert.LogConfigMatchArgs{
 //						Property: pulumi.String("asserts_entity_type"),
-//						Op:       pulumi.String("IS_NOT_NULL"),
+//						Op:       pulumi.String("IS NOT NULL"),
 //						Values:   pulumi.StringArray{},
 //					},
 //				},

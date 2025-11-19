@@ -35,7 +35,7 @@ namespace Pulumiverse.Grafana.Assert
     ///             new Grafana.Assert.Inputs.LogConfigMatchArgs
     ///             {
     ///                 Property = "asserts_entity_type",
-    ///                 Op = "EQUALS",
+    ///                 Op = "=",
     ///                 Values = new[]
     ///                 {
     ///                     "Service",
@@ -44,7 +44,7 @@ namespace Pulumiverse.Grafana.Assert
     ///             new Grafana.Assert.Inputs.LogConfigMatchArgs
     ///             {
     ///                 Property = "environment",
-    ///                 Op = "EQUALS",
+    ///                 Op = "=",
     ///                 Values = new[]
     ///                 {
     ///                     "production",
@@ -54,7 +54,7 @@ namespace Pulumiverse.Grafana.Assert
     ///             new Grafana.Assert.Inputs.LogConfigMatchArgs
     ///             {
     ///                 Property = "site",
-    ///                 Op = "EQUALS",
+    ///                 Op = "=",
     ///                 Values = new[]
     ///                 {
     ///                     "us-east-1",
@@ -85,7 +85,7 @@ namespace Pulumiverse.Grafana.Assert
     ///             new Grafana.Assert.Inputs.LogConfigMatchArgs
     ///             {
     ///                 Property = "asserts_entity_type",
-    ///                 Op = "EQUALS",
+    ///                 Op = "=",
     ///                 Values = new[]
     ///                 {
     ///                     "Service",
@@ -94,7 +94,7 @@ namespace Pulumiverse.Grafana.Assert
     ///             new Grafana.Assert.Inputs.LogConfigMatchArgs
     ///             {
     ///                 Property = "environment",
-    ///                 Op = "EQUALS",
+    ///                 Op = "=",
     ///                 Values = new[]
     ///                 {
     ///                     "development",
@@ -104,7 +104,7 @@ namespace Pulumiverse.Grafana.Assert
     ///             new Grafana.Assert.Inputs.LogConfigMatchArgs
     ///             {
     ///                 Property = "site",
-    ///                 Op = "EQUALS",
+    ///                 Op = "=",
     ///                 Values = new[]
     ///                 {
     ///                     "us-east-1",
@@ -113,7 +113,7 @@ namespace Pulumiverse.Grafana.Assert
     ///             new Grafana.Assert.Inputs.LogConfigMatchArgs
     ///             {
     ///                 Property = "service",
-    ///                 Op = "EQUALS",
+    ///                 Op = "=",
     ///                 Values = new[]
     ///                 {
     ///                     "api",
@@ -143,7 +143,7 @@ namespace Pulumiverse.Grafana.Assert
     ///             new Grafana.Assert.Inputs.LogConfigMatchArgs
     ///             {
     ///                 Property = "asserts_entity_type",
-    ///                 Op = "IS_NOT_NULL",
+    ///                 Op = "IS NOT NULL",
     ///                 Values = new() { },
     ///             },
     ///         },

@@ -52,11 +52,11 @@ export interface GetOrganizationPreferencesResult {
      */
     readonly orgId?: string;
     /**
-     * The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+     * The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
      */
     readonly theme: string;
     /**
-     * The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+     * The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
      */
     readonly timezone: string;
     /**

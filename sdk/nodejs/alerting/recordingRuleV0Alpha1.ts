@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  *         },
  *         paused: true,
  *         expressions: {
- *             A: {
+ *             A: JSON.stringify({
  *                 model: {
  *                     editorMode: "code",
  *                     expr: "count(up{})",
@@ -39,14 +39,14 @@ import * as utilities from "../utilities";
  *                     range: false,
  *                     refId: "A",
  *                 },
- *                 datasourceUid: "ds_uid",
- *                 relativeTimeRange: {
+ *                 datasource_uid: "ds_uid",
+ *                 relative_time_range: {
  *                     from: "600s",
  *                     to: "0s",
  *                 },
- *                 queryType: "",
+ *                 query_type: "",
  *                 source: true,
- *             },
+ *             }),
  *         },
  *         targetDatasourceUid: "target_ds_uid",
  *         metric: "tf-metric",

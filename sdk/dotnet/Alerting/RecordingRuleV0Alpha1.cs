@@ -18,6 +18,7 @@ namespace Pulumiverse.Grafana.Alerting
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
+    /// using System.Text.Json;
     /// using Pulumi;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
@@ -43,9 +44,9 @@ namespace Pulumiverse.Grafana.Alerting
     ///                 Interval = "1m",
     ///             },
     ///             Paused = true,
-    ///             Expressions = new Dictionary&lt;string, object?&gt;
+    ///             Expressions = 
     ///             {
-    ///                 ["A"] = new Dictionary&lt;string, object?&gt;
+    ///                 { "A", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///                 {
     ///                     ["model"] = new Dictionary&lt;string, object?&gt;
     ///                     {
@@ -58,15 +59,15 @@ namespace Pulumiverse.Grafana.Alerting
     ///                         ["range"] = false,
     ///                         ["refId"] = "A",
     ///                     },
-    ///                     ["datasourceUid"] = "ds_uid",
-    ///                     ["relativeTimeRange"] = new Dictionary&lt;string, object?&gt;
+    ///                     ["datasource_uid"] = "ds_uid",
+    ///                     ["relative_time_range"] = new Dictionary&lt;string, object?&gt;
     ///                     {
     ///                         ["from"] = "600s",
     ///                         ["to"] = "0s",
     ///                     },
-    ///                     ["queryType"] = "",
+    ///                     ["query_type"] = "",
     ///                     ["source"] = true,
-    ///                 },
+    ///                 }) },
     ///             },
     ///             TargetDatasourceUid = "target_ds_uid",
     ///             Metric = "tf-metric",

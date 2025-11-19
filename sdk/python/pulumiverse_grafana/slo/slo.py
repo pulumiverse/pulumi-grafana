@@ -384,7 +384,7 @@ class SLO(pulumi.CustomResource):
                  uuid: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Resource manages Grafana SLOs.
+        Resource manages Grafana SLOs (Service Level Objectives).
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
@@ -622,7 +622,7 @@ class SLO(pulumi.CustomResource):
                  args: SLOArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Resource manages Grafana SLOs.
+        Resource manages Grafana SLOs (Service Level Objectives).
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)

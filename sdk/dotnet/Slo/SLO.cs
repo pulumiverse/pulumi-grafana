@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Slo
 {
     /// <summary>
-    /// Resource manages Grafana SLOs.
+    /// Resource manages Grafana SLOs (Service Level Objectives).
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
     /// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)

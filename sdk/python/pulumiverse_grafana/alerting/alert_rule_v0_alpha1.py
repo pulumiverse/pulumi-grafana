@@ -147,6 +147,7 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumiverse_grafana as grafana
 
         alertrule_folder = grafana.oss.Folder("alertrule_folder", title="Alert Rule Folder")
@@ -162,7 +163,7 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                 },
                 "paused": True,
                 "expressions": {
-                    "A": {
+                    "A": json.dumps({
                         "model": {
                             "datasource": {
                                 "type": "prometheus",
@@ -177,15 +178,15 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                             "range": False,
                             "refId": "A",
                         },
-                        "datasourceUid": "ds_uid",
-                        "relativeTimeRange": {
+                        "datasource_uid": "ds_uid",
+                        "relative_time_range": {
                             "from": "600s",
                             "to": "0s",
                         },
-                        "queryType": "",
+                        "query_type": "",
                         "source": True,
-                    },
-                    "B": {
+                    }),
+                    "B": json.dumps({
                         "model": {
                             "conditions": [{
                                 "evaluator": {
@@ -214,10 +215,10 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                             "refId": "C",
                             "type": "threshold",
                         },
-                        "datasourceUid": "__expr__",
-                        "queryType": "",
+                        "datasource_uid": "__expr__",
+                        "query_type": "",
                         "source": False,
-                    },
+                    }),
                 },
                 "for_": "5m",
                 "labels": {
@@ -254,6 +255,7 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumiverse_grafana as grafana
 
         alertrule_folder = grafana.oss.Folder("alertrule_folder", title="Alert Rule Folder")
@@ -269,7 +271,7 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                 },
                 "paused": True,
                 "expressions": {
-                    "A": {
+                    "A": json.dumps({
                         "model": {
                             "datasource": {
                                 "type": "prometheus",
@@ -284,15 +286,15 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                             "range": False,
                             "refId": "A",
                         },
-                        "datasourceUid": "ds_uid",
-                        "relativeTimeRange": {
+                        "datasource_uid": "ds_uid",
+                        "relative_time_range": {
                             "from": "600s",
                             "to": "0s",
                         },
-                        "queryType": "",
+                        "query_type": "",
                         "source": True,
-                    },
-                    "B": {
+                    }),
+                    "B": json.dumps({
                         "model": {
                             "conditions": [{
                                 "evaluator": {
@@ -321,10 +323,10 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                             "refId": "C",
                             "type": "threshold",
                         },
-                        "datasourceUid": "__expr__",
-                        "queryType": "",
+                        "datasource_uid": "__expr__",
+                        "query_type": "",
                         "source": False,
-                    },
+                    }),
                 },
                 "for_": "5m",
                 "labels": {

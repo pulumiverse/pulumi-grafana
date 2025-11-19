@@ -31,11 +31,17 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         [Input("execErrState", required: true)]
         public Input<string> ExecErrState { get; set; } = null!;
 
-        /// <summary>
-        /// A sequence of stages that describe the contents of the rule.
-        /// </summary>
         [Input("expressions", required: true)]
-        public Input<object> Expressions { get; set; } = null!;
+        private InputMap<string>? _expressions;
+
+        /// <summary>
+        /// A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+        /// </summary>
+        public InputMap<string> Expressions
+        {
+            get => _expressions ?? (_expressions = new InputMap<string>());
+            set => _expressions = value;
+        }
 
         /// <summary>
         /// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.

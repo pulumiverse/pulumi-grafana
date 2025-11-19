@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  *         },
  *         paused: true,
  *         expressions: {
- *             A: {
+ *             A: JSON.stringify({
  *                 model: {
  *                     datasource: {
  *                         type: "prometheus",
@@ -43,15 +43,15 @@ import * as utilities from "../utilities";
  *                     range: false,
  *                     refId: "A",
  *                 },
- *                 datasourceUid: "ds_uid",
- *                 relativeTimeRange: {
+ *                 datasource_uid: "ds_uid",
+ *                 relative_time_range: {
  *                     from: "600s",
  *                     to: "0s",
  *                 },
- *                 queryType: "",
+ *                 query_type: "",
  *                 source: true,
- *             },
- *             B: {
+ *             }),
+ *             B: JSON.stringify({
  *                 model: {
  *                     conditions: [{
  *                         evaluator: {
@@ -80,10 +80,10 @@ import * as utilities from "../utilities";
  *                     refId: "C",
  *                     type: "threshold",
  *                 },
- *                 datasourceUid: "__expr__",
- *                 queryType: "",
+ *                 datasource_uid: "__expr__",
+ *                 query_type: "",
  *                 source: false,
- *             },
+ *             }),
  *         },
  *         "for": "5m",
  *         labels: {

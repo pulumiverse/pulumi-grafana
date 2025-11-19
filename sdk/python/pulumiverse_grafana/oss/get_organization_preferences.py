@@ -74,7 +74,7 @@ class GetOrganizationPreferencesResult:
     @pulumi.getter
     def theme(self) -> _builtins.str:
         """
-        The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+        The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
         """
         return pulumi.get(self, "theme")
 
@@ -82,7 +82,7 @@ class GetOrganizationPreferencesResult:
     @pulumi.getter
     def timezone(self) -> _builtins.str:
         """
-        The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+        The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
         """
         return pulumi.get(self, "timezone")
 

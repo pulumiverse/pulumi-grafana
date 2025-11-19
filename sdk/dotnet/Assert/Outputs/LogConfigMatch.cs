@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Assert.Outputs
     public sealed class LogConfigMatch
     {
         /// <summary>
-        /// Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.
+        /// Operation to use for matching. One of: =, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
         /// </summary>
         public readonly string Op;
         /// <summary>

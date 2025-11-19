@@ -22,18 +22,22 @@ class InstallationArgs:
                  cloud_access_policy_token: pulumi.Input[_builtins.str],
                  grafana_sa_token: pulumi.Input[_builtins.str],
                  grafana_user: pulumi.Input[_builtins.str],
-                 stack_id: pulumi.Input[_builtins.str]):
+                 stack_id: pulumi.Input[_builtins.str],
+                 k6_api_url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Installation resource.
         :param pulumi.Input[_builtins.str] cloud_access_policy_token: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
         :param pulumi.Input[_builtins.str] grafana_sa_token: The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
         :param pulumi.Input[_builtins.str] grafana_user: The user to use for the installation.
         :param pulumi.Input[_builtins.str] stack_id: The identifier of the stack to install k6 on.
+        :param pulumi.Input[_builtins.str] k6_api_url: The Grafana Cloud k6 API url.
         """
         pulumi.set(__self__, "cloud_access_policy_token", cloud_access_policy_token)
         pulumi.set(__self__, "grafana_sa_token", grafana_sa_token)
         pulumi.set(__self__, "grafana_user", grafana_user)
         pulumi.set(__self__, "stack_id", stack_id)
+        if k6_api_url is not None:
+            pulumi.set(__self__, "k6_api_url", k6_api_url)
 
     @_builtins.property
     @pulumi.getter(name="cloudAccessPolicyToken")
@@ -83,6 +87,18 @@ class InstallationArgs:
     def stack_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "stack_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="k6ApiUrl")
+    def k6_api_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Grafana Cloud k6 API url.
+        """
+        return pulumi.get(self, "k6_api_url")
+
+    @k6_api_url.setter
+    def k6_api_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "k6_api_url", value)
+
 
 @pulumi.input_type
 class _InstallationState:
@@ -91,6 +107,7 @@ class _InstallationState:
                  grafana_sa_token: Optional[pulumi.Input[_builtins.str]] = None,
                  grafana_user: Optional[pulumi.Input[_builtins.str]] = None,
                  k6_access_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 k6_api_url: Optional[pulumi.Input[_builtins.str]] = None,
                  k6_organization: Optional[pulumi.Input[_builtins.str]] = None,
                  stack_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -99,6 +116,7 @@ class _InstallationState:
         :param pulumi.Input[_builtins.str] grafana_sa_token: The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
         :param pulumi.Input[_builtins.str] grafana_user: The user to use for the installation.
         :param pulumi.Input[_builtins.str] k6_access_token: Generated token to access the k6 API.
+        :param pulumi.Input[_builtins.str] k6_api_url: The Grafana Cloud k6 API url.
         :param pulumi.Input[_builtins.str] k6_organization: The identifier of the k6 organization.
         :param pulumi.Input[_builtins.str] stack_id: The identifier of the stack to install k6 on.
         """
@@ -110,6 +128,8 @@ class _InstallationState:
             pulumi.set(__self__, "grafana_user", grafana_user)
         if k6_access_token is not None:
             pulumi.set(__self__, "k6_access_token", k6_access_token)
+        if k6_api_url is not None:
+            pulumi.set(__self__, "k6_api_url", k6_api_url)
         if k6_organization is not None:
             pulumi.set(__self__, "k6_organization", k6_organization)
         if stack_id is not None:
@@ -164,6 +184,18 @@ class _InstallationState:
         pulumi.set(self, "k6_access_token", value)
 
     @_builtins.property
+    @pulumi.getter(name="k6ApiUrl")
+    def k6_api_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Grafana Cloud k6 API url.
+        """
+        return pulumi.get(self, "k6_api_url")
+
+    @k6_api_url.setter
+    def k6_api_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "k6_api_url", value)
+
+    @_builtins.property
     @pulumi.getter(name="k6Organization")
     def k6_organization(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -197,6 +229,7 @@ class Installation(pulumi.CustomResource):
                  cloud_access_policy_token: Optional[pulumi.Input[_builtins.str]] = None,
                  grafana_sa_token: Optional[pulumi.Input[_builtins.str]] = None,
                  grafana_user: Optional[pulumi.Input[_builtins.str]] = None,
+                 k6_api_url: Optional[pulumi.Input[_builtins.str]] = None,
                  stack_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -257,6 +290,7 @@ class Installation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cloud_access_policy_token: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
         :param pulumi.Input[_builtins.str] grafana_sa_token: The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
         :param pulumi.Input[_builtins.str] grafana_user: The user to use for the installation.
+        :param pulumi.Input[_builtins.str] k6_api_url: The Grafana Cloud k6 API url.
         :param pulumi.Input[_builtins.str] stack_id: The identifier of the stack to install k6 on.
         """
         ...
@@ -336,6 +370,7 @@ class Installation(pulumi.CustomResource):
                  cloud_access_policy_token: Optional[pulumi.Input[_builtins.str]] = None,
                  grafana_sa_token: Optional[pulumi.Input[_builtins.str]] = None,
                  grafana_user: Optional[pulumi.Input[_builtins.str]] = None,
+                 k6_api_url: Optional[pulumi.Input[_builtins.str]] = None,
                  stack_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -355,6 +390,7 @@ class Installation(pulumi.CustomResource):
             if grafana_user is None and not opts.urn:
                 raise TypeError("Missing required property 'grafana_user'")
             __props__.__dict__["grafana_user"] = grafana_user
+            __props__.__dict__["k6_api_url"] = k6_api_url
             if stack_id is None and not opts.urn:
                 raise TypeError("Missing required property 'stack_id'")
             __props__.__dict__["stack_id"] = stack_id
@@ -376,6 +412,7 @@ class Installation(pulumi.CustomResource):
             grafana_sa_token: Optional[pulumi.Input[_builtins.str]] = None,
             grafana_user: Optional[pulumi.Input[_builtins.str]] = None,
             k6_access_token: Optional[pulumi.Input[_builtins.str]] = None,
+            k6_api_url: Optional[pulumi.Input[_builtins.str]] = None,
             k6_organization: Optional[pulumi.Input[_builtins.str]] = None,
             stack_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Installation':
         """
@@ -389,6 +426,7 @@ class Installation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] grafana_sa_token: The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
         :param pulumi.Input[_builtins.str] grafana_user: The user to use for the installation.
         :param pulumi.Input[_builtins.str] k6_access_token: Generated token to access the k6 API.
+        :param pulumi.Input[_builtins.str] k6_api_url: The Grafana Cloud k6 API url.
         :param pulumi.Input[_builtins.str] k6_organization: The identifier of the k6 organization.
         :param pulumi.Input[_builtins.str] stack_id: The identifier of the stack to install k6 on.
         """
@@ -400,6 +438,7 @@ class Installation(pulumi.CustomResource):
         __props__.__dict__["grafana_sa_token"] = grafana_sa_token
         __props__.__dict__["grafana_user"] = grafana_user
         __props__.__dict__["k6_access_token"] = k6_access_token
+        __props__.__dict__["k6_api_url"] = k6_api_url
         __props__.__dict__["k6_organization"] = k6_organization
         __props__.__dict__["stack_id"] = stack_id
         return Installation(resource_name, opts=opts, __props__=__props__)
@@ -435,6 +474,14 @@ class Installation(pulumi.CustomResource):
         Generated token to access the k6 API.
         """
         return pulumi.get(self, "k6_access_token")
+
+    @_builtins.property
+    @pulumi.getter(name="k6ApiUrl")
+    def k6_api_url(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Grafana Cloud k6 API url.
+        """
+        return pulumi.get(self, "k6_api_url")
 
     @_builtins.property
     @pulumi.getter(name="k6Organization")

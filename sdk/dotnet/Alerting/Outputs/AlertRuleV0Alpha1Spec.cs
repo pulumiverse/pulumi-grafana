@@ -23,9 +23,9 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly string ExecErrState;
         /// <summary>
-        /// A sequence of stages that describe the contents of the rule.
+        /// A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
         /// </summary>
-        public readonly object Expressions;
+        public readonly ImmutableDictionary<string, string> Expressions;
         /// <summary>
         /// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
         /// </summary>
@@ -73,7 +73,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
             string execErrState,
 
-            object expressions,
+            ImmutableDictionary<string, string> expressions,
 
             string? @for,
 

@@ -435,7 +435,7 @@ func (o CustomModelRulesRulesEntityDefinedByArrayOutput) Index(i pulumi.IntInput
 }
 
 type LogConfigMatch struct {
-	// Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.
+	// Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
 	Op string `pulumi:"op"`
 	// Entity property to match.
 	Property string `pulumi:"property"`
@@ -455,7 +455,7 @@ type LogConfigMatchInput interface {
 }
 
 type LogConfigMatchArgs struct {
-	// Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.
+	// Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
 	Op pulumi.StringInput `pulumi:"op"`
 	// Entity property to match.
 	Property pulumi.StringInput `pulumi:"property"`
@@ -514,7 +514,7 @@ func (o LogConfigMatchOutput) ToLogConfigMatchOutputWithContext(ctx context.Cont
 	return o
 }
 
-// Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.
+// Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
 func (o LogConfigMatchOutput) Op() pulumi.StringOutput {
 	return o.ApplyT(func(v LogConfigMatch) string { return v.Op }).(pulumi.StringOutput)
 }

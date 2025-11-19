@@ -583,9 +583,9 @@ export namespace alerting {
          */
         execErrState: pulumi.Input<string>;
         /**
-         * A sequence of stages that describe the contents of the rule.
+         * A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
          */
-        expressions: any;
+        expressions: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
          */
@@ -1982,9 +1982,9 @@ export namespace alerting {
 
     export interface RecordingRuleV0Alpha1Spec {
         /**
-         * A sequence of stages that describe the contents of the rule.
+         * A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
          */
-        expressions: any;
+        expressions: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Key-value pairs to attach to the recorded metric.
          */
@@ -2222,7 +2222,7 @@ export namespace assert {
 
     export interface LogConfigMatch {
         /**
-         * Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.
+         * Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
          */
         op: pulumi.Input<string>;
         /**
