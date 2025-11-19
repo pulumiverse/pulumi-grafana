@@ -6944,8 +6944,8 @@ type AlertRuleV0Alpha1Spec struct {
 	Annotations map[string]string `pulumi:"annotations"`
 	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
 	ExecErrState string `pulumi:"execErrState"`
-	// A sequence of stages that describe the contents of the rule.
-	Expressions interface{} `pulumi:"expressions"`
+	// A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+	Expressions map[string]string `pulumi:"expressions"`
 	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
 	For *string `pulumi:"for"`
 	// The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
@@ -6984,8 +6984,8 @@ type AlertRuleV0Alpha1SpecArgs struct {
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
 	// Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
 	ExecErrState pulumi.StringInput `pulumi:"execErrState"`
-	// A sequence of stages that describe the contents of the rule.
-	Expressions pulumi.Input `pulumi:"expressions"`
+	// A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+	Expressions pulumi.StringMapInput `pulumi:"expressions"`
 	// The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
 	For pulumi.StringPtrInput `pulumi:"for"`
 	// The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
@@ -7095,9 +7095,9 @@ func (o AlertRuleV0Alpha1SpecOutput) ExecErrState() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) string { return v.ExecErrState }).(pulumi.StringOutput)
 }
 
-// A sequence of stages that describe the contents of the rule.
-func (o AlertRuleV0Alpha1SpecOutput) Expressions() pulumi.AnyOutput {
-	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) interface{} { return v.Expressions }).(pulumi.AnyOutput)
+// A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+func (o AlertRuleV0Alpha1SpecOutput) Expressions() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) map[string]string { return v.Expressions }).(pulumi.StringMapOutput)
 }
 
 // The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
@@ -7196,14 +7196,14 @@ func (o AlertRuleV0Alpha1SpecPtrOutput) ExecErrState() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// A sequence of stages that describe the contents of the rule.
-func (o AlertRuleV0Alpha1SpecPtrOutput) Expressions() pulumi.AnyOutput {
-	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) interface{} {
+// A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+func (o AlertRuleV0Alpha1SpecPtrOutput) Expressions() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.Expressions
-	}).(pulumi.AnyOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 // The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
@@ -14439,8 +14439,8 @@ func (o RecordingRuleV0Alpha1OptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput 
 }
 
 type RecordingRuleV0Alpha1Spec struct {
-	// A sequence of stages that describe the contents of the rule.
-	Expressions interface{} `pulumi:"expressions"`
+	// A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+	Expressions map[string]string `pulumi:"expressions"`
 	// Key-value pairs to attach to the recorded metric.
 	Labels map[string]string `pulumi:"labels"`
 	// The name of the metric to write to.
@@ -14467,8 +14467,8 @@ type RecordingRuleV0Alpha1SpecInput interface {
 }
 
 type RecordingRuleV0Alpha1SpecArgs struct {
-	// A sequence of stages that describe the contents of the rule.
-	Expressions pulumi.Input `pulumi:"expressions"`
+	// A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+	Expressions pulumi.StringMapInput `pulumi:"expressions"`
 	// Key-value pairs to attach to the recorded metric.
 	Labels pulumi.StringMapInput `pulumi:"labels"`
 	// The name of the metric to write to.
@@ -14560,9 +14560,9 @@ func (o RecordingRuleV0Alpha1SpecOutput) ToRecordingRuleV0Alpha1SpecPtrOutputWit
 	}).(RecordingRuleV0Alpha1SpecPtrOutput)
 }
 
-// A sequence of stages that describe the contents of the rule.
-func (o RecordingRuleV0Alpha1SpecOutput) Expressions() pulumi.AnyOutput {
-	return o.ApplyT(func(v RecordingRuleV0Alpha1Spec) interface{} { return v.Expressions }).(pulumi.AnyOutput)
+// A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+func (o RecordingRuleV0Alpha1SpecOutput) Expressions() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RecordingRuleV0Alpha1Spec) map[string]string { return v.Expressions }).(pulumi.StringMapOutput)
 }
 
 // Key-value pairs to attach to the recorded metric.
@@ -14619,14 +14619,14 @@ func (o RecordingRuleV0Alpha1SpecPtrOutput) Elem() RecordingRuleV0Alpha1SpecOutp
 	}).(RecordingRuleV0Alpha1SpecOutput)
 }
 
-// A sequence of stages that describe the contents of the rule.
-func (o RecordingRuleV0Alpha1SpecPtrOutput) Expressions() pulumi.AnyOutput {
-	return o.ApplyT(func(v *RecordingRuleV0Alpha1Spec) interface{} {
+// A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+func (o RecordingRuleV0Alpha1SpecPtrOutput) Expressions() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RecordingRuleV0Alpha1Spec) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.Expressions
-	}).(pulumi.AnyOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 // Key-value pairs to attach to the recorded metric.

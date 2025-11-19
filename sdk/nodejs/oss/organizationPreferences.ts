@@ -64,11 +64,11 @@ export class OrganizationPreferences extends pulumi.CustomResource {
      */
     declare public readonly orgId: pulumi.Output<string | undefined>;
     /**
-     * The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+     * The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
      */
     declare public readonly theme: pulumi.Output<string | undefined>;
     /**
-     * The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+     * The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
      */
     declare public readonly timezone: pulumi.Output<string | undefined>;
     /**
@@ -122,11 +122,11 @@ export interface OrganizationPreferencesState {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+     * The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
      */
     theme?: pulumi.Input<string>;
     /**
-     * The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+     * The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
      */
     timezone?: pulumi.Input<string>;
     /**
@@ -148,11 +148,11 @@ export interface OrganizationPreferencesArgs {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+     * The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
      */
     theme?: pulumi.Input<string>;
     /**
-     * The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+     * The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
      */
     timezone?: pulumi.Input<string>;
     /**

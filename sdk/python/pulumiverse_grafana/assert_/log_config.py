@@ -353,12 +353,12 @@ class LogConfig(pulumi.CustomResource):
             matches=[
                 {
                     "property": "asserts_entity_type",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": ["Service"],
                 },
                 {
                     "property": "environment",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": [
                         "production",
                         "staging",
@@ -366,7 +366,7 @@ class LogConfig(pulumi.CustomResource):
                 },
                 {
                     "property": "site",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": [
                         "us-east-1",
                         "us-west-2",
@@ -390,12 +390,12 @@ class LogConfig(pulumi.CustomResource):
             matches=[
                 {
                     "property": "asserts_entity_type",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": ["Service"],
                 },
                 {
                     "property": "environment",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": [
                         "development",
                         "testing",
@@ -403,12 +403,12 @@ class LogConfig(pulumi.CustomResource):
                 },
                 {
                     "property": "site",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": ["us-east-1"],
                 },
                 {
                     "property": "service",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": ["api"],
                 },
             ],
@@ -428,7 +428,7 @@ class LogConfig(pulumi.CustomResource):
             data_source_uid="loki-minimal",
             matches=[{
                 "property": "asserts_entity_type",
-                "op": "IS_NOT_NULL",
+                "op": "IS NOT NULL",
                 "values": [],
             }])
         ```
@@ -475,12 +475,12 @@ class LogConfig(pulumi.CustomResource):
             matches=[
                 {
                     "property": "asserts_entity_type",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": ["Service"],
                 },
                 {
                     "property": "environment",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": [
                         "production",
                         "staging",
@@ -488,7 +488,7 @@ class LogConfig(pulumi.CustomResource):
                 },
                 {
                     "property": "site",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": [
                         "us-east-1",
                         "us-west-2",
@@ -512,12 +512,12 @@ class LogConfig(pulumi.CustomResource):
             matches=[
                 {
                     "property": "asserts_entity_type",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": ["Service"],
                 },
                 {
                     "property": "environment",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": [
                         "development",
                         "testing",
@@ -525,12 +525,12 @@ class LogConfig(pulumi.CustomResource):
                 },
                 {
                     "property": "site",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": ["us-east-1"],
                 },
                 {
                     "property": "service",
-                    "op": "EQUALS",
+                    "op": "=",
                     "values": ["api"],
                 },
             ],
@@ -550,7 +550,7 @@ class LogConfig(pulumi.CustomResource):
             data_source_uid="loki-minimal",
             matches=[{
                 "property": "asserts_entity_type",
-                "op": "IS_NOT_NULL",
+                "op": "IS NOT NULL",
                 "values": [],
             }])
         ```

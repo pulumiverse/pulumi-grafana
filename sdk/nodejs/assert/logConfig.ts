@@ -24,12 +24,12 @@ import * as utilities from "../utilities";
  *     matches: [
  *         {
  *             property: "asserts_entity_type",
- *             op: "EQUALS",
+ *             op: "=",
  *             values: ["Service"],
  *         },
  *         {
  *             property: "environment",
- *             op: "EQUALS",
+ *             op: "=",
  *             values: [
  *                 "production",
  *                 "staging",
@@ -37,7 +37,7 @@ import * as utilities from "../utilities";
  *         },
  *         {
  *             property: "site",
- *             op: "EQUALS",
+ *             op: "=",
  *             values: [
  *                 "us-east-1",
  *                 "us-west-2",
@@ -62,12 +62,12 @@ import * as utilities from "../utilities";
  *     matches: [
  *         {
  *             property: "asserts_entity_type",
- *             op: "EQUALS",
+ *             op: "=",
  *             values: ["Service"],
  *         },
  *         {
  *             property: "environment",
- *             op: "EQUALS",
+ *             op: "=",
  *             values: [
  *                 "development",
  *                 "testing",
@@ -75,12 +75,12 @@ import * as utilities from "../utilities";
  *         },
  *         {
  *             property: "site",
- *             op: "EQUALS",
+ *             op: "=",
  *             values: ["us-east-1"],
  *         },
  *         {
  *             property: "service",
- *             op: "EQUALS",
+ *             op: "=",
  *             values: ["api"],
  *         },
  *     ],
@@ -101,7 +101,7 @@ import * as utilities from "../utilities";
  *     dataSourceUid: "loki-minimal",
  *     matches: [{
  *         property: "asserts_entity_type",
- *         op: "IS_NOT_NULL",
+ *         op: "IS NOT NULL",
  *         values: [],
  *     }],
  * });

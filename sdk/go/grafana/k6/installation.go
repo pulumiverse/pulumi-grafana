@@ -112,6 +112,8 @@ type Installation struct {
 	GrafanaUser pulumi.StringOutput `pulumi:"grafanaUser"`
 	// Generated token to access the k6 API.
 	K6AccessToken pulumi.StringOutput `pulumi:"k6AccessToken"`
+	// The Grafana Cloud k6 API url.
+	K6ApiUrl pulumi.StringOutput `pulumi:"k6ApiUrl"`
 	// The identifier of the k6 organization.
 	K6Organization pulumi.StringOutput `pulumi:"k6Organization"`
 	// The identifier of the stack to install k6 on.
@@ -180,6 +182,8 @@ type installationState struct {
 	GrafanaUser *string `pulumi:"grafanaUser"`
 	// Generated token to access the k6 API.
 	K6AccessToken *string `pulumi:"k6AccessToken"`
+	// The Grafana Cloud k6 API url.
+	K6ApiUrl *string `pulumi:"k6ApiUrl"`
 	// The identifier of the k6 organization.
 	K6Organization *string `pulumi:"k6Organization"`
 	// The identifier of the stack to install k6 on.
@@ -195,6 +199,8 @@ type InstallationState struct {
 	GrafanaUser pulumi.StringPtrInput
 	// Generated token to access the k6 API.
 	K6AccessToken pulumi.StringPtrInput
+	// The Grafana Cloud k6 API url.
+	K6ApiUrl pulumi.StringPtrInput
 	// The identifier of the k6 organization.
 	K6Organization pulumi.StringPtrInput
 	// The identifier of the stack to install k6 on.
@@ -212,6 +218,8 @@ type installationArgs struct {
 	GrafanaSaToken string `pulumi:"grafanaSaToken"`
 	// The user to use for the installation.
 	GrafanaUser string `pulumi:"grafanaUser"`
+	// The Grafana Cloud k6 API url.
+	K6ApiUrl *string `pulumi:"k6ApiUrl"`
 	// The identifier of the stack to install k6 on.
 	StackId string `pulumi:"stackId"`
 }
@@ -224,6 +232,8 @@ type InstallationArgs struct {
 	GrafanaSaToken pulumi.StringInput
 	// The user to use for the installation.
 	GrafanaUser pulumi.StringInput
+	// The Grafana Cloud k6 API url.
+	K6ApiUrl pulumi.StringPtrInput
 	// The identifier of the stack to install k6 on.
 	StackId pulumi.StringInput
 }
@@ -333,6 +343,11 @@ func (o InstallationOutput) GrafanaUser() pulumi.StringOutput {
 // Generated token to access the k6 API.
 func (o InstallationOutput) K6AccessToken() pulumi.StringOutput {
 	return o.ApplyT(func(v *Installation) pulumi.StringOutput { return v.K6AccessToken }).(pulumi.StringOutput)
+}
+
+// The Grafana Cloud k6 API url.
+func (o InstallationOutput) K6ApiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *Installation) pulumi.StringOutput { return v.K6ApiUrl }).(pulumi.StringOutput)
 }
 
 // The identifier of the k6 organization.

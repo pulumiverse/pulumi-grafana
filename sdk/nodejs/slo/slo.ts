@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Resource manages Grafana SLOs.
+ * Resource manages Grafana SLOs (Service Level Objectives).
  *
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
  * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)

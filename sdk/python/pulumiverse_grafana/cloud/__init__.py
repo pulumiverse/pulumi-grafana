@@ -7,6 +7,7 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .access_policy import *
+from .access_policy_rotating_token import *
 from .access_policy_token import *
 from .get_access_policies import *
 from .get_ips import *

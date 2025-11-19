@@ -110,6 +110,12 @@ namespace Pulumiverse.Grafana.K6
         public Output<string> K6AccessToken { get; private set; } = null!;
 
         /// <summary>
+        /// The Grafana Cloud k6 API url.
+        /// </summary>
+        [Output("k6ApiUrl")]
+        public Output<string> K6ApiUrl { get; private set; } = null!;
+
+        /// <summary>
         /// The identifier of the k6 organization.
         /// </summary>
         [Output("k6Organization")]
@@ -213,6 +219,12 @@ namespace Pulumiverse.Grafana.K6
         public Input<string> GrafanaUser { get; set; } = null!;
 
         /// <summary>
+        /// The Grafana Cloud k6 API url.
+        /// </summary>
+        [Input("k6ApiUrl")]
+        public Input<string>? K6ApiUrl { get; set; }
+
+        /// <summary>
         /// The identifier of the stack to install k6 on.
         /// </summary>
         [Input("stackId", required: true)]
@@ -279,6 +291,12 @@ namespace Pulumiverse.Grafana.K6
                 _k6AccessToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The Grafana Cloud k6 API url.
+        /// </summary>
+        [Input("k6ApiUrl")]
+        public Input<string>? K6ApiUrl { get; set; }
 
         /// <summary>
         /// The identifier of the k6 organization.

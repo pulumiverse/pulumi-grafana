@@ -13,11 +13,17 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
 
     public sealed class RecordingRuleV0Alpha1SpecGetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// A sequence of stages that describe the contents of the rule.
-        /// </summary>
         [Input("expressions", required: true)]
-        public Input<object> Expressions { get; set; } = null!;
+        private InputMap<string>? _expressions;
+
+        /// <summary>
+        /// A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+        /// </summary>
+        public InputMap<string> Expressions
+        {
+            get => _expressions ?? (_expressions = new InputMap<string>());
+            set => _expressions = value;
+        }
 
         [Input("labels")]
         private InputMap<string>? _labels;

@@ -61,9 +61,9 @@ type LookupOrganizationPreferencesResult struct {
 	Id string `pulumi:"id"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
 	OrgId *string `pulumi:"orgId"`
-	// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+	// The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
 	Theme string `pulumi:"theme"`
-	// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+	// The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
 	Timezone string `pulumi:"timezone"`
 	// The Organization week start day. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
 	WeekStart string `pulumi:"weekStart"`
@@ -118,12 +118,12 @@ func (o LookupOrganizationPreferencesResultOutput) OrgId() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v LookupOrganizationPreferencesResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
-// The Organization theme. Available values are `light`, `dark`, `system`, or an empty string for the default.
+// The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
 func (o LookupOrganizationPreferencesResultOutput) Theme() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationPreferencesResult) string { return v.Theme }).(pulumi.StringOutput)
 }
 
-// The Organization timezone. Available values are `utc`, `browser`, or an empty string for the default.
+// The Organization timezone. Any string value is supported, including IANA timezone names. Common values are `utc`, `browser`, or an empty string for the default.
 func (o LookupOrganizationPreferencesResultOutput) Timezone() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationPreferencesResult) string { return v.Timezone }).(pulumi.StringOutput)
 }

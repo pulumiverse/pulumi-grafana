@@ -29,6 +29,7 @@
         "assert/suppressedAssertionsConfig.ts",
         "assert/thresholds.ts",
         "cloud/accessPolicy.ts",
+        "cloud/accessPolicyRotatingToken.ts",
         "cloud/accessPolicyToken.ts",
         "cloud/getAccessPolicies.ts",
         "cloud/getIps.ts",

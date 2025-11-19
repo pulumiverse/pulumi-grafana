@@ -18,6 +18,7 @@ namespace Pulumiverse.Grafana.Alerting
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
+    /// using System.Text.Json;
     /// using Pulumi;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
@@ -43,9 +44,9 @@ namespace Pulumiverse.Grafana.Alerting
     ///                 Interval = "1m",
     ///             },
     ///             Paused = true,
-    ///             Expressions = new Dictionary&lt;string, object?&gt;
+    ///             Expressions = 
     ///             {
-    ///                 ["A"] = new Dictionary&lt;string, object?&gt;
+    ///                 { "A", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///                 {
     ///                     ["model"] = new Dictionary&lt;string, object?&gt;
     ///                     {
@@ -63,16 +64,16 @@ namespace Pulumiverse.Grafana.Alerting
     ///                         ["range"] = false,
     ///                         ["refId"] = "A",
     ///                     },
-    ///                     ["datasourceUid"] = "ds_uid",
-    ///                     ["relativeTimeRange"] = new Dictionary&lt;string, object?&gt;
+    ///                     ["datasource_uid"] = "ds_uid",
+    ///                     ["relative_time_range"] = new Dictionary&lt;string, object?&gt;
     ///                     {
     ///                         ["from"] = "600s",
     ///                         ["to"] = "0s",
     ///                     },
-    ///                     ["queryType"] = "",
+    ///                     ["query_type"] = "",
     ///                     ["source"] = true,
-    ///                 },
-    ///                 ["B"] = new Dictionary&lt;string, object?&gt;
+    ///                 }) },
+    ///                 { "B", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///                 {
     ///                     ["model"] = new Dictionary&lt;string, object?&gt;
     ///                     {
@@ -120,10 +121,10 @@ namespace Pulumiverse.Grafana.Alerting
     ///                         ["refId"] = "C",
     ///                         ["type"] = "threshold",
     ///                     },
-    ///                     ["datasourceUid"] = "__expr__",
-    ///                     ["queryType"] = "",
+    ///                     ["datasource_uid"] = "__expr__",
+    ///                     ["query_type"] = "",
     ///                     ["source"] = false,
-    ///                 },
+    ///                 }) },
     ///             },
     ///             For = "5m",
     ///             Labels = 

@@ -242,7 +242,7 @@ class LogConfigMatch(dict):
                  property: _builtins.str,
                  values: Sequence[_builtins.str]):
         """
-        :param _builtins.str op: Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.
+        :param _builtins.str op: Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
         :param _builtins.str property: Entity property to match.
         :param Sequence[_builtins.str] values: Values to match against.
         """
@@ -254,7 +254,7 @@ class LogConfigMatch(dict):
     @pulumi.getter
     def op(self) -> _builtins.str:
         """
-        Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.
+        Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
         """
         return pulumi.get(self, "op")
 

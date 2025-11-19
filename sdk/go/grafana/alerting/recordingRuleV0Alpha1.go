@@ -20,6 +20,8 @@ import (
 //
 // import (
 //
+//	"encoding/json"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
@@ -34,6 +36,29 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"model": map[string]interface{}{
+//					"editorMode":    "code",
+//					"expr":          "count(up{})",
+//					"instant":       true,
+//					"intervalMs":    1000,
+//					"legendFormat":  "__auto",
+//					"maxDataPoints": 43200,
+//					"range":         false,
+//					"refId":         "A",
+//				},
+//				"datasource_uid": "ds_uid",
+//				"relative_time_range": map[string]interface{}{
+//					"from": "600s",
+//					"to":   "0s",
+//				},
+//				"query_type": "",
+//				"source":     true,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
 //			_, err = alerting.NewRecordingRuleV0Alpha1(ctx, "example", &alerting.RecordingRuleV0Alpha1Args{
 //				Metadata: &alerting.RecordingRuleV0Alpha1MetadataArgs{
 //					Uid:       pulumi.String("example-recording-rule"),
@@ -45,27 +70,9 @@ import (
 //						Interval: pulumi.String("1m"),
 //					},
 //					Paused: pulumi.Bool(true),
-//					Expressions: pulumi.Any(map[string]interface{}{
-//						"A": map[string]interface{}{
-//							"model": map[string]interface{}{
-//								"editorMode":    "code",
-//								"expr":          "count(up{})",
-//								"instant":       true,
-//								"intervalMs":    1000,
-//								"legendFormat":  "__auto",
-//								"maxDataPoints": 43200,
-//								"range":         false,
-//								"refId":         "A",
-//							},
-//							"datasourceUid": "ds_uid",
-//							"relativeTimeRange": map[string]interface{}{
-//								"from": "600s",
-//								"to":   "0s",
-//							},
-//							"queryType": "",
-//							"source":    true,
-//						},
-//					}),
+//					Expressions: pulumi.StringMap{
+//						"A": pulumi.String(json0),
+//					},
 //					TargetDatasourceUid: pulumi.String("target_ds_uid"),
 //					Metric:              pulumi.String("tf-metric"),
 //					Labels: pulumi.StringMap{

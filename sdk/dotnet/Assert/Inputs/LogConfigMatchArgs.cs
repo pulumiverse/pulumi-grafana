@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Assert.Inputs
     public sealed class LogConfigMatchArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Operation to use for matching. One of: EQUALS, NOT*EQUALS, CONTAINS, DOES*NOT*CONTAIN, IS*NULL, IS*NOT*NULL.
+        /// Operation to use for matching. One of: =, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
         /// </summary>
         [Input("op", required: true)]
         public Input<string> Op { get; set; } = null!;

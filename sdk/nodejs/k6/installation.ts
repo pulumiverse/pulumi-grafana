@@ -104,6 +104,10 @@ export class Installation extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly k6AccessToken: pulumi.Output<string>;
     /**
+     * The Grafana Cloud k6 API url.
+     */
+    declare public readonly k6ApiUrl: pulumi.Output<string>;
+    /**
      * The identifier of the k6 organization.
      */
     declare public /*out*/ readonly k6Organization: pulumi.Output<string>;
@@ -129,6 +133,7 @@ export class Installation extends pulumi.CustomResource {
             resourceInputs["grafanaSaToken"] = state?.grafanaSaToken;
             resourceInputs["grafanaUser"] = state?.grafanaUser;
             resourceInputs["k6AccessToken"] = state?.k6AccessToken;
+            resourceInputs["k6ApiUrl"] = state?.k6ApiUrl;
             resourceInputs["k6Organization"] = state?.k6Organization;
             resourceInputs["stackId"] = state?.stackId;
         } else {
@@ -148,6 +153,7 @@ export class Installation extends pulumi.CustomResource {
             resourceInputs["cloudAccessPolicyToken"] = args?.cloudAccessPolicyToken ? pulumi.secret(args.cloudAccessPolicyToken) : undefined;
             resourceInputs["grafanaSaToken"] = args?.grafanaSaToken ? pulumi.secret(args.grafanaSaToken) : undefined;
             resourceInputs["grafanaUser"] = args?.grafanaUser;
+            resourceInputs["k6ApiUrl"] = args?.k6ApiUrl;
             resourceInputs["stackId"] = args?.stackId;
             resourceInputs["k6AccessToken"] = undefined /*out*/;
             resourceInputs["k6Organization"] = undefined /*out*/;
@@ -180,6 +186,10 @@ export interface InstallationState {
      */
     k6AccessToken?: pulumi.Input<string>;
     /**
+     * The Grafana Cloud k6 API url.
+     */
+    k6ApiUrl?: pulumi.Input<string>;
+    /**
      * The identifier of the k6 organization.
      */
     k6Organization?: pulumi.Input<string>;
@@ -205,6 +215,10 @@ export interface InstallationArgs {
      * The user to use for the installation.
      */
     grafanaUser: pulumi.Input<string>;
+    /**
+     * The Grafana Cloud k6 API url.
+     */
+    k6ApiUrl?: pulumi.Input<string>;
     /**
      * The identifier of the stack to install k6 on.
      */

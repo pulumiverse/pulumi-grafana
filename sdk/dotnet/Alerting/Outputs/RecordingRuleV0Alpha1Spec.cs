@@ -15,9 +15,9 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
     public sealed class RecordingRuleV0Alpha1Spec
     {
         /// <summary>
-        /// A sequence of stages that describe the contents of the rule.
+        /// A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
         /// </summary>
-        public readonly object Expressions;
+        public readonly ImmutableDictionary<string, string> Expressions;
         /// <summary>
         /// Key-value pairs to attach to the recorded metric.
         /// </summary>
@@ -45,7 +45,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
         [OutputConstructor]
         private RecordingRuleV0Alpha1Spec(
-            object expressions,
+            ImmutableDictionary<string, string> expressions,
 
             ImmutableDictionary<string, string>? labels,
 

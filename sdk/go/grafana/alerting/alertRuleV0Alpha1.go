@@ -20,6 +20,8 @@ import (
 //
 // import (
 //
+//	"encoding/json"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
@@ -34,6 +36,76 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"model": map[string]interface{}{
+//					"datasource": map[string]interface{}{
+//						"type": "prometheus",
+//						"uid":  "ds_uid",
+//					},
+//					"editorMode":    "code",
+//					"expr":          "count(up{})",
+//					"instant":       true,
+//					"intervalMs":    1000,
+//					"legendFormat":  "__auto",
+//					"maxDataPoints": 43200,
+//					"range":         false,
+//					"refId":         "A",
+//				},
+//				"datasource_uid": "ds_uid",
+//				"relative_time_range": map[string]interface{}{
+//					"from": "600s",
+//					"to":   "0s",
+//				},
+//				"query_type": "",
+//				"source":     true,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"model": map[string]interface{}{
+//					"conditions": []map[string]interface{}{
+//						map[string]interface{}{
+//							"evaluator": map[string]interface{}{
+//								"params": []float64{
+//									1,
+//								},
+//								"type": "gt",
+//							},
+//							"operator": map[string]interface{}{
+//								"type": "and",
+//							},
+//							"query": map[string]interface{}{
+//								"params": []string{
+//									"C",
+//								},
+//							},
+//							"reducer": map[string]interface{}{
+//								"params": []interface{}{},
+//								"type":   "last",
+//							},
+//							"type": "query",
+//						},
+//					},
+//					"datasource": map[string]interface{}{
+//						"type": "__expr__",
+//						"uid":  "__expr__",
+//					},
+//					"expression":    "A",
+//					"intervalMs":    1000,
+//					"maxDataPoints": 43200,
+//					"refId":         "C",
+//					"type":          "threshold",
+//				},
+//				"datasource_uid": "__expr__",
+//				"query_type":     "",
+//				"source":         false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
 //			_, err = alerting.NewAlertRuleV0Alpha1(ctx, "example", &alerting.AlertRuleV0Alpha1Args{
 //				Metadata: &alerting.AlertRuleV0Alpha1MetadataArgs{
 //					Uid:       pulumi.String("example-alert-rule"),
@@ -45,70 +117,10 @@ import (
 //						Interval: pulumi.String("1m"),
 //					},
 //					Paused: pulumi.Bool(true),
-//					Expressions: pulumi.Any(map[string]interface{}{
-//						"A": map[string]interface{}{
-//							"model": map[string]interface{}{
-//								"datasource": map[string]interface{}{
-//									"type": "prometheus",
-//									"uid":  "ds_uid",
-//								},
-//								"editorMode":    "code",
-//								"expr":          "count(up{})",
-//								"instant":       true,
-//								"intervalMs":    1000,
-//								"legendFormat":  "__auto",
-//								"maxDataPoints": 43200,
-//								"range":         false,
-//								"refId":         "A",
-//							},
-//							"datasourceUid": "ds_uid",
-//							"relativeTimeRange": map[string]interface{}{
-//								"from": "600s",
-//								"to":   "0s",
-//							},
-//							"queryType": "",
-//							"source":    true,
-//						},
-//						"B": map[string]interface{}{
-//							"model": map[string]interface{}{
-//								"conditions": []map[string]interface{}{
-//									map[string]interface{}{
-//										"evaluator": map[string]interface{}{
-//											"params": []float64{
-//												1,
-//											},
-//											"type": "gt",
-//										},
-//										"operator": map[string]interface{}{
-//											"type": "and",
-//										},
-//										"query": map[string]interface{}{
-//											"params": []string{
-//												"C",
-//											},
-//										},
-//										"reducer": map[string]interface{}{
-//											"params": []interface{}{},
-//											"type":   "last",
-//										},
-//										"type": "query",
-//									},
-//								},
-//								"datasource": map[string]interface{}{
-//									"type": "__expr__",
-//									"uid":  "__expr__",
-//								},
-//								"expression":    "A",
-//								"intervalMs":    1000,
-//								"maxDataPoints": 43200,
-//								"refId":         "C",
-//								"type":          "threshold",
-//							},
-//							"datasourceUid": "__expr__",
-//							"queryType":     "",
-//							"source":        false,
-//						},
-//					}),
+//					Expressions: pulumi.StringMap{
+//						"A": pulumi.String(json0),
+//						"B": pulumi.String(json1),
+//					},
 //					For: pulumi.String("5m"),
 //					Labels: pulumi.StringMap{
 //						"severity": pulumi.String("critical"),
