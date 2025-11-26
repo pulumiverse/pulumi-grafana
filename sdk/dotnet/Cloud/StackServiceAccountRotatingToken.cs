@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Cloud
 {
     /// <summary>
-    /// Manages service account tokens of a Grafana Cloud stack using the Cloud API
+    /// Manages and rotates service account tokens of a Grafana Cloud stack using the Cloud API
     /// This can be used to bootstrap a management service account token for a new stack
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
@@ -39,23 +39,34 @@ namespace Pulumiverse.Grafana.Cloud
     ///         IsDisabled = false,
     ///     });
     /// 
-    ///     var foo = new Grafana.Cloud.StackServiceAccountToken("foo", new()
+    ///     var foo = new Grafana.Cloud.StackServiceAccountRotatingToken("foo", new()
     ///     {
     ///         StackSlug = "&lt;your stack slug&gt;",
-    ///         Name = "key_foo",
+    ///         NamePrefix = "key_foo",
     ///         ServiceAccountId = cloudSa.Id,
+    ///         SecondsToLive = 7776000,
+    ///         EarlyRotationWindowSeconds = 604800,
     ///     });
     /// 
     ///     return new Dictionary&lt;string, object?&gt;
     ///     {
-    ///         ["serviceAccountTokenFooKey"] = foo.Key,
+    ///         ["serviceAccountTokenFooKey"] = fooGrafanaCloudStackServiceAccountToken.Key,
     ///     };
     /// });
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:cloud/stackServiceAccountToken:StackServiceAccountToken")]
-    public partial class StackServiceAccountToken : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:cloud/stackServiceAccountRotatingToken:StackServiceAccountRotatingToken")]
+    public partial class StackServiceAccountRotatingToken : global::Pulumi.CustomResource
     {
+        [Output("deleteOnDestroy")]
+        public Output<bool?> DeleteOnDestroy { get; private set; } = null!;
+
+        /// <summary>
+        /// Duration of the time window before expiring where the token can be rotated, in seconds.
+        /// </summary>
+        [Output("earlyRotationWindowSeconds")]
+        public Output<int> EarlyRotationWindowSeconds { get; private set; } = null!;
+
         /// <summary>
         /// The expiration date of the service account token.
         /// </summary>
@@ -75,16 +86,28 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> Key { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the service account token.
+        /// The name of the service account token. It will start with `&lt;name_prefix&gt;-` and will have characters appended to it to make the name unique.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `ApiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+        /// Prefix for the name of the service account tokens created by this resource. The actual name will be stored in the computed field `Name`, which will be in the format `&lt;name_prefix&gt;-&lt;additional_characters&gt;`.
+        /// </summary>
+        [Output("namePrefix")]
+        public Output<string> NamePrefix { get; private set; } = null!;
+
+        /// <summary>
+        /// Signals that the service account token is expired or within the period to be early rotated.
+        /// </summary>
+        [Output("readyForRotation")]
+        public Output<bool> ReadyForRotation { get; private set; } = null!;
+
+        /// <summary>
+        /// The token expiration in seconds.
         /// </summary>
         [Output("secondsToLive")]
-        public Output<int?> SecondsToLive { get; private set; } = null!;
+        public Output<int> SecondsToLive { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the service account to which the token belongs.
@@ -97,19 +120,19 @@ namespace Pulumiverse.Grafana.Cloud
 
 
         /// <summary>
-        /// Create a StackServiceAccountToken resource with the given unique name, arguments, and options.
+        /// Create a StackServiceAccountRotatingToken resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public StackServiceAccountToken(string name, StackServiceAccountTokenArgs args, CustomResourceOptions? options = null)
-            : base("grafana:cloud/stackServiceAccountToken:StackServiceAccountToken", name, args ?? new StackServiceAccountTokenArgs(), MakeResourceOptions(options, ""))
+        public StackServiceAccountRotatingToken(string name, StackServiceAccountRotatingTokenArgs args, CustomResourceOptions? options = null)
+            : base("grafana:cloud/stackServiceAccountRotatingToken:StackServiceAccountRotatingToken", name, args ?? new StackServiceAccountRotatingTokenArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private StackServiceAccountToken(string name, Input<string> id, StackServiceAccountTokenState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:cloud/stackServiceAccountToken:StackServiceAccountToken", name, state, MakeResourceOptions(options, id))
+        private StackServiceAccountRotatingToken(string name, Input<string> id, StackServiceAccountRotatingTokenState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:cloud/stackServiceAccountRotatingToken:StackServiceAccountRotatingToken", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -130,7 +153,7 @@ namespace Pulumiverse.Grafana.Cloud
             return merged;
         }
         /// <summary>
-        /// Get an existing StackServiceAccountToken resource's state with the given name, ID, and optional extra
+        /// Get an existing StackServiceAccountRotatingToken resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -138,25 +161,34 @@ namespace Pulumiverse.Grafana.Cloud
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static StackServiceAccountToken Get(string name, Input<string> id, StackServiceAccountTokenState? state = null, CustomResourceOptions? options = null)
+        public static StackServiceAccountRotatingToken Get(string name, Input<string> id, StackServiceAccountRotatingTokenState? state = null, CustomResourceOptions? options = null)
         {
-            return new StackServiceAccountToken(name, id, state, options);
+            return new StackServiceAccountRotatingToken(name, id, state, options);
         }
     }
 
-    public sealed class StackServiceAccountTokenArgs : global::Pulumi.ResourceArgs
+    public sealed class StackServiceAccountRotatingTokenArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The name of the service account token.
-        /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("deleteOnDestroy")]
+        public Input<bool>? DeleteOnDestroy { get; set; }
 
         /// <summary>
-        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `ApiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+        /// Duration of the time window before expiring where the token can be rotated, in seconds.
         /// </summary>
-        [Input("secondsToLive")]
-        public Input<int>? SecondsToLive { get; set; }
+        [Input("earlyRotationWindowSeconds", required: true)]
+        public Input<int> EarlyRotationWindowSeconds { get; set; } = null!;
+
+        /// <summary>
+        /// Prefix for the name of the service account tokens created by this resource. The actual name will be stored in the computed field `Name`, which will be in the format `&lt;name_prefix&gt;-&lt;additional_characters&gt;`.
+        /// </summary>
+        [Input("namePrefix", required: true)]
+        public Input<string> NamePrefix { get; set; } = null!;
+
+        /// <summary>
+        /// The token expiration in seconds.
+        /// </summary>
+        [Input("secondsToLive", required: true)]
+        public Input<int> SecondsToLive { get; set; } = null!;
 
         /// <summary>
         /// The ID of the service account to which the token belongs.
@@ -167,14 +199,23 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("stackSlug", required: true)]
         public Input<string> StackSlug { get; set; } = null!;
 
-        public StackServiceAccountTokenArgs()
+        public StackServiceAccountRotatingTokenArgs()
         {
         }
-        public static new StackServiceAccountTokenArgs Empty => new StackServiceAccountTokenArgs();
+        public static new StackServiceAccountRotatingTokenArgs Empty => new StackServiceAccountRotatingTokenArgs();
     }
 
-    public sealed class StackServiceAccountTokenState : global::Pulumi.ResourceArgs
+    public sealed class StackServiceAccountRotatingTokenState : global::Pulumi.ResourceArgs
     {
+        [Input("deleteOnDestroy")]
+        public Input<bool>? DeleteOnDestroy { get; set; }
+
+        /// <summary>
+        /// Duration of the time window before expiring where the token can be rotated, in seconds.
+        /// </summary>
+        [Input("earlyRotationWindowSeconds")]
+        public Input<int>? EarlyRotationWindowSeconds { get; set; }
+
         /// <summary>
         /// The expiration date of the service account token.
         /// </summary>
@@ -204,13 +245,25 @@ namespace Pulumiverse.Grafana.Cloud
         }
 
         /// <summary>
-        /// The name of the service account token.
+        /// The name of the service account token. It will start with `&lt;name_prefix&gt;-` and will have characters appended to it to make the name unique.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `ApiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+        /// Prefix for the name of the service account tokens created by this resource. The actual name will be stored in the computed field `Name`, which will be in the format `&lt;name_prefix&gt;-&lt;additional_characters&gt;`.
+        /// </summary>
+        [Input("namePrefix")]
+        public Input<string>? NamePrefix { get; set; }
+
+        /// <summary>
+        /// Signals that the service account token is expired or within the period to be early rotated.
+        /// </summary>
+        [Input("readyForRotation")]
+        public Input<bool>? ReadyForRotation { get; set; }
+
+        /// <summary>
+        /// The token expiration in seconds.
         /// </summary>
         [Input("secondsToLive")]
         public Input<int>? SecondsToLive { get; set; }
@@ -224,9 +277,9 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("stackSlug")]
         public Input<string>? StackSlug { get; set; }
 
-        public StackServiceAccountTokenState()
+        public StackServiceAccountRotatingTokenState()
         {
         }
-        public static new StackServiceAccountTokenState Empty => new StackServiceAccountTokenState();
+        public static new StackServiceAccountRotatingTokenState Empty => new StackServiceAccountRotatingTokenState();
     }
 }

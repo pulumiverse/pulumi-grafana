@@ -25,6 +25,9 @@ class StackServiceAccountTokenArgs:
                  seconds_to_live: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a StackServiceAccountToken resource.
+        :param pulumi.Input[_builtins.str] service_account_id: The ID of the service account to which the token belongs.
+        :param pulumi.Input[_builtins.str] name: The name of the service account token.
+        :param pulumi.Input[_builtins.int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
         """
         pulumi.set(__self__, "service_account_id", service_account_id)
         pulumi.set(__self__, "stack_slug", stack_slug)
@@ -36,6 +39,9 @@ class StackServiceAccountTokenArgs:
     @_builtins.property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The ID of the service account to which the token belongs.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -54,6 +60,9 @@ class StackServiceAccountTokenArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the service account token.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -63,6 +72,9 @@ class StackServiceAccountTokenArgs:
     @_builtins.property
     @pulumi.getter(name="secondsToLive")
     def seconds_to_live(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        """
         return pulumi.get(self, "seconds_to_live")
 
     @seconds_to_live.setter
@@ -82,6 +94,12 @@ class _StackServiceAccountTokenState:
                  stack_slug: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StackServiceAccountToken resources.
+        :param pulumi.Input[_builtins.str] expiration: The expiration date of the service account token.
+        :param pulumi.Input[_builtins.bool] has_expired: The status of the service account token.
+        :param pulumi.Input[_builtins.str] key: The key of the service account token.
+        :param pulumi.Input[_builtins.str] name: The name of the service account token.
+        :param pulumi.Input[_builtins.int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        :param pulumi.Input[_builtins.str] service_account_id: The ID of the service account to which the token belongs.
         """
         if expiration is not None:
             pulumi.set(__self__, "expiration", expiration)
@@ -101,6 +119,9 @@ class _StackServiceAccountTokenState:
     @_builtins.property
     @pulumi.getter
     def expiration(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The expiration date of the service account token.
+        """
         return pulumi.get(self, "expiration")
 
     @expiration.setter
@@ -110,6 +131,9 @@ class _StackServiceAccountTokenState:
     @_builtins.property
     @pulumi.getter(name="hasExpired")
     def has_expired(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        The status of the service account token.
+        """
         return pulumi.get(self, "has_expired")
 
     @has_expired.setter
@@ -119,6 +143,9 @@ class _StackServiceAccountTokenState:
     @_builtins.property
     @pulumi.getter
     def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The key of the service account token.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -128,6 +155,9 @@ class _StackServiceAccountTokenState:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the service account token.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -137,6 +167,9 @@ class _StackServiceAccountTokenState:
     @_builtins.property
     @pulumi.getter(name="secondsToLive")
     def seconds_to_live(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        """
         return pulumi.get(self, "seconds_to_live")
 
     @seconds_to_live.setter
@@ -146,6 +179,9 @@ class _StackServiceAccountTokenState:
     @_builtins.property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the service account to which the token belongs.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -196,6 +232,7 @@ class StackServiceAccountToken(pulumi.CustomResource):
             role="Admin",
             is_disabled=False)
         foo = grafana.cloud.StackServiceAccountToken("foo",
+            stack_slug="<your stack slug>",
             name="key_foo",
             service_account_id=cloud_sa.id)
         pulumi.export("serviceAccountTokenFooKey", foo.key)
@@ -203,6 +240,9 @@ class StackServiceAccountToken(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] name: The name of the service account token.
+        :param pulumi.Input[_builtins.int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        :param pulumi.Input[_builtins.str] service_account_id: The ID of the service account to which the token belongs.
         """
         ...
     @overload
@@ -233,6 +273,7 @@ class StackServiceAccountToken(pulumi.CustomResource):
             role="Admin",
             is_disabled=False)
         foo = grafana.cloud.StackServiceAccountToken("foo",
+            stack_slug="<your stack slug>",
             name="key_foo",
             service_account_id=cloud_sa.id)
         pulumi.export("serviceAccountTokenFooKey", foo.key)
@@ -303,6 +344,12 @@ class StackServiceAccountToken(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] expiration: The expiration date of the service account token.
+        :param pulumi.Input[_builtins.bool] has_expired: The status of the service account token.
+        :param pulumi.Input[_builtins.str] key: The key of the service account token.
+        :param pulumi.Input[_builtins.str] name: The name of the service account token.
+        :param pulumi.Input[_builtins.int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        :param pulumi.Input[_builtins.str] service_account_id: The ID of the service account to which the token belongs.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -320,31 +367,49 @@ class StackServiceAccountToken(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def expiration(self) -> pulumi.Output[_builtins.str]:
+        """
+        The expiration date of the service account token.
+        """
         return pulumi.get(self, "expiration")
 
     @_builtins.property
     @pulumi.getter(name="hasExpired")
     def has_expired(self) -> pulumi.Output[_builtins.bool]:
+        """
+        The status of the service account token.
+        """
         return pulumi.get(self, "has_expired")
 
     @_builtins.property
     @pulumi.getter
     def key(self) -> pulumi.Output[_builtins.str]:
+        """
+        The key of the service account token.
+        """
         return pulumi.get(self, "key")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of the service account token.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter(name="secondsToLive")
     def seconds_to_live(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
+        """
         return pulumi.get(self, "seconds_to_live")
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The ID of the service account to which the token belongs.
+        """
         return pulumi.get(self, "service_account_id")
 
     @_builtins.property
