@@ -11313,27 +11313,182 @@
                 "type": "object"
             }
         },
-        "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": {
-            "description": "Manages service account tokens of a Grafana Cloud stack using the Cloud API\nThis can be used to bootstrap a management service account token for a new stack\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)\n\nRequired access policy scopes:\n\n* stack-service-accounts:write\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst cloudSa = new grafana.cloud.StackServiceAccount(\"cloud_sa\", {\n    stackSlug: \"\u003cyour stack slug\u003e\",\n    name: \"cloud service account\",\n    role: \"Admin\",\n    isDisabled: false,\n});\nconst foo = new grafana.cloud.StackServiceAccountToken(\"foo\", {\n    name: \"key_foo\",\n    serviceAccountId: cloudSa.id,\n});\nexport const serviceAccountTokenFooKey = foo.key;\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ncloud_sa = grafana.cloud.StackServiceAccount(\"cloud_sa\",\n    stack_slug=\"\u003cyour stack slug\u003e\",\n    name=\"cloud service account\",\n    role=\"Admin\",\n    is_disabled=False)\nfoo = grafana.cloud.StackServiceAccountToken(\"foo\",\n    name=\"key_foo\",\n    service_account_id=cloud_sa.id)\npulumi.export(\"serviceAccountTokenFooKey\", foo.key)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var cloudSa = new Grafana.Cloud.StackServiceAccount(\"cloud_sa\", new()\n    {\n        StackSlug = \"\u003cyour stack slug\u003e\",\n        Name = \"cloud service account\",\n        Role = \"Admin\",\n        IsDisabled = false,\n    });\n\n    var foo = new Grafana.Cloud.StackServiceAccountToken(\"foo\", new()\n    {\n        Name = \"key_foo\",\n        ServiceAccountId = cloudSa.Id,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"serviceAccountTokenFooKey\"] = foo.Key,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcloudSa, err := cloud.NewStackServiceAccount(ctx, \"cloud_sa\", \u0026cloud.StackServiceAccountArgs{\n\t\t\tStackSlug:  pulumi.String(\"\u003cyour stack slug\u003e\"),\n\t\t\tName:       pulumi.String(\"cloud service account\"),\n\t\t\tRole:       pulumi.String(\"Admin\"),\n\t\t\tIsDisabled: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tfoo, err := cloud.NewStackServiceAccountToken(ctx, \"foo\", \u0026cloud.StackServiceAccountTokenArgs{\n\t\t\tName:             pulumi.String(\"key_foo\"),\n\t\t\tServiceAccountId: cloudSa.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"serviceAccountTokenFooKey\", foo.Key)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.StackServiceAccount;\nimport com.pulumi.grafana.cloud.StackServiceAccountArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccountToken;\nimport com.pulumi.grafana.cloud.StackServiceAccountTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var cloudSa = new StackServiceAccount(\"cloudSa\", StackServiceAccountArgs.builder()\n            .stackSlug(\"\u003cyour stack slug\u003e\")\n            .name(\"cloud service account\")\n            .role(\"Admin\")\n            .isDisabled(false)\n            .build());\n\n        var foo = new StackServiceAccountToken(\"foo\", StackServiceAccountTokenArgs.builder()\n            .name(\"key_foo\")\n            .serviceAccountId(cloudSa.id())\n            .build());\n\n        ctx.export(\"serviceAccountTokenFooKey\", foo.key());\n    }\n}\n```\n```yaml\nresources:\n  cloudSa:\n    type: grafana:cloud:StackServiceAccount\n    name: cloud_sa\n    properties:\n      stackSlug: \u003cyour stack slug\u003e\n      name: cloud service account\n      role: Admin\n      isDisabled: false\n  foo:\n    type: grafana:cloud:StackServiceAccountToken\n    properties:\n      name: key_foo\n      serviceAccountId: ${cloudSa.id}\noutputs:\n  serviceAccountTokenFooKey: ${foo.key}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+        "grafana:cloud/stackServiceAccountRotatingToken:StackServiceAccountRotatingToken": {
+            "description": "Manages and rotates service account tokens of a Grafana Cloud stack using the Cloud API\nThis can be used to bootstrap a management service account token for a new stack\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)\n\nRequired access policy scopes:\n\n* stack-service-accounts:write\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst cloudSa = new grafana.cloud.StackServiceAccount(\"cloud_sa\", {\n    stackSlug: \"\u003cyour stack slug\u003e\",\n    name: \"cloud service account\",\n    role: \"Admin\",\n    isDisabled: false,\n});\nconst foo = new grafana.cloud.StackServiceAccountRotatingToken(\"foo\", {\n    stackSlug: \"\u003cyour stack slug\u003e\",\n    namePrefix: \"key_foo\",\n    serviceAccountId: cloudSa.id,\n    secondsToLive: 7776000,\n    earlyRotationWindowSeconds: 604800,\n});\nexport const serviceAccountTokenFooKey = fooGrafanaCloudStackServiceAccountToken.key;\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ncloud_sa = grafana.cloud.StackServiceAccount(\"cloud_sa\",\n    stack_slug=\"\u003cyour stack slug\u003e\",\n    name=\"cloud service account\",\n    role=\"Admin\",\n    is_disabled=False)\nfoo = grafana.cloud.StackServiceAccountRotatingToken(\"foo\",\n    stack_slug=\"\u003cyour stack slug\u003e\",\n    name_prefix=\"key_foo\",\n    service_account_id=cloud_sa.id,\n    seconds_to_live=7776000,\n    early_rotation_window_seconds=604800)\npulumi.export(\"serviceAccountTokenFooKey\", foo_grafana_cloud_stack_service_account_token[\"key\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var cloudSa = new Grafana.Cloud.StackServiceAccount(\"cloud_sa\", new()\n    {\n        StackSlug = \"\u003cyour stack slug\u003e\",\n        Name = \"cloud service account\",\n        Role = \"Admin\",\n        IsDisabled = false,\n    });\n\n    var foo = new Grafana.Cloud.StackServiceAccountRotatingToken(\"foo\", new()\n    {\n        StackSlug = \"\u003cyour stack slug\u003e\",\n        NamePrefix = \"key_foo\",\n        ServiceAccountId = cloudSa.Id,\n        SecondsToLive = 7776000,\n        EarlyRotationWindowSeconds = 604800,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"serviceAccountTokenFooKey\"] = fooGrafanaCloudStackServiceAccountToken.Key,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcloudSa, err := cloud.NewStackServiceAccount(ctx, \"cloud_sa\", \u0026cloud.StackServiceAccountArgs{\n\t\t\tStackSlug:  pulumi.String(\"\u003cyour stack slug\u003e\"),\n\t\t\tName:       pulumi.String(\"cloud service account\"),\n\t\t\tRole:       pulumi.String(\"Admin\"),\n\t\t\tIsDisabled: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloud.NewStackServiceAccountRotatingToken(ctx, \"foo\", \u0026cloud.StackServiceAccountRotatingTokenArgs{\n\t\t\tStackSlug:                  pulumi.String(\"\u003cyour stack slug\u003e\"),\n\t\t\tNamePrefix:                 pulumi.String(\"key_foo\"),\n\t\t\tServiceAccountId:           cloudSa.ID(),\n\t\t\tSecondsToLive:              pulumi.Int(7776000),\n\t\t\tEarlyRotationWindowSeconds: pulumi.Int(604800),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"serviceAccountTokenFooKey\", fooGrafanaCloudStackServiceAccountToken.Key)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.StackServiceAccount;\nimport com.pulumi.grafana.cloud.StackServiceAccountArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccountRotatingToken;\nimport com.pulumi.grafana.cloud.StackServiceAccountRotatingTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var cloudSa = new StackServiceAccount(\"cloudSa\", StackServiceAccountArgs.builder()\n            .stackSlug(\"\u003cyour stack slug\u003e\")\n            .name(\"cloud service account\")\n            .role(\"Admin\")\n            .isDisabled(false)\n            .build());\n\n        var foo = new StackServiceAccountRotatingToken(\"foo\", StackServiceAccountRotatingTokenArgs.builder()\n            .stackSlug(\"\u003cyour stack slug\u003e\")\n            .namePrefix(\"key_foo\")\n            .serviceAccountId(cloudSa.id())\n            .secondsToLive(7776000)\n            .earlyRotationWindowSeconds(604800)\n            .build());\n\n        ctx.export(\"serviceAccountTokenFooKey\", fooGrafanaCloudStackServiceAccountToken.key());\n    }\n}\n```\n```yaml\nresources:\n  cloudSa:\n    type: grafana:cloud:StackServiceAccount\n    name: cloud_sa\n    properties:\n      stackSlug: \u003cyour stack slug\u003e\n      name: cloud service account\n      role: Admin\n      isDisabled: false\n  foo:\n    type: grafana:cloud:StackServiceAccountRotatingToken\n    properties:\n      stackSlug: \u003cyour stack slug\u003e\n      namePrefix: key_foo\n      serviceAccountId: ${cloudSa.id}\n      secondsToLive: 7.776e+06 # 3 months\n      earlyRotationWindowSeconds: 604800 # 1 week\noutputs:\n  serviceAccountTokenFooKey: ${fooGrafanaCloudStackServiceAccountToken.key}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
+                "deleteOnDestroy": {
+                    "type": "boolean"
+                },
+                "earlyRotationWindowSeconds": {
+                    "type": "integer",
+                    "description": "Duration of the time window before expiring where the token can be rotated, in seconds.\n"
+                },
                 "expiration": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The expiration date of the service account token.\n"
                 },
                 "hasExpired": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "The status of the service account token.\n"
                 },
                 "key": {
                     "type": "string",
+                    "description": "The key of the service account token.\n",
                     "secret": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the service account token. It will start with `\u003cname_prefix\u003e-` and will have characters appended to it to make the name unique.\n"
+                },
+                "namePrefix": {
+                    "type": "string",
+                    "description": "Prefix for the name of the service account tokens created by this resource. The actual name will be stored in the computed field \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e, which will be in the format `\u003cname_prefix\u003e-\u003cadditional_characters\u003e`.\n"
+                },
+                "readyForRotation": {
+                    "type": "boolean",
+                    "description": "Signals that the service account token is expired or within the period to be early rotated.\n"
                 },
                 "secondsToLive": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The token expiration in seconds.\n"
                 },
                 "serviceAccountId": {
+                    "type": "string",
+                    "description": "The ID of the service account to which the token belongs.\n"
+                },
+                "stackSlug": {
                     "type": "string"
+                }
+            },
+            "required": [
+                "earlyRotationWindowSeconds",
+                "expiration",
+                "hasExpired",
+                "key",
+                "name",
+                "namePrefix",
+                "readyForRotation",
+                "secondsToLive",
+                "serviceAccountId",
+                "stackSlug"
+            ],
+            "inputProperties": {
+                "deleteOnDestroy": {
+                    "type": "boolean"
+                },
+                "earlyRotationWindowSeconds": {
+                    "type": "integer",
+                    "description": "Duration of the time window before expiring where the token can be rotated, in seconds.\n"
+                },
+                "namePrefix": {
+                    "type": "string",
+                    "description": "Prefix for the name of the service account tokens created by this resource. The actual name will be stored in the computed field \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e, which will be in the format `\u003cname_prefix\u003e-\u003cadditional_characters\u003e`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "secondsToLive": {
+                    "type": "integer",
+                    "description": "The token expiration in seconds.\n",
+                    "willReplaceOnChanges": true
+                },
+                "serviceAccountId": {
+                    "type": "string",
+                    "description": "The ID of the service account to which the token belongs.\n",
+                    "willReplaceOnChanges": true
+                },
+                "stackSlug": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "earlyRotationWindowSeconds",
+                "namePrefix",
+                "secondsToLive",
+                "serviceAccountId",
+                "stackSlug"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering StackServiceAccountRotatingToken resources.\n",
+                "properties": {
+                    "deleteOnDestroy": {
+                        "type": "boolean"
+                    },
+                    "earlyRotationWindowSeconds": {
+                        "type": "integer",
+                        "description": "Duration of the time window before expiring where the token can be rotated, in seconds.\n"
+                    },
+                    "expiration": {
+                        "type": "string",
+                        "description": "The expiration date of the service account token.\n"
+                    },
+                    "hasExpired": {
+                        "type": "boolean",
+                        "description": "The status of the service account token.\n"
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "The key of the service account token.\n",
+                        "secret": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the service account token. It will start with `\u003cname_prefix\u003e-` and will have characters appended to it to make the name unique.\n"
+                    },
+                    "namePrefix": {
+                        "type": "string",
+                        "description": "Prefix for the name of the service account tokens created by this resource. The actual name will be stored in the computed field \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e, which will be in the format `\u003cname_prefix\u003e-\u003cadditional_characters\u003e`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "readyForRotation": {
+                        "type": "boolean",
+                        "description": "Signals that the service account token is expired or within the period to be early rotated.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secondsToLive": {
+                        "type": "integer",
+                        "description": "The token expiration in seconds.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "serviceAccountId": {
+                        "type": "string",
+                        "description": "The ID of the service account to which the token belongs.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "stackSlug": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": {
+            "description": "Manages service account tokens of a Grafana Cloud stack using the Cloud API\nThis can be used to bootstrap a management service account token for a new stack\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)\n\nRequired access policy scopes:\n\n* stack-service-accounts:write\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst cloudSa = new grafana.cloud.StackServiceAccount(\"cloud_sa\", {\n    stackSlug: \"\u003cyour stack slug\u003e\",\n    name: \"cloud service account\",\n    role: \"Admin\",\n    isDisabled: false,\n});\nconst foo = new grafana.cloud.StackServiceAccountToken(\"foo\", {\n    stackSlug: \"\u003cyour stack slug\u003e\",\n    name: \"key_foo\",\n    serviceAccountId: cloudSa.id,\n});\nexport const serviceAccountTokenFooKey = foo.key;\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ncloud_sa = grafana.cloud.StackServiceAccount(\"cloud_sa\",\n    stack_slug=\"\u003cyour stack slug\u003e\",\n    name=\"cloud service account\",\n    role=\"Admin\",\n    is_disabled=False)\nfoo = grafana.cloud.StackServiceAccountToken(\"foo\",\n    stack_slug=\"\u003cyour stack slug\u003e\",\n    name=\"key_foo\",\n    service_account_id=cloud_sa.id)\npulumi.export(\"serviceAccountTokenFooKey\", foo.key)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var cloudSa = new Grafana.Cloud.StackServiceAccount(\"cloud_sa\", new()\n    {\n        StackSlug = \"\u003cyour stack slug\u003e\",\n        Name = \"cloud service account\",\n        Role = \"Admin\",\n        IsDisabled = false,\n    });\n\n    var foo = new Grafana.Cloud.StackServiceAccountToken(\"foo\", new()\n    {\n        StackSlug = \"\u003cyour stack slug\u003e\",\n        Name = \"key_foo\",\n        ServiceAccountId = cloudSa.Id,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"serviceAccountTokenFooKey\"] = foo.Key,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcloudSa, err := cloud.NewStackServiceAccount(ctx, \"cloud_sa\", \u0026cloud.StackServiceAccountArgs{\n\t\t\tStackSlug:  pulumi.String(\"\u003cyour stack slug\u003e\"),\n\t\t\tName:       pulumi.String(\"cloud service account\"),\n\t\t\tRole:       pulumi.String(\"Admin\"),\n\t\t\tIsDisabled: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tfoo, err := cloud.NewStackServiceAccountToken(ctx, \"foo\", \u0026cloud.StackServiceAccountTokenArgs{\n\t\t\tStackSlug:        pulumi.String(\"\u003cyour stack slug\u003e\"),\n\t\t\tName:             pulumi.String(\"key_foo\"),\n\t\t\tServiceAccountId: cloudSa.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"serviceAccountTokenFooKey\", foo.Key)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.StackServiceAccount;\nimport com.pulumi.grafana.cloud.StackServiceAccountArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccountToken;\nimport com.pulumi.grafana.cloud.StackServiceAccountTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var cloudSa = new StackServiceAccount(\"cloudSa\", StackServiceAccountArgs.builder()\n            .stackSlug(\"\u003cyour stack slug\u003e\")\n            .name(\"cloud service account\")\n            .role(\"Admin\")\n            .isDisabled(false)\n            .build());\n\n        var foo = new StackServiceAccountToken(\"foo\", StackServiceAccountTokenArgs.builder()\n            .stackSlug(\"\u003cyour stack slug\u003e\")\n            .name(\"key_foo\")\n            .serviceAccountId(cloudSa.id())\n            .build());\n\n        ctx.export(\"serviceAccountTokenFooKey\", foo.key());\n    }\n}\n```\n```yaml\nresources:\n  cloudSa:\n    type: grafana:cloud:StackServiceAccount\n    name: cloud_sa\n    properties:\n      stackSlug: \u003cyour stack slug\u003e\n      name: cloud service account\n      role: Admin\n      isDisabled: false\n  foo:\n    type: grafana:cloud:StackServiceAccountToken\n    properties:\n      stackSlug: \u003cyour stack slug\u003e\n      name: key_foo\n      serviceAccountId: ${cloudSa.id}\noutputs:\n  serviceAccountTokenFooKey: ${foo.key}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "expiration": {
+                    "type": "string",
+                    "description": "The expiration date of the service account token.\n"
+                },
+                "hasExpired": {
+                    "type": "boolean",
+                    "description": "The status of the service account token.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key of the service account token.\n",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the service account token.\n"
+                },
+                "secondsToLive": {
+                    "type": "integer",
+                    "description": "The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless \u003cspan pulumi-lang-nodejs=\"`apiKeyMaxSecondsToLive`\" pulumi-lang-dotnet=\"`ApiKeyMaxSecondsToLive`\" pulumi-lang-go=\"`apiKeyMaxSecondsToLive`\" pulumi-lang-python=\"`api_key_max_seconds_to_live`\" pulumi-lang-yaml=\"`apiKeyMaxSecondsToLive`\" pulumi-lang-java=\"`apiKeyMaxSecondsToLive`\"\u003e`api_key_max_seconds_to_live`\u003c/span\u003e configuration option is set) the key will never expire.\n"
+                },
+                "serviceAccountId": {
+                    "type": "string",
+                    "description": "The ID of the service account to which the token belongs.\n"
                 },
                 "stackSlug": {
                     "type": "string"
@@ -11350,14 +11505,17 @@
             "inputProperties": {
                 "name": {
                     "type": "string",
+                    "description": "The name of the service account token.\n",
                     "willReplaceOnChanges": true
                 },
                 "secondsToLive": {
                     "type": "integer",
+                    "description": "The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless \u003cspan pulumi-lang-nodejs=\"`apiKeyMaxSecondsToLive`\" pulumi-lang-dotnet=\"`ApiKeyMaxSecondsToLive`\" pulumi-lang-go=\"`apiKeyMaxSecondsToLive`\" pulumi-lang-python=\"`api_key_max_seconds_to_live`\" pulumi-lang-yaml=\"`apiKeyMaxSecondsToLive`\" pulumi-lang-java=\"`apiKeyMaxSecondsToLive`\"\u003e`api_key_max_seconds_to_live`\u003c/span\u003e configuration option is set) the key will never expire.\n",
                     "willReplaceOnChanges": true
                 },
                 "serviceAccountId": {
                     "type": "string",
+                    "description": "The ID of the service account to which the token belongs.\n",
                     "willReplaceOnChanges": true
                 },
                 "stackSlug": {
@@ -11373,25 +11531,31 @@
                 "description": "Input properties used for looking up and filtering StackServiceAccountToken resources.\n",
                 "properties": {
                     "expiration": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The expiration date of the service account token.\n"
                     },
                     "hasExpired": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "The status of the service account token.\n"
                     },
                     "key": {
                         "type": "string",
+                        "description": "The key of the service account token.\n",
                         "secret": true
                     },
                     "name": {
                         "type": "string",
+                        "description": "The name of the service account token.\n",
                         "willReplaceOnChanges": true
                     },
                     "secondsToLive": {
                         "type": "integer",
+                        "description": "The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless \u003cspan pulumi-lang-nodejs=\"`apiKeyMaxSecondsToLive`\" pulumi-lang-dotnet=\"`ApiKeyMaxSecondsToLive`\" pulumi-lang-go=\"`apiKeyMaxSecondsToLive`\" pulumi-lang-python=\"`api_key_max_seconds_to_live`\" pulumi-lang-yaml=\"`apiKeyMaxSecondsToLive`\" pulumi-lang-java=\"`apiKeyMaxSecondsToLive`\"\u003e`api_key_max_seconds_to_live`\u003c/span\u003e configuration option is set) the key will never expire.\n",
                         "willReplaceOnChanges": true
                     },
                     "serviceAccountId": {
                         "type": "string",
+                        "description": "The ID of the service account to which the token belongs.\n",
                         "willReplaceOnChanges": true
                     },
                     "stackSlug": {
@@ -13351,6 +13515,142 @@
                     },
                     "stackId": {
                         "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "grafana:index/serviceAccountRotatingToken:ServiceAccountRotatingToken": {
+            "description": "**Note:** This resource is available only with Grafana 9.1+.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.oss.ServiceAccount(\"test\", {\n    name: \"test-service-account\",\n    role: \"Viewer\",\n});\nconst foo = new grafana.ServiceAccountRotatingToken(\"foo\", {\n    namePrefix: \"key_foo\",\n    serviceAccountId: test.id,\n    secondsToLive: 7776000,\n    earlyRotationWindowSeconds: 604800,\n});\nexport const serviceAccountTokenFooKey = foo.key;\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest = grafana.oss.ServiceAccount(\"test\",\n    name=\"test-service-account\",\n    role=\"Viewer\")\nfoo = grafana.ServiceAccountRotatingToken(\"foo\",\n    name_prefix=\"key_foo\",\n    service_account_id=test.id,\n    seconds_to_live=7776000,\n    early_rotation_window_seconds=604800)\npulumi.export(\"serviceAccountTokenFooKey\", foo.key)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Oss.ServiceAccount(\"test\", new()\n    {\n        Name = \"test-service-account\",\n        Role = \"Viewer\",\n    });\n\n    var foo = new Grafana.ServiceAccountRotatingToken(\"foo\", new()\n    {\n        NamePrefix = \"key_foo\",\n        ServiceAccountId = test.Id,\n        SecondsToLive = 7776000,\n        EarlyRotationWindowSeconds = 604800,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"serviceAccountTokenFooKey\"] = foo.Key,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := oss.NewServiceAccount(ctx, \"test\", \u0026oss.ServiceAccountArgs{\n\t\t\tName: pulumi.String(\"test-service-account\"),\n\t\t\tRole: pulumi.String(\"Viewer\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tfoo, err := grafana.NewServiceAccountRotatingToken(ctx, \"foo\", \u0026grafana.ServiceAccountRotatingTokenArgs{\n\t\t\tNamePrefix:                 pulumi.String(\"key_foo\"),\n\t\t\tServiceAccountId:           test.ID(),\n\t\t\tSecondsToLive:              pulumi.Int(7776000),\n\t\t\tEarlyRotationWindowSeconds: pulumi.Int(604800),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"serviceAccountTokenFooKey\", foo.Key)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.ServiceAccount;\nimport com.pulumi.grafana.oss.ServiceAccountArgs;\nimport com.pulumi.grafana.ServiceAccountRotatingToken;\nimport com.pulumi.grafana.ServiceAccountRotatingTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new ServiceAccount(\"test\", ServiceAccountArgs.builder()\n            .name(\"test-service-account\")\n            .role(\"Viewer\")\n            .build());\n\n        var foo = new ServiceAccountRotatingToken(\"foo\", ServiceAccountRotatingTokenArgs.builder()\n            .namePrefix(\"key_foo\")\n            .serviceAccountId(test.id())\n            .secondsToLive(7776000)\n            .earlyRotationWindowSeconds(604800)\n            .build());\n\n        ctx.export(\"serviceAccountTokenFooKey\", foo.key());\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:oss:ServiceAccount\n    properties:\n      name: test-service-account\n      role: Viewer\n  foo:\n    type: grafana:ServiceAccountRotatingToken\n    properties:\n      namePrefix: key_foo\n      serviceAccountId: ${test.id}\n      secondsToLive: 7.776e+06 # 3 months\n      earlyRotationWindowSeconds: 604800 # 1 week\noutputs:\n  serviceAccountTokenFooKey: ${foo.key}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "deleteOnDestroy": {
+                    "type": "boolean"
+                },
+                "earlyRotationWindowSeconds": {
+                    "type": "integer",
+                    "description": "Duration of the time window before expiring where the token can be rotated, in seconds.\n"
+                },
+                "expiration": {
+                    "type": "string",
+                    "description": "The expiration date of the service account token.\n"
+                },
+                "hasExpired": {
+                    "type": "boolean",
+                    "description": "The status of the service account token.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key of the service account token.\n",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the service account token. It will start with `\u003cname_prefix\u003e-` and will have characters appended to it to make the name unique.\n"
+                },
+                "namePrefix": {
+                    "type": "string",
+                    "description": "Prefix for the name of the service account tokens created by this resource. The actual name will be stored in the computed field \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e, which will be in the format `\u003cname_prefix\u003e-\u003cadditional_characters\u003e`.\n"
+                },
+                "readyForRotation": {
+                    "type": "boolean",
+                    "description": "Signals that the service account token is expired or within the period to be early rotated.\n"
+                },
+                "secondsToLive": {
+                    "type": "integer",
+                    "description": "The token expiration in seconds.\n"
+                },
+                "serviceAccountId": {
+                    "type": "string",
+                    "description": "The ID of the service account to which the token belongs.\n"
+                }
+            },
+            "required": [
+                "earlyRotationWindowSeconds",
+                "expiration",
+                "hasExpired",
+                "key",
+                "name",
+                "namePrefix",
+                "readyForRotation",
+                "secondsToLive",
+                "serviceAccountId"
+            ],
+            "inputProperties": {
+                "deleteOnDestroy": {
+                    "type": "boolean"
+                },
+                "earlyRotationWindowSeconds": {
+                    "type": "integer",
+                    "description": "Duration of the time window before expiring where the token can be rotated, in seconds.\n"
+                },
+                "namePrefix": {
+                    "type": "string",
+                    "description": "Prefix for the name of the service account tokens created by this resource. The actual name will be stored in the computed field \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e, which will be in the format `\u003cname_prefix\u003e-\u003cadditional_characters\u003e`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "secondsToLive": {
+                    "type": "integer",
+                    "description": "The token expiration in seconds.\n",
+                    "willReplaceOnChanges": true
+                },
+                "serviceAccountId": {
+                    "type": "string",
+                    "description": "The ID of the service account to which the token belongs.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "earlyRotationWindowSeconds",
+                "namePrefix",
+                "secondsToLive",
+                "serviceAccountId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ServiceAccountRotatingToken resources.\n",
+                "properties": {
+                    "deleteOnDestroy": {
+                        "type": "boolean"
+                    },
+                    "earlyRotationWindowSeconds": {
+                        "type": "integer",
+                        "description": "Duration of the time window before expiring where the token can be rotated, in seconds.\n"
+                    },
+                    "expiration": {
+                        "type": "string",
+                        "description": "The expiration date of the service account token.\n"
+                    },
+                    "hasExpired": {
+                        "type": "boolean",
+                        "description": "The status of the service account token.\n"
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "The key of the service account token.\n",
+                        "secret": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the service account token. It will start with `\u003cname_prefix\u003e-` and will have characters appended to it to make the name unique.\n"
+                    },
+                    "namePrefix": {
+                        "type": "string",
+                        "description": "Prefix for the name of the service account tokens created by this resource. The actual name will be stored in the computed field \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e, which will be in the format `\u003cname_prefix\u003e-\u003cadditional_characters\u003e`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "readyForRotation": {
+                        "type": "boolean",
+                        "description": "Signals that the service account token is expired or within the period to be early rotated.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secondsToLive": {
+                        "type": "integer",
+                        "description": "The token expiration in seconds.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "serviceAccountId": {
+                        "type": "string",
+                        "description": "The ID of the service account to which the token belongs.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
