@@ -46,6 +46,7 @@ import (
 //				return err
 //			}
 //			foo, err := cloud.NewStackServiceAccountToken(ctx, "foo", &cloud.StackServiceAccountTokenArgs{
+//				StackSlug:        pulumi.String("<your stack slug>"),
 //				Name:             pulumi.String("key_foo"),
 //				ServiceAccountId: cloudSa.ID(),
 //			})
@@ -61,11 +62,17 @@ import (
 type StackServiceAccountToken struct {
 	pulumi.CustomResourceState
 
-	Expiration       pulumi.StringOutput `pulumi:"expiration"`
-	HasExpired       pulumi.BoolOutput   `pulumi:"hasExpired"`
-	Key              pulumi.StringOutput `pulumi:"key"`
-	Name             pulumi.StringOutput `pulumi:"name"`
-	SecondsToLive    pulumi.IntPtrOutput `pulumi:"secondsToLive"`
+	// The expiration date of the service account token.
+	Expiration pulumi.StringOutput `pulumi:"expiration"`
+	// The status of the service account token.
+	HasExpired pulumi.BoolOutput `pulumi:"hasExpired"`
+	// The key of the service account token.
+	Key pulumi.StringOutput `pulumi:"key"`
+	// The name of the service account token.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+	SecondsToLive pulumi.IntPtrOutput `pulumi:"secondsToLive"`
+	// The ID of the service account to which the token belongs.
 	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
 	StackSlug        pulumi.StringOutput `pulumi:"stackSlug"`
 }
@@ -110,21 +117,33 @@ func GetStackServiceAccountToken(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering StackServiceAccountToken resources.
 type stackServiceAccountTokenState struct {
-	Expiration       *string `pulumi:"expiration"`
-	HasExpired       *bool   `pulumi:"hasExpired"`
-	Key              *string `pulumi:"key"`
-	Name             *string `pulumi:"name"`
-	SecondsToLive    *int    `pulumi:"secondsToLive"`
+	// The expiration date of the service account token.
+	Expiration *string `pulumi:"expiration"`
+	// The status of the service account token.
+	HasExpired *bool `pulumi:"hasExpired"`
+	// The key of the service account token.
+	Key *string `pulumi:"key"`
+	// The name of the service account token.
+	Name *string `pulumi:"name"`
+	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+	SecondsToLive *int `pulumi:"secondsToLive"`
+	// The ID of the service account to which the token belongs.
 	ServiceAccountId *string `pulumi:"serviceAccountId"`
 	StackSlug        *string `pulumi:"stackSlug"`
 }
 
 type StackServiceAccountTokenState struct {
-	Expiration       pulumi.StringPtrInput
-	HasExpired       pulumi.BoolPtrInput
-	Key              pulumi.StringPtrInput
-	Name             pulumi.StringPtrInput
-	SecondsToLive    pulumi.IntPtrInput
+	// The expiration date of the service account token.
+	Expiration pulumi.StringPtrInput
+	// The status of the service account token.
+	HasExpired pulumi.BoolPtrInput
+	// The key of the service account token.
+	Key pulumi.StringPtrInput
+	// The name of the service account token.
+	Name pulumi.StringPtrInput
+	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+	SecondsToLive pulumi.IntPtrInput
+	// The ID of the service account to which the token belongs.
 	ServiceAccountId pulumi.StringPtrInput
 	StackSlug        pulumi.StringPtrInput
 }
@@ -134,16 +153,22 @@ func (StackServiceAccountTokenState) ElementType() reflect.Type {
 }
 
 type stackServiceAccountTokenArgs struct {
-	Name             *string `pulumi:"name"`
-	SecondsToLive    *int    `pulumi:"secondsToLive"`
-	ServiceAccountId string  `pulumi:"serviceAccountId"`
-	StackSlug        string  `pulumi:"stackSlug"`
+	// The name of the service account token.
+	Name *string `pulumi:"name"`
+	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+	SecondsToLive *int `pulumi:"secondsToLive"`
+	// The ID of the service account to which the token belongs.
+	ServiceAccountId string `pulumi:"serviceAccountId"`
+	StackSlug        string `pulumi:"stackSlug"`
 }
 
 // The set of arguments for constructing a StackServiceAccountToken resource.
 type StackServiceAccountTokenArgs struct {
-	Name             pulumi.StringPtrInput
-	SecondsToLive    pulumi.IntPtrInput
+	// The name of the service account token.
+	Name pulumi.StringPtrInput
+	// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+	SecondsToLive pulumi.IntPtrInput
+	// The ID of the service account to which the token belongs.
 	ServiceAccountId pulumi.StringInput
 	StackSlug        pulumi.StringInput
 }
@@ -235,26 +260,32 @@ func (o StackServiceAccountTokenOutput) ToStackServiceAccountTokenOutputWithCont
 	return o
 }
 
+// The expiration date of the service account token.
 func (o StackServiceAccountTokenOutput) Expiration() pulumi.StringOutput {
 	return o.ApplyT(func(v *StackServiceAccountToken) pulumi.StringOutput { return v.Expiration }).(pulumi.StringOutput)
 }
 
+// The status of the service account token.
 func (o StackServiceAccountTokenOutput) HasExpired() pulumi.BoolOutput {
 	return o.ApplyT(func(v *StackServiceAccountToken) pulumi.BoolOutput { return v.HasExpired }).(pulumi.BoolOutput)
 }
 
+// The key of the service account token.
 func (o StackServiceAccountTokenOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v *StackServiceAccountToken) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
 }
 
+// The name of the service account token.
 func (o StackServiceAccountTokenOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *StackServiceAccountToken) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
 func (o StackServiceAccountTokenOutput) SecondsToLive() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *StackServiceAccountToken) pulumi.IntPtrOutput { return v.SecondsToLive }).(pulumi.IntPtrOutput)
 }
 
+// The ID of the service account to which the token belongs.
 func (o StackServiceAccountTokenOutput) ServiceAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *StackServiceAccountToken) pulumi.StringOutput { return v.ServiceAccountId }).(pulumi.StringOutput)
 }
