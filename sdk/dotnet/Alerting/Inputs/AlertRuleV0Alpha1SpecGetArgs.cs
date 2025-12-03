@@ -85,11 +85,17 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         [Input("notificationSettings")]
         public Input<Inputs.AlertRuleV0Alpha1SpecNotificationSettingsGetArgs>? NotificationSettings { get; set; }
 
+        [Input("panelRef")]
+        private InputMap<string>? _panelRef;
+
         /// <summary>
         /// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         /// </summary>
-        [Input("panelRef")]
-        public Input<object>? PanelRef { get; set; }
+        public InputMap<string> PanelRef
+        {
+            get => _panelRef ?? (_panelRef = new InputMap<string>());
+            set => _panelRef = value;
+        }
 
         /// <summary>
         /// Sets whether the rule should be paused or not.

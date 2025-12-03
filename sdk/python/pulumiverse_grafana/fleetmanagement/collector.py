@@ -118,6 +118,19 @@ class Collector(pulumi.CustomResource):
 
         ## Example Usage
 
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.fleetmanagement.Collector("test",
+            id="my_collector",
+            remote_attributes={
+                "env": "PROD",
+                "owner": "TEAM-A",
+            },
+            enabled=True)
+        ```
+
         ## Import
 
         ```sh
@@ -147,6 +160,19 @@ class Collector(pulumi.CustomResource):
         * fleet-management:write
 
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        test = grafana.fleetmanagement.Collector("test",
+            id="my_collector",
+            remote_attributes={
+                "env": "PROD",
+                "owner": "TEAM-A",
+            },
+            enabled=True)
+        ```
 
         ## Import
 

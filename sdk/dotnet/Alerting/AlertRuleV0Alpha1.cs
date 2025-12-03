@@ -142,6 +142,11 @@ namespace Pulumiverse.Grafana.Alerting
     ///             {
     ///                 ContactPoint = "grafana-default-email",
     ///             },
+    ///             PanelRef = 
+    ///             {
+    ///                 { "dashboard_uid", "dashboard123" },
+    ///                 { "panel_id", "5" },
+    ///             },
     ///         },
     ///     });
     /// 

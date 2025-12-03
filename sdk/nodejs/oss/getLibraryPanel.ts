@@ -6,6 +6,74 @@ import * as utilities from "../utilities";
 
 /**
  * Data source for retrieving a single library panel by name or uid.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ * import * as std from "@pulumi/std";
+ *
+ * // create a minimal library panel inside the General folder
+ * const test = new grafana.oss.LibraryPanel("test", {
+ *     name: "test name",
+ *     modelJson: JSON.stringify({
+ *         title: "test name",
+ *         type: "text",
+ *         version: 0,
+ *     }),
+ * });
+ * const fromName = grafana.oss.getLibraryPanelOutput({
+ *     name: test.name,
+ * });
+ * const fromUid = grafana.oss.getLibraryPanelOutput({
+ *     uid: test.uid,
+ * });
+ * // create library panels to be added to a dashboard
+ * const dashboard = new grafana.oss.LibraryPanel("dashboard", {
+ *     name: "panel",
+ *     modelJson: JSON.stringify({
+ *         gridPos: {
+ *             x: 0,
+ *             y: 0,
+ *             h: 10,
+ *             w: 10,
+ *         },
+ *         title: "panel",
+ *         type: "text",
+ *         version: 0,
+ *     }),
+ * });
+ * // create a dashboard using the library panel
+ * // `merge()` will add `libraryPanel` attribute to each library panel JSON
+ * // Grafana will then connect any library panels found in dashboard JSON
+ * const withLibraryPanel = new grafana.oss.Dashboard("with_library_panel", {configJson: JSON.stringify({
+ *     id: 12345,
+ *     panels: [std.index.merge({
+ *         input: [
+ *             std.index.jsondecode({
+ *                 input: dashboard.modelJson,
+ *             }).result,
+ *             {
+ *                 libraryPanel: {
+ *                     name: dashboard.name,
+ *                     uid: dashboard.uid,
+ *                 },
+ *             },
+ *         ],
+ *     }).result],
+ *     title: "Production Overview",
+ *     tags: ["templated"],
+ *     timezone: "browser",
+ *     schemaVersion: 16,
+ *     version: 0,
+ *     refresh: "25s",
+ * })});
+ * // dashboard_ids list attribute should contain dashboard id 12345
+ * const connectedToDashboard = grafana.oss.getLibraryPanelOutput({
+ *     uid: dashboard.uid,
+ * });
+ * ```
  */
 export function getLibraryPanel(args?: GetLibraryPanelArgs, opts?: pulumi.InvokeOptions): Promise<GetLibraryPanelResult> {
     args = args || {};
@@ -98,6 +166,74 @@ export interface GetLibraryPanelResult {
 }
 /**
  * Data source for retrieving a single library panel by name or uid.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ * import * as std from "@pulumi/std";
+ *
+ * // create a minimal library panel inside the General folder
+ * const test = new grafana.oss.LibraryPanel("test", {
+ *     name: "test name",
+ *     modelJson: JSON.stringify({
+ *         title: "test name",
+ *         type: "text",
+ *         version: 0,
+ *     }),
+ * });
+ * const fromName = grafana.oss.getLibraryPanelOutput({
+ *     name: test.name,
+ * });
+ * const fromUid = grafana.oss.getLibraryPanelOutput({
+ *     uid: test.uid,
+ * });
+ * // create library panels to be added to a dashboard
+ * const dashboard = new grafana.oss.LibraryPanel("dashboard", {
+ *     name: "panel",
+ *     modelJson: JSON.stringify({
+ *         gridPos: {
+ *             x: 0,
+ *             y: 0,
+ *             h: 10,
+ *             w: 10,
+ *         },
+ *         title: "panel",
+ *         type: "text",
+ *         version: 0,
+ *     }),
+ * });
+ * // create a dashboard using the library panel
+ * // `merge()` will add `libraryPanel` attribute to each library panel JSON
+ * // Grafana will then connect any library panels found in dashboard JSON
+ * const withLibraryPanel = new grafana.oss.Dashboard("with_library_panel", {configJson: JSON.stringify({
+ *     id: 12345,
+ *     panels: [std.index.merge({
+ *         input: [
+ *             std.index.jsondecode({
+ *                 input: dashboard.modelJson,
+ *             }).result,
+ *             {
+ *                 libraryPanel: {
+ *                     name: dashboard.name,
+ *                     uid: dashboard.uid,
+ *                 },
+ *             },
+ *         ],
+ *     }).result],
+ *     title: "Production Overview",
+ *     tags: ["templated"],
+ *     timezone: "browser",
+ *     schemaVersion: 16,
+ *     version: 0,
+ *     refresh: "25s",
+ * })});
+ * // dashboard_ids list attribute should contain dashboard id 12345
+ * const connectedToDashboard = grafana.oss.getLibraryPanelOutput({
+ *     uid: dashboard.uid,
+ * });
+ * ```
  */
 export function getLibraryPanelOutput(args?: GetLibraryPanelOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLibraryPanelResult> {
     args = args || {};

@@ -212,6 +212,64 @@ def get_library_panel(name: Optional[_builtins.str] = None,
     """
     Data source for retrieving a single library panel by name or uid.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import json
+    import pulumi_grafana as grafana
+    import pulumi_std as std
+    import pulumiverse_grafana as grafana
+
+    # create a minimal library panel inside the General folder
+    test = grafana.oss.LibraryPanel("test",
+        name="test name",
+        model_json=json.dumps({
+            "title": "test name",
+            "type": "text",
+            "version": 0,
+        }))
+    from_name = grafana.oss.get_library_panel_output(name=test.name)
+    from_uid = grafana.oss.get_library_panel_output(uid=test.uid)
+    # create library panels to be added to a dashboard
+    dashboard = grafana.oss.LibraryPanel("dashboard",
+        name="panel",
+        model_json=json.dumps({
+            "gridPos": {
+                "x": 0,
+                "y": 0,
+                "h": 10,
+                "w": 10,
+            },
+            "title": "panel",
+            "type": "text",
+            "version": 0,
+        }))
+    # create a dashboard using the library panel
+    # `merge()` will add `libraryPanel` attribute to each library panel JSON
+    # Grafana will then connect any library panels found in dashboard JSON
+    with_library_panel = grafana.oss.Dashboard("with_library_panel", config_json=json.dumps({
+        "id": 12345,
+        "panels": [std.index.merge(input=[
+            std.index.jsondecode(input=dashboard.model_json)["result"],
+            {
+                "libraryPanel": {
+                    "name": dashboard.name,
+                    "uid": dashboard.uid,
+                },
+            },
+        ])["result"]],
+        "title": "Production Overview",
+        "tags": ["templated"],
+        "timezone": "browser",
+        "schemaVersion": 16,
+        "version": 0,
+        "refresh": "25s",
+    }))
+    # dashboard_ids list attribute should contain dashboard id 12345
+    connected_to_dashboard = grafana.oss.get_library_panel_output(uid=dashboard.uid)
+    ```
+
 
     :param _builtins.str name: Name of the library panel.
     :param _builtins.str org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -245,6 +303,64 @@ def get_library_panel_output(name: Optional[pulumi.Input[Optional[_builtins.str]
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLibraryPanelResult]:
     """
     Data source for retrieving a single library panel by name or uid.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import json
+    import pulumi_grafana as grafana
+    import pulumi_std as std
+    import pulumiverse_grafana as grafana
+
+    # create a minimal library panel inside the General folder
+    test = grafana.oss.LibraryPanel("test",
+        name="test name",
+        model_json=json.dumps({
+            "title": "test name",
+            "type": "text",
+            "version": 0,
+        }))
+    from_name = grafana.oss.get_library_panel_output(name=test.name)
+    from_uid = grafana.oss.get_library_panel_output(uid=test.uid)
+    # create library panels to be added to a dashboard
+    dashboard = grafana.oss.LibraryPanel("dashboard",
+        name="panel",
+        model_json=json.dumps({
+            "gridPos": {
+                "x": 0,
+                "y": 0,
+                "h": 10,
+                "w": 10,
+            },
+            "title": "panel",
+            "type": "text",
+            "version": 0,
+        }))
+    # create a dashboard using the library panel
+    # `merge()` will add `libraryPanel` attribute to each library panel JSON
+    # Grafana will then connect any library panels found in dashboard JSON
+    with_library_panel = grafana.oss.Dashboard("with_library_panel", config_json=json.dumps({
+        "id": 12345,
+        "panels": [std.index.merge(input=[
+            std.index.jsondecode(input=dashboard.model_json)["result"],
+            {
+                "libraryPanel": {
+                    "name": dashboard.name,
+                    "uid": dashboard.uid,
+                },
+            },
+        ])["result"]],
+        "title": "Production Overview",
+        "tags": ["templated"],
+        "timezone": "browser",
+        "schemaVersion": 16,
+        "version": 0,
+        "refresh": "25s",
+    }))
+    # dashboard_ids list attribute should contain dashboard id 12345
+    connected_to_dashboard = grafana.oss.get_library_panel_output(uid=dashboard.uid)
+    ```
 
 
     :param _builtins.str name: Name of the library panel.

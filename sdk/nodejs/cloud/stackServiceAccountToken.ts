@@ -28,6 +28,7 @@ import * as utilities from "../utilities";
  *     isDisabled: false,
  * });
  * const foo = new grafana.cloud.StackServiceAccountToken("foo", {
+ *     stackSlug: "<your stack slug>",
  *     name: "key_foo",
  *     serviceAccountId: cloudSa.id,
  * });
@@ -62,11 +63,29 @@ export class StackServiceAccountToken extends pulumi.CustomResource {
         return obj['__pulumiType'] === StackServiceAccountToken.__pulumiType;
     }
 
+    /**
+     * The expiration date of the service account token.
+     */
     declare public /*out*/ readonly expiration: pulumi.Output<string>;
+    /**
+     * The status of the service account token.
+     */
     declare public /*out*/ readonly hasExpired: pulumi.Output<boolean>;
+    /**
+     * The key of the service account token.
+     */
     declare public /*out*/ readonly key: pulumi.Output<string>;
+    /**
+     * The name of the service account token.
+     */
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+     */
     declare public readonly secondsToLive: pulumi.Output<number | undefined>;
+    /**
+     * The ID of the service account to which the token belongs.
+     */
     declare public readonly serviceAccountId: pulumi.Output<string>;
     declare public readonly stackSlug: pulumi.Output<string>;
 
@@ -117,11 +136,29 @@ export class StackServiceAccountToken extends pulumi.CustomResource {
  * Input properties used for looking up and filtering StackServiceAccountToken resources.
  */
 export interface StackServiceAccountTokenState {
+    /**
+     * The expiration date of the service account token.
+     */
     expiration?: pulumi.Input<string>;
+    /**
+     * The status of the service account token.
+     */
     hasExpired?: pulumi.Input<boolean>;
+    /**
+     * The key of the service account token.
+     */
     key?: pulumi.Input<string>;
+    /**
+     * The name of the service account token.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+     */
     secondsToLive?: pulumi.Input<number>;
+    /**
+     * The ID of the service account to which the token belongs.
+     */
     serviceAccountId?: pulumi.Input<string>;
     stackSlug?: pulumi.Input<string>;
 }
@@ -130,8 +167,17 @@ export interface StackServiceAccountTokenState {
  * The set of arguments for constructing a StackServiceAccountToken resource.
  */
 export interface StackServiceAccountTokenArgs {
+    /**
+     * The name of the service account token.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `apiKeyMaxSecondsToLive` configuration option is set) the key will never expire.
+     */
     secondsToLive?: pulumi.Input<number>;
+    /**
+     * The ID of the service account to which the token belongs.
+     */
     serviceAccountId: pulumi.Input<string>;
     stackSlug: pulumi.Input<string>;
 }

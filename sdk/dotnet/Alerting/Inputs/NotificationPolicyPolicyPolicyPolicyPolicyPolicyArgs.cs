@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Alerting.Inputs
 {
 
-    public sealed class NotificationPolicyPolicyPolicyPolicyPolicyArgs : global::Pulumi.ResourceArgs
+    public sealed class NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs : global::Pulumi.ResourceArgs
     {
         [Input("activeTimings")]
         private InputList<string>? _activeTimings;
@@ -37,7 +37,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         [Input("continue")]
         public Input<bool>? Continue { get; set; }
 
-        [Input("groupBies")]
+        [Input("groupBies", required: true)]
         private InputList<string>? _groupBies;
 
         /// <summary>
@@ -62,14 +62,14 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<string>? GroupWait { get; set; }
 
         [Input("matchers")]
-        private InputList<Inputs.NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs>? _matchers;
+        private InputList<Inputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs>? _matchers;
 
         /// <summary>
         /// Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
         /// </summary>
-        public InputList<Inputs.NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs> Matchers
+        public InputList<Inputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs> Matchers
         {
-            get => _matchers ?? (_matchers = new InputList<Inputs.NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs>());
+            get => _matchers ?? (_matchers = new InputList<Inputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs>());
             set => _matchers = value;
         }
 
@@ -85,27 +85,15 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
             set => _muteTimings = value;
         }
 
-        [Input("policies")]
-        private InputList<Inputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs>? _policies;
-
-        /// <summary>
-        /// Routing rules for specific label sets.
-        /// </summary>
-        public InputList<Inputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs> Policies
-        {
-            get => _policies ?? (_policies = new InputList<Inputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs>());
-            set => _policies = value;
-        }
-
         /// <summary>
         /// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         /// </summary>
         [Input("repeatInterval")]
         public Input<string>? RepeatInterval { get; set; }
 
-        public NotificationPolicyPolicyPolicyPolicyPolicyArgs()
+        public NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs()
         {
         }
-        public static new NotificationPolicyPolicyPolicyPolicyPolicyArgs Empty => new NotificationPolicyPolicyPolicyPolicyPolicyArgs();
+        public static new NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs Empty => new NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs();
     }
 }

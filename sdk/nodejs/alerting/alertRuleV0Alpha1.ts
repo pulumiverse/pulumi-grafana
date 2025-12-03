@@ -98,6 +98,10 @@ import * as utilities from "../utilities";
  *         notificationSettings: {
  *             contactPoint: "grafana-default-email",
  *         },
+ *         panelRef: {
+ *             dashboard_uid: "dashboard123",
+ *             panel_id: "5",
+ *         },
  *     },
  * });
  * ```

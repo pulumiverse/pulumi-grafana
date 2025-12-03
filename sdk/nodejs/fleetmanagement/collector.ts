@@ -17,6 +17,20 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.fleetmanagement.Collector("test", {
+ *     id: "my_collector",
+ *     remoteAttributes: {
+ *         env: "PROD",
+ *         owner: "TEAM-A",
+ *     },
+ *     enabled: true,
+ * });
+ * ```
+ *
  * ## Import
  *
  * ```sh

@@ -23,6 +23,35 @@ import (
 //
 // ## Example Usage
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/fleetmanagement"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fleetmanagement.NewCollector(ctx, "test", &fleetmanagement.CollectorArgs{
+//				Id: "my_collector",
+//				RemoteAttributes: pulumi.StringMap{
+//					"env":   pulumi.String("PROD"),
+//					"owner": pulumi.String("TEAM-A"),
+//				},
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // ```sh

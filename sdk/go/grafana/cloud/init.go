@@ -43,6 +43,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Stack{}
 	case "grafana:cloud/stackServiceAccount:StackServiceAccount":
 		r = &StackServiceAccount{}
+	case "grafana:cloud/stackServiceAccountRotatingToken:StackServiceAccountRotatingToken":
+		r = &StackServiceAccountRotatingToken{}
 	case "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken":
 		r = &StackServiceAccountToken{}
 	default:
@@ -111,6 +113,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"cloud/stackServiceAccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"cloud/stackServiceAccountRotatingToken",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

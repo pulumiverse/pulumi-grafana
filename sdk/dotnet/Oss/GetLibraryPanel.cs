@@ -14,18 +14,330 @@ namespace Pulumiverse.Grafana.Oss
     {
         /// <summary>
         /// Data source for retrieving a single library panel by name or uid.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // create a minimal library panel inside the General folder
+        ///     var test = new Grafana.Oss.LibraryPanel("test", new()
+        ///     {
+        ///         Name = "test name",
+        ///         ModelJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["title"] = "test name",
+        ///             ["type"] = "text",
+        ///             ["version"] = 0,
+        ///         }),
+        ///     });
+        /// 
+        ///     var fromName = Grafana.Oss.GetLibraryPanel.Invoke(new()
+        ///     {
+        ///         Name = test.Name,
+        ///     });
+        /// 
+        ///     var fromUid = Grafana.Oss.GetLibraryPanel.Invoke(new()
+        ///     {
+        ///         Uid = test.Uid,
+        ///     });
+        /// 
+        ///     // create library panels to be added to a dashboard
+        ///     var dashboard = new Grafana.Oss.LibraryPanel("dashboard", new()
+        ///     {
+        ///         Name = "panel",
+        ///         ModelJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["gridPos"] = new Dictionary&lt;string, object?&gt;
+        ///             {
+        ///                 ["x"] = 0,
+        ///                 ["y"] = 0,
+        ///                 ["h"] = 10,
+        ///                 ["w"] = 10,
+        ///             },
+        ///             ["title"] = "panel",
+        ///             ["type"] = "text",
+        ///             ["version"] = 0,
+        ///         }),
+        ///     });
+        /// 
+        ///     // create a dashboard using the library panel
+        ///     // `merge()` will add `libraryPanel` attribute to each library panel JSON
+        ///     // Grafana will then connect any library panels found in dashboard JSON
+        ///     var withLibraryPanel = new Grafana.Oss.Dashboard("with_library_panel", new()
+        ///     {
+        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["id"] = 12345,
+        ///             ["panels"] = new[]
+        ///             {
+        ///                 Std.Index.Merge.Invoke(new()
+        ///                 {
+        ///                     Input = new[]
+        ///                     {
+        ///                         Std.Index.Jsondecode.Invoke(new()
+        ///                         {
+        ///                             Input = dashboard.ModelJson,
+        ///                         }).Result,
+        ///                         
+        ///                         {
+        ///                             { "libraryPanel", 
+        ///                             {
+        ///                                 { "name", dashboard.Name },
+        ///                                 { "uid", dashboard.Uid },
+        ///                             } },
+        ///                         },
+        ///                     },
+        ///                 }).Result,
+        ///             },
+        ///             ["title"] = "Production Overview",
+        ///             ["tags"] = new[]
+        ///             {
+        ///                 "templated",
+        ///             },
+        ///             ["timezone"] = "browser",
+        ///             ["schemaVersion"] = 16,
+        ///             ["version"] = 0,
+        ///             ["refresh"] = "25s",
+        ///         }),
+        ///     });
+        /// 
+        ///     // dashboard_ids list attribute should contain dashboard id 12345
+        ///     var connectedToDashboard = Grafana.Oss.GetLibraryPanel.Invoke(new()
+        ///     {
+        ///         Uid = dashboard.Uid,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetLibraryPanelResult> InvokeAsync(GetLibraryPanelArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLibraryPanelResult>("grafana:oss/getLibraryPanel:getLibraryPanel", args ?? new GetLibraryPanelArgs(), options.WithDefaults());
 
         /// <summary>
         /// Data source for retrieving a single library panel by name or uid.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // create a minimal library panel inside the General folder
+        ///     var test = new Grafana.Oss.LibraryPanel("test", new()
+        ///     {
+        ///         Name = "test name",
+        ///         ModelJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["title"] = "test name",
+        ///             ["type"] = "text",
+        ///             ["version"] = 0,
+        ///         }),
+        ///     });
+        /// 
+        ///     var fromName = Grafana.Oss.GetLibraryPanel.Invoke(new()
+        ///     {
+        ///         Name = test.Name,
+        ///     });
+        /// 
+        ///     var fromUid = Grafana.Oss.GetLibraryPanel.Invoke(new()
+        ///     {
+        ///         Uid = test.Uid,
+        ///     });
+        /// 
+        ///     // create library panels to be added to a dashboard
+        ///     var dashboard = new Grafana.Oss.LibraryPanel("dashboard", new()
+        ///     {
+        ///         Name = "panel",
+        ///         ModelJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["gridPos"] = new Dictionary&lt;string, object?&gt;
+        ///             {
+        ///                 ["x"] = 0,
+        ///                 ["y"] = 0,
+        ///                 ["h"] = 10,
+        ///                 ["w"] = 10,
+        ///             },
+        ///             ["title"] = "panel",
+        ///             ["type"] = "text",
+        ///             ["version"] = 0,
+        ///         }),
+        ///     });
+        /// 
+        ///     // create a dashboard using the library panel
+        ///     // `merge()` will add `libraryPanel` attribute to each library panel JSON
+        ///     // Grafana will then connect any library panels found in dashboard JSON
+        ///     var withLibraryPanel = new Grafana.Oss.Dashboard("with_library_panel", new()
+        ///     {
+        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["id"] = 12345,
+        ///             ["panels"] = new[]
+        ///             {
+        ///                 Std.Index.Merge.Invoke(new()
+        ///                 {
+        ///                     Input = new[]
+        ///                     {
+        ///                         Std.Index.Jsondecode.Invoke(new()
+        ///                         {
+        ///                             Input = dashboard.ModelJson,
+        ///                         }).Result,
+        ///                         
+        ///                         {
+        ///                             { "libraryPanel", 
+        ///                             {
+        ///                                 { "name", dashboard.Name },
+        ///                                 { "uid", dashboard.Uid },
+        ///                             } },
+        ///                         },
+        ///                     },
+        ///                 }).Result,
+        ///             },
+        ///             ["title"] = "Production Overview",
+        ///             ["tags"] = new[]
+        ///             {
+        ///                 "templated",
+        ///             },
+        ///             ["timezone"] = "browser",
+        ///             ["schemaVersion"] = 16,
+        ///             ["version"] = 0,
+        ///             ["refresh"] = "25s",
+        ///         }),
+        ///     });
+        /// 
+        ///     // dashboard_ids list attribute should contain dashboard id 12345
+        ///     var connectedToDashboard = Grafana.Oss.GetLibraryPanel.Invoke(new()
+        ///     {
+        ///         Uid = dashboard.Uid,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetLibraryPanelResult> Invoke(GetLibraryPanelInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLibraryPanelResult>("grafana:oss/getLibraryPanel:getLibraryPanel", args ?? new GetLibraryPanelInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Data source for retrieving a single library panel by name or uid.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // create a minimal library panel inside the General folder
+        ///     var test = new Grafana.Oss.LibraryPanel("test", new()
+        ///     {
+        ///         Name = "test name",
+        ///         ModelJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["title"] = "test name",
+        ///             ["type"] = "text",
+        ///             ["version"] = 0,
+        ///         }),
+        ///     });
+        /// 
+        ///     var fromName = Grafana.Oss.GetLibraryPanel.Invoke(new()
+        ///     {
+        ///         Name = test.Name,
+        ///     });
+        /// 
+        ///     var fromUid = Grafana.Oss.GetLibraryPanel.Invoke(new()
+        ///     {
+        ///         Uid = test.Uid,
+        ///     });
+        /// 
+        ///     // create library panels to be added to a dashboard
+        ///     var dashboard = new Grafana.Oss.LibraryPanel("dashboard", new()
+        ///     {
+        ///         Name = "panel",
+        ///         ModelJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["gridPos"] = new Dictionary&lt;string, object?&gt;
+        ///             {
+        ///                 ["x"] = 0,
+        ///                 ["y"] = 0,
+        ///                 ["h"] = 10,
+        ///                 ["w"] = 10,
+        ///             },
+        ///             ["title"] = "panel",
+        ///             ["type"] = "text",
+        ///             ["version"] = 0,
+        ///         }),
+        ///     });
+        /// 
+        ///     // create a dashboard using the library panel
+        ///     // `merge()` will add `libraryPanel` attribute to each library panel JSON
+        ///     // Grafana will then connect any library panels found in dashboard JSON
+        ///     var withLibraryPanel = new Grafana.Oss.Dashboard("with_library_panel", new()
+        ///     {
+        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["id"] = 12345,
+        ///             ["panels"] = new[]
+        ///             {
+        ///                 Std.Index.Merge.Invoke(new()
+        ///                 {
+        ///                     Input = new[]
+        ///                     {
+        ///                         Std.Index.Jsondecode.Invoke(new()
+        ///                         {
+        ///                             Input = dashboard.ModelJson,
+        ///                         }).Result,
+        ///                         
+        ///                         {
+        ///                             { "libraryPanel", 
+        ///                             {
+        ///                                 { "name", dashboard.Name },
+        ///                                 { "uid", dashboard.Uid },
+        ///                             } },
+        ///                         },
+        ///                     },
+        ///                 }).Result,
+        ///             },
+        ///             ["title"] = "Production Overview",
+        ///             ["tags"] = new[]
+        ///             {
+        ///                 "templated",
+        ///             },
+        ///             ["timezone"] = "browser",
+        ///             ["schemaVersion"] = 16,
+        ///             ["version"] = 0,
+        ///             ["refresh"] = "25s",
+        ///         }),
+        ///     });
+        /// 
+        ///     // dashboard_ids list attribute should contain dashboard id 12345
+        ///     var connectedToDashboard = Grafana.Oss.GetLibraryPanel.Invoke(new()
+        ///     {
+        ///         Uid = dashboard.Uid,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetLibraryPanelResult> Invoke(GetLibraryPanelInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetLibraryPanelResult>("grafana:oss/getLibraryPanel:getLibraryPanel", args ?? new GetLibraryPanelInvokeArgs(), options.WithDefaults());

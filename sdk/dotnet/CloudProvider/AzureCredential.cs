@@ -13,6 +13,85 @@ namespace Pulumiverse.Grafana.CloudProvider
     /// <summary>
     /// ## Example Usage
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Grafana.CloudProvider.AzureCredential("test", new()
+    ///     {
+    ///         StackId = "1",
+    ///         Name = "test-name",
+    ///         ClientId = "my-client-id",
+    ///         ClientSecret = "my-client-secret",
+    ///         TenantId = "my-tenant-id",
+    ///         ResourceTagsToAddToMetrics = new[]
+    ///         {
+    ///             "tag1",
+    ///             "tag2",
+    ///         },
+    ///         ResourceDiscoveryTagFilters = new[]
+    ///         {
+    ///             new Grafana.CloudProvider.Inputs.AzureCredentialResourceDiscoveryTagFilterArgs
+    ///             {
+    ///                 Key = "key-1",
+    ///                 Value = "value-1",
+    ///             },
+    ///             new Grafana.CloudProvider.Inputs.AzureCredentialResourceDiscoveryTagFilterArgs
+    ///             {
+    ///                 Key = "key-2",
+    ///                 Value = "value-2",
+    ///             },
+    ///         },
+    ///         AutoDiscoveryConfigurations = new[]
+    ///         {
+    ///             new Grafana.CloudProvider.Inputs.AzureCredentialAutoDiscoveryConfigurationArgs
+    ///             {
+    ///                 SubscriptionId = "my-subscription_id",
+    ///                 ResourceTypeConfigurations = new[]
+    ///                 {
+    ///                     new Grafana.CloudProvider.Inputs.AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs
+    ///                     {
+    ///                         ResourceTypeName = "Microsoft.App/containerApps",
+    ///                         MetricConfiguration = new[]
+    ///                         {
+    ///                             
+    ///                             {
+    ///                                 { "name", "TotalCoresQuotaUsed" },
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                     new Grafana.CloudProvider.Inputs.AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs
+    ///                     {
+    ///                         ResourceTypeName = "Microsoft.Storage/storageAccounts/tableServices",
+    ///                         MetricConfiguration = new[]
+    ///                         {
+    ///                             
+    ///                             {
+    ///                                 { "name", "Availability" },
+    ///                                 { "dimensions", new[]
+    ///                                 {
+    ///                                     "GeoType",
+    ///                                     "ApiName",
+    ///                                 } },
+    ///                                 { "aggregations", new[]
+    ///                                 {
+    ///                                     "Average",
+    ///                                 } },
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// ```sh

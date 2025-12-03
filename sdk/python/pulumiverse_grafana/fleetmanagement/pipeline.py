@@ -181,6 +181,23 @@ class Pipeline(pulumi.CustomResource):
         * fleet-management:read
         * fleet-management:write
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumiverse_grafana as grafana
+
+        test = grafana.fleetmanagement.Pipeline("test",
+            name="my_pipeline",
+            contents=std.index.file(input="config.alloy")["result"],
+            matchers=[
+                "collector.os=~\\".*\\"",
+                "env=\\"PROD\\"",
+            ],
+            enabled=True)
+        ```
+
         ## Import
 
         ```sh
@@ -210,6 +227,23 @@ class Pipeline(pulumi.CustomResource):
 
         * fleet-management:read
         * fleet-management:write
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumiverse_grafana as grafana
+
+        test = grafana.fleetmanagement.Pipeline("test",
+            name="my_pipeline",
+            contents=std.index.file(input="config.alloy")["result"],
+            matchers=[
+                "collector.os=~\\".*\\"",
+                "env=\\"PROD\\"",
+            ],
+            enabled=True)
+        ```
 
         ## Import
 

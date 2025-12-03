@@ -41,8 +41,8 @@ import (
 //				Email: test.Email,
 //			}, nil)
 //			_ = test.Login.ApplyT(func(login *string) (oss.GetOrganizationUserResult, error) {
-//				return oss.GetOrganizationUserResult(interface{}(oss.GetOrganizationUserOutput(ctx, oss.GetOrganizationUserOutputArgs{
-//					Login: login,
+//				return oss.GetOrganizationUserResult(interface{}(oss.GetOrganizationUser(ctx, &oss.GetOrganizationUserArgs{
+//					Login: pulumi.StringRef(pulumi.StringRef(login)),
 //				}, nil))), nil
 //			}).(oss.GetOrganizationUserResultOutput)
 //			return nil

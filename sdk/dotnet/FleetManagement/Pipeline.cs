@@ -21,6 +21,35 @@ namespace Pulumiverse.Grafana.FleetManagement
     /// * fleet-management:read
     /// * fleet-management:write
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Grafana.FleetManagement.Pipeline("test", new()
+    ///     {
+    ///         Name = "my_pipeline",
+    ///         Contents = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "config.alloy",
+    ///         }).Result,
+    ///         Matchers = new[]
+    ///         {
+    ///             "collector.os=~\".*\"",
+    ///             "env=\"PROD\"",
+    ///         },
+    ///         Enabled = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// ```sh
