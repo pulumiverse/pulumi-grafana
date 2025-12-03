@@ -370,6 +370,10 @@
                 "current": "grafana:cloud/stackServiceAccount:StackServiceAccount",
                 "majorVersion": 2
             },
+            "grafana_cloud_stack_service_account_rotating_token": {
+                "current": "grafana:cloud/stackServiceAccountRotatingToken:StackServiceAccountRotatingToken",
+                "majorVersion": 2
+            },
             "grafana_cloud_stack_service_account_token": {
                 "current": "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken",
                 "majorVersion": 2
@@ -766,6 +770,25 @@
                                                                     },
                                                                     "mute_timings": {
                                                                         "maxItemsOne": false
+                                                                    },
+                                                                    "policy": {
+                                                                        "maxItemsOne": false,
+                                                                        "elem": {
+                                                                            "fields": {
+                                                                                "active_timings": {
+                                                                                    "maxItemsOne": false
+                                                                                },
+                                                                                "group_by": {
+                                                                                    "maxItemsOne": false
+                                                                                },
+                                                                                "matcher": {
+                                                                                    "maxItemsOne": false
+                                                                                },
+                                                                                "mute_timings": {
+                                                                                    "maxItemsOne": false
+                                                                                }
+                                                                            }
+                                                                        }
                                                                     }
                                                                 }
                                                             }
@@ -1065,6 +1088,10 @@
             },
             "grafana_service_account_permission_item": {
                 "current": "grafana:oss/serviceAccountPermissionItem:ServiceAccountPermissionItem",
+                "majorVersion": 2
+            },
+            "grafana_service_account_rotating_token": {
+                "current": "grafana:oss/serviceAccountRotatingToken:ServiceAccountRotatingToken",
                 "majorVersion": 2
             },
             "grafana_service_account_token": {
@@ -2021,6 +2048,7 @@
             "grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1": 1,
             "grafana:cloud/stack:Stack": 0,
             "grafana:cloud/stackServiceAccount:StackServiceAccount": 0,
+            "grafana:cloud/stackServiceAccountRotatingToken:StackServiceAccountRotatingToken": 0,
             "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": 0,
             "grafana:cloudProvider/awsAccount:AwsAccount": 1,
             "grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob": 1,
@@ -2076,6 +2104,7 @@
             "grafana:oss/serviceAccount:ServiceAccount": 0,
             "grafana:oss/serviceAccountPermission:ServiceAccountPermission": 0,
             "grafana:oss/serviceAccountPermissionItem:ServiceAccountPermissionItem": 1,
+            "grafana:oss/serviceAccountRotatingToken:ServiceAccountRotatingToken": 0,
             "grafana:oss/serviceAccountToken:ServiceAccountToken": 0,
             "grafana:oss/ssoSettings:SsoSettings": 0,
             "grafana:oss/team:Team": 0,

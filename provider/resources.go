@@ -589,6 +589,9 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "service_account.md",
 				},
 			},
+			"grafana_service_account_rotating_token": {
+				Tok: grafanaResource(ossMod, "ServiceAccountRotatingToken"),
+			},
 			"grafana_sso_settings": {
 				Tok: grafanaResource(ossMod, "SsoSettings"),
 				Aliases: []tfbridge.AliasInfo{
