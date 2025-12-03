@@ -160,6 +160,11 @@ export type ServiceAccountPermissionItem = import("./serviceAccountPermissionIte
 export const ServiceAccountPermissionItem: typeof import("./serviceAccountPermissionItem").ServiceAccountPermissionItem = null as any;
 utilities.lazyLoad(exports, ["ServiceAccountPermissionItem"], () => require("./serviceAccountPermissionItem"));
 
+export { ServiceAccountRotatingTokenArgs, ServiceAccountRotatingTokenState } from "./serviceAccountRotatingToken";
+export type ServiceAccountRotatingToken = import("./serviceAccountRotatingToken").ServiceAccountRotatingToken;
+export const ServiceAccountRotatingToken: typeof import("./serviceAccountRotatingToken").ServiceAccountRotatingToken = null as any;
+utilities.lazyLoad(exports, ["ServiceAccountRotatingToken"], () => require("./serviceAccountRotatingToken"));
+
 export { ServiceAccountTokenArgs, ServiceAccountTokenState } from "./serviceAccountToken";
 export type ServiceAccountToken = import("./serviceAccountToken").ServiceAccountToken;
 export const ServiceAccountToken: typeof import("./serviceAccountToken").ServiceAccountToken = null as any;
@@ -219,6 +224,8 @@ const _module = {
                 return new ServiceAccountPermission(name, <any>undefined, { urn })
             case "grafana:oss/serviceAccountPermissionItem:ServiceAccountPermissionItem":
                 return new ServiceAccountPermissionItem(name, <any>undefined, { urn })
+            case "grafana:oss/serviceAccountRotatingToken:ServiceAccountRotatingToken":
+                return new ServiceAccountRotatingToken(name, <any>undefined, { urn })
             case "grafana:oss/serviceAccountToken:ServiceAccountToken":
                 return new ServiceAccountToken(name, <any>undefined, { urn })
             case "grafana:oss/ssoSettings:SsoSettings":
@@ -249,6 +256,7 @@ pulumi.runtime.registerResourceModule("grafana", "oss/playlist", _module)
 pulumi.runtime.registerResourceModule("grafana", "oss/serviceAccount", _module)
 pulumi.runtime.registerResourceModule("grafana", "oss/serviceAccountPermission", _module)
 pulumi.runtime.registerResourceModule("grafana", "oss/serviceAccountPermissionItem", _module)
+pulumi.runtime.registerResourceModule("grafana", "oss/serviceAccountRotatingToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "oss/serviceAccountToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "oss/ssoSettings", _module)
 pulumi.runtime.registerResourceModule("grafana", "oss/team", _module)

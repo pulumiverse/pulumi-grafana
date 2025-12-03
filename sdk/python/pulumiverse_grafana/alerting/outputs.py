@@ -101,6 +101,8 @@ __all__ = [
     'NotificationPolicyPolicyPolicyPolicyMatcher',
     'NotificationPolicyPolicyPolicyPolicyPolicy',
     'NotificationPolicyPolicyPolicyPolicyPolicyMatcher',
+    'NotificationPolicyPolicyPolicyPolicyPolicyPolicy',
+    'NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher',
     'RecordingRuleV0Alpha1Metadata',
     'RecordingRuleV0Alpha1Options',
     'RecordingRuleV0Alpha1Spec',
@@ -2140,7 +2142,7 @@ class AlertRuleV0Alpha1Spec(dict):
                  labels: Optional[Mapping[str, _builtins.str]] = None,
                  missing_series_evals_to_resolve: Optional[_builtins.int] = None,
                  notification_settings: Optional['outputs.AlertRuleV0Alpha1SpecNotificationSettings'] = None,
-                 panel_ref: Optional[Any] = None,
+                 panel_ref: Optional[Mapping[str, _builtins.str]] = None,
                  paused: Optional[_builtins.bool] = None,
                  trigger: Optional['outputs.AlertRuleV0Alpha1SpecTrigger'] = None):
         """
@@ -2154,7 +2156,7 @@ class AlertRuleV0Alpha1Spec(dict):
         :param Mapping[str, _builtins.str] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
         :param _builtins.int missing_series_evals_to_resolve: The number of missing series evaluations that must occur before the rule is considered to be resolved.
         :param 'AlertRuleV0Alpha1SpecNotificationSettingsArgs' notification_settings: Notification settings for the rule. If specified, it overrides the notification policies.
-        :param Any panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+        :param Mapping[str, _builtins.str] panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         :param _builtins.bool paused: Sets whether the rule should be paused or not.
         :param 'AlertRuleV0Alpha1SpecTriggerArgs' trigger: The trigger configuration for the alert rule.
         """
@@ -2263,7 +2265,7 @@ class AlertRuleV0Alpha1Spec(dict):
 
     @_builtins.property
     @pulumi.getter(name="panelRef")
-    def panel_ref(self) -> Optional[Any]:
+    def panel_ref(self) -> Optional[Mapping[str, _builtins.str]]:
         """
         Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         """
@@ -6690,14 +6692,14 @@ class NotificationPolicyPolicyPolicyPolicyPolicy(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "groupBies":
-            suggest = "group_bies"
-        elif key == "activeTimings":
+        if key == "activeTimings":
             suggest = "active_timings"
         elif key == "contactPoint":
             suggest = "contact_point"
         elif key == "continue":
             suggest = "continue_"
+        elif key == "groupBies":
+            suggest = "group_bies"
         elif key == "groupInterval":
             suggest = "group_interval"
         elif key == "groupWait":
@@ -6719,13 +6721,211 @@ class NotificationPolicyPolicyPolicyPolicyPolicy(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 active_timings: Optional[Sequence[_builtins.str]] = None,
+                 contact_point: Optional[_builtins.str] = None,
+                 continue_: Optional[_builtins.bool] = None,
+                 group_bies: Optional[Sequence[_builtins.str]] = None,
+                 group_interval: Optional[_builtins.str] = None,
+                 group_wait: Optional[_builtins.str] = None,
+                 matchers: Optional[Sequence['outputs.NotificationPolicyPolicyPolicyPolicyPolicyMatcher']] = None,
+                 mute_timings: Optional[Sequence[_builtins.str]] = None,
+                 policies: Optional[Sequence['outputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicy']] = None,
+                 repeat_interval: Optional[_builtins.str] = None):
+        """
+        :param Sequence[_builtins.str] active_timings: A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+        :param _builtins.str contact_point: The contact point to route notifications that match this rule to.
+        :param _builtins.bool continue_: Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+        :param Sequence[_builtins.str] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        :param _builtins.str group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        :param _builtins.str group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        :param Sequence['NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs'] matchers: Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+        :param Sequence[_builtins.str] mute_timings: A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
+        :param Sequence['NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs'] policies: Routing rules for specific label sets.
+        :param _builtins.str repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+        if active_timings is not None:
+            pulumi.set(__self__, "active_timings", active_timings)
+        if contact_point is not None:
+            pulumi.set(__self__, "contact_point", contact_point)
+        if continue_ is not None:
+            pulumi.set(__self__, "continue_", continue_)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
+        if group_interval is not None:
+            pulumi.set(__self__, "group_interval", group_interval)
+        if group_wait is not None:
+            pulumi.set(__self__, "group_wait", group_wait)
+        if matchers is not None:
+            pulumi.set(__self__, "matchers", matchers)
+        if mute_timings is not None:
+            pulumi.set(__self__, "mute_timings", mute_timings)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if repeat_interval is not None:
+            pulumi.set(__self__, "repeat_interval", repeat_interval)
+
+    @_builtins.property
+    @pulumi.getter(name="activeTimings")
+    def active_timings(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+        """
+        return pulumi.get(self, "active_timings")
+
+    @_builtins.property
+    @pulumi.getter(name="contactPoint")
+    def contact_point(self) -> Optional[_builtins.str]:
+        """
+        The contact point to route notifications that match this rule to.
+        """
+        return pulumi.get(self, "contact_point")
+
+    @_builtins.property
+    @pulumi.getter(name="continue")
+    def continue_(self) -> Optional[_builtins.bool]:
+        """
+        Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+        """
+        return pulumi.get(self, "continue_")
+
+    @_builtins.property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @_builtins.property
+    @pulumi.getter(name="groupInterval")
+    def group_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        """
+        return pulumi.get(self, "group_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="groupWait")
+    def group_wait(self) -> Optional[_builtins.str]:
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        """
+        return pulumi.get(self, "group_wait")
+
+    @_builtins.property
+    @pulumi.getter
+    def matchers(self) -> Optional[Sequence['outputs.NotificationPolicyPolicyPolicyPolicyPolicyMatcher']]:
+        """
+        Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+        """
+        return pulumi.get(self, "matchers")
+
+    @_builtins.property
+    @pulumi.getter(name="muteTimings")
+    def mute_timings(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
+        """
+        return pulumi.get(self, "mute_timings")
+
+    @_builtins.property
+    @pulumi.getter
+    def policies(self) -> Optional[Sequence['outputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicy']]:
+        """
+        Routing rules for specific label sets.
+        """
+        return pulumi.get(self, "policies")
+
+    @_builtins.property
+    @pulumi.getter(name="repeatInterval")
+    def repeat_interval(self) -> Optional[_builtins.str]:
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+        return pulumi.get(self, "repeat_interval")
+
+
+@pulumi.output_type
+class NotificationPolicyPolicyPolicyPolicyPolicyMatcher(dict):
+    def __init__(__self__, *,
+                 label: _builtins.str,
+                 match: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str label: The name of the label to match against.
+        :param _builtins.str match: The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        :param _builtins.str value: The label value to match against.
+        """
+        pulumi.set(__self__, "label", label)
+        pulumi.set(__self__, "match", match)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def label(self) -> _builtins.str:
+        """
+        The name of the label to match against.
+        """
+        return pulumi.get(self, "label")
+
+    @_builtins.property
+    @pulumi.getter
+    def match(self) -> _builtins.str:
+        """
+        The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        """
+        return pulumi.get(self, "match")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The label value to match against.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NotificationPolicyPolicyPolicyPolicyPolicyPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "groupBies":
+            suggest = "group_bies"
+        elif key == "activeTimings":
+            suggest = "active_timings"
+        elif key == "contactPoint":
+            suggest = "contact_point"
+        elif key == "continue":
+            suggest = "continue_"
+        elif key == "groupInterval":
+            suggest = "group_interval"
+        elif key == "groupWait":
+            suggest = "group_wait"
+        elif key == "muteTimings":
+            suggest = "mute_timings"
+        elif key == "repeatInterval":
+            suggest = "repeat_interval"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationPolicyPolicyPolicyPolicyPolicyPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationPolicyPolicyPolicyPolicyPolicyPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationPolicyPolicyPolicyPolicyPolicyPolicy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
                  group_bies: Sequence[_builtins.str],
                  active_timings: Optional[Sequence[_builtins.str]] = None,
                  contact_point: Optional[_builtins.str] = None,
                  continue_: Optional[_builtins.bool] = None,
                  group_interval: Optional[_builtins.str] = None,
                  group_wait: Optional[_builtins.str] = None,
-                 matchers: Optional[Sequence['outputs.NotificationPolicyPolicyPolicyPolicyPolicyMatcher']] = None,
+                 matchers: Optional[Sequence['outputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher']] = None,
                  mute_timings: Optional[Sequence[_builtins.str]] = None,
                  repeat_interval: Optional[_builtins.str] = None):
         """
@@ -6735,7 +6935,7 @@ class NotificationPolicyPolicyPolicyPolicyPolicy(dict):
         :param _builtins.bool continue_: Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
         :param _builtins.str group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param _builtins.str group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
-        :param Sequence['NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs'] matchers: Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+        :param Sequence['NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs'] matchers: Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
         :param Sequence[_builtins.str] mute_timings: A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
         :param _builtins.str repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
@@ -6807,7 +7007,7 @@ class NotificationPolicyPolicyPolicyPolicyPolicy(dict):
 
     @_builtins.property
     @pulumi.getter
-    def matchers(self) -> Optional[Sequence['outputs.NotificationPolicyPolicyPolicyPolicyPolicyMatcher']]:
+    def matchers(self) -> Optional[Sequence['outputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher']]:
         """
         Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
         """
@@ -6831,7 +7031,7 @@ class NotificationPolicyPolicyPolicyPolicyPolicy(dict):
 
 
 @pulumi.output_type
-class NotificationPolicyPolicyPolicyPolicyPolicyMatcher(dict):
+class NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher(dict):
     def __init__(__self__, *,
                  label: _builtins.str,
                  match: _builtins.str,

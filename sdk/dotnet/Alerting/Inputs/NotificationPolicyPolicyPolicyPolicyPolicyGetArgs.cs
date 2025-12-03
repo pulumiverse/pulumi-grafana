@@ -37,7 +37,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         [Input("continue")]
         public Input<bool>? Continue { get; set; }
 
-        [Input("groupBies", required: true)]
+        [Input("groupBies")]
         private InputList<string>? _groupBies;
 
         /// <summary>
@@ -83,6 +83,18 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         {
             get => _muteTimings ?? (_muteTimings = new InputList<string>());
             set => _muteTimings = value;
+        }
+
+        [Input("policies")]
+        private InputList<Inputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicyGetArgs>? _policies;
+
+        /// <summary>
+        /// Routing rules for specific label sets.
+        /// </summary>
+        public InputList<Inputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicyGetArgs> Policies
+        {
+            get => _policies ?? (_policies = new InputList<Inputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicyGetArgs>());
+            set => _policies = value;
         }
 
         /// <summary>

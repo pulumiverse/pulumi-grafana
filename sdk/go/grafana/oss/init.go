@@ -55,6 +55,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ServiceAccountPermission{}
 	case "grafana:oss/serviceAccountPermissionItem:ServiceAccountPermissionItem":
 		r = &ServiceAccountPermissionItem{}
+	case "grafana:oss/serviceAccountRotatingToken:ServiceAccountRotatingToken":
+		r = &ServiceAccountRotatingToken{}
 	case "grafana:oss/serviceAccountToken:ServiceAccountToken":
 		r = &ServiceAccountToken{}
 	case "grafana:oss/ssoSettings:SsoSettings":
@@ -159,6 +161,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"oss/serviceAccountPermissionItem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"oss/serviceAccountRotatingToken",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

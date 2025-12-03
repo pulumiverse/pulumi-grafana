@@ -53,7 +53,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// <summary>
         /// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         /// </summary>
-        public readonly object? PanelRef;
+        public readonly ImmutableDictionary<string, string>? PanelRef;
         /// <summary>
         /// Sets whether the rule should be paused or not.
         /// </summary>
@@ -87,7 +87,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
             Outputs.AlertRuleV0Alpha1SpecNotificationSettings? notificationSettings,
 
-            object? panelRef,
+            ImmutableDictionary<string, string>? panelRef,
 
             bool? paused,
 

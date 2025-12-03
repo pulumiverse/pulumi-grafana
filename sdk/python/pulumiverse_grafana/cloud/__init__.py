@@ -22,6 +22,7 @@ from .product_activation_app_o11y_config_v1_alpha1 import *
 from .product_activation_k8s_o11y_config_v1_alpha1 import *
 from .stack import *
 from .stack_service_account import *
+from .stack_service_account_rotating_token import *
 from .stack_service_account_token import *
 from ._inputs import *
 from . import outputs

@@ -9,6 +9,55 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = new grafana.cloudprovider.AzureCredential("test", {
+ *     stackId: "1",
+ *     name: "test-name",
+ *     clientId: "my-client-id",
+ *     clientSecret: "my-client-secret",
+ *     tenantId: "my-tenant-id",
+ *     resourceTagsToAddToMetrics: [
+ *         "tag1",
+ *         "tag2",
+ *     ],
+ *     resourceDiscoveryTagFilters: [
+ *         {
+ *             key: "key-1",
+ *             value: "value-1",
+ *         },
+ *         {
+ *             key: "key-2",
+ *             value: "value-2",
+ *         },
+ *     ],
+ *     autoDiscoveryConfigurations: [{
+ *         subscriptionId: "my-subscription_id",
+ *         resourceTypeConfigurations: [
+ *             {
+ *                 resourceTypeName: "Microsoft.App/containerApps",
+ *                 metricConfiguration: [{
+ *                     name: "TotalCoresQuotaUsed",
+ *                 }],
+ *             },
+ *             {
+ *                 resourceTypeName: "Microsoft.Storage/storageAccounts/tableServices",
+ *                 metricConfiguration: [{
+ *                     name: "Availability",
+ *                     dimensions: [
+ *                         "GeoType",
+ *                         "ApiName",
+ *                     ],
+ *                     aggregations: ["Average"],
+ *                 }],
+ *             },
+ *         ],
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * ```sh

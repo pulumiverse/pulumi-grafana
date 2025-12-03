@@ -23,6 +23,28 @@ namespace Pulumiverse.Grafana.FleetManagement
     /// 
     /// ## Example Usage
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Grafana.FleetManagement.Collector("test", new()
+    ///     {
+    ///         Id = "my_collector",
+    ///         RemoteAttributes = 
+    ///         {
+    ///             { "env", "PROD" },
+    ///             { "owner", "TEAM-A" },
+    ///         },
+    ///         Enabled = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// ```sh

@@ -233,6 +233,10 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                 "notification_settings": {
                     "contact_point": "grafana-default-email",
                 },
+                "panel_ref": {
+                    "dashboard_uid": "dashboard123",
+                    "panel_id": "5",
+                },
             })
         ```
 
@@ -340,6 +344,10 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                 "missing_series_evals_to_resolve": 5,
                 "notification_settings": {
                     "contact_point": "grafana-default-email",
+                },
+                "panel_ref": {
+                    "dashboard_uid": "dashboard123",
+                    "panel_id": "5",
                 },
             })
         ```

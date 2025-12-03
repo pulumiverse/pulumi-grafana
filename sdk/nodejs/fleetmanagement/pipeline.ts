@@ -15,6 +15,26 @@ import * as utilities from "../utilities";
  * * fleet-management:read
  * * fleet-management:write
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ * import * as std from "@pulumi/std";
+ *
+ * const test = new grafana.fleetmanagement.Pipeline("test", {
+ *     name: "my_pipeline",
+ *     contents: std.index.file({
+ *         input: "config.alloy",
+ *     }).result,
+ *     matchers: [
+ *         "collector.os=~\".*\"",
+ *         "env=\"PROD\"",
+ *     ],
+ *     enabled: true,
+ * });
+ * ```
+ *
  * ## Import
  *
  * ```sh

@@ -613,7 +613,7 @@ export namespace alerting {
         /**
          * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
          */
-        panelRef?: any;
+        panelRef?: {[key: string]: string};
         /**
          * Sets whether the rule should be paused or not.
          */
@@ -1908,7 +1908,7 @@ export namespace alerting {
         /**
          * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
          */
-        groupBies: string[];
+        groupBies?: string[];
         /**
          * Minimum time interval between two notifications for the same group. Default is 5 minutes.
          */
@@ -1926,12 +1926,70 @@ export namespace alerting {
          */
         muteTimings?: string[];
         /**
+         * Routing rules for specific label sets.
+         */
+        policies?: outputs.alerting.NotificationPolicyPolicyPolicyPolicyPolicyPolicy[];
+        /**
          * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
          */
         repeatInterval?: string;
     }
 
     export interface NotificationPolicyPolicyPolicyPolicyPolicyMatcher {
+        /**
+         * The name of the label to match against.
+         */
+        label: string;
+        /**
+         * The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+         */
+        match: string;
+        /**
+         * The label value to match against.
+         */
+        value: string;
+    }
+
+    export interface NotificationPolicyPolicyPolicyPolicyPolicyPolicy {
+        /**
+         * A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+         */
+        activeTimings?: string[];
+        /**
+         * The contact point to route notifications that match this rule to.
+         */
+        contactPoint?: string;
+        /**
+         * Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+         */
+        continue?: boolean;
+        /**
+         * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+         */
+        groupBies: string[];
+        /**
+         * Minimum time interval between two notifications for the same group. Default is 5 minutes.
+         */
+        groupInterval?: string;
+        /**
+         * Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+         */
+        groupWait?: string;
+        /**
+         * Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+         */
+        matchers?: outputs.alerting.NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher[];
+        /**
+         * A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
+         */
+        muteTimings?: string[];
+        /**
+         * Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+         */
+        repeatInterval?: string;
+    }
+
+    export interface NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher {
         /**
          * The name of the label to match against.
          */

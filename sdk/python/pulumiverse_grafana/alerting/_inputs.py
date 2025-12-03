@@ -185,6 +185,10 @@ __all__ = [
     'NotificationPolicyPolicyPolicyPolicyPolicyArgsDict',
     'NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs',
     'NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgsDict',
+    'NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs',
+    'NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgsDict',
+    'NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs',
+    'NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgsDict',
     'RecordingRuleV0Alpha1MetadataArgs',
     'RecordingRuleV0Alpha1MetadataArgsDict',
     'RecordingRuleV0Alpha1OptionsArgs',
@@ -3045,7 +3049,7 @@ if not MYPY:
         """
         Notification settings for the rule. If specified, it overrides the notification policies.
         """
-        panel_ref: NotRequired[Any]
+        panel_ref: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
         """
         Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         """
@@ -3073,7 +3077,7 @@ class AlertRuleV0Alpha1SpecArgs:
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  missing_series_evals_to_resolve: Optional[pulumi.Input[_builtins.int]] = None,
                  notification_settings: Optional[pulumi.Input['AlertRuleV0Alpha1SpecNotificationSettingsArgs']] = None,
-                 panel_ref: Optional[Any] = None,
+                 panel_ref: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  paused: Optional[pulumi.Input[_builtins.bool]] = None,
                  trigger: Optional[pulumi.Input['AlertRuleV0Alpha1SpecTriggerArgs']] = None):
         """
@@ -3087,7 +3091,7 @@ class AlertRuleV0Alpha1SpecArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
         :param pulumi.Input[_builtins.int] missing_series_evals_to_resolve: The number of missing series evaluations that must occur before the rule is considered to be resolved.
         :param pulumi.Input['AlertRuleV0Alpha1SpecNotificationSettingsArgs'] notification_settings: Notification settings for the rule. If specified, it overrides the notification policies.
-        :param Any panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         :param pulumi.Input[_builtins.bool] paused: Sets whether the rule should be paused or not.
         :param pulumi.Input['AlertRuleV0Alpha1SpecTriggerArgs'] trigger: The trigger configuration for the alert rule.
         """
@@ -3236,14 +3240,14 @@ class AlertRuleV0Alpha1SpecArgs:
 
     @_builtins.property
     @pulumi.getter(name="panelRef")
-    def panel_ref(self) -> Optional[Any]:
+    def panel_ref(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         """
         return pulumi.get(self, "panel_ref")
 
     @panel_ref.setter
-    def panel_ref(self, value: Optional[Any]):
+    def panel_ref(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "panel_ref", value)
 
     @_builtins.property
@@ -9450,6 +9454,287 @@ class NotificationPolicyPolicyPolicyPolicyMatcherArgs:
 
 if not MYPY:
     class NotificationPolicyPolicyPolicyPolicyPolicyArgsDict(TypedDict):
+        active_timings: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+        """
+        contact_point: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The contact point to route notifications that match this rule to.
+        """
+        continue_: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+        """
+        group_bies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        """
+        group_interval: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        """
+        group_wait: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        """
+        matchers: NotRequired[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgsDict']]]]
+        """
+        Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+        """
+        mute_timings: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
+        """
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgsDict']]]]
+        """
+        Routing rules for specific label sets.
+        """
+        repeat_interval: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+elif False:
+    NotificationPolicyPolicyPolicyPolicyPolicyArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
+    def __init__(__self__, *,
+                 active_timings: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 contact_point: Optional[pulumi.Input[_builtins.str]] = None,
+                 continue_: Optional[pulumi.Input[_builtins.bool]] = None,
+                 group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 group_interval: Optional[pulumi.Input[_builtins.str]] = None,
+                 group_wait: Optional[pulumi.Input[_builtins.str]] = None,
+                 matchers: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs']]]] = None,
+                 mute_timings: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs']]]] = None,
+                 repeat_interval: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] active_timings: A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+        :param pulumi.Input[_builtins.str] contact_point: The contact point to route notifications that match this rule to.
+        :param pulumi.Input[_builtins.bool] continue_: Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        :param pulumi.Input[_builtins.str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        :param pulumi.Input[_builtins.str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs']]] matchers: Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] mute_timings: A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
+        :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs']]] policies: Routing rules for specific label sets.
+        :param pulumi.Input[_builtins.str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+        if active_timings is not None:
+            pulumi.set(__self__, "active_timings", active_timings)
+        if contact_point is not None:
+            pulumi.set(__self__, "contact_point", contact_point)
+        if continue_ is not None:
+            pulumi.set(__self__, "continue_", continue_)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
+        if group_interval is not None:
+            pulumi.set(__self__, "group_interval", group_interval)
+        if group_wait is not None:
+            pulumi.set(__self__, "group_wait", group_wait)
+        if matchers is not None:
+            pulumi.set(__self__, "matchers", matchers)
+        if mute_timings is not None:
+            pulumi.set(__self__, "mute_timings", mute_timings)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if repeat_interval is not None:
+            pulumi.set(__self__, "repeat_interval", repeat_interval)
+
+    @_builtins.property
+    @pulumi.getter(name="activeTimings")
+    def active_timings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+        """
+        return pulumi.get(self, "active_timings")
+
+    @active_timings.setter
+    def active_timings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "active_timings", value)
+
+    @_builtins.property
+    @pulumi.getter(name="contactPoint")
+    def contact_point(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The contact point to route notifications that match this rule to.
+        """
+        return pulumi.get(self, "contact_point")
+
+    @contact_point.setter
+    def contact_point(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "contact_point", value)
+
+    @_builtins.property
+    @pulumi.getter(name="continue")
+    def continue_(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+        """
+        return pulumi.get(self, "continue_")
+
+    @continue_.setter
+    def continue_(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "continue_", value)
+
+    @_builtins.property
+    @pulumi.getter(name="groupBies")
+    def group_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @group_bies.setter
+    def group_bies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "group_bies", value)
+
+    @_builtins.property
+    @pulumi.getter(name="groupInterval")
+    def group_interval(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Minimum time interval between two notifications for the same group. Default is 5 minutes.
+        """
+        return pulumi.get(self, "group_interval")
+
+    @group_interval.setter
+    def group_interval(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "group_interval", value)
+
+    @_builtins.property
+    @pulumi.getter(name="groupWait")
+    def group_wait(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+        """
+        return pulumi.get(self, "group_wait")
+
+    @group_wait.setter
+    def group_wait(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "group_wait", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def matchers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs']]]]:
+        """
+        Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+        """
+        return pulumi.get(self, "matchers")
+
+    @matchers.setter
+    def matchers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs']]]]):
+        pulumi.set(self, "matchers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="muteTimings")
+    def mute_timings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
+        """
+        return pulumi.get(self, "mute_timings")
+
+    @mute_timings.setter
+    def mute_timings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "mute_timings", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs']]]]:
+        """
+        Routing rules for specific label sets.
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs']]]]):
+        pulumi.set(self, "policies", value)
+
+    @_builtins.property
+    @pulumi.getter(name="repeatInterval")
+    def repeat_interval(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+        """
+        return pulumi.get(self, "repeat_interval")
+
+    @repeat_interval.setter
+    def repeat_interval(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "repeat_interval", value)
+
+
+if not MYPY:
+    class NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgsDict(TypedDict):
+        label: pulumi.Input[_builtins.str]
+        """
+        The name of the label to match against.
+        """
+        match: pulumi.Input[_builtins.str]
+        """
+        The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        """
+        value: pulumi.Input[_builtins.str]
+        """
+        The label value to match against.
+        """
+elif False:
+    NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs:
+    def __init__(__self__, *,
+                 label: pulumi.Input[_builtins.str],
+                 match: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] label: The name of the label to match against.
+        :param pulumi.Input[_builtins.str] match: The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        :param pulumi.Input[_builtins.str] value: The label value to match against.
+        """
+        pulumi.set(__self__, "label", label)
+        pulumi.set(__self__, "match", match)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def label(self) -> pulumi.Input[_builtins.str]:
+        """
+        The name of the label to match against.
+        """
+        return pulumi.get(self, "label")
+
+    @label.setter
+    def label(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "label", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def match(self) -> pulumi.Input[_builtins.str]:
+        """
+        The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+        """
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "match", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The label value to match against.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgsDict(TypedDict):
         group_bies: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
         """
         A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
@@ -9474,7 +9759,7 @@ if not MYPY:
         """
         Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         """
-        matchers: NotRequired[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgsDict']]]]
+        matchers: NotRequired[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgsDict']]]]
         """
         Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
         """
@@ -9487,10 +9772,10 @@ if not MYPY:
         Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
 elif False:
-    NotificationPolicyPolicyPolicyPolicyPolicyArgsDict: TypeAlias = Mapping[str, Any]
+    NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
+class NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs:
     def __init__(__self__, *,
                  group_bies: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  active_timings: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -9498,7 +9783,7 @@ class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
                  continue_: Optional[pulumi.Input[_builtins.bool]] = None,
                  group_interval: Optional[pulumi.Input[_builtins.str]] = None,
                  group_wait: Optional[pulumi.Input[_builtins.str]] = None,
-                 matchers: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs']]]] = None,
+                 matchers: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs']]]] = None,
                  mute_timings: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  repeat_interval: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -9508,7 +9793,7 @@ class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
         :param pulumi.Input[_builtins.bool] continue_: Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
         :param pulumi.Input[_builtins.str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[_builtins.str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
-        :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs']]] matchers: Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+        :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs']]] matchers: Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] mute_timings: A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
         :param pulumi.Input[_builtins.str] repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         """
@@ -9604,14 +9889,14 @@ class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
 
     @_builtins.property
     @pulumi.getter
-    def matchers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs']]]]:
+    def matchers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs']]]]:
         """
         Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
         """
         return pulumi.get(self, "matchers")
 
     @matchers.setter
-    def matchers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs']]]]):
+    def matchers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs']]]]):
         pulumi.set(self, "matchers", value)
 
     @_builtins.property
@@ -9640,7 +9925,7 @@ class NotificationPolicyPolicyPolicyPolicyPolicyArgs:
 
 
 if not MYPY:
-    class NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgsDict(TypedDict):
+    class NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgsDict(TypedDict):
         label: pulumi.Input[_builtins.str]
         """
         The name of the label to match against.
@@ -9654,10 +9939,10 @@ if not MYPY:
         The label value to match against.
         """
 elif False:
-    NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgsDict: TypeAlias = Mapping[str, Any]
+    NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs:
+class NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs:
     def __init__(__self__, *,
                  label: pulumi.Input[_builtins.str],
                  match: pulumi.Input[_builtins.str],

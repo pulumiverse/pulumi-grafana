@@ -6959,7 +6959,7 @@ type AlertRuleV0Alpha1Spec struct {
 	// Notification settings for the rule. If specified, it overrides the notification policies.
 	NotificationSettings *AlertRuleV0Alpha1SpecNotificationSettings `pulumi:"notificationSettings"`
 	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
-	PanelRef interface{} `pulumi:"panelRef"`
+	PanelRef map[string]string `pulumi:"panelRef"`
 	// Sets whether the rule should be paused or not.
 	Paused *bool `pulumi:"paused"`
 	// The title of the alert rule.
@@ -6999,7 +6999,7 @@ type AlertRuleV0Alpha1SpecArgs struct {
 	// Notification settings for the rule. If specified, it overrides the notification policies.
 	NotificationSettings AlertRuleV0Alpha1SpecNotificationSettingsPtrInput `pulumi:"notificationSettings"`
 	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
-	PanelRef pulumi.Input `pulumi:"panelRef"`
+	PanelRef pulumi.StringMapInput `pulumi:"panelRef"`
 	// Sets whether the rule should be paused or not.
 	Paused pulumi.BoolPtrInput `pulumi:"paused"`
 	// The title of the alert rule.
@@ -7133,8 +7133,8 @@ func (o AlertRuleV0Alpha1SpecOutput) NotificationSettings() AlertRuleV0Alpha1Spe
 }
 
 // Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
-func (o AlertRuleV0Alpha1SpecOutput) PanelRef() pulumi.AnyOutput {
-	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) interface{} { return v.PanelRef }).(pulumi.AnyOutput)
+func (o AlertRuleV0Alpha1SpecOutput) PanelRef() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) map[string]string { return v.PanelRef }).(pulumi.StringMapOutput)
 }
 
 // Sets whether the rule should be paused or not.
@@ -7267,13 +7267,13 @@ func (o AlertRuleV0Alpha1SpecPtrOutput) NotificationSettings() AlertRuleV0Alpha1
 }
 
 // Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
-func (o AlertRuleV0Alpha1SpecPtrOutput) PanelRef() pulumi.AnyOutput {
-	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) interface{} {
+func (o AlertRuleV0Alpha1SpecPtrOutput) PanelRef() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.PanelRef
-	}).(pulumi.AnyOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 // Sets whether the rule should be paused or not.
@@ -13800,6 +13800,8 @@ type NotificationPolicyPolicyPolicyPolicyPolicy struct {
 	Matchers []NotificationPolicyPolicyPolicyPolicyPolicyMatcher `pulumi:"matchers"`
 	// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 	MuteTimings []string `pulumi:"muteTimings"`
+	// Routing rules for specific label sets.
+	Policies []NotificationPolicyPolicyPolicyPolicyPolicyPolicy `pulumi:"policies"`
 	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
 	RepeatInterval *string `pulumi:"repeatInterval"`
 }
@@ -13832,6 +13834,8 @@ type NotificationPolicyPolicyPolicyPolicyPolicyArgs struct {
 	Matchers NotificationPolicyPolicyPolicyPolicyPolicyMatcherArrayInput `pulumi:"matchers"`
 	// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 	MuteTimings pulumi.StringArrayInput `pulumi:"muteTimings"`
+	// Routing rules for specific label sets.
+	Policies NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayInput `pulumi:"policies"`
 	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
 	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
 }
@@ -13927,6 +13931,13 @@ func (o NotificationPolicyPolicyPolicyPolicyPolicyOutput) Matchers() Notificatio
 // A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
 func (o NotificationPolicyPolicyPolicyPolicyPolicyOutput) MuteTimings() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicy) []string { return v.MuteTimings }).(pulumi.StringArrayOutput)
+}
+
+// Routing rules for specific label sets.
+func (o NotificationPolicyPolicyPolicyPolicyPolicyOutput) Policies() NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicy) []NotificationPolicyPolicyPolicyPolicyPolicyPolicy {
+		return v.Policies
+	}).(NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput)
 }
 
 // Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
@@ -14067,6 +14078,292 @@ func (o NotificationPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput) Index(i pu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationPolicyPolicyPolicyPolicyPolicyMatcher {
 		return vs[0].([]NotificationPolicyPolicyPolicyPolicyPolicyMatcher)[vs[1].(int)]
 	}).(NotificationPolicyPolicyPolicyPolicyPolicyMatcherOutput)
+}
+
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicy struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+	ActiveTimings []string `pulumi:"activeTimings"`
+	// The contact point to route notifications that match this rule to.
+	ContactPoint *string `pulumi:"contactPoint"`
+	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+	Continue *bool `pulumi:"continue"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+	GroupBies []string `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
+	GroupInterval *string `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+	GroupWait *string `pulumi:"groupWait"`
+	// Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+	Matchers []NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher `pulumi:"matchers"`
+	// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
+	MuteTimings []string `pulumi:"muteTimings"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+	RepeatInterval *string `pulumi:"repeatInterval"`
+}
+
+// NotificationPolicyPolicyPolicyPolicyPolicyPolicyInput is an input type that accepts NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs and NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput values.
+// You can construct a concrete instance of `NotificationPolicyPolicyPolicyPolicyPolicyPolicyInput` via:
+//
+//	NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs{...}
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicyInput interface {
+	pulumi.Input
+
+	ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput() NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput
+	ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyOutputWithContext(context.Context) NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput
+}
+
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+	ActiveTimings pulumi.StringArrayInput `pulumi:"activeTimings"`
+	// The contact point to route notifications that match this rule to.
+	ContactPoint pulumi.StringPtrInput `pulumi:"contactPoint"`
+	// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+	Continue pulumi.BoolPtrInput `pulumi:"continue"`
+	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+	GroupBies pulumi.StringArrayInput `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
+	GroupInterval pulumi.StringPtrInput `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
+	// Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+	Matchers NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayInput `pulumi:"matchers"`
+	// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
+	MuteTimings pulumi.StringArrayInput `pulumi:"muteTimings"`
+	// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
+}
+
+func (NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyPolicy)(nil)).Elem()
+}
+
+func (i NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput() NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput {
+	return i.ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyOutputWithContext(context.Background())
+}
+
+func (i NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyOutputWithContext(ctx context.Context) NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput)
+}
+
+// NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayInput is an input type that accepts NotificationPolicyPolicyPolicyPolicyPolicyPolicyArray and NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput values.
+// You can construct a concrete instance of `NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayInput` via:
+//
+//	NotificationPolicyPolicyPolicyPolicyPolicyPolicyArray{ NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs{...} }
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayInput interface {
+	pulumi.Input
+
+	ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput() NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput
+	ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutputWithContext(context.Context) NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput
+}
+
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicyArray []NotificationPolicyPolicyPolicyPolicyPolicyPolicyInput
+
+func (NotificationPolicyPolicyPolicyPolicyPolicyPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationPolicyPolicyPolicyPolicyPolicyPolicy)(nil)).Elem()
+}
+
+func (i NotificationPolicyPolicyPolicyPolicyPolicyPolicyArray) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput() NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput {
+	return i.ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationPolicyPolicyPolicyPolicyPolicyPolicyArray) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutputWithContext(ctx context.Context) NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput)
+}
+
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput struct{ *pulumi.OutputState }
+
+func (NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyPolicy)(nil)).Elem()
+}
+
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput() NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput {
+	return o
+}
+
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyOutputWithContext(ctx context.Context) NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput {
+	return o
+}
+
+// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput) ActiveTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicyPolicy) []string { return v.ActiveTimings }).(pulumi.StringArrayOutput)
+}
+
+// The contact point to route notifications that match this rule to.
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput) ContactPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicyPolicy) *string { return v.ContactPoint }).(pulumi.StringPtrOutput)
+}
+
+// Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput) Continue() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicyPolicy) *bool { return v.Continue }).(pulumi.BoolPtrOutput)
+}
+
+// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicyPolicy) []string { return v.GroupBies }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group. Default is 5 minutes.
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicyPolicy) *string { return v.GroupInterval }).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicyPolicy) *string { return v.GroupWait }).(pulumi.StringPtrOutput)
+}
+
+// Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput) Matchers() NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicyPolicy) []NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher {
+		return v.Matchers
+	}).(NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput)
+}
+
+// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput) MuteTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicyPolicy) []string { return v.MuteTimings }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicyPolicy) *string { return v.RepeatInterval }).(pulumi.StringPtrOutput)
+}
+
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationPolicyPolicyPolicyPolicyPolicyPolicy)(nil)).Elem()
+}
+
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput() NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput {
+	return o
+}
+
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutputWithContext(ctx context.Context) NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput {
+	return o
+}
+
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput) Index(i pulumi.IntInput) NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationPolicyPolicyPolicyPolicyPolicyPolicy {
+		return vs[0].([]NotificationPolicyPolicyPolicyPolicyPolicyPolicy)[vs[1].(int)]
+	}).(NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput)
+}
+
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher struct {
+	// The name of the label to match against.
+	Label string `pulumi:"label"`
+	// The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+	Match string `pulumi:"match"`
+	// The label value to match against.
+	Value string `pulumi:"value"`
+}
+
+// NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherInput is an input type that accepts NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs and NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput values.
+// You can construct a concrete instance of `NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherInput` via:
+//
+//	NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs{...}
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherInput interface {
+	pulumi.Input
+
+	ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput() NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput
+	ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutputWithContext(context.Context) NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput
+}
+
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs struct {
+	// The name of the label to match against.
+	Label pulumi.StringInput `pulumi:"label"`
+	// The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+	Match pulumi.StringInput `pulumi:"match"`
+	// The label value to match against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher)(nil)).Elem()
+}
+
+func (i NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput() NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput {
+	return i.ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutputWithContext(context.Background())
+}
+
+func (i NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutputWithContext(ctx context.Context) NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput)
+}
+
+// NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayInput is an input type that accepts NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArray and NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput values.
+// You can construct a concrete instance of `NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayInput` via:
+//
+//	NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArray{ NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs{...} }
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayInput interface {
+	pulumi.Input
+
+	ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput() NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput
+	ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutputWithContext(context.Context) NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput
+}
+
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArray []NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherInput
+
+func (NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher)(nil)).Elem()
+}
+
+func (i NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArray) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput() NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput {
+	return i.ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArray) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutputWithContext(ctx context.Context) NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput)
+}
+
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput struct{ *pulumi.OutputState }
+
+func (NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher)(nil)).Elem()
+}
+
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput() NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput {
+	return o
+}
+
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutputWithContext(ctx context.Context) NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput {
+	return o
+}
+
+// The name of the label to match against.
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher) string { return v.Label }).(pulumi.StringOutput)
+}
+
+// The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput) Match() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher) string { return v.Match }).(pulumi.StringOutput)
+}
+
+// The label value to match against.
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher)(nil)).Elem()
+}
+
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput() NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput {
+	return o
+}
+
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput) ToNotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutputWithContext(ctx context.Context) NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput {
+	return o
+}
+
+func (o NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput) Index(i pulumi.IntInput) NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher {
+		return vs[0].([]NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher)[vs[1].(int)]
+	}).(NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput)
 }
 
 type RecordingRuleV0Alpha1Metadata struct {
@@ -15831,6 +16128,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyArrayInput)(nil)).Elem(), NotificationPolicyPolicyPolicyPolicyPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyMatcherInput)(nil)).Elem(), NotificationPolicyPolicyPolicyPolicyPolicyMatcherArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyMatcherArrayInput)(nil)).Elem(), NotificationPolicyPolicyPolicyPolicyPolicyMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyPolicyInput)(nil)).Elem(), NotificationPolicyPolicyPolicyPolicyPolicyPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayInput)(nil)).Elem(), NotificationPolicyPolicyPolicyPolicyPolicyPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherInput)(nil)).Elem(), NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayInput)(nil)).Elem(), NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleV0Alpha1MetadataInput)(nil)).Elem(), RecordingRuleV0Alpha1MetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleV0Alpha1MetadataPtrInput)(nil)).Elem(), RecordingRuleV0Alpha1MetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordingRuleV0Alpha1OptionsInput)(nil)).Elem(), RecordingRuleV0Alpha1OptionsArgs{})
@@ -16018,6 +16319,10 @@ func init() {
 	pulumi.RegisterOutputType(NotificationPolicyPolicyPolicyPolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(NotificationPolicyPolicyPolicyPolicyPolicyMatcherOutput{})
 	pulumi.RegisterOutputType(NotificationPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput{})
+	pulumi.RegisterOutputType(NotificationPolicyPolicyPolicyPolicyPolicyPolicyOutput{})
+	pulumi.RegisterOutputType(NotificationPolicyPolicyPolicyPolicyPolicyPolicyArrayOutput{})
+	pulumi.RegisterOutputType(NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherOutput{})
+	pulumi.RegisterOutputType(NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcherArrayOutput{})
 	pulumi.RegisterOutputType(RecordingRuleV0Alpha1MetadataOutput{})
 	pulumi.RegisterOutputType(RecordingRuleV0Alpha1MetadataPtrOutput{})
 	pulumi.RegisterOutputType(RecordingRuleV0Alpha1OptionsOutput{})

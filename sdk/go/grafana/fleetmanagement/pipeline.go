@@ -22,6 +22,45 @@ import (
 // * fleet-management:read
 // * fleet-management:write
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/fleetmanagement"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			invokeFile, err := std.File(ctx, map[string]interface{}{
+//				"input": "config.alloy",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fleetmanagement.NewPipeline(ctx, "test", &fleetmanagement.PipelineArgs{
+//				Name:     pulumi.String("my_pipeline"),
+//				Contents: invokeFile.Result,
+//				Matchers: pulumi.StringArray{
+//					pulumi.String("collector.os=~\".*\""),
+//					pulumi.String("env=\"PROD\""),
+//				},
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // ```sh

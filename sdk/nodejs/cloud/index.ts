@@ -85,6 +85,11 @@ export type StackServiceAccount = import("./stackServiceAccount").StackServiceAc
 export const StackServiceAccount: typeof import("./stackServiceAccount").StackServiceAccount = null as any;
 utilities.lazyLoad(exports, ["StackServiceAccount"], () => require("./stackServiceAccount"));
 
+export { StackServiceAccountRotatingTokenArgs, StackServiceAccountRotatingTokenState } from "./stackServiceAccountRotatingToken";
+export type StackServiceAccountRotatingToken = import("./stackServiceAccountRotatingToken").StackServiceAccountRotatingToken;
+export const StackServiceAccountRotatingToken: typeof import("./stackServiceAccountRotatingToken").StackServiceAccountRotatingToken = null as any;
+utilities.lazyLoad(exports, ["StackServiceAccountRotatingToken"], () => require("./stackServiceAccountRotatingToken"));
+
 export { StackServiceAccountTokenArgs, StackServiceAccountTokenState } from "./stackServiceAccountToken";
 export type StackServiceAccountToken = import("./stackServiceAccountToken").StackServiceAccountToken;
 export const StackServiceAccountToken: typeof import("./stackServiceAccountToken").StackServiceAccountToken = null as any;
@@ -117,6 +122,8 @@ const _module = {
                 return new Stack(name, <any>undefined, { urn })
             case "grafana:cloud/stackServiceAccount:StackServiceAccount":
                 return new StackServiceAccount(name, <any>undefined, { urn })
+            case "grafana:cloud/stackServiceAccountRotatingToken:StackServiceAccountRotatingToken":
+                return new StackServiceAccountRotatingToken(name, <any>undefined, { urn })
             case "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken":
                 return new StackServiceAccountToken(name, <any>undefined, { urn })
             default:
@@ -135,4 +142,5 @@ pulumi.runtime.registerResourceModule("grafana", "cloud/productActivationAppO11y
 pulumi.runtime.registerResourceModule("grafana", "cloud/productActivationK8sO11yConfigV1Alpha1", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stack", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stackServiceAccount", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloud/stackServiceAccountRotatingToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/stackServiceAccountToken", _module)

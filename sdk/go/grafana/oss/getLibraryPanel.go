@@ -12,6 +12,118 @@ import (
 )
 
 // Data source for retrieving a single library panel by name or uid.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"title":   "test name",
+//				"type":    "text",
+//				"version": 0,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			// create a minimal library panel inside the General folder
+//			test, err := oss.NewLibraryPanel(ctx, "test", &oss.LibraryPanelArgs{
+//				Name:      pulumi.String("test name"),
+//				ModelJson: pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = oss.LookupLibraryPanelOutput(ctx, oss.GetLibraryPanelOutputArgs{
+//				Name: test.Name,
+//			}, nil)
+//			_ = oss.LookupLibraryPanelOutput(ctx, oss.GetLibraryPanelOutputArgs{
+//				Uid: test.Uid,
+//			}, nil)
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"gridPos": map[string]interface{}{
+//					"x": 0,
+//					"y": 0,
+//					"h": 10,
+//					"w": 10,
+//				},
+//				"title":   "panel",
+//				"type":    "text",
+//				"version": 0,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
+//			// create library panels to be added to a dashboard
+//			dashboard, err := oss.NewLibraryPanel(ctx, "dashboard", &oss.LibraryPanelArgs{
+//				Name:      pulumi.String("panel"),
+//				ModelJson: pulumi.String(json1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON2, err := json.Marshal(map[string]interface{}{
+//				"id": 12345,
+//				"panels": []interface{}{
+//					std.Merge(ctx, map[string]interface{}{
+//						"input": []interface{}{
+//							std.Jsondecode(ctx, map[string]interface{}{
+//								"input": dashboard.ModelJson,
+//							}, nil).Result,
+//							map[string]interface{}{
+//								"libraryPanel": map[string]interface{}{
+//									"name": dashboard.Name,
+//									"uid":  dashboard.Uid,
+//								},
+//							},
+//						},
+//					}, nil).Result,
+//				},
+//				"title": "Production Overview",
+//				"tags": []string{
+//					"templated",
+//				},
+//				"timezone":      "browser",
+//				"schemaVersion": 16,
+//				"version":       0,
+//				"refresh":       "25s",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json2 := string(tmpJSON2)
+//			// create a dashboard using the library panel
+//			// `merge()` will add `libraryPanel` attribute to each library panel JSON
+//			// Grafana will then connect any library panels found in dashboard JSON
+//			_, err = oss.NewDashboard(ctx, "with_library_panel", &oss.DashboardArgs{
+//				ConfigJson: pulumi.String(json2),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// dashboard_ids list attribute should contain dashboard id 12345
+//			_ = oss.LookupLibraryPanelOutput(ctx, oss.GetLibraryPanelOutputArgs{
+//				Uid: dashboard.Uid,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupLibraryPanel(ctx *pulumi.Context, args *LookupLibraryPanelArgs, opts ...pulumi.InvokeOption) (*LookupLibraryPanelResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLibraryPanelResult

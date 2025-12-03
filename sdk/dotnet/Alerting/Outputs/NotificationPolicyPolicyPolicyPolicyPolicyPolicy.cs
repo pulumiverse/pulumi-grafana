@@ -12,7 +12,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 {
 
     [OutputType]
-    public sealed class NotificationPolicyPolicyPolicyPolicyPolicy
+    public sealed class NotificationPolicyPolicyPolicyPolicyPolicyPolicy
     {
         /// <summary>
         /// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later
@@ -41,22 +41,18 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// <summary>
         /// Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.
         /// </summary>
-        public readonly ImmutableArray<Outputs.NotificationPolicyPolicyPolicyPolicyPolicyMatcher> Matchers;
+        public readonly ImmutableArray<Outputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher> Matchers;
         /// <summary>
         /// A list of time intervals to apply to alerts that match this policy to mute them for the specified time.
         /// </summary>
         public readonly ImmutableArray<string> MuteTimings;
-        /// <summary>
-        /// Routing rules for specific label sets.
-        /// </summary>
-        public readonly ImmutableArray<Outputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicy> Policies;
         /// <summary>
         /// Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.
         /// </summary>
         public readonly string? RepeatInterval;
 
         [OutputConstructor]
-        private NotificationPolicyPolicyPolicyPolicyPolicy(
+        private NotificationPolicyPolicyPolicyPolicyPolicyPolicy(
             ImmutableArray<string> activeTimings,
 
             string? contactPoint,
@@ -69,11 +65,9 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
             string? groupWait,
 
-            ImmutableArray<Outputs.NotificationPolicyPolicyPolicyPolicyPolicyMatcher> matchers,
+            ImmutableArray<Outputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicyMatcher> matchers,
 
             ImmutableArray<string> muteTimings,
-
-            ImmutableArray<Outputs.NotificationPolicyPolicyPolicyPolicyPolicyPolicy> policies,
 
             string? repeatInterval)
         {
@@ -85,7 +79,6 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
             GroupWait = groupWait;
             Matchers = matchers;
             MuteTimings = muteTimings;
-            Policies = policies;
             RepeatInterval = repeatInterval;
         }
     }

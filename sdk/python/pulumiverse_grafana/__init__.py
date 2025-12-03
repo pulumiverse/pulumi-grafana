@@ -257,6 +257,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloud/stackServiceAccountRotatingToken",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/stackServiceAccountRotatingToken:StackServiceAccountRotatingToken": "StackServiceAccountRotatingToken"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloud/stackServiceAccountToken",
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {
@@ -693,6 +701,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.oss",
   "classes": {
    "grafana:oss/serviceAccountPermissionItem:ServiceAccountPermissionItem": "ServiceAccountPermissionItem"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "oss/serviceAccountRotatingToken",
+  "fqn": "pulumiverse_grafana.oss",
+  "classes": {
+   "grafana:oss/serviceAccountRotatingToken:ServiceAccountRotatingToken": "ServiceAccountRotatingToken"
   }
  },
  {

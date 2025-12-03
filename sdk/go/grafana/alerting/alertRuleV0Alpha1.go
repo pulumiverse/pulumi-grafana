@@ -134,6 +134,10 @@ import (
 //					NotificationSettings: &alerting.AlertRuleV0Alpha1SpecNotificationSettingsArgs{
 //						ContactPoint: pulumi.String("grafana-default-email"),
 //					},
+//					PanelRef: pulumi.StringMap{
+//						"dashboard_uid": pulumi.String("dashboard123"),
+//						"panel_id":      pulumi.String("5"),
+//					},
 //				},
 //			})
 //			if err != nil {

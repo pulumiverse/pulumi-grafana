@@ -37,6 +37,7 @@ from .playlist import *
 from .service_account import *
 from .service_account_permission import *
 from .service_account_permission_item import *
+from .service_account_rotating_token import *
 from .service_account_token import *
 from .sso_settings import *
 from .team import *
