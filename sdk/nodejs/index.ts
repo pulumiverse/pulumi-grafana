@@ -8,6 +8,11 @@ import * as utilities from "./utilities";
 export * from "./provider";
 import { Provider } from "./provider";
 
+export { ServiceAccountRotatingTokenArgs, ServiceAccountRotatingTokenState } from "./serviceAccountRotatingToken";
+export type ServiceAccountRotatingToken = import("./serviceAccountRotatingToken").ServiceAccountRotatingToken;
+export const ServiceAccountRotatingToken: typeof import("./serviceAccountRotatingToken").ServiceAccountRotatingToken = null as any;
+utilities.lazyLoad(exports, ["ServiceAccountRotatingToken"], () => require("./serviceAccountRotatingToken"));
+
 
 // Export sub-modules:
 import * as alerting from "./alerting";
@@ -47,6 +52,19 @@ export {
     syntheticmonitoring,
     types,
 };
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "grafana:index/serviceAccountRotatingToken:ServiceAccountRotatingToken":
+                return new ServiceAccountRotatingToken(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("grafana", "index/serviceAccountRotatingToken", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

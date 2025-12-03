@@ -7,6 +7,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .provider import *
+from .service_account_rotating_token import *
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -257,6 +258,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloud/stackServiceAccountRotatingToken",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/stackServiceAccountRotatingToken:StackServiceAccountRotatingToken": "StackServiceAccountRotatingToken"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloud/stackServiceAccountToken",
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {
@@ -413,6 +422,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/serviceAccountRotatingToken",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/serviceAccountRotatingToken:ServiceAccountRotatingToken": "ServiceAccountRotatingToken"
   }
  },
  {

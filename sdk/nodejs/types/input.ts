@@ -613,7 +613,7 @@ export namespace alerting {
         /**
          * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
          */
-        panelRef?: any;
+        panelRef?: pulumi.Input<inputs.alerting.AlertRuleV0Alpha1SpecPanelRef>;
         /**
          * Sets whether the rule should be paused or not.
          */
@@ -657,6 +657,11 @@ export namespace alerting {
          * Minimum time interval for re-sending a notification if an alert is still firing.
          */
         repeatInterval?: pulumi.Input<string>;
+    }
+
+    export interface AlertRuleV0Alpha1SpecPanelRef {
+        dashboardUid: pulumi.Input<string>;
+        panelId: pulumi.Input<number>;
     }
 
     export interface AlertRuleV0Alpha1SpecTrigger {

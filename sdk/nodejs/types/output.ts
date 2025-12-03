@@ -613,7 +613,7 @@ export namespace alerting {
         /**
          * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
          */
-        panelRef?: any;
+        panelRef?: outputs.alerting.AlertRuleV0Alpha1SpecPanelRef;
         /**
          * Sets whether the rule should be paused or not.
          */
@@ -657,6 +657,11 @@ export namespace alerting {
          * Minimum time interval for re-sending a notification if an alert is still firing.
          */
         repeatInterval?: string;
+    }
+
+    export interface AlertRuleV0Alpha1SpecPanelRef {
+        dashboardUid: string;
+        panelId: number;
     }
 
     export interface AlertRuleV0Alpha1SpecTrigger {

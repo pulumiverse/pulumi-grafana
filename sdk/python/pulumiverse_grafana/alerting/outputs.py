@@ -62,6 +62,7 @@ __all__ = [
     'AlertRuleV0Alpha1Options',
     'AlertRuleV0Alpha1Spec',
     'AlertRuleV0Alpha1SpecNotificationSettings',
+    'AlertRuleV0Alpha1SpecPanelRef',
     'AlertRuleV0Alpha1SpecTrigger',
     'ContactPointAlertmanager',
     'ContactPointDingding',
@@ -2140,7 +2141,7 @@ class AlertRuleV0Alpha1Spec(dict):
                  labels: Optional[Mapping[str, _builtins.str]] = None,
                  missing_series_evals_to_resolve: Optional[_builtins.int] = None,
                  notification_settings: Optional['outputs.AlertRuleV0Alpha1SpecNotificationSettings'] = None,
-                 panel_ref: Optional[Any] = None,
+                 panel_ref: Optional['outputs.AlertRuleV0Alpha1SpecPanelRef'] = None,
                  paused: Optional[_builtins.bool] = None,
                  trigger: Optional['outputs.AlertRuleV0Alpha1SpecTrigger'] = None):
         """
@@ -2154,7 +2155,7 @@ class AlertRuleV0Alpha1Spec(dict):
         :param Mapping[str, _builtins.str] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
         :param _builtins.int missing_series_evals_to_resolve: The number of missing series evaluations that must occur before the rule is considered to be resolved.
         :param 'AlertRuleV0Alpha1SpecNotificationSettingsArgs' notification_settings: Notification settings for the rule. If specified, it overrides the notification policies.
-        :param Any panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+        :param 'AlertRuleV0Alpha1SpecPanelRefArgs' panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         :param _builtins.bool paused: Sets whether the rule should be paused or not.
         :param 'AlertRuleV0Alpha1SpecTriggerArgs' trigger: The trigger configuration for the alert rule.
         """
@@ -2263,7 +2264,7 @@ class AlertRuleV0Alpha1Spec(dict):
 
     @_builtins.property
     @pulumi.getter(name="panelRef")
-    def panel_ref(self) -> Optional[Any]:
+    def panel_ref(self) -> Optional['outputs.AlertRuleV0Alpha1SpecPanelRef']:
         """
         Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         """
@@ -2403,6 +2404,44 @@ class AlertRuleV0Alpha1SpecNotificationSettings(dict):
         Minimum time interval for re-sending a notification if an alert is still firing.
         """
         return pulumi.get(self, "repeat_interval")
+
+
+@pulumi.output_type
+class AlertRuleV0Alpha1SpecPanelRef(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dashboardUid":
+            suggest = "dashboard_uid"
+        elif key == "panelId":
+            suggest = "panel_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertRuleV0Alpha1SpecPanelRef. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertRuleV0Alpha1SpecPanelRef.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertRuleV0Alpha1SpecPanelRef.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dashboard_uid: _builtins.str,
+                 panel_id: _builtins.int):
+        pulumi.set(__self__, "dashboard_uid", dashboard_uid)
+        pulumi.set(__self__, "panel_id", panel_id)
+
+    @_builtins.property
+    @pulumi.getter(name="dashboardUid")
+    def dashboard_uid(self) -> _builtins.str:
+        return pulumi.get(self, "dashboard_uid")
+
+    @_builtins.property
+    @pulumi.getter(name="panelId")
+    def panel_id(self) -> _builtins.int:
+        return pulumi.get(self, "panel_id")
 
 
 @pulumi.output_type

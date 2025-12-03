@@ -142,6 +142,11 @@ namespace Pulumiverse.Grafana.Alerting
     ///             {
     ///                 ContactPoint = "grafana-default-email",
     ///             },
+    ///             PanelRef = new Grafana.Alerting.Inputs.AlertRuleV0Alpha1SpecPanelRefArgs
+    ///             {
+    ///                 DashboardUid = "dashboard123",
+    ///                 PanelId = 5,
+    ///             },
     ///         },
     ///     });
     /// 

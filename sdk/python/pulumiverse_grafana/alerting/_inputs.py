@@ -107,6 +107,8 @@ __all__ = [
     'AlertRuleV0Alpha1SpecArgsDict',
     'AlertRuleV0Alpha1SpecNotificationSettingsArgs',
     'AlertRuleV0Alpha1SpecNotificationSettingsArgsDict',
+    'AlertRuleV0Alpha1SpecPanelRefArgs',
+    'AlertRuleV0Alpha1SpecPanelRefArgsDict',
     'AlertRuleV0Alpha1SpecTriggerArgs',
     'AlertRuleV0Alpha1SpecTriggerArgsDict',
     'ContactPointAlertmanagerArgs',
@@ -3045,7 +3047,7 @@ if not MYPY:
         """
         Notification settings for the rule. If specified, it overrides the notification policies.
         """
-        panel_ref: NotRequired[Any]
+        panel_ref: NotRequired[pulumi.Input['AlertRuleV0Alpha1SpecPanelRefArgsDict']]
         """
         Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         """
@@ -3073,7 +3075,7 @@ class AlertRuleV0Alpha1SpecArgs:
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  missing_series_evals_to_resolve: Optional[pulumi.Input[_builtins.int]] = None,
                  notification_settings: Optional[pulumi.Input['AlertRuleV0Alpha1SpecNotificationSettingsArgs']] = None,
-                 panel_ref: Optional[Any] = None,
+                 panel_ref: Optional[pulumi.Input['AlertRuleV0Alpha1SpecPanelRefArgs']] = None,
                  paused: Optional[pulumi.Input[_builtins.bool]] = None,
                  trigger: Optional[pulumi.Input['AlertRuleV0Alpha1SpecTriggerArgs']] = None):
         """
@@ -3087,7 +3089,7 @@ class AlertRuleV0Alpha1SpecArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
         :param pulumi.Input[_builtins.int] missing_series_evals_to_resolve: The number of missing series evaluations that must occur before the rule is considered to be resolved.
         :param pulumi.Input['AlertRuleV0Alpha1SpecNotificationSettingsArgs'] notification_settings: Notification settings for the rule. If specified, it overrides the notification policies.
-        :param Any panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+        :param pulumi.Input['AlertRuleV0Alpha1SpecPanelRefArgs'] panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         :param pulumi.Input[_builtins.bool] paused: Sets whether the rule should be paused or not.
         :param pulumi.Input['AlertRuleV0Alpha1SpecTriggerArgs'] trigger: The trigger configuration for the alert rule.
         """
@@ -3236,14 +3238,14 @@ class AlertRuleV0Alpha1SpecArgs:
 
     @_builtins.property
     @pulumi.getter(name="panelRef")
-    def panel_ref(self) -> Optional[Any]:
+    def panel_ref(self) -> Optional[pulumi.Input['AlertRuleV0Alpha1SpecPanelRefArgs']]:
         """
         Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         """
         return pulumi.get(self, "panel_ref")
 
     @panel_ref.setter
-    def panel_ref(self, value: Optional[Any]):
+    def panel_ref(self, value: Optional[pulumi.Input['AlertRuleV0Alpha1SpecPanelRefArgs']]):
         pulumi.set(self, "panel_ref", value)
 
     @_builtins.property
@@ -3420,6 +3422,40 @@ class AlertRuleV0Alpha1SpecNotificationSettingsArgs:
     @repeat_interval.setter
     def repeat_interval(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "repeat_interval", value)
+
+
+if not MYPY:
+    class AlertRuleV0Alpha1SpecPanelRefArgsDict(TypedDict):
+        dashboard_uid: pulumi.Input[_builtins.str]
+        panel_id: pulumi.Input[_builtins.int]
+elif False:
+    AlertRuleV0Alpha1SpecPanelRefArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AlertRuleV0Alpha1SpecPanelRefArgs:
+    def __init__(__self__, *,
+                 dashboard_uid: pulumi.Input[_builtins.str],
+                 panel_id: pulumi.Input[_builtins.int]):
+        pulumi.set(__self__, "dashboard_uid", dashboard_uid)
+        pulumi.set(__self__, "panel_id", panel_id)
+
+    @_builtins.property
+    @pulumi.getter(name="dashboardUid")
+    def dashboard_uid(self) -> pulumi.Input[_builtins.str]:
+        return pulumi.get(self, "dashboard_uid")
+
+    @dashboard_uid.setter
+    def dashboard_uid(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "dashboard_uid", value)
+
+    @_builtins.property
+    @pulumi.getter(name="panelId")
+    def panel_id(self) -> pulumi.Input[_builtins.int]:
+        return pulumi.get(self, "panel_id")
+
+    @panel_id.setter
+    def panel_id(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "panel_id", value)
 
 
 if not MYPY:

@@ -89,7 +89,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         /// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         /// </summary>
         [Input("panelRef")]
-        public Input<object>? PanelRef { get; set; }
+        public Input<Inputs.AlertRuleV0Alpha1SpecPanelRefArgs>? PanelRef { get; set; }
 
         /// <summary>
         /// Sets whether the rule should be paused or not.

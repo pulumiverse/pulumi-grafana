@@ -6959,7 +6959,7 @@ type AlertRuleV0Alpha1Spec struct {
 	// Notification settings for the rule. If specified, it overrides the notification policies.
 	NotificationSettings *AlertRuleV0Alpha1SpecNotificationSettings `pulumi:"notificationSettings"`
 	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
-	PanelRef interface{} `pulumi:"panelRef"`
+	PanelRef *AlertRuleV0Alpha1SpecPanelRef `pulumi:"panelRef"`
 	// Sets whether the rule should be paused or not.
 	Paused *bool `pulumi:"paused"`
 	// The title of the alert rule.
@@ -6999,7 +6999,7 @@ type AlertRuleV0Alpha1SpecArgs struct {
 	// Notification settings for the rule. If specified, it overrides the notification policies.
 	NotificationSettings AlertRuleV0Alpha1SpecNotificationSettingsPtrInput `pulumi:"notificationSettings"`
 	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
-	PanelRef pulumi.Input `pulumi:"panelRef"`
+	PanelRef AlertRuleV0Alpha1SpecPanelRefPtrInput `pulumi:"panelRef"`
 	// Sets whether the rule should be paused or not.
 	Paused pulumi.BoolPtrInput `pulumi:"paused"`
 	// The title of the alert rule.
@@ -7133,8 +7133,8 @@ func (o AlertRuleV0Alpha1SpecOutput) NotificationSettings() AlertRuleV0Alpha1Spe
 }
 
 // Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
-func (o AlertRuleV0Alpha1SpecOutput) PanelRef() pulumi.AnyOutput {
-	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) interface{} { return v.PanelRef }).(pulumi.AnyOutput)
+func (o AlertRuleV0Alpha1SpecOutput) PanelRef() AlertRuleV0Alpha1SpecPanelRefPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) *AlertRuleV0Alpha1SpecPanelRef { return v.PanelRef }).(AlertRuleV0Alpha1SpecPanelRefPtrOutput)
 }
 
 // Sets whether the rule should be paused or not.
@@ -7267,13 +7267,13 @@ func (o AlertRuleV0Alpha1SpecPtrOutput) NotificationSettings() AlertRuleV0Alpha1
 }
 
 // Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
-func (o AlertRuleV0Alpha1SpecPtrOutput) PanelRef() pulumi.AnyOutput {
-	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) interface{} {
+func (o AlertRuleV0Alpha1SpecPtrOutput) PanelRef() AlertRuleV0Alpha1SpecPanelRefPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) *AlertRuleV0Alpha1SpecPanelRef {
 		if v == nil {
 			return nil
 		}
 		return v.PanelRef
-	}).(pulumi.AnyOutput)
+	}).(AlertRuleV0Alpha1SpecPanelRefPtrOutput)
 }
 
 // Sets whether the rule should be paused or not.
@@ -7555,6 +7555,154 @@ func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) RepeatInterval() pul
 		}
 		return v.RepeatInterval
 	}).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecPanelRef struct {
+	DashboardUid string `pulumi:"dashboardUid"`
+	PanelId      int    `pulumi:"panelId"`
+}
+
+// AlertRuleV0Alpha1SpecPanelRefInput is an input type that accepts AlertRuleV0Alpha1SpecPanelRefArgs and AlertRuleV0Alpha1SpecPanelRefOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1SpecPanelRefInput` via:
+//
+//	AlertRuleV0Alpha1SpecPanelRefArgs{...}
+type AlertRuleV0Alpha1SpecPanelRefInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1SpecPanelRefOutput() AlertRuleV0Alpha1SpecPanelRefOutput
+	ToAlertRuleV0Alpha1SpecPanelRefOutputWithContext(context.Context) AlertRuleV0Alpha1SpecPanelRefOutput
+}
+
+type AlertRuleV0Alpha1SpecPanelRefArgs struct {
+	DashboardUid pulumi.StringInput `pulumi:"dashboardUid"`
+	PanelId      pulumi.IntInput    `pulumi:"panelId"`
+}
+
+func (AlertRuleV0Alpha1SpecPanelRefArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1SpecPanelRef)(nil)).Elem()
+}
+
+func (i AlertRuleV0Alpha1SpecPanelRefArgs) ToAlertRuleV0Alpha1SpecPanelRefOutput() AlertRuleV0Alpha1SpecPanelRefOutput {
+	return i.ToAlertRuleV0Alpha1SpecPanelRefOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1SpecPanelRefArgs) ToAlertRuleV0Alpha1SpecPanelRefOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecPanelRefOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecPanelRefOutput)
+}
+
+func (i AlertRuleV0Alpha1SpecPanelRefArgs) ToAlertRuleV0Alpha1SpecPanelRefPtrOutput() AlertRuleV0Alpha1SpecPanelRefPtrOutput {
+	return i.ToAlertRuleV0Alpha1SpecPanelRefPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1SpecPanelRefArgs) ToAlertRuleV0Alpha1SpecPanelRefPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecPanelRefPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecPanelRefOutput).ToAlertRuleV0Alpha1SpecPanelRefPtrOutputWithContext(ctx)
+}
+
+// AlertRuleV0Alpha1SpecPanelRefPtrInput is an input type that accepts AlertRuleV0Alpha1SpecPanelRefArgs, AlertRuleV0Alpha1SpecPanelRefPtr and AlertRuleV0Alpha1SpecPanelRefPtrOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1SpecPanelRefPtrInput` via:
+//
+//	        AlertRuleV0Alpha1SpecPanelRefArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleV0Alpha1SpecPanelRefPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1SpecPanelRefPtrOutput() AlertRuleV0Alpha1SpecPanelRefPtrOutput
+	ToAlertRuleV0Alpha1SpecPanelRefPtrOutputWithContext(context.Context) AlertRuleV0Alpha1SpecPanelRefPtrOutput
+}
+
+type alertRuleV0Alpha1SpecPanelRefPtrType AlertRuleV0Alpha1SpecPanelRefArgs
+
+func AlertRuleV0Alpha1SpecPanelRefPtr(v *AlertRuleV0Alpha1SpecPanelRefArgs) AlertRuleV0Alpha1SpecPanelRefPtrInput {
+	return (*alertRuleV0Alpha1SpecPanelRefPtrType)(v)
+}
+
+func (*alertRuleV0Alpha1SpecPanelRefPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1SpecPanelRef)(nil)).Elem()
+}
+
+func (i *alertRuleV0Alpha1SpecPanelRefPtrType) ToAlertRuleV0Alpha1SpecPanelRefPtrOutput() AlertRuleV0Alpha1SpecPanelRefPtrOutput {
+	return i.ToAlertRuleV0Alpha1SpecPanelRefPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleV0Alpha1SpecPanelRefPtrType) ToAlertRuleV0Alpha1SpecPanelRefPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecPanelRefPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecPanelRefPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecPanelRefOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1SpecPanelRefOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1SpecPanelRef)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1SpecPanelRefOutput) ToAlertRuleV0Alpha1SpecPanelRefOutput() AlertRuleV0Alpha1SpecPanelRefOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecPanelRefOutput) ToAlertRuleV0Alpha1SpecPanelRefOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecPanelRefOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecPanelRefOutput) ToAlertRuleV0Alpha1SpecPanelRefPtrOutput() AlertRuleV0Alpha1SpecPanelRefPtrOutput {
+	return o.ToAlertRuleV0Alpha1SpecPanelRefPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleV0Alpha1SpecPanelRefOutput) ToAlertRuleV0Alpha1SpecPanelRefPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecPanelRefPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleV0Alpha1SpecPanelRef) *AlertRuleV0Alpha1SpecPanelRef {
+		return &v
+	}).(AlertRuleV0Alpha1SpecPanelRefPtrOutput)
+}
+
+func (o AlertRuleV0Alpha1SpecPanelRefOutput) DashboardUid() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecPanelRef) string { return v.DashboardUid }).(pulumi.StringOutput)
+}
+
+func (o AlertRuleV0Alpha1SpecPanelRefOutput) PanelId() pulumi.IntOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecPanelRef) int { return v.PanelId }).(pulumi.IntOutput)
+}
+
+type AlertRuleV0Alpha1SpecPanelRefPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1SpecPanelRefPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1SpecPanelRef)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1SpecPanelRefPtrOutput) ToAlertRuleV0Alpha1SpecPanelRefPtrOutput() AlertRuleV0Alpha1SpecPanelRefPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecPanelRefPtrOutput) ToAlertRuleV0Alpha1SpecPanelRefPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecPanelRefPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecPanelRefPtrOutput) Elem() AlertRuleV0Alpha1SpecPanelRefOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecPanelRef) AlertRuleV0Alpha1SpecPanelRef {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleV0Alpha1SpecPanelRef
+		return ret
+	}).(AlertRuleV0Alpha1SpecPanelRefOutput)
+}
+
+func (o AlertRuleV0Alpha1SpecPanelRefPtrOutput) DashboardUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecPanelRef) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DashboardUid
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AlertRuleV0Alpha1SpecPanelRefPtrOutput) PanelId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecPanelRef) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.PanelId
+	}).(pulumi.IntPtrOutput)
 }
 
 type AlertRuleV0Alpha1SpecTrigger struct {
@@ -15753,6 +15901,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecPtrInput)(nil)).Elem(), AlertRuleV0Alpha1SpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsInput)(nil)).Elem(), AlertRuleV0Alpha1SpecNotificationSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsPtrInput)(nil)).Elem(), AlertRuleV0Alpha1SpecNotificationSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecPanelRefInput)(nil)).Elem(), AlertRuleV0Alpha1SpecPanelRefArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecPanelRefPtrInput)(nil)).Elem(), AlertRuleV0Alpha1SpecPanelRefArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecTriggerInput)(nil)).Elem(), AlertRuleV0Alpha1SpecTriggerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecTriggerPtrInput)(nil)).Elem(), AlertRuleV0Alpha1SpecTriggerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointAlertmanagerInput)(nil)).Elem(), ContactPointAlertmanagerArgs{})
@@ -15940,6 +16090,8 @@ func init() {
 	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecPtrOutput{})
 	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecNotificationSettingsOutput{})
 	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecPanelRefOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecPanelRefPtrOutput{})
 	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecTriggerOutput{})
 	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecTriggerPtrOutput{})
 	pulumi.RegisterOutputType(ContactPointAlertmanagerOutput{})
