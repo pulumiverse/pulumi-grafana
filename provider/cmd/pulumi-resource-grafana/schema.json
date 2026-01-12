@@ -1161,7 +1161,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.\n"
+                    "description": "Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.\n"
                 },
                 "paused": {
                     "type": "boolean",
@@ -1480,6 +1480,115 @@
                     "requiredOutputs": [
                         "uid",
                         "url"
+                    ]
+                }
+            }
+        },
+        "grafana:alerting/ContactPointJira:ContactPointJira": {
+            "properties": {
+                "apiToken": {
+                    "type": "string",
+                    "description": "Personal Access Token that is used as a bearer authorization header.\n",
+                    "secret": true
+                },
+                "apiUrl": {
+                    "type": "string",
+                    "description": "The URL of the Jira REST API (v2 or v3).\n"
+                },
+                "dedupKeyField": {
+                    "type": "string",
+                    "description": "Custom field ID for storing deduplication keys. Must be numeric.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The templated description of the Jira issue. Maximum length is 32767 characters.\n"
+                },
+                "disableResolveMessage": {
+                    "type": "boolean",
+                    "description": "Whether to disable sending resolve messages. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
+                },
+                "fields": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Custom Jira issue fields.\n"
+                },
+                "issueType": {
+                    "type": "string",
+                    "description": "The type of issue to create (e.g., Bug, Task, Story).\n"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Labels to assign to the Jira issue.\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password to use for Jira authentication.\n",
+                    "secret": true
+                },
+                "priority": {
+                    "type": "string",
+                    "description": "The priority level of the issue (e.g., High, Medium, Low).\n"
+                },
+                "project": {
+                    "type": "string",
+                    "description": "The project key in Jira.\n"
+                },
+                "reopenDuration": {
+                    "type": "string",
+                    "description": "Duration to consider reopening issues (e.g., '10m').\n"
+                },
+                "reopenTransition": {
+                    "type": "string",
+                    "description": "The name of the workflow transition to reopen an issue.\n"
+                },
+                "resolveTransition": {
+                    "type": "string",
+                    "description": "The name of the workflow transition to resolve an issue.\n"
+                },
+                "settings": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.\n",
+                    "secret": true
+                },
+                "summary": {
+                    "type": "string",
+                    "description": "The templated summary of the Jira issue. Maximum length is 255 characters.\n"
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "The UID of the contact point.\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "Username to use for Jira authentication.\n",
+                    "secret": true
+                },
+                "wontFixResolution": {
+                    "type": "string",
+                    "description": "Resolution status to exclude from reopening/updating.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiUrl",
+                "issueType",
+                "project"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "apiUrl",
+                        "issueType",
+                        "project",
+                        "uid"
                     ]
                 }
             }
@@ -8331,33 +8440,33 @@
             }
         },
         "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1": {
-            "description": "Manages Grafana Alert Rules.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst alertruleFolder = new grafana.oss.Folder(\"alertrule_folder\", {title: \"Alert Rule Folder\"});\nconst example = new grafana.alerting.AlertRuleV0Alpha1(\"example\", {\n    metadata: {\n        uid: \"example-alert-rule\",\n        folderUid: alertruleFolder.uid,\n    },\n    spec: {\n        title: \"Example Alert Rule\",\n        trigger: {\n            interval: \"1m\",\n        },\n        paused: true,\n        expressions: {\n            A: JSON.stringify({\n                model: {\n                    datasource: {\n                        type: \"prometheus\",\n                        uid: \"ds_uid\",\n                    },\n                    editorMode: \"code\",\n                    expr: \"count(up{})\",\n                    instant: true,\n                    intervalMs: 1000,\n                    legendFormat: \"__auto\",\n                    maxDataPoints: 43200,\n                    range: false,\n                    refId: \"A\",\n                },\n                datasource_uid: \"ds_uid\",\n                relative_time_range: {\n                    from: \"600s\",\n                    to: \"0s\",\n                },\n                query_type: \"\",\n                source: true,\n            }),\n            B: JSON.stringify({\n                model: {\n                    conditions: [{\n                        evaluator: {\n                            params: [1],\n                            type: \"gt\",\n                        },\n                        operator: {\n                            type: \"and\",\n                        },\n                        query: {\n                            params: [\"C\"],\n                        },\n                        reducer: {\n                            params: [],\n                            type: \"last\",\n                        },\n                        type: \"query\",\n                    }],\n                    datasource: {\n                        type: \"__expr__\",\n                        uid: \"__expr__\",\n                    },\n                    expression: \"A\",\n                    intervalMs: 1000,\n                    maxDataPoints: 43200,\n                    refId: \"C\",\n                    type: \"threshold\",\n                },\n                datasource_uid: \"__expr__\",\n                query_type: \"\",\n                source: false,\n            }),\n        },\n        \"for\": \"5m\",\n        labels: {\n            severity: \"critical\",\n        },\n        annotations: {\n            runbook_url: \"https://example.com\",\n        },\n        noDataState: \"KeepLast\",\n        execErrState: \"KeepLast\",\n        missingSeriesEvalsToResolve: 5,\n        notificationSettings: {\n            contactPoint: \"grafana-default-email\",\n        },\n        panelRef: {\n            dashboard_uid: \"dashboard123\",\n            panel_id: \"5\",\n        },\n    },\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nalertrule_folder = grafana.oss.Folder(\"alertrule_folder\", title=\"Alert Rule Folder\")\nexample = grafana.alerting.AlertRuleV0Alpha1(\"example\",\n    metadata={\n        \"uid\": \"example-alert-rule\",\n        \"folder_uid\": alertrule_folder.uid,\n    },\n    spec={\n        \"title\": \"Example Alert Rule\",\n        \"trigger\": {\n            \"interval\": \"1m\",\n        },\n        \"paused\": True,\n        \"expressions\": {\n            \"A\": json.dumps({\n                \"model\": {\n                    \"datasource\": {\n                        \"type\": \"prometheus\",\n                        \"uid\": \"ds_uid\",\n                    },\n                    \"editorMode\": \"code\",\n                    \"expr\": \"count(up{})\",\n                    \"instant\": True,\n                    \"intervalMs\": 1000,\n                    \"legendFormat\": \"__auto\",\n                    \"maxDataPoints\": 43200,\n                    \"range\": False,\n                    \"refId\": \"A\",\n                },\n                \"datasource_uid\": \"ds_uid\",\n                \"relative_time_range\": {\n                    \"from\": \"600s\",\n                    \"to\": \"0s\",\n                },\n                \"query_type\": \"\",\n                \"source\": True,\n            }),\n            \"B\": json.dumps({\n                \"model\": {\n                    \"conditions\": [{\n                        \"evaluator\": {\n                            \"params\": [1],\n                            \"type\": \"gt\",\n                        },\n                        \"operator\": {\n                            \"type\": \"and\",\n                        },\n                        \"query\": {\n                            \"params\": [\"C\"],\n                        },\n                        \"reducer\": {\n                            \"params\": [],\n                            \"type\": \"last\",\n                        },\n                        \"type\": \"query\",\n                    }],\n                    \"datasource\": {\n                        \"type\": \"__expr__\",\n                        \"uid\": \"__expr__\",\n                    },\n                    \"expression\": \"A\",\n                    \"intervalMs\": 1000,\n                    \"maxDataPoints\": 43200,\n                    \"refId\": \"C\",\n                    \"type\": \"threshold\",\n                },\n                \"datasource_uid\": \"__expr__\",\n                \"query_type\": \"\",\n                \"source\": False,\n            }),\n        },\n        \"for_\": \"5m\",\n        \"labels\": {\n            \"severity\": \"critical\",\n        },\n        \"annotations\": {\n            \"runbook_url\": \"https://example.com\",\n        },\n        \"no_data_state\": \"KeepLast\",\n        \"exec_err_state\": \"KeepLast\",\n        \"missing_series_evals_to_resolve\": 5,\n        \"notification_settings\": {\n            \"contact_point\": \"grafana-default-email\",\n        },\n        \"panel_ref\": {\n            \"dashboard_uid\": \"dashboard123\",\n            \"panel_id\": \"5\",\n        },\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var alertruleFolder = new Grafana.Oss.Folder(\"alertrule_folder\", new()\n    {\n        Title = \"Alert Rule Folder\",\n    });\n\n    var example = new Grafana.Alerting.AlertRuleV0Alpha1(\"example\", new()\n    {\n        Metadata = new Grafana.Alerting.Inputs.AlertRuleV0Alpha1MetadataArgs\n        {\n            Uid = \"example-alert-rule\",\n            FolderUid = alertruleFolder.Uid,\n        },\n        Spec = new Grafana.Alerting.Inputs.AlertRuleV0Alpha1SpecArgs\n        {\n            Title = \"Example Alert Rule\",\n            Trigger = new Grafana.Alerting.Inputs.AlertRuleV0Alpha1SpecTriggerArgs\n            {\n                Interval = \"1m\",\n            },\n            Paused = true,\n            Expressions = \n            {\n                { \"A\", JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"model\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"datasource\"] = new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"type\"] = \"prometheus\",\n                            [\"uid\"] = \"ds_uid\",\n                        },\n                        [\"editorMode\"] = \"code\",\n                        [\"expr\"] = \"count(up{})\",\n                        [\"instant\"] = true,\n                        [\"intervalMs\"] = 1000,\n                        [\"legendFormat\"] = \"__auto\",\n                        [\"maxDataPoints\"] = 43200,\n                        [\"range\"] = false,\n                        [\"refId\"] = \"A\",\n                    },\n                    [\"datasource_uid\"] = \"ds_uid\",\n                    [\"relative_time_range\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"from\"] = \"600s\",\n                        [\"to\"] = \"0s\",\n                    },\n                    [\"query_type\"] = \"\",\n                    [\"source\"] = true,\n                }) },\n                { \"B\", JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"model\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"conditions\"] = new[]\n                        {\n                            new Dictionary\u003cstring, object?\u003e\n                            {\n                                [\"evaluator\"] = new Dictionary\u003cstring, object?\u003e\n                                {\n                                    [\"params\"] = new[]\n                                    {\n                                        1,\n                                    },\n                                    [\"type\"] = \"gt\",\n                                },\n                                [\"operator\"] = new Dictionary\u003cstring, object?\u003e\n                                {\n                                    [\"type\"] = \"and\",\n                                },\n                                [\"query\"] = new Dictionary\u003cstring, object?\u003e\n                                {\n                                    [\"params\"] = new[]\n                                    {\n                                        \"C\",\n                                    },\n                                },\n                                [\"reducer\"] = new Dictionary\u003cstring, object?\u003e\n                                {\n                                    [\"params\"] = new[]\n                                    {\n                                    },\n                                    [\"type\"] = \"last\",\n                                },\n                                [\"type\"] = \"query\",\n                            },\n                        },\n                        [\"datasource\"] = new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"type\"] = \"__expr__\",\n                            [\"uid\"] = \"__expr__\",\n                        },\n                        [\"expression\"] = \"A\",\n                        [\"intervalMs\"] = 1000,\n                        [\"maxDataPoints\"] = 43200,\n                        [\"refId\"] = \"C\",\n                        [\"type\"] = \"threshold\",\n                    },\n                    [\"datasource_uid\"] = \"__expr__\",\n                    [\"query_type\"] = \"\",\n                    [\"source\"] = false,\n                }) },\n            },\n            For = \"5m\",\n            Labels = \n            {\n                { \"severity\", \"critical\" },\n            },\n            Annotations = \n            {\n                { \"runbook_url\", \"https://example.com\" },\n            },\n            NoDataState = \"KeepLast\",\n            ExecErrState = \"KeepLast\",\n            MissingSeriesEvalsToResolve = 5,\n            NotificationSettings = new Grafana.Alerting.Inputs.AlertRuleV0Alpha1SpecNotificationSettingsArgs\n            {\n                ContactPoint = \"grafana-default-email\",\n            },\n            PanelRef = \n            {\n                { \"dashboard_uid\", \"dashboard123\" },\n                { \"panel_id\", \"5\" },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\talertruleFolder, err := oss.NewFolder(ctx, \"alertrule_folder\", \u0026oss.FolderArgs{\n\t\t\tTitle: pulumi.String(\"Alert Rule Folder\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"model\": map[string]interface{}{\n\t\t\t\t\"datasource\": map[string]interface{}{\n\t\t\t\t\t\"type\": \"prometheus\",\n\t\t\t\t\t\"uid\":  \"ds_uid\",\n\t\t\t\t},\n\t\t\t\t\"editorMode\":    \"code\",\n\t\t\t\t\"expr\":          \"count(up{})\",\n\t\t\t\t\"instant\":       true,\n\t\t\t\t\"intervalMs\":    1000,\n\t\t\t\t\"legendFormat\":  \"__auto\",\n\t\t\t\t\"maxDataPoints\": 43200,\n\t\t\t\t\"range\":         false,\n\t\t\t\t\"refId\":         \"A\",\n\t\t\t},\n\t\t\t\"datasource_uid\": \"ds_uid\",\n\t\t\t\"relative_time_range\": map[string]interface{}{\n\t\t\t\t\"from\": \"600s\",\n\t\t\t\t\"to\":   \"0s\",\n\t\t\t},\n\t\t\t\"query_type\": \"\",\n\t\t\t\"source\":     true,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\ttmpJSON1, err := json.Marshal(map[string]interface{}{\n\t\t\t\"model\": map[string]interface{}{\n\t\t\t\t\"conditions\": []map[string]interface{}{\n\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\"evaluator\": map[string]interface{}{\n\t\t\t\t\t\t\t\"params\": []float64{\n\t\t\t\t\t\t\t\t1,\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\"type\": \"gt\",\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"operator\": map[string]interface{}{\n\t\t\t\t\t\t\t\"type\": \"and\",\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"query\": map[string]interface{}{\n\t\t\t\t\t\t\t\"params\": []string{\n\t\t\t\t\t\t\t\t\"C\",\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"reducer\": map[string]interface{}{\n\t\t\t\t\t\t\t\"params\": []interface{}{},\n\t\t\t\t\t\t\t\"type\":   \"last\",\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"type\": \"query\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\"datasource\": map[string]interface{}{\n\t\t\t\t\t\"type\": \"__expr__\",\n\t\t\t\t\t\"uid\":  \"__expr__\",\n\t\t\t\t},\n\t\t\t\t\"expression\":    \"A\",\n\t\t\t\t\"intervalMs\":    1000,\n\t\t\t\t\"maxDataPoints\": 43200,\n\t\t\t\t\"refId\":         \"C\",\n\t\t\t\t\"type\":          \"threshold\",\n\t\t\t},\n\t\t\t\"datasource_uid\": \"__expr__\",\n\t\t\t\"query_type\":     \"\",\n\t\t\t\"source\":         false,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson1 := string(tmpJSON1)\n\t\t_, err = alerting.NewAlertRuleV0Alpha1(ctx, \"example\", \u0026alerting.AlertRuleV0Alpha1Args{\n\t\t\tMetadata: \u0026alerting.AlertRuleV0Alpha1MetadataArgs{\n\t\t\t\tUid:       pulumi.String(\"example-alert-rule\"),\n\t\t\t\tFolderUid: alertruleFolder.Uid,\n\t\t\t},\n\t\t\tSpec: \u0026alerting.AlertRuleV0Alpha1SpecArgs{\n\t\t\t\tTitle: pulumi.String(\"Example Alert Rule\"),\n\t\t\t\tTrigger: \u0026alerting.AlertRuleV0Alpha1SpecTriggerArgs{\n\t\t\t\t\tInterval: pulumi.String(\"1m\"),\n\t\t\t\t},\n\t\t\t\tPaused: pulumi.Bool(true),\n\t\t\t\tExpressions: pulumi.StringMap{\n\t\t\t\t\t\"A\": pulumi.String(json0),\n\t\t\t\t\t\"B\": pulumi.String(json1),\n\t\t\t\t},\n\t\t\t\tFor: pulumi.String(\"5m\"),\n\t\t\t\tLabels: pulumi.StringMap{\n\t\t\t\t\t\"severity\": pulumi.String(\"critical\"),\n\t\t\t\t},\n\t\t\t\tAnnotations: pulumi.StringMap{\n\t\t\t\t\t\"runbook_url\": pulumi.String(\"https://example.com\"),\n\t\t\t\t},\n\t\t\t\tNoDataState:                 pulumi.String(\"KeepLast\"),\n\t\t\t\tExecErrState:                pulumi.String(\"KeepLast\"),\n\t\t\t\tMissingSeriesEvalsToResolve: pulumi.Int(5),\n\t\t\t\tNotificationSettings: \u0026alerting.AlertRuleV0Alpha1SpecNotificationSettingsArgs{\n\t\t\t\t\tContactPoint: pulumi.String(\"grafana-default-email\"),\n\t\t\t\t},\n\t\t\t\tPanelRef: pulumi.StringMap{\n\t\t\t\t\t\"dashboard_uid\": pulumi.String(\"dashboard123\"),\n\t\t\t\t\t\"panel_id\":      pulumi.String(\"5\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.Folder;\nimport com.pulumi.grafana.oss.FolderArgs;\nimport com.pulumi.grafana.alerting.AlertRuleV0Alpha1;\nimport com.pulumi.grafana.alerting.AlertRuleV0Alpha1Args;\nimport com.pulumi.grafana.alerting.inputs.AlertRuleV0Alpha1MetadataArgs;\nimport com.pulumi.grafana.alerting.inputs.AlertRuleV0Alpha1SpecArgs;\nimport com.pulumi.grafana.alerting.inputs.AlertRuleV0Alpha1SpecTriggerArgs;\nimport com.pulumi.grafana.alerting.inputs.AlertRuleV0Alpha1SpecNotificationSettingsArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var alertruleFolder = new Folder(\"alertruleFolder\", FolderArgs.builder()\n            .title(\"Alert Rule Folder\")\n            .build());\n\n        var example = new AlertRuleV0Alpha1(\"example\", AlertRuleV0Alpha1Args.builder()\n            .metadata(AlertRuleV0Alpha1MetadataArgs.builder()\n                .uid(\"example-alert-rule\")\n                .folderUid(alertruleFolder.uid())\n                .build())\n            .spec(AlertRuleV0Alpha1SpecArgs.builder()\n                .title(\"Example Alert Rule\")\n                .trigger(AlertRuleV0Alpha1SpecTriggerArgs.builder()\n                    .interval(\"1m\")\n                    .build())\n                .paused(true)\n                .expressions(Map.ofEntries(\n                    Map.entry(\"A\", serializeJson(\n                        jsonObject(\n                            jsonProperty(\"model\", jsonObject(\n                                jsonProperty(\"datasource\", jsonObject(\n                                    jsonProperty(\"type\", \"prometheus\"),\n                                    jsonProperty(\"uid\", \"ds_uid\")\n                                )),\n                                jsonProperty(\"editorMode\", \"code\"),\n                                jsonProperty(\"expr\", \"count(up{})\"),\n                                jsonProperty(\"instant\", true),\n                                jsonProperty(\"intervalMs\", 1000),\n                                jsonProperty(\"legendFormat\", \"__auto\"),\n                                jsonProperty(\"maxDataPoints\", 43200),\n                                jsonProperty(\"range\", false),\n                                jsonProperty(\"refId\", \"A\")\n                            )),\n                            jsonProperty(\"datasource_uid\", \"ds_uid\"),\n                            jsonProperty(\"relative_time_range\", jsonObject(\n                                jsonProperty(\"from\", \"600s\"),\n                                jsonProperty(\"to\", \"0s\")\n                            )),\n                            jsonProperty(\"query_type\", \"\"),\n                            jsonProperty(\"source\", true)\n                        ))),\n                    Map.entry(\"B\", serializeJson(\n                        jsonObject(\n                            jsonProperty(\"model\", jsonObject(\n                                jsonProperty(\"conditions\", jsonArray(jsonObject(\n                                    jsonProperty(\"evaluator\", jsonObject(\n                                        jsonProperty(\"params\", jsonArray(1)),\n                                        jsonProperty(\"type\", \"gt\")\n                                    )),\n                                    jsonProperty(\"operator\", jsonObject(\n                                        jsonProperty(\"type\", \"and\")\n                                    )),\n                                    jsonProperty(\"query\", jsonObject(\n                                        jsonProperty(\"params\", jsonArray(\"C\"))\n                                    )),\n                                    jsonProperty(\"reducer\", jsonObject(\n                                        jsonProperty(\"params\", jsonArray(\n                                        )),\n                                        jsonProperty(\"type\", \"last\")\n                                    )),\n                                    jsonProperty(\"type\", \"query\")\n                                ))),\n                                jsonProperty(\"datasource\", jsonObject(\n                                    jsonProperty(\"type\", \"__expr__\"),\n                                    jsonProperty(\"uid\", \"__expr__\")\n                                )),\n                                jsonProperty(\"expression\", \"A\"),\n                                jsonProperty(\"intervalMs\", 1000),\n                                jsonProperty(\"maxDataPoints\", 43200),\n                                jsonProperty(\"refId\", \"C\"),\n                                jsonProperty(\"type\", \"threshold\")\n                            )),\n                            jsonProperty(\"datasource_uid\", \"__expr__\"),\n                            jsonProperty(\"query_type\", \"\"),\n                            jsonProperty(\"source\", false)\n                        )))\n                ))\n                .for_(\"5m\")\n                .labels(Map.of(\"severity\", \"critical\"))\n                .annotations(Map.of(\"runbook_url\", \"https://example.com\"))\n                .noDataState(\"KeepLast\")\n                .execErrState(\"KeepLast\")\n                .missingSeriesEvalsToResolve(5)\n                .notificationSettings(AlertRuleV0Alpha1SpecNotificationSettingsArgs.builder()\n                    .contactPoint(\"grafana-default-email\")\n                    .build())\n                .panelRef(Map.ofEntries(\n                    Map.entry(\"dashboard_uid\", \"dashboard123\"),\n                    Map.entry(\"panel_id\", \"5\")\n                ))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  alertruleFolder:\n    type: grafana:oss:Folder\n    name: alertrule_folder\n    properties:\n      title: Alert Rule Folder\n  example:\n    type: grafana:alerting:AlertRuleV0Alpha1\n    properties:\n      metadata:\n        uid: example-alert-rule\n        folderUid: ${alertruleFolder.uid}\n      spec:\n        title: Example Alert Rule\n        trigger:\n          interval: 1m\n        paused: true\n        expressions:\n          A:\n            fn::toJSON:\n              model:\n                datasource:\n                  type: prometheus\n                  uid: ds_uid\n                editorMode: code\n                expr: count(up{})\n                instant: true\n                intervalMs: 1000\n                legendFormat: __auto\n                maxDataPoints: 43200\n                range: false\n                refId: A\n              datasource_uid: ds_uid\n              relative_time_range:\n                from: 600s\n                to: 0s\n              query_type: \"\"\n              source: true\n          B:\n            fn::toJSON:\n              model:\n                conditions:\n                  - evaluator:\n                      params:\n                        - 1\n                      type: gt\n                    operator:\n                      type: and\n                    query:\n                      params:\n                        - C\n                    reducer:\n                      params: []\n                      type: last\n                    type: query\n                datasource:\n                  type: __expr__\n                  uid: __expr__\n                expression: A\n                intervalMs: 1000\n                maxDataPoints: 43200\n                refId: C\n                type: threshold\n              datasource_uid: __expr__\n              query_type: \"\"\n              source: false\n        for: 5m\n        labels:\n          severity: critical\n        annotations:\n          runbook_url: https://example.com\n        noDataState: KeepLast\n        execErrState: KeepLast\n        missingSeriesEvalsToResolve: 5\n        notificationSettings:\n          contactPoint: grafana-default-email\n        panelRef:\n          dashboard_uid: dashboard123\n          panel_id: '5'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "This resource is currently under development. Documentation will be provided in a future release.\n",
             "properties": {
                 "metadata": {
                     "$ref": "#/types/grafana:alerting/AlertRuleV0Alpha1Metadata:AlertRuleV0Alpha1Metadata",
-                    "description": "The metadata of the resource.\n"
+                    "description": "The metadata of the resource."
                 },
                 "options": {
                     "$ref": "#/types/grafana:alerting/AlertRuleV0Alpha1Options:AlertRuleV0Alpha1Options",
-                    "description": "Options for applying the resource.\n"
+                    "description": "Options for applying the resource."
                 },
                 "spec": {
                     "$ref": "#/types/grafana:alerting/AlertRuleV0Alpha1Spec:AlertRuleV0Alpha1Spec",
-                    "description": "The spec of the resource.\n"
+                    "description": "The spec of the resource."
                 }
             },
             "inputProperties": {
                 "metadata": {
                     "$ref": "#/types/grafana:alerting/AlertRuleV0Alpha1Metadata:AlertRuleV0Alpha1Metadata",
-                    "description": "The metadata of the resource.\n"
+                    "description": "The metadata of the resource."
                 },
                 "options": {
                     "$ref": "#/types/grafana:alerting/AlertRuleV0Alpha1Options:AlertRuleV0Alpha1Options",
-                    "description": "Options for applying the resource.\n"
+                    "description": "Options for applying the resource."
                 },
                 "spec": {
                     "$ref": "#/types/grafana:alerting/AlertRuleV0Alpha1Spec:AlertRuleV0Alpha1Spec",
-                    "description": "The spec of the resource.\n"
+                    "description": "The spec of the resource."
                 }
             },
             "stateInputs": {
@@ -8365,15 +8474,15 @@
                 "properties": {
                     "metadata": {
                         "$ref": "#/types/grafana:alerting/AlertRuleV0Alpha1Metadata:AlertRuleV0Alpha1Metadata",
-                        "description": "The metadata of the resource.\n"
+                        "description": "The metadata of the resource."
                     },
                     "options": {
                         "$ref": "#/types/grafana:alerting/AlertRuleV0Alpha1Options:AlertRuleV0Alpha1Options",
-                        "description": "Options for applying the resource.\n"
+                        "description": "Options for applying the resource."
                     },
                     "spec": {
                         "$ref": "#/types/grafana:alerting/AlertRuleV0Alpha1Spec:AlertRuleV0Alpha1Spec",
-                        "description": "The spec of the resource.\n"
+                        "description": "The spec of the resource."
                     }
                 },
                 "type": "object"
@@ -8419,6 +8528,13 @@
                         "$ref": "#/types/grafana:alerting/ContactPointGooglechat:ContactPointGooglechat"
                     },
                     "description": "A contact point that sends notifications to Google Chat.\n"
+                },
+                "jiras": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/ContactPointJira:ContactPointJira"
+                    },
+                    "description": "A contact point that sends notifications to Jira.\n"
                 },
                 "kafkas": {
                     "type": "array",
@@ -8584,6 +8700,13 @@
                     },
                     "description": "A contact point that sends notifications to Google Chat.\n"
                 },
+                "jiras": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/grafana:alerting/ContactPointJira:ContactPointJira"
+                    },
+                    "description": "A contact point that sends notifications to Jira.\n"
+                },
                 "kafkas": {
                     "type": "array",
                     "items": {
@@ -8748,6 +8871,13 @@
                             "$ref": "#/types/grafana:alerting/ContactPointGooglechat:ContactPointGooglechat"
                         },
                         "description": "A contact point that sends notifications to Google Chat.\n"
+                    },
+                    "jiras": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:alerting/ContactPointJira:ContactPointJira"
+                        },
+                        "description": "A contact point that sends notifications to Jira.\n"
                     },
                     "kafkas": {
                         "type": "array",
@@ -10669,6 +10799,10 @@
                     "type": "integer",
                     "description": "User ID of the Alertmanager instance configured for this stack.\n"
                 },
+                "clusterName": {
+                    "type": "string",
+                    "description": "Name of the cluster where this stack resides.\n"
+                },
                 "clusterSlug": {
                     "type": "string",
                     "description": "Slug of the cluster where this stack resides.\n"
@@ -10932,6 +11066,7 @@
                 "alertmanagerStatus",
                 "alertmanagerUrl",
                 "alertmanagerUserId",
+                "clusterName",
                 "clusterSlug",
                 "fleetManagementName",
                 "fleetManagementPrivateConnectivityInfoPrivateDns",
@@ -11061,6 +11196,10 @@
                     "alertmanagerUserId": {
                         "type": "integer",
                         "description": "User ID of the Alertmanager instance configured for this stack.\n"
+                    },
+                    "clusterName": {
+                        "type": "string",
+                        "description": "Name of the cluster where this stack resides.\n"
                     },
                     "clusterSlug": {
                         "type": "string",
@@ -19188,6 +19327,10 @@
                         "description": "User ID of the Alertmanager instance configured for this stack.\n",
                         "type": "integer"
                     },
+                    "clusterName": {
+                        "description": "Name of the cluster where this stack resides.\n",
+                        "type": "string"
+                    },
                     "clusterSlug": {
                         "description": "Slug of the cluster where this stack resides.\n",
                         "type": "string"
@@ -19447,6 +19590,7 @@
                     "alertmanagerStatus",
                     "alertmanagerUrl",
                     "alertmanagerUserId",
+                    "clusterName",
                     "clusterSlug",
                     "deleteProtection",
                     "description",
