@@ -408,6 +408,16 @@
                     "googlechat": {
                         "maxItemsOne": false
                     },
+                    "jira": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "labels": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "kafka": {
                         "maxItemsOne": false
                     },

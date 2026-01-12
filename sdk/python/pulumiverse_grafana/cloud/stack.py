@@ -175,6 +175,7 @@ class _StackState:
                  alertmanager_status: Optional[pulumi.Input[_builtins.str]] = None,
                  alertmanager_url: Optional[pulumi.Input[_builtins.str]] = None,
                  alertmanager_user_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
                  cluster_slug: Optional[pulumi.Input[_builtins.str]] = None,
                  delete_protection: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -249,6 +250,7 @@ class _StackState:
         :param pulumi.Input[_builtins.str] alertmanager_status: Status of the Alertmanager instance configured for this stack.
         :param pulumi.Input[_builtins.str] alertmanager_url: Base URL of the Alertmanager instance configured for this stack.
         :param pulumi.Input[_builtins.int] alertmanager_user_id: User ID of the Alertmanager instance configured for this stack.
+        :param pulumi.Input[_builtins.str] cluster_name: Name of the cluster where this stack resides.
         :param pulumi.Input[_builtins.str] cluster_slug: Slug of the cluster where this stack resides.
         :param pulumi.Input[_builtins.bool] delete_protection: Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
         :param pulumi.Input[_builtins.str] description: Description of stack.
@@ -312,6 +314,8 @@ class _StackState:
             pulumi.set(__self__, "alertmanager_url", alertmanager_url)
         if alertmanager_user_id is not None:
             pulumi.set(__self__, "alertmanager_user_id", alertmanager_user_id)
+        if cluster_name is not None:
+            pulumi.set(__self__, "cluster_name", cluster_name)
         if cluster_slug is not None:
             pulumi.set(__self__, "cluster_slug", cluster_slug)
         if delete_protection is not None:
@@ -506,6 +510,18 @@ class _StackState:
     @alertmanager_user_id.setter
     def alertmanager_user_id(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "alertmanager_user_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Name of the cluster where this stack resides.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @cluster_name.setter
+    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterSlug")
@@ -1406,6 +1422,7 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["alertmanager_status"] = None
             __props__.__dict__["alertmanager_url"] = None
             __props__.__dict__["alertmanager_user_id"] = None
+            __props__.__dict__["cluster_name"] = None
             __props__.__dict__["cluster_slug"] = None
             __props__.__dict__["fleet_management_name"] = None
             __props__.__dict__["fleet_management_private_connectivity_info_private_dns"] = None
@@ -1479,6 +1496,7 @@ class Stack(pulumi.CustomResource):
             alertmanager_status: Optional[pulumi.Input[_builtins.str]] = None,
             alertmanager_url: Optional[pulumi.Input[_builtins.str]] = None,
             alertmanager_user_id: Optional[pulumi.Input[_builtins.int]] = None,
+            cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
             cluster_slug: Optional[pulumi.Input[_builtins.str]] = None,
             delete_protection: Optional[pulumi.Input[_builtins.bool]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1558,6 +1576,7 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] alertmanager_status: Status of the Alertmanager instance configured for this stack.
         :param pulumi.Input[_builtins.str] alertmanager_url: Base URL of the Alertmanager instance configured for this stack.
         :param pulumi.Input[_builtins.int] alertmanager_user_id: User ID of the Alertmanager instance configured for this stack.
+        :param pulumi.Input[_builtins.str] cluster_name: Name of the cluster where this stack resides.
         :param pulumi.Input[_builtins.str] cluster_slug: Slug of the cluster where this stack resides.
         :param pulumi.Input[_builtins.bool] delete_protection: Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
         :param pulumi.Input[_builtins.str] description: Description of stack.
@@ -1620,6 +1639,7 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["alertmanager_status"] = alertmanager_status
         __props__.__dict__["alertmanager_url"] = alertmanager_url
         __props__.__dict__["alertmanager_user_id"] = alertmanager_user_id
+        __props__.__dict__["cluster_name"] = cluster_name
         __props__.__dict__["cluster_slug"] = cluster_slug
         __props__.__dict__["delete_protection"] = delete_protection
         __props__.__dict__["description"] = description
@@ -1728,6 +1748,14 @@ class Stack(pulumi.CustomResource):
         User ID of the Alertmanager instance configured for this stack.
         """
         return pulumi.get(self, "alertmanager_user_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> pulumi.Output[_builtins.str]:
+        """
+        Name of the cluster where this stack resides.
+        """
+        return pulumi.get(self, "cluster_name")
 
     @_builtins.property
     @pulumi.getter(name="clusterSlug")

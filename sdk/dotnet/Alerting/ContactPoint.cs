@@ -98,6 +98,12 @@ namespace Pulumiverse.Grafana.Alerting
         public Output<ImmutableArray<Outputs.ContactPointGooglechat>> Googlechats { get; private set; } = null!;
 
         /// <summary>
+        /// A contact point that sends notifications to Jira.
+        /// </summary>
+        [Output("jiras")]
+        public Output<ImmutableArray<Outputs.ContactPointJira>> Jiras { get; private set; } = null!;
+
+        /// <summary>
         /// A contact point that publishes notifications to Apache Kafka topics.
         /// </summary>
         [Output("kafkas")]
@@ -317,6 +323,18 @@ namespace Pulumiverse.Grafana.Alerting
         {
             get => _googlechats ?? (_googlechats = new InputList<Inputs.ContactPointGooglechatArgs>());
             set => _googlechats = value;
+        }
+
+        [Input("jiras")]
+        private InputList<Inputs.ContactPointJiraArgs>? _jiras;
+
+        /// <summary>
+        /// A contact point that sends notifications to Jira.
+        /// </summary>
+        public InputList<Inputs.ContactPointJiraArgs> Jiras
+        {
+            get => _jiras ?? (_jiras = new InputList<Inputs.ContactPointJiraArgs>());
+            set => _jiras = value;
         }
 
         [Input("kafkas")]
@@ -592,6 +610,18 @@ namespace Pulumiverse.Grafana.Alerting
         {
             get => _googlechats ?? (_googlechats = new InputList<Inputs.ContactPointGooglechatGetArgs>());
             set => _googlechats = value;
+        }
+
+        [Input("jiras")]
+        private InputList<Inputs.ContactPointJiraGetArgs>? _jiras;
+
+        /// <summary>
+        /// A contact point that sends notifications to Jira.
+        /// </summary>
+        public InputList<Inputs.ContactPointJiraGetArgs> Jiras
+        {
+            get => _jiras ?? (_jiras = new InputList<Inputs.ContactPointJiraGetArgs>());
+            set => _jiras = value;
         }
 
         [Input("kafkas")]

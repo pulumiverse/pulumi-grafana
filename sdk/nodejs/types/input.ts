@@ -611,7 +611,7 @@ export namespace alerting {
          */
         notificationSettings?: pulumi.Input<inputs.alerting.AlertRuleV0Alpha1SpecNotificationSettings>;
         /**
-         * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+         * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
          */
         panelRef?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
@@ -815,6 +815,85 @@ export namespace alerting {
          * The Google Chat webhook URL.
          */
         url: pulumi.Input<string>;
+    }
+
+    export interface ContactPointJira {
+        /**
+         * Personal Access Token that is used as a bearer authorization header.
+         */
+        apiToken?: pulumi.Input<string>;
+        /**
+         * The URL of the Jira REST API (v2 or v3).
+         */
+        apiUrl: pulumi.Input<string>;
+        /**
+         * Custom field ID for storing deduplication keys. Must be numeric.
+         */
+        dedupKeyField?: pulumi.Input<string>;
+        /**
+         * The templated description of the Jira issue. Maximum length is 32767 characters.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: pulumi.Input<boolean>;
+        /**
+         * Custom Jira issue fields.
+         */
+        fields?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * The type of issue to create (e.g., Bug, Task, Story).
+         */
+        issueType: pulumi.Input<string>;
+        /**
+         * Labels to assign to the Jira issue.
+         */
+        labels?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Password to use for Jira authentication.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * The priority level of the issue (e.g., High, Medium, Low).
+         */
+        priority?: pulumi.Input<string>;
+        /**
+         * The project key in Jira.
+         */
+        project: pulumi.Input<string>;
+        /**
+         * Duration to consider reopening issues (e.g., '10m').
+         */
+        reopenDuration?: pulumi.Input<string>;
+        /**
+         * The name of the workflow transition to reopen an issue.
+         */
+        reopenTransition?: pulumi.Input<string>;
+        /**
+         * The name of the workflow transition to resolve an issue.
+         */
+        resolveTransition?: pulumi.Input<string>;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * The templated summary of the Jira issue. Maximum length is 255 characters.
+         */
+        summary?: pulumi.Input<string>;
+        /**
+         * The UID of the contact point.
+         */
+        uid?: pulumi.Input<string>;
+        /**
+         * Username to use for Jira authentication.
+         */
+        user?: pulumi.Input<string>;
+        /**
+         * Resolution status to exclude from reopening/updating.
+         */
+        wontFixResolution?: pulumi.Input<string>;
     }
 
     export interface ContactPointKafka {

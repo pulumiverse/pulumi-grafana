@@ -79,6 +79,8 @@ type ContactPoint struct {
 	Emails ContactPointEmailArrayOutput `pulumi:"emails"`
 	// A contact point that sends notifications to Google Chat.
 	Googlechats ContactPointGooglechatArrayOutput `pulumi:"googlechats"`
+	// A contact point that sends notifications to Jira.
+	Jiras ContactPointJiraArrayOutput `pulumi:"jiras"`
 	// A contact point that publishes notifications to Apache Kafka topics.
 	Kafkas ContactPointKafkaArrayOutput `pulumi:"kafkas"`
 	// A contact point that sends notifications to LINE.me.
@@ -164,6 +166,8 @@ type contactPointState struct {
 	Emails []ContactPointEmail `pulumi:"emails"`
 	// A contact point that sends notifications to Google Chat.
 	Googlechats []ContactPointGooglechat `pulumi:"googlechats"`
+	// A contact point that sends notifications to Jira.
+	Jiras []ContactPointJira `pulumi:"jiras"`
 	// A contact point that publishes notifications to Apache Kafka topics.
 	Kafkas []ContactPointKafka `pulumi:"kafkas"`
 	// A contact point that sends notifications to LINE.me.
@@ -214,6 +218,8 @@ type ContactPointState struct {
 	Emails ContactPointEmailArrayInput
 	// A contact point that sends notifications to Google Chat.
 	Googlechats ContactPointGooglechatArrayInput
+	// A contact point that sends notifications to Jira.
+	Jiras ContactPointJiraArrayInput
 	// A contact point that publishes notifications to Apache Kafka topics.
 	Kafkas ContactPointKafkaArrayInput
 	// A contact point that sends notifications to LINE.me.
@@ -268,6 +274,8 @@ type contactPointArgs struct {
 	Emails []ContactPointEmail `pulumi:"emails"`
 	// A contact point that sends notifications to Google Chat.
 	Googlechats []ContactPointGooglechat `pulumi:"googlechats"`
+	// A contact point that sends notifications to Jira.
+	Jiras []ContactPointJira `pulumi:"jiras"`
 	// A contact point that publishes notifications to Apache Kafka topics.
 	Kafkas []ContactPointKafka `pulumi:"kafkas"`
 	// A contact point that sends notifications to LINE.me.
@@ -319,6 +327,8 @@ type ContactPointArgs struct {
 	Emails ContactPointEmailArrayInput
 	// A contact point that sends notifications to Google Chat.
 	Googlechats ContactPointGooglechatArrayInput
+	// A contact point that sends notifications to Jira.
+	Jiras ContactPointJiraArrayInput
 	// A contact point that publishes notifications to Apache Kafka topics.
 	Kafkas ContactPointKafkaArrayInput
 	// A contact point that sends notifications to LINE.me.
@@ -471,6 +481,11 @@ func (o ContactPointOutput) Emails() ContactPointEmailArrayOutput {
 // A contact point that sends notifications to Google Chat.
 func (o ContactPointOutput) Googlechats() ContactPointGooglechatArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointGooglechatArrayOutput { return v.Googlechats }).(ContactPointGooglechatArrayOutput)
+}
+
+// A contact point that sends notifications to Jira.
+func (o ContactPointOutput) Jiras() ContactPointJiraArrayOutput {
+	return o.ApplyT(func(v *ContactPoint) ContactPointJiraArrayOutput { return v.Jiras }).(ContactPointJiraArrayOutput)
 }
 
 // A contact point that publishes notifications to Apache Kafka topics.

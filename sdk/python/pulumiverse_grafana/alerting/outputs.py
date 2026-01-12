@@ -68,6 +68,7 @@ __all__ = [
     'ContactPointDiscord',
     'ContactPointEmail',
     'ContactPointGooglechat',
+    'ContactPointJira',
     'ContactPointKafka',
     'ContactPointLine',
     'ContactPointOncall',
@@ -2156,7 +2157,7 @@ class AlertRuleV0Alpha1Spec(dict):
         :param Mapping[str, _builtins.str] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
         :param _builtins.int missing_series_evals_to_resolve: The number of missing series evaluations that must occur before the rule is considered to be resolved.
         :param 'AlertRuleV0Alpha1SpecNotificationSettingsArgs' notification_settings: Notification settings for the rule. If specified, it overrides the notification policies.
-        :param Mapping[str, _builtins.str] panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+        :param Mapping[str, _builtins.str] panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
         :param _builtins.bool paused: Sets whether the rule should be paused or not.
         :param 'AlertRuleV0Alpha1SpecTriggerArgs' trigger: The trigger configuration for the alert rule.
         """
@@ -2267,7 +2268,7 @@ class AlertRuleV0Alpha1Spec(dict):
     @pulumi.getter(name="panelRef")
     def panel_ref(self) -> Optional[Mapping[str, _builtins.str]]:
         """
-        Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+        Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
         """
         return pulumi.get(self, "panel_ref")
 
@@ -2958,6 +2959,271 @@ class ContactPointGooglechat(dict):
         The UID of the contact point.
         """
         return pulumi.get(self, "uid")
+
+
+@pulumi.output_type
+class ContactPointJira(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiUrl":
+            suggest = "api_url"
+        elif key == "issueType":
+            suggest = "issue_type"
+        elif key == "apiToken":
+            suggest = "api_token"
+        elif key == "dedupKeyField":
+            suggest = "dedup_key_field"
+        elif key == "disableResolveMessage":
+            suggest = "disable_resolve_message"
+        elif key == "reopenDuration":
+            suggest = "reopen_duration"
+        elif key == "reopenTransition":
+            suggest = "reopen_transition"
+        elif key == "resolveTransition":
+            suggest = "resolve_transition"
+        elif key == "wontFixResolution":
+            suggest = "wont_fix_resolution"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContactPointJira. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContactPointJira.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContactPointJira.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_url: _builtins.str,
+                 issue_type: _builtins.str,
+                 project: _builtins.str,
+                 api_token: Optional[_builtins.str] = None,
+                 dedup_key_field: Optional[_builtins.str] = None,
+                 description: Optional[_builtins.str] = None,
+                 disable_resolve_message: Optional[_builtins.bool] = None,
+                 fields: Optional[Mapping[str, _builtins.str]] = None,
+                 labels: Optional[Sequence[_builtins.str]] = None,
+                 password: Optional[_builtins.str] = None,
+                 priority: Optional[_builtins.str] = None,
+                 reopen_duration: Optional[_builtins.str] = None,
+                 reopen_transition: Optional[_builtins.str] = None,
+                 resolve_transition: Optional[_builtins.str] = None,
+                 settings: Optional[Mapping[str, _builtins.str]] = None,
+                 summary: Optional[_builtins.str] = None,
+                 uid: Optional[_builtins.str] = None,
+                 user: Optional[_builtins.str] = None,
+                 wont_fix_resolution: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str api_url: The URL of the Jira REST API (v2 or v3).
+        :param _builtins.str issue_type: The type of issue to create (e.g., Bug, Task, Story).
+        :param _builtins.str project: The project key in Jira.
+        :param _builtins.str api_token: Personal Access Token that is used as a bearer authorization header.
+        :param _builtins.str dedup_key_field: Custom field ID for storing deduplication keys. Must be numeric.
+        :param _builtins.str description: The templated description of the Jira issue. Maximum length is 32767 characters.
+        :param _builtins.bool disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
+        :param Mapping[str, _builtins.str] fields: Custom Jira issue fields.
+        :param Sequence[_builtins.str] labels: Labels to assign to the Jira issue.
+        :param _builtins.str password: Password to use for Jira authentication.
+        :param _builtins.str priority: The priority level of the issue (e.g., High, Medium, Low).
+        :param _builtins.str reopen_duration: Duration to consider reopening issues (e.g., '10m').
+        :param _builtins.str reopen_transition: The name of the workflow transition to reopen an issue.
+        :param _builtins.str resolve_transition: The name of the workflow transition to resolve an issue.
+        :param Mapping[str, _builtins.str] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        :param _builtins.str summary: The templated summary of the Jira issue. Maximum length is 255 characters.
+        :param _builtins.str uid: The UID of the contact point.
+        :param _builtins.str user: Username to use for Jira authentication.
+        :param _builtins.str wont_fix_resolution: Resolution status to exclude from reopening/updating.
+        """
+        pulumi.set(__self__, "api_url", api_url)
+        pulumi.set(__self__, "issue_type", issue_type)
+        pulumi.set(__self__, "project", project)
+        if api_token is not None:
+            pulumi.set(__self__, "api_token", api_token)
+        if dedup_key_field is not None:
+            pulumi.set(__self__, "dedup_key_field", dedup_key_field)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if disable_resolve_message is not None:
+            pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if reopen_duration is not None:
+            pulumi.set(__self__, "reopen_duration", reopen_duration)
+        if reopen_transition is not None:
+            pulumi.set(__self__, "reopen_transition", reopen_transition)
+        if resolve_transition is not None:
+            pulumi.set(__self__, "resolve_transition", resolve_transition)
+        if settings is not None:
+            pulumi.set(__self__, "settings", settings)
+        if summary is not None:
+            pulumi.set(__self__, "summary", summary)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
+        if wont_fix_resolution is not None:
+            pulumi.set(__self__, "wont_fix_resolution", wont_fix_resolution)
+
+    @_builtins.property
+    @pulumi.getter(name="apiUrl")
+    def api_url(self) -> _builtins.str:
+        """
+        The URL of the Jira REST API (v2 or v3).
+        """
+        return pulumi.get(self, "api_url")
+
+    @_builtins.property
+    @pulumi.getter(name="issueType")
+    def issue_type(self) -> _builtins.str:
+        """
+        The type of issue to create (e.g., Bug, Task, Story).
+        """
+        return pulumi.get(self, "issue_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def project(self) -> _builtins.str:
+        """
+        The project key in Jira.
+        """
+        return pulumi.get(self, "project")
+
+    @_builtins.property
+    @pulumi.getter(name="apiToken")
+    def api_token(self) -> Optional[_builtins.str]:
+        """
+        Personal Access Token that is used as a bearer authorization header.
+        """
+        return pulumi.get(self, "api_token")
+
+    @_builtins.property
+    @pulumi.getter(name="dedupKeyField")
+    def dedup_key_field(self) -> Optional[_builtins.str]:
+        """
+        Custom field ID for storing deduplication keys. Must be numeric.
+        """
+        return pulumi.get(self, "dedup_key_field")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        The templated description of the Jira issue. Maximum length is 32767 characters.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="disableResolveMessage")
+    def disable_resolve_message(self) -> Optional[_builtins.bool]:
+        """
+        Whether to disable sending resolve messages. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_resolve_message")
+
+    @_builtins.property
+    @pulumi.getter
+    def fields(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Custom Jira issue fields.
+        """
+        return pulumi.get(self, "fields")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Labels to assign to the Jira issue.
+        """
+        return pulumi.get(self, "labels")
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[_builtins.str]:
+        """
+        Password to use for Jira authentication.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> Optional[_builtins.str]:
+        """
+        The priority level of the issue (e.g., High, Medium, Low).
+        """
+        return pulumi.get(self, "priority")
+
+    @_builtins.property
+    @pulumi.getter(name="reopenDuration")
+    def reopen_duration(self) -> Optional[_builtins.str]:
+        """
+        Duration to consider reopening issues (e.g., '10m').
+        """
+        return pulumi.get(self, "reopen_duration")
+
+    @_builtins.property
+    @pulumi.getter(name="reopenTransition")
+    def reopen_transition(self) -> Optional[_builtins.str]:
+        """
+        The name of the workflow transition to reopen an issue.
+        """
+        return pulumi.get(self, "reopen_transition")
+
+    @_builtins.property
+    @pulumi.getter(name="resolveTransition")
+    def resolve_transition(self) -> Optional[_builtins.str]:
+        """
+        The name of the workflow transition to resolve an issue.
+        """
+        return pulumi.get(self, "resolve_transition")
+
+    @_builtins.property
+    @pulumi.getter
+    def settings(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional custom properties to attach to the notifier. Defaults to `map[]`.
+        """
+        return pulumi.get(self, "settings")
+
+    @_builtins.property
+    @pulumi.getter
+    def summary(self) -> Optional[_builtins.str]:
+        """
+        The templated summary of the Jira issue. Maximum length is 255 characters.
+        """
+        return pulumi.get(self, "summary")
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> Optional[_builtins.str]:
+        """
+        The UID of the contact point.
+        """
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def user(self) -> Optional[_builtins.str]:
+        """
+        Username to use for Jira authentication.
+        """
+        return pulumi.get(self, "user")
+
+    @_builtins.property
+    @pulumi.getter(name="wontFixResolution")
+    def wont_fix_resolution(self) -> Optional[_builtins.str]:
+        """
+        Resolution status to exclude from reopening/updating.
+        """
+        return pulumi.get(self, "wont_fix_resolution")
 
 
 @pulumi.output_type

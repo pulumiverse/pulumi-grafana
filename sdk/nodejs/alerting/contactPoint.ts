@@ -95,6 +95,10 @@ export class ContactPoint extends pulumi.CustomResource {
      */
     declare public readonly googlechats: pulumi.Output<outputs.alerting.ContactPointGooglechat[] | undefined>;
     /**
+     * A contact point that sends notifications to Jira.
+     */
+    declare public readonly jiras: pulumi.Output<outputs.alerting.ContactPointJira[] | undefined>;
+    /**
      * A contact point that publishes notifications to Apache Kafka topics.
      */
     declare public readonly kafkas: pulumi.Output<outputs.alerting.ContactPointKafka[] | undefined>;
@@ -186,6 +190,7 @@ export class ContactPoint extends pulumi.CustomResource {
             resourceInputs["discords"] = state?.discords;
             resourceInputs["emails"] = state?.emails;
             resourceInputs["googlechats"] = state?.googlechats;
+            resourceInputs["jiras"] = state?.jiras;
             resourceInputs["kafkas"] = state?.kafkas;
             resourceInputs["lines"] = state?.lines;
             resourceInputs["name"] = state?.name;
@@ -212,6 +217,7 @@ export class ContactPoint extends pulumi.CustomResource {
             resourceInputs["discords"] = args?.discords;
             resourceInputs["emails"] = args?.emails;
             resourceInputs["googlechats"] = args?.googlechats;
+            resourceInputs["jiras"] = args?.jiras;
             resourceInputs["kafkas"] = args?.kafkas;
             resourceInputs["lines"] = args?.lines;
             resourceInputs["name"] = args?.name;
@@ -263,6 +269,10 @@ export interface ContactPointState {
      * A contact point that sends notifications to Google Chat.
      */
     googlechats?: pulumi.Input<pulumi.Input<inputs.alerting.ContactPointGooglechat>[]>;
+    /**
+     * A contact point that sends notifications to Jira.
+     */
+    jiras?: pulumi.Input<pulumi.Input<inputs.alerting.ContactPointJira>[]>;
     /**
      * A contact point that publishes notifications to Apache Kafka topics.
      */
@@ -362,6 +372,10 @@ export interface ContactPointArgs {
      * A contact point that sends notifications to Google Chat.
      */
     googlechats?: pulumi.Input<pulumi.Input<inputs.alerting.ContactPointGooglechat>[]>;
+    /**
+     * A contact point that sends notifications to Jira.
+     */
+    jiras?: pulumi.Input<pulumi.Input<inputs.alerting.ContactPointJira>[]>;
     /**
      * A contact point that publishes notifications to Apache Kafka topics.
      */

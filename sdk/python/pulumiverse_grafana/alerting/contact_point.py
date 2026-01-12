@@ -27,6 +27,7 @@ class ContactPointArgs:
                  discords: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointDiscordArgs']]]] = None,
                  emails: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]]] = None,
                  googlechats: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]]] = None,
+                 jiras: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointJiraArgs']]]] = None,
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]]] = None,
                  lines: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -52,6 +53,7 @@ class ContactPointArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointDiscordArgs']]] discords: A contact point that sends notifications as Discord messages
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]] googlechats: A contact point that sends notifications to Google Chat.
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointJiraArgs']]] jiras: A contact point that sends notifications to Jira.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]] lines: A contact point that sends notifications to LINE.me.
         :param pulumi.Input[_builtins.str] name: The name of the contact point.
@@ -83,6 +85,8 @@ class ContactPointArgs:
             pulumi.set(__self__, "emails", emails)
         if googlechats is not None:
             pulumi.set(__self__, "googlechats", googlechats)
+        if jiras is not None:
+            pulumi.set(__self__, "jiras", jiras)
         if kafkas is not None:
             pulumi.set(__self__, "kafkas", kafkas)
         if lines is not None:
@@ -188,6 +192,18 @@ class ContactPointArgs:
     @googlechats.setter
     def googlechats(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]]]):
         pulumi.set(self, "googlechats", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def jiras(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointJiraArgs']]]]:
+        """
+        A contact point that sends notifications to Jira.
+        """
+        return pulumi.get(self, "jiras")
+
+    @jiras.setter
+    def jiras(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointJiraArgs']]]]):
+        pulumi.set(self, "jiras", value)
 
     @_builtins.property
     @pulumi.getter
@@ -415,6 +431,7 @@ class _ContactPointState:
                  discords: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointDiscordArgs']]]] = None,
                  emails: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]]] = None,
                  googlechats: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]]] = None,
+                 jiras: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointJiraArgs']]]] = None,
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]]] = None,
                  lines: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -440,6 +457,7 @@ class _ContactPointState:
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointDiscordArgs']]] discords: A contact point that sends notifications as Discord messages
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointEmailArgs']]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]] googlechats: A contact point that sends notifications to Google Chat.
+        :param pulumi.Input[Sequence[pulumi.Input['ContactPointJiraArgs']]] jiras: A contact point that sends notifications to Jira.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointKafkaArgs']]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input['ContactPointLineArgs']]] lines: A contact point that sends notifications to LINE.me.
         :param pulumi.Input[_builtins.str] name: The name of the contact point.
@@ -471,6 +489,8 @@ class _ContactPointState:
             pulumi.set(__self__, "emails", emails)
         if googlechats is not None:
             pulumi.set(__self__, "googlechats", googlechats)
+        if jiras is not None:
+            pulumi.set(__self__, "jiras", jiras)
         if kafkas is not None:
             pulumi.set(__self__, "kafkas", kafkas)
         if lines is not None:
@@ -576,6 +596,18 @@ class _ContactPointState:
     @googlechats.setter
     def googlechats(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointGooglechatArgs']]]]):
         pulumi.set(self, "googlechats", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def jiras(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointJiraArgs']]]]:
+        """
+        A contact point that sends notifications to Jira.
+        """
+        return pulumi.get(self, "jiras")
+
+    @jiras.setter
+    def jiras(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContactPointJiraArgs']]]]):
+        pulumi.set(self, "jiras", value)
 
     @_builtins.property
     @pulumi.getter
@@ -806,6 +838,7 @@ class ContactPoint(pulumi.CustomResource):
                  discords: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDiscordArgs', 'ContactPointDiscordArgsDict']]]]] = None,
                  emails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointEmailArgs', 'ContactPointEmailArgsDict']]]]] = None,
                  googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointGooglechatArgs', 'ContactPointGooglechatArgsDict']]]]] = None,
+                 jiras: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointJiraArgs', 'ContactPointJiraArgsDict']]]]] = None,
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointKafkaArgs', 'ContactPointKafkaArgsDict']]]]] = None,
                  lines: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointLineArgs', 'ContactPointLineArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -870,6 +903,7 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDiscordArgs', 'ContactPointDiscordArgsDict']]]] discords: A contact point that sends notifications as Discord messages
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointEmailArgs', 'ContactPointEmailArgsDict']]]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointGooglechatArgs', 'ContactPointGooglechatArgsDict']]]] googlechats: A contact point that sends notifications to Google Chat.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointJiraArgs', 'ContactPointJiraArgsDict']]]] jiras: A contact point that sends notifications to Jira.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointKafkaArgs', 'ContactPointKafkaArgsDict']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointLineArgs', 'ContactPointLineArgsDict']]]] lines: A contact point that sends notifications to LINE.me.
         :param pulumi.Input[_builtins.str] name: The name of the contact point.
@@ -954,6 +988,7 @@ class ContactPoint(pulumi.CustomResource):
                  discords: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDiscordArgs', 'ContactPointDiscordArgsDict']]]]] = None,
                  emails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointEmailArgs', 'ContactPointEmailArgsDict']]]]] = None,
                  googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointGooglechatArgs', 'ContactPointGooglechatArgsDict']]]]] = None,
+                 jiras: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointJiraArgs', 'ContactPointJiraArgsDict']]]]] = None,
                  kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointKafkaArgs', 'ContactPointKafkaArgsDict']]]]] = None,
                  lines: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointLineArgs', 'ContactPointLineArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -987,6 +1022,7 @@ class ContactPoint(pulumi.CustomResource):
             __props__.__dict__["discords"] = discords
             __props__.__dict__["emails"] = emails
             __props__.__dict__["googlechats"] = googlechats
+            __props__.__dict__["jiras"] = jiras
             __props__.__dict__["kafkas"] = kafkas
             __props__.__dict__["lines"] = lines
             __props__.__dict__["name"] = name
@@ -1023,6 +1059,7 @@ class ContactPoint(pulumi.CustomResource):
             discords: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDiscordArgs', 'ContactPointDiscordArgsDict']]]]] = None,
             emails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointEmailArgs', 'ContactPointEmailArgsDict']]]]] = None,
             googlechats: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointGooglechatArgs', 'ContactPointGooglechatArgsDict']]]]] = None,
+            jiras: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointJiraArgs', 'ContactPointJiraArgsDict']]]]] = None,
             kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointKafkaArgs', 'ContactPointKafkaArgsDict']]]]] = None,
             lines: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContactPointLineArgs', 'ContactPointLineArgsDict']]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1053,6 +1090,7 @@ class ContactPoint(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointDiscordArgs', 'ContactPointDiscordArgsDict']]]] discords: A contact point that sends notifications as Discord messages
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointEmailArgs', 'ContactPointEmailArgsDict']]]] emails: A contact point that sends notifications to an email address.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointGooglechatArgs', 'ContactPointGooglechatArgsDict']]]] googlechats: A contact point that sends notifications to Google Chat.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointJiraArgs', 'ContactPointJiraArgsDict']]]] jiras: A contact point that sends notifications to Jira.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointKafkaArgs', 'ContactPointKafkaArgsDict']]]] kafkas: A contact point that publishes notifications to Apache Kafka topics.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContactPointLineArgs', 'ContactPointLineArgsDict']]]] lines: A contact point that sends notifications to LINE.me.
         :param pulumi.Input[_builtins.str] name: The name of the contact point.
@@ -1082,6 +1120,7 @@ class ContactPoint(pulumi.CustomResource):
         __props__.__dict__["discords"] = discords
         __props__.__dict__["emails"] = emails
         __props__.__dict__["googlechats"] = googlechats
+        __props__.__dict__["jiras"] = jiras
         __props__.__dict__["kafkas"] = kafkas
         __props__.__dict__["lines"] = lines
         __props__.__dict__["name"] = name
@@ -1146,6 +1185,14 @@ class ContactPoint(pulumi.CustomResource):
         A contact point that sends notifications to Google Chat.
         """
         return pulumi.get(self, "googlechats")
+
+    @_builtins.property
+    @pulumi.getter
+    def jiras(self) -> pulumi.Output[Optional[Sequence['outputs.ContactPointJira']]]:
+        """
+        A contact point that sends notifications to Jira.
+        """
+        return pulumi.get(self, "jiras")
 
     @_builtins.property
     @pulumi.getter

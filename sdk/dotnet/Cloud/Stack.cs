@@ -80,6 +80,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<int> AlertmanagerUserId { get; private set; } = null!;
 
         /// <summary>
+        /// Name of the cluster where this stack resides.
+        /// </summary>
+        [Output("clusterName")]
+        public Output<string> ClusterName { get; private set; } = null!;
+
+        /// <summary>
         /// Slug of the cluster where this stack resides.
         /// </summary>
         [Output("clusterSlug")]
@@ -580,6 +586,12 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Input("alertmanagerUserId")]
         public Input<int>? AlertmanagerUserId { get; set; }
+
+        /// <summary>
+        /// Name of the cluster where this stack resides.
+        /// </summary>
+        [Input("clusterName")]
+        public Input<string>? ClusterName { get; set; }
 
         /// <summary>
         /// Slug of the cluster where this stack resides.
