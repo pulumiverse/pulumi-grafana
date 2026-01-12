@@ -67,6 +67,10 @@ export interface GetStackResult {
      */
     readonly alertmanagerUserId: number;
     /**
+     * Name of the cluster where this stack resides.
+     */
+    readonly clusterName: string;
+    /**
      * Slug of the cluster where this stack resides.
      */
     readonly clusterSlug: string;

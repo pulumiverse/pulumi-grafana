@@ -611,7 +611,7 @@ export namespace alerting {
          */
         notificationSettings?: outputs.alerting.AlertRuleV0Alpha1SpecNotificationSettings;
         /**
-         * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+         * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
          */
         panelRef?: {[key: string]: string};
         /**
@@ -815,6 +815,85 @@ export namespace alerting {
          * The Google Chat webhook URL.
          */
         url: string;
+    }
+
+    export interface ContactPointJira {
+        /**
+         * Personal Access Token that is used as a bearer authorization header.
+         */
+        apiToken?: string;
+        /**
+         * The URL of the Jira REST API (v2 or v3).
+         */
+        apiUrl: string;
+        /**
+         * Custom field ID for storing deduplication keys. Must be numeric.
+         */
+        dedupKeyField?: string;
+        /**
+         * The templated description of the Jira issue. Maximum length is 32767 characters.
+         */
+        description?: string;
+        /**
+         * Whether to disable sending resolve messages. Defaults to `false`.
+         */
+        disableResolveMessage?: boolean;
+        /**
+         * Custom Jira issue fields.
+         */
+        fields?: {[key: string]: string};
+        /**
+         * The type of issue to create (e.g., Bug, Task, Story).
+         */
+        issueType: string;
+        /**
+         * Labels to assign to the Jira issue.
+         */
+        labels?: string[];
+        /**
+         * Password to use for Jira authentication.
+         */
+        password?: string;
+        /**
+         * The priority level of the issue (e.g., High, Medium, Low).
+         */
+        priority?: string;
+        /**
+         * The project key in Jira.
+         */
+        project: string;
+        /**
+         * Duration to consider reopening issues (e.g., '10m').
+         */
+        reopenDuration?: string;
+        /**
+         * The name of the workflow transition to reopen an issue.
+         */
+        reopenTransition?: string;
+        /**
+         * The name of the workflow transition to resolve an issue.
+         */
+        resolveTransition?: string;
+        /**
+         * Additional custom properties to attach to the notifier. Defaults to `map[]`.
+         */
+        settings?: {[key: string]: string};
+        /**
+         * The templated summary of the Jira issue. Maximum length is 255 characters.
+         */
+        summary?: string;
+        /**
+         * The UID of the contact point.
+         */
+        uid: string;
+        /**
+         * Username to use for Jira authentication.
+         */
+        user?: string;
+        /**
+         * Resolution status to exclude from reopening/updating.
+         */
+        wontFixResolution?: string;
     }
 
     export interface ContactPointKafka {

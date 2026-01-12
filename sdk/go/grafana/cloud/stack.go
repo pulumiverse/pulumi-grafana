@@ -67,6 +67,8 @@ type Stack struct {
 	AlertmanagerUrl pulumi.StringOutput `pulumi:"alertmanagerUrl"`
 	// User ID of the Alertmanager instance configured for this stack.
 	AlertmanagerUserId pulumi.IntOutput `pulumi:"alertmanagerUserId"`
+	// Name of the cluster where this stack resides.
+	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// Slug of the cluster where this stack resides.
 	ClusterSlug pulumi.StringOutput `pulumi:"clusterSlug"`
 	// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
@@ -231,6 +233,8 @@ type stackState struct {
 	AlertmanagerUrl *string `pulumi:"alertmanagerUrl"`
 	// User ID of the Alertmanager instance configured for this stack.
 	AlertmanagerUserId *int `pulumi:"alertmanagerUserId"`
+	// Name of the cluster where this stack resides.
+	ClusterName *string `pulumi:"clusterName"`
 	// Slug of the cluster where this stack resides.
 	ClusterSlug *string `pulumi:"clusterSlug"`
 	// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
@@ -363,6 +367,8 @@ type StackState struct {
 	AlertmanagerUrl pulumi.StringPtrInput
 	// User ID of the Alertmanager instance configured for this stack.
 	AlertmanagerUserId pulumi.IntPtrInput
+	// Name of the cluster where this stack resides.
+	ClusterName pulumi.StringPtrInput
 	// Slug of the cluster where this stack resides.
 	ClusterSlug pulumi.StringPtrInput
 	// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
@@ -641,6 +647,11 @@ func (o StackOutput) AlertmanagerUrl() pulumi.StringOutput {
 // User ID of the Alertmanager instance configured for this stack.
 func (o StackOutput) AlertmanagerUserId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Stack) pulumi.IntOutput { return v.AlertmanagerUserId }).(pulumi.IntOutput)
+}
+
+// Name of the cluster where this stack resides.
+func (o StackOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
 }
 
 // Slug of the cluster where this stack resides.

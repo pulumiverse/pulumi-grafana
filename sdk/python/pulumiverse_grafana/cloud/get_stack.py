@@ -26,7 +26,7 @@ class GetStackResult:
     """
     A collection of values returned by getStack.
     """
-    def __init__(__self__, alertmanager_ip_allow_list_cname=None, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, cluster_slug=None, delete_protection=None, description=None, fleet_management_name=None, fleet_management_private_connectivity_info_private_dns=None, fleet_management_private_connectivity_info_service_name=None, fleet_management_status=None, fleet_management_url=None, fleet_management_user_id=None, grafanas_ip_allow_list_cname=None, graphite_ip_allow_list_cname=None, graphite_name=None, graphite_private_connectivity_info_private_dns=None, graphite_private_connectivity_info_service_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, influx_url=None, labels=None, logs_ip_allow_list_cname=None, logs_name=None, logs_private_connectivity_info_private_dns=None, logs_private_connectivity_info_service_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, oncall_api_url=None, org_id=None, org_name=None, org_slug=None, otlp_private_connectivity_info_private_dns=None, otlp_private_connectivity_info_service_name=None, otlp_url=None, pdc_api_private_connectivity_info_private_dns=None, pdc_api_private_connectivity_info_service_name=None, pdc_gateway_private_connectivity_info_private_dns=None, pdc_gateway_private_connectivity_info_service_name=None, profiles_ip_allow_list_cname=None, profiles_name=None, profiles_private_connectivity_info_private_dns=None, profiles_private_connectivity_info_service_name=None, profiles_status=None, profiles_url=None, profiles_user_id=None, prometheus_ip_allow_list_cname=None, prometheus_name=None, prometheus_private_connectivity_info_private_dns=None, prometheus_private_connectivity_info_service_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, status=None, traces_ip_allow_list_cname=None, traces_name=None, traces_private_connectivity_info_private_dns=None, traces_private_connectivity_info_service_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
+    def __init__(__self__, alertmanager_ip_allow_list_cname=None, alertmanager_name=None, alertmanager_status=None, alertmanager_url=None, alertmanager_user_id=None, cluster_name=None, cluster_slug=None, delete_protection=None, description=None, fleet_management_name=None, fleet_management_private_connectivity_info_private_dns=None, fleet_management_private_connectivity_info_service_name=None, fleet_management_status=None, fleet_management_url=None, fleet_management_user_id=None, grafanas_ip_allow_list_cname=None, graphite_ip_allow_list_cname=None, graphite_name=None, graphite_private_connectivity_info_private_dns=None, graphite_private_connectivity_info_service_name=None, graphite_status=None, graphite_url=None, graphite_user_id=None, id=None, influx_url=None, labels=None, logs_ip_allow_list_cname=None, logs_name=None, logs_private_connectivity_info_private_dns=None, logs_private_connectivity_info_service_name=None, logs_status=None, logs_url=None, logs_user_id=None, name=None, oncall_api_url=None, org_id=None, org_name=None, org_slug=None, otlp_private_connectivity_info_private_dns=None, otlp_private_connectivity_info_service_name=None, otlp_url=None, pdc_api_private_connectivity_info_private_dns=None, pdc_api_private_connectivity_info_service_name=None, pdc_gateway_private_connectivity_info_private_dns=None, pdc_gateway_private_connectivity_info_service_name=None, profiles_ip_allow_list_cname=None, profiles_name=None, profiles_private_connectivity_info_private_dns=None, profiles_private_connectivity_info_service_name=None, profiles_status=None, profiles_url=None, profiles_user_id=None, prometheus_ip_allow_list_cname=None, prometheus_name=None, prometheus_private_connectivity_info_private_dns=None, prometheus_private_connectivity_info_service_name=None, prometheus_remote_endpoint=None, prometheus_remote_write_endpoint=None, prometheus_status=None, prometheus_url=None, prometheus_user_id=None, region_slug=None, slug=None, status=None, traces_ip_allow_list_cname=None, traces_name=None, traces_private_connectivity_info_private_dns=None, traces_private_connectivity_info_service_name=None, traces_status=None, traces_url=None, traces_user_id=None, url=None):
         if alertmanager_ip_allow_list_cname and not isinstance(alertmanager_ip_allow_list_cname, str):
             raise TypeError("Expected argument 'alertmanager_ip_allow_list_cname' to be a str")
         pulumi.set(__self__, "alertmanager_ip_allow_list_cname", alertmanager_ip_allow_list_cname)
@@ -42,6 +42,9 @@ class GetStackResult:
         if alertmanager_user_id and not isinstance(alertmanager_user_id, int):
             raise TypeError("Expected argument 'alertmanager_user_id' to be a int")
         pulumi.set(__self__, "alertmanager_user_id", alertmanager_user_id)
+        if cluster_name and not isinstance(cluster_name, str):
+            raise TypeError("Expected argument 'cluster_name' to be a str")
+        pulumi.set(__self__, "cluster_name", cluster_name)
         if cluster_slug and not isinstance(cluster_slug, str):
             raise TypeError("Expected argument 'cluster_slug' to be a str")
         pulumi.set(__self__, "cluster_slug", cluster_slug)
@@ -280,6 +283,14 @@ class GetStackResult:
         User ID of the Alertmanager instance configured for this stack.
         """
         return pulumi.get(self, "alertmanager_user_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        Name of the cluster where this stack resides.
+        """
+        return pulumi.get(self, "cluster_name")
 
     @_builtins.property
     @pulumi.getter(name="clusterSlug")
@@ -777,6 +788,7 @@ class AwaitableGetStackResult(GetStackResult):
             alertmanager_status=self.alertmanager_status,
             alertmanager_url=self.alertmanager_url,
             alertmanager_user_id=self.alertmanager_user_id,
+            cluster_name=self.cluster_name,
             cluster_slug=self.cluster_slug,
             delete_protection=self.delete_protection,
             description=self.description,
@@ -880,6 +892,7 @@ def get_stack(slug: Optional[_builtins.str] = None,
         alertmanager_status=pulumi.get(__ret__, 'alertmanager_status'),
         alertmanager_url=pulumi.get(__ret__, 'alertmanager_url'),
         alertmanager_user_id=pulumi.get(__ret__, 'alertmanager_user_id'),
+        cluster_name=pulumi.get(__ret__, 'cluster_name'),
         cluster_slug=pulumi.get(__ret__, 'cluster_slug'),
         delete_protection=pulumi.get(__ret__, 'delete_protection'),
         description=pulumi.get(__ret__, 'description'),
@@ -980,6 +993,7 @@ def get_stack_output(slug: Optional[pulumi.Input[_builtins.str]] = None,
         alertmanager_status=pulumi.get(__response__, 'alertmanager_status'),
         alertmanager_url=pulumi.get(__response__, 'alertmanager_url'),
         alertmanager_user_id=pulumi.get(__response__, 'alertmanager_user_id'),
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
         cluster_slug=pulumi.get(__response__, 'cluster_slug'),
         delete_protection=pulumi.get(__response__, 'delete_protection'),
         description=pulumi.get(__response__, 'description'),

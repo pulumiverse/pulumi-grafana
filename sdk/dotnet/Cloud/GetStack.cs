@@ -168,6 +168,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly int AlertmanagerUserId;
         /// <summary>
+        /// Name of the cluster where this stack resides.
+        /// </summary>
+        public readonly string ClusterName;
+        /// <summary>
         /// Slug of the cluster where this stack resides.
         /// </summary>
         public readonly string ClusterSlug;
@@ -400,6 +404,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             int alertmanagerUserId,
 
+            string clusterName,
+
             string clusterSlug,
 
             bool deleteProtection,
@@ -537,6 +543,7 @@ namespace Pulumiverse.Grafana.Cloud
             AlertmanagerStatus = alertmanagerStatus;
             AlertmanagerUrl = alertmanagerUrl;
             AlertmanagerUserId = alertmanagerUserId;
+            ClusterName = clusterName;
             ClusterSlug = clusterSlug;
             DeleteProtection = deleteProtection;
             Description = description;

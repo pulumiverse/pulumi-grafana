@@ -82,6 +82,10 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly alertmanagerUserId: pulumi.Output<number>;
     /**
+     * Name of the cluster where this stack resides.
+     */
+    declare public /*out*/ readonly clusterName: pulumi.Output<string>;
+    /**
      * Slug of the cluster where this stack resides.
      */
     declare public /*out*/ readonly clusterSlug: pulumi.Output<string>;
@@ -323,6 +327,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["alertmanagerStatus"] = state?.alertmanagerStatus;
             resourceInputs["alertmanagerUrl"] = state?.alertmanagerUrl;
             resourceInputs["alertmanagerUserId"] = state?.alertmanagerUserId;
+            resourceInputs["clusterName"] = state?.clusterName;
             resourceInputs["clusterSlug"] = state?.clusterSlug;
             resourceInputs["deleteProtection"] = state?.deleteProtection;
             resourceInputs["description"] = state?.description;
@@ -409,6 +414,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["alertmanagerStatus"] = undefined /*out*/;
             resourceInputs["alertmanagerUrl"] = undefined /*out*/;
             resourceInputs["alertmanagerUserId"] = undefined /*out*/;
+            resourceInputs["clusterName"] = undefined /*out*/;
             resourceInputs["clusterSlug"] = undefined /*out*/;
             resourceInputs["fleetManagementName"] = undefined /*out*/;
             resourceInputs["fleetManagementPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
@@ -497,6 +503,10 @@ export interface StackState {
      * User ID of the Alertmanager instance configured for this stack.
      */
     alertmanagerUserId?: pulumi.Input<number>;
+    /**
+     * Name of the cluster where this stack resides.
+     */
+    clusterName?: pulumi.Input<string>;
     /**
      * Slug of the cluster where this stack resides.
      */

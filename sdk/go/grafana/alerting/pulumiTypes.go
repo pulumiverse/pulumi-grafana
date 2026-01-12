@@ -6958,7 +6958,7 @@ type AlertRuleV0Alpha1Spec struct {
 	NoDataState string `pulumi:"noDataState"`
 	// Notification settings for the rule. If specified, it overrides the notification policies.
 	NotificationSettings *AlertRuleV0Alpha1SpecNotificationSettings `pulumi:"notificationSettings"`
-	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
 	PanelRef map[string]string `pulumi:"panelRef"`
 	// Sets whether the rule should be paused or not.
 	Paused *bool `pulumi:"paused"`
@@ -6998,7 +6998,7 @@ type AlertRuleV0Alpha1SpecArgs struct {
 	NoDataState pulumi.StringInput `pulumi:"noDataState"`
 	// Notification settings for the rule. If specified, it overrides the notification policies.
 	NotificationSettings AlertRuleV0Alpha1SpecNotificationSettingsPtrInput `pulumi:"notificationSettings"`
-	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
 	PanelRef pulumi.StringMapInput `pulumi:"panelRef"`
 	// Sets whether the rule should be paused or not.
 	Paused pulumi.BoolPtrInput `pulumi:"paused"`
@@ -7132,7 +7132,7 @@ func (o AlertRuleV0Alpha1SpecOutput) NotificationSettings() AlertRuleV0Alpha1Spe
 	}).(AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput)
 }
 
-// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
 func (o AlertRuleV0Alpha1SpecOutput) PanelRef() pulumi.StringMapOutput {
 	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) map[string]string { return v.PanelRef }).(pulumi.StringMapOutput)
 }
@@ -7266,7 +7266,7 @@ func (o AlertRuleV0Alpha1SpecPtrOutput) NotificationSettings() AlertRuleV0Alpha1
 	}).(AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput)
 }
 
-// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
 func (o AlertRuleV0Alpha1SpecPtrOutput) PanelRef() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) map[string]string {
 		if v == nil {
@@ -8438,6 +8438,265 @@ func (o ContactPointGooglechatArrayOutput) Index(i pulumi.IntInput) ContactPoint
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContactPointGooglechat {
 		return vs[0].([]ContactPointGooglechat)[vs[1].(int)]
 	}).(ContactPointGooglechatOutput)
+}
+
+type ContactPointJira struct {
+	// Personal Access Token that is used as a bearer authorization header.
+	ApiToken *string `pulumi:"apiToken"`
+	// The URL of the Jira REST API (v2 or v3).
+	ApiUrl string `pulumi:"apiUrl"`
+	// Custom field ID for storing deduplication keys. Must be numeric.
+	DedupKeyField *string `pulumi:"dedupKeyField"`
+	// The templated description of the Jira issue. Maximum length is 32767 characters.
+	Description *string `pulumi:"description"`
+	// Whether to disable sending resolve messages. Defaults to `false`.
+	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
+	// Custom Jira issue fields.
+	Fields map[string]string `pulumi:"fields"`
+	// The type of issue to create (e.g., Bug, Task, Story).
+	IssueType string `pulumi:"issueType"`
+	// Labels to assign to the Jira issue.
+	Labels []string `pulumi:"labels"`
+	// Password to use for Jira authentication.
+	Password *string `pulumi:"password"`
+	// The priority level of the issue (e.g., High, Medium, Low).
+	Priority *string `pulumi:"priority"`
+	// The project key in Jira.
+	Project string `pulumi:"project"`
+	// Duration to consider reopening issues (e.g., '10m').
+	ReopenDuration *string `pulumi:"reopenDuration"`
+	// The name of the workflow transition to reopen an issue.
+	ReopenTransition *string `pulumi:"reopenTransition"`
+	// The name of the workflow transition to resolve an issue.
+	ResolveTransition *string `pulumi:"resolveTransition"`
+	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	Settings map[string]string `pulumi:"settings"`
+	// The templated summary of the Jira issue. Maximum length is 255 characters.
+	Summary *string `pulumi:"summary"`
+	// The UID of the contact point.
+	Uid *string `pulumi:"uid"`
+	// Username to use for Jira authentication.
+	User *string `pulumi:"user"`
+	// Resolution status to exclude from reopening/updating.
+	WontFixResolution *string `pulumi:"wontFixResolution"`
+}
+
+// ContactPointJiraInput is an input type that accepts ContactPointJiraArgs and ContactPointJiraOutput values.
+// You can construct a concrete instance of `ContactPointJiraInput` via:
+//
+//	ContactPointJiraArgs{...}
+type ContactPointJiraInput interface {
+	pulumi.Input
+
+	ToContactPointJiraOutput() ContactPointJiraOutput
+	ToContactPointJiraOutputWithContext(context.Context) ContactPointJiraOutput
+}
+
+type ContactPointJiraArgs struct {
+	// Personal Access Token that is used as a bearer authorization header.
+	ApiToken pulumi.StringPtrInput `pulumi:"apiToken"`
+	// The URL of the Jira REST API (v2 or v3).
+	ApiUrl pulumi.StringInput `pulumi:"apiUrl"`
+	// Custom field ID for storing deduplication keys. Must be numeric.
+	DedupKeyField pulumi.StringPtrInput `pulumi:"dedupKeyField"`
+	// The templated description of the Jira issue. Maximum length is 32767 characters.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Whether to disable sending resolve messages. Defaults to `false`.
+	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
+	// Custom Jira issue fields.
+	Fields pulumi.StringMapInput `pulumi:"fields"`
+	// The type of issue to create (e.g., Bug, Task, Story).
+	IssueType pulumi.StringInput `pulumi:"issueType"`
+	// Labels to assign to the Jira issue.
+	Labels pulumi.StringArrayInput `pulumi:"labels"`
+	// Password to use for Jira authentication.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The priority level of the issue (e.g., High, Medium, Low).
+	Priority pulumi.StringPtrInput `pulumi:"priority"`
+	// The project key in Jira.
+	Project pulumi.StringInput `pulumi:"project"`
+	// Duration to consider reopening issues (e.g., '10m').
+	ReopenDuration pulumi.StringPtrInput `pulumi:"reopenDuration"`
+	// The name of the workflow transition to reopen an issue.
+	ReopenTransition pulumi.StringPtrInput `pulumi:"reopenTransition"`
+	// The name of the workflow transition to resolve an issue.
+	ResolveTransition pulumi.StringPtrInput `pulumi:"resolveTransition"`
+	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+	Settings pulumi.StringMapInput `pulumi:"settings"`
+	// The templated summary of the Jira issue. Maximum length is 255 characters.
+	Summary pulumi.StringPtrInput `pulumi:"summary"`
+	// The UID of the contact point.
+	Uid pulumi.StringPtrInput `pulumi:"uid"`
+	// Username to use for Jira authentication.
+	User pulumi.StringPtrInput `pulumi:"user"`
+	// Resolution status to exclude from reopening/updating.
+	WontFixResolution pulumi.StringPtrInput `pulumi:"wontFixResolution"`
+}
+
+func (ContactPointJiraArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointJira)(nil)).Elem()
+}
+
+func (i ContactPointJiraArgs) ToContactPointJiraOutput() ContactPointJiraOutput {
+	return i.ToContactPointJiraOutputWithContext(context.Background())
+}
+
+func (i ContactPointJiraArgs) ToContactPointJiraOutputWithContext(ctx context.Context) ContactPointJiraOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointJiraOutput)
+}
+
+// ContactPointJiraArrayInput is an input type that accepts ContactPointJiraArray and ContactPointJiraArrayOutput values.
+// You can construct a concrete instance of `ContactPointJiraArrayInput` via:
+//
+//	ContactPointJiraArray{ ContactPointJiraArgs{...} }
+type ContactPointJiraArrayInput interface {
+	pulumi.Input
+
+	ToContactPointJiraArrayOutput() ContactPointJiraArrayOutput
+	ToContactPointJiraArrayOutputWithContext(context.Context) ContactPointJiraArrayOutput
+}
+
+type ContactPointJiraArray []ContactPointJiraInput
+
+func (ContactPointJiraArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactPointJira)(nil)).Elem()
+}
+
+func (i ContactPointJiraArray) ToContactPointJiraArrayOutput() ContactPointJiraArrayOutput {
+	return i.ToContactPointJiraArrayOutputWithContext(context.Background())
+}
+
+func (i ContactPointJiraArray) ToContactPointJiraArrayOutputWithContext(ctx context.Context) ContactPointJiraArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactPointJiraArrayOutput)
+}
+
+type ContactPointJiraOutput struct{ *pulumi.OutputState }
+
+func (ContactPointJiraOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactPointJira)(nil)).Elem()
+}
+
+func (o ContactPointJiraOutput) ToContactPointJiraOutput() ContactPointJiraOutput {
+	return o
+}
+
+func (o ContactPointJiraOutput) ToContactPointJiraOutputWithContext(ctx context.Context) ContactPointJiraOutput {
+	return o
+}
+
+// Personal Access Token that is used as a bearer authorization header.
+func (o ContactPointJiraOutput) ApiToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointJira) *string { return v.ApiToken }).(pulumi.StringPtrOutput)
+}
+
+// The URL of the Jira REST API (v2 or v3).
+func (o ContactPointJiraOutput) ApiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointJira) string { return v.ApiUrl }).(pulumi.StringOutput)
+}
+
+// Custom field ID for storing deduplication keys. Must be numeric.
+func (o ContactPointJiraOutput) DedupKeyField() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointJira) *string { return v.DedupKeyField }).(pulumi.StringPtrOutput)
+}
+
+// The templated description of the Jira issue. Maximum length is 32767 characters.
+func (o ContactPointJiraOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointJira) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Whether to disable sending resolve messages. Defaults to `false`.
+func (o ContactPointJiraOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ContactPointJira) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
+}
+
+// Custom Jira issue fields.
+func (o ContactPointJiraOutput) Fields() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ContactPointJira) map[string]string { return v.Fields }).(pulumi.StringMapOutput)
+}
+
+// The type of issue to create (e.g., Bug, Task, Story).
+func (o ContactPointJiraOutput) IssueType() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointJira) string { return v.IssueType }).(pulumi.StringOutput)
+}
+
+// Labels to assign to the Jira issue.
+func (o ContactPointJiraOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ContactPointJira) []string { return v.Labels }).(pulumi.StringArrayOutput)
+}
+
+// Password to use for Jira authentication.
+func (o ContactPointJiraOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointJira) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The priority level of the issue (e.g., High, Medium, Low).
+func (o ContactPointJiraOutput) Priority() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointJira) *string { return v.Priority }).(pulumi.StringPtrOutput)
+}
+
+// The project key in Jira.
+func (o ContactPointJiraOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactPointJira) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// Duration to consider reopening issues (e.g., '10m').
+func (o ContactPointJiraOutput) ReopenDuration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointJira) *string { return v.ReopenDuration }).(pulumi.StringPtrOutput)
+}
+
+// The name of the workflow transition to reopen an issue.
+func (o ContactPointJiraOutput) ReopenTransition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointJira) *string { return v.ReopenTransition }).(pulumi.StringPtrOutput)
+}
+
+// The name of the workflow transition to resolve an issue.
+func (o ContactPointJiraOutput) ResolveTransition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointJira) *string { return v.ResolveTransition }).(pulumi.StringPtrOutput)
+}
+
+// Additional custom properties to attach to the notifier. Defaults to `map[]`.
+func (o ContactPointJiraOutput) Settings() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ContactPointJira) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
+}
+
+// The templated summary of the Jira issue. Maximum length is 255 characters.
+func (o ContactPointJiraOutput) Summary() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointJira) *string { return v.Summary }).(pulumi.StringPtrOutput)
+}
+
+// The UID of the contact point.
+func (o ContactPointJiraOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointJira) *string { return v.Uid }).(pulumi.StringPtrOutput)
+}
+
+// Username to use for Jira authentication.
+func (o ContactPointJiraOutput) User() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointJira) *string { return v.User }).(pulumi.StringPtrOutput)
+}
+
+// Resolution status to exclude from reopening/updating.
+func (o ContactPointJiraOutput) WontFixResolution() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContactPointJira) *string { return v.WontFixResolution }).(pulumi.StringPtrOutput)
+}
+
+type ContactPointJiraArrayOutput struct{ *pulumi.OutputState }
+
+func (ContactPointJiraArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactPointJira)(nil)).Elem()
+}
+
+func (o ContactPointJiraArrayOutput) ToContactPointJiraArrayOutput() ContactPointJiraArrayOutput {
+	return o
+}
+
+func (o ContactPointJiraArrayOutput) ToContactPointJiraArrayOutputWithContext(ctx context.Context) ContactPointJiraArrayOutput {
+	return o
+}
+
+func (o ContactPointJiraArrayOutput) Index(i pulumi.IntInput) ContactPointJiraOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContactPointJira {
+		return vs[0].([]ContactPointJira)[vs[1].(int)]
+	}).(ContactPointJiraOutput)
 }
 
 type ContactPointKafka struct {
@@ -16062,6 +16321,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointEmailArrayInput)(nil)).Elem(), ContactPointEmailArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointGooglechatInput)(nil)).Elem(), ContactPointGooglechatArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointGooglechatArrayInput)(nil)).Elem(), ContactPointGooglechatArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointJiraInput)(nil)).Elem(), ContactPointJiraArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointJiraArrayInput)(nil)).Elem(), ContactPointJiraArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointKafkaInput)(nil)).Elem(), ContactPointKafkaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointKafkaArrayInput)(nil)).Elem(), ContactPointKafkaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointLineInput)(nil)).Elem(), ContactPointLineArgs{})
@@ -16253,6 +16514,8 @@ func init() {
 	pulumi.RegisterOutputType(ContactPointEmailArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointGooglechatOutput{})
 	pulumi.RegisterOutputType(ContactPointGooglechatArrayOutput{})
+	pulumi.RegisterOutputType(ContactPointJiraOutput{})
+	pulumi.RegisterOutputType(ContactPointJiraArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointKafkaOutput{})
 	pulumi.RegisterOutputType(ContactPointKafkaArrayOutput{})
 	pulumi.RegisterOutputType(ContactPointLineOutput{})
