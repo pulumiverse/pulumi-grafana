@@ -110,6 +110,7 @@ class Collector(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+        * Step-by-step guide
 
         Required access policy scopes:
 
@@ -153,6 +154,7 @@ class Collector(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+        * Step-by-step guide
 
         Required access policy scopes:
 

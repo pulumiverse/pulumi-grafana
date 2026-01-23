@@ -92,6 +92,7 @@ def get_collector(id: Optional[_builtins.str] = None,
 
     * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
     * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+    * Step-by-step guide
 
     Required access policy scopes:
 
@@ -126,6 +127,7 @@ def get_collector_output(id: Optional[pulumi.Input[_builtins.str]] = None,
 
     * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
     * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+    * Step-by-step guide
 
     Required access policy scopes:
 

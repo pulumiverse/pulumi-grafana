@@ -549,6 +549,281 @@ func (o LogConfigMatchArrayOutput) Index(i pulumi.IntInput) LogConfigMatchOutput
 	}).(LogConfigMatchOutput)
 }
 
+type PromRuleFileGroup struct {
+	// Evaluation interval for this group (e.g., '30s', '1m'). If not specified, uses the global evaluation interval.
+	Interval *string `pulumi:"interval"`
+	// The name of the rule group (e.g., 'latency_monitoring').
+	Name string `pulumi:"name"`
+	// List of Prometheus rules in this group.
+	Rules []PromRuleFileGroupRule `pulumi:"rules"`
+}
+
+// PromRuleFileGroupInput is an input type that accepts PromRuleFileGroupArgs and PromRuleFileGroupOutput values.
+// You can construct a concrete instance of `PromRuleFileGroupInput` via:
+//
+//	PromRuleFileGroupArgs{...}
+type PromRuleFileGroupInput interface {
+	pulumi.Input
+
+	ToPromRuleFileGroupOutput() PromRuleFileGroupOutput
+	ToPromRuleFileGroupOutputWithContext(context.Context) PromRuleFileGroupOutput
+}
+
+type PromRuleFileGroupArgs struct {
+	// Evaluation interval for this group (e.g., '30s', '1m'). If not specified, uses the global evaluation interval.
+	Interval pulumi.StringPtrInput `pulumi:"interval"`
+	// The name of the rule group (e.g., 'latency_monitoring').
+	Name pulumi.StringInput `pulumi:"name"`
+	// List of Prometheus rules in this group.
+	Rules PromRuleFileGroupRuleArrayInput `pulumi:"rules"`
+}
+
+func (PromRuleFileGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PromRuleFileGroup)(nil)).Elem()
+}
+
+func (i PromRuleFileGroupArgs) ToPromRuleFileGroupOutput() PromRuleFileGroupOutput {
+	return i.ToPromRuleFileGroupOutputWithContext(context.Background())
+}
+
+func (i PromRuleFileGroupArgs) ToPromRuleFileGroupOutputWithContext(ctx context.Context) PromRuleFileGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PromRuleFileGroupOutput)
+}
+
+// PromRuleFileGroupArrayInput is an input type that accepts PromRuleFileGroupArray and PromRuleFileGroupArrayOutput values.
+// You can construct a concrete instance of `PromRuleFileGroupArrayInput` via:
+//
+//	PromRuleFileGroupArray{ PromRuleFileGroupArgs{...} }
+type PromRuleFileGroupArrayInput interface {
+	pulumi.Input
+
+	ToPromRuleFileGroupArrayOutput() PromRuleFileGroupArrayOutput
+	ToPromRuleFileGroupArrayOutputWithContext(context.Context) PromRuleFileGroupArrayOutput
+}
+
+type PromRuleFileGroupArray []PromRuleFileGroupInput
+
+func (PromRuleFileGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PromRuleFileGroup)(nil)).Elem()
+}
+
+func (i PromRuleFileGroupArray) ToPromRuleFileGroupArrayOutput() PromRuleFileGroupArrayOutput {
+	return i.ToPromRuleFileGroupArrayOutputWithContext(context.Background())
+}
+
+func (i PromRuleFileGroupArray) ToPromRuleFileGroupArrayOutputWithContext(ctx context.Context) PromRuleFileGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PromRuleFileGroupArrayOutput)
+}
+
+type PromRuleFileGroupOutput struct{ *pulumi.OutputState }
+
+func (PromRuleFileGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PromRuleFileGroup)(nil)).Elem()
+}
+
+func (o PromRuleFileGroupOutput) ToPromRuleFileGroupOutput() PromRuleFileGroupOutput {
+	return o
+}
+
+func (o PromRuleFileGroupOutput) ToPromRuleFileGroupOutputWithContext(ctx context.Context) PromRuleFileGroupOutput {
+	return o
+}
+
+// Evaluation interval for this group (e.g., '30s', '1m'). If not specified, uses the global evaluation interval.
+func (o PromRuleFileGroupOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PromRuleFileGroup) *string { return v.Interval }).(pulumi.StringPtrOutput)
+}
+
+// The name of the rule group (e.g., 'latency_monitoring').
+func (o PromRuleFileGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v PromRuleFileGroup) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// List of Prometheus rules in this group.
+func (o PromRuleFileGroupOutput) Rules() PromRuleFileGroupRuleArrayOutput {
+	return o.ApplyT(func(v PromRuleFileGroup) []PromRuleFileGroupRule { return v.Rules }).(PromRuleFileGroupRuleArrayOutput)
+}
+
+type PromRuleFileGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (PromRuleFileGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PromRuleFileGroup)(nil)).Elem()
+}
+
+func (o PromRuleFileGroupArrayOutput) ToPromRuleFileGroupArrayOutput() PromRuleFileGroupArrayOutput {
+	return o
+}
+
+func (o PromRuleFileGroupArrayOutput) ToPromRuleFileGroupArrayOutputWithContext(ctx context.Context) PromRuleFileGroupArrayOutput {
+	return o
+}
+
+func (o PromRuleFileGroupArrayOutput) Index(i pulumi.IntInput) PromRuleFileGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PromRuleFileGroup {
+		return vs[0].([]PromRuleFileGroup)[vs[1].(int)]
+	}).(PromRuleFileGroupOutput)
+}
+
+type PromRuleFileGroupRule struct {
+	// Whether this specific rule is active. This field is read-only and controlled by the API.
+	Active *bool `pulumi:"active"`
+	// The name of the alert for alerting rules. Either 'record' or 'alert' must be specified, but not both.
+	Alert *string `pulumi:"alert"`
+	// Annotations to add to alerts (e.g., summary, description).
+	Annotations map[string]string `pulumi:"annotations"`
+	// List of group names where this rule should be disabled. Useful for conditional rule enablement.
+	DisableInGroups []string `pulumi:"disableInGroups"`
+	// How long the condition must be true before firing the alert (e.g., '5m'). Only applicable for alerting rules. Maps to 'for' in Prometheus.
+	Duration *string `pulumi:"duration"`
+	// The PromQL expression to evaluate.
+	Expr string `pulumi:"expr"`
+	// Labels to attach to the resulting time series or alert.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the time series to output for recording rules. Either 'record' or 'alert' must be specified, but not both.
+	Record *string `pulumi:"record"`
+}
+
+// PromRuleFileGroupRuleInput is an input type that accepts PromRuleFileGroupRuleArgs and PromRuleFileGroupRuleOutput values.
+// You can construct a concrete instance of `PromRuleFileGroupRuleInput` via:
+//
+//	PromRuleFileGroupRuleArgs{...}
+type PromRuleFileGroupRuleInput interface {
+	pulumi.Input
+
+	ToPromRuleFileGroupRuleOutput() PromRuleFileGroupRuleOutput
+	ToPromRuleFileGroupRuleOutputWithContext(context.Context) PromRuleFileGroupRuleOutput
+}
+
+type PromRuleFileGroupRuleArgs struct {
+	// Whether this specific rule is active. This field is read-only and controlled by the API.
+	Active pulumi.BoolPtrInput `pulumi:"active"`
+	// The name of the alert for alerting rules. Either 'record' or 'alert' must be specified, but not both.
+	Alert pulumi.StringPtrInput `pulumi:"alert"`
+	// Annotations to add to alerts (e.g., summary, description).
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// List of group names where this rule should be disabled. Useful for conditional rule enablement.
+	DisableInGroups pulumi.StringArrayInput `pulumi:"disableInGroups"`
+	// How long the condition must be true before firing the alert (e.g., '5m'). Only applicable for alerting rules. Maps to 'for' in Prometheus.
+	Duration pulumi.StringPtrInput `pulumi:"duration"`
+	// The PromQL expression to evaluate.
+	Expr pulumi.StringInput `pulumi:"expr"`
+	// Labels to attach to the resulting time series or alert.
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// The name of the time series to output for recording rules. Either 'record' or 'alert' must be specified, but not both.
+	Record pulumi.StringPtrInput `pulumi:"record"`
+}
+
+func (PromRuleFileGroupRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PromRuleFileGroupRule)(nil)).Elem()
+}
+
+func (i PromRuleFileGroupRuleArgs) ToPromRuleFileGroupRuleOutput() PromRuleFileGroupRuleOutput {
+	return i.ToPromRuleFileGroupRuleOutputWithContext(context.Background())
+}
+
+func (i PromRuleFileGroupRuleArgs) ToPromRuleFileGroupRuleOutputWithContext(ctx context.Context) PromRuleFileGroupRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PromRuleFileGroupRuleOutput)
+}
+
+// PromRuleFileGroupRuleArrayInput is an input type that accepts PromRuleFileGroupRuleArray and PromRuleFileGroupRuleArrayOutput values.
+// You can construct a concrete instance of `PromRuleFileGroupRuleArrayInput` via:
+//
+//	PromRuleFileGroupRuleArray{ PromRuleFileGroupRuleArgs{...} }
+type PromRuleFileGroupRuleArrayInput interface {
+	pulumi.Input
+
+	ToPromRuleFileGroupRuleArrayOutput() PromRuleFileGroupRuleArrayOutput
+	ToPromRuleFileGroupRuleArrayOutputWithContext(context.Context) PromRuleFileGroupRuleArrayOutput
+}
+
+type PromRuleFileGroupRuleArray []PromRuleFileGroupRuleInput
+
+func (PromRuleFileGroupRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PromRuleFileGroupRule)(nil)).Elem()
+}
+
+func (i PromRuleFileGroupRuleArray) ToPromRuleFileGroupRuleArrayOutput() PromRuleFileGroupRuleArrayOutput {
+	return i.ToPromRuleFileGroupRuleArrayOutputWithContext(context.Background())
+}
+
+func (i PromRuleFileGroupRuleArray) ToPromRuleFileGroupRuleArrayOutputWithContext(ctx context.Context) PromRuleFileGroupRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PromRuleFileGroupRuleArrayOutput)
+}
+
+type PromRuleFileGroupRuleOutput struct{ *pulumi.OutputState }
+
+func (PromRuleFileGroupRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PromRuleFileGroupRule)(nil)).Elem()
+}
+
+func (o PromRuleFileGroupRuleOutput) ToPromRuleFileGroupRuleOutput() PromRuleFileGroupRuleOutput {
+	return o
+}
+
+func (o PromRuleFileGroupRuleOutput) ToPromRuleFileGroupRuleOutputWithContext(ctx context.Context) PromRuleFileGroupRuleOutput {
+	return o
+}
+
+// Whether this specific rule is active. This field is read-only and controlled by the API.
+func (o PromRuleFileGroupRuleOutput) Active() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v PromRuleFileGroupRule) *bool { return v.Active }).(pulumi.BoolPtrOutput)
+}
+
+// The name of the alert for alerting rules. Either 'record' or 'alert' must be specified, but not both.
+func (o PromRuleFileGroupRuleOutput) Alert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PromRuleFileGroupRule) *string { return v.Alert }).(pulumi.StringPtrOutput)
+}
+
+// Annotations to add to alerts (e.g., summary, description).
+func (o PromRuleFileGroupRuleOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v PromRuleFileGroupRule) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// List of group names where this rule should be disabled. Useful for conditional rule enablement.
+func (o PromRuleFileGroupRuleOutput) DisableInGroups() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v PromRuleFileGroupRule) []string { return v.DisableInGroups }).(pulumi.StringArrayOutput)
+}
+
+// How long the condition must be true before firing the alert (e.g., '5m'). Only applicable for alerting rules. Maps to 'for' in Prometheus.
+func (o PromRuleFileGroupRuleOutput) Duration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PromRuleFileGroupRule) *string { return v.Duration }).(pulumi.StringPtrOutput)
+}
+
+// The PromQL expression to evaluate.
+func (o PromRuleFileGroupRuleOutput) Expr() pulumi.StringOutput {
+	return o.ApplyT(func(v PromRuleFileGroupRule) string { return v.Expr }).(pulumi.StringOutput)
+}
+
+// Labels to attach to the resulting time series or alert.
+func (o PromRuleFileGroupRuleOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v PromRuleFileGroupRule) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// The name of the time series to output for recording rules. Either 'record' or 'alert' must be specified, but not both.
+func (o PromRuleFileGroupRuleOutput) Record() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PromRuleFileGroupRule) *string { return v.Record }).(pulumi.StringPtrOutput)
+}
+
+type PromRuleFileGroupRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (PromRuleFileGroupRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PromRuleFileGroupRule)(nil)).Elem()
+}
+
+func (o PromRuleFileGroupRuleArrayOutput) ToPromRuleFileGroupRuleArrayOutput() PromRuleFileGroupRuleArrayOutput {
+	return o
+}
+
+func (o PromRuleFileGroupRuleArrayOutput) ToPromRuleFileGroupRuleArrayOutputWithContext(ctx context.Context) PromRuleFileGroupRuleArrayOutput {
+	return o
+}
+
+func (o PromRuleFileGroupRuleArrayOutput) Index(i pulumi.IntInput) PromRuleFileGroupRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PromRuleFileGroupRule {
+		return vs[0].([]PromRuleFileGroupRule)[vs[1].(int)]
+	}).(PromRuleFileGroupRuleOutput)
+}
+
 type ThresholdsHealthThreshold struct {
 	// Optional alert category label for the health threshold.
 	AlertCategory *string `pulumi:"alertCategory"`
@@ -948,6 +1223,121 @@ func (o ThresholdsResourceThresholdArrayOutput) Index(i pulumi.IntInput) Thresho
 	}).(ThresholdsResourceThresholdOutput)
 }
 
+type TraceConfigMatch struct {
+	// Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
+	Op string `pulumi:"op"`
+	// Entity property to match.
+	Property string `pulumi:"property"`
+	// Values to match against.
+	Values []string `pulumi:"values"`
+}
+
+// TraceConfigMatchInput is an input type that accepts TraceConfigMatchArgs and TraceConfigMatchOutput values.
+// You can construct a concrete instance of `TraceConfigMatchInput` via:
+//
+//	TraceConfigMatchArgs{...}
+type TraceConfigMatchInput interface {
+	pulumi.Input
+
+	ToTraceConfigMatchOutput() TraceConfigMatchOutput
+	ToTraceConfigMatchOutputWithContext(context.Context) TraceConfigMatchOutput
+}
+
+type TraceConfigMatchArgs struct {
+	// Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
+	Op pulumi.StringInput `pulumi:"op"`
+	// Entity property to match.
+	Property pulumi.StringInput `pulumi:"property"`
+	// Values to match against.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (TraceConfigMatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceConfigMatch)(nil)).Elem()
+}
+
+func (i TraceConfigMatchArgs) ToTraceConfigMatchOutput() TraceConfigMatchOutput {
+	return i.ToTraceConfigMatchOutputWithContext(context.Background())
+}
+
+func (i TraceConfigMatchArgs) ToTraceConfigMatchOutputWithContext(ctx context.Context) TraceConfigMatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceConfigMatchOutput)
+}
+
+// TraceConfigMatchArrayInput is an input type that accepts TraceConfigMatchArray and TraceConfigMatchArrayOutput values.
+// You can construct a concrete instance of `TraceConfigMatchArrayInput` via:
+//
+//	TraceConfigMatchArray{ TraceConfigMatchArgs{...} }
+type TraceConfigMatchArrayInput interface {
+	pulumi.Input
+
+	ToTraceConfigMatchArrayOutput() TraceConfigMatchArrayOutput
+	ToTraceConfigMatchArrayOutputWithContext(context.Context) TraceConfigMatchArrayOutput
+}
+
+type TraceConfigMatchArray []TraceConfigMatchInput
+
+func (TraceConfigMatchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceConfigMatch)(nil)).Elem()
+}
+
+func (i TraceConfigMatchArray) ToTraceConfigMatchArrayOutput() TraceConfigMatchArrayOutput {
+	return i.ToTraceConfigMatchArrayOutputWithContext(context.Background())
+}
+
+func (i TraceConfigMatchArray) ToTraceConfigMatchArrayOutputWithContext(ctx context.Context) TraceConfigMatchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceConfigMatchArrayOutput)
+}
+
+type TraceConfigMatchOutput struct{ *pulumi.OutputState }
+
+func (TraceConfigMatchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceConfigMatch)(nil)).Elem()
+}
+
+func (o TraceConfigMatchOutput) ToTraceConfigMatchOutput() TraceConfigMatchOutput {
+	return o
+}
+
+func (o TraceConfigMatchOutput) ToTraceConfigMatchOutputWithContext(ctx context.Context) TraceConfigMatchOutput {
+	return o
+}
+
+// Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
+func (o TraceConfigMatchOutput) Op() pulumi.StringOutput {
+	return o.ApplyT(func(v TraceConfigMatch) string { return v.Op }).(pulumi.StringOutput)
+}
+
+// Entity property to match.
+func (o TraceConfigMatchOutput) Property() pulumi.StringOutput {
+	return o.ApplyT(func(v TraceConfigMatch) string { return v.Property }).(pulumi.StringOutput)
+}
+
+// Values to match against.
+func (o TraceConfigMatchOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceConfigMatch) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type TraceConfigMatchArrayOutput struct{ *pulumi.OutputState }
+
+func (TraceConfigMatchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceConfigMatch)(nil)).Elem()
+}
+
+func (o TraceConfigMatchArrayOutput) ToTraceConfigMatchArrayOutput() TraceConfigMatchArrayOutput {
+	return o
+}
+
+func (o TraceConfigMatchArrayOutput) ToTraceConfigMatchArrayOutputWithContext(ctx context.Context) TraceConfigMatchArrayOutput {
+	return o
+}
+
+func (o TraceConfigMatchArrayOutput) Index(i pulumi.IntInput) TraceConfigMatchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TraceConfigMatch {
+		return vs[0].([]TraceConfigMatch)[vs[1].(int)]
+	}).(TraceConfigMatchOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomModelRulesRulesInput)(nil)).Elem(), CustomModelRulesRulesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomModelRulesRulesPtrInput)(nil)).Elem(), CustomModelRulesRulesArgs{})
@@ -957,12 +1347,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomModelRulesRulesEntityDefinedByArrayInput)(nil)).Elem(), CustomModelRulesRulesEntityDefinedByArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogConfigMatchInput)(nil)).Elem(), LogConfigMatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogConfigMatchArrayInput)(nil)).Elem(), LogConfigMatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PromRuleFileGroupInput)(nil)).Elem(), PromRuleFileGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PromRuleFileGroupArrayInput)(nil)).Elem(), PromRuleFileGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PromRuleFileGroupRuleInput)(nil)).Elem(), PromRuleFileGroupRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PromRuleFileGroupRuleArrayInput)(nil)).Elem(), PromRuleFileGroupRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsHealthThresholdInput)(nil)).Elem(), ThresholdsHealthThresholdArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsHealthThresholdArrayInput)(nil)).Elem(), ThresholdsHealthThresholdArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsRequestThresholdInput)(nil)).Elem(), ThresholdsRequestThresholdArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsRequestThresholdArrayInput)(nil)).Elem(), ThresholdsRequestThresholdArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsResourceThresholdInput)(nil)).Elem(), ThresholdsResourceThresholdArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsResourceThresholdArrayInput)(nil)).Elem(), ThresholdsResourceThresholdArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceConfigMatchInput)(nil)).Elem(), TraceConfigMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceConfigMatchArrayInput)(nil)).Elem(), TraceConfigMatchArray{})
 	pulumi.RegisterOutputType(CustomModelRulesRulesOutput{})
 	pulumi.RegisterOutputType(CustomModelRulesRulesPtrOutput{})
 	pulumi.RegisterOutputType(CustomModelRulesRulesEntityOutput{})
@@ -971,10 +1367,16 @@ func init() {
 	pulumi.RegisterOutputType(CustomModelRulesRulesEntityDefinedByArrayOutput{})
 	pulumi.RegisterOutputType(LogConfigMatchOutput{})
 	pulumi.RegisterOutputType(LogConfigMatchArrayOutput{})
+	pulumi.RegisterOutputType(PromRuleFileGroupOutput{})
+	pulumi.RegisterOutputType(PromRuleFileGroupArrayOutput{})
+	pulumi.RegisterOutputType(PromRuleFileGroupRuleOutput{})
+	pulumi.RegisterOutputType(PromRuleFileGroupRuleArrayOutput{})
 	pulumi.RegisterOutputType(ThresholdsHealthThresholdOutput{})
 	pulumi.RegisterOutputType(ThresholdsHealthThresholdArrayOutput{})
 	pulumi.RegisterOutputType(ThresholdsRequestThresholdOutput{})
 	pulumi.RegisterOutputType(ThresholdsRequestThresholdArrayOutput{})
 	pulumi.RegisterOutputType(ThresholdsResourceThresholdOutput{})
 	pulumi.RegisterOutputType(ThresholdsResourceThresholdArrayOutput{})
+	pulumi.RegisterOutputType(TraceConfigMatchOutput{})
+	pulumi.RegisterOutputType(TraceConfigMatchArrayOutput{})
 }

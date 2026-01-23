@@ -29,8 +29,8 @@ class AccessPolicyRotatingTokenArgs:
         """
         The set of arguments for constructing a AccessPolicyRotatingToken resource.
         :param pulumi.Input[_builtins.str] access_policy_id: ID of the access policy for which to create a token.
-        :param pulumi.Input[_builtins.str] early_rotation_window: Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
-        :param pulumi.Input[_builtins.str] expire_after: Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+        :param pulumi.Input[_builtins.str] early_rotation_window: Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
+        :param pulumi.Input[_builtins.str] expire_after: Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         :param pulumi.Input[_builtins.str] name_prefix: Prefix for the name of the access policy token. The actual name will be stored in the computed field `name`, which will be in the format '\\n\\n-\\n\\n'
         :param pulumi.Input[_builtins.str] region: Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         :param pulumi.Input[_builtins.str] display_name: Display name of the access policy token. Defaults to the name.
@@ -61,7 +61,7 @@ class AccessPolicyRotatingTokenArgs:
     @pulumi.getter(name="earlyRotationWindow")
     def early_rotation_window(self) -> pulumi.Input[_builtins.str]:
         """
-        Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+        Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         """
         return pulumi.get(self, "early_rotation_window")
 
@@ -73,7 +73,7 @@ class AccessPolicyRotatingTokenArgs:
     @pulumi.getter(name="expireAfter")
     def expire_after(self) -> pulumi.Input[_builtins.str]:
         """
-        Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+        Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         """
         return pulumi.get(self, "expire_after")
 
@@ -148,8 +148,8 @@ class _AccessPolicyRotatingTokenState:
         :param pulumi.Input[_builtins.str] access_policy_id: ID of the access policy for which to create a token.
         :param pulumi.Input[_builtins.str] created_at: Creation date of the access policy token.
         :param pulumi.Input[_builtins.str] display_name: Display name of the access policy token. Defaults to the name.
-        :param pulumi.Input[_builtins.str] early_rotation_window: Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
-        :param pulumi.Input[_builtins.str] expire_after: Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+        :param pulumi.Input[_builtins.str] early_rotation_window: Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
+        :param pulumi.Input[_builtins.str] expire_after: Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         :param pulumi.Input[_builtins.str] expires_at: Expiration date of the access policy token.
         :param pulumi.Input[_builtins.str] name: Name of the access policy token.
         :param pulumi.Input[_builtins.str] name_prefix: Prefix for the name of the access policy token. The actual name will be stored in the computed field `name`, which will be in the format '\\n\\n-\\n\\n'
@@ -233,7 +233,7 @@ class _AccessPolicyRotatingTokenState:
     @pulumi.getter(name="earlyRotationWindow")
     def early_rotation_window(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+        Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         """
         return pulumi.get(self, "early_rotation_window")
 
@@ -245,7 +245,7 @@ class _AccessPolicyRotatingTokenState:
     @pulumi.getter(name="expireAfter")
     def expire_after(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+        Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         """
         return pulumi.get(self, "expire_after")
 
@@ -389,7 +389,7 @@ class AccessPolicyRotatingToken(pulumi.CustomResource):
             access_policy_id=test.policy_id,
             name_prefix="my-policy-rotating-token",
             display_name="My Policy Rotating Token",
-            expire_after="30d",
+            expire_after="720h",
             early_rotation_window="24h")
         ```
 
@@ -403,8 +403,8 @@ class AccessPolicyRotatingToken(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_policy_id: ID of the access policy for which to create a token.
         :param pulumi.Input[_builtins.str] display_name: Display name of the access policy token. Defaults to the name.
-        :param pulumi.Input[_builtins.str] early_rotation_window: Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
-        :param pulumi.Input[_builtins.str] expire_after: Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+        :param pulumi.Input[_builtins.str] early_rotation_window: Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
+        :param pulumi.Input[_builtins.str] expire_after: Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         :param pulumi.Input[_builtins.str] name_prefix: Prefix for the name of the access policy token. The actual name will be stored in the computed field `name`, which will be in the format '\\n\\n-\\n\\n'
         :param pulumi.Input[_builtins.str] region: Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         """
@@ -454,7 +454,7 @@ class AccessPolicyRotatingToken(pulumi.CustomResource):
             access_policy_id=test.policy_id,
             name_prefix="my-policy-rotating-token",
             display_name="My Policy Rotating Token",
-            expire_after="30d",
+            expire_after="720h",
             early_rotation_window="24h")
         ```
 
@@ -553,8 +553,8 @@ class AccessPolicyRotatingToken(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] access_policy_id: ID of the access policy for which to create a token.
         :param pulumi.Input[_builtins.str] created_at: Creation date of the access policy token.
         :param pulumi.Input[_builtins.str] display_name: Display name of the access policy token. Defaults to the name.
-        :param pulumi.Input[_builtins.str] early_rotation_window: Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
-        :param pulumi.Input[_builtins.str] expire_after: Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+        :param pulumi.Input[_builtins.str] early_rotation_window: Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
+        :param pulumi.Input[_builtins.str] expire_after: Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         :param pulumi.Input[_builtins.str] expires_at: Expiration date of the access policy token.
         :param pulumi.Input[_builtins.str] name: Name of the access policy token.
         :param pulumi.Input[_builtins.str] name_prefix: Prefix for the name of the access policy token. The actual name will be stored in the computed field `name`, which will be in the format '\\n\\n-\\n\\n'
@@ -614,7 +614,7 @@ class AccessPolicyRotatingToken(pulumi.CustomResource):
     @pulumi.getter(name="earlyRotationWindow")
     def early_rotation_window(self) -> pulumi.Output[_builtins.str]:
         """
-        Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+        Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         """
         return pulumi.get(self, "early_rotation_window")
 
@@ -622,7 +622,7 @@ class AccessPolicyRotatingToken(pulumi.CustomResource):
     @pulumi.getter(name="expireAfter")
     def expire_after(self) -> pulumi.Output[_builtins.str]:
         """
-        Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+        Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         """
         return pulumi.get(self, "expire_after")
 

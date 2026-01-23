@@ -175,6 +175,7 @@ class Pipeline(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/pipeline-api/)
+        * Step-by-step guide
 
         Required access policy scopes:
 
@@ -222,6 +223,7 @@ class Pipeline(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/pipeline-api/)
+        * Step-by-step guide
 
         Required access policy scopes:
 

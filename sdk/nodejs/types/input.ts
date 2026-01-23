@@ -2372,6 +2372,56 @@ export namespace assert {
         values: pulumi.Input<pulumi.Input<string>[]>;
     }
 
+    export interface PromRuleFileGroup {
+        /**
+         * Evaluation interval for this group (e.g., '30s', '1m'). If not specified, uses the global evaluation interval.
+         */
+        interval?: pulumi.Input<string>;
+        /**
+         * The name of the rule group (e.g., 'latency_monitoring').
+         */
+        name: pulumi.Input<string>;
+        /**
+         * List of Prometheus rules in this group.
+         */
+        rules: pulumi.Input<pulumi.Input<inputs.assert.PromRuleFileGroupRule>[]>;
+    }
+
+    export interface PromRuleFileGroupRule {
+        /**
+         * Whether this specific rule is active. This field is read-only and controlled by the API.
+         */
+        active?: pulumi.Input<boolean>;
+        /**
+         * The name of the alert for alerting rules. Either 'record' or 'alert' must be specified, but not both.
+         */
+        alert?: pulumi.Input<string>;
+        /**
+         * Annotations to add to alerts (e.g., summary, description).
+         */
+        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * List of group names where this rule should be disabled. Useful for conditional rule enablement.
+         */
+        disableInGroups?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * How long the condition must be true before firing the alert (e.g., '5m'). Only applicable for alerting rules. Maps to 'for' in Prometheus.
+         */
+        duration?: pulumi.Input<string>;
+        /**
+         * The PromQL expression to evaluate.
+         */
+        expr: pulumi.Input<string>;
+        /**
+         * Labels to attach to the resulting time series or alert.
+         */
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * The name of the time series to output for recording rules. Either 'record' or 'alert' must be specified, but not both.
+         */
+        record?: pulumi.Input<string>;
+    }
+
     export interface ThresholdsHealthThreshold {
         /**
          * Optional alert category label for the health threshold.
@@ -2439,6 +2489,21 @@ export namespace assert {
          * Threshold value.
          */
         value: pulumi.Input<number>;
+    }
+
+    export interface TraceConfigMatch {
+        /**
+         * Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
+         */
+        op: pulumi.Input<string>;
+        /**
+         * Entity property to match.
+         */
+        property: pulumi.Input<string>;
+        /**
+         * Values to match against.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
     }
 }
 

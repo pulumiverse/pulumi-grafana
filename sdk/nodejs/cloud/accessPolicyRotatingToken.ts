@@ -46,7 +46,7 @@ import * as utilities from "../utilities";
  *     accessPolicyId: test.policyId,
  *     namePrefix: "my-policy-rotating-token",
  *     displayName: "My Policy Rotating Token",
- *     expireAfter: "30d",
+ *     expireAfter: "720h",
  *     earlyRotationWindow: "24h",
  * });
  * ```
@@ -99,11 +99,11 @@ export class AccessPolicyRotatingToken extends pulumi.CustomResource {
      */
     declare public readonly displayName: pulumi.Output<string | undefined>;
     /**
-     * Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+     * Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
      */
     declare public readonly earlyRotationWindow: pulumi.Output<string>;
     /**
-     * Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+     * Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
      */
     declare public readonly expireAfter: pulumi.Output<string>;
     /**
@@ -214,11 +214,11 @@ export interface AccessPolicyRotatingTokenState {
      */
     displayName?: pulumi.Input<string>;
     /**
-     * Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+     * Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
      */
     earlyRotationWindow?: pulumi.Input<string>;
     /**
-     * Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+     * Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
      */
     expireAfter?: pulumi.Input<string>;
     /**
@@ -262,11 +262,11 @@ export interface AccessPolicyRotatingTokenArgs {
      */
     displayName?: pulumi.Input<string>;
     /**
-     * Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+     * Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
      */
     earlyRotationWindow: pulumi.Input<string>;
     /**
-     * Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+     * Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
      */
     expireAfter: pulumi.Input<string>;
     /**

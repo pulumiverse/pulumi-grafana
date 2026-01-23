@@ -23,12 +23,18 @@ __all__ = [
     'CustomModelRulesRulesEntityDefinedByArgsDict',
     'LogConfigMatchArgs',
     'LogConfigMatchArgsDict',
+    'PromRuleFileGroupArgs',
+    'PromRuleFileGroupArgsDict',
+    'PromRuleFileGroupRuleArgs',
+    'PromRuleFileGroupRuleArgsDict',
     'ThresholdsHealthThresholdArgs',
     'ThresholdsHealthThresholdArgsDict',
     'ThresholdsRequestThresholdArgs',
     'ThresholdsRequestThresholdArgsDict',
     'ThresholdsResourceThresholdArgs',
     'ThresholdsResourceThresholdArgsDict',
+    'TraceConfigMatchArgs',
+    'TraceConfigMatchArgsDict',
 ]
 
 MYPY = False
@@ -394,6 +400,247 @@ class LogConfigMatchArgs:
 
 
 if not MYPY:
+    class PromRuleFileGroupArgsDict(TypedDict):
+        name: pulumi.Input[_builtins.str]
+        """
+        The name of the rule group (e.g., 'latency_monitoring').
+        """
+        rules: pulumi.Input[Sequence[pulumi.Input['PromRuleFileGroupRuleArgsDict']]]
+        """
+        List of Prometheus rules in this group.
+        """
+        interval: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Evaluation interval for this group (e.g., '30s', '1m'). If not specified, uses the global evaluation interval.
+        """
+elif False:
+    PromRuleFileGroupArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class PromRuleFileGroupArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 rules: pulumi.Input[Sequence[pulumi.Input['PromRuleFileGroupRuleArgs']]],
+                 interval: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: The name of the rule group (e.g., 'latency_monitoring').
+        :param pulumi.Input[Sequence[pulumi.Input['PromRuleFileGroupRuleArgs']]] rules: List of Prometheus rules in this group.
+        :param pulumi.Input[_builtins.str] interval: Evaluation interval for this group (e.g., '30s', '1m'). If not specified, uses the global evaluation interval.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "rules", rules)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        The name of the rule group (e.g., 'latency_monitoring').
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def rules(self) -> pulumi.Input[Sequence[pulumi.Input['PromRuleFileGroupRuleArgs']]]:
+        """
+        List of Prometheus rules in this group.
+        """
+        return pulumi.get(self, "rules")
+
+    @rules.setter
+    def rules(self, value: pulumi.Input[Sequence[pulumi.Input['PromRuleFileGroupRuleArgs']]]):
+        pulumi.set(self, "rules", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Evaluation interval for this group (e.g., '30s', '1m'). If not specified, uses the global evaluation interval.
+        """
+        return pulumi.get(self, "interval")
+
+    @interval.setter
+    def interval(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "interval", value)
+
+
+if not MYPY:
+    class PromRuleFileGroupRuleArgsDict(TypedDict):
+        expr: pulumi.Input[_builtins.str]
+        """
+        The PromQL expression to evaluate.
+        """
+        active: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Whether this specific rule is active. This field is read-only and controlled by the API.
+        """
+        alert: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The name of the alert for alerting rules. Either 'record' or 'alert' must be specified, but not both.
+        """
+        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+        """
+        Annotations to add to alerts (e.g., summary, description).
+        """
+        disable_in_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        List of group names where this rule should be disabled. Useful for conditional rule enablement.
+        """
+        duration: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        How long the condition must be true before firing the alert (e.g., '5m'). Only applicable for alerting rules. Maps to 'for' in Prometheus.
+        """
+        labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+        """
+        Labels to attach to the resulting time series or alert.
+        """
+        record: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The name of the time series to output for recording rules. Either 'record' or 'alert' must be specified, but not both.
+        """
+elif False:
+    PromRuleFileGroupRuleArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class PromRuleFileGroupRuleArgs:
+    def __init__(__self__, *,
+                 expr: pulumi.Input[_builtins.str],
+                 active: Optional[pulumi.Input[_builtins.bool]] = None,
+                 alert: Optional[pulumi.Input[_builtins.str]] = None,
+                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_in_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 duration: Optional[pulumi.Input[_builtins.str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 record: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] expr: The PromQL expression to evaluate.
+        :param pulumi.Input[_builtins.bool] active: Whether this specific rule is active. This field is read-only and controlled by the API.
+        :param pulumi.Input[_builtins.str] alert: The name of the alert for alerting rules. Either 'record' or 'alert' must be specified, but not both.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Annotations to add to alerts (e.g., summary, description).
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] disable_in_groups: List of group names where this rule should be disabled. Useful for conditional rule enablement.
+        :param pulumi.Input[_builtins.str] duration: How long the condition must be true before firing the alert (e.g., '5m'). Only applicable for alerting rules. Maps to 'for' in Prometheus.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Labels to attach to the resulting time series or alert.
+        :param pulumi.Input[_builtins.str] record: The name of the time series to output for recording rules. Either 'record' or 'alert' must be specified, but not both.
+        """
+        pulumi.set(__self__, "expr", expr)
+        if active is not None:
+            pulumi.set(__self__, "active", active)
+        if alert is not None:
+            pulumi.set(__self__, "alert", alert)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if disable_in_groups is not None:
+            pulumi.set(__self__, "disable_in_groups", disable_in_groups)
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if record is not None:
+            pulumi.set(__self__, "record", record)
+
+    @_builtins.property
+    @pulumi.getter
+    def expr(self) -> pulumi.Input[_builtins.str]:
+        """
+        The PromQL expression to evaluate.
+        """
+        return pulumi.get(self, "expr")
+
+    @expr.setter
+    def expr(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "expr", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether this specific rule is active. This field is read-only and controlled by the API.
+        """
+        return pulumi.get(self, "active")
+
+    @active.setter
+    def active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "active", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def alert(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the alert for alerting rules. Either 'record' or 'alert' must be specified, but not both.
+        """
+        return pulumi.get(self, "alert")
+
+    @alert.setter
+    def alert(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "alert", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Annotations to add to alerts (e.g., summary, description).
+        """
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "annotations", value)
+
+    @_builtins.property
+    @pulumi.getter(name="disableInGroups")
+    def disable_in_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of group names where this rule should be disabled. Useful for conditional rule enablement.
+        """
+        return pulumi.get(self, "disable_in_groups")
+
+    @disable_in_groups.setter
+    def disable_in_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "disable_in_groups", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        How long the condition must be true before firing the alert (e.g., '5m'). Only applicable for alerting rules. Maps to 'for' in Prometheus.
+        """
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "duration", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Labels to attach to the resulting time series or alert.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "labels", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def record(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the time series to output for recording rules. Either 'record' or 'alert' must be specified, but not both.
+        """
+        return pulumi.get(self, "record")
+
+    @record.setter
+    def record(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "record", value)
+
+
+if not MYPY:
     class ThresholdsHealthThresholdArgsDict(TypedDict):
         assertion_name: pulumi.Input[_builtins.str]
         """
@@ -713,5 +960,74 @@ class ThresholdsResourceThresholdArgs:
     @value.setter
     def value(self, value: pulumi.Input[_builtins.float]):
         pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class TraceConfigMatchArgsDict(TypedDict):
+        op: pulumi.Input[_builtins.str]
+        """
+        Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
+        """
+        property: pulumi.Input[_builtins.str]
+        """
+        Entity property to match.
+        """
+        values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+        """
+        Values to match against.
+        """
+elif False:
+    TraceConfigMatchArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class TraceConfigMatchArgs:
+    def __init__(__self__, *,
+                 op: pulumi.Input[_builtins.str],
+                 property: pulumi.Input[_builtins.str],
+                 values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        """
+        :param pulumi.Input[_builtins.str] op: Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
+        :param pulumi.Input[_builtins.str] property: Entity property to match.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: Values to match against.
+        """
+        pulumi.set(__self__, "op", op)
+        pulumi.set(__self__, "property", property)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def op(self) -> pulumi.Input[_builtins.str]:
+        """
+        Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
+        """
+        return pulumi.get(self, "op")
+
+    @op.setter
+    def op(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "op", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def property(self) -> pulumi.Input[_builtins.str]:
+        """
+        Entity property to match.
+        """
+        return pulumi.get(self, "property")
+
+    @property.setter
+    def property(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "property", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        Values to match against.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "values", value)
 
 

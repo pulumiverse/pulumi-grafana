@@ -20,9 +20,12 @@ __all__ = [
     'CustomModelRulesRulesEntity',
     'CustomModelRulesRulesEntityDefinedBy',
     'LogConfigMatch',
+    'PromRuleFileGroup',
+    'PromRuleFileGroupRule',
     'ThresholdsHealthThreshold',
     'ThresholdsRequestThreshold',
     'ThresholdsResourceThreshold',
+    'TraceConfigMatch',
 ]
 
 @pulumi.output_type
@@ -276,6 +279,166 @@ class LogConfigMatch(dict):
 
 
 @pulumi.output_type
+class PromRuleFileGroup(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 rules: Sequence['outputs.PromRuleFileGroupRule'],
+                 interval: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: The name of the rule group (e.g., 'latency_monitoring').
+        :param Sequence['PromRuleFileGroupRuleArgs'] rules: List of Prometheus rules in this group.
+        :param _builtins.str interval: Evaluation interval for this group (e.g., '30s', '1m'). If not specified, uses the global evaluation interval.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "rules", rules)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the rule group (e.g., 'latency_monitoring').
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def rules(self) -> Sequence['outputs.PromRuleFileGroupRule']:
+        """
+        List of Prometheus rules in this group.
+        """
+        return pulumi.get(self, "rules")
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> Optional[_builtins.str]:
+        """
+        Evaluation interval for this group (e.g., '30s', '1m'). If not specified, uses the global evaluation interval.
+        """
+        return pulumi.get(self, "interval")
+
+
+@pulumi.output_type
+class PromRuleFileGroupRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "disableInGroups":
+            suggest = "disable_in_groups"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PromRuleFileGroupRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PromRuleFileGroupRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PromRuleFileGroupRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 expr: _builtins.str,
+                 active: Optional[_builtins.bool] = None,
+                 alert: Optional[_builtins.str] = None,
+                 annotations: Optional[Mapping[str, _builtins.str]] = None,
+                 disable_in_groups: Optional[Sequence[_builtins.str]] = None,
+                 duration: Optional[_builtins.str] = None,
+                 labels: Optional[Mapping[str, _builtins.str]] = None,
+                 record: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str expr: The PromQL expression to evaluate.
+        :param _builtins.bool active: Whether this specific rule is active. This field is read-only and controlled by the API.
+        :param _builtins.str alert: The name of the alert for alerting rules. Either 'record' or 'alert' must be specified, but not both.
+        :param Mapping[str, _builtins.str] annotations: Annotations to add to alerts (e.g., summary, description).
+        :param Sequence[_builtins.str] disable_in_groups: List of group names where this rule should be disabled. Useful for conditional rule enablement.
+        :param _builtins.str duration: How long the condition must be true before firing the alert (e.g., '5m'). Only applicable for alerting rules. Maps to 'for' in Prometheus.
+        :param Mapping[str, _builtins.str] labels: Labels to attach to the resulting time series or alert.
+        :param _builtins.str record: The name of the time series to output for recording rules. Either 'record' or 'alert' must be specified, but not both.
+        """
+        pulumi.set(__self__, "expr", expr)
+        if active is not None:
+            pulumi.set(__self__, "active", active)
+        if alert is not None:
+            pulumi.set(__self__, "alert", alert)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if disable_in_groups is not None:
+            pulumi.set(__self__, "disable_in_groups", disable_in_groups)
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if record is not None:
+            pulumi.set(__self__, "record", record)
+
+    @_builtins.property
+    @pulumi.getter
+    def expr(self) -> _builtins.str:
+        """
+        The PromQL expression to evaluate.
+        """
+        return pulumi.get(self, "expr")
+
+    @_builtins.property
+    @pulumi.getter
+    def active(self) -> Optional[_builtins.bool]:
+        """
+        Whether this specific rule is active. This field is read-only and controlled by the API.
+        """
+        return pulumi.get(self, "active")
+
+    @_builtins.property
+    @pulumi.getter
+    def alert(self) -> Optional[_builtins.str]:
+        """
+        The name of the alert for alerting rules. Either 'record' or 'alert' must be specified, but not both.
+        """
+        return pulumi.get(self, "alert")
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Annotations to add to alerts (e.g., summary, description).
+        """
+        return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter(name="disableInGroups")
+    def disable_in_groups(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        List of group names where this rule should be disabled. Useful for conditional rule enablement.
+        """
+        return pulumi.get(self, "disable_in_groups")
+
+    @_builtins.property
+    @pulumi.getter
+    def duration(self) -> Optional[_builtins.str]:
+        """
+        How long the condition must be true before firing the alert (e.g., '5m'). Only applicable for alerting rules. Maps to 'for' in Prometheus.
+        """
+        return pulumi.get(self, "duration")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Labels to attach to the resulting time series or alert.
+        """
+        return pulumi.get(self, "labels")
+
+    @_builtins.property
+    @pulumi.getter
+    def record(self) -> Optional[_builtins.str]:
+        """
+        The name of the time series to output for recording rules. Either 'record' or 'alert' must be specified, but not both.
+        """
+        return pulumi.get(self, "record")
+
+
+@pulumi.output_type
 class ThresholdsHealthThreshold(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -525,5 +688,45 @@ class ThresholdsResourceThreshold(dict):
         Threshold value.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TraceConfigMatch(dict):
+    def __init__(__self__, *,
+                 op: _builtins.str,
+                 property: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str op: Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
+        :param _builtins.str property: Entity property to match.
+        :param Sequence[_builtins.str] values: Values to match against.
+        """
+        pulumi.set(__self__, "op", op)
+        pulumi.set(__self__, "property", property)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def op(self) -> _builtins.str:
+        """
+        Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
+        """
+        return pulumi.get(self, "op")
+
+    @_builtins.property
+    @pulumi.getter
+    def property(self) -> _builtins.str:
+        """
+        Entity property to match.
+        """
+        return pulumi.get(self, "property")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Values to match against.
+        """
+        return pulumi.get(self, "values")
 
 

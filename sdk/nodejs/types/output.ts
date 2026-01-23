@@ -2373,6 +2373,56 @@ export namespace assert {
         values: string[];
     }
 
+    export interface PromRuleFileGroup {
+        /**
+         * Evaluation interval for this group (e.g., '30s', '1m'). If not specified, uses the global evaluation interval.
+         */
+        interval?: string;
+        /**
+         * The name of the rule group (e.g., 'latency_monitoring').
+         */
+        name: string;
+        /**
+         * List of Prometheus rules in this group.
+         */
+        rules: outputs.assert.PromRuleFileGroupRule[];
+    }
+
+    export interface PromRuleFileGroupRule {
+        /**
+         * Whether this specific rule is active. This field is read-only and controlled by the API.
+         */
+        active: boolean;
+        /**
+         * The name of the alert for alerting rules. Either 'record' or 'alert' must be specified, but not both.
+         */
+        alert?: string;
+        /**
+         * Annotations to add to alerts (e.g., summary, description).
+         */
+        annotations?: {[key: string]: string};
+        /**
+         * List of group names where this rule should be disabled. Useful for conditional rule enablement.
+         */
+        disableInGroups?: string[];
+        /**
+         * How long the condition must be true before firing the alert (e.g., '5m'). Only applicable for alerting rules. Maps to 'for' in Prometheus.
+         */
+        duration?: string;
+        /**
+         * The PromQL expression to evaluate.
+         */
+        expr: string;
+        /**
+         * Labels to attach to the resulting time series or alert.
+         */
+        labels?: {[key: string]: string};
+        /**
+         * The name of the time series to output for recording rules. Either 'record' or 'alert' must be specified, but not both.
+         */
+        record?: string;
+    }
+
     export interface ThresholdsHealthThreshold {
         /**
          * Optional alert category label for the health threshold.
@@ -2440,6 +2490,21 @@ export namespace assert {
          * Threshold value.
          */
         value: number;
+    }
+
+    export interface TraceConfigMatch {
+        /**
+         * Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
+         */
+        op: string;
+        /**
+         * Entity property to match.
+         */
+        property: string;
+        /**
+         * Values to match against.
+         */
+        values: string[];
     }
 
 }
