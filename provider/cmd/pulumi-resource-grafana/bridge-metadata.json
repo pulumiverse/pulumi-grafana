@@ -174,6 +174,45 @@
                 "current": "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig",
                 "majorVersion": 2
             },
+            "grafana_asserts_profile_config": {
+                "current": "grafana:assert/profileConfig:ProfileConfig",
+                "majorVersion": 2,
+                "fields": {
+                    "match": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "grafana_asserts_prom_rule_file": {
+                "current": "grafana:assert/promRuleFile:PromRuleFile",
+                "majorVersion": 2,
+                "fields": {
+                    "group": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "rule": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "disable_in_groups": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_asserts_suppressed_assertions_config": {
                 "current": "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig",
                 "majorVersion": 2
@@ -190,6 +229,22 @@
                     },
                     "resource_thresholds": {
                         "maxItemsOne": false
+                    }
+                }
+            },
+            "grafana_asserts_trace_config": {
+                "current": "grafana:assert/traceConfig:TraceConfig",
+                "majorVersion": 2,
+                "fields": {
+                    "match": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -2045,8 +2100,11 @@
             "grafana:assert/customModelRules:CustomModelRules": 0,
             "grafana:assert/logConfig:LogConfig": 0,
             "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig": 0,
+            "grafana:assert/profileConfig:ProfileConfig": 0,
+            "grafana:assert/promRuleFile:PromRuleFile": 0,
             "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig": 0,
             "grafana:assert/thresholds:Thresholds": 0,
+            "grafana:assert/traceConfig:TraceConfig": 0,
             "grafana:cloud/accessPolicy:AccessPolicy": 0,
             "grafana:cloud/accessPolicyRotatingToken:AccessPolicyRotatingToken": 0,
             "grafana:cloud/accessPolicyToken:AccessPolicyToken": 0,

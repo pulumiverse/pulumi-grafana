@@ -5,7 +5,7 @@ go 1.25.3
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250923233607-7f1981c8674a
 
 require (
-	github.com/grafana/terraform-provider-grafana/v4 v4.23.0
+	github.com/grafana/terraform-provider-grafana/v4 v4.25.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.117.0
 	github.com/pulumi/pulumi/sdk/v3 v3.207.0
 )
@@ -92,6 +92,7 @@ require (
 	github.com/go-openapi/swag v0.23.1 // indirect
 	github.com/go-openapi/swag/jsonname v0.25.1 // indirect
 	github.com/go-openapi/validate v0.24.0 // indirect
+	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
 	github.com/goccy/go-json v0.10.5 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/glog v1.2.5 // indirect
@@ -109,10 +110,10 @@ require (
 	github.com/gorilla/mux v1.8.1 // indirect
 	github.com/grafana/amixr-api-go-client v0.0.27 // indirect
 	github.com/grafana/authlib/claims v0.0.0-20250120084028-e3328c576437 // indirect
-	github.com/grafana/fleet-management-api v1.0.0 // indirect
+	github.com/grafana/fleet-management-api v1.2.0 // indirect
 	github.com/grafana/grafana-app-sdk v0.48.1 // indirect
 	github.com/grafana/grafana-app-sdk/logging v0.48.1 // indirect
-	github.com/grafana/grafana-asserts-public-clients/go/gcom v0.0.0-20251113191110-a4819b8e1224 // indirect
+	github.com/grafana/grafana-asserts-public-clients/go/gcom v0.0.0-20260118214857-d2d6ad8fdcf2 // indirect
 	github.com/grafana/grafana-com-public-clients/go/gcom v0.0.0-20251216082918-50bdab3538ca // indirect
 	github.com/grafana/grafana-openapi-client-go v0.0.0-20250617151817-c0f8cbb88d5c // indirect
 	github.com/grafana/grafana-plugin-sdk-go v0.275.0 // indirect
@@ -169,6 +170,8 @@ require (
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.10 // indirect
+	github.com/knadh/koanf/maps v0.1.2 // indirect
+	github.com/knadh/koanf/v2 v2.3.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/magefile/mage v1.15.0 // indirect
 	github.com/mailru/easyjson v0.9.0 // indirect
