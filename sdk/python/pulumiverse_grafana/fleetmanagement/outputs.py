@@ -21,14 +21,21 @@ __all__ = [
 @pulumi.output_type
 class GetCollectorsCollectorResult(dict):
     def __init__(__self__, *,
+                 collector_type: _builtins.str,
                  enabled: _builtins.bool,
                  id: _builtins.str,
                  local_attributes: Mapping[str, _builtins.str],
                  remote_attributes: Mapping[str, _builtins.str]):
+        pulumi.set(__self__, "collector_type", collector_type)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "local_attributes", local_attributes)
         pulumi.set(__self__, "remote_attributes", remote_attributes)
+
+    @_builtins.property
+    @pulumi.getter(name="collectorType")
+    def collector_type(self) -> _builtins.str:
+        return pulumi.get(self, "collector_type")
 
     @_builtins.property
     @pulumi.getter

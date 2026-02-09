@@ -27,10 +27,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LogConfig{}
 	case "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig":
 		r = &NotificationAlertsConfig{}
+	case "grafana:assert/profileConfig:ProfileConfig":
+		r = &ProfileConfig{}
+	case "grafana:assert/promRuleFile:PromRuleFile":
+		r = &PromRuleFile{}
 	case "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig":
 		r = &SuppressedAssertionsConfig{}
 	case "grafana:assert/thresholds:Thresholds":
 		r = &Thresholds{}
+	case "grafana:assert/traceConfig:TraceConfig":
+		r = &TraceConfig{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -61,12 +67,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"grafana",
+		"assert/profileConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"assert/promRuleFile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
 		"assert/suppressedAssertionsConfig",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"assert/thresholds",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"assert/traceConfig",
 		&module{version},
 	)
 }

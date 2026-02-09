@@ -68,6 +68,7 @@ def get_collectors(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetC
 
     * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
     * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+    * Step-by-step guide
 
     Required access policy scopes:
 
@@ -95,6 +96,7 @@ def get_collectors_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.Invo
 
     * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
     * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+    * Step-by-step guide
 
     Required access policy scopes:
 

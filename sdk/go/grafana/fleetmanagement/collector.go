@@ -15,6 +15,7 @@ import (
 //
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
 // * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+// * Step-by-step guide
 //
 // Required access policy scopes:
 //
@@ -60,6 +61,8 @@ import (
 type Collector struct {
 	pulumi.CustomResourceState
 
+	// Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+	CollectorType pulumi.StringOutput `pulumi:"collectorType"`
 	// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// Remote attributes for the collector
@@ -96,6 +99,8 @@ func GetCollector(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Collector resources.
 type collectorState struct {
+	// Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+	CollectorType *string `pulumi:"collectorType"`
 	// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 	Enabled *bool `pulumi:"enabled"`
 	// Remote attributes for the collector
@@ -103,6 +108,8 @@ type collectorState struct {
 }
 
 type CollectorState struct {
+	// Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+	CollectorType pulumi.StringPtrInput
 	// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 	Enabled pulumi.BoolPtrInput
 	// Remote attributes for the collector
@@ -114,6 +121,8 @@ func (CollectorState) ElementType() reflect.Type {
 }
 
 type collectorArgs struct {
+	// Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+	CollectorType *string `pulumi:"collectorType"`
 	// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 	Enabled *bool `pulumi:"enabled"`
 	// Remote attributes for the collector
@@ -122,6 +131,8 @@ type collectorArgs struct {
 
 // The set of arguments for constructing a Collector resource.
 type CollectorArgs struct {
+	// Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+	CollectorType pulumi.StringPtrInput
 	// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 	Enabled pulumi.BoolPtrInput
 	// Remote attributes for the collector
@@ -213,6 +224,11 @@ func (o CollectorOutput) ToCollectorOutput() CollectorOutput {
 
 func (o CollectorOutput) ToCollectorOutputWithContext(ctx context.Context) CollectorOutput {
 	return o
+}
+
+// Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+func (o CollectorOutput) CollectorType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Collector) pulumi.StringOutput { return v.CollectorType }).(pulumi.StringOutput)
 }
 
 // Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service

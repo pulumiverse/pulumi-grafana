@@ -98,6 +98,11 @@ func GetFrontendO11yApiAccessToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:frontendO11yApiAccessToken")
 }
 
+// The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+func GetFrontendO11yApiUrl(ctx *pulumi.Context) string {
+	return config.Get(ctx, "grafana:frontendO11yApiUrl")
+}
+
 // Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
 func GetHttpHeaders(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:httpHeaders")

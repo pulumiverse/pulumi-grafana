@@ -17,6 +17,7 @@ namespace Pulumiverse.Grafana.FleetManagement
         /// 
         /// * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         /// * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+        /// * Step-by-step guide
         /// 
         /// Required access policy scopes:
         /// 
@@ -48,6 +49,7 @@ namespace Pulumiverse.Grafana.FleetManagement
         /// 
         /// * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         /// * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+        /// * Step-by-step guide
         /// 
         /// Required access policy scopes:
         /// 
@@ -79,6 +81,7 @@ namespace Pulumiverse.Grafana.FleetManagement
         /// 
         /// * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         /// * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+        /// * Step-by-step guide
         /// 
         /// Required access policy scopes:
         /// 
@@ -140,6 +143,10 @@ namespace Pulumiverse.Grafana.FleetManagement
     public sealed class GetCollectorResult
     {
         /// <summary>
+        /// Type of the collector (ALLOY or OTEL)
+        /// </summary>
+        public readonly string CollectorType;
+        /// <summary>
         /// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         /// </summary>
         public readonly bool Enabled;
@@ -158,6 +165,8 @@ namespace Pulumiverse.Grafana.FleetManagement
 
         [OutputConstructor]
         private GetCollectorResult(
+            string collectorType,
+
             bool enabled,
 
             string id,
@@ -166,6 +175,7 @@ namespace Pulumiverse.Grafana.FleetManagement
 
             ImmutableDictionary<string, string> remoteAttributes)
         {
+            CollectorType = collectorType;
             Enabled = enabled;
             Id = id;
             LocalAttributes = localAttributes;

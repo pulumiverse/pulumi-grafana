@@ -98,6 +98,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('frontendO11yApiAccessToken')
 
     @_builtins.property
+    def frontend_o11y_api_url(self) -> Optional[str]:
+        """
+        The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+        """
+        return __config__.get('frontendO11yApiUrl')
+
+    @_builtins.property
     def http_headers(self) -> Optional[str]:
         """
         Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.

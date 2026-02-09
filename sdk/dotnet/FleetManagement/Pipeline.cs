@@ -15,6 +15,7 @@ namespace Pulumiverse.Grafana.FleetManagement
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
     /// * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/pipeline-api/)
+    /// * Step-by-step guide
     /// 
     /// Required access policy scopes:
     /// 
@@ -60,7 +61,13 @@ namespace Pulumiverse.Grafana.FleetManagement
     public partial class Pipeline : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Configuration contents of the pipeline to be used by collectors
+        /// Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        /// </summary>
+        [Output("configType")]
+        public Output<string> ConfigType { get; private set; } = null!;
+
+        /// <summary>
+        /// Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
         /// </summary>
         [Output("contents")]
         public Output<string> Contents { get; private set; } = null!;
@@ -131,7 +138,13 @@ namespace Pulumiverse.Grafana.FleetManagement
     public sealed class PipelineArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Configuration contents of the pipeline to be used by collectors
+        /// Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        /// </summary>
+        [Input("configType")]
+        public Input<string>? ConfigType { get; set; }
+
+        /// <summary>
+        /// Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
         /// </summary>
         [Input("contents", required: true)]
         public Input<string> Contents { get; set; } = null!;
@@ -169,7 +182,13 @@ namespace Pulumiverse.Grafana.FleetManagement
     public sealed class PipelineState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Configuration contents of the pipeline to be used by collectors
+        /// Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        /// </summary>
+        [Input("configType")]
+        public Input<string>? ConfigType { get; set; }
+
+        /// <summary>
+        /// Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
         /// </summary>
         [Input("contents")]
         public Input<string>? Contents { get; set; }

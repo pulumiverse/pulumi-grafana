@@ -69,6 +69,11 @@ frontendO11yApiAccessToken: Optional[str]
 A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 """
 
+frontendO11yApiUrl: Optional[str]
+"""
+The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+"""
+
 httpHeaders: Optional[str]
 """
 Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.

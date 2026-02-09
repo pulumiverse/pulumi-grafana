@@ -86,6 +86,12 @@ namespace Pulumiverse.Grafana
         public Output<string?> FrontendO11yApiAccessToken { get; private set; } = null!;
 
         /// <summary>
+        /// The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+        /// </summary>
+        [Output("frontendO11yApiUrl")]
+        public Output<string?> FrontendO11yApiUrl { get; private set; } = null!;
+
+        /// <summary>
         /// The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
         /// </summary>
         [Output("k6AccessToken")]
@@ -309,6 +315,12 @@ namespace Pulumiverse.Grafana
                 _frontendO11yApiAccessToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+        /// </summary>
+        [Input("frontendO11yApiUrl")]
+        public Input<string>? FrontendO11yApiUrl { get; set; }
 
         [Input("httpHeaders", json: true)]
         private InputMap<string>? _httpHeaders;

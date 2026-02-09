@@ -26,7 +26,10 @@ class GetCollectorResult:
     """
     A collection of values returned by getCollector.
     """
-    def __init__(__self__, enabled=None, id=None, local_attributes=None, remote_attributes=None):
+    def __init__(__self__, collector_type=None, enabled=None, id=None, local_attributes=None, remote_attributes=None):
+        if collector_type and not isinstance(collector_type, str):
+            raise TypeError("Expected argument 'collector_type' to be a str")
+        pulumi.set(__self__, "collector_type", collector_type)
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
         pulumi.set(__self__, "enabled", enabled)
@@ -39,6 +42,14 @@ class GetCollectorResult:
         if remote_attributes and not isinstance(remote_attributes, dict):
             raise TypeError("Expected argument 'remote_attributes' to be a dict")
         pulumi.set(__self__, "remote_attributes", remote_attributes)
+
+    @_builtins.property
+    @pulumi.getter(name="collectorType")
+    def collector_type(self) -> _builtins.str:
+        """
+        Type of the collector (ALLOY or OTEL)
+        """
+        return pulumi.get(self, "collector_type")
 
     @_builtins.property
     @pulumi.getter
@@ -79,6 +90,7 @@ class AwaitableGetCollectorResult(GetCollectorResult):
         if False:
             yield self
         return GetCollectorResult(
+            collector_type=self.collector_type,
             enabled=self.enabled,
             id=self.id,
             local_attributes=self.local_attributes,
@@ -92,6 +104,7 @@ def get_collector(id: Optional[_builtins.str] = None,
 
     * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
     * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+    * Step-by-step guide
 
     Required access policy scopes:
 
@@ -115,6 +128,7 @@ def get_collector(id: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('grafana:fleetManagement/getCollector:getCollector', __args__, opts=opts, typ=GetCollectorResult).value
 
     return AwaitableGetCollectorResult(
+        collector_type=pulumi.get(__ret__, 'collector_type'),
         enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
         local_attributes=pulumi.get(__ret__, 'local_attributes'),
@@ -126,6 +140,7 @@ def get_collector_output(id: Optional[pulumi.Input[_builtins.str]] = None,
 
     * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
     * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+    * Step-by-step guide
 
     Required access policy scopes:
 
@@ -148,6 +163,7 @@ def get_collector_output(id: Optional[pulumi.Input[_builtins.str]] = None,
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:fleetManagement/getCollector:getCollector', __args__, opts=opts, typ=GetCollectorResult)
     return __ret__.apply(lambda __response__: GetCollectorResult(
+        collector_type=pulumi.get(__response__, 'collector_type'),
         enabled=pulumi.get(__response__, 'enabled'),
         id=pulumi.get(__response__, 'id'),
         local_attributes=pulumi.get(__response__, 'local_attributes'),

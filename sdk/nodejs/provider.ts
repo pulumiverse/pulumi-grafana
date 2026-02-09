@@ -70,6 +70,10 @@ export class Provider extends pulumi.ProviderResource {
      */
     declare public readonly frontendO11yApiAccessToken: pulumi.Output<string | undefined>;
     /**
+     * The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+     */
+    declare public readonly frontendO11yApiUrl: pulumi.Output<string | undefined>;
+    /**
      * The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
      */
     declare public readonly k6AccessToken: pulumi.Output<string | undefined>;
@@ -125,6 +129,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["fleetManagementAuth"] = args?.fleetManagementAuth ? pulumi.secret(args.fleetManagementAuth) : undefined;
             resourceInputs["fleetManagementUrl"] = args?.fleetManagementUrl;
             resourceInputs["frontendO11yApiAccessToken"] = args?.frontendO11yApiAccessToken ? pulumi.secret(args.frontendO11yApiAccessToken) : undefined;
+            resourceInputs["frontendO11yApiUrl"] = args?.frontendO11yApiUrl;
             resourceInputs["httpHeaders"] = pulumi.output(args?.httpHeaders ? pulumi.secret(args.httpHeaders) : undefined).apply(JSON.stringify);
             resourceInputs["insecureSkipVerify"] = pulumi.output((args?.insecureSkipVerify) ?? utilities.getEnvBoolean("GRAFANA_INSECURE_SKIP_VERIFY")).apply(JSON.stringify);
             resourceInputs["k6AccessToken"] = args?.k6AccessToken ? pulumi.secret(args.k6AccessToken) : undefined;
@@ -207,6 +212,10 @@ export interface ProviderArgs {
      * A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
      */
     frontendO11yApiAccessToken?: pulumi.Input<string>;
+    /**
+     * The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+     */
+    frontendO11yApiUrl?: pulumi.Input<string>;
     /**
      * Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
      */

@@ -20,6 +20,16 @@ export type NotificationAlertsConfig = import("./notificationAlertsConfig").Noti
 export const NotificationAlertsConfig: typeof import("./notificationAlertsConfig").NotificationAlertsConfig = null as any;
 utilities.lazyLoad(exports, ["NotificationAlertsConfig"], () => require("./notificationAlertsConfig"));
 
+export { ProfileConfigArgs, ProfileConfigState } from "./profileConfig";
+export type ProfileConfig = import("./profileConfig").ProfileConfig;
+export const ProfileConfig: typeof import("./profileConfig").ProfileConfig = null as any;
+utilities.lazyLoad(exports, ["ProfileConfig"], () => require("./profileConfig"));
+
+export { PromRuleFileArgs, PromRuleFileState } from "./promRuleFile";
+export type PromRuleFile = import("./promRuleFile").PromRuleFile;
+export const PromRuleFile: typeof import("./promRuleFile").PromRuleFile = null as any;
+utilities.lazyLoad(exports, ["PromRuleFile"], () => require("./promRuleFile"));
+
 export { SuppressedAssertionsConfigArgs, SuppressedAssertionsConfigState } from "./suppressedAssertionsConfig";
 export type SuppressedAssertionsConfig = import("./suppressedAssertionsConfig").SuppressedAssertionsConfig;
 export const SuppressedAssertionsConfig: typeof import("./suppressedAssertionsConfig").SuppressedAssertionsConfig = null as any;
@@ -29,6 +39,11 @@ export { ThresholdsArgs, ThresholdsState } from "./thresholds";
 export type Thresholds = import("./thresholds").Thresholds;
 export const Thresholds: typeof import("./thresholds").Thresholds = null as any;
 utilities.lazyLoad(exports, ["Thresholds"], () => require("./thresholds"));
+
+export { TraceConfigArgs, TraceConfigState } from "./traceConfig";
+export type TraceConfig = import("./traceConfig").TraceConfig;
+export const TraceConfig: typeof import("./traceConfig").TraceConfig = null as any;
+utilities.lazyLoad(exports, ["TraceConfig"], () => require("./traceConfig"));
 
 
 const _module = {
@@ -41,10 +56,16 @@ const _module = {
                 return new LogConfig(name, <any>undefined, { urn })
             case "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig":
                 return new NotificationAlertsConfig(name, <any>undefined, { urn })
+            case "grafana:assert/profileConfig:ProfileConfig":
+                return new ProfileConfig(name, <any>undefined, { urn })
+            case "grafana:assert/promRuleFile:PromRuleFile":
+                return new PromRuleFile(name, <any>undefined, { urn })
             case "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig":
                 return new SuppressedAssertionsConfig(name, <any>undefined, { urn })
             case "grafana:assert/thresholds:Thresholds":
                 return new Thresholds(name, <any>undefined, { urn })
+            case "grafana:assert/traceConfig:TraceConfig":
+                return new TraceConfig(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -53,5 +74,8 @@ const _module = {
 pulumi.runtime.registerResourceModule("grafana", "assert/customModelRules", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/logConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/notificationAlertsConfig", _module)
+pulumi.runtime.registerResourceModule("grafana", "assert/profileConfig", _module)
+pulumi.runtime.registerResourceModule("grafana", "assert/promRuleFile", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/suppressedAssertionsConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/thresholds", _module)
+pulumi.runtime.registerResourceModule("grafana", "assert/traceConfig", _module)

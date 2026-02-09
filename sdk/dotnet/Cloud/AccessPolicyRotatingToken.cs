@@ -71,7 +71,7 @@ namespace Pulumiverse.Grafana.Cloud
     ///         AccessPolicyId = test.PolicyId,
     ///         NamePrefix = "my-policy-rotating-token",
     ///         DisplayName = "My Policy Rotating Token",
-    ///         ExpireAfter = "30d",
+    ///         ExpireAfter = "720h",
     ///         EarlyRotationWindow = "24h",
     ///     });
     /// 
@@ -109,13 +109,13 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string?> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+        /// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         /// </summary>
         [Output("earlyRotationWindow")]
         public Output<string> EarlyRotationWindow { get; private set; } = null!;
 
         /// <summary>
-        /// Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+        /// Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         /// </summary>
         [Output("expireAfter")]
         public Output<string> ExpireAfter { get; private set; } = null!;
@@ -226,13 +226,13 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+        /// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         /// </summary>
         [Input("earlyRotationWindow", required: true)]
         public Input<string> EarlyRotationWindow { get; set; } = null!;
 
         /// <summary>
-        /// Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+        /// Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         /// </summary>
         [Input("expireAfter", required: true)]
         public Input<string> ExpireAfter { get; set; } = null!;
@@ -279,13 +279,13 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+        /// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         /// </summary>
         [Input("earlyRotationWindow")]
         public Input<string>? EarlyRotationWindow { get; set; }
 
         /// <summary>
-        /// Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+        /// Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
         /// </summary>
         [Input("expireAfter")]
         public Input<string>? ExpireAfter { get; set; }

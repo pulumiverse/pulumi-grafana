@@ -30,6 +30,7 @@ class ProviderArgs:
                  fleet_management_auth: Optional[pulumi.Input[_builtins.str]] = None,
                  fleet_management_url: Optional[pulumi.Input[_builtins.str]] = None,
                  frontend_o11y_api_access_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 frontend_o11y_api_url: Optional[pulumi.Input[_builtins.str]] = None,
                  http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[_builtins.bool]] = None,
                  k6_access_token: Optional[pulumi.Input[_builtins.str]] = None,
@@ -60,6 +61,7 @@ class ProviderArgs:
         :param pulumi.Input[_builtins.str] fleet_management_auth: A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
         :param pulumi.Input[_builtins.str] fleet_management_url: A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment variable.
         :param pulumi.Input[_builtins.str] frontend_o11y_api_access_token: A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+        :param pulumi.Input[_builtins.str] frontend_o11y_api_url: The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] http_headers: Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
         :param pulumi.Input[_builtins.bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[_builtins.str] k6_access_token: The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
@@ -107,6 +109,8 @@ class ProviderArgs:
             pulumi.set(__self__, "fleet_management_url", fleet_management_url)
         if frontend_o11y_api_access_token is not None:
             pulumi.set(__self__, "frontend_o11y_api_access_token", frontend_o11y_api_access_token)
+        if frontend_o11y_api_url is not None:
+            pulumi.set(__self__, "frontend_o11y_api_url", frontend_o11y_api_url)
         if http_headers is not None:
             pulumi.set(__self__, "http_headers", http_headers)
         if insecure_skip_verify is None:
@@ -295,6 +299,18 @@ class ProviderArgs:
     @frontend_o11y_api_access_token.setter
     def frontend_o11y_api_access_token(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "frontend_o11y_api_access_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="frontendO11yApiUrl")
+    def frontend_o11y_api_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+        """
+        return pulumi.get(self, "frontend_o11y_api_url")
+
+    @frontend_o11y_api_url.setter
+    def frontend_o11y_api_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "frontend_o11y_api_url", value)
 
     @_builtins.property
     @pulumi.getter(name="httpHeaders")
@@ -515,6 +531,7 @@ class Provider(pulumi.ProviderResource):
                  fleet_management_auth: Optional[pulumi.Input[_builtins.str]] = None,
                  fleet_management_url: Optional[pulumi.Input[_builtins.str]] = None,
                  frontend_o11y_api_access_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 frontend_o11y_api_url: Optional[pulumi.Input[_builtins.str]] = None,
                  http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[_builtins.bool]] = None,
                  k6_access_token: Optional[pulumi.Input[_builtins.str]] = None,
@@ -552,6 +569,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[_builtins.str] fleet_management_auth: A Grafana Fleet Management basic auth in the `username:password` format. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_AUTH` environment variable.
         :param pulumi.Input[_builtins.str] fleet_management_url: A Grafana Fleet Management API address. May alternatively be set via the `GRAFANA_FLEET_MANAGEMENT_URL` environment variable.
         :param pulumi.Input[_builtins.str] frontend_o11y_api_access_token: A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
+        :param pulumi.Input[_builtins.str] frontend_o11y_api_url: The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] http_headers: Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
         :param pulumi.Input[_builtins.bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[_builtins.str] k6_access_token: The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
@@ -607,6 +625,7 @@ class Provider(pulumi.ProviderResource):
                  fleet_management_auth: Optional[pulumi.Input[_builtins.str]] = None,
                  fleet_management_url: Optional[pulumi.Input[_builtins.str]] = None,
                  frontend_o11y_api_access_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 frontend_o11y_api_url: Optional[pulumi.Input[_builtins.str]] = None,
                  http_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  insecure_skip_verify: Optional[pulumi.Input[_builtins.bool]] = None,
                  k6_access_token: Optional[pulumi.Input[_builtins.str]] = None,
@@ -652,6 +671,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["fleet_management_auth"] = None if fleet_management_auth is None else pulumi.Output.secret(fleet_management_auth)
             __props__.__dict__["fleet_management_url"] = fleet_management_url
             __props__.__dict__["frontend_o11y_api_access_token"] = None if frontend_o11y_api_access_token is None else pulumi.Output.secret(frontend_o11y_api_access_token)
+            __props__.__dict__["frontend_o11y_api_url"] = frontend_o11y_api_url
             __props__.__dict__["http_headers"] = pulumi.Output.secret(http_headers).apply(pulumi.runtime.to_json) if http_headers is not None else None
             if insecure_skip_verify is None:
                 insecure_skip_verify = _utilities.get_env_bool('GRAFANA_INSECURE_SKIP_VERIFY')
@@ -786,6 +806,14 @@ class Provider(pulumi.ProviderResource):
         A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
         """
         return pulumi.get(self, "frontend_o11y_api_access_token")
+
+    @_builtins.property
+    @pulumi.getter(name="frontendO11yApiUrl")
+    def frontend_o11y_api_url(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+        """
+        return pulumi.get(self, "frontend_o11y_api_url")
 
     @_builtins.property
     @pulumi.getter(name="k6AccessToken")
