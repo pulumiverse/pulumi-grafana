@@ -40,6 +40,8 @@ type Provider struct {
 	FleetManagementUrl pulumi.StringPtrOutput `pulumi:"fleetManagementUrl"`
 	// A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 	FrontendO11yApiAccessToken pulumi.StringPtrOutput `pulumi:"frontendO11yApiAccessToken"`
+	// The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+	FrontendO11yApiUrl pulumi.StringPtrOutput `pulumi:"frontendO11yApiUrl"`
 	// The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
 	K6AccessToken pulumi.StringPtrOutput `pulumi:"k6AccessToken"`
 	// The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
@@ -219,6 +221,8 @@ type providerArgs struct {
 	FleetManagementUrl *string `pulumi:"fleetManagementUrl"`
 	// A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 	FrontendO11yApiAccessToken *string `pulumi:"frontendO11yApiAccessToken"`
+	// The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+	FrontendO11yApiUrl *string `pulumi:"frontendO11yApiUrl"`
 	// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
 	HttpHeaders map[string]string `pulumi:"httpHeaders"`
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
@@ -278,6 +282,8 @@ type ProviderArgs struct {
 	FleetManagementUrl pulumi.StringPtrInput
 	// A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 	FrontendO11yApiAccessToken pulumi.StringPtrInput
+	// The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+	FrontendO11yApiUrl pulumi.StringPtrInput
 	// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
 	HttpHeaders pulumi.StringMapInput
 	// Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
@@ -426,6 +432,11 @@ func (o ProviderOutput) FleetManagementUrl() pulumi.StringPtrOutput {
 // A Grafana Frontend Observability API access token. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_ACCESS_TOKEN` environment variable.
 func (o ProviderOutput) FrontendO11yApiAccessToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.FrontendO11yApiAccessToken }).(pulumi.StringPtrOutput)
+}
+
+// The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+func (o ProviderOutput) FrontendO11yApiUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.FrontendO11yApiUrl }).(pulumi.StringPtrOutput)
 }
 
 // The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.

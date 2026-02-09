@@ -20,17 +20,21 @@ __all__ = ['PipelineArgs', 'Pipeline']
 class PipelineArgs:
     def __init__(__self__, *,
                  contents: pulumi.Input[_builtins.str],
+                 config_type: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Pipeline resource.
-        :param pulumi.Input[_builtins.str] contents: Configuration contents of the pipeline to be used by collectors
+        :param pulumi.Input[_builtins.str] contents: Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
+        :param pulumi.Input[_builtins.str] config_type: Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
         :param pulumi.Input[_builtins.bool] enabled: Whether the pipeline is enabled for collectors
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] matchers: Used to match against collectors and assign pipelines to them; follows the syntax of Prometheus Alertmanager matchers
         :param pulumi.Input[_builtins.str] name: Name of the pipeline which is the unique identifier for the pipeline
         """
         pulumi.set(__self__, "contents", contents)
+        if config_type is not None:
+            pulumi.set(__self__, "config_type", config_type)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
         if matchers is not None:
@@ -42,13 +46,25 @@ class PipelineArgs:
     @pulumi.getter
     def contents(self) -> pulumi.Input[_builtins.str]:
         """
-        Configuration contents of the pipeline to be used by collectors
+        Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
         """
         return pulumi.get(self, "contents")
 
     @contents.setter
     def contents(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "contents", value)
+
+    @_builtins.property
+    @pulumi.getter(name="configType")
+    def config_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        """
+        return pulumi.get(self, "config_type")
+
+    @config_type.setter
+    def config_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "config_type", value)
 
     @_builtins.property
     @pulumi.getter
@@ -90,17 +106,21 @@ class PipelineArgs:
 @pulumi.input_type
 class _PipelineState:
     def __init__(__self__, *,
+                 config_type: Optional[pulumi.Input[_builtins.str]] = None,
                  contents: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Pipeline resources.
-        :param pulumi.Input[_builtins.str] contents: Configuration contents of the pipeline to be used by collectors
+        :param pulumi.Input[_builtins.str] config_type: Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        :param pulumi.Input[_builtins.str] contents: Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
         :param pulumi.Input[_builtins.bool] enabled: Whether the pipeline is enabled for collectors
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] matchers: Used to match against collectors and assign pipelines to them; follows the syntax of Prometheus Alertmanager matchers
         :param pulumi.Input[_builtins.str] name: Name of the pipeline which is the unique identifier for the pipeline
         """
+        if config_type is not None:
+            pulumi.set(__self__, "config_type", config_type)
         if contents is not None:
             pulumi.set(__self__, "contents", contents)
         if enabled is not None:
@@ -111,10 +131,22 @@ class _PipelineState:
             pulumi.set(__self__, "name", name)
 
     @_builtins.property
+    @pulumi.getter(name="configType")
+    def config_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        """
+        return pulumi.get(self, "config_type")
+
+    @config_type.setter
+    def config_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "config_type", value)
+
+    @_builtins.property
     @pulumi.getter
     def contents(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Configuration contents of the pipeline to be used by collectors
+        Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
         """
         return pulumi.get(self, "contents")
 
@@ -165,6 +197,7 @@ class Pipeline(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 config_type: Optional[pulumi.Input[_builtins.str]] = None,
                  contents: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -175,6 +208,7 @@ class Pipeline(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/pipeline-api/)
+        * Step-by-step guide
 
         Required access policy scopes:
 
@@ -206,7 +240,8 @@ class Pipeline(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] contents: Configuration contents of the pipeline to be used by collectors
+        :param pulumi.Input[_builtins.str] config_type: Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        :param pulumi.Input[_builtins.str] contents: Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
         :param pulumi.Input[_builtins.bool] enabled: Whether the pipeline is enabled for collectors
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] matchers: Used to match against collectors and assign pipelines to them; follows the syntax of Prometheus Alertmanager matchers
         :param pulumi.Input[_builtins.str] name: Name of the pipeline which is the unique identifier for the pipeline
@@ -222,6 +257,7 @@ class Pipeline(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/pipeline-api/)
+        * Step-by-step guide
 
         Required access policy scopes:
 
@@ -266,6 +302,7 @@ class Pipeline(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 config_type: Optional[pulumi.Input[_builtins.str]] = None,
                  contents: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -279,6 +316,7 @@ class Pipeline(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = PipelineArgs.__new__(PipelineArgs)
 
+            __props__.__dict__["config_type"] = config_type
             if contents is None and not opts.urn:
                 raise TypeError("Missing required property 'contents'")
             __props__.__dict__["contents"] = contents
@@ -295,6 +333,7 @@ class Pipeline(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            config_type: Optional[pulumi.Input[_builtins.str]] = None,
             contents: Optional[pulumi.Input[_builtins.str]] = None,
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             matchers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -306,7 +345,8 @@ class Pipeline(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] contents: Configuration contents of the pipeline to be used by collectors
+        :param pulumi.Input[_builtins.str] config_type: Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        :param pulumi.Input[_builtins.str] contents: Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
         :param pulumi.Input[_builtins.bool] enabled: Whether the pipeline is enabled for collectors
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] matchers: Used to match against collectors and assign pipelines to them; follows the syntax of Prometheus Alertmanager matchers
         :param pulumi.Input[_builtins.str] name: Name of the pipeline which is the unique identifier for the pipeline
@@ -315,6 +355,7 @@ class Pipeline(pulumi.CustomResource):
 
         __props__ = _PipelineState.__new__(_PipelineState)
 
+        __props__.__dict__["config_type"] = config_type
         __props__.__dict__["contents"] = contents
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["matchers"] = matchers
@@ -322,10 +363,18 @@ class Pipeline(pulumi.CustomResource):
         return Pipeline(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
+    @pulumi.getter(name="configType")
+    def config_type(self) -> pulumi.Output[_builtins.str]:
+        """
+        Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        """
+        return pulumi.get(self, "config_type")
+
+    @_builtins.property
     @pulumi.getter
     def contents(self) -> pulumi.Output[_builtins.str]:
         """
-        Configuration contents of the pipeline to be used by collectors
+        Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
         """
         return pulumi.get(self, "contents")
 

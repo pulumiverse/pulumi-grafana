@@ -15,6 +15,7 @@ import (
 //
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
 // * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+// * Step-by-step guide
 //
 // Required access policy scopes:
 //
@@ -63,6 +64,8 @@ type LookupCollectorArgs struct {
 
 // A collection of values returned by getCollector.
 type LookupCollectorResult struct {
+	// Type of the collector (ALLOY or OTEL)
+	CollectorType string `pulumi:"collectorType"`
 	// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
 	Enabled bool `pulumi:"enabled"`
 	// ID of the collector
@@ -105,6 +108,11 @@ func (o LookupCollectorResultOutput) ToLookupCollectorResultOutput() LookupColle
 
 func (o LookupCollectorResultOutput) ToLookupCollectorResultOutputWithContext(ctx context.Context) LookupCollectorResultOutput {
 	return o
+}
+
+// Type of the collector (ALLOY or OTEL)
+func (o LookupCollectorResultOutput) CollectorType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCollectorResult) string { return v.CollectorType }).(pulumi.StringOutput)
 }
 
 // Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service

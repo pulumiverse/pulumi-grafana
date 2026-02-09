@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
  * * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+ * * Step-by-step guide
  *
  * Required access policy scopes:
  *
@@ -66,6 +67,10 @@ export class Collector extends pulumi.CustomResource {
     }
 
     /**
+     * Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+     */
+    declare public readonly collectorType: pulumi.Output<string>;
+    /**
      * Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
      */
     declare public readonly enabled: pulumi.Output<boolean>;
@@ -87,10 +92,12 @@ export class Collector extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CollectorState | undefined;
+            resourceInputs["collectorType"] = state?.collectorType;
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["remoteAttributes"] = state?.remoteAttributes;
         } else {
             const args = argsOrState as CollectorArgs | undefined;
+            resourceInputs["collectorType"] = args?.collectorType;
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["remoteAttributes"] = args?.remoteAttributes;
         }
@@ -103,6 +110,10 @@ export class Collector extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Collector resources.
  */
 export interface CollectorState {
+    /**
+     * Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+     */
+    collectorType?: pulumi.Input<string>;
     /**
      * Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
      */
@@ -117,6 +128,10 @@ export interface CollectorState {
  * The set of arguments for constructing a Collector resource.
  */
 export interface CollectorArgs {
+    /**
+     * Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+     */
+    collectorType?: pulumi.Input<string>;
     /**
      * Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
      */

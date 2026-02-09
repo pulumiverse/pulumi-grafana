@@ -71,7 +71,7 @@ import (
 //				AccessPolicyId:      test.PolicyId,
 //				NamePrefix:          pulumi.String("my-policy-rotating-token"),
 //				DisplayName:         pulumi.String("My Policy Rotating Token"),
-//				ExpireAfter:         pulumi.String("30d"),
+//				ExpireAfter:         pulumi.String("720h"),
 //				EarlyRotationWindow: pulumi.String("24h"),
 //			})
 //			if err != nil {
@@ -98,9 +98,9 @@ type AccessPolicyRotatingToken struct {
 	DeleteOnDestroy pulumi.BoolPtrOutput `pulumi:"deleteOnDestroy"`
 	// Display name of the access policy token. Defaults to the name.
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
-	// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+	// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
 	EarlyRotationWindow pulumi.StringOutput `pulumi:"earlyRotationWindow"`
-	// Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+	// Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
 	ExpireAfter pulumi.StringOutput `pulumi:"expireAfter"`
 	// Expiration date of the access policy token.
 	ExpiresAt pulumi.StringOutput `pulumi:"expiresAt"`
@@ -173,9 +173,9 @@ type accessPolicyRotatingTokenState struct {
 	DeleteOnDestroy *bool   `pulumi:"deleteOnDestroy"`
 	// Display name of the access policy token. Defaults to the name.
 	DisplayName *string `pulumi:"displayName"`
-	// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+	// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
 	EarlyRotationWindow *string `pulumi:"earlyRotationWindow"`
-	// Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+	// Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
 	ExpireAfter *string `pulumi:"expireAfter"`
 	// Expiration date of the access policy token.
 	ExpiresAt *string `pulumi:"expiresAt"`
@@ -200,9 +200,9 @@ type AccessPolicyRotatingTokenState struct {
 	DeleteOnDestroy pulumi.BoolPtrInput
 	// Display name of the access policy token. Defaults to the name.
 	DisplayName pulumi.StringPtrInput
-	// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+	// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
 	EarlyRotationWindow pulumi.StringPtrInput
-	// Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+	// Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
 	ExpireAfter pulumi.StringPtrInput
 	// Expiration date of the access policy token.
 	ExpiresAt pulumi.StringPtrInput
@@ -229,9 +229,9 @@ type accessPolicyRotatingTokenArgs struct {
 	DeleteOnDestroy *bool  `pulumi:"deleteOnDestroy"`
 	// Display name of the access policy token. Defaults to the name.
 	DisplayName *string `pulumi:"displayName"`
-	// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+	// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
 	EarlyRotationWindow string `pulumi:"earlyRotationWindow"`
-	// Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+	// Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
 	ExpireAfter string `pulumi:"expireAfter"`
 	// Prefix for the name of the access policy token. The actual name will be stored in the computed field `name`, which will be in the format '\n\n-\n\n'
 	NamePrefix string `pulumi:"namePrefix"`
@@ -246,9 +246,9 @@ type AccessPolicyRotatingTokenArgs struct {
 	DeleteOnDestroy pulumi.BoolPtrInput
 	// Display name of the access policy token. Defaults to the name.
 	DisplayName pulumi.StringPtrInput
-	// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+	// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
 	EarlyRotationWindow pulumi.StringInput
-	// Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+	// Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
 	ExpireAfter pulumi.StringInput
 	// Prefix for the name of the access policy token. The actual name will be stored in the computed field `name`, which will be in the format '\n\n-\n\n'
 	NamePrefix pulumi.StringInput
@@ -362,12 +362,12 @@ func (o AccessPolicyRotatingTokenOutput) DisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AccessPolicyRotatingToken) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m').
+// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
 func (o AccessPolicyRotatingTokenOutput) EarlyRotationWindow() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccessPolicyRotatingToken) pulumi.StringOutput { return v.EarlyRotationWindow }).(pulumi.StringOutput)
 }
 
-// Duration after which the token will expire (e.g. '24h', '30m', '1h30m').
+// Duration after which the token will expire (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
 func (o AccessPolicyRotatingTokenOutput) ExpireAfter() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccessPolicyRotatingToken) pulumi.StringOutput { return v.ExpireAfter }).(pulumi.StringOutput)
 }

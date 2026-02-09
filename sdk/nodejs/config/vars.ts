@@ -129,6 +129,17 @@ Object.defineProperty(exports, "frontendO11yApiAccessToken", {
 });
 
 /**
+ * The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+ */
+export declare const frontendO11yApiUrl: string | undefined;
+Object.defineProperty(exports, "frontendO11yApiUrl", {
+    get() {
+        return __config.get("frontendO11yApiUrl");
+    },
+    enumerable: true,
+});
+
+/**
  * Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.
  */
 export declare const httpHeaders: {[key: string]: string} | undefined;

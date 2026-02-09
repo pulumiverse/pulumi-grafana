@@ -14,6 +14,7 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type GetCollectorsCollector struct {
+	CollectorType    string            `pulumi:"collectorType"`
 	Enabled          bool              `pulumi:"enabled"`
 	Id               string            `pulumi:"id"`
 	LocalAttributes  map[string]string `pulumi:"localAttributes"`
@@ -32,6 +33,7 @@ type GetCollectorsCollectorInput interface {
 }
 
 type GetCollectorsCollectorArgs struct {
+	CollectorType    pulumi.StringInput    `pulumi:"collectorType"`
 	Enabled          pulumi.BoolInput      `pulumi:"enabled"`
 	Id               pulumi.StringInput    `pulumi:"id"`
 	LocalAttributes  pulumi.StringMapInput `pulumi:"localAttributes"`
@@ -87,6 +89,10 @@ func (o GetCollectorsCollectorOutput) ToGetCollectorsCollectorOutput() GetCollec
 
 func (o GetCollectorsCollectorOutput) ToGetCollectorsCollectorOutputWithContext(ctx context.Context) GetCollectorsCollectorOutput {
 	return o
+}
+
+func (o GetCollectorsCollectorOutput) CollectorType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCollectorsCollector) string { return v.CollectorType }).(pulumi.StringOutput)
 }
 
 func (o GetCollectorsCollectorOutput) Enabled() pulumi.BoolOutput {

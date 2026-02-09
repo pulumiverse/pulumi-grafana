@@ -153,6 +153,22 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "assert/profileConfig",
+  "fqn": "pulumiverse_grafana.assert_",
+  "classes": {
+   "grafana:assert/profileConfig:ProfileConfig": "ProfileConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "assert/promRuleFile",
+  "fqn": "pulumiverse_grafana.assert_",
+  "classes": {
+   "grafana:assert/promRuleFile:PromRuleFile": "PromRuleFile"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "assert/suppressedAssertionsConfig",
   "fqn": "pulumiverse_grafana.assert_",
   "classes": {
@@ -165,6 +181,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.assert_",
   "classes": {
    "grafana:assert/thresholds:Thresholds": "Thresholds"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "assert/traceConfig",
+  "fqn": "pulumiverse_grafana.assert_",
+  "classes": {
+   "grafana:assert/traceConfig:TraceConfig": "TraceConfig"
   }
  },
  {

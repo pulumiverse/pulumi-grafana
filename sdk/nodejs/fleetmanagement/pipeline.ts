@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
  * * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/pipeline-api/)
+ * * Step-by-step guide
  *
  * Required access policy scopes:
  *
@@ -70,7 +71,11 @@ export class Pipeline extends pulumi.CustomResource {
     }
 
     /**
-     * Configuration contents of the pipeline to be used by collectors
+     * Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+     */
+    declare public readonly configType: pulumi.Output<string>;
+    /**
+     * Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
      */
     declare public readonly contents: pulumi.Output<string>;
     /**
@@ -99,6 +104,7 @@ export class Pipeline extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PipelineState | undefined;
+            resourceInputs["configType"] = state?.configType;
             resourceInputs["contents"] = state?.contents;
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["matchers"] = state?.matchers;
@@ -108,6 +114,7 @@ export class Pipeline extends pulumi.CustomResource {
             if (args?.contents === undefined && !opts.urn) {
                 throw new Error("Missing required property 'contents'");
             }
+            resourceInputs["configType"] = args?.configType;
             resourceInputs["contents"] = args?.contents;
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["matchers"] = args?.matchers;
@@ -123,7 +130,11 @@ export class Pipeline extends pulumi.CustomResource {
  */
 export interface PipelineState {
     /**
-     * Configuration contents of the pipeline to be used by collectors
+     * Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+     */
+    configType?: pulumi.Input<string>;
+    /**
+     * Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
      */
     contents?: pulumi.Input<string>;
     /**
@@ -145,7 +156,11 @@ export interface PipelineState {
  */
 export interface PipelineArgs {
     /**
-     * Configuration contents of the pipeline to be used by collectors
+     * Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+     */
+    configType?: pulumi.Input<string>;
+    /**
+     * Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
      */
     contents: pulumi.Input<string>;
     /**

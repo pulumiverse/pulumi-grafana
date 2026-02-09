@@ -17,6 +17,7 @@ namespace Pulumiverse.Grafana.FleetManagement
         /// 
         /// * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         /// * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+        /// * Step-by-step guide
         /// 
         /// Required access policy scopes:
         /// 
@@ -45,6 +46,7 @@ namespace Pulumiverse.Grafana.FleetManagement
         /// 
         /// * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         /// * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+        /// * Step-by-step guide
         /// 
         /// Required access policy scopes:
         /// 
@@ -73,6 +75,7 @@ namespace Pulumiverse.Grafana.FleetManagement
         /// 
         /// * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         /// * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+        /// * Step-by-step guide
         /// 
         /// Required access policy scopes:
         /// 

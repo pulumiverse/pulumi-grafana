@@ -16,6 +16,7 @@ import (
 //
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
 // * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/pipeline-api/)
+// * Step-by-step guide
 //
 // Required access policy scopes:
 //
@@ -69,7 +70,9 @@ import (
 type Pipeline struct {
 	pulumi.CustomResourceState
 
-	// Configuration contents of the pipeline to be used by collectors
+	// Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+	ConfigType pulumi.StringOutput `pulumi:"configType"`
+	// Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
 	Contents pulumi.StringOutput `pulumi:"contents"`
 	// Whether the pipeline is enabled for collectors
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
@@ -112,7 +115,9 @@ func GetPipeline(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Pipeline resources.
 type pipelineState struct {
-	// Configuration contents of the pipeline to be used by collectors
+	// Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+	ConfigType *string `pulumi:"configType"`
+	// Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
 	Contents *string `pulumi:"contents"`
 	// Whether the pipeline is enabled for collectors
 	Enabled *bool `pulumi:"enabled"`
@@ -123,7 +128,9 @@ type pipelineState struct {
 }
 
 type PipelineState struct {
-	// Configuration contents of the pipeline to be used by collectors
+	// Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+	ConfigType pulumi.StringPtrInput
+	// Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
 	Contents pulumi.StringPtrInput
 	// Whether the pipeline is enabled for collectors
 	Enabled pulumi.BoolPtrInput
@@ -138,7 +145,9 @@ func (PipelineState) ElementType() reflect.Type {
 }
 
 type pipelineArgs struct {
-	// Configuration contents of the pipeline to be used by collectors
+	// Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+	ConfigType *string `pulumi:"configType"`
+	// Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
 	Contents string `pulumi:"contents"`
 	// Whether the pipeline is enabled for collectors
 	Enabled *bool `pulumi:"enabled"`
@@ -150,7 +159,9 @@ type pipelineArgs struct {
 
 // The set of arguments for constructing a Pipeline resource.
 type PipelineArgs struct {
-	// Configuration contents of the pipeline to be used by collectors
+	// Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+	ConfigType pulumi.StringPtrInput
+	// Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
 	Contents pulumi.StringInput
 	// Whether the pipeline is enabled for collectors
 	Enabled pulumi.BoolPtrInput
@@ -247,7 +258,12 @@ func (o PipelineOutput) ToPipelineOutputWithContext(ctx context.Context) Pipelin
 	return o
 }
 
-// Configuration contents of the pipeline to be used by collectors
+// Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+func (o PipelineOutput) ConfigType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pipeline) pulumi.StringOutput { return v.ConfigType }).(pulumi.StringOutput)
+}
+
+// Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
 func (o PipelineOutput) Contents() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pipeline) pulumi.StringOutput { return v.Contents }).(pulumi.StringOutput)
 }

@@ -19,17 +19,33 @@ __all__ = ['CollectorArgs', 'Collector']
 @pulumi.input_type
 class CollectorArgs:
     def __init__(__self__, *,
+                 collector_type: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  remote_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Collector resource.
+        :param pulumi.Input[_builtins.str] collector_type: Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
         :param pulumi.Input[_builtins.bool] enabled: Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] remote_attributes: Remote attributes for the collector
         """
+        if collector_type is not None:
+            pulumi.set(__self__, "collector_type", collector_type)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
         if remote_attributes is not None:
             pulumi.set(__self__, "remote_attributes", remote_attributes)
+
+    @_builtins.property
+    @pulumi.getter(name="collectorType")
+    def collector_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        """
+        return pulumi.get(self, "collector_type")
+
+    @collector_type.setter
+    def collector_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "collector_type", value)
 
     @_builtins.property
     @pulumi.getter
@@ -59,17 +75,33 @@ class CollectorArgs:
 @pulumi.input_type
 class _CollectorState:
     def __init__(__self__, *,
+                 collector_type: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  remote_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Collector resources.
+        :param pulumi.Input[_builtins.str] collector_type: Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
         :param pulumi.Input[_builtins.bool] enabled: Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] remote_attributes: Remote attributes for the collector
         """
+        if collector_type is not None:
+            pulumi.set(__self__, "collector_type", collector_type)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
         if remote_attributes is not None:
             pulumi.set(__self__, "remote_attributes", remote_attributes)
+
+    @_builtins.property
+    @pulumi.getter(name="collectorType")
+    def collector_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        """
+        return pulumi.get(self, "collector_type")
+
+    @collector_type.setter
+    def collector_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "collector_type", value)
 
     @_builtins.property
     @pulumi.getter
@@ -102,6 +134,7 @@ class Collector(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 collector_type: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  remote_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
@@ -110,6 +143,7 @@ class Collector(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+        * Step-by-step guide
 
         Required access policy scopes:
 
@@ -139,6 +173,7 @@ class Collector(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] collector_type: Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
         :param pulumi.Input[_builtins.bool] enabled: Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] remote_attributes: Remote attributes for the collector
         """
@@ -153,6 +188,7 @@ class Collector(pulumi.CustomResource):
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+        * Step-by-step guide
 
         Required access policy scopes:
 
@@ -195,6 +231,7 @@ class Collector(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 collector_type: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  remote_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
@@ -206,6 +243,7 @@ class Collector(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CollectorArgs.__new__(CollectorArgs)
 
+            __props__.__dict__["collector_type"] = collector_type
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["remote_attributes"] = remote_attributes
         super(Collector, __self__).__init__(
@@ -218,6 +256,7 @@ class Collector(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            collector_type: Optional[pulumi.Input[_builtins.str]] = None,
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             remote_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None) -> 'Collector':
         """
@@ -227,6 +266,7 @@ class Collector(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] collector_type: Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
         :param pulumi.Input[_builtins.bool] enabled: Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] remote_attributes: Remote attributes for the collector
         """
@@ -234,9 +274,18 @@ class Collector(pulumi.CustomResource):
 
         __props__ = _CollectorState.__new__(_CollectorState)
 
+        __props__.__dict__["collector_type"] = collector_type
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["remote_attributes"] = remote_attributes
         return Collector(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="collectorType")
+    def collector_type(self) -> pulumi.Output[_builtins.str]:
+        """
+        Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        """
+        return pulumi.get(self, "collector_type")
 
     @_builtins.property
     @pulumi.getter

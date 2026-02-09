@@ -142,6 +142,16 @@ namespace Pulumiverse.Grafana
             set => _frontendO11yApiAccessToken.Set(value);
         }
 
+        private static readonly __Value<string?> _frontendO11yApiUrl = new __Value<string?>(() => __config.Get("frontendO11yApiUrl"));
+        /// <summary>
+        /// The Grafana Frontend Observability API URL. This is optional, and should only be set to override the default API. May alternatively be set via the `GRAFANA_FRONTEND_O11Y_API_URL` environment variable.
+        /// </summary>
+        public static string? FrontendO11yApiUrl
+        {
+            get => _frontendO11yApiUrl.Get();
+            set => _frontendO11yApiUrl.Set(value);
+        }
+
         private static readonly __Value<ImmutableDictionary<string, string>?> _httpHeaders = new __Value<ImmutableDictionary<string, string>?>(() => __config.GetObject<ImmutableDictionary<string, string>>("httpHeaders"));
         /// <summary>
         /// Optional. HTTP headers mapping keys to values used for accessing the Grafana and Grafana Cloud APIs. May alternatively be set via the `GRAFANA_HTTP_HEADERS` environment variable in JSON format.

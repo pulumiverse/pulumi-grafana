@@ -15,6 +15,7 @@ namespace Pulumiverse.Grafana.FleetManagement
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
     /// * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+    /// * Step-by-step guide
     /// 
     /// Required access policy scopes:
     /// 
@@ -54,6 +55,12 @@ namespace Pulumiverse.Grafana.FleetManagement
     [GrafanaResourceType("grafana:fleetManagement/collector:Collector")]
     public partial class Collector : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        /// </summary>
+        [Output("collectorType")]
+        public Output<string> CollectorType { get; private set; } = null!;
+
         /// <summary>
         /// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         /// </summary>
@@ -114,6 +121,12 @@ namespace Pulumiverse.Grafana.FleetManagement
     public sealed class CollectorArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        /// </summary>
+        [Input("collectorType")]
+        public Input<string>? CollectorType { get; set; }
+
+        /// <summary>
         /// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         /// </summary>
         [Input("enabled")]
@@ -139,6 +152,12 @@ namespace Pulumiverse.Grafana.FleetManagement
 
     public sealed class CollectorState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
+        /// </summary>
+        [Input("collectorType")]
+        public Input<string>? CollectorType { get; set; }
+
         /// <summary>
         /// Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         /// </summary>

@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
  * * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+ * * Step-by-step guide
  *
  * Required access policy scopes:
  *
@@ -47,6 +48,10 @@ export interface GetCollectorArgs {
  */
 export interface GetCollectorResult {
     /**
+     * Type of the collector (ALLOY or OTEL)
+     */
+    readonly collectorType: string;
+    /**
      * Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
      */
     readonly enabled: boolean;
@@ -68,6 +73,7 @@ export interface GetCollectorResult {
  *
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
  * * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/collector-api/)
+ * * Step-by-step guide
  *
  * Required access policy scopes:
  *

@@ -14,6 +14,7 @@ namespace Pulumiverse.Grafana.FleetManagement.Outputs
     [OutputType]
     public sealed class GetCollectorsCollectorResult
     {
+        public readonly string CollectorType;
         public readonly bool Enabled;
         public readonly string Id;
         public readonly ImmutableDictionary<string, string> LocalAttributes;
@@ -21,6 +22,8 @@ namespace Pulumiverse.Grafana.FleetManagement.Outputs
 
         [OutputConstructor]
         private GetCollectorsCollectorResult(
+            string collectorType,
+
             bool enabled,
 
             string id,
@@ -29,6 +32,7 @@ namespace Pulumiverse.Grafana.FleetManagement.Outputs
 
             ImmutableDictionary<string, string> remoteAttributes)
         {
+            CollectorType = collectorType;
             Enabled = enabled;
             Id = id;
             LocalAttributes = localAttributes;
