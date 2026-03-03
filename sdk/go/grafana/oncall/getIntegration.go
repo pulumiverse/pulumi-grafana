@@ -58,6 +58,8 @@ type LookupIntegrationArgs struct {
 type LookupIntegrationResult struct {
 	// The integration ID.
 	Id string `pulumi:"id"`
+	// The inbound email for the integration. Only available for integration type `inboundEmail`.
+	InboundEmail string `pulumi:"inboundEmail"`
 	// The link for the integration.
 	Link string `pulumi:"link"`
 	// The integration name.
@@ -101,6 +103,11 @@ func (o LookupIntegrationResultOutput) ToLookupIntegrationResultOutputWithContex
 // The integration ID.
 func (o LookupIntegrationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The inbound email for the integration. Only available for integration type `inboundEmail`.
+func (o LookupIntegrationResultOutput) InboundEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIntegrationResult) string { return v.InboundEmail }).(pulumi.StringOutput)
 }
 
 // The link for the integration.

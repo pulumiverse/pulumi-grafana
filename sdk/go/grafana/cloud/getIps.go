@@ -11,7 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
-// Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
+// Data source for retrieving sets of cloud IPs.
+//
+// * [Official documentation](https://grafana.com/docs/grafana-cloud/reference/allow-list/)
 //
 // ## Example Usage
 //
@@ -56,11 +58,13 @@ type GetIpsResult struct {
 	HostedLogs []string `pulumi:"hostedLogs"`
 	// Set of IP addresses that are used for hosted metrics.
 	HostedMetrics []string `pulumi:"hostedMetrics"`
+	// Set of IP addresses that are used for the OTLP Gateway.
+	HostedOtlps []string `pulumi:"hostedOtlps"`
 	// Set of IP addresses that are used for hosted profiles.
 	HostedProfiles []string `pulumi:"hostedProfiles"`
 	// Set of IP addresses that are used for hosted traces.
 	HostedTraces []string `pulumi:"hostedTraces"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this datasource. This is an internal identifier used by the provider to track this datasource.
 	Id string `pulumi:"id"`
 }
 
@@ -106,6 +110,11 @@ func (o GetIpsResultOutput) HostedMetrics() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetIpsResult) []string { return v.HostedMetrics }).(pulumi.StringArrayOutput)
 }
 
+// Set of IP addresses that are used for the OTLP Gateway.
+func (o GetIpsResultOutput) HostedOtlps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetIpsResult) []string { return v.HostedOtlps }).(pulumi.StringArrayOutput)
+}
+
 // Set of IP addresses that are used for hosted profiles.
 func (o GetIpsResultOutput) HostedProfiles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetIpsResult) []string { return v.HostedProfiles }).(pulumi.StringArrayOutput)
@@ -116,7 +125,7 @@ func (o GetIpsResultOutput) HostedTraces() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetIpsResult) []string { return v.HostedTraces }).(pulumi.StringArrayOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this datasource. This is an internal identifier used by the provider to track this datasource.
 func (o GetIpsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpsResult) string { return v.Id }).(pulumi.StringOutput)
 }

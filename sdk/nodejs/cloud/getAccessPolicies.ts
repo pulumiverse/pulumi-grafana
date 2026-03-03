@@ -30,6 +30,9 @@ export function getAccessPolicies(args?: GetAccessPoliciesArgs, opts?: pulumi.In
  */
 export interface GetAccessPoliciesArgs {
     nameFilter?: string;
+    /**
+     * If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
+     */
     regionFilter?: string;
 }
 
@@ -43,6 +46,9 @@ export interface GetAccessPoliciesResult {
      */
     readonly id: string;
     readonly nameFilter?: string;
+    /**
+     * If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
+     */
     readonly regionFilter?: string;
 }
 /**
@@ -69,5 +75,8 @@ export function getAccessPoliciesOutput(args?: GetAccessPoliciesOutputArgs, opts
  */
 export interface GetAccessPoliciesOutputArgs {
     nameFilter?: pulumi.Input<string>;
+    /**
+     * If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
+     */
     regionFilter?: pulumi.Input<string>;
 }

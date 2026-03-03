@@ -13,7 +13,9 @@ namespace Pulumiverse.Grafana.Cloud
     public static class GetIps
     {
         /// <summary>
-        /// Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
+        /// Data source for retrieving sets of cloud IPs.
+        /// 
+        /// * [Official documentation](https://grafana.com/docs/grafana-cloud/reference/allow-list/)
         /// 
         /// ## Example Usage
         /// 
@@ -34,7 +36,9 @@ namespace Pulumiverse.Grafana.Cloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIpsResult>("grafana:cloud/getIps:getIps", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
+        /// Data source for retrieving sets of cloud IPs.
+        /// 
+        /// * [Official documentation](https://grafana.com/docs/grafana-cloud/reference/allow-list/)
         /// 
         /// ## Example Usage
         /// 
@@ -55,7 +59,9 @@ namespace Pulumiverse.Grafana.Cloud
             => global::Pulumi.Deployment.Instance.Invoke<GetIpsResult>("grafana:cloud/getIps:getIps", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
+        /// Data source for retrieving sets of cloud IPs.
+        /// 
+        /// * [Official documentation](https://grafana.com/docs/grafana-cloud/reference/allow-list/)
         /// 
         /// ## Example Usage
         /// 
@@ -97,6 +103,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly ImmutableArray<string> HostedMetrics;
         /// <summary>
+        /// Set of IP addresses that are used for the OTLP Gateway.
+        /// </summary>
+        public readonly ImmutableArray<string> HostedOtlps;
+        /// <summary>
         /// Set of IP addresses that are used for hosted profiles.
         /// </summary>
         public readonly ImmutableArray<string> HostedProfiles;
@@ -105,7 +115,7 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly ImmutableArray<string> HostedTraces;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this datasource. This is an internal identifier used by the provider to track this datasource.
         /// </summary>
         public readonly string Id;
 
@@ -119,6 +129,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             ImmutableArray<string> hostedMetrics,
 
+            ImmutableArray<string> hostedOtlps,
+
             ImmutableArray<string> hostedProfiles,
 
             ImmutableArray<string> hostedTraces,
@@ -129,6 +141,7 @@ namespace Pulumiverse.Grafana.Cloud
             HostedGrafanas = hostedGrafanas;
             HostedLogs = hostedLogs;
             HostedMetrics = hostedMetrics;
+            HostedOtlps = hostedOtlps;
             HostedProfiles = hostedProfiles;
             HostedTraces = hostedTraces;
             Id = id;

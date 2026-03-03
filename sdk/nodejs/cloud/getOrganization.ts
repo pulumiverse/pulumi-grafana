@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * Fetches a Grafana Cloud organization.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/)
+ * * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#organizations)
+ *
+ * Required access policy scopes:
+ *
+ * * orgs:read
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -30,9 +39,12 @@ export function getOrganization(args?: GetOrganizationArgs, opts?: pulumi.Invoke
  */
 export interface GetOrganizationArgs {
     /**
-     * The ID of this resource.
+     * The organization ID.
      */
     id?: string;
+    /**
+     * The organization slug.
+     */
     slug?: string;
 }
 
@@ -40,17 +52,41 @@ export interface GetOrganizationArgs {
  * A collection of values returned by getOrganization.
  */
 export interface GetOrganizationResult {
+    /**
+     * The date and time the organization was created.
+     */
     readonly createdAt: string;
     /**
-     * The ID of this resource.
+     * The organization ID.
      */
     readonly id: string;
+    /**
+     * The organization name.
+     */
     readonly name: string;
+    /**
+     * The organization slug.
+     */
     readonly slug: string;
+    /**
+     * The date and time the organization was last updated.
+     */
     readonly updatedAt: string;
+    /**
+     * The organization URL.
+     */
     readonly url: string;
 }
 /**
+ * Fetches a Grafana Cloud organization.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/)
+ * * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#organizations)
+ *
+ * Required access policy scopes:
+ *
+ * * orgs:read
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -76,8 +112,11 @@ export function getOrganizationOutput(args?: GetOrganizationOutputArgs, opts?: p
  */
 export interface GetOrganizationOutputArgs {
     /**
-     * The ID of this resource.
+     * The organization ID.
      */
     id?: pulumi.Input<string>;
+    /**
+     * The organization slug.
+     */
     slug?: pulumi.Input<string>;
 }

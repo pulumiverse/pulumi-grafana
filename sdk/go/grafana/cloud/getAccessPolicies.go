@@ -31,7 +31,8 @@ func GetAccessPolicies(ctx *pulumi.Context, args *GetAccessPoliciesArgs, opts ..
 
 // A collection of arguments for invoking getAccessPolicies.
 type GetAccessPoliciesArgs struct {
-	NameFilter   *string `pulumi:"nameFilter"`
+	NameFilter *string `pulumi:"nameFilter"`
+	// If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
 	RegionFilter *string `pulumi:"regionFilter"`
 }
 
@@ -39,8 +40,9 @@ type GetAccessPoliciesArgs struct {
 type GetAccessPoliciesResult struct {
 	AccessPolicies []GetAccessPoliciesAccessPolicy `pulumi:"accessPolicies"`
 	// The ID of this datasource. This is an internal identifier used by the provider to track this datasource.
-	Id           string  `pulumi:"id"`
-	NameFilter   *string `pulumi:"nameFilter"`
+	Id         string  `pulumi:"id"`
+	NameFilter *string `pulumi:"nameFilter"`
+	// If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
 	RegionFilter *string `pulumi:"regionFilter"`
 }
 
@@ -55,7 +57,8 @@ func GetAccessPoliciesOutput(ctx *pulumi.Context, args GetAccessPoliciesOutputAr
 
 // A collection of arguments for invoking getAccessPolicies.
 type GetAccessPoliciesOutputArgs struct {
-	NameFilter   pulumi.StringPtrInput `pulumi:"nameFilter"`
+	NameFilter pulumi.StringPtrInput `pulumi:"nameFilter"`
+	// If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
 	RegionFilter pulumi.StringPtrInput `pulumi:"regionFilter"`
 }
 
@@ -91,6 +94,7 @@ func (o GetAccessPoliciesResultOutput) NameFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAccessPoliciesResult) *string { return v.NameFilter }).(pulumi.StringPtrOutput)
 }
 
+// If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
 func (o GetAccessPoliciesResultOutput) RegionFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAccessPoliciesResult) *string { return v.RegionFilter }).(pulumi.StringPtrOutput)
 }

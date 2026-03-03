@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
+ * Data source for retrieving sets of cloud IPs.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/reference/allow-list/)
  *
  * ## Example Usage
  *
@@ -43,6 +45,10 @@ export interface GetIpsResult {
      */
     readonly hostedMetrics: string[];
     /**
+     * Set of IP addresses that are used for the OTLP Gateway.
+     */
+    readonly hostedOtlps: string[];
+    /**
      * Set of IP addresses that are used for hosted profiles.
      */
     readonly hostedProfiles: string[];
@@ -51,12 +57,14 @@ export interface GetIpsResult {
      */
     readonly hostedTraces: string[];
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this datasource. This is an internal identifier used by the provider to track this datasource.
      */
     readonly id: string;
 }
 /**
- * Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
+ * Data source for retrieving sets of cloud IPs.
+ *
+ * * [Official documentation](https://grafana.com/docs/grafana-cloud/reference/allow-list/)
  *
  * ## Example Usage
  *

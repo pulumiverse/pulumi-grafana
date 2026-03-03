@@ -62,6 +62,9 @@ class GetAccessPoliciesResult:
     @_builtins.property
     @pulumi.getter(name="regionFilter")
     def region_filter(self) -> Optional[_builtins.str]:
+        """
+        If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
+        """
         return pulumi.get(self, "region_filter")
 
 
@@ -89,6 +92,9 @@ def get_access_policies(name_filter: Optional[_builtins.str] = None,
     Required access policy scopes:
 
     * accesspolicies:read
+
+
+    :param _builtins.str region_filter: If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
     """
     __args__ = dict()
     __args__['nameFilter'] = name_filter
@@ -113,6 +119,9 @@ def get_access_policies_output(name_filter: Optional[pulumi.Input[Optional[_buil
     Required access policy scopes:
 
     * accesspolicies:read
+
+
+    :param _builtins.str region_filter: If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
     """
     __args__ = dict()
     __args__['nameFilter'] = name_filter

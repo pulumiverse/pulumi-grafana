@@ -123,6 +123,10 @@ namespace Pulumiverse.Grafana.OnCall
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The inbound email for the integration. Only available for integration type `InboundEmail`.
+        /// </summary>
+        public readonly string InboundEmail;
+        /// <summary>
         /// The link for the integration.
         /// </summary>
         public readonly string Link;
@@ -135,11 +139,14 @@ namespace Pulumiverse.Grafana.OnCall
         private GetIntegrationResult(
             string id,
 
+            string inboundEmail,
+
             string link,
 
             string name)
         {
             Id = id;
+            InboundEmail = inboundEmail;
             Link = link;
             Name = name;
         }

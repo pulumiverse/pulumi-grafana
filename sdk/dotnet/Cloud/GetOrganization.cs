@@ -13,6 +13,15 @@ namespace Pulumiverse.Grafana.Cloud
     public static class GetOrganization
     {
         /// <summary>
+        /// Fetches a Grafana Cloud organization.
+        /// 
+        /// * [Official documentation](https://grafana.com/docs/grafana-cloud/)
+        /// * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#organizations)
+        /// 
+        /// Required access policy scopes:
+        /// 
+        /// * orgs:read
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -35,6 +44,15 @@ namespace Pulumiverse.Grafana.Cloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("grafana:cloud/getOrganization:getOrganization", args ?? new GetOrganizationArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Fetches a Grafana Cloud organization.
+        /// 
+        /// * [Official documentation](https://grafana.com/docs/grafana-cloud/)
+        /// * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#organizations)
+        /// 
+        /// Required access policy scopes:
+        /// 
+        /// * orgs:read
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -57,6 +75,15 @@ namespace Pulumiverse.Grafana.Cloud
             => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationResult>("grafana:cloud/getOrganization:getOrganization", args ?? new GetOrganizationInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Fetches a Grafana Cloud organization.
+        /// 
+        /// * [Official documentation](https://grafana.com/docs/grafana-cloud/)
+        /// * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#organizations)
+        /// 
+        /// Required access policy scopes:
+        /// 
+        /// * orgs:read
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -83,11 +110,14 @@ namespace Pulumiverse.Grafana.Cloud
     public sealed class GetOrganizationArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of this resource.
+        /// The organization ID.
         /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The organization slug.
+        /// </summary>
         [Input("slug")]
         public string? Slug { get; set; }
 
@@ -100,11 +130,14 @@ namespace Pulumiverse.Grafana.Cloud
     public sealed class GetOrganizationInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of this resource.
+        /// The organization ID.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// The organization slug.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -118,14 +151,29 @@ namespace Pulumiverse.Grafana.Cloud
     [OutputType]
     public sealed class GetOrganizationResult
     {
+        /// <summary>
+        /// The date and time the organization was created.
+        /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// The ID of this resource.
+        /// The organization ID.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The organization name.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The organization slug.
+        /// </summary>
         public readonly string Slug;
+        /// <summary>
+        /// The date and time the organization was last updated.
+        /// </summary>
         public readonly string UpdatedAt;
+        /// <summary>
+        /// The organization URL.
+        /// </summary>
         public readonly string Url;
 
         [OutputConstructor]
