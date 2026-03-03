@@ -15610,7 +15610,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.\n"
+                    "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.\n"
                 }
             },
             "required": [
@@ -15658,7 +15658,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.\n",
+                    "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -15711,7 +15711,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.\n",
+                        "description": "The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -19575,7 +19575,8 @@
                         "type": "string"
                     },
                     "regionFilter": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).\n"
                     }
                 },
                 "type": "object"
@@ -19597,6 +19598,7 @@
                         "type": "string"
                     },
                     "regionFilter": {
+                        "description": "If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).\n",
                         "type": "string"
                     }
                 },
@@ -19608,7 +19610,7 @@
             }
         },
         "grafana:cloud/getIps:getIps": {
-            "description": "Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = grafana.cloud.getIps({});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\n\ntest = grafana.cloud.get_ips()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = Grafana.Cloud.GetIps.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloud.GetIps(ctx, map[string]interface{}{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = CloudFunctions.getIps(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);\n\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    fn::invoke:\n      function: grafana:cloud:getIps\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Data source for retrieving sets of cloud IPs.\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/reference/allow-list/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = grafana.cloud.getIps({});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\n\ntest = grafana.cloud.get_ips()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = Grafana.Cloud.GetIps.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloud.GetIps(ctx, map[string]interface{}{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = CloudFunctions.getIps(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);\n\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    fn::invoke:\n      function: grafana:cloud:getIps\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "outputs": {
                 "description": "A collection of values returned by getIps.\n",
                 "properties": {
@@ -19640,6 +19642,13 @@
                         },
                         "type": "array"
                     },
+                    "hostedOtlps": {
+                        "description": "Set of IP addresses that are used for the OTLP Gateway.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
                     "hostedProfiles": {
                         "description": "Set of IP addresses that are used for hosted profiles.\n",
                         "items": {
@@ -19655,7 +19664,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "description": "The ID of this datasource. This is an internal identifier used by the provider to track this datasource.\n",
                         "type": "string"
                     }
                 },
@@ -19664,6 +19673,7 @@
                     "hostedGrafanas",
                     "hostedLogs",
                     "hostedMetrics",
+                    "hostedOtlps",
                     "hostedProfiles",
                     "hostedTraces",
                     "id"
@@ -19672,16 +19682,17 @@
             }
         },
         "grafana:cloud/getOrganization:getOrganization": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = grafana.cloud.getOrganization({\n    slug: \"my-org\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\n\ntest = grafana.cloud.get_organization(slug=\"my-org\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = Grafana.Cloud.GetOrganization.Invoke(new()\n    {\n        Slug = \"my-org\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloud.GetOrganization(ctx, \u0026cloud.GetOrganizationArgs{\n\t\t\tSlug: pulumi.StringRef(\"my-org\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetOrganizationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = CloudFunctions.getOrganization(GetOrganizationArgs.builder()\n            .slug(\"my-org\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    fn::invoke:\n      function: grafana:cloud:getOrganization\n      arguments:\n        slug: my-org\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Fetches a Grafana Cloud organization.\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#organizations)\n\nRequired access policy scopes:\n\n* orgs:read\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = grafana.cloud.getOrganization({\n    slug: \"my-org\",\n});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\n\ntest = grafana.cloud.get_organization(slug=\"my-org\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumi.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = Grafana.Cloud.GetOrganization.Invoke(new()\n    {\n        Slug = \"my-org\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloud.GetOrganization(ctx, \u0026cloud.GetOrganizationArgs{\n\t\t\tSlug: pulumi.StringRef(\"my-org\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.CloudFunctions;\nimport com.pulumi.grafana.cloud.inputs.GetOrganizationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = CloudFunctions.getOrganization(GetOrganizationArgs.builder()\n            .slug(\"my-org\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    fn::invoke:\n      function: grafana:cloud:getOrganization\n      arguments:\n        slug: my-org\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getOrganization.\n",
                 "properties": {
                     "id": {
                         "type": "string",
-                        "description": "The ID of this resource.\n"
+                        "description": "The organization ID.\n"
                     },
                     "slug": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The organization slug.\n"
                     }
                 },
                 "type": "object"
@@ -19690,22 +19701,27 @@
                 "description": "A collection of values returned by getOrganization.\n",
                 "properties": {
                     "createdAt": {
+                        "description": "The date and time the organization was created.\n",
                         "type": "string"
                     },
                     "id": {
-                        "description": "The ID of this resource.\n",
+                        "description": "The organization ID.\n",
                         "type": "string"
                     },
                     "name": {
+                        "description": "The organization name.\n",
                         "type": "string"
                     },
                     "slug": {
+                        "description": "The organization slug.\n",
                         "type": "string"
                     },
                     "updatedAt": {
+                        "description": "The date and time the organization was last updated.\n",
                         "type": "string"
                     },
                     "url": {
+                        "description": "The organization URL.\n",
                         "type": "string"
                     }
                 },
@@ -21198,6 +21214,10 @@
                         "description": "The integration ID.\n",
                         "type": "string"
                     },
+                    "inboundEmail": {
+                        "description": "The inbound email for the integration. Only available for integration type \u003cspan pulumi-lang-nodejs=\"`inboundEmail`\" pulumi-lang-dotnet=\"`InboundEmail`\" pulumi-lang-go=\"`inboundEmail`\" pulumi-lang-python=\"`inbound_email`\" pulumi-lang-yaml=\"`inboundEmail`\" pulumi-lang-java=\"`inboundEmail`\"\u003e`inbound_email`\u003c/span\u003e.\n",
+                        "type": "string"
+                    },
                     "link": {
                         "description": "The link for the integration.\n",
                         "type": "string"
@@ -21209,6 +21229,7 @@
                 },
                 "required": [
                     "id",
+                    "inboundEmail",
                     "link",
                     "name"
                 ],

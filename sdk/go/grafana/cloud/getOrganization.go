@@ -11,6 +11,15 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+// Fetches a Grafana Cloud organization.
+//
+// * [Official documentation](https://grafana.com/docs/grafana-cloud/)
+// * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#organizations)
+//
+// Required access policy scopes:
+//
+// * orgs:read
+//
 // ## Example Usage
 //
 // ```go
@@ -48,20 +57,26 @@ func GetOrganization(ctx *pulumi.Context, args *GetOrganizationArgs, opts ...pul
 
 // A collection of arguments for invoking getOrganization.
 type GetOrganizationArgs struct {
-	// The ID of this resource.
-	Id   *string `pulumi:"id"`
+	// The organization ID.
+	Id *string `pulumi:"id"`
+	// The organization slug.
 	Slug *string `pulumi:"slug"`
 }
 
 // A collection of values returned by getOrganization.
 type GetOrganizationResult struct {
+	// The date and time the organization was created.
 	CreatedAt string `pulumi:"createdAt"`
-	// The ID of this resource.
-	Id        string `pulumi:"id"`
-	Name      string `pulumi:"name"`
-	Slug      string `pulumi:"slug"`
+	// The organization ID.
+	Id string `pulumi:"id"`
+	// The organization name.
+	Name string `pulumi:"name"`
+	// The organization slug.
+	Slug string `pulumi:"slug"`
+	// The date and time the organization was last updated.
 	UpdatedAt string `pulumi:"updatedAt"`
-	Url       string `pulumi:"url"`
+	// The organization URL.
+	Url string `pulumi:"url"`
 }
 
 func GetOrganizationOutput(ctx *pulumi.Context, args GetOrganizationOutputArgs, opts ...pulumi.InvokeOption) GetOrganizationResultOutput {
@@ -75,8 +90,9 @@ func GetOrganizationOutput(ctx *pulumi.Context, args GetOrganizationOutputArgs, 
 
 // A collection of arguments for invoking getOrganization.
 type GetOrganizationOutputArgs struct {
-	// The ID of this resource.
-	Id   pulumi.StringPtrInput `pulumi:"id"`
+	// The organization ID.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The organization slug.
 	Slug pulumi.StringPtrInput `pulumi:"slug"`
 }
 
@@ -99,27 +115,32 @@ func (o GetOrganizationResultOutput) ToGetOrganizationResultOutputWithContext(ct
 	return o
 }
 
+// The date and time the organization was created.
 func (o GetOrganizationResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The ID of this resource.
+// The organization ID.
 func (o GetOrganizationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The organization name.
 func (o GetOrganizationResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The organization slug.
 func (o GetOrganizationResultOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.Slug }).(pulumi.StringOutput)
 }
 
+// The date and time the organization was last updated.
 func (o GetOrganizationResultOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
+// The organization URL.
 func (o GetOrganizationResultOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationResult) string { return v.Url }).(pulumi.StringOutput)
 }

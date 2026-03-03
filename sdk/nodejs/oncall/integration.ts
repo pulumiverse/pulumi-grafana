@@ -73,7 +73,7 @@ export class Integration extends pulumi.CustomResource {
      */
     declare public readonly templates: pulumi.Output<outputs.onCall.IntegrationTemplates | undefined>;
     /**
-     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
      */
     declare public readonly type: pulumi.Output<string>;
 
@@ -153,7 +153,7 @@ export interface IntegrationState {
      */
     templates?: pulumi.Input<inputs.onCall.IntegrationTemplates>;
     /**
-     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
      */
     type?: pulumi.Input<string>;
 }
@@ -187,7 +187,7 @@ export interface IntegrationArgs {
      */
     templates?: pulumi.Input<inputs.onCall.IntegrationTemplates>;
     /**
-     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+     * The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
      */
     type: pulumi.Input<string>;
 }

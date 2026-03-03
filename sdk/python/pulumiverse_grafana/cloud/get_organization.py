@@ -49,34 +49,49 @@ class GetOrganizationResult:
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> _builtins.str:
+        """
+        The date and time the organization was created.
+        """
         return pulumi.get(self, "created_at")
 
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The ID of this resource.
+        The organization ID.
         """
         return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
+        """
+        The organization name.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter
     def slug(self) -> _builtins.str:
+        """
+        The organization slug.
+        """
         return pulumi.get(self, "slug")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> _builtins.str:
+        """
+        The date and time the organization was last updated.
+        """
         return pulumi.get(self, "updated_at")
 
     @_builtins.property
     @pulumi.getter
     def url(self) -> _builtins.str:
+        """
+        The organization URL.
+        """
         return pulumi.get(self, "url")
 
 
@@ -98,6 +113,15 @@ def get_organization(id: Optional[_builtins.str] = None,
                      slug: Optional[_builtins.str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
+    Fetches a Grafana Cloud organization.
+
+    * [Official documentation](https://grafana.com/docs/grafana-cloud/)
+    * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#organizations)
+
+    Required access policy scopes:
+
+    * orgs:read
+
     ## Example Usage
 
     ```python
@@ -108,7 +132,8 @@ def get_organization(id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str id: The ID of this resource.
+    :param _builtins.str id: The organization ID.
+    :param _builtins.str slug: The organization slug.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -127,6 +152,15 @@ def get_organization_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] 
                             slug: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationResult]:
     """
+    Fetches a Grafana Cloud organization.
+
+    * [Official documentation](https://grafana.com/docs/grafana-cloud/)
+    * [API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#organizations)
+
+    Required access policy scopes:
+
+    * orgs:read
+
     ## Example Usage
 
     ```python
@@ -137,7 +171,8 @@ def get_organization_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] 
     ```
 
 
-    :param _builtins.str id: The ID of this resource.
+    :param _builtins.str id: The organization ID.
+    :param _builtins.str slug: The organization slug.
     """
     __args__ = dict()
     __args__['id'] = id

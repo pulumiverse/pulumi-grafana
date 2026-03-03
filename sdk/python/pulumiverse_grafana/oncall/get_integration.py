@@ -26,10 +26,13 @@ class GetIntegrationResult:
     """
     A collection of values returned by getIntegration.
     """
-    def __init__(__self__, id=None, link=None, name=None):
+    def __init__(__self__, id=None, inbound_email=None, link=None, name=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if inbound_email and not isinstance(inbound_email, str):
+            raise TypeError("Expected argument 'inbound_email' to be a str")
+        pulumi.set(__self__, "inbound_email", inbound_email)
         if link and not isinstance(link, str):
             raise TypeError("Expected argument 'link' to be a str")
         pulumi.set(__self__, "link", link)
@@ -44,6 +47,14 @@ class GetIntegrationResult:
         The integration ID.
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="inboundEmail")
+    def inbound_email(self) -> _builtins.str:
+        """
+        The inbound email for the integration. Only available for integration type `inbound_email`.
+        """
+        return pulumi.get(self, "inbound_email")
 
     @_builtins.property
     @pulumi.getter
@@ -69,6 +80,7 @@ class AwaitableGetIntegrationResult(GetIntegrationResult):
             yield self
         return GetIntegrationResult(
             id=self.id,
+            inbound_email=self.inbound_email,
             link=self.link,
             name=self.name)
 
@@ -97,6 +109,7 @@ def get_integration(id: Optional[_builtins.str] = None,
 
     return AwaitableGetIntegrationResult(
         id=pulumi.get(__ret__, 'id'),
+        inbound_email=pulumi.get(__ret__, 'inbound_email'),
         link=pulumi.get(__ret__, 'link'),
         name=pulumi.get(__ret__, 'name'))
 def get_integration_output(id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -122,5 +135,6 @@ def get_integration_output(id: Optional[pulumi.Input[_builtins.str]] = None,
     __ret__ = pulumi.runtime.invoke_output('grafana:onCall/getIntegration:getIntegration', __args__, opts=opts, typ=GetIntegrationResult)
     return __ret__.apply(lambda __response__: GetIntegrationResult(
         id=pulumi.get(__response__, 'id'),
+        inbound_email=pulumi.get(__response__, 'inbound_email'),
         link=pulumi.get(__response__, 'link'),
         name=pulumi.get(__response__, 'name')))

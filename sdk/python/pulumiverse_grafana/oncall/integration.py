@@ -31,7 +31,7 @@ class IntegrationArgs:
         """
         The set of arguments for constructing a Integration resource.
         :param pulumi.Input['IntegrationDefaultRouteArgs'] default_route: The Default route for all alerts from the given integration
-        :param pulumi.Input[_builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+        :param pulumi.Input[_builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
         :param pulumi.Input[_builtins.str] name: The name of the service integration.
@@ -67,7 +67,7 @@ class IntegrationArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+        The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
         """
         return pulumi.get(self, "type")
 
@@ -156,7 +156,7 @@ class _IntegrationState:
         :param pulumi.Input[_builtins.str] name: The name of the service integration.
         :param pulumi.Input[_builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
         :param pulumi.Input['IntegrationTemplatesArgs'] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
-        :param pulumi.Input[_builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+        :param pulumi.Input[_builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
         """
         if default_route is not None:
             pulumi.set(__self__, "default_route", default_route)
@@ -263,7 +263,7 @@ class _IntegrationState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+        The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
         """
         return pulumi.get(self, "type")
 
@@ -304,7 +304,7 @@ class Integration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the service integration.
         :param pulumi.Input[_builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
         :param pulumi.Input[Union['IntegrationTemplatesArgs', 'IntegrationTemplatesArgsDict']] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
-        :param pulumi.Input[_builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+        :param pulumi.Input[_builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
         """
         ...
     @overload
@@ -397,7 +397,7 @@ class Integration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the service integration.
         :param pulumi.Input[_builtins.str] team_id: The ID of the OnCall team (using the `on_call_get_team` datasource).
         :param pulumi.Input[Union['IntegrationTemplatesArgs', 'IntegrationTemplatesArgsDict']] templates: Jinja2 templates for Alert payload. An empty templates block will be ignored.
-        :param pulumi.Input[_builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+        :param pulumi.Input[_builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -473,7 +473,7 @@ class Integration(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+        The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
         """
         return pulumi.get(self, "type")
 

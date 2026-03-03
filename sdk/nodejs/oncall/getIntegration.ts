@@ -44,6 +44,10 @@ export interface GetIntegrationResult {
      */
     readonly id: string;
     /**
+     * The inbound email for the integration. Only available for integration type `inboundEmail`.
+     */
+    readonly inboundEmail: string;
+    /**
      * The link for the integration.
      */
     readonly link: string;

@@ -37,7 +37,7 @@ type Integration struct {
 	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates IntegrationTemplatesPtrOutput `pulumi:"templates"`
-	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -91,7 +91,7 @@ type integrationState struct {
 	TeamId *string `pulumi:"teamId"`
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates *IntegrationTemplates `pulumi:"templates"`
-	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
 	Type *string `pulumi:"type"`
 }
 
@@ -110,7 +110,7 @@ type IntegrationState struct {
 	TeamId pulumi.StringPtrInput
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates IntegrationTemplatesPtrInput
-	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
 	Type pulumi.StringPtrInput
 }
 
@@ -131,7 +131,7 @@ type integrationArgs struct {
 	TeamId *string `pulumi:"teamId"`
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates *IntegrationTemplates `pulumi:"templates"`
-	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
 	Type string `pulumi:"type"`
 }
 
@@ -149,7 +149,7 @@ type IntegrationArgs struct {
 	TeamId pulumi.StringPtrInput
 	// Jinja2 templates for Alert payload. An empty templates block will be ignored.
 	Templates IntegrationTemplatesPtrInput
-	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+	// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
 	Type pulumi.StringInput
 }
 
@@ -275,7 +275,7 @@ func (o IntegrationOutput) Templates() IntegrationTemplatesPtrOutput {
 	return o.ApplyT(func(v *Integration) IntegrationTemplatesPtrOutput { return v.Templates }).(IntegrationTemplatesPtrOutput)
 }
 
-// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, heartbeat, demo, manual, stackdriver, uptimerobot, sentry*platform, zabbix, prtg, slack*channel, inbound*email, direct_paging, jira, zendesk.
+// The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
 func (o IntegrationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Integration) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

@@ -58,6 +58,9 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("nameFilter")]
         public string? NameFilter { get; set; }
 
+        /// <summary>
+        /// If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
+        /// </summary>
         [Input("regionFilter")]
         public string? RegionFilter { get; set; }
 
@@ -72,6 +75,9 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("nameFilter")]
         public Input<string>? NameFilter { get; set; }
 
+        /// <summary>
+        /// If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
+        /// </summary>
         [Input("regionFilter")]
         public Input<string>? RegionFilter { get; set; }
 
@@ -91,6 +97,9 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string Id;
         public readonly string? NameFilter;
+        /// <summary>
+        /// If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
+        /// </summary>
         public readonly string? RegionFilter;
 
         [OutputConstructor]

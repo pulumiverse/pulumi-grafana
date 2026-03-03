@@ -26,7 +26,7 @@ class GetIpsResult:
     """
     A collection of values returned by getIps.
     """
-    def __init__(__self__, hosted_alerts=None, hosted_grafanas=None, hosted_logs=None, hosted_metrics=None, hosted_profiles=None, hosted_traces=None, id=None):
+    def __init__(__self__, hosted_alerts=None, hosted_grafanas=None, hosted_logs=None, hosted_metrics=None, hosted_otlps=None, hosted_profiles=None, hosted_traces=None, id=None):
         if hosted_alerts and not isinstance(hosted_alerts, list):
             raise TypeError("Expected argument 'hosted_alerts' to be a list")
         pulumi.set(__self__, "hosted_alerts", hosted_alerts)
@@ -39,6 +39,9 @@ class GetIpsResult:
         if hosted_metrics and not isinstance(hosted_metrics, list):
             raise TypeError("Expected argument 'hosted_metrics' to be a list")
         pulumi.set(__self__, "hosted_metrics", hosted_metrics)
+        if hosted_otlps and not isinstance(hosted_otlps, list):
+            raise TypeError("Expected argument 'hosted_otlps' to be a list")
+        pulumi.set(__self__, "hosted_otlps", hosted_otlps)
         if hosted_profiles and not isinstance(hosted_profiles, list):
             raise TypeError("Expected argument 'hosted_profiles' to be a list")
         pulumi.set(__self__, "hosted_profiles", hosted_profiles)
@@ -82,6 +85,14 @@ class GetIpsResult:
         return pulumi.get(self, "hosted_metrics")
 
     @_builtins.property
+    @pulumi.getter(name="hostedOtlps")
+    def hosted_otlps(self) -> Sequence[_builtins.str]:
+        """
+        Set of IP addresses that are used for the OTLP Gateway.
+        """
+        return pulumi.get(self, "hosted_otlps")
+
+    @_builtins.property
     @pulumi.getter(name="hostedProfiles")
     def hosted_profiles(self) -> Sequence[_builtins.str]:
         """
@@ -101,7 +112,7 @@ class GetIpsResult:
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this datasource. This is an internal identifier used by the provider to track this datasource.
         """
         return pulumi.get(self, "id")
 
@@ -116,6 +127,7 @@ class AwaitableGetIpsResult(GetIpsResult):
             hosted_grafanas=self.hosted_grafanas,
             hosted_logs=self.hosted_logs,
             hosted_metrics=self.hosted_metrics,
+            hosted_otlps=self.hosted_otlps,
             hosted_profiles=self.hosted_profiles,
             hosted_traces=self.hosted_traces,
             id=self.id)
@@ -123,7 +135,9 @@ class AwaitableGetIpsResult(GetIpsResult):
 
 def get_ips(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpsResult:
     """
-    Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
+    Data source for retrieving sets of cloud IPs.
+
+    * [Official documentation](https://grafana.com/docs/grafana-cloud/reference/allow-list/)
 
     ## Example Usage
 
@@ -143,12 +157,15 @@ def get_ips(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpsResul
         hosted_grafanas=pulumi.get(__ret__, 'hosted_grafanas'),
         hosted_logs=pulumi.get(__ret__, 'hosted_logs'),
         hosted_metrics=pulumi.get(__ret__, 'hosted_metrics'),
+        hosted_otlps=pulumi.get(__ret__, 'hosted_otlps'),
         hosted_profiles=pulumi.get(__ret__, 'hosted_profiles'),
         hosted_traces=pulumi.get(__ret__, 'hosted_traces'),
         id=pulumi.get(__ret__, 'id'))
 def get_ips_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpsResult]:
     """
-    Data source for retrieving sets of cloud IPs. See https://grafana.com/docs/grafana-cloud/reference/allow-list/ for more info
+    Data source for retrieving sets of cloud IPs.
+
+    * [Official documentation](https://grafana.com/docs/grafana-cloud/reference/allow-list/)
 
     ## Example Usage
 
@@ -167,6 +184,7 @@ def get_ips_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutpu
         hosted_grafanas=pulumi.get(__response__, 'hosted_grafanas'),
         hosted_logs=pulumi.get(__response__, 'hosted_logs'),
         hosted_metrics=pulumi.get(__response__, 'hosted_metrics'),
+        hosted_otlps=pulumi.get(__response__, 'hosted_otlps'),
         hosted_profiles=pulumi.get(__response__, 'hosted_profiles'),
         hosted_traces=pulumi.get(__response__, 'hosted_traces'),
         id=pulumi.get(__response__, 'id')))

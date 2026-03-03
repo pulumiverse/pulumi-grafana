@@ -1543,6 +1543,9 @@
                     "hosted_metrics": {
                         "maxItemsOne": false
                     },
+                    "hosted_otlp": {
+                        "maxItemsOne": false
+                    },
                     "hosted_profiles": {
                         "maxItemsOne": false
                     },
@@ -2185,8 +2188,8 @@
         },
         "functions": {
             "grafana:cloud/getAccessPolicies:getAccessPolicies": 1,
-            "grafana:cloud/getIps:getIps": 0,
-            "grafana:cloud/getOrganization:getOrganization": 0,
+            "grafana:cloud/getIps:getIps": 1,
+            "grafana:cloud/getOrganization:getOrganization": 1,
             "grafana:cloud/getPrivateDataSourceConnectNetworks:getPrivateDataSourceConnectNetworks": 1,
             "grafana:cloud/getStack:getStack": 0,
             "grafana:cloudProvider/getAwsAccount:getAwsAccount": 1,
