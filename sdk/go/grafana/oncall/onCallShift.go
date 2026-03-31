@@ -14,10 +14,12 @@ import (
 
 // * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/on_call_shifts/)
 //
+// ## Example Usage
+//
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:onCall/onCallShift:OnCallShift name "{{ id }}"
+// terraform import grafana_oncall_on_call_shift.name "{{ id }}"
 // ```
 type OnCallShift struct {
 	pulumi.CustomResourceState

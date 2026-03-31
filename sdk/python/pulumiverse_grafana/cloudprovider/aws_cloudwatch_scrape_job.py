@@ -32,10 +32,13 @@ class AwsCloudwatchScrapeJobArgs:
                  static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AwsCloudwatchScrapeJob resource.
+
         :param pulumi.Input[_builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
+        :param pulumi.Input[_builtins.str] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobCustomNamespaceArgs']]] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[_builtins.bool] enabled: Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] name: The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobServiceArgs']]] services: One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
@@ -72,6 +75,9 @@ class AwsCloudwatchScrapeJobArgs:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
@@ -117,6 +123,9 @@ class AwsCloudwatchScrapeJobArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -175,13 +184,16 @@ class _AwsCloudwatchScrapeJobState:
                  static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering AwsCloudwatchScrapeJob resources.
+
         :param pulumi.Input[_builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobCustomNamespaceArgs']]] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[_builtins.str] disabled_reason: When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
         :param pulumi.Input[_builtins.bool] enabled: Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] name: The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobServiceArgs']]] services: One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        :param pulumi.Input[_builtins.str] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
         """
         if aws_account_resource_id is not None:
@@ -268,6 +280,9 @@ class _AwsCloudwatchScrapeJobState:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -301,6 +316,9 @@ class _AwsCloudwatchScrapeJobState:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
@@ -337,13 +355,78 @@ class AwsCloudwatchScrapeJob(pulumi.CustomResource):
                  static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
+        This resource allows you to scrape AWS CloudWatch metrics in Grafana Cloud without needing to run your own infrastructure.
+
+        See the Grafana Provider configuration docs
+        for information on authentication and required access policy scopes.
+
+        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
+
+        test = grafana.cloud.get_stack(slug="gcloudstacktest")
+        test_iam_role = aws.index.iam_role(name="my-role")
+        test_aws_account = grafana.cloudprovider.AwsAccount("test",
+            stack_id=test.id,
+            role_arn=test_iam_role["arn"],
+            regions=[
+                "us-east-1",
+                "us-east-2",
+                "us-west-1",
+            ])
+        test_aws_cloudwatch_scrape_job = grafana.cloudprovider.AwsCloudwatchScrapeJob("test",
+            stack_id=test.id,
+            name="my-cloudwatch-scrape-job",
+            aws_account_resource_id=test_aws_account.resource_id,
+            export_tags=True,
+            services=[{
+                "name": "AWS/EC2",
+                "metrics": [
+                    {
+                        "name": "CPUUtilization",
+                        "statistics": ["Average"],
+                    },
+                    {
+                        "name": "StatusCheckFailed",
+                        "statistics": ["Maximum"],
+                    },
+                ],
+                "scrape_interval_seconds": 300,
+                "resource_discovery_tag_filters": [{
+                    "key": "k8s.io/cluster-autoscaler/enabled",
+                    "value": "true",
+                }],
+                "tags_to_add_to_metrics": ["eks:cluster-name"],
+            }],
+            custom_namespaces=[{
+                "name": "CoolApp",
+                "metrics": [{
+                    "name": "CoolMetric",
+                    "statistics": [
+                        "Maximum",
+                        "Sum",
+                    ],
+                }],
+                "scrape_interval_seconds": 300,
+            }],
+            static_labels={
+                "label1": "value1",
+                "label2": "value2",
+            })
+        ```
 
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob name "{{ stack_id }}:{{ name }}"
+        terraform import grafana_cloud_provider_aws_cloudwatch_scrape_job.name "{{ stack_id }}:{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -351,8 +434,10 @@ class AwsCloudwatchScrapeJob(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['AwsCloudwatchScrapeJobCustomNamespaceArgs', 'AwsCloudwatchScrapeJobCustomNamespaceArgsDict']]]] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[_builtins.bool] enabled: Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] name: The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AwsCloudwatchScrapeJobServiceArgs', 'AwsCloudwatchScrapeJobServiceArgsDict']]]] services: One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        :param pulumi.Input[_builtins.str] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
         """
         ...
@@ -362,13 +447,78 @@ class AwsCloudwatchScrapeJob(pulumi.CustomResource):
                  args: AwsCloudwatchScrapeJobArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        This resource allows you to scrape AWS CloudWatch metrics in Grafana Cloud without needing to run your own infrastructure.
+
+        See the Grafana Provider configuration docs
+        for information on authentication and required access policy scopes.
+
+        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
+
+        test = grafana.cloud.get_stack(slug="gcloudstacktest")
+        test_iam_role = aws.index.iam_role(name="my-role")
+        test_aws_account = grafana.cloudprovider.AwsAccount("test",
+            stack_id=test.id,
+            role_arn=test_iam_role["arn"],
+            regions=[
+                "us-east-1",
+                "us-east-2",
+                "us-west-1",
+            ])
+        test_aws_cloudwatch_scrape_job = grafana.cloudprovider.AwsCloudwatchScrapeJob("test",
+            stack_id=test.id,
+            name="my-cloudwatch-scrape-job",
+            aws_account_resource_id=test_aws_account.resource_id,
+            export_tags=True,
+            services=[{
+                "name": "AWS/EC2",
+                "metrics": [
+                    {
+                        "name": "CPUUtilization",
+                        "statistics": ["Average"],
+                    },
+                    {
+                        "name": "StatusCheckFailed",
+                        "statistics": ["Maximum"],
+                    },
+                ],
+                "scrape_interval_seconds": 300,
+                "resource_discovery_tag_filters": [{
+                    "key": "k8s.io/cluster-autoscaler/enabled",
+                    "value": "true",
+                }],
+                "tags_to_add_to_metrics": ["eks:cluster-name"],
+            }],
+            custom_namespaces=[{
+                "name": "CoolApp",
+                "metrics": [{
+                    "name": "CoolMetric",
+                    "statistics": [
+                        "Maximum",
+                        "Sum",
+                    ],
+                }],
+                "scrape_interval_seconds": 300,
+            }],
+            static_labels={
+                "label1": "value1",
+                "label2": "value2",
+            })
+        ```
 
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob name "{{ stack_id }}:{{ name }}"
+        terraform import grafana_cloud_provider_aws_cloudwatch_scrape_job.name "{{ stack_id }}:{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AwsCloudwatchScrapeJobArgs args: The arguments to use to populate this resource's properties.
@@ -449,8 +599,10 @@ class AwsCloudwatchScrapeJob(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] disabled_reason: When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
         :param pulumi.Input[_builtins.bool] enabled: Whether the AWS CloudWatch Scrape Job is enabled or not. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] name: The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AwsCloudwatchScrapeJobServiceArgs', 'AwsCloudwatchScrapeJobServiceArgsDict']]]] services: One or more configuration blocks to configure AWS services for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        :param pulumi.Input[_builtins.str] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -512,6 +664,9 @@ class AwsCloudwatchScrapeJob(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
@@ -533,6 +688,9 @@ class AwsCloudwatchScrapeJob(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @_builtins.property

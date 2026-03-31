@@ -92,11 +92,8 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:enterprise/roleAssignment:RoleAssignment name "{{ roleUID }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:enterprise/roleAssignment:RoleAssignment name "{{ orgID }}:{{ roleUID }}"
+// terraform import grafana_role_assignment.name "{{ roleUID }}"
+// terraform import grafana_role_assignment.name "{{ orgID }}:{{ roleUID }}"
 // ```
 type RoleAssignment struct {
 	pulumi.CustomResourceState

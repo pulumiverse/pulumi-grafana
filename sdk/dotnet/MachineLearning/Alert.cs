@@ -97,7 +97,7 @@ namespace Pulumiverse.Grafana.MachineLearning
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:machineLearning/alert:Alert name "{{ id }}"
+    /// terraform import grafana_machine_learning_alert.name "{{ id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:machineLearning/alert:Alert")]

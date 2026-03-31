@@ -53,7 +53,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:oss/user:User name "{{ id }}"
+// terraform import grafana_user.name "{{ id }}"
 // ```
 type User struct {
 	pulumi.CustomResourceState

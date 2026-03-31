@@ -26,10 +26,7 @@ import * as utilities from "../utilities";
  *
  * ```sh
  * $ pulumi import grafana:enterprise/scimConfig:ScimConfig name ""
- * ```
- *
- * ```sh
- * $ pulumi import grafana:enterprise/scimConfig:ScimConfig name "{{ orgID }}"
+ * terraform import grafana_scim_config.name "{{ orgID }}"
  * ```
  */
 export class ScimConfig extends pulumi.CustomResource {

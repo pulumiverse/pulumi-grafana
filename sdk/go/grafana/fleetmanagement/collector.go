@@ -56,7 +56,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:fleetManagement/collector:Collector name "{{ id }}"
+// terraform import grafana_fleet_management_collector.name "{{ id }}"
 // ```
 type Collector struct {
 	pulumi.CustomResourceState

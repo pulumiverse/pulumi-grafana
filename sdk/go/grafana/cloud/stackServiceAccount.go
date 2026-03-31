@@ -55,7 +55,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:cloud/stackServiceAccount:StackServiceAccount name "{{ stackSlug }}:{{ serviceAccountID }}"
+// terraform import grafana_cloud_stack_service_account.name "{{ stackSlug }}:{{ serviceAccountID }}"
 // ```
 type StackServiceAccount struct {
 	pulumi.CustomResourceState

@@ -5,6 +5,548 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppsDashboardDashboardV2beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations: {[key: string]: string};
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: string;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: string;
+    /**
+     * The full URL of the resource.
+     */
+    url: string;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid: string;
+    /**
+     * The version of the resource.
+     */
+    version: string;
+}
+
+export interface AppsDashboardDashboardV2beta1Options {
+    /**
+     * Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+     */
+    allowUiUpdates?: boolean;
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: boolean;
+}
+
+export interface AppsDashboardDashboardV2beta1Spec {
+    /**
+     * The JSON representation of the dashboard v2beta1 spec.
+     */
+    json: string;
+    /**
+     * The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
+     */
+    tags?: string[];
+    /**
+     * The title of the dashboard. If not set, the title will be derived from the JSON spec.
+     */
+    title?: string;
+}
+
+export interface AppsNotificationsInhibitionruleV1beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations: {[key: string]: string};
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: string;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: string;
+    /**
+     * The full URL of the resource.
+     */
+    url: string;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid: string;
+    /**
+     * The version of the resource.
+     */
+    version: string;
+}
+
+export interface AppsNotificationsInhibitionruleV1beta1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: boolean;
+}
+
+export interface AppsNotificationsInhibitionruleV1beta1Spec {
+    /**
+     * Labels that must have equal values in source and target alerts for the inhibition to take effect.
+     */
+    equals?: string[];
+    /**
+     * Matchers that must be satisfied for an alert to be a source of inhibition.
+     */
+    sourceMatchers?: outputs.AppsNotificationsInhibitionruleV1beta1SpecSourceMatcher[];
+    /**
+     * Matchers that must be satisfied for an alert to be inhibited.
+     */
+    targetMatchers?: outputs.AppsNotificationsInhibitionruleV1beta1SpecTargetMatcher[];
+}
+
+export interface AppsNotificationsInhibitionruleV1beta1SpecSourceMatcher {
+    label: string;
+    type: string;
+    value: string;
+}
+
+export interface AppsNotificationsInhibitionruleV1beta1SpecTargetMatcher {
+    label: string;
+    type: string;
+    value: string;
+}
+
+export interface AppsProvisioningConnectionV0alpha1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations: {[key: string]: string};
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: string;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: string;
+    /**
+     * The full URL of the resource.
+     */
+    url: string;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid: string;
+    /**
+     * The version of the resource.
+     */
+    version: string;
+}
+
+export interface AppsProvisioningConnectionV0alpha1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: boolean;
+}
+
+export interface AppsProvisioningConnectionV0alpha1Secure {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Private key for GitHub App authentication.
+     */
+    privateKey?: {[key: string]: string};
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Access token.
+     */
+    token?: {[key: string]: string};
+}
+
+export interface AppsProvisioningConnectionV0alpha1Spec {
+    /**
+     * Connection description.
+     */
+    description?: string;
+    /**
+     * GitHub App configuration.
+     */
+    github?: outputs.AppsProvisioningConnectionV0alpha1SpecGithub;
+    /**
+     * Display name shown in the UI.
+     */
+    title: string;
+    /**
+     * Connection provider type.
+     */
+    type: string;
+    /**
+     * Provider URL.
+     */
+    url?: string;
+}
+
+export interface AppsProvisioningConnectionV0alpha1SpecGithub {
+    /**
+     * GitHub App ID.
+     */
+    appId: string;
+    /**
+     * GitHub App installation ID.
+     */
+    installationId: string;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations: {[key: string]: string};
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: string;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: string;
+    /**
+     * The full URL of the resource.
+     */
+    url: string;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid: string;
+    /**
+     * The version of the resource.
+     */
+    version: string;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: boolean;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1Secure {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Token for repository authentication.
+     */
+    token?: {[key: string]: string};
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Webhook secret.
+     */
+    webhookSecret?: {[key: string]: string};
+}
+
+export interface AppsProvisioningRepositoryV0alpha1Spec {
+    /**
+     * Bitbucket repository configuration.
+     */
+    bitbucket?: outputs.AppsProvisioningRepositoryV0alpha1SpecBitbucket;
+    /**
+     * Connection resource reference.
+     */
+    connection?: outputs.AppsProvisioningRepositoryV0alpha1SpecConnection;
+    /**
+     * Repository description.
+     */
+    description?: string;
+    /**
+     * Generic git repository configuration.
+     */
+    git?: outputs.AppsProvisioningRepositoryV0alpha1SpecGit;
+    /**
+     * GitHub repository configuration.
+     */
+    github?: outputs.AppsProvisioningRepositoryV0alpha1SpecGithub;
+    /**
+     * GitLab repository configuration.
+     */
+    gitlab?: outputs.AppsProvisioningRepositoryV0alpha1SpecGitlab;
+    /**
+     * Local filesystem repository configuration.
+     */
+    local?: outputs.AppsProvisioningRepositoryV0alpha1SpecLocal;
+    /**
+     * Sync configuration.
+     */
+    sync?: outputs.AppsProvisioningRepositoryV0alpha1SpecSync;
+    /**
+     * Display name shown in the UI.
+     */
+    title: string;
+    /**
+     * Repository provider type: local, github, git, bitbucket, or gitlab.
+     */
+    type: string;
+    /**
+     * Allowed change workflows: write, branch.
+     */
+    workflows?: string[];
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecBitbucket {
+    /**
+     * Branch to sync.
+     */
+    branch?: string;
+    /**
+     * Optional subdirectory path.
+     */
+    path?: string;
+    /**
+     * Username for PAT auth.
+     */
+    tokenUser?: string;
+    /**
+     * Repository URL.
+     */
+    url?: string;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecConnection {
+    /**
+     * Connection resource name.
+     */
+    name?: string;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecGit {
+    /**
+     * Branch to sync.
+     */
+    branch?: string;
+    /**
+     * Optional subdirectory path.
+     */
+    path?: string;
+    /**
+     * Username for PAT auth.
+     */
+    tokenUser?: string;
+    /**
+     * Repository URL.
+     */
+    url?: string;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecGithub {
+    /**
+     * Branch to sync.
+     */
+    branch?: string;
+    /**
+     * Whether to generate dashboard previews.
+     */
+    generateDashboardPreviews?: boolean;
+    /**
+     * Optional subdirectory path.
+     */
+    path?: string;
+    /**
+     * Repository URL.
+     */
+    url?: string;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecGitlab {
+    /**
+     * Branch to sync.
+     */
+    branch?: string;
+    /**
+     * Optional subdirectory path.
+     */
+    path?: string;
+    /**
+     * Repository URL.
+     */
+    url?: string;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecLocal {
+    /**
+     * Filesystem path.
+     */
+    path?: string;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecSync {
+    /**
+     * Whether sync is enabled.
+     */
+    enabled: boolean;
+    /**
+     * Sync interval in seconds.
+     */
+    intervalSeconds?: number;
+    /**
+     * Sync target: instance or folder.
+     */
+    target: string;
+}
+
+export interface AppsSecretKeeperActivationV1beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations: {[key: string]: string};
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: string;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: string;
+    /**
+     * The full URL of the resource.
+     */
+    url: string;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid: string;
+    /**
+     * The version of the resource.
+     */
+    version: string;
+}
+
+export interface AppsSecretKeeperV1beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations: {[key: string]: string};
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: string;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: string;
+    /**
+     * The full URL of the resource.
+     */
+    url: string;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid: string;
+    /**
+     * The version of the resource.
+     */
+    version: string;
+}
+
+export interface AppsSecretKeeperV1beta1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: boolean;
+}
+
+export interface AppsSecretKeeperV1beta1Spec {
+    /**
+     * AWS Secrets Manager configuration.
+     */
+    aws?: outputs.AppsSecretKeeperV1beta1SpecAws;
+    /**
+     * Keeper description.
+     */
+    description?: string;
+}
+
+export interface AppsSecretKeeperV1beta1SpecAws {
+    /**
+     * IAM role assumption configuration.
+     */
+    assumeRole?: outputs.AppsSecretKeeperV1beta1SpecAwsAssumeRole;
+    /**
+     * AWS region.
+     */
+    region: string;
+}
+
+export interface AppsSecretKeeperV1beta1SpecAwsAssumeRole {
+    /**
+     * Assume role ARN.
+     */
+    assumeRoleArn?: string;
+    /**
+     * Assume role external ID.
+     */
+    externalId?: string;
+}
+
+export interface AppsSecretSecurevalueV1beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations: {[key: string]: string};
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: string;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: string;
+    /**
+     * The full URL of the resource.
+     */
+    url: string;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid: string;
+    /**
+     * The version of the resource.
+     */
+    version: string;
+}
+
+export interface AppsSecretSecurevalueV1beta1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: boolean;
+}
+
+export interface AppsSecretSecurevalueV1beta1Spec {
+    /**
+     * List of decrypters allowed to read this secure value.
+     */
+    decrypters?: string[];
+    /**
+     * Secure value description.
+     */
+    description?: string;
+    /**
+     * Reference to an existing secret managed by the keeper.
+     */
+    ref?: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Plaintext value to store. This value is write-only.
+     */
+    value?: string;
+    /**
+     * Hash of the stored plaintext value.
+     */
+    valueHash: string;
+}
+
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -53,6 +595,9 @@ export namespace alerting {
          * Description of the alert enrichment.
          */
         description: string;
+        /**
+         * Allow modifying alert enrichment outside of Terraform
+         */
         disableProvenance: boolean;
         /**
          * Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
@@ -611,7 +1156,7 @@ export namespace alerting {
          */
         notificationSettings?: outputs.alerting.AlertRuleV0Alpha1SpecNotificationSettings;
         /**
-         * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
+         * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
          */
         panelRef?: {[key: string]: string};
         /**
@@ -2438,6 +2983,63 @@ export namespace assert {
         record?: string;
     }
 
+    export interface StackDataset {
+        /**
+         * List of vendors to disable for this dataset.
+         */
+        disabledVendors?: string[];
+        /**
+         * Filter groups for this dataset. Use when you need custom label mappings.
+         */
+        filterGroups?: outputs.assert.StackDatasetFilterGroup[];
+        /**
+         * The dataset type. Available types: `kubernetes`, `otel` (App O11y), `prometheus`, `aws`. Note: `kubernetes` requires K8s Monitoring to be enabled, and `otel` requires Application Observability to be enabled on the stack.
+         */
+        type: string;
+    }
+
+    export interface StackDatasetFilterGroup {
+        /**
+         * The metric label name used for environment (e.g., `env`, `environment`, `deploymentEnvironment`). Defaults to standard labels if not set.
+         */
+        envLabel?: string;
+        /**
+         * Specific values of the environment label to match.
+         */
+        envLabelValues?: string[];
+        /**
+         * A friendly name for the environment.
+         */
+        envName?: string;
+        /**
+         * Additional metric filters.
+         */
+        filters?: outputs.assert.StackDatasetFilterGroupFilter[];
+        /**
+         * The metric label name used for site/cluster.
+         */
+        siteLabel?: string;
+        /**
+         * Specific values of the site label to match.
+         */
+        siteLabelValues?: string[];
+    }
+
+    export interface StackDatasetFilterGroupFilter {
+        /**
+         * The label name to filter on.
+         */
+        name: string;
+        /**
+         * The filter operator (e.g., `=`, `!=`, `=~`, `!~`).
+         */
+        operator: string;
+        /**
+         * The values to match.
+         */
+        values: string[];
+    }
+
     export interface ThresholdsHealthThreshold {
         /**
          * Optional alert category label for the health threshold.
@@ -2874,7 +3476,13 @@ export namespace cloudProvider {
          * When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
          */
         exportTags: boolean;
+        /**
+         * The Terraform Resource ID. This has the format "{{ stackId }}:{{ name }}".
+         */
         id: string;
+        /**
+         * The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+         */
         name: string;
         /**
          * The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
@@ -2892,6 +3500,9 @@ export namespace cloudProvider {
          * One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
          */
         services?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobService[];
+        /**
+         * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+         */
         stackId: string;
         /**
          * A set of static labels to add to all metrics exported by this scrape job.
@@ -3136,6 +3747,10 @@ export namespace experimental {
     }
 
     export interface AppsDashboardOptions {
+        /**
+         * Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+         */
+        allowUiUpdates?: boolean;
         /**
          * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
          */

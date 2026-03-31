@@ -47,7 +47,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:onCall/route:Route name "{{ id }}"
+ * terraform import grafana_oncall_route.name "{{ id }}"
  * ```
  */
 export class Route extends pulumi.CustomResource {

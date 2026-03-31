@@ -246,6 +246,8 @@ func (o AppsDashboardMetadataPtrOutput) Version() pulumi.StringPtrOutput {
 }
 
 type AppsDashboardOptions struct {
+	// Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+	AllowUiUpdates *bool `pulumi:"allowUiUpdates"`
 	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 	Overwrite *bool `pulumi:"overwrite"`
 }
@@ -262,6 +264,8 @@ type AppsDashboardOptionsInput interface {
 }
 
 type AppsDashboardOptionsArgs struct {
+	// Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+	AllowUiUpdates pulumi.BoolPtrInput `pulumi:"allowUiUpdates"`
 	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
 }
@@ -343,6 +347,11 @@ func (o AppsDashboardOptionsOutput) ToAppsDashboardOptionsPtrOutputWithContext(c
 	}).(AppsDashboardOptionsPtrOutput)
 }
 
+// Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+func (o AppsDashboardOptionsOutput) AllowUiUpdates() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AppsDashboardOptions) *bool { return v.AllowUiUpdates }).(pulumi.BoolPtrOutput)
+}
+
 // Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 func (o AppsDashboardOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AppsDashboardOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
@@ -370,6 +379,16 @@ func (o AppsDashboardOptionsPtrOutput) Elem() AppsDashboardOptionsOutput {
 		var ret AppsDashboardOptions
 		return ret
 	}).(AppsDashboardOptionsOutput)
+}
+
+// Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+func (o AppsDashboardOptionsPtrOutput) AllowUiUpdates() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AppsDashboardOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowUiUpdates
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.

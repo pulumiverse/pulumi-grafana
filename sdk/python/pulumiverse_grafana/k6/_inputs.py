@@ -25,20 +25,15 @@ __all__ = [
     'GetScheduleRecurrenceRuleArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ScheduleCronArgsDict(TypedDict):
-        schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
-        """
-        timezone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The timezone of the cron expression. For example, `UTC` or `Europe/London`.
-        """
-elif False:
-    ScheduleCronArgsDict: TypeAlias = Mapping[str, Any]
+class ScheduleCronArgsDict(TypedDict):
+    schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
+    """
+    timezone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The timezone of the cron expression. For example, `UTC` or `Europe/London`.
+    """
 
 @pulumi.input_type
 class ScheduleCronArgs:
@@ -79,30 +74,27 @@ class ScheduleCronArgs:
         pulumi.set(self, "timezone", value)
 
 
-if not MYPY:
-    class ScheduleRecurrenceRuleArgsDict(TypedDict):
-        bydays: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
-        """
-        count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        How many times the recurrence will repeat.
-        """
-        frequency: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY).
-        """
-        interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY). Defaults to 1.
-        """
-        until: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The end time for the recurrence (RFC3339 format).
-        """
-elif False:
-    ScheduleRecurrenceRuleArgsDict: TypeAlias = Mapping[str, Any]
+class ScheduleRecurrenceRuleArgsDict(TypedDict):
+    bydays: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+    """
+    count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    How many times the recurrence will repeat.
+    """
+    frequency: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY).
+    """
+    interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY). Defaults to 1.
+    """
+    until: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The end time for the recurrence (RFC3339 format).
+    """
 
 @pulumi.input_type
 class ScheduleRecurrenceRuleArgs:
@@ -191,18 +183,15 @@ class ScheduleRecurrenceRuleArgs:
         pulumi.set(self, "until", value)
 
 
-if not MYPY:
-    class GetScheduleCronArgsDict(TypedDict):
-        schedule: _builtins.str
-        """
-        A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
-        """
-        timezone: _builtins.str
-        """
-        The timezone of the cron expression. For example, `UTC` or `Europe/London`.
-        """
-elif False:
-    GetScheduleCronArgsDict: TypeAlias = Mapping[str, Any]
+class GetScheduleCronArgsDict(TypedDict):
+    schedule: _builtins.str
+    """
+    A cron expression with exactly 5 entries, or an alias. The allowed aliases are: `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@hourly`.
+    """
+    timezone: _builtins.str
+    """
+    The timezone of the cron expression. For example, `UTC` or `Europe/London`.
+    """
 
 @pulumi.input_type
 class GetScheduleCronArgs:
@@ -241,30 +230,27 @@ class GetScheduleCronArgs:
         pulumi.set(self, "timezone", value)
 
 
-if not MYPY:
-    class GetScheduleRecurrenceRuleArgsDict(TypedDict):
-        bydays: Sequence[_builtins.str]
-        """
-        The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
-        """
-        count: _builtins.int
-        """
-        How many times the recurrence will repeat.
-        """
-        frequency: _builtins.str
-        """
-        The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY).
-        """
-        interval: _builtins.int
-        """
-        The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY).
-        """
-        until: _builtins.str
-        """
-        The end time for the recurrence (RFC3339 format).
-        """
-elif False:
-    GetScheduleRecurrenceRuleArgsDict: TypeAlias = Mapping[str, Any]
+class GetScheduleRecurrenceRuleArgsDict(TypedDict):
+    bydays: Sequence[_builtins.str]
+    """
+    The weekdays when the 'WEEKLY' recurrence will be applied (e.g., ['MO', 'WE', 'FR']). Cannot be set for other frequencies.
+    """
+    count: _builtins.int
+    """
+    How many times the recurrence will repeat.
+    """
+    frequency: _builtins.str
+    """
+    The frequency of the schedule (HOURLY, DAILY, WEEKLY, MONTHLY).
+    """
+    interval: _builtins.int
+    """
+    The interval between each frequency iteration (e.g., 2 = every 2 hours for HOURLY).
+    """
+    until: _builtins.str
+    """
+    The end time for the recurrence (RFC3339 format).
+    """
 
 @pulumi.input_type
 class GetScheduleRecurrenceRuleArgs:

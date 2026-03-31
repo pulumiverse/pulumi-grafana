@@ -54,7 +54,7 @@ namespace Pulumiverse.Grafana.FleetManagement
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:fleetManagement/pipeline:Pipeline name "{{ name }}"
+    /// terraform import grafana_fleet_management_pipeline.name "{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:fleetManagement/pipeline:Pipeline")]

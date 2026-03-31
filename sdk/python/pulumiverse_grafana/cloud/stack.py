@@ -30,6 +30,7 @@ class StackArgs:
                  wait_for_readiness_timeout: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Stack resource.
+
         :param pulumi.Input[_builtins.str] slug: Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         :param pulumi.Input[_builtins.bool] delete_protection: Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
         :param pulumi.Input[_builtins.str] description: Description of stack.
@@ -180,7 +181,9 @@ class _StackState:
                  delete_protection: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  fleet_management_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 fleet_management_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  fleet_management_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+                 fleet_management_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  fleet_management_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
                  fleet_management_status: Optional[pulumi.Input[_builtins.str]] = None,
                  fleet_management_url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -188,7 +191,9 @@ class _StackState:
                  grafanas_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
                  graphite_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
                  graphite_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 graphite_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  graphite_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+                 graphite_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  graphite_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
                  graphite_status: Optional[pulumi.Input[_builtins.str]] = None,
                  graphite_url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -197,7 +202,9 @@ class _StackState:
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  logs_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
                  logs_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 logs_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  logs_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+                 logs_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  logs_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
                  logs_status: Optional[pulumi.Input[_builtins.str]] = None,
                  logs_url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -207,23 +214,33 @@ class _StackState:
                  org_id: Optional[pulumi.Input[_builtins.int]] = None,
                  org_name: Optional[pulumi.Input[_builtins.str]] = None,
                  org_slug: Optional[pulumi.Input[_builtins.str]] = None,
+                 otlp_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  otlp_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+                 otlp_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  otlp_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
                  otlp_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 pdc_api_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  pdc_api_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+                 pdc_api_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  pdc_api_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 pdc_gateway_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  pdc_gateway_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+                 pdc_gateway_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  pdc_gateway_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
                  profiles_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
                  profiles_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 profiles_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  profiles_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+                 profiles_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  profiles_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
                  profiles_status: Optional[pulumi.Input[_builtins.str]] = None,
                  profiles_url: Optional[pulumi.Input[_builtins.str]] = None,
                  profiles_user_id: Optional[pulumi.Input[_builtins.int]] = None,
                  prometheus_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
                  prometheus_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 prometheus_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  prometheus_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+                 prometheus_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  prometheus_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
                  prometheus_remote_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  prometheus_remote_write_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
@@ -235,7 +252,9 @@ class _StackState:
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  traces_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
                  traces_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 traces_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  traces_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+                 traces_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  traces_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
                  traces_status: Optional[pulumi.Input[_builtins.str]] = None,
                  traces_url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -245,6 +264,7 @@ class _StackState:
                  wait_for_readiness_timeout: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Stack resources.
+
         :param pulumi.Input[_builtins.str] alertmanager_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Alertmanager instances (Optional)
         :param pulumi.Input[_builtins.str] alertmanager_name: Name of the Alertmanager instance configured for this stack.
         :param pulumi.Input[_builtins.str] alertmanager_status: Status of the Alertmanager instance configured for this stack.
@@ -255,38 +275,54 @@ class _StackState:
         :param pulumi.Input[_builtins.bool] delete_protection: Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
         :param pulumi.Input[_builtins.str] description: Description of stack.
         :param pulumi.Input[_builtins.str] fleet_management_name: Name of the Fleet Management instance configured for this stack.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] fleet_management_private_connectivity_info_availability_zones: Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] fleet_management_private_connectivity_info_private_dns: Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] fleet_management_private_connectivity_info_regions: Regions for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] fleet_management_private_connectivity_info_service_name: Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] fleet_management_status: Status of the Fleet Management instance configured for this stack.
         :param pulumi.Input[_builtins.str] fleet_management_url: Base URL of the Fleet Management instance configured for this stack.
         :param pulumi.Input[_builtins.int] fleet_management_user_id: User ID of the Fleet Management instance configured for this stack.
         :param pulumi.Input[_builtins.str] grafanas_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
         :param pulumi.Input[_builtins.str] graphite_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] graphite_private_connectivity_info_availability_zones: Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] graphite_private_connectivity_info_private_dns: Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] graphite_private_connectivity_info_regions: Regions for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] graphite_private_connectivity_info_service_name: Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] influx_url: Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-._]+$" and stacks cannot have more than 10 labels.
         :param pulumi.Input[_builtins.str] logs_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] logs_private_connectivity_info_availability_zones: Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] logs_private_connectivity_info_private_dns: Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] logs_private_connectivity_info_regions: Regions for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] logs_private_connectivity_info_service_name: Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         :param pulumi.Input[_builtins.str] oncall_api_url: Base URL of the OnCall API instance configured for this stack.
         :param pulumi.Input[_builtins.int] org_id: Organization id to assign to this stack.
         :param pulumi.Input[_builtins.str] org_name: Organization name to assign to this stack.
         :param pulumi.Input[_builtins.str] org_slug: Organization slug to assign to this stack.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] otlp_private_connectivity_info_availability_zones: Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] otlp_private_connectivity_info_private_dns: Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] otlp_private_connectivity_info_regions: Regions for OTLP when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] otlp_private_connectivity_info_service_name: Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] otlp_url: Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pdc_api_private_connectivity_info_availability_zones: Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] pdc_api_private_connectivity_info_private_dns: Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pdc_api_private_connectivity_info_regions: Regions for PDC's API when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] pdc_api_private_connectivity_info_service_name: Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pdc_gateway_private_connectivity_info_availability_zones: Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] pdc_gateway_private_connectivity_info_private_dns: Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pdc_gateway_private_connectivity_info_regions: Regions for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] pdc_gateway_private_connectivity_info_service_name: Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] profiles_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] profiles_private_connectivity_info_availability_zones: Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] profiles_private_connectivity_info_private_dns: Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] profiles_private_connectivity_info_regions: Regions for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] profiles_private_connectivity_info_service_name: Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] prometheus_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
         :param pulumi.Input[_builtins.str] prometheus_name: Prometheus name for this instance.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] prometheus_private_connectivity_info_availability_zones: Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] prometheus_private_connectivity_info_private_dns: Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] prometheus_private_connectivity_info_regions: Regions for Prometheus when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] prometheus_private_connectivity_info_service_name: Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] prometheus_remote_endpoint: Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
         :param pulumi.Input[_builtins.str] prometheus_remote_write_endpoint: Use this URL to send prometheus metrics to Grafana cloud
@@ -297,7 +333,9 @@ class _StackState:
         :param pulumi.Input[_builtins.str] slug: Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         :param pulumi.Input[_builtins.str] status: Status of the stack.
         :param pulumi.Input[_builtins.str] traces_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traces_private_connectivity_info_availability_zones: Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] traces_private_connectivity_info_private_dns: Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traces_private_connectivity_info_regions: Regions for Traces when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] traces_private_connectivity_info_service_name: Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] traces_url: Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
         :param pulumi.Input[_builtins.str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
@@ -324,8 +362,12 @@ class _StackState:
             pulumi.set(__self__, "description", description)
         if fleet_management_name is not None:
             pulumi.set(__self__, "fleet_management_name", fleet_management_name)
+        if fleet_management_private_connectivity_info_availability_zones is not None:
+            pulumi.set(__self__, "fleet_management_private_connectivity_info_availability_zones", fleet_management_private_connectivity_info_availability_zones)
         if fleet_management_private_connectivity_info_private_dns is not None:
             pulumi.set(__self__, "fleet_management_private_connectivity_info_private_dns", fleet_management_private_connectivity_info_private_dns)
+        if fleet_management_private_connectivity_info_regions is not None:
+            pulumi.set(__self__, "fleet_management_private_connectivity_info_regions", fleet_management_private_connectivity_info_regions)
         if fleet_management_private_connectivity_info_service_name is not None:
             pulumi.set(__self__, "fleet_management_private_connectivity_info_service_name", fleet_management_private_connectivity_info_service_name)
         if fleet_management_status is not None:
@@ -340,8 +382,12 @@ class _StackState:
             pulumi.set(__self__, "graphite_ip_allow_list_cname", graphite_ip_allow_list_cname)
         if graphite_name is not None:
             pulumi.set(__self__, "graphite_name", graphite_name)
+        if graphite_private_connectivity_info_availability_zones is not None:
+            pulumi.set(__self__, "graphite_private_connectivity_info_availability_zones", graphite_private_connectivity_info_availability_zones)
         if graphite_private_connectivity_info_private_dns is not None:
             pulumi.set(__self__, "graphite_private_connectivity_info_private_dns", graphite_private_connectivity_info_private_dns)
+        if graphite_private_connectivity_info_regions is not None:
+            pulumi.set(__self__, "graphite_private_connectivity_info_regions", graphite_private_connectivity_info_regions)
         if graphite_private_connectivity_info_service_name is not None:
             pulumi.set(__self__, "graphite_private_connectivity_info_service_name", graphite_private_connectivity_info_service_name)
         if graphite_status is not None:
@@ -358,8 +404,12 @@ class _StackState:
             pulumi.set(__self__, "logs_ip_allow_list_cname", logs_ip_allow_list_cname)
         if logs_name is not None:
             pulumi.set(__self__, "logs_name", logs_name)
+        if logs_private_connectivity_info_availability_zones is not None:
+            pulumi.set(__self__, "logs_private_connectivity_info_availability_zones", logs_private_connectivity_info_availability_zones)
         if logs_private_connectivity_info_private_dns is not None:
             pulumi.set(__self__, "logs_private_connectivity_info_private_dns", logs_private_connectivity_info_private_dns)
+        if logs_private_connectivity_info_regions is not None:
+            pulumi.set(__self__, "logs_private_connectivity_info_regions", logs_private_connectivity_info_regions)
         if logs_private_connectivity_info_service_name is not None:
             pulumi.set(__self__, "logs_private_connectivity_info_service_name", logs_private_connectivity_info_service_name)
         if logs_status is not None:
@@ -378,26 +428,42 @@ class _StackState:
             pulumi.set(__self__, "org_name", org_name)
         if org_slug is not None:
             pulumi.set(__self__, "org_slug", org_slug)
+        if otlp_private_connectivity_info_availability_zones is not None:
+            pulumi.set(__self__, "otlp_private_connectivity_info_availability_zones", otlp_private_connectivity_info_availability_zones)
         if otlp_private_connectivity_info_private_dns is not None:
             pulumi.set(__self__, "otlp_private_connectivity_info_private_dns", otlp_private_connectivity_info_private_dns)
+        if otlp_private_connectivity_info_regions is not None:
+            pulumi.set(__self__, "otlp_private_connectivity_info_regions", otlp_private_connectivity_info_regions)
         if otlp_private_connectivity_info_service_name is not None:
             pulumi.set(__self__, "otlp_private_connectivity_info_service_name", otlp_private_connectivity_info_service_name)
         if otlp_url is not None:
             pulumi.set(__self__, "otlp_url", otlp_url)
+        if pdc_api_private_connectivity_info_availability_zones is not None:
+            pulumi.set(__self__, "pdc_api_private_connectivity_info_availability_zones", pdc_api_private_connectivity_info_availability_zones)
         if pdc_api_private_connectivity_info_private_dns is not None:
             pulumi.set(__self__, "pdc_api_private_connectivity_info_private_dns", pdc_api_private_connectivity_info_private_dns)
+        if pdc_api_private_connectivity_info_regions is not None:
+            pulumi.set(__self__, "pdc_api_private_connectivity_info_regions", pdc_api_private_connectivity_info_regions)
         if pdc_api_private_connectivity_info_service_name is not None:
             pulumi.set(__self__, "pdc_api_private_connectivity_info_service_name", pdc_api_private_connectivity_info_service_name)
+        if pdc_gateway_private_connectivity_info_availability_zones is not None:
+            pulumi.set(__self__, "pdc_gateway_private_connectivity_info_availability_zones", pdc_gateway_private_connectivity_info_availability_zones)
         if pdc_gateway_private_connectivity_info_private_dns is not None:
             pulumi.set(__self__, "pdc_gateway_private_connectivity_info_private_dns", pdc_gateway_private_connectivity_info_private_dns)
+        if pdc_gateway_private_connectivity_info_regions is not None:
+            pulumi.set(__self__, "pdc_gateway_private_connectivity_info_regions", pdc_gateway_private_connectivity_info_regions)
         if pdc_gateway_private_connectivity_info_service_name is not None:
             pulumi.set(__self__, "pdc_gateway_private_connectivity_info_service_name", pdc_gateway_private_connectivity_info_service_name)
         if profiles_ip_allow_list_cname is not None:
             pulumi.set(__self__, "profiles_ip_allow_list_cname", profiles_ip_allow_list_cname)
         if profiles_name is not None:
             pulumi.set(__self__, "profiles_name", profiles_name)
+        if profiles_private_connectivity_info_availability_zones is not None:
+            pulumi.set(__self__, "profiles_private_connectivity_info_availability_zones", profiles_private_connectivity_info_availability_zones)
         if profiles_private_connectivity_info_private_dns is not None:
             pulumi.set(__self__, "profiles_private_connectivity_info_private_dns", profiles_private_connectivity_info_private_dns)
+        if profiles_private_connectivity_info_regions is not None:
+            pulumi.set(__self__, "profiles_private_connectivity_info_regions", profiles_private_connectivity_info_regions)
         if profiles_private_connectivity_info_service_name is not None:
             pulumi.set(__self__, "profiles_private_connectivity_info_service_name", profiles_private_connectivity_info_service_name)
         if profiles_status is not None:
@@ -410,8 +476,12 @@ class _StackState:
             pulumi.set(__self__, "prometheus_ip_allow_list_cname", prometheus_ip_allow_list_cname)
         if prometheus_name is not None:
             pulumi.set(__self__, "prometheus_name", prometheus_name)
+        if prometheus_private_connectivity_info_availability_zones is not None:
+            pulumi.set(__self__, "prometheus_private_connectivity_info_availability_zones", prometheus_private_connectivity_info_availability_zones)
         if prometheus_private_connectivity_info_private_dns is not None:
             pulumi.set(__self__, "prometheus_private_connectivity_info_private_dns", prometheus_private_connectivity_info_private_dns)
+        if prometheus_private_connectivity_info_regions is not None:
+            pulumi.set(__self__, "prometheus_private_connectivity_info_regions", prometheus_private_connectivity_info_regions)
         if prometheus_private_connectivity_info_service_name is not None:
             pulumi.set(__self__, "prometheus_private_connectivity_info_service_name", prometheus_private_connectivity_info_service_name)
         if prometheus_remote_endpoint is not None:
@@ -434,8 +504,12 @@ class _StackState:
             pulumi.set(__self__, "traces_ip_allow_list_cname", traces_ip_allow_list_cname)
         if traces_name is not None:
             pulumi.set(__self__, "traces_name", traces_name)
+        if traces_private_connectivity_info_availability_zones is not None:
+            pulumi.set(__self__, "traces_private_connectivity_info_availability_zones", traces_private_connectivity_info_availability_zones)
         if traces_private_connectivity_info_private_dns is not None:
             pulumi.set(__self__, "traces_private_connectivity_info_private_dns", traces_private_connectivity_info_private_dns)
+        if traces_private_connectivity_info_regions is not None:
+            pulumi.set(__self__, "traces_private_connectivity_info_regions", traces_private_connectivity_info_regions)
         if traces_private_connectivity_info_service_name is not None:
             pulumi.set(__self__, "traces_private_connectivity_info_service_name", traces_private_connectivity_info_service_name)
         if traces_status is not None:
@@ -572,6 +646,18 @@ class _StackState:
         pulumi.set(self, "fleet_management_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="fleetManagementPrivateConnectivityInfoAvailabilityZones")
+    def fleet_management_private_connectivity_info_availability_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "fleet_management_private_connectivity_info_availability_zones")
+
+    @fleet_management_private_connectivity_info_availability_zones.setter
+    def fleet_management_private_connectivity_info_availability_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "fleet_management_private_connectivity_info_availability_zones", value)
+
+    @_builtins.property
     @pulumi.getter(name="fleetManagementPrivateConnectivityInfoPrivateDns")
     def fleet_management_private_connectivity_info_private_dns(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -582,6 +668,18 @@ class _StackState:
     @fleet_management_private_connectivity_info_private_dns.setter
     def fleet_management_private_connectivity_info_private_dns(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "fleet_management_private_connectivity_info_private_dns", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fleetManagementPrivateConnectivityInfoRegions")
+    def fleet_management_private_connectivity_info_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Regions for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "fleet_management_private_connectivity_info_regions")
+
+    @fleet_management_private_connectivity_info_regions.setter
+    def fleet_management_private_connectivity_info_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "fleet_management_private_connectivity_info_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="fleetManagementPrivateConnectivityInfoServiceName")
@@ -665,6 +763,18 @@ class _StackState:
         pulumi.set(self, "graphite_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="graphitePrivateConnectivityInfoAvailabilityZones")
+    def graphite_private_connectivity_info_availability_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "graphite_private_connectivity_info_availability_zones")
+
+    @graphite_private_connectivity_info_availability_zones.setter
+    def graphite_private_connectivity_info_availability_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "graphite_private_connectivity_info_availability_zones", value)
+
+    @_builtins.property
     @pulumi.getter(name="graphitePrivateConnectivityInfoPrivateDns")
     def graphite_private_connectivity_info_private_dns(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -675,6 +785,18 @@ class _StackState:
     @graphite_private_connectivity_info_private_dns.setter
     def graphite_private_connectivity_info_private_dns(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "graphite_private_connectivity_info_private_dns", value)
+
+    @_builtins.property
+    @pulumi.getter(name="graphitePrivateConnectivityInfoRegions")
+    def graphite_private_connectivity_info_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Regions for Graphite when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "graphite_private_connectivity_info_regions")
+
+    @graphite_private_connectivity_info_regions.setter
+    def graphite_private_connectivity_info_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "graphite_private_connectivity_info_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="graphitePrivateConnectivityInfoServiceName")
@@ -761,6 +883,18 @@ class _StackState:
         pulumi.set(self, "logs_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="logsPrivateConnectivityInfoAvailabilityZones")
+    def logs_private_connectivity_info_availability_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "logs_private_connectivity_info_availability_zones")
+
+    @logs_private_connectivity_info_availability_zones.setter
+    def logs_private_connectivity_info_availability_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "logs_private_connectivity_info_availability_zones", value)
+
+    @_builtins.property
     @pulumi.getter(name="logsPrivateConnectivityInfoPrivateDns")
     def logs_private_connectivity_info_private_dns(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -771,6 +905,18 @@ class _StackState:
     @logs_private_connectivity_info_private_dns.setter
     def logs_private_connectivity_info_private_dns(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "logs_private_connectivity_info_private_dns", value)
+
+    @_builtins.property
+    @pulumi.getter(name="logsPrivateConnectivityInfoRegions")
+    def logs_private_connectivity_info_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Regions for Logs when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "logs_private_connectivity_info_regions")
+
+    @logs_private_connectivity_info_regions.setter
+    def logs_private_connectivity_info_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "logs_private_connectivity_info_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="logsPrivateConnectivityInfoServiceName")
@@ -872,6 +1018,18 @@ class _StackState:
         pulumi.set(self, "org_slug", value)
 
     @_builtins.property
+    @pulumi.getter(name="otlpPrivateConnectivityInfoAvailabilityZones")
+    def otlp_private_connectivity_info_availability_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "otlp_private_connectivity_info_availability_zones")
+
+    @otlp_private_connectivity_info_availability_zones.setter
+    def otlp_private_connectivity_info_availability_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "otlp_private_connectivity_info_availability_zones", value)
+
+    @_builtins.property
     @pulumi.getter(name="otlpPrivateConnectivityInfoPrivateDns")
     def otlp_private_connectivity_info_private_dns(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -882,6 +1040,18 @@ class _StackState:
     @otlp_private_connectivity_info_private_dns.setter
     def otlp_private_connectivity_info_private_dns(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "otlp_private_connectivity_info_private_dns", value)
+
+    @_builtins.property
+    @pulumi.getter(name="otlpPrivateConnectivityInfoRegions")
+    def otlp_private_connectivity_info_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Regions for OTLP when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "otlp_private_connectivity_info_regions")
+
+    @otlp_private_connectivity_info_regions.setter
+    def otlp_private_connectivity_info_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "otlp_private_connectivity_info_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="otlpPrivateConnectivityInfoServiceName")
@@ -908,6 +1078,18 @@ class _StackState:
         pulumi.set(self, "otlp_url", value)
 
     @_builtins.property
+    @pulumi.getter(name="pdcApiPrivateConnectivityInfoAvailabilityZones")
+    def pdc_api_private_connectivity_info_availability_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "pdc_api_private_connectivity_info_availability_zones")
+
+    @pdc_api_private_connectivity_info_availability_zones.setter
+    def pdc_api_private_connectivity_info_availability_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "pdc_api_private_connectivity_info_availability_zones", value)
+
+    @_builtins.property
     @pulumi.getter(name="pdcApiPrivateConnectivityInfoPrivateDns")
     def pdc_api_private_connectivity_info_private_dns(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -918,6 +1100,18 @@ class _StackState:
     @pdc_api_private_connectivity_info_private_dns.setter
     def pdc_api_private_connectivity_info_private_dns(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "pdc_api_private_connectivity_info_private_dns", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pdcApiPrivateConnectivityInfoRegions")
+    def pdc_api_private_connectivity_info_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Regions for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "pdc_api_private_connectivity_info_regions")
+
+    @pdc_api_private_connectivity_info_regions.setter
+    def pdc_api_private_connectivity_info_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "pdc_api_private_connectivity_info_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="pdcApiPrivateConnectivityInfoServiceName")
@@ -932,6 +1126,18 @@ class _StackState:
         pulumi.set(self, "pdc_api_private_connectivity_info_service_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="pdcGatewayPrivateConnectivityInfoAvailabilityZones")
+    def pdc_gateway_private_connectivity_info_availability_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "pdc_gateway_private_connectivity_info_availability_zones")
+
+    @pdc_gateway_private_connectivity_info_availability_zones.setter
+    def pdc_gateway_private_connectivity_info_availability_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "pdc_gateway_private_connectivity_info_availability_zones", value)
+
+    @_builtins.property
     @pulumi.getter(name="pdcGatewayPrivateConnectivityInfoPrivateDns")
     def pdc_gateway_private_connectivity_info_private_dns(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -942,6 +1148,18 @@ class _StackState:
     @pdc_gateway_private_connectivity_info_private_dns.setter
     def pdc_gateway_private_connectivity_info_private_dns(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "pdc_gateway_private_connectivity_info_private_dns", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pdcGatewayPrivateConnectivityInfoRegions")
+    def pdc_gateway_private_connectivity_info_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Regions for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "pdc_gateway_private_connectivity_info_regions")
+
+    @pdc_gateway_private_connectivity_info_regions.setter
+    def pdc_gateway_private_connectivity_info_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "pdc_gateway_private_connectivity_info_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="pdcGatewayPrivateConnectivityInfoServiceName")
@@ -977,6 +1195,18 @@ class _StackState:
         pulumi.set(self, "profiles_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="profilesPrivateConnectivityInfoAvailabilityZones")
+    def profiles_private_connectivity_info_availability_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "profiles_private_connectivity_info_availability_zones")
+
+    @profiles_private_connectivity_info_availability_zones.setter
+    def profiles_private_connectivity_info_availability_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "profiles_private_connectivity_info_availability_zones", value)
+
+    @_builtins.property
     @pulumi.getter(name="profilesPrivateConnectivityInfoPrivateDns")
     def profiles_private_connectivity_info_private_dns(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -987,6 +1217,18 @@ class _StackState:
     @profiles_private_connectivity_info_private_dns.setter
     def profiles_private_connectivity_info_private_dns(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "profiles_private_connectivity_info_private_dns", value)
+
+    @_builtins.property
+    @pulumi.getter(name="profilesPrivateConnectivityInfoRegions")
+    def profiles_private_connectivity_info_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Regions for Profiles when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "profiles_private_connectivity_info_regions")
+
+    @profiles_private_connectivity_info_regions.setter
+    def profiles_private_connectivity_info_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "profiles_private_connectivity_info_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="profilesPrivateConnectivityInfoServiceName")
@@ -1052,6 +1294,18 @@ class _StackState:
         pulumi.set(self, "prometheus_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="prometheusPrivateConnectivityInfoAvailabilityZones")
+    def prometheus_private_connectivity_info_availability_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "prometheus_private_connectivity_info_availability_zones")
+
+    @prometheus_private_connectivity_info_availability_zones.setter
+    def prometheus_private_connectivity_info_availability_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "prometheus_private_connectivity_info_availability_zones", value)
+
+    @_builtins.property
     @pulumi.getter(name="prometheusPrivateConnectivityInfoPrivateDns")
     def prometheus_private_connectivity_info_private_dns(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1062,6 +1316,18 @@ class _StackState:
     @prometheus_private_connectivity_info_private_dns.setter
     def prometheus_private_connectivity_info_private_dns(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "prometheus_private_connectivity_info_private_dns", value)
+
+    @_builtins.property
+    @pulumi.getter(name="prometheusPrivateConnectivityInfoRegions")
+    def prometheus_private_connectivity_info_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Regions for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "prometheus_private_connectivity_info_regions")
+
+    @prometheus_private_connectivity_info_regions.setter
+    def prometheus_private_connectivity_info_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "prometheus_private_connectivity_info_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="prometheusPrivateConnectivityInfoServiceName")
@@ -1193,6 +1459,18 @@ class _StackState:
         pulumi.set(self, "traces_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="tracesPrivateConnectivityInfoAvailabilityZones")
+    def traces_private_connectivity_info_availability_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "traces_private_connectivity_info_availability_zones")
+
+    @traces_private_connectivity_info_availability_zones.setter
+    def traces_private_connectivity_info_availability_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "traces_private_connectivity_info_availability_zones", value)
+
+    @_builtins.property
     @pulumi.getter(name="tracesPrivateConnectivityInfoPrivateDns")
     def traces_private_connectivity_info_private_dns(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1203,6 +1481,18 @@ class _StackState:
     @traces_private_connectivity_info_private_dns.setter
     def traces_private_connectivity_info_private_dns(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "traces_private_connectivity_info_private_dns", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tracesPrivateConnectivityInfoRegions")
+    def traces_private_connectivity_info_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Regions for Traces when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "traces_private_connectivity_info_regions")
+
+    @traces_private_connectivity_info_regions.setter
+    def traces_private_connectivity_info_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "traces_private_connectivity_info_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="tracesPrivateConnectivityInfoServiceName")
@@ -1324,8 +1614,9 @@ class Stack(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/stack:Stack name "{{ stackSlugOrID }}"
+        terraform import grafana_cloud_stack.name "{{ stackSlugOrID }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1370,8 +1661,9 @@ class Stack(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/stack:Stack name "{{ stackSlugOrID }}"
+        terraform import grafana_cloud_stack.name "{{ stackSlugOrID }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param StackArgs args: The arguments to use to populate this resource's properties.
@@ -1425,7 +1717,9 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["cluster_name"] = None
             __props__.__dict__["cluster_slug"] = None
             __props__.__dict__["fleet_management_name"] = None
+            __props__.__dict__["fleet_management_private_connectivity_info_availability_zones"] = None
             __props__.__dict__["fleet_management_private_connectivity_info_private_dns"] = None
+            __props__.__dict__["fleet_management_private_connectivity_info_regions"] = None
             __props__.__dict__["fleet_management_private_connectivity_info_service_name"] = None
             __props__.__dict__["fleet_management_status"] = None
             __props__.__dict__["fleet_management_url"] = None
@@ -1433,7 +1727,9 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["grafanas_ip_allow_list_cname"] = None
             __props__.__dict__["graphite_ip_allow_list_cname"] = None
             __props__.__dict__["graphite_name"] = None
+            __props__.__dict__["graphite_private_connectivity_info_availability_zones"] = None
             __props__.__dict__["graphite_private_connectivity_info_private_dns"] = None
+            __props__.__dict__["graphite_private_connectivity_info_regions"] = None
             __props__.__dict__["graphite_private_connectivity_info_service_name"] = None
             __props__.__dict__["graphite_status"] = None
             __props__.__dict__["graphite_url"] = None
@@ -1441,7 +1737,9 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["influx_url"] = None
             __props__.__dict__["logs_ip_allow_list_cname"] = None
             __props__.__dict__["logs_name"] = None
+            __props__.__dict__["logs_private_connectivity_info_availability_zones"] = None
             __props__.__dict__["logs_private_connectivity_info_private_dns"] = None
+            __props__.__dict__["logs_private_connectivity_info_regions"] = None
             __props__.__dict__["logs_private_connectivity_info_service_name"] = None
             __props__.__dict__["logs_status"] = None
             __props__.__dict__["logs_url"] = None
@@ -1450,23 +1748,33 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["org_id"] = None
             __props__.__dict__["org_name"] = None
             __props__.__dict__["org_slug"] = None
+            __props__.__dict__["otlp_private_connectivity_info_availability_zones"] = None
             __props__.__dict__["otlp_private_connectivity_info_private_dns"] = None
+            __props__.__dict__["otlp_private_connectivity_info_regions"] = None
             __props__.__dict__["otlp_private_connectivity_info_service_name"] = None
             __props__.__dict__["otlp_url"] = None
+            __props__.__dict__["pdc_api_private_connectivity_info_availability_zones"] = None
             __props__.__dict__["pdc_api_private_connectivity_info_private_dns"] = None
+            __props__.__dict__["pdc_api_private_connectivity_info_regions"] = None
             __props__.__dict__["pdc_api_private_connectivity_info_service_name"] = None
+            __props__.__dict__["pdc_gateway_private_connectivity_info_availability_zones"] = None
             __props__.__dict__["pdc_gateway_private_connectivity_info_private_dns"] = None
+            __props__.__dict__["pdc_gateway_private_connectivity_info_regions"] = None
             __props__.__dict__["pdc_gateway_private_connectivity_info_service_name"] = None
             __props__.__dict__["profiles_ip_allow_list_cname"] = None
             __props__.__dict__["profiles_name"] = None
+            __props__.__dict__["profiles_private_connectivity_info_availability_zones"] = None
             __props__.__dict__["profiles_private_connectivity_info_private_dns"] = None
+            __props__.__dict__["profiles_private_connectivity_info_regions"] = None
             __props__.__dict__["profiles_private_connectivity_info_service_name"] = None
             __props__.__dict__["profiles_status"] = None
             __props__.__dict__["profiles_url"] = None
             __props__.__dict__["profiles_user_id"] = None
             __props__.__dict__["prometheus_ip_allow_list_cname"] = None
             __props__.__dict__["prometheus_name"] = None
+            __props__.__dict__["prometheus_private_connectivity_info_availability_zones"] = None
             __props__.__dict__["prometheus_private_connectivity_info_private_dns"] = None
+            __props__.__dict__["prometheus_private_connectivity_info_regions"] = None
             __props__.__dict__["prometheus_private_connectivity_info_service_name"] = None
             __props__.__dict__["prometheus_remote_endpoint"] = None
             __props__.__dict__["prometheus_remote_write_endpoint"] = None
@@ -1476,7 +1784,9 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["traces_ip_allow_list_cname"] = None
             __props__.__dict__["traces_name"] = None
+            __props__.__dict__["traces_private_connectivity_info_availability_zones"] = None
             __props__.__dict__["traces_private_connectivity_info_private_dns"] = None
+            __props__.__dict__["traces_private_connectivity_info_regions"] = None
             __props__.__dict__["traces_private_connectivity_info_service_name"] = None
             __props__.__dict__["traces_status"] = None
             __props__.__dict__["traces_url"] = None
@@ -1501,7 +1811,9 @@ class Stack(pulumi.CustomResource):
             delete_protection: Optional[pulumi.Input[_builtins.bool]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             fleet_management_name: Optional[pulumi.Input[_builtins.str]] = None,
+            fleet_management_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             fleet_management_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+            fleet_management_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             fleet_management_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
             fleet_management_status: Optional[pulumi.Input[_builtins.str]] = None,
             fleet_management_url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1509,7 +1821,9 @@ class Stack(pulumi.CustomResource):
             grafanas_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
             graphite_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
             graphite_name: Optional[pulumi.Input[_builtins.str]] = None,
+            graphite_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             graphite_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+            graphite_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             graphite_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
             graphite_status: Optional[pulumi.Input[_builtins.str]] = None,
             graphite_url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1518,7 +1832,9 @@ class Stack(pulumi.CustomResource):
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             logs_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
             logs_name: Optional[pulumi.Input[_builtins.str]] = None,
+            logs_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             logs_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+            logs_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             logs_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
             logs_status: Optional[pulumi.Input[_builtins.str]] = None,
             logs_url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1528,23 +1844,33 @@ class Stack(pulumi.CustomResource):
             org_id: Optional[pulumi.Input[_builtins.int]] = None,
             org_name: Optional[pulumi.Input[_builtins.str]] = None,
             org_slug: Optional[pulumi.Input[_builtins.str]] = None,
+            otlp_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             otlp_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+            otlp_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             otlp_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
             otlp_url: Optional[pulumi.Input[_builtins.str]] = None,
+            pdc_api_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             pdc_api_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+            pdc_api_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             pdc_api_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
+            pdc_gateway_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             pdc_gateway_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+            pdc_gateway_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             pdc_gateway_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
             profiles_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
             profiles_name: Optional[pulumi.Input[_builtins.str]] = None,
+            profiles_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             profiles_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+            profiles_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             profiles_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
             profiles_status: Optional[pulumi.Input[_builtins.str]] = None,
             profiles_url: Optional[pulumi.Input[_builtins.str]] = None,
             profiles_user_id: Optional[pulumi.Input[_builtins.int]] = None,
             prometheus_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
             prometheus_name: Optional[pulumi.Input[_builtins.str]] = None,
+            prometheus_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             prometheus_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+            prometheus_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             prometheus_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
             prometheus_remote_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
             prometheus_remote_write_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1556,7 +1882,9 @@ class Stack(pulumi.CustomResource):
             status: Optional[pulumi.Input[_builtins.str]] = None,
             traces_ip_allow_list_cname: Optional[pulumi.Input[_builtins.str]] = None,
             traces_name: Optional[pulumi.Input[_builtins.str]] = None,
+            traces_private_connectivity_info_availability_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             traces_private_connectivity_info_private_dns: Optional[pulumi.Input[_builtins.str]] = None,
+            traces_private_connectivity_info_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             traces_private_connectivity_info_service_name: Optional[pulumi.Input[_builtins.str]] = None,
             traces_status: Optional[pulumi.Input[_builtins.str]] = None,
             traces_url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1581,38 +1909,54 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] delete_protection: Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
         :param pulumi.Input[_builtins.str] description: Description of stack.
         :param pulumi.Input[_builtins.str] fleet_management_name: Name of the Fleet Management instance configured for this stack.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] fleet_management_private_connectivity_info_availability_zones: Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] fleet_management_private_connectivity_info_private_dns: Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] fleet_management_private_connectivity_info_regions: Regions for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] fleet_management_private_connectivity_info_service_name: Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] fleet_management_status: Status of the Fleet Management instance configured for this stack.
         :param pulumi.Input[_builtins.str] fleet_management_url: Base URL of the Fleet Management instance configured for this stack.
         :param pulumi.Input[_builtins.int] fleet_management_user_id: User ID of the Fleet Management instance configured for this stack.
         :param pulumi.Input[_builtins.str] grafanas_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the grafana instance (Optional)
         :param pulumi.Input[_builtins.str] graphite_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] graphite_private_connectivity_info_availability_zones: Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] graphite_private_connectivity_info_private_dns: Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] graphite_private_connectivity_info_regions: Regions for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] graphite_private_connectivity_info_service_name: Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] influx_url: Base URL of the InfluxDB instance configured for this stack. The username is the same as the metrics' (`prometheus_user_id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-influxdb/push-from-telegraf/ for docs on how to use this.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: A map of labels to assign to the stack. Label keys and values must match the following regexp: "^[a-zA-Z0-9/\\-._]+$" and stacks cannot have more than 10 labels.
         :param pulumi.Input[_builtins.str] logs_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] logs_private_connectivity_info_availability_zones: Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] logs_private_connectivity_info_private_dns: Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] logs_private_connectivity_info_regions: Regions for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] logs_private_connectivity_info_service_name: Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] name: Name of stack. Conventionally matches the url of the instance (e.g. `<stack_slug>.grafana.net`).
         :param pulumi.Input[_builtins.str] oncall_api_url: Base URL of the OnCall API instance configured for this stack.
         :param pulumi.Input[_builtins.int] org_id: Organization id to assign to this stack.
         :param pulumi.Input[_builtins.str] org_name: Organization name to assign to this stack.
         :param pulumi.Input[_builtins.str] org_slug: Organization slug to assign to this stack.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] otlp_private_connectivity_info_availability_zones: Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] otlp_private_connectivity_info_private_dns: Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] otlp_private_connectivity_info_regions: Regions for OTLP when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] otlp_private_connectivity_info_service_name: Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] otlp_url: Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pdc_api_private_connectivity_info_availability_zones: Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] pdc_api_private_connectivity_info_private_dns: Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pdc_api_private_connectivity_info_regions: Regions for PDC's API when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] pdc_api_private_connectivity_info_service_name: Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pdc_gateway_private_connectivity_info_availability_zones: Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] pdc_gateway_private_connectivity_info_private_dns: Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pdc_gateway_private_connectivity_info_regions: Regions for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] pdc_gateway_private_connectivity_info_service_name: Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] profiles_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] profiles_private_connectivity_info_availability_zones: Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] profiles_private_connectivity_info_private_dns: Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] profiles_private_connectivity_info_regions: Regions for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] profiles_private_connectivity_info_service_name: Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] prometheus_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Prometheus instance (Optional)
         :param pulumi.Input[_builtins.str] prometheus_name: Prometheus name for this instance.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] prometheus_private_connectivity_info_availability_zones: Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] prometheus_private_connectivity_info_private_dns: Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] prometheus_private_connectivity_info_regions: Regions for Prometheus when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] prometheus_private_connectivity_info_service_name: Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] prometheus_remote_endpoint: Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
         :param pulumi.Input[_builtins.str] prometheus_remote_write_endpoint: Use this URL to send prometheus metrics to Grafana cloud
@@ -1623,7 +1967,9 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] slug: Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         :param pulumi.Input[_builtins.str] status: Status of the stack.
         :param pulumi.Input[_builtins.str] traces_ip_allow_list_cname: Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traces_private_connectivity_info_availability_zones: Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] traces_private_connectivity_info_private_dns: Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] traces_private_connectivity_info_regions: Regions for Traces when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] traces_private_connectivity_info_service_name: Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
         :param pulumi.Input[_builtins.str] traces_url: Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
         :param pulumi.Input[_builtins.str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
@@ -1644,7 +1990,9 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["delete_protection"] = delete_protection
         __props__.__dict__["description"] = description
         __props__.__dict__["fleet_management_name"] = fleet_management_name
+        __props__.__dict__["fleet_management_private_connectivity_info_availability_zones"] = fleet_management_private_connectivity_info_availability_zones
         __props__.__dict__["fleet_management_private_connectivity_info_private_dns"] = fleet_management_private_connectivity_info_private_dns
+        __props__.__dict__["fleet_management_private_connectivity_info_regions"] = fleet_management_private_connectivity_info_regions
         __props__.__dict__["fleet_management_private_connectivity_info_service_name"] = fleet_management_private_connectivity_info_service_name
         __props__.__dict__["fleet_management_status"] = fleet_management_status
         __props__.__dict__["fleet_management_url"] = fleet_management_url
@@ -1652,7 +2000,9 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["grafanas_ip_allow_list_cname"] = grafanas_ip_allow_list_cname
         __props__.__dict__["graphite_ip_allow_list_cname"] = graphite_ip_allow_list_cname
         __props__.__dict__["graphite_name"] = graphite_name
+        __props__.__dict__["graphite_private_connectivity_info_availability_zones"] = graphite_private_connectivity_info_availability_zones
         __props__.__dict__["graphite_private_connectivity_info_private_dns"] = graphite_private_connectivity_info_private_dns
+        __props__.__dict__["graphite_private_connectivity_info_regions"] = graphite_private_connectivity_info_regions
         __props__.__dict__["graphite_private_connectivity_info_service_name"] = graphite_private_connectivity_info_service_name
         __props__.__dict__["graphite_status"] = graphite_status
         __props__.__dict__["graphite_url"] = graphite_url
@@ -1661,7 +2011,9 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["labels"] = labels
         __props__.__dict__["logs_ip_allow_list_cname"] = logs_ip_allow_list_cname
         __props__.__dict__["logs_name"] = logs_name
+        __props__.__dict__["logs_private_connectivity_info_availability_zones"] = logs_private_connectivity_info_availability_zones
         __props__.__dict__["logs_private_connectivity_info_private_dns"] = logs_private_connectivity_info_private_dns
+        __props__.__dict__["logs_private_connectivity_info_regions"] = logs_private_connectivity_info_regions
         __props__.__dict__["logs_private_connectivity_info_service_name"] = logs_private_connectivity_info_service_name
         __props__.__dict__["logs_status"] = logs_status
         __props__.__dict__["logs_url"] = logs_url
@@ -1671,23 +2023,33 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["org_name"] = org_name
         __props__.__dict__["org_slug"] = org_slug
+        __props__.__dict__["otlp_private_connectivity_info_availability_zones"] = otlp_private_connectivity_info_availability_zones
         __props__.__dict__["otlp_private_connectivity_info_private_dns"] = otlp_private_connectivity_info_private_dns
+        __props__.__dict__["otlp_private_connectivity_info_regions"] = otlp_private_connectivity_info_regions
         __props__.__dict__["otlp_private_connectivity_info_service_name"] = otlp_private_connectivity_info_service_name
         __props__.__dict__["otlp_url"] = otlp_url
+        __props__.__dict__["pdc_api_private_connectivity_info_availability_zones"] = pdc_api_private_connectivity_info_availability_zones
         __props__.__dict__["pdc_api_private_connectivity_info_private_dns"] = pdc_api_private_connectivity_info_private_dns
+        __props__.__dict__["pdc_api_private_connectivity_info_regions"] = pdc_api_private_connectivity_info_regions
         __props__.__dict__["pdc_api_private_connectivity_info_service_name"] = pdc_api_private_connectivity_info_service_name
+        __props__.__dict__["pdc_gateway_private_connectivity_info_availability_zones"] = pdc_gateway_private_connectivity_info_availability_zones
         __props__.__dict__["pdc_gateway_private_connectivity_info_private_dns"] = pdc_gateway_private_connectivity_info_private_dns
+        __props__.__dict__["pdc_gateway_private_connectivity_info_regions"] = pdc_gateway_private_connectivity_info_regions
         __props__.__dict__["pdc_gateway_private_connectivity_info_service_name"] = pdc_gateway_private_connectivity_info_service_name
         __props__.__dict__["profiles_ip_allow_list_cname"] = profiles_ip_allow_list_cname
         __props__.__dict__["profiles_name"] = profiles_name
+        __props__.__dict__["profiles_private_connectivity_info_availability_zones"] = profiles_private_connectivity_info_availability_zones
         __props__.__dict__["profiles_private_connectivity_info_private_dns"] = profiles_private_connectivity_info_private_dns
+        __props__.__dict__["profiles_private_connectivity_info_regions"] = profiles_private_connectivity_info_regions
         __props__.__dict__["profiles_private_connectivity_info_service_name"] = profiles_private_connectivity_info_service_name
         __props__.__dict__["profiles_status"] = profiles_status
         __props__.__dict__["profiles_url"] = profiles_url
         __props__.__dict__["profiles_user_id"] = profiles_user_id
         __props__.__dict__["prometheus_ip_allow_list_cname"] = prometheus_ip_allow_list_cname
         __props__.__dict__["prometheus_name"] = prometheus_name
+        __props__.__dict__["prometheus_private_connectivity_info_availability_zones"] = prometheus_private_connectivity_info_availability_zones
         __props__.__dict__["prometheus_private_connectivity_info_private_dns"] = prometheus_private_connectivity_info_private_dns
+        __props__.__dict__["prometheus_private_connectivity_info_regions"] = prometheus_private_connectivity_info_regions
         __props__.__dict__["prometheus_private_connectivity_info_service_name"] = prometheus_private_connectivity_info_service_name
         __props__.__dict__["prometheus_remote_endpoint"] = prometheus_remote_endpoint
         __props__.__dict__["prometheus_remote_write_endpoint"] = prometheus_remote_write_endpoint
@@ -1699,7 +2061,9 @@ class Stack(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["traces_ip_allow_list_cname"] = traces_ip_allow_list_cname
         __props__.__dict__["traces_name"] = traces_name
+        __props__.__dict__["traces_private_connectivity_info_availability_zones"] = traces_private_connectivity_info_availability_zones
         __props__.__dict__["traces_private_connectivity_info_private_dns"] = traces_private_connectivity_info_private_dns
+        __props__.__dict__["traces_private_connectivity_info_regions"] = traces_private_connectivity_info_regions
         __props__.__dict__["traces_private_connectivity_info_service_name"] = traces_private_connectivity_info_service_name
         __props__.__dict__["traces_status"] = traces_status
         __props__.__dict__["traces_url"] = traces_url
@@ -1790,12 +2154,28 @@ class Stack(pulumi.CustomResource):
         return pulumi.get(self, "fleet_management_name")
 
     @_builtins.property
+    @pulumi.getter(name="fleetManagementPrivateConnectivityInfoAvailabilityZones")
+    def fleet_management_private_connectivity_info_availability_zones(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "fleet_management_private_connectivity_info_availability_zones")
+
+    @_builtins.property
     @pulumi.getter(name="fleetManagementPrivateConnectivityInfoPrivateDns")
     def fleet_management_private_connectivity_info_private_dns(self) -> pulumi.Output[_builtins.str]:
         """
         Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         """
         return pulumi.get(self, "fleet_management_private_connectivity_info_private_dns")
+
+    @_builtins.property
+    @pulumi.getter(name="fleetManagementPrivateConnectivityInfoRegions")
+    def fleet_management_private_connectivity_info_regions(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Regions for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "fleet_management_private_connectivity_info_regions")
 
     @_builtins.property
     @pulumi.getter(name="fleetManagementPrivateConnectivityInfoServiceName")
@@ -1851,12 +2231,28 @@ class Stack(pulumi.CustomResource):
         return pulumi.get(self, "graphite_name")
 
     @_builtins.property
+    @pulumi.getter(name="graphitePrivateConnectivityInfoAvailabilityZones")
+    def graphite_private_connectivity_info_availability_zones(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "graphite_private_connectivity_info_availability_zones")
+
+    @_builtins.property
     @pulumi.getter(name="graphitePrivateConnectivityInfoPrivateDns")
     def graphite_private_connectivity_info_private_dns(self) -> pulumi.Output[_builtins.str]:
         """
         Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
         """
         return pulumi.get(self, "graphite_private_connectivity_info_private_dns")
+
+    @_builtins.property
+    @pulumi.getter(name="graphitePrivateConnectivityInfoRegions")
+    def graphite_private_connectivity_info_regions(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Regions for Graphite when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "graphite_private_connectivity_info_regions")
 
     @_builtins.property
     @pulumi.getter(name="graphitePrivateConnectivityInfoServiceName")
@@ -1911,12 +2307,28 @@ class Stack(pulumi.CustomResource):
         return pulumi.get(self, "logs_name")
 
     @_builtins.property
+    @pulumi.getter(name="logsPrivateConnectivityInfoAvailabilityZones")
+    def logs_private_connectivity_info_availability_zones(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "logs_private_connectivity_info_availability_zones")
+
+    @_builtins.property
     @pulumi.getter(name="logsPrivateConnectivityInfoPrivateDns")
     def logs_private_connectivity_info_private_dns(self) -> pulumi.Output[_builtins.str]:
         """
         Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
         """
         return pulumi.get(self, "logs_private_connectivity_info_private_dns")
+
+    @_builtins.property
+    @pulumi.getter(name="logsPrivateConnectivityInfoRegions")
+    def logs_private_connectivity_info_regions(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Regions for Logs when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "logs_private_connectivity_info_regions")
 
     @_builtins.property
     @pulumi.getter(name="logsPrivateConnectivityInfoServiceName")
@@ -1982,12 +2394,28 @@ class Stack(pulumi.CustomResource):
         return pulumi.get(self, "org_slug")
 
     @_builtins.property
+    @pulumi.getter(name="otlpPrivateConnectivityInfoAvailabilityZones")
+    def otlp_private_connectivity_info_availability_zones(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "otlp_private_connectivity_info_availability_zones")
+
+    @_builtins.property
     @pulumi.getter(name="otlpPrivateConnectivityInfoPrivateDns")
     def otlp_private_connectivity_info_private_dns(self) -> pulumi.Output[_builtins.str]:
         """
         Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
         """
         return pulumi.get(self, "otlp_private_connectivity_info_private_dns")
+
+    @_builtins.property
+    @pulumi.getter(name="otlpPrivateConnectivityInfoRegions")
+    def otlp_private_connectivity_info_regions(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Regions for OTLP when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "otlp_private_connectivity_info_regions")
 
     @_builtins.property
     @pulumi.getter(name="otlpPrivateConnectivityInfoServiceName")
@@ -2006,12 +2434,28 @@ class Stack(pulumi.CustomResource):
         return pulumi.get(self, "otlp_url")
 
     @_builtins.property
+    @pulumi.getter(name="pdcApiPrivateConnectivityInfoAvailabilityZones")
+    def pdc_api_private_connectivity_info_availability_zones(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "pdc_api_private_connectivity_info_availability_zones")
+
+    @_builtins.property
     @pulumi.getter(name="pdcApiPrivateConnectivityInfoPrivateDns")
     def pdc_api_private_connectivity_info_private_dns(self) -> pulumi.Output[_builtins.str]:
         """
         Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
         """
         return pulumi.get(self, "pdc_api_private_connectivity_info_private_dns")
+
+    @_builtins.property
+    @pulumi.getter(name="pdcApiPrivateConnectivityInfoRegions")
+    def pdc_api_private_connectivity_info_regions(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Regions for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "pdc_api_private_connectivity_info_regions")
 
     @_builtins.property
     @pulumi.getter(name="pdcApiPrivateConnectivityInfoServiceName")
@@ -2022,12 +2466,28 @@ class Stack(pulumi.CustomResource):
         return pulumi.get(self, "pdc_api_private_connectivity_info_service_name")
 
     @_builtins.property
+    @pulumi.getter(name="pdcGatewayPrivateConnectivityInfoAvailabilityZones")
+    def pdc_gateway_private_connectivity_info_availability_zones(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "pdc_gateway_private_connectivity_info_availability_zones")
+
+    @_builtins.property
     @pulumi.getter(name="pdcGatewayPrivateConnectivityInfoPrivateDns")
     def pdc_gateway_private_connectivity_info_private_dns(self) -> pulumi.Output[_builtins.str]:
         """
         Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         """
         return pulumi.get(self, "pdc_gateway_private_connectivity_info_private_dns")
+
+    @_builtins.property
+    @pulumi.getter(name="pdcGatewayPrivateConnectivityInfoRegions")
+    def pdc_gateway_private_connectivity_info_regions(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Regions for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "pdc_gateway_private_connectivity_info_regions")
 
     @_builtins.property
     @pulumi.getter(name="pdcGatewayPrivateConnectivityInfoServiceName")
@@ -2051,12 +2511,28 @@ class Stack(pulumi.CustomResource):
         return pulumi.get(self, "profiles_name")
 
     @_builtins.property
+    @pulumi.getter(name="profilesPrivateConnectivityInfoAvailabilityZones")
+    def profiles_private_connectivity_info_availability_zones(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "profiles_private_connectivity_info_availability_zones")
+
+    @_builtins.property
     @pulumi.getter(name="profilesPrivateConnectivityInfoPrivateDns")
     def profiles_private_connectivity_info_private_dns(self) -> pulumi.Output[_builtins.str]:
         """
         Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
         """
         return pulumi.get(self, "profiles_private_connectivity_info_private_dns")
+
+    @_builtins.property
+    @pulumi.getter(name="profilesPrivateConnectivityInfoRegions")
+    def profiles_private_connectivity_info_regions(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Regions for Profiles when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "profiles_private_connectivity_info_regions")
 
     @_builtins.property
     @pulumi.getter(name="profilesPrivateConnectivityInfoServiceName")
@@ -2098,12 +2574,28 @@ class Stack(pulumi.CustomResource):
         return pulumi.get(self, "prometheus_name")
 
     @_builtins.property
+    @pulumi.getter(name="prometheusPrivateConnectivityInfoAvailabilityZones")
+    def prometheus_private_connectivity_info_availability_zones(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "prometheus_private_connectivity_info_availability_zones")
+
+    @_builtins.property
     @pulumi.getter(name="prometheusPrivateConnectivityInfoPrivateDns")
     def prometheus_private_connectivity_info_private_dns(self) -> pulumi.Output[_builtins.str]:
         """
         Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
         """
         return pulumi.get(self, "prometheus_private_connectivity_info_private_dns")
+
+    @_builtins.property
+    @pulumi.getter(name="prometheusPrivateConnectivityInfoRegions")
+    def prometheus_private_connectivity_info_regions(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Regions for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "prometheus_private_connectivity_info_regions")
 
     @_builtins.property
     @pulumi.getter(name="prometheusPrivateConnectivityInfoServiceName")
@@ -2191,12 +2683,28 @@ class Stack(pulumi.CustomResource):
         return pulumi.get(self, "traces_name")
 
     @_builtins.property
+    @pulumi.getter(name="tracesPrivateConnectivityInfoAvailabilityZones")
+    def traces_private_connectivity_info_availability_zones(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "traces_private_connectivity_info_availability_zones")
+
+    @_builtins.property
     @pulumi.getter(name="tracesPrivateConnectivityInfoPrivateDns")
     def traces_private_connectivity_info_private_dns(self) -> pulumi.Output[_builtins.str]:
         """
         Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
         """
         return pulumi.get(self, "traces_private_connectivity_info_private_dns")
+
+    @_builtins.property
+    @pulumi.getter(name="tracesPrivateConnectivityInfoRegions")
+    def traces_private_connectivity_info_regions(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Regions for Traces when using AWS PrivateLink (only for AWS stacks)
+        """
+        return pulumi.get(self, "traces_private_connectivity_info_regions")
 
     @_builtins.property
     @pulumi.getter(name="tracesPrivateConnectivityInfoServiceName")

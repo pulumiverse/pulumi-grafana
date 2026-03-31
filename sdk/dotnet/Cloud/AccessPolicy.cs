@@ -26,7 +26,6 @@ namespace Pulumiverse.Grafana.Cloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -78,7 +77,7 @@ namespace Pulumiverse.Grafana.Cloud
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:cloud/accessPolicy:AccessPolicy name "{{ region }}:{{ policyId }}"
+    /// terraform import grafana_cloud_access_policy.name "{{ region }}:{{ policyId }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:cloud/accessPolicy:AccessPolicy")]

@@ -79,11 +79,8 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:oss/folderPermission:FolderPermission name "{{ folderUID }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:oss/folderPermission:FolderPermission name "{{ orgID }}:{{ folderUID }}"
+// terraform import grafana_folder_permission.name "{{ folderUID }}"
+// terraform import grafana_folder_permission.name "{{ orgID }}:{{ folderUID }}"
 // ```
 type FolderPermission struct {
 	pulumi.CustomResourceState

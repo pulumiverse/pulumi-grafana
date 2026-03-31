@@ -56,7 +56,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:machineLearning/holiday:Holiday name "{{ id }}"
+ * terraform import grafana_machine_learning_holiday.name "{{ id }}"
  * ```
  */
 export class Holiday extends pulumi.CustomResource {

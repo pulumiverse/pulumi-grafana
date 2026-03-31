@@ -25,8 +25,10 @@ class AwsAccountArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AwsAccount resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions: A set of regions that this AWS Account resource applies to.
         :param pulumi.Input[_builtins.str] role_arn: An IAM Role ARN string to represent with this AWS Account resource.
+        :param pulumi.Input[_builtins.str] stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.str] name: An optional human-readable name for this AWS Account resource.
         """
         pulumi.set(__self__, "regions", regions)
@@ -62,6 +64,9 @@ class AwsAccountArgs:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
@@ -91,10 +96,12 @@ class _AwsAccountState:
                  stack_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AwsAccount resources.
+
         :param pulumi.Input[_builtins.str] name: An optional human-readable name for this AWS Account resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions: A set of regions that this AWS Account resource applies to.
         :param pulumi.Input[_builtins.str] resource_id: The ID given by the Grafana Cloud Provider API to this AWS Account resource.
         :param pulumi.Input[_builtins.str] role_arn: An IAM Role ARN string to represent with this AWS Account resource.
+        :param pulumi.Input[_builtins.str] stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -158,6 +165,9 @@ class _AwsAccountState:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
@@ -177,19 +187,46 @@ class AwsAccount(pulumi.CustomResource):
                  stack_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        This resource allows you to link your AWS Account to Grafana Cloud for use in creating Cloud Provider resources.
+
+        See the Grafana Provider configuration docs
+        for information on authentication and required access policy scopes.
+
+        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
+
+        test = grafana.cloud.get_stack(slug="gcloudstacktest")
+        test_iam_role = aws.index.iam_role(name="my-role")
+        test_aws_account = grafana.cloudprovider.AwsAccount("test",
+            stack_id=test.id,
+            role_arn=test_iam_role["arn"],
+            regions=[
+                "us-east-1",
+                "us-east-2",
+                "us-west-1",
+            ])
+        ```
 
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloudProvider/awsAccount:AwsAccount name "{{ stack_id }}:{{ resource_id }}"
+        terraform import grafana_cloud_provider_aws_account.name "{{ stack_id }}:{{ resource_id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: An optional human-readable name for this AWS Account resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions: A set of regions that this AWS Account resource applies to.
         :param pulumi.Input[_builtins.str] role_arn: An IAM Role ARN string to represent with this AWS Account resource.
+        :param pulumi.Input[_builtins.str] stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         """
         ...
     @overload
@@ -198,13 +235,39 @@ class AwsAccount(pulumi.CustomResource):
                  args: AwsAccountArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        This resource allows you to link your AWS Account to Grafana Cloud for use in creating Cloud Provider resources.
+
+        See the Grafana Provider configuration docs
+        for information on authentication and required access policy scopes.
+
+        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
+
+        test = grafana.cloud.get_stack(slug="gcloudstacktest")
+        test_iam_role = aws.index.iam_role(name="my-role")
+        test_aws_account = grafana.cloudprovider.AwsAccount("test",
+            stack_id=test.id,
+            role_arn=test_iam_role["arn"],
+            regions=[
+                "us-east-1",
+                "us-east-2",
+                "us-west-1",
+            ])
+        ```
 
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloudProvider/awsAccount:AwsAccount name "{{ stack_id }}:{{ resource_id }}"
+        terraform import grafana_cloud_provider_aws_account.name "{{ stack_id }}:{{ resource_id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AwsAccountArgs args: The arguments to use to populate this resource's properties.
@@ -271,6 +334,7 @@ class AwsAccount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions: A set of regions that this AWS Account resource applies to.
         :param pulumi.Input[_builtins.str] resource_id: The ID given by the Grafana Cloud Provider API to this AWS Account resource.
         :param pulumi.Input[_builtins.str] role_arn: An IAM Role ARN string to represent with this AWS Account resource.
+        :param pulumi.Input[_builtins.str] stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -318,5 +382,8 @@ class AwsAccount(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 

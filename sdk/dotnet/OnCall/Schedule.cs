@@ -16,7 +16,7 @@ namespace Pulumiverse.Grafana.OnCall
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:onCall/schedule:Schedule name "{{ id }}"
+    /// terraform import grafana_oncall_schedule.name "{{ id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:onCall/schedule:Schedule")]

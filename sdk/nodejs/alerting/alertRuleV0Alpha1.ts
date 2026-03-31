@@ -7,7 +7,106 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * This resource is currently under development. Documentation will be provided in a future release.
+ * Manages Grafana Alert Rules.
+ *
+ * This resource is currently in alpha and is subject to change. Grafana 12.4+ users must enable the `kubernetesAlertingRules` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const alertruleFolder = new grafana.oss.Folder("alertrule_folder", {title: "Alert Rule Folder"});
+ * const example = new grafana.alerting.AlertRuleV0Alpha1("example", {
+ *     metadata: {
+ *         uid: "example-alert-rule",
+ *         folderUid: alertruleFolder.uid,
+ *     },
+ *     spec: {
+ *         title: "Example Alert Rule",
+ *         trigger: {
+ *             interval: "1m",
+ *         },
+ *         paused: true,
+ *         expressions: {
+ *             A: JSON.stringify({
+ *                 model: {
+ *                     datasource: {
+ *                         type: "prometheus",
+ *                         uid: "ds_uid",
+ *                     },
+ *                     editorMode: "code",
+ *                     expr: "count(up{})",
+ *                     instant: true,
+ *                     intervalMs: 1000,
+ *                     legendFormat: "__auto",
+ *                     maxDataPoints: 43200,
+ *                     range: false,
+ *                     refId: "A",
+ *                 },
+ *                 datasource_uid: "ds_uid",
+ *                 relative_time_range: {
+ *                     from: "600s",
+ *                     to: "0s",
+ *                 },
+ *                 query_type: "",
+ *                 source: true,
+ *             }),
+ *             B: JSON.stringify({
+ *                 model: {
+ *                     conditions: [{
+ *                         evaluator: {
+ *                             params: [1],
+ *                             type: "gt",
+ *                         },
+ *                         operator: {
+ *                             type: "and",
+ *                         },
+ *                         query: {
+ *                             params: ["C"],
+ *                         },
+ *                         reducer: {
+ *                             params: [],
+ *                             type: "last",
+ *                         },
+ *                         type: "query",
+ *                     }],
+ *                     datasource: {
+ *                         type: "__expr__",
+ *                         uid: "__expr__",
+ *                     },
+ *                     expression: "A",
+ *                     intervalMs: 1000,
+ *                     maxDataPoints: 43200,
+ *                     refId: "C",
+ *                     type: "threshold",
+ *                 },
+ *                 datasource_uid: "__expr__",
+ *                 query_type: "",
+ *                 source: false,
+ *             }),
+ *         },
+ *         "for": "5m",
+ *         labels: {
+ *             severity: "critical",
+ *         },
+ *         annotations: {
+ *             runbook_url: "https://example.com",
+ *         },
+ *         noDataState: "KeepLast",
+ *         execErrState: "KeepLast",
+ *         missingSeriesEvalsToResolve: 5,
+ *         notificationSettings: {
+ *             contactPoint: "grafana-default-email",
+ *         },
+ *         panelRef: {
+ *             dashboard_uid: "dashboard123",
+ *             panel_id: "5",
+ *         },
+ *     },
+ * });
+ * ```
  */
 export class AlertRuleV0Alpha1 extends pulumi.CustomResource {
     /**

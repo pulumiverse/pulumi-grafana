@@ -54,7 +54,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:cloud/accessPolicyRotatingToken:AccessPolicyRotatingToken name "{{ region }}:{{ tokenId }}"
+ * terraform import grafana_cloud_access_policy_rotating_token.name "{{ region }}:{{ tokenId }}"
  * ```
  */
 export class AccessPolicyRotatingToken extends pulumi.CustomResource {
@@ -93,6 +93,9 @@ export class AccessPolicyRotatingToken extends pulumi.CustomResource {
      * Creation date of the access policy token.
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
+    /**
+     * Deletes the token in Grafana Cloud when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiresAt` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+     */
     declare public readonly deleteOnDestroy: pulumi.Output<boolean | undefined>;
     /**
      * Display name of the access policy token. Defaults to the name.
@@ -208,6 +211,9 @@ export interface AccessPolicyRotatingTokenState {
      * Creation date of the access policy token.
      */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Deletes the token in Grafana Cloud when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiresAt` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+     */
     deleteOnDestroy?: pulumi.Input<boolean>;
     /**
      * Display name of the access policy token. Defaults to the name.
@@ -256,6 +262,9 @@ export interface AccessPolicyRotatingTokenArgs {
      * ID of the access policy for which to create a token.
      */
     accessPolicyId: pulumi.Input<string>;
+    /**
+     * Deletes the token in Grafana Cloud when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiresAt` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+     */
     deleteOnDestroy?: pulumi.Input<boolean>;
     /**
      * Display name of the access policy token. Defaults to the name.

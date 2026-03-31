@@ -65,11 +65,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:enterprise/dataSourcePermission:DataSourcePermission name "{{ datasourceID }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:enterprise/dataSourcePermission:DataSourcePermission name "{{ orgID }}:{{ datasourceID }}"
+ * terraform import grafana_data_source_permission.name "{{ datasourceID }}"
+ * terraform import grafana_data_source_permission.name "{{ orgID }}:{{ datasourceID }}"
  * ```
  */
 export class DataSourcePermission extends pulumi.CustomResource {

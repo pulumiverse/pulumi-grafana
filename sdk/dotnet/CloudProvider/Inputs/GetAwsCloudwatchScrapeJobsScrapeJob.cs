@@ -49,9 +49,15 @@ namespace Pulumiverse.Grafana.CloudProvider.Inputs
         [Input("exportTags", required: true)]
         public bool ExportTags { get; set; }
 
+        /// <summary>
+        /// The Terraform Resource ID. This has the format "{{ StackId }}:{{ name }}".
+        /// </summary>
         [Input("id", required: true)]
         public string Id { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
@@ -91,6 +97,9 @@ namespace Pulumiverse.Grafana.CloudProvider.Inputs
             set => _services = value;
         }
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public string StackId { get; set; } = null!;
 

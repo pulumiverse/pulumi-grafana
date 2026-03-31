@@ -26,6 +26,7 @@ class ThresholdsArgs:
                  resource_thresholds: Optional[pulumi.Input[Sequence[pulumi.Input['ThresholdsResourceThresholdArgs']]]] = None):
         """
         The set of arguments for constructing a Thresholds resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ThresholdsHealthThresholdArgs']]] health_thresholds: List of health thresholds.
         :param pulumi.Input[Sequence[pulumi.Input['ThresholdsRequestThresholdArgs']]] request_thresholds: List of request thresholds.
         :param pulumi.Input[Sequence[pulumi.Input['ThresholdsResourceThresholdArgs']]] resource_thresholds: List of resource thresholds.
@@ -82,6 +83,7 @@ class _ThresholdsState:
                  resource_thresholds: Optional[pulumi.Input[Sequence[pulumi.Input['ThresholdsResourceThresholdArgs']]]] = None):
         """
         Input properties used for looking up and filtering Thresholds resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ThresholdsHealthThresholdArgs']]] health_thresholds: List of health thresholds.
         :param pulumi.Input[Sequence[pulumi.Input['ThresholdsRequestThresholdArgs']]] request_thresholds: List of request thresholds.
         :param pulumi.Input[Sequence[pulumi.Input['ThresholdsResourceThresholdArgs']]] resource_thresholds: List of resource thresholds.
@@ -175,8 +177,9 @@ class Thresholds(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/thresholds:Thresholds name "{{ id }}"
+        terraform import grafana_asserts_thresholds.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -225,8 +228,9 @@ class Thresholds(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/thresholds:Thresholds name "{{ id }}"
+        terraform import grafana_asserts_thresholds.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ThresholdsArgs args: The arguments to use to populate this resource's properties.

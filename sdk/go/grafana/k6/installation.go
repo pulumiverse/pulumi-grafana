@@ -35,8 +35,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
@@ -57,7 +55,7 @@ import (
 //			k6Stack, err := cloud.NewStack(ctx, "k6_stack", &cloud.StackArgs{
 //				Name:       pulumi.Any(stackSlug),
 //				Slug:       pulumi.Any(stackSlug),
-//				RegionSlug: pulumi.String(cloudRegion),
+//				RegionSlug: pulumi.String(pulumi.String(cloudRegion)),
 //			})
 //			if err != nil {
 //				return err

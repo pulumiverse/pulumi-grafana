@@ -12,6 +12,65 @@ import * as utilities from "../utilities";
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
  * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
  * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ * import * as std from "@pulumi/std";
+ *
+ * const test = new grafana.oss.Organization("test", {name: "testing dashboards data source"});
+ * const dataSourceDashboards = new grafana.oss.Folder("data_source_dashboards", {
+ *     orgId: test.id,
+ *     title: "test folder data_source_dashboards",
+ * });
+ * const dataSourceDashboards1 = new grafana.oss.Dashboard("data_source_dashboards1", {
+ *     orgId: test.id,
+ *     folder: dataSourceDashboards.id,
+ *     configJson: JSON.stringify({
+ *         uid: "data-source-dashboards-1",
+ *         title: "data_source_dashboards 1",
+ *         tags: ["dev"],
+ *     }),
+ * });
+ * const dataSourceDashboards2 = new grafana.oss.Dashboard("data_source_dashboards2", {
+ *     orgId: test.id,
+ *     configJson: JSON.stringify({
+ *         uid: "data-source-dashboards-2",
+ *         title: "data_source_dashboards 2",
+ *         tags: ["prod"],
+ *     }),
+ * });
+ * const tags = pulumi.all([test.id, dataSourceDashboards1.configJson]).apply(([id, configJson]) => grafana.oss.getDashboardsOutput({
+ *     orgId: id,
+ *     tags: std.index.jsondecode({
+ *         input: configJson,
+ *     }).result.tags,
+ * }));
+ * const folderUids = pulumi.all([test.id, dataSourceDashboards1.folder]).apply(([id, folder]) => grafana.oss.getDashboardsOutput({
+ *     orgId: id,
+ *     folderUids: [folder],
+ * }));
+ * const folderUidsTags = pulumi.all([test.id, dataSourceDashboards1.folder, dataSourceDashboards1.configJson]).apply(([id, folder, configJson]) => grafana.oss.getDashboardsOutput({
+ *     orgId: id,
+ *     folderUids: [folder],
+ *     tags: std.index.jsondecode({
+ *         input: configJson,
+ *     }).result.tags,
+ * }));
+ * // use depends_on to wait for dashboard resource to be created before searching
+ * const all = grafana.oss.getDashboardsOutput({
+ *     orgId: test.id,
+ * });
+ * // get only one result
+ * const limitOne = test.id.apply(id => grafana.oss.getDashboardsOutput({
+ *     orgId: id,
+ *     limit: 1,
+ * }));
+ * // The dashboards are not in the default org so this should return an empty list
+ * const wrongOrg = grafana.oss.getDashboards({});
+ * ```
  */
 export function getDashboards(args?: GetDashboardsArgs, opts?: pulumi.InvokeOptions): Promise<GetDashboardsResult> {
     args = args || {};
@@ -78,6 +137,65 @@ export interface GetDashboardsResult {
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
  * * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
  * * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ * import * as std from "@pulumi/std";
+ *
+ * const test = new grafana.oss.Organization("test", {name: "testing dashboards data source"});
+ * const dataSourceDashboards = new grafana.oss.Folder("data_source_dashboards", {
+ *     orgId: test.id,
+ *     title: "test folder data_source_dashboards",
+ * });
+ * const dataSourceDashboards1 = new grafana.oss.Dashboard("data_source_dashboards1", {
+ *     orgId: test.id,
+ *     folder: dataSourceDashboards.id,
+ *     configJson: JSON.stringify({
+ *         uid: "data-source-dashboards-1",
+ *         title: "data_source_dashboards 1",
+ *         tags: ["dev"],
+ *     }),
+ * });
+ * const dataSourceDashboards2 = new grafana.oss.Dashboard("data_source_dashboards2", {
+ *     orgId: test.id,
+ *     configJson: JSON.stringify({
+ *         uid: "data-source-dashboards-2",
+ *         title: "data_source_dashboards 2",
+ *         tags: ["prod"],
+ *     }),
+ * });
+ * const tags = pulumi.all([test.id, dataSourceDashboards1.configJson]).apply(([id, configJson]) => grafana.oss.getDashboardsOutput({
+ *     orgId: id,
+ *     tags: std.index.jsondecode({
+ *         input: configJson,
+ *     }).result.tags,
+ * }));
+ * const folderUids = pulumi.all([test.id, dataSourceDashboards1.folder]).apply(([id, folder]) => grafana.oss.getDashboardsOutput({
+ *     orgId: id,
+ *     folderUids: [folder],
+ * }));
+ * const folderUidsTags = pulumi.all([test.id, dataSourceDashboards1.folder, dataSourceDashboards1.configJson]).apply(([id, folder, configJson]) => grafana.oss.getDashboardsOutput({
+ *     orgId: id,
+ *     folderUids: [folder],
+ *     tags: std.index.jsondecode({
+ *         input: configJson,
+ *     }).result.tags,
+ * }));
+ * // use depends_on to wait for dashboard resource to be created before searching
+ * const all = grafana.oss.getDashboardsOutput({
+ *     orgId: test.id,
+ * });
+ * // get only one result
+ * const limitOne = test.id.apply(id => grafana.oss.getDashboardsOutput({
+ *     orgId: id,
+ *     limit: 1,
+ * }));
+ * // The dashboards are not in the default org so this should return an empty list
+ * const wrongOrg = grafana.oss.getDashboards({});
+ * ```
  */
 export function getDashboardsOutput(args?: GetDashboardsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDashboardsResult> {
     args = args || {};

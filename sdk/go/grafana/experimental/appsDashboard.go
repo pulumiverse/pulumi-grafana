@@ -48,7 +48,7 @@ import (
 //				},
 //				Spec: &experimental.AppsDashboardSpecArgs{
 //					Title: pulumi.String("Example Dashboard"),
-//					Json:  pulumi.String(json0),
+//					Json:  pulumi.String(pulumi.String(json0)),
 //				},
 //			})
 //			if err != nil {

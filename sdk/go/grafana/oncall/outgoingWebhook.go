@@ -43,7 +43,7 @@ import (
 //			_, err = oncall.NewOutgoingWebhook(ctx, "test-acc-outgoing_webhook", &oncall.OutgoingWebhookArgs{
 //				Name:   pulumi.String("my outgoing webhook"),
 //				Url:    pulumi.String("https://example.com/"),
-//				TeamId: pulumi.String(myTeamGetTeam.Id),
+//				TeamId: pulumi.String(pulumi.String(myTeamGetTeam.Id)),
 //			})
 //			if err != nil {
 //				return err
@@ -67,7 +67,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:onCall/outgoingWebhook:OutgoingWebhook name "{{ id }}"
+// terraform import grafana_oncall_outgoing_webhook.name "{{ id }}"
 // ```
 type OutgoingWebhook struct {
 	pulumi.CustomResourceState

@@ -26,6 +26,7 @@ class RecordingRuleV0Alpha1Args:
                  spec: Optional[pulumi.Input['RecordingRuleV0Alpha1SpecArgs']] = None):
         """
         The set of arguments for constructing a RecordingRuleV0Alpha1 resource.
+
         :param pulumi.Input['RecordingRuleV0Alpha1MetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['RecordingRuleV0Alpha1OptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['RecordingRuleV0Alpha1SpecArgs'] spec: The spec of the resource.
@@ -82,6 +83,7 @@ class _RecordingRuleV0Alpha1State:
                  spec: Optional[pulumi.Input['RecordingRuleV0Alpha1SpecArgs']] = None):
         """
         Input properties used for looking up and filtering RecordingRuleV0Alpha1 resources.
+
         :param pulumi.Input['RecordingRuleV0Alpha1MetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['RecordingRuleV0Alpha1OptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['RecordingRuleV0Alpha1SpecArgs'] spec: The spec of the resource.
@@ -191,6 +193,7 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['RecordingRuleV0Alpha1MetadataArgs', 'RecordingRuleV0Alpha1MetadataArgsDict']] metadata: The metadata of the resource.
@@ -253,6 +256,7 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
                 },
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RecordingRuleV0Alpha1Args args: The arguments to use to populate this resource's properties.

@@ -30,6 +30,11 @@ export type PromRuleFile = import("./promRuleFile").PromRuleFile;
 export const PromRuleFile: typeof import("./promRuleFile").PromRuleFile = null as any;
 utilities.lazyLoad(exports, ["PromRuleFile"], () => require("./promRuleFile"));
 
+export { StackArgs, StackState } from "./stack";
+export type Stack = import("./stack").Stack;
+export const Stack: typeof import("./stack").Stack = null as any;
+utilities.lazyLoad(exports, ["Stack"], () => require("./stack"));
+
 export { SuppressedAssertionsConfigArgs, SuppressedAssertionsConfigState } from "./suppressedAssertionsConfig";
 export type SuppressedAssertionsConfig = import("./suppressedAssertionsConfig").SuppressedAssertionsConfig;
 export const SuppressedAssertionsConfig: typeof import("./suppressedAssertionsConfig").SuppressedAssertionsConfig = null as any;
@@ -60,6 +65,8 @@ const _module = {
                 return new ProfileConfig(name, <any>undefined, { urn })
             case "grafana:assert/promRuleFile:PromRuleFile":
                 return new PromRuleFile(name, <any>undefined, { urn })
+            case "grafana:assert/stack:Stack":
+                return new Stack(name, <any>undefined, { urn })
             case "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig":
                 return new SuppressedAssertionsConfig(name, <any>undefined, { urn })
             case "grafana:assert/thresholds:Thresholds":
@@ -76,6 +83,7 @@ pulumi.runtime.registerResourceModule("grafana", "assert/logConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/notificationAlertsConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/profileConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/promRuleFile", _module)
+pulumi.runtime.registerResourceModule("grafana", "assert/stack", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/suppressedAssertionsConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/thresholds", _module)
 pulumi.runtime.registerResourceModule("grafana", "assert/traceConfig", _module)

@@ -249,7 +249,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:assert/promRuleFile:PromRuleFile name "{{ name }}"
+ * terraform import grafana_asserts_prom_rule_file.name "{{ name }}"
  * ```
  */
 export class PromRuleFile extends pulumi.CustomResource {

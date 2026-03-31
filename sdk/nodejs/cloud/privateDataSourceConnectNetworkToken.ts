@@ -40,7 +40,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken name "{{ region }}:{{ tokenId }}"
+ * terraform import grafana_cloud_private_data_source_connect_network_token.name "{{ region }}:{{ tokenId }}"
  * ```
  */
 export class PrivateDataSourceConnectNetworkToken extends pulumi.CustomResource {

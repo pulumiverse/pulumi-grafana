@@ -65,7 +65,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:fleetManagement/pipeline:Pipeline name "{{ name }}"
+// terraform import grafana_fleet_management_pipeline.name "{{ name }}"
 // ```
 type Pipeline struct {
 	pulumi.CustomResourceState

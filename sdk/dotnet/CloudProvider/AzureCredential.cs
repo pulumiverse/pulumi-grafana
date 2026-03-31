@@ -11,6 +11,13 @@ using Pulumi;
 namespace Pulumiverse.Grafana.CloudProvider
 {
     /// <summary>
+    /// This resource allows you to autodiscover resources in your Azure tenant and scrape Azure Monitor metrics for those resources in Grafana Cloud without needing to run your own infrastructure.
+    /// 
+    /// See the Grafana Provider configuration docs
+    /// for information on authentication and required access policy scopes.
+    /// 
+    /// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -95,7 +102,7 @@ namespace Pulumiverse.Grafana.CloudProvider
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:cloudProvider/azureCredential:AzureCredential name "{{ stack_id }}:{{ resource_id }}"
+    /// terraform import grafana_cloud_provider_azure_credential.name "{{ stack_id }}:{{ resource_id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:cloudProvider/azureCredential:AzureCredential")]
@@ -143,6 +150,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Output("resourceTagsToAddToMetrics")]
         public Output<ImmutableArray<string>> ResourceTagsToAddToMetrics { get; private set; } = null!;
 
+        /// <summary>
+        /// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Output("stackId")]
         public Output<string> StackId { get; private set; } = null!;
 
@@ -267,6 +277,9 @@ namespace Pulumiverse.Grafana.CloudProvider
             set => _resourceTagsToAddToMetrics = value;
         }
 
+        /// <summary>
+        /// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public Input<string> StackId { get; set; } = null!;
 
@@ -354,6 +367,9 @@ namespace Pulumiverse.Grafana.CloudProvider
             set => _resourceTagsToAddToMetrics = value;
         }
 
+        /// <summary>
+        /// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
 

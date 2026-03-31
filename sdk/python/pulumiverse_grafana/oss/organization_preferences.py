@@ -26,6 +26,7 @@ class OrganizationPreferencesArgs:
                  week_start: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OrganizationPreferences resource.
+
         :param pulumi.Input[_builtins.str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[_builtins.str] theme: The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
@@ -114,6 +115,7 @@ class _OrganizationPreferencesState:
                  week_start: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OrganizationPreferences resources.
+
         :param pulumi.Input[_builtins.str] home_dashboard_uid: The Organization home dashboard UID. This is only available in Grafana 9.0+.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[_builtins.str] theme: The Organization theme. Any string value is supported, including custom themes. Common values are `light`, `dark`, `system`, or an empty string for the default.
@@ -223,8 +225,9 @@ class OrganizationPreferences(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/organizationPreferences:OrganizationPreferences name "{{ orgID }}"
+        terraform import grafana_organization_preferences.name "{{ orgID }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -259,8 +262,9 @@ class OrganizationPreferences(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/organizationPreferences:OrganizationPreferences name "{{ orgID }}"
+        terraform import grafana_organization_preferences.name "{{ orgID }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OrganizationPreferencesArgs args: The arguments to use to populate this resource's properties.

@@ -29,6 +29,7 @@ class ProfileConfigArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ProfileConfig resource.
+
         :param pulumi.Input[_builtins.str] data_source_uid: DataSource to be queried (e.g., a Pyroscope instance).
         :param pulumi.Input[_builtins.bool] default_config: Is it the default config, therefore undeletable?
         :param pulumi.Input[_builtins.int] priority: Priority of the profile configuration. A lower number means a higher priority.
@@ -130,6 +131,7 @@ class _ProfileConfigState:
                  priority: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ProfileConfig resources.
+
         :param pulumi.Input[_builtins.str] data_source_uid: DataSource to be queried (e.g., a Pyroscope instance).
         :param pulumi.Input[_builtins.bool] default_config: Is it the default config, therefore undeletable?
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entity_property_to_profile_label_mapping: Mapping of entity properties to profile labels.
@@ -336,8 +338,9 @@ class ProfileConfig(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/profileConfig:ProfileConfig name "{{ name }}"
+        terraform import grafana_asserts_profile_config.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -454,8 +457,9 @@ class ProfileConfig(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/profileConfig:ProfileConfig name "{{ name }}"
+        terraform import grafana_asserts_profile_config.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProfileConfigArgs args: The arguments to use to populate this resource's properties.

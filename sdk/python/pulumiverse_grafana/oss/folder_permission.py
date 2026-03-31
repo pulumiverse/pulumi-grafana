@@ -26,6 +26,7 @@ class FolderPermissionArgs:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]]] = None):
         """
         The set of arguments for constructing a FolderPermission resource.
+
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
@@ -81,6 +82,7 @@ class _FolderPermissionState:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]]] = None):
         """
         Input properties used for looking up and filtering FolderPermission resources.
+
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
@@ -177,12 +179,10 @@ class FolderPermission(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/folderPermission:FolderPermission name "{{ folderUID }}"
+        terraform import grafana_folder_permission.name "{{ folderUID }}"
+        terraform import grafana_folder_permission.name "{{ orgID }}:{{ folderUID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/folderPermission:FolderPermission name "{{ orgID }}:{{ folderUID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -234,12 +234,10 @@ class FolderPermission(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/folderPermission:FolderPermission name "{{ folderUID }}"
+        terraform import grafana_folder_permission.name "{{ folderUID }}"
+        terraform import grafana_folder_permission.name "{{ orgID }}:{{ folderUID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/folderPermission:FolderPermission name "{{ orgID }}:{{ folderUID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param FolderPermissionArgs args: The arguments to use to populate this resource's properties.

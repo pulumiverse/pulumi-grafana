@@ -42,7 +42,7 @@ import (
 //			}, nil)
 //			_ = test.Login.ApplyT(func(login *string) (oss.GetOrganizationUserResult, error) {
 //				return oss.GetOrganizationUserResult(interface{}(oss.GetOrganizationUser(ctx, &oss.GetOrganizationUserArgs{
-//					Login: pulumi.StringRef(pulumi.StringRef(login)),
+//					Login: pulumi.StringRef(pulumi.StringRef(pulumi.String(login))),
 //				}, nil))), nil
 //			}).(oss.GetOrganizationUserResultOutput)
 //			return nil

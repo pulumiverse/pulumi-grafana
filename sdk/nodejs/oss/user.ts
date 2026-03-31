@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/user:User name "{{ id }}"
+ * terraform import grafana_user.name "{{ id }}"
  * ```
  */
 export class User extends pulumi.CustomResource {

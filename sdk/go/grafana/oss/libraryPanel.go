@@ -50,7 +50,7 @@ import (
 //			json0 := string(tmpJSON0)
 //			_, err = oss.NewLibraryPanel(ctx, "test", &oss.LibraryPanelArgs{
 //				Name:      pulumi.String("panel"),
-//				ModelJson: pulumi.String(json0),
+//				ModelJson: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
@@ -64,11 +64,8 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:oss/libraryPanel:LibraryPanel name "{{ uid }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:oss/libraryPanel:LibraryPanel name "{{ orgID }}:{{ uid }}"
+// terraform import grafana_library_panel.name "{{ uid }}"
+// terraform import grafana_library_panel.name "{{ orgID }}:{{ uid }}"
 // ```
 type LibraryPanel struct {
 	pulumi.CustomResourceState

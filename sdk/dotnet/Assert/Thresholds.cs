@@ -65,7 +65,7 @@ namespace Pulumiverse.Grafana.Assert
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:assert/thresholds:Thresholds name "{{ id }}"
+    /// terraform import grafana_asserts_thresholds.name "{{ id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:assert/thresholds:Thresholds")]

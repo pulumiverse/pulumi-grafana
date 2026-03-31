@@ -32,6 +32,7 @@ class LogConfigArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogConfig resource.
+
         :param pulumi.Input[_builtins.str] data_source_uid: DataSource to be queried (e.g., a Loki instance).
         :param pulumi.Input[_builtins.bool] default_config: Is it the default config, therefore undeletable?
         :param pulumi.Input[_builtins.int] priority: Priority of the log configuration. A lower number means a higher priority.
@@ -181,6 +182,7 @@ class _LogConfigState:
                  priority: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering LogConfig resources.
+
         :param pulumi.Input[_builtins.str] data_source_uid: DataSource to be queried (e.g., a Loki instance).
         :param pulumi.Input[_builtins.bool] default_config: Is it the default config, therefore undeletable?
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entity_property_to_log_label_mapping: Mapping of entity properties to log labels.
@@ -436,8 +438,9 @@ class LogConfig(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/logConfig:LogConfig name "{{ name }}"
+        terraform import grafana_asserts_log_config.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -558,8 +561,9 @@ class LogConfig(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/logConfig:LogConfig name "{{ name }}"
+        terraform import grafana_asserts_log_config.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LogConfigArgs args: The arguments to use to populate this resource's properties.

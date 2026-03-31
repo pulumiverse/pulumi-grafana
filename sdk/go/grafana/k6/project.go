@@ -42,7 +42,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:k6/project:Project name "{{ id }}"
+// terraform import grafana_k6_project.name "{{ id }}"
 // ```
 type Project struct {
 	pulumi.CustomResourceState

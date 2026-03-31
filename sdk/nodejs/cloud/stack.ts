@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:cloud/stack:Stack name "{{ stackSlugOrID }}"
+ * terraform import grafana_cloud_stack.name "{{ stackSlugOrID }}"
  * ```
  */
 export class Stack extends pulumi.CustomResource {
@@ -102,9 +102,17 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly fleetManagementName: pulumi.Output<string>;
     /**
+     * Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly fleetManagementPrivateConnectivityInfoAvailabilityZones: pulumi.Output<string[]>;
+    /**
      * Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
      */
     declare public /*out*/ readonly fleetManagementPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
+    /**
+     * Regions for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly fleetManagementPrivateConnectivityInfoRegions: pulumi.Output<string[]>;
     /**
      * Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
      */
@@ -131,9 +139,17 @@ export class Stack extends pulumi.CustomResource {
     declare public /*out*/ readonly graphiteIpAllowListCname: pulumi.Output<string>;
     declare public /*out*/ readonly graphiteName: pulumi.Output<string>;
     /**
+     * Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly graphitePrivateConnectivityInfoAvailabilityZones: pulumi.Output<string[]>;
+    /**
      * Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
      */
     declare public /*out*/ readonly graphitePrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
+    /**
+     * Regions for Graphite when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly graphitePrivateConnectivityInfoRegions: pulumi.Output<string[]>;
     /**
      * Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
      */
@@ -155,9 +171,17 @@ export class Stack extends pulumi.CustomResource {
     declare public /*out*/ readonly logsIpAllowListCname: pulumi.Output<string>;
     declare public /*out*/ readonly logsName: pulumi.Output<string>;
     /**
+     * Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly logsPrivateConnectivityInfoAvailabilityZones: pulumi.Output<string[]>;
+    /**
      * Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
      */
     declare public /*out*/ readonly logsPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
+    /**
+     * Regions for Logs when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly logsPrivateConnectivityInfoRegions: pulumi.Output<string[]>;
     /**
      * Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
      */
@@ -186,9 +210,17 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly orgSlug: pulumi.Output<string>;
     /**
+     * Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly otlpPrivateConnectivityInfoAvailabilityZones: pulumi.Output<string[]>;
+    /**
      * Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
      */
     declare public /*out*/ readonly otlpPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
+    /**
+     * Regions for OTLP when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly otlpPrivateConnectivityInfoRegions: pulumi.Output<string[]>;
     /**
      * Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
      */
@@ -198,17 +230,33 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly otlpUrl: pulumi.Output<string>;
     /**
+     * Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly pdcApiPrivateConnectivityInfoAvailabilityZones: pulumi.Output<string[]>;
+    /**
      * Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
      */
     declare public /*out*/ readonly pdcApiPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
+    /**
+     * Regions for PDC's API when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly pdcApiPrivateConnectivityInfoRegions: pulumi.Output<string[]>;
     /**
      * Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
      */
     declare public /*out*/ readonly pdcApiPrivateConnectivityInfoServiceName: pulumi.Output<string>;
     /**
+     * Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly pdcGatewayPrivateConnectivityInfoAvailabilityZones: pulumi.Output<string[]>;
+    /**
      * Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
      */
     declare public /*out*/ readonly pdcGatewayPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
+    /**
+     * Regions for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly pdcGatewayPrivateConnectivityInfoRegions: pulumi.Output<string[]>;
     /**
      * Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
      */
@@ -219,9 +267,17 @@ export class Stack extends pulumi.CustomResource {
     declare public /*out*/ readonly profilesIpAllowListCname: pulumi.Output<string>;
     declare public /*out*/ readonly profilesName: pulumi.Output<string>;
     /**
+     * Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly profilesPrivateConnectivityInfoAvailabilityZones: pulumi.Output<string[]>;
+    /**
      * Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
      */
     declare public /*out*/ readonly profilesPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
+    /**
+     * Regions for Profiles when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly profilesPrivateConnectivityInfoRegions: pulumi.Output<string[]>;
     /**
      * Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
      */
@@ -238,9 +294,17 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly prometheusName: pulumi.Output<string>;
     /**
+     * Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly prometheusPrivateConnectivityInfoAvailabilityZones: pulumi.Output<string[]>;
+    /**
      * Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
      */
     declare public /*out*/ readonly prometheusPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
+    /**
+     * Regions for Prometheus when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly prometheusPrivateConnectivityInfoRegions: pulumi.Output<string[]>;
     /**
      * Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
      */
@@ -283,9 +347,17 @@ export class Stack extends pulumi.CustomResource {
     declare public /*out*/ readonly tracesIpAllowListCname: pulumi.Output<string>;
     declare public /*out*/ readonly tracesName: pulumi.Output<string>;
     /**
+     * Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly tracesPrivateConnectivityInfoAvailabilityZones: pulumi.Output<string[]>;
+    /**
      * Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
      */
     declare public /*out*/ readonly tracesPrivateConnectivityInfoPrivateDns: pulumi.Output<string>;
+    /**
+     * Regions for Traces when using AWS PrivateLink (only for AWS stacks)
+     */
+    declare public /*out*/ readonly tracesPrivateConnectivityInfoRegions: pulumi.Output<string[]>;
     /**
      * Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
      */
@@ -332,7 +404,9 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["deleteProtection"] = state?.deleteProtection;
             resourceInputs["description"] = state?.description;
             resourceInputs["fleetManagementName"] = state?.fleetManagementName;
+            resourceInputs["fleetManagementPrivateConnectivityInfoAvailabilityZones"] = state?.fleetManagementPrivateConnectivityInfoAvailabilityZones;
             resourceInputs["fleetManagementPrivateConnectivityInfoPrivateDns"] = state?.fleetManagementPrivateConnectivityInfoPrivateDns;
+            resourceInputs["fleetManagementPrivateConnectivityInfoRegions"] = state?.fleetManagementPrivateConnectivityInfoRegions;
             resourceInputs["fleetManagementPrivateConnectivityInfoServiceName"] = state?.fleetManagementPrivateConnectivityInfoServiceName;
             resourceInputs["fleetManagementStatus"] = state?.fleetManagementStatus;
             resourceInputs["fleetManagementUrl"] = state?.fleetManagementUrl;
@@ -340,7 +414,9 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["grafanasIpAllowListCname"] = state?.grafanasIpAllowListCname;
             resourceInputs["graphiteIpAllowListCname"] = state?.graphiteIpAllowListCname;
             resourceInputs["graphiteName"] = state?.graphiteName;
+            resourceInputs["graphitePrivateConnectivityInfoAvailabilityZones"] = state?.graphitePrivateConnectivityInfoAvailabilityZones;
             resourceInputs["graphitePrivateConnectivityInfoPrivateDns"] = state?.graphitePrivateConnectivityInfoPrivateDns;
+            resourceInputs["graphitePrivateConnectivityInfoRegions"] = state?.graphitePrivateConnectivityInfoRegions;
             resourceInputs["graphitePrivateConnectivityInfoServiceName"] = state?.graphitePrivateConnectivityInfoServiceName;
             resourceInputs["graphiteStatus"] = state?.graphiteStatus;
             resourceInputs["graphiteUrl"] = state?.graphiteUrl;
@@ -349,7 +425,9 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["labels"] = state?.labels;
             resourceInputs["logsIpAllowListCname"] = state?.logsIpAllowListCname;
             resourceInputs["logsName"] = state?.logsName;
+            resourceInputs["logsPrivateConnectivityInfoAvailabilityZones"] = state?.logsPrivateConnectivityInfoAvailabilityZones;
             resourceInputs["logsPrivateConnectivityInfoPrivateDns"] = state?.logsPrivateConnectivityInfoPrivateDns;
+            resourceInputs["logsPrivateConnectivityInfoRegions"] = state?.logsPrivateConnectivityInfoRegions;
             resourceInputs["logsPrivateConnectivityInfoServiceName"] = state?.logsPrivateConnectivityInfoServiceName;
             resourceInputs["logsStatus"] = state?.logsStatus;
             resourceInputs["logsUrl"] = state?.logsUrl;
@@ -359,23 +437,33 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["orgId"] = state?.orgId;
             resourceInputs["orgName"] = state?.orgName;
             resourceInputs["orgSlug"] = state?.orgSlug;
+            resourceInputs["otlpPrivateConnectivityInfoAvailabilityZones"] = state?.otlpPrivateConnectivityInfoAvailabilityZones;
             resourceInputs["otlpPrivateConnectivityInfoPrivateDns"] = state?.otlpPrivateConnectivityInfoPrivateDns;
+            resourceInputs["otlpPrivateConnectivityInfoRegions"] = state?.otlpPrivateConnectivityInfoRegions;
             resourceInputs["otlpPrivateConnectivityInfoServiceName"] = state?.otlpPrivateConnectivityInfoServiceName;
             resourceInputs["otlpUrl"] = state?.otlpUrl;
+            resourceInputs["pdcApiPrivateConnectivityInfoAvailabilityZones"] = state?.pdcApiPrivateConnectivityInfoAvailabilityZones;
             resourceInputs["pdcApiPrivateConnectivityInfoPrivateDns"] = state?.pdcApiPrivateConnectivityInfoPrivateDns;
+            resourceInputs["pdcApiPrivateConnectivityInfoRegions"] = state?.pdcApiPrivateConnectivityInfoRegions;
             resourceInputs["pdcApiPrivateConnectivityInfoServiceName"] = state?.pdcApiPrivateConnectivityInfoServiceName;
+            resourceInputs["pdcGatewayPrivateConnectivityInfoAvailabilityZones"] = state?.pdcGatewayPrivateConnectivityInfoAvailabilityZones;
             resourceInputs["pdcGatewayPrivateConnectivityInfoPrivateDns"] = state?.pdcGatewayPrivateConnectivityInfoPrivateDns;
+            resourceInputs["pdcGatewayPrivateConnectivityInfoRegions"] = state?.pdcGatewayPrivateConnectivityInfoRegions;
             resourceInputs["pdcGatewayPrivateConnectivityInfoServiceName"] = state?.pdcGatewayPrivateConnectivityInfoServiceName;
             resourceInputs["profilesIpAllowListCname"] = state?.profilesIpAllowListCname;
             resourceInputs["profilesName"] = state?.profilesName;
+            resourceInputs["profilesPrivateConnectivityInfoAvailabilityZones"] = state?.profilesPrivateConnectivityInfoAvailabilityZones;
             resourceInputs["profilesPrivateConnectivityInfoPrivateDns"] = state?.profilesPrivateConnectivityInfoPrivateDns;
+            resourceInputs["profilesPrivateConnectivityInfoRegions"] = state?.profilesPrivateConnectivityInfoRegions;
             resourceInputs["profilesPrivateConnectivityInfoServiceName"] = state?.profilesPrivateConnectivityInfoServiceName;
             resourceInputs["profilesStatus"] = state?.profilesStatus;
             resourceInputs["profilesUrl"] = state?.profilesUrl;
             resourceInputs["profilesUserId"] = state?.profilesUserId;
             resourceInputs["prometheusIpAllowListCname"] = state?.prometheusIpAllowListCname;
             resourceInputs["prometheusName"] = state?.prometheusName;
+            resourceInputs["prometheusPrivateConnectivityInfoAvailabilityZones"] = state?.prometheusPrivateConnectivityInfoAvailabilityZones;
             resourceInputs["prometheusPrivateConnectivityInfoPrivateDns"] = state?.prometheusPrivateConnectivityInfoPrivateDns;
+            resourceInputs["prometheusPrivateConnectivityInfoRegions"] = state?.prometheusPrivateConnectivityInfoRegions;
             resourceInputs["prometheusPrivateConnectivityInfoServiceName"] = state?.prometheusPrivateConnectivityInfoServiceName;
             resourceInputs["prometheusRemoteEndpoint"] = state?.prometheusRemoteEndpoint;
             resourceInputs["prometheusRemoteWriteEndpoint"] = state?.prometheusRemoteWriteEndpoint;
@@ -387,7 +475,9 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["status"] = state?.status;
             resourceInputs["tracesIpAllowListCname"] = state?.tracesIpAllowListCname;
             resourceInputs["tracesName"] = state?.tracesName;
+            resourceInputs["tracesPrivateConnectivityInfoAvailabilityZones"] = state?.tracesPrivateConnectivityInfoAvailabilityZones;
             resourceInputs["tracesPrivateConnectivityInfoPrivateDns"] = state?.tracesPrivateConnectivityInfoPrivateDns;
+            resourceInputs["tracesPrivateConnectivityInfoRegions"] = state?.tracesPrivateConnectivityInfoRegions;
             resourceInputs["tracesPrivateConnectivityInfoServiceName"] = state?.tracesPrivateConnectivityInfoServiceName;
             resourceInputs["tracesStatus"] = state?.tracesStatus;
             resourceInputs["tracesUrl"] = state?.tracesUrl;
@@ -417,7 +507,9 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["clusterName"] = undefined /*out*/;
             resourceInputs["clusterSlug"] = undefined /*out*/;
             resourceInputs["fleetManagementName"] = undefined /*out*/;
+            resourceInputs["fleetManagementPrivateConnectivityInfoAvailabilityZones"] = undefined /*out*/;
             resourceInputs["fleetManagementPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["fleetManagementPrivateConnectivityInfoRegions"] = undefined /*out*/;
             resourceInputs["fleetManagementPrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["fleetManagementStatus"] = undefined /*out*/;
             resourceInputs["fleetManagementUrl"] = undefined /*out*/;
@@ -425,7 +517,9 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["grafanasIpAllowListCname"] = undefined /*out*/;
             resourceInputs["graphiteIpAllowListCname"] = undefined /*out*/;
             resourceInputs["graphiteName"] = undefined /*out*/;
+            resourceInputs["graphitePrivateConnectivityInfoAvailabilityZones"] = undefined /*out*/;
             resourceInputs["graphitePrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["graphitePrivateConnectivityInfoRegions"] = undefined /*out*/;
             resourceInputs["graphitePrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["graphiteStatus"] = undefined /*out*/;
             resourceInputs["graphiteUrl"] = undefined /*out*/;
@@ -433,7 +527,9 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["influxUrl"] = undefined /*out*/;
             resourceInputs["logsIpAllowListCname"] = undefined /*out*/;
             resourceInputs["logsName"] = undefined /*out*/;
+            resourceInputs["logsPrivateConnectivityInfoAvailabilityZones"] = undefined /*out*/;
             resourceInputs["logsPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["logsPrivateConnectivityInfoRegions"] = undefined /*out*/;
             resourceInputs["logsPrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["logsStatus"] = undefined /*out*/;
             resourceInputs["logsUrl"] = undefined /*out*/;
@@ -442,23 +538,33 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["orgId"] = undefined /*out*/;
             resourceInputs["orgName"] = undefined /*out*/;
             resourceInputs["orgSlug"] = undefined /*out*/;
+            resourceInputs["otlpPrivateConnectivityInfoAvailabilityZones"] = undefined /*out*/;
             resourceInputs["otlpPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["otlpPrivateConnectivityInfoRegions"] = undefined /*out*/;
             resourceInputs["otlpPrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["otlpUrl"] = undefined /*out*/;
+            resourceInputs["pdcApiPrivateConnectivityInfoAvailabilityZones"] = undefined /*out*/;
             resourceInputs["pdcApiPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["pdcApiPrivateConnectivityInfoRegions"] = undefined /*out*/;
             resourceInputs["pdcApiPrivateConnectivityInfoServiceName"] = undefined /*out*/;
+            resourceInputs["pdcGatewayPrivateConnectivityInfoAvailabilityZones"] = undefined /*out*/;
             resourceInputs["pdcGatewayPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["pdcGatewayPrivateConnectivityInfoRegions"] = undefined /*out*/;
             resourceInputs["pdcGatewayPrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["profilesIpAllowListCname"] = undefined /*out*/;
             resourceInputs["profilesName"] = undefined /*out*/;
+            resourceInputs["profilesPrivateConnectivityInfoAvailabilityZones"] = undefined /*out*/;
             resourceInputs["profilesPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["profilesPrivateConnectivityInfoRegions"] = undefined /*out*/;
             resourceInputs["profilesPrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["profilesStatus"] = undefined /*out*/;
             resourceInputs["profilesUrl"] = undefined /*out*/;
             resourceInputs["profilesUserId"] = undefined /*out*/;
             resourceInputs["prometheusIpAllowListCname"] = undefined /*out*/;
             resourceInputs["prometheusName"] = undefined /*out*/;
+            resourceInputs["prometheusPrivateConnectivityInfoAvailabilityZones"] = undefined /*out*/;
             resourceInputs["prometheusPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["prometheusPrivateConnectivityInfoRegions"] = undefined /*out*/;
             resourceInputs["prometheusPrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["prometheusRemoteEndpoint"] = undefined /*out*/;
             resourceInputs["prometheusRemoteWriteEndpoint"] = undefined /*out*/;
@@ -468,7 +574,9 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["tracesIpAllowListCname"] = undefined /*out*/;
             resourceInputs["tracesName"] = undefined /*out*/;
+            resourceInputs["tracesPrivateConnectivityInfoAvailabilityZones"] = undefined /*out*/;
             resourceInputs["tracesPrivateConnectivityInfoPrivateDns"] = undefined /*out*/;
+            resourceInputs["tracesPrivateConnectivityInfoRegions"] = undefined /*out*/;
             resourceInputs["tracesPrivateConnectivityInfoServiceName"] = undefined /*out*/;
             resourceInputs["tracesStatus"] = undefined /*out*/;
             resourceInputs["tracesUrl"] = undefined /*out*/;
@@ -524,9 +632,17 @@ export interface StackState {
      */
     fleetManagementName?: pulumi.Input<string>;
     /**
+     * Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+     */
+    fleetManagementPrivateConnectivityInfoAvailabilityZones?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
      */
     fleetManagementPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Regions for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+     */
+    fleetManagementPrivateConnectivityInfoRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
      */
@@ -553,9 +669,17 @@ export interface StackState {
     graphiteIpAllowListCname?: pulumi.Input<string>;
     graphiteName?: pulumi.Input<string>;
     /**
+     * Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
+     */
+    graphitePrivateConnectivityInfoAvailabilityZones?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
      */
     graphitePrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Regions for Graphite when using AWS PrivateLink (only for AWS stacks)
+     */
+    graphitePrivateConnectivityInfoRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
      */
@@ -577,9 +701,17 @@ export interface StackState {
     logsIpAllowListCname?: pulumi.Input<string>;
     logsName?: pulumi.Input<string>;
     /**
+     * Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
+     */
+    logsPrivateConnectivityInfoAvailabilityZones?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
      */
     logsPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Regions for Logs when using AWS PrivateLink (only for AWS stacks)
+     */
+    logsPrivateConnectivityInfoRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
      */
@@ -608,9 +740,17 @@ export interface StackState {
      */
     orgSlug?: pulumi.Input<string>;
     /**
+     * Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
+     */
+    otlpPrivateConnectivityInfoAvailabilityZones?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
      */
     otlpPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Regions for OTLP when using AWS PrivateLink (only for AWS stacks)
+     */
+    otlpPrivateConnectivityInfoRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
      */
@@ -620,17 +760,33 @@ export interface StackState {
      */
     otlpUrl?: pulumi.Input<string>;
     /**
+     * Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
+     */
+    pdcApiPrivateConnectivityInfoAvailabilityZones?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
      */
     pdcApiPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Regions for PDC's API when using AWS PrivateLink (only for AWS stacks)
+     */
+    pdcApiPrivateConnectivityInfoRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
      */
     pdcApiPrivateConnectivityInfoServiceName?: pulumi.Input<string>;
     /**
+     * Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+     */
+    pdcGatewayPrivateConnectivityInfoAvailabilityZones?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
      */
     pdcGatewayPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Regions for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+     */
+    pdcGatewayPrivateConnectivityInfoRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
      */
@@ -641,9 +797,17 @@ export interface StackState {
     profilesIpAllowListCname?: pulumi.Input<string>;
     profilesName?: pulumi.Input<string>;
     /**
+     * Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
+     */
+    profilesPrivateConnectivityInfoAvailabilityZones?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
      */
     profilesPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Regions for Profiles when using AWS PrivateLink (only for AWS stacks)
+     */
+    profilesPrivateConnectivityInfoRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
      */
@@ -660,9 +824,17 @@ export interface StackState {
      */
     prometheusName?: pulumi.Input<string>;
     /**
+     * Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
+     */
+    prometheusPrivateConnectivityInfoAvailabilityZones?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
      */
     prometheusPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Regions for Prometheus when using AWS PrivateLink (only for AWS stacks)
+     */
+    prometheusPrivateConnectivityInfoRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
      */
@@ -705,9 +877,17 @@ export interface StackState {
     tracesIpAllowListCname?: pulumi.Input<string>;
     tracesName?: pulumi.Input<string>;
     /**
+     * Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
+     */
+    tracesPrivateConnectivityInfoAvailabilityZones?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
      */
     tracesPrivateConnectivityInfoPrivateDns?: pulumi.Input<string>;
+    /**
+     * Regions for Traces when using AWS PrivateLink (only for AWS stacks)
+     */
+    tracesPrivateConnectivityInfoRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
      */

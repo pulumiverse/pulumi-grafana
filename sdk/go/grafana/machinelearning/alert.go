@@ -112,7 +112,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:machineLearning/alert:Alert name "{{ id }}"
+// terraform import grafana_machine_learning_alert.name "{{ id }}"
 // ```
 type Alert struct {
 	pulumi.CustomResourceState

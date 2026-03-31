@@ -23,6 +23,9 @@ __all__ = [
     'ProfileConfigMatch',
     'PromRuleFileGroup',
     'PromRuleFileGroupRule',
+    'StackDataset',
+    'StackDatasetFilterGroup',
+    'StackDatasetFilterGroupFilter',
     'ThresholdsHealthThreshold',
     'ThresholdsRequestThreshold',
     'ThresholdsResourceThreshold',
@@ -477,6 +480,211 @@ class PromRuleFileGroupRule(dict):
         The name of the time series to output for recording rules. Either 'record' or 'alert' must be specified, but not both.
         """
         return pulumi.get(self, "record")
+
+
+@pulumi.output_type
+class StackDataset(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "disabledVendors":
+            suggest = "disabled_vendors"
+        elif key == "filterGroups":
+            suggest = "filter_groups"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StackDataset. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StackDataset.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StackDataset.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 disabled_vendors: Optional[Sequence[_builtins.str]] = None,
+                 filter_groups: Optional[Sequence['outputs.StackDatasetFilterGroup']] = None):
+        """
+        :param _builtins.str type: The dataset type. Available types: `kubernetes`, `otel` (App O11y), `prometheus`, `aws`. Note: `kubernetes` requires K8s Monitoring to be enabled, and `otel` requires Application Observability to be enabled on the stack.
+        :param Sequence[_builtins.str] disabled_vendors: List of vendors to disable for this dataset.
+        :param Sequence['StackDatasetFilterGroupArgs'] filter_groups: Filter groups for this dataset. Use when you need custom label mappings.
+        """
+        pulumi.set(__self__, "type", type)
+        if disabled_vendors is not None:
+            pulumi.set(__self__, "disabled_vendors", disabled_vendors)
+        if filter_groups is not None:
+            pulumi.set(__self__, "filter_groups", filter_groups)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The dataset type. Available types: `kubernetes`, `otel` (App O11y), `prometheus`, `aws`. Note: `kubernetes` requires K8s Monitoring to be enabled, and `otel` requires Application Observability to be enabled on the stack.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="disabledVendors")
+    def disabled_vendors(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        List of vendors to disable for this dataset.
+        """
+        return pulumi.get(self, "disabled_vendors")
+
+    @_builtins.property
+    @pulumi.getter(name="filterGroups")
+    def filter_groups(self) -> Optional[Sequence['outputs.StackDatasetFilterGroup']]:
+        """
+        Filter groups for this dataset. Use when you need custom label mappings.
+        """
+        return pulumi.get(self, "filter_groups")
+
+
+@pulumi.output_type
+class StackDatasetFilterGroup(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "envLabel":
+            suggest = "env_label"
+        elif key == "envLabelValues":
+            suggest = "env_label_values"
+        elif key == "envName":
+            suggest = "env_name"
+        elif key == "siteLabel":
+            suggest = "site_label"
+        elif key == "siteLabelValues":
+            suggest = "site_label_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StackDatasetFilterGroup. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StackDatasetFilterGroup.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StackDatasetFilterGroup.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 env_label: Optional[_builtins.str] = None,
+                 env_label_values: Optional[Sequence[_builtins.str]] = None,
+                 env_name: Optional[_builtins.str] = None,
+                 filters: Optional[Sequence['outputs.StackDatasetFilterGroupFilter']] = None,
+                 site_label: Optional[_builtins.str] = None,
+                 site_label_values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str env_label: The metric label name used for environment (e.g., `env`, `environment`, `deployment_environment`). Defaults to standard labels if not set.
+        :param Sequence[_builtins.str] env_label_values: Specific values of the environment label to match.
+        :param _builtins.str env_name: A friendly name for the environment.
+        :param Sequence['StackDatasetFilterGroupFilterArgs'] filters: Additional metric filters.
+        :param _builtins.str site_label: The metric label name used for site/cluster.
+        :param Sequence[_builtins.str] site_label_values: Specific values of the site label to match.
+        """
+        if env_label is not None:
+            pulumi.set(__self__, "env_label", env_label)
+        if env_label_values is not None:
+            pulumi.set(__self__, "env_label_values", env_label_values)
+        if env_name is not None:
+            pulumi.set(__self__, "env_name", env_name)
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+        if site_label is not None:
+            pulumi.set(__self__, "site_label", site_label)
+        if site_label_values is not None:
+            pulumi.set(__self__, "site_label_values", site_label_values)
+
+    @_builtins.property
+    @pulumi.getter(name="envLabel")
+    def env_label(self) -> Optional[_builtins.str]:
+        """
+        The metric label name used for environment (e.g., `env`, `environment`, `deployment_environment`). Defaults to standard labels if not set.
+        """
+        return pulumi.get(self, "env_label")
+
+    @_builtins.property
+    @pulumi.getter(name="envLabelValues")
+    def env_label_values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specific values of the environment label to match.
+        """
+        return pulumi.get(self, "env_label_values")
+
+    @_builtins.property
+    @pulumi.getter(name="envName")
+    def env_name(self) -> Optional[_builtins.str]:
+        """
+        A friendly name for the environment.
+        """
+        return pulumi.get(self, "env_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['outputs.StackDatasetFilterGroupFilter']]:
+        """
+        Additional metric filters.
+        """
+        return pulumi.get(self, "filters")
+
+    @_builtins.property
+    @pulumi.getter(name="siteLabel")
+    def site_label(self) -> Optional[_builtins.str]:
+        """
+        The metric label name used for site/cluster.
+        """
+        return pulumi.get(self, "site_label")
+
+    @_builtins.property
+    @pulumi.getter(name="siteLabelValues")
+    def site_label_values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specific values of the site label to match.
+        """
+        return pulumi.get(self, "site_label_values")
+
+
+@pulumi.output_type
+class StackDatasetFilterGroupFilter(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str name: The label name to filter on.
+        :param _builtins.str operator: The filter operator (e.g., `=`, `!=`, `=~`, `!~`).
+        :param Sequence[_builtins.str] values: The values to match.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The label name to filter on.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        The filter operator (e.g., `=`, `!=`, `=~`, `!~`).
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The values to match.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type

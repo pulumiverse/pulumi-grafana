@@ -394,7 +394,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:syntheticMonitoring/check:Check name "{{ id }}"
+ * terraform import grafana_synthetic_monitoring_check.name "{{ id }}"
  * ```
  */
 export class Check extends pulumi.CustomResource {

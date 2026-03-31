@@ -34,9 +34,15 @@ namespace Pulumiverse.Grafana.FrontendObservability
 
     public sealed class GetAppArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the Frontend Observability App. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public int StackId { get; set; }
 
@@ -48,9 +54,15 @@ namespace Pulumiverse.Grafana.FrontendObservability
 
     public sealed class GetAppInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the Frontend Observability App. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public Input<int> StackId { get; set; } = null!;
 
@@ -76,12 +88,21 @@ namespace Pulumiverse.Grafana.FrontendObservability
         /// The extra attributes to append in each signal.
         /// </summary>
         public readonly ImmutableDictionary<string, string> ExtraLogAttributes;
+        /// <summary>
+        /// The Terraform Resource ID. This auto-generated from Frontend Observability API.
+        /// </summary>
         public readonly int Id;
+        /// <summary>
+        /// The name of the Frontend Observability App. Part of the Terraform Resource ID.
+        /// </summary>
         public readonly string Name;
         /// <summary>
         /// The settings of the Frontend Observability App.
         /// </summary>
         public readonly ImmutableDictionary<string, string> Settings;
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         public readonly int StackId;
 
         [OutputConstructor]

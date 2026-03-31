@@ -35,6 +35,7 @@ class ReportArgs:
                  reply_to: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Report resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] recipients: List of recipients of the report.
         :param pulumi.Input['ReportScheduleArgs'] schedule: Schedule of the report.
         :param pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]] dashboards: List of dashboards to render into the report
@@ -233,6 +234,7 @@ class _ReportState:
                  schedule: Optional[pulumi.Input['ReportScheduleArgs']] = None):
         """
         Input properties used for looking up and filtering Report resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
         :param pulumi.Input[_builtins.bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
@@ -468,12 +470,10 @@ class Report(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/report:Report name "{{ id }}"
+        terraform import grafana_report.name "{{ id }}"
+        terraform import grafana_report.name "{{ orgID }}:{{ id }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/report:Report name "{{ orgID }}:{{ id }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -529,12 +529,10 @@ class Report(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/report:Report name "{{ id }}"
+        terraform import grafana_report.name "{{ id }}"
+        terraform import grafana_report.name "{{ orgID }}:{{ id }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/report:Report name "{{ orgID }}:{{ id }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param ReportArgs args: The arguments to use to populate this resource's properties.

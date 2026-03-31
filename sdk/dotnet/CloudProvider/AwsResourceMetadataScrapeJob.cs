@@ -11,12 +11,83 @@ using Pulumi;
 namespace Pulumiverse.Grafana.CloudProvider
 {
     /// <summary>
+    /// This resource allows you to scrape AWS resource metadata such as ARN and tags as info metrics in Grafana Cloud without needing to run your own infrastructure.
+    /// Use this resource if you aren't using `grafana.cloudProvider.AwsCloudwatchScrapeJob`, but still want to have AWS resource metadata available
+    /// in Grafana Cloud, for example for use with our AWS Metrics Streams integration and/or Knowledge Graph features.
+    /// 
+    /// See the Grafana Provider configuration docs
+    /// for information on authentication and required access policy scopes.
+    /// 
+    /// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+    /// 
     /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = Grafana.Cloud.GetStack.Invoke(new()
+    ///     {
+    ///         Slug = "gcloudstacktest",
+    ///     });
+    /// 
+    ///     var testIamRole = Aws.Index.IamRole.Invoke(new()
+    ///     {
+    ///         Name = "my-role",
+    ///     });
+    /// 
+    ///     var testAwsAccount = new Grafana.CloudProvider.AwsAccount("test", new()
+    ///     {
+    ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
+    ///         RoleArn = testIamRole.Arn,
+    ///         Regions = new[]
+    ///         {
+    ///             "us-east-1",
+    ///             "us-east-2",
+    ///             "us-west-1",
+    ///         },
+    ///     });
+    /// 
+    ///     var testAwsResourceMetadataScrapeJob = new Grafana.CloudProvider.AwsResourceMetadataScrapeJob("test", new()
+    ///     {
+    ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
+    ///         Name = "my-aws-resource-metadata-scrape-job",
+    ///         AwsAccountResourceId = testAwsAccount.ResourceId,
+    ///         Services = new[]
+    ///         {
+    ///             new Grafana.CloudProvider.Inputs.AwsResourceMetadataScrapeJobServiceArgs
+    ///             {
+    ///                 Name = "AWS/EC2",
+    ///                 ScrapeIntervalSeconds = 300,
+    ///                 ResourceDiscoveryTagFilters = new[]
+    ///                 {
+    ///                     new Grafana.CloudProvider.Inputs.AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs
+    ///                     {
+    ///                         Key = "k8s.io/cluster-autoscaler/enabled",
+    ///                         Value = "true",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///         StaticLabels = 
+    ///         {
+    ///             { "label1", "value1" },
+    ///             { "label2", "value2" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob name "{{ stack_id }}:{{ name }}"
+    /// terraform import grafana_cloud_provider_aws_resource_metadata_scrape_job.name "{{ stack_id }}:{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob")]
@@ -40,6 +111,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -55,6 +129,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Output("services")]
         public Output<ImmutableArray<Outputs.AwsResourceMetadataScrapeJobService>> Services { get; private set; } = null!;
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Output("stackId")]
         public Output<string> StackId { get; private set; } = null!;
 
@@ -123,6 +200,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -150,6 +230,9 @@ namespace Pulumiverse.Grafana.CloudProvider
             set => _services = value;
         }
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public Input<string> StackId { get; set; } = null!;
 
@@ -191,6 +274,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -218,6 +304,9 @@ namespace Pulumiverse.Grafana.CloudProvider
             set => _services = value;
         }
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
 

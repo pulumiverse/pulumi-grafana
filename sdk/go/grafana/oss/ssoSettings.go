@@ -142,11 +142,8 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:oss/ssoSettings:SsoSettings name "{{ provider }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:oss/ssoSettings:SsoSettings name "{{ orgID }}:{{ provider }}"
+// terraform import grafana_sso_settings.name "{{ provider }}"
+// terraform import grafana_sso_settings.name "{{ orgID }}:{{ provider }}"
 // ```
 type SsoSettings struct {
 	pulumi.CustomResourceState

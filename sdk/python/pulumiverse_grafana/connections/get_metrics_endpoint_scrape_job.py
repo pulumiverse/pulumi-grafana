@@ -101,11 +101,17 @@ class GetMetricsEndpointScrapeJobResult:
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
+        """
+        The Terraform Resource ID. This has the format "{{ stack_id }}:{{ name }}".
+        """
         return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
+        """
+        The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
@@ -119,6 +125,9 @@ class GetMetricsEndpointScrapeJobResult:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> _builtins.str:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @_builtins.property
@@ -161,6 +170,10 @@ def get_metrics_endpoint_scrape_job(name: Optional[_builtins.str] = None,
     ds_test = grafana.connections.get_metrics_endpoint_scrape_job(stack_id="1",
         name="my-scrape-job")
     ```
+
+
+    :param _builtins.str name: The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
+    :param _builtins.str stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -192,6 +205,10 @@ def get_metrics_endpoint_scrape_job_output(name: Optional[pulumi.Input[_builtins
     ds_test = grafana.connections.get_metrics_endpoint_scrape_job(stack_id="1",
         name="my-scrape-job")
     ```
+
+
+    :param _builtins.str name: The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
+    :param _builtins.str stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
     """
     __args__ = dict()
     __args__['name'] = name

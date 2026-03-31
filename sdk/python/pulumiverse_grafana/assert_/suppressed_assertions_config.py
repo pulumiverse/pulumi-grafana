@@ -23,6 +23,7 @@ class SuppressedAssertionsConfigArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SuppressedAssertionsConfig resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] match_labels: Labels to match for this disabled alert configuration.
         :param pulumi.Input[_builtins.str] name: The name of the disabled alert configuration.
         """
@@ -63,6 +64,7 @@ class _SuppressedAssertionsConfigState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SuppressedAssertionsConfig resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] match_labels: Labels to match for this disabled alert configuration.
         :param pulumi.Input[_builtins.str] name: The name of the disabled alert configuration.
         """
@@ -141,8 +143,9 @@ class SuppressedAssertionsConfig(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig name "{{ name }}"
+        terraform import grafana_asserts_suppressed_assertions_config.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -191,8 +194,9 @@ class SuppressedAssertionsConfig(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig name "{{ name }}"
+        terraform import grafana_asserts_suppressed_assertions_config.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SuppressedAssertionsConfigArgs args: The arguments to use to populate this resource's properties.

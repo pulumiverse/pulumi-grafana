@@ -44,8 +44,7 @@ namespace Pulumiverse.Grafana.Cloud
     /// 
     /// ## Import
     /// 
-    /// #!/bin/bash
-    /// 
+    /// !/bin/bash
     /// Import an existing app observability config by its UID
     /// 
     /// ```sh

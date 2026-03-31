@@ -27,6 +27,7 @@ class ScheduleArgs:
                  recurrence_rule: Optional[pulumi.Input['ScheduleRecurrenceRuleArgs']] = None):
         """
         The set of arguments for constructing a Schedule resource.
+
         :param pulumi.Input[_builtins.str] load_test_id: The identifier of the load test to schedule.
         :param pulumi.Input[_builtins.str] starts: The start time for the schedule (RFC3339 format).
         :param pulumi.Input['ScheduleCronArgs'] cron: The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
@@ -100,6 +101,7 @@ class _ScheduleState:
                  starts: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Schedule resources.
+
         :param pulumi.Input[_builtins.str] created_by: The email of the user who created the schedule.
         :param pulumi.Input['ScheduleCronArgs'] cron: The cron schedule to trigger the test periodically. If not specified, the test will run only once on the 'starts' date. Only one of `recurrence_rule` and `cron` can be set.
         :param pulumi.Input[_builtins.bool] deactivated: Whether the schedule is deactivated.
@@ -281,8 +283,9 @@ class Schedule(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:k6/schedule:Schedule name "{{ load_test_id }}"
+        terraform import grafana_k6_schedule.name "{{ load_test_id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -359,8 +362,9 @@ class Schedule(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:k6/schedule:Schedule name "{{ load_test_id }}"
+        terraform import grafana_k6_schedule.name "{{ load_test_id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ScheduleArgs args: The arguments to use to populate this resource's properties.

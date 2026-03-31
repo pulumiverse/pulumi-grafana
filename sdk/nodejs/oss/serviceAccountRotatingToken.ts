@@ -57,6 +57,9 @@ export class ServiceAccountRotatingToken extends pulumi.CustomResource {
         return obj['__pulumiType'] === ServiceAccountRotatingToken.__pulumiType;
     }
 
+    /**
+     * Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+     */
     declare public readonly deleteOnDestroy: pulumi.Output<boolean | undefined>;
     /**
      * Duration of the time window before expiring where the token can be rotated, in seconds.
@@ -154,6 +157,9 @@ export class ServiceAccountRotatingToken extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ServiceAccountRotatingToken resources.
  */
 export interface ServiceAccountRotatingTokenState {
+    /**
+     * Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+     */
     deleteOnDestroy?: pulumi.Input<boolean>;
     /**
      * Duration of the time window before expiring where the token can be rotated, in seconds.
@@ -197,6 +203,9 @@ export interface ServiceAccountRotatingTokenState {
  * The set of arguments for constructing a ServiceAccountRotatingToken resource.
  */
 export interface ServiceAccountRotatingTokenArgs {
+    /**
+     * Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+     */
     deleteOnDestroy?: pulumi.Input<boolean>;
     /**
      * Duration of the time window before expiring where the token can be rotated, in seconds.

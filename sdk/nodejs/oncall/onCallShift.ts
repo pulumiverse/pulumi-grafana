@@ -7,10 +7,92 @@ import * as utilities from "../utilities";
 /**
  * * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/on_call_shifts/)
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ * import * as std from "@pulumi/std";
+ *
+ * const alex = grafana.onCall.getUser({
+ *     username: "alex",
+ * });
+ * const myTeam = grafana.oss.getTeam({
+ *     name: "my team",
+ * });
+ * const myTeamGetTeam = myTeam.then(myTeam => grafana.onCall.getTeam({
+ *     name: myTeam.name,
+ * }));
+ * const exampleShift = new grafana.oncall.OnCallShift("example_shift", {
+ *     name: "Example Shift",
+ *     type: "recurrent_event",
+ *     start: "2020-09-07T14:00:00",
+ *     duration: 60 * 30,
+ *     frequency: "weekly",
+ *     interval: 2,
+ *     byDays: [
+ *         "MO",
+ *         "FR",
+ *     ],
+ *     weekStart: "MO",
+ *     users: [alex.then(alex => alex.id)],
+ *     timeZone: "UTC",
+ *     teamId: myTeamGetTeam.then(myTeamGetTeam => myTeamGetTeam.id),
+ * });
+ * ////////
+ * // Advanced example
+ * ////////
+ * const teams = {
+ *     emea: [
+ *         "alfa@grafana.com",
+ *         "bravo@grafana.com",
+ *         "charlie@grafana.com",
+ *         "echo@grafana.com",
+ *         "delta@grafana.com",
+ *         "foxtrot@grafana.com",
+ *         "golf@grafana.com",
+ *     ],
+ * };
+ * // Importing users
+ * const allUsers = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: grafana.onCall.getUser({
+ *     username: __key,
+ * }) }));
+ * // oncall API operates with resources ID's, so we convert emails into ID's
+ * const teamsMapOfUserId = Object.entries(teams).reduce((__obj, [teamName, usernameList]) => ({ ...__obj, [teamName]: usernameList.map(username => (std.index.lookup({
+ *     map: allUsers,
+ *     key: username,
+ * }).result.id)) }));
+ * const usersMapById = _arg0_;
+ * // A 12 hour shift on week days with the on-call person rotating weekly.
+ * const emeaWeekdayShift = new grafana.oncall.OnCallShift("emea_weekday_shift", {
+ *     name: "EMEA Weekday Shift",
+ *     type: "rolling_users",
+ *     start: "2022-02-28T03:00:00",
+ *     duration: 60 * 60 * 12,
+ *     frequency: "weekly",
+ *     interval: 1,
+ *     byDays: [
+ *         "MO",
+ *         "TU",
+ *         "WE",
+ *         "TH",
+ *         "FR",
+ *     ],
+ *     weekStart: "MO",
+ *     rollingUsers: .map(k => ([k])),
+ *     startRotationFromUserIndex: 0,
+ *     teamId: myTeamGetTeam.then(myTeamGetTeam => myTeamGetTeam.id),
+ * });
+ * export const emeaWeekdayRollingUsers = .map(k => (std.index.lookup({
+ *     map: usersMapById,
+ *     key: k,
+ * }).result.username));
+ * ```
+ *
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:onCall/onCallShift:OnCallShift name "{{ id }}"
+ * terraform import grafana_oncall_on_call_shift.name "{{ id }}"
  * ```
  */
 export class OnCallShift extends pulumi.CustomResource {

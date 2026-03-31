@@ -18,7 +18,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:onCall/integration:Integration name "{{ id }}"
+// terraform import grafana_oncall_integration.name "{{ id }}"
 // ```
 type Integration struct {
 	pulumi.CustomResourceState

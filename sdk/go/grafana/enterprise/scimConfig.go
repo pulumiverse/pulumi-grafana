@@ -48,10 +48,7 @@ import (
 //
 // ```sh
 // $ pulumi import grafana:enterprise/scimConfig:ScimConfig name ""
-// ```
-//
-// ```sh
-// $ pulumi import grafana:enterprise/scimConfig:ScimConfig name "{{ orgID }}"
+// terraform import grafana_scim_config.name "{{ orgID }}"
 // ```
 type ScimConfig struct {
 	pulumi.CustomResourceState

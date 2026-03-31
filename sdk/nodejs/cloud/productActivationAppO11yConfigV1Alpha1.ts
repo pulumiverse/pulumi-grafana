@@ -31,8 +31,7 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * #!/bin/bash
- *
+ * !/bin/bash
  * Import an existing app observability config by its UID
  *
  * ```sh

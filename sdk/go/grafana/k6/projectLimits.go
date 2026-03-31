@@ -53,7 +53,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:k6/projectLimits:ProjectLimits name "{{ project_id }}"
+// terraform import grafana_k6_project_limits.name "{{ project_id }}"
 // ```
 type ProjectLimits struct {
 	pulumi.CustomResourceState

@@ -26,6 +26,7 @@ class PrivateDataSourceConnectNetworkTokenArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivateDataSourceConnectNetworkToken resource.
+
         :param pulumi.Input[_builtins.str] pdc_network_id: ID of the private data source network for which to create a token.
         :param pulumi.Input[_builtins.str] region: Region of the private data source network. Should be set to the same region as the private data source network. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         :param pulumi.Input[_builtins.str] display_name: Display name of the private data source network token. Defaults to the name.
@@ -115,6 +116,7 @@ class _PrivateDataSourceConnectNetworkTokenState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateDataSourceConnectNetworkToken resources.
+
         :param pulumi.Input[_builtins.str] created_at: Creation date of the private data source network token.
         :param pulumi.Input[_builtins.str] display_name: Display name of the private data source network token. Defaults to the name.
         :param pulumi.Input[_builtins.str] expires_at: Expiration date of the private data source network token. Does not expire by default.
@@ -279,8 +281,9 @@ class PrivateDataSourceConnectNetworkToken(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken name "{{ region }}:{{ tokenId }}"
+        terraform import grafana_cloud_private_data_source_connect_network_token.name "{{ region }}:{{ tokenId }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -329,8 +332,9 @@ class PrivateDataSourceConnectNetworkToken(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken name "{{ region }}:{{ tokenId }}"
+        terraform import grafana_cloud_private_data_source_connect_network_token.name "{{ region }}:{{ tokenId }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PrivateDataSourceConnectNetworkTokenArgs args: The arguments to use to populate this resource's properties.

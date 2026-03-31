@@ -27,6 +27,7 @@ class PlaylistArgs:
                  org_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Playlist resource.
+
         :param pulumi.Input[_builtins.str] name: The name of the playlist.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
@@ -89,6 +90,7 @@ class _PlaylistState:
                  org_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Playlist resources.
+
         :param pulumi.Input[_builtins.str] name: The name of the playlist.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
@@ -185,12 +187,10 @@ class Playlist(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/playlist:Playlist name "{{ uid }}"
+        terraform import grafana_playlist.name "{{ uid }}"
+        terraform import grafana_playlist.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/playlist:Playlist name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -233,12 +233,10 @@ class Playlist(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/playlist:Playlist name "{{ uid }}"
+        terraform import grafana_playlist.name "{{ uid }}"
+        terraform import grafana_playlist.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/playlist:Playlist name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param PlaylistArgs args: The arguments to use to populate this resource's properties.

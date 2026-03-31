@@ -25,6 +25,7 @@ class PrivateDataSourceConnectNetworkArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivateDataSourceConnectNetwork resource.
+
         :param pulumi.Input[_builtins.str] region: The region where your stack is deployed. Use the instances list API to get the region for your instance - use the regionSlug property: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-stacks
         :param pulumi.Input[_builtins.str] stack_identifier: The identifier of the stack.
         :param pulumi.Input[_builtins.str] display_name: Display name of the PDC network. Defaults to the name.
@@ -98,6 +99,7 @@ class _PrivateDataSourceConnectNetworkState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateDataSourceConnectNetwork resources.
+
         :param pulumi.Input[_builtins.str] created_at: Creation date of the private data source connect network.
         :param pulumi.Input[_builtins.str] display_name: Display name of the PDC network. Defaults to the name.
         :param pulumi.Input[_builtins.str] name: Name of the PDC network.**Note:** The name must be lowercase and can contain hyphens or underscores. See full requirements here: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#request-body
@@ -250,8 +252,9 @@ class PrivateDataSourceConnectNetwork(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/privateDataSourceConnectNetwork:PrivateDataSourceConnectNetwork name "{{ region }}:{{ policyId }}"
+        terraform import grafana_cloud_private_data_source_connect_network.name "{{ region }}:{{ policyId }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -299,8 +302,9 @@ class PrivateDataSourceConnectNetwork(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/privateDataSourceConnectNetwork:PrivateDataSourceConnectNetwork name "{{ region }}:{{ policyId }}"
+        terraform import grafana_cloud_private_data_source_connect_network.name "{{ region }}:{{ policyId }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PrivateDataSourceConnectNetworkArgs args: The arguments to use to populate this resource's properties.

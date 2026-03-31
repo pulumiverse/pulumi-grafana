@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:frontendObservability/app:App name "{{ stack_id }}:{{ name }}"
+ * terraform import grafana_frontend_o11y_app.name "{{ stack_id }}:{{ name }}"
  * ```
  */
 export class App extends pulumi.CustomResource {
@@ -53,11 +53,17 @@ export class App extends pulumi.CustomResource {
      * The extra attributes to append in each signal.
      */
     declare public readonly extraLogAttributes: pulumi.Output<{[key: string]: string}>;
+    /**
+     * The name of Frontend Observability App. Part of the Terraform Resource ID.
+     */
     declare public readonly name: pulumi.Output<string>;
     /**
      * The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
      */
     declare public readonly settings: pulumi.Output<{[key: string]: string}>;
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     declare public readonly stackId: pulumi.Output<number>;
 
     /**
@@ -121,11 +127,17 @@ export interface AppState {
      * The extra attributes to append in each signal.
      */
     extraLogAttributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of Frontend Observability App. Part of the Terraform Resource ID.
+     */
     name?: pulumi.Input<string>;
     /**
      * The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId?: pulumi.Input<number>;
 }
 
@@ -141,10 +153,16 @@ export interface AppArgs {
      * The extra attributes to append in each signal.
      */
     extraLogAttributes: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of Frontend Observability App. Part of the Terraform Resource ID.
+     */
     name?: pulumi.Input<string>;
     /**
      * The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
      */
     settings: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: pulumi.Input<number>;
 }

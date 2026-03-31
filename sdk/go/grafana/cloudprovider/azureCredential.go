@@ -12,6 +12,13 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+// This resource allows you to autodiscover resources in your Azure tenant and scrape Azure Monitor metrics for those resources in Grafana Cloud without needing to run your own infrastructure.
+//
+// See the Grafana Provider configuration docs
+// for information on authentication and required access policy scopes.
+//
+// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+//
 // ## Example Usage
 //
 // ```go
@@ -89,7 +96,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:cloudProvider/azureCredential:AzureCredential name "{{ stack_id }}:{{ resource_id }}"
+// terraform import grafana_cloud_provider_azure_credential.name "{{ stack_id }}:{{ resource_id }}"
 // ```
 type AzureCredential struct {
 	pulumi.CustomResourceState
@@ -108,7 +115,8 @@ type AzureCredential struct {
 	ResourceId pulumi.StringOutput `pulumi:"resourceId"`
 	// The list of resource tags to add to metrics.
 	ResourceTagsToAddToMetrics pulumi.StringArrayOutput `pulumi:"resourceTagsToAddToMetrics"`
-	StackId                    pulumi.StringOutput      `pulumi:"stackId"`
+	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.StringOutput `pulumi:"stackId"`
 	// The tenant ID of the Azure Credential.
 	TenantId pulumi.StringOutput `pulumi:"tenantId"`
 }
@@ -176,7 +184,8 @@ type azureCredentialState struct {
 	ResourceId *string `pulumi:"resourceId"`
 	// The list of resource tags to add to metrics.
 	ResourceTagsToAddToMetrics []string `pulumi:"resourceTagsToAddToMetrics"`
-	StackId                    *string  `pulumi:"stackId"`
+	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId *string `pulumi:"stackId"`
 	// The tenant ID of the Azure Credential.
 	TenantId *string `pulumi:"tenantId"`
 }
@@ -196,7 +205,8 @@ type AzureCredentialState struct {
 	ResourceId pulumi.StringPtrInput
 	// The list of resource tags to add to metrics.
 	ResourceTagsToAddToMetrics pulumi.StringArrayInput
-	StackId                    pulumi.StringPtrInput
+	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.StringPtrInput
 	// The tenant ID of the Azure Credential.
 	TenantId pulumi.StringPtrInput
 }
@@ -218,7 +228,8 @@ type azureCredentialArgs struct {
 	ResourceDiscoveryTagFilters []AzureCredentialResourceDiscoveryTagFilter `pulumi:"resourceDiscoveryTagFilters"`
 	// The list of resource tags to add to metrics.
 	ResourceTagsToAddToMetrics []string `pulumi:"resourceTagsToAddToMetrics"`
-	StackId                    string   `pulumi:"stackId"`
+	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId string `pulumi:"stackId"`
 	// The tenant ID of the Azure Credential.
 	TenantId string `pulumi:"tenantId"`
 }
@@ -237,7 +248,8 @@ type AzureCredentialArgs struct {
 	ResourceDiscoveryTagFilters AzureCredentialResourceDiscoveryTagFilterArrayInput
 	// The list of resource tags to add to metrics.
 	ResourceTagsToAddToMetrics pulumi.StringArrayInput
-	StackId                    pulumi.StringInput
+	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.StringInput
 	// The tenant ID of the Azure Credential.
 	TenantId pulumi.StringInput
 }
@@ -368,6 +380,7 @@ func (o AzureCredentialOutput) ResourceTagsToAddToMetrics() pulumi.StringArrayOu
 	return o.ApplyT(func(v *AzureCredential) pulumi.StringArrayOutput { return v.ResourceTagsToAddToMetrics }).(pulumi.StringArrayOutput)
 }
 
+// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o AzureCredentialOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AzureCredential) pulumi.StringOutput { return v.StackId }).(pulumi.StringOutput)
 }

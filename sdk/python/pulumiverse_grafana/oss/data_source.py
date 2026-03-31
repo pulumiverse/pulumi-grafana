@@ -36,6 +36,7 @@ class DataSourceArgs:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataSource resource.
+
         :param pulumi.Input[_builtins.str] type: The data source type. Must be one of the supported data source keywords.
         :param pulumi.Input[_builtins.str] access_mode: The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
         :param pulumi.Input[_builtins.bool] basic_auth_enabled: Whether to enable basic auth for the data source. Defaults to `false`.
@@ -283,6 +284,7 @@ class _DataSourceState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataSource resources.
+
         :param pulumi.Input[_builtins.str] access_mode: The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.
         :param pulumi.Input[_builtins.bool] basic_auth_enabled: Whether to enable basic auth for the data source. Defaults to `false`.
         :param pulumi.Input[_builtins.str] basic_auth_username: Basic auth username. Defaults to ``.
@@ -611,12 +613,10 @@ class DataSource(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/dataSource:DataSource name "{{ uid }}"
+        terraform import grafana_data_source.name "{{ uid }}"
+        terraform import grafana_data_source.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/dataSource:DataSource name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -720,12 +720,10 @@ class DataSource(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/dataSource:DataSource name "{{ uid }}"
+        terraform import grafana_data_source.name "{{ uid }}"
+        terraform import grafana_data_source.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/dataSource:DataSource name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param DataSourceArgs args: The arguments to use to populate this resource's properties.

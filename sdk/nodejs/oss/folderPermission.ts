@@ -46,11 +46,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/folderPermission:FolderPermission name "{{ folderUID }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:oss/folderPermission:FolderPermission name "{{ orgID }}:{{ folderUID }}"
+ * terraform import grafana_folder_permission.name "{{ folderUID }}"
+ * terraform import grafana_folder_permission.name "{{ orgID }}:{{ folderUID }}"
  * ```
  */
 export class FolderPermission extends pulumi.CustomResource {

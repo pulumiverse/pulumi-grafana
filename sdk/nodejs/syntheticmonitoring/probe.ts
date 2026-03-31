@@ -32,11 +32,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:syntheticMonitoring/probe:Probe name "{{ id }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:syntheticMonitoring/probe:Probe name "{{ id }}:{{ authToken }}"
+ * terraform import grafana_synthetic_monitoring_probe.name "{{ id }}"
+ * terraform import grafana_synthetic_monitoring_probe.name "{{ id }}:{{ authToken }}"
  * ```
  */
 export class Probe extends pulumi.CustomResource {

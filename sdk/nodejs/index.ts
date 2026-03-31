@@ -5,6 +5,46 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AppsDashboardDashboardV2beta1Args, AppsDashboardDashboardV2beta1State } from "./appsDashboardDashboardV2beta1";
+export type AppsDashboardDashboardV2beta1 = import("./appsDashboardDashboardV2beta1").AppsDashboardDashboardV2beta1;
+export const AppsDashboardDashboardV2beta1: typeof import("./appsDashboardDashboardV2beta1").AppsDashboardDashboardV2beta1 = null as any;
+utilities.lazyLoad(exports, ["AppsDashboardDashboardV2beta1"], () => require("./appsDashboardDashboardV2beta1"));
+
+export { AppsNotificationsInhibitionruleV1beta1Args, AppsNotificationsInhibitionruleV1beta1State } from "./appsNotificationsInhibitionruleV1beta1";
+export type AppsNotificationsInhibitionruleV1beta1 = import("./appsNotificationsInhibitionruleV1beta1").AppsNotificationsInhibitionruleV1beta1;
+export const AppsNotificationsInhibitionruleV1beta1: typeof import("./appsNotificationsInhibitionruleV1beta1").AppsNotificationsInhibitionruleV1beta1 = null as any;
+utilities.lazyLoad(exports, ["AppsNotificationsInhibitionruleV1beta1"], () => require("./appsNotificationsInhibitionruleV1beta1"));
+
+export { AppsProvisioningConnectionV0alpha1Args, AppsProvisioningConnectionV0alpha1State } from "./appsProvisioningConnectionV0alpha1";
+export type AppsProvisioningConnectionV0alpha1 = import("./appsProvisioningConnectionV0alpha1").AppsProvisioningConnectionV0alpha1;
+export const AppsProvisioningConnectionV0alpha1: typeof import("./appsProvisioningConnectionV0alpha1").AppsProvisioningConnectionV0alpha1 = null as any;
+utilities.lazyLoad(exports, ["AppsProvisioningConnectionV0alpha1"], () => require("./appsProvisioningConnectionV0alpha1"));
+
+export { AppsProvisioningRepositoryV0alpha1Args, AppsProvisioningRepositoryV0alpha1State } from "./appsProvisioningRepositoryV0alpha1";
+export type AppsProvisioningRepositoryV0alpha1 = import("./appsProvisioningRepositoryV0alpha1").AppsProvisioningRepositoryV0alpha1;
+export const AppsProvisioningRepositoryV0alpha1: typeof import("./appsProvisioningRepositoryV0alpha1").AppsProvisioningRepositoryV0alpha1 = null as any;
+utilities.lazyLoad(exports, ["AppsProvisioningRepositoryV0alpha1"], () => require("./appsProvisioningRepositoryV0alpha1"));
+
+export { AppsSecretKeeperActivationV1beta1Args, AppsSecretKeeperActivationV1beta1State } from "./appsSecretKeeperActivationV1beta1";
+export type AppsSecretKeeperActivationV1beta1 = import("./appsSecretKeeperActivationV1beta1").AppsSecretKeeperActivationV1beta1;
+export const AppsSecretKeeperActivationV1beta1: typeof import("./appsSecretKeeperActivationV1beta1").AppsSecretKeeperActivationV1beta1 = null as any;
+utilities.lazyLoad(exports, ["AppsSecretKeeperActivationV1beta1"], () => require("./appsSecretKeeperActivationV1beta1"));
+
+export { AppsSecretKeeperV1beta1Args, AppsSecretKeeperV1beta1State } from "./appsSecretKeeperV1beta1";
+export type AppsSecretKeeperV1beta1 = import("./appsSecretKeeperV1beta1").AppsSecretKeeperV1beta1;
+export const AppsSecretKeeperV1beta1: typeof import("./appsSecretKeeperV1beta1").AppsSecretKeeperV1beta1 = null as any;
+utilities.lazyLoad(exports, ["AppsSecretKeeperV1beta1"], () => require("./appsSecretKeeperV1beta1"));
+
+export { AppsSecretSecurevalueV1beta1Args, AppsSecretSecurevalueV1beta1State } from "./appsSecretSecurevalueV1beta1";
+export type AppsSecretSecurevalueV1beta1 = import("./appsSecretSecurevalueV1beta1").AppsSecretSecurevalueV1beta1;
+export const AppsSecretSecurevalueV1beta1: typeof import("./appsSecretSecurevalueV1beta1").AppsSecretSecurevalueV1beta1 = null as any;
+utilities.lazyLoad(exports, ["AppsSecretSecurevalueV1beta1"], () => require("./appsSecretSecurevalueV1beta1"));
+
+export { DataSourceCacheConfigArgs, DataSourceCacheConfigState } from "./dataSourceCacheConfig";
+export type DataSourceCacheConfig = import("./dataSourceCacheConfig").DataSourceCacheConfig;
+export const DataSourceCacheConfig: typeof import("./dataSourceCacheConfig").DataSourceCacheConfig = null as any;
+utilities.lazyLoad(exports, ["DataSourceCacheConfig"], () => require("./dataSourceCacheConfig"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -47,6 +87,40 @@ export {
     syntheticmonitoring,
     types,
 };
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "grafana:index/appsDashboardDashboardV2beta1:AppsDashboardDashboardV2beta1":
+                return new AppsDashboardDashboardV2beta1(name, <any>undefined, { urn })
+            case "grafana:index/appsNotificationsInhibitionruleV1beta1:AppsNotificationsInhibitionruleV1beta1":
+                return new AppsNotificationsInhibitionruleV1beta1(name, <any>undefined, { urn })
+            case "grafana:index/appsProvisioningConnectionV0alpha1:AppsProvisioningConnectionV0alpha1":
+                return new AppsProvisioningConnectionV0alpha1(name, <any>undefined, { urn })
+            case "grafana:index/appsProvisioningRepositoryV0alpha1:AppsProvisioningRepositoryV0alpha1":
+                return new AppsProvisioningRepositoryV0alpha1(name, <any>undefined, { urn })
+            case "grafana:index/appsSecretKeeperActivationV1beta1:AppsSecretKeeperActivationV1beta1":
+                return new AppsSecretKeeperActivationV1beta1(name, <any>undefined, { urn })
+            case "grafana:index/appsSecretKeeperV1beta1:AppsSecretKeeperV1beta1":
+                return new AppsSecretKeeperV1beta1(name, <any>undefined, { urn })
+            case "grafana:index/appsSecretSecurevalueV1beta1:AppsSecretSecurevalueV1beta1":
+                return new AppsSecretSecurevalueV1beta1(name, <any>undefined, { urn })
+            case "grafana:index/dataSourceCacheConfig:DataSourceCacheConfig":
+                return new DataSourceCacheConfig(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("grafana", "index/appsDashboardDashboardV2beta1", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/appsNotificationsInhibitionruleV1beta1", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/appsProvisioningConnectionV0alpha1", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/appsProvisioningRepositoryV0alpha1", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/appsSecretKeeperActivationV1beta1", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/appsSecretKeeperV1beta1", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/appsSecretSecurevalueV1beta1", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/dataSourceCacheConfig", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

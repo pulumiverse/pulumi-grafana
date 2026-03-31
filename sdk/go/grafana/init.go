@@ -11,6 +11,40 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+type module struct {
+	version semver.Version
+}
+
+func (m *module) Version() semver.Version {
+	return m.version
+}
+
+func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
+	switch typ {
+	case "grafana:index/appsDashboardDashboardV2beta1:AppsDashboardDashboardV2beta1":
+		r = &AppsDashboardDashboardV2beta1{}
+	case "grafana:index/appsNotificationsInhibitionruleV1beta1:AppsNotificationsInhibitionruleV1beta1":
+		r = &AppsNotificationsInhibitionruleV1beta1{}
+	case "grafana:index/appsProvisioningConnectionV0alpha1:AppsProvisioningConnectionV0alpha1":
+		r = &AppsProvisioningConnectionV0alpha1{}
+	case "grafana:index/appsProvisioningRepositoryV0alpha1:AppsProvisioningRepositoryV0alpha1":
+		r = &AppsProvisioningRepositoryV0alpha1{}
+	case "grafana:index/appsSecretKeeperActivationV1beta1:AppsSecretKeeperActivationV1beta1":
+		r = &AppsSecretKeeperActivationV1beta1{}
+	case "grafana:index/appsSecretKeeperV1beta1:AppsSecretKeeperV1beta1":
+		r = &AppsSecretKeeperV1beta1{}
+	case "grafana:index/appsSecretSecurevalueV1beta1:AppsSecretSecurevalueV1beta1":
+		r = &AppsSecretSecurevalueV1beta1{}
+	case "grafana:index/dataSourceCacheConfig:DataSourceCacheConfig":
+		r = &DataSourceCacheConfig{}
+	default:
+		return nil, fmt.Errorf("unknown resource type: %s", typ)
+	}
+
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	return
+}
+
 type pkg struct {
 	version semver.Version
 }
@@ -34,6 +68,46 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/appsDashboardDashboardV2beta1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/appsNotificationsInhibitionruleV1beta1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/appsProvisioningConnectionV0alpha1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/appsProvisioningRepositoryV0alpha1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/appsSecretKeeperActivationV1beta1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/appsSecretKeeperV1beta1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/appsSecretSecurevalueV1beta1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"index/dataSourceCacheConfig",
+		&module{version},
+	)
 	pulumi.RegisterResourcePackage(
 		"grafana",
 		&pkg{version},

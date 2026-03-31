@@ -94,7 +94,7 @@ namespace Pulumiverse.Grafana.MachineLearning
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:machineLearning/outlierDetector:OutlierDetector name "{{ id }}"
+    /// terraform import grafana_machine_learning_outlier_detector.name "{{ id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:machineLearning/outlierDetector:OutlierDetector")]

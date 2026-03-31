@@ -27,6 +27,7 @@ class SsoSettingsArgs:
                  saml_settings: Optional[pulumi.Input['SsoSettingsSamlSettingsArgs']] = None):
         """
         The set of arguments for constructing a SsoSettings resource.
+
         :param pulumi.Input[_builtins.str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
         :param pulumi.Input['SsoSettingsLdapSettingsArgs'] ldap_settings: The LDAP settings set. Required for the ldap provider.
         :param pulumi.Input['SsoSettingsOauth2SettingsArgs'] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
@@ -98,6 +99,7 @@ class _SsoSettingsState:
                  saml_settings: Optional[pulumi.Input['SsoSettingsSamlSettingsArgs']] = None):
         """
         Input properties used for looking up and filtering SsoSettings resources.
+
         :param pulumi.Input['SsoSettingsLdapSettingsArgs'] ldap_settings: The LDAP settings set. Required for the ldap provider.
         :param pulumi.Input['SsoSettingsOauth2SettingsArgs'] oauth2_settings: The OAuth2 settings set. Required for github, gitlab, google, azuread, okta, generic*oauth providers.
         :param pulumi.Input[_builtins.str] provider_name: The name of the SSO provider. Supported values: github, gitlab, google, azuread, okta, generic_oauth, saml, ldap.
@@ -271,12 +273,10 @@ class SsoSettings(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/ssoSettings:SsoSettings name "{{ provider }}"
+        terraform import grafana_sso_settings.name "{{ provider }}"
+        terraform import grafana_sso_settings.name "{{ orgID }}:{{ provider }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/ssoSettings:SsoSettings name "{{ orgID }}:{{ provider }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -390,12 +390,10 @@ class SsoSettings(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/ssoSettings:SsoSettings name "{{ provider }}"
+        terraform import grafana_sso_settings.name "{{ provider }}"
+        terraform import grafana_sso_settings.name "{{ orgID }}:{{ provider }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/ssoSettings:SsoSettings name "{{ orgID }}:{{ provider }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param SsoSettingsArgs args: The arguments to use to populate this resource's properties.

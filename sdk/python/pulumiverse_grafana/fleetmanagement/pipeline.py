@@ -26,6 +26,7 @@ class PipelineArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Pipeline resource.
+
         :param pulumi.Input[_builtins.str] contents: Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
         :param pulumi.Input[_builtins.str] config_type: Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
         :param pulumi.Input[_builtins.bool] enabled: Whether the pipeline is enabled for collectors
@@ -113,6 +114,7 @@ class _PipelineState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Pipeline resources.
+
         :param pulumi.Input[_builtins.str] config_type: Type of the config. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
         :param pulumi.Input[_builtins.str] contents: Configuration contents of the pipeline to be used by collectors (can be Alloy config syntax or OTel YAML)
         :param pulumi.Input[_builtins.bool] enabled: Whether the pipeline is enabled for collectors
@@ -235,8 +237,9 @@ class Pipeline(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:fleetManagement/pipeline:Pipeline name "{{ name }}"
+        terraform import grafana_fleet_management_pipeline.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -284,8 +287,9 @@ class Pipeline(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:fleetManagement/pipeline:Pipeline name "{{ name }}"
+        terraform import grafana_fleet_management_pipeline.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PipelineArgs args: The arguments to use to populate this resource's properties.

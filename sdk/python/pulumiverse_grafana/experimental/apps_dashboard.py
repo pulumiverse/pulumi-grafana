@@ -26,6 +26,7 @@ class AppsDashboardArgs:
                  spec: Optional[pulumi.Input['AppsDashboardSpecArgs']] = None):
         """
         The set of arguments for constructing a AppsDashboard resource.
+
         :param pulumi.Input['AppsDashboardMetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['AppsDashboardOptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['AppsDashboardSpecArgs'] spec: The spec of the resource.
@@ -82,6 +83,7 @@ class _AppsDashboardState:
                  spec: Optional[pulumi.Input['AppsDashboardSpecArgs']] = None):
         """
         Input properties used for looking up and filtering AppsDashboard resources.
+
         :param pulumi.Input['AppsDashboardMetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['AppsDashboardOptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['AppsDashboardSpecArgs'] spec: The spec of the resource.
@@ -168,6 +170,7 @@ class AppsDashboard(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['AppsDashboardMetadataArgs', 'AppsDashboardMetadataArgsDict']] metadata: The metadata of the resource.
@@ -207,6 +210,7 @@ class AppsDashboard(pulumi.CustomResource):
                 }),
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppsDashboardArgs args: The arguments to use to populate this resource's properties.

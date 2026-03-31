@@ -112,7 +112,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:k6/schedule:Schedule name "{{ load_test_id }}"
+// terraform import grafana_k6_schedule.name "{{ load_test_id }}"
 // ```
 type Schedule struct {
 	pulumi.CustomResourceState

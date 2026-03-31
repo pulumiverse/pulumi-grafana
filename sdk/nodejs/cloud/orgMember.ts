@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:cloud/orgMember:OrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+ * terraform import grafana_cloud_org_member.name "{{ orgSlugOrID }}:{{ usernameOrID }}"
  * ```
  */
 export class OrgMember extends pulumi.CustomResource {

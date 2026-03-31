@@ -42,7 +42,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:assert/thresholds:Thresholds name "{{ id }}"
+ * terraform import grafana_asserts_thresholds.name "{{ id }}"
  * ```
  */
 export class Thresholds extends pulumi.CustomResource {

@@ -57,7 +57,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:assert/customModelRules:CustomModelRules name "{{ name }}"
+ * terraform import grafana_asserts_custom_model_rules.name "{{ name }}"
  * ```
  */
 export class CustomModelRules extends pulumi.CustomResource {

@@ -27,6 +27,8 @@ class MuteTimingArgs:
                  org_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MuteTiming resource.
+
+        :param pulumi.Input[_builtins.bool] disable_provenance: Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input['MuteTimingIntervalArgs']]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
         :param pulumi.Input[_builtins.str] name: The name of the mute timing.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -43,6 +45,9 @@ class MuteTimingArgs:
     @_builtins.property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
+        """
         return pulumi.get(self, "disable_provenance")
 
     @disable_provenance.setter
@@ -95,6 +100,8 @@ class _MuteTimingState:
                  org_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MuteTiming resources.
+
+        :param pulumi.Input[_builtins.bool] disable_provenance: Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input['MuteTimingIntervalArgs']]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
         :param pulumi.Input[_builtins.str] name: The name of the mute timing.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -111,6 +118,9 @@ class _MuteTimingState:
     @_builtins.property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
+        """
         return pulumi.get(self, "disable_provenance")
 
     @disable_provenance.setter
@@ -209,15 +219,14 @@ class MuteTiming(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:alerting/muteTiming:MuteTiming name "{{ name }}"
+        terraform import grafana_mute_timing.name "{{ name }}"
+        terraform import grafana_mute_timing.name "{{ orgID }}:{{ name }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:alerting/muteTiming:MuteTiming name "{{ orgID }}:{{ name }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] disable_provenance: Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['MuteTimingIntervalArgs', 'MuteTimingIntervalArgsDict']]]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
         :param pulumi.Input[_builtins.str] name: The name of the mute timing.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -272,12 +281,10 @@ class MuteTiming(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:alerting/muteTiming:MuteTiming name "{{ name }}"
+        terraform import grafana_mute_timing.name "{{ name }}"
+        terraform import grafana_mute_timing.name "{{ orgID }}:{{ name }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:alerting/muteTiming:MuteTiming name "{{ orgID }}:{{ name }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param MuteTimingArgs args: The arguments to use to populate this resource's properties.
@@ -334,6 +341,7 @@ class MuteTiming(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] disable_provenance: Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['MuteTimingIntervalArgs', 'MuteTimingIntervalArgsDict']]]] intervals: The time intervals at which to mute notifications. Use an empty block to mute all the time.
         :param pulumi.Input[_builtins.str] name: The name of the mute timing.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -351,6 +359,9 @@ class MuteTiming(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
+        """
         return pulumi.get(self, "disable_provenance")
 
     @_builtins.property

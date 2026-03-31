@@ -183,6 +183,9 @@ class _ExportableConfig(types.ModuleType):
 
     @_builtins.property
     def sm_url(self) -> Optional[str]:
+        """
+        Synthetic monitoring backend address. May alternatively be set via the `GRAFANA_SM_URL` environment variable. The correct value for each service region is cited in the [Synthetic Monitoring documentation](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/set-up/set-up-private-probes/#probe-api-server-url). Note the `sm_url` value is optional, but it must correspond with the value specified as the `region_slug` in the `cloud.Stack` resource. Also note that when a Terraform configuration contains multiple provider instances managing SM resources associated with the same Grafana stack, specifying an explicit `sm_url` set to the same value for each provider ensures all providers interact with the same SM API.
+        """
         return __config__.get('smUrl') or _utilities.get_env('GRAFANA_SM_URL')
 
     @_builtins.property

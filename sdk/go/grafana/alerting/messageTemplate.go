@@ -49,20 +49,18 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:alerting/messageTemplate:MessageTemplate name "{{ name }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:alerting/messageTemplate:MessageTemplate name "{{ orgID }}:{{ name }}"
+// terraform import grafana_message_template.name "{{ name }}"
+// terraform import grafana_message_template.name "{{ orgID }}:{{ name }}"
 // ```
 type MessageTemplate struct {
 	pulumi.CustomResourceState
 
-	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
+	// Allow modifying the message template from other sources than Terraform or the Grafana API. Defaults to `false`.
+	DisableProvenance pulumi.BoolOutput `pulumi:"disableProvenance"`
 	// The name of the notification template group.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// The content of the notification template group.
 	Template pulumi.StringOutput `pulumi:"template"`
 }
@@ -106,6 +104,7 @@ func GetMessageTemplate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MessageTemplate resources.
 type messageTemplateState struct {
+	// Allow modifying the message template from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The name of the notification template group.
 	Name *string `pulumi:"name"`
@@ -116,6 +115,7 @@ type messageTemplateState struct {
 }
 
 type MessageTemplateState struct {
+	// Allow modifying the message template from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance pulumi.BoolPtrInput
 	// The name of the notification template group.
 	Name pulumi.StringPtrInput
@@ -130,6 +130,7 @@ func (MessageTemplateState) ElementType() reflect.Type {
 }
 
 type messageTemplateArgs struct {
+	// Allow modifying the message template from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The name of the notification template group.
 	Name *string `pulumi:"name"`
@@ -141,6 +142,7 @@ type messageTemplateArgs struct {
 
 // The set of arguments for constructing a MessageTemplate resource.
 type MessageTemplateArgs struct {
+	// Allow modifying the message template from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance pulumi.BoolPtrInput
 	// The name of the notification template group.
 	Name pulumi.StringPtrInput
@@ -237,8 +239,9 @@ func (o MessageTemplateOutput) ToMessageTemplateOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o MessageTemplateOutput) DisableProvenance() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *MessageTemplate) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
+// Allow modifying the message template from other sources than Terraform or the Grafana API. Defaults to `false`.
+func (o MessageTemplateOutput) DisableProvenance() pulumi.BoolOutput {
+	return o.ApplyT(func(v *MessageTemplate) pulumi.BoolOutput { return v.DisableProvenance }).(pulumi.BoolOutput)
 }
 
 // The name of the notification template group.
@@ -247,8 +250,8 @@ func (o MessageTemplateOutput) Name() pulumi.StringOutput {
 }
 
 // The Organization ID. If not set, the Org ID defined in the provider block will be used.
-func (o MessageTemplateOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MessageTemplate) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+func (o MessageTemplateOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MessageTemplate) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 // The content of the notification template group.

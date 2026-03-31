@@ -51,11 +51,8 @@ namespace Pulumiverse.Grafana.Oss
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:oss/libraryPanel:LibraryPanel name "{{ uid }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:oss/libraryPanel:LibraryPanel name "{{ orgID }}:{{ uid }}"
+    /// terraform import grafana_library_panel.name "{{ uid }}"
+    /// terraform import grafana_library_panel.name "{{ orgID }}:{{ uid }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:oss/libraryPanel:LibraryPanel")]

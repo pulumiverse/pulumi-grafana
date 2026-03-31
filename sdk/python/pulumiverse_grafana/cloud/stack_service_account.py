@@ -25,6 +25,7 @@ class StackServiceAccountArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a StackServiceAccount resource.
+
         :param pulumi.Input[_builtins.str] role: The basic role of the service account in the organization.
         :param pulumi.Input[_builtins.bool] is_disabled: The disabled status for the service account. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: The name of the service account.
@@ -91,6 +92,7 @@ class _StackServiceAccountState:
                  stack_slug: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StackServiceAccount resources.
+
         :param pulumi.Input[_builtins.bool] is_disabled: The disabled status for the service account. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: The name of the service account.
         :param pulumi.Input[_builtins.str] role: The basic role of the service account in the organization.
@@ -189,8 +191,9 @@ class StackServiceAccount(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/stackServiceAccount:StackServiceAccount name "{{ stackSlug }}:{{ serviceAccountID }}"
+        terraform import grafana_cloud_stack_service_account.name "{{ stackSlug }}:{{ serviceAccountID }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -232,8 +235,9 @@ class StackServiceAccount(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/stackServiceAccount:StackServiceAccount name "{{ stackSlug }}:{{ serviceAccountID }}"
+        terraform import grafana_cloud_stack_service_account.name "{{ stackSlug }}:{{ serviceAccountID }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param StackServiceAccountArgs args: The arguments to use to populate this resource's properties.

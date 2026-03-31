@@ -25,6 +25,7 @@ class LoadTestArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadTest resource.
+
         :param pulumi.Input[_builtins.str] project_id: The identifier of the project this load test belongs to.
         :param pulumi.Input[_builtins.str] script: The k6 test script content. Can be provided inline or via the `file()` function.
         :param pulumi.Input[_builtins.str] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
@@ -97,6 +98,7 @@ class _LoadTestState:
                  updated: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LoadTest resources.
+
         :param pulumi.Input[_builtins.str] baseline_test_run_id: Identifier of a baseline test run used for results comparison.
         :param pulumi.Input[_builtins.str] created: The date when the load test was created.
         :param pulumi.Input[_builtins.str] name: Human-friendly identifier of the load test.
@@ -223,8 +225,9 @@ class LoadTest(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:k6/loadTest:LoadTest name "{{ id }}"
+        terraform import grafana_k6_load_test.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -261,8 +264,9 @@ class LoadTest(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:k6/loadTest:LoadTest name "{{ id }}"
+        terraform import grafana_k6_load_test.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LoadTestArgs args: The arguments to use to populate this resource's properties.

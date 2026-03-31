@@ -16,6 +16,128 @@ import (
 // * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
 // * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
 // * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// test, err := oss.NewOrganization(ctx, "test", &oss.OrganizationArgs{
+// Name: pulumi.String("testing dashboards data source"),
+// })
+// if err != nil {
+// return err
+// }
+// dataSourceDashboards, err := oss.NewFolder(ctx, "data_source_dashboards", &oss.FolderArgs{
+// OrgId: test.ID(),
+// Title: pulumi.String("test folder data_source_dashboards"),
+// })
+// if err != nil {
+// return err
+// }
+// tmpJSON0, err := json.Marshal(map[string]interface{}{
+// "uid": "data-source-dashboards-1",
+// "title": "data_source_dashboards 1",
+// "tags": []string{
+// "dev",
+// },
+// })
+// if err != nil {
+// return err
+// }
+// json0 := string(tmpJSON0)
+// dataSourceDashboards1, err := oss.NewDashboard(ctx, "data_source_dashboards1", &oss.DashboardArgs{
+// OrgId: test.ID(),
+// Folder: dataSourceDashboards.ID(),
+// ConfigJson: pulumi.String(pulumi.String(json0)),
+// })
+// if err != nil {
+// return err
+// }
+// tmpJSON1, err := json.Marshal(map[string]interface{}{
+// "uid": "data-source-dashboards-2",
+// "title": "data_source_dashboards 2",
+// "tags": []string{
+// "prod",
+// },
+// })
+// if err != nil {
+// return err
+// }
+// json1 := string(tmpJSON1)
+// _, err = oss.NewDashboard(ctx, "data_source_dashboards2", &oss.DashboardArgs{
+// OrgId: test.ID(),
+// ConfigJson: pulumi.String(pulumi.String(json1)),
+// })
+// if err != nil {
+// return err
+// }
+// _ = pulumi.All(test.ID(),dataSourceDashboards1.ConfigJson).ApplyT(func(_args []interface{}) (oss.GetDashboardsResult, error) {
+// id := _args[0].(string)
+// configJson := _args[1].(string)
+// return oss.GetDashboardsResult(interface{}(oss.GetDashboards(ctx, &oss.GetDashboardsArgs{
+// OrgId: pulumi.StringRef(pulumi.StringRef(id)),
+// Tags: []string(std.Jsondecode(ctx, map[string]interface{}{
+// "input": configJson,
+// }, nil).Result.Tags),
+// }, nil))), nil
+// }).(oss.GetDashboardsResultOutput)
+// _ = pulumi.All(test.ID(),dataSourceDashboards1.Folder).ApplyT(func(_args []interface{}) (oss.GetDashboardsResult, error) {
+// id := _args[0].(string)
+// folder := _args[1].(*string)
+// return oss.GetDashboardsResult(interface{}(oss.GetDashboards(ctx, &oss.GetDashboardsArgs{
+// OrgId: pulumi.StringRef(pulumi.StringRef(id)),
+// FolderUids: interface{}{
+// folder,
+// },
+// }, nil))), nil
+// }).(oss.GetDashboardsResultOutput)
+// _ = pulumi.All(test.ID(),dataSourceDashboards1.Folder,dataSourceDashboards1.ConfigJson).ApplyT(func(_args []interface{}) (oss.GetDashboardsResult, error) {
+// id := _args[0].(string)
+// folder := _args[1].(*string)
+// configJson := _args[2].(string)
+// return oss.GetDashboardsResult(interface{}(oss.GetDashboards(ctx, &oss.GetDashboardsArgs{
+// OrgId: pulumi.StringRef(pulumi.StringRef(id)),
+// FolderUids: interface{}{
+// folder,
+// },
+// Tags: []string(std.Jsondecode(ctx, map[string]interface{}{
+// "input": configJson,
+// }, nil).Result.Tags),
+// }, nil))), nil
+// }).(oss.GetDashboardsResultOutput)
+// // use depends_on to wait for dashboard resource to be created before searching
+// _ = oss.GetDashboardsOutput(ctx, oss.GetDashboardsOutputArgs{
+// OrgId: test.ID(),
+// }, nil);
+// // get only one result
+// _ = test.ID().ApplyT(func(id string) (oss.GetDashboardsResult, error) {
+// return oss.GetDashboardsResult(interface{}(oss.GetDashboards(ctx, &oss.GetDashboardsArgs{
+// OrgId: pulumi.StringRef(pulumi.StringRef(id)),
+// Limit: pulumi.IntRef(pulumi.IntRef(int(1))),
+// }, nil))), nil
+// }).(oss.GetDashboardsResultOutput)
+// // The dashboards are not in the default org so this should return an empty list
+// _, err = oss.GetDashboards(ctx, &oss.GetDashboardsArgs{
+// }, nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func GetDashboards(ctx *pulumi.Context, args *GetDashboardsArgs, opts ...pulumi.InvokeOption) (*GetDashboardsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDashboardsResult

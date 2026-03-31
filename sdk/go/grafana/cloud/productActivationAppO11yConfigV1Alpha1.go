@@ -50,9 +50,8 @@ import (
 //
 // ## Import
 //
-// #!/bin/bash
-//
-// # Import an existing app observability config by its UID
+// !/bin/bash
+// Import an existing app observability config by its UID
 //
 // ```sh
 // $ pulumi import grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1 example my-app-o11y-config

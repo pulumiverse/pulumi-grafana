@@ -50,9 +50,8 @@ import (
 //
 // ## Import
 //
-// #!/bin/bash
-//
-// # Import an existing Kubernetes observability config by its UID
+// !/bin/bash
+// Import an existing Kubernetes observability config by its UID
 //
 // ```sh
 // $ pulumi import grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1 example my-k8s-o11y-config

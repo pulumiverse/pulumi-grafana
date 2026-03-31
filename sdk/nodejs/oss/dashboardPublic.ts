@@ -62,11 +62,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/dashboardPublic:DashboardPublic name "{{ dashboardUID }}:{{ publicDashboardUID }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:oss/dashboardPublic:DashboardPublic name "{{ orgID }}:{{ dashboardUID }}:{{ publicDashboardUID }}"
+ * terraform import grafana_dashboard_public.name "{{ dashboardUID }}:{{ publicDashboardUID }}"
+ * terraform import grafana_dashboard_public.name "{{ orgID }}:{{ dashboardUID }}:{{ publicDashboardUID }}"
  * ```
  */
 export class DashboardPublic extends pulumi.CustomResource {

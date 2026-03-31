@@ -388,8 +388,9 @@ type AlertEnrichmentSpec struct {
 	// Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
 	AnnotationMatchers []AlertEnrichmentSpecAnnotationMatcher `pulumi:"annotationMatchers"`
 	// Description of the alert enrichment.
-	Description       *string `pulumi:"description"`
-	DisableProvenance *bool   `pulumi:"disableProvenance"`
+	Description *string `pulumi:"description"`
+	// Allow modifying alert enrichment outside of Terraform
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
 	LabelMatchers []AlertEnrichmentSpecLabelMatcher `pulumi:"labelMatchers"`
 	// Receiver names to match. If empty, applies to all receivers.
@@ -417,8 +418,9 @@ type AlertEnrichmentSpecArgs struct {
 	// Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
 	AnnotationMatchers AlertEnrichmentSpecAnnotationMatcherArrayInput `pulumi:"annotationMatchers"`
 	// Description of the alert enrichment.
-	Description       pulumi.StringPtrInput `pulumi:"description"`
-	DisableProvenance pulumi.BoolPtrInput   `pulumi:"disableProvenance"`
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Allow modifying alert enrichment outside of Terraform
+	DisableProvenance pulumi.BoolPtrInput `pulumi:"disableProvenance"`
 	// Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
 	LabelMatchers AlertEnrichmentSpecLabelMatcherArrayInput `pulumi:"labelMatchers"`
 	// Receiver names to match. If empty, applies to all receivers.
@@ -521,6 +523,7 @@ func (o AlertEnrichmentSpecOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertEnrichmentSpec) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Allow modifying alert enrichment outside of Terraform
 func (o AlertEnrichmentSpecOutput) DisableProvenance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AlertEnrichmentSpec) *bool { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
 }
@@ -599,6 +602,7 @@ func (o AlertEnrichmentSpecPtrOutput) Description() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Allow modifying alert enrichment outside of Terraform
 func (o AlertEnrichmentSpecPtrOutput) DisableProvenance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AlertEnrichmentSpec) *bool {
 		if v == nil {
@@ -6958,7 +6962,7 @@ type AlertRuleV0Alpha1Spec struct {
 	NoDataState string `pulumi:"noDataState"`
 	// Notification settings for the rule. If specified, it overrides the notification policies.
 	NotificationSettings *AlertRuleV0Alpha1SpecNotificationSettings `pulumi:"notificationSettings"`
-	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
+	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
 	PanelRef map[string]string `pulumi:"panelRef"`
 	// Sets whether the rule should be paused or not.
 	Paused *bool `pulumi:"paused"`
@@ -6998,7 +7002,7 @@ type AlertRuleV0Alpha1SpecArgs struct {
 	NoDataState pulumi.StringInput `pulumi:"noDataState"`
 	// Notification settings for the rule. If specified, it overrides the notification policies.
 	NotificationSettings AlertRuleV0Alpha1SpecNotificationSettingsPtrInput `pulumi:"notificationSettings"`
-	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
+	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
 	PanelRef pulumi.StringMapInput `pulumi:"panelRef"`
 	// Sets whether the rule should be paused or not.
 	Paused pulumi.BoolPtrInput `pulumi:"paused"`
@@ -7132,7 +7136,7 @@ func (o AlertRuleV0Alpha1SpecOutput) NotificationSettings() AlertRuleV0Alpha1Spe
 	}).(AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput)
 }
 
-// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
+// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
 func (o AlertRuleV0Alpha1SpecOutput) PanelRef() pulumi.StringMapOutput {
 	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) map[string]string { return v.PanelRef }).(pulumi.StringMapOutput)
 }
@@ -7266,7 +7270,7 @@ func (o AlertRuleV0Alpha1SpecPtrOutput) NotificationSettings() AlertRuleV0Alpha1
 	}).(AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput)
 }
 
-// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
+// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
 func (o AlertRuleV0Alpha1SpecPtrOutput) PanelRef() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) map[string]string {
 		if v == nil {

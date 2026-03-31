@@ -32,6 +32,7 @@ class JobArgs:
                  training_window: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Job resource.
+
         :param pulumi.Input[_builtins.str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
         :param pulumi.Input[_builtins.str] datasource_uid: The uid of the datasource to query.
         :param pulumi.Input[_builtins.str] metric: The metric used to query the job results.
@@ -212,6 +213,7 @@ class _JobState:
                  training_window: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Job resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_labels: An object representing the custom labels added on the forecast.
         :param pulumi.Input[_builtins.str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
         :param pulumi.Input[_builtins.str] datasource_uid: The uid of the datasource to query.
@@ -565,8 +567,9 @@ class Job(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:machineLearning/job:Job name "{{ id }}"
+        terraform import grafana_machine_learning_job.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -755,8 +758,9 @@ class Job(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:machineLearning/job:Job name "{{ id }}"
+        terraform import grafana_machine_learning_job.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param JobArgs args: The arguments to use to populate this resource's properties.

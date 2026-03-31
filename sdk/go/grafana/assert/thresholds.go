@@ -67,7 +67,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:assert/thresholds:Thresholds name "{{ id }}"
+// terraform import grafana_asserts_thresholds.name "{{ id }}"
 // ```
 type Thresholds struct {
 	pulumi.CustomResourceState

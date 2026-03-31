@@ -52,6 +52,9 @@ class GetPrivateDataSourceConnectNetworksResult:
     @_builtins.property
     @pulumi.getter(name="nameFilter")
     def name_filter(self) -> Optional[_builtins.str]:
+        """
+        If set, only private data source connect networks with the specified name will be returned. This is faster than filtering in Terraform.
+        """
         return pulumi.get(self, "name_filter")
 
     @_builtins.property
@@ -62,6 +65,9 @@ class GetPrivateDataSourceConnectNetworksResult:
     @_builtins.property
     @pulumi.getter(name="regionFilter")
     def region_filter(self) -> Optional[_builtins.str]:
+        """
+        If set, only private data source connect networks in the specified region will be returned. This is faster than filtering in Terraform.
+        """
         return pulumi.get(self, "region_filter")
 
 
@@ -89,6 +95,10 @@ def get_private_data_source_connect_networks(name_filter: Optional[_builtins.str
     Required access policy scopes:
 
     * accesspolicies:read
+
+
+    :param _builtins.str name_filter: If set, only private data source connect networks with the specified name will be returned. This is faster than filtering in Terraform.
+    :param _builtins.str region_filter: If set, only private data source connect networks in the specified region will be returned. This is faster than filtering in Terraform.
     """
     __args__ = dict()
     __args__['nameFilter'] = name_filter
@@ -113,6 +123,10 @@ def get_private_data_source_connect_networks_output(name_filter: Optional[pulumi
     Required access policy scopes:
 
     * accesspolicies:read
+
+
+    :param _builtins.str name_filter: If set, only private data source connect networks with the specified name will be returned. This is faster than filtering in Terraform.
+    :param _builtins.str region_filter: If set, only private data source connect networks in the specified region will be returned. This is faster than filtering in Terraform.
     """
     __args__ = dict()
     __args__['nameFilter'] = name_filter

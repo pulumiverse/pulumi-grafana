@@ -119,6 +119,63 @@ def get_dashboards(folder_uids: Optional[Sequence[_builtins.str]] = None,
     * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
     * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import json
+    import pulumi_grafana as grafana
+    import pulumi_std as std
+    import pulumiverse_grafana as grafana
+
+    test = grafana.oss.Organization("test", name="testing dashboards data source")
+    data_source_dashboards = grafana.oss.Folder("data_source_dashboards",
+        org_id=test.id,
+        title="test folder data_source_dashboards")
+    data_source_dashboards1 = grafana.oss.Dashboard("data_source_dashboards1",
+        org_id=test.id,
+        folder=data_source_dashboards.id,
+        config_json=json.dumps({
+            "uid": "data-source-dashboards-1",
+            "title": "data_source_dashboards 1",
+            "tags": ["dev"],
+        }))
+    data_source_dashboards2 = grafana.oss.Dashboard("data_source_dashboards2",
+        org_id=test.id,
+        config_json=json.dumps({
+            "uid": "data-source-dashboards-2",
+            "title": "data_source_dashboards 2",
+            "tags": ["prod"],
+        }))
+    tags = pulumi.Output.all(
+        id=test.id,
+        config_json=data_source_dashboards1.config_json
+    ).apply(lambda resolved_outputs: grafana.oss.get_dashboards_output(org_id=resolved_outputs['id'],
+        tags=std.index.jsondecode(input=resolved_outputs['config_json'])["result"]["tags"]))
+
+    folder_uids = pulumi.Output.all(
+        id=test.id,
+        folder=data_source_dashboards1.folder
+    ).apply(lambda resolved_outputs: grafana.oss.get_dashboards_output(org_id=resolved_outputs['id'],
+        folder_uids=[resolved_outputs['folder']]))
+
+    folder_uids_tags = pulumi.Output.all(
+        id=test.id,
+        folder=data_source_dashboards1.folder,
+        config_json=data_source_dashboards1.config_json
+    ).apply(lambda resolved_outputs: grafana.oss.get_dashboards_output(org_id=resolved_outputs['id'],
+        folder_uids=[resolved_outputs['folder']],
+        tags=std.index.jsondecode(input=resolved_outputs['config_json'])["result"]["tags"]))
+
+    # use depends_on to wait for dashboard resource to be created before searching
+    all = grafana.oss.get_dashboards_output(org_id=test.id)
+    # get only one result
+    limit_one = test.id.apply(lambda id: grafana.oss.get_dashboards_output(org_id=id,
+        limit=1))
+    # The dashboards are not in the default org so this should return an empty list
+    wrong_org = grafana.oss.get_dashboards()
+    ```
+
 
     :param Sequence[_builtins.str] folder_uids: UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.
     :param _builtins.int limit: Maximum number of dashboard search results to return. Defaults to `5000`.
@@ -151,6 +208,63 @@ def get_dashboards_output(folder_uids: Optional[pulumi.Input[Optional[Sequence[_
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
     * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
     * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import json
+    import pulumi_grafana as grafana
+    import pulumi_std as std
+    import pulumiverse_grafana as grafana
+
+    test = grafana.oss.Organization("test", name="testing dashboards data source")
+    data_source_dashboards = grafana.oss.Folder("data_source_dashboards",
+        org_id=test.id,
+        title="test folder data_source_dashboards")
+    data_source_dashboards1 = grafana.oss.Dashboard("data_source_dashboards1",
+        org_id=test.id,
+        folder=data_source_dashboards.id,
+        config_json=json.dumps({
+            "uid": "data-source-dashboards-1",
+            "title": "data_source_dashboards 1",
+            "tags": ["dev"],
+        }))
+    data_source_dashboards2 = grafana.oss.Dashboard("data_source_dashboards2",
+        org_id=test.id,
+        config_json=json.dumps({
+            "uid": "data-source-dashboards-2",
+            "title": "data_source_dashboards 2",
+            "tags": ["prod"],
+        }))
+    tags = pulumi.Output.all(
+        id=test.id,
+        config_json=data_source_dashboards1.config_json
+    ).apply(lambda resolved_outputs: grafana.oss.get_dashboards_output(org_id=resolved_outputs['id'],
+        tags=std.index.jsondecode(input=resolved_outputs['config_json'])["result"]["tags"]))
+
+    folder_uids = pulumi.Output.all(
+        id=test.id,
+        folder=data_source_dashboards1.folder
+    ).apply(lambda resolved_outputs: grafana.oss.get_dashboards_output(org_id=resolved_outputs['id'],
+        folder_uids=[resolved_outputs['folder']]))
+
+    folder_uids_tags = pulumi.Output.all(
+        id=test.id,
+        folder=data_source_dashboards1.folder,
+        config_json=data_source_dashboards1.config_json
+    ).apply(lambda resolved_outputs: grafana.oss.get_dashboards_output(org_id=resolved_outputs['id'],
+        folder_uids=[resolved_outputs['folder']],
+        tags=std.index.jsondecode(input=resolved_outputs['config_json'])["result"]["tags"]))
+
+    # use depends_on to wait for dashboard resource to be created before searching
+    all = grafana.oss.get_dashboards_output(org_id=test.id)
+    # get only one result
+    limit_one = test.id.apply(lambda id: grafana.oss.get_dashboards_output(org_id=id,
+        limit=1))
+    # The dashboards are not in the default org so this should return an empty list
+    wrong_org = grafana.oss.get_dashboards()
+    ```
 
 
     :param Sequence[_builtins.str] folder_uids: UIDs of Grafana folders containing dashboards. Specify to filter for dashboards by folder (eg. `["General"]` for General folder), or leave blank to get all dashboards in all folders.

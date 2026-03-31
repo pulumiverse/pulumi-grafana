@@ -6,7 +6,17 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .apps_dashboard_dashboard_v2beta1 import *
+from .apps_notifications_inhibitionrule_v1beta1 import *
+from .apps_provisioning_connection_v0alpha1 import *
+from .apps_provisioning_repository_v0alpha1 import *
+from .apps_secret_keeper_activation_v1beta1 import *
+from .apps_secret_keeper_v1beta1 import *
+from .apps_secret_securevalue_v1beta1 import *
+from .data_source_cache_config import *
 from .provider import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -165,6 +175,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.assert_",
   "classes": {
    "grafana:assert/promRuleFile:PromRuleFile": "PromRuleFile"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "assert/stack",
+  "fqn": "pulumiverse_grafana.assert_",
+  "classes": {
+   "grafana:assert/stack:Stack": "Stack"
   }
  },
  {
@@ -445,6 +463,70 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsDashboardDashboardV2beta1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsDashboardDashboardV2beta1:AppsDashboardDashboardV2beta1": "AppsDashboardDashboardV2beta1"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsNotificationsInhibitionruleV1beta1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsNotificationsInhibitionruleV1beta1:AppsNotificationsInhibitionruleV1beta1": "AppsNotificationsInhibitionruleV1beta1"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsProvisioningConnectionV0alpha1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsProvisioningConnectionV0alpha1:AppsProvisioningConnectionV0alpha1": "AppsProvisioningConnectionV0alpha1"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsProvisioningRepositoryV0alpha1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsProvisioningRepositoryV0alpha1:AppsProvisioningRepositoryV0alpha1": "AppsProvisioningRepositoryV0alpha1"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsSecretKeeperActivationV1beta1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsSecretKeeperActivationV1beta1:AppsSecretKeeperActivationV1beta1": "AppsSecretKeeperActivationV1beta1"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsSecretKeeperV1beta1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsSecretKeeperV1beta1:AppsSecretKeeperV1beta1": "AppsSecretKeeperV1beta1"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsSecretSecurevalueV1beta1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsSecretSecurevalueV1beta1:AppsSecretSecurevalueV1beta1": "AppsSecretSecurevalueV1beta1"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/dataSourceCacheConfig",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/dataSourceCacheConfig:DataSourceCacheConfig": "DataSourceCacheConfig"
   }
  },
  {

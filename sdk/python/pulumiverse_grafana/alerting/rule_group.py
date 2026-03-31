@@ -29,9 +29,11 @@ class RuleGroupArgs:
                  org_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RuleGroup resource.
+
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[_builtins.int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]] rules: The rules within the group.
+        :param pulumi.Input[_builtins.bool] disable_provenance: Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: The name of the rule group.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
@@ -84,6 +86,9 @@ class RuleGroupArgs:
     @_builtins.property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.
+        """
         return pulumi.get(self, "disable_provenance")
 
     @disable_provenance.setter
@@ -126,6 +131,8 @@ class _RuleGroupState:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['RuleGroupRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering RuleGroup resources.
+
+        :param pulumi.Input[_builtins.bool] disable_provenance: Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[_builtins.int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[_builtins.str] name: The name of the rule group.
@@ -148,6 +155,9 @@ class _RuleGroupState:
     @_builtins.property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.
+        """
         return pulumi.get(self, "disable_provenance")
 
     @disable_provenance.setter
@@ -331,15 +341,14 @@ class RuleGroup(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:alerting/ruleGroup:RuleGroup name "{{ folderUID }}:{{ title }}"
+        terraform import grafana_rule_group.name "{{ folderUID }}:{{ title }}"
+        terraform import grafana_rule_group.name "{{ orgID }}:{{ folderUID }}:{{ title }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:alerting/ruleGroup:RuleGroup name "{{ orgID }}:{{ folderUID }}:{{ title }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] disable_provenance: Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[_builtins.int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[_builtins.str] name: The name of the rule group.
@@ -455,12 +464,10 @@ class RuleGroup(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:alerting/ruleGroup:RuleGroup name "{{ folderUID }}:{{ title }}"
+        terraform import grafana_rule_group.name "{{ folderUID }}:{{ title }}"
+        terraform import grafana_rule_group.name "{{ orgID }}:{{ folderUID }}:{{ title }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:alerting/ruleGroup:RuleGroup name "{{ orgID }}:{{ folderUID }}:{{ title }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param RuleGroupArgs args: The arguments to use to populate this resource's properties.
@@ -529,6 +536,7 @@ class RuleGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] disable_provenance: Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder that the group belongs to.
         :param pulumi.Input[_builtins.int] interval_seconds: The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.
         :param pulumi.Input[_builtins.str] name: The name of the rule group.
@@ -550,6 +558,9 @@ class RuleGroup(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.
+        """
         return pulumi.get(self, "disable_provenance")
 
     @_builtins.property

@@ -40,11 +40,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:oss/serviceAccountPermissionItem:ServiceAccountPermissionItem name "{{ orgID }}:{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * terraform import grafana_service_account_permission_item.name "{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+ * terraform import grafana_service_account_permission_item.name "{{ orgID }}:{{ serviceAccountID }}:{{ type (role, team, or user) }}:{{ identifier }}"
  * ```
  */
 export class ServiceAccountPermissionItem extends pulumi.CustomResource {

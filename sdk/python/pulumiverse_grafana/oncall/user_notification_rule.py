@@ -26,6 +26,7 @@ class UserNotificationRuleArgs:
                  position: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a UserNotificationRule resource.
+
         :param pulumi.Input[_builtins.str] type: The type of notification rule. Can be wait, notify*by*slack, notify*by*msteams, notify*by*sms, notify*by*phone*call, notify*by*telegram, notify*by*email, notify*by*mobile*app, notify*by*mobile*app*critical. NOTE: `notify_by_msteams` is only available for Grafana Cloud customers.
         :param pulumi.Input[_builtins.str] user_id: User ID
         :param pulumi.Input[_builtins.int] duration: A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
@@ -112,6 +113,7 @@ class _UserNotificationRuleState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserNotificationRule resources.
+
         :param pulumi.Input[_builtins.int] duration: A time in seconds to wait (when `type=wait`). Can be 60, 300, 900, 1800, 3600
         :param pulumi.Input[_builtins.bool] important: Boolean value which indicates if a rule is “important”
         :param pulumi.Input[_builtins.int] position: Personal notification rules execute one after another starting from position=0. A new escalation policy created with a position of an existing escalation policy will move the old one (and all following) down on the list.
@@ -258,8 +260,9 @@ class UserNotificationRule(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/userNotificationRule:UserNotificationRule name "{{ id }}"
+        terraform import grafana_oncall_user_notification_rule.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -331,8 +334,9 @@ class UserNotificationRule(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/userNotificationRule:UserNotificationRule name "{{ id }}"
+        terraform import grafana_oncall_user_notification_rule.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UserNotificationRuleArgs args: The arguments to use to populate this resource's properties.

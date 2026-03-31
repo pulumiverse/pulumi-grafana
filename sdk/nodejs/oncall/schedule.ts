@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:onCall/schedule:Schedule name "{{ id }}"
+ * terraform import grafana_oncall_schedule.name "{{ id }}"
  * ```
  */
 export class Schedule extends pulumi.CustomResource {

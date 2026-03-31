@@ -30,8 +30,11 @@ class AwsResourceMetadataScrapeJobArgs:
                  static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AwsResourceMetadataScrapeJob resource.
+
         :param pulumi.Input[_builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
+        :param pulumi.Input[_builtins.str] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.bool] enabled: Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] name: The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input['AwsResourceMetadataScrapeJobServiceArgs']]] services: One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
@@ -64,6 +67,9 @@ class AwsResourceMetadataScrapeJobArgs:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
@@ -85,6 +91,9 @@ class AwsResourceMetadataScrapeJobArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -141,11 +150,14 @@ class _AwsResourceMetadataScrapeJobState:
                  static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering AwsResourceMetadataScrapeJob resources.
+
         :param pulumi.Input[_builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[_builtins.str] disabled_reason: When the AWS Resource Metadata Scrape Job is disabled, this will show the reason that it is in that state.
         :param pulumi.Input[_builtins.bool] enabled: Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] name: The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input['AwsResourceMetadataScrapeJobServiceArgs']]] services: One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        :param pulumi.Input[_builtins.str] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
         """
         if aws_account_resource_id is not None:
@@ -204,6 +216,9 @@ class _AwsResourceMetadataScrapeJobState:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -237,6 +252,9 @@ class _AwsResourceMetadataScrapeJobState:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
@@ -271,20 +289,66 @@ class AwsResourceMetadataScrapeJob(pulumi.CustomResource):
                  static_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
+        This resource allows you to scrape AWS resource metadata such as ARN and tags as info metrics in Grafana Cloud without needing to run your own infrastructure.
+        Use this resource if you aren't using `cloudProvider.AwsCloudwatchScrapeJob`, but still want to have AWS resource metadata available
+        in Grafana Cloud, for example for use with our AWS Metrics Streams integration and/or Knowledge Graph features.
+
+        See the Grafana Provider configuration docs
+        for information on authentication and required access policy scopes.
+
+        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
+
+        test = grafana.cloud.get_stack(slug="gcloudstacktest")
+        test_iam_role = aws.index.iam_role(name="my-role")
+        test_aws_account = grafana.cloudprovider.AwsAccount("test",
+            stack_id=test.id,
+            role_arn=test_iam_role["arn"],
+            regions=[
+                "us-east-1",
+                "us-east-2",
+                "us-west-1",
+            ])
+        test_aws_resource_metadata_scrape_job = grafana.cloudprovider.AwsResourceMetadataScrapeJob("test",
+            stack_id=test.id,
+            name="my-aws-resource-metadata-scrape-job",
+            aws_account_resource_id=test_aws_account.resource_id,
+            services=[{
+                "name": "AWS/EC2",
+                "scrape_interval_seconds": 300,
+                "resource_discovery_tag_filters": [{
+                    "key": "k8s.io/cluster-autoscaler/enabled",
+                    "value": "true",
+                }],
+            }],
+            static_labels={
+                "label1": "value1",
+                "label2": "value2",
+            })
+        ```
 
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob name "{{ stack_id }}:{{ name }}"
+        terraform import grafana_cloud_provider_aws_resource_metadata_scrape_job.name "{{ stack_id }}:{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[_builtins.bool] enabled: Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] name: The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AwsResourceMetadataScrapeJobServiceArgs', 'AwsResourceMetadataScrapeJobServiceArgsDict']]]] services: One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        :param pulumi.Input[_builtins.str] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
         """
         ...
@@ -294,13 +358,57 @@ class AwsResourceMetadataScrapeJob(pulumi.CustomResource):
                  args: AwsResourceMetadataScrapeJobArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        This resource allows you to scrape AWS resource metadata such as ARN and tags as info metrics in Grafana Cloud without needing to run your own infrastructure.
+        Use this resource if you aren't using `cloudProvider.AwsCloudwatchScrapeJob`, but still want to have AWS resource metadata available
+        in Grafana Cloud, for example for use with our AWS Metrics Streams integration and/or Knowledge Graph features.
+
+        See the Grafana Provider configuration docs
+        for information on authentication and required access policy scopes.
+
+        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_grafana as grafana
+        import pulumiverse_grafana as grafana
+
+        test = grafana.cloud.get_stack(slug="gcloudstacktest")
+        test_iam_role = aws.index.iam_role(name="my-role")
+        test_aws_account = grafana.cloudprovider.AwsAccount("test",
+            stack_id=test.id,
+            role_arn=test_iam_role["arn"],
+            regions=[
+                "us-east-1",
+                "us-east-2",
+                "us-west-1",
+            ])
+        test_aws_resource_metadata_scrape_job = grafana.cloudprovider.AwsResourceMetadataScrapeJob("test",
+            stack_id=test.id,
+            name="my-aws-resource-metadata-scrape-job",
+            aws_account_resource_id=test_aws_account.resource_id,
+            services=[{
+                "name": "AWS/EC2",
+                "scrape_interval_seconds": 300,
+                "resource_discovery_tag_filters": [{
+                    "key": "k8s.io/cluster-autoscaler/enabled",
+                    "value": "true",
+                }],
+            }],
+            static_labels={
+                "label1": "value1",
+                "label2": "value2",
+            })
+        ```
 
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob name "{{ stack_id }}:{{ name }}"
+        terraform import grafana_cloud_provider_aws_resource_metadata_scrape_job.name "{{ stack_id }}:{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AwsResourceMetadataScrapeJobArgs args: The arguments to use to populate this resource's properties.
@@ -373,8 +481,10 @@ class AwsResourceMetadataScrapeJob(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] aws_account_resource_id: The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
         :param pulumi.Input[_builtins.str] disabled_reason: When the AWS Resource Metadata Scrape Job is disabled, this will show the reason that it is in that state.
         :param pulumi.Input[_builtins.bool] enabled: Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] name: The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions_subset_overrides: A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AwsResourceMetadataScrapeJobServiceArgs', 'AwsResourceMetadataScrapeJobServiceArgsDict']]]] services: One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+        :param pulumi.Input[_builtins.str] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] static_labels: A set of static labels to add to all metrics exported by this scrape job.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -418,6 +528,9 @@ class AwsResourceMetadataScrapeJob(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
@@ -439,6 +552,9 @@ class AwsResourceMetadataScrapeJob(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @_builtins.property

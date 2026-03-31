@@ -26,6 +26,7 @@ class DashboardPermissionArgs:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]]] = None):
         """
         The set of arguments for constructing a DashboardPermission resource.
+
         :param pulumi.Input[_builtins.str] dashboard_uid: UID of the dashboard to apply permissions to.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
@@ -82,6 +83,7 @@ class _DashboardPermissionState:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]]] = None):
         """
         Input properties used for looking up and filtering DashboardPermission resources.
+
         :param pulumi.Input[_builtins.str] dashboard_uid: UID of the dashboard to apply permissions to.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['DashboardPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
@@ -182,12 +184,10 @@ class DashboardPermission(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/dashboardPermission:DashboardPermission name "{{ dashboardUID }}"
+        terraform import grafana_dashboard_permission.name "{{ dashboardUID }}"
+        terraform import grafana_dashboard_permission.name "{{ orgID }}:{{ dashboardUID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/dashboardPermission:DashboardPermission name "{{ orgID }}:{{ dashboardUID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -243,12 +243,10 @@ class DashboardPermission(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/dashboardPermission:DashboardPermission name "{{ dashboardUID }}"
+        terraform import grafana_dashboard_permission.name "{{ dashboardUID }}"
+        terraform import grafana_dashboard_permission.name "{{ orgID }}:{{ dashboardUID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/dashboardPermission:DashboardPermission name "{{ orgID }}:{{ dashboardUID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param DashboardPermissionArgs args: The arguments to use to populate this resource's properties.

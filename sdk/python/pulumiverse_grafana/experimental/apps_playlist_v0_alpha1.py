@@ -26,6 +26,7 @@ class AppsPlaylistV0Alpha1Args:
                  spec: Optional[pulumi.Input['AppsPlaylistV0Alpha1SpecArgs']] = None):
         """
         The set of arguments for constructing a AppsPlaylistV0Alpha1 resource.
+
         :param pulumi.Input['AppsPlaylistV0Alpha1MetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['AppsPlaylistV0Alpha1OptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['AppsPlaylistV0Alpha1SpecArgs'] spec: The spec of the resource.
@@ -82,6 +83,7 @@ class _AppsPlaylistV0Alpha1State:
                  spec: Optional[pulumi.Input['AppsPlaylistV0Alpha1SpecArgs']] = None):
         """
         Input properties used for looking up and filtering AppsPlaylistV0Alpha1 resources.
+
         :param pulumi.Input['AppsPlaylistV0Alpha1MetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['AppsPlaylistV0Alpha1OptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['AppsPlaylistV0Alpha1SpecArgs'] spec: The spec of the resource.
@@ -166,6 +168,7 @@ class AppsPlaylistV0Alpha1(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['AppsPlaylistV0Alpha1MetadataArgs', 'AppsPlaylistV0Alpha1MetadataArgsDict']] metadata: The metadata of the resource.
@@ -203,6 +206,7 @@ class AppsPlaylistV0Alpha1(pulumi.CustomResource):
                 }],
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppsPlaylistV0Alpha1Args args: The arguments to use to populate this resource's properties.

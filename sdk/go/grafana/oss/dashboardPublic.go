@@ -61,7 +61,7 @@ import (
 //			testDash, err := oss.NewDashboard(ctx, "test_dash", &oss.DashboardArgs{
 //				OrgId:      myOrg.OrgId,
 //				Folder:     myFolder.ID(),
-//				ConfigJson: pulumi.String(json0),
+//				ConfigJson: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
@@ -96,7 +96,7 @@ import (
 //			json1 := string(tmpJSON1)
 //			testDash2, err := oss.NewDashboard(ctx, "test_dash2", &oss.DashboardArgs{
 //				OrgId:      myOrg2.OrgId,
-//				ConfigJson: pulumi.String(json1),
+//				ConfigJson: pulumi.String(pulumi.String(json1)),
 //			})
 //			if err != nil {
 //				return err
@@ -118,11 +118,8 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:oss/dashboardPublic:DashboardPublic name "{{ dashboardUID }}:{{ publicDashboardUID }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:oss/dashboardPublic:DashboardPublic name "{{ orgID }}:{{ dashboardUID }}:{{ publicDashboardUID }}"
+// terraform import grafana_dashboard_public.name "{{ dashboardUID }}:{{ publicDashboardUID }}"
+// terraform import grafana_dashboard_public.name "{{ orgID }}:{{ dashboardUID }}:{{ publicDashboardUID }}"
 // ```
 type DashboardPublic struct {
 	pulumi.CustomResourceState

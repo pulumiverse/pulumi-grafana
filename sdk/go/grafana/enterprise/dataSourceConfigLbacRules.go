@@ -58,7 +58,7 @@ import (
 //				Url:               pulumi.String("https://mylokiurl.net"),
 //				BasicAuthEnabled:  pulumi.Bool(true),
 //				BasicAuthUsername: pulumi.String("username"),
-//				JsonDataEncoded:   pulumi.String(json0),
+//				JsonDataEncoded:   pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
@@ -95,7 +95,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules name "{{ datasource_uid }}"
+// terraform import grafana_data_source_config_lbac_rules.name "{{ datasource_uid }}"
 // ```
 type DataSourceConfigLbacRules struct {
 	pulumi.CustomResourceState

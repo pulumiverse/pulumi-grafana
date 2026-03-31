@@ -11,7 +11,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:onCall/escalation:Escalation name "{{ id }}"
+ * terraform import grafana_oncall_escalation.name "{{ id }}"
  * ```
  */
 export class Escalation extends pulumi.CustomResource {

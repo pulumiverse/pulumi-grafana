@@ -34,6 +34,7 @@ class RoleArgs:
                  version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Role resource.
+
         :param pulumi.Input[_builtins.bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
         :param pulumi.Input[_builtins.str] description: Description of the role.
         :param pulumi.Input[_builtins.str] display_name: Display name of the role. Available with Grafana 8.5+.
@@ -218,6 +219,7 @@ class _RoleState:
                  version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Role resources.
+
         :param pulumi.Input[_builtins.bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `version` should be set.
         :param pulumi.Input[_builtins.str] description: Description of the role.
         :param pulumi.Input[_builtins.str] display_name: Display name of the role. Available with Grafana 8.5+.
@@ -441,12 +443,10 @@ class Role(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/role:Role name "{{ uid }}"
+        terraform import grafana_role.name "{{ uid }}"
+        terraform import grafana_role.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/role:Role name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -505,12 +505,10 @@ class Role(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/role:Role name "{{ uid }}"
+        terraform import grafana_role.name "{{ uid }}"
+        terraform import grafana_role.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/role:Role name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param RoleArgs args: The arguments to use to populate this resource's properties.

@@ -38,11 +38,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:alerting/contactPoint:ContactPoint name "{{ name }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:alerting/contactPoint:ContactPoint name "{{ orgID }}:{{ name }}"
+ * terraform import grafana_contact_point.name "{{ name }}"
+ * terraform import grafana_contact_point.name "{{ orgID }}:{{ name }}"
  * ```
  */
 export class ContactPoint extends pulumi.CustomResource {
@@ -81,6 +78,9 @@ export class ContactPoint extends pulumi.CustomResource {
      * A contact point that sends notifications to DingDing.
      */
     declare public readonly dingdings: pulumi.Output<outputs.alerting.ContactPointDingding[] | undefined>;
+    /**
+     * Allow modifying the contact point from other sources than Terraform or the Grafana API. Defaults to `false`.
+     */
     declare public readonly disableProvenance: pulumi.Output<boolean | undefined>;
     /**
      * A contact point that sends notifications as Discord messages
@@ -256,6 +256,9 @@ export interface ContactPointState {
      * A contact point that sends notifications to DingDing.
      */
     dingdings?: pulumi.Input<pulumi.Input<inputs.alerting.ContactPointDingding>[]>;
+    /**
+     * Allow modifying the contact point from other sources than Terraform or the Grafana API. Defaults to `false`.
+     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * A contact point that sends notifications as Discord messages
@@ -359,6 +362,9 @@ export interface ContactPointArgs {
      * A contact point that sends notifications to DingDing.
      */
     dingdings?: pulumi.Input<pulumi.Input<inputs.alerting.ContactPointDingding>[]>;
+    /**
+     * Allow modifying the contact point from other sources than Terraform or the Grafana API. Defaults to `false`.
+     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * A contact point that sends notifications as Discord messages

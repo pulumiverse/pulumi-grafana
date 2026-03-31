@@ -323,7 +323,7 @@ namespace Pulumiverse.Grafana.Slo
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:slo/sLO:SLO name "{{ uuid }}"
+    /// terraform import grafana_slo.name "{{ uuid }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:slo/sLO:SLO")]

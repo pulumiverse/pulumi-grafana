@@ -43,7 +43,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig name "{{ name }}"
+ * terraform import grafana_asserts_suppressed_assertions_config.name "{{ name }}"
  * ```
  */
 export class SuppressedAssertionsConfig extends pulumi.CustomResource {

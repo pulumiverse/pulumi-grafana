@@ -80,7 +80,7 @@ namespace Pulumiverse.Grafana.Assert
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:assert/customModelRules:CustomModelRules name "{{ name }}"
+    /// terraform import grafana_asserts_custom_model_rules.name "{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:assert/customModelRules:CustomModelRules")]

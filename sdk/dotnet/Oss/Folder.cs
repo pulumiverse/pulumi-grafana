@@ -51,11 +51,8 @@ namespace Pulumiverse.Grafana.Oss
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:oss/folder:Folder name "{{ uid }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:oss/folder:Folder name "{{ orgID }}:{{ uid }}"
+    /// terraform import grafana_folder.name "{{ uid }}"
+    /// terraform import grafana_folder.name "{{ orgID }}:{{ uid }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:oss/folder:Folder")]

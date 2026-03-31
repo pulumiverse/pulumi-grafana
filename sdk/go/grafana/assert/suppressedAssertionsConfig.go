@@ -70,7 +70,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig name "{{ name }}"
+// terraform import grafana_asserts_suppressed_assertions_config.name "{{ name }}"
 // ```
 type SuppressedAssertionsConfig struct {
 	pulumi.CustomResourceState

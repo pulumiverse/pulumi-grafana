@@ -36,6 +36,7 @@ class OutgoingWebhookArgs:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OutgoingWebhook resource.
+
         :param pulumi.Input[_builtins.str] authorization_header: The auth data of the webhook. Used in Authorization header instead of user/password auth.
         :param pulumi.Input[_builtins.str] data: The data of the webhook.
         :param pulumi.Input[_builtins.bool] forward_whole_payload: Toggle to send the entire webhook payload instead of using the values in the Data field.
@@ -284,6 +285,7 @@ class _OutgoingWebhookState:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OutgoingWebhook resources.
+
         :param pulumi.Input[_builtins.str] authorization_header: The auth data of the webhook. Used in Authorization header instead of user/password auth.
         :param pulumi.Input[_builtins.str] data: The data of the webhook.
         :param pulumi.Input[_builtins.bool] forward_whole_payload: Toggle to send the entire webhook payload instead of using the values in the Data field.
@@ -561,8 +563,9 @@ class OutgoingWebhook(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/outgoingWebhook:OutgoingWebhook name "{{ id }}"
+        terraform import grafana_oncall_outgoing_webhook.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -615,8 +618,9 @@ class OutgoingWebhook(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/outgoingWebhook:OutgoingWebhook name "{{ id }}"
+        terraform import grafana_oncall_outgoing_webhook.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OutgoingWebhookArgs args: The arguments to use to populate this resource's properties.

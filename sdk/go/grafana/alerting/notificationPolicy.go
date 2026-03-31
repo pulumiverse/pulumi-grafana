@@ -160,17 +160,15 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:alerting/notificationPolicy:NotificationPolicy name "{{ anyString }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:alerting/notificationPolicy:NotificationPolicy name "{{ orgID }}:{{ anyString }}"
+// terraform import grafana_notification_policy.name "{{ anyString }}"
+// terraform import grafana_notification_policy.name "{{ orgID }}:{{ anyString }}"
 // ```
 type NotificationPolicy struct {
 	pulumi.CustomResourceState
 
 	// The default contact point to route all unmatched notifications to.
-	ContactPoint      pulumi.StringOutput  `pulumi:"contactPoint"`
+	ContactPoint pulumi.StringOutput `pulumi:"contactPoint"`
+	// Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
 	GroupBies pulumi.StringArrayOutput `pulumi:"groupBies"`
@@ -229,8 +227,9 @@ func GetNotificationPolicy(ctx *pulumi.Context,
 // Input properties used for looking up and filtering NotificationPolicy resources.
 type notificationPolicyState struct {
 	// The default contact point to route all unmatched notifications to.
-	ContactPoint      *string `pulumi:"contactPoint"`
-	DisableProvenance *bool   `pulumi:"disableProvenance"`
+	ContactPoint *string `pulumi:"contactPoint"`
+	// Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
 	GroupBies []string `pulumi:"groupBies"`
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
@@ -247,7 +246,8 @@ type notificationPolicyState struct {
 
 type NotificationPolicyState struct {
 	// The default contact point to route all unmatched notifications to.
-	ContactPoint      pulumi.StringPtrInput
+	ContactPoint pulumi.StringPtrInput
+	// Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance pulumi.BoolPtrInput
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
 	GroupBies pulumi.StringArrayInput
@@ -269,8 +269,9 @@ func (NotificationPolicyState) ElementType() reflect.Type {
 
 type notificationPolicyArgs struct {
 	// The default contact point to route all unmatched notifications to.
-	ContactPoint      string `pulumi:"contactPoint"`
-	DisableProvenance *bool  `pulumi:"disableProvenance"`
+	ContactPoint string `pulumi:"contactPoint"`
+	// Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
 	GroupBies []string `pulumi:"groupBies"`
 	// Minimum time interval between two notifications for the same group. Default is 5 minutes.
@@ -288,7 +289,8 @@ type notificationPolicyArgs struct {
 // The set of arguments for constructing a NotificationPolicy resource.
 type NotificationPolicyArgs struct {
 	// The default contact point to route all unmatched notifications to.
-	ContactPoint      pulumi.StringInput
+	ContactPoint pulumi.StringInput
+	// Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance pulumi.BoolPtrInput
 	// A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
 	GroupBies pulumi.StringArrayInput
@@ -396,6 +398,7 @@ func (o NotificationPolicyOutput) ContactPoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringOutput { return v.ContactPoint }).(pulumi.StringOutput)
 }
 
+// Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
 func (o NotificationPolicyOutput) DisableProvenance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
 }

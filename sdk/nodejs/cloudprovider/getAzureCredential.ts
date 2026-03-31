@@ -7,6 +7,13 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * This data source allows you to look up an existing Grafana Cloud Azure Credential resource in your stack.
+ *
+ * See the Grafana Provider configuration docs
+ * for information on authentication and required access policy scopes.
+ *
+ * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -88,6 +95,9 @@ export interface GetAzureCredentialArgs {
      * The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
      */
     resourceId: string;
+    /**
+     * The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: string;
 }
 
@@ -107,6 +117,9 @@ export interface GetAzureCredentialResult {
      * The client secret of the Azure Credential.
      */
     readonly clientSecret: string;
+    /**
+     * The Terraform Resource ID. This has the format "{{ stack*id }}:{{ resource*id }}".
+     */
     readonly id: string;
     /**
      * The name of the Azure Credential.
@@ -124,6 +137,9 @@ export interface GetAzureCredentialResult {
      * The list of resource tags to add to metrics.
      */
     readonly resourceTagsToAddToMetrics: string[];
+    /**
+     * The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     readonly stackId: string;
     /**
      * The tenant ID of the Azure Credential.
@@ -131,6 +147,13 @@ export interface GetAzureCredentialResult {
     readonly tenantId: string;
 }
 /**
+ * This data source allows you to look up an existing Grafana Cloud Azure Credential resource in your stack.
+ *
+ * See the Grafana Provider configuration docs
+ * for information on authentication and required access policy scopes.
+ *
+ * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -212,5 +235,8 @@ export interface GetAzureCredentialOutputArgs {
      * The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
      */
     resourceId: pulumi.Input<string>;
+    /**
+     * The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: pulumi.Input<string>;
 }

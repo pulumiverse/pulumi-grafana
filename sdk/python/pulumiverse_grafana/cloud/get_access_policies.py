@@ -57,6 +57,9 @@ class GetAccessPoliciesResult:
     @_builtins.property
     @pulumi.getter(name="nameFilter")
     def name_filter(self) -> Optional[_builtins.str]:
+        """
+        If set, only access policies with the specified name will be returned. This is faster than filtering in Terraform.
+        """
         return pulumi.get(self, "name_filter")
 
     @_builtins.property
@@ -94,6 +97,7 @@ def get_access_policies(name_filter: Optional[_builtins.str] = None,
     * accesspolicies:read
 
 
+    :param _builtins.str name_filter: If set, only access policies with the specified name will be returned. This is faster than filtering in Terraform.
     :param _builtins.str region_filter: If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
     """
     __args__ = dict()
@@ -121,6 +125,7 @@ def get_access_policies_output(name_filter: Optional[pulumi.Input[Optional[_buil
     * accesspolicies:read
 
 
+    :param _builtins.str name_filter: If set, only access policies with the specified name will be returned. This is faster than filtering in Terraform.
     :param _builtins.str region_filter: If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
     """
     __args__ = dict()

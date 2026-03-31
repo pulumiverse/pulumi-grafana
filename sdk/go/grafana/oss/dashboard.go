@@ -50,7 +50,7 @@ import (
 //			json0 := string(tmpJSON0)
 //			_, err = oss.NewDashboard(ctx, "test", &oss.DashboardArgs{
 //				Folder:     test.Uid,
-//				ConfigJson: pulumi.String(json0),
+//				ConfigJson: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
@@ -64,11 +64,8 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:oss/dashboard:Dashboard name "{{ uid }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:oss/dashboard:Dashboard name "{{ orgID }}:{{ uid }}"
+// terraform import grafana_dashboard.name "{{ uid }}"
+// terraform import grafana_dashboard.name "{{ orgID }}:{{ uid }}"
 // ```
 type Dashboard struct {
 	pulumi.CustomResourceState

@@ -49,6 +49,9 @@ class GetAwsAccountResult:
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
+        """
+        The Terraform Resource ID. This has the format "{{ stack*id }}:{{ resource*id }}".
+        """
         return pulumi.get(self, "id")
 
     @_builtins.property
@@ -86,6 +89,9 @@ class GetAwsAccountResult:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> _builtins.str:
+        """
+        The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
 
@@ -107,6 +113,13 @@ def get_aws_account(resource_id: Optional[_builtins.str] = None,
                     stack_id: Optional[_builtins.str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAwsAccountResult:
     """
+    This data source allows you to look up an existing Grafana Cloud AWS Account resource in your stack.
+
+    See the Grafana Provider configuration docs
+    for information on authentication and required access policy scopes.
+
+    * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+
     ## Example Usage
 
     ```python
@@ -128,6 +141,7 @@ def get_aws_account(resource_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str resource_id: The ID given by the Grafana Cloud Provider API to this AWS Account resource.
+    :param _builtins.str stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
     """
     __args__ = dict()
     __args__['resourceId'] = resource_id
@@ -146,6 +160,13 @@ def get_aws_account_output(resource_id: Optional[pulumi.Input[_builtins.str]] = 
                            stack_id: Optional[pulumi.Input[_builtins.str]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAwsAccountResult]:
     """
+    This data source allows you to look up an existing Grafana Cloud AWS Account resource in your stack.
+
+    See the Grafana Provider configuration docs
+    for information on authentication and required access policy scopes.
+
+    * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+
     ## Example Usage
 
     ```python
@@ -167,6 +188,7 @@ def get_aws_account_output(resource_id: Optional[pulumi.Input[_builtins.str]] = 
 
 
     :param _builtins.str resource_id: The ID given by the Grafana Cloud Provider API to this AWS Account resource.
+    :param _builtins.str stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
     """
     __args__ = dict()
     __args__['resourceId'] = resource_id

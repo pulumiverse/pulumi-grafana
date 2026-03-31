@@ -49,7 +49,9 @@ func LookupMetricsEndpointScrapeJob(ctx *pulumi.Context, args *LookupMetricsEndp
 
 // A collection of arguments for invoking getMetricsEndpointScrapeJob.
 type LookupMetricsEndpointScrapeJobArgs struct {
-	Name    string `pulumi:"name"`
+	// The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
+	Name string `pulumi:"name"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId string `pulumi:"stackId"`
 }
 
@@ -64,12 +66,15 @@ type LookupMetricsEndpointScrapeJobResult struct {
 	// Method to pass authentication credentials: basic or bearer.
 	AuthenticationMethod string `pulumi:"authenticationMethod"`
 	// Whether the metrics endpoint scrape job is enabled or not.
-	Enabled bool   `pulumi:"enabled"`
-	Id      string `pulumi:"id"`
-	Name    string `pulumi:"name"`
+	Enabled bool `pulumi:"enabled"`
+	// The Terraform Resource ID. This has the format "{{ stackId }}:{{ name }}".
+	Id string `pulumi:"id"`
+	// The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
+	Name string `pulumi:"name"`
 	// Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
-	ScrapeIntervalSeconds int    `pulumi:"scrapeIntervalSeconds"`
-	StackId               string `pulumi:"stackId"`
+	ScrapeIntervalSeconds int `pulumi:"scrapeIntervalSeconds"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId string `pulumi:"stackId"`
 	// The url to scrape metrics.
 	Url string `pulumi:"url"`
 }
@@ -85,7 +90,9 @@ func LookupMetricsEndpointScrapeJobOutput(ctx *pulumi.Context, args LookupMetric
 
 // A collection of arguments for invoking getMetricsEndpointScrapeJob.
 type LookupMetricsEndpointScrapeJobOutputArgs struct {
-	Name    pulumi.StringInput `pulumi:"name"`
+	// The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId pulumi.StringInput `pulumi:"stackId"`
 }
 
@@ -133,10 +140,12 @@ func (o LookupMetricsEndpointScrapeJobResultOutput) Enabled() pulumi.BoolOutput 
 	return o.ApplyT(func(v LookupMetricsEndpointScrapeJobResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
+// The Terraform Resource ID. This has the format "{{ stackId }}:{{ name }}".
 func (o LookupMetricsEndpointScrapeJobResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMetricsEndpointScrapeJobResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
 func (o LookupMetricsEndpointScrapeJobResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMetricsEndpointScrapeJobResult) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -146,6 +155,7 @@ func (o LookupMetricsEndpointScrapeJobResultOutput) ScrapeIntervalSeconds() pulu
 	return o.ApplyT(func(v LookupMetricsEndpointScrapeJobResult) int { return v.ScrapeIntervalSeconds }).(pulumi.IntOutput)
 }
 
+// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o LookupMetricsEndpointScrapeJobResultOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMetricsEndpointScrapeJobResult) string { return v.StackId }).(pulumi.StringOutput)
 }

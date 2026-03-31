@@ -246,7 +246,7 @@ namespace Pulumiverse.Grafana.MachineLearning
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:machineLearning/job:Job name "{{ id }}"
+    /// terraform import grafana_machine_learning_job.name "{{ id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:machineLearning/job:Job")]

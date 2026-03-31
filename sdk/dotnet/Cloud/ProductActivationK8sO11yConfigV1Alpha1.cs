@@ -44,8 +44,7 @@ namespace Pulumiverse.Grafana.Cloud
     /// 
     /// ## Import
     /// 
-    /// #!/bin/bash
-    /// 
+    /// !/bin/bash
     /// Import an existing Kubernetes observability config by its UID
     /// 
     /// ```sh

@@ -83,7 +83,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:cloud/accessPolicy:AccessPolicy name "{{ region }}:{{ policyId }}"
+// terraform import grafana_cloud_access_policy.name "{{ region }}:{{ policyId }}"
 // ```
 type AccessPolicy struct {
 	pulumi.CustomResourceState

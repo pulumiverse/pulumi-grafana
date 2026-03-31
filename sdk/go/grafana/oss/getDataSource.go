@@ -52,8 +52,8 @@ import (
 //				Url:                   pulumi.String("https://my-instance.com"),
 //				BasicAuthEnabled:      pulumi.Bool(true),
 //				BasicAuthUsername:     pulumi.String("username"),
-//				JsonDataEncoded:       pulumi.String(json0),
-//				SecureJsonDataEncoded: pulumi.String(json1),
+//				JsonDataEncoded:       pulumi.String(pulumi.String(json0)),
+//				SecureJsonDataEncoded: pulumi.String(pulumi.String(json1)),
 //			})
 //			if err != nil {
 //				return err

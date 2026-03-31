@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:k6/projectAllowedLoadZones:ProjectAllowedLoadZones name "{{ project_id }}"
+ * terraform import grafana_k6_project_allowed_load_zones.name "{{ project_id }}"
  * ```
  */
 export class ProjectAllowedLoadZones extends pulumi.CustomResource {

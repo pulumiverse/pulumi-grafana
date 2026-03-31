@@ -31,6 +31,7 @@ func GetAccessPolicies(ctx *pulumi.Context, args *GetAccessPoliciesArgs, opts ..
 
 // A collection of arguments for invoking getAccessPolicies.
 type GetAccessPoliciesArgs struct {
+	// If set, only access policies with the specified name will be returned. This is faster than filtering in Terraform.
 	NameFilter *string `pulumi:"nameFilter"`
 	// If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
 	RegionFilter *string `pulumi:"regionFilter"`
@@ -40,7 +41,8 @@ type GetAccessPoliciesArgs struct {
 type GetAccessPoliciesResult struct {
 	AccessPolicies []GetAccessPoliciesAccessPolicy `pulumi:"accessPolicies"`
 	// The ID of this datasource. This is an internal identifier used by the provider to track this datasource.
-	Id         string  `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// If set, only access policies with the specified name will be returned. This is faster than filtering in Terraform.
 	NameFilter *string `pulumi:"nameFilter"`
 	// If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
 	RegionFilter *string `pulumi:"regionFilter"`
@@ -57,6 +59,7 @@ func GetAccessPoliciesOutput(ctx *pulumi.Context, args GetAccessPoliciesOutputAr
 
 // A collection of arguments for invoking getAccessPolicies.
 type GetAccessPoliciesOutputArgs struct {
+	// If set, only access policies with the specified name will be returned. This is faster than filtering in Terraform.
 	NameFilter pulumi.StringPtrInput `pulumi:"nameFilter"`
 	// If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
 	RegionFilter pulumi.StringPtrInput `pulumi:"regionFilter"`
@@ -90,6 +93,7 @@ func (o GetAccessPoliciesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessPoliciesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// If set, only access policies with the specified name will be returned. This is faster than filtering in Terraform.
 func (o GetAccessPoliciesResultOutput) NameFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAccessPoliciesResult) *string { return v.NameFilter }).(pulumi.StringPtrOutput)
 }

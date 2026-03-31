@@ -44,11 +44,8 @@ namespace Pulumiverse.Grafana.Enterprise
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:enterprise/teamExternalGroup:TeamExternalGroup name "{{ teamID }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:enterprise/teamExternalGroup:TeamExternalGroup name "{{ orgID }}:{{ teamID }}"
+    /// terraform import grafana_team_external_group.name "{{ teamID }}"
+    /// terraform import grafana_team_external_group.name "{{ orgID }}:{{ teamID }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:enterprise/teamExternalGroup:TeamExternalGroup")]

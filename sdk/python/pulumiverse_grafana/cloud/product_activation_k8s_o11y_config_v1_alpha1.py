@@ -26,6 +26,7 @@ class ProductActivationK8sO11yConfigV1Alpha1Args:
                  spec: Optional[pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1SpecArgs']] = None):
         """
         The set of arguments for constructing a ProductActivationK8sO11yConfigV1Alpha1 resource.
+
         :param pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1MetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1OptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1SpecArgs'] spec: The spec of the resource.
@@ -82,6 +83,7 @@ class _ProductActivationK8sO11yConfigV1Alpha1State:
                  spec: Optional[pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1SpecArgs']] = None):
         """
         Input properties used for looking up and filtering ProductActivationK8sO11yConfigV1Alpha1 resources.
+
         :param pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1MetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1OptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1SpecArgs'] spec: The spec of the resource.
@@ -164,13 +166,13 @@ class ProductActivationK8sO11yConfigV1Alpha1(pulumi.CustomResource):
 
         ## Import
 
-        #!/bin/bash
-
+        !/bin/bash
         Import an existing Kubernetes observability config by its UID
 
         ```sh
         $ pulumi import grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1 example my-k8s-o11y-config
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -208,13 +210,13 @@ class ProductActivationK8sO11yConfigV1Alpha1(pulumi.CustomResource):
 
         ## Import
 
-        #!/bin/bash
-
+        !/bin/bash
         Import an existing Kubernetes observability config by its UID
 
         ```sh
         $ pulumi import grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1 example my-k8s-o11y-config
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProductActivationK8sO11yConfigV1Alpha1Args args: The arguments to use to populate this resource's properties.

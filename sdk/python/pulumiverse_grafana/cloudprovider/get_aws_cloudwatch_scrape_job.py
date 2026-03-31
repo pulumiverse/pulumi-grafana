@@ -112,11 +112,17 @@ class GetAwsCloudwatchScrapeJobResult:
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
+        """
+        The Terraform Resource ID. This has the format "{{ stack_id }}:{{ name }}".
+        """
         return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
+        """
+        The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
@@ -154,6 +160,9 @@ class GetAwsCloudwatchScrapeJobResult:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> _builtins.str:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @_builtins.property
@@ -192,11 +201,79 @@ def get_aws_cloudwatch_scrape_job(custom_namespaces: Optional[Sequence[Union['Ge
                                   stack_id: Optional[_builtins.str] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAwsCloudwatchScrapeJobResult:
     """
+    This data source allows you to look up an existing Grafana Cloud AWS CloudWatch Scrape Job resource in your stack.
+
+    See the Grafana Provider configuration docs
+    for information on authentication and required access policy scopes.
+
+    * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    test = grafana.cloud.get_stack(slug="gcloudstacktest")
+    test_iam_role = aws.index.iam_role(name="my-role")
+    test_aws_account = grafana.cloudprovider.AwsAccount("test",
+        stack_id=test.id,
+        role_arn=test_iam_role["arn"],
+        regions=[
+            "us-east-1",
+            "us-east-2",
+            "us-west-1",
+        ])
+    test_aws_cloudwatch_scrape_job = grafana.cloudprovider.AwsCloudwatchScrapeJob("test",
+        stack_id=test.id,
+        name="my-cloudwatch-scrape-job",
+        aws_account_resource_id=test_aws_account.resource_id,
+        export_tags=True,
+        services=[{
+            "name": "AWS/EC2",
+            "metrics": [
+                {
+                    "name": "CPUUtilization",
+                    "statistics": ["Average"],
+                },
+                {
+                    "name": "StatusCheckFailed",
+                    "statistics": ["Maximum"],
+                },
+            ],
+            "scrape_interval_seconds": 300,
+            "resource_discovery_tag_filters": [{
+                "key": "k8s.io/cluster-autoscaler/enabled",
+                "value": "true",
+            }],
+            "tags_to_add_to_metrics": ["eks:cluster-name"],
+        }],
+        custom_namespaces=[{
+            "name": "CoolApp",
+            "metrics": [{
+                "name": "CoolMetric",
+                "statistics": [
+                    "Maximum",
+                    "Sum",
+                ],
+            }],
+            "scrape_interval_seconds": 300,
+        }],
+        static_labels={
+            "label1": "value1",
+            "label2": "value2",
+        })
+    test_get_aws_cloudwatch_scrape_job = test_aws_cloudwatch_scrape_job.name.apply(lambda name: grafana.cloudProvider.get_aws_cloudwatch_scrape_job(stack_id=test.id,
+        name=name))
+    ```
 
 
     :param Sequence[Union['GetAwsCloudwatchScrapeJobCustomNamespaceArgs', 'GetAwsCloudwatchScrapeJobCustomNamespaceArgsDict']] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+    :param _builtins.str name: The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
     :param Sequence[Union['GetAwsCloudwatchScrapeJobServiceArgs', 'GetAwsCloudwatchScrapeJobServiceArgsDict']] services: One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+    :param _builtins.str stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
     """
     __args__ = dict()
     __args__['customNamespaces'] = custom_namespaces
@@ -226,11 +303,79 @@ def get_aws_cloudwatch_scrape_job_output(custom_namespaces: Optional[pulumi.Inpu
                                          stack_id: Optional[pulumi.Input[_builtins.str]] = None,
                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAwsCloudwatchScrapeJobResult]:
     """
+    This data source allows you to look up an existing Grafana Cloud AWS CloudWatch Scrape Job resource in your stack.
+
+    See the Grafana Provider configuration docs
+    for information on authentication and required access policy scopes.
+
+    * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+    import pulumi_grafana as grafana
+    import pulumiverse_grafana as grafana
+
+    test = grafana.cloud.get_stack(slug="gcloudstacktest")
+    test_iam_role = aws.index.iam_role(name="my-role")
+    test_aws_account = grafana.cloudprovider.AwsAccount("test",
+        stack_id=test.id,
+        role_arn=test_iam_role["arn"],
+        regions=[
+            "us-east-1",
+            "us-east-2",
+            "us-west-1",
+        ])
+    test_aws_cloudwatch_scrape_job = grafana.cloudprovider.AwsCloudwatchScrapeJob("test",
+        stack_id=test.id,
+        name="my-cloudwatch-scrape-job",
+        aws_account_resource_id=test_aws_account.resource_id,
+        export_tags=True,
+        services=[{
+            "name": "AWS/EC2",
+            "metrics": [
+                {
+                    "name": "CPUUtilization",
+                    "statistics": ["Average"],
+                },
+                {
+                    "name": "StatusCheckFailed",
+                    "statistics": ["Maximum"],
+                },
+            ],
+            "scrape_interval_seconds": 300,
+            "resource_discovery_tag_filters": [{
+                "key": "k8s.io/cluster-autoscaler/enabled",
+                "value": "true",
+            }],
+            "tags_to_add_to_metrics": ["eks:cluster-name"],
+        }],
+        custom_namespaces=[{
+            "name": "CoolApp",
+            "metrics": [{
+                "name": "CoolMetric",
+                "statistics": [
+                    "Maximum",
+                    "Sum",
+                ],
+            }],
+            "scrape_interval_seconds": 300,
+        }],
+        static_labels={
+            "label1": "value1",
+            "label2": "value2",
+        })
+    test_get_aws_cloudwatch_scrape_job = test_aws_cloudwatch_scrape_job.name.apply(lambda name: grafana.cloudProvider.get_aws_cloudwatch_scrape_job(stack_id=test.id,
+        name=name))
+    ```
 
 
     :param Sequence[Union['GetAwsCloudwatchScrapeJobCustomNamespaceArgs', 'GetAwsCloudwatchScrapeJobCustomNamespaceArgsDict']] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+    :param _builtins.str name: The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
     :param Sequence[Union['GetAwsCloudwatchScrapeJobServiceArgs', 'GetAwsCloudwatchScrapeJobServiceArgsDict']] services: One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+    :param _builtins.str stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
     """
     __args__ = dict()
     __args__['customNamespaces'] = custom_namespaces

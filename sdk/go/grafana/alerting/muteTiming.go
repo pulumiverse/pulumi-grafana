@@ -74,15 +74,13 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:alerting/muteTiming:MuteTiming name "{{ name }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:alerting/muteTiming:MuteTiming name "{{ orgID }}:{{ name }}"
+// terraform import grafana_mute_timing.name "{{ name }}"
+// terraform import grafana_mute_timing.name "{{ orgID }}:{{ name }}"
 // ```
 type MuteTiming struct {
 	pulumi.CustomResourceState
 
+	// Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
 	// The time intervals at which to mute notifications. Use an empty block to mute all the time.
 	Intervals MuteTimingIntervalArrayOutput `pulumi:"intervals"`
@@ -128,6 +126,7 @@ func GetMuteTiming(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MuteTiming resources.
 type muteTimingState struct {
+	// Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The time intervals at which to mute notifications. Use an empty block to mute all the time.
 	Intervals []MuteTimingInterval `pulumi:"intervals"`
@@ -138,6 +137,7 @@ type muteTimingState struct {
 }
 
 type MuteTimingState struct {
+	// Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance pulumi.BoolPtrInput
 	// The time intervals at which to mute notifications. Use an empty block to mute all the time.
 	Intervals MuteTimingIntervalArrayInput
@@ -152,6 +152,7 @@ func (MuteTimingState) ElementType() reflect.Type {
 }
 
 type muteTimingArgs struct {
+	// Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The time intervals at which to mute notifications. Use an empty block to mute all the time.
 	Intervals []MuteTimingInterval `pulumi:"intervals"`
@@ -163,6 +164,7 @@ type muteTimingArgs struct {
 
 // The set of arguments for constructing a MuteTiming resource.
 type MuteTimingArgs struct {
+	// Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance pulumi.BoolPtrInput
 	// The time intervals at which to mute notifications. Use an empty block to mute all the time.
 	Intervals MuteTimingIntervalArrayInput
@@ -259,6 +261,7 @@ func (o MuteTimingOutput) ToMuteTimingOutputWithContext(ctx context.Context) Mut
 	return o
 }
 
+// Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
 func (o MuteTimingOutput) DisableProvenance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MuteTiming) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
 }

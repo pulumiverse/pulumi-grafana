@@ -18,6 +18,108 @@ namespace Pulumiverse.Grafana.Oss
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
         /// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
         /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Grafana.Oss.Organization("test", new()
+        ///     {
+        ///         Name = "testing dashboards data source",
+        ///     });
+        /// 
+        ///     var dataSourceDashboards = new Grafana.Oss.Folder("data_source_dashboards", new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         Title = "test folder data_source_dashboards",
+        ///     });
+        /// 
+        ///     var dataSourceDashboards1 = new Grafana.Oss.Dashboard("data_source_dashboards1", new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         Folder = dataSourceDashboards.Id,
+        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["uid"] = "data-source-dashboards-1",
+        ///             ["title"] = "data_source_dashboards 1",
+        ///             ["tags"] = new[]
+        ///             {
+        ///                 "dev",
+        ///             },
+        ///         }),
+        ///     });
+        /// 
+        ///     var dataSourceDashboards2 = new Grafana.Oss.Dashboard("data_source_dashboards2", new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["uid"] = "data-source-dashboards-2",
+        ///             ["title"] = "data_source_dashboards 2",
+        ///             ["tags"] = new[]
+        ///             {
+        ///                 "prod",
+        ///             },
+        ///         }),
+        ///     });
+        /// 
+        ///     var tags = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         Tags = Std.Index.Jsondecode.Invoke(new()
+        ///         {
+        ///             Input = dataSourceDashboards1.ConfigJson,
+        ///         }).Result.Tags,
+        ///     });
+        /// 
+        ///     var folderUids = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         FolderUids = new[]
+        ///         {
+        ///             dataSourceDashboards1.Folder,
+        ///         },
+        ///     });
+        /// 
+        ///     var folderUidsTags = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         FolderUids = new[]
+        ///         {
+        ///             dataSourceDashboards1.Folder,
+        ///         },
+        ///         Tags = Std.Index.Jsondecode.Invoke(new()
+        ///         {
+        ///             Input = dataSourceDashboards1.ConfigJson,
+        ///         }).Result.Tags,
+        ///     });
+        /// 
+        ///     // use depends_on to wait for dashboard resource to be created before searching
+        ///     var all = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///     });
+        /// 
+        ///     // get only one result
+        ///     var limitOne = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         Limit = 1,
+        ///     });
+        /// 
+        ///     // The dashboards are not in the default org so this should return an empty list
+        ///     var wrongOrg = Grafana.Oss.GetDashboards.Invoke();
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetDashboardsResult> InvokeAsync(GetDashboardsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDashboardsResult>("grafana:oss/getDashboards:getDashboards", args ?? new GetDashboardsArgs(), options.WithDefaults());
@@ -28,6 +130,108 @@ namespace Pulumiverse.Grafana.Oss
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
         /// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
         /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Grafana.Oss.Organization("test", new()
+        ///     {
+        ///         Name = "testing dashboards data source",
+        ///     });
+        /// 
+        ///     var dataSourceDashboards = new Grafana.Oss.Folder("data_source_dashboards", new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         Title = "test folder data_source_dashboards",
+        ///     });
+        /// 
+        ///     var dataSourceDashboards1 = new Grafana.Oss.Dashboard("data_source_dashboards1", new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         Folder = dataSourceDashboards.Id,
+        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["uid"] = "data-source-dashboards-1",
+        ///             ["title"] = "data_source_dashboards 1",
+        ///             ["tags"] = new[]
+        ///             {
+        ///                 "dev",
+        ///             },
+        ///         }),
+        ///     });
+        /// 
+        ///     var dataSourceDashboards2 = new Grafana.Oss.Dashboard("data_source_dashboards2", new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["uid"] = "data-source-dashboards-2",
+        ///             ["title"] = "data_source_dashboards 2",
+        ///             ["tags"] = new[]
+        ///             {
+        ///                 "prod",
+        ///             },
+        ///         }),
+        ///     });
+        /// 
+        ///     var tags = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         Tags = Std.Index.Jsondecode.Invoke(new()
+        ///         {
+        ///             Input = dataSourceDashboards1.ConfigJson,
+        ///         }).Result.Tags,
+        ///     });
+        /// 
+        ///     var folderUids = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         FolderUids = new[]
+        ///         {
+        ///             dataSourceDashboards1.Folder,
+        ///         },
+        ///     });
+        /// 
+        ///     var folderUidsTags = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         FolderUids = new[]
+        ///         {
+        ///             dataSourceDashboards1.Folder,
+        ///         },
+        ///         Tags = Std.Index.Jsondecode.Invoke(new()
+        ///         {
+        ///             Input = dataSourceDashboards1.ConfigJson,
+        ///         }).Result.Tags,
+        ///     });
+        /// 
+        ///     // use depends_on to wait for dashboard resource to be created before searching
+        ///     var all = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///     });
+        /// 
+        ///     // get only one result
+        ///     var limitOne = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         Limit = 1,
+        ///     });
+        /// 
+        ///     // The dashboards are not in the default org so this should return an empty list
+        ///     var wrongOrg = Grafana.Oss.GetDashboards.Invoke();
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetDashboardsResult> Invoke(GetDashboardsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDashboardsResult>("grafana:oss/getDashboards:getDashboards", args ?? new GetDashboardsInvokeArgs(), options.WithDefaults());
@@ -38,6 +242,108 @@ namespace Pulumiverse.Grafana.Oss
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
         /// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
         /// * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Grafana = Pulumiverse.Grafana;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Grafana.Oss.Organization("test", new()
+        ///     {
+        ///         Name = "testing dashboards data source",
+        ///     });
+        /// 
+        ///     var dataSourceDashboards = new Grafana.Oss.Folder("data_source_dashboards", new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         Title = "test folder data_source_dashboards",
+        ///     });
+        /// 
+        ///     var dataSourceDashboards1 = new Grafana.Oss.Dashboard("data_source_dashboards1", new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         Folder = dataSourceDashboards.Id,
+        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["uid"] = "data-source-dashboards-1",
+        ///             ["title"] = "data_source_dashboards 1",
+        ///             ["tags"] = new[]
+        ///             {
+        ///                 "dev",
+        ///             },
+        ///         }),
+        ///     });
+        /// 
+        ///     var dataSourceDashboards2 = new Grafana.Oss.Dashboard("data_source_dashboards2", new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         ConfigJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["uid"] = "data-source-dashboards-2",
+        ///             ["title"] = "data_source_dashboards 2",
+        ///             ["tags"] = new[]
+        ///             {
+        ///                 "prod",
+        ///             },
+        ///         }),
+        ///     });
+        /// 
+        ///     var tags = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         Tags = Std.Index.Jsondecode.Invoke(new()
+        ///         {
+        ///             Input = dataSourceDashboards1.ConfigJson,
+        ///         }).Result.Tags,
+        ///     });
+        /// 
+        ///     var folderUids = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         FolderUids = new[]
+        ///         {
+        ///             dataSourceDashboards1.Folder,
+        ///         },
+        ///     });
+        /// 
+        ///     var folderUidsTags = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         FolderUids = new[]
+        ///         {
+        ///             dataSourceDashboards1.Folder,
+        ///         },
+        ///         Tags = Std.Index.Jsondecode.Invoke(new()
+        ///         {
+        ///             Input = dataSourceDashboards1.ConfigJson,
+        ///         }).Result.Tags,
+        ///     });
+        /// 
+        ///     // use depends_on to wait for dashboard resource to be created before searching
+        ///     var all = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///     });
+        /// 
+        ///     // get only one result
+        ///     var limitOne = Grafana.Oss.GetDashboards.Invoke(new()
+        ///     {
+        ///         OrgId = test.Id,
+        ///         Limit = 1,
+        ///     });
+        /// 
+        ///     // The dashboards are not in the default org so this should return an empty list
+        ///     var wrongOrg = Grafana.Oss.GetDashboards.Invoke();
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetDashboardsResult> Invoke(GetDashboardsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetDashboardsResult>("grafana:oss/getDashboards:getDashboards", args ?? new GetDashboardsInvokeArgs(), options.WithDefaults());

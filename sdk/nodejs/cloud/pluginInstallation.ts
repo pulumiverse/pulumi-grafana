@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:cloud/pluginInstallation:PluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
+ * terraform import grafana_cloud_plugin_installation.name "{{ stackSlug }}:{{ pluginSlug }}"
  * ```
  */
 export class PluginInstallation extends pulumi.CustomResource {
@@ -70,6 +70,9 @@ export class PluginInstallation extends pulumi.CustomResource {
      * The stack id to which the plugin should be installed.
      */
     declare public readonly stackSlug: pulumi.Output<string>;
+    /**
+     * Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
+     */
     declare public readonly version: pulumi.Output<string | undefined>;
 
     /**
@@ -117,6 +120,9 @@ export interface PluginInstallationState {
      * The stack id to which the plugin should be installed.
      */
     stackSlug?: pulumi.Input<string>;
+    /**
+     * Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
+     */
     version?: pulumi.Input<string>;
 }
 
@@ -132,5 +138,8 @@ export interface PluginInstallationArgs {
      * The stack id to which the plugin should be installed.
      */
     stackSlug: pulumi.Input<string>;
+    /**
+     * Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
+     */
     version?: pulumi.Input<string>;
 }

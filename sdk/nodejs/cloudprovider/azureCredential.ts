@@ -7,6 +7,13 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * This resource allows you to autodiscover resources in your Azure tenant and scrape Azure Monitor metrics for those resources in Grafana Cloud without needing to run your own infrastructure.
+ *
+ * See the Grafana Provider configuration docs
+ * for information on authentication and required access policy scopes.
+ *
+ * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -61,7 +68,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:cloudProvider/azureCredential:AzureCredential name "{{ stack_id }}:{{ resource_id }}"
+ * terraform import grafana_cloud_provider_azure_credential.name "{{ stack_id }}:{{ resource_id }}"
  * ```
  */
 export class AzureCredential extends pulumi.CustomResource {
@@ -120,6 +127,9 @@ export class AzureCredential extends pulumi.CustomResource {
      * The list of resource tags to add to metrics.
      */
     declare public readonly resourceTagsToAddToMetrics: pulumi.Output<string[] | undefined>;
+    /**
+     * The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     declare public readonly stackId: pulumi.Output<string>;
     /**
      * The tenant ID of the Azure Credential.
@@ -211,6 +221,9 @@ export interface AzureCredentialState {
      * The list of resource tags to add to metrics.
      */
     resourceTagsToAddToMetrics?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId?: pulumi.Input<string>;
     /**
      * The tenant ID of the Azure Credential.
@@ -246,6 +259,9 @@ export interface AzureCredentialArgs {
      * The list of resource tags to add to metrics.
      */
     resourceTagsToAddToMetrics?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: pulumi.Input<string>;
     /**
      * The tenant ID of the Azure Credential.

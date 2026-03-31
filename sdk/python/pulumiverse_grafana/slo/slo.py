@@ -33,6 +33,7 @@ class SLOArgs:
                  uuid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SLO resource.
+
         :param pulumi.Input[_builtins.str] description: Description is a free-text field that can provide more context to an SLO.
         :param pulumi.Input['SLODestinationDatasourceArgs'] destination_datasource: Destination Datasource sets the datasource defined for an SLO
         :param pulumi.Input[Sequence[pulumi.Input['SLOObjectiveArgs']]] objectives: Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
@@ -205,6 +206,7 @@ class _SLOState:
                  uuid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SLO resources.
+
         :param pulumi.Input['SLOAlertingArgs'] alerting: Configures the alerting rules that will be generated for each
                			time window associated with the SLO. Grafana SLOs can generate
                			alerts when the short-term error budget burn is very high, the
@@ -595,8 +597,9 @@ class SLO(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:slo/sLO:SLO name "{{ uuid }}"
+        terraform import grafana_slo.name "{{ uuid }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -833,8 +836,9 @@ class SLO(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:slo/sLO:SLO name "{{ uuid }}"
+        terraform import grafana_slo.name "{{ uuid }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SLOArgs args: The arguments to use to populate this resource's properties.

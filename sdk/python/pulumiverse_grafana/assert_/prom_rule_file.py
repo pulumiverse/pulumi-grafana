@@ -26,6 +26,7 @@ class PromRuleFileArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PromRuleFile resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['PromRuleFileGroupArgs']]] groups: List of Prometheus rule groups. Each group contains one or more rules and can have its own evaluation interval.
         :param pulumi.Input[_builtins.bool] active: Whether the rules file is active. Inactive rules are not evaluated. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the Prometheus rules file. This will be stored with a .custom extension. Must follow naming validation rules (alphanumeric, hyphens, underscores).
@@ -81,6 +82,7 @@ class _PromRuleFileState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PromRuleFile resources.
+
         :param pulumi.Input[_builtins.bool] active: Whether the rules file is active. Inactive rules are not evaluated. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input['PromRuleFileGroupArgs']]] groups: List of Prometheus rule groups. Each group contains one or more rules and can have its own evaluation interval.
         :param pulumi.Input[_builtins.str] name: The name of the Prometheus rules file. This will be stored with a .custom extension. Must follow naming validation rules (alphanumeric, hyphens, underscores).
@@ -376,8 +378,9 @@ class PromRuleFile(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/promRuleFile:PromRuleFile name "{{ name }}"
+        terraform import grafana_asserts_prom_rule_file.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -628,8 +631,9 @@ class PromRuleFile(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/promRuleFile:PromRuleFile name "{{ name }}"
+        terraform import grafana_asserts_prom_rule_file.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PromRuleFileArgs args: The arguments to use to populate this resource's properties.

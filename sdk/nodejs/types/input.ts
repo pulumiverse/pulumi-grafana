@@ -5,6 +5,547 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppsDashboardDashboardV2beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsDashboardDashboardV2beta1Options {
+    /**
+     * Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+     */
+    allowUiUpdates?: pulumi.Input<boolean>;
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsDashboardDashboardV2beta1Spec {
+    /**
+     * The JSON representation of the dashboard v2beta1 spec.
+     */
+    json: pulumi.Input<string>;
+    /**
+     * The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The title of the dashboard. If not set, the title will be derived from the JSON spec.
+     */
+    title?: pulumi.Input<string>;
+}
+
+export interface AppsNotificationsInhibitionruleV1beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsNotificationsInhibitionruleV1beta1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsNotificationsInhibitionruleV1beta1Spec {
+    /**
+     * Labels that must have equal values in source and target alerts for the inhibition to take effect.
+     */
+    equals?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Matchers that must be satisfied for an alert to be a source of inhibition.
+     */
+    sourceMatchers?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsInhibitionruleV1beta1SpecSourceMatcher>[]>;
+    /**
+     * Matchers that must be satisfied for an alert to be inhibited.
+     */
+    targetMatchers?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsInhibitionruleV1beta1SpecTargetMatcher>[]>;
+}
+
+export interface AppsNotificationsInhibitionruleV1beta1SpecSourceMatcher {
+    label: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+    value: pulumi.Input<string>;
+}
+
+export interface AppsNotificationsInhibitionruleV1beta1SpecTargetMatcher {
+    label: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+    value: pulumi.Input<string>;
+}
+
+export interface AppsProvisioningConnectionV0alpha1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsProvisioningConnectionV0alpha1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsProvisioningConnectionV0alpha1Secure {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Private key for GitHub App authentication.
+     */
+    privateKey?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Access token.
+     */
+    token?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface AppsProvisioningConnectionV0alpha1Spec {
+    /**
+     * Connection description.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * GitHub App configuration.
+     */
+    github?: pulumi.Input<inputs.AppsProvisioningConnectionV0alpha1SpecGithub>;
+    /**
+     * Display name shown in the UI.
+     */
+    title: pulumi.Input<string>;
+    /**
+     * Connection provider type.
+     */
+    type: pulumi.Input<string>;
+    /**
+     * Provider URL.
+     */
+    url?: pulumi.Input<string>;
+}
+
+export interface AppsProvisioningConnectionV0alpha1SpecGithub {
+    /**
+     * GitHub App ID.
+     */
+    appId: pulumi.Input<string>;
+    /**
+     * GitHub App installation ID.
+     */
+    installationId: pulumi.Input<string>;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1Secure {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Token for repository authentication.
+     */
+    token?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Webhook secret.
+     */
+    webhookSecret?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1Spec {
+    /**
+     * Bitbucket repository configuration.
+     */
+    bitbucket?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecBitbucket>;
+    /**
+     * Connection resource reference.
+     */
+    connection?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecConnection>;
+    /**
+     * Repository description.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * Generic git repository configuration.
+     */
+    git?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecGit>;
+    /**
+     * GitHub repository configuration.
+     */
+    github?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecGithub>;
+    /**
+     * GitLab repository configuration.
+     */
+    gitlab?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecGitlab>;
+    /**
+     * Local filesystem repository configuration.
+     */
+    local?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecLocal>;
+    /**
+     * Sync configuration.
+     */
+    sync?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecSync>;
+    /**
+     * Display name shown in the UI.
+     */
+    title: pulumi.Input<string>;
+    /**
+     * Repository provider type: local, github, git, bitbucket, or gitlab.
+     */
+    type: pulumi.Input<string>;
+    /**
+     * Allowed change workflows: write, branch.
+     */
+    workflows?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecBitbucket {
+    /**
+     * Branch to sync.
+     */
+    branch?: pulumi.Input<string>;
+    /**
+     * Optional subdirectory path.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * Username for PAT auth.
+     */
+    tokenUser?: pulumi.Input<string>;
+    /**
+     * Repository URL.
+     */
+    url?: pulumi.Input<string>;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecConnection {
+    /**
+     * Connection resource name.
+     */
+    name?: pulumi.Input<string>;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecGit {
+    /**
+     * Branch to sync.
+     */
+    branch?: pulumi.Input<string>;
+    /**
+     * Optional subdirectory path.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * Username for PAT auth.
+     */
+    tokenUser?: pulumi.Input<string>;
+    /**
+     * Repository URL.
+     */
+    url?: pulumi.Input<string>;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecGithub {
+    /**
+     * Branch to sync.
+     */
+    branch?: pulumi.Input<string>;
+    /**
+     * Whether to generate dashboard previews.
+     */
+    generateDashboardPreviews?: pulumi.Input<boolean>;
+    /**
+     * Optional subdirectory path.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * Repository URL.
+     */
+    url?: pulumi.Input<string>;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecGitlab {
+    /**
+     * Branch to sync.
+     */
+    branch?: pulumi.Input<string>;
+    /**
+     * Optional subdirectory path.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * Repository URL.
+     */
+    url?: pulumi.Input<string>;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecLocal {
+    /**
+     * Filesystem path.
+     */
+    path?: pulumi.Input<string>;
+}
+
+export interface AppsProvisioningRepositoryV0alpha1SpecSync {
+    /**
+     * Whether sync is enabled.
+     */
+    enabled: pulumi.Input<boolean>;
+    /**
+     * Sync interval in seconds.
+     */
+    intervalSeconds?: pulumi.Input<number>;
+    /**
+     * Sync target: instance or folder.
+     */
+    target: pulumi.Input<string>;
+}
+
+export interface AppsSecretKeeperActivationV1beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsSecretKeeperV1beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsSecretKeeperV1beta1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsSecretKeeperV1beta1Spec {
+    /**
+     * AWS Secrets Manager configuration.
+     */
+    aws?: pulumi.Input<inputs.AppsSecretKeeperV1beta1SpecAws>;
+    /**
+     * Keeper description.
+     */
+    description?: pulumi.Input<string>;
+}
+
+export interface AppsSecretKeeperV1beta1SpecAws {
+    /**
+     * IAM role assumption configuration.
+     */
+    assumeRole?: pulumi.Input<inputs.AppsSecretKeeperV1beta1SpecAwsAssumeRole>;
+    /**
+     * AWS region.
+     */
+    region: pulumi.Input<string>;
+}
+
+export interface AppsSecretKeeperV1beta1SpecAwsAssumeRole {
+    /**
+     * Assume role ARN.
+     */
+    assumeRoleArn?: pulumi.Input<string>;
+    /**
+     * Assume role external ID.
+     */
+    externalId?: pulumi.Input<string>;
+}
+
+export interface AppsSecretSecurevalueV1beta1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsSecretSecurevalueV1beta1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsSecretSecurevalueV1beta1Spec {
+    /**
+     * List of decrypters allowed to read this secure value.
+     */
+    decrypters?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Secure value description.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * Reference to an existing secret managed by the keeper.
+     */
+    ref?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Plaintext value to store. This value is write-only.
+     */
+    value?: pulumi.Input<string>;
+    /**
+     * Hash of the stored plaintext value.
+     */
+    valueHash?: pulumi.Input<string>;
+}
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -53,6 +594,9 @@ export namespace alerting {
          * Description of the alert enrichment.
          */
         description?: pulumi.Input<string>;
+        /**
+         * Allow modifying alert enrichment outside of Terraform
+         */
         disableProvenance?: pulumi.Input<boolean>;
         /**
          * Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
@@ -611,7 +1155,7 @@ export namespace alerting {
          */
         notificationSettings?: pulumi.Input<inputs.alerting.AlertRuleV0Alpha1SpecNotificationSettings>;
         /**
-         * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
+         * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
          */
         panelRef?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
@@ -2437,6 +2981,63 @@ export namespace assert {
         record?: pulumi.Input<string>;
     }
 
+    export interface StackDataset {
+        /**
+         * List of vendors to disable for this dataset.
+         */
+        disabledVendors?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Filter groups for this dataset. Use when you need custom label mappings.
+         */
+        filterGroups?: pulumi.Input<pulumi.Input<inputs.assert.StackDatasetFilterGroup>[]>;
+        /**
+         * The dataset type. Available types: `kubernetes`, `otel` (App O11y), `prometheus`, `aws`. Note: `kubernetes` requires K8s Monitoring to be enabled, and `otel` requires Application Observability to be enabled on the stack.
+         */
+        type: pulumi.Input<string>;
+    }
+
+    export interface StackDatasetFilterGroup {
+        /**
+         * The metric label name used for environment (e.g., `env`, `environment`, `deploymentEnvironment`). Defaults to standard labels if not set.
+         */
+        envLabel?: pulumi.Input<string>;
+        /**
+         * Specific values of the environment label to match.
+         */
+        envLabelValues?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A friendly name for the environment.
+         */
+        envName?: pulumi.Input<string>;
+        /**
+         * Additional metric filters.
+         */
+        filters?: pulumi.Input<pulumi.Input<inputs.assert.StackDatasetFilterGroupFilter>[]>;
+        /**
+         * The metric label name used for site/cluster.
+         */
+        siteLabel?: pulumi.Input<string>;
+        /**
+         * Specific values of the site label to match.
+         */
+        siteLabelValues?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface StackDatasetFilterGroupFilter {
+        /**
+         * The label name to filter on.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The filter operator (e.g., `=`, `!=`, `=~`, `!~`).
+         */
+        operator: pulumi.Input<string>;
+        /**
+         * The values to match.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
     export interface ThresholdsHealthThreshold {
         /**
          * Optional alert category label for the health threshold.
@@ -2926,7 +3527,13 @@ export namespace cloudProvider {
          * When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
          */
         exportTags?: boolean;
+        /**
+         * The Terraform Resource ID. This has the format "{{ stackId }}:{{ name }}".
+         */
         id?: string;
+        /**
+         * The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+         */
         name?: string;
         /**
          * The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
@@ -2944,6 +3551,9 @@ export namespace cloudProvider {
          * One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
          */
         services?: inputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobService[];
+        /**
+         * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+         */
         stackId?: string;
         /**
          * A set of static labels to add to all metrics exported by this scrape job.
@@ -2972,7 +3582,13 @@ export namespace cloudProvider {
          * When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
          */
         exportTags?: pulumi.Input<boolean>;
+        /**
+         * The Terraform Resource ID. This has the format "{{ stackId }}:{{ name }}".
+         */
         id?: pulumi.Input<string>;
+        /**
+         * The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+         */
         name?: pulumi.Input<string>;
         /**
          * The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
@@ -2990,6 +3606,9 @@ export namespace cloudProvider {
          * One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
          */
         services?: pulumi.Input<pulumi.Input<inputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs>[]>;
+        /**
+         * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+         */
         stackId?: pulumi.Input<string>;
         /**
          * A set of static labels to add to all metrics exported by this scrape job.
@@ -3325,6 +3944,10 @@ export namespace experimental {
     }
 
     export interface AppsDashboardOptions {
+        /**
+         * Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+         */
+        allowUiUpdates?: pulumi.Input<boolean>;
         /**
          * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
          */

@@ -39,11 +39,8 @@ namespace Pulumiverse.Grafana.Oss
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:oss/serviceAccount:ServiceAccount name "{{ id }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:oss/serviceAccount:ServiceAccount name "{{ orgID }}:{{ id }}"
+    /// terraform import grafana_service_account.name "{{ id }}"
+    /// terraform import grafana_service_account.name "{{ orgID }}:{{ id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:oss/serviceAccount:ServiceAccount")]

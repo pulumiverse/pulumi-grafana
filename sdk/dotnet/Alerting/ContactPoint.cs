@@ -54,11 +54,8 @@ namespace Pulumiverse.Grafana.Alerting
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:alerting/contactPoint:ContactPoint name "{{ name }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:alerting/contactPoint:ContactPoint name "{{ orgID }}:{{ name }}"
+    /// terraform import grafana_contact_point.name "{{ name }}"
+    /// terraform import grafana_contact_point.name "{{ orgID }}:{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:alerting/contactPoint:ContactPoint")]
@@ -76,6 +73,9 @@ namespace Pulumiverse.Grafana.Alerting
         [Output("dingdings")]
         public Output<ImmutableArray<Outputs.ContactPointDingding>> Dingdings { get; private set; } = null!;
 
+        /// <summary>
+        /// Allow modifying the contact point from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Output("disableProvenance")]
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
@@ -286,6 +286,9 @@ namespace Pulumiverse.Grafana.Alerting
             set => _dingdings = value;
         }
 
+        /// <summary>
+        /// Allow modifying the contact point from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -573,6 +576,9 @@ namespace Pulumiverse.Grafana.Alerting
             set => _dingdings = value;
         }
 
+        /// <summary>
+        /// Allow modifying the contact point from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 

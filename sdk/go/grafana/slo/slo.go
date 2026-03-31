@@ -232,7 +232,7 @@ import (
 //				Queries: slo.SLOQueryArray{
 //					&slo.SLOQueryArgs{
 //						GrafanaQueries: &slo.SLOQueryGrafanaQueriesArgs{
-//							GrafanaQueries: pulumi.String(json0),
+//							GrafanaQueries: pulumi.String(pulumi.String(json0)),
 //						},
 //						Type: pulumi.String("grafana_queries"),
 //					},
@@ -295,7 +295,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:slo/sLO:SLO name "{{ uuid }}"
+// terraform import grafana_slo.name "{{ uuid }}"
 // ```
 type SLO struct {
 	pulumi.CustomResourceState

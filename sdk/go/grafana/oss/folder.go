@@ -58,11 +58,8 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:oss/folder:Folder name "{{ uid }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:oss/folder:Folder name "{{ orgID }}:{{ uid }}"
+// terraform import grafana_folder.name "{{ uid }}"
+// terraform import grafana_folder.name "{{ orgID }}:{{ uid }}"
 // ```
 type Folder struct {
 	pulumi.CustomResourceState

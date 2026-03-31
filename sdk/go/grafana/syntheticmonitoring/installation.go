@@ -52,14 +52,14 @@ import (
 //			smStack, err := cloud.NewStack(ctx, "sm_stack", &cloud.StackArgs{
 //				Name:       pulumi.Any(stackSlug),
 //				Slug:       pulumi.Any(stackSlug),
-//				RegionSlug: pulumi.String(cloudRegion),
+//				RegionSlug: pulumi.String(pulumi.String(cloudRegion)),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Step 2: Install Synthetic Monitoring on the stack
 //			smMetricsPublish, err := cloud.NewAccessPolicy(ctx, "sm_metrics_publish", &cloud.AccessPolicyArgs{
-//				Region: pulumi.String(cloudRegion),
+//				Region: pulumi.String(pulumi.String(cloudRegion)),
 //				Name:   pulumi.String("metric-publisher-for-sm"),
 //				Scopes: pulumi.StringArray{
 //					pulumi.String("metrics:write"),
@@ -78,7 +78,7 @@ import (
 //				return err
 //			}
 //			smMetricsPublishAccessPolicyToken, err := cloud.NewAccessPolicyToken(ctx, "sm_metrics_publish", &cloud.AccessPolicyTokenArgs{
-//				Region:         pulumi.String(cloudRegion),
+//				Region:         pulumi.String(pulumi.String(cloudRegion)),
 //				AccessPolicyId: smMetricsPublish.PolicyId,
 //				Name:           pulumi.String("metric-publisher-for-sm"),
 //			})

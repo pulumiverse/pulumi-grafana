@@ -43,7 +43,7 @@ namespace Pulumiverse.Grafana.Cloud
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:cloud/stack:Stack name "{{ stackSlugOrID }}"
+    /// terraform import grafana_cloud_stack.name "{{ stackSlugOrID }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:cloud/stack:Stack")]
@@ -110,10 +110,22 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> FleetManagementName { get; private set; } = null!;
 
         /// <summary>
+        /// Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("fleetManagementPrivateConnectivityInfoAvailabilityZones")]
+        public Output<ImmutableArray<string>> FleetManagementPrivateConnectivityInfoAvailabilityZones { get; private set; } = null!;
+
+        /// <summary>
         /// Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Output("fleetManagementPrivateConnectivityInfoPrivateDns")]
         public Output<string> FleetManagementPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Regions for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("fleetManagementPrivateConnectivityInfoRegions")]
+        public Output<ImmutableArray<string>> FleetManagementPrivateConnectivityInfoRegions { get; private set; } = null!;
 
         /// <summary>
         /// Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
@@ -155,10 +167,22 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> GraphiteName { get; private set; } = null!;
 
         /// <summary>
+        /// Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("graphitePrivateConnectivityInfoAvailabilityZones")]
+        public Output<ImmutableArray<string>> GraphitePrivateConnectivityInfoAvailabilityZones { get; private set; } = null!;
+
+        /// <summary>
         /// Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Output("graphitePrivateConnectivityInfoPrivateDns")]
         public Output<string> GraphitePrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Regions for Graphite when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("graphitePrivateConnectivityInfoRegions")]
+        public Output<ImmutableArray<string>> GraphitePrivateConnectivityInfoRegions { get; private set; } = null!;
 
         /// <summary>
         /// Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
@@ -197,10 +221,22 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> LogsName { get; private set; } = null!;
 
         /// <summary>
+        /// Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("logsPrivateConnectivityInfoAvailabilityZones")]
+        public Output<ImmutableArray<string>> LogsPrivateConnectivityInfoAvailabilityZones { get; private set; } = null!;
+
+        /// <summary>
         /// Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Output("logsPrivateConnectivityInfoPrivateDns")]
         public Output<string> LogsPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Regions for Logs when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("logsPrivateConnectivityInfoRegions")]
+        public Output<ImmutableArray<string>> LogsPrivateConnectivityInfoRegions { get; private set; } = null!;
 
         /// <summary>
         /// Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
@@ -248,10 +284,22 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> OrgSlug { get; private set; } = null!;
 
         /// <summary>
+        /// Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("otlpPrivateConnectivityInfoAvailabilityZones")]
+        public Output<ImmutableArray<string>> OtlpPrivateConnectivityInfoAvailabilityZones { get; private set; } = null!;
+
+        /// <summary>
         /// Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Output("otlpPrivateConnectivityInfoPrivateDns")]
         public Output<string> OtlpPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Regions for OTLP when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("otlpPrivateConnectivityInfoRegions")]
+        public Output<ImmutableArray<string>> OtlpPrivateConnectivityInfoRegions { get; private set; } = null!;
 
         /// <summary>
         /// Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
@@ -266,10 +314,22 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> OtlpUrl { get; private set; } = null!;
 
         /// <summary>
+        /// Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("pdcApiPrivateConnectivityInfoAvailabilityZones")]
+        public Output<ImmutableArray<string>> PdcApiPrivateConnectivityInfoAvailabilityZones { get; private set; } = null!;
+
+        /// <summary>
         /// Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Output("pdcApiPrivateConnectivityInfoPrivateDns")]
         public Output<string> PdcApiPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Regions for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("pdcApiPrivateConnectivityInfoRegions")]
+        public Output<ImmutableArray<string>> PdcApiPrivateConnectivityInfoRegions { get; private set; } = null!;
 
         /// <summary>
         /// Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
@@ -278,10 +338,22 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> PdcApiPrivateConnectivityInfoServiceName { get; private set; } = null!;
 
         /// <summary>
+        /// Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("pdcGatewayPrivateConnectivityInfoAvailabilityZones")]
+        public Output<ImmutableArray<string>> PdcGatewayPrivateConnectivityInfoAvailabilityZones { get; private set; } = null!;
+
+        /// <summary>
         /// Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Output("pdcGatewayPrivateConnectivityInfoPrivateDns")]
         public Output<string> PdcGatewayPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Regions for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("pdcGatewayPrivateConnectivityInfoRegions")]
+        public Output<ImmutableArray<string>> PdcGatewayPrivateConnectivityInfoRegions { get; private set; } = null!;
 
         /// <summary>
         /// Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
@@ -299,10 +371,22 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> ProfilesName { get; private set; } = null!;
 
         /// <summary>
+        /// Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("profilesPrivateConnectivityInfoAvailabilityZones")]
+        public Output<ImmutableArray<string>> ProfilesPrivateConnectivityInfoAvailabilityZones { get; private set; } = null!;
+
+        /// <summary>
         /// Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Output("profilesPrivateConnectivityInfoPrivateDns")]
         public Output<string> ProfilesPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Regions for Profiles when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("profilesPrivateConnectivityInfoRegions")]
+        public Output<ImmutableArray<string>> ProfilesPrivateConnectivityInfoRegions { get; private set; } = null!;
 
         /// <summary>
         /// Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
@@ -332,10 +416,22 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> PrometheusName { get; private set; } = null!;
 
         /// <summary>
+        /// Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("prometheusPrivateConnectivityInfoAvailabilityZones")]
+        public Output<ImmutableArray<string>> PrometheusPrivateConnectivityInfoAvailabilityZones { get; private set; } = null!;
+
+        /// <summary>
         /// Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Output("prometheusPrivateConnectivityInfoPrivateDns")]
         public Output<string> PrometheusPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Regions for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("prometheusPrivateConnectivityInfoRegions")]
+        public Output<ImmutableArray<string>> PrometheusPrivateConnectivityInfoRegions { get; private set; } = null!;
 
         /// <summary>
         /// Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
@@ -401,10 +497,22 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> TracesName { get; private set; } = null!;
 
         /// <summary>
+        /// Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("tracesPrivateConnectivityInfoAvailabilityZones")]
+        public Output<ImmutableArray<string>> TracesPrivateConnectivityInfoAvailabilityZones { get; private set; } = null!;
+
+        /// <summary>
         /// Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Output("tracesPrivateConnectivityInfoPrivateDns")]
         public Output<string> TracesPrivateConnectivityInfoPrivateDns { get; private set; } = null!;
+
+        /// <summary>
+        /// Regions for Traces when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("tracesPrivateConnectivityInfoRegions")]
+        public Output<ImmutableArray<string>> TracesPrivateConnectivityInfoRegions { get; private set; } = null!;
 
         /// <summary>
         /// Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
@@ -617,11 +725,35 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("fleetManagementName")]
         public Input<string>? FleetManagementName { get; set; }
 
+        [Input("fleetManagementPrivateConnectivityInfoAvailabilityZones")]
+        private InputList<string>? _fleetManagementPrivateConnectivityInfoAvailabilityZones;
+
+        /// <summary>
+        /// Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> FleetManagementPrivateConnectivityInfoAvailabilityZones
+        {
+            get => _fleetManagementPrivateConnectivityInfoAvailabilityZones ?? (_fleetManagementPrivateConnectivityInfoAvailabilityZones = new InputList<string>());
+            set => _fleetManagementPrivateConnectivityInfoAvailabilityZones = value;
+        }
+
         /// <summary>
         /// Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Input("fleetManagementPrivateConnectivityInfoPrivateDns")]
         public Input<string>? FleetManagementPrivateConnectivityInfoPrivateDns { get; set; }
+
+        [Input("fleetManagementPrivateConnectivityInfoRegions")]
+        private InputList<string>? _fleetManagementPrivateConnectivityInfoRegions;
+
+        /// <summary>
+        /// Regions for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> FleetManagementPrivateConnectivityInfoRegions
+        {
+            get => _fleetManagementPrivateConnectivityInfoRegions ?? (_fleetManagementPrivateConnectivityInfoRegions = new InputList<string>());
+            set => _fleetManagementPrivateConnectivityInfoRegions = value;
+        }
 
         /// <summary>
         /// Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
@@ -662,11 +794,35 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("graphiteName")]
         public Input<string>? GraphiteName { get; set; }
 
+        [Input("graphitePrivateConnectivityInfoAvailabilityZones")]
+        private InputList<string>? _graphitePrivateConnectivityInfoAvailabilityZones;
+
+        /// <summary>
+        /// Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> GraphitePrivateConnectivityInfoAvailabilityZones
+        {
+            get => _graphitePrivateConnectivityInfoAvailabilityZones ?? (_graphitePrivateConnectivityInfoAvailabilityZones = new InputList<string>());
+            set => _graphitePrivateConnectivityInfoAvailabilityZones = value;
+        }
+
         /// <summary>
         /// Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Input("graphitePrivateConnectivityInfoPrivateDns")]
         public Input<string>? GraphitePrivateConnectivityInfoPrivateDns { get; set; }
+
+        [Input("graphitePrivateConnectivityInfoRegions")]
+        private InputList<string>? _graphitePrivateConnectivityInfoRegions;
+
+        /// <summary>
+        /// Regions for Graphite when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> GraphitePrivateConnectivityInfoRegions
+        {
+            get => _graphitePrivateConnectivityInfoRegions ?? (_graphitePrivateConnectivityInfoRegions = new InputList<string>());
+            set => _graphitePrivateConnectivityInfoRegions = value;
+        }
 
         /// <summary>
         /// Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
@@ -710,11 +866,35 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("logsName")]
         public Input<string>? LogsName { get; set; }
 
+        [Input("logsPrivateConnectivityInfoAvailabilityZones")]
+        private InputList<string>? _logsPrivateConnectivityInfoAvailabilityZones;
+
+        /// <summary>
+        /// Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> LogsPrivateConnectivityInfoAvailabilityZones
+        {
+            get => _logsPrivateConnectivityInfoAvailabilityZones ?? (_logsPrivateConnectivityInfoAvailabilityZones = new InputList<string>());
+            set => _logsPrivateConnectivityInfoAvailabilityZones = value;
+        }
+
         /// <summary>
         /// Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Input("logsPrivateConnectivityInfoPrivateDns")]
         public Input<string>? LogsPrivateConnectivityInfoPrivateDns { get; set; }
+
+        [Input("logsPrivateConnectivityInfoRegions")]
+        private InputList<string>? _logsPrivateConnectivityInfoRegions;
+
+        /// <summary>
+        /// Regions for Logs when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> LogsPrivateConnectivityInfoRegions
+        {
+            get => _logsPrivateConnectivityInfoRegions ?? (_logsPrivateConnectivityInfoRegions = new InputList<string>());
+            set => _logsPrivateConnectivityInfoRegions = value;
+        }
 
         /// <summary>
         /// Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
@@ -761,11 +941,35 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("orgSlug")]
         public Input<string>? OrgSlug { get; set; }
 
+        [Input("otlpPrivateConnectivityInfoAvailabilityZones")]
+        private InputList<string>? _otlpPrivateConnectivityInfoAvailabilityZones;
+
+        /// <summary>
+        /// Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> OtlpPrivateConnectivityInfoAvailabilityZones
+        {
+            get => _otlpPrivateConnectivityInfoAvailabilityZones ?? (_otlpPrivateConnectivityInfoAvailabilityZones = new InputList<string>());
+            set => _otlpPrivateConnectivityInfoAvailabilityZones = value;
+        }
+
         /// <summary>
         /// Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Input("otlpPrivateConnectivityInfoPrivateDns")]
         public Input<string>? OtlpPrivateConnectivityInfoPrivateDns { get; set; }
+
+        [Input("otlpPrivateConnectivityInfoRegions")]
+        private InputList<string>? _otlpPrivateConnectivityInfoRegions;
+
+        /// <summary>
+        /// Regions for OTLP when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> OtlpPrivateConnectivityInfoRegions
+        {
+            get => _otlpPrivateConnectivityInfoRegions ?? (_otlpPrivateConnectivityInfoRegions = new InputList<string>());
+            set => _otlpPrivateConnectivityInfoRegions = value;
+        }
 
         /// <summary>
         /// Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
@@ -779,11 +983,35 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("otlpUrl")]
         public Input<string>? OtlpUrl { get; set; }
 
+        [Input("pdcApiPrivateConnectivityInfoAvailabilityZones")]
+        private InputList<string>? _pdcApiPrivateConnectivityInfoAvailabilityZones;
+
+        /// <summary>
+        /// Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> PdcApiPrivateConnectivityInfoAvailabilityZones
+        {
+            get => _pdcApiPrivateConnectivityInfoAvailabilityZones ?? (_pdcApiPrivateConnectivityInfoAvailabilityZones = new InputList<string>());
+            set => _pdcApiPrivateConnectivityInfoAvailabilityZones = value;
+        }
+
         /// <summary>
         /// Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Input("pdcApiPrivateConnectivityInfoPrivateDns")]
         public Input<string>? PdcApiPrivateConnectivityInfoPrivateDns { get; set; }
+
+        [Input("pdcApiPrivateConnectivityInfoRegions")]
+        private InputList<string>? _pdcApiPrivateConnectivityInfoRegions;
+
+        /// <summary>
+        /// Regions for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> PdcApiPrivateConnectivityInfoRegions
+        {
+            get => _pdcApiPrivateConnectivityInfoRegions ?? (_pdcApiPrivateConnectivityInfoRegions = new InputList<string>());
+            set => _pdcApiPrivateConnectivityInfoRegions = value;
+        }
 
         /// <summary>
         /// Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
@@ -791,11 +1019,35 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("pdcApiPrivateConnectivityInfoServiceName")]
         public Input<string>? PdcApiPrivateConnectivityInfoServiceName { get; set; }
 
+        [Input("pdcGatewayPrivateConnectivityInfoAvailabilityZones")]
+        private InputList<string>? _pdcGatewayPrivateConnectivityInfoAvailabilityZones;
+
+        /// <summary>
+        /// Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> PdcGatewayPrivateConnectivityInfoAvailabilityZones
+        {
+            get => _pdcGatewayPrivateConnectivityInfoAvailabilityZones ?? (_pdcGatewayPrivateConnectivityInfoAvailabilityZones = new InputList<string>());
+            set => _pdcGatewayPrivateConnectivityInfoAvailabilityZones = value;
+        }
+
         /// <summary>
         /// Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Input("pdcGatewayPrivateConnectivityInfoPrivateDns")]
         public Input<string>? PdcGatewayPrivateConnectivityInfoPrivateDns { get; set; }
+
+        [Input("pdcGatewayPrivateConnectivityInfoRegions")]
+        private InputList<string>? _pdcGatewayPrivateConnectivityInfoRegions;
+
+        /// <summary>
+        /// Regions for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> PdcGatewayPrivateConnectivityInfoRegions
+        {
+            get => _pdcGatewayPrivateConnectivityInfoRegions ?? (_pdcGatewayPrivateConnectivityInfoRegions = new InputList<string>());
+            set => _pdcGatewayPrivateConnectivityInfoRegions = value;
+        }
 
         /// <summary>
         /// Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
@@ -812,11 +1064,35 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("profilesName")]
         public Input<string>? ProfilesName { get; set; }
 
+        [Input("profilesPrivateConnectivityInfoAvailabilityZones")]
+        private InputList<string>? _profilesPrivateConnectivityInfoAvailabilityZones;
+
+        /// <summary>
+        /// Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> ProfilesPrivateConnectivityInfoAvailabilityZones
+        {
+            get => _profilesPrivateConnectivityInfoAvailabilityZones ?? (_profilesPrivateConnectivityInfoAvailabilityZones = new InputList<string>());
+            set => _profilesPrivateConnectivityInfoAvailabilityZones = value;
+        }
+
         /// <summary>
         /// Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Input("profilesPrivateConnectivityInfoPrivateDns")]
         public Input<string>? ProfilesPrivateConnectivityInfoPrivateDns { get; set; }
+
+        [Input("profilesPrivateConnectivityInfoRegions")]
+        private InputList<string>? _profilesPrivateConnectivityInfoRegions;
+
+        /// <summary>
+        /// Regions for Profiles when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> ProfilesPrivateConnectivityInfoRegions
+        {
+            get => _profilesPrivateConnectivityInfoRegions ?? (_profilesPrivateConnectivityInfoRegions = new InputList<string>());
+            set => _profilesPrivateConnectivityInfoRegions = value;
+        }
 
         /// <summary>
         /// Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
@@ -845,11 +1121,35 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("prometheusName")]
         public Input<string>? PrometheusName { get; set; }
 
+        [Input("prometheusPrivateConnectivityInfoAvailabilityZones")]
+        private InputList<string>? _prometheusPrivateConnectivityInfoAvailabilityZones;
+
+        /// <summary>
+        /// Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> PrometheusPrivateConnectivityInfoAvailabilityZones
+        {
+            get => _prometheusPrivateConnectivityInfoAvailabilityZones ?? (_prometheusPrivateConnectivityInfoAvailabilityZones = new InputList<string>());
+            set => _prometheusPrivateConnectivityInfoAvailabilityZones = value;
+        }
+
         /// <summary>
         /// Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Input("prometheusPrivateConnectivityInfoPrivateDns")]
         public Input<string>? PrometheusPrivateConnectivityInfoPrivateDns { get; set; }
+
+        [Input("prometheusPrivateConnectivityInfoRegions")]
+        private InputList<string>? _prometheusPrivateConnectivityInfoRegions;
+
+        /// <summary>
+        /// Regions for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> PrometheusPrivateConnectivityInfoRegions
+        {
+            get => _prometheusPrivateConnectivityInfoRegions ?? (_prometheusPrivateConnectivityInfoRegions = new InputList<string>());
+            set => _prometheusPrivateConnectivityInfoRegions = value;
+        }
 
         /// <summary>
         /// Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
@@ -914,11 +1214,35 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("tracesName")]
         public Input<string>? TracesName { get; set; }
 
+        [Input("tracesPrivateConnectivityInfoAvailabilityZones")]
+        private InputList<string>? _tracesPrivateConnectivityInfoAvailabilityZones;
+
+        /// <summary>
+        /// Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> TracesPrivateConnectivityInfoAvailabilityZones
+        {
+            get => _tracesPrivateConnectivityInfoAvailabilityZones ?? (_tracesPrivateConnectivityInfoAvailabilityZones = new InputList<string>());
+            set => _tracesPrivateConnectivityInfoAvailabilityZones = value;
+        }
+
         /// <summary>
         /// Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Input("tracesPrivateConnectivityInfoPrivateDns")]
         public Input<string>? TracesPrivateConnectivityInfoPrivateDns { get; set; }
+
+        [Input("tracesPrivateConnectivityInfoRegions")]
+        private InputList<string>? _tracesPrivateConnectivityInfoRegions;
+
+        /// <summary>
+        /// Regions for Traces when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> TracesPrivateConnectivityInfoRegions
+        {
+            get => _tracesPrivateConnectivityInfoRegions ?? (_tracesPrivateConnectivityInfoRegions = new InputList<string>());
+            set => _tracesPrivateConnectivityInfoRegions = value;
+        }
 
         /// <summary>
         /// Service Name for Traces when using AWS PrivateLink (only for AWS stacks)

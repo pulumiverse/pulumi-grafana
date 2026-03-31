@@ -46,7 +46,7 @@ namespace Pulumiverse.Grafana.Cloud
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:cloud/stackServiceAccount:StackServiceAccount name "{{ stackSlug }}:{{ serviceAccountID }}"
+    /// terraform import grafana_cloud_stack_service_account.name "{{ stackSlug }}:{{ serviceAccountID }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:cloud/stackServiceAccount:StackServiceAccount")]

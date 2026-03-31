@@ -22,6 +22,7 @@ class ProjectArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Project resource.
+
         :param pulumi.Input[_builtins.str] name: Human-friendly identifier of the project.
         """
         if name is not None:
@@ -50,6 +51,7 @@ class _ProjectState:
                  updated: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Project resources.
+
         :param pulumi.Input[_builtins.str] created: The date when the project was created.
         :param pulumi.Input[_builtins.str] grafana_folder_uid: The Grafana folder uid.
         :param pulumi.Input[_builtins.bool] is_default: Use this project as default for running tests when no explicit project identifier is provided.
@@ -151,8 +153,9 @@ class Project(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:k6/project:Project name "{{ id }}"
+        terraform import grafana_k6_project.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -179,8 +182,9 @@ class Project(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:k6/project:Project name "{{ id }}"
+        terraform import grafana_k6_project.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProjectArgs args: The arguments to use to populate this resource's properties.

@@ -17,7 +17,7 @@ namespace Pulumiverse.Grafana.OnCall
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:onCall/integration:Integration name "{{ id }}"
+    /// terraform import grafana_oncall_integration.name "{{ id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:onCall/integration:Integration")]

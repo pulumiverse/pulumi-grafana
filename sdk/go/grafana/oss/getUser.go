@@ -50,7 +50,7 @@ import (
 //			}, nil)
 //			_ = test.Login.ApplyT(func(login *string) (oss.GetUserResult, error) {
 //				return oss.GetUserResult(interface{}(oss.LookupUser(ctx, &oss.LookupUserArgs{
-//					Login: pulumi.StringRef(pulumi.StringRef(login)),
+//					Login: pulumi.StringRef(pulumi.StringRef(pulumi.String(login))),
 //				}, nil))), nil
 //			}).(oss.GetUserResultOutput)
 //			return nil

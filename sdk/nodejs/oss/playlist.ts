@@ -37,11 +37,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/playlist:Playlist name "{{ uid }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:oss/playlist:Playlist name "{{ orgID }}:{{ uid }}"
+ * terraform import grafana_playlist.name "{{ uid }}"
+ * terraform import grafana_playlist.name "{{ orgID }}:{{ uid }}"
  * ```
  */
 export class Playlist extends pulumi.CustomResource {

@@ -54,8 +54,8 @@ import (
 //			_, err = oss.NewDataSource(ctx, "arbitrary-data", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("stackdriver"),
 //				Name:                  pulumi.String("sd-arbitrary-data"),
-//				JsonDataEncoded:       pulumi.String(json0),
-//				SecureJsonDataEncoded: pulumi.String(json1),
+//				JsonDataEncoded:       pulumi.String(pulumi.String(json0)),
+//				SecureJsonDataEncoded: pulumi.String(pulumi.String(json1)),
 //			})
 //			if err != nil {
 //				return err
@@ -75,7 +75,7 @@ import (
 //				BasicAuthEnabled:  pulumi.Bool(true),
 //				BasicAuthUsername: pulumi.String("username"),
 //				DatabaseName:      pulumi.String("dbname"),
-//				JsonDataEncoded:   pulumi.String(json2),
+//				JsonDataEncoded:   pulumi.String(pulumi.String(json2)),
 //			})
 //			if err != nil {
 //				return err
@@ -99,8 +99,8 @@ import (
 //			_, err = oss.NewDataSource(ctx, "cloudwatch", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("cloudwatch"),
 //				Name:                  pulumi.String("cw-example"),
-//				JsonDataEncoded:       pulumi.String(json3),
-//				SecureJsonDataEncoded: pulumi.String(json4),
+//				JsonDataEncoded:       pulumi.String(pulumi.String(json3)),
+//				SecureJsonDataEncoded: pulumi.String(pulumi.String(json4)),
 //			})
 //			if err != nil {
 //				return err
@@ -117,7 +117,7 @@ import (
 //			_, err = oss.NewDataSource(ctx, "cloudwatch_assumeARN", &oss.DataSourceArgs{
 //				Type:            pulumi.String("cloudwatch"),
 //				Name:            pulumi.String("cw-assumeARN-example"),
-//				JsonDataEncoded: pulumi.String(json5),
+//				JsonDataEncoded: pulumi.String(pulumi.String(json5)),
 //			})
 //			if err != nil {
 //				return err
@@ -144,8 +144,8 @@ import (
 //				Url:                   pulumi.String("https://my-instances.com"),
 //				BasicAuthEnabled:      pulumi.Bool(true),
 //				BasicAuthUsername:     pulumi.String("username"),
-//				JsonDataEncoded:       pulumi.String(json6),
-//				SecureJsonDataEncoded: pulumi.String(json7),
+//				JsonDataEncoded:       pulumi.String(pulumi.String(json6)),
+//				SecureJsonDataEncoded: pulumi.String(pulumi.String(json7)),
 //			})
 //			if err != nil {
 //				return err
@@ -159,11 +159,8 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:oss/dataSource:DataSource name "{{ uid }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:oss/dataSource:DataSource name "{{ orgID }}:{{ uid }}"
+// terraform import grafana_data_source.name "{{ uid }}"
+// terraform import grafana_data_source.name "{{ orgID }}:{{ uid }}"
 // ```
 type DataSource struct {
 	pulumi.CustomResourceState

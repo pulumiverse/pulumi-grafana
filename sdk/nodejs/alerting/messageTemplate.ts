@@ -29,11 +29,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:alerting/messageTemplate:MessageTemplate name "{{ name }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:alerting/messageTemplate:MessageTemplate name "{{ orgID }}:{{ name }}"
+ * terraform import grafana_message_template.name "{{ name }}"
+ * terraform import grafana_message_template.name "{{ orgID }}:{{ name }}"
  * ```
  */
 export class MessageTemplate extends pulumi.CustomResource {
@@ -64,7 +61,10 @@ export class MessageTemplate extends pulumi.CustomResource {
         return obj['__pulumiType'] === MessageTemplate.__pulumiType;
     }
 
-    declare public readonly disableProvenance: pulumi.Output<boolean | undefined>;
+    /**
+     * Allow modifying the message template from other sources than Terraform or the Grafana API. Defaults to `false`.
+     */
+    declare public readonly disableProvenance: pulumi.Output<boolean>;
     /**
      * The name of the notification template group.
      */
@@ -72,7 +72,7 @@ export class MessageTemplate extends pulumi.CustomResource {
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    declare public readonly orgId: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * The content of the notification template group.
      */
@@ -116,6 +116,9 @@ export class MessageTemplate extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MessageTemplate resources.
  */
 export interface MessageTemplateState {
+    /**
+     * Allow modifying the message template from other sources than Terraform or the Grafana API. Defaults to `false`.
+     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * The name of the notification template group.
@@ -135,6 +138,9 @@ export interface MessageTemplateState {
  * The set of arguments for constructing a MessageTemplate resource.
  */
 export interface MessageTemplateArgs {
+    /**
+     * Allow modifying the message template from other sources than Terraform or the Grafana API. Defaults to `false`.
+     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * The name of the notification template group.

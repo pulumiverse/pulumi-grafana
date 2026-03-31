@@ -26,9 +26,12 @@ class AppArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a App resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_origins: A list of allowed origins for CORS.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_log_attributes: The extra attributes to append in each signal.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
+        :param pulumi.Input[_builtins.int] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        :param pulumi.Input[_builtins.str] name: The name of Frontend Observability App. Part of the Terraform Resource ID.
         """
         pulumi.set(__self__, "allowed_origins", allowed_origins)
         pulumi.set(__self__, "extra_log_attributes", extra_log_attributes)
@@ -76,6 +79,9 @@ class AppArgs:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> pulumi.Input[_builtins.int]:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
@@ -85,6 +91,9 @@ class AppArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of Frontend Observability App. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -103,10 +112,13 @@ class _AppState:
                  stack_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering App resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_origins: A list of allowed origins for CORS.
         :param pulumi.Input[_builtins.str] collector_endpoint: The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_log_attributes: The extra attributes to append in each signal.
+        :param pulumi.Input[_builtins.str] name: The name of Frontend Observability App. Part of the Terraform Resource ID.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
+        :param pulumi.Input[_builtins.int] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         """
         if allowed_origins is not None:
             pulumi.set(__self__, "allowed_origins", allowed_origins)
@@ -160,6 +172,9 @@ class _AppState:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of Frontend Observability App. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -181,6 +196,9 @@ class _AppState:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
@@ -206,14 +224,17 @@ class App(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:frontendObservability/app:App name "{{ stack_id }}:{{ name }}"
+        terraform import grafana_frontend_o11y_app.name "{{ stack_id }}:{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_origins: A list of allowed origins for CORS.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_log_attributes: The extra attributes to append in each signal.
+        :param pulumi.Input[_builtins.str] name: The name of Frontend Observability App. Part of the Terraform Resource ID.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
+        :param pulumi.Input[_builtins.int] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         """
         ...
     @overload
@@ -227,8 +248,9 @@ class App(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:frontendObservability/app:App name "{{ stack_id }}:{{ name }}"
+        terraform import grafana_frontend_o11y_app.name "{{ stack_id }}:{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppArgs args: The arguments to use to populate this resource's properties.
@@ -299,7 +321,9 @@ class App(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_origins: A list of allowed origins for CORS.
         :param pulumi.Input[_builtins.str] collector_endpoint: The collector URL Grafana Cloud Frontend Observability. Use this endpoint to send your Telemetry.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_log_attributes: The extra attributes to append in each signal.
+        :param pulumi.Input[_builtins.str] name: The name of Frontend Observability App. Part of the Terraform Resource ID.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
+        :param pulumi.Input[_builtins.int] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -340,6 +364,9 @@ class App(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of Frontend Observability App. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
@@ -353,5 +380,8 @@ class App(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> pulumi.Output[_builtins.int]:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 

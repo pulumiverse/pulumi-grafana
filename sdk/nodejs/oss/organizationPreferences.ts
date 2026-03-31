@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/organizationPreferences:OrganizationPreferences name "{{ orgID }}"
+ * terraform import grafana_organization_preferences.name "{{ orgID }}"
  * ```
  */
 export class OrganizationPreferences extends pulumi.CustomResource {

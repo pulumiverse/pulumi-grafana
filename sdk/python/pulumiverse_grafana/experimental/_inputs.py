@@ -31,36 +31,31 @@ __all__ = [
     'AppsPlaylistV0Alpha1SpecItemArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AppsDashboardMetadataArgsDict(TypedDict):
-        uid: pulumi.Input[_builtins.str]
-        """
-        The unique identifier of the resource.
-        """
-        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Annotations of the resource.
-        """
-        folder_uid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The UID of the folder to save the resource in.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The full URL of the resource.
-        """
-        uuid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The globally unique identifier of a resource, used by the API for tracking.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The version of the resource.
-        """
-elif False:
-    AppsDashboardMetadataArgsDict: TypeAlias = Mapping[str, Any]
+class AppsDashboardMetadataArgsDict(TypedDict):
+    uid: pulumi.Input[_builtins.str]
+    """
+    The unique identifier of the resource.
+    """
+    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Annotations of the resource.
+    """
+    folder_uid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The UID of the folder to save the resource in.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The full URL of the resource.
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The globally unique identifier of a resource, used by the API for tracking.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The version of the resource.
+    """
 
 @pulumi.input_type
 class AppsDashboardMetadataArgs:
@@ -164,24 +159,41 @@ class AppsDashboardMetadataArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class AppsDashboardOptionsArgsDict(TypedDict):
-        overwrite: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-        """
-elif False:
-    AppsDashboardOptionsArgsDict: TypeAlias = Mapping[str, Any]
+class AppsDashboardOptionsArgsDict(TypedDict):
+    allow_ui_updates: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+    """
+    overwrite: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+    """
 
 @pulumi.input_type
 class AppsDashboardOptionsArgs:
     def __init__(__self__, *,
+                 allow_ui_updates: Optional[pulumi.Input[_builtins.bool]] = None,
                  overwrite: Optional[pulumi.Input[_builtins.bool]] = None):
         """
+        :param pulumi.Input[_builtins.bool] allow_ui_updates: Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
         :param pulumi.Input[_builtins.bool] overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         """
+        if allow_ui_updates is not None:
+            pulumi.set(__self__, "allow_ui_updates", allow_ui_updates)
         if overwrite is not None:
             pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter(name="allowUiUpdates")
+    def allow_ui_updates(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+        """
+        return pulumi.get(self, "allow_ui_updates")
+
+    @allow_ui_updates.setter
+    def allow_ui_updates(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "allow_ui_updates", value)
 
     @_builtins.property
     @pulumi.getter
@@ -196,22 +208,19 @@ class AppsDashboardOptionsArgs:
         pulumi.set(self, "overwrite", value)
 
 
-if not MYPY:
-    class AppsDashboardSpecArgsDict(TypedDict):
-        json: pulumi.Input[_builtins.str]
-        """
-        The JSON representation of the dashboard spec.
-        """
-        tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
-        """
-        title: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The title of the dashboard. If not set, the title will be derived from the JSON spec.
-        """
-elif False:
-    AppsDashboardSpecArgsDict: TypeAlias = Mapping[str, Any]
+class AppsDashboardSpecArgsDict(TypedDict):
+    json: pulumi.Input[_builtins.str]
+    """
+    The JSON representation of the dashboard spec.
+    """
+    tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
+    """
+    title: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The title of the dashboard. If not set, the title will be derived from the JSON spec.
+    """
 
 @pulumi.input_type
 class AppsDashboardSpecArgs:
@@ -267,34 +276,31 @@ class AppsDashboardSpecArgs:
         pulumi.set(self, "title", value)
 
 
-if not MYPY:
-    class AppsPlaylistV0Alpha1MetadataArgsDict(TypedDict):
-        uid: pulumi.Input[_builtins.str]
-        """
-        The unique identifier of the resource.
-        """
-        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Annotations of the resource.
-        """
-        folder_uid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The UID of the folder to save the resource in.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The full URL of the resource.
-        """
-        uuid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The globally unique identifier of a resource, used by the API for tracking.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The version of the resource.
-        """
-elif False:
-    AppsPlaylistV0Alpha1MetadataArgsDict: TypeAlias = Mapping[str, Any]
+class AppsPlaylistV0Alpha1MetadataArgsDict(TypedDict):
+    uid: pulumi.Input[_builtins.str]
+    """
+    The unique identifier of the resource.
+    """
+    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Annotations of the resource.
+    """
+    folder_uid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The UID of the folder to save the resource in.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The full URL of the resource.
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The globally unique identifier of a resource, used by the API for tracking.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The version of the resource.
+    """
 
 @pulumi.input_type
 class AppsPlaylistV0Alpha1MetadataArgs:
@@ -398,14 +404,11 @@ class AppsPlaylistV0Alpha1MetadataArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class AppsPlaylistV0Alpha1OptionsArgsDict(TypedDict):
-        overwrite: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-        """
-elif False:
-    AppsPlaylistV0Alpha1OptionsArgsDict: TypeAlias = Mapping[str, Any]
+class AppsPlaylistV0Alpha1OptionsArgsDict(TypedDict):
+    overwrite: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+    """
 
 @pulumi.input_type
 class AppsPlaylistV0Alpha1OptionsArgs:
@@ -430,22 +433,19 @@ class AppsPlaylistV0Alpha1OptionsArgs:
         pulumi.set(self, "overwrite", value)
 
 
-if not MYPY:
-    class AppsPlaylistV0Alpha1SpecArgsDict(TypedDict):
-        items: pulumi.Input[Sequence[pulumi.Input['AppsPlaylistV0Alpha1SpecItemArgsDict']]]
-        """
-        The items of the playlist.
-        """
-        title: pulumi.Input[_builtins.str]
-        """
-        The title of the playlist.
-        """
-        interval: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The interval of the playlist.
-        """
-elif False:
-    AppsPlaylistV0Alpha1SpecArgsDict: TypeAlias = Mapping[str, Any]
+class AppsPlaylistV0Alpha1SpecArgsDict(TypedDict):
+    items: pulumi.Input[Sequence[pulumi.Input['AppsPlaylistV0Alpha1SpecItemArgsDict']]]
+    """
+    The items of the playlist.
+    """
+    title: pulumi.Input[_builtins.str]
+    """
+    The title of the playlist.
+    """
+    interval: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The interval of the playlist.
+    """
 
 @pulumi.input_type
 class AppsPlaylistV0Alpha1SpecArgs:
@@ -500,12 +500,9 @@ class AppsPlaylistV0Alpha1SpecArgs:
         pulumi.set(self, "interval", value)
 
 
-if not MYPY:
-    class AppsPlaylistV0Alpha1SpecItemArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        value: pulumi.Input[_builtins.str]
-elif False:
-    AppsPlaylistV0Alpha1SpecItemArgsDict: TypeAlias = Mapping[str, Any]
+class AppsPlaylistV0Alpha1SpecItemArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    value: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class AppsPlaylistV0Alpha1SpecItemArgs:

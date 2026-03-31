@@ -53,7 +53,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:cloud/pluginInstallation:PluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
+// terraform import grafana_cloud_plugin_installation.name "{{ stackSlug }}:{{ pluginSlug }}"
 // ```
 type PluginInstallation struct {
 	pulumi.CustomResourceState
@@ -61,8 +61,9 @@ type PluginInstallation struct {
 	// Slug of the plugin to be installed.
 	Slug pulumi.StringOutput `pulumi:"slug"`
 	// The stack id to which the plugin should be installed.
-	StackSlug pulumi.StringOutput    `pulumi:"stackSlug"`
-	Version   pulumi.StringPtrOutput `pulumi:"version"`
+	StackSlug pulumi.StringOutput `pulumi:"stackSlug"`
+	// Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
+	Version pulumi.StringPtrOutput `pulumi:"version"`
 }
 
 // NewPluginInstallation registers a new resource with the given unique name, arguments, and options.
@@ -105,7 +106,8 @@ type pluginInstallationState struct {
 	Slug *string `pulumi:"slug"`
 	// The stack id to which the plugin should be installed.
 	StackSlug *string `pulumi:"stackSlug"`
-	Version   *string `pulumi:"version"`
+	// Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
+	Version *string `pulumi:"version"`
 }
 
 type PluginInstallationState struct {
@@ -113,7 +115,8 @@ type PluginInstallationState struct {
 	Slug pulumi.StringPtrInput
 	// The stack id to which the plugin should be installed.
 	StackSlug pulumi.StringPtrInput
-	Version   pulumi.StringPtrInput
+	// Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
+	Version pulumi.StringPtrInput
 }
 
 func (PluginInstallationState) ElementType() reflect.Type {
@@ -124,8 +127,9 @@ type pluginInstallationArgs struct {
 	// Slug of the plugin to be installed.
 	Slug string `pulumi:"slug"`
 	// The stack id to which the plugin should be installed.
-	StackSlug string  `pulumi:"stackSlug"`
-	Version   *string `pulumi:"version"`
+	StackSlug string `pulumi:"stackSlug"`
+	// Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
+	Version *string `pulumi:"version"`
 }
 
 // The set of arguments for constructing a PluginInstallation resource.
@@ -134,7 +138,8 @@ type PluginInstallationArgs struct {
 	Slug pulumi.StringInput
 	// The stack id to which the plugin should be installed.
 	StackSlug pulumi.StringInput
-	Version   pulumi.StringPtrInput
+	// Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
+	Version pulumi.StringPtrInput
 }
 
 func (PluginInstallationArgs) ElementType() reflect.Type {
@@ -234,6 +239,7 @@ func (o PluginInstallationOutput) StackSlug() pulumi.StringOutput {
 	return o.ApplyT(func(v *PluginInstallation) pulumi.StringOutput { return v.StackSlug }).(pulumi.StringOutput)
 }
 
+// Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
 func (o PluginInstallationOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PluginInstallation) pulumi.StringPtrOutput { return v.Version }).(pulumi.StringPtrOutput)
 }

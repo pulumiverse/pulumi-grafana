@@ -176,11 +176,8 @@ namespace Pulumiverse.Grafana.Alerting
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:alerting/notificationPolicy:NotificationPolicy name "{{ anyString }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:alerting/notificationPolicy:NotificationPolicy name "{{ orgID }}:{{ anyString }}"
+    /// terraform import grafana_notification_policy.name "{{ anyString }}"
+    /// terraform import grafana_notification_policy.name "{{ orgID }}:{{ anyString }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:alerting/notificationPolicy:NotificationPolicy")]
@@ -192,6 +189,9 @@ namespace Pulumiverse.Grafana.Alerting
         [Output("contactPoint")]
         public Output<string> ContactPoint { get; private set; } = null!;
 
+        /// <summary>
+        /// Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Output("disableProvenance")]
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
@@ -288,6 +288,9 @@ namespace Pulumiverse.Grafana.Alerting
         [Input("contactPoint", required: true)]
         public Input<string> ContactPoint { get; set; } = null!;
 
+        /// <summary>
+        /// Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -353,6 +356,9 @@ namespace Pulumiverse.Grafana.Alerting
         [Input("contactPoint")]
         public Input<string>? ContactPoint { get; set; }
 
+        /// <summary>
+        /// Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 

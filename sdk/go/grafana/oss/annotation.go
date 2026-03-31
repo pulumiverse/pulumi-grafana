@@ -12,6 +12,8 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+// Manages Grafana annotations.
+//
 // * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
 //
@@ -44,19 +46,16 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:oss/annotation:Annotation name "{{ id }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:oss/annotation:Annotation name "{{ orgID }}:{{ id }}"
+// terraform import grafana_annotation.name "{{ id }}"
+// terraform import grafana_annotation.name "{{ orgID }}:{{ id }}"
 // ```
 type Annotation struct {
 	pulumi.CustomResourceState
 
 	// The UID of the dashboard on which to create the annotation.
 	DashboardUid pulumi.StringPtrOutput `pulumi:"dashboardUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// The ID of the dashboard panel on which to create the annotation.
 	PanelId pulumi.IntPtrOutput `pulumi:"panelId"`
 	// The tags to associate with the annotation.
@@ -110,7 +109,7 @@ func GetAnnotation(ctx *pulumi.Context,
 type annotationState struct {
 	// The UID of the dashboard on which to create the annotation.
 	DashboardUid *string `pulumi:"dashboardUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// The ID of the dashboard panel on which to create the annotation.
 	PanelId *int `pulumi:"panelId"`
@@ -127,7 +126,7 @@ type annotationState struct {
 type AnnotationState struct {
 	// The UID of the dashboard on which to create the annotation.
 	DashboardUid pulumi.StringPtrInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// The ID of the dashboard panel on which to create the annotation.
 	PanelId pulumi.IntPtrInput
@@ -148,7 +147,7 @@ func (AnnotationState) ElementType() reflect.Type {
 type annotationArgs struct {
 	// The UID of the dashboard on which to create the annotation.
 	DashboardUid *string `pulumi:"dashboardUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// The ID of the dashboard panel on which to create the annotation.
 	PanelId *int `pulumi:"panelId"`
@@ -166,7 +165,7 @@ type annotationArgs struct {
 type AnnotationArgs struct {
 	// The UID of the dashboard on which to create the annotation.
 	DashboardUid pulumi.StringPtrInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// The ID of the dashboard panel on which to create the annotation.
 	PanelId pulumi.IntPtrInput
@@ -272,9 +271,9 @@ func (o AnnotationOutput) DashboardUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Annotation) pulumi.StringPtrOutput { return v.DashboardUid }).(pulumi.StringPtrOutput)
 }
 
-// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-func (o AnnotationOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Annotation) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+func (o AnnotationOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Annotation) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 // The ID of the dashboard panel on which to create the annotation.

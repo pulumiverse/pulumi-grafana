@@ -76,7 +76,7 @@ namespace Pulumiverse.Grafana.Enterprise
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules name "{{ datasource_uid }}"
+    /// terraform import grafana_data_source_config_lbac_rules.name "{{ datasource_uid }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules")]

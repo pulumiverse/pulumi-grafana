@@ -17,7 +17,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:onCall/schedule:Schedule name "{{ id }}"
+// terraform import grafana_oncall_schedule.name "{{ id }}"
 // ```
 type Schedule struct {
 	pulumi.CustomResourceState

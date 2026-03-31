@@ -29,6 +29,9 @@ export function getAccessPolicies(args?: GetAccessPoliciesArgs, opts?: pulumi.In
  * A collection of arguments for invoking getAccessPolicies.
  */
 export interface GetAccessPoliciesArgs {
+    /**
+     * If set, only access policies with the specified name will be returned. This is faster than filtering in Terraform.
+     */
     nameFilter?: string;
     /**
      * If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
@@ -45,6 +48,9 @@ export interface GetAccessPoliciesResult {
      * The ID of this datasource. This is an internal identifier used by the provider to track this datasource.
      */
     readonly id: string;
+    /**
+     * If set, only access policies with the specified name will be returned. This is faster than filtering in Terraform.
+     */
     readonly nameFilter?: string;
     /**
      * If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).
@@ -74,6 +80,9 @@ export function getAccessPoliciesOutput(args?: GetAccessPoliciesOutputArgs, opts
  * A collection of arguments for invoking getAccessPolicies.
  */
 export interface GetAccessPoliciesOutputArgs {
+    /**
+     * If set, only access policies with the specified name will be returned. This is faster than filtering in Terraform.
+     */
     nameFilter?: pulumi.Input<string>;
     /**
      * If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).

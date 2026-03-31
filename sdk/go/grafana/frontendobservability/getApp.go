@@ -24,8 +24,10 @@ func LookupApp(ctx *pulumi.Context, args *LookupAppArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking getApp.
 type LookupAppArgs struct {
-	Name    string `pulumi:"name"`
-	StackId int    `pulumi:"stackId"`
+	// The name of the Frontend Observability App. Part of the Terraform Resource ID.
+	Name string `pulumi:"name"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId int `pulumi:"stackId"`
 }
 
 // A collection of values returned by getApp.
@@ -36,11 +38,14 @@ type LookupAppResult struct {
 	CollectorEndpoint string `pulumi:"collectorEndpoint"`
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes map[string]string `pulumi:"extraLogAttributes"`
-	Id                 int               `pulumi:"id"`
-	Name               string            `pulumi:"name"`
+	// The Terraform Resource ID. This auto-generated from Frontend Observability API.
+	Id int `pulumi:"id"`
+	// The name of the Frontend Observability App. Part of the Terraform Resource ID.
+	Name string `pulumi:"name"`
 	// The settings of the Frontend Observability App.
 	Settings map[string]string `pulumi:"settings"`
-	StackId  int               `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId int `pulumi:"stackId"`
 }
 
 func LookupAppOutput(ctx *pulumi.Context, args LookupAppOutputArgs, opts ...pulumi.InvokeOption) LookupAppResultOutput {
@@ -54,8 +59,10 @@ func LookupAppOutput(ctx *pulumi.Context, args LookupAppOutputArgs, opts ...pulu
 
 // A collection of arguments for invoking getApp.
 type LookupAppOutputArgs struct {
-	Name    pulumi.StringInput `pulumi:"name"`
-	StackId pulumi.IntInput    `pulumi:"stackId"`
+	// The name of the Frontend Observability App. Part of the Terraform Resource ID.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.IntInput `pulumi:"stackId"`
 }
 
 func (LookupAppOutputArgs) ElementType() reflect.Type {
@@ -92,10 +99,12 @@ func (o LookupAppResultOutput) ExtraLogAttributes() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupAppResult) map[string]string { return v.ExtraLogAttributes }).(pulumi.StringMapOutput)
 }
 
+// The Terraform Resource ID. This auto-generated from Frontend Observability API.
 func (o LookupAppResultOutput) Id() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupAppResult) int { return v.Id }).(pulumi.IntOutput)
 }
 
+// The name of the Frontend Observability App. Part of the Terraform Resource ID.
 func (o LookupAppResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAppResult) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -105,6 +114,7 @@ func (o LookupAppResultOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupAppResult) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
 }
 
+// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o LookupAppResultOutput) StackId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupAppResult) int { return v.StackId }).(pulumi.IntOutput)
 }

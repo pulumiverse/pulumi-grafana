@@ -27,6 +27,7 @@ class DashboardPermissionItemArgs:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DashboardPermissionItem resource.
+
         :param pulumi.Input[_builtins.str] dashboard_uid: The UID of the dashboard.
         :param pulumi.Input[_builtins.str] permission: the permission to be assigned
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
@@ -129,6 +130,7 @@ class _DashboardPermissionItemState:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DashboardPermissionItem resources.
+
         :param pulumi.Input[_builtins.str] dashboard_uid: The UID of the dashboard.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.str] permission: the permission to be assigned
@@ -271,12 +273,10 @@ class DashboardPermissionItem(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/dashboardPermissionItem:DashboardPermissionItem name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        terraform import grafana_dashboard_permission_item.name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        terraform import grafana_dashboard_permission_item.name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/dashboardPermissionItem:DashboardPermissionItem name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -329,12 +329,10 @@ class DashboardPermissionItem(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/dashboardPermissionItem:DashboardPermissionItem name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        terraform import grafana_dashboard_permission_item.name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        terraform import grafana_dashboard_permission_item.name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/dashboardPermissionItem:DashboardPermissionItem name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param DashboardPermissionItemArgs args: The arguments to use to populate this resource's properties.

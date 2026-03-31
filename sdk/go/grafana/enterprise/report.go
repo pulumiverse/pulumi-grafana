@@ -65,11 +65,8 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:enterprise/report:Report name "{{ id }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:enterprise/report:Report name "{{ orgID }}:{{ id }}"
+// terraform import grafana_report.name "{{ id }}"
+// terraform import grafana_report.name "{{ orgID }}:{{ id }}"
 // ```
 type Report struct {
 	pulumi.CustomResourceState

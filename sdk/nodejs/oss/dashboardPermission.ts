@@ -49,11 +49,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/dashboardPermission:DashboardPermission name "{{ dashboardUID }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:oss/dashboardPermission:DashboardPermission name "{{ orgID }}:{{ dashboardUID }}"
+ * terraform import grafana_dashboard_permission.name "{{ dashboardUID }}"
+ * terraform import grafana_dashboard_permission.name "{{ orgID }}:{{ dashboardUID }}"
  * ```
  */
 export class DashboardPermission extends pulumi.CustomResource {

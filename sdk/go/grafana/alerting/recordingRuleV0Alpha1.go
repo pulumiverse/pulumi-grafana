@@ -71,7 +71,7 @@ import (
 //					},
 //					Paused: pulumi.Bool(true),
 //					Expressions: pulumi.StringMap{
-//						"A": pulumi.String(json0),
+//						"A": pulumi.String(pulumi.String(json0)),
 //					},
 //					TargetDatasourceUid: pulumi.String("target_ds_uid"),
 //					Metric:              pulumi.String("tf-metric"),

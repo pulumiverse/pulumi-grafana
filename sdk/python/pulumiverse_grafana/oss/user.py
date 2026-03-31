@@ -26,6 +26,7 @@ class UserArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a User resource.
+
         :param pulumi.Input[_builtins.str] email: The email address of the Grafana user.
         :param pulumi.Input[_builtins.str] password: The password for the Grafana user.
         :param pulumi.Input[_builtins.bool] is_admin: Whether to make user an admin. Defaults to `false`.
@@ -113,6 +114,7 @@ class _UserState:
                  user_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering User resources.
+
         :param pulumi.Input[_builtins.str] email: The email address of the Grafana user.
         :param pulumi.Input[_builtins.bool] is_admin: Whether to make user an admin. Defaults to `false`.
         :param pulumi.Input[_builtins.str] login: The username for the Grafana user.
@@ -244,8 +246,9 @@ class User(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/user:User name "{{ id }}"
+        terraform import grafana_user.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -287,8 +290,9 @@ class User(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/user:User name "{{ id }}"
+        terraform import grafana_user.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UserArgs args: The arguments to use to populate this resource's properties.

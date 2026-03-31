@@ -16,7 +16,7 @@ namespace Pulumiverse.Grafana.FrontendObservability
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:frontendObservability/app:App name "{{ stack_id }}:{{ name }}"
+    /// terraform import grafana_frontend_o11y_app.name "{{ stack_id }}:{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:frontendObservability/app:App")]
@@ -40,6 +40,9 @@ namespace Pulumiverse.Grafana.FrontendObservability
         [Output("extraLogAttributes")]
         public Output<ImmutableDictionary<string, string>> ExtraLogAttributes { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of Frontend Observability App. Part of the Terraform Resource ID.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -49,6 +52,9 @@ namespace Pulumiverse.Grafana.FrontendObservability
         [Output("settings")]
         public Output<ImmutableDictionary<string, string>> Settings { get; private set; } = null!;
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Output("stackId")]
         public Output<int> StackId { get; private set; } = null!;
 
@@ -123,6 +129,9 @@ namespace Pulumiverse.Grafana.FrontendObservability
             set => _extraLogAttributes = value;
         }
 
+        /// <summary>
+        /// The name of Frontend Observability App. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -138,6 +147,9 @@ namespace Pulumiverse.Grafana.FrontendObservability
             set => _settings = value;
         }
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public Input<int> StackId { get; set; } = null!;
 
@@ -179,6 +191,9 @@ namespace Pulumiverse.Grafana.FrontendObservability
             set => _extraLogAttributes = value;
         }
 
+        /// <summary>
+        /// The name of Frontend Observability App. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -194,6 +209,9 @@ namespace Pulumiverse.Grafana.FrontendObservability
             set => _settings = value;
         }
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId")]
         public Input<int>? StackId { get; set; }
 

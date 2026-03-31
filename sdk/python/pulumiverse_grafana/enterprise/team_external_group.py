@@ -23,6 +23,7 @@ class TeamExternalGroupArgs:
                  team_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a TeamExternalGroup resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] groups: The team external groups list
         :param pulumi.Input[_builtins.str] team_id: The Team ID
         """
@@ -61,6 +62,7 @@ class _TeamExternalGroupState:
                  team_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TeamExternalGroup resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] groups: The team external groups list
         :param pulumi.Input[_builtins.str] team_id: The Team ID
         """
@@ -124,12 +126,10 @@ class TeamExternalGroup(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/teamExternalGroup:TeamExternalGroup name "{{ teamID }}"
+        terraform import grafana_team_external_group.name "{{ teamID }}"
+        terraform import grafana_team_external_group.name "{{ orgID }}:{{ teamID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/teamExternalGroup:TeamExternalGroup name "{{ orgID }}:{{ teamID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -163,12 +163,10 @@ class TeamExternalGroup(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/teamExternalGroup:TeamExternalGroup name "{{ teamID }}"
+        terraform import grafana_team_external_group.name "{{ teamID }}"
+        terraform import grafana_team_external_group.name "{{ orgID }}:{{ teamID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/teamExternalGroup:TeamExternalGroup name "{{ orgID }}:{{ teamID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param TeamExternalGroupArgs args: The arguments to use to populate this resource's properties.

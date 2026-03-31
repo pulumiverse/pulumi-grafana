@@ -23,18 +23,13 @@ __all__ = [
     'OutlierDetectorAlgorithmConfigArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class HolidayCustomPeriodArgsDict(TypedDict):
-        end_time: pulumi.Input[_builtins.str]
-        start_time: pulumi.Input[_builtins.str]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom period.
-        """
-elif False:
-    HolidayCustomPeriodArgsDict: TypeAlias = Mapping[str, Any]
+class HolidayCustomPeriodArgsDict(TypedDict):
+    end_time: pulumi.Input[_builtins.str]
+    start_time: pulumi.Input[_builtins.str]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom period.
+    """
 
 @pulumi.input_type
 class HolidayCustomPeriodArgs:
@@ -81,22 +76,19 @@ class HolidayCustomPeriodArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class OutlierDetectorAlgorithmArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the algorithm to use ('mad' or 'dbscan').
-        """
-        sensitivity: pulumi.Input[_builtins.float]
-        """
-        Specify the sensitivity of the detector (in range [0,1]).
-        """
-        config: NotRequired[pulumi.Input['OutlierDetectorAlgorithmConfigArgsDict']]
-        """
-        For DBSCAN only, specify the configuration map
-        """
-elif False:
-    OutlierDetectorAlgorithmArgsDict: TypeAlias = Mapping[str, Any]
+class OutlierDetectorAlgorithmArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the algorithm to use ('mad' or 'dbscan').
+    """
+    sensitivity: pulumi.Input[_builtins.float]
+    """
+    Specify the sensitivity of the detector (in range [0,1]).
+    """
+    config: NotRequired[pulumi.Input['OutlierDetectorAlgorithmConfigArgsDict']]
+    """
+    For DBSCAN only, specify the configuration map
+    """
 
 @pulumi.input_type
 class OutlierDetectorAlgorithmArgs:
@@ -151,14 +143,11 @@ class OutlierDetectorAlgorithmArgs:
         pulumi.set(self, "config", value)
 
 
-if not MYPY:
-    class OutlierDetectorAlgorithmConfigArgsDict(TypedDict):
-        epsilon: pulumi.Input[_builtins.float]
-        """
-        Specify the epsilon parameter (positive float)
-        """
-elif False:
-    OutlierDetectorAlgorithmConfigArgsDict: TypeAlias = Mapping[str, Any]
+class OutlierDetectorAlgorithmConfigArgsDict(TypedDict):
+    epsilon: pulumi.Input[_builtins.float]
+    """
+    Specify the epsilon parameter (positive float)
+    """
 
 @pulumi.input_type
 class OutlierDetectorAlgorithmConfigArgs:

@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:k6/loadTest:LoadTest name "{{ id }}"
+ * terraform import grafana_k6_load_test.name "{{ id }}"
  * ```
  */
 export class LoadTest extends pulumi.CustomResource {

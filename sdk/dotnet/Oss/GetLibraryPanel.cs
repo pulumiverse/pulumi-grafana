@@ -22,7 +22,6 @@ namespace Pulumiverse.Grafana.Oss
         /// using System.Linq;
         /// using System.Text.Json;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
         /// using Grafana = Pulumiverse.Grafana;
         /// using Std = Pulumi.Std;
         /// 
@@ -132,7 +131,6 @@ namespace Pulumiverse.Grafana.Oss
         /// using System.Linq;
         /// using System.Text.Json;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
         /// using Grafana = Pulumiverse.Grafana;
         /// using Std = Pulumi.Std;
         /// 
@@ -242,7 +240,6 @@ namespace Pulumiverse.Grafana.Oss
         /// using System.Linq;
         /// using System.Text.Json;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
         /// using Grafana = Pulumiverse.Grafana;
         /// using Std = Pulumi.Std;
         /// 

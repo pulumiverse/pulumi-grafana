@@ -86,11 +86,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/dataSource:DataSource name "{{ uid }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:oss/dataSource:DataSource name "{{ orgID }}:{{ uid }}"
+ * terraform import grafana_data_source.name "{{ uid }}"
+ * terraform import grafana_data_source.name "{{ orgID }}:{{ uid }}"
  * ```
  */
 export class DataSource extends pulumi.CustomResource {

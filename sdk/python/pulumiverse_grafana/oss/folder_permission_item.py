@@ -27,6 +27,7 @@ class FolderPermissionItemArgs:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FolderPermissionItem resource.
+
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder.
         :param pulumi.Input[_builtins.str] permission: the permission to be assigned
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
@@ -129,6 +130,7 @@ class _FolderPermissionItemState:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FolderPermissionItem resources.
+
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.str] permission: the permission to be assigned
@@ -269,12 +271,10 @@ class FolderPermissionItem(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/folderPermissionItem:FolderPermissionItem name "{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        terraform import grafana_folder_permission_item.name "{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        terraform import grafana_folder_permission_item.name "{{ orgID }}:{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/folderPermissionItem:FolderPermissionItem name "{{ orgID }}:{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -325,12 +325,10 @@ class FolderPermissionItem(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/folderPermissionItem:FolderPermissionItem name "{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        terraform import grafana_folder_permission_item.name "{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+        terraform import grafana_folder_permission_item.name "{{ orgID }}:{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/folderPermissionItem:FolderPermissionItem name "{{ orgID }}:{{ folderUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param FolderPermissionItemArgs args: The arguments to use to populate this resource's properties.

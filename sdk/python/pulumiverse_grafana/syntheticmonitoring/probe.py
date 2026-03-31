@@ -29,6 +29,7 @@ class ProbeArgs:
                  public: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Probe resource.
+
         :param pulumi.Input[_builtins.float] latitude: Latitude coordinates.
         :param pulumi.Input[_builtins.float] longitude: Longitude coordinates.
         :param pulumi.Input[_builtins.str] region: Region of the probe.
@@ -164,6 +165,7 @@ class _ProbeState:
                  tenant_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Probe resources.
+
         :param pulumi.Input[_builtins.str] auth_token: The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
         :param pulumi.Input[_builtins.bool] disable_browser_checks: Disables browser checks for this probe. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
@@ -359,12 +361,10 @@ class Probe(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:syntheticMonitoring/probe:Probe name "{{ id }}"
+        terraform import grafana_synthetic_monitoring_probe.name "{{ id }}"
+        terraform import grafana_synthetic_monitoring_probe.name "{{ id }}:{{ authToken }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:syntheticMonitoring/probe:Probe name "{{ id }}:{{ authToken }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -410,12 +410,10 @@ class Probe(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:syntheticMonitoring/probe:Probe name "{{ id }}"
+        terraform import grafana_synthetic_monitoring_probe.name "{{ id }}"
+        terraform import grafana_synthetic_monitoring_probe.name "{{ id }}:{{ authToken }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:syntheticMonitoring/probe:Probe name "{{ id }}:{{ authToken }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param ProbeArgs args: The arguments to use to populate this resource's properties.

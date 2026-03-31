@@ -78,7 +78,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:onCall/route:Route name "{{ id }}"
+// terraform import grafana_oncall_route.name "{{ id }}"
 // ```
 type Route struct {
 	pulumi.CustomResourceState

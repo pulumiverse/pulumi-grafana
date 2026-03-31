@@ -81,11 +81,8 @@ namespace Pulumiverse.Grafana.Enterprise
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:enterprise/roleAssignmentItem:RoleAssignmentItem name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:enterprise/roleAssignmentItem:RoleAssignmentItem name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+    /// terraform import grafana_role_assignment_item.name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+    /// terraform import grafana_role_assignment_item.name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:enterprise/roleAssignmentItem:RoleAssignmentItem")]

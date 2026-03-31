@@ -26,6 +26,7 @@ class ProjectLimitsArgs:
                  vuh_max_per_month: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a ProjectLimits resource.
+
         :param pulumi.Input[_builtins.str] project_id: The identifier of the project to manage limits for.
         :param pulumi.Input[_builtins.int] duration_max_per_test: Maximum duration of a test in seconds.
         :param pulumi.Input[_builtins.int] vu_browser_max_per_test: Maximum number of concurrent browser virtual users (VUs) used in one test.
@@ -113,6 +114,7 @@ class _ProjectLimitsState:
                  vuh_max_per_month: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ProjectLimits resources.
+
         :param pulumi.Input[_builtins.int] duration_max_per_test: Maximum duration of a test in seconds.
         :param pulumi.Input[_builtins.str] project_id: The identifier of the project to manage limits for.
         :param pulumi.Input[_builtins.int] vu_browser_max_per_test: Maximum number of concurrent browser virtual users (VUs) used in one test.
@@ -224,8 +226,9 @@ class ProjectLimits(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:k6/projectLimits:ProjectLimits name "{{ project_id }}"
+        terraform import grafana_k6_project_limits.name "{{ project_id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -262,8 +265,9 @@ class ProjectLimits(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:k6/projectLimits:ProjectLimits name "{{ project_id }}"
+        terraform import grafana_k6_project_limits.name "{{ project_id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProjectLimitsArgs args: The arguments to use to populate this resource's properties.

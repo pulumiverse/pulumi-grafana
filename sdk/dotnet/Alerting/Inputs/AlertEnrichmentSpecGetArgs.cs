@@ -43,6 +43,9 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Allow modifying alert enrichment outside of Terraform
+        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 

@@ -31,6 +31,7 @@ class RouteArgs:
                  telegram: Optional[pulumi.Input['RouteTelegramArgs']] = None):
         """
         The set of arguments for constructing a Route resource.
+
         :param pulumi.Input[_builtins.str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[_builtins.str] integration_id: The ID of the integration.
         :param pulumi.Input[_builtins.int] position: The position of the route (starts from 0).
@@ -163,6 +164,7 @@ class _RouteState:
                  telegram: Optional[pulumi.Input['RouteTelegramArgs']] = None):
         """
         Input properties used for looking up and filtering Route resources.
+
         :param pulumi.Input[_builtins.str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[_builtins.str] integration_id: The ID of the integration.
         :param pulumi.Input['RouteMsteamsArgs'] msteams: MS teams-specific settings for a route.
@@ -339,8 +341,9 @@ class Route(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/route:Route name "{{ id }}"
+        terraform import grafana_oncall_route.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -397,8 +400,9 @@ class Route(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/route:Route name "{{ id }}"
+        terraform import grafana_oncall_route.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RouteArgs args: The arguments to use to populate this resource's properties.

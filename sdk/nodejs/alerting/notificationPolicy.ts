@@ -105,11 +105,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:alerting/notificationPolicy:NotificationPolicy name "{{ anyString }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:alerting/notificationPolicy:NotificationPolicy name "{{ orgID }}:{{ anyString }}"
+ * terraform import grafana_notification_policy.name "{{ anyString }}"
+ * terraform import grafana_notification_policy.name "{{ orgID }}:{{ anyString }}"
  * ```
  */
 export class NotificationPolicy extends pulumi.CustomResource {
@@ -144,6 +141,9 @@ export class NotificationPolicy extends pulumi.CustomResource {
      * The default contact point to route all unmatched notifications to.
      */
     declare public readonly contactPoint: pulumi.Output<string>;
+    /**
+     * Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
+     */
     declare public readonly disableProvenance: pulumi.Output<boolean | undefined>;
     /**
      * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
@@ -223,6 +223,9 @@ export interface NotificationPolicyState {
      * The default contact point to route all unmatched notifications to.
      */
     contactPoint?: pulumi.Input<string>;
+    /**
+     * Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
+     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
@@ -258,6 +261,9 @@ export interface NotificationPolicyArgs {
      * The default contact point to route all unmatched notifications to.
      */
     contactPoint: pulumi.Input<string>;
+    /**
+     * Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
+     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.

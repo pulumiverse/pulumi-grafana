@@ -48,11 +48,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/serviceAccountPermission:ServiceAccountPermission name "{{ serviceAccountID }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:oss/serviceAccountPermission:ServiceAccountPermission name "{{ orgID }}:{{ serviceAccountID }}"
+ * terraform import grafana_service_account_permission.name "{{ serviceAccountID }}"
+ * terraform import grafana_service_account_permission.name "{{ orgID }}:{{ serviceAccountID }}"
  * ```
  */
 export class ServiceAccountPermission extends pulumi.CustomResource {

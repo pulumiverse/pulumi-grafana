@@ -7,7 +7,80 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * This data source allows you to look up an existing Grafana Cloud AWS CloudWatch Scrape Job resource in your stack.
+ *
+ * See the Grafana Provider configuration docs
+ * for information on authentication and required access policy scopes.
+ *
+ * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+ *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = grafana.cloud.getStack({
+ *     slug: "gcloudstacktest",
+ * });
+ * const testIamRole = aws.index.IamRole({
+ *     name: "my-role",
+ * });
+ * const testAwsAccount = new grafana.cloudprovider.AwsAccount("test", {
+ *     stackId: test.then(test => test.id),
+ *     roleArn: testIamRole.arn,
+ *     regions: [
+ *         "us-east-1",
+ *         "us-east-2",
+ *         "us-west-1",
+ *     ],
+ * });
+ * const testAwsCloudwatchScrapeJob = new grafana.cloudprovider.AwsCloudwatchScrapeJob("test", {
+ *     stackId: test.then(test => test.id),
+ *     name: "my-cloudwatch-scrape-job",
+ *     awsAccountResourceId: testAwsAccount.resourceId,
+ *     exportTags: true,
+ *     services: [{
+ *         name: "AWS/EC2",
+ *         metrics: [
+ *             {
+ *                 name: "CPUUtilization",
+ *                 statistics: ["Average"],
+ *             },
+ *             {
+ *                 name: "StatusCheckFailed",
+ *                 statistics: ["Maximum"],
+ *             },
+ *         ],
+ *         scrapeIntervalSeconds: 300,
+ *         resourceDiscoveryTagFilters: [{
+ *             key: "k8s.io/cluster-autoscaler/enabled",
+ *             value: "true",
+ *         }],
+ *         tagsToAddToMetrics: ["eks:cluster-name"],
+ *     }],
+ *     customNamespaces: [{
+ *         name: "CoolApp",
+ *         metrics: [{
+ *             name: "CoolMetric",
+ *             statistics: [
+ *                 "Maximum",
+ *                 "Sum",
+ *             ],
+ *         }],
+ *         scrapeIntervalSeconds: 300,
+ *     }],
+ *     staticLabels: {
+ *         label1: "value1",
+ *         label2: "value2",
+ *     },
+ * });
+ * const testGetAwsCloudwatchScrapeJob = pulumi.all([test, testAwsCloudwatchScrapeJob.name]).apply(([test, name]) => grafana.cloudProvider.getAwsCloudwatchScrapeJobOutput({
+ *     stackId: test.id,
+ *     name: name,
+ * }));
+ * ```
  */
 export function getAwsCloudwatchScrapeJob(args: GetAwsCloudwatchScrapeJobArgs, opts?: pulumi.InvokeOptions): Promise<GetAwsCloudwatchScrapeJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -27,11 +100,17 @@ export interface GetAwsCloudwatchScrapeJobArgs {
      * Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     customNamespaces?: inputs.cloudProvider.GetAwsCloudwatchScrapeJobCustomNamespace[];
+    /**
+     * The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+     */
     name: string;
     /**
      * One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     services?: inputs.cloudProvider.GetAwsCloudwatchScrapeJobService[];
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: string;
 }
 
@@ -59,7 +138,13 @@ export interface GetAwsCloudwatchScrapeJobResult {
      * When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
      */
     readonly exportTags: boolean;
+    /**
+     * The Terraform Resource ID. This has the format "{{ stackId }}:{{ name }}".
+     */
     readonly id: string;
+    /**
+     * The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+     */
     readonly name: string;
     /**
      * The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
@@ -77,6 +162,9 @@ export interface GetAwsCloudwatchScrapeJobResult {
      * One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     readonly services?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobService[];
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     readonly stackId: string;
     /**
      * A set of static labels to add to all metrics exported by this scrape job.
@@ -84,7 +172,80 @@ export interface GetAwsCloudwatchScrapeJobResult {
     readonly staticLabels: {[key: string]: string};
 }
 /**
+ * This data source allows you to look up an existing Grafana Cloud AWS CloudWatch Scrape Job resource in your stack.
+ *
+ * See the Grafana Provider configuration docs
+ * for information on authentication and required access policy scopes.
+ *
+ * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+ *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = grafana.cloud.getStack({
+ *     slug: "gcloudstacktest",
+ * });
+ * const testIamRole = aws.index.IamRole({
+ *     name: "my-role",
+ * });
+ * const testAwsAccount = new grafana.cloudprovider.AwsAccount("test", {
+ *     stackId: test.then(test => test.id),
+ *     roleArn: testIamRole.arn,
+ *     regions: [
+ *         "us-east-1",
+ *         "us-east-2",
+ *         "us-west-1",
+ *     ],
+ * });
+ * const testAwsCloudwatchScrapeJob = new grafana.cloudprovider.AwsCloudwatchScrapeJob("test", {
+ *     stackId: test.then(test => test.id),
+ *     name: "my-cloudwatch-scrape-job",
+ *     awsAccountResourceId: testAwsAccount.resourceId,
+ *     exportTags: true,
+ *     services: [{
+ *         name: "AWS/EC2",
+ *         metrics: [
+ *             {
+ *                 name: "CPUUtilization",
+ *                 statistics: ["Average"],
+ *             },
+ *             {
+ *                 name: "StatusCheckFailed",
+ *                 statistics: ["Maximum"],
+ *             },
+ *         ],
+ *         scrapeIntervalSeconds: 300,
+ *         resourceDiscoveryTagFilters: [{
+ *             key: "k8s.io/cluster-autoscaler/enabled",
+ *             value: "true",
+ *         }],
+ *         tagsToAddToMetrics: ["eks:cluster-name"],
+ *     }],
+ *     customNamespaces: [{
+ *         name: "CoolApp",
+ *         metrics: [{
+ *             name: "CoolMetric",
+ *             statistics: [
+ *                 "Maximum",
+ *                 "Sum",
+ *             ],
+ *         }],
+ *         scrapeIntervalSeconds: 300,
+ *     }],
+ *     staticLabels: {
+ *         label1: "value1",
+ *         label2: "value2",
+ *     },
+ * });
+ * const testGetAwsCloudwatchScrapeJob = pulumi.all([test, testAwsCloudwatchScrapeJob.name]).apply(([test, name]) => grafana.cloudProvider.getAwsCloudwatchScrapeJobOutput({
+ *     stackId: test.id,
+ *     name: name,
+ * }));
+ * ```
  */
 export function getAwsCloudwatchScrapeJobOutput(args: GetAwsCloudwatchScrapeJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAwsCloudwatchScrapeJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -104,10 +265,16 @@ export interface GetAwsCloudwatchScrapeJobOutputArgs {
      * Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     customNamespaces?: pulumi.Input<pulumi.Input<inputs.cloudProvider.GetAwsCloudwatchScrapeJobCustomNamespaceArgs>[]>;
+    /**
+     * The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+     */
     name: pulumi.Input<string>;
     /**
      * One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
      */
     services?: pulumi.Input<pulumi.Input<inputs.cloudProvider.GetAwsCloudwatchScrapeJobServiceArgs>[]>;
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: pulumi.Input<string>;
 }

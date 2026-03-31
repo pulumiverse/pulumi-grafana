@@ -38,7 +38,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/organization:Organization name "{{ id }}"
+ * terraform import grafana_organization.name "{{ id }}"
  * ```
  */
 export class Organization extends pulumi.CustomResource {
@@ -69,6 +69,14 @@ export class Organization extends pulumi.CustomResource {
         return obj['__pulumiType'] === Organization.__pulumiType;
     }
 
+    /**
+     * The login name of the configured default admin user for the Grafana
+     * installation. If unset, this value defaults to admin, the Grafana default.
+     * Grafana adds the default admin user to all organizations automatically upon
+     * creation, and this parameter keeps Terraform from removing it from
+     * organizations.
+     * Defaults to `admin`.
+     */
     declare public readonly adminUser: pulumi.Output<string | undefined>;
     /**
      * A list of email addresses corresponding to users who should be given admin
@@ -156,6 +164,14 @@ export class Organization extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Organization resources.
  */
 export interface OrganizationState {
+    /**
+     * The login name of the configured default admin user for the Grafana
+     * installation. If unset, this value defaults to admin, the Grafana default.
+     * Grafana adds the default admin user to all organizations automatically upon
+     * creation, and this parameter keeps Terraform from removing it from
+     * organizations.
+     * Defaults to `admin`.
+     */
     adminUser?: pulumi.Input<string>;
     /**
      * A list of email addresses corresponding to users who should be given admin
@@ -205,6 +221,14 @@ export interface OrganizationState {
  * The set of arguments for constructing a Organization resource.
  */
 export interface OrganizationArgs {
+    /**
+     * The login name of the configured default admin user for the Grafana
+     * installation. If unset, this value defaults to admin, the Grafana default.
+     * Grafana adds the default admin user to all organizations automatically upon
+     * creation, and this parameter keeps Terraform from removing it from
+     * organizations.
+     * Defaults to `admin`.
+     */
     adminUser?: pulumi.Input<string>;
     /**
      * A list of email addresses corresponding to users who should be given admin

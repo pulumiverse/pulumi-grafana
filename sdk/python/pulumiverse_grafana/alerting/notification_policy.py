@@ -31,8 +31,10 @@ class NotificationPolicyArgs:
                  repeat_interval: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NotificationPolicy resource.
+
         :param pulumi.Input[_builtins.str] contact_point: The default contact point to route all unmatched notifications to.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
+        :param pulumi.Input[_builtins.bool] disable_provenance: Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
         :param pulumi.Input[_builtins.str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[_builtins.str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -81,6 +83,9 @@ class NotificationPolicyArgs:
     @_builtins.property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
+        """
         return pulumi.get(self, "disable_provenance")
 
     @disable_provenance.setter
@@ -161,7 +166,9 @@ class _NotificationPolicyState:
                  repeat_interval: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NotificationPolicy resources.
+
         :param pulumi.Input[_builtins.str] contact_point: The default contact point to route all unmatched notifications to.
+        :param pulumi.Input[_builtins.bool] disable_provenance: Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         :param pulumi.Input[_builtins.str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[_builtins.str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
@@ -201,6 +208,9 @@ class _NotificationPolicyState:
     @_builtins.property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
+        """
         return pulumi.get(self, "disable_provenance")
 
     @disable_provenance.setter
@@ -390,16 +400,15 @@ class NotificationPolicy(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:alerting/notificationPolicy:NotificationPolicy name "{{ anyString }}"
+        terraform import grafana_notification_policy.name "{{ anyString }}"
+        terraform import grafana_notification_policy.name "{{ orgID }}:{{ anyString }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:alerting/notificationPolicy:NotificationPolicy name "{{ orgID }}:{{ anyString }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] contact_point: The default contact point to route all unmatched notifications to.
+        :param pulumi.Input[_builtins.bool] disable_provenance: Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         :param pulumi.Input[_builtins.str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[_builtins.str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
@@ -508,12 +517,10 @@ class NotificationPolicy(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:alerting/notificationPolicy:NotificationPolicy name "{{ anyString }}"
+        terraform import grafana_notification_policy.name "{{ anyString }}"
+        terraform import grafana_notification_policy.name "{{ orgID }}:{{ anyString }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:alerting/notificationPolicy:NotificationPolicy name "{{ orgID }}:{{ anyString }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param NotificationPolicyArgs args: The arguments to use to populate this resource's properties.
@@ -587,6 +594,7 @@ class NotificationPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] contact_point: The default contact point to route all unmatched notifications to.
+        :param pulumi.Input[_builtins.bool] disable_provenance: Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_bies: A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.
         :param pulumi.Input[_builtins.str] group_interval: Minimum time interval between two notifications for the same group. Default is 5 minutes.
         :param pulumi.Input[_builtins.str] group_wait: Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.
@@ -619,6 +627,9 @@ class NotificationPolicy(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.
+        """
         return pulumi.get(self, "disable_provenance")
 
     @_builtins.property

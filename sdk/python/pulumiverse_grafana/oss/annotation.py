@@ -28,9 +28,10 @@ class AnnotationArgs:
                  time_end: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Annotation resource.
+
         :param pulumi.Input[_builtins.str] text: The text to associate with the annotation.
         :param pulumi.Input[_builtins.str] dashboard_uid: The UID of the dashboard on which to create the annotation.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.int] panel_id: The ID of the dashboard panel on which to create the annotation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the annotation.
         :param pulumi.Input[_builtins.str] time: The RFC 3339-formatted time string indicating the annotation's time.
@@ -78,7 +79,7 @@ class AnnotationArgs:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -147,8 +148,9 @@ class _AnnotationState:
                  time_end: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Annotation resources.
+
         :param pulumi.Input[_builtins.str] dashboard_uid: The UID of the dashboard on which to create the annotation.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.int] panel_id: The ID of the dashboard panel on which to create the annotation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the annotation.
         :param pulumi.Input[_builtins.str] text: The text to associate with the annotation.
@@ -186,7 +188,7 @@ class _AnnotationState:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -270,6 +272,8 @@ class Annotation(pulumi.CustomResource):
                  time_end: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Manages Grafana annotations.
+
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
 
@@ -285,17 +289,15 @@ class Annotation(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/annotation:Annotation name "{{ id }}"
+        terraform import grafana_annotation.name "{{ id }}"
+        terraform import grafana_annotation.name "{{ orgID }}:{{ id }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/annotation:Annotation name "{{ orgID }}:{{ id }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] dashboard_uid: The UID of the dashboard on which to create the annotation.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.int] panel_id: The ID of the dashboard panel on which to create the annotation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the annotation.
         :param pulumi.Input[_builtins.str] text: The text to associate with the annotation.
@@ -309,6 +311,8 @@ class Annotation(pulumi.CustomResource):
                  args: AnnotationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages Grafana annotations.
+
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
 
@@ -324,12 +328,10 @@ class Annotation(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/annotation:Annotation name "{{ id }}"
+        terraform import grafana_annotation.name "{{ id }}"
+        terraform import grafana_annotation.name "{{ orgID }}:{{ id }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/annotation:Annotation name "{{ orgID }}:{{ id }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param AnnotationArgs args: The arguments to use to populate this resource's properties.
@@ -398,7 +400,7 @@ class Annotation(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] dashboard_uid: The UID of the dashboard on which to create the annotation.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.int] panel_id: The ID of the dashboard panel on which to create the annotation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the annotation.
         :param pulumi.Input[_builtins.str] text: The text to associate with the annotation.
@@ -428,9 +430,9 @@ class Annotation(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def org_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 

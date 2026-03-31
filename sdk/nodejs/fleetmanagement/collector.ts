@@ -35,7 +35,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:fleetManagement/collector:Collector name "{{ id }}"
+ * terraform import grafana_fleet_management_collector.name "{{ id }}"
  * ```
  */
 export class Collector extends pulumi.CustomResource {

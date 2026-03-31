@@ -51,11 +51,8 @@ namespace Pulumiverse.Grafana.Oss
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:oss/playlist:Playlist name "{{ uid }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:oss/playlist:Playlist name "{{ orgID }}:{{ uid }}"
+    /// terraform import grafana_playlist.name "{{ uid }}"
+    /// terraform import grafana_playlist.name "{{ orgID }}:{{ uid }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:oss/playlist:Playlist")]

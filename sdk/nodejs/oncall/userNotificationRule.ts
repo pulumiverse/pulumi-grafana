@@ -69,7 +69,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:onCall/userNotificationRule:UserNotificationRule name "{{ id }}"
+ * terraform import grafana_oncall_user_notification_rule.name "{{ id }}"
  * ```
  */
 export class UserNotificationRule extends pulumi.CustomResource {
