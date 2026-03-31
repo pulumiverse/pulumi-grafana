@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.cloud.ProductActivationAppO11yConfigV1Alpha1("example", {
+ * const example = new grafana.cloud.v1alpha1.ProductActivationAppO11yConfig("example", {
  *     metadata: {
  *         uid: "global",
  *     },
@@ -37,6 +37,8 @@ import * as utilities from "../utilities";
  * ```sh
  * $ pulumi import grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1 example my-app-o11y-config
  * ```
+ *
+ * @deprecated grafana.cloud/productactivationappo11yconfigv1alpha1.ProductActivationAppO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationappo11yconfig.ProductActivationAppO11yConfig
  */
 export class ProductActivationAppO11yConfigV1Alpha1 extends pulumi.CustomResource {
     /**
@@ -49,6 +51,7 @@ export class ProductActivationAppO11yConfigV1Alpha1 extends pulumi.CustomResourc
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ProductActivationAppO11yConfigV1Alpha1State, opts?: pulumi.CustomResourceOptions): ProductActivationAppO11yConfigV1Alpha1 {
+        pulumi.log.warn("ProductActivationAppO11yConfigV1Alpha1 is deprecated: grafana.cloud/productactivationappo11yconfigv1alpha1.ProductActivationAppO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationappo11yconfig.ProductActivationAppO11yConfig")
         return new ProductActivationAppO11yConfigV1Alpha1(name, <any>state, { ...opts, id: id });
     }
 
@@ -86,8 +89,11 @@ export class ProductActivationAppO11yConfigV1Alpha1 extends pulumi.CustomResourc
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.cloud/productactivationappo11yconfigv1alpha1.ProductActivationAppO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationappo11yconfig.ProductActivationAppO11yConfig */
     constructor(name: string, args?: ProductActivationAppO11yConfigV1Alpha1Args, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.cloud/productactivationappo11yconfigv1alpha1.ProductActivationAppO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationappo11yconfig.ProductActivationAppO11yConfig */
     constructor(name: string, argsOrState?: ProductActivationAppO11yConfigV1Alpha1Args | ProductActivationAppO11yConfigV1Alpha1State, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ProductActivationAppO11yConfigV1Alpha1 is deprecated: grafana.cloud/productactivationappo11yconfigv1alpha1.ProductActivationAppO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationappo11yconfig.ProductActivationAppO11yConfig")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -102,6 +108,8 @@ export class ProductActivationAppO11yConfigV1Alpha1 extends pulumi.CustomResourc
             resourceInputs["spec"] = args?.spec;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(ProductActivationAppO11yConfigV1Alpha1.__pulumiType, name, resourceInputs, opts);
     }
 }

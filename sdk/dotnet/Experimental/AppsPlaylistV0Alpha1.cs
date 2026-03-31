@@ -26,19 +26,19 @@ namespace Pulumiverse.Grafana.Experimental
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.Experimental.AppsPlaylistV0Alpha1("example", new()
+    ///     var example = new Grafana.Apps.V0Alpha1.Playlist("example", new()
     ///     {
-    ///         Metadata = new Grafana.Experimental.Inputs.AppsPlaylistV0Alpha1MetadataArgs
+    ///         Metadata = new Grafana.Apps.V0Alpha1.Inputs.PlaylistMetadataArgs
     ///         {
     ///             Uid = "example-playlist",
     ///         },
-    ///         Spec = new Grafana.Experimental.Inputs.AppsPlaylistV0Alpha1SpecArgs
+    ///         Spec = new Grafana.Apps.V0Alpha1.Inputs.PlaylistSpecArgs
     ///         {
     ///             Title = "Example Playlist",
     ///             Interval = "5m",
     ///             Items = new[]
     ///             {
-    ///                 new Grafana.Experimental.Inputs.AppsPlaylistV0Alpha1SpecItemArgs
+    ///                 new Grafana.Apps.V0Alpha1.Inputs.PlaylistSpecItemArgs
     ///                 {
     ///                     Type = "dashboard_by_uid",
     ///                     Value = "example-dashboard-uid",
@@ -50,6 +50,7 @@ namespace Pulumiverse.Grafana.Experimental
     /// });
     /// ```
     /// </summary>
+    [Obsolete(@"grafana.experimental/appsplaylistv0alpha1.AppsPlaylistV0Alpha1 has been deprecated in favor of grafana.apps/v0alpha1/playlist.Playlist")]
     [GrafanaResourceType("grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1")]
     public partial class AppsPlaylistV0Alpha1 : global::Pulumi.CustomResource
     {
@@ -95,6 +96,10 @@ namespace Pulumiverse.Grafana.Experimental
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

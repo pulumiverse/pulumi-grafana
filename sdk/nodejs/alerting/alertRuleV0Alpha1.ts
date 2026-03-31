@@ -18,7 +18,7 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const alertruleFolder = new grafana.oss.Folder("alertrule_folder", {title: "Alert Rule Folder"});
- * const example = new grafana.alerting.AlertRuleV0Alpha1("example", {
+ * const example = new grafana.alerting.v0alpha1.AlertRule("example", {
  *     metadata: {
  *         uid: "example-alert-rule",
  *         folderUid: alertruleFolder.uid,
@@ -107,6 +107,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * @deprecated grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule
  */
 export class AlertRuleV0Alpha1 extends pulumi.CustomResource {
     /**
@@ -119,6 +121,7 @@ export class AlertRuleV0Alpha1 extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AlertRuleV0Alpha1State, opts?: pulumi.CustomResourceOptions): AlertRuleV0Alpha1 {
+        pulumi.log.warn("AlertRuleV0Alpha1 is deprecated: grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule")
         return new AlertRuleV0Alpha1(name, <any>state, { ...opts, id: id });
     }
 
@@ -156,8 +159,11 @@ export class AlertRuleV0Alpha1 extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule */
     constructor(name: string, args?: AlertRuleV0Alpha1Args, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule */
     constructor(name: string, argsOrState?: AlertRuleV0Alpha1Args | AlertRuleV0Alpha1State, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("AlertRuleV0Alpha1 is deprecated: grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -172,6 +178,8 @@ export class AlertRuleV0Alpha1 extends pulumi.CustomResource {
             resourceInputs["spec"] = args?.spec;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(AlertRuleV0Alpha1.__pulumiType, name, resourceInputs, opts);
     }
 }

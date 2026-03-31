@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  * import * as grafana from "@pulumiverse/grafana";
  *
  * const recordingruleFolder = new grafana.oss.Folder("recordingrule_folder", {title: "Alert Rule Folder"});
- * const example = new grafana.alerting.RecordingRuleV0Alpha1("example", {
+ * const example = new grafana.alerting.v0alpha1.RecordingRule("example", {
  *     metadata: {
  *         uid: "example-recording-rule",
  *         folderUid: recordingruleFolder.uid,
@@ -56,6 +56,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * @deprecated grafana.alerting/recordingrulev0alpha1.RecordingRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/recordingrule.RecordingRule
  */
 export class RecordingRuleV0Alpha1 extends pulumi.CustomResource {
     /**
@@ -68,6 +70,7 @@ export class RecordingRuleV0Alpha1 extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RecordingRuleV0Alpha1State, opts?: pulumi.CustomResourceOptions): RecordingRuleV0Alpha1 {
+        pulumi.log.warn("RecordingRuleV0Alpha1 is deprecated: grafana.alerting/recordingrulev0alpha1.RecordingRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/recordingrule.RecordingRule")
         return new RecordingRuleV0Alpha1(name, <any>state, { ...opts, id: id });
     }
 
@@ -105,8 +108,11 @@ export class RecordingRuleV0Alpha1 extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.alerting/recordingrulev0alpha1.RecordingRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/recordingrule.RecordingRule */
     constructor(name: string, args?: RecordingRuleV0Alpha1Args, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.alerting/recordingrulev0alpha1.RecordingRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/recordingrule.RecordingRule */
     constructor(name: string, argsOrState?: RecordingRuleV0Alpha1Args | RecordingRuleV0Alpha1State, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("RecordingRuleV0Alpha1 is deprecated: grafana.alerting/recordingrulev0alpha1.RecordingRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/recordingrule.RecordingRule")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -121,6 +127,8 @@ export class RecordingRuleV0Alpha1 extends pulumi.CustomResource {
             resourceInputs["spec"] = args?.spec;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(RecordingRuleV0Alpha1.__pulumiType, name, resourceInputs, opts);
     }
 }

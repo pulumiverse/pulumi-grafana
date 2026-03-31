@@ -132,8 +132,13 @@ class _AppsDashboardState:
         pulumi.set(self, "spec", value)
 
 
+warnings.warn("""grafana.experimental/appsdashboard.AppsDashboard has been deprecated in favor of grafana.apps/v1beta1/dashboard.Dashboard""", DeprecationWarning)
+
+
 @pulumi.type_token("grafana:experimental/appsDashboard:AppsDashboard")
 class AppsDashboard(pulumi.CustomResource):
+    warnings.warn("""grafana.experimental/appsdashboard.AppsDashboard has been deprecated in favor of grafana.apps/v1beta1/dashboard.Dashboard""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -155,7 +160,7 @@ class AppsDashboard(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        example = grafana.experimental.AppsDashboard("example",
+        example = grafana.apps.v1beta1.Dashboard("example",
             metadata={
                 "uid": "example-dashboard",
             },
@@ -196,7 +201,7 @@ class AppsDashboard(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        example = grafana.experimental.AppsDashboard("example",
+        example = grafana.apps.v1beta1.Dashboard("example",
             metadata={
                 "uid": "example-dashboard",
             },
@@ -231,6 +236,7 @@ class AppsDashboard(pulumi.CustomResource):
                  options: Optional[pulumi.Input[Union['AppsDashboardOptionsArgs', 'AppsDashboardOptionsArgsDict']]] = None,
                  spec: Optional[pulumi.Input[Union['AppsDashboardSpecArgs', 'AppsDashboardSpecArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""AppsDashboard is deprecated: grafana.experimental/appsdashboard.AppsDashboard has been deprecated in favor of grafana.apps/v1beta1/dashboard.Dashboard""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -242,6 +248,8 @@ class AppsDashboard(pulumi.CustomResource):
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["options"] = options
             __props__.__dict__["spec"] = spec
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:experimental/appsDashboard:AppsDashboard")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(AppsDashboard, __self__).__init__(
             'grafana:experimental/appsDashboard:AppsDashboard',
             resource_name,

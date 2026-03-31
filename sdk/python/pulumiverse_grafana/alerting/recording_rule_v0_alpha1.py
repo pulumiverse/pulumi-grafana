@@ -132,8 +132,13 @@ class _RecordingRuleV0Alpha1State:
         pulumi.set(self, "spec", value)
 
 
+warnings.warn("""grafana.alerting/recordingrulev0alpha1.RecordingRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/recordingrule.RecordingRule""", DeprecationWarning)
+
+
 @pulumi.type_token("grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1")
 class RecordingRuleV0Alpha1(pulumi.CustomResource):
+    warnings.warn("""grafana.alerting/recordingrulev0alpha1.RecordingRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/recordingrule.RecordingRule""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -153,7 +158,7 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         recordingrule_folder = grafana.oss.Folder("recordingrule_folder", title="Alert Rule Folder")
-        example = grafana.alerting.RecordingRuleV0Alpha1("example",
+        example = grafana.alerting.v0alpha1.RecordingRule("example",
             metadata={
                 "uid": "example-recording-rule",
                 "folder_uid": recordingrule_folder.uid,
@@ -217,7 +222,7 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         recordingrule_folder = grafana.oss.Folder("recordingrule_folder", title="Alert Rule Folder")
-        example = grafana.alerting.RecordingRuleV0Alpha1("example",
+        example = grafana.alerting.v0alpha1.RecordingRule("example",
             metadata={
                 "uid": "example-recording-rule",
                 "folder_uid": recordingrule_folder.uid,
@@ -277,6 +282,7 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
                  options: Optional[pulumi.Input[Union['RecordingRuleV0Alpha1OptionsArgs', 'RecordingRuleV0Alpha1OptionsArgsDict']]] = None,
                  spec: Optional[pulumi.Input[Union['RecordingRuleV0Alpha1SpecArgs', 'RecordingRuleV0Alpha1SpecArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""RecordingRuleV0Alpha1 is deprecated: grafana.alerting/recordingrulev0alpha1.RecordingRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/recordingrule.RecordingRule""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -288,6 +294,8 @@ class RecordingRuleV0Alpha1(pulumi.CustomResource):
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["options"] = options
             __props__.__dict__["spec"] = spec
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(RecordingRuleV0Alpha1, __self__).__init__(
             'grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1',
             resource_name,

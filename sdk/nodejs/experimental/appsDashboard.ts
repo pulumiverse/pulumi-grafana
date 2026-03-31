@@ -18,7 +18,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.experimental.AppsDashboard("example", {
+ * const example = new grafana.apps.v1beta1.Dashboard("example", {
  *     metadata: {
  *         uid: "example-dashboard",
  *     },
@@ -33,6 +33,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * @deprecated grafana.experimental/appsdashboard.AppsDashboard has been deprecated in favor of grafana.apps/v1beta1/dashboard.Dashboard
  */
 export class AppsDashboard extends pulumi.CustomResource {
     /**
@@ -45,6 +47,7 @@ export class AppsDashboard extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AppsDashboardState, opts?: pulumi.CustomResourceOptions): AppsDashboard {
+        pulumi.log.warn("AppsDashboard is deprecated: grafana.experimental/appsdashboard.AppsDashboard has been deprecated in favor of grafana.apps/v1beta1/dashboard.Dashboard")
         return new AppsDashboard(name, <any>state, { ...opts, id: id });
     }
 
@@ -82,8 +85,11 @@ export class AppsDashboard extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.experimental/appsdashboard.AppsDashboard has been deprecated in favor of grafana.apps/v1beta1/dashboard.Dashboard */
     constructor(name: string, args?: AppsDashboardArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.experimental/appsdashboard.AppsDashboard has been deprecated in favor of grafana.apps/v1beta1/dashboard.Dashboard */
     constructor(name: string, argsOrState?: AppsDashboardArgs | AppsDashboardState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("AppsDashboard is deprecated: grafana.experimental/appsdashboard.AppsDashboard has been deprecated in favor of grafana.apps/v1beta1/dashboard.Dashboard")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -98,6 +104,8 @@ export class AppsDashboard extends pulumi.CustomResource {
             resourceInputs["spec"] = args?.spec;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:experimental/appsDashboard:AppsDashboard" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(AppsDashboard.__pulumiType, name, resourceInputs, opts);
     }
 }

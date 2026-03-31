@@ -6,6 +6,7 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .data_source_cache_config import *
 from .data_source_config_lbac_rules import *
 from .data_source_permission import *
 from .data_source_permission_item import *
@@ -18,3 +19,11 @@ from .scim_config import *
 from .team_external_group import *
 from ._inputs import *
 from . import outputs
+
+# Make subpackages available:
+if typing.TYPE_CHECKING:
+    import pulumiverse_grafana.enterprise.v1beta1 as __v1beta1
+    v1beta1 = __v1beta1
+else:
+    v1beta1 = _utilities.lazy_import('pulumiverse_grafana.enterprise.v1beta1')
+

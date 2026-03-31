@@ -6,22 +6,14 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .apps_dashboard_dashboard_v2beta1 import *
-from .apps_notifications_inhibitionrule_v1beta1 import *
-from .apps_provisioning_connection_v0alpha1 import *
-from .apps_provisioning_repository_v0alpha1 import *
-from .apps_secret_keeper_activation_v1beta1 import *
-from .apps_secret_keeper_v1beta1 import *
-from .apps_secret_securevalue_v1beta1 import *
-from .data_source_cache_config import *
 from .provider import *
-from ._inputs import *
-from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
     import pulumiverse_grafana.alerting as __alerting
     alerting = __alerting
+    import pulumiverse_grafana.apps as __apps
+    apps = __apps
     import pulumiverse_grafana.assert_ as __assert_
     assert_ = __assert_
     import pulumiverse_grafana.cloud as __cloud
@@ -54,6 +46,7 @@ if typing.TYPE_CHECKING:
     syntheticmonitoring = __syntheticmonitoring
 else:
     alerting = _utilities.lazy_import('pulumiverse_grafana.alerting')
+    apps = _utilities.lazy_import('pulumiverse_grafana.apps')
     assert_ = _utilities.lazy_import('pulumiverse_grafana.assert_')
     cloud = _utilities.lazy_import('pulumiverse_grafana.cloud')
     cloudprovider = _utilities.lazy_import('pulumiverse_grafana.cloudprovider')
@@ -135,6 +128,78 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.alerting",
   "classes": {
    "grafana:alerting/ruleGroup:RuleGroup": "RuleGroup"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/v0alpha1/alertRule",
+  "fqn": "pulumiverse_grafana.alerting.v0alpha1",
+  "classes": {
+   "grafana:alerting/v0alpha1/alertRule:AlertRule": "AlertRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/v0alpha1/recordingRule",
+  "fqn": "pulumiverse_grafana.alerting.v0alpha1",
+  "classes": {
+   "grafana:alerting/v0alpha1/recordingRule:RecordingRule": "RecordingRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/v1beta1/alertEnrichment",
+  "fqn": "pulumiverse_grafana.alerting.v1beta1",
+  "classes": {
+   "grafana:alerting/v1beta1/alertEnrichment:AlertEnrichment": "AlertEnrichment"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/v1beta1/notificationsInhibitionRule",
+  "fqn": "pulumiverse_grafana.alerting.v1beta1",
+  "classes": {
+   "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule": "NotificationsInhibitionRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "apps/v0alpha1/playlist",
+  "fqn": "pulumiverse_grafana.apps.v0alpha1",
+  "classes": {
+   "grafana:apps/v0alpha1/playlist:Playlist": "Playlist"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "apps/v0alpha1/provisioningConnection",
+  "fqn": "pulumiverse_grafana.apps.v0alpha1",
+  "classes": {
+   "grafana:apps/v0alpha1/provisioningConnection:ProvisioningConnection": "ProvisioningConnection"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "apps/v0alpha1/provisioningRepository",
+  "fqn": "pulumiverse_grafana.apps.v0alpha1",
+  "classes": {
+   "grafana:apps/v0alpha1/provisioningRepository:ProvisioningRepository": "ProvisioningRepository"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "apps/v1beta1/dashboard",
+  "fqn": "pulumiverse_grafana.apps.v1beta1",
+  "classes": {
+   "grafana:apps/v1beta1/dashboard:Dashboard": "Dashboard"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "apps/v2beta1/dashboard",
+  "fqn": "pulumiverse_grafana.apps.v2beta1",
+  "classes": {
+   "grafana:apps/v2beta1/dashboard:Dashboard": "Dashboard"
   }
  },
  {
@@ -315,6 +380,22 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloud/v1alpha1/productActivationAppO11yConfig",
+  "fqn": "pulumiverse_grafana.cloud.v1alpha1",
+  "classes": {
+   "grafana:cloud/v1alpha1/productActivationAppO11yConfig:ProductActivationAppO11yConfig": "ProductActivationAppO11yConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/v1alpha1/productActivationK8sO11yConfig",
+  "fqn": "pulumiverse_grafana.cloud.v1alpha1",
+  "classes": {
+   "grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig": "ProductActivationK8sO11yConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloudProvider/awsAccount",
   "fqn": "pulumiverse_grafana.cloudprovider",
   "classes": {
@@ -351,6 +432,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.connections",
   "classes": {
    "grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob": "MetricsEndpointScrapeJob"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "enterprise/dataSourceCacheConfig",
+  "fqn": "pulumiverse_grafana.enterprise",
+  "classes": {
+   "grafana:enterprise/dataSourceCacheConfig:DataSourceCacheConfig": "DataSourceCacheConfig"
   }
  },
  {
@@ -427,6 +516,30 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "enterprise/v1beta1/secretKeeper",
+  "fqn": "pulumiverse_grafana.enterprise.v1beta1",
+  "classes": {
+   "grafana:enterprise/v1beta1/secretKeeper:SecretKeeper": "SecretKeeper"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "enterprise/v1beta1/secretKeeperActivation",
+  "fqn": "pulumiverse_grafana.enterprise.v1beta1",
+  "classes": {
+   "grafana:enterprise/v1beta1/secretKeeperActivation:SecretKeeperActivation": "SecretKeeperActivation"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "enterprise/v1beta1/secretSecureValue",
+  "fqn": "pulumiverse_grafana.enterprise.v1beta1",
+  "classes": {
+   "grafana:enterprise/v1beta1/secretSecureValue:SecretSecureValue": "SecretSecureValue"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "experimental/appsDashboard",
   "fqn": "pulumiverse_grafana.experimental",
   "classes": {
@@ -463,70 +576,6 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/appsDashboardDashboardV2beta1",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/appsDashboardDashboardV2beta1:AppsDashboardDashboardV2beta1": "AppsDashboardDashboardV2beta1"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/appsNotificationsInhibitionruleV1beta1",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/appsNotificationsInhibitionruleV1beta1:AppsNotificationsInhibitionruleV1beta1": "AppsNotificationsInhibitionruleV1beta1"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/appsProvisioningConnectionV0alpha1",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/appsProvisioningConnectionV0alpha1:AppsProvisioningConnectionV0alpha1": "AppsProvisioningConnectionV0alpha1"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/appsProvisioningRepositoryV0alpha1",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/appsProvisioningRepositoryV0alpha1:AppsProvisioningRepositoryV0alpha1": "AppsProvisioningRepositoryV0alpha1"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/appsSecretKeeperActivationV1beta1",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/appsSecretKeeperActivationV1beta1:AppsSecretKeeperActivationV1beta1": "AppsSecretKeeperActivationV1beta1"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/appsSecretKeeperV1beta1",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/appsSecretKeeperV1beta1:AppsSecretKeeperV1beta1": "AppsSecretKeeperV1beta1"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/appsSecretSecurevalueV1beta1",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/appsSecretSecurevalueV1beta1:AppsSecretSecurevalueV1beta1": "AppsSecretSecurevalueV1beta1"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/dataSourceCacheConfig",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/dataSourceCacheConfig:DataSourceCacheConfig": "DataSourceCacheConfig"
   }
  },
  {

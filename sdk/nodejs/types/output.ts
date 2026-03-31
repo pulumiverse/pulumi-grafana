@@ -5,548 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface AppsDashboardDashboardV2beta1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations: {[key: string]: string};
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: string;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: string;
-    /**
-     * The full URL of the resource.
-     */
-    url: string;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid: string;
-    /**
-     * The version of the resource.
-     */
-    version: string;
-}
-
-export interface AppsDashboardDashboardV2beta1Options {
-    /**
-     * Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
-     */
-    allowUiUpdates?: boolean;
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: boolean;
-}
-
-export interface AppsDashboardDashboardV2beta1Spec {
-    /**
-     * The JSON representation of the dashboard v2beta1 spec.
-     */
-    json: string;
-    /**
-     * The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
-     */
-    tags?: string[];
-    /**
-     * The title of the dashboard. If not set, the title will be derived from the JSON spec.
-     */
-    title?: string;
-}
-
-export interface AppsNotificationsInhibitionruleV1beta1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations: {[key: string]: string};
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: string;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: string;
-    /**
-     * The full URL of the resource.
-     */
-    url: string;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid: string;
-    /**
-     * The version of the resource.
-     */
-    version: string;
-}
-
-export interface AppsNotificationsInhibitionruleV1beta1Options {
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: boolean;
-}
-
-export interface AppsNotificationsInhibitionruleV1beta1Spec {
-    /**
-     * Labels that must have equal values in source and target alerts for the inhibition to take effect.
-     */
-    equals?: string[];
-    /**
-     * Matchers that must be satisfied for an alert to be a source of inhibition.
-     */
-    sourceMatchers?: outputs.AppsNotificationsInhibitionruleV1beta1SpecSourceMatcher[];
-    /**
-     * Matchers that must be satisfied for an alert to be inhibited.
-     */
-    targetMatchers?: outputs.AppsNotificationsInhibitionruleV1beta1SpecTargetMatcher[];
-}
-
-export interface AppsNotificationsInhibitionruleV1beta1SpecSourceMatcher {
-    label: string;
-    type: string;
-    value: string;
-}
-
-export interface AppsNotificationsInhibitionruleV1beta1SpecTargetMatcher {
-    label: string;
-    type: string;
-    value: string;
-}
-
-export interface AppsProvisioningConnectionV0alpha1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations: {[key: string]: string};
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: string;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: string;
-    /**
-     * The full URL of the resource.
-     */
-    url: string;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid: string;
-    /**
-     * The version of the resource.
-     */
-    version: string;
-}
-
-export interface AppsProvisioningConnectionV0alpha1Options {
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: boolean;
-}
-
-export interface AppsProvisioningConnectionV0alpha1Secure {
-    /**
-     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Private key for GitHub App authentication.
-     */
-    privateKey?: {[key: string]: string};
-    /**
-     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Access token.
-     */
-    token?: {[key: string]: string};
-}
-
-export interface AppsProvisioningConnectionV0alpha1Spec {
-    /**
-     * Connection description.
-     */
-    description?: string;
-    /**
-     * GitHub App configuration.
-     */
-    github?: outputs.AppsProvisioningConnectionV0alpha1SpecGithub;
-    /**
-     * Display name shown in the UI.
-     */
-    title: string;
-    /**
-     * Connection provider type.
-     */
-    type: string;
-    /**
-     * Provider URL.
-     */
-    url?: string;
-}
-
-export interface AppsProvisioningConnectionV0alpha1SpecGithub {
-    /**
-     * GitHub App ID.
-     */
-    appId: string;
-    /**
-     * GitHub App installation ID.
-     */
-    installationId: string;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations: {[key: string]: string};
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: string;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: string;
-    /**
-     * The full URL of the resource.
-     */
-    url: string;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid: string;
-    /**
-     * The version of the resource.
-     */
-    version: string;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1Options {
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: boolean;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1Secure {
-    /**
-     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Token for repository authentication.
-     */
-    token?: {[key: string]: string};
-    /**
-     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Webhook secret.
-     */
-    webhookSecret?: {[key: string]: string};
-}
-
-export interface AppsProvisioningRepositoryV0alpha1Spec {
-    /**
-     * Bitbucket repository configuration.
-     */
-    bitbucket?: outputs.AppsProvisioningRepositoryV0alpha1SpecBitbucket;
-    /**
-     * Connection resource reference.
-     */
-    connection?: outputs.AppsProvisioningRepositoryV0alpha1SpecConnection;
-    /**
-     * Repository description.
-     */
-    description?: string;
-    /**
-     * Generic git repository configuration.
-     */
-    git?: outputs.AppsProvisioningRepositoryV0alpha1SpecGit;
-    /**
-     * GitHub repository configuration.
-     */
-    github?: outputs.AppsProvisioningRepositoryV0alpha1SpecGithub;
-    /**
-     * GitLab repository configuration.
-     */
-    gitlab?: outputs.AppsProvisioningRepositoryV0alpha1SpecGitlab;
-    /**
-     * Local filesystem repository configuration.
-     */
-    local?: outputs.AppsProvisioningRepositoryV0alpha1SpecLocal;
-    /**
-     * Sync configuration.
-     */
-    sync?: outputs.AppsProvisioningRepositoryV0alpha1SpecSync;
-    /**
-     * Display name shown in the UI.
-     */
-    title: string;
-    /**
-     * Repository provider type: local, github, git, bitbucket, or gitlab.
-     */
-    type: string;
-    /**
-     * Allowed change workflows: write, branch.
-     */
-    workflows?: string[];
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecBitbucket {
-    /**
-     * Branch to sync.
-     */
-    branch?: string;
-    /**
-     * Optional subdirectory path.
-     */
-    path?: string;
-    /**
-     * Username for PAT auth.
-     */
-    tokenUser?: string;
-    /**
-     * Repository URL.
-     */
-    url?: string;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecConnection {
-    /**
-     * Connection resource name.
-     */
-    name?: string;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecGit {
-    /**
-     * Branch to sync.
-     */
-    branch?: string;
-    /**
-     * Optional subdirectory path.
-     */
-    path?: string;
-    /**
-     * Username for PAT auth.
-     */
-    tokenUser?: string;
-    /**
-     * Repository URL.
-     */
-    url?: string;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecGithub {
-    /**
-     * Branch to sync.
-     */
-    branch?: string;
-    /**
-     * Whether to generate dashboard previews.
-     */
-    generateDashboardPreviews?: boolean;
-    /**
-     * Optional subdirectory path.
-     */
-    path?: string;
-    /**
-     * Repository URL.
-     */
-    url?: string;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecGitlab {
-    /**
-     * Branch to sync.
-     */
-    branch?: string;
-    /**
-     * Optional subdirectory path.
-     */
-    path?: string;
-    /**
-     * Repository URL.
-     */
-    url?: string;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecLocal {
-    /**
-     * Filesystem path.
-     */
-    path?: string;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecSync {
-    /**
-     * Whether sync is enabled.
-     */
-    enabled: boolean;
-    /**
-     * Sync interval in seconds.
-     */
-    intervalSeconds?: number;
-    /**
-     * Sync target: instance or folder.
-     */
-    target: string;
-}
-
-export interface AppsSecretKeeperActivationV1beta1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations: {[key: string]: string};
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: string;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: string;
-    /**
-     * The full URL of the resource.
-     */
-    url: string;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid: string;
-    /**
-     * The version of the resource.
-     */
-    version: string;
-}
-
-export interface AppsSecretKeeperV1beta1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations: {[key: string]: string};
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: string;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: string;
-    /**
-     * The full URL of the resource.
-     */
-    url: string;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid: string;
-    /**
-     * The version of the resource.
-     */
-    version: string;
-}
-
-export interface AppsSecretKeeperV1beta1Options {
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: boolean;
-}
-
-export interface AppsSecretKeeperV1beta1Spec {
-    /**
-     * AWS Secrets Manager configuration.
-     */
-    aws?: outputs.AppsSecretKeeperV1beta1SpecAws;
-    /**
-     * Keeper description.
-     */
-    description?: string;
-}
-
-export interface AppsSecretKeeperV1beta1SpecAws {
-    /**
-     * IAM role assumption configuration.
-     */
-    assumeRole?: outputs.AppsSecretKeeperV1beta1SpecAwsAssumeRole;
-    /**
-     * AWS region.
-     */
-    region: string;
-}
-
-export interface AppsSecretKeeperV1beta1SpecAwsAssumeRole {
-    /**
-     * Assume role ARN.
-     */
-    assumeRoleArn?: string;
-    /**
-     * Assume role external ID.
-     */
-    externalId?: string;
-}
-
-export interface AppsSecretSecurevalueV1beta1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations: {[key: string]: string};
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: string;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: string;
-    /**
-     * The full URL of the resource.
-     */
-    url: string;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid: string;
-    /**
-     * The version of the resource.
-     */
-    version: string;
-}
-
-export interface AppsSecretSecurevalueV1beta1Options {
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: boolean;
-}
-
-export interface AppsSecretSecurevalueV1beta1Spec {
-    /**
-     * List of decrypters allowed to read this secure value.
-     */
-    decrypters?: string[];
-    /**
-     * Secure value description.
-     */
-    description?: string;
-    /**
-     * Reference to an existing secret managed by the keeper.
-     */
-    ref?: string;
-    /**
-     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Plaintext value to store. This value is write-only.
-     */
-    value?: string;
-    /**
-     * Hash of the stored plaintext value.
-     */
-    valueHash: string;
-}
-
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -2839,6 +2297,1254 @@ export namespace alerting {
         targetDatasourceUid?: string;
     }
 
+    export namespace v0alpha1 {
+        export interface AlertRuleMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface AlertRuleOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface AlertRuleSpec {
+            /**
+             * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts.
+             */
+            annotations?: {[key: string]: string};
+            /**
+             * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+             */
+            execErrState: string;
+            /**
+             * A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+             */
+            expressions: {[key: string]: string};
+            /**
+             * The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+             */
+            for?: string;
+            /**
+             * The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+             */
+            keepFiringFor?: string;
+            /**
+             * Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+             */
+            labels?: {[key: string]: string};
+            /**
+             * The number of missing series evaluations that must occur before the rule is considered to be resolved.
+             */
+            missingSeriesEvalsToResolve?: number;
+            /**
+             * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+             */
+            noDataState: string;
+            /**
+             * Notification settings for the rule. If specified, it overrides the notification policies.
+             */
+            notificationSettings?: outputs.alerting.v0alpha1.AlertRuleSpecNotificationSettings;
+            /**
+             * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+             */
+            panelRef?: {[key: string]: string};
+            /**
+             * Sets whether the rule should be paused or not.
+             */
+            paused?: boolean;
+            /**
+             * The title of the alert rule.
+             */
+            title: string;
+            /**
+             * The trigger configuration for the alert rule.
+             */
+            trigger?: outputs.alerting.v0alpha1.AlertRuleSpecTrigger;
+        }
+
+        export interface AlertRuleSpecNotificationSettings {
+            /**
+             * A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+             */
+            activeTimings?: string[];
+            /**
+             * The contact point to route notifications that match this rule to.
+             */
+            contactPoint: string;
+            /**
+             * A list of alert labels to group alerts into notifications by.
+             */
+            groupBies?: string[];
+            /**
+             * Minimum time interval between two notifications for the same group.
+             */
+            groupInterval?: string;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification.
+             */
+            groupWait?: string;
+            /**
+             * A list of mute timing names to apply to alerts that match this policy.
+             */
+            muteTimings?: string[];
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing.
+             */
+            repeatInterval?: string;
+        }
+
+        export interface AlertRuleSpecTrigger {
+            /**
+             * The interval at which the alert rule should be evaluated.
+             */
+            interval: string;
+        }
+
+        export interface RecordingRuleMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface RecordingRuleOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface RecordingRuleSpec {
+            /**
+             * A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+             */
+            expressions: {[key: string]: string};
+            /**
+             * Key-value pairs to attach to the recorded metric.
+             */
+            labels?: {[key: string]: string};
+            /**
+             * The name of the metric to write to.
+             */
+            metric: string;
+            /**
+             * Sets whether the recording rule should be paused or not.
+             */
+            paused?: boolean;
+            /**
+             * The UID of the datasource to write the metric to.
+             */
+            targetDatasourceUid: string;
+            /**
+             * The title of the recording rule.
+             */
+            title: string;
+            /**
+             * The trigger configuration for the recording rule.
+             */
+            trigger?: outputs.alerting.v0alpha1.RecordingRuleSpecTrigger;
+        }
+
+        export interface RecordingRuleSpecTrigger {
+            /**
+             * The interval at which the recording rule should be evaluated.
+             */
+            interval: string;
+        }
+
+    }
+
+    export namespace v1beta1 {
+        export interface AlertEnrichmentMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface AlertEnrichmentOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface AlertEnrichmentSpec {
+            /**
+             * UIDs of alert rules this enrichment applies to. If empty, applies to all alert rules.
+             */
+            alertRuleUids?: string[];
+            /**
+             * Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
+             */
+            annotationMatchers?: outputs.alerting.v1beta1.AlertEnrichmentSpecAnnotationMatcher[];
+            /**
+             * Description of the alert enrichment.
+             */
+            description: string;
+            /**
+             * Allow modifying alert enrichment outside of Terraform
+             */
+            disableProvenance: boolean;
+            /**
+             * Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
+             */
+            labelMatchers?: outputs.alerting.v1beta1.AlertEnrichmentSpecLabelMatcher[];
+            /**
+             * Receiver names to match. If empty, applies to all receivers.
+             */
+            receivers?: string[];
+            /**
+             * Enrichment step. Can be repeated multiple times to define a sequence of steps. Each step must contain exactly one enrichment block.
+             */
+            steps?: outputs.alerting.v1beta1.AlertEnrichmentSpecStep[];
+            /**
+             * The title of the alert enrichment.
+             */
+            title: string;
+        }
+
+        export interface AlertEnrichmentSpecAnnotationMatcher {
+            name: string;
+            type: string;
+            value: string;
+        }
+
+        export interface AlertEnrichmentSpecLabelMatcher {
+            name: string;
+            type: string;
+            value: string;
+        }
+
+        export interface AlertEnrichmentSpecStep {
+            /**
+             * Integrate with Grafana Asserts for enrichment.
+             */
+            asserts?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepAsserts;
+            /**
+             * Assign annotations to an alert.
+             */
+            assign?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepAssign;
+            /**
+             * Use AI assistant to investigate alerts and add insights.
+             */
+            assistantInvestigations?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepAssistantInvestigations;
+            /**
+             * Conditional step with if/then/else.
+             */
+            conditional?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditional;
+            /**
+             * Query Grafana data sources and add results to alerts.
+             */
+            dataSource?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepDataSource;
+            /**
+             * Generate AI explanation and store in an annotation.
+             */
+            explain?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepExplain;
+            /**
+             * Call an external HTTP service for enrichment.
+             */
+            external?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepExternal;
+            /**
+             * Analyze alerts for patterns and insights.
+             */
+            sift?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepSift;
+        }
+
+        export interface AlertEnrichmentSpecStepAsserts {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepAssign {
+            /**
+             * Map of annotation names to values to set on matching alerts.
+             */
+            annotations?: {[key: string]: string};
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepAssistantInvestigations {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditional {
+            /**
+             * Steps when condition is false.
+             */
+            else?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElse;
+            /**
+             * Condition to evaluate.
+             */
+            if?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalIf;
+            /**
+             * Steps when condition is true.
+             */
+            then?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThen;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElse {
+            steps?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStep[];
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStep {
+            /**
+             * Integrate with Grafana Asserts for enrichment.
+             */
+            asserts?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepAsserts;
+            /**
+             * Assign annotations to an alert.
+             */
+            assign?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepAssign;
+            /**
+             * Use AI assistant to investigate alerts and add insights.
+             */
+            assistantInvestigations?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations;
+            /**
+             * Query Grafana data sources and add results to alerts.
+             */
+            dataSource?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepDataSource;
+            /**
+             * Generate AI explanation and store in an annotation.
+             */
+            explain?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepExplain;
+            /**
+             * Call an external HTTP service for enrichment.
+             */
+            external?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepExternal;
+            /**
+             * Analyze alerts for patterns and insights.
+             */
+            sift?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepSift;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepAsserts {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepAssign {
+            /**
+             * Map of annotation names to values to set on matching alerts.
+             */
+            annotations?: {[key: string]: string};
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepDataSource {
+            /**
+             * Logs query configuration for querying log data sources.
+             */
+            logsQuery?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery;
+            /**
+             * Raw query configuration for advanced data source queries.
+             */
+            rawQuery?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery {
+            /**
+             * Data source type (e.g., 'loki').
+             */
+            dataSourceType?: string;
+            /**
+             * UID of the data source to query.
+             */
+            dataSourceUid?: string;
+            /**
+             * Log query expression to execute.
+             */
+            expr?: string;
+            /**
+             * Maximum number of log lines to include. Defaults to 3.
+             */
+            maxLines: number;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery {
+            /**
+             * Reference ID for correlating queries.
+             */
+            refId: string;
+            /**
+             * Raw request payload for the data source query.
+             */
+            request?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepExplain {
+            /**
+             * Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+             */
+            annotation: string;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepExternal {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+            /**
+             * HTTP endpoint URL to call for enrichment
+             */
+            url?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepSift {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalIf {
+            /**
+             * Annotation matchers for the condition.
+             */
+            annotationMatchers?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalIfAnnotationMatcher[];
+            /**
+             * Data source condition.
+             */
+            dataSourceCondition?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalIfDataSourceCondition;
+            /**
+             * Label matchers for the condition.
+             */
+            labelMatchers?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalIfLabelMatcher[];
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalIfAnnotationMatcher {
+            name: string;
+            type: string;
+            value: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalIfDataSourceCondition {
+            /**
+             * Data source request payload.
+             */
+            request?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalIfLabelMatcher {
+            name: string;
+            type: string;
+            value: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThen {
+            steps?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStep[];
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStep {
+            /**
+             * Integrate with Grafana Asserts for enrichment.
+             */
+            asserts?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepAsserts;
+            /**
+             * Assign annotations to an alert.
+             */
+            assign?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepAssign;
+            /**
+             * Use AI assistant to investigate alerts and add insights.
+             */
+            assistantInvestigations?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations;
+            /**
+             * Query Grafana data sources and add results to alerts.
+             */
+            dataSource?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepDataSource;
+            /**
+             * Generate AI explanation and store in an annotation.
+             */
+            explain?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepExplain;
+            /**
+             * Call an external HTTP service for enrichment.
+             */
+            external?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepExternal;
+            /**
+             * Analyze alerts for patterns and insights.
+             */
+            sift?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepSift;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepAsserts {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepAssign {
+            /**
+             * Map of annotation names to values to set on matching alerts.
+             */
+            annotations?: {[key: string]: string};
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepDataSource {
+            /**
+             * Logs query configuration for querying log data sources.
+             */
+            logsQuery?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery;
+            /**
+             * Raw query configuration for advanced data source queries.
+             */
+            rawQuery?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery {
+            /**
+             * Data source type (e.g., 'loki').
+             */
+            dataSourceType?: string;
+            /**
+             * UID of the data source to query.
+             */
+            dataSourceUid?: string;
+            /**
+             * Log query expression to execute.
+             */
+            expr?: string;
+            /**
+             * Maximum number of log lines to include. Defaults to 3.
+             */
+            maxLines: number;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery {
+            /**
+             * Reference ID for correlating queries.
+             */
+            refId: string;
+            /**
+             * Raw request payload for the data source query.
+             */
+            request?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepExplain {
+            /**
+             * Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+             */
+            annotation: string;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepExternal {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+            /**
+             * HTTP endpoint URL to call for enrichment
+             */
+            url?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepSift {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepDataSource {
+            /**
+             * Logs query configuration for querying log data sources.
+             */
+            logsQuery?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepDataSourceLogsQuery;
+            /**
+             * Raw query configuration for advanced data source queries.
+             */
+            rawQuery?: outputs.alerting.v1beta1.AlertEnrichmentSpecStepDataSourceRawQuery;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepDataSourceLogsQuery {
+            /**
+             * Data source type (e.g., 'loki').
+             */
+            dataSourceType?: string;
+            /**
+             * UID of the data source to query.
+             */
+            dataSourceUid?: string;
+            /**
+             * Log query expression to execute.
+             */
+            expr?: string;
+            /**
+             * Maximum number of log lines to include. Defaults to 3.
+             */
+            maxLines: number;
+        }
+
+        export interface AlertEnrichmentSpecStepDataSourceRawQuery {
+            /**
+             * Reference ID for correlating queries.
+             */
+            refId: string;
+            /**
+             * Raw request payload for the data source query.
+             */
+            request?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepExplain {
+            /**
+             * Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+             */
+            annotation: string;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepExternal {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+            /**
+             * HTTP endpoint URL to call for enrichment
+             */
+            url?: string;
+        }
+
+        export interface AlertEnrichmentSpecStepSift {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: string;
+        }
+
+        export interface NotificationsInhibitionRuleMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface NotificationsInhibitionRuleOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface NotificationsInhibitionRuleSpec {
+            /**
+             * Labels that must have equal values in source and target alerts for the inhibition to take effect.
+             */
+            equals?: string[];
+            /**
+             * Matchers that must be satisfied for an alert to be a source of inhibition.
+             */
+            sourceMatchers?: outputs.alerting.v1beta1.NotificationsInhibitionRuleSpecSourceMatcher[];
+            /**
+             * Matchers that must be satisfied for an alert to be inhibited.
+             */
+            targetMatchers?: outputs.alerting.v1beta1.NotificationsInhibitionRuleSpecTargetMatcher[];
+        }
+
+        export interface NotificationsInhibitionRuleSpecSourceMatcher {
+            label: string;
+            type: string;
+            value: string;
+        }
+
+        export interface NotificationsInhibitionRuleSpecTargetMatcher {
+            label: string;
+            type: string;
+            value: string;
+        }
+
+    }
+}
+
+export namespace apps {
+    export namespace v0alpha1 {
+        export interface PlaylistMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface PlaylistOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface PlaylistSpec {
+            /**
+             * The interval of the playlist.
+             */
+            interval?: string;
+            /**
+             * The items of the playlist.
+             */
+            items: outputs.apps.v0alpha1.PlaylistSpecItem[];
+            /**
+             * The title of the playlist.
+             */
+            title: string;
+        }
+
+        export interface PlaylistSpecItem {
+            type: string;
+            value: string;
+        }
+
+        export interface ProvisioningConnectionMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface ProvisioningConnectionOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface ProvisioningConnectionSecure {
+            /**
+             * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+             * Private key for GitHub App authentication.
+             */
+            privateKey?: {[key: string]: string};
+            /**
+             * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+             * Access token.
+             */
+            token?: {[key: string]: string};
+        }
+
+        export interface ProvisioningConnectionSpec {
+            /**
+             * Connection description.
+             */
+            description?: string;
+            /**
+             * GitHub App configuration.
+             */
+            github?: outputs.apps.v0alpha1.ProvisioningConnectionSpecGithub;
+            /**
+             * Display name shown in the UI.
+             */
+            title: string;
+            /**
+             * Connection provider type.
+             */
+            type: string;
+            /**
+             * Provider URL.
+             */
+            url?: string;
+        }
+
+        export interface ProvisioningConnectionSpecGithub {
+            /**
+             * GitHub App ID.
+             */
+            appId: string;
+            /**
+             * GitHub App installation ID.
+             */
+            installationId: string;
+        }
+
+        export interface ProvisioningRepositoryMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface ProvisioningRepositoryOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface ProvisioningRepositorySecure {
+            /**
+             * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+             * Token for repository authentication.
+             */
+            token?: {[key: string]: string};
+            /**
+             * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+             * Webhook secret.
+             */
+            webhookSecret?: {[key: string]: string};
+        }
+
+        export interface ProvisioningRepositorySpec {
+            /**
+             * Bitbucket repository configuration.
+             */
+            bitbucket?: outputs.apps.v0alpha1.ProvisioningRepositorySpecBitbucket;
+            /**
+             * Connection resource reference.
+             */
+            connection?: outputs.apps.v0alpha1.ProvisioningRepositorySpecConnection;
+            /**
+             * Repository description.
+             */
+            description?: string;
+            /**
+             * Generic git repository configuration.
+             */
+            git?: outputs.apps.v0alpha1.ProvisioningRepositorySpecGit;
+            /**
+             * GitHub repository configuration.
+             */
+            github?: outputs.apps.v0alpha1.ProvisioningRepositorySpecGithub;
+            /**
+             * GitLab repository configuration.
+             */
+            gitlab?: outputs.apps.v0alpha1.ProvisioningRepositorySpecGitlab;
+            /**
+             * Local filesystem repository configuration.
+             */
+            local?: outputs.apps.v0alpha1.ProvisioningRepositorySpecLocal;
+            /**
+             * Sync configuration.
+             */
+            sync?: outputs.apps.v0alpha1.ProvisioningRepositorySpecSync;
+            /**
+             * Display name shown in the UI.
+             */
+            title: string;
+            /**
+             * Repository provider type: local, github, git, bitbucket, or gitlab.
+             */
+            type: string;
+            /**
+             * Allowed change workflows: write, branch.
+             */
+            workflows?: string[];
+        }
+
+        export interface ProvisioningRepositorySpecBitbucket {
+            /**
+             * Branch to sync.
+             */
+            branch?: string;
+            /**
+             * Optional subdirectory path.
+             */
+            path?: string;
+            /**
+             * Username for PAT auth.
+             */
+            tokenUser?: string;
+            /**
+             * Repository URL.
+             */
+            url?: string;
+        }
+
+        export interface ProvisioningRepositorySpecConnection {
+            /**
+             * Connection resource name.
+             */
+            name?: string;
+        }
+
+        export interface ProvisioningRepositorySpecGit {
+            /**
+             * Branch to sync.
+             */
+            branch?: string;
+            /**
+             * Optional subdirectory path.
+             */
+            path?: string;
+            /**
+             * Username for PAT auth.
+             */
+            tokenUser?: string;
+            /**
+             * Repository URL.
+             */
+            url?: string;
+        }
+
+        export interface ProvisioningRepositorySpecGithub {
+            /**
+             * Branch to sync.
+             */
+            branch?: string;
+            /**
+             * Whether to generate dashboard previews.
+             */
+            generateDashboardPreviews?: boolean;
+            /**
+             * Optional subdirectory path.
+             */
+            path?: string;
+            /**
+             * Repository URL.
+             */
+            url?: string;
+        }
+
+        export interface ProvisioningRepositorySpecGitlab {
+            /**
+             * Branch to sync.
+             */
+            branch?: string;
+            /**
+             * Optional subdirectory path.
+             */
+            path?: string;
+            /**
+             * Repository URL.
+             */
+            url?: string;
+        }
+
+        export interface ProvisioningRepositorySpecLocal {
+            /**
+             * Filesystem path.
+             */
+            path?: string;
+        }
+
+        export interface ProvisioningRepositorySpecSync {
+            /**
+             * Whether sync is enabled.
+             */
+            enabled: boolean;
+            /**
+             * Sync interval in seconds.
+             */
+            intervalSeconds?: number;
+            /**
+             * Sync target: instance or folder.
+             */
+            target: string;
+        }
+
+    }
+
+    export namespace v1beta1 {
+        export interface DashboardMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface DashboardOptions {
+            /**
+             * Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+             */
+            allowUiUpdates?: boolean;
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface DashboardSpec {
+            /**
+             * The JSON representation of the dashboard spec.
+             */
+            json: string;
+            /**
+             * The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
+             */
+            tags?: string[];
+            /**
+             * The title of the dashboard. If not set, the title will be derived from the JSON spec.
+             */
+            title?: string;
+        }
+
+    }
+
+    export namespace v2beta1 {
+        export interface DashboardMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface DashboardOptions {
+            /**
+             * Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+             */
+            allowUiUpdates?: boolean;
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface DashboardSpec {
+            /**
+             * The JSON representation of the dashboard v2beta1 spec.
+             */
+            json: string;
+            /**
+             * The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
+             */
+            tags?: string[];
+            /**
+             * The title of the dashboard. If not set, the title will be derived from the JSON spec.
+             */
+            title?: string;
+        }
+
+    }
 }
 
 export namespace assert {
@@ -3251,6 +3957,90 @@ export namespace cloud {
         enabled: boolean;
     }
 
+    export namespace v1alpha1 {
+        export interface ProductActivationAppO11yConfigMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface ProductActivationAppO11yConfigOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface ProductActivationAppO11yConfigSpec {
+            /**
+             * Whether application observability is enabled.
+             */
+            enabled: boolean;
+        }
+
+        export interface ProductActivationK8sO11yConfigMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface ProductActivationK8sO11yConfigOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface ProductActivationK8sO11yConfigSpec {
+            /**
+             * Whether Kubernetes observability is enabled.
+             */
+            enabled: boolean;
+        }
+
+    }
 }
 
 export namespace cloudProvider {
@@ -3716,6 +4506,160 @@ export namespace enterprise {
         scope?: string;
     }
 
+    export namespace v1beta1 {
+        export interface SecretKeeperActivationMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface SecretKeeperMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface SecretKeeperOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface SecretKeeperSpec {
+            /**
+             * AWS Secrets Manager configuration.
+             */
+            aws?: outputs.enterprise.v1beta1.SecretKeeperSpecAws;
+            /**
+             * Keeper description.
+             */
+            description?: string;
+        }
+
+        export interface SecretKeeperSpecAws {
+            /**
+             * IAM role assumption configuration.
+             */
+            assumeRole?: outputs.enterprise.v1beta1.SecretKeeperSpecAwsAssumeRole;
+            /**
+             * AWS region.
+             */
+            region: string;
+        }
+
+        export interface SecretKeeperSpecAwsAssumeRole {
+            /**
+             * Assume role ARN.
+             */
+            assumeRoleArn?: string;
+            /**
+             * Assume role external ID.
+             */
+            externalId?: string;
+        }
+
+        export interface SecretSecureValueMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface SecretSecureValueOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface SecretSecureValueSpec {
+            /**
+             * List of decrypters allowed to read this secure value.
+             */
+            decrypters?: string[];
+            /**
+             * Secure value description.
+             */
+            description?: string;
+            /**
+             * Reference to an existing secret managed by the keeper.
+             */
+            ref?: string;
+            /**
+             * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+             * Plaintext value to store. This value is write-only.
+             */
+            value?: string;
+            /**
+             * Hash of the stored plaintext value.
+             */
+            valueHash: string;
+        }
+
+    }
 }
 
 export namespace experimental {

@@ -24,21 +24,22 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/experimental"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps"
+//	appsv0alpha1 "github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps/v0alpha1"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := experimental.NewAppsPlaylistV0Alpha1(ctx, "example", &experimental.AppsPlaylistV0Alpha1Args{
-//				Metadata: &experimental.AppsPlaylistV0Alpha1MetadataArgs{
+//			_, err := apps.NewPlaylist(ctx, "example", &apps.PlaylistArgs{
+//				Metadata: &appsv0alpha1.PlaylistMetadataArgs{
 //					Uid: pulumi.String("example-playlist"),
 //				},
-//				Spec: &experimental.AppsPlaylistV0Alpha1SpecArgs{
+//				Spec: &appsv0alpha1.PlaylistSpecArgs{
 //					Title:    pulumi.String("Example Playlist"),
 //					Interval: pulumi.String("5m"),
-//					Items: experimental.AppsPlaylistV0Alpha1SpecItemArray{
-//						&experimental.AppsPlaylistV0Alpha1SpecItemArgs{
+//					Items: appsv0alpha1.PlaylistSpecItemArray{
+//						&appsv0alpha1.PlaylistSpecItemArgs{
 //							Type:  pulumi.String("dashboard_by_uid"),
 //							Value: pulumi.String("example-dashboard-uid"),
 //						},
@@ -53,6 +54,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: grafana.experimental/appsplaylistv0alpha1.AppsPlaylistV0Alpha1 has been deprecated in favor of grafana.apps/v0alpha1/playlist.Playlist
 type AppsPlaylistV0Alpha1 struct {
 	pulumi.CustomResourceState
 
@@ -71,6 +74,12 @@ func NewAppsPlaylistV0Alpha1(ctx *pulumi.Context,
 		args = &AppsPlaylistV0Alpha1Args{}
 	}
 
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AppsPlaylistV0Alpha1
 	err := ctx.RegisterResource("grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1", name, args, &resource, opts...)

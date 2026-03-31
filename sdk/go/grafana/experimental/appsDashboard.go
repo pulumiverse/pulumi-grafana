@@ -26,7 +26,8 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/experimental"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps"
+//	appsv1beta1 "github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps/v1beta1"
 //
 // )
 //
@@ -42,11 +43,11 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = experimental.NewAppsDashboard(ctx, "example", &experimental.AppsDashboardArgs{
-//				Metadata: &experimental.AppsDashboardMetadataArgs{
+//			_, err = apps.NewDashboard(ctx, "example", &apps.DashboardArgs{
+//				Metadata: &appsv1beta1.DashboardMetadataArgs{
 //					Uid: pulumi.String("example-dashboard"),
 //				},
-//				Spec: &experimental.AppsDashboardSpecArgs{
+//				Spec: &appsv1beta1.DashboardSpecArgs{
 //					Title: pulumi.String("Example Dashboard"),
 //					Json:  pulumi.String(pulumi.String(json0)),
 //				},
@@ -59,6 +60,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: grafana.experimental/appsdashboard.AppsDashboard has been deprecated in favor of grafana.apps/v1beta1/dashboard.Dashboard
 type AppsDashboard struct {
 	pulumi.CustomResourceState
 
@@ -77,6 +80,12 @@ func NewAppsDashboard(ctx *pulumi.Context,
 		args = &AppsDashboardArgs{}
 	}
 
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:experimental/appsDashboard:AppsDashboard"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AppsDashboard
 	err := ctx.RegisterResource("grafana:experimental/appsDashboard:AppsDashboard", name, args, &resource, opts...)

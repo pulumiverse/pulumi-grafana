@@ -132,8 +132,13 @@ class _AppsPlaylistV0Alpha1State:
         pulumi.set(self, "spec", value)
 
 
+warnings.warn("""grafana.experimental/appsplaylistv0alpha1.AppsPlaylistV0Alpha1 has been deprecated in favor of grafana.apps/v0alpha1/playlist.Playlist""", DeprecationWarning)
+
+
 @pulumi.type_token("grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1")
 class AppsPlaylistV0Alpha1(pulumi.CustomResource):
+    warnings.warn("""grafana.experimental/appsplaylistv0alpha1.AppsPlaylistV0Alpha1 has been deprecated in favor of grafana.apps/v0alpha1/playlist.Playlist""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -154,7 +159,7 @@ class AppsPlaylistV0Alpha1(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.experimental.AppsPlaylistV0Alpha1("example",
+        example = grafana.apps.v0alpha1.Playlist("example",
             metadata={
                 "uid": "example-playlist",
             },
@@ -193,7 +198,7 @@ class AppsPlaylistV0Alpha1(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.experimental.AppsPlaylistV0Alpha1("example",
+        example = grafana.apps.v0alpha1.Playlist("example",
             metadata={
                 "uid": "example-playlist",
             },
@@ -227,6 +232,7 @@ class AppsPlaylistV0Alpha1(pulumi.CustomResource):
                  options: Optional[pulumi.Input[Union['AppsPlaylistV0Alpha1OptionsArgs', 'AppsPlaylistV0Alpha1OptionsArgsDict']]] = None,
                  spec: Optional[pulumi.Input[Union['AppsPlaylistV0Alpha1SpecArgs', 'AppsPlaylistV0Alpha1SpecArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""AppsPlaylistV0Alpha1 is deprecated: grafana.experimental/appsplaylistv0alpha1.AppsPlaylistV0Alpha1 has been deprecated in favor of grafana.apps/v0alpha1/playlist.Playlist""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -238,6 +244,8 @@ class AppsPlaylistV0Alpha1(pulumi.CustomResource):
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["options"] = options
             __props__.__dict__["spec"] = spec
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(AppsPlaylistV0Alpha1, __self__).__init__(
             'grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1',
             resource_name,

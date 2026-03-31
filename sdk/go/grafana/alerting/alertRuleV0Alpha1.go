@@ -26,6 +26,7 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting"
+//	alertingv0alpha1 "github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting/v0alpha1"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
 //
 // )
@@ -108,14 +109,14 @@ import (
 //				return err
 //			}
 //			json1 := string(tmpJSON1)
-//			_, err = alerting.NewAlertRuleV0Alpha1(ctx, "example", &alerting.AlertRuleV0Alpha1Args{
-//				Metadata: &alerting.AlertRuleV0Alpha1MetadataArgs{
+//			_, err = alerting.NewAlertRule(ctx, "example", &alerting.AlertRuleArgs{
+//				Metadata: &alertingv0alpha1.AlertRuleMetadataArgs{
 //					Uid:       pulumi.String("example-alert-rule"),
 //					FolderUid: alertruleFolder.Uid,
 //				},
-//				Spec: &alerting.AlertRuleV0Alpha1SpecArgs{
+//				Spec: &alertingv0alpha1.AlertRuleSpecArgs{
 //					Title: pulumi.String("Example Alert Rule"),
-//					Trigger: &alerting.AlertRuleV0Alpha1SpecTriggerArgs{
+//					Trigger: &alertingv0alpha1.AlertRuleSpecTriggerArgs{
 //						Interval: pulumi.String("1m"),
 //					},
 //					Paused: pulumi.Bool(true),
@@ -133,7 +134,7 @@ import (
 //					NoDataState:                 pulumi.String("KeepLast"),
 //					ExecErrState:                pulumi.String("KeepLast"),
 //					MissingSeriesEvalsToResolve: pulumi.Int(5),
-//					NotificationSettings: &alerting.AlertRuleV0Alpha1SpecNotificationSettingsArgs{
+//					NotificationSettings: &alertingv0alpha1.AlertRuleSpecNotificationSettingsArgs{
 //						ContactPoint: pulumi.String("grafana-default-email"),
 //					},
 //					PanelRef: pulumi.StringMap{
@@ -150,6 +151,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule
 type AlertRuleV0Alpha1 struct {
 	pulumi.CustomResourceState
 
@@ -168,6 +171,12 @@ func NewAlertRuleV0Alpha1(ctx *pulumi.Context,
 		args = &AlertRuleV0Alpha1Args{}
 	}
 
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AlertRuleV0Alpha1
 	err := ctx.RegisterResource("grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1", name, args, &resource, opts...)

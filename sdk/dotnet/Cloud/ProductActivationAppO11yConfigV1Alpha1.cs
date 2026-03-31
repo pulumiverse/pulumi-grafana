@@ -27,13 +27,13 @@ namespace Pulumiverse.Grafana.Cloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.Cloud.ProductActivationAppO11yConfigV1Alpha1("example", new()
+    ///     var example = new Grafana.Cloud.V1Alpha1.ProductActivationAppO11yConfig("example", new()
     ///     {
-    ///         Metadata = new Grafana.Cloud.Inputs.ProductActivationAppO11yConfigV1Alpha1MetadataArgs
+    ///         Metadata = new Grafana.Cloud.V1Alpha1.Inputs.ProductActivationAppO11yConfigMetadataArgs
     ///         {
     ///             Uid = "global",
     ///         },
-    ///         Spec = new Grafana.Cloud.Inputs.ProductActivationAppO11yConfigV1Alpha1SpecArgs
+    ///         Spec = new Grafana.Cloud.V1Alpha1.Inputs.ProductActivationAppO11yConfigSpecArgs
     ///         {
     ///             Enabled = true,
     ///         },
@@ -51,6 +51,7 @@ namespace Pulumiverse.Grafana.Cloud
     /// $ pulumi import grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1 example my-app-o11y-config
     /// ```
     /// </summary>
+    [Obsolete(@"grafana.cloud/productactivationappo11yconfigv1alpha1.ProductActivationAppO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationappo11yconfig.ProductActivationAppO11yConfig")]
     [GrafanaResourceType("grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1")]
     public partial class ProductActivationAppO11yConfigV1Alpha1 : global::Pulumi.CustomResource
     {
@@ -96,6 +97,10 @@ namespace Pulumiverse.Grafana.Cloud
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

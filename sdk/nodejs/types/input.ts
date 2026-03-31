@@ -5,547 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface AppsDashboardDashboardV2beta1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: pulumi.Input<string>;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: pulumi.Input<string>;
-    /**
-     * The full URL of the resource.
-     */
-    url?: pulumi.Input<string>;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid?: pulumi.Input<string>;
-    /**
-     * The version of the resource.
-     */
-    version?: pulumi.Input<string>;
-}
-
-export interface AppsDashboardDashboardV2beta1Options {
-    /**
-     * Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
-     */
-    allowUiUpdates?: pulumi.Input<boolean>;
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: pulumi.Input<boolean>;
-}
-
-export interface AppsDashboardDashboardV2beta1Spec {
-    /**
-     * The JSON representation of the dashboard v2beta1 spec.
-     */
-    json: pulumi.Input<string>;
-    /**
-     * The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
-     */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The title of the dashboard. If not set, the title will be derived from the JSON spec.
-     */
-    title?: pulumi.Input<string>;
-}
-
-export interface AppsNotificationsInhibitionruleV1beta1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: pulumi.Input<string>;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: pulumi.Input<string>;
-    /**
-     * The full URL of the resource.
-     */
-    url?: pulumi.Input<string>;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid?: pulumi.Input<string>;
-    /**
-     * The version of the resource.
-     */
-    version?: pulumi.Input<string>;
-}
-
-export interface AppsNotificationsInhibitionruleV1beta1Options {
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: pulumi.Input<boolean>;
-}
-
-export interface AppsNotificationsInhibitionruleV1beta1Spec {
-    /**
-     * Labels that must have equal values in source and target alerts for the inhibition to take effect.
-     */
-    equals?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Matchers that must be satisfied for an alert to be a source of inhibition.
-     */
-    sourceMatchers?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsInhibitionruleV1beta1SpecSourceMatcher>[]>;
-    /**
-     * Matchers that must be satisfied for an alert to be inhibited.
-     */
-    targetMatchers?: pulumi.Input<pulumi.Input<inputs.AppsNotificationsInhibitionruleV1beta1SpecTargetMatcher>[]>;
-}
-
-export interface AppsNotificationsInhibitionruleV1beta1SpecSourceMatcher {
-    label: pulumi.Input<string>;
-    type: pulumi.Input<string>;
-    value: pulumi.Input<string>;
-}
-
-export interface AppsNotificationsInhibitionruleV1beta1SpecTargetMatcher {
-    label: pulumi.Input<string>;
-    type: pulumi.Input<string>;
-    value: pulumi.Input<string>;
-}
-
-export interface AppsProvisioningConnectionV0alpha1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: pulumi.Input<string>;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: pulumi.Input<string>;
-    /**
-     * The full URL of the resource.
-     */
-    url?: pulumi.Input<string>;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid?: pulumi.Input<string>;
-    /**
-     * The version of the resource.
-     */
-    version?: pulumi.Input<string>;
-}
-
-export interface AppsProvisioningConnectionV0alpha1Options {
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: pulumi.Input<boolean>;
-}
-
-export interface AppsProvisioningConnectionV0alpha1Secure {
-    /**
-     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Private key for GitHub App authentication.
-     */
-    privateKey?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Access token.
-     */
-    token?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-}
-
-export interface AppsProvisioningConnectionV0alpha1Spec {
-    /**
-     * Connection description.
-     */
-    description?: pulumi.Input<string>;
-    /**
-     * GitHub App configuration.
-     */
-    github?: pulumi.Input<inputs.AppsProvisioningConnectionV0alpha1SpecGithub>;
-    /**
-     * Display name shown in the UI.
-     */
-    title: pulumi.Input<string>;
-    /**
-     * Connection provider type.
-     */
-    type: pulumi.Input<string>;
-    /**
-     * Provider URL.
-     */
-    url?: pulumi.Input<string>;
-}
-
-export interface AppsProvisioningConnectionV0alpha1SpecGithub {
-    /**
-     * GitHub App ID.
-     */
-    appId: pulumi.Input<string>;
-    /**
-     * GitHub App installation ID.
-     */
-    installationId: pulumi.Input<string>;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: pulumi.Input<string>;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: pulumi.Input<string>;
-    /**
-     * The full URL of the resource.
-     */
-    url?: pulumi.Input<string>;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid?: pulumi.Input<string>;
-    /**
-     * The version of the resource.
-     */
-    version?: pulumi.Input<string>;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1Options {
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: pulumi.Input<boolean>;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1Secure {
-    /**
-     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Token for repository authentication.
-     */
-    token?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Webhook secret.
-     */
-    webhookSecret?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1Spec {
-    /**
-     * Bitbucket repository configuration.
-     */
-    bitbucket?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecBitbucket>;
-    /**
-     * Connection resource reference.
-     */
-    connection?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecConnection>;
-    /**
-     * Repository description.
-     */
-    description?: pulumi.Input<string>;
-    /**
-     * Generic git repository configuration.
-     */
-    git?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecGit>;
-    /**
-     * GitHub repository configuration.
-     */
-    github?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecGithub>;
-    /**
-     * GitLab repository configuration.
-     */
-    gitlab?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecGitlab>;
-    /**
-     * Local filesystem repository configuration.
-     */
-    local?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecLocal>;
-    /**
-     * Sync configuration.
-     */
-    sync?: pulumi.Input<inputs.AppsProvisioningRepositoryV0alpha1SpecSync>;
-    /**
-     * Display name shown in the UI.
-     */
-    title: pulumi.Input<string>;
-    /**
-     * Repository provider type: local, github, git, bitbucket, or gitlab.
-     */
-    type: pulumi.Input<string>;
-    /**
-     * Allowed change workflows: write, branch.
-     */
-    workflows?: pulumi.Input<pulumi.Input<string>[]>;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecBitbucket {
-    /**
-     * Branch to sync.
-     */
-    branch?: pulumi.Input<string>;
-    /**
-     * Optional subdirectory path.
-     */
-    path?: pulumi.Input<string>;
-    /**
-     * Username for PAT auth.
-     */
-    tokenUser?: pulumi.Input<string>;
-    /**
-     * Repository URL.
-     */
-    url?: pulumi.Input<string>;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecConnection {
-    /**
-     * Connection resource name.
-     */
-    name?: pulumi.Input<string>;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecGit {
-    /**
-     * Branch to sync.
-     */
-    branch?: pulumi.Input<string>;
-    /**
-     * Optional subdirectory path.
-     */
-    path?: pulumi.Input<string>;
-    /**
-     * Username for PAT auth.
-     */
-    tokenUser?: pulumi.Input<string>;
-    /**
-     * Repository URL.
-     */
-    url?: pulumi.Input<string>;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecGithub {
-    /**
-     * Branch to sync.
-     */
-    branch?: pulumi.Input<string>;
-    /**
-     * Whether to generate dashboard previews.
-     */
-    generateDashboardPreviews?: pulumi.Input<boolean>;
-    /**
-     * Optional subdirectory path.
-     */
-    path?: pulumi.Input<string>;
-    /**
-     * Repository URL.
-     */
-    url?: pulumi.Input<string>;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecGitlab {
-    /**
-     * Branch to sync.
-     */
-    branch?: pulumi.Input<string>;
-    /**
-     * Optional subdirectory path.
-     */
-    path?: pulumi.Input<string>;
-    /**
-     * Repository URL.
-     */
-    url?: pulumi.Input<string>;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecLocal {
-    /**
-     * Filesystem path.
-     */
-    path?: pulumi.Input<string>;
-}
-
-export interface AppsProvisioningRepositoryV0alpha1SpecSync {
-    /**
-     * Whether sync is enabled.
-     */
-    enabled: pulumi.Input<boolean>;
-    /**
-     * Sync interval in seconds.
-     */
-    intervalSeconds?: pulumi.Input<number>;
-    /**
-     * Sync target: instance or folder.
-     */
-    target: pulumi.Input<string>;
-}
-
-export interface AppsSecretKeeperActivationV1beta1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: pulumi.Input<string>;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: pulumi.Input<string>;
-    /**
-     * The full URL of the resource.
-     */
-    url?: pulumi.Input<string>;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid?: pulumi.Input<string>;
-    /**
-     * The version of the resource.
-     */
-    version?: pulumi.Input<string>;
-}
-
-export interface AppsSecretKeeperV1beta1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: pulumi.Input<string>;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: pulumi.Input<string>;
-    /**
-     * The full URL of the resource.
-     */
-    url?: pulumi.Input<string>;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid?: pulumi.Input<string>;
-    /**
-     * The version of the resource.
-     */
-    version?: pulumi.Input<string>;
-}
-
-export interface AppsSecretKeeperV1beta1Options {
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: pulumi.Input<boolean>;
-}
-
-export interface AppsSecretKeeperV1beta1Spec {
-    /**
-     * AWS Secrets Manager configuration.
-     */
-    aws?: pulumi.Input<inputs.AppsSecretKeeperV1beta1SpecAws>;
-    /**
-     * Keeper description.
-     */
-    description?: pulumi.Input<string>;
-}
-
-export interface AppsSecretKeeperV1beta1SpecAws {
-    /**
-     * IAM role assumption configuration.
-     */
-    assumeRole?: pulumi.Input<inputs.AppsSecretKeeperV1beta1SpecAwsAssumeRole>;
-    /**
-     * AWS region.
-     */
-    region: pulumi.Input<string>;
-}
-
-export interface AppsSecretKeeperV1beta1SpecAwsAssumeRole {
-    /**
-     * Assume role ARN.
-     */
-    assumeRoleArn?: pulumi.Input<string>;
-    /**
-     * Assume role external ID.
-     */
-    externalId?: pulumi.Input<string>;
-}
-
-export interface AppsSecretSecurevalueV1beta1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: pulumi.Input<string>;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: pulumi.Input<string>;
-    /**
-     * The full URL of the resource.
-     */
-    url?: pulumi.Input<string>;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid?: pulumi.Input<string>;
-    /**
-     * The version of the resource.
-     */
-    version?: pulumi.Input<string>;
-}
-
-export interface AppsSecretSecurevalueV1beta1Options {
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: pulumi.Input<boolean>;
-}
-
-export interface AppsSecretSecurevalueV1beta1Spec {
-    /**
-     * List of decrypters allowed to read this secure value.
-     */
-    decrypters?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Secure value description.
-     */
-    description?: pulumi.Input<string>;
-    /**
-     * Reference to an existing secret managed by the keeper.
-     */
-    ref?: pulumi.Input<string>;
-    /**
-     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Plaintext value to store. This value is write-only.
-     */
-    value?: pulumi.Input<string>;
-    /**
-     * Hash of the stored plaintext value.
-     */
-    valueHash?: pulumi.Input<string>;
-}
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -2837,6 +2296,1249 @@ export namespace alerting {
          */
         targetDatasourceUid?: pulumi.Input<string>;
     }
+    export namespace v0alpha1 {
+        export interface AlertRuleMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface AlertRuleOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface AlertRuleSpec {
+            /**
+             * Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbookUrl`, to help identify and investigate alerts.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.
+             */
+            execErrState: pulumi.Input<string>;
+            /**
+             * A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+             */
+            expressions: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending.
+             */
+            for?: pulumi.Input<string>;
+            /**
+             * The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
+             */
+            keepFiringFor?: pulumi.Input<string>;
+            /**
+             * Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The number of missing series evaluations that must occur before the rule is considered to be resolved.
+             */
+            missingSeriesEvalsToResolve?: pulumi.Input<number>;
+            /**
+             * Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
+             */
+            noDataState: pulumi.Input<string>;
+            /**
+             * Notification settings for the rule. If specified, it overrides the notification policies.
+             */
+            notificationSettings?: pulumi.Input<inputs.alerting.v0alpha1.AlertRuleSpecNotificationSettings>;
+            /**
+             * Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
+             */
+            panelRef?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Sets whether the rule should be paused or not.
+             */
+            paused?: pulumi.Input<boolean>;
+            /**
+             * The title of the alert rule.
+             */
+            title: pulumi.Input<string>;
+            /**
+             * The trigger configuration for the alert rule.
+             */
+            trigger?: pulumi.Input<inputs.alerting.v0alpha1.AlertRuleSpecTrigger>;
+        }
+
+        export interface AlertRuleSpecNotificationSettings {
+            /**
+             * A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+             */
+            activeTimings?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * The contact point to route notifications that match this rule to.
+             */
+            contactPoint: pulumi.Input<string>;
+            /**
+             * A list of alert labels to group alerts into notifications by.
+             */
+            groupBies?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Minimum time interval between two notifications for the same group.
+             */
+            groupInterval?: pulumi.Input<string>;
+            /**
+             * Time to wait to buffer alerts of the same group before sending a notification.
+             */
+            groupWait?: pulumi.Input<string>;
+            /**
+             * A list of mute timing names to apply to alerts that match this policy.
+             */
+            muteTimings?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Minimum time interval for re-sending a notification if an alert is still firing.
+             */
+            repeatInterval?: pulumi.Input<string>;
+        }
+
+        export interface AlertRuleSpecTrigger {
+            /**
+             * The interval at which the alert rule should be evaluated.
+             */
+            interval: pulumi.Input<string>;
+        }
+
+        export interface RecordingRuleMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface RecordingRuleOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface RecordingRuleSpec {
+            /**
+             * A sequence of stages that describe the contents of the rule. Each value is a JSON string representing an expression object.
+             */
+            expressions: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Key-value pairs to attach to the recorded metric.
+             */
+            labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The name of the metric to write to.
+             */
+            metric: pulumi.Input<string>;
+            /**
+             * Sets whether the recording rule should be paused or not.
+             */
+            paused?: pulumi.Input<boolean>;
+            /**
+             * The UID of the datasource to write the metric to.
+             */
+            targetDatasourceUid: pulumi.Input<string>;
+            /**
+             * The title of the recording rule.
+             */
+            title: pulumi.Input<string>;
+            /**
+             * The trigger configuration for the recording rule.
+             */
+            trigger?: pulumi.Input<inputs.alerting.v0alpha1.RecordingRuleSpecTrigger>;
+        }
+
+        export interface RecordingRuleSpecTrigger {
+            /**
+             * The interval at which the recording rule should be evaluated.
+             */
+            interval: pulumi.Input<string>;
+        }
+    }
+
+    export namespace v1beta1 {
+        export interface AlertEnrichmentMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface AlertEnrichmentSpec {
+            /**
+             * UIDs of alert rules this enrichment applies to. If empty, applies to all alert rules.
+             */
+            alertRuleUids?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
+             */
+            annotationMatchers?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecAnnotationMatcher>[]>;
+            /**
+             * Description of the alert enrichment.
+             */
+            description?: pulumi.Input<string>;
+            /**
+             * Allow modifying alert enrichment outside of Terraform
+             */
+            disableProvenance?: pulumi.Input<boolean>;
+            /**
+             * Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
+             */
+            labelMatchers?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecLabelMatcher>[]>;
+            /**
+             * Receiver names to match. If empty, applies to all receivers.
+             */
+            receivers?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Enrichment step. Can be repeated multiple times to define a sequence of steps. Each step must contain exactly one enrichment block.
+             */
+            steps?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStep>[]>;
+            /**
+             * The title of the alert enrichment.
+             */
+            title: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecAnnotationMatcher {
+            name: pulumi.Input<string>;
+            type: pulumi.Input<string>;
+            value: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecLabelMatcher {
+            name: pulumi.Input<string>;
+            type: pulumi.Input<string>;
+            value: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStep {
+            /**
+             * Integrate with Grafana Asserts for enrichment.
+             */
+            asserts?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepAsserts>;
+            /**
+             * Assign annotations to an alert.
+             */
+            assign?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepAssign>;
+            /**
+             * Use AI assistant to investigate alerts and add insights.
+             */
+            assistantInvestigations?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepAssistantInvestigations>;
+            /**
+             * Conditional step with if/then/else.
+             */
+            conditional?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditional>;
+            /**
+             * Query Grafana data sources and add results to alerts.
+             */
+            dataSource?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepDataSource>;
+            /**
+             * Generate AI explanation and store in an annotation.
+             */
+            explain?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepExplain>;
+            /**
+             * Call an external HTTP service for enrichment.
+             */
+            external?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepExternal>;
+            /**
+             * Analyze alerts for patterns and insights.
+             */
+            sift?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepSift>;
+        }
+
+        export interface AlertEnrichmentSpecStepAsserts {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepAssign {
+            /**
+             * Map of annotation names to values to set on matching alerts.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepAssistantInvestigations {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditional {
+            /**
+             * Steps when condition is false.
+             */
+            else?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElse>;
+            /**
+             * Condition to evaluate.
+             */
+            if?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalIf>;
+            /**
+             * Steps when condition is true.
+             */
+            then?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThen>;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElse {
+            steps?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStep>[]>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStep {
+            /**
+             * Integrate with Grafana Asserts for enrichment.
+             */
+            asserts?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepAsserts>;
+            /**
+             * Assign annotations to an alert.
+             */
+            assign?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepAssign>;
+            /**
+             * Use AI assistant to investigate alerts and add insights.
+             */
+            assistantInvestigations?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations>;
+            /**
+             * Query Grafana data sources and add results to alerts.
+             */
+            dataSource?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepDataSource>;
+            /**
+             * Generate AI explanation and store in an annotation.
+             */
+            explain?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepExplain>;
+            /**
+             * Call an external HTTP service for enrichment.
+             */
+            external?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepExternal>;
+            /**
+             * Analyze alerts for patterns and insights.
+             */
+            sift?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepSift>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepAsserts {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepAssign {
+            /**
+             * Map of annotation names to values to set on matching alerts.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepAssistantInvestigations {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepDataSource {
+            /**
+             * Logs query configuration for querying log data sources.
+             */
+            logsQuery?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery>;
+            /**
+             * Raw query configuration for advanced data source queries.
+             */
+            rawQuery?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery>;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepDataSourceLogsQuery {
+            /**
+             * Data source type (e.g., 'loki').
+             */
+            dataSourceType?: pulumi.Input<string>;
+            /**
+             * UID of the data source to query.
+             */
+            dataSourceUid?: pulumi.Input<string>;
+            /**
+             * Log query expression to execute.
+             */
+            expr?: pulumi.Input<string>;
+            /**
+             * Maximum number of log lines to include. Defaults to 3.
+             */
+            maxLines?: pulumi.Input<number>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepDataSourceRawQuery {
+            /**
+             * Reference ID for correlating queries.
+             */
+            refId?: pulumi.Input<string>;
+            /**
+             * Raw request payload for the data source query.
+             */
+            request?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepExplain {
+            /**
+             * Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+             */
+            annotation?: pulumi.Input<string>;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepExternal {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+            /**
+             * HTTP endpoint URL to call for enrichment
+             */
+            url?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalElseStepSift {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalIf {
+            /**
+             * Annotation matchers for the condition.
+             */
+            annotationMatchers?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalIfAnnotationMatcher>[]>;
+            /**
+             * Data source condition.
+             */
+            dataSourceCondition?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalIfDataSourceCondition>;
+            /**
+             * Label matchers for the condition.
+             */
+            labelMatchers?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalIfLabelMatcher>[]>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalIfAnnotationMatcher {
+            name: pulumi.Input<string>;
+            type: pulumi.Input<string>;
+            value: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalIfDataSourceCondition {
+            /**
+             * Data source request payload.
+             */
+            request?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalIfLabelMatcher {
+            name: pulumi.Input<string>;
+            type: pulumi.Input<string>;
+            value: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThen {
+            steps?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStep>[]>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStep {
+            /**
+             * Integrate with Grafana Asserts for enrichment.
+             */
+            asserts?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepAsserts>;
+            /**
+             * Assign annotations to an alert.
+             */
+            assign?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepAssign>;
+            /**
+             * Use AI assistant to investigate alerts and add insights.
+             */
+            assistantInvestigations?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations>;
+            /**
+             * Query Grafana data sources and add results to alerts.
+             */
+            dataSource?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepDataSource>;
+            /**
+             * Generate AI explanation and store in an annotation.
+             */
+            explain?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepExplain>;
+            /**
+             * Call an external HTTP service for enrichment.
+             */
+            external?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepExternal>;
+            /**
+             * Analyze alerts for patterns and insights.
+             */
+            sift?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepSift>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepAsserts {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepAssign {
+            /**
+             * Map of annotation names to values to set on matching alerts.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepAssistantInvestigations {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepDataSource {
+            /**
+             * Logs query configuration for querying log data sources.
+             */
+            logsQuery?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery>;
+            /**
+             * Raw query configuration for advanced data source queries.
+             */
+            rawQuery?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery>;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepDataSourceLogsQuery {
+            /**
+             * Data source type (e.g., 'loki').
+             */
+            dataSourceType?: pulumi.Input<string>;
+            /**
+             * UID of the data source to query.
+             */
+            dataSourceUid?: pulumi.Input<string>;
+            /**
+             * Log query expression to execute.
+             */
+            expr?: pulumi.Input<string>;
+            /**
+             * Maximum number of log lines to include. Defaults to 3.
+             */
+            maxLines?: pulumi.Input<number>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepDataSourceRawQuery {
+            /**
+             * Reference ID for correlating queries.
+             */
+            refId?: pulumi.Input<string>;
+            /**
+             * Raw request payload for the data source query.
+             */
+            request?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepExplain {
+            /**
+             * Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+             */
+            annotation?: pulumi.Input<string>;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepExternal {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+            /**
+             * HTTP endpoint URL to call for enrichment
+             */
+            url?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepConditionalThenStepSift {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepDataSource {
+            /**
+             * Logs query configuration for querying log data sources.
+             */
+            logsQuery?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepDataSourceLogsQuery>;
+            /**
+             * Raw query configuration for advanced data source queries.
+             */
+            rawQuery?: pulumi.Input<inputs.alerting.v1beta1.AlertEnrichmentSpecStepDataSourceRawQuery>;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepDataSourceLogsQuery {
+            /**
+             * Data source type (e.g., 'loki').
+             */
+            dataSourceType?: pulumi.Input<string>;
+            /**
+             * UID of the data source to query.
+             */
+            dataSourceUid?: pulumi.Input<string>;
+            /**
+             * Log query expression to execute.
+             */
+            expr?: pulumi.Input<string>;
+            /**
+             * Maximum number of log lines to include. Defaults to 3.
+             */
+            maxLines?: pulumi.Input<number>;
+        }
+
+        export interface AlertEnrichmentSpecStepDataSourceRawQuery {
+            /**
+             * Reference ID for correlating queries.
+             */
+            refId?: pulumi.Input<string>;
+            /**
+             * Raw request payload for the data source query.
+             */
+            request?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepExplain {
+            /**
+             * Annotation name to set the explanation in. Defaults to 'ai_explanation'.
+             */
+            annotation?: pulumi.Input<string>;
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepExternal {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+            /**
+             * HTTP endpoint URL to call for enrichment
+             */
+            url?: pulumi.Input<string>;
+        }
+
+        export interface AlertEnrichmentSpecStepSift {
+            /**
+             * Maximum execution time (e.g., '30s', '1m')
+             */
+            timeout?: pulumi.Input<string>;
+        }
+
+        export interface NotificationsInhibitionRuleMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface NotificationsInhibitionRuleOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface NotificationsInhibitionRuleSpec {
+            /**
+             * Labels that must have equal values in source and target alerts for the inhibition to take effect.
+             */
+            equals?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Matchers that must be satisfied for an alert to be a source of inhibition.
+             */
+            sourceMatchers?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.NotificationsInhibitionRuleSpecSourceMatcher>[]>;
+            /**
+             * Matchers that must be satisfied for an alert to be inhibited.
+             */
+            targetMatchers?: pulumi.Input<pulumi.Input<inputs.alerting.v1beta1.NotificationsInhibitionRuleSpecTargetMatcher>[]>;
+        }
+
+        export interface NotificationsInhibitionRuleSpecSourceMatcher {
+            label: pulumi.Input<string>;
+            type: pulumi.Input<string>;
+            value: pulumi.Input<string>;
+        }
+
+        export interface NotificationsInhibitionRuleSpecTargetMatcher {
+            label: pulumi.Input<string>;
+            type: pulumi.Input<string>;
+            value: pulumi.Input<string>;
+        }
+    }
+}
+
+export namespace apps {
+    export namespace v0alpha1 {
+        export interface PlaylistMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface PlaylistOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface PlaylistSpec {
+            /**
+             * The interval of the playlist.
+             */
+            interval?: pulumi.Input<string>;
+            /**
+             * The items of the playlist.
+             */
+            items: pulumi.Input<pulumi.Input<inputs.apps.v0alpha1.PlaylistSpecItem>[]>;
+            /**
+             * The title of the playlist.
+             */
+            title: pulumi.Input<string>;
+        }
+
+        export interface PlaylistSpecItem {
+            type: pulumi.Input<string>;
+            value: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningConnectionMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningConnectionOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface ProvisioningConnectionSecure {
+            /**
+             * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+             * Private key for GitHub App authentication.
+             */
+            privateKey?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+             * Access token.
+             */
+            token?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        }
+
+        export interface ProvisioningConnectionSpec {
+            /**
+             * Connection description.
+             */
+            description?: pulumi.Input<string>;
+            /**
+             * GitHub App configuration.
+             */
+            github?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningConnectionSpecGithub>;
+            /**
+             * Display name shown in the UI.
+             */
+            title: pulumi.Input<string>;
+            /**
+             * Connection provider type.
+             */
+            type: pulumi.Input<string>;
+            /**
+             * Provider URL.
+             */
+            url?: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningConnectionSpecGithub {
+            /**
+             * GitHub App ID.
+             */
+            appId: pulumi.Input<string>;
+            /**
+             * GitHub App installation ID.
+             */
+            installationId: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningRepositoryMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningRepositoryOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface ProvisioningRepositorySecure {
+            /**
+             * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+             * Token for repository authentication.
+             */
+            token?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+             * Webhook secret.
+             */
+            webhookSecret?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        }
+
+        export interface ProvisioningRepositorySpec {
+            /**
+             * Bitbucket repository configuration.
+             */
+            bitbucket?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecBitbucket>;
+            /**
+             * Connection resource reference.
+             */
+            connection?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecConnection>;
+            /**
+             * Repository description.
+             */
+            description?: pulumi.Input<string>;
+            /**
+             * Generic git repository configuration.
+             */
+            git?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecGit>;
+            /**
+             * GitHub repository configuration.
+             */
+            github?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecGithub>;
+            /**
+             * GitLab repository configuration.
+             */
+            gitlab?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecGitlab>;
+            /**
+             * Local filesystem repository configuration.
+             */
+            local?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecLocal>;
+            /**
+             * Sync configuration.
+             */
+            sync?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecSync>;
+            /**
+             * Display name shown in the UI.
+             */
+            title: pulumi.Input<string>;
+            /**
+             * Repository provider type: local, github, git, bitbucket, or gitlab.
+             */
+            type: pulumi.Input<string>;
+            /**
+             * Allowed change workflows: write, branch.
+             */
+            workflows?: pulumi.Input<pulumi.Input<string>[]>;
+        }
+
+        export interface ProvisioningRepositorySpecBitbucket {
+            /**
+             * Branch to sync.
+             */
+            branch?: pulumi.Input<string>;
+            /**
+             * Optional subdirectory path.
+             */
+            path?: pulumi.Input<string>;
+            /**
+             * Username for PAT auth.
+             */
+            tokenUser?: pulumi.Input<string>;
+            /**
+             * Repository URL.
+             */
+            url?: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningRepositorySpecConnection {
+            /**
+             * Connection resource name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningRepositorySpecGit {
+            /**
+             * Branch to sync.
+             */
+            branch?: pulumi.Input<string>;
+            /**
+             * Optional subdirectory path.
+             */
+            path?: pulumi.Input<string>;
+            /**
+             * Username for PAT auth.
+             */
+            tokenUser?: pulumi.Input<string>;
+            /**
+             * Repository URL.
+             */
+            url?: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningRepositorySpecGithub {
+            /**
+             * Branch to sync.
+             */
+            branch?: pulumi.Input<string>;
+            /**
+             * Whether to generate dashboard previews.
+             */
+            generateDashboardPreviews?: pulumi.Input<boolean>;
+            /**
+             * Optional subdirectory path.
+             */
+            path?: pulumi.Input<string>;
+            /**
+             * Repository URL.
+             */
+            url?: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningRepositorySpecGitlab {
+            /**
+             * Branch to sync.
+             */
+            branch?: pulumi.Input<string>;
+            /**
+             * Optional subdirectory path.
+             */
+            path?: pulumi.Input<string>;
+            /**
+             * Repository URL.
+             */
+            url?: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningRepositorySpecLocal {
+            /**
+             * Filesystem path.
+             */
+            path?: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningRepositorySpecSync {
+            /**
+             * Whether sync is enabled.
+             */
+            enabled: pulumi.Input<boolean>;
+            /**
+             * Sync interval in seconds.
+             */
+            intervalSeconds?: pulumi.Input<number>;
+            /**
+             * Sync target: instance or folder.
+             */
+            target: pulumi.Input<string>;
+        }
+    }
+
+    export namespace v1beta1 {
+        export interface DashboardMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface DashboardOptions {
+            /**
+             * Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+             */
+            allowUiUpdates?: pulumi.Input<boolean>;
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface DashboardSpec {
+            /**
+             * The JSON representation of the dashboard spec.
+             */
+            json: pulumi.Input<string>;
+            /**
+             * The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
+             */
+            tags?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * The title of the dashboard. If not set, the title will be derived from the JSON spec.
+             */
+            title?: pulumi.Input<string>;
+        }
+    }
+
+    export namespace v2beta1 {
+        export interface DashboardMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface DashboardOptions {
+            /**
+             * Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+             */
+            allowUiUpdates?: pulumi.Input<boolean>;
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface DashboardSpec {
+            /**
+             * The JSON representation of the dashboard v2beta1 spec.
+             */
+            json: pulumi.Input<string>;
+            /**
+             * The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
+             */
+            tags?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * The title of the dashboard. If not set, the title will be derived from the JSON spec.
+             */
+            title?: pulumi.Input<string>;
+        }
+    }
 }
 
 export namespace assert {
@@ -3230,6 +3932,89 @@ export namespace cloud {
          * Whether Kubernetes observability is enabled.
          */
         enabled: pulumi.Input<boolean>;
+    }
+    export namespace v1alpha1 {
+        export interface ProductActivationAppO11yConfigMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface ProductActivationAppO11yConfigOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface ProductActivationAppO11yConfigSpec {
+            /**
+             * Whether application observability is enabled.
+             */
+            enabled: pulumi.Input<boolean>;
+        }
+
+        export interface ProductActivationK8sO11yConfigMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface ProductActivationK8sO11yConfigOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface ProductActivationK8sO11yConfigSpec {
+            /**
+             * Whether Kubernetes observability is enabled.
+             */
+            enabled: pulumi.Input<boolean>;
+        }
     }
 }
 
@@ -3912,6 +4697,159 @@ export namespace enterprise {
          * Scope to restrict the action to a set of resources (for example: `users:*` or `roles:customrole1`) Defaults to ``.
          */
         scope?: pulumi.Input<string>;
+    }
+    export namespace v1beta1 {
+        export interface SecretKeeperActivationMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface SecretKeeperMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface SecretKeeperOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface SecretKeeperSpec {
+            /**
+             * AWS Secrets Manager configuration.
+             */
+            aws?: pulumi.Input<inputs.enterprise.v1beta1.SecretKeeperSpecAws>;
+            /**
+             * Keeper description.
+             */
+            description?: pulumi.Input<string>;
+        }
+
+        export interface SecretKeeperSpecAws {
+            /**
+             * IAM role assumption configuration.
+             */
+            assumeRole?: pulumi.Input<inputs.enterprise.v1beta1.SecretKeeperSpecAwsAssumeRole>;
+            /**
+             * AWS region.
+             */
+            region: pulumi.Input<string>;
+        }
+
+        export interface SecretKeeperSpecAwsAssumeRole {
+            /**
+             * Assume role ARN.
+             */
+            assumeRoleArn?: pulumi.Input<string>;
+            /**
+             * Assume role external ID.
+             */
+            externalId?: pulumi.Input<string>;
+        }
+
+        export interface SecretSecureValueMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface SecretSecureValueOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface SecretSecureValueSpec {
+            /**
+             * List of decrypters allowed to read this secure value.
+             */
+            decrypters?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Secure value description.
+             */
+            description?: pulumi.Input<string>;
+            /**
+             * Reference to an existing secret managed by the keeper.
+             */
+            ref?: pulumi.Input<string>;
+            /**
+             * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+             * Plaintext value to store. This value is write-only.
+             */
+            value?: pulumi.Input<string>;
+            /**
+             * Hash of the stored plaintext value.
+             */
+            valueHash?: pulumi.Input<string>;
+        }
     }
 }
 

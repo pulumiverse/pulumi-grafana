@@ -18,7 +18,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.experimental.AppsPlaylistV0Alpha1("example", {
+ * const example = new grafana.apps.v0alpha1.Playlist("example", {
  *     metadata: {
  *         uid: "example-playlist",
  *     },
@@ -32,6 +32,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * @deprecated grafana.experimental/appsplaylistv0alpha1.AppsPlaylistV0Alpha1 has been deprecated in favor of grafana.apps/v0alpha1/playlist.Playlist
  */
 export class AppsPlaylistV0Alpha1 extends pulumi.CustomResource {
     /**
@@ -44,6 +46,7 @@ export class AppsPlaylistV0Alpha1 extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AppsPlaylistV0Alpha1State, opts?: pulumi.CustomResourceOptions): AppsPlaylistV0Alpha1 {
+        pulumi.log.warn("AppsPlaylistV0Alpha1 is deprecated: grafana.experimental/appsplaylistv0alpha1.AppsPlaylistV0Alpha1 has been deprecated in favor of grafana.apps/v0alpha1/playlist.Playlist")
         return new AppsPlaylistV0Alpha1(name, <any>state, { ...opts, id: id });
     }
 
@@ -81,8 +84,11 @@ export class AppsPlaylistV0Alpha1 extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.experimental/appsplaylistv0alpha1.AppsPlaylistV0Alpha1 has been deprecated in favor of grafana.apps/v0alpha1/playlist.Playlist */
     constructor(name: string, args?: AppsPlaylistV0Alpha1Args, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.experimental/appsplaylistv0alpha1.AppsPlaylistV0Alpha1 has been deprecated in favor of grafana.apps/v0alpha1/playlist.Playlist */
     constructor(name: string, argsOrState?: AppsPlaylistV0Alpha1Args | AppsPlaylistV0Alpha1State, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("AppsPlaylistV0Alpha1 is deprecated: grafana.experimental/appsplaylistv0alpha1.AppsPlaylistV0Alpha1 has been deprecated in favor of grafana.apps/v0alpha1/playlist.Playlist")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -97,6 +103,8 @@ export class AppsPlaylistV0Alpha1 extends pulumi.CustomResource {
             resourceInputs["spec"] = args?.spec;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(AppsPlaylistV0Alpha1.__pulumiType, name, resourceInputs, opts);
     }
 }

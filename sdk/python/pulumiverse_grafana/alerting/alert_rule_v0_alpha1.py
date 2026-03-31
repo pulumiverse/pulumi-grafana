@@ -132,8 +132,13 @@ class _AlertRuleV0Alpha1State:
         pulumi.set(self, "spec", value)
 
 
+warnings.warn("""grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule""", DeprecationWarning)
+
+
 @pulumi.type_token("grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1")
 class AlertRuleV0Alpha1(pulumi.CustomResource):
+    warnings.warn("""grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -155,7 +160,7 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         alertrule_folder = grafana.oss.Folder("alertrule_folder", title="Alert Rule Folder")
-        example = grafana.alerting.AlertRuleV0Alpha1("example",
+        example = grafana.alerting.v0alpha1.AlertRule("example",
             metadata={
                 "uid": "example-alert-rule",
                 "folder_uid": alertrule_folder.uid,
@@ -270,7 +275,7 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
         import pulumiverse_grafana as grafana
 
         alertrule_folder = grafana.oss.Folder("alertrule_folder", title="Alert Rule Folder")
-        example = grafana.alerting.AlertRuleV0Alpha1("example",
+        example = grafana.alerting.v0alpha1.AlertRule("example",
             metadata={
                 "uid": "example-alert-rule",
                 "folder_uid": alertrule_folder.uid,
@@ -379,6 +384,7 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                  options: Optional[pulumi.Input[Union['AlertRuleV0Alpha1OptionsArgs', 'AlertRuleV0Alpha1OptionsArgsDict']]] = None,
                  spec: Optional[pulumi.Input[Union['AlertRuleV0Alpha1SpecArgs', 'AlertRuleV0Alpha1SpecArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""AlertRuleV0Alpha1 is deprecated: grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -390,6 +396,8 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["options"] = options
             __props__.__dict__["spec"] = spec
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(AlertRuleV0Alpha1, __self__).__init__(
             'grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1',
             resource_name,

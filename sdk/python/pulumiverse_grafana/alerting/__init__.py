@@ -16,3 +16,14 @@ from .recording_rule_v0_alpha1 import *
 from .rule_group import *
 from ._inputs import *
 from . import outputs
+
+# Make subpackages available:
+if typing.TYPE_CHECKING:
+    import pulumiverse_grafana.alerting.v0alpha1 as __v0alpha1
+    v0alpha1 = __v0alpha1
+    import pulumiverse_grafana.alerting.v1beta1 as __v1beta1
+    v1beta1 = __v1beta1
+else:
+    v0alpha1 = _utilities.lazy_import('pulumiverse_grafana.alerting.v0alpha1')
+    v1beta1 = _utilities.lazy_import('pulumiverse_grafana.alerting.v1beta1')
+
