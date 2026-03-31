@@ -32,6 +32,7 @@ const (
 	// further modules follow the grouping of the upstream TF provider
 	// https://registry.terraform.io/providers/grafana/grafana/latest/docs
 	alertingMod              = "alerting"
+	appsMod                  = "apps"
 	assertsMod               = "assert"
 	cloudMod                 = "cloud"
 	cloudProviderMod         = "cloudProvider"
@@ -73,6 +74,12 @@ func grafanaDataSource(mod string, res string) tokens.ModuleMember {
 func grafanaResource(mod string, res string) tokens.Type {
 	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
 	return grafanaType(mod+"/"+fn, res)
+}
+
+// grafanaVersionedResource manufactures a versioned resource token given a module and resource name.
+// It verifies the
+func grafanaVersionedResource(mod string, version string, res string) tokens.Type {
+	return grafanaType(mod+"/"+version, res)
 }
 
 func grafanaResourceAlias(mod string, res string) *string {
@@ -210,7 +217,15 @@ func Provider() tfbridge.ProviderInfo {
 		Resources: map[string]*tfbridge.ResourceInfo{
 			// Experimental - these can still change over time
 			"grafana_apps_dashboard_dashboard_v1beta1": {
-				Tok: grafanaResource(experimentalMod, "AppsDashboard"),
+				Tok: grafanaVersionedResource(appsMod, "v1beta1", "Dashboard"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaResourceAlias(experimentalMod, "AppsDashboard"),
+					},
+				},
+			},
+			"grafana_apps_dashboard_dashboard_v2beta1": {
+				Tok: grafanaVersionedResource(appsMod, "v2beta1", "Dashboard"),
 			},
 			"grafana_apps_playlist_playlist_v0alpha1": {
 				Tok: grafanaResource(experimentalMod, "AppsPlaylistV0Alpha1"),
@@ -754,12 +769,20 @@ func Provider() tfbridge.ProviderInfo {
 			// no overlay files.
 			//Overlay: &tfbridge.OverlayInfo{},
 			RespectSchemaVersion: true,
+			ModuleToPackage: map[string]string{
+				"apps/v1beta1": "apps/v1beta1",
+				"apps/v2beta1": "apps/v2beta1",
+			},
 		},
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
 			PackageName:          "pulumiverse_grafana",
 			PyProject:            struct{ Enabled bool }{true},
 			RespectSchemaVersion: true,
+			ModuleNameOverrides: map[string]string{
+				"apps/v1beta1": "apps/v1beta1",
+				"apps/v2beta1": "apps/v2beta1",
+			},
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
@@ -770,10 +793,22 @@ func Provider() tfbridge.ProviderInfo {
 			),
 			GenerateResourceContainerTypes: true,
 			RespectSchemaVersion:           true,
+			ModuleToPackage: map[string]string{
+				"apps/v1beta1": "apps/v1beta1",
+				"apps/v2beta1": "apps/v2beta1",
+			},
+			PackageImportAliases: map[string]string{
+				"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps/v1beta1": "appsv1beta1",
+				"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps/v2beta1": "appsv2beta1",
+			},
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			RootNamespace:        "Pulumiverse",
 			RespectSchemaVersion: true,
+			Namespaces: map[string]string{
+				"apps/v1beta1": "Apps/V1Beta1",
+				"apps/v2beta1": "Apps/V2Beta1",
+			},
 		},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 	}

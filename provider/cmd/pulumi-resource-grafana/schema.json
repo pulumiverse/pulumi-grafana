@@ -19,12 +19,24 @@
     },
     "language": {
         "csharp": {
+            "namespaces": {
+                "apps/v1beta1": "Apps/V1Beta1",
+                "apps/v2beta1": "Apps/V2Beta1"
+            },
             "compatibility": "tfbridge20",
             "rootNamespace": "Pulumiverse",
             "respectSchemaVersion": true
         },
         "go": {
             "importBasePath": "github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana",
+            "moduleToPackage": {
+                "apps/v1beta1": "apps/v1beta1",
+                "apps/v2beta1": "apps/v2beta1"
+            },
+            "packageImportAliases": {
+                "github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps/v1beta1": "appsv1beta1",
+                "github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps/v2beta1": "appsv2beta1"
+            },
             "generateResourceContainerTypes": true,
             "generateExtraInputTypes": true,
             "respectSchemaVersion": true
@@ -37,6 +49,10 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^10.0.0"
             },
+            "moduleToPackage": {
+                "apps/v1beta1": "apps/v1beta1",
+                "apps/v2beta1": "apps/v2beta1"
+            },
             "compatibility": "tfbridge20",
             "disableUnionOutputTypes": true,
             "respectSchemaVersion": true
@@ -44,6 +60,10 @@
         "python": {
             "packageName": "pulumiverse_grafana",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/grafana/terraform-provider-grafana)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-grafana` repo](https://github.com/pulumiverse/pulumi-grafana/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-grafana` repo](https://github.com/grafana/terraform-provider-grafana/issues).",
+            "moduleNameOverrides": {
+                "apps/v1beta1": "apps/v1beta1",
+                "apps/v2beta1": "apps/v2beta1"
+            },
             "compatibility": "tfbridge20",
             "respectSchemaVersion": true,
             "pyproject": {
@@ -3601,6 +3621,88 @@
                 "metric"
             ]
         },
+        "grafana:apps/DashboardMetadata:DashboardMetadata": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Annotations of the resource.\n"
+                },
+                "folderUid": {
+                    "type": "string",
+                    "description": "The UID of the folder to save the resource in.\n"
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "The unique identifier of the resource.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The full URL of the resource.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "The globally unique identifier of a resource, used by the API for tracking.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the resource.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "uid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "annotations",
+                        "uid",
+                        "url",
+                        "uuid",
+                        "version"
+                    ]
+                }
+            }
+        },
+        "grafana:apps/DashboardOptions:DashboardOptions": {
+            "properties": {
+                "allowUiUpdates": {
+                    "type": "boolean",
+                    "description": "Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.\n"
+                },
+                "overwrite": {
+                    "type": "boolean",
+                    "description": "Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:apps/DashboardSpec:DashboardSpec": {
+            "properties": {
+                "json": {
+                    "type": "string",
+                    "description": "The JSON representation of the dashboard v2beta1 spec.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags of the dashboard. If not set, the tags will be derived from the JSON spec.\n"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the dashboard. If not set, the title will be derived from the JSON spec.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "json"
+            ]
+        },
         "grafana:assert/CustomModelRulesRules:CustomModelRulesRules": {
             "properties": {
                 "entities": {
@@ -5363,88 +5465,6 @@
                     "requiredInputs": []
                 }
             }
-        },
-        "grafana:index/AppsDashboardDashboardV2beta1Metadata:AppsDashboardDashboardV2beta1Metadata": {
-            "properties": {
-                "annotations": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "Annotations of the resource.\n"
-                },
-                "folderUid": {
-                    "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
-                },
-                "uid": {
-                    "type": "string",
-                    "description": "The unique identifier of the resource.\n"
-                },
-                "url": {
-                    "type": "string",
-                    "description": "The full URL of the resource.\n"
-                },
-                "uuid": {
-                    "type": "string",
-                    "description": "The globally unique identifier of a resource, used by the API for tracking.\n"
-                },
-                "version": {
-                    "type": "string",
-                    "description": "The version of the resource.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "uid"
-            ],
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "annotations",
-                        "uid",
-                        "url",
-                        "uuid",
-                        "version"
-                    ]
-                }
-            }
-        },
-        "grafana:index/AppsDashboardDashboardV2beta1Options:AppsDashboardDashboardV2beta1Options": {
-            "properties": {
-                "allowUiUpdates": {
-                    "type": "boolean",
-                    "description": "Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.\n"
-                },
-                "overwrite": {
-                    "type": "boolean",
-                    "description": "Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.\n"
-                }
-            },
-            "type": "object"
-        },
-        "grafana:index/AppsDashboardDashboardV2beta1Spec:AppsDashboardDashboardV2beta1Spec": {
-            "properties": {
-                "json": {
-                    "type": "string",
-                    "description": "The JSON representation of the dashboard v2beta1 spec.\n"
-                },
-                "tags": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The tags of the dashboard. If not set, the tags will be derived from the JSON spec.\n"
-                },
-                "title": {
-                    "type": "string",
-                    "description": "The title of the dashboard. If not set, the title will be derived from the JSON spec.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "json"
-            ]
         },
         "grafana:index/AppsNotificationsInhibitionruleV1beta1Metadata:AppsNotificationsInhibitionruleV1beta1Metadata": {
             "properties": {
@@ -10535,6 +10555,109 @@
                 }
             ]
         },
+        "grafana:apps/v1beta1:Dashboard": {
+            "description": "Manages Grafana dashboards using the new Grafana APIs.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.apps.Dashboard(\"example\", {\n    metadata: {\n        uid: \"example-dashboard\",\n    },\n    spec: {\n        title: \"Example Dashboard\",\n        json: JSON.stringify({\n            title: \"Example Dashboard\",\n            uid: \"example-dashboard\",\n            panels: [],\n            schemaVersion: 42,\n        }),\n    },\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.apps.Dashboard(\"example\",\n    metadata={\n        \"uid\": \"example-dashboard\",\n    },\n    spec={\n        \"title\": \"Example Dashboard\",\n        \"json\": json.dumps({\n            \"title\": \"Example Dashboard\",\n            \"uid\": \"example-dashboard\",\n            \"panels\": [],\n            \"schemaVersion\": 42,\n        }),\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Apps.Dashboard(\"example\", new()\n    {\n        Metadata = new Grafana.Apps.Inputs.DashboardMetadataArgs\n        {\n            Uid = \"example-dashboard\",\n        },\n        Spec = new Grafana.Apps.Inputs.DashboardSpecArgs\n        {\n            Title = \"Example Dashboard\",\n            Json = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n            {\n                [\"title\"] = \"Example Dashboard\",\n                [\"uid\"] = \"example-dashboard\",\n                [\"panels\"] = new[]\n                {\n                },\n                [\"schemaVersion\"] = 42,\n            }),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"title\":         \"Example Dashboard\",\n\t\t\t\"uid\":           \"example-dashboard\",\n\t\t\t\"panels\":        []interface{}{},\n\t\t\t\"schemaVersion\": 42,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = apps.NewDashboardResource(ctx, \"example\", \u0026apps.DashboardResourceArgs{\n\t\t\tMetadata: \u0026apps.DashboardMetadataArgs{\n\t\t\t\tUid: pulumi.String(\"example-dashboard\"),\n\t\t\t},\n\t\t\tSpec: \u0026apps.DashboardSpecArgs{\n\t\t\t\tTitle: pulumi.String(\"Example Dashboard\"),\n\t\t\t\tJson:  pulumi.String(pulumi.String(json0)),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.apps.Dashboard;\nimport com.pulumi.grafana.apps.DashboardArgs;\nimport com.pulumi.grafana.apps.inputs.DashboardMetadataArgs;\nimport com.pulumi.grafana.apps.inputs.DashboardSpecArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Dashboard(\"example\", DashboardArgs.builder()\n            .metadata(DashboardMetadataArgs.builder()\n                .uid(\"example-dashboard\")\n                .build())\n            .spec(DashboardSpecArgs.builder()\n                .title(\"Example Dashboard\")\n                .json(serializeJson(\n                    jsonObject(\n                        jsonProperty(\"title\", \"Example Dashboard\"),\n                        jsonProperty(\"uid\", \"example-dashboard\"),\n                        jsonProperty(\"panels\", jsonArray(\n                        )),\n                        jsonProperty(\"schemaVersion\", 42)\n                    )))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:apps:Dashboard\n    properties:\n      metadata:\n        uid: example-dashboard\n      spec:\n        title: Example Dashboard\n        json:\n          fn::toJSON:\n            title: Example Dashboard\n            uid: example-dashboard\n            panels: []\n            schemaVersion: 42\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:apps/DashboardMetadata:DashboardMetadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:apps/DashboardOptions:DashboardOptions",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:apps/DashboardSpec:DashboardSpec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "inputProperties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:apps/DashboardMetadata:DashboardMetadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:apps/DashboardOptions:DashboardOptions",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:apps/DashboardSpec:DashboardSpec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Dashboard resources.\n",
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/types/grafana:apps/DashboardMetadata:DashboardMetadata",
+                        "description": "The metadata of the resource.\n"
+                    },
+                    "options": {
+                        "$ref": "#/types/grafana:apps/DashboardOptions:DashboardOptions",
+                        "description": "Options for applying the resource.\n"
+                    },
+                    "spec": {
+                        "$ref": "#/types/grafana:apps/DashboardSpec:DashboardSpec",
+                        "description": "The spec of the resource.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "aliases": [
+                {
+                    "type": "grafana:experimental/appsDashboard:AppsDashboard"
+                }
+            ]
+        },
+        "grafana:apps/v2beta1:Dashboard": {
+            "description": "Manages Grafana dashboards using the v2beta1 (Dynamic Dashboards) schema.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.apps.Dashboard(\"example\", {\n    metadata: {\n        uid: \"example-dashboard-v2\",\n    },\n    spec: {\n        title: \"Example Dashboard V2\",\n        json: JSON.stringify({\n            title: \"Example Dashboard V2\",\n            cursorSync: \"Off\",\n            elements: {},\n            layout: {\n                kind: \"GridLayout\",\n                spec: {\n                    items: [],\n                },\n            },\n            links: [],\n            preload: false,\n            annotations: [],\n            variables: [],\n            timeSettings: {\n                timezone: \"browser\",\n                from: \"now-6h\",\n                to: \"now\",\n            },\n        }),\n    },\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.apps.Dashboard(\"example\",\n    metadata={\n        \"uid\": \"example-dashboard-v2\",\n    },\n    spec={\n        \"title\": \"Example Dashboard V2\",\n        \"json\": json.dumps({\n            \"title\": \"Example Dashboard V2\",\n            \"cursorSync\": \"Off\",\n            \"elements\": {},\n            \"layout\": {\n                \"kind\": \"GridLayout\",\n                \"spec\": {\n                    \"items\": [],\n                },\n            },\n            \"links\": [],\n            \"preload\": False,\n            \"annotations\": [],\n            \"variables\": [],\n            \"timeSettings\": {\n                \"timezone\": \"browser\",\n                \"from\": \"now-6h\",\n                \"to\": \"now\",\n            },\n        }),\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Apps.Dashboard(\"example\", new()\n    {\n        Metadata = new Grafana.Apps.Inputs.DashboardMetadataArgs\n        {\n            Uid = \"example-dashboard-v2\",\n        },\n        Spec = new Grafana.Apps.Inputs.DashboardSpecArgs\n        {\n            Title = \"Example Dashboard V2\",\n            Json = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n            {\n                [\"title\"] = \"Example Dashboard V2\",\n                [\"cursorSync\"] = \"Off\",\n                [\"elements\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                },\n                [\"layout\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"kind\"] = \"GridLayout\",\n                    [\"spec\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"items\"] = new[]\n                        {\n                        },\n                    },\n                },\n                [\"links\"] = new[]\n                {\n                },\n                [\"preload\"] = false,\n                [\"annotations\"] = new[]\n                {\n                },\n                [\"variables\"] = new[]\n                {\n                },\n                [\"timeSettings\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"timezone\"] = \"browser\",\n                    [\"from\"] = \"now-6h\",\n                    [\"to\"] = \"now\",\n                },\n            }),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"title\":      \"Example Dashboard V2\",\n\t\t\t\"cursorSync\": \"Off\",\n\t\t\t\"elements\":   map[string]interface{}{},\n\t\t\t\"layout\": map[string]interface{}{\n\t\t\t\t\"kind\": \"GridLayout\",\n\t\t\t\t\"spec\": map[string]interface{}{\n\t\t\t\t\t\"items\": []interface{}{},\n\t\t\t\t},\n\t\t\t},\n\t\t\t\"links\":       []interface{}{},\n\t\t\t\"preload\":     false,\n\t\t\t\"annotations\": []interface{}{},\n\t\t\t\"variables\":   []interface{}{},\n\t\t\t\"timeSettings\": map[string]interface{}{\n\t\t\t\t\"timezone\": \"browser\",\n\t\t\t\t\"from\":     \"now-6h\",\n\t\t\t\t\"to\":       \"now\",\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = apps.NewDashboardResource(ctx, \"example\", \u0026apps.DashboardResourceArgs{\n\t\t\tMetadata: \u0026apps.DashboardMetadataArgs{\n\t\t\t\tUid: pulumi.String(\"example-dashboard-v2\"),\n\t\t\t},\n\t\t\tSpec: \u0026apps.DashboardSpecArgs{\n\t\t\t\tTitle: pulumi.String(\"Example Dashboard V2\"),\n\t\t\t\tJson:  pulumi.String(pulumi.String(json0)),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.apps.Dashboard;\nimport com.pulumi.grafana.apps.DashboardArgs;\nimport com.pulumi.grafana.apps.inputs.DashboardMetadataArgs;\nimport com.pulumi.grafana.apps.inputs.DashboardSpecArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Dashboard(\"example\", DashboardArgs.builder()\n            .metadata(DashboardMetadataArgs.builder()\n                .uid(\"example-dashboard-v2\")\n                .build())\n            .spec(DashboardSpecArgs.builder()\n                .title(\"Example Dashboard V2\")\n                .json(serializeJson(\n                    jsonObject(\n                        jsonProperty(\"title\", \"Example Dashboard V2\"),\n                        jsonProperty(\"cursorSync\", \"Off\"),\n                        jsonProperty(\"elements\", jsonObject(\n\n                        )),\n                        jsonProperty(\"layout\", jsonObject(\n                            jsonProperty(\"kind\", \"GridLayout\"),\n                            jsonProperty(\"spec\", jsonObject(\n                                jsonProperty(\"items\", jsonArray(\n                                ))\n                            ))\n                        )),\n                        jsonProperty(\"links\", jsonArray(\n                        )),\n                        jsonProperty(\"preload\", false),\n                        jsonProperty(\"annotations\", jsonArray(\n                        )),\n                        jsonProperty(\"variables\", jsonArray(\n                        )),\n                        jsonProperty(\"timeSettings\", jsonObject(\n                            jsonProperty(\"timezone\", \"browser\"),\n                            jsonProperty(\"from\", \"now-6h\"),\n                            jsonProperty(\"to\", \"now\")\n                        ))\n                    )))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:apps:Dashboard\n    properties:\n      metadata:\n        uid: example-dashboard-v2\n      spec:\n        title: Example Dashboard V2\n        json:\n          fn::toJSON:\n            title: Example Dashboard V2\n            cursorSync: Off\n            elements: {}\n            layout:\n              kind: GridLayout\n              spec:\n                items: []\n            links: []\n            preload: false\n            annotations: []\n            variables: []\n            timeSettings:\n              timezone: browser\n              from: now-6h\n              to: now\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:apps/DashboardMetadata:DashboardMetadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:apps/DashboardOptions:DashboardOptions",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:apps/DashboardSpec:DashboardSpec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "inputProperties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:apps/DashboardMetadata:DashboardMetadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:apps/DashboardOptions:DashboardOptions",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:apps/DashboardSpec:DashboardSpec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Dashboard resources.\n",
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/types/grafana:apps/DashboardMetadata:DashboardMetadata",
+                        "description": "The metadata of the resource.\n"
+                    },
+                    "options": {
+                        "$ref": "#/types/grafana:apps/DashboardOptions:DashboardOptions",
+                        "description": "Options for applying the resource.\n"
+                    },
+                    "spec": {
+                        "$ref": "#/types/grafana:apps/DashboardSpec:DashboardSpec",
+                        "description": "The spec of the resource.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:assert/customModelRules:CustomModelRules": {
             "description": "Manages Knowledge Graph Custom Model Rules through the Grafana API.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.assert.CustomModelRules(\"test\", {\n    name: \"test-anything\",\n    rules: {\n        entities: [{\n            type: \"Service\",\n            name: \"workload | service | job\",\n            scope: {\n                namespace: \"namespace\",\n                env: \"asserts_env\",\n                site: \"asserts_site\",\n            },\n            lookup: {\n                workload: \"workload | deployment | statefulset | daemonset | replicaset\",\n                service: \"service\",\n                job: \"job\",\n                proxy_job: \"job\",\n            },\n            definedBies: [\n                {\n                    query: \"up{job!=''}\",\n                    disabled: false,\n                    labelValues: {\n                        service: \"service\",\n                        job: \"job\",\n                    },\n                    literals: {\n                        _source: \"up_query\",\n                    },\n                },\n                {\n                    query: \"up{job='disabled'}\",\n                    disabled: true,\n                },\n            ],\n        }],\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest = grafana.assert_.CustomModelRules(\"test\",\n    name=\"test-anything\",\n    rules={\n        \"entities\": [{\n            \"type\": \"Service\",\n            \"name\": \"workload | service | job\",\n            \"scope\": {\n                \"namespace\": \"namespace\",\n                \"env\": \"asserts_env\",\n                \"site\": \"asserts_site\",\n            },\n            \"lookup\": {\n                \"workload\": \"workload | deployment | statefulset | daemonset | replicaset\",\n                \"service\": \"service\",\n                \"job\": \"job\",\n                \"proxy_job\": \"job\",\n            },\n            \"defined_bies\": [\n                {\n                    \"query\": \"up{job!=''}\",\n                    \"disabled\": False,\n                    \"label_values\": {\n                        \"service\": \"service\",\n                        \"job\": \"job\",\n                    },\n                    \"literals\": {\n                        \"_source\": \"up_query\",\n                    },\n                },\n                {\n                    \"query\": \"up{job='disabled'}\",\n                    \"disabled\": True,\n                },\n            ],\n        }],\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Assert.CustomModelRules(\"test\", new()\n    {\n        Name = \"test-anything\",\n        Rules = new Grafana.Assert.Inputs.CustomModelRulesRulesArgs\n        {\n            Entities = new[]\n            {\n                new Grafana.Assert.Inputs.CustomModelRulesRulesEntityArgs\n                {\n                    Type = \"Service\",\n                    Name = \"workload | service | job\",\n                    Scope = \n                    {\n                        { \"namespace\", \"namespace\" },\n                        { \"env\", \"asserts_env\" },\n                        { \"site\", \"asserts_site\" },\n                    },\n                    Lookup = \n                    {\n                        { \"workload\", \"workload | deployment | statefulset | daemonset | replicaset\" },\n                        { \"service\", \"service\" },\n                        { \"job\", \"job\" },\n                        { \"proxy_job\", \"job\" },\n                    },\n                    DefinedBies = new[]\n                    {\n                        new Grafana.Assert.Inputs.CustomModelRulesRulesEntityDefinedByArgs\n                        {\n                            Query = \"up{job!=''}\",\n                            Disabled = false,\n                            LabelValues = \n                            {\n                                { \"service\", \"service\" },\n                                { \"job\", \"job\" },\n                            },\n                            Literals = \n                            {\n                                { \"_source\", \"up_query\" },\n                            },\n                        },\n                        new Grafana.Assert.Inputs.CustomModelRulesRulesEntityDefinedByArgs\n                        {\n                            Query = \"up{job='disabled'}\",\n                            Disabled = true,\n                        },\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/assert\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := assert.NewCustomModelRules(ctx, \"test\", \u0026assert.CustomModelRulesArgs{\n\t\t\tName: pulumi.String(\"test-anything\"),\n\t\t\tRules: \u0026assert.CustomModelRulesRulesArgs{\n\t\t\t\tEntities: assert.CustomModelRulesRulesEntityArray{\n\t\t\t\t\t\u0026assert.CustomModelRulesRulesEntityArgs{\n\t\t\t\t\t\tType: pulumi.String(\"Service\"),\n\t\t\t\t\t\tName: pulumi.String(\"workload | service | job\"),\n\t\t\t\t\t\tScope: pulumi.StringMap{\n\t\t\t\t\t\t\t\"namespace\": pulumi.String(\"namespace\"),\n\t\t\t\t\t\t\t\"env\":       pulumi.String(\"asserts_env\"),\n\t\t\t\t\t\t\t\"site\":      pulumi.String(\"asserts_site\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t\tLookup: pulumi.StringMap{\n\t\t\t\t\t\t\t\"workload\":  pulumi.String(\"workload | deployment | statefulset | daemonset | replicaset\"),\n\t\t\t\t\t\t\t\"service\":   pulumi.String(\"service\"),\n\t\t\t\t\t\t\t\"job\":       pulumi.String(\"job\"),\n\t\t\t\t\t\t\t\"proxy_job\": pulumi.String(\"job\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t\tDefinedBies: assert.CustomModelRulesRulesEntityDefinedByArray{\n\t\t\t\t\t\t\t\u0026assert.CustomModelRulesRulesEntityDefinedByArgs{\n\t\t\t\t\t\t\t\tQuery:    pulumi.String(\"up{job!=''}\"),\n\t\t\t\t\t\t\t\tDisabled: pulumi.Bool(false),\n\t\t\t\t\t\t\t\tLabelValues: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\t\"service\": pulumi.String(\"service\"),\n\t\t\t\t\t\t\t\t\t\"job\":     pulumi.String(\"job\"),\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\tLiterals: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\t\"_source\": pulumi.String(\"up_query\"),\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\u0026assert.CustomModelRulesRulesEntityDefinedByArgs{\n\t\t\t\t\t\t\t\tQuery:    pulumi.String(\"up{job='disabled'}\"),\n\t\t\t\t\t\t\t\tDisabled: pulumi.Bool(true),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.assert.CustomModelRules;\nimport com.pulumi.grafana.assert.CustomModelRulesArgs;\nimport com.pulumi.grafana.assert.inputs.CustomModelRulesRulesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new CustomModelRules(\"test\", CustomModelRulesArgs.builder()\n            .name(\"test-anything\")\n            .rules(CustomModelRulesRulesArgs.builder()\n                .entities(CustomModelRulesRulesEntityArgs.builder()\n                    .type(\"Service\")\n                    .name(\"workload | service | job\")\n                    .scope(Map.ofEntries(\n                        Map.entry(\"namespace\", \"namespace\"),\n                        Map.entry(\"env\", \"asserts_env\"),\n                        Map.entry(\"site\", \"asserts_site\")\n                    ))\n                    .lookup(Map.ofEntries(\n                        Map.entry(\"workload\", \"workload | deployment | statefulset | daemonset | replicaset\"),\n                        Map.entry(\"service\", \"service\"),\n                        Map.entry(\"job\", \"job\"),\n                        Map.entry(\"proxy_job\", \"job\")\n                    ))\n                    .definedBies(                    \n                        CustomModelRulesRulesEntityDefinedByArgs.builder()\n                            .query(\"up{job!=''}\")\n                            .disabled(false)\n                            .labelValues(Map.ofEntries(\n                                Map.entry(\"service\", \"service\"),\n                                Map.entry(\"job\", \"job\")\n                            ))\n                            .literals(Map.of(\"_source\", \"up_query\"))\n                            .build(),\n                        CustomModelRulesRulesEntityDefinedByArgs.builder()\n                            .query(\"up{job='disabled'}\")\n                            .disabled(true)\n                            .build())\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:assert:CustomModelRules\n    properties:\n      name: test-anything\n      rules:\n        entities:\n          - type: Service\n            name: workload | service | job\n            scope:\n              namespace: namespace\n              env: asserts_env\n              site: asserts_site\n            lookup:\n              workload: workload | deployment | statefulset | daemonset | replicaset\n              service: service\n              job: job\n              proxy_job: job\n            definedBies:\n              - query: up{job!=''}\n                disabled: false\n                labelValues:\n                  service: service\n                  job: job\n                literals:\n                  _source: up_query\n              - query: up{job='disabled'}\n                disabled: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_asserts_custom_model_rules.name \"{{ name }}\"\n```\n\n",
             "properties": {
@@ -15168,7 +15291,7 @@
             ]
         },
         "grafana:experimental/appsDashboard:AppsDashboard": {
-            "description": "Manages Grafana dashboards using the new Grafana APIs.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.experimental.AppsDashboard(\"example\", {\n    metadata: {\n        uid: \"example-dashboard\",\n    },\n    spec: {\n        title: \"Example Dashboard\",\n        json: JSON.stringify({\n            title: \"Example Dashboard\",\n            uid: \"example-dashboard\",\n            panels: [],\n            schemaVersion: 42,\n        }),\n    },\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.experimental.AppsDashboard(\"example\",\n    metadata={\n        \"uid\": \"example-dashboard\",\n    },\n    spec={\n        \"title\": \"Example Dashboard\",\n        \"json\": json.dumps({\n            \"title\": \"Example Dashboard\",\n            \"uid\": \"example-dashboard\",\n            \"panels\": [],\n            \"schemaVersion\": 42,\n        }),\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Experimental.AppsDashboard(\"example\", new()\n    {\n        Metadata = new Grafana.Experimental.Inputs.AppsDashboardMetadataArgs\n        {\n            Uid = \"example-dashboard\",\n        },\n        Spec = new Grafana.Experimental.Inputs.AppsDashboardSpecArgs\n        {\n            Title = \"Example Dashboard\",\n            Json = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n            {\n                [\"title\"] = \"Example Dashboard\",\n                [\"uid\"] = \"example-dashboard\",\n                [\"panels\"] = new[]\n                {\n                },\n                [\"schemaVersion\"] = 42,\n            }),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/experimental\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"title\":         \"Example Dashboard\",\n\t\t\t\"uid\":           \"example-dashboard\",\n\t\t\t\"panels\":        []interface{}{},\n\t\t\t\"schemaVersion\": 42,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = experimental.NewAppsDashboard(ctx, \"example\", \u0026experimental.AppsDashboardArgs{\n\t\t\tMetadata: \u0026experimental.AppsDashboardMetadataArgs{\n\t\t\t\tUid: pulumi.String(\"example-dashboard\"),\n\t\t\t},\n\t\t\tSpec: \u0026experimental.AppsDashboardSpecArgs{\n\t\t\t\tTitle: pulumi.String(\"Example Dashboard\"),\n\t\t\t\tJson:  pulumi.String(pulumi.String(json0)),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.experimental.AppsDashboard;\nimport com.pulumi.grafana.experimental.AppsDashboardArgs;\nimport com.pulumi.grafana.experimental.inputs.AppsDashboardMetadataArgs;\nimport com.pulumi.grafana.experimental.inputs.AppsDashboardSpecArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AppsDashboard(\"example\", AppsDashboardArgs.builder()\n            .metadata(AppsDashboardMetadataArgs.builder()\n                .uid(\"example-dashboard\")\n                .build())\n            .spec(AppsDashboardSpecArgs.builder()\n                .title(\"Example Dashboard\")\n                .json(serializeJson(\n                    jsonObject(\n                        jsonProperty(\"title\", \"Example Dashboard\"),\n                        jsonProperty(\"uid\", \"example-dashboard\"),\n                        jsonProperty(\"panels\", jsonArray(\n                        )),\n                        jsonProperty(\"schemaVersion\", 42)\n                    )))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:experimental:AppsDashboard\n    properties:\n      metadata:\n        uid: example-dashboard\n      spec:\n        title: Example Dashboard\n        json:\n          fn::toJSON:\n            title: Example Dashboard\n            uid: example-dashboard\n            panels: []\n            schemaVersion: 42\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Manages Grafana dashboards using the new Grafana APIs.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.apps.Dashboard(\"example\", {\n    metadata: {\n        uid: \"example-dashboard\",\n    },\n    spec: {\n        title: \"Example Dashboard\",\n        json: JSON.stringify({\n            title: \"Example Dashboard\",\n            uid: \"example-dashboard\",\n            panels: [],\n            schemaVersion: 42,\n        }),\n    },\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.apps.Dashboard(\"example\",\n    metadata={\n        \"uid\": \"example-dashboard\",\n    },\n    spec={\n        \"title\": \"Example Dashboard\",\n        \"json\": json.dumps({\n            \"title\": \"Example Dashboard\",\n            \"uid\": \"example-dashboard\",\n            \"panels\": [],\n            \"schemaVersion\": 42,\n        }),\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Apps.Dashboard(\"example\", new()\n    {\n        Metadata = new Grafana.Apps.Inputs.DashboardMetadataArgs\n        {\n            Uid = \"example-dashboard\",\n        },\n        Spec = new Grafana.Apps.Inputs.DashboardSpecArgs\n        {\n            Title = \"Example Dashboard\",\n            Json = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n            {\n                [\"title\"] = \"Example Dashboard\",\n                [\"uid\"] = \"example-dashboard\",\n                [\"panels\"] = new[]\n                {\n                },\n                [\"schemaVersion\"] = 42,\n            }),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"title\":         \"Example Dashboard\",\n\t\t\t\"uid\":           \"example-dashboard\",\n\t\t\t\"panels\":        []interface{}{},\n\t\t\t\"schemaVersion\": 42,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = apps.NewDashboardResource(ctx, \"example\", \u0026apps.DashboardResourceArgs{\n\t\t\tMetadata: \u0026apps.DashboardMetadataArgs{\n\t\t\t\tUid: pulumi.String(\"example-dashboard\"),\n\t\t\t},\n\t\t\tSpec: \u0026apps.DashboardSpecArgs{\n\t\t\t\tTitle: pulumi.String(\"Example Dashboard\"),\n\t\t\t\tJson:  pulumi.String(pulumi.String(json0)),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.apps.Dashboard;\nimport com.pulumi.grafana.apps.DashboardArgs;\nimport com.pulumi.grafana.apps.inputs.DashboardMetadataArgs;\nimport com.pulumi.grafana.apps.inputs.DashboardSpecArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Dashboard(\"example\", DashboardArgs.builder()\n            .metadata(DashboardMetadataArgs.builder()\n                .uid(\"example-dashboard\")\n                .build())\n            .spec(DashboardSpecArgs.builder()\n                .title(\"Example Dashboard\")\n                .json(serializeJson(\n                    jsonObject(\n                        jsonProperty(\"title\", \"Example Dashboard\"),\n                        jsonProperty(\"uid\", \"example-dashboard\"),\n                        jsonProperty(\"panels\", jsonArray(\n                        )),\n                        jsonProperty(\"schemaVersion\", 42)\n                    )))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:apps:Dashboard\n    properties:\n      metadata:\n        uid: example-dashboard\n      spec:\n        title: Example Dashboard\n        json:\n          fn::toJSON:\n            title: Example Dashboard\n            uid: example-dashboard\n            panels: []\n            schemaVersion: 42\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "metadata": {
                     "$ref": "#/types/grafana:experimental/AppsDashboardMetadata:AppsDashboardMetadata",
@@ -15214,7 +15337,13 @@
                     }
                 },
                 "type": "object"
-            }
+            },
+            "aliases": [
+                {
+                    "type": "grafana:experimental/appsDashboard:AppsDashboard"
+                }
+            ],
+            "deprecationMessage": "grafana.experimental/appsdashboard.AppsDashboard has been deprecated in favor of grafana.apps/v1beta1.Dashboard"
         },
         "grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1": {
             "description": "Manages Grafana playlists using the new Grafana APIs.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/apis/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.experimental.AppsPlaylistV0Alpha1(\"example\", {\n    metadata: {\n        uid: \"example-playlist\",\n    },\n    spec: {\n        title: \"Example Playlist\",\n        interval: \"5m\",\n        items: [{\n            type: \"dashboard_by_uid\",\n            value: \"example-dashboard-uid\",\n        }],\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.experimental.AppsPlaylistV0Alpha1(\"example\",\n    metadata={\n        \"uid\": \"example-playlist\",\n    },\n    spec={\n        \"title\": \"Example Playlist\",\n        \"interval\": \"5m\",\n        \"items\": [{\n            \"type\": \"dashboard_by_uid\",\n            \"value\": \"example-dashboard-uid\",\n        }],\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Experimental.AppsPlaylistV0Alpha1(\"example\", new()\n    {\n        Metadata = new Grafana.Experimental.Inputs.AppsPlaylistV0Alpha1MetadataArgs\n        {\n            Uid = \"example-playlist\",\n        },\n        Spec = new Grafana.Experimental.Inputs.AppsPlaylistV0Alpha1SpecArgs\n        {\n            Title = \"Example Playlist\",\n            Interval = \"5m\",\n            Items = new[]\n            {\n                new Grafana.Experimental.Inputs.AppsPlaylistV0Alpha1SpecItemArgs\n                {\n                    Type = \"dashboard_by_uid\",\n                    Value = \"example-dashboard-uid\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/experimental\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := experimental.NewAppsPlaylistV0Alpha1(ctx, \"example\", \u0026experimental.AppsPlaylistV0Alpha1Args{\n\t\t\tMetadata: \u0026experimental.AppsPlaylistV0Alpha1MetadataArgs{\n\t\t\t\tUid: pulumi.String(\"example-playlist\"),\n\t\t\t},\n\t\t\tSpec: \u0026experimental.AppsPlaylistV0Alpha1SpecArgs{\n\t\t\t\tTitle:    pulumi.String(\"Example Playlist\"),\n\t\t\t\tInterval: pulumi.String(\"5m\"),\n\t\t\t\tItems: experimental.AppsPlaylistV0Alpha1SpecItemArray{\n\t\t\t\t\t\u0026experimental.AppsPlaylistV0Alpha1SpecItemArgs{\n\t\t\t\t\t\tType:  pulumi.String(\"dashboard_by_uid\"),\n\t\t\t\t\t\tValue: pulumi.String(\"example-dashboard-uid\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.experimental.AppsPlaylistV0Alpha1;\nimport com.pulumi.grafana.experimental.AppsPlaylistV0Alpha1Args;\nimport com.pulumi.grafana.experimental.inputs.AppsPlaylistV0Alpha1MetadataArgs;\nimport com.pulumi.grafana.experimental.inputs.AppsPlaylistV0Alpha1SpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AppsPlaylistV0Alpha1(\"example\", AppsPlaylistV0Alpha1Args.builder()\n            .metadata(AppsPlaylistV0Alpha1MetadataArgs.builder()\n                .uid(\"example-playlist\")\n                .build())\n            .spec(AppsPlaylistV0Alpha1SpecArgs.builder()\n                .title(\"Example Playlist\")\n                .interval(\"5m\")\n                .items(AppsPlaylistV0Alpha1SpecItemArgs.builder()\n                    .type(\"dashboard_by_uid\")\n                    .value(\"example-dashboard-uid\")\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:experimental:AppsPlaylistV0Alpha1\n    properties:\n      metadata:\n        uid: example-playlist\n      spec:\n        title: Example Playlist\n        interval: 5m\n        items:\n          - type: dashboard_by_uid\n            value: example-dashboard-uid\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
@@ -15537,55 +15666,6 @@
                     "stackId": {
                         "type": "integer",
                         "description": "The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "grafana:index/appsDashboardDashboardV2beta1:AppsDashboardDashboardV2beta1": {
-            "description": "Manages Grafana dashboards using the v2beta1 (Dynamic Dashboards) schema.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.AppsDashboardDashboardV2beta1(\"example\", {\n    metadata: {\n        uid: \"example-dashboard-v2\",\n    },\n    spec: {\n        title: \"Example Dashboard V2\",\n        json: JSON.stringify({\n            title: \"Example Dashboard V2\",\n            cursorSync: \"Off\",\n            elements: {},\n            layout: {\n                kind: \"GridLayout\",\n                spec: {\n                    items: [],\n                },\n            },\n            links: [],\n            preload: false,\n            annotations: [],\n            variables: [],\n            timeSettings: {\n                timezone: \"browser\",\n                from: \"now-6h\",\n                to: \"now\",\n            },\n        }),\n    },\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.AppsDashboardDashboardV2beta1(\"example\",\n    metadata={\n        \"uid\": \"example-dashboard-v2\",\n    },\n    spec={\n        \"title\": \"Example Dashboard V2\",\n        \"json\": json.dumps({\n            \"title\": \"Example Dashboard V2\",\n            \"cursorSync\": \"Off\",\n            \"elements\": {},\n            \"layout\": {\n                \"kind\": \"GridLayout\",\n                \"spec\": {\n                    \"items\": [],\n                },\n            },\n            \"links\": [],\n            \"preload\": False,\n            \"annotations\": [],\n            \"variables\": [],\n            \"timeSettings\": {\n                \"timezone\": \"browser\",\n                \"from\": \"now-6h\",\n                \"to\": \"now\",\n            },\n        }),\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.AppsDashboardDashboardV2beta1(\"example\", new()\n    {\n        Metadata = new Grafana.Inputs.AppsDashboardDashboardV2beta1MetadataArgs\n        {\n            Uid = \"example-dashboard-v2\",\n        },\n        Spec = new Grafana.Inputs.AppsDashboardDashboardV2beta1SpecArgs\n        {\n            Title = \"Example Dashboard V2\",\n            Json = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n            {\n                [\"title\"] = \"Example Dashboard V2\",\n                [\"cursorSync\"] = \"Off\",\n                [\"elements\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                },\n                [\"layout\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"kind\"] = \"GridLayout\",\n                    [\"spec\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"items\"] = new[]\n                        {\n                        },\n                    },\n                },\n                [\"links\"] = new[]\n                {\n                },\n                [\"preload\"] = false,\n                [\"annotations\"] = new[]\n                {\n                },\n                [\"variables\"] = new[]\n                {\n                },\n                [\"timeSettings\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"timezone\"] = \"browser\",\n                    [\"from\"] = \"now-6h\",\n                    [\"to\"] = \"now\",\n                },\n            }),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"title\":      \"Example Dashboard V2\",\n\t\t\t\"cursorSync\": \"Off\",\n\t\t\t\"elements\":   map[string]interface{}{},\n\t\t\t\"layout\": map[string]interface{}{\n\t\t\t\t\"kind\": \"GridLayout\",\n\t\t\t\t\"spec\": map[string]interface{}{\n\t\t\t\t\t\"items\": []interface{}{},\n\t\t\t\t},\n\t\t\t},\n\t\t\t\"links\":       []interface{}{},\n\t\t\t\"preload\":     false,\n\t\t\t\"annotations\": []interface{}{},\n\t\t\t\"variables\":   []interface{}{},\n\t\t\t\"timeSettings\": map[string]interface{}{\n\t\t\t\t\"timezone\": \"browser\",\n\t\t\t\t\"from\":     \"now-6h\",\n\t\t\t\t\"to\":       \"now\",\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = grafana.NewAppsDashboardDashboardV2beta1(ctx, \"example\", \u0026grafana.AppsDashboardDashboardV2beta1Args{\n\t\t\tMetadata: \u0026grafana.AppsDashboardDashboardV2beta1MetadataArgs{\n\t\t\t\tUid: pulumi.String(\"example-dashboard-v2\"),\n\t\t\t},\n\t\t\tSpec: \u0026grafana.AppsDashboardDashboardV2beta1SpecArgs{\n\t\t\t\tTitle: pulumi.String(\"Example Dashboard V2\"),\n\t\t\t\tJson:  pulumi.String(pulumi.String(json0)),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.AppsDashboardDashboardV2beta1;\nimport com.pulumi.grafana.AppsDashboardDashboardV2beta1Args;\nimport com.pulumi.grafana.inputs.AppsDashboardDashboardV2beta1MetadataArgs;\nimport com.pulumi.grafana.inputs.AppsDashboardDashboardV2beta1SpecArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AppsDashboardDashboardV2beta1(\"example\", AppsDashboardDashboardV2beta1Args.builder()\n            .metadata(AppsDashboardDashboardV2beta1MetadataArgs.builder()\n                .uid(\"example-dashboard-v2\")\n                .build())\n            .spec(AppsDashboardDashboardV2beta1SpecArgs.builder()\n                .title(\"Example Dashboard V2\")\n                .json(serializeJson(\n                    jsonObject(\n                        jsonProperty(\"title\", \"Example Dashboard V2\"),\n                        jsonProperty(\"cursorSync\", \"Off\"),\n                        jsonProperty(\"elements\", jsonObject(\n\n                        )),\n                        jsonProperty(\"layout\", jsonObject(\n                            jsonProperty(\"kind\", \"GridLayout\"),\n                            jsonProperty(\"spec\", jsonObject(\n                                jsonProperty(\"items\", jsonArray(\n                                ))\n                            ))\n                        )),\n                        jsonProperty(\"links\", jsonArray(\n                        )),\n                        jsonProperty(\"preload\", false),\n                        jsonProperty(\"annotations\", jsonArray(\n                        )),\n                        jsonProperty(\"variables\", jsonArray(\n                        )),\n                        jsonProperty(\"timeSettings\", jsonObject(\n                            jsonProperty(\"timezone\", \"browser\"),\n                            jsonProperty(\"from\", \"now-6h\"),\n                            jsonProperty(\"to\", \"now\")\n                        ))\n                    )))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:AppsDashboardDashboardV2beta1\n    properties:\n      metadata:\n        uid: example-dashboard-v2\n      spec:\n        title: Example Dashboard V2\n        json:\n          fn::toJSON:\n            title: Example Dashboard V2\n            cursorSync: Off\n            elements: {}\n            layout:\n              kind: GridLayout\n              spec:\n                items: []\n            links: []\n            preload: false\n            annotations: []\n            variables: []\n            timeSettings:\n              timezone: browser\n              from: now-6h\n              to: now\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
-            "properties": {
-                "metadata": {
-                    "$ref": "#/types/grafana:index/AppsDashboardDashboardV2beta1Metadata:AppsDashboardDashboardV2beta1Metadata",
-                    "description": "The metadata of the resource.\n"
-                },
-                "options": {
-                    "$ref": "#/types/grafana:index/AppsDashboardDashboardV2beta1Options:AppsDashboardDashboardV2beta1Options",
-                    "description": "Options for applying the resource.\n"
-                },
-                "spec": {
-                    "$ref": "#/types/grafana:index/AppsDashboardDashboardV2beta1Spec:AppsDashboardDashboardV2beta1Spec",
-                    "description": "The spec of the resource.\n"
-                }
-            },
-            "inputProperties": {
-                "metadata": {
-                    "$ref": "#/types/grafana:index/AppsDashboardDashboardV2beta1Metadata:AppsDashboardDashboardV2beta1Metadata",
-                    "description": "The metadata of the resource.\n"
-                },
-                "options": {
-                    "$ref": "#/types/grafana:index/AppsDashboardDashboardV2beta1Options:AppsDashboardDashboardV2beta1Options",
-                    "description": "Options for applying the resource.\n"
-                },
-                "spec": {
-                    "$ref": "#/types/grafana:index/AppsDashboardDashboardV2beta1Spec:AppsDashboardDashboardV2beta1Spec",
-                    "description": "The spec of the resource.\n"
-                }
-            },
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering AppsDashboardDashboardV2beta1 resources.\n",
-                "properties": {
-                    "metadata": {
-                        "$ref": "#/types/grafana:index/AppsDashboardDashboardV2beta1Metadata:AppsDashboardDashboardV2beta1Metadata",
-                        "description": "The metadata of the resource.\n"
-                    },
-                    "options": {
-                        "$ref": "#/types/grafana:index/AppsDashboardDashboardV2beta1Options:AppsDashboardDashboardV2beta1Options",
-                        "description": "Options for applying the resource.\n"
-                    },
-                    "spec": {
-                        "$ref": "#/types/grafana:index/AppsDashboardDashboardV2beta1Spec:AppsDashboardDashboardV2beta1Spec",
-                        "description": "The spec of the resource.\n"
                     }
                 },
                 "type": "object"
