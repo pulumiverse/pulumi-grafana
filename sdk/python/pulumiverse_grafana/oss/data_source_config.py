@@ -26,6 +26,7 @@ class DataSourceConfigArgs:
                  uid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataSourceConfig resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] http_headers: Custom HTTP headers
         :param pulumi.Input[_builtins.str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -114,6 +115,7 @@ class _DataSourceConfigState:
                  uid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataSourceConfig resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] http_headers: Custom HTTP headers
         :param pulumi.Input[_builtins.str] json_data_encoded: Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -257,12 +259,10 @@ class DataSourceConfig(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/dataSourceConfig:DataSourceConfig name "{{ uid }}"
+        terraform import grafana_data_source_config.name "{{ uid }}"
+        terraform import grafana_data_source_config.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/dataSourceConfig:DataSourceConfig name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -331,12 +331,10 @@ class DataSourceConfig(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/dataSourceConfig:DataSourceConfig name "{{ uid }}"
+        terraform import grafana_data_source_config.name "{{ uid }}"
+        terraform import grafana_data_source_config.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/dataSourceConfig:DataSourceConfig name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param DataSourceConfigArgs args: The arguments to use to populate this resource's properties.

@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:k6/project:Project name "{{ id }}"
+ * terraform import grafana_k6_project.name "{{ id }}"
  * ```
  */
 export class Project extends pulumi.CustomResource {

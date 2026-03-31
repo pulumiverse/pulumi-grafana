@@ -26,6 +26,7 @@ class RoleAssignmentArgs:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None):
         """
         The set of arguments for constructing a RoleAssignment resource.
+
         :param pulumi.Input[_builtins.str] role_uid: Grafana RBAC role UID.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] service_accounts: IDs of service accounts that the role should be assigned to.
@@ -113,6 +114,7 @@ class _RoleAssignmentState:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None):
         """
         Input properties used for looking up and filtering RoleAssignment resources.
+
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[_builtins.str] role_uid: Grafana RBAC role UID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] service_accounts: IDs of service accounts that the role should be assigned to.
@@ -242,12 +244,10 @@ class RoleAssignment(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/roleAssignment:RoleAssignment name "{{ roleUID }}"
+        terraform import grafana_role_assignment.name "{{ roleUID }}"
+        terraform import grafana_role_assignment.name "{{ orgID }}:{{ roleUID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/roleAssignment:RoleAssignment name "{{ orgID }}:{{ roleUID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -302,12 +302,10 @@ class RoleAssignment(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/roleAssignment:RoleAssignment name "{{ roleUID }}"
+        terraform import grafana_role_assignment.name "{{ roleUID }}"
+        terraform import grafana_role_assignment.name "{{ orgID }}:{{ roleUID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/roleAssignment:RoleAssignment name "{{ orgID }}:{{ roleUID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param RoleAssignmentArgs args: The arguments to use to populate this resource's properties.

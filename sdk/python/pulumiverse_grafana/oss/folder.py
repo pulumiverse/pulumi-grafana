@@ -26,6 +26,7 @@ class FolderArgs:
                  uid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Folder resource.
+
         :param pulumi.Input[_builtins.str] title: The title of the folder.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[_builtins.str] parent_folder_uid: The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
@@ -114,6 +115,7 @@ class _FolderState:
                  url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Folder resources.
+
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[_builtins.str] parent_folder_uid: The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.
         :param pulumi.Input[_builtins.bool] prevent_destroy_if_not_empty: Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.
@@ -245,12 +247,10 @@ class Folder(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/folder:Folder name "{{ uid }}"
+        terraform import grafana_folder.name "{{ uid }}"
+        terraform import grafana_folder.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/folder:Folder name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -292,12 +292,10 @@ class Folder(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/folder:Folder name "{{ uid }}"
+        terraform import grafana_folder.name "{{ uid }}"
+        terraform import grafana_folder.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/folder:Folder name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param FolderArgs args: The arguments to use to populate this resource's properties.

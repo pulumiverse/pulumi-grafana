@@ -42,18 +42,18 @@ namespace Pulumiverse.Grafana.Alerting
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:alerting/messageTemplate:MessageTemplate name "{{ name }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:alerting/messageTemplate:MessageTemplate name "{{ orgID }}:{{ name }}"
+    /// terraform import grafana_message_template.name "{{ name }}"
+    /// terraform import grafana_message_template.name "{{ orgID }}:{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:alerting/messageTemplate:MessageTemplate")]
     public partial class MessageTemplate : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Allow modifying the message template from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Output("disableProvenance")]
-        public Output<bool?> DisableProvenance { get; private set; } = null!;
+        public Output<bool> DisableProvenance { get; private set; } = null!;
 
         /// <summary>
         /// The name of the notification template group.
@@ -65,7 +65,7 @@ namespace Pulumiverse.Grafana.Alerting
         /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
         [Output("orgId")]
-        public Output<string?> OrgId { get; private set; } = null!;
+        public Output<string> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// The content of the notification template group.
@@ -124,6 +124,9 @@ namespace Pulumiverse.Grafana.Alerting
 
     public sealed class MessageTemplateArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow modifying the message template from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -153,6 +156,9 @@ namespace Pulumiverse.Grafana.Alerting
 
     public sealed class MessageTemplateState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow modifying the message template from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 

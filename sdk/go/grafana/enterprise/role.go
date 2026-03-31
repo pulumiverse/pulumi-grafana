@@ -63,11 +63,8 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:enterprise/role:Role name "{{ uid }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:enterprise/role:Role name "{{ orgID }}:{{ uid }}"
+// terraform import grafana_role.name "{{ uid }}"
+// terraform import grafana_role.name "{{ orgID }}:{{ uid }}"
 // ```
 type Role struct {
 	pulumi.CustomResourceState

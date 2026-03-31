@@ -9,7 +9,7 @@ import * as utilities from "../utilities";
 /**
  * Manages [Grafana Cloud Alert Enrichment](https://grafana.com/docs/grafana-cloud/alerting-and-irm/alerting/configure-notifications/alert-enrichment/).
  *
- * Alert enrichment is currently in private preview. Grafana Labs offers support on a best-effort basis, and breaking changes might occur prior to the feature being made generally available
+ * Alert enrichment is currently in public preview. Grafana Labs offers limited support, and breaking changes might occur prior to the feature being made generally available.
  *
  * ## Example Usage
  *
@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const enrichment = new grafana.alerting.AlertEnrichment("enrichment", {
+ * const enrichment = new grafana.alerting.v1beta1.AlertEnrichment("enrichment", {
  *     metadata: {
  *         uid: "test_enrichment",
  *     },
@@ -144,6 +144,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * @deprecated grafana.alerting/alertenrichment.AlertEnrichment has been deprecated in favor of grafana.alerting/v1beta1/alertenrichment.AlertEnrichment
  */
 export class AlertEnrichment extends pulumi.CustomResource {
     /**
@@ -156,6 +158,7 @@ export class AlertEnrichment extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AlertEnrichmentState, opts?: pulumi.CustomResourceOptions): AlertEnrichment {
+        pulumi.log.warn("AlertEnrichment is deprecated: grafana.alerting/alertenrichment.AlertEnrichment has been deprecated in favor of grafana.alerting/v1beta1/alertenrichment.AlertEnrichment")
         return new AlertEnrichment(name, <any>state, { ...opts, id: id });
     }
 
@@ -193,8 +196,11 @@ export class AlertEnrichment extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.alerting/alertenrichment.AlertEnrichment has been deprecated in favor of grafana.alerting/v1beta1/alertenrichment.AlertEnrichment */
     constructor(name: string, args?: AlertEnrichmentArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.alerting/alertenrichment.AlertEnrichment has been deprecated in favor of grafana.alerting/v1beta1/alertenrichment.AlertEnrichment */
     constructor(name: string, argsOrState?: AlertEnrichmentArgs | AlertEnrichmentState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("AlertEnrichment is deprecated: grafana.alerting/alertenrichment.AlertEnrichment has been deprecated in favor of grafana.alerting/v1beta1/alertenrichment.AlertEnrichment")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -209,6 +215,8 @@ export class AlertEnrichment extends pulumi.CustomResource {
             resourceInputs["spec"] = args?.spec;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:alerting/alertEnrichment:AlertEnrichment" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(AlertEnrichment.__pulumiType, name, resourceInputs, opts);
     }
 }

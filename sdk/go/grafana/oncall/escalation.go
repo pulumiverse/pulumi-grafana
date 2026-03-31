@@ -18,7 +18,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:onCall/escalation:Escalation name "{{ id }}"
+// terraform import grafana_oncall_escalation.name "{{ id }}"
 // ```
 type Escalation struct {
 	pulumi.CustomResourceState

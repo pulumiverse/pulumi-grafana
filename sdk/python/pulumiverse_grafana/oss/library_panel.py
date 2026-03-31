@@ -26,6 +26,7 @@ class LibraryPanelArgs:
                  uid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LibraryPanel resource.
+
         :param pulumi.Input[_builtins.str] model_json: The JSON model for the library panel.
         :param pulumi.Input[_builtins.str] folder_uid: Unique ID (UID) of the folder containing the library panel.
         :param pulumi.Input[_builtins.str] name: Name of the library panel.
@@ -121,6 +122,7 @@ class _LibraryPanelState:
                  version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering LibraryPanel resources.
+
         :param pulumi.Input[_builtins.str] created: Timestamp when the library panel was created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] dashboard_ids: Numerical IDs of Grafana dashboards containing the library panel.
         :param pulumi.Input[_builtins.str] description: Description of the library panel.
@@ -362,12 +364,10 @@ class LibraryPanel(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/libraryPanel:LibraryPanel name "{{ uid }}"
+        terraform import grafana_library_panel.name "{{ uid }}"
+        terraform import grafana_library_panel.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/libraryPanel:LibraryPanel name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -414,12 +414,10 @@ class LibraryPanel(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/libraryPanel:LibraryPanel name "{{ uid }}"
+        terraform import grafana_library_panel.name "{{ uid }}"
+        terraform import grafana_library_panel.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/libraryPanel:LibraryPanel name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param LibraryPanelArgs args: The arguments to use to populate this resource's properties.

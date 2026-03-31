@@ -45,7 +45,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:oss/organizationPreferences:OrganizationPreferences name "{{ orgID }}"
+// terraform import grafana_organization_preferences.name "{{ orgID }}"
 // ```
 type OrganizationPreferences struct {
 	pulumi.CustomResourceState

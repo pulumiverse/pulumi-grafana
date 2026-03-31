@@ -70,11 +70,8 @@ namespace Pulumiverse.Grafana.Oss
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:oss/serviceAccountPermission:ServiceAccountPermission name "{{ serviceAccountID }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:oss/serviceAccountPermission:ServiceAccountPermission name "{{ orgID }}:{{ serviceAccountID }}"
+    /// terraform import grafana_service_account_permission.name "{{ serviceAccountID }}"
+    /// terraform import grafana_service_account_permission.name "{{ orgID }}:{{ serviceAccountID }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:oss/serviceAccountPermission:ServiceAccountPermission")]

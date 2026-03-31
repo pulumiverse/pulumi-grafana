@@ -31,6 +31,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ProfileConfig{}
 	case "grafana:assert/promRuleFile:PromRuleFile":
 		r = &PromRuleFile{}
+	case "grafana:assert/stack:Stack":
+		r = &Stack{}
 	case "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig":
 		r = &SuppressedAssertionsConfig{}
 	case "grafana:assert/thresholds:Thresholds":
@@ -73,6 +75,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"assert/promRuleFile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"assert/stack",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

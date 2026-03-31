@@ -29,6 +29,7 @@ class DashboardPublicArgs:
                  uid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DashboardPublic resource.
+
         :param pulumi.Input[_builtins.str] dashboard_uid: The unique identifier of the original dashboard.
         :param pulumi.Input[_builtins.str] access_token: A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
         :param pulumi.Input[_builtins.bool] annotations_enabled: Set to `true` to show annotations. The default value is `false`.
@@ -164,6 +165,7 @@ class _DashboardPublicState:
                  uid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DashboardPublic resources.
+
         :param pulumi.Input[_builtins.str] access_token: A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
         :param pulumi.Input[_builtins.bool] annotations_enabled: Set to `true` to show annotations. The default value is `false`.
         :param pulumi.Input[_builtins.str] dashboard_uid: The unique identifier of the original dashboard.
@@ -356,12 +358,10 @@ class DashboardPublic(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/dashboardPublic:DashboardPublic name "{{ dashboardUID }}:{{ publicDashboardUID }}"
+        terraform import grafana_dashboard_public.name "{{ dashboardUID }}:{{ publicDashboardUID }}"
+        terraform import grafana_dashboard_public.name "{{ orgID }}:{{ dashboardUID }}:{{ publicDashboardUID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/dashboardPublic:DashboardPublic name "{{ orgID }}:{{ dashboardUID }}:{{ publicDashboardUID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -434,12 +434,10 @@ class DashboardPublic(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/dashboardPublic:DashboardPublic name "{{ dashboardUID }}:{{ publicDashboardUID }}"
+        terraform import grafana_dashboard_public.name "{{ dashboardUID }}:{{ publicDashboardUID }}"
+        terraform import grafana_dashboard_public.name "{{ orgID }}:{{ dashboardUID }}:{{ publicDashboardUID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/dashboardPublic:DashboardPublic name "{{ orgID }}:{{ dashboardUID }}:{{ publicDashboardUID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param DashboardPublicArgs args: The arguments to use to populate this resource's properties.

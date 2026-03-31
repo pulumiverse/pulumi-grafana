@@ -48,7 +48,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob name "{{ stack_id }}:{{ name }}"
+// terraform import grafana_connections_metrics_endpoint_scrape_job.name "{{ stack_id }}:{{ name }}"
 // ```
 type MetricsEndpointScrapeJob struct {
 	pulumi.CustomResourceState
@@ -62,11 +62,13 @@ type MetricsEndpointScrapeJob struct {
 	// Method to pass authentication credentials: basic or bearer.
 	AuthenticationMethod pulumi.StringOutput `pulumi:"authenticationMethod"`
 	// Whether the metrics endpoint scrape job is enabled or not.
-	Enabled pulumi.BoolOutput   `pulumi:"enabled"`
-	Name    pulumi.StringOutput `pulumi:"name"`
+	Enabled pulumi.BoolOutput `pulumi:"enabled"`
+	// The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+	Name pulumi.StringOutput `pulumi:"name"`
 	// Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
-	ScrapeIntervalSeconds pulumi.IntOutput    `pulumi:"scrapeIntervalSeconds"`
-	StackId               pulumi.StringOutput `pulumi:"stackId"`
+	ScrapeIntervalSeconds pulumi.IntOutput `pulumi:"scrapeIntervalSeconds"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.StringOutput `pulumi:"stackId"`
 	// The url to scrape metrics from; a valid HTTPs URL is required.
 	Url pulumi.StringOutput `pulumi:"url"`
 }
@@ -130,11 +132,13 @@ type metricsEndpointScrapeJobState struct {
 	// Method to pass authentication credentials: basic or bearer.
 	AuthenticationMethod *string `pulumi:"authenticationMethod"`
 	// Whether the metrics endpoint scrape job is enabled or not.
-	Enabled *bool   `pulumi:"enabled"`
-	Name    *string `pulumi:"name"`
+	Enabled *bool `pulumi:"enabled"`
+	// The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+	Name *string `pulumi:"name"`
 	// Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
-	ScrapeIntervalSeconds *int    `pulumi:"scrapeIntervalSeconds"`
-	StackId               *string `pulumi:"stackId"`
+	ScrapeIntervalSeconds *int `pulumi:"scrapeIntervalSeconds"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId *string `pulumi:"stackId"`
 	// The url to scrape metrics from; a valid HTTPs URL is required.
 	Url *string `pulumi:"url"`
 }
@@ -150,10 +154,12 @@ type MetricsEndpointScrapeJobState struct {
 	AuthenticationMethod pulumi.StringPtrInput
 	// Whether the metrics endpoint scrape job is enabled or not.
 	Enabled pulumi.BoolPtrInput
-	Name    pulumi.StringPtrInput
+	// The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+	Name pulumi.StringPtrInput
 	// Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
 	ScrapeIntervalSeconds pulumi.IntPtrInput
-	StackId               pulumi.StringPtrInput
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.StringPtrInput
 	// The url to scrape metrics from; a valid HTTPs URL is required.
 	Url pulumi.StringPtrInput
 }
@@ -172,11 +178,13 @@ type metricsEndpointScrapeJobArgs struct {
 	// Method to pass authentication credentials: basic or bearer.
 	AuthenticationMethod string `pulumi:"authenticationMethod"`
 	// Whether the metrics endpoint scrape job is enabled or not.
-	Enabled *bool   `pulumi:"enabled"`
-	Name    *string `pulumi:"name"`
+	Enabled *bool `pulumi:"enabled"`
+	// The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+	Name *string `pulumi:"name"`
 	// Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
-	ScrapeIntervalSeconds *int   `pulumi:"scrapeIntervalSeconds"`
-	StackId               string `pulumi:"stackId"`
+	ScrapeIntervalSeconds *int `pulumi:"scrapeIntervalSeconds"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId string `pulumi:"stackId"`
 	// The url to scrape metrics from; a valid HTTPs URL is required.
 	Url string `pulumi:"url"`
 }
@@ -193,10 +201,12 @@ type MetricsEndpointScrapeJobArgs struct {
 	AuthenticationMethod pulumi.StringInput
 	// Whether the metrics endpoint scrape job is enabled or not.
 	Enabled pulumi.BoolPtrInput
-	Name    pulumi.StringPtrInput
+	// The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+	Name pulumi.StringPtrInput
 	// Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
 	ScrapeIntervalSeconds pulumi.IntPtrInput
-	StackId               pulumi.StringInput
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.StringInput
 	// The url to scrape metrics from; a valid HTTPs URL is required.
 	Url pulumi.StringInput
 }
@@ -313,6 +323,7 @@ func (o MetricsEndpointScrapeJobOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MetricsEndpointScrapeJob) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
+// The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
 func (o MetricsEndpointScrapeJobOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MetricsEndpointScrapeJob) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -322,6 +333,7 @@ func (o MetricsEndpointScrapeJobOutput) ScrapeIntervalSeconds() pulumi.IntOutput
 	return o.ApplyT(func(v *MetricsEndpointScrapeJob) pulumi.IntOutput { return v.ScrapeIntervalSeconds }).(pulumi.IntOutput)
 }
 
+// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o MetricsEndpointScrapeJobOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MetricsEndpointScrapeJob) pulumi.StringOutput { return v.StackId }).(pulumi.StringOutput)
 }

@@ -87,6 +87,9 @@ class GetAzureCredentialResult:
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
+        """
+        The Terraform Resource ID. This has the format "{{ stack*id }}:{{ resource*id }}".
+        """
         return pulumi.get(self, "id")
 
     @_builtins.property
@@ -124,6 +127,9 @@ class GetAzureCredentialResult:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> _builtins.str:
+        """
+        The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @_builtins.property
@@ -159,6 +165,13 @@ def get_azure_credential(auto_discovery_configurations: Optional[Sequence[Union[
                          stack_id: Optional[_builtins.str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAzureCredentialResult:
     """
+    This data source allows you to look up an existing Grafana Cloud Azure Credential resource in your stack.
+
+    See the Grafana Provider configuration docs
+    for information on authentication and required access policy scopes.
+
+    * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+
     ## Example Usage
 
     ```python
@@ -216,6 +229,7 @@ def get_azure_credential(auto_discovery_configurations: Optional[Sequence[Union[
     :param Sequence[Union['GetAzureCredentialAutoDiscoveryConfigurationArgs', 'GetAzureCredentialAutoDiscoveryConfigurationArgsDict']] auto_discovery_configurations: The list of auto discovery configurations.
     :param Sequence[Union['GetAzureCredentialResourceDiscoveryTagFilterArgs', 'GetAzureCredentialResourceDiscoveryTagFilterArgsDict']] resource_discovery_tag_filters: The list of tag filters to apply to resources.
     :param _builtins.str resource_id: The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
+    :param _builtins.str stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
     """
     __args__ = dict()
     __args__['autoDiscoveryConfigurations'] = auto_discovery_configurations
@@ -242,6 +256,13 @@ def get_azure_credential_output(auto_discovery_configurations: Optional[pulumi.I
                                 stack_id: Optional[pulumi.Input[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAzureCredentialResult]:
     """
+    This data source allows you to look up an existing Grafana Cloud Azure Credential resource in your stack.
+
+    See the Grafana Provider configuration docs
+    for information on authentication and required access policy scopes.
+
+    * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+
     ## Example Usage
 
     ```python
@@ -299,6 +320,7 @@ def get_azure_credential_output(auto_discovery_configurations: Optional[pulumi.I
     :param Sequence[Union['GetAzureCredentialAutoDiscoveryConfigurationArgs', 'GetAzureCredentialAutoDiscoveryConfigurationArgsDict']] auto_discovery_configurations: The list of auto discovery configurations.
     :param Sequence[Union['GetAzureCredentialResourceDiscoveryTagFilterArgs', 'GetAzureCredentialResourceDiscoveryTagFilterArgsDict']] resource_discovery_tag_filters: The list of tag filters to apply to resources.
     :param _builtins.str resource_id: The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
+    :param _builtins.str stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
     """
     __args__ = dict()
     __args__['autoDiscoveryConfigurations'] = auto_discovery_configurations

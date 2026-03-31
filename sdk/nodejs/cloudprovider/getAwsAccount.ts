@@ -5,6 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * This data source allows you to look up an existing Grafana Cloud AWS Account resource in your stack.
+ *
+ * See the Grafana Provider configuration docs
+ * for information on authentication and required access policy scopes.
+ *
+ * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -44,6 +51,9 @@ export interface GetAwsAccountArgs {
      * The ID given by the Grafana Cloud Provider API to this AWS Account resource.
      */
     resourceId: string;
+    /**
+     * The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: string;
 }
 
@@ -51,6 +61,9 @@ export interface GetAwsAccountArgs {
  * A collection of values returned by getAwsAccount.
  */
 export interface GetAwsAccountResult {
+    /**
+     * The Terraform Resource ID. This has the format "{{ stack*id }}:{{ resource*id }}".
+     */
     readonly id: string;
     /**
      * An optional human-readable name for this AWS Account resource.
@@ -68,9 +81,19 @@ export interface GetAwsAccountResult {
      * An IAM Role ARN string to represent with this AWS Account resource.
      */
     readonly roleArn: string;
+    /**
+     * The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     readonly stackId: string;
 }
 /**
+ * This data source allows you to look up an existing Grafana Cloud AWS Account resource in your stack.
+ *
+ * See the Grafana Provider configuration docs
+ * for information on authentication and required access policy scopes.
+ *
+ * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -110,5 +133,8 @@ export interface GetAwsAccountOutputArgs {
      * The ID given by the Grafana Cloud Provider API to this AWS Account resource.
      */
     resourceId: pulumi.Input<string>;
+    /**
+     * The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: pulumi.Input<string>;
 }

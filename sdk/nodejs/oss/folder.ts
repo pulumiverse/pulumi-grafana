@@ -32,11 +32,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/folder:Folder name "{{ uid }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:oss/folder:Folder name "{{ orgID }}:{{ uid }}"
+ * terraform import grafana_folder.name "{{ uid }}"
+ * terraform import grafana_folder.name "{{ orgID }}:{{ uid }}"
  * ```
  */
 export class Folder extends pulumi.CustomResource {

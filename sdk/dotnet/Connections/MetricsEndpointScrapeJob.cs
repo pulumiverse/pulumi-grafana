@@ -39,7 +39,7 @@ namespace Pulumiverse.Grafana.Connections
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob name "{{ stack_id }}:{{ name }}"
+    /// terraform import grafana_connections_metrics_endpoint_scrape_job.name "{{ stack_id }}:{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob")]
@@ -75,6 +75,9 @@ namespace Pulumiverse.Grafana.Connections
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -84,6 +87,9 @@ namespace Pulumiverse.Grafana.Connections
         [Output("scrapeIntervalSeconds")]
         public Output<int> ScrapeIntervalSeconds { get; private set; } = null!;
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Output("stackId")]
         public Output<string> StackId { get; private set; } = null!;
 
@@ -195,6 +201,9 @@ namespace Pulumiverse.Grafana.Connections
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -204,6 +213,9 @@ namespace Pulumiverse.Grafana.Connections
         [Input("scrapeIntervalSeconds")]
         public Input<int>? ScrapeIntervalSeconds { get; set; }
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public Input<string> StackId { get; set; } = null!;
 
@@ -271,6 +283,9 @@ namespace Pulumiverse.Grafana.Connections
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -280,6 +295,9 @@ namespace Pulumiverse.Grafana.Connections
         [Input("scrapeIntervalSeconds")]
         public Input<int>? ScrapeIntervalSeconds { get; set; }
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
 

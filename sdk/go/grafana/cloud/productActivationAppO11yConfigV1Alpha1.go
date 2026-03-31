@@ -26,16 +26,17 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
+//	cloudv1alpha1 "github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud/v1alpha1"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud.NewProductActivationAppO11yConfigV1Alpha1(ctx, "example", &cloud.ProductActivationAppO11yConfigV1Alpha1Args{
-//				Metadata: &cloud.ProductActivationAppO11yConfigV1Alpha1MetadataArgs{
+//			_, err := cloud.NewProductActivationAppO11yConfig(ctx, "example", &cloud.ProductActivationAppO11yConfigArgs{
+//				Metadata: &cloudv1alpha1.ProductActivationAppO11yConfigMetadataArgs{
 //					Uid: pulumi.String("global"),
 //				},
-//				Spec: &cloud.ProductActivationAppO11yConfigV1Alpha1SpecArgs{
+//				Spec: &cloudv1alpha1.ProductActivationAppO11yConfigSpecArgs{
 //					Enabled: pulumi.Bool(true),
 //				},
 //			})
@@ -50,13 +51,14 @@ import (
 //
 // ## Import
 //
-// #!/bin/bash
-//
-// # Import an existing app observability config by its UID
+// !/bin/bash
+// Import an existing app observability config by its UID
 //
 // ```sh
 // $ pulumi import grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1 example my-app-o11y-config
 // ```
+//
+// Deprecated: grafana.cloud/productactivationappo11yconfigv1alpha1.ProductActivationAppO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationappo11yconfig.ProductActivationAppO11yConfig
 type ProductActivationAppO11yConfigV1Alpha1 struct {
 	pulumi.CustomResourceState
 
@@ -75,6 +77,12 @@ func NewProductActivationAppO11yConfigV1Alpha1(ctx *pulumi.Context,
 		args = &ProductActivationAppO11yConfigV1Alpha1Args{}
 	}
 
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ProductActivationAppO11yConfigV1Alpha1
 	err := ctx.RegisterResource("grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1", name, args, &resource, opts...)

@@ -155,7 +155,7 @@ namespace Pulumiverse.Grafana.Assert
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:assert/traceConfig:TraceConfig name "{{ name }}"
+    /// terraform import grafana_asserts_trace_config.name "{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:assert/traceConfig:TraceConfig")]

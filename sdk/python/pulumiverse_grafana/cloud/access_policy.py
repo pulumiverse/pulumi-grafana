@@ -29,6 +29,7 @@ class AccessPolicyArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AccessPolicy resource.
+
         :param pulumi.Input[_builtins.str] region: Region where the API is deployed. Generally where the stack is deployed. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Scopes of the access policy. See https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/#scopes for possible values.
         :param pulumi.Input[Sequence[pulumi.Input['AccessPolicyConditionArgs']]] conditions: Conditions for the access policy.
@@ -129,6 +130,7 @@ class _AccessPolicyState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccessPolicy resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['AccessPolicyConditionArgs']]] conditions: Conditions for the access policy.
         :param pulumi.Input[_builtins.str] created_at: Creation date of the access policy.
         :param pulumi.Input[_builtins.str] display_name: Display name of the access policy. Defaults to the name.
@@ -320,8 +322,9 @@ class AccessPolicy(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/accessPolicy:AccessPolicy name "{{ region }}:{{ policyId }}"
+        terraform import grafana_cloud_access_policy.name "{{ region }}:{{ policyId }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -381,8 +384,9 @@ class AccessPolicy(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/accessPolicy:AccessPolicy name "{{ region }}:{{ policyId }}"
+        terraform import grafana_cloud_access_policy.name "{{ region }}:{{ policyId }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccessPolicyArgs args: The arguments to use to populate this resource's properties.

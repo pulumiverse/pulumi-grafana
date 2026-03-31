@@ -29,6 +29,12 @@ __all__ = [
     'PromRuleFileGroupArgsDict',
     'PromRuleFileGroupRuleArgs',
     'PromRuleFileGroupRuleArgsDict',
+    'StackDatasetArgs',
+    'StackDatasetArgsDict',
+    'StackDatasetFilterGroupArgs',
+    'StackDatasetFilterGroupArgsDict',
+    'StackDatasetFilterGroupFilterArgs',
+    'StackDatasetFilterGroupFilterArgsDict',
     'ThresholdsHealthThresholdArgs',
     'ThresholdsHealthThresholdArgsDict',
     'ThresholdsRequestThresholdArgs',
@@ -39,16 +45,11 @@ __all__ = [
     'TraceConfigMatchArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class CustomModelRulesRulesArgsDict(TypedDict):
-        entities: pulumi.Input[Sequence[pulumi.Input['CustomModelRulesRulesEntityArgsDict']]]
-        """
-        List of entities to define in the custom model rules.
-        """
-elif False:
-    CustomModelRulesRulesArgsDict: TypeAlias = Mapping[str, Any]
+class CustomModelRulesRulesArgsDict(TypedDict):
+    entities: pulumi.Input[Sequence[pulumi.Input['CustomModelRulesRulesEntityArgsDict']]]
+    """
+    List of entities to define in the custom model rules.
+    """
 
 @pulumi.input_type
 class CustomModelRulesRulesArgs:
@@ -72,38 +73,35 @@ class CustomModelRulesRulesArgs:
         pulumi.set(self, "entities", value)
 
 
-if not MYPY:
-    class CustomModelRulesRulesEntityArgsDict(TypedDict):
-        defined_bies: pulumi.Input[Sequence[pulumi.Input['CustomModelRulesRulesEntityDefinedByArgsDict']]]
-        """
-        List of queries that define this entity.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the entity.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        The type of the entity (e.g., Service, Pod, Namespace).
-        """
-        disabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether this entity is disabled.
-        """
-        enriched_bies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of enrichment sources for the entity.
-        """
-        lookup: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Lookup mappings for the entity.
-        """
-        scope: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Scope labels for the entity.
-        """
-elif False:
-    CustomModelRulesRulesEntityArgsDict: TypeAlias = Mapping[str, Any]
+class CustomModelRulesRulesEntityArgsDict(TypedDict):
+    defined_bies: pulumi.Input[Sequence[pulumi.Input['CustomModelRulesRulesEntityDefinedByArgsDict']]]
+    """
+    List of queries that define this entity.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the entity.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    The type of the entity (e.g., Service, Pod, Namespace).
+    """
+    disabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether this entity is disabled.
+    """
+    enriched_bies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of enrichment sources for the entity.
+    """
+    lookup: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Lookup mappings for the entity.
+    """
+    scope: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Scope labels for the entity.
+    """
 
 @pulumi.input_type
 class CustomModelRulesRulesEntityArgs:
@@ -221,30 +219,27 @@ class CustomModelRulesRulesEntityArgs:
         pulumi.set(self, "scope", value)
 
 
-if not MYPY:
-    class CustomModelRulesRulesEntityDefinedByArgsDict(TypedDict):
-        query: pulumi.Input[_builtins.str]
-        """
-        The Prometheus query that defines this entity.
-        """
-        disabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether this rule is disabled. When true, only the 'query' field is used to match an existing rule to disable; other fields are ignored.
-        """
-        label_values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Label value mappings for the query.
-        """
-        literals: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Literal value mappings for the query.
-        """
-        metric_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Metric value for the query.
-        """
-elif False:
-    CustomModelRulesRulesEntityDefinedByArgsDict: TypeAlias = Mapping[str, Any]
+class CustomModelRulesRulesEntityDefinedByArgsDict(TypedDict):
+    query: pulumi.Input[_builtins.str]
+    """
+    The Prometheus query that defines this entity.
+    """
+    disabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether this rule is disabled. When true, only the 'query' field is used to match an existing rule to disable; other fields are ignored.
+    """
+    label_values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Label value mappings for the query.
+    """
+    literals: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Literal value mappings for the query.
+    """
+    metric_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Metric value for the query.
+    """
 
 @pulumi.input_type
 class CustomModelRulesRulesEntityDefinedByArgs:
@@ -332,22 +327,19 @@ class CustomModelRulesRulesEntityDefinedByArgs:
         pulumi.set(self, "metric_value", value)
 
 
-if not MYPY:
-    class LogConfigMatchArgsDict(TypedDict):
-        op: pulumi.Input[_builtins.str]
-        """
-        Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
-        """
-        property: pulumi.Input[_builtins.str]
-        """
-        Entity property to match.
-        """
-        values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Values to match against.
-        """
-elif False:
-    LogConfigMatchArgsDict: TypeAlias = Mapping[str, Any]
+class LogConfigMatchArgsDict(TypedDict):
+    op: pulumi.Input[_builtins.str]
+    """
+    Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
+    """
+    property: pulumi.Input[_builtins.str]
+    """
+    Entity property to match.
+    """
+    values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Values to match against.
+    """
 
 @pulumi.input_type
 class LogConfigMatchArgs:
@@ -401,22 +393,19 @@ class LogConfigMatchArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class ProfileConfigMatchArgsDict(TypedDict):
-        op: pulumi.Input[_builtins.str]
-        """
-        Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
-        """
-        property: pulumi.Input[_builtins.str]
-        """
-        Entity property to match.
-        """
-        values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Values to match against.
-        """
-elif False:
-    ProfileConfigMatchArgsDict: TypeAlias = Mapping[str, Any]
+class ProfileConfigMatchArgsDict(TypedDict):
+    op: pulumi.Input[_builtins.str]
+    """
+    Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
+    """
+    property: pulumi.Input[_builtins.str]
+    """
+    Entity property to match.
+    """
+    values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Values to match against.
+    """
 
 @pulumi.input_type
 class ProfileConfigMatchArgs:
@@ -470,22 +459,19 @@ class ProfileConfigMatchArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class PromRuleFileGroupArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the rule group (e.g., 'latency_monitoring').
-        """
-        rules: pulumi.Input[Sequence[pulumi.Input['PromRuleFileGroupRuleArgsDict']]]
-        """
-        List of Prometheus rules in this group.
-        """
-        interval: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Evaluation interval for this group (e.g., '30s', '1m'). If not specified, uses the global evaluation interval.
-        """
-elif False:
-    PromRuleFileGroupArgsDict: TypeAlias = Mapping[str, Any]
+class PromRuleFileGroupArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the rule group (e.g., 'latency_monitoring').
+    """
+    rules: pulumi.Input[Sequence[pulumi.Input['PromRuleFileGroupRuleArgsDict']]]
+    """
+    List of Prometheus rules in this group.
+    """
+    interval: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Evaluation interval for this group (e.g., '30s', '1m'). If not specified, uses the global evaluation interval.
+    """
 
 @pulumi.input_type
 class PromRuleFileGroupArgs:
@@ -540,42 +526,39 @@ class PromRuleFileGroupArgs:
         pulumi.set(self, "interval", value)
 
 
-if not MYPY:
-    class PromRuleFileGroupRuleArgsDict(TypedDict):
-        expr: pulumi.Input[_builtins.str]
-        """
-        The PromQL expression to evaluate.
-        """
-        active: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether this specific rule is active. This field is read-only and controlled by the API.
-        """
-        alert: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the alert for alerting rules. Either 'record' or 'alert' must be specified, but not both.
-        """
-        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Annotations to add to alerts (e.g., summary, description).
-        """
-        disable_in_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of group names where this rule should be disabled. Useful for conditional rule enablement.
-        """
-        duration: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        How long the condition must be true before firing the alert (e.g., '5m'). Only applicable for alerting rules. Maps to 'for' in Prometheus.
-        """
-        labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Labels to attach to the resulting time series or alert.
-        """
-        record: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the time series to output for recording rules. Either 'record' or 'alert' must be specified, but not both.
-        """
-elif False:
-    PromRuleFileGroupRuleArgsDict: TypeAlias = Mapping[str, Any]
+class PromRuleFileGroupRuleArgsDict(TypedDict):
+    expr: pulumi.Input[_builtins.str]
+    """
+    The PromQL expression to evaluate.
+    """
+    active: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether this specific rule is active. This field is read-only and controlled by the API.
+    """
+    alert: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the alert for alerting rules. Either 'record' or 'alert' must be specified, but not both.
+    """
+    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Annotations to add to alerts (e.g., summary, description).
+    """
+    disable_in_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of group names where this rule should be disabled. Useful for conditional rule enablement.
+    """
+    duration: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    How long the condition must be true before firing the alert (e.g., '5m'). Only applicable for alerting rules. Maps to 'for' in Prometheus.
+    """
+    labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Labels to attach to the resulting time series or alert.
+    """
+    record: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the time series to output for recording rules. Either 'record' or 'alert' must be specified, but not both.
+    """
 
 @pulumi.input_type
 class PromRuleFileGroupRuleArgs:
@@ -711,26 +694,286 @@ class PromRuleFileGroupRuleArgs:
         pulumi.set(self, "record", value)
 
 
-if not MYPY:
-    class ThresholdsHealthThresholdArgsDict(TypedDict):
-        assertion_name: pulumi.Input[_builtins.str]
+class StackDatasetArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    The dataset type. Available types: `kubernetes`, `otel` (App O11y), `prometheus`, `aws`. Note: `kubernetes` requires K8s Monitoring to be enabled, and `otel` requires Application Observability to be enabled on the stack.
+    """
+    disabled_vendors: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of vendors to disable for this dataset.
+    """
+    filter_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input['StackDatasetFilterGroupArgsDict']]]]
+    """
+    Filter groups for this dataset. Use when you need custom label mappings.
+    """
+
+@pulumi.input_type
+class StackDatasetArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[_builtins.str],
+                 disabled_vendors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 filter_groups: Optional[pulumi.Input[Sequence[pulumi.Input['StackDatasetFilterGroupArgs']]]] = None):
         """
-        Assertion name.
+        :param pulumi.Input[_builtins.str] type: The dataset type. Available types: `kubernetes`, `otel` (App O11y), `prometheus`, `aws`. Note: `kubernetes` requires K8s Monitoring to be enabled, and `otel` requires Application Observability to be enabled on the stack.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] disabled_vendors: List of vendors to disable for this dataset.
+        :param pulumi.Input[Sequence[pulumi.Input['StackDatasetFilterGroupArgs']]] filter_groups: Filter groups for this dataset. Use when you need custom label mappings.
         """
-        entity_type: pulumi.Input[_builtins.str]
+        pulumi.set(__self__, "type", type)
+        if disabled_vendors is not None:
+            pulumi.set(__self__, "disabled_vendors", disabled_vendors)
+        if filter_groups is not None:
+            pulumi.set(__self__, "filter_groups", filter_groups)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Entity type for the health threshold (e.g., Service, Pod, Namespace, Volume).
+        The dataset type. Available types: `kubernetes`, `otel` (App O11y), `prometheus`, `aws`. Note: `kubernetes` requires K8s Monitoring to be enabled, and `otel` requires Application Observability to be enabled on the stack.
         """
-        expression: pulumi.Input[_builtins.str]
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="disabledVendors")
+    def disabled_vendors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Prometheus expression.
+        List of vendors to disable for this dataset.
         """
-        alert_category: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "disabled_vendors")
+
+    @disabled_vendors.setter
+    def disabled_vendors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "disabled_vendors", value)
+
+    @_builtins.property
+    @pulumi.getter(name="filterGroups")
+    def filter_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StackDatasetFilterGroupArgs']]]]:
         """
-        Optional alert category label for the health threshold.
+        Filter groups for this dataset. Use when you need custom label mappings.
         """
-elif False:
-    ThresholdsHealthThresholdArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "filter_groups")
+
+    @filter_groups.setter
+    def filter_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['StackDatasetFilterGroupArgs']]]]):
+        pulumi.set(self, "filter_groups", value)
+
+
+class StackDatasetFilterGroupArgsDict(TypedDict):
+    env_label: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The metric label name used for environment (e.g., `env`, `environment`, `deployment_environment`). Defaults to standard labels if not set.
+    """
+    env_label_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specific values of the environment label to match.
+    """
+    env_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A friendly name for the environment.
+    """
+    filters: NotRequired[pulumi.Input[Sequence[pulumi.Input['StackDatasetFilterGroupFilterArgsDict']]]]
+    """
+    Additional metric filters.
+    """
+    site_label: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The metric label name used for site/cluster.
+    """
+    site_label_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specific values of the site label to match.
+    """
+
+@pulumi.input_type
+class StackDatasetFilterGroupArgs:
+    def __init__(__self__, *,
+                 env_label: Optional[pulumi.Input[_builtins.str]] = None,
+                 env_label_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 env_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 filters: Optional[pulumi.Input[Sequence[pulumi.Input['StackDatasetFilterGroupFilterArgs']]]] = None,
+                 site_label: Optional[pulumi.Input[_builtins.str]] = None,
+                 site_label_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] env_label: The metric label name used for environment (e.g., `env`, `environment`, `deployment_environment`). Defaults to standard labels if not set.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] env_label_values: Specific values of the environment label to match.
+        :param pulumi.Input[_builtins.str] env_name: A friendly name for the environment.
+        :param pulumi.Input[Sequence[pulumi.Input['StackDatasetFilterGroupFilterArgs']]] filters: Additional metric filters.
+        :param pulumi.Input[_builtins.str] site_label: The metric label name used for site/cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] site_label_values: Specific values of the site label to match.
+        """
+        if env_label is not None:
+            pulumi.set(__self__, "env_label", env_label)
+        if env_label_values is not None:
+            pulumi.set(__self__, "env_label_values", env_label_values)
+        if env_name is not None:
+            pulumi.set(__self__, "env_name", env_name)
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+        if site_label is not None:
+            pulumi.set(__self__, "site_label", site_label)
+        if site_label_values is not None:
+            pulumi.set(__self__, "site_label_values", site_label_values)
+
+    @_builtins.property
+    @pulumi.getter(name="envLabel")
+    def env_label(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The metric label name used for environment (e.g., `env`, `environment`, `deployment_environment`). Defaults to standard labels if not set.
+        """
+        return pulumi.get(self, "env_label")
+
+    @env_label.setter
+    def env_label(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "env_label", value)
+
+    @_builtins.property
+    @pulumi.getter(name="envLabelValues")
+    def env_label_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specific values of the environment label to match.
+        """
+        return pulumi.get(self, "env_label_values")
+
+    @env_label_values.setter
+    def env_label_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "env_label_values", value)
+
+    @_builtins.property
+    @pulumi.getter(name="envName")
+    def env_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A friendly name for the environment.
+        """
+        return pulumi.get(self, "env_name")
+
+    @env_name.setter
+    def env_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "env_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StackDatasetFilterGroupFilterArgs']]]]:
+        """
+        Additional metric filters.
+        """
+        return pulumi.get(self, "filters")
+
+    @filters.setter
+    def filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['StackDatasetFilterGroupFilterArgs']]]]):
+        pulumi.set(self, "filters", value)
+
+    @_builtins.property
+    @pulumi.getter(name="siteLabel")
+    def site_label(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The metric label name used for site/cluster.
+        """
+        return pulumi.get(self, "site_label")
+
+    @site_label.setter
+    def site_label(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "site_label", value)
+
+    @_builtins.property
+    @pulumi.getter(name="siteLabelValues")
+    def site_label_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specific values of the site label to match.
+        """
+        return pulumi.get(self, "site_label_values")
+
+    @site_label_values.setter
+    def site_label_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "site_label_values", value)
+
+
+class StackDatasetFilterGroupFilterArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The label name to filter on.
+    """
+    operator: pulumi.Input[_builtins.str]
+    """
+    The filter operator (e.g., `=`, `!=`, `=~`, `!~`).
+    """
+    values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    The values to match.
+    """
+
+@pulumi.input_type
+class StackDatasetFilterGroupFilterArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 operator: pulumi.Input[_builtins.str],
+                 values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        """
+        :param pulumi.Input[_builtins.str] name: The label name to filter on.
+        :param pulumi.Input[_builtins.str] operator: The filter operator (e.g., `=`, `!=`, `=~`, `!~`).
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: The values to match.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        The label name to filter on.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        The filter operator (e.g., `=`, `!=`, `=~`, `!~`).
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        The values to match.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "values", value)
+
+
+class ThresholdsHealthThresholdArgsDict(TypedDict):
+    assertion_name: pulumi.Input[_builtins.str]
+    """
+    Assertion name.
+    """
+    entity_type: pulumi.Input[_builtins.str]
+    """
+    Entity type for the health threshold (e.g., Service, Pod, Namespace, Volume).
+    """
+    expression: pulumi.Input[_builtins.str]
+    """
+    Prometheus expression.
+    """
+    alert_category: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Optional alert category label for the health threshold.
+    """
 
 @pulumi.input_type
 class ThresholdsHealthThresholdArgs:
@@ -800,30 +1043,27 @@ class ThresholdsHealthThresholdArgs:
         pulumi.set(self, "alert_category", value)
 
 
-if not MYPY:
-    class ThresholdsRequestThresholdArgsDict(TypedDict):
-        assertion_name: pulumi.Input[_builtins.str]
-        """
-        Assertion name (e.g., RequestRateAnomaly, ErrorRatioBreach).
-        """
-        entity_name: pulumi.Input[_builtins.str]
-        """
-        Entity name the threshold applies to.
-        """
-        request_context: pulumi.Input[_builtins.str]
-        """
-        Request context (e.g., path or context identifier).
-        """
-        request_type: pulumi.Input[_builtins.str]
-        """
-        Request type (e.g., inbound/outbound).
-        """
-        value: pulumi.Input[_builtins.float]
-        """
-        Threshold value.
-        """
-elif False:
-    ThresholdsRequestThresholdArgsDict: TypeAlias = Mapping[str, Any]
+class ThresholdsRequestThresholdArgsDict(TypedDict):
+    assertion_name: pulumi.Input[_builtins.str]
+    """
+    Assertion name (e.g., RequestRateAnomaly, ErrorRatioBreach).
+    """
+    entity_name: pulumi.Input[_builtins.str]
+    """
+    Entity name the threshold applies to.
+    """
+    request_context: pulumi.Input[_builtins.str]
+    """
+    Request context (e.g., path or context identifier).
+    """
+    request_type: pulumi.Input[_builtins.str]
+    """
+    Request type (e.g., inbound/outbound).
+    """
+    value: pulumi.Input[_builtins.float]
+    """
+    Threshold value.
+    """
 
 @pulumi.input_type
 class ThresholdsRequestThresholdArgs:
@@ -907,34 +1147,31 @@ class ThresholdsRequestThresholdArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ThresholdsResourceThresholdArgsDict(TypedDict):
-        assertion_name: pulumi.Input[_builtins.str]
-        """
-        Assertion name (e.g., Saturation, ResourceRateBreach).
-        """
-        container_name: pulumi.Input[_builtins.str]
-        """
-        Container name.
-        """
-        resource_type: pulumi.Input[_builtins.str]
-        """
-        Resource type (e.g., container/pod/node).
-        """
-        severity: pulumi.Input[_builtins.str]
-        """
-        Severity (warning or critical).
-        """
-        source: pulumi.Input[_builtins.str]
-        """
-        Data source for the threshold (e.g., metrics/logs).
-        """
-        value: pulumi.Input[_builtins.float]
-        """
-        Threshold value.
-        """
-elif False:
-    ThresholdsResourceThresholdArgsDict: TypeAlias = Mapping[str, Any]
+class ThresholdsResourceThresholdArgsDict(TypedDict):
+    assertion_name: pulumi.Input[_builtins.str]
+    """
+    Assertion name (e.g., Saturation, ResourceRateBreach).
+    """
+    container_name: pulumi.Input[_builtins.str]
+    """
+    Container name.
+    """
+    resource_type: pulumi.Input[_builtins.str]
+    """
+    Resource type (e.g., container/pod/node).
+    """
+    severity: pulumi.Input[_builtins.str]
+    """
+    Severity (warning or critical).
+    """
+    source: pulumi.Input[_builtins.str]
+    """
+    Data source for the threshold (e.g., metrics/logs).
+    """
+    value: pulumi.Input[_builtins.float]
+    """
+    Threshold value.
+    """
 
 @pulumi.input_type
 class ThresholdsResourceThresholdArgs:
@@ -1033,22 +1270,19 @@ class ThresholdsResourceThresholdArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class TraceConfigMatchArgsDict(TypedDict):
-        op: pulumi.Input[_builtins.str]
-        """
-        Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
-        """
-        property: pulumi.Input[_builtins.str]
-        """
-        Entity property to match.
-        """
-        values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Values to match against.
-        """
-elif False:
-    TraceConfigMatchArgsDict: TypeAlias = Mapping[str, Any]
+class TraceConfigMatchArgsDict(TypedDict):
+    op: pulumi.Input[_builtins.str]
+    """
+    Operation to use for matching. One of: =, <>, <, >, <=, >=, IS NULL, IS NOT NULL, STARTS WITH, CONTAINS.
+    """
+    property: pulumi.Input[_builtins.str]
+    """
+    Entity property to match.
+    """
+    values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Values to match against.
+    """
 
 @pulumi.input_type
 class TraceConfigMatchArgs:

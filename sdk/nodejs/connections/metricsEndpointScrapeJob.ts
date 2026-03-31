@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob name "{{ stack_id }}:{{ name }}"
+ * terraform import grafana_connections_metrics_endpoint_scrape_job.name "{{ stack_id }}:{{ name }}"
  * ```
  */
 export class MetricsEndpointScrapeJob extends pulumi.CustomResource {
@@ -77,11 +77,17 @@ export class MetricsEndpointScrapeJob extends pulumi.CustomResource {
      * Whether the metrics endpoint scrape job is enabled or not.
      */
     declare public readonly enabled: pulumi.Output<boolean>;
+    /**
+     * The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+     */
     declare public readonly name: pulumi.Output<string>;
     /**
      * Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
      */
     declare public readonly scrapeIntervalSeconds: pulumi.Output<number>;
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     declare public readonly stackId: pulumi.Output<string>;
     /**
      * The url to scrape metrics from; a valid HTTPs URL is required.
@@ -162,11 +168,17 @@ export interface MetricsEndpointScrapeJobState {
      * Whether the metrics endpoint scrape job is enabled or not.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+     */
     name?: pulumi.Input<string>;
     /**
      * Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
      */
     scrapeIntervalSeconds?: pulumi.Input<number>;
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId?: pulumi.Input<string>;
     /**
      * The url to scrape metrics from; a valid HTTPs URL is required.
@@ -198,11 +210,17 @@ export interface MetricsEndpointScrapeJobArgs {
      * Whether the metrics endpoint scrape job is enabled or not.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+     */
     name?: pulumi.Input<string>;
     /**
      * Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
      */
     scrapeIntervalSeconds?: pulumi.Input<number>;
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: pulumi.Input<string>;
     /**
      * The url to scrape metrics from; a valid HTTPs URL is required.

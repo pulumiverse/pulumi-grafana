@@ -26,6 +26,7 @@ class ProductActivationK8sO11yConfigV1Alpha1Args:
                  spec: Optional[pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1SpecArgs']] = None):
         """
         The set of arguments for constructing a ProductActivationK8sO11yConfigV1Alpha1 resource.
+
         :param pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1MetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1OptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1SpecArgs'] spec: The spec of the resource.
@@ -82,6 +83,7 @@ class _ProductActivationK8sO11yConfigV1Alpha1State:
                  spec: Optional[pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1SpecArgs']] = None):
         """
         Input properties used for looking up and filtering ProductActivationK8sO11yConfigV1Alpha1 resources.
+
         :param pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1MetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1OptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['ProductActivationK8sO11yConfigV1Alpha1SpecArgs'] spec: The spec of the resource.
@@ -130,8 +132,13 @@ class _ProductActivationK8sO11yConfigV1Alpha1State:
         pulumi.set(self, "spec", value)
 
 
+warnings.warn("""grafana.cloud/productactivationk8so11yconfigv1alpha1.ProductActivationK8sO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationk8so11yconfig.ProductActivationK8sO11yConfig""", DeprecationWarning)
+
+
 @pulumi.type_token("grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1")
 class ProductActivationK8sO11yConfigV1Alpha1(pulumi.CustomResource):
+    warnings.warn("""grafana.cloud/productactivationk8so11yconfigv1alpha1.ProductActivationK8sO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationk8so11yconfig.ProductActivationK8sO11yConfig""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -153,7 +160,7 @@ class ProductActivationK8sO11yConfigV1Alpha1(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.cloud.ProductActivationK8sO11yConfigV1Alpha1("example",
+        example = grafana.cloud.v1alpha1.ProductActivationK8sO11yConfig("example",
             metadata={
                 "uid": "global",
             },
@@ -164,13 +171,13 @@ class ProductActivationK8sO11yConfigV1Alpha1(pulumi.CustomResource):
 
         ## Import
 
-        #!/bin/bash
-
+        !/bin/bash
         Import an existing Kubernetes observability config by its UID
 
         ```sh
         $ pulumi import grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1 example my-k8s-o11y-config
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -197,7 +204,7 @@ class ProductActivationK8sO11yConfigV1Alpha1(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.cloud.ProductActivationK8sO11yConfigV1Alpha1("example",
+        example = grafana.cloud.v1alpha1.ProductActivationK8sO11yConfig("example",
             metadata={
                 "uid": "global",
             },
@@ -208,13 +215,13 @@ class ProductActivationK8sO11yConfigV1Alpha1(pulumi.CustomResource):
 
         ## Import
 
-        #!/bin/bash
-
+        !/bin/bash
         Import an existing Kubernetes observability config by its UID
 
         ```sh
         $ pulumi import grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1 example my-k8s-o11y-config
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProductActivationK8sO11yConfigV1Alpha1Args args: The arguments to use to populate this resource's properties.
@@ -235,6 +242,7 @@ class ProductActivationK8sO11yConfigV1Alpha1(pulumi.CustomResource):
                  options: Optional[pulumi.Input[Union['ProductActivationK8sO11yConfigV1Alpha1OptionsArgs', 'ProductActivationK8sO11yConfigV1Alpha1OptionsArgsDict']]] = None,
                  spec: Optional[pulumi.Input[Union['ProductActivationK8sO11yConfigV1Alpha1SpecArgs', 'ProductActivationK8sO11yConfigV1Alpha1SpecArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""ProductActivationK8sO11yConfigV1Alpha1 is deprecated: grafana.cloud/productactivationk8so11yconfigv1alpha1.ProductActivationK8sO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationk8so11yconfig.ProductActivationK8sO11yConfig""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -246,6 +254,8 @@ class ProductActivationK8sO11yConfigV1Alpha1(pulumi.CustomResource):
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["options"] = options
             __props__.__dict__["spec"] = spec
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(ProductActivationK8sO11yConfigV1Alpha1, __self__).__init__(
             'grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1',
             resource_name,

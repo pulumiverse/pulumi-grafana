@@ -72,11 +72,8 @@ namespace Pulumiverse.Grafana.Oss
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:oss/dashboardPermissionItem:DashboardPermissionItem name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:oss/dashboardPermissionItem:DashboardPermissionItem name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+    /// terraform import grafana_dashboard_permission_item.name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+    /// terraform import grafana_dashboard_permission_item.name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:oss/dashboardPermissionItem:DashboardPermissionItem")]

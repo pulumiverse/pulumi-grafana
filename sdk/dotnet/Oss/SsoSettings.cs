@@ -143,11 +143,8 @@ namespace Pulumiverse.Grafana.Oss
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:oss/ssoSettings:SsoSettings name "{{ provider }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:oss/ssoSettings:SsoSettings name "{{ orgID }}:{{ provider }}"
+    /// terraform import grafana_sso_settings.name "{{ provider }}"
+    /// terraform import grafana_sso_settings.name "{{ orgID }}:{{ provider }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:oss/ssoSettings:SsoSettings")]

@@ -29,17 +29,17 @@ namespace Pulumiverse.Grafana.Alerting
     ///         Title = "Alert Rule Folder",
     ///     });
     /// 
-    ///     var example = new Grafana.Alerting.RecordingRuleV0Alpha1("example", new()
+    ///     var example = new Grafana.Alerting.V0Alpha1.RecordingRule("example", new()
     ///     {
-    ///         Metadata = new Grafana.Alerting.Inputs.RecordingRuleV0Alpha1MetadataArgs
+    ///         Metadata = new Grafana.Alerting.V0Alpha1.Inputs.RecordingRuleMetadataArgs
     ///         {
     ///             Uid = "example-recording-rule",
     ///             FolderUid = recordingruleFolder.Uid,
     ///         },
-    ///         Spec = new Grafana.Alerting.Inputs.RecordingRuleV0Alpha1SpecArgs
+    ///         Spec = new Grafana.Alerting.V0Alpha1.Inputs.RecordingRuleSpecArgs
     ///         {
     ///             Title = "Example Recording Rule",
-    ///             Trigger = new Grafana.Alerting.Inputs.RecordingRuleV0Alpha1SpecTriggerArgs
+    ///             Trigger = new Grafana.Alerting.V0Alpha1.Inputs.RecordingRuleSpecTriggerArgs
     ///             {
     ///                 Interval = "1m",
     ///             },
@@ -81,6 +81,7 @@ namespace Pulumiverse.Grafana.Alerting
     /// });
     /// ```
     /// </summary>
+    [Obsolete(@"grafana.alerting/recordingrulev0alpha1.RecordingRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/recordingrule.RecordingRule")]
     [GrafanaResourceType("grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1")]
     public partial class RecordingRuleV0Alpha1 : global::Pulumi.CustomResource
     {
@@ -126,6 +127,10 @@ namespace Pulumiverse.Grafana.Alerting
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

@@ -36,7 +36,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:onCall/outgoingWebhook:OutgoingWebhook name "{{ id }}"
+ * terraform import grafana_oncall_outgoing_webhook.name "{{ id }}"
  * ```
  */
 export class OutgoingWebhook extends pulumi.CustomResource {

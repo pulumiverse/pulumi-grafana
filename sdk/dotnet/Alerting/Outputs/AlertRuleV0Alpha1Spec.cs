@@ -51,7 +51,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly Outputs.AlertRuleV0Alpha1SpecNotificationSettings? NotificationSettings;
         /// <summary>
-        /// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
+        /// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? PanelRef;
         /// <summary>

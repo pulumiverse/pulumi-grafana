@@ -80,7 +80,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:syntheticMonitoring/checkAlerts:CheckAlerts name "{{ check_id }}"
+    /// terraform import grafana_synthetic_monitoring_check_alerts.name "{{ check_id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:syntheticMonitoring/checkAlerts:CheckAlerts")]

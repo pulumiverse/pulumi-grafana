@@ -24,6 +24,7 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting"
+//	alertingv0alpha1 "github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting/v0alpha1"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
 //
 // )
@@ -59,19 +60,19 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = alerting.NewRecordingRuleV0Alpha1(ctx, "example", &alerting.RecordingRuleV0Alpha1Args{
-//				Metadata: &alerting.RecordingRuleV0Alpha1MetadataArgs{
+//			_, err = alerting.NewRecordingRule(ctx, "example", &alerting.RecordingRuleArgs{
+//				Metadata: &alertingv0alpha1.RecordingRuleMetadataArgs{
 //					Uid:       pulumi.String("example-recording-rule"),
 //					FolderUid: recordingruleFolder.Uid,
 //				},
-//				Spec: &alerting.RecordingRuleV0Alpha1SpecArgs{
+//				Spec: &alertingv0alpha1.RecordingRuleSpecArgs{
 //					Title: pulumi.String("Example Recording Rule"),
-//					Trigger: &alerting.RecordingRuleV0Alpha1SpecTriggerArgs{
+//					Trigger: &alertingv0alpha1.RecordingRuleSpecTriggerArgs{
 //						Interval: pulumi.String("1m"),
 //					},
 //					Paused: pulumi.Bool(true),
 //					Expressions: pulumi.StringMap{
-//						"A": pulumi.String(json0),
+//						"A": pulumi.String(pulumi.String(json0)),
 //					},
 //					TargetDatasourceUid: pulumi.String("target_ds_uid"),
 //					Metric:              pulumi.String("tf-metric"),
@@ -88,6 +89,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: grafana.alerting/recordingrulev0alpha1.RecordingRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/recordingrule.RecordingRule
 type RecordingRuleV0Alpha1 struct {
 	pulumi.CustomResourceState
 
@@ -106,6 +109,12 @@ func NewRecordingRuleV0Alpha1(ctx *pulumi.Context,
 		args = &RecordingRuleV0Alpha1Args{}
 	}
 
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RecordingRuleV0Alpha1
 	err := ctx.RegisterResource("grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1", name, args, &resource, opts...)

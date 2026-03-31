@@ -11,12 +11,53 @@ using Pulumi;
 namespace Pulumiverse.Grafana.CloudProvider
 {
     /// <summary>
+    /// This resource allows you to link your AWS Account to Grafana Cloud for use in creating Cloud Provider resources.
+    /// 
+    /// See the Grafana Provider configuration docs
+    /// for information on authentication and required access policy scopes.
+    /// 
+    /// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+    /// 
     /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = Grafana.Cloud.GetStack.Invoke(new()
+    ///     {
+    ///         Slug = "gcloudstacktest",
+    ///     });
+    /// 
+    ///     var testIamRole = Aws.Index.IamRole.Invoke(new()
+    ///     {
+    ///         Name = "my-role",
+    ///     });
+    /// 
+    ///     var testAwsAccount = new Grafana.CloudProvider.AwsAccount("test", new()
+    ///     {
+    ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
+    ///         RoleArn = testIamRole.Arn,
+    ///         Regions = new[]
+    ///         {
+    ///             "us-east-1",
+    ///             "us-east-2",
+    ///             "us-west-1",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:cloudProvider/awsAccount:AwsAccount name "{{ stack_id }}:{{ resource_id }}"
+    /// terraform import grafana_cloud_provider_aws_account.name "{{ stack_id }}:{{ resource_id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:cloudProvider/awsAccount:AwsAccount")]
@@ -46,6 +87,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Output("roleArn")]
         public Output<string> RoleArn { get; private set; } = null!;
 
+        /// <summary>
+        /// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Output("stackId")]
         public Output<string> StackId { get; private set; } = null!;
 
@@ -120,6 +164,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Input("roleArn", required: true)]
         public Input<string> RoleArn { get; set; } = null!;
 
+        /// <summary>
+        /// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public Input<string> StackId { get; set; } = null!;
 
@@ -161,6 +208,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Input("roleArn")]
         public Input<string>? RoleArn { get; set; }
 
+        /// <summary>
+        /// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
 

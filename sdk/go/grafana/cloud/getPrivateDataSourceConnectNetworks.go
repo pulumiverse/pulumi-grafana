@@ -31,17 +31,21 @@ func GetPrivateDataSourceConnectNetworks(ctx *pulumi.Context, args *GetPrivateDa
 
 // A collection of arguments for invoking getPrivateDataSourceConnectNetworks.
 type GetPrivateDataSourceConnectNetworksArgs struct {
-	NameFilter   *string `pulumi:"nameFilter"`
+	// If set, only private data source connect networks with the specified name will be returned. This is faster than filtering in Terraform.
+	NameFilter *string `pulumi:"nameFilter"`
+	// If set, only private data source connect networks in the specified region will be returned. This is faster than filtering in Terraform.
 	RegionFilter *string `pulumi:"regionFilter"`
 }
 
 // A collection of values returned by getPrivateDataSourceConnectNetworks.
 type GetPrivateDataSourceConnectNetworksResult struct {
 	// The ID of this datasource. This is an internal identifier used by the provider to track this datasource.
-	Id                               string                                                               `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// If set, only private data source connect networks with the specified name will be returned. This is faster than filtering in Terraform.
 	NameFilter                       *string                                                              `pulumi:"nameFilter"`
 	PrivateDataSourceConnectNetworks []GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork `pulumi:"privateDataSourceConnectNetworks"`
-	RegionFilter                     *string                                                              `pulumi:"regionFilter"`
+	// If set, only private data source connect networks in the specified region will be returned. This is faster than filtering in Terraform.
+	RegionFilter *string `pulumi:"regionFilter"`
 }
 
 func GetPrivateDataSourceConnectNetworksOutput(ctx *pulumi.Context, args GetPrivateDataSourceConnectNetworksOutputArgs, opts ...pulumi.InvokeOption) GetPrivateDataSourceConnectNetworksResultOutput {
@@ -55,7 +59,9 @@ func GetPrivateDataSourceConnectNetworksOutput(ctx *pulumi.Context, args GetPriv
 
 // A collection of arguments for invoking getPrivateDataSourceConnectNetworks.
 type GetPrivateDataSourceConnectNetworksOutputArgs struct {
-	NameFilter   pulumi.StringPtrInput `pulumi:"nameFilter"`
+	// If set, only private data source connect networks with the specified name will be returned. This is faster than filtering in Terraform.
+	NameFilter pulumi.StringPtrInput `pulumi:"nameFilter"`
+	// If set, only private data source connect networks in the specified region will be returned. This is faster than filtering in Terraform.
 	RegionFilter pulumi.StringPtrInput `pulumi:"regionFilter"`
 }
 
@@ -83,6 +89,7 @@ func (o GetPrivateDataSourceConnectNetworksResultOutput) Id() pulumi.StringOutpu
 	return o.ApplyT(func(v GetPrivateDataSourceConnectNetworksResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// If set, only private data source connect networks with the specified name will be returned. This is faster than filtering in Terraform.
 func (o GetPrivateDataSourceConnectNetworksResultOutput) NameFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPrivateDataSourceConnectNetworksResult) *string { return v.NameFilter }).(pulumi.StringPtrOutput)
 }
@@ -93,6 +100,7 @@ func (o GetPrivateDataSourceConnectNetworksResultOutput) PrivateDataSourceConnec
 	}).(GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkArrayOutput)
 }
 
+// If set, only private data source connect networks in the specified region will be returned. This is faster than filtering in Terraform.
 func (o GetPrivateDataSourceConnectNetworksResultOutput) RegionFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPrivateDataSourceConnectNetworksResult) *string { return v.RegionFilter }).(pulumi.StringPtrOutput)
 }

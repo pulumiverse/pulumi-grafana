@@ -12,12 +12,63 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+// This resource allows you to link your AWS Account to Grafana Cloud for use in creating Cloud Provider resources.
+//
+// See the Grafana Provider configuration docs
+// for information on authentication and required access policy scopes.
+//
+// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+//
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/go/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloudprovider"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := cloud.LookupStack(ctx, &cloud.LookupStackArgs{
+//				Slug: "gcloudstacktest",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			testIamRole, err := aws.IamRole(ctx, map[string]interface{}{
+//				"name": "my-role",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudprovider.NewAwsAccount(ctx, "test", &cloudprovider.AwsAccountArgs{
+//				StackId: pulumi.String(pulumi.String(test.Id)),
+//				RoleArn: pulumi.Any(testIamRole.Arn),
+//				Regions: pulumi.StringArray{
+//					pulumi.String("us-east-1"),
+//					pulumi.String("us-east-2"),
+//					pulumi.String("us-west-1"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:cloudProvider/awsAccount:AwsAccount name "{{ stack_id }}:{{ resource_id }}"
+// terraform import grafana_cloud_provider_aws_account.name "{{ stack_id }}:{{ resource_id }}"
 // ```
 type AwsAccount struct {
 	pulumi.CustomResourceState
@@ -30,6 +81,7 @@ type AwsAccount struct {
 	ResourceId pulumi.StringOutput `pulumi:"resourceId"`
 	// An IAM Role ARN string to represent with this AWS Account resource.
 	RoleArn pulumi.StringOutput `pulumi:"roleArn"`
+	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId pulumi.StringOutput `pulumi:"stackId"`
 }
 
@@ -80,6 +132,7 @@ type awsAccountState struct {
 	ResourceId *string `pulumi:"resourceId"`
 	// An IAM Role ARN string to represent with this AWS Account resource.
 	RoleArn *string `pulumi:"roleArn"`
+	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId *string `pulumi:"stackId"`
 }
 
@@ -92,6 +145,7 @@ type AwsAccountState struct {
 	ResourceId pulumi.StringPtrInput
 	// An IAM Role ARN string to represent with this AWS Account resource.
 	RoleArn pulumi.StringPtrInput
+	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId pulumi.StringPtrInput
 }
 
@@ -106,6 +160,7 @@ type awsAccountArgs struct {
 	Regions []string `pulumi:"regions"`
 	// An IAM Role ARN string to represent with this AWS Account resource.
 	RoleArn string `pulumi:"roleArn"`
+	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId string `pulumi:"stackId"`
 }
 
@@ -117,6 +172,7 @@ type AwsAccountArgs struct {
 	Regions pulumi.StringArrayInput
 	// An IAM Role ARN string to represent with this AWS Account resource.
 	RoleArn pulumi.StringInput
+	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId pulumi.StringInput
 }
 
@@ -227,6 +283,7 @@ func (o AwsAccountOutput) RoleArn() pulumi.StringOutput {
 	return o.ApplyT(func(v *AwsAccount) pulumi.StringOutput { return v.RoleArn }).(pulumi.StringOutput)
 }
 
+// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o AwsAccountOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AwsAccount) pulumi.StringOutput { return v.StackId }).(pulumi.StringOutput)
 }

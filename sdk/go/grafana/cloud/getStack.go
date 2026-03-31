@@ -83,8 +83,12 @@ type LookupStackResult struct {
 	Description string `pulumi:"description"`
 	// Name of the Fleet Management instance configured for this stack.
 	FleetManagementName string `pulumi:"fleetManagementName"`
+	// Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+	FleetManagementPrivateConnectivityInfoAvailabilityZones []string `pulumi:"fleetManagementPrivateConnectivityInfoAvailabilityZones"`
 	// Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
 	FleetManagementPrivateConnectivityInfoPrivateDns string `pulumi:"fleetManagementPrivateConnectivityInfoPrivateDns"`
+	// Regions for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+	FleetManagementPrivateConnectivityInfoRegions []string `pulumi:"fleetManagementPrivateConnectivityInfoRegions"`
 	// Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
 	FleetManagementPrivateConnectivityInfoServiceName string `pulumi:"fleetManagementPrivateConnectivityInfoServiceName"`
 	// Status of the Fleet Management instance configured for this stack.
@@ -98,8 +102,12 @@ type LookupStackResult struct {
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Graphite instance (Optional)
 	GraphiteIpAllowListCname string `pulumi:"graphiteIpAllowListCname"`
 	GraphiteName             string `pulumi:"graphiteName"`
+	// Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
+	GraphitePrivateConnectivityInfoAvailabilityZones []string `pulumi:"graphitePrivateConnectivityInfoAvailabilityZones"`
 	// Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
 	GraphitePrivateConnectivityInfoPrivateDns string `pulumi:"graphitePrivateConnectivityInfoPrivateDns"`
+	// Regions for Graphite when using AWS PrivateLink (only for AWS stacks)
+	GraphitePrivateConnectivityInfoRegions []string `pulumi:"graphitePrivateConnectivityInfoRegions"`
 	// Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
 	GraphitePrivateConnectivityInfoServiceName string `pulumi:"graphitePrivateConnectivityInfoServiceName"`
 	GraphiteStatus                             string `pulumi:"graphiteStatus"`
@@ -114,8 +122,12 @@ type LookupStackResult struct {
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Logs instance (Optional)
 	LogsIpAllowListCname string `pulumi:"logsIpAllowListCname"`
 	LogsName             string `pulumi:"logsName"`
+	// Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
+	LogsPrivateConnectivityInfoAvailabilityZones []string `pulumi:"logsPrivateConnectivityInfoAvailabilityZones"`
 	// Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
 	LogsPrivateConnectivityInfoPrivateDns string `pulumi:"logsPrivateConnectivityInfoPrivateDns"`
+	// Regions for Logs when using AWS PrivateLink (only for AWS stacks)
+	LogsPrivateConnectivityInfoRegions []string `pulumi:"logsPrivateConnectivityInfoRegions"`
 	// Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
 	LogsPrivateConnectivityInfoServiceName string `pulumi:"logsPrivateConnectivityInfoServiceName"`
 	LogsStatus                             string `pulumi:"logsStatus"`
@@ -131,25 +143,41 @@ type LookupStackResult struct {
 	OrgName string `pulumi:"orgName"`
 	// Organization slug to assign to this stack.
 	OrgSlug string `pulumi:"orgSlug"`
+	// Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
+	OtlpPrivateConnectivityInfoAvailabilityZones []string `pulumi:"otlpPrivateConnectivityInfoAvailabilityZones"`
 	// Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
 	OtlpPrivateConnectivityInfoPrivateDns string `pulumi:"otlpPrivateConnectivityInfoPrivateDns"`
+	// Regions for OTLP when using AWS PrivateLink (only for AWS stacks)
+	OtlpPrivateConnectivityInfoRegions []string `pulumi:"otlpPrivateConnectivityInfoRegions"`
 	// Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
 	OtlpPrivateConnectivityInfoServiceName string `pulumi:"otlpPrivateConnectivityInfoServiceName"`
 	// Base URL of the OTLP instance configured for this stack. The username is the stack's ID (`id` attribute of this resource). See https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/ for docs on how to use this.
 	OtlpUrl string `pulumi:"otlpUrl"`
+	// Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
+	PdcApiPrivateConnectivityInfoAvailabilityZones []string `pulumi:"pdcApiPrivateConnectivityInfoAvailabilityZones"`
 	// Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
 	PdcApiPrivateConnectivityInfoPrivateDns string `pulumi:"pdcApiPrivateConnectivityInfoPrivateDns"`
+	// Regions for PDC's API when using AWS PrivateLink (only for AWS stacks)
+	PdcApiPrivateConnectivityInfoRegions []string `pulumi:"pdcApiPrivateConnectivityInfoRegions"`
 	// Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
 	PdcApiPrivateConnectivityInfoServiceName string `pulumi:"pdcApiPrivateConnectivityInfoServiceName"`
+	// Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+	PdcGatewayPrivateConnectivityInfoAvailabilityZones []string `pulumi:"pdcGatewayPrivateConnectivityInfoAvailabilityZones"`
 	// Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
 	PdcGatewayPrivateConnectivityInfoPrivateDns string `pulumi:"pdcGatewayPrivateConnectivityInfoPrivateDns"`
+	// Regions for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+	PdcGatewayPrivateConnectivityInfoRegions []string `pulumi:"pdcGatewayPrivateConnectivityInfoRegions"`
 	// Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
 	PdcGatewayPrivateConnectivityInfoServiceName string `pulumi:"pdcGatewayPrivateConnectivityInfoServiceName"`
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Profiles instance (Optional)
 	ProfilesIpAllowListCname string `pulumi:"profilesIpAllowListCname"`
 	ProfilesName             string `pulumi:"profilesName"`
+	// Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
+	ProfilesPrivateConnectivityInfoAvailabilityZones []string `pulumi:"profilesPrivateConnectivityInfoAvailabilityZones"`
 	// Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
 	ProfilesPrivateConnectivityInfoPrivateDns string `pulumi:"profilesPrivateConnectivityInfoPrivateDns"`
+	// Regions for Profiles when using AWS PrivateLink (only for AWS stacks)
+	ProfilesPrivateConnectivityInfoRegions []string `pulumi:"profilesPrivateConnectivityInfoRegions"`
 	// Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
 	ProfilesPrivateConnectivityInfoServiceName string `pulumi:"profilesPrivateConnectivityInfoServiceName"`
 	ProfilesStatus                             string `pulumi:"profilesStatus"`
@@ -159,8 +187,12 @@ type LookupStackResult struct {
 	PrometheusIpAllowListCname string `pulumi:"prometheusIpAllowListCname"`
 	// Prometheus name for this instance.
 	PrometheusName string `pulumi:"prometheusName"`
+	// Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
+	PrometheusPrivateConnectivityInfoAvailabilityZones []string `pulumi:"prometheusPrivateConnectivityInfoAvailabilityZones"`
 	// Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
 	PrometheusPrivateConnectivityInfoPrivateDns string `pulumi:"prometheusPrivateConnectivityInfoPrivateDns"`
+	// Regions for Prometheus when using AWS PrivateLink (only for AWS stacks)
+	PrometheusPrivateConnectivityInfoRegions []string `pulumi:"prometheusPrivateConnectivityInfoRegions"`
 	// Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
 	PrometheusPrivateConnectivityInfoServiceName string `pulumi:"prometheusPrivateConnectivityInfoServiceName"`
 	// Use this URL to query hosted metrics data e.g. Prometheus data source in Grafana
@@ -183,8 +215,12 @@ type LookupStackResult struct {
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
 	TracesIpAllowListCname string `pulumi:"tracesIpAllowListCname"`
 	TracesName             string `pulumi:"tracesName"`
+	// Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
+	TracesPrivateConnectivityInfoAvailabilityZones []string `pulumi:"tracesPrivateConnectivityInfoAvailabilityZones"`
 	// Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
 	TracesPrivateConnectivityInfoPrivateDns string `pulumi:"tracesPrivateConnectivityInfoPrivateDns"`
+	// Regions for Traces when using AWS PrivateLink (only for AWS stacks)
+	TracesPrivateConnectivityInfoRegions []string `pulumi:"tracesPrivateConnectivityInfoRegions"`
 	// Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
 	TracesPrivateConnectivityInfoServiceName string `pulumi:"tracesPrivateConnectivityInfoServiceName"`
 	TracesStatus                             string `pulumi:"tracesStatus"`
@@ -280,9 +316,19 @@ func (o LookupStackResultOutput) FleetManagementName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.FleetManagementName }).(pulumi.StringOutput)
 }
 
+// Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) FleetManagementPrivateConnectivityInfoAvailabilityZones() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.FleetManagementPrivateConnectivityInfoAvailabilityZones }).(pulumi.StringArrayOutput)
+}
+
 // Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
 func (o LookupStackResultOutput) FleetManagementPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.FleetManagementPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Regions for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) FleetManagementPrivateConnectivityInfoRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.FleetManagementPrivateConnectivityInfoRegions }).(pulumi.StringArrayOutput)
 }
 
 // Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
@@ -319,9 +365,19 @@ func (o LookupStackResultOutput) GraphiteName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.GraphiteName }).(pulumi.StringOutput)
 }
 
+// Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) GraphitePrivateConnectivityInfoAvailabilityZones() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.GraphitePrivateConnectivityInfoAvailabilityZones }).(pulumi.StringArrayOutput)
+}
+
 // Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
 func (o LookupStackResultOutput) GraphitePrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.GraphitePrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Regions for Graphite when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) GraphitePrivateConnectivityInfoRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.GraphitePrivateConnectivityInfoRegions }).(pulumi.StringArrayOutput)
 }
 
 // Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
@@ -365,9 +421,19 @@ func (o LookupStackResultOutput) LogsName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.LogsName }).(pulumi.StringOutput)
 }
 
+// Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) LogsPrivateConnectivityInfoAvailabilityZones() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.LogsPrivateConnectivityInfoAvailabilityZones }).(pulumi.StringArrayOutput)
+}
+
 // Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
 func (o LookupStackResultOutput) LogsPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.LogsPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Regions for Logs when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) LogsPrivateConnectivityInfoRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.LogsPrivateConnectivityInfoRegions }).(pulumi.StringArrayOutput)
 }
 
 // Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
@@ -412,9 +478,19 @@ func (o LookupStackResultOutput) OrgSlug() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.OrgSlug }).(pulumi.StringOutput)
 }
 
+// Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) OtlpPrivateConnectivityInfoAvailabilityZones() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.OtlpPrivateConnectivityInfoAvailabilityZones }).(pulumi.StringArrayOutput)
+}
+
 // Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
 func (o LookupStackResultOutput) OtlpPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.OtlpPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Regions for OTLP when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) OtlpPrivateConnectivityInfoRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.OtlpPrivateConnectivityInfoRegions }).(pulumi.StringArrayOutput)
 }
 
 // Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
@@ -427,9 +503,19 @@ func (o LookupStackResultOutput) OtlpUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.OtlpUrl }).(pulumi.StringOutput)
 }
 
+// Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) PdcApiPrivateConnectivityInfoAvailabilityZones() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.PdcApiPrivateConnectivityInfoAvailabilityZones }).(pulumi.StringArrayOutput)
+}
+
 // Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
 func (o LookupStackResultOutput) PdcApiPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.PdcApiPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Regions for PDC's API when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) PdcApiPrivateConnectivityInfoRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.PdcApiPrivateConnectivityInfoRegions }).(pulumi.StringArrayOutput)
 }
 
 // Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
@@ -437,9 +523,19 @@ func (o LookupStackResultOutput) PdcApiPrivateConnectivityInfoServiceName() pulu
 	return o.ApplyT(func(v LookupStackResult) string { return v.PdcApiPrivateConnectivityInfoServiceName }).(pulumi.StringOutput)
 }
 
+// Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) PdcGatewayPrivateConnectivityInfoAvailabilityZones() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.PdcGatewayPrivateConnectivityInfoAvailabilityZones }).(pulumi.StringArrayOutput)
+}
+
 // Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
 func (o LookupStackResultOutput) PdcGatewayPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.PdcGatewayPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Regions for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) PdcGatewayPrivateConnectivityInfoRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.PdcGatewayPrivateConnectivityInfoRegions }).(pulumi.StringArrayOutput)
 }
 
 // Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
@@ -456,9 +552,19 @@ func (o LookupStackResultOutput) ProfilesName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.ProfilesName }).(pulumi.StringOutput)
 }
 
+// Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) ProfilesPrivateConnectivityInfoAvailabilityZones() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.ProfilesPrivateConnectivityInfoAvailabilityZones }).(pulumi.StringArrayOutput)
+}
+
 // Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
 func (o LookupStackResultOutput) ProfilesPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.ProfilesPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Regions for Profiles when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) ProfilesPrivateConnectivityInfoRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.ProfilesPrivateConnectivityInfoRegions }).(pulumi.StringArrayOutput)
 }
 
 // Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
@@ -488,9 +594,19 @@ func (o LookupStackResultOutput) PrometheusName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.PrometheusName }).(pulumi.StringOutput)
 }
 
+// Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) PrometheusPrivateConnectivityInfoAvailabilityZones() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.PrometheusPrivateConnectivityInfoAvailabilityZones }).(pulumi.StringArrayOutput)
+}
+
 // Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
 func (o LookupStackResultOutput) PrometheusPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.PrometheusPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Regions for Prometheus when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) PrometheusPrivateConnectivityInfoRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.PrometheusPrivateConnectivityInfoRegions }).(pulumi.StringArrayOutput)
 }
 
 // Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
@@ -548,9 +664,19 @@ func (o LookupStackResultOutput) TracesName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.TracesName }).(pulumi.StringOutput)
 }
 
+// Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) TracesPrivateConnectivityInfoAvailabilityZones() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.TracesPrivateConnectivityInfoAvailabilityZones }).(pulumi.StringArrayOutput)
+}
+
 // Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
 func (o LookupStackResultOutput) TracesPrivateConnectivityInfoPrivateDns() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.TracesPrivateConnectivityInfoPrivateDns }).(pulumi.StringOutput)
+}
+
+// Regions for Traces when using AWS PrivateLink (only for AWS stacks)
+func (o LookupStackResultOutput) TracesPrivateConnectivityInfoRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.TracesPrivateConnectivityInfoRegions }).(pulumi.StringArrayOutput)
 }
 
 // Service Name for Traces when using AWS PrivateLink (only for AWS stacks)

@@ -7,7 +7,108 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * This resource is currently under development. Documentation will be provided in a future release.
+ * Manages Grafana Alert Rules.
+ *
+ * This resource is currently in alpha and is subject to change. Grafana 12.4+ users must enable the `kubernetesAlertingRules` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const alertruleFolder = new grafana.oss.Folder("alertrule_folder", {title: "Alert Rule Folder"});
+ * const example = new grafana.alerting.v0alpha1.AlertRule("example", {
+ *     metadata: {
+ *         uid: "example-alert-rule",
+ *         folderUid: alertruleFolder.uid,
+ *     },
+ *     spec: {
+ *         title: "Example Alert Rule",
+ *         trigger: {
+ *             interval: "1m",
+ *         },
+ *         paused: true,
+ *         expressions: {
+ *             A: JSON.stringify({
+ *                 model: {
+ *                     datasource: {
+ *                         type: "prometheus",
+ *                         uid: "ds_uid",
+ *                     },
+ *                     editorMode: "code",
+ *                     expr: "count(up{})",
+ *                     instant: true,
+ *                     intervalMs: 1000,
+ *                     legendFormat: "__auto",
+ *                     maxDataPoints: 43200,
+ *                     range: false,
+ *                     refId: "A",
+ *                 },
+ *                 datasource_uid: "ds_uid",
+ *                 relative_time_range: {
+ *                     from: "600s",
+ *                     to: "0s",
+ *                 },
+ *                 query_type: "",
+ *                 source: true,
+ *             }),
+ *             B: JSON.stringify({
+ *                 model: {
+ *                     conditions: [{
+ *                         evaluator: {
+ *                             params: [1],
+ *                             type: "gt",
+ *                         },
+ *                         operator: {
+ *                             type: "and",
+ *                         },
+ *                         query: {
+ *                             params: ["C"],
+ *                         },
+ *                         reducer: {
+ *                             params: [],
+ *                             type: "last",
+ *                         },
+ *                         type: "query",
+ *                     }],
+ *                     datasource: {
+ *                         type: "__expr__",
+ *                         uid: "__expr__",
+ *                     },
+ *                     expression: "A",
+ *                     intervalMs: 1000,
+ *                     maxDataPoints: 43200,
+ *                     refId: "C",
+ *                     type: "threshold",
+ *                 },
+ *                 datasource_uid: "__expr__",
+ *                 query_type: "",
+ *                 source: false,
+ *             }),
+ *         },
+ *         "for": "5m",
+ *         labels: {
+ *             severity: "critical",
+ *         },
+ *         annotations: {
+ *             runbook_url: "https://example.com",
+ *         },
+ *         noDataState: "KeepLast",
+ *         execErrState: "KeepLast",
+ *         missingSeriesEvalsToResolve: 5,
+ *         notificationSettings: {
+ *             contactPoint: "grafana-default-email",
+ *         },
+ *         panelRef: {
+ *             dashboard_uid: "dashboard123",
+ *             panel_id: "5",
+ *         },
+ *     },
+ * });
+ * ```
+ *
+ * @deprecated grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule
  */
 export class AlertRuleV0Alpha1 extends pulumi.CustomResource {
     /**
@@ -20,6 +121,7 @@ export class AlertRuleV0Alpha1 extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AlertRuleV0Alpha1State, opts?: pulumi.CustomResourceOptions): AlertRuleV0Alpha1 {
+        pulumi.log.warn("AlertRuleV0Alpha1 is deprecated: grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule")
         return new AlertRuleV0Alpha1(name, <any>state, { ...opts, id: id });
     }
 
@@ -57,8 +159,11 @@ export class AlertRuleV0Alpha1 extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule */
     constructor(name: string, args?: AlertRuleV0Alpha1Args, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule */
     constructor(name: string, argsOrState?: AlertRuleV0Alpha1Args | AlertRuleV0Alpha1State, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("AlertRuleV0Alpha1 is deprecated: grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -73,6 +178,8 @@ export class AlertRuleV0Alpha1 extends pulumi.CustomResource {
             resourceInputs["spec"] = args?.spec;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(AlertRuleV0Alpha1.__pulumiType, name, resourceInputs, opts);
     }
 }

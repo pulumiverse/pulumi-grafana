@@ -25,6 +25,7 @@ class StackServiceAccountTokenArgs:
                  seconds_to_live: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a StackServiceAccountToken resource.
+
         :param pulumi.Input[_builtins.str] service_account_id: The ID of the service account to which the token belongs.
         :param pulumi.Input[_builtins.str] name: The name of the service account token.
         :param pulumi.Input[_builtins.int] seconds_to_live: The key expiration in seconds. It is optional. If it is a positive number an expiration date for the key is set. If it is null, zero or is omitted completely (unless `api_key_max_seconds_to_live` configuration option is set) the key will never expire.
@@ -94,6 +95,7 @@ class _StackServiceAccountTokenState:
                  stack_slug: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StackServiceAccountToken resources.
+
         :param pulumi.Input[_builtins.str] expiration: The expiration date of the service account token.
         :param pulumi.Input[_builtins.bool] has_expired: The status of the service account token.
         :param pulumi.Input[_builtins.str] key: The key of the service account token.
@@ -238,6 +240,7 @@ class StackServiceAccountToken(pulumi.CustomResource):
         pulumi.export("serviceAccountTokenFooKey", foo.key)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the service account token.
@@ -278,6 +281,7 @@ class StackServiceAccountToken(pulumi.CustomResource):
             service_account_id=cloud_sa.id)
         pulumi.export("serviceAccountTokenFooKey", foo.key)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param StackServiceAccountTokenArgs args: The arguments to use to populate this resource's properties.

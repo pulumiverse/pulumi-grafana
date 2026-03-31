@@ -24,6 +24,7 @@ class CollectorArgs:
                  remote_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Collector resource.
+
         :param pulumi.Input[_builtins.str] collector_type: Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
         :param pulumi.Input[_builtins.bool] enabled: Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] remote_attributes: Remote attributes for the collector
@@ -80,6 +81,7 @@ class _CollectorState:
                  remote_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Collector resources.
+
         :param pulumi.Input[_builtins.str] collector_type: Type of the collector. Must be one of: ALLOY, OTEL. Defaults to ALLOY if not specified.
         :param pulumi.Input[_builtins.bool] enabled: Whether remote configuration for the collector is enabled or not. If the collector is disabled, it will receive empty configurations from the Fleet Management service
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] remote_attributes: Remote attributes for the collector
@@ -168,8 +170,9 @@ class Collector(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:fleetManagement/collector:Collector name "{{ id }}"
+        terraform import grafana_fleet_management_collector.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -213,8 +216,9 @@ class Collector(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:fleetManagement/collector:Collector name "{{ id }}"
+        terraform import grafana_fleet_management_collector.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CollectorArgs args: The arguments to use to populate this resource's properties.

@@ -23,6 +23,7 @@ class DataSourceConfigLbacRulesArgs:
                  rules: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a DataSourceConfigLbacRules resource.
+
         :param pulumi.Input[_builtins.str] datasource_uid: The UID of the datasource.
         :param pulumi.Input[_builtins.str] rules: JSON-encoded LBAC rules for the data source. Map of team UIDs to lists of rule strings.
         """
@@ -61,6 +62,7 @@ class _DataSourceConfigLbacRulesState:
                  rules: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataSourceConfigLbacRules resources.
+
         :param pulumi.Input[_builtins.str] datasource_uid: The UID of the datasource.
         :param pulumi.Input[_builtins.str] rules: JSON-encoded LBAC rules for the data source. Map of team UIDs to lists of rule strings.
         """
@@ -148,8 +150,9 @@ class DataSourceConfigLbacRules(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules name "{{ datasource_uid }}"
+        terraform import grafana_data_source_config_lbac_rules.name "{{ datasource_uid }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -207,8 +210,9 @@ class DataSourceConfigLbacRules(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules name "{{ datasource_uid }}"
+        terraform import grafana_data_source_config_lbac_rules.name "{{ datasource_uid }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DataSourceConfigLbacRulesArgs args: The arguments to use to populate this resource's properties.

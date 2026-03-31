@@ -55,6 +55,9 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class GetAccessPoliciesArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// If set, only access policies with the specified name will be returned. This is faster than filtering in Terraform.
+        /// </summary>
         [Input("nameFilter")]
         public string? NameFilter { get; set; }
 
@@ -72,6 +75,9 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class GetAccessPoliciesInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// If set, only access policies with the specified name will be returned. This is faster than filtering in Terraform.
+        /// </summary>
         [Input("nameFilter")]
         public Input<string>? NameFilter { get; set; }
 
@@ -96,6 +102,9 @@ namespace Pulumiverse.Grafana.Cloud
         /// The ID of this datasource. This is an internal identifier used by the provider to track this datasource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// If set, only access policies with the specified name will be returned. This is faster than filtering in Terraform.
+        /// </summary>
         public readonly string? NameFilter;
         /// <summary>
         /// If set, only access policies in the specified region will be returned. Otherwise, fetches from all available regions (more resource intensive).

@@ -17,7 +17,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:cloud/orgMember:OrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+// terraform import grafana_cloud_org_member.name "{{ orgSlugOrID }}:{{ usernameOrID }}"
 // ```
 type OrgMember struct {
 	pulumi.CustomResourceState

@@ -26,6 +26,7 @@ class AccessPolicyTokenArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AccessPolicyToken resource.
+
         :param pulumi.Input[_builtins.str] access_policy_id: ID of the access policy for which to create a token.
         :param pulumi.Input[_builtins.str] region: Region of the access policy. Should be set to the same region as the access policy. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         :param pulumi.Input[_builtins.str] display_name: Display name of the access policy token. Defaults to the name.
@@ -115,6 +116,7 @@ class _AccessPolicyTokenState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccessPolicyToken resources.
+
         :param pulumi.Input[_builtins.str] access_policy_id: ID of the access policy for which to create a token.
         :param pulumi.Input[_builtins.str] created_at: Creation date of the access policy token.
         :param pulumi.Input[_builtins.str] display_name: Display name of the access policy token. Defaults to the name.
@@ -290,8 +292,9 @@ class AccessPolicyToken(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/accessPolicyToken:AccessPolicyToken name "{{ region }}:{{ tokenId }}"
+        terraform import grafana_cloud_access_policy_token.name "{{ region }}:{{ tokenId }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -351,8 +354,9 @@ class AccessPolicyToken(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/accessPolicyToken:AccessPolicyToken name "{{ region }}:{{ tokenId }}"
+        terraform import grafana_cloud_access_policy_token.name "{{ region }}:{{ tokenId }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccessPolicyTokenArgs args: The arguments to use to populate this resource's properties.

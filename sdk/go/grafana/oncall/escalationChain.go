@@ -42,7 +42,7 @@ import (
 //			}
 //			_, err = oncall.NewEscalationChain(ctx, "default", &oncall.EscalationChainArgs{
 //				Name:   pulumi.String("default"),
-//				TeamId: pulumi.String(myTeamGetTeam.Id),
+//				TeamId: pulumi.String(pulumi.String(myTeamGetTeam.Id)),
 //			})
 //			if err != nil {
 //				return err
@@ -56,7 +56,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:onCall/escalationChain:EscalationChain name "{{ id }}"
+// terraform import grafana_oncall_escalation_chain.name "{{ id }}"
 // ```
 type EscalationChain struct {
 	pulumi.CustomResourceState

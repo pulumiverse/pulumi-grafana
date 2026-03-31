@@ -31,6 +31,7 @@ class AlertArgs:
                  window: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Alert resource.
+
         :param pulumi.Input[_builtins.str] title: The title of the alert.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Annotations to add to the alert generated in Grafana.
         :param pulumi.Input[_builtins.str] anomaly_condition: The condition for when to consider a point as anomalous.
@@ -198,6 +199,7 @@ class _AlertState:
                  window: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Alert resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Annotations to add to the alert generated in Grafana.
         :param pulumi.Input[_builtins.str] anomaly_condition: The condition for when to consider a point as anomalous.
         :param pulumi.Input[_builtins.str] for_: How long values must be anomalous before firing an alert.
@@ -429,8 +431,9 @@ class Alert(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:machineLearning/alert:Alert name "{{ id }}"
+        terraform import grafana_machine_learning_alert.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -512,8 +515,9 @@ class Alert(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:machineLearning/alert:Alert name "{{ id }}"
+        terraform import grafana_machine_learning_alert.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AlertArgs args: The arguments to use to populate this resource's properties.

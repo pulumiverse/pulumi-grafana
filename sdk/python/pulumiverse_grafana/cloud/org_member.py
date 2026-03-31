@@ -25,6 +25,7 @@ class OrgMemberArgs:
                  receive_billing_emails: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a OrgMember resource.
+
         :param pulumi.Input[_builtins.str] org: The slug or ID of the organization.
         :param pulumi.Input[_builtins.str] role: The role to assign to the user in the organization.
         :param pulumi.Input[_builtins.str] user: Username or ID of the user to add to the org's members.
@@ -94,6 +95,7 @@ class _OrgMemberState:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OrgMember resources.
+
         :param pulumi.Input[_builtins.str] org: The slug or ID of the organization.
         :param pulumi.Input[_builtins.bool] receive_billing_emails: Whether the user should receive billing emails.
         :param pulumi.Input[_builtins.str] role: The role to assign to the user in the organization.
@@ -174,8 +176,9 @@ class OrgMember(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/orgMember:OrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+        terraform import grafana_cloud_org_member.name "{{ orgSlugOrID }}:{{ usernameOrID }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -196,8 +199,9 @@ class OrgMember(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/orgMember:OrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+        terraform import grafana_cloud_org_member.name "{{ orgSlugOrID }}:{{ usernameOrID }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OrgMemberArgs args: The arguments to use to populate this resource's properties.

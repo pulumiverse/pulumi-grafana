@@ -32,11 +32,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/team:Team name "{{ id }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:oss/team:Team name "{{ orgID }}:{{ id }}"
+ * terraform import grafana_team.name "{{ id }}"
+ * terraform import grafana_team.name "{{ orgID }}:{{ id }}"
  * ```
  */
 export class Team extends pulumi.CustomResource {
@@ -71,6 +68,10 @@ export class Team extends pulumi.CustomResource {
      * An email address for the team.
      */
     declare public readonly email: pulumi.Output<string | undefined>;
+    /**
+     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+     * Team Sync can be provisioned using [grafana.enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     */
     declare public readonly ignoreExternallySyncedMembers: pulumi.Output<boolean | undefined>;
     /**
      * A set of email addresses corresponding to users who should be given membership
@@ -150,6 +151,10 @@ export interface TeamState {
      * An email address for the team.
      */
     email?: pulumi.Input<string>;
+    /**
+     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+     * Team Sync can be provisioned using [grafana.enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     */
     ignoreExternallySyncedMembers?: pulumi.Input<boolean>;
     /**
      * A set of email addresses corresponding to users who should be given membership
@@ -189,6 +194,10 @@ export interface TeamArgs {
      * An email address for the team.
      */
     email?: pulumi.Input<string>;
+    /**
+     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
+     * Team Sync can be provisioned using [grafana.enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     */
     ignoreExternallySyncedMembers?: pulumi.Input<boolean>;
     /**
      * A set of email addresses corresponding to users who should be given membership

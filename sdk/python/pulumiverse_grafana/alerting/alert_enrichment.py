@@ -26,6 +26,7 @@ class AlertEnrichmentArgs:
                  spec: Optional[pulumi.Input['AlertEnrichmentSpecArgs']] = None):
         """
         The set of arguments for constructing a AlertEnrichment resource.
+
         :param pulumi.Input['AlertEnrichmentMetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['AlertEnrichmentOptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['AlertEnrichmentSpecArgs'] spec: The spec of the resource.
@@ -82,6 +83,7 @@ class _AlertEnrichmentState:
                  spec: Optional[pulumi.Input['AlertEnrichmentSpecArgs']] = None):
         """
         Input properties used for looking up and filtering AlertEnrichment resources.
+
         :param pulumi.Input['AlertEnrichmentMetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['AlertEnrichmentOptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['AlertEnrichmentSpecArgs'] spec: The spec of the resource.
@@ -130,8 +132,13 @@ class _AlertEnrichmentState:
         pulumi.set(self, "spec", value)
 
 
+warnings.warn("""grafana.alerting/alertenrichment.AlertEnrichment has been deprecated in favor of grafana.alerting/v1beta1/alertenrichment.AlertEnrichment""", DeprecationWarning)
+
+
 @pulumi.type_token("grafana:alerting/alertEnrichment:AlertEnrichment")
 class AlertEnrichment(pulumi.CustomResource):
+    warnings.warn("""grafana.alerting/alertenrichment.AlertEnrichment has been deprecated in favor of grafana.alerting/v1beta1/alertenrichment.AlertEnrichment""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -143,7 +150,7 @@ class AlertEnrichment(pulumi.CustomResource):
         """
         Manages [Grafana Cloud Alert Enrichment](https://grafana.com/docs/grafana-cloud/alerting-and-irm/alerting/configure-notifications/alert-enrichment/).
 
-        Alert enrichment is currently in private preview. Grafana Labs offers support on a best-effort basis, and breaking changes might occur prior to the feature being made generally available
+        Alert enrichment is currently in public preview. Grafana Labs offers limited support, and breaking changes might occur prior to the feature being made generally available.
 
         ## Example Usage
 
@@ -152,7 +159,7 @@ class AlertEnrichment(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        enrichment = grafana.alerting.AlertEnrichment("enrichment",
+        enrichment = grafana.alerting.v1beta1.AlertEnrichment("enrichment",
             metadata={
                 "uid": "test_enrichment",
             },
@@ -278,6 +285,7 @@ class AlertEnrichment(pulumi.CustomResource):
                 ],
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -294,7 +302,7 @@ class AlertEnrichment(pulumi.CustomResource):
         """
         Manages [Grafana Cloud Alert Enrichment](https://grafana.com/docs/grafana-cloud/alerting-and-irm/alerting/configure-notifications/alert-enrichment/).
 
-        Alert enrichment is currently in private preview. Grafana Labs offers support on a best-effort basis, and breaking changes might occur prior to the feature being made generally available
+        Alert enrichment is currently in public preview. Grafana Labs offers limited support, and breaking changes might occur prior to the feature being made generally available.
 
         ## Example Usage
 
@@ -303,7 +311,7 @@ class AlertEnrichment(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        enrichment = grafana.alerting.AlertEnrichment("enrichment",
+        enrichment = grafana.alerting.v1beta1.AlertEnrichment("enrichment",
             metadata={
                 "uid": "test_enrichment",
             },
@@ -429,6 +437,7 @@ class AlertEnrichment(pulumi.CustomResource):
                 ],
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AlertEnrichmentArgs args: The arguments to use to populate this resource's properties.
@@ -449,6 +458,7 @@ class AlertEnrichment(pulumi.CustomResource):
                  options: Optional[pulumi.Input[Union['AlertEnrichmentOptionsArgs', 'AlertEnrichmentOptionsArgsDict']]] = None,
                  spec: Optional[pulumi.Input[Union['AlertEnrichmentSpecArgs', 'AlertEnrichmentSpecArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""AlertEnrichment is deprecated: grafana.alerting/alertenrichment.AlertEnrichment has been deprecated in favor of grafana.alerting/v1beta1/alertenrichment.AlertEnrichment""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -460,6 +470,8 @@ class AlertEnrichment(pulumi.CustomResource):
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["options"] = options
             __props__.__dict__["spec"] = spec
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:alerting/alertEnrichment:AlertEnrichment")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(AlertEnrichment, __self__).__init__(
             'grafana:alerting/alertEnrichment:AlertEnrichment',
             resource_name,

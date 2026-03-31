@@ -268,6 +268,7 @@ class AlertEnrichmentSpec(dict):
         :param Sequence[_builtins.str] alert_rule_uids: UIDs of alert rules this enrichment applies to. If empty, applies to all alert rules.
         :param Sequence['AlertEnrichmentSpecAnnotationMatcherArgs'] annotation_matchers: Annotation matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, annotation key to match), 'value' (string, annotation value to compare against, supports regex for =~/!~ operators).
         :param _builtins.str description: Description of the alert enrichment.
+        :param _builtins.bool disable_provenance: Allow modifying alert enrichment outside of Terraform
         :param Sequence['AlertEnrichmentSpecLabelMatcherArgs'] label_matchers: Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).
         :param Sequence[_builtins.str] receivers: Receiver names to match. If empty, applies to all receivers.
         :param Sequence['AlertEnrichmentSpecStepArgs'] steps: Enrichment step. Can be repeated multiple times to define a sequence of steps. Each step must contain exactly one enrichment block.
@@ -323,6 +324,9 @@ class AlertEnrichmentSpec(dict):
     @_builtins.property
     @pulumi.getter(name="disableProvenance")
     def disable_provenance(self) -> Optional[_builtins.bool]:
+        """
+        Allow modifying alert enrichment outside of Terraform
+        """
         return pulumi.get(self, "disable_provenance")
 
     @_builtins.property
@@ -2157,7 +2161,7 @@ class AlertRuleV0Alpha1Spec(dict):
         :param Mapping[str, _builtins.str] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
         :param _builtins.int missing_series_evals_to_resolve: The number of missing series evaluations that must occur before the rule is considered to be resolved.
         :param 'AlertRuleV0Alpha1SpecNotificationSettingsArgs' notification_settings: Notification settings for the rule. If specified, it overrides the notification policies.
-        :param Mapping[str, _builtins.str] panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
+        :param Mapping[str, _builtins.str] panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         :param _builtins.bool paused: Sets whether the rule should be paused or not.
         :param 'AlertRuleV0Alpha1SpecTriggerArgs' trigger: The trigger configuration for the alert rule.
         """
@@ -2268,7 +2272,7 @@ class AlertRuleV0Alpha1Spec(dict):
     @pulumi.getter(name="panelRef")
     def panel_ref(self) -> Optional[Mapping[str, _builtins.str]]:
         """
-        Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard_uid' (string) and 'panel_id' (number) fields.
+        Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         """
         return pulumi.get(self, "panel_ref")
 

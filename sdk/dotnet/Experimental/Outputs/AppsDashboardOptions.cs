@@ -15,13 +15,21 @@ namespace Pulumiverse.Grafana.Experimental.Outputs
     public sealed class AppsDashboardOptions
     {
         /// <summary>
+        /// Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+        /// </summary>
+        public readonly bool? AllowUiUpdates;
+        /// <summary>
         /// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         /// </summary>
         public readonly bool? Overwrite;
 
         [OutputConstructor]
-        private AppsDashboardOptions(bool? overwrite)
+        private AppsDashboardOptions(
+            bool? allowUiUpdates,
+
+            bool? overwrite)
         {
+            AllowUiUpdates = allowUiUpdates;
             Overwrite = overwrite;
         }
     }

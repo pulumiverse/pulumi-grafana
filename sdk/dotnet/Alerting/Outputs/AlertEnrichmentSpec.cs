@@ -26,6 +26,9 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// Description of the alert enrichment.
         /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// Allow modifying alert enrichment outside of Terraform
+        /// </summary>
         public readonly bool? DisableProvenance;
         /// <summary>
         /// Label matchers that an alert must satisfy for this enrichment to apply. Each matcher is an object with: 'type' (string, one of: =, !=, =~, !~), 'name' (string, label key to match), 'value' (string, label value to compare against, supports regex for =~/!~ operators).

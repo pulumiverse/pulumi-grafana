@@ -13,10 +13,148 @@ namespace Pulumiverse.Grafana.OnCall
     /// <summary>
     /// * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/on_call_shifts/)
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var alex = Grafana.OnCall.GetUser.Invoke(new()
+    ///     {
+    ///         Username = "alex",
+    ///     });
+    /// 
+    ///     var myTeam = Grafana.Oss.GetTeam.Invoke(new()
+    ///     {
+    ///         Name = "my team",
+    ///     });
+    /// 
+    ///     var myTeamGetTeam = Grafana.OnCall.GetTeam.Invoke(new()
+    ///     {
+    ///         Name = myTeam.Apply(getTeamResult =&gt; getTeamResult.Name),
+    ///     });
+    /// 
+    ///     var exampleShift = new Grafana.OnCall.OnCallShift("example_shift", new()
+    ///     {
+    ///         Name = "Example Shift",
+    ///         Type = "recurrent_event",
+    ///         Start = "2020-09-07T14:00:00",
+    ///         Duration = 60 * 30,
+    ///         Frequency = "weekly",
+    ///         Interval = 2,
+    ///         ByDays = new[]
+    ///         {
+    ///             "MO",
+    ///             "FR",
+    ///         },
+    ///         WeekStart = "MO",
+    ///         Users = new[]
+    ///         {
+    ///             alex.Apply(getUserResult =&gt; getUserResult.Id),
+    ///         },
+    ///         TimeZone = "UTC",
+    ///         TeamId = myTeamGetTeam.Apply(getTeamResult =&gt; getTeamResult.Id),
+    ///     });
+    /// 
+    ///     ////////
+    ///     // Advanced example
+    ///     ////////
+    ///     var teams = 
+    ///     {
+    ///         { "emea", new[]
+    ///         {
+    ///             "alfa@grafana.com",
+    ///             "bravo@grafana.com",
+    ///             "charlie@grafana.com",
+    ///             "echo@grafana.com",
+    ///             "delta@grafana.com",
+    ///             "foxtrot@grafana.com",
+    ///             "golf@grafana.com",
+    ///         } },
+    ///     };
+    /// 
+    ///     // Importing users
+    ///     var allUsers = .ToDictionary(item =&gt; {
+    ///         var __key = item.Key;
+    ///         return __key;
+    ///     }, item =&gt; {
+    ///         var __key = item.Key;
+    ///         return Grafana.OnCall.GetUser.Invoke(new()
+    ///         {
+    ///             Username = __key,
+    ///         });
+    ///     });
+    /// 
+    ///     // oncall API operates with resources ID's, so we convert emails into ID's
+    ///     var teamsMapOfUserId = .ToDictionary(item =&gt; {
+    ///         var teamName = item.Key;
+    ///         return teamName;
+    ///     }, item =&gt; {
+    ///         var usernameList = item.Value;
+    ///         return usernameList.Select(username =&gt; 
+    ///         {
+    ///             return Std.Index.Lookup.Invoke(new()
+    ///             {
+    ///                 Map = allUsers,
+    ///                 Key = username,
+    ///             }).Result.Id;
+    ///         }).ToList();
+    ///     });
+    /// 
+    ///     var usersMapById = _arg0_;
+    /// 
+    ///     // A 12 hour shift on week days with the on-call person rotating weekly.
+    ///     var emeaWeekdayShift = new Grafana.OnCall.OnCallShift("emea_weekday_shift", new()
+    ///     {
+    ///         Name = "EMEA Weekday Shift",
+    ///         Type = "rolling_users",
+    ///         Start = "2022-02-28T03:00:00",
+    ///         Duration = 60 * 60 * 12,
+    ///         Frequency = "weekly",
+    ///         Interval = 1,
+    ///         ByDays = new[]
+    ///         {
+    ///             "MO",
+    ///             "TU",
+    ///             "WE",
+    ///             "TH",
+    ///             "FR",
+    ///         },
+    ///         WeekStart = "MO",
+    ///         RollingUsers = .Select(k =&gt; 
+    ///         {
+    ///             return new[]
+    ///             {
+    ///                 k,
+    ///             };
+    ///         }).ToList(),
+    ///         StartRotationFromUserIndex = 0,
+    ///         TeamId = myTeamGetTeam.Apply(getTeamResult =&gt; getTeamResult.Id),
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["emeaWeekdayRollingUsers"] = .Select(k =&gt; 
+    ///         {
+    ///             return Std.Index.Lookup.Invoke(new()
+    ///             {
+    ///                 Map = usersMapById,
+    ///                 Key = k,
+    ///             }).Result.Username;
+    ///         }).ToList(),
+    ///     };
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:onCall/onCallShift:OnCallShift name "{{ id }}"
+    /// terraform import grafana_oncall_on_call_shift.name "{{ id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:onCall/onCallShift:OnCallShift")]

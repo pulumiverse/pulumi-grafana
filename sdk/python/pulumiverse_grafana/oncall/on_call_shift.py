@@ -38,6 +38,7 @@ class OnCallShiftArgs:
                  week_start: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OnCallShift resource.
+
         :param pulumi.Input[_builtins.int] duration: The duration of the event.
         :param pulumi.Input[_builtins.str] start: The start time of the on-call shift. This parameter takes a date format as yyyy-MM-dd'T'HH:mm:ss (for example "2020-09-05T08:00:00")
         :param pulumi.Input[_builtins.str] type: The shift's type. Can be rolling*users, recurrent*event, single_event
@@ -315,6 +316,7 @@ class _OnCallShiftState:
                  week_start: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OnCallShift resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] by_days: This parameter takes a list of days in iCal format. Can be MO, TU, WE, TH, FR, SA, SU
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] by_monthdays: This parameter takes a list of days of the month.  Valid values are 1 to 31 or -31 to -1
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] by_months: This parameter takes a list of months. Valid values are 1 to 12
@@ -600,11 +602,81 @@ class OnCallShift(pulumi.CustomResource):
         """
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/on_call_shifts/)
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_grafana as grafana
+        import pulumi_std as std
+        import pulumiverse_grafana as grafana
+
+        alex = grafana.onCall.get_user(username="alex")
+        my_team = grafana.oss.get_team(name="my team")
+        my_team_get_team = grafana.onCall.get_team(name=my_team.name)
+        example_shift = grafana.oncall.OnCallShift("example_shift",
+            name="Example Shift",
+            type="recurrent_event",
+            start="2020-09-07T14:00:00",
+            duration=60 * 30,
+            frequency="weekly",
+            interval=2,
+            by_days=[
+                "MO",
+                "FR",
+            ],
+            week_start="MO",
+            users=[alex.id],
+            time_zone="UTC",
+            team_id=my_team_get_team.id)
+        #//////
+        # Advanced example
+        #//////
+        teams = {
+            "emea": [
+                "alfa@grafana.com",
+                "bravo@grafana.com",
+                "charlie@grafana.com",
+                "echo@grafana.com",
+                "delta@grafana.com",
+                "foxtrot@grafana.com",
+                "golf@grafana.com",
+            ],
+        }
+        # Importing users
+        all_users = {__key: grafana.onCall.get_user(username=__key) for __key, __value in enumerate(std.index.toset(input=std.index.flatten(input=[[username_list] for teamName, usernameList in teams.items()])["result"])["result"])}
+        # oncall API operates with resources ID's, so we convert emails into ID's
+        teams_map_of_user_id = {team_name: [std.index.lookup(map=all_users,
+            key=username)["result"]["id"] for username in username_list] for teamName, usernameList in teams.items()}
+        users_map_by_id = {oncall_user.id: oncall_user for username, oncallUser in all_users.items()}
+        # A 12 hour shift on week days with the on-call person rotating weekly.
+        emea_weekday_shift = grafana.oncall.OnCallShift("emea_weekday_shift",
+            name="EMEA Weekday Shift",
+            type="rolling_users",
+            start="2022-02-28T03:00:00",
+            duration=60 * 60 * 12,
+            frequency="weekly",
+            interval=1,
+            by_days=[
+                "MO",
+                "TU",
+                "WE",
+                "TH",
+                "FR",
+            ],
+            week_start="MO",
+            rolling_users=[[k] for k in std.index.flatten(input=[teams_map_of_user_id["emea"]])["result"]],
+            start_rotation_from_user_index=0,
+            team_id=my_team_get_team.id)
+        pulumi.export("emeaWeekdayRollingUsers", [std.index.lookup(map=users_map_by_id,
+            key=k)["result"]["username"] for k in std.index.flatten(input=emea_weekday_shift.rolling_users)["result"]])
+        ```
+
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/onCallShift:OnCallShift name "{{ id }}"
+        terraform import grafana_oncall_on_call_shift.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -635,11 +707,81 @@ class OnCallShift(pulumi.CustomResource):
         """
         * [HTTP API](https://grafana.com/docs/oncall/latest/oncall-api-reference/on_call_shifts/)
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_grafana as grafana
+        import pulumi_std as std
+        import pulumiverse_grafana as grafana
+
+        alex = grafana.onCall.get_user(username="alex")
+        my_team = grafana.oss.get_team(name="my team")
+        my_team_get_team = grafana.onCall.get_team(name=my_team.name)
+        example_shift = grafana.oncall.OnCallShift("example_shift",
+            name="Example Shift",
+            type="recurrent_event",
+            start="2020-09-07T14:00:00",
+            duration=60 * 30,
+            frequency="weekly",
+            interval=2,
+            by_days=[
+                "MO",
+                "FR",
+            ],
+            week_start="MO",
+            users=[alex.id],
+            time_zone="UTC",
+            team_id=my_team_get_team.id)
+        #//////
+        # Advanced example
+        #//////
+        teams = {
+            "emea": [
+                "alfa@grafana.com",
+                "bravo@grafana.com",
+                "charlie@grafana.com",
+                "echo@grafana.com",
+                "delta@grafana.com",
+                "foxtrot@grafana.com",
+                "golf@grafana.com",
+            ],
+        }
+        # Importing users
+        all_users = {__key: grafana.onCall.get_user(username=__key) for __key, __value in enumerate(std.index.toset(input=std.index.flatten(input=[[username_list] for teamName, usernameList in teams.items()])["result"])["result"])}
+        # oncall API operates with resources ID's, so we convert emails into ID's
+        teams_map_of_user_id = {team_name: [std.index.lookup(map=all_users,
+            key=username)["result"]["id"] for username in username_list] for teamName, usernameList in teams.items()}
+        users_map_by_id = {oncall_user.id: oncall_user for username, oncallUser in all_users.items()}
+        # A 12 hour shift on week days with the on-call person rotating weekly.
+        emea_weekday_shift = grafana.oncall.OnCallShift("emea_weekday_shift",
+            name="EMEA Weekday Shift",
+            type="rolling_users",
+            start="2022-02-28T03:00:00",
+            duration=60 * 60 * 12,
+            frequency="weekly",
+            interval=1,
+            by_days=[
+                "MO",
+                "TU",
+                "WE",
+                "TH",
+                "FR",
+            ],
+            week_start="MO",
+            rolling_users=[[k] for k in std.index.flatten(input=[teams_map_of_user_id["emea"]])["result"]],
+            start_rotation_from_user_index=0,
+            team_id=my_team_get_team.id)
+        pulumi.export("emeaWeekdayRollingUsers", [std.index.lookup(map=users_map_by_id,
+            key=k)["result"]["username"] for k in std.index.flatten(input=emea_weekday_shift.rolling_users)["result"]])
+        ```
+
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/onCallShift:OnCallShift name "{{ id }}"
+        terraform import grafana_oncall_on_call_shift.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OnCallShiftArgs args: The arguments to use to populate this resource's properties.

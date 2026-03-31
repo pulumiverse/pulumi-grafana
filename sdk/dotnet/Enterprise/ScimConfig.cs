@@ -39,10 +39,7 @@ namespace Pulumiverse.Grafana.Enterprise
     /// 
     /// ```sh
     /// $ pulumi import grafana:enterprise/scimConfig:ScimConfig name ""
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:enterprise/scimConfig:ScimConfig name "{{ orgID }}"
+    /// terraform import grafana_scim_config.name "{{ orgID }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:enterprise/scimConfig:ScimConfig")]

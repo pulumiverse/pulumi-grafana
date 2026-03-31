@@ -12,12 +12,89 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+// This resource allows you to scrape AWS resource metadata such as ARN and tags as info metrics in Grafana Cloud without needing to run your own infrastructure.
+// Use this resource if you aren't using `cloudProvider.AwsCloudwatchScrapeJob`, but still want to have AWS resource metadata available
+// in Grafana Cloud, for example for use with our AWS Metrics Streams integration and/or Knowledge Graph features.
+//
+// See the Grafana Provider configuration docs
+// for information on authentication and required access policy scopes.
+//
+// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+//
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/go/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloudprovider"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := cloud.LookupStack(ctx, &cloud.LookupStackArgs{
+//				Slug: "gcloudstacktest",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			testIamRole, err := aws.IamRole(ctx, map[string]interface{}{
+//				"name": "my-role",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			testAwsAccount, err := cloudprovider.NewAwsAccount(ctx, "test", &cloudprovider.AwsAccountArgs{
+//				StackId: pulumi.String(pulumi.String(test.Id)),
+//				RoleArn: pulumi.Any(testIamRole.Arn),
+//				Regions: pulumi.StringArray{
+//					pulumi.String("us-east-1"),
+//					pulumi.String("us-east-2"),
+//					pulumi.String("us-west-1"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudprovider.NewAwsResourceMetadataScrapeJob(ctx, "test", &cloudprovider.AwsResourceMetadataScrapeJobArgs{
+//				StackId:              pulumi.String(pulumi.String(test.Id)),
+//				Name:                 pulumi.String("my-aws-resource-metadata-scrape-job"),
+//				AwsAccountResourceId: testAwsAccount.ResourceId,
+//				Services: cloudprovider.AwsResourceMetadataScrapeJobServiceArray{
+//					&cloudprovider.AwsResourceMetadataScrapeJobServiceArgs{
+//						Name:                  pulumi.String("AWS/EC2"),
+//						ScrapeIntervalSeconds: pulumi.Int(300),
+//						ResourceDiscoveryTagFilters: cloudprovider.AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArray{
+//							&cloudprovider.AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs{
+//								Key:   pulumi.String("k8s.io/cluster-autoscaler/enabled"),
+//								Value: pulumi.String("true"),
+//							},
+//						},
+//					},
+//				},
+//				StaticLabels: pulumi.StringMap{
+//					"label1": pulumi.String("value1"),
+//					"label2": pulumi.String("value2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob name "{{ stack_id }}:{{ name }}"
+// terraform import grafana_cloud_provider_aws_resource_metadata_scrape_job.name "{{ stack_id }}:{{ name }}"
 // ```
 type AwsResourceMetadataScrapeJob struct {
 	pulumi.CustomResourceState
@@ -27,13 +104,15 @@ type AwsResourceMetadataScrapeJob struct {
 	// When the AWS Resource Metadata Scrape Job is disabled, this will show the reason that it is in that state.
 	DisabledReason pulumi.StringOutput `pulumi:"disabledReason"`
 	// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
-	Enabled pulumi.BoolOutput   `pulumi:"enabled"`
-	Name    pulumi.StringOutput `pulumi:"name"`
+	Enabled pulumi.BoolOutput `pulumi:"enabled"`
+	// The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
+	Name pulumi.StringOutput `pulumi:"name"`
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
 	RegionsSubsetOverrides pulumi.StringArrayOutput `pulumi:"regionsSubsetOverrides"`
 	// One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services AwsResourceMetadataScrapeJobServiceArrayOutput `pulumi:"services"`
-	StackId  pulumi.StringOutput                            `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.StringOutput `pulumi:"stackId"`
 	// A set of static labels to add to all metrics exported by this scrape job.
 	StaticLabels pulumi.StringMapOutput `pulumi:"staticLabels"`
 }
@@ -79,13 +158,15 @@ type awsResourceMetadataScrapeJobState struct {
 	// When the AWS Resource Metadata Scrape Job is disabled, this will show the reason that it is in that state.
 	DisabledReason *string `pulumi:"disabledReason"`
 	// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
-	Enabled *bool   `pulumi:"enabled"`
-	Name    *string `pulumi:"name"`
+	Enabled *bool `pulumi:"enabled"`
+	// The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
+	Name *string `pulumi:"name"`
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
 	RegionsSubsetOverrides []string `pulumi:"regionsSubsetOverrides"`
 	// One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services []AwsResourceMetadataScrapeJobService `pulumi:"services"`
-	StackId  *string                               `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId *string `pulumi:"stackId"`
 	// A set of static labels to add to all metrics exported by this scrape job.
 	StaticLabels map[string]string `pulumi:"staticLabels"`
 }
@@ -97,12 +178,14 @@ type AwsResourceMetadataScrapeJobState struct {
 	DisabledReason pulumi.StringPtrInput
 	// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
-	Name    pulumi.StringPtrInput
+	// The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
+	Name pulumi.StringPtrInput
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
 	RegionsSubsetOverrides pulumi.StringArrayInput
 	// One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services AwsResourceMetadataScrapeJobServiceArrayInput
-	StackId  pulumi.StringPtrInput
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.StringPtrInput
 	// A set of static labels to add to all metrics exported by this scrape job.
 	StaticLabels pulumi.StringMapInput
 }
@@ -115,13 +198,15 @@ type awsResourceMetadataScrapeJobArgs struct {
 	// The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this Resource Metadata Scrape Job. This can be provided by the `resourceId` attribute of the `cloudProvider.AwsAccount` resource.
 	AwsAccountResourceId string `pulumi:"awsAccountResourceId"`
 	// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
-	Enabled *bool   `pulumi:"enabled"`
-	Name    *string `pulumi:"name"`
+	Enabled *bool `pulumi:"enabled"`
+	// The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
+	Name *string `pulumi:"name"`
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
 	RegionsSubsetOverrides []string `pulumi:"regionsSubsetOverrides"`
 	// One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services []AwsResourceMetadataScrapeJobService `pulumi:"services"`
-	StackId  string                                `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId string `pulumi:"stackId"`
 	// A set of static labels to add to all metrics exported by this scrape job.
 	StaticLabels map[string]string `pulumi:"staticLabels"`
 }
@@ -132,12 +217,14 @@ type AwsResourceMetadataScrapeJobArgs struct {
 	AwsAccountResourceId pulumi.StringInput
 	// Whether the AWS Resource Metadata Scrape Job is enabled or not. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
-	Name    pulumi.StringPtrInput
+	// The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
+	Name pulumi.StringPtrInput
 	// A subset of the regions that are configured in the associated AWS Account resource to apply to this scrape job. If not set or empty, all of the Account resource's regions are scraped.
 	RegionsSubsetOverrides pulumi.StringArrayInput
 	// One or more configuration blocks to configure AWS services for the Resource Metadata Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services AwsResourceMetadataScrapeJobServiceArrayInput
-	StackId  pulumi.StringInput
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.StringInput
 	// A set of static labels to add to all metrics exported by this scrape job.
 	StaticLabels pulumi.StringMapInput
 }
@@ -244,6 +331,7 @@ func (o AwsResourceMetadataScrapeJobOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AwsResourceMetadataScrapeJob) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
+// The name of the AWS Resource Metadata Scrape Job. Part of the Terraform Resource ID.
 func (o AwsResourceMetadataScrapeJobOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AwsResourceMetadataScrapeJob) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -260,6 +348,7 @@ func (o AwsResourceMetadataScrapeJobOutput) Services() AwsResourceMetadataScrape
 	}).(AwsResourceMetadataScrapeJobServiceArrayOutput)
 }
 
+// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o AwsResourceMetadataScrapeJobOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AwsResourceMetadataScrapeJob) pulumi.StringOutput { return v.StackId }).(pulumi.StringOutput)
 }

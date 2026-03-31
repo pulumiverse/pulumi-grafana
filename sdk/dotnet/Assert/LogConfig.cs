@@ -155,7 +155,7 @@ namespace Pulumiverse.Grafana.Assert
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:assert/logConfig:LogConfig name "{{ name }}"
+    /// terraform import grafana_asserts_log_config.name "{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:assert/logConfig:LogConfig")]

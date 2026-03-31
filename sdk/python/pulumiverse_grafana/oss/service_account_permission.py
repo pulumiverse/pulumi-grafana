@@ -26,6 +26,7 @@ class ServiceAccountPermissionArgs:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]]] = None):
         """
         The set of arguments for constructing a ServiceAccountPermission resource.
+
         :param pulumi.Input[_builtins.str] service_account_id: The id of the service account.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
@@ -81,6 +82,7 @@ class _ServiceAccountPermissionState:
                  service_account_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceAccountPermission resources.
+
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceAccountPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         :param pulumi.Input[_builtins.str] service_account_id: The id of the service account.
@@ -178,12 +180,10 @@ class ServiceAccountPermission(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/serviceAccountPermission:ServiceAccountPermission name "{{ serviceAccountID }}"
+        terraform import grafana_service_account_permission.name "{{ serviceAccountID }}"
+        terraform import grafana_service_account_permission.name "{{ orgID }}:{{ serviceAccountID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/serviceAccountPermission:ServiceAccountPermission name "{{ orgID }}:{{ serviceAccountID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -236,12 +236,10 @@ class ServiceAccountPermission(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/serviceAccountPermission:ServiceAccountPermission name "{{ serviceAccountID }}"
+        terraform import grafana_service_account_permission.name "{{ serviceAccountID }}"
+        terraform import grafana_service_account_permission.name "{{ orgID }}:{{ serviceAccountID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/serviceAccountPermission:ServiceAccountPermission name "{{ orgID }}:{{ serviceAccountID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param ServiceAccountPermissionArgs args: The arguments to use to populate this resource's properties.

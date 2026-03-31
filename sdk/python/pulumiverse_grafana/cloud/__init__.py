@@ -26,3 +26,11 @@ from .stack_service_account_rotating_token import *
 from .stack_service_account_token import *
 from ._inputs import *
 from . import outputs
+
+# Make subpackages available:
+if typing.TYPE_CHECKING:
+    import pulumiverse_grafana.cloud.v1alpha1 as __v1alpha1
+    v1alpha1 = __v1alpha1
+else:
+    v1alpha1 = _utilities.lazy_import('pulumiverse_grafana.cloud.v1alpha1')
+

@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "grafana:enterprise/dataSourceCacheConfig:DataSourceCacheConfig":
+		r = &DataSourceCacheConfig{}
 	case "grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules":
 		r = &DataSourceConfigLbacRules{}
 	case "grafana:enterprise/dataSourcePermission:DataSourcePermission":
@@ -52,6 +54,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"enterprise/dataSourceCacheConfig",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"enterprise/dataSourceConfigLbacRules",

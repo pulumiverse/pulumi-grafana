@@ -11,6 +11,13 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+// This data source allows you to look up an existing Grafana Cloud AWS Account resource in your stack.
+//
+// See the Grafana Provider configuration docs
+// for information on authentication and required access policy scopes.
+//
+// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+//
 // ## Example Usage
 //
 // ```go
@@ -33,7 +40,7 @@ import (
 //				return err
 //			}
 //			testAwsAccount, err := cloudprovider.NewAwsAccount(ctx, "test", &cloudprovider.AwsAccountArgs{
-//				StackId: pulumi.String(test.Id),
+//				StackId: pulumi.String(pulumi.String(test.Id)),
 //				RoleArn: pulumi.Any(testAwsIamRole.Arn),
 //				Regions: pulumi.StringArray{
 //					pulumi.String("us-east-2"),
@@ -68,11 +75,13 @@ func LookupAwsAccount(ctx *pulumi.Context, args *LookupAwsAccountArgs, opts ...p
 type LookupAwsAccountArgs struct {
 	// The ID given by the Grafana Cloud Provider API to this AWS Account resource.
 	ResourceId string `pulumi:"resourceId"`
-	StackId    string `pulumi:"stackId"`
+	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId string `pulumi:"stackId"`
 }
 
 // A collection of values returned by getAwsAccount.
 type LookupAwsAccountResult struct {
+	// The Terraform Resource ID. This has the format "{{ stack*id }}:{{ resource*id }}".
 	Id string `pulumi:"id"`
 	// An optional human-readable name for this AWS Account resource.
 	Name string `pulumi:"name"`
@@ -82,6 +91,7 @@ type LookupAwsAccountResult struct {
 	ResourceId string `pulumi:"resourceId"`
 	// An IAM Role ARN string to represent with this AWS Account resource.
 	RoleArn string `pulumi:"roleArn"`
+	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 	StackId string `pulumi:"stackId"`
 }
 
@@ -98,7 +108,8 @@ func LookupAwsAccountOutput(ctx *pulumi.Context, args LookupAwsAccountOutputArgs
 type LookupAwsAccountOutputArgs struct {
 	// The ID given by the Grafana Cloud Provider API to this AWS Account resource.
 	ResourceId pulumi.StringInput `pulumi:"resourceId"`
-	StackId    pulumi.StringInput `pulumi:"stackId"`
+	// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.StringInput `pulumi:"stackId"`
 }
 
 func (LookupAwsAccountOutputArgs) ElementType() reflect.Type {
@@ -120,6 +131,7 @@ func (o LookupAwsAccountResultOutput) ToLookupAwsAccountResultOutputWithContext(
 	return o
 }
 
+// The Terraform Resource ID. This has the format "{{ stack*id }}:{{ resource*id }}".
 func (o LookupAwsAccountResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsAccountResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -144,6 +156,7 @@ func (o LookupAwsAccountResultOutput) RoleArn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsAccountResult) string { return v.RoleArn }).(pulumi.StringOutput)
 }
 
+// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o LookupAwsAccountResultOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsAccountResult) string { return v.StackId }).(pulumi.StringOutput)
 }

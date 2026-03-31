@@ -1816,9 +1816,11 @@ type GetAwsCloudwatchScrapeJobsScrapeJob struct {
 	// Whether the AWS CloudWatch Scrape Job is enabled or not.
 	Enabled bool `pulumi:"enabled"`
 	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
-	ExportTags bool   `pulumi:"exportTags"`
-	Id         string `pulumi:"id"`
-	Name       string `pulumi:"name"`
+	ExportTags bool `pulumi:"exportTags"`
+	// The Terraform Resource ID. This has the format "{{ stackId }}:{{ name }}".
+	Id string `pulumi:"id"`
+	// The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+	Name string `pulumi:"name"`
 	// The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
 	Regions []string `pulumi:"regions"`
 	// When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
@@ -1827,7 +1829,8 @@ type GetAwsCloudwatchScrapeJobsScrapeJob struct {
 	RoleArn string `pulumi:"roleArn"`
 	// One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services []GetAwsCloudwatchScrapeJobsScrapeJobService `pulumi:"services"`
-	StackId  string                                       `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId string `pulumi:"stackId"`
 	// A set of static labels to add to all metrics exported by this scrape job.
 	StaticLabels map[string]string `pulumi:"staticLabels"`
 }
@@ -1853,9 +1856,11 @@ type GetAwsCloudwatchScrapeJobsScrapeJobArgs struct {
 	// Whether the AWS CloudWatch Scrape Job is enabled or not.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
-	ExportTags pulumi.BoolInput   `pulumi:"exportTags"`
-	Id         pulumi.StringInput `pulumi:"id"`
-	Name       pulumi.StringInput `pulumi:"name"`
+	ExportTags pulumi.BoolInput `pulumi:"exportTags"`
+	// The Terraform Resource ID. This has the format "{{ stackId }}:{{ name }}".
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
 	Regions pulumi.StringArrayInput `pulumi:"regions"`
 	// When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
@@ -1864,7 +1869,8 @@ type GetAwsCloudwatchScrapeJobsScrapeJobArgs struct {
 	RoleArn pulumi.StringInput `pulumi:"roleArn"`
 	// One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services GetAwsCloudwatchScrapeJobsScrapeJobServiceArrayInput `pulumi:"services"`
-	StackId  pulumi.StringInput                                   `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.StringInput `pulumi:"stackId"`
 	// A set of static labels to add to all metrics exported by this scrape job.
 	StaticLabels pulumi.StringMapInput `pulumi:"staticLabels"`
 }
@@ -1947,10 +1953,12 @@ func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) ExportTags() pulumi.BoolOutpu
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJob) bool { return v.ExportTags }).(pulumi.BoolOutput)
 }
 
+// The Terraform Resource ID. This has the format "{{ stackId }}:{{ name }}".
 func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJob) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
 func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJob) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1977,6 +1985,7 @@ func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) Services() GetAwsCloudwatchSc
 	}).(GetAwsCloudwatchScrapeJobsScrapeJobServiceArrayOutput)
 }
 
+// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o GetAwsCloudwatchScrapeJobsScrapeJobOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsScrapeJob) string { return v.StackId }).(pulumi.StringOutput)
 }

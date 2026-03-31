@@ -17,7 +17,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:frontendObservability/app:App name "{{ stack_id }}:{{ name }}"
+// terraform import grafana_frontend_o11y_app.name "{{ stack_id }}:{{ name }}"
 // ```
 type App struct {
 	pulumi.CustomResourceState
@@ -28,10 +28,12 @@ type App struct {
 	CollectorEndpoint pulumi.StringOutput `pulumi:"collectorEndpoint"`
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes pulumi.StringMapOutput `pulumi:"extraLogAttributes"`
-	Name               pulumi.StringOutput    `pulumi:"name"`
+	// The name of Frontend Observability App. Part of the Terraform Resource ID.
+	Name pulumi.StringOutput `pulumi:"name"`
 	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
-	StackId  pulumi.IntOutput       `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.IntOutput `pulumi:"stackId"`
 }
 
 // NewApp registers a new resource with the given unique name, arguments, and options.
@@ -82,10 +84,12 @@ type appState struct {
 	CollectorEndpoint *string `pulumi:"collectorEndpoint"`
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes map[string]string `pulumi:"extraLogAttributes"`
-	Name               *string           `pulumi:"name"`
+	// The name of Frontend Observability App. Part of the Terraform Resource ID.
+	Name *string `pulumi:"name"`
 	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
 	Settings map[string]string `pulumi:"settings"`
-	StackId  *int              `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId *int `pulumi:"stackId"`
 }
 
 type AppState struct {
@@ -95,10 +99,12 @@ type AppState struct {
 	CollectorEndpoint pulumi.StringPtrInput
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes pulumi.StringMapInput
-	Name               pulumi.StringPtrInput
+	// The name of Frontend Observability App. Part of the Terraform Resource ID.
+	Name pulumi.StringPtrInput
 	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
 	Settings pulumi.StringMapInput
-	StackId  pulumi.IntPtrInput
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.IntPtrInput
 }
 
 func (AppState) ElementType() reflect.Type {
@@ -110,10 +116,12 @@ type appArgs struct {
 	AllowedOrigins []string `pulumi:"allowedOrigins"`
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes map[string]string `pulumi:"extraLogAttributes"`
-	Name               *string           `pulumi:"name"`
+	// The name of Frontend Observability App. Part of the Terraform Resource ID.
+	Name *string `pulumi:"name"`
 	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
 	Settings map[string]string `pulumi:"settings"`
-	StackId  int               `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId int `pulumi:"stackId"`
 }
 
 // The set of arguments for constructing a App resource.
@@ -122,10 +130,12 @@ type AppArgs struct {
 	AllowedOrigins pulumi.StringArrayInput
 	// The extra attributes to append in each signal.
 	ExtraLogAttributes pulumi.StringMapInput
-	Name               pulumi.StringPtrInput
+	// The name of Frontend Observability App. Part of the Terraform Resource ID.
+	Name pulumi.StringPtrInput
 	// The key-value settings of the Frontend Observability app. Available Settings: `{combineLabData=(0|1),geolocation.level=(0|1),geolocation.level=0-4,geolocation.country_denylist=<comma-separated-list-of-country-codes>}`
 	Settings pulumi.StringMapInput
-	StackId  pulumi.IntInput
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.IntInput
 }
 
 func (AppArgs) ElementType() reflect.Type {
@@ -230,6 +240,7 @@ func (o AppOutput) ExtraLogAttributes() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *App) pulumi.StringMapOutput { return v.ExtraLogAttributes }).(pulumi.StringMapOutput)
 }
 
+// The name of Frontend Observability App. Part of the Terraform Resource ID.
 func (o AppOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *App) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -239,6 +250,7 @@ func (o AppOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *App) pulumi.StringMapOutput { return v.Settings }).(pulumi.StringMapOutput)
 }
 
+// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o AppOutput) StackId() pulumi.IntOutput {
 	return o.ApplyT(func(v *App) pulumi.IntOutput { return v.StackId }).(pulumi.IntOutput)
 }

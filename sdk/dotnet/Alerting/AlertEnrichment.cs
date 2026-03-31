@@ -13,7 +13,7 @@ namespace Pulumiverse.Grafana.Alerting
     /// <summary>
     /// Manages [Grafana Cloud Alert Enrichment](https://grafana.com/docs/grafana-cloud/alerting-and-irm/alerting/configure-notifications/alert-enrichment/).
     /// 
-    /// Alert enrichment is currently in private preview. Grafana Labs offers support on a best-effort basis, and breaking changes might occur prior to the feature being made generally available
+    /// Alert enrichment is currently in public preview. Grafana Labs offers limited support, and breaking changes might occur prior to the feature being made generally available.
     /// 
     /// ## Example Usage
     /// 
@@ -26,13 +26,13 @@ namespace Pulumiverse.Grafana.Alerting
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var enrichment = new Grafana.Alerting.AlertEnrichment("enrichment", new()
+    ///     var enrichment = new Grafana.Alerting.V1Beta1.AlertEnrichment("enrichment", new()
     ///     {
-    ///         Metadata = new Grafana.Alerting.Inputs.AlertEnrichmentMetadataArgs
+    ///         Metadata = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentMetadataArgs
     ///         {
     ///             Uid = "test_enrichment",
     ///         },
-    ///         Spec = new Grafana.Alerting.Inputs.AlertEnrichmentSpecArgs
+    ///         Spec = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecArgs
     ///         {
     ///             Title = "Comprehensive alert enrichment",
     ///             Description = "Demonstrates many enrichment steps and configurations",
@@ -48,13 +48,13 @@ namespace Pulumiverse.Grafana.Alerting
     ///             },
     ///             LabelMatchers = new[]
     ///             {
-    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecLabelMatcherArgs
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecLabelMatcherArgs
     ///                 {
     ///                     Type = "=",
     ///                     Name = "severity",
     ///                     Value = "critical",
     ///                 },
-    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecLabelMatcherArgs
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecLabelMatcherArgs
     ///                 {
     ///                     Type = "=~",
     ///                     Name = "team",
@@ -63,7 +63,7 @@ namespace Pulumiverse.Grafana.Alerting
     ///             },
     ///             AnnotationMatchers = new[]
     ///             {
-    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecAnnotationMatcherArgs
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecAnnotationMatcherArgs
     ///                 {
     ///                     Type = "!=",
     ///                     Name = "runbook_url",
@@ -72,9 +72,9 @@ namespace Pulumiverse.Grafana.Alerting
     ///             },
     ///             Steps = new[]
     ///             {
-    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepArgs
     ///                 {
-    ///                     Assign = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepAssignArgs
+    ///                     Assign = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepAssignArgs
     ///                     {
     ///                         Timeout = "30s",
     ///                         Annotations = 
@@ -84,19 +84,19 @@ namespace Pulumiverse.Grafana.Alerting
     ///                         },
     ///                     },
     ///                 },
-    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepArgs
     ///                 {
-    ///                     External = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepExternalArgs
+    ///                     External = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepExternalArgs
     ///                     {
     ///                         Url = "https://some-api.grafana.com/alert-enrichment",
     ///                     },
     ///                 },
-    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepArgs
     ///                 {
-    ///                     DataSource = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepDataSourceArgs
+    ///                     DataSource = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepDataSourceArgs
     ///                     {
     ///                         Timeout = "30s",
-    ///                         LogsQuery = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepDataSourceLogsQueryArgs
+    ///                         LogsQuery = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepDataSourceLogsQueryArgs
     ///                         {
     ///                             DataSourceType = "loki",
     ///                             DataSourceUid = "loki-uid-123",
@@ -105,12 +105,12 @@ namespace Pulumiverse.Grafana.Alerting
     ///                         },
     ///                     },
     ///                 },
-    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepArgs
     ///                 {
-    ///                     DataSource = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepDataSourceArgs
+    ///                     DataSource = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepDataSourceArgs
     ///                     {
     ///                         Timeout = "30s",
-    ///                         RawQuery = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepDataSourceRawQueryArgs
+    ///                         RawQuery = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepDataSourceRawQueryArgs
     ///                         {
     ///                             RefId = "A",
     ///                             Request = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
@@ -128,30 +128,30 @@ namespace Pulumiverse.Grafana.Alerting
     ///                         },
     ///                     },
     ///                 },
-    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepArgs
     ///                 {
     ///                     Sift = null,
     ///                 },
-    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepArgs
     ///                 {
-    ///                     Explain = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepExplainArgs
+    ///                     Explain = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepExplainArgs
     ///                     {
     ///                         Annotation = "ai_explanation",
     ///                     },
     ///                 },
-    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepArgs
     ///                 {
     ///                     AssistantInvestigations = null,
     ///                 },
-    ///                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepArgs
+    ///                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepArgs
     ///                 {
-    ///                     Conditional = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalArgs
+    ///                     Conditional = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepConditionalArgs
     ///                     {
-    ///                         If = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalIfArgs
+    ///                         If = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepConditionalIfArgs
     ///                         {
     ///                             LabelMatchers = new[]
     ///                             {
-    ///                                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalIfLabelMatcherArgs
+    ///                                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepConditionalIfLabelMatcherArgs
     ///                                 {
     ///                                     Type = "=",
     ///                                     Name = "severity",
@@ -159,13 +159,13 @@ namespace Pulumiverse.Grafana.Alerting
     ///                                 },
     ///                             },
     ///                         },
-    ///                         Then = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalThenArgs
+    ///                         Then = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepConditionalThenArgs
     ///                         {
     ///                             Steps = new[]
     ///                             {
-    ///                                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalThenStepArgs
+    ///                                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepConditionalThenStepArgs
     ///                                 {
-    ///                                     Assign = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalThenStepAssignArgs
+    ///                                     Assign = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepConditionalThenStepAssignArgs
     ///                                     {
     ///                                         Annotations = 
     ///                                         {
@@ -173,22 +173,22 @@ namespace Pulumiverse.Grafana.Alerting
     ///                                         },
     ///                                     },
     ///                                 },
-    ///                                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalThenStepArgs
+    ///                                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepConditionalThenStepArgs
     ///                                 {
-    ///                                     External = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalThenStepExternalArgs
+    ///                                     External = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepConditionalThenStepExternalArgs
     ///                                     {
     ///                                         Url = "https://irm.grafana.com/create-incident",
     ///                                     },
     ///                                 },
     ///                             },
     ///                         },
-    ///                         Else = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalElseArgs
+    ///                         Else = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepConditionalElseArgs
     ///                         {
     ///                             Steps = new[]
     ///                             {
-    ///                                 new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalElseStepArgs
+    ///                                 new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepConditionalElseStepArgs
     ///                                 {
-    ///                                     Assign = new Grafana.Alerting.Inputs.AlertEnrichmentSpecStepConditionalElseStepAssignArgs
+    ///                                     Assign = new Grafana.Alerting.V1Beta1.Inputs.AlertEnrichmentSpecStepConditionalElseStepAssignArgs
     ///                                     {
     ///                                         Annotations = 
     ///                                         {
@@ -207,6 +207,7 @@ namespace Pulumiverse.Grafana.Alerting
     /// });
     /// ```
     /// </summary>
+    [Obsolete(@"grafana.alerting/alertenrichment.AlertEnrichment has been deprecated in favor of grafana.alerting/v1beta1/alertenrichment.AlertEnrichment")]
     [GrafanaResourceType("grafana:alerting/alertEnrichment:AlertEnrichment")]
     public partial class AlertEnrichment : global::Pulumi.CustomResource
     {
@@ -252,6 +253,10 @@ namespace Pulumiverse.Grafana.Alerting
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:alerting/alertEnrichment:AlertEnrichment" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

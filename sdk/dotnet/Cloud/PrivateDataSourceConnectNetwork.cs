@@ -26,7 +26,6 @@ namespace Pulumiverse.Grafana.Cloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -58,7 +57,7 @@ namespace Pulumiverse.Grafana.Cloud
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:cloud/privateDataSourceConnectNetwork:PrivateDataSourceConnectNetwork name "{{ region }}:{{ policyId }}"
+    /// terraform import grafana_cloud_private_data_source_connect_network.name "{{ region }}:{{ policyId }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:cloud/privateDataSourceConnectNetwork:PrivateDataSourceConnectNetwork")]

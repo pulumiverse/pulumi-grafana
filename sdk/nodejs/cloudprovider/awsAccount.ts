@@ -5,12 +5,41 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * This resource allows you to link your AWS Account to Grafana Cloud for use in creating Cloud Provider resources.
+ *
+ * See the Grafana Provider configuration docs
+ * for information on authentication and required access policy scopes.
+ *
+ * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+ *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const test = grafana.cloud.getStack({
+ *     slug: "gcloudstacktest",
+ * });
+ * const testIamRole = aws.index.IamRole({
+ *     name: "my-role",
+ * });
+ * const testAwsAccount = new grafana.cloudprovider.AwsAccount("test", {
+ *     stackId: test.then(test => test.id),
+ *     roleArn: testIamRole.arn,
+ *     regions: [
+ *         "us-east-1",
+ *         "us-east-2",
+ *         "us-west-1",
+ *     ],
+ * });
+ * ```
  *
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:cloudProvider/awsAccount:AwsAccount name "{{ stack_id }}:{{ resource_id }}"
+ * terraform import grafana_cloud_provider_aws_account.name "{{ stack_id }}:{{ resource_id }}"
  * ```
  */
 export class AwsAccount extends pulumi.CustomResource {
@@ -57,6 +86,9 @@ export class AwsAccount extends pulumi.CustomResource {
      * An IAM Role ARN string to represent with this AWS Account resource.
      */
     declare public readonly roleArn: pulumi.Output<string>;
+    /**
+     * The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     declare public readonly stackId: pulumi.Output<string>;
 
     /**
@@ -119,6 +151,9 @@ export interface AwsAccountState {
      * An IAM Role ARN string to represent with this AWS Account resource.
      */
     roleArn?: pulumi.Input<string>;
+    /**
+     * The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId?: pulumi.Input<string>;
 }
 
@@ -138,5 +173,8 @@ export interface AwsAccountArgs {
      * An IAM Role ARN string to represent with this AWS Account resource.
      */
     roleArn: pulumi.Input<string>;
+    /**
+     * The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: pulumi.Input<string>;
 }

@@ -32,6 +32,7 @@ const (
 	// further modules follow the grouping of the upstream TF provider
 	// https://registry.terraform.io/providers/grafana/grafana/latest/docs
 	alertingMod              = "alerting"
+	appsMod                  = "apps"
 	assertsMod               = "assert"
 	cloudMod                 = "cloud"
 	cloudProviderMod         = "cloudProvider"
@@ -73,6 +74,12 @@ func grafanaDataSource(mod string, res string) tokens.ModuleMember {
 func grafanaResource(mod string, res string) tokens.Type {
 	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
 	return grafanaType(mod+"/"+fn, res)
+}
+
+// grafanaVersionedResource manufactures a versioned resource token given a module and resource name.
+// It verifies the
+func grafanaVersionedResource(mod string, version string, res string) tokens.Type {
+	return grafanaResource(mod+"/"+version, res)
 }
 
 func grafanaResourceAlias(mod string, res string) *string {
@@ -208,23 +215,33 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			// Experimental - these can still change over time
-			"grafana_apps_dashboard_dashboard_v1beta1": {
-				Tok: grafanaResource(experimentalMod, "AppsDashboard"),
-			},
-			"grafana_apps_playlist_playlist_v0alpha1": {
-				Tok: grafanaResource(experimentalMod, "AppsPlaylistV0Alpha1"),
-			},
-
 			// Alerting
 			"grafana_apps_alertenrichment_alertenrichment_v1beta1": {
-				Tok: grafanaResource(alertingMod, "AlertEnrichment"),
+				Tok: grafanaVersionedResource(alertingMod, "v1beta1", "AlertEnrichment"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaResourceAlias(alertingMod, "AlertEnrichment"),
+					},
+				},
+			},
+			"grafana_apps_notifications_inhibitionrule_v1beta1": {
+				Tok: grafanaVersionedResource(alertingMod, "v1beta1", "NotificationsInhibitionRule"),
 			},
 			"grafana_apps_rules_alertrule_v0alpha1": {
-				Tok: grafanaResource(alertingMod, "AlertRuleV0Alpha1"),
+				Tok: grafanaVersionedResource(alertingMod, "v0alpha1", "AlertRule"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaResourceAlias(alertingMod, "AlertRuleV0Alpha1"),
+					},
+				},
 			},
 			"grafana_apps_rules_recordingrule_v0alpha1": {
-				Tok: grafanaResource(alertingMod, "RecordingRuleV0Alpha1"),
+				Tok: grafanaVersionedResource(alertingMod, "v0alpha1", "RecordingRule"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaResourceAlias(alertingMod, "RecordingRuleV0Alpha1"),
+					},
+				},
 			},
 			"grafana_contact_point": {
 				Tok: grafanaResource(alertingMod, "ContactPoint"),
@@ -282,20 +299,69 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 
+			// Apps
+			"grafana_apps_dashboard_dashboard_v1beta1": {
+				Tok: grafanaVersionedResource(appsMod, "v1beta1", "Dashboard"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaResourceAlias(experimentalMod, "AppsDashboard"),
+					},
+				},
+			},
+			"grafana_apps_dashboard_dashboard_v2beta1": {
+				Tok: grafanaVersionedResource(appsMod, "v2beta1", "Dashboard"),
+			},
+			"grafana_apps_playlist_playlist_v0alpha1": {
+				Tok: grafanaVersionedResource(appsMod, "v0alpha1", "Playlist"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaResourceAlias(experimentalMod, "AppsPlaylistV0Alpha1"),
+					},
+				},
+			},
+			"grafana_apps_provisioning_connection_v0alpha1": {
+				Tok: grafanaVersionedResource(appsMod, "v0alpha1", "ProvisioningConnection"),
+			},
+			"grafana_apps_provisioning_repository_v0alpha1": {
+				Tok: grafanaVersionedResource(appsMod, "v0alpha1", "ProvisioningRepository"),
+			},
+
 			// Cloud
 			"grafana_apps_productactivation_appo11yconfig_v1alpha1": {
-				Tok: grafanaResource(cloudMod, "ProductActivationAppO11yConfigV1Alpha1"),
+				Tok: grafanaVersionedResource(cloudMod, "v1alpha1", "ProductActivationAppO11yConfig"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaResourceAlias(cloudMod, "ProductActivationAppO11yConfigV1Alpha1"),
+					},
+				},
 			},
 			"grafana_apps_productactivation_k8so11yconfig_v1alpha1": {
-				Tok: grafanaResource(cloudMod, "ProductActivationK8sO11yConfigV1Alpha1"),
+				Tok: grafanaVersionedResource(cloudMod, "v1alpha1", "ProductActivationK8sO11yConfig"),
+				Aliases: []tfbridge.AliasInfo{
+					{
+						Type: grafanaResourceAlias(cloudMod, "ProductActivationK8sO11yConfigV1Alpha1"),
+					},
+				},
 			},
 
 			// Enterprise
+			"grafana_apps_secret_keeper_activation_v1beta1": {
+				Tok: grafanaVersionedResource(enterpriseMod, "v1beta1", "SecretKeeperActivation"),
+			},
+			"grafana_apps_secret_keeper_v1beta1": {
+				Tok: grafanaVersionedResource(enterpriseMod, "v1beta1", "SecretKeeper"),
+			},
+			"grafana_apps_secret_securevalue_v1beta1": {
+				Tok: grafanaVersionedResource(enterpriseMod, "v1beta1", "SecretSecureValue"),
+			},
 			"grafana_data_source_config_lbac_rules": {
 				Tok: grafanaResource(enterpriseMod, "DataSourceConfigLbacRules"),
 				Docs: &tfbridge.DocInfo{
 					Source: "data_source_config_lbac_rules.md",
 				},
+			},
+			"grafana_data_source_cache_config": {
+				Tok: grafanaResource(enterpriseMod, "DataSourceCacheConfig"),
 			},
 			"grafana_data_source_permission": {
 				Tok: grafanaResource(enterpriseMod, "DataSourcePermission"),
@@ -754,12 +820,30 @@ func Provider() tfbridge.ProviderInfo {
 			// no overlay files.
 			//Overlay: &tfbridge.OverlayInfo{},
 			RespectSchemaVersion: true,
+			ModuleToPackage: map[string]string{
+				"alerting/v0alpha1":  "alerting/v0alpha1",
+				"alerting/v1beta1":   "alerting/v1beta1",
+				"apps/v0alpha1":      "apps/v0alpha1",
+				"apps/v1beta1":       "apps/v1beta1",
+				"apps/v2beta1":       "apps/v2beta1",
+				"cloud/v1alpha1":     "cloud/v1alpha1",
+				"enterprise/v1beta1": "enterprise/v1beta1",
+			},
 		},
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
 			PackageName:          "pulumiverse_grafana",
 			PyProject:            struct{ Enabled bool }{true},
 			RespectSchemaVersion: true,
+			ModuleNameOverrides: map[string]string{
+				"alerting/v0alpha1":  "alerting/v0alpha1",
+				"alerting/v1beta1":   "alerting/v1beta1",
+				"apps/v0alpha1":      "apps/v0alpha1",
+				"apps/v1beta1":       "apps/v1beta1",
+				"apps/v2beta1":       "apps/v2beta1",
+				"cloud/v1alpha1":     "cloud/v1alpha1",
+				"enterprise/v1beta1": "enterprise/v1beta1",
+			},
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
@@ -770,10 +854,37 @@ func Provider() tfbridge.ProviderInfo {
 			),
 			GenerateResourceContainerTypes: true,
 			RespectSchemaVersion:           true,
+			ModuleToPackage: map[string]string{
+				"alerting/v0alpha1":  "alerting/v0alpha1",
+				"alerting/v1beta1":   "alerting/v1beta1",
+				"apps/v0alpha1":      "apps/v0alpha1",
+				"apps/v1beta1":       "apps/v1beta1",
+				"apps/v2beta1":       "apps/v2beta1",
+				"cloud/v1alpha1":     "cloud/v1alpha1",
+				"enterprise/v1beta1": "enterprise/v1beta1",
+			},
+			PackageImportAliases: map[string]string{
+				"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting/v0alpha1":  "alertingv0alpha1",
+				"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting/v1beta1":   "alertingv1beta1",
+				"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps/v0alpha1":      "appsv0alpha1",
+				"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps/v1beta1":       "appsv1beta1",
+				"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps/v2beta1":       "appsv2beta1",
+				"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud/v1alpha1":     "cloudv1alpha1",
+				"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/enterprise/v1beta1": "enterprisev1beta1",
+			},
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			RootNamespace:        "Pulumiverse",
 			RespectSchemaVersion: true,
+			Namespaces: map[string]string{
+				"alerting/v0alpha1":  "Alerting.V0Alpha1",
+				"alerting/v1beta1":   "Alerting.V1Beta1",
+				"apps/v0alpha1":      "Apps.V0Alpha1",
+				"apps/v1beta1":       "Apps.V1Beta1",
+				"apps/v2beta1":       "Apps.V2Beta1",
+				"cloud/v1alpha1":     "Cloud.V1Alpha1",
+				"enterprise/v1beta1": "Enterprise.V1Beta1",
+			},
 		},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 	}

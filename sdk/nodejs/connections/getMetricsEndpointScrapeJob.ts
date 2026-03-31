@@ -29,7 +29,13 @@ export function getMetricsEndpointScrapeJob(args: GetMetricsEndpointScrapeJobArg
  * A collection of arguments for invoking getMetricsEndpointScrapeJob.
  */
 export interface GetMetricsEndpointScrapeJobArgs {
+    /**
+     * The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
+     */
     name: string;
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: string;
 }
 
@@ -57,12 +63,21 @@ export interface GetMetricsEndpointScrapeJobResult {
      * Whether the metrics endpoint scrape job is enabled or not.
      */
     readonly enabled: boolean;
+    /**
+     * The Terraform Resource ID. This has the format "{{ stackId }}:{{ name }}".
+     */
     readonly id: string;
+    /**
+     * The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
+     */
     readonly name: string;
     /**
      * Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
      */
     readonly scrapeIntervalSeconds: number;
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     readonly stackId: string;
     /**
      * The url to scrape metrics.
@@ -94,6 +109,12 @@ export function getMetricsEndpointScrapeJobOutput(args: GetMetricsEndpointScrape
  * A collection of arguments for invoking getMetricsEndpointScrapeJob.
  */
 export interface GetMetricsEndpointScrapeJobOutputArgs {
+    /**
+     * The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
+     */
     name: pulumi.Input<string>;
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: pulumi.Input<string>;
 }

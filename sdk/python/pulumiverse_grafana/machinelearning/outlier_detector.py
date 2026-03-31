@@ -31,6 +31,7 @@ class OutlierDetectorArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OutlierDetector resource.
+
         :param pulumi.Input['OutlierDetectorAlgorithmArgs'] algorithm: The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         :param pulumi.Input[_builtins.str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
         :param pulumi.Input[_builtins.str] datasource_uid: The uid of the datasource to query.
@@ -162,6 +163,7 @@ class _OutlierDetectorState:
                  query_params: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering OutlierDetector resources.
+
         :param pulumi.Input['OutlierDetectorAlgorithmArgs'] algorithm: The algorithm to use and its configuration. See https://grafana.com/docs/grafana-cloud/machine-learning/outlier-detection/ for details.
         :param pulumi.Input[_builtins.str] datasource_type: The type of datasource being queried. Currently allowed values are prometheus, grafana-prometheus-datasource, grafana-amazonprometheus-datasource, loki, grafana-loki-datasource, graphite, grafana-graphite-datasource, grafana-datadog-datasource, postgres, grafana-postgresql-datasource, doitintl-bigquery-datasource, grafana-bigquery-datasource, grafana-snowflake-datasource, influxdb, grafana-influxdb-datasource, grafana-splunk-datasource, elasticsearch, grafana-elasticsearch-datasource, and grafana-mongodb-datasource.
         :param pulumi.Input[_builtins.str] datasource_uid: The uid of the datasource to query.
@@ -363,8 +365,9 @@ class OutlierDetector(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:machineLearning/outlierDetector:OutlierDetector name "{{ id }}"
+        terraform import grafana_machine_learning_outlier_detector.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -446,8 +449,9 @@ class OutlierDetector(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:machineLearning/outlierDetector:OutlierDetector name "{{ id }}"
+        terraform import grafana_machine_learning_outlier_detector.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OutlierDetectorArgs args: The arguments to use to populate this resource's properties.

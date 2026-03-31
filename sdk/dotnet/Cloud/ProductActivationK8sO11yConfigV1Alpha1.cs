@@ -27,13 +27,13 @@ namespace Pulumiverse.Grafana.Cloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.Cloud.ProductActivationK8sO11yConfigV1Alpha1("example", new()
+    ///     var example = new Grafana.Cloud.V1Alpha1.ProductActivationK8sO11yConfig("example", new()
     ///     {
-    ///         Metadata = new Grafana.Cloud.Inputs.ProductActivationK8sO11yConfigV1Alpha1MetadataArgs
+    ///         Metadata = new Grafana.Cloud.V1Alpha1.Inputs.ProductActivationK8sO11yConfigMetadataArgs
     ///         {
     ///             Uid = "global",
     ///         },
-    ///         Spec = new Grafana.Cloud.Inputs.ProductActivationK8sO11yConfigV1Alpha1SpecArgs
+    ///         Spec = new Grafana.Cloud.V1Alpha1.Inputs.ProductActivationK8sO11yConfigSpecArgs
     ///         {
     ///             Enabled = true,
     ///         },
@@ -44,14 +44,14 @@ namespace Pulumiverse.Grafana.Cloud
     /// 
     /// ## Import
     /// 
-    /// #!/bin/bash
-    /// 
+    /// !/bin/bash
     /// Import an existing Kubernetes observability config by its UID
     /// 
     /// ```sh
     /// $ pulumi import grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1 example my-k8s-o11y-config
     /// ```
     /// </summary>
+    [Obsolete(@"grafana.cloud/productactivationk8so11yconfigv1alpha1.ProductActivationK8sO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationk8so11yconfig.ProductActivationK8sO11yConfig")]
     [GrafanaResourceType("grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1")]
     public partial class ProductActivationK8sO11yConfigV1Alpha1 : global::Pulumi.CustomResource
     {
@@ -97,6 +97,10 @@ namespace Pulumiverse.Grafana.Cloud
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

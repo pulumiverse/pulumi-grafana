@@ -30,6 +30,7 @@ class IntegrationArgs:
                  templates: Optional[pulumi.Input['IntegrationTemplatesArgs']] = None):
         """
         The set of arguments for constructing a Integration resource.
+
         :param pulumi.Input['IntegrationDefaultRouteArgs'] default_route: The Default route for all alerts from the given integration
         :param pulumi.Input[_builtins.str] type: The type of integration. Can be grafana, grafana*alerting, webhook, alertmanager, kapacitor, fabric, newrelic, datadog, pagerduty, pingdom, elastalert, amazon*sns, curler, sentry, formatted*webhook, stackdriver, uptimerobot, sentry, zabbix, prtg, inbound*email, direct_paging, jira, zendesk.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
@@ -149,6 +150,7 @@ class _IntegrationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Integration resources.
+
         :param pulumi.Input['IntegrationDefaultRouteArgs'] default_route: The Default route for all alerts from the given integration
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dynamic_labels: A list of string-to-string mappings for dynamic labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] labels: A list of string-to-string mappings for static labels. Each map must include one key named "key" and one key named "value" (using the `on_call_get_label` datasource).
@@ -293,8 +295,9 @@ class Integration(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/integration:Integration name "{{ id }}"
+        terraform import grafana_oncall_integration.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -319,8 +322,9 @@ class Integration(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/integration:Integration name "{{ id }}"
+        terraform import grafana_oncall_integration.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IntegrationArgs args: The arguments to use to populate this resource's properties.

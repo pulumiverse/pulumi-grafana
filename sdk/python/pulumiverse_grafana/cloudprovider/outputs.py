@@ -721,9 +721,12 @@ class GetAwsCloudwatchScrapeJobsScrapeJobResult(dict):
         :param _builtins.str disabled_reason: When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
         :param _builtins.bool enabled: Whether the AWS CloudWatch Scrape Job is enabled or not.
         :param _builtins.bool export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+        :param _builtins.str id: The Terraform Resource ID. This has the format "{{ stack_id }}:{{ name }}".
+        :param _builtins.str name: The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
         :param Sequence[_builtins.str] regions: The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
         :param _builtins.bool regions_subset_override_used: When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
         :param _builtins.str role_arn: The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.
+        :param _builtins.str stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param Mapping[str, _builtins.str] static_labels: A set of static labels to add to all metrics exported by this scrape job.
         :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs'] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs'] services: One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
@@ -779,11 +782,17 @@ class GetAwsCloudwatchScrapeJobsScrapeJobResult(dict):
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
+        """
+        The Terraform Resource ID. This has the format "{{ stack_id }}:{{ name }}".
+        """
         return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
+        """
+        The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
@@ -813,6 +822,9 @@ class GetAwsCloudwatchScrapeJobsScrapeJobResult(dict):
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> _builtins.str:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @_builtins.property

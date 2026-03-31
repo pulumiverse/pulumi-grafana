@@ -65,6 +65,9 @@ export class StackServiceAccountRotatingToken extends pulumi.CustomResource {
         return obj['__pulumiType'] === StackServiceAccountRotatingToken.__pulumiType;
     }
 
+    /**
+     * Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+     */
     declare public readonly deleteOnDestroy: pulumi.Output<boolean | undefined>;
     /**
      * Duration of the time window before expiring where the token can be rotated, in seconds.
@@ -168,6 +171,9 @@ export class StackServiceAccountRotatingToken extends pulumi.CustomResource {
  * Input properties used for looking up and filtering StackServiceAccountRotatingToken resources.
  */
 export interface StackServiceAccountRotatingTokenState {
+    /**
+     * Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+     */
     deleteOnDestroy?: pulumi.Input<boolean>;
     /**
      * Duration of the time window before expiring where the token can be rotated, in seconds.
@@ -212,6 +218,9 @@ export interface StackServiceAccountRotatingTokenState {
  * The set of arguments for constructing a StackServiceAccountRotatingToken resource.
  */
 export interface StackServiceAccountRotatingTokenArgs {
+    /**
+     * Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+     */
     deleteOnDestroy?: pulumi.Input<boolean>;
     /**
      * Duration of the time window before expiring where the token can be rotated, in seconds.

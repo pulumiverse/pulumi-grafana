@@ -16,7 +16,7 @@ namespace Pulumiverse.Grafana.Cloud
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:cloud/orgMember:OrgMember name "{{ orgSlugOrID }}:{{ usernameOrID }}"
+    /// terraform import grafana_cloud_org_member.name "{{ orgSlugOrID }}:{{ usernameOrID }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:cloud/orgMember:OrgMember")]

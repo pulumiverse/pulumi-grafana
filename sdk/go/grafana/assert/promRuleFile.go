@@ -298,7 +298,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:assert/promRuleFile:PromRuleFile name "{{ name }}"
+// terraform import grafana_asserts_prom_rule_file.name "{{ name }}"
 // ```
 type PromRuleFile struct {
 	pulumi.CustomResourceState

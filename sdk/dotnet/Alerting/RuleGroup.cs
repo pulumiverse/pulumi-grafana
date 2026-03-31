@@ -137,16 +137,16 @@ namespace Pulumiverse.Grafana.Alerting
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:alerting/ruleGroup:RuleGroup name "{{ folderUID }}:{{ title }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:alerting/ruleGroup:RuleGroup name "{{ orgID }}:{{ folderUID }}:{{ title }}"
+    /// terraform import grafana_rule_group.name "{{ folderUID }}:{{ title }}"
+    /// terraform import grafana_rule_group.name "{{ orgID }}:{{ folderUID }}:{{ title }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:alerting/ruleGroup:RuleGroup")]
     public partial class RuleGroup : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Output("disableProvenance")]
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
@@ -231,6 +231,9 @@ namespace Pulumiverse.Grafana.Alerting
 
     public sealed class RuleGroupArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -278,6 +281,9 @@ namespace Pulumiverse.Grafana.Alerting
 
     public sealed class RuleGroupState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 

@@ -48,7 +48,7 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = oss.NewDashboard(ctx, "test", &oss.DashboardArgs{
-//				ConfigJson: pulumi.String(json0),
+//				ConfigJson: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err

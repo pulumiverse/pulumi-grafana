@@ -13,13 +13,20 @@ namespace Pulumiverse.Grafana.CloudProvider
     public static class GetAwsCloudwatchScrapeJobs
     {
         /// <summary>
+        /// This data source allows you to look up all existing Grafana Cloud AWS CloudWatch Scrape Job resources in your stack.
+        /// 
+        /// See the Grafana Provider configuration docs
+        /// for information on authentication and required access policy scopes.
+        /// 
+        /// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -40,13 +47,20 @@ namespace Pulumiverse.Grafana.CloudProvider
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAwsCloudwatchScrapeJobsResult>("grafana:cloudProvider/getAwsCloudwatchScrapeJobs:getAwsCloudwatchScrapeJobs", args ?? new GetAwsCloudwatchScrapeJobsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// This data source allows you to look up all existing Grafana Cloud AWS CloudWatch Scrape Job resources in your stack.
+        /// 
+        /// See the Grafana Provider configuration docs
+        /// for information on authentication and required access policy scopes.
+        /// 
+        /// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -67,13 +81,20 @@ namespace Pulumiverse.Grafana.CloudProvider
             => global::Pulumi.Deployment.Instance.Invoke<GetAwsCloudwatchScrapeJobsResult>("grafana:cloudProvider/getAwsCloudwatchScrapeJobs:getAwsCloudwatchScrapeJobs", args ?? new GetAwsCloudwatchScrapeJobsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// This data source allows you to look up all existing Grafana Cloud AWS CloudWatch Scrape Job resources in your stack.
+        /// 
+        /// See the Grafana Provider configuration docs
+        /// for information on authentication and required access policy scopes.
+        /// 
+        /// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -109,6 +130,9 @@ namespace Pulumiverse.Grafana.CloudProvider
             set => _scrapeJobs = value;
         }
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public string StackId { get; set; } = null!;
 
@@ -132,6 +156,9 @@ namespace Pulumiverse.Grafana.CloudProvider
             set => _scrapeJobs = value;
         }
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public Input<string> StackId { get; set; } = null!;
 
@@ -145,11 +172,17 @@ namespace Pulumiverse.Grafana.CloudProvider
     [OutputType]
     public sealed class GetAwsCloudwatchScrapeJobsResult
     {
+        /// <summary>
+        /// The Terraform Resource ID. This has the format "{{ StackId }}".
+        /// </summary>
         public readonly string Id;
         /// <summary>
         /// A list of AWS CloudWatch Scrape Job objects associated with the given StackID.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAwsCloudwatchScrapeJobsScrapeJobResult> ScrapeJobs;
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         public readonly string StackId;
 
         [OutputConstructor]

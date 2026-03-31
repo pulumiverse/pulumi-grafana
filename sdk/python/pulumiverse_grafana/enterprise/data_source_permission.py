@@ -26,6 +26,7 @@ class DataSourcePermissionArgs:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]]] = None):
         """
         The set of arguments for constructing a DataSourcePermission resource.
+
         :param pulumi.Input[_builtins.str] datasource_uid: UID of the datasource to apply permissions to.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
@@ -81,6 +82,7 @@ class _DataSourcePermissionState:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]]] = None):
         """
         Input properties used for looking up and filtering DataSourcePermission resources.
+
         :param pulumi.Input[_builtins.str] datasource_uid: UID of the datasource to apply permissions to.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
@@ -195,12 +197,10 @@ class DataSourcePermission(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/dataSourcePermission:DataSourcePermission name "{{ datasourceID }}"
+        terraform import grafana_data_source_permission.name "{{ datasourceID }}"
+        terraform import grafana_data_source_permission.name "{{ orgID }}:{{ datasourceID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/dataSourcePermission:DataSourcePermission name "{{ orgID }}:{{ datasourceID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -270,12 +270,10 @@ class DataSourcePermission(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/dataSourcePermission:DataSourcePermission name "{{ datasourceID }}"
+        terraform import grafana_data_source_permission.name "{{ datasourceID }}"
+        terraform import grafana_data_source_permission.name "{{ orgID }}:{{ datasourceID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/dataSourcePermission:DataSourcePermission name "{{ orgID }}:{{ datasourceID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param DataSourcePermissionArgs args: The arguments to use to populate this resource's properties.

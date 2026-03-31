@@ -109,7 +109,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:assert/profileConfig:ProfileConfig name "{{ name }}"
+ * terraform import grafana_asserts_profile_config.name "{{ name }}"
  * ```
  */
 export class ProfileConfig extends pulumi.CustomResource {

@@ -345,7 +345,7 @@ namespace Pulumiverse.Grafana.Assert
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:assert/promRuleFile:PromRuleFile name "{{ name }}"
+    /// terraform import grafana_asserts_prom_rule_file.name "{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:assert/promRuleFile:PromRuleFile")]

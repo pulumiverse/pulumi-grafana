@@ -34,7 +34,13 @@ namespace Pulumiverse.Grafana.CloudProvider.Outputs
         /// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_&lt;service_name&gt;_info`.
         /// </summary>
         public readonly bool ExportTags;
+        /// <summary>
+        /// The Terraform Resource ID. This has the format "{{ StackId }}:{{ name }}".
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+        /// </summary>
         public readonly string Name;
         /// <summary>
         /// The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
@@ -52,6 +58,9 @@ namespace Pulumiverse.Grafana.CloudProvider.Outputs
         /// One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `Name` attribute. When accessing this as an attribute reference, it is a list of objects.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAwsCloudwatchScrapeJobsScrapeJobServiceResult> Services;
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         public readonly string StackId;
         /// <summary>
         /// A set of static labels to add to all metrics exported by this scrape job.

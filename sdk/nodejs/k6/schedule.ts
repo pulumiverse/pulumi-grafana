@@ -75,7 +75,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:k6/schedule:Schedule name "{{ load_test_id }}"
+ * terraform import grafana_k6_schedule.name "{{ load_test_id }}"
  * ```
  */
 export class Schedule extends pulumi.CustomResource {

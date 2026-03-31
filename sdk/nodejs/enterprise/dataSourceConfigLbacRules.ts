@@ -51,7 +51,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules name "{{ datasource_uid }}"
+ * terraform import grafana_data_source_config_lbac_rules.name "{{ datasource_uid }}"
  * ```
  */
 export class DataSourceConfigLbacRules extends pulumi.CustomResource {

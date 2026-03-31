@@ -42,7 +42,7 @@ import (
 //			// create a minimal library panel inside the General folder
 //			test, err := oss.NewLibraryPanel(ctx, "test", &oss.LibraryPanelArgs{
 //				Name:      pulumi.String("test name"),
-//				ModelJson: pulumi.String(json0),
+//				ModelJson: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
@@ -71,7 +71,7 @@ import (
 //			// create library panels to be added to a dashboard
 //			dashboard, err := oss.NewLibraryPanel(ctx, "dashboard", &oss.LibraryPanelArgs{
 //				Name:      pulumi.String("panel"),
-//				ModelJson: pulumi.String(json1),
+//				ModelJson: pulumi.String(pulumi.String(json1)),
 //			})
 //			if err != nil {
 //				return err
@@ -110,7 +110,7 @@ import (
 //			// `merge()` will add `libraryPanel` attribute to each library panel JSON
 //			// Grafana will then connect any library panels found in dashboard JSON
 //			_, err = oss.NewDashboard(ctx, "with_library_panel", &oss.DashboardArgs{
-//				ConfigJson: pulumi.String(json2),
+//				ConfigJson: pulumi.String(pulumi.String(json2)),
 //			})
 //			if err != nil {
 //				return err

@@ -11,7 +11,14 @@
                 }
             },
             "grafana_apps_alertenrichment_alertenrichment_v1beta1": {
-                "current": "grafana:alerting/alertEnrichment:AlertEnrichment",
+                "current": "grafana:alerting/v1beta1/alertEnrichment:AlertEnrichment",
+                "past": [
+                    {
+                        "name": "grafana:alerting/alertEnrichment:AlertEnrichment",
+                        "inCodegen": true,
+                        "majorVersion": 2
+                    }
+                ],
                 "majorVersion": 2,
                 "fields": {
                     "spec": {
@@ -68,7 +75,14 @@
                 }
             },
             "grafana_apps_dashboard_dashboard_v1beta1": {
-                "current": "grafana:experimental/appsDashboard:AppsDashboard",
+                "current": "grafana:apps/v1beta1/dashboard:Dashboard",
+                "past": [
+                    {
+                        "name": "grafana:experimental/appsDashboard:AppsDashboard",
+                        "inCodegen": true,
+                        "majorVersion": 2
+                    }
+                ],
                 "majorVersion": 2,
                 "fields": {
                     "spec": {
@@ -80,8 +94,47 @@
                     }
                 }
             },
+            "grafana_apps_dashboard_dashboard_v2beta1": {
+                "current": "grafana:apps/v2beta1/dashboard:Dashboard",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "tags": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
+            "grafana_apps_notifications_inhibitionrule_v1beta1": {
+                "current": "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "equal": {
+                                "maxItemsOne": false
+                            },
+                            "source_matchers": {
+                                "maxItemsOne": false
+                            },
+                            "target_matchers": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_apps_playlist_playlist_v0alpha1": {
-                "current": "grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1",
+                "current": "grafana:apps/v0alpha1/playlist:Playlist",
+                "past": [
+                    {
+                        "name": "grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1",
+                        "inCodegen": true,
+                        "majorVersion": 2
+                    }
+                ],
                 "majorVersion": 2,
                 "fields": {
                     "spec": {
@@ -94,15 +147,53 @@
                 }
             },
             "grafana_apps_productactivation_appo11yconfig_v1alpha1": {
-                "current": "grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1",
+                "current": "grafana:cloud/v1alpha1/productActivationAppO11yConfig:ProductActivationAppO11yConfig",
+                "past": [
+                    {
+                        "name": "grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1",
+                        "inCodegen": true,
+                        "majorVersion": 2
+                    }
+                ],
                 "majorVersion": 2
             },
             "grafana_apps_productactivation_k8so11yconfig_v1alpha1": {
-                "current": "grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1",
+                "current": "grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig",
+                "past": [
+                    {
+                        "name": "grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1",
+                        "inCodegen": true,
+                        "majorVersion": 2
+                    }
+                ],
                 "majorVersion": 2
             },
+            "grafana_apps_provisioning_connection_v0alpha1": {
+                "current": "grafana:apps/v0alpha1/provisioningConnection:ProvisioningConnection",
+                "majorVersion": 2
+            },
+            "grafana_apps_provisioning_repository_v0alpha1": {
+                "current": "grafana:apps/v0alpha1/provisioningRepository:ProvisioningRepository",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "workflows": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_apps_rules_alertrule_v0alpha1": {
-                "current": "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1",
+                "current": "grafana:alerting/v0alpha1/alertRule:AlertRule",
+                "past": [
+                    {
+                        "name": "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1",
+                        "inCodegen": true,
+                        "majorVersion": 2
+                    }
+                ],
                 "majorVersion": 2,
                 "fields": {
                     "spec": {
@@ -125,8 +216,36 @@
                 }
             },
             "grafana_apps_rules_recordingrule_v0alpha1": {
-                "current": "grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1",
+                "current": "grafana:alerting/v0alpha1/recordingRule:RecordingRule",
+                "past": [
+                    {
+                        "name": "grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1",
+                        "inCodegen": true,
+                        "majorVersion": 2
+                    }
+                ],
                 "majorVersion": 2
+            },
+            "grafana_apps_secret_keeper_activation_v1beta1": {
+                "current": "grafana:enterprise/v1beta1/secretKeeperActivation:SecretKeeperActivation",
+                "majorVersion": 2
+            },
+            "grafana_apps_secret_keeper_v1beta1": {
+                "current": "grafana:enterprise/v1beta1/secretKeeper:SecretKeeper",
+                "majorVersion": 2
+            },
+            "grafana_apps_secret_securevalue_v1beta1": {
+                "current": "grafana:enterprise/v1beta1/secretSecureValue:SecretSecureValue",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "decrypters": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
             },
             "grafana_asserts_custom_model_rules": {
                 "current": "grafana:assert/customModelRules:CustomModelRules",
@@ -203,6 +322,45 @@
                                     "elem": {
                                         "fields": {
                                             "disable_in_groups": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "grafana_asserts_stack": {
+                "current": "grafana:assert/stack:Stack",
+                "majorVersion": 2,
+                "fields": {
+                    "dataset": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "disabled_vendors": {
+                                    "maxItemsOne": false
+                                },
+                                "filter_group": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "env_label_values": {
+                                                "maxItemsOne": false
+                                            },
+                                            "filter": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "values": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "site_label_values": {
                                                 "maxItemsOne": false
                                             }
                                         }
@@ -419,7 +577,63 @@
             },
             "grafana_cloud_stack": {
                 "current": "grafana:cloud/stack:Stack",
-                "majorVersion": 2
+                "majorVersion": 2,
+                "fields": {
+                    "fleet_management_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "fleet_management_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "graphite_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "graphite_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "logs_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "logs_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "otlp_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "otlp_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "pdc_api_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "pdc_api_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "pdc_gateway_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "pdc_gateway_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "profiles_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "profiles_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "prometheus_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "prometheus_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "traces_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "traces_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "grafana_cloud_stack_service_account": {
                 "current": "grafana:cloud/stackServiceAccount:StackServiceAccount",
@@ -586,6 +800,10 @@
             },
             "grafana_data_source": {
                 "current": "grafana:oss/dataSource:DataSource",
+                "majorVersion": 2
+            },
+            "grafana_data_source_cache_config": {
+                "current": "grafana:enterprise/dataSourceCacheConfig:DataSourceCacheConfig",
                 "majorVersion": 2
             },
             "grafana_data_source_config": {
@@ -1722,7 +1940,63 @@
             },
             "grafana_cloud_stack": {
                 "current": "grafana:cloud/getStack:getStack",
-                "majorVersion": 2
+                "majorVersion": 2,
+                "fields": {
+                    "fleet_management_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "fleet_management_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "graphite_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "graphite_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "logs_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "logs_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "otlp_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "otlp_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "pdc_api_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "pdc_api_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "pdc_gateway_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "pdc_gateway_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "profiles_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "profiles_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "prometheus_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "prometheus_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "traces_private_connectivity_info_availability_zones": {
+                        "maxItemsOne": false
+                    },
+                    "traces_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "grafana_connections_metrics_endpoint_scrape_job": {
                 "current": "grafana:connections/getMetricsEndpointScrapeJob:getMetricsEndpointScrapeJob",
@@ -2089,22 +2363,70 @@
             }
         }
     },
-    "auto-settings": {},
+    "auto-settings": {
+        "resources": {
+            "grafana_apps_alertenrichment_alertenrichment_v1beta1": {
+                "aliases": [
+                    "grafana:alerting/alertEnrichment:AlertEnrichment"
+                ]
+            },
+            "grafana_apps_dashboard_dashboard_v1beta1": {
+                "aliases": [
+                    "grafana:experimental/appsDashboard:AppsDashboard"
+                ]
+            },
+            "grafana_apps_playlist_playlist_v0alpha1": {
+                "aliases": [
+                    "grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1"
+                ]
+            },
+            "grafana_apps_productactivation_appo11yconfig_v1alpha1": {
+                "aliases": [
+                    "grafana:cloud/productActivationAppO11yConfigV1Alpha1:ProductActivationAppO11yConfigV1Alpha1"
+                ]
+            },
+            "grafana_apps_productactivation_k8so11yconfig_v1alpha1": {
+                "aliases": [
+                    "grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1"
+                ]
+            },
+            "grafana_apps_rules_alertrule_v0alpha1": {
+                "aliases": [
+                    "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1"
+                ]
+            },
+            "grafana_apps_rules_recordingrule_v0alpha1": {
+                "aliases": [
+                    "grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1"
+                ]
+            }
+        }
+    },
     "mux": {
         "resources": {
             "grafana:alerting/alertEnrichment:AlertEnrichment": 1,
             "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1": 1,
             "grafana:alerting/contactPoint:ContactPoint": 0,
-            "grafana:alerting/messageTemplate:MessageTemplate": 0,
+            "grafana:alerting/messageTemplate:MessageTemplate": 1,
             "grafana:alerting/muteTiming:MuteTiming": 0,
             "grafana:alerting/notificationPolicy:NotificationPolicy": 0,
             "grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1": 1,
             "grafana:alerting/ruleGroup:RuleGroup": 0,
+            "grafana:alerting/v0alpha1/alertRule:AlertRule": 1,
+            "grafana:alerting/v0alpha1/recordingRule:RecordingRule": 1,
+            "grafana:alerting/v1beta1/alertEnrichment:AlertEnrichment": 1,
+            "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule": 1,
+            "grafana:apps/v0alpha1/playlist:Playlist": 1,
+            "grafana:apps/v0alpha1/provisioningConnection:ProvisioningConnection": 1,
+            "grafana:apps/v0alpha1/provisioningRepository:ProvisioningRepository": 1,
+            "grafana:apps/v1beta1/dashboard:Dashboard": 1,
+            "grafana:apps/v2beta1/dashboard:Dashboard": 1,
             "grafana:assert/customModelRules:CustomModelRules": 0,
             "grafana:assert/logConfig:LogConfig": 0,
             "grafana:assert/notificationAlertsConfig:NotificationAlertsConfig": 0,
             "grafana:assert/profileConfig:ProfileConfig": 0,
             "grafana:assert/promRuleFile:PromRuleFile": 0,
+            "grafana:assert/stack:Stack": 0,
             "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig": 0,
             "grafana:assert/thresholds:Thresholds": 0,
             "grafana:assert/traceConfig:TraceConfig": 0,
@@ -2121,11 +2443,14 @@
             "grafana:cloud/stackServiceAccount:StackServiceAccount": 0,
             "grafana:cloud/stackServiceAccountRotatingToken:StackServiceAccountRotatingToken": 0,
             "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": 0,
+            "grafana:cloud/v1alpha1/productActivationAppO11yConfig:ProductActivationAppO11yConfig": 1,
+            "grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig": 1,
             "grafana:cloudProvider/awsAccount:AwsAccount": 1,
             "grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob": 1,
             "grafana:cloudProvider/awsResourceMetadataScrapeJob:AwsResourceMetadataScrapeJob": 1,
             "grafana:cloudProvider/azureCredential:AzureCredential": 1,
             "grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob": 1,
+            "grafana:enterprise/dataSourceCacheConfig:DataSourceCacheConfig": 0,
             "grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules": 1,
             "grafana:enterprise/dataSourcePermission:DataSourcePermission": 0,
             "grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem": 1,
@@ -2135,6 +2460,9 @@
             "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem": 1,
             "grafana:enterprise/scimConfig:ScimConfig": 0,
             "grafana:enterprise/teamExternalGroup:TeamExternalGroup": 0,
+            "grafana:enterprise/v1beta1/secretKeeper:SecretKeeper": 1,
+            "grafana:enterprise/v1beta1/secretKeeperActivation:SecretKeeperActivation": 1,
+            "grafana:enterprise/v1beta1/secretSecureValue:SecretSecureValue": 1,
             "grafana:experimental/appsDashboard:AppsDashboard": 1,
             "grafana:experimental/appsPlaylistV0Alpha1:AppsPlaylistV0Alpha1": 1,
             "grafana:fleetManagement/collector:Collector": 1,
@@ -2158,7 +2486,7 @@
             "grafana:onCall/route:Route": 0,
             "grafana:onCall/schedule:Schedule": 0,
             "grafana:onCall/userNotificationRule:UserNotificationRule": 1,
-            "grafana:oss/annotation:Annotation": 0,
+            "grafana:oss/annotation:Annotation": 1,
             "grafana:oss/dashboard:Dashboard": 0,
             "grafana:oss/dashboardPermission:DashboardPermission": 0,
             "grafana:oss/dashboardPermissionItem:DashboardPermissionItem": 1,

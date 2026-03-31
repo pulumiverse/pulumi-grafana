@@ -22,7 +22,6 @@ namespace Pulumiverse.Grafana.Oss
         /// using System.Linq;
         /// using System.Text.Json;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
         /// using Grafana = Pulumiverse.Grafana;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -73,7 +72,6 @@ namespace Pulumiverse.Grafana.Oss
         /// using System.Linq;
         /// using System.Text.Json;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
         /// using Grafana = Pulumiverse.Grafana;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -124,7 +122,6 @@ namespace Pulumiverse.Grafana.Oss
         /// using System.Linq;
         /// using System.Text.Json;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
         /// using Grafana = Pulumiverse.Grafana;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 

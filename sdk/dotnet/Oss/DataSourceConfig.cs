@@ -87,11 +87,8 @@ namespace Pulumiverse.Grafana.Oss
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:oss/dataSourceConfig:DataSourceConfig name "{{ uid }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:oss/dataSourceConfig:DataSourceConfig name "{{ orgID }}:{{ uid }}"
+    /// terraform import grafana_data_source_config.name "{{ uid }}"
+    /// terraform import grafana_data_source_config.name "{{ orgID }}:{{ uid }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:oss/dataSourceConfig:DataSourceConfig")]

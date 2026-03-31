@@ -17,7 +17,7 @@ namespace Pulumiverse.Grafana.OnCall
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:onCall/escalation:Escalation name "{{ id }}"
+    /// terraform import grafana_oncall_escalation.name "{{ id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:onCall/escalation:Escalation")]

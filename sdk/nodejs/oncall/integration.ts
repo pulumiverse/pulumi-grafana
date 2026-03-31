@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:onCall/integration:Integration name "{{ id }}"
+ * terraform import grafana_oncall_integration.name "{{ id }}"
  * ```
  */
 export class Integration extends pulumi.CustomResource {

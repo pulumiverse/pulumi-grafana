@@ -939,6 +939,378 @@ func (o PromRuleFileGroupRuleArrayOutput) Index(i pulumi.IntInput) PromRuleFileG
 	}).(PromRuleFileGroupRuleOutput)
 }
 
+type StackDataset struct {
+	// List of vendors to disable for this dataset.
+	DisabledVendors []string `pulumi:"disabledVendors"`
+	// Filter groups for this dataset. Use when you need custom label mappings.
+	FilterGroups []StackDatasetFilterGroup `pulumi:"filterGroups"`
+	// The dataset type. Available types: `kubernetes`, `otel` (App O11y), `prometheus`, `aws`. Note: `kubernetes` requires K8s Monitoring to be enabled, and `otel` requires Application Observability to be enabled on the stack.
+	Type string `pulumi:"type"`
+}
+
+// StackDatasetInput is an input type that accepts StackDatasetArgs and StackDatasetOutput values.
+// You can construct a concrete instance of `StackDatasetInput` via:
+//
+//	StackDatasetArgs{...}
+type StackDatasetInput interface {
+	pulumi.Input
+
+	ToStackDatasetOutput() StackDatasetOutput
+	ToStackDatasetOutputWithContext(context.Context) StackDatasetOutput
+}
+
+type StackDatasetArgs struct {
+	// List of vendors to disable for this dataset.
+	DisabledVendors pulumi.StringArrayInput `pulumi:"disabledVendors"`
+	// Filter groups for this dataset. Use when you need custom label mappings.
+	FilterGroups StackDatasetFilterGroupArrayInput `pulumi:"filterGroups"`
+	// The dataset type. Available types: `kubernetes`, `otel` (App O11y), `prometheus`, `aws`. Note: `kubernetes` requires K8s Monitoring to be enabled, and `otel` requires Application Observability to be enabled on the stack.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (StackDatasetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackDataset)(nil)).Elem()
+}
+
+func (i StackDatasetArgs) ToStackDatasetOutput() StackDatasetOutput {
+	return i.ToStackDatasetOutputWithContext(context.Background())
+}
+
+func (i StackDatasetArgs) ToStackDatasetOutputWithContext(ctx context.Context) StackDatasetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackDatasetOutput)
+}
+
+// StackDatasetArrayInput is an input type that accepts StackDatasetArray and StackDatasetArrayOutput values.
+// You can construct a concrete instance of `StackDatasetArrayInput` via:
+//
+//	StackDatasetArray{ StackDatasetArgs{...} }
+type StackDatasetArrayInput interface {
+	pulumi.Input
+
+	ToStackDatasetArrayOutput() StackDatasetArrayOutput
+	ToStackDatasetArrayOutputWithContext(context.Context) StackDatasetArrayOutput
+}
+
+type StackDatasetArray []StackDatasetInput
+
+func (StackDatasetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]StackDataset)(nil)).Elem()
+}
+
+func (i StackDatasetArray) ToStackDatasetArrayOutput() StackDatasetArrayOutput {
+	return i.ToStackDatasetArrayOutputWithContext(context.Background())
+}
+
+func (i StackDatasetArray) ToStackDatasetArrayOutputWithContext(ctx context.Context) StackDatasetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackDatasetArrayOutput)
+}
+
+type StackDatasetOutput struct{ *pulumi.OutputState }
+
+func (StackDatasetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackDataset)(nil)).Elem()
+}
+
+func (o StackDatasetOutput) ToStackDatasetOutput() StackDatasetOutput {
+	return o
+}
+
+func (o StackDatasetOutput) ToStackDatasetOutputWithContext(ctx context.Context) StackDatasetOutput {
+	return o
+}
+
+// List of vendors to disable for this dataset.
+func (o StackDatasetOutput) DisabledVendors() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v StackDataset) []string { return v.DisabledVendors }).(pulumi.StringArrayOutput)
+}
+
+// Filter groups for this dataset. Use when you need custom label mappings.
+func (o StackDatasetOutput) FilterGroups() StackDatasetFilterGroupArrayOutput {
+	return o.ApplyT(func(v StackDataset) []StackDatasetFilterGroup { return v.FilterGroups }).(StackDatasetFilterGroupArrayOutput)
+}
+
+// The dataset type. Available types: `kubernetes`, `otel` (App O11y), `prometheus`, `aws`. Note: `kubernetes` requires K8s Monitoring to be enabled, and `otel` requires Application Observability to be enabled on the stack.
+func (o StackDatasetOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v StackDataset) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type StackDatasetArrayOutput struct{ *pulumi.OutputState }
+
+func (StackDatasetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]StackDataset)(nil)).Elem()
+}
+
+func (o StackDatasetArrayOutput) ToStackDatasetArrayOutput() StackDatasetArrayOutput {
+	return o
+}
+
+func (o StackDatasetArrayOutput) ToStackDatasetArrayOutputWithContext(ctx context.Context) StackDatasetArrayOutput {
+	return o
+}
+
+func (o StackDatasetArrayOutput) Index(i pulumi.IntInput) StackDatasetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) StackDataset {
+		return vs[0].([]StackDataset)[vs[1].(int)]
+	}).(StackDatasetOutput)
+}
+
+type StackDatasetFilterGroup struct {
+	// The metric label name used for environment (e.g., `env`, `environment`, `deploymentEnvironment`). Defaults to standard labels if not set.
+	EnvLabel *string `pulumi:"envLabel"`
+	// Specific values of the environment label to match.
+	EnvLabelValues []string `pulumi:"envLabelValues"`
+	// A friendly name for the environment.
+	EnvName *string `pulumi:"envName"`
+	// Additional metric filters.
+	Filters []StackDatasetFilterGroupFilter `pulumi:"filters"`
+	// The metric label name used for site/cluster.
+	SiteLabel *string `pulumi:"siteLabel"`
+	// Specific values of the site label to match.
+	SiteLabelValues []string `pulumi:"siteLabelValues"`
+}
+
+// StackDatasetFilterGroupInput is an input type that accepts StackDatasetFilterGroupArgs and StackDatasetFilterGroupOutput values.
+// You can construct a concrete instance of `StackDatasetFilterGroupInput` via:
+//
+//	StackDatasetFilterGroupArgs{...}
+type StackDatasetFilterGroupInput interface {
+	pulumi.Input
+
+	ToStackDatasetFilterGroupOutput() StackDatasetFilterGroupOutput
+	ToStackDatasetFilterGroupOutputWithContext(context.Context) StackDatasetFilterGroupOutput
+}
+
+type StackDatasetFilterGroupArgs struct {
+	// The metric label name used for environment (e.g., `env`, `environment`, `deploymentEnvironment`). Defaults to standard labels if not set.
+	EnvLabel pulumi.StringPtrInput `pulumi:"envLabel"`
+	// Specific values of the environment label to match.
+	EnvLabelValues pulumi.StringArrayInput `pulumi:"envLabelValues"`
+	// A friendly name for the environment.
+	EnvName pulumi.StringPtrInput `pulumi:"envName"`
+	// Additional metric filters.
+	Filters StackDatasetFilterGroupFilterArrayInput `pulumi:"filters"`
+	// The metric label name used for site/cluster.
+	SiteLabel pulumi.StringPtrInput `pulumi:"siteLabel"`
+	// Specific values of the site label to match.
+	SiteLabelValues pulumi.StringArrayInput `pulumi:"siteLabelValues"`
+}
+
+func (StackDatasetFilterGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackDatasetFilterGroup)(nil)).Elem()
+}
+
+func (i StackDatasetFilterGroupArgs) ToStackDatasetFilterGroupOutput() StackDatasetFilterGroupOutput {
+	return i.ToStackDatasetFilterGroupOutputWithContext(context.Background())
+}
+
+func (i StackDatasetFilterGroupArgs) ToStackDatasetFilterGroupOutputWithContext(ctx context.Context) StackDatasetFilterGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackDatasetFilterGroupOutput)
+}
+
+// StackDatasetFilterGroupArrayInput is an input type that accepts StackDatasetFilterGroupArray and StackDatasetFilterGroupArrayOutput values.
+// You can construct a concrete instance of `StackDatasetFilterGroupArrayInput` via:
+//
+//	StackDatasetFilterGroupArray{ StackDatasetFilterGroupArgs{...} }
+type StackDatasetFilterGroupArrayInput interface {
+	pulumi.Input
+
+	ToStackDatasetFilterGroupArrayOutput() StackDatasetFilterGroupArrayOutput
+	ToStackDatasetFilterGroupArrayOutputWithContext(context.Context) StackDatasetFilterGroupArrayOutput
+}
+
+type StackDatasetFilterGroupArray []StackDatasetFilterGroupInput
+
+func (StackDatasetFilterGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]StackDatasetFilterGroup)(nil)).Elem()
+}
+
+func (i StackDatasetFilterGroupArray) ToStackDatasetFilterGroupArrayOutput() StackDatasetFilterGroupArrayOutput {
+	return i.ToStackDatasetFilterGroupArrayOutputWithContext(context.Background())
+}
+
+func (i StackDatasetFilterGroupArray) ToStackDatasetFilterGroupArrayOutputWithContext(ctx context.Context) StackDatasetFilterGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackDatasetFilterGroupArrayOutput)
+}
+
+type StackDatasetFilterGroupOutput struct{ *pulumi.OutputState }
+
+func (StackDatasetFilterGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackDatasetFilterGroup)(nil)).Elem()
+}
+
+func (o StackDatasetFilterGroupOutput) ToStackDatasetFilterGroupOutput() StackDatasetFilterGroupOutput {
+	return o
+}
+
+func (o StackDatasetFilterGroupOutput) ToStackDatasetFilterGroupOutputWithContext(ctx context.Context) StackDatasetFilterGroupOutput {
+	return o
+}
+
+// The metric label name used for environment (e.g., `env`, `environment`, `deploymentEnvironment`). Defaults to standard labels if not set.
+func (o StackDatasetFilterGroupOutput) EnvLabel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StackDatasetFilterGroup) *string { return v.EnvLabel }).(pulumi.StringPtrOutput)
+}
+
+// Specific values of the environment label to match.
+func (o StackDatasetFilterGroupOutput) EnvLabelValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v StackDatasetFilterGroup) []string { return v.EnvLabelValues }).(pulumi.StringArrayOutput)
+}
+
+// A friendly name for the environment.
+func (o StackDatasetFilterGroupOutput) EnvName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StackDatasetFilterGroup) *string { return v.EnvName }).(pulumi.StringPtrOutput)
+}
+
+// Additional metric filters.
+func (o StackDatasetFilterGroupOutput) Filters() StackDatasetFilterGroupFilterArrayOutput {
+	return o.ApplyT(func(v StackDatasetFilterGroup) []StackDatasetFilterGroupFilter { return v.Filters }).(StackDatasetFilterGroupFilterArrayOutput)
+}
+
+// The metric label name used for site/cluster.
+func (o StackDatasetFilterGroupOutput) SiteLabel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StackDatasetFilterGroup) *string { return v.SiteLabel }).(pulumi.StringPtrOutput)
+}
+
+// Specific values of the site label to match.
+func (o StackDatasetFilterGroupOutput) SiteLabelValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v StackDatasetFilterGroup) []string { return v.SiteLabelValues }).(pulumi.StringArrayOutput)
+}
+
+type StackDatasetFilterGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (StackDatasetFilterGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]StackDatasetFilterGroup)(nil)).Elem()
+}
+
+func (o StackDatasetFilterGroupArrayOutput) ToStackDatasetFilterGroupArrayOutput() StackDatasetFilterGroupArrayOutput {
+	return o
+}
+
+func (o StackDatasetFilterGroupArrayOutput) ToStackDatasetFilterGroupArrayOutputWithContext(ctx context.Context) StackDatasetFilterGroupArrayOutput {
+	return o
+}
+
+func (o StackDatasetFilterGroupArrayOutput) Index(i pulumi.IntInput) StackDatasetFilterGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) StackDatasetFilterGroup {
+		return vs[0].([]StackDatasetFilterGroup)[vs[1].(int)]
+	}).(StackDatasetFilterGroupOutput)
+}
+
+type StackDatasetFilterGroupFilter struct {
+	// The label name to filter on.
+	Name string `pulumi:"name"`
+	// The filter operator (e.g., `=`, `!=`, `=~`, `!~`).
+	Operator string `pulumi:"operator"`
+	// The values to match.
+	Values []string `pulumi:"values"`
+}
+
+// StackDatasetFilterGroupFilterInput is an input type that accepts StackDatasetFilterGroupFilterArgs and StackDatasetFilterGroupFilterOutput values.
+// You can construct a concrete instance of `StackDatasetFilterGroupFilterInput` via:
+//
+//	StackDatasetFilterGroupFilterArgs{...}
+type StackDatasetFilterGroupFilterInput interface {
+	pulumi.Input
+
+	ToStackDatasetFilterGroupFilterOutput() StackDatasetFilterGroupFilterOutput
+	ToStackDatasetFilterGroupFilterOutputWithContext(context.Context) StackDatasetFilterGroupFilterOutput
+}
+
+type StackDatasetFilterGroupFilterArgs struct {
+	// The label name to filter on.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The filter operator (e.g., `=`, `!=`, `=~`, `!~`).
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// The values to match.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (StackDatasetFilterGroupFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackDatasetFilterGroupFilter)(nil)).Elem()
+}
+
+func (i StackDatasetFilterGroupFilterArgs) ToStackDatasetFilterGroupFilterOutput() StackDatasetFilterGroupFilterOutput {
+	return i.ToStackDatasetFilterGroupFilterOutputWithContext(context.Background())
+}
+
+func (i StackDatasetFilterGroupFilterArgs) ToStackDatasetFilterGroupFilterOutputWithContext(ctx context.Context) StackDatasetFilterGroupFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackDatasetFilterGroupFilterOutput)
+}
+
+// StackDatasetFilterGroupFilterArrayInput is an input type that accepts StackDatasetFilterGroupFilterArray and StackDatasetFilterGroupFilterArrayOutput values.
+// You can construct a concrete instance of `StackDatasetFilterGroupFilterArrayInput` via:
+//
+//	StackDatasetFilterGroupFilterArray{ StackDatasetFilterGroupFilterArgs{...} }
+type StackDatasetFilterGroupFilterArrayInput interface {
+	pulumi.Input
+
+	ToStackDatasetFilterGroupFilterArrayOutput() StackDatasetFilterGroupFilterArrayOutput
+	ToStackDatasetFilterGroupFilterArrayOutputWithContext(context.Context) StackDatasetFilterGroupFilterArrayOutput
+}
+
+type StackDatasetFilterGroupFilterArray []StackDatasetFilterGroupFilterInput
+
+func (StackDatasetFilterGroupFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]StackDatasetFilterGroupFilter)(nil)).Elem()
+}
+
+func (i StackDatasetFilterGroupFilterArray) ToStackDatasetFilterGroupFilterArrayOutput() StackDatasetFilterGroupFilterArrayOutput {
+	return i.ToStackDatasetFilterGroupFilterArrayOutputWithContext(context.Background())
+}
+
+func (i StackDatasetFilterGroupFilterArray) ToStackDatasetFilterGroupFilterArrayOutputWithContext(ctx context.Context) StackDatasetFilterGroupFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackDatasetFilterGroupFilterArrayOutput)
+}
+
+type StackDatasetFilterGroupFilterOutput struct{ *pulumi.OutputState }
+
+func (StackDatasetFilterGroupFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackDatasetFilterGroupFilter)(nil)).Elem()
+}
+
+func (o StackDatasetFilterGroupFilterOutput) ToStackDatasetFilterGroupFilterOutput() StackDatasetFilterGroupFilterOutput {
+	return o
+}
+
+func (o StackDatasetFilterGroupFilterOutput) ToStackDatasetFilterGroupFilterOutputWithContext(ctx context.Context) StackDatasetFilterGroupFilterOutput {
+	return o
+}
+
+// The label name to filter on.
+func (o StackDatasetFilterGroupFilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v StackDatasetFilterGroupFilter) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The filter operator (e.g., `=`, `!=`, `=~`, `!~`).
+func (o StackDatasetFilterGroupFilterOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v StackDatasetFilterGroupFilter) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// The values to match.
+func (o StackDatasetFilterGroupFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v StackDatasetFilterGroupFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type StackDatasetFilterGroupFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (StackDatasetFilterGroupFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]StackDatasetFilterGroupFilter)(nil)).Elem()
+}
+
+func (o StackDatasetFilterGroupFilterArrayOutput) ToStackDatasetFilterGroupFilterArrayOutput() StackDatasetFilterGroupFilterArrayOutput {
+	return o
+}
+
+func (o StackDatasetFilterGroupFilterArrayOutput) ToStackDatasetFilterGroupFilterArrayOutputWithContext(ctx context.Context) StackDatasetFilterGroupFilterArrayOutput {
+	return o
+}
+
+func (o StackDatasetFilterGroupFilterArrayOutput) Index(i pulumi.IntInput) StackDatasetFilterGroupFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) StackDatasetFilterGroupFilter {
+		return vs[0].([]StackDatasetFilterGroupFilter)[vs[1].(int)]
+	}).(StackDatasetFilterGroupFilterOutput)
+}
+
 type ThresholdsHealthThreshold struct {
 	// Optional alert category label for the health threshold.
 	AlertCategory *string `pulumi:"alertCategory"`
@@ -1468,6 +1840,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PromRuleFileGroupArrayInput)(nil)).Elem(), PromRuleFileGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PromRuleFileGroupRuleInput)(nil)).Elem(), PromRuleFileGroupRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PromRuleFileGroupRuleArrayInput)(nil)).Elem(), PromRuleFileGroupRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StackDatasetInput)(nil)).Elem(), StackDatasetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StackDatasetArrayInput)(nil)).Elem(), StackDatasetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StackDatasetFilterGroupInput)(nil)).Elem(), StackDatasetFilterGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StackDatasetFilterGroupArrayInput)(nil)).Elem(), StackDatasetFilterGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StackDatasetFilterGroupFilterInput)(nil)).Elem(), StackDatasetFilterGroupFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StackDatasetFilterGroupFilterArrayInput)(nil)).Elem(), StackDatasetFilterGroupFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsHealthThresholdInput)(nil)).Elem(), ThresholdsHealthThresholdArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsHealthThresholdArrayInput)(nil)).Elem(), ThresholdsHealthThresholdArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ThresholdsRequestThresholdInput)(nil)).Elem(), ThresholdsRequestThresholdArgs{})
@@ -1490,6 +1868,12 @@ func init() {
 	pulumi.RegisterOutputType(PromRuleFileGroupArrayOutput{})
 	pulumi.RegisterOutputType(PromRuleFileGroupRuleOutput{})
 	pulumi.RegisterOutputType(PromRuleFileGroupRuleArrayOutput{})
+	pulumi.RegisterOutputType(StackDatasetOutput{})
+	pulumi.RegisterOutputType(StackDatasetArrayOutput{})
+	pulumi.RegisterOutputType(StackDatasetFilterGroupOutput{})
+	pulumi.RegisterOutputType(StackDatasetFilterGroupArrayOutput{})
+	pulumi.RegisterOutputType(StackDatasetFilterGroupFilterOutput{})
+	pulumi.RegisterOutputType(StackDatasetFilterGroupFilterArrayOutput{})
 	pulumi.RegisterOutputType(ThresholdsHealthThresholdOutput{})
 	pulumi.RegisterOutputType(ThresholdsHealthThresholdArrayOutput{})
 	pulumi.RegisterOutputType(ThresholdsRequestThresholdOutput{})

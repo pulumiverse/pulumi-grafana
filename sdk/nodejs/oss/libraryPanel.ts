@@ -35,11 +35,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/libraryPanel:LibraryPanel name "{{ uid }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:oss/libraryPanel:LibraryPanel name "{{ orgID }}:{{ uid }}"
+ * terraform import grafana_library_panel.name "{{ uid }}"
+ * terraform import grafana_library_panel.name "{{ orgID }}:{{ uid }}"
  * ```
  */
 export class LibraryPanel extends pulumi.CustomResource {

@@ -129,7 +129,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:assert/notificationAlertsConfig:NotificationAlertsConfig name "{{ name }}"
+// terraform import grafana_asserts_notification_alerts_config.name "{{ name }}"
 // ```
 type NotificationAlertsConfig struct {
 	pulumi.CustomResourceState

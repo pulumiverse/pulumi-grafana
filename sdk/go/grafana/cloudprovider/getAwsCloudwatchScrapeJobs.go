@@ -11,6 +11,13 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+// This data source allows you to look up all existing Grafana Cloud AWS CloudWatch Scrape Job resources in your stack.
+//
+// See the Grafana Provider configuration docs
+// for information on authentication and required access policy scopes.
+//
+// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+//
 // ## Example Usage
 //
 // ```go
@@ -57,15 +64,18 @@ func GetAwsCloudwatchScrapeJobs(ctx *pulumi.Context, args *GetAwsCloudwatchScrap
 type GetAwsCloudwatchScrapeJobsArgs struct {
 	// A list of AWS CloudWatch Scrape Job objects associated with the given StackID.
 	ScrapeJobs []GetAwsCloudwatchScrapeJobsScrapeJob `pulumi:"scrapeJobs"`
-	StackId    string                                `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId string `pulumi:"stackId"`
 }
 
 // A collection of values returned by getAwsCloudwatchScrapeJobs.
 type GetAwsCloudwatchScrapeJobsResult struct {
+	// The Terraform Resource ID. This has the format "{{ stackId }}".
 	Id string `pulumi:"id"`
 	// A list of AWS CloudWatch Scrape Job objects associated with the given StackID.
 	ScrapeJobs []GetAwsCloudwatchScrapeJobsScrapeJob `pulumi:"scrapeJobs"`
-	StackId    string                                `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId string `pulumi:"stackId"`
 }
 
 func GetAwsCloudwatchScrapeJobsOutput(ctx *pulumi.Context, args GetAwsCloudwatchScrapeJobsOutputArgs, opts ...pulumi.InvokeOption) GetAwsCloudwatchScrapeJobsResultOutput {
@@ -81,7 +91,8 @@ func GetAwsCloudwatchScrapeJobsOutput(ctx *pulumi.Context, args GetAwsCloudwatch
 type GetAwsCloudwatchScrapeJobsOutputArgs struct {
 	// A list of AWS CloudWatch Scrape Job objects associated with the given StackID.
 	ScrapeJobs GetAwsCloudwatchScrapeJobsScrapeJobArrayInput `pulumi:"scrapeJobs"`
-	StackId    pulumi.StringInput                            `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.StringInput `pulumi:"stackId"`
 }
 
 func (GetAwsCloudwatchScrapeJobsOutputArgs) ElementType() reflect.Type {
@@ -103,6 +114,7 @@ func (o GetAwsCloudwatchScrapeJobsResultOutput) ToGetAwsCloudwatchScrapeJobsResu
 	return o
 }
 
+// The Terraform Resource ID. This has the format "{{ stackId }}".
 func (o GetAwsCloudwatchScrapeJobsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -112,6 +124,7 @@ func (o GetAwsCloudwatchScrapeJobsResultOutput) ScrapeJobs() GetAwsCloudwatchScr
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsResult) []GetAwsCloudwatchScrapeJobsScrapeJob { return v.ScrapeJobs }).(GetAwsCloudwatchScrapeJobsScrapeJobArrayOutput)
 }
 
+// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o GetAwsCloudwatchScrapeJobsResultOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsCloudwatchScrapeJobsResult) string { return v.StackId }).(pulumi.StringOutput)
 }

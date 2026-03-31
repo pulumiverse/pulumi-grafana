@@ -110,7 +110,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:assert/logConfig:LogConfig name "{{ name }}"
+ * terraform import grafana_asserts_log_config.name "{{ name }}"
  * ```
  */
 export class LogConfig extends pulumi.CustomResource {

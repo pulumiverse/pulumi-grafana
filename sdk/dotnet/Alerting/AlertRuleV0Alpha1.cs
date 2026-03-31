@@ -11,8 +11,151 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Alerting
 {
     /// <summary>
-    /// This resource is currently under development. Documentation will be provided in a future release.
+    /// Manages Grafana Alert Rules.
+    /// 
+    /// This resource is currently in alpha and is subject to change. Grafana 12.4+ users must enable the `kubernetesAlertingRules` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var alertruleFolder = new Grafana.Oss.Folder("alertrule_folder", new()
+    ///     {
+    ///         Title = "Alert Rule Folder",
+    ///     });
+    /// 
+    ///     var example = new Grafana.Alerting.V0Alpha1.AlertRule("example", new()
+    ///     {
+    ///         Metadata = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleMetadataArgs
+    ///         {
+    ///             Uid = "example-alert-rule",
+    ///             FolderUid = alertruleFolder.Uid,
+    ///         },
+    ///         Spec = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecArgs
+    ///         {
+    ///             Title = "Example Alert Rule",
+    ///             Trigger = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecTriggerArgs
+    ///             {
+    ///                 Interval = "1m",
+    ///             },
+    ///             Paused = true,
+    ///             Expressions = 
+    ///             {
+    ///                 { "A", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["model"] = new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["datasource"] = new Dictionary&lt;string, object?&gt;
+    ///                         {
+    ///                             ["type"] = "prometheus",
+    ///                             ["uid"] = "ds_uid",
+    ///                         },
+    ///                         ["editorMode"] = "code",
+    ///                         ["expr"] = "count(up{})",
+    ///                         ["instant"] = true,
+    ///                         ["intervalMs"] = 1000,
+    ///                         ["legendFormat"] = "__auto",
+    ///                         ["maxDataPoints"] = 43200,
+    ///                         ["range"] = false,
+    ///                         ["refId"] = "A",
+    ///                     },
+    ///                     ["datasource_uid"] = "ds_uid",
+    ///                     ["relative_time_range"] = new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["from"] = "600s",
+    ///                         ["to"] = "0s",
+    ///                     },
+    ///                     ["query_type"] = "",
+    ///                     ["source"] = true,
+    ///                 }) },
+    ///                 { "B", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["model"] = new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["conditions"] = new[]
+    ///                         {
+    ///                             new Dictionary&lt;string, object?&gt;
+    ///                             {
+    ///                                 ["evaluator"] = new Dictionary&lt;string, object?&gt;
+    ///                                 {
+    ///                                     ["params"] = new[]
+    ///                                     {
+    ///                                         1,
+    ///                                     },
+    ///                                     ["type"] = "gt",
+    ///                                 },
+    ///                                 ["operator"] = new Dictionary&lt;string, object?&gt;
+    ///                                 {
+    ///                                     ["type"] = "and",
+    ///                                 },
+    ///                                 ["query"] = new Dictionary&lt;string, object?&gt;
+    ///                                 {
+    ///                                     ["params"] = new[]
+    ///                                     {
+    ///                                         "C",
+    ///                                     },
+    ///                                 },
+    ///                                 ["reducer"] = new Dictionary&lt;string, object?&gt;
+    ///                                 {
+    ///                                     ["params"] = new[]
+    ///                                     {
+    ///                                     },
+    ///                                     ["type"] = "last",
+    ///                                 },
+    ///                                 ["type"] = "query",
+    ///                             },
+    ///                         },
+    ///                         ["datasource"] = new Dictionary&lt;string, object?&gt;
+    ///                         {
+    ///                             ["type"] = "__expr__",
+    ///                             ["uid"] = "__expr__",
+    ///                         },
+    ///                         ["expression"] = "A",
+    ///                         ["intervalMs"] = 1000,
+    ///                         ["maxDataPoints"] = 43200,
+    ///                         ["refId"] = "C",
+    ///                         ["type"] = "threshold",
+    ///                     },
+    ///                     ["datasource_uid"] = "__expr__",
+    ///                     ["query_type"] = "",
+    ///                     ["source"] = false,
+    ///                 }) },
+    ///             },
+    ///             For = "5m",
+    ///             Labels = 
+    ///             {
+    ///                 { "severity", "critical" },
+    ///             },
+    ///             Annotations = 
+    ///             {
+    ///                 { "runbook_url", "https://example.com" },
+    ///             },
+    ///             NoDataState = "KeepLast",
+    ///             ExecErrState = "KeepLast",
+    ///             MissingSeriesEvalsToResolve = 5,
+    ///             NotificationSettings = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecNotificationSettingsArgs
+    ///             {
+    ///                 ContactPoint = "grafana-default-email",
+    ///             },
+    ///             PanelRef = 
+    ///             {
+    ///                 { "dashboard_uid", "dashboard123" },
+    ///                 { "panel_id", "5" },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
+    [Obsolete(@"grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule")]
     [GrafanaResourceType("grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1")]
     public partial class AlertRuleV0Alpha1 : global::Pulumi.CustomResource
     {
@@ -58,6 +201,10 @@ namespace Pulumiverse.Grafana.Alerting
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

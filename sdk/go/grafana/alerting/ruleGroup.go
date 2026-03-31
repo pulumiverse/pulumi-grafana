@@ -82,7 +82,7 @@ import (
 //									To:   pulumi.Int(0),
 //								},
 //								DatasourceUid: pulumi.String("PD8C576611E62080A"),
-//								Model:         pulumi.String(json0),
+//								Model:         pulumi.String(pulumi.String(json0)),
 //							},
 //							&alerting.RuleGroupRuleDataArgs{
 //								RefId:     pulumi.String("B"),
@@ -146,15 +146,13 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:alerting/ruleGroup:RuleGroup name "{{ folderUID }}:{{ title }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:alerting/ruleGroup:RuleGroup name "{{ orgID }}:{{ folderUID }}:{{ title }}"
+// terraform import grafana_rule_group.name "{{ folderUID }}:{{ title }}"
+// terraform import grafana_rule_group.name "{{ orgID }}:{{ folderUID }}:{{ title }}"
 // ```
 type RuleGroup struct {
 	pulumi.CustomResourceState
 
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringOutput `pulumi:"folderUid"`
@@ -213,6 +211,7 @@ func GetRuleGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RuleGroup resources.
 type ruleGroupState struct {
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid *string `pulumi:"folderUid"`
@@ -227,6 +226,7 @@ type ruleGroupState struct {
 }
 
 type RuleGroupState struct {
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance pulumi.BoolPtrInput
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringPtrInput
@@ -245,6 +245,7 @@ func (RuleGroupState) ElementType() reflect.Type {
 }
 
 type ruleGroupArgs struct {
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// The UID of the folder that the group belongs to.
 	FolderUid string `pulumi:"folderUid"`
@@ -260,6 +261,7 @@ type ruleGroupArgs struct {
 
 // The set of arguments for constructing a RuleGroup resource.
 type RuleGroupArgs struct {
+	// Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance pulumi.BoolPtrInput
 	// The UID of the folder that the group belongs to.
 	FolderUid pulumi.StringInput
@@ -360,6 +362,7 @@ func (o RuleGroupOutput) ToRuleGroupOutputWithContext(ctx context.Context) RuleG
 	return o
 }
 
+// Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.
 func (o RuleGroupOutput) DisableProvenance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RuleGroup) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
 }

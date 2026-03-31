@@ -25,6 +25,7 @@ class CheckAlertsArgs:
                  check_id: pulumi.Input[_builtins.int]):
         """
         The set of arguments for constructing a CheckAlerts resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['CheckAlertsAlertArgs']]] alerts: List of alerts for the check.
         :param pulumi.Input[_builtins.int] check_id: The ID of the check to manage alerts for.
         """
@@ -63,6 +64,7 @@ class _CheckAlertsState:
                  check_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering CheckAlerts resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['CheckAlertsAlertArgs']]] alerts: List of alerts for the check.
         :param pulumi.Input[_builtins.int] check_id: The ID of the check to manage alerts for.
         """
@@ -155,8 +157,9 @@ class CheckAlerts(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:syntheticMonitoring/checkAlerts:CheckAlerts name "{{ check_id }}"
+        terraform import grafana_synthetic_monitoring_check_alerts.name "{{ check_id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -219,8 +222,9 @@ class CheckAlerts(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:syntheticMonitoring/checkAlerts:CheckAlerts name "{{ check_id }}"
+        terraform import grafana_synthetic_monitoring_check_alerts.name "{{ check_id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CheckAlertsArgs args: The arguments to use to populate this resource's properties.

@@ -74,16 +74,16 @@ namespace Pulumiverse.Grafana.Alerting
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:alerting/muteTiming:MuteTiming name "{{ name }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:alerting/muteTiming:MuteTiming name "{{ orgID }}:{{ name }}"
+    /// terraform import grafana_mute_timing.name "{{ name }}"
+    /// terraform import grafana_mute_timing.name "{{ orgID }}:{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:alerting/muteTiming:MuteTiming")]
     public partial class MuteTiming : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Output("disableProvenance")]
         public Output<bool?> DisableProvenance { get; private set; } = null!;
 
@@ -156,6 +156,9 @@ namespace Pulumiverse.Grafana.Alerting
 
     public sealed class MuteTimingArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 
@@ -191,6 +194,9 @@ namespace Pulumiverse.Grafana.Alerting
 
     public sealed class MuteTimingState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `False`.
+        /// </summary>
         [Input("disableProvenance")]
         public Input<bool>? DisableProvenance { get; set; }
 

@@ -45,7 +45,7 @@ import (
 //				Target:  pulumi.String("grafana.com"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Ohio),
+//					pulumi.Int(pulumi.Int(main.Probes.Ohio)),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
@@ -86,8 +86,8 @@ import (
 //				Target:  pulumi.String("grafana.net"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Frankfurt),
-//					pulumi.Int(main.Probes.London),
+//					pulumi.Int(pulumi.Int(main.Probes.Frankfurt)),
+//					pulumi.Int(pulumi.Int(main.Probes.London)),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
@@ -164,7 +164,7 @@ import (
 //				Target:  pulumi.String("https://grafana.com"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Ohio),
+//					pulumi.Int(pulumi.Int(main.Probes.Ohio)),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
@@ -205,8 +205,8 @@ import (
 //				Target:  pulumi.String("https://grafana.org"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Mumbai),
-//					pulumi.Int(main.Probes.Mumbai),
+//					pulumi.Int(pulumi.Int(main.Probes.Mumbai)),
+//					pulumi.Int(pulumi.Int(main.Probes.Mumbai)),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
@@ -325,7 +325,7 @@ import (
 //				Target:  pulumi.String("grafana.com"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Ohio),
+//					pulumi.Int(pulumi.Int(main.Probes.Ohio)),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
@@ -366,8 +366,8 @@ import (
 //				Target:  pulumi.String("grafana.net"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Frankfurt),
-//					pulumi.Int(main.Probes.London),
+//					pulumi.Int(pulumi.Int(main.Probes.Frankfurt)),
+//					pulumi.Int(pulumi.Int(main.Probes.London)),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
@@ -412,7 +412,7 @@ import (
 //				Target:  pulumi.String("grafana.com:80"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Ohio),
+//					pulumi.Int(pulumi.Int(main.Probes.Ohio)),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
@@ -453,8 +453,8 @@ import (
 //				Target:  pulumi.String("grafana.com:443"),
 //				Enabled: pulumi.Bool(false),
 //				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Frankfurt),
-//					pulumi.Int(main.Probes.London),
+//					pulumi.Int(pulumi.Int(main.Probes.Frankfurt)),
+//					pulumi.Int(pulumi.Int(main.Probes.London)),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
@@ -544,7 +544,7 @@ import (
 //				Frequency: pulumi.Int(120000),
 //				Timeout:   pulumi.Int(30000),
 //				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Ohio),
+//					pulumi.Int(pulumi.Int(main.Probes.Ohio)),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
@@ -587,8 +587,8 @@ import (
 //				Frequency: pulumi.Int(120000),
 //				Timeout:   pulumi.Int(30000),
 //				Probes: pulumi.IntArray{
-//					pulumi.Int(main.Probes.Frankfurt),
-//					pulumi.Int(main.Probes.London),
+//					pulumi.Int(pulumi.Int(main.Probes.Frankfurt)),
+//					pulumi.Int(pulumi.Int(main.Probes.London)),
 //				},
 //				Labels: pulumi.StringMap{
 //					"foo": pulumi.String("baz"),
@@ -613,7 +613,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:syntheticMonitoring/check:Check name "{{ id }}"
+// terraform import grafana_synthetic_monitoring_check.name "{{ id }}"
 // ```
 type Check struct {
 	pulumi.CustomResourceState

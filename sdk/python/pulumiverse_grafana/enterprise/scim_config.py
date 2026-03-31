@@ -25,6 +25,7 @@ class ScimConfigArgs:
                  org_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ScimConfig resource.
+
         :param pulumi.Input[_builtins.bool] enable_group_sync: Whether group synchronization is enabled.
         :param pulumi.Input[_builtins.bool] enable_user_sync: Whether user synchronization is enabled.
         :param pulumi.Input[_builtins.bool] reject_non_provisioned_users: Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
@@ -94,6 +95,7 @@ class _ScimConfigState:
                  reject_non_provisioned_users: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ScimConfig resources.
+
         :param pulumi.Input[_builtins.bool] enable_group_sync: Whether group synchronization is enabled.
         :param pulumi.Input[_builtins.bool] enable_user_sync: Whether user synchronization is enabled.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -189,11 +191,9 @@ class ScimConfig(pulumi.CustomResource):
 
         ```sh
         $ pulumi import grafana:enterprise/scimConfig:ScimConfig name ""
+        terraform import grafana_scim_config.name "{{ orgID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/scimConfig:ScimConfig name "{{ orgID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -229,11 +229,9 @@ class ScimConfig(pulumi.CustomResource):
 
         ```sh
         $ pulumi import grafana:enterprise/scimConfig:ScimConfig name ""
+        terraform import grafana_scim_config.name "{{ orgID }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/scimConfig:ScimConfig name "{{ orgID }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param ScimConfigArgs args: The arguments to use to populate this resource's properties.

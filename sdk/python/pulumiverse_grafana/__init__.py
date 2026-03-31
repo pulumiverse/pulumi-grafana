@@ -12,6 +12,8 @@ from .provider import *
 if typing.TYPE_CHECKING:
     import pulumiverse_grafana.alerting as __alerting
     alerting = __alerting
+    import pulumiverse_grafana.apps as __apps
+    apps = __apps
     import pulumiverse_grafana.assert_ as __assert_
     assert_ = __assert_
     import pulumiverse_grafana.cloud as __cloud
@@ -44,6 +46,7 @@ if typing.TYPE_CHECKING:
     syntheticmonitoring = __syntheticmonitoring
 else:
     alerting = _utilities.lazy_import('pulumiverse_grafana.alerting')
+    apps = _utilities.lazy_import('pulumiverse_grafana.apps')
     assert_ = _utilities.lazy_import('pulumiverse_grafana.assert_')
     cloud = _utilities.lazy_import('pulumiverse_grafana.cloud')
     cloudprovider = _utilities.lazy_import('pulumiverse_grafana.cloudprovider')
@@ -129,6 +132,78 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "alerting/v0alpha1/alertRule",
+  "fqn": "pulumiverse_grafana.alerting.v0alpha1",
+  "classes": {
+   "grafana:alerting/v0alpha1/alertRule:AlertRule": "AlertRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/v0alpha1/recordingRule",
+  "fqn": "pulumiverse_grafana.alerting.v0alpha1",
+  "classes": {
+   "grafana:alerting/v0alpha1/recordingRule:RecordingRule": "RecordingRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/v1beta1/alertEnrichment",
+  "fqn": "pulumiverse_grafana.alerting.v1beta1",
+  "classes": {
+   "grafana:alerting/v1beta1/alertEnrichment:AlertEnrichment": "AlertEnrichment"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "alerting/v1beta1/notificationsInhibitionRule",
+  "fqn": "pulumiverse_grafana.alerting.v1beta1",
+  "classes": {
+   "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule": "NotificationsInhibitionRule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "apps/v0alpha1/playlist",
+  "fqn": "pulumiverse_grafana.apps.v0alpha1",
+  "classes": {
+   "grafana:apps/v0alpha1/playlist:Playlist": "Playlist"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "apps/v0alpha1/provisioningConnection",
+  "fqn": "pulumiverse_grafana.apps.v0alpha1",
+  "classes": {
+   "grafana:apps/v0alpha1/provisioningConnection:ProvisioningConnection": "ProvisioningConnection"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "apps/v0alpha1/provisioningRepository",
+  "fqn": "pulumiverse_grafana.apps.v0alpha1",
+  "classes": {
+   "grafana:apps/v0alpha1/provisioningRepository:ProvisioningRepository": "ProvisioningRepository"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "apps/v1beta1/dashboard",
+  "fqn": "pulumiverse_grafana.apps.v1beta1",
+  "classes": {
+   "grafana:apps/v1beta1/dashboard:Dashboard": "Dashboard"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "apps/v2beta1/dashboard",
+  "fqn": "pulumiverse_grafana.apps.v2beta1",
+  "classes": {
+   "grafana:apps/v2beta1/dashboard:Dashboard": "Dashboard"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "assert/customModelRules",
   "fqn": "pulumiverse_grafana.assert_",
   "classes": {
@@ -165,6 +240,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.assert_",
   "classes": {
    "grafana:assert/promRuleFile:PromRuleFile": "PromRuleFile"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "assert/stack",
+  "fqn": "pulumiverse_grafana.assert_",
+  "classes": {
+   "grafana:assert/stack:Stack": "Stack"
   }
  },
  {
@@ -297,6 +380,22 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloud/v1alpha1/productActivationAppO11yConfig",
+  "fqn": "pulumiverse_grafana.cloud.v1alpha1",
+  "classes": {
+   "grafana:cloud/v1alpha1/productActivationAppO11yConfig:ProductActivationAppO11yConfig": "ProductActivationAppO11yConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "cloud/v1alpha1/productActivationK8sO11yConfig",
+  "fqn": "pulumiverse_grafana.cloud.v1alpha1",
+  "classes": {
+   "grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig": "ProductActivationK8sO11yConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloudProvider/awsAccount",
   "fqn": "pulumiverse_grafana.cloudprovider",
   "classes": {
@@ -333,6 +432,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.connections",
   "classes": {
    "grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob": "MetricsEndpointScrapeJob"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "enterprise/dataSourceCacheConfig",
+  "fqn": "pulumiverse_grafana.enterprise",
+  "classes": {
+   "grafana:enterprise/dataSourceCacheConfig:DataSourceCacheConfig": "DataSourceCacheConfig"
   }
  },
  {
@@ -405,6 +512,30 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.enterprise",
   "classes": {
    "grafana:enterprise/teamExternalGroup:TeamExternalGroup": "TeamExternalGroup"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "enterprise/v1beta1/secretKeeper",
+  "fqn": "pulumiverse_grafana.enterprise.v1beta1",
+  "classes": {
+   "grafana:enterprise/v1beta1/secretKeeper:SecretKeeper": "SecretKeeper"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "enterprise/v1beta1/secretKeeperActivation",
+  "fqn": "pulumiverse_grafana.enterprise.v1beta1",
+  "classes": {
+   "grafana:enterprise/v1beta1/secretKeeperActivation:SecretKeeperActivation": "SecretKeeperActivation"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "enterprise/v1beta1/secretSecureValue",
+  "fqn": "pulumiverse_grafana.enterprise.v1beta1",
+  "classes": {
+   "grafana:enterprise/v1beta1/secretSecureValue:SecretSecureValue": "SecretSecureValue"
   }
  },
  {

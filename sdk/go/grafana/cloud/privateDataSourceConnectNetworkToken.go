@@ -45,7 +45,7 @@ import (
 //				Region:          pulumi.String("prod-us-east-0"),
 //				Name:            pulumi.String("my-pdc"),
 //				DisplayName:     pulumi.String("My PDC"),
-//				StackIdentifier: pulumi.String(current.Id),
+//				StackIdentifier: pulumi.String(pulumi.String(current.Id)),
 //			})
 //			if err != nil {
 //				return err
@@ -68,7 +68,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:cloud/privateDataSourceConnectNetworkToken:PrivateDataSourceConnectNetworkToken name "{{ region }}:{{ tokenId }}"
+// terraform import grafana_cloud_private_data_source_connect_network_token.name "{{ region }}:{{ tokenId }}"
 // ```
 type PrivateDataSourceConnectNetworkToken struct {
 	pulumi.CustomResourceState

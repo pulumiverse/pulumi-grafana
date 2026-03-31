@@ -39,7 +39,7 @@ import (
 //			json0 := string(tmpJSON0)
 //			_, err = oss.NewLibraryPanel(ctx, "test", &oss.LibraryPanelArgs{
 //				Name:      pulumi.String("panelname"),
-//				ModelJson: pulumi.String(json0),
+//				ModelJson: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
@@ -69,7 +69,7 @@ import (
 //			_, err = oss.NewLibraryPanel(ctx, "folder", &oss.LibraryPanelArgs{
 //				Name:      pulumi.String("panelname In Folder"),
 //				FolderUid: testFolder.Uid,
-//				ModelJson: pulumi.String(json1),
+//				ModelJson: pulumi.String(pulumi.String(json1)),
 //			})
 //			if err != nil {
 //				return err

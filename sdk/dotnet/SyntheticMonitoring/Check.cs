@@ -27,7 +27,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -62,7 +61,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -146,7 +144,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -181,7 +178,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -304,7 +300,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -339,7 +334,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -380,7 +374,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -415,7 +408,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -501,7 +493,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -538,7 +529,6 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -578,7 +568,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:syntheticMonitoring/check:Check name "{{ id }}"
+    /// terraform import grafana_synthetic_monitoring_check.name "{{ id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:syntheticMonitoring/check:Check")]

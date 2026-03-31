@@ -26,6 +26,7 @@ class RoleAssignmentItemArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RoleAssignmentItem resource.
+
         :param pulumi.Input[_builtins.str] role_uid: the role UID onto which to assign an actor
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.str] service_account_id: the service account onto which the role is to be assigned
@@ -113,6 +114,7 @@ class _RoleAssignmentItemState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RoleAssignmentItem resources.
+
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.str] role_uid: the role UID onto which to assign an actor
         :param pulumi.Input[_builtins.str] service_account_id: the service account onto which the role is to be assigned
@@ -243,12 +245,10 @@ class RoleAssignmentItem(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/roleAssignmentItem:RoleAssignmentItem name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+        terraform import grafana_role_assignment_item.name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+        terraform import grafana_role_assignment_item.name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/roleAssignmentItem:RoleAssignmentItem name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -304,12 +304,10 @@ class RoleAssignmentItem(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:enterprise/roleAssignmentItem:RoleAssignmentItem name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+        terraform import grafana_role_assignment_item.name "{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
+        terraform import grafana_role_assignment_item.name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:enterprise/roleAssignmentItem:RoleAssignmentItem name "{{ orgID }}:{{ roleUID }}:{{ type (user, team or service_account) }}:{{ identifier }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param RoleAssignmentItemArgs args: The arguments to use to populate this resource's properties.

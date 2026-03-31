@@ -13,13 +13,19 @@ namespace Pulumiverse.Grafana.CloudProvider
     public static class GetAzureCredential
     {
         /// <summary>
+        /// This data source allows you to look up an existing Grafana Cloud Azure Credential resource in your stack.
+        /// 
+        /// See the Grafana Provider configuration docs
+        /// for information on authentication and required access policy scopes.
+        /// 
+        /// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
         /// using Grafana = Pulumiverse.Grafana;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -105,13 +111,19 @@ namespace Pulumiverse.Grafana.CloudProvider
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAzureCredentialResult>("grafana:cloudProvider/getAzureCredential:getAzureCredential", args ?? new GetAzureCredentialArgs(), options.WithDefaults());
 
         /// <summary>
+        /// This data source allows you to look up an existing Grafana Cloud Azure Credential resource in your stack.
+        /// 
+        /// See the Grafana Provider configuration docs
+        /// for information on authentication and required access policy scopes.
+        /// 
+        /// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
         /// using Grafana = Pulumiverse.Grafana;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -197,13 +209,19 @@ namespace Pulumiverse.Grafana.CloudProvider
             => global::Pulumi.Deployment.Instance.Invoke<GetAzureCredentialResult>("grafana:cloudProvider/getAzureCredential:getAzureCredential", args ?? new GetAzureCredentialInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// This data source allows you to look up an existing Grafana Cloud Azure Credential resource in your stack.
+        /// 
+        /// See the Grafana Provider configuration docs
+        /// for information on authentication and required access policy scopes.
+        /// 
+        /// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
         /// using Grafana = Pulumiverse.Grafana;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -322,6 +340,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Input("resourceId", required: true)]
         public string ResourceId { get; set; } = null!;
 
+        /// <summary>
+        /// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public string StackId { get; set; } = null!;
 
@@ -363,6 +384,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Input("resourceId", required: true)]
         public Input<string> ResourceId { get; set; } = null!;
 
+        /// <summary>
+        /// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public Input<string> StackId { get; set; } = null!;
 
@@ -388,6 +412,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         /// The client secret of the Azure Credential.
         /// </summary>
         public readonly string ClientSecret;
+        /// <summary>
+        /// The Terraform Resource ID. This has the format "{{ stack*id }}:{{ resource*id }}".
+        /// </summary>
         public readonly string Id;
         /// <summary>
         /// The name of the Azure Credential.
@@ -405,6 +432,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         /// The list of resource tags to add to metrics.
         /// </summary>
         public readonly ImmutableArray<string> ResourceTagsToAddToMetrics;
+        /// <summary>
+        /// The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         public readonly string StackId;
         /// <summary>
         /// The tenant ID of the Azure Credential.

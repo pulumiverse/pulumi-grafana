@@ -96,6 +96,13 @@ export const StackServiceAccountToken: typeof import("./stackServiceAccountToken
 utilities.lazyLoad(exports, ["StackServiceAccountToken"], () => require("./stackServiceAccountToken"));
 
 
+// Export sub-modules:
+import * as v1alpha1 from "./v1alpha1";
+
+export {
+    v1alpha1,
+};
+
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {

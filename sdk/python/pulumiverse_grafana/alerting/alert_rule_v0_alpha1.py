@@ -26,6 +26,7 @@ class AlertRuleV0Alpha1Args:
                  spec: Optional[pulumi.Input['AlertRuleV0Alpha1SpecArgs']] = None):
         """
         The set of arguments for constructing a AlertRuleV0Alpha1 resource.
+
         :param pulumi.Input['AlertRuleV0Alpha1MetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['AlertRuleV0Alpha1OptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['AlertRuleV0Alpha1SpecArgs'] spec: The spec of the resource.
@@ -82,6 +83,7 @@ class _AlertRuleV0Alpha1State:
                  spec: Optional[pulumi.Input['AlertRuleV0Alpha1SpecArgs']] = None):
         """
         Input properties used for looking up and filtering AlertRuleV0Alpha1 resources.
+
         :param pulumi.Input['AlertRuleV0Alpha1MetadataArgs'] metadata: The metadata of the resource.
         :param pulumi.Input['AlertRuleV0Alpha1OptionsArgs'] options: Options for applying the resource.
         :param pulumi.Input['AlertRuleV0Alpha1SpecArgs'] spec: The spec of the resource.
@@ -130,8 +132,13 @@ class _AlertRuleV0Alpha1State:
         pulumi.set(self, "spec", value)
 
 
+warnings.warn("""grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule""", DeprecationWarning)
+
+
 @pulumi.type_token("grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1")
 class AlertRuleV0Alpha1(pulumi.CustomResource):
+    warnings.warn("""grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -141,7 +148,107 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                  spec: Optional[pulumi.Input[Union['AlertRuleV0Alpha1SpecArgs', 'AlertRuleV0Alpha1SpecArgsDict']]] = None,
                  __props__=None):
         """
-        This resource is currently under development. Documentation will be provided in a future release.
+        Manages Grafana Alert Rules.
+
+        This resource is currently in alpha and is subject to change. Grafana 12.4+ users must enable the `kubernetesAlertingRules` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        alertrule_folder = grafana.oss.Folder("alertrule_folder", title="Alert Rule Folder")
+        example = grafana.alerting.v0alpha1.AlertRule("example",
+            metadata={
+                "uid": "example-alert-rule",
+                "folder_uid": alertrule_folder.uid,
+            },
+            spec={
+                "title": "Example Alert Rule",
+                "trigger": {
+                    "interval": "1m",
+                },
+                "paused": True,
+                "expressions": {
+                    "A": json.dumps({
+                        "model": {
+                            "datasource": {
+                                "type": "prometheus",
+                                "uid": "ds_uid",
+                            },
+                            "editorMode": "code",
+                            "expr": "count(up{})",
+                            "instant": True,
+                            "intervalMs": 1000,
+                            "legendFormat": "__auto",
+                            "maxDataPoints": 43200,
+                            "range": False,
+                            "refId": "A",
+                        },
+                        "datasource_uid": "ds_uid",
+                        "relative_time_range": {
+                            "from": "600s",
+                            "to": "0s",
+                        },
+                        "query_type": "",
+                        "source": True,
+                    }),
+                    "B": json.dumps({
+                        "model": {
+                            "conditions": [{
+                                "evaluator": {
+                                    "params": [1],
+                                    "type": "gt",
+                                },
+                                "operator": {
+                                    "type": "and",
+                                },
+                                "query": {
+                                    "params": ["C"],
+                                },
+                                "reducer": {
+                                    "params": [],
+                                    "type": "last",
+                                },
+                                "type": "query",
+                            }],
+                            "datasource": {
+                                "type": "__expr__",
+                                "uid": "__expr__",
+                            },
+                            "expression": "A",
+                            "intervalMs": 1000,
+                            "maxDataPoints": 43200,
+                            "refId": "C",
+                            "type": "threshold",
+                        },
+                        "datasource_uid": "__expr__",
+                        "query_type": "",
+                        "source": False,
+                    }),
+                },
+                "for_": "5m",
+                "labels": {
+                    "severity": "critical",
+                },
+                "annotations": {
+                    "runbook_url": "https://example.com",
+                },
+                "no_data_state": "KeepLast",
+                "exec_err_state": "KeepLast",
+                "missing_series_evals_to_resolve": 5,
+                "notification_settings": {
+                    "contact_point": "grafana-default-email",
+                },
+                "panel_ref": {
+                    "dashboard_uid": "dashboard123",
+                    "panel_id": "5",
+                },
+            })
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -156,7 +263,107 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                  args: Optional[AlertRuleV0Alpha1Args] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource is currently under development. Documentation will be provided in a future release.
+        Manages Grafana Alert Rules.
+
+        This resource is currently in alpha and is subject to change. Grafana 12.4+ users must enable the `kubernetesAlertingRules` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumiverse_grafana as grafana
+
+        alertrule_folder = grafana.oss.Folder("alertrule_folder", title="Alert Rule Folder")
+        example = grafana.alerting.v0alpha1.AlertRule("example",
+            metadata={
+                "uid": "example-alert-rule",
+                "folder_uid": alertrule_folder.uid,
+            },
+            spec={
+                "title": "Example Alert Rule",
+                "trigger": {
+                    "interval": "1m",
+                },
+                "paused": True,
+                "expressions": {
+                    "A": json.dumps({
+                        "model": {
+                            "datasource": {
+                                "type": "prometheus",
+                                "uid": "ds_uid",
+                            },
+                            "editorMode": "code",
+                            "expr": "count(up{})",
+                            "instant": True,
+                            "intervalMs": 1000,
+                            "legendFormat": "__auto",
+                            "maxDataPoints": 43200,
+                            "range": False,
+                            "refId": "A",
+                        },
+                        "datasource_uid": "ds_uid",
+                        "relative_time_range": {
+                            "from": "600s",
+                            "to": "0s",
+                        },
+                        "query_type": "",
+                        "source": True,
+                    }),
+                    "B": json.dumps({
+                        "model": {
+                            "conditions": [{
+                                "evaluator": {
+                                    "params": [1],
+                                    "type": "gt",
+                                },
+                                "operator": {
+                                    "type": "and",
+                                },
+                                "query": {
+                                    "params": ["C"],
+                                },
+                                "reducer": {
+                                    "params": [],
+                                    "type": "last",
+                                },
+                                "type": "query",
+                            }],
+                            "datasource": {
+                                "type": "__expr__",
+                                "uid": "__expr__",
+                            },
+                            "expression": "A",
+                            "intervalMs": 1000,
+                            "maxDataPoints": 43200,
+                            "refId": "C",
+                            "type": "threshold",
+                        },
+                        "datasource_uid": "__expr__",
+                        "query_type": "",
+                        "source": False,
+                    }),
+                },
+                "for_": "5m",
+                "labels": {
+                    "severity": "critical",
+                },
+                "annotations": {
+                    "runbook_url": "https://example.com",
+                },
+                "no_data_state": "KeepLast",
+                "exec_err_state": "KeepLast",
+                "missing_series_evals_to_resolve": 5,
+                "notification_settings": {
+                    "contact_point": "grafana-default-email",
+                },
+                "panel_ref": {
+                    "dashboard_uid": "dashboard123",
+                    "panel_id": "5",
+                },
+            })
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param AlertRuleV0Alpha1Args args: The arguments to use to populate this resource's properties.
@@ -177,6 +384,7 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                  options: Optional[pulumi.Input[Union['AlertRuleV0Alpha1OptionsArgs', 'AlertRuleV0Alpha1OptionsArgsDict']]] = None,
                  spec: Optional[pulumi.Input[Union['AlertRuleV0Alpha1SpecArgs', 'AlertRuleV0Alpha1SpecArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""AlertRuleV0Alpha1 is deprecated: grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -188,6 +396,8 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["options"] = options
             __props__.__dict__["spec"] = spec
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(AlertRuleV0Alpha1, __self__).__init__(
             'grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1',
             resource_name,

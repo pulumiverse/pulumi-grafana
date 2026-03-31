@@ -19,7 +19,13 @@ export function getApp(args: GetAppArgs, opts?: pulumi.InvokeOptions): Promise<G
  * A collection of arguments for invoking getApp.
  */
 export interface GetAppArgs {
+    /**
+     * The name of the Frontend Observability App. Part of the Terraform Resource ID.
+     */
     name: string;
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: number;
 }
 
@@ -39,12 +45,21 @@ export interface GetAppResult {
      * The extra attributes to append in each signal.
      */
     readonly extraLogAttributes: {[key: string]: string};
+    /**
+     * The Terraform Resource ID. This auto-generated from Frontend Observability API.
+     */
     readonly id: number;
+    /**
+     * The name of the Frontend Observability App. Part of the Terraform Resource ID.
+     */
     readonly name: string;
     /**
      * The settings of the Frontend Observability App.
      */
     readonly settings: {[key: string]: string};
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     readonly stackId: number;
 }
 /**
@@ -62,6 +77,12 @@ export function getAppOutput(args: GetAppOutputArgs, opts?: pulumi.InvokeOutputO
  * A collection of arguments for invoking getApp.
  */
 export interface GetAppOutputArgs {
+    /**
+     * The name of the Frontend Observability App. Part of the Terraform Resource ID.
+     */
     name: pulumi.Input<string>;
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: pulumi.Input<number>;
 }

@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			_, err = oncall.NewUserNotificationRule(ctx, "my_user_step_1", &oncall.UserNotificationRuleArgs{
-//				UserId:   pulumi.String(myUser.Id),
+//				UserId:   pulumi.String(pulumi.String(myUser.Id)),
 //				Position: pulumi.Int(0),
 //				Type:     pulumi.String("notify_by_mobile_app"),
 //			})
@@ -45,7 +45,7 @@ import (
 //				return err
 //			}
 //			_, err = oncall.NewUserNotificationRule(ctx, "my_user_step_2", &oncall.UserNotificationRuleArgs{
-//				UserId:   pulumi.String(myUser.Id),
+//				UserId:   pulumi.String(pulumi.String(myUser.Id)),
 //				Position: pulumi.Int(1),
 //				Duration: pulumi.Int(600),
 //				Type:     pulumi.String("wait"),
@@ -54,7 +54,7 @@ import (
 //				return err
 //			}
 //			_, err = oncall.NewUserNotificationRule(ctx, "my_user_step_3", &oncall.UserNotificationRuleArgs{
-//				UserId:   pulumi.String(myUser.Id),
+//				UserId:   pulumi.String(pulumi.String(myUser.Id)),
 //				Position: pulumi.Int(2),
 //				Type:     pulumi.String("notify_by_phone_call"),
 //			})
@@ -62,7 +62,7 @@ import (
 //				return err
 //			}
 //			_, err = oncall.NewUserNotificationRule(ctx, "my_user_step_4", &oncall.UserNotificationRuleArgs{
-//				UserId:   pulumi.String(myUser.Id),
+//				UserId:   pulumi.String(pulumi.String(myUser.Id)),
 //				Position: pulumi.Int(3),
 //				Duration: pulumi.Int(300),
 //				Type:     pulumi.String("wait"),
@@ -71,7 +71,7 @@ import (
 //				return err
 //			}
 //			_, err = oncall.NewUserNotificationRule(ctx, "my_user_step_5", &oncall.UserNotificationRuleArgs{
-//				UserId:   pulumi.String(myUser.Id),
+//				UserId:   pulumi.String(pulumi.String(myUser.Id)),
 //				Position: pulumi.Int(4),
 //				Type:     pulumi.String("notify_by_slack"),
 //			})
@@ -79,7 +79,7 @@ import (
 //				return err
 //			}
 //			_, err = oncall.NewUserNotificationRule(ctx, "my_user_important_step_1", &oncall.UserNotificationRuleArgs{
-//				UserId:    pulumi.String(myUser.Id),
+//				UserId:    pulumi.String(pulumi.String(myUser.Id)),
 //				Important: pulumi.Bool(true),
 //				Position:  pulumi.Int(0),
 //				Type:      pulumi.String("notify_by_mobile_app_critical"),
@@ -88,7 +88,7 @@ import (
 //				return err
 //			}
 //			_, err = oncall.NewUserNotificationRule(ctx, "my_user_important_step_2", &oncall.UserNotificationRuleArgs{
-//				UserId:    pulumi.String(myUser.Id),
+//				UserId:    pulumi.String(pulumi.String(myUser.Id)),
 //				Important: pulumi.Bool(true),
 //				Position:  pulumi.Int(1),
 //				Duration:  pulumi.Int(300),
@@ -98,7 +98,7 @@ import (
 //				return err
 //			}
 //			_, err = oncall.NewUserNotificationRule(ctx, "my_user_important_step_3", &oncall.UserNotificationRuleArgs{
-//				UserId:    pulumi.String(myUser.Id),
+//				UserId:    pulumi.String(pulumi.String(myUser.Id)),
 //				Important: pulumi.Bool(true),
 //				Position:  pulumi.Int(2),
 //				Type:      pulumi.String("notify_by_mobile_app_critical"),
@@ -115,7 +115,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:onCall/userNotificationRule:UserNotificationRule name "{{ id }}"
+// terraform import grafana_oncall_user_notification_rule.name "{{ id }}"
 // ```
 type UserNotificationRule struct {
 	pulumi.CustomResourceState

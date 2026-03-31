@@ -25,6 +25,7 @@ class CustomModelRulesArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomModelRules resource.
+
         :param pulumi.Input['CustomModelRulesRulesArgs'] rules: The rules configuration for the custom model rules.
         :param pulumi.Input[_builtins.str] name: The name of the custom model rules.
         """
@@ -64,6 +65,7 @@ class _CustomModelRulesState:
                  rules: Optional[pulumi.Input['CustomModelRulesRulesArgs']] = None):
         """
         Input properties used for looking up and filtering CustomModelRules resources.
+
         :param pulumi.Input[_builtins.str] name: The name of the custom model rules.
         :param pulumi.Input['CustomModelRulesRulesArgs'] rules: The rules configuration for the custom model rules.
         """
@@ -156,8 +158,9 @@ class CustomModelRules(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/customModelRules:CustomModelRules name "{{ name }}"
+        terraform import grafana_asserts_custom_model_rules.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -220,8 +223,9 @@ class CustomModelRules(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/customModelRules:CustomModelRules name "{{ name }}"
+        terraform import grafana_asserts_custom_model_rules.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CustomModelRulesArgs args: The arguments to use to populate this resource's properties.

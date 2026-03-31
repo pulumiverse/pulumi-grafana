@@ -51,7 +51,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:k6/loadTest:LoadTest name "{{ id }}"
+// terraform import grafana_k6_load_test.name "{{ id }}"
 // ```
 type LoadTest struct {
 	pulumi.CustomResourceState

@@ -21,7 +21,6 @@ namespace Pulumiverse.Grafana.OnCall
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -99,7 +98,7 @@ namespace Pulumiverse.Grafana.OnCall
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:onCall/userNotificationRule:UserNotificationRule name "{{ id }}"
+    /// terraform import grafana_oncall_user_notification_rule.name "{{ id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:onCall/userNotificationRule:UserNotificationRule")]

@@ -145,7 +145,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:assert/traceConfig:TraceConfig name "{{ name }}"
+// terraform import grafana_asserts_trace_config.name "{{ name }}"
 // ```
 type TraceConfig struct {
 	pulumi.CustomResourceState

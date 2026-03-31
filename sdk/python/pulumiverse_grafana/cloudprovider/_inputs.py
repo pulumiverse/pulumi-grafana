@@ -69,24 +69,19 @@ __all__ = [
     'GetAzureCredentialResourceDiscoveryTagFilterArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AwsCloudwatchScrapeJobCustomNamespaceArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the custom namespace to scrape.
-        """
-        metrics: NotRequired[pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobCustomNamespaceMetricArgsDict']]]]
-        """
-        One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
-        """
-        scrape_interval_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The interval in seconds to scrape the custom namespace. Defaults to `300`.
-        """
-elif False:
-    AwsCloudwatchScrapeJobCustomNamespaceArgsDict: TypeAlias = Mapping[str, Any]
+class AwsCloudwatchScrapeJobCustomNamespaceArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the custom namespace to scrape.
+    """
+    metrics: NotRequired[pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobCustomNamespaceMetricArgsDict']]]]
+    """
+    One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+    """
+    scrape_interval_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The interval in seconds to scrape the custom namespace. Defaults to `300`.
+    """
 
 @pulumi.input_type
 class AwsCloudwatchScrapeJobCustomNamespaceArgs:
@@ -142,18 +137,15 @@ class AwsCloudwatchScrapeJobCustomNamespaceArgs:
         pulumi.set(self, "scrape_interval_seconds", value)
 
 
-if not MYPY:
-    class AwsCloudwatchScrapeJobCustomNamespaceMetricArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the metric to scrape.
-        """
-        statistics: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        A set of statistics to scrape.
-        """
-elif False:
-    AwsCloudwatchScrapeJobCustomNamespaceMetricArgsDict: TypeAlias = Mapping[str, Any]
+class AwsCloudwatchScrapeJobCustomNamespaceMetricArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the metric to scrape.
+    """
+    statistics: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    A set of statistics to scrape.
+    """
 
 @pulumi.input_type
 class AwsCloudwatchScrapeJobCustomNamespaceMetricArgs:
@@ -192,30 +184,27 @@ class AwsCloudwatchScrapeJobCustomNamespaceMetricArgs:
         pulumi.set(self, "statistics", value)
 
 
-if not MYPY:
-    class AwsCloudwatchScrapeJobServiceArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
-        """
-        metrics: NotRequired[pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobServiceMetricArgsDict']]]]
-        """
-        One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
-        """
-        resource_discovery_tag_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgsDict']]]]
-        """
-        One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
-        """
-        scrape_interval_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
-        """
-        tags_to_add_to_metrics: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
-        """
-elif False:
-    AwsCloudwatchScrapeJobServiceArgsDict: TypeAlias = Mapping[str, Any]
+class AwsCloudwatchScrapeJobServiceArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
+    """
+    metrics: NotRequired[pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobServiceMetricArgsDict']]]]
+    """
+    One or more configuration blocks to configure metrics and their statistics to scrape. Please note that AWS metric names must be supplied, and not their PromQL counterparts. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+    """
+    resource_discovery_tag_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input['AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgsDict']]]]
+    """
+    One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+    """
+    scrape_interval_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
+    """
+    tags_to_add_to_metrics: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+    """
 
 @pulumi.input_type
 class AwsCloudwatchScrapeJobServiceArgs:
@@ -303,18 +292,15 @@ class AwsCloudwatchScrapeJobServiceArgs:
         pulumi.set(self, "tags_to_add_to_metrics", value)
 
 
-if not MYPY:
-    class AwsCloudwatchScrapeJobServiceMetricArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the metric to scrape.
-        """
-        statistics: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        A set of statistics to scrape.
-        """
-elif False:
-    AwsCloudwatchScrapeJobServiceMetricArgsDict: TypeAlias = Mapping[str, Any]
+class AwsCloudwatchScrapeJobServiceMetricArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the metric to scrape.
+    """
+    statistics: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    A set of statistics to scrape.
+    """
 
 @pulumi.input_type
 class AwsCloudwatchScrapeJobServiceMetricArgs:
@@ -353,18 +339,15 @@ class AwsCloudwatchScrapeJobServiceMetricArgs:
         pulumi.set(self, "statistics", value)
 
 
-if not MYPY:
-    class AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        The key of the tag filter.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        The value of the tag filter.
-        """
-elif False:
-    AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgsDict: TypeAlias = Mapping[str, Any]
+class AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    The key of the tag filter.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value of the tag filter.
+    """
 
 @pulumi.input_type
 class AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs:
@@ -403,22 +386,19 @@ class AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class AwsResourceMetadataScrapeJobServiceArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
-        """
-        resource_discovery_tag_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input['AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgsDict']]]]
-        """
-        One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
-        """
-        scrape_interval_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
-        """
-elif False:
-    AwsResourceMetadataScrapeJobServiceArgsDict: TypeAlias = Mapping[str, Any]
+class AwsResourceMetadataScrapeJobServiceArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services.
+    """
+    resource_discovery_tag_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input['AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgsDict']]]]
+    """
+    One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+    """
+    scrape_interval_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals. Defaults to `300`.
+    """
 
 @pulumi.input_type
 class AwsResourceMetadataScrapeJobServiceArgs:
@@ -474,18 +454,15 @@ class AwsResourceMetadataScrapeJobServiceArgs:
         pulumi.set(self, "scrape_interval_seconds", value)
 
 
-if not MYPY:
-    class AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        The key of the tag filter.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        The value of the tag filter.
-        """
-elif False:
-    AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgsDict: TypeAlias = Mapping[str, Any]
+class AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    The key of the tag filter.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value of the tag filter.
+    """
 
 @pulumi.input_type
 class AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs:
@@ -524,18 +501,15 @@ class AwsResourceMetadataScrapeJobServiceResourceDiscoveryTagFilterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class AzureCredentialAutoDiscoveryConfigurationArgsDict(TypedDict):
-        resource_type_configurations: pulumi.Input[Sequence[pulumi.Input['AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict']]]
-        """
-        The list of resource type configurations.
-        """
-        subscription_id: pulumi.Input[_builtins.str]
-        """
-        The subscription ID of the Azure account.
-        """
-elif False:
-    AzureCredentialAutoDiscoveryConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class AzureCredentialAutoDiscoveryConfigurationArgsDict(TypedDict):
+    resource_type_configurations: pulumi.Input[Sequence[pulumi.Input['AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict']]]
+    """
+    The list of resource type configurations.
+    """
+    subscription_id: pulumi.Input[_builtins.str]
+    """
+    The subscription ID of the Azure account.
+    """
 
 @pulumi.input_type
 class AzureCredentialAutoDiscoveryConfigurationArgs:
@@ -574,12 +548,9 @@ class AzureCredentialAutoDiscoveryConfigurationArgs:
         pulumi.set(self, "subscription_id", value)
 
 
-if not MYPY:
-    class AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict(TypedDict):
-        metric_configurations: pulumi.Input[Sequence[pulumi.Input['AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict']]]
-        resource_type_name: pulumi.Input[_builtins.str]
-elif False:
-    AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict(TypedDict):
+    metric_configurations: pulumi.Input[Sequence[pulumi.Input['AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict']]]
+    resource_type_name: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs:
@@ -608,13 +579,10 @@ class AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs:
         pulumi.set(self, "resource_type_name", value)
 
 
-if not MYPY:
-    class AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict(TypedDict):
-        aggregations: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        dimensions: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        name: pulumi.Input[_builtins.str]
-elif False:
-    AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict(TypedDict):
+    aggregations: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    dimensions: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    name: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs:
@@ -654,18 +622,15 @@ class AzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricCo
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class AzureCredentialResourceDiscoveryTagFilterArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        The key of the tag filter.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        The value of the tag filter.
-        """
-elif False:
-    AzureCredentialResourceDiscoveryTagFilterArgsDict: TypeAlias = Mapping[str, Any]
+class AzureCredentialResourceDiscoveryTagFilterArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    The key of the tag filter.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value of the tag filter.
+    """
 
 @pulumi.input_type
 class AzureCredentialResourceDiscoveryTagFilterArgs:
@@ -704,22 +669,19 @@ class AzureCredentialResourceDiscoveryTagFilterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetAwsCloudwatchScrapeJobCustomNamespaceArgsDict(TypedDict):
-        name: _builtins.str
-        """
-        The name of the custom namespace to scrape.
-        """
-        scrape_interval_seconds: _builtins.int
-        """
-        The interval in seconds to scrape the custom namespace.
-        """
-        metrics: NotRequired[Sequence['GetAwsCloudwatchScrapeJobCustomNamespaceMetricArgsDict']]
-        """
-        One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
-        """
-elif False:
-    GetAwsCloudwatchScrapeJobCustomNamespaceArgsDict: TypeAlias = Mapping[str, Any]
+class GetAwsCloudwatchScrapeJobCustomNamespaceArgsDict(TypedDict):
+    name: _builtins.str
+    """
+    The name of the custom namespace to scrape.
+    """
+    scrape_interval_seconds: _builtins.int
+    """
+    The interval in seconds to scrape the custom namespace.
+    """
+    metrics: NotRequired[Sequence['GetAwsCloudwatchScrapeJobCustomNamespaceMetricArgsDict']]
+    """
+    One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+    """
 
 @pulumi.input_type
 class GetAwsCloudwatchScrapeJobCustomNamespaceArgs:
@@ -774,18 +736,15 @@ class GetAwsCloudwatchScrapeJobCustomNamespaceArgs:
         pulumi.set(self, "metrics", value)
 
 
-if not MYPY:
-    class GetAwsCloudwatchScrapeJobCustomNamespaceMetricArgsDict(TypedDict):
-        name: _builtins.str
-        """
-        The name of the metric to scrape.
-        """
-        statistics: Sequence[_builtins.str]
-        """
-        A set of statistics to scrape.
-        """
-elif False:
-    GetAwsCloudwatchScrapeJobCustomNamespaceMetricArgsDict: TypeAlias = Mapping[str, Any]
+class GetAwsCloudwatchScrapeJobCustomNamespaceMetricArgsDict(TypedDict):
+    name: _builtins.str
+    """
+    The name of the metric to scrape.
+    """
+    statistics: Sequence[_builtins.str]
+    """
+    A set of statistics to scrape.
+    """
 
 @pulumi.input_type
 class GetAwsCloudwatchScrapeJobCustomNamespaceMetricArgs:
@@ -824,30 +783,27 @@ class GetAwsCloudwatchScrapeJobCustomNamespaceMetricArgs:
         pulumi.set(self, "statistics", value)
 
 
-if not MYPY:
-    class GetAwsCloudwatchScrapeJobServiceArgsDict(TypedDict):
-        name: _builtins.str
-        """
-        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
-        """
-        scrape_interval_seconds: _builtins.int
-        """
-        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
-        """
-        tags_to_add_to_metrics: Sequence[_builtins.str]
-        """
-        A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
-        """
-        metrics: NotRequired[Sequence['GetAwsCloudwatchScrapeJobServiceMetricArgsDict']]
-        """
-        One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
-        """
-        resource_discovery_tag_filters: NotRequired[Sequence['GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgsDict']]
-        """
-        One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
-        """
-elif False:
-    GetAwsCloudwatchScrapeJobServiceArgsDict: TypeAlias = Mapping[str, Any]
+class GetAwsCloudwatchScrapeJobServiceArgsDict(TypedDict):
+    name: _builtins.str
+    """
+    The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+    """
+    scrape_interval_seconds: _builtins.int
+    """
+    The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+    """
+    tags_to_add_to_metrics: Sequence[_builtins.str]
+    """
+    A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+    """
+    metrics: NotRequired[Sequence['GetAwsCloudwatchScrapeJobServiceMetricArgsDict']]
+    """
+    One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+    """
+    resource_discovery_tag_filters: NotRequired[Sequence['GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgsDict']]
+    """
+    One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+    """
 
 @pulumi.input_type
 class GetAwsCloudwatchScrapeJobServiceArgs:
@@ -933,18 +889,15 @@ class GetAwsCloudwatchScrapeJobServiceArgs:
         pulumi.set(self, "resource_discovery_tag_filters", value)
 
 
-if not MYPY:
-    class GetAwsCloudwatchScrapeJobServiceMetricArgsDict(TypedDict):
-        name: _builtins.str
-        """
-        The name of the metric to scrape.
-        """
-        statistics: Sequence[_builtins.str]
-        """
-        A set of statistics to scrape.
-        """
-elif False:
-    GetAwsCloudwatchScrapeJobServiceMetricArgsDict: TypeAlias = Mapping[str, Any]
+class GetAwsCloudwatchScrapeJobServiceMetricArgsDict(TypedDict):
+    name: _builtins.str
+    """
+    The name of the metric to scrape.
+    """
+    statistics: Sequence[_builtins.str]
+    """
+    A set of statistics to scrape.
+    """
 
 @pulumi.input_type
 class GetAwsCloudwatchScrapeJobServiceMetricArgs:
@@ -983,18 +936,15 @@ class GetAwsCloudwatchScrapeJobServiceMetricArgs:
         pulumi.set(self, "statistics", value)
 
 
-if not MYPY:
-    class GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        The key of the tag filter.
-        """
-        value: _builtins.str
-        """
-        The value of the tag filter.
-        """
-elif False:
-    GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgsDict: TypeAlias = Mapping[str, Any]
+class GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    The key of the tag filter.
+    """
+    value: _builtins.str
+    """
+    The value of the tag filter.
+    """
 
 @pulumi.input_type
 class GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs:
@@ -1033,53 +983,59 @@ class GetAwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetAwsCloudwatchScrapeJobsScrapeJobArgsDict(TypedDict):
-        aws_account_resource_id: _builtins.str
-        """
-        The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
-        """
-        disabled_reason: _builtins.str
-        """
-        When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
-        """
-        enabled: _builtins.bool
-        """
-        Whether the AWS CloudWatch Scrape Job is enabled or not.
-        """
-        export_tags: _builtins.bool
-        """
-        When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
-        """
-        id: _builtins.str
-        name: _builtins.str
-        regions: Sequence[_builtins.str]
-        """
-        The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
-        """
-        regions_subset_override_used: _builtins.bool
-        """
-        When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
-        """
-        role_arn: _builtins.str
-        """
-        The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.
-        """
-        stack_id: _builtins.str
-        static_labels: Mapping[str, _builtins.str]
-        """
-        A set of static labels to add to all metrics exported by this scrape job.
-        """
-        custom_namespaces: NotRequired[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgsDict']]
-        """
-        Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
-        """
-        services: NotRequired[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceArgsDict']]
-        """
-        One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
-        """
-elif False:
-    GetAwsCloudwatchScrapeJobsScrapeJobArgsDict: TypeAlias = Mapping[str, Any]
+class GetAwsCloudwatchScrapeJobsScrapeJobArgsDict(TypedDict):
+    aws_account_resource_id: _builtins.str
+    """
+    The ID assigned by the Grafana Cloud Provider API to an AWS Account resource that should be associated with this AWS CloudWatch Scrape Job. This can be provided by the `resource_id` attribute of the `cloudProvider.AwsAccount` resource.
+    """
+    disabled_reason: _builtins.str
+    """
+    When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
+    """
+    enabled: _builtins.bool
+    """
+    Whether the AWS CloudWatch Scrape Job is enabled or not.
+    """
+    export_tags: _builtins.bool
+    """
+    When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+    """
+    id: _builtins.str
+    """
+    The Terraform Resource ID. This has the format "{{ stack_id }}:{{ name }}".
+    """
+    name: _builtins.str
+    """
+    The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+    """
+    regions: Sequence[_builtins.str]
+    """
+    The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
+    """
+    regions_subset_override_used: _builtins.bool
+    """
+    When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
+    """
+    role_arn: _builtins.str
+    """
+    The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.
+    """
+    stack_id: _builtins.str
+    """
+    The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+    """
+    static_labels: Mapping[str, _builtins.str]
+    """
+    A set of static labels to add to all metrics exported by this scrape job.
+    """
+    custom_namespaces: NotRequired[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgsDict']]
+    """
+    Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+    """
+    services: NotRequired[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceArgsDict']]
+    """
+    One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
+    """
 
 @pulumi.input_type
 class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
@@ -1102,9 +1058,12 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
         :param _builtins.str disabled_reason: When the AWS CloudWatch Scrape Job is disabled, this will show the reason that it is in that state.
         :param _builtins.bool enabled: Whether the AWS CloudWatch Scrape Job is enabled or not.
         :param _builtins.bool export_tags: When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
+        :param _builtins.str id: The Terraform Resource ID. This has the format "{{ stack_id }}:{{ name }}".
+        :param _builtins.str name: The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
         :param Sequence[_builtins.str] regions: The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
         :param _builtins.bool regions_subset_override_used: When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
         :param _builtins.str role_arn: The AWS ARN of the IAM role associated with the AWS Account resource that is being used by this AWS CloudWatch Scrape Job.
+        :param _builtins.str stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param Mapping[str, _builtins.str] static_labels: A set of static labels to add to all metrics exported by this scrape job.
         :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs'] custom_namespaces: Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
         :param Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs'] services: One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
@@ -1176,6 +1135,9 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
+        """
+        The Terraform Resource ID. This has the format "{{ stack_id }}:{{ name }}".
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -1185,6 +1147,9 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
+        """
+        The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -1230,6 +1195,9 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> _builtins.str:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
@@ -1273,22 +1241,19 @@ class GetAwsCloudwatchScrapeJobsScrapeJobArgs:
         pulumi.set(self, "services", value)
 
 
-if not MYPY:
-    class GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgsDict(TypedDict):
-        name: _builtins.str
-        """
-        The name of the custom namespace to scrape.
-        """
-        scrape_interval_seconds: _builtins.int
-        """
-        The interval in seconds to scrape the custom namespace.
-        """
-        metrics: NotRequired[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgsDict']]
-        """
-        One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
-        """
-elif False:
-    GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgsDict: TypeAlias = Mapping[str, Any]
+class GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgsDict(TypedDict):
+    name: _builtins.str
+    """
+    The name of the custom namespace to scrape.
+    """
+    scrape_interval_seconds: _builtins.int
+    """
+    The interval in seconds to scrape the custom namespace.
+    """
+    metrics: NotRequired[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgsDict']]
+    """
+    One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+    """
 
 @pulumi.input_type
 class GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs:
@@ -1343,18 +1308,15 @@ class GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceArgs:
         pulumi.set(self, "metrics", value)
 
 
-if not MYPY:
-    class GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgsDict(TypedDict):
-        name: _builtins.str
-        """
-        The name of the metric to scrape.
-        """
-        statistics: Sequence[_builtins.str]
-        """
-        A set of statistics to scrape.
-        """
-elif False:
-    GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgsDict: TypeAlias = Mapping[str, Any]
+class GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgsDict(TypedDict):
+    name: _builtins.str
+    """
+    The name of the metric to scrape.
+    """
+    statistics: Sequence[_builtins.str]
+    """
+    A set of statistics to scrape.
+    """
 
 @pulumi.input_type
 class GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgs:
@@ -1393,30 +1355,27 @@ class GetAwsCloudwatchScrapeJobsScrapeJobCustomNamespaceMetricArgs:
         pulumi.set(self, "statistics", value)
 
 
-if not MYPY:
-    class GetAwsCloudwatchScrapeJobsScrapeJobServiceArgsDict(TypedDict):
-        name: _builtins.str
-        """
-        The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
-        """
-        scrape_interval_seconds: _builtins.int
-        """
-        The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
-        """
-        tags_to_add_to_metrics: Sequence[_builtins.str]
-        """
-        A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
-        """
-        metrics: NotRequired[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgsDict']]
-        """
-        One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
-        """
-        resource_discovery_tag_filters: NotRequired[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgsDict']]
-        """
-        One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
-        """
-elif False:
-    GetAwsCloudwatchScrapeJobsScrapeJobServiceArgsDict: TypeAlias = Mapping[str, Any]
+class GetAwsCloudwatchScrapeJobsScrapeJobServiceArgsDict(TypedDict):
+    name: _builtins.str
+    """
+    The name of the service to scrape. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported services, metrics, and their statistics.
+    """
+    scrape_interval_seconds: _builtins.int
+    """
+    The interval in seconds to scrape the service. See https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/cloudwatch-metrics/services/ for supported scrape intervals.
+    """
+    tags_to_add_to_metrics: Sequence[_builtins.str]
+    """
+    A set of tags to add to all metrics exported by this scrape job, for use in PromQL queries.
+    """
+    metrics: NotRequired[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgsDict']]
+    """
+    One or more configuration blocks to configure metrics and their statistics to scrape. Each block must represent a distinct metric name. When accessing this as an attribute reference, it is a list of objects.
+    """
+    resource_discovery_tag_filters: NotRequired[Sequence['GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgsDict']]
+    """
+    One or more configuration blocks to configure tag filters applied to discovery of resource entities in the associated AWS account. When accessing this as an attribute reference, it is a list of objects.
+    """
 
 @pulumi.input_type
 class GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs:
@@ -1502,18 +1461,15 @@ class GetAwsCloudwatchScrapeJobsScrapeJobServiceArgs:
         pulumi.set(self, "resource_discovery_tag_filters", value)
 
 
-if not MYPY:
-    class GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgsDict(TypedDict):
-        name: _builtins.str
-        """
-        The name of the metric to scrape.
-        """
-        statistics: Sequence[_builtins.str]
-        """
-        A set of statistics to scrape.
-        """
-elif False:
-    GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgsDict: TypeAlias = Mapping[str, Any]
+class GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgsDict(TypedDict):
+    name: _builtins.str
+    """
+    The name of the metric to scrape.
+    """
+    statistics: Sequence[_builtins.str]
+    """
+    A set of statistics to scrape.
+    """
 
 @pulumi.input_type
 class GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs:
@@ -1552,18 +1508,15 @@ class GetAwsCloudwatchScrapeJobsScrapeJobServiceMetricArgs:
         pulumi.set(self, "statistics", value)
 
 
-if not MYPY:
-    class GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        The key of the tag filter.
-        """
-        value: _builtins.str
-        """
-        The value of the tag filter.
-        """
-elif False:
-    GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgsDict: TypeAlias = Mapping[str, Any]
+class GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    The key of the tag filter.
+    """
+    value: _builtins.str
+    """
+    The value of the tag filter.
+    """
 
 @pulumi.input_type
 class GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs:
@@ -1602,18 +1555,15 @@ class GetAwsCloudwatchScrapeJobsScrapeJobServiceResourceDiscoveryTagFilterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetAzureCredentialAutoDiscoveryConfigurationArgsDict(TypedDict):
-        resource_type_configurations: Sequence['GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict']
-        """
-        The list of resource type configurations.
-        """
-        subscription_id: _builtins.str
-        """
-        The subscription ID of the Azure account.
-        """
-elif False:
-    GetAzureCredentialAutoDiscoveryConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class GetAzureCredentialAutoDiscoveryConfigurationArgsDict(TypedDict):
+    resource_type_configurations: Sequence['GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict']
+    """
+    The list of resource type configurations.
+    """
+    subscription_id: _builtins.str
+    """
+    The subscription ID of the Azure account.
+    """
 
 @pulumi.input_type
 class GetAzureCredentialAutoDiscoveryConfigurationArgs:
@@ -1652,12 +1602,9 @@ class GetAzureCredentialAutoDiscoveryConfigurationArgs:
         pulumi.set(self, "subscription_id", value)
 
 
-if not MYPY:
-    class GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict(TypedDict):
-        metric_configurations: Sequence['GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict']
-        resource_type_name: _builtins.str
-elif False:
-    GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgsDict(TypedDict):
+    metric_configurations: Sequence['GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict']
+    resource_type_name: _builtins.str
 
 @pulumi.input_type
 class GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs:
@@ -1686,13 +1633,10 @@ class GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationArgs:
         pulumi.set(self, "resource_type_name", value)
 
 
-if not MYPY:
-    class GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict(TypedDict):
-        aggregations: Sequence[_builtins.str]
-        dimensions: Sequence[_builtins.str]
-        name: _builtins.str
-elif False:
-    GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgsDict(TypedDict):
+    aggregations: Sequence[_builtins.str]
+    dimensions: Sequence[_builtins.str]
+    name: _builtins.str
 
 @pulumi.input_type
 class GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetricConfigurationArgs:
@@ -1732,18 +1676,15 @@ class GetAzureCredentialAutoDiscoveryConfigurationResourceTypeConfigurationMetri
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class GetAzureCredentialResourceDiscoveryTagFilterArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        The key of the tag filter.
-        """
-        value: _builtins.str
-        """
-        The value of the tag filter.
-        """
-elif False:
-    GetAzureCredentialResourceDiscoveryTagFilterArgsDict: TypeAlias = Mapping[str, Any]
+class GetAzureCredentialResourceDiscoveryTagFilterArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    The key of the tag filter.
+    """
+    value: _builtins.str
+    """
+    The value of the tag filter.
+    """
 
 @pulumi.input_type
 class GetAzureCredentialResourceDiscoveryTagFilterArgs:

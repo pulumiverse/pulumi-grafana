@@ -44,11 +44,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:enterprise/role:Role name "{{ uid }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:enterprise/role:Role name "{{ orgID }}:{{ uid }}"
+ * terraform import grafana_role.name "{{ uid }}"
+ * terraform import grafana_role.name "{{ orgID }}:{{ uid }}"
  * ```
  */
 export class Role extends pulumi.CustomResource {

@@ -44,7 +44,7 @@ namespace Pulumiverse.Grafana.Oss
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:oss/user:User name "{{ id }}"
+    /// terraform import grafana_user.name "{{ id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:oss/user:User")]

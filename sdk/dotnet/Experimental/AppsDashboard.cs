@@ -27,13 +27,13 @@ namespace Pulumiverse.Grafana.Experimental
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.Experimental.AppsDashboard("example", new()
+    ///     var example = new Grafana.Apps.V1Beta1.Dashboard("example", new()
     ///     {
-    ///         Metadata = new Grafana.Experimental.Inputs.AppsDashboardMetadataArgs
+    ///         Metadata = new Grafana.Apps.V1Beta1.Inputs.DashboardMetadataArgs
     ///         {
     ///             Uid = "example-dashboard",
     ///         },
-    ///         Spec = new Grafana.Experimental.Inputs.AppsDashboardSpecArgs
+    ///         Spec = new Grafana.Apps.V1Beta1.Inputs.DashboardSpecArgs
     ///         {
     ///             Title = "Example Dashboard",
     ///             Json = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
@@ -51,6 +51,7 @@ namespace Pulumiverse.Grafana.Experimental
     /// });
     /// ```
     /// </summary>
+    [Obsolete(@"grafana.experimental/appsdashboard.AppsDashboard has been deprecated in favor of grafana.apps/v1beta1/dashboard.Dashboard")]
     [GrafanaResourceType("grafana:experimental/appsDashboard:AppsDashboard")]
     public partial class AppsDashboard : global::Pulumi.CustomResource
     {
@@ -96,6 +97,10 @@ namespace Pulumiverse.Grafana.Experimental
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "grafana:experimental/appsDashboard:AppsDashboard" },
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

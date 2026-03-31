@@ -33,6 +33,7 @@ class CheckArgs:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Check resource.
+
         :param pulumi.Input[_builtins.str] job: Name used for job label.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] probes: List of probe location IDs where this target will be checked from.
         :param pulumi.Input['CheckSettingsArgs'] settings: Check settings. Should contain exactly one nested block.
@@ -198,6 +199,7 @@ class _CheckState:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Check resources.
+
         :param pulumi.Input[_builtins.str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `none`.
         :param pulumi.Input[_builtins.bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] enabled: Whether to enable the check. Defaults to `true`.
@@ -771,8 +773,9 @@ class Check(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:syntheticMonitoring/check:Check name "{{ id }}"
+        terraform import grafana_synthetic_monitoring_check.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1181,8 +1184,9 @@ class Check(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:syntheticMonitoring/check:Check name "{{ id }}"
+        terraform import grafana_synthetic_monitoring_check.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CheckArgs args: The arguments to use to populate this resource's properties.

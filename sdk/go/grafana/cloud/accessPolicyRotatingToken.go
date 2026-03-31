@@ -86,7 +86,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:cloud/accessPolicyRotatingToken:AccessPolicyRotatingToken name "{{ region }}:{{ tokenId }}"
+// terraform import grafana_cloud_access_policy_rotating_token.name "{{ region }}:{{ tokenId }}"
 // ```
 type AccessPolicyRotatingToken struct {
 	pulumi.CustomResourceState
@@ -94,7 +94,8 @@ type AccessPolicyRotatingToken struct {
 	// ID of the access policy for which to create a token.
 	AccessPolicyId pulumi.StringOutput `pulumi:"accessPolicyId"`
 	// Creation date of the access policy token.
-	CreatedAt       pulumi.StringOutput  `pulumi:"createdAt"`
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Deletes the token in Grafana Cloud when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiresAt` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
 	DeleteOnDestroy pulumi.BoolPtrOutput `pulumi:"deleteOnDestroy"`
 	// Display name of the access policy token. Defaults to the name.
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
@@ -169,8 +170,9 @@ type accessPolicyRotatingTokenState struct {
 	// ID of the access policy for which to create a token.
 	AccessPolicyId *string `pulumi:"accessPolicyId"`
 	// Creation date of the access policy token.
-	CreatedAt       *string `pulumi:"createdAt"`
-	DeleteOnDestroy *bool   `pulumi:"deleteOnDestroy"`
+	CreatedAt *string `pulumi:"createdAt"`
+	// Deletes the token in Grafana Cloud when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiresAt` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+	DeleteOnDestroy *bool `pulumi:"deleteOnDestroy"`
 	// Display name of the access policy token. Defaults to the name.
 	DisplayName *string `pulumi:"displayName"`
 	// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
@@ -196,7 +198,8 @@ type AccessPolicyRotatingTokenState struct {
 	// ID of the access policy for which to create a token.
 	AccessPolicyId pulumi.StringPtrInput
 	// Creation date of the access policy token.
-	CreatedAt       pulumi.StringPtrInput
+	CreatedAt pulumi.StringPtrInput
+	// Deletes the token in Grafana Cloud when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiresAt` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
 	DeleteOnDestroy pulumi.BoolPtrInput
 	// Display name of the access policy token. Defaults to the name.
 	DisplayName pulumi.StringPtrInput
@@ -225,8 +228,9 @@ func (AccessPolicyRotatingTokenState) ElementType() reflect.Type {
 
 type accessPolicyRotatingTokenArgs struct {
 	// ID of the access policy for which to create a token.
-	AccessPolicyId  string `pulumi:"accessPolicyId"`
-	DeleteOnDestroy *bool  `pulumi:"deleteOnDestroy"`
+	AccessPolicyId string `pulumi:"accessPolicyId"`
+	// Deletes the token in Grafana Cloud when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiresAt` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+	DeleteOnDestroy *bool `pulumi:"deleteOnDestroy"`
 	// Display name of the access policy token. Defaults to the name.
 	DisplayName *string `pulumi:"displayName"`
 	// Duration of the window before expiring where the token can be rotated (e.g. '24h', '30m', '1h30m'). Valid units are 's' (seconds), 'm' (minutes) and 'h' (hours).
@@ -242,7 +246,8 @@ type accessPolicyRotatingTokenArgs struct {
 // The set of arguments for constructing a AccessPolicyRotatingToken resource.
 type AccessPolicyRotatingTokenArgs struct {
 	// ID of the access policy for which to create a token.
-	AccessPolicyId  pulumi.StringInput
+	AccessPolicyId pulumi.StringInput
+	// Deletes the token in Grafana Cloud when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiresAt` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
 	DeleteOnDestroy pulumi.BoolPtrInput
 	// Display name of the access policy token. Defaults to the name.
 	DisplayName pulumi.StringPtrInput
@@ -353,6 +358,7 @@ func (o AccessPolicyRotatingTokenOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccessPolicyRotatingToken) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Deletes the token in Grafana Cloud when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiresAt` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
 func (o AccessPolicyRotatingTokenOutput) DeleteOnDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AccessPolicyRotatingToken) pulumi.BoolPtrOutput { return v.DeleteOnDestroy }).(pulumi.BoolPtrOutput)
 }

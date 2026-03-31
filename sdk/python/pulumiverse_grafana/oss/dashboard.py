@@ -26,6 +26,7 @@ class DashboardArgs:
                  overwrite: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Dashboard resource.
+
         :param pulumi.Input[_builtins.str] config_json: The complete dashboard model JSON.
         :param pulumi.Input[_builtins.str] folder: The id or UID of the folder to save the dashboard in.
         :param pulumi.Input[_builtins.str] message: Set a commit message for the version history.
@@ -117,6 +118,7 @@ class _DashboardState:
                  version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Dashboard resources.
+
         :param pulumi.Input[_builtins.str] config_json: The complete dashboard model JSON.
         :param pulumi.Input[_builtins.int] dashboard_id: The numeric ID of the dashboard computed by Grafana.
         :param pulumi.Input[_builtins.str] folder: The id or UID of the folder to save the dashboard in.
@@ -294,12 +296,10 @@ class Dashboard(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/dashboard:Dashboard name "{{ uid }}"
+        terraform import grafana_dashboard.name "{{ uid }}"
+        terraform import grafana_dashboard.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/dashboard:Dashboard name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -342,12 +342,10 @@ class Dashboard(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/dashboard:Dashboard name "{{ uid }}"
+        terraform import grafana_dashboard.name "{{ uid }}"
+        terraform import grafana_dashboard.name "{{ orgID }}:{{ uid }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/dashboard:Dashboard name "{{ orgID }}:{{ uid }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param DashboardArgs args: The arguments to use to populate this resource's properties.

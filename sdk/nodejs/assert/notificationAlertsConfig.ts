@@ -90,7 +90,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:assert/notificationAlertsConfig:NotificationAlertsConfig name "{{ name }}"
+ * terraform import grafana_asserts_notification_alerts_config.name "{{ name }}"
  * ```
  */
 export class NotificationAlertsConfig extends pulumi.CustomResource {

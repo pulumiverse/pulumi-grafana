@@ -42,6 +42,9 @@ class GetAwsCloudwatchScrapeJobsResult:
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
+        """
+        The Terraform Resource ID. This has the format "{{ stack_id }}".
+        """
         return pulumi.get(self, "id")
 
     @_builtins.property
@@ -55,6 +58,9 @@ class GetAwsCloudwatchScrapeJobsResult:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> _builtins.str:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
 
@@ -73,6 +79,13 @@ def get_aws_cloudwatch_scrape_jobs(scrape_jobs: Optional[Sequence[Union['GetAwsC
                                    stack_id: Optional[_builtins.str] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAwsCloudwatchScrapeJobsResult:
     """
+    This data source allows you to look up all existing Grafana Cloud AWS CloudWatch Scrape Job resources in your stack.
+
+    See the Grafana Provider configuration docs
+    for information on authentication and required access policy scopes.
+
+    * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+
     ## Example Usage
 
     ```python
@@ -85,6 +98,7 @@ def get_aws_cloudwatch_scrape_jobs(scrape_jobs: Optional[Sequence[Union['GetAwsC
 
 
     :param Sequence[Union['GetAwsCloudwatchScrapeJobsScrapeJobArgs', 'GetAwsCloudwatchScrapeJobsScrapeJobArgsDict']] scrape_jobs: A list of AWS CloudWatch Scrape Job objects associated with the given StackID.
+    :param _builtins.str stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
     """
     __args__ = dict()
     __args__['scrapeJobs'] = scrape_jobs
@@ -100,6 +114,13 @@ def get_aws_cloudwatch_scrape_jobs_output(scrape_jobs: Optional[pulumi.Input[Opt
                                           stack_id: Optional[pulumi.Input[_builtins.str]] = None,
                                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAwsCloudwatchScrapeJobsResult]:
     """
+    This data source allows you to look up all existing Grafana Cloud AWS CloudWatch Scrape Job resources in your stack.
+
+    See the Grafana Provider configuration docs
+    for information on authentication and required access policy scopes.
+
+    * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+
     ## Example Usage
 
     ```python
@@ -112,6 +133,7 @@ def get_aws_cloudwatch_scrape_jobs_output(scrape_jobs: Optional[pulumi.Input[Opt
 
 
     :param Sequence[Union['GetAwsCloudwatchScrapeJobsScrapeJobArgs', 'GetAwsCloudwatchScrapeJobsScrapeJobArgsDict']] scrape_jobs: A list of AWS CloudWatch Scrape Job objects associated with the given StackID.
+    :param _builtins.str stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
     """
     __args__ = dict()
     __args__['scrapeJobs'] = scrape_jobs

@@ -39,7 +39,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:fleetManagement/pipeline:Pipeline name "{{ name }}"
+ * terraform import grafana_fleet_management_pipeline.name "{{ name }}"
  * ```
  */
 export class Pipeline extends pulumi.CustomResource {

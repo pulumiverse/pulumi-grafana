@@ -28,7 +28,6 @@ namespace Pulumiverse.Grafana.Cloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Grafana = Pulumi.Grafana;
     /// using Grafana = Pulumiverse.Grafana;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -81,7 +80,7 @@ namespace Pulumiverse.Grafana.Cloud
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:cloud/accessPolicyRotatingToken:AccessPolicyRotatingToken name "{{ region }}:{{ tokenId }}"
+    /// terraform import grafana_cloud_access_policy_rotating_token.name "{{ region }}:{{ tokenId }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:cloud/accessPolicyRotatingToken:AccessPolicyRotatingToken")]
@@ -99,6 +98,9 @@ namespace Pulumiverse.Grafana.Cloud
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// Deletes the token in Grafana Cloud when the resource is destroyed in Terraform, instead of leaving it to expire at its `ExpiresAt` time. Use it with `lifecycle { CreateBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `False`.
+        /// </summary>
         [Output("deleteOnDestroy")]
         public Output<bool?> DeleteOnDestroy { get; private set; } = null!;
 
@@ -216,6 +218,9 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("accessPolicyId", required: true)]
         public Input<string> AccessPolicyId { get; set; } = null!;
 
+        /// <summary>
+        /// Deletes the token in Grafana Cloud when the resource is destroyed in Terraform, instead of leaving it to expire at its `ExpiresAt` time. Use it with `lifecycle { CreateBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `False`.
+        /// </summary>
         [Input("deleteOnDestroy")]
         public Input<bool>? DeleteOnDestroy { get; set; }
 
@@ -269,6 +274,9 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// Deletes the token in Grafana Cloud when the resource is destroyed in Terraform, instead of leaving it to expire at its `ExpiresAt` time. Use it with `lifecycle { CreateBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `False`.
+        /// </summary>
         [Input("deleteOnDestroy")]
         public Input<bool>? DeleteOnDestroy { get; set; }
 

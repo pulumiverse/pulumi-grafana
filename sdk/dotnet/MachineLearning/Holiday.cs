@@ -77,7 +77,7 @@ namespace Pulumiverse.Grafana.MachineLearning
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:machineLearning/holiday:Holiday name "{{ id }}"
+    /// terraform import grafana_machine_learning_holiday.name "{{ id }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:machineLearning/holiday:Holiday")]

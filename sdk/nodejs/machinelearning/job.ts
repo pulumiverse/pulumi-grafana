@@ -176,7 +176,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:machineLearning/job:Job name "{{ id }}"
+ * terraform import grafana_machine_learning_job.name "{{ id }}"
  * ```
  */
 export class Job extends pulumi.CustomResource {

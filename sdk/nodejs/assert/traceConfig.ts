@@ -109,7 +109,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:assert/traceConfig:TraceConfig name "{{ name }}"
+ * terraform import grafana_asserts_trace_config.name "{{ name }}"
  * ```
  */
 export class TraceConfig extends pulumi.CustomResource {

@@ -59,11 +59,8 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:alerting/contactPoint:ContactPoint name "{{ name }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:alerting/contactPoint:ContactPoint name "{{ orgID }}:{{ name }}"
+// terraform import grafana_contact_point.name "{{ name }}"
+// terraform import grafana_contact_point.name "{{ orgID }}:{{ name }}"
 // ```
 type ContactPoint struct {
 	pulumi.CustomResourceState
@@ -71,8 +68,9 @@ type ContactPoint struct {
 	// A contact point that sends notifications to other Alertmanager instances.
 	Alertmanagers ContactPointAlertmanagerArrayOutput `pulumi:"alertmanagers"`
 	// A contact point that sends notifications to DingDing.
-	Dingdings         ContactPointDingdingArrayOutput `pulumi:"dingdings"`
-	DisableProvenance pulumi.BoolPtrOutput            `pulumi:"disableProvenance"`
+	Dingdings ContactPointDingdingArrayOutput `pulumi:"dingdings"`
+	// Allow modifying the contact point from other sources than Terraform or the Grafana API. Defaults to `false`.
+	DisableProvenance pulumi.BoolPtrOutput `pulumi:"disableProvenance"`
 	// A contact point that sends notifications as Discord messages
 	Discords ContactPointDiscordArrayOutput `pulumi:"discords"`
 	// A contact point that sends notifications to an email address.
@@ -158,8 +156,9 @@ type contactPointState struct {
 	// A contact point that sends notifications to other Alertmanager instances.
 	Alertmanagers []ContactPointAlertmanager `pulumi:"alertmanagers"`
 	// A contact point that sends notifications to DingDing.
-	Dingdings         []ContactPointDingding `pulumi:"dingdings"`
-	DisableProvenance *bool                  `pulumi:"disableProvenance"`
+	Dingdings []ContactPointDingding `pulumi:"dingdings"`
+	// Allow modifying the contact point from other sources than Terraform or the Grafana API. Defaults to `false`.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// A contact point that sends notifications as Discord messages
 	Discords []ContactPointDiscord `pulumi:"discords"`
 	// A contact point that sends notifications to an email address.
@@ -210,7 +209,8 @@ type ContactPointState struct {
 	// A contact point that sends notifications to other Alertmanager instances.
 	Alertmanagers ContactPointAlertmanagerArrayInput
 	// A contact point that sends notifications to DingDing.
-	Dingdings         ContactPointDingdingArrayInput
+	Dingdings ContactPointDingdingArrayInput
+	// Allow modifying the contact point from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance pulumi.BoolPtrInput
 	// A contact point that sends notifications as Discord messages
 	Discords ContactPointDiscordArrayInput
@@ -266,8 +266,9 @@ type contactPointArgs struct {
 	// A contact point that sends notifications to other Alertmanager instances.
 	Alertmanagers []ContactPointAlertmanager `pulumi:"alertmanagers"`
 	// A contact point that sends notifications to DingDing.
-	Dingdings         []ContactPointDingding `pulumi:"dingdings"`
-	DisableProvenance *bool                  `pulumi:"disableProvenance"`
+	Dingdings []ContactPointDingding `pulumi:"dingdings"`
+	// Allow modifying the contact point from other sources than Terraform or the Grafana API. Defaults to `false`.
+	DisableProvenance *bool `pulumi:"disableProvenance"`
 	// A contact point that sends notifications as Discord messages
 	Discords []ContactPointDiscord `pulumi:"discords"`
 	// A contact point that sends notifications to an email address.
@@ -319,7 +320,8 @@ type ContactPointArgs struct {
 	// A contact point that sends notifications to other Alertmanager instances.
 	Alertmanagers ContactPointAlertmanagerArrayInput
 	// A contact point that sends notifications to DingDing.
-	Dingdings         ContactPointDingdingArrayInput
+	Dingdings ContactPointDingdingArrayInput
+	// Allow modifying the contact point from other sources than Terraform or the Grafana API. Defaults to `false`.
 	DisableProvenance pulumi.BoolPtrInput
 	// A contact point that sends notifications as Discord messages
 	Discords ContactPointDiscordArrayInput
@@ -464,6 +466,7 @@ func (o ContactPointOutput) Dingdings() ContactPointDingdingArrayOutput {
 	return o.ApplyT(func(v *ContactPoint) ContactPointDingdingArrayOutput { return v.Dingdings }).(ContactPointDingdingArrayOutput)
 }
 
+// Allow modifying the contact point from other sources than Terraform or the Grafana API. Defaults to `false`.
 func (o ContactPointOutput) DisableProvenance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ContactPoint) pulumi.BoolPtrOutput { return v.DisableProvenance }).(pulumi.BoolPtrOutput)
 }

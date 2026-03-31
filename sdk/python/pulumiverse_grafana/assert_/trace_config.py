@@ -29,6 +29,7 @@ class TraceConfigArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TraceConfig resource.
+
         :param pulumi.Input[_builtins.str] data_source_uid: DataSource to be queried (e.g., a Tempo instance).
         :param pulumi.Input[_builtins.bool] default_config: Is it the default config, therefore undeletable?
         :param pulumi.Input[_builtins.int] priority: Priority of the trace configuration. A lower number means a higher priority.
@@ -130,6 +131,7 @@ class _TraceConfigState:
                  priority: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering TraceConfig resources.
+
         :param pulumi.Input[_builtins.str] data_source_uid: DataSource to be queried (e.g., a Tempo instance).
         :param pulumi.Input[_builtins.bool] default_config: Is it the default config, therefore undeletable?
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entity_property_to_trace_label_mapping: Mapping of entity properties to trace labels.
@@ -336,8 +338,9 @@ class TraceConfig(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/traceConfig:TraceConfig name "{{ name }}"
+        terraform import grafana_asserts_trace_config.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -454,8 +457,9 @@ class TraceConfig(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:assert/traceConfig:TraceConfig name "{{ name }}"
+        terraform import grafana_asserts_trace_config.name "{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TraceConfigArgs args: The arguments to use to populate this resource's properties.

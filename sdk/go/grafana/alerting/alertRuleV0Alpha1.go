@@ -11,7 +11,148 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
-// This resource is currently under development. Documentation will be provided in a future release.
+// Manages Grafana Alert Rules.
+//
+// This resource is currently in alpha and is subject to change. Grafana 12.4+ users must enable the `kubernetesAlertingRules` [feature toggle](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting"
+//	alertingv0alpha1 "github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/alerting/v0alpha1"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			alertruleFolder, err := oss.NewFolder(ctx, "alertrule_folder", &oss.FolderArgs{
+//				Title: pulumi.String("Alert Rule Folder"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"model": map[string]interface{}{
+//					"datasource": map[string]interface{}{
+//						"type": "prometheus",
+//						"uid":  "ds_uid",
+//					},
+//					"editorMode":    "code",
+//					"expr":          "count(up{})",
+//					"instant":       true,
+//					"intervalMs":    1000,
+//					"legendFormat":  "__auto",
+//					"maxDataPoints": 43200,
+//					"range":         false,
+//					"refId":         "A",
+//				},
+//				"datasource_uid": "ds_uid",
+//				"relative_time_range": map[string]interface{}{
+//					"from": "600s",
+//					"to":   "0s",
+//				},
+//				"query_type": "",
+//				"source":     true,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"model": map[string]interface{}{
+//					"conditions": []map[string]interface{}{
+//						map[string]interface{}{
+//							"evaluator": map[string]interface{}{
+//								"params": []float64{
+//									1,
+//								},
+//								"type": "gt",
+//							},
+//							"operator": map[string]interface{}{
+//								"type": "and",
+//							},
+//							"query": map[string]interface{}{
+//								"params": []string{
+//									"C",
+//								},
+//							},
+//							"reducer": map[string]interface{}{
+//								"params": []interface{}{},
+//								"type":   "last",
+//							},
+//							"type": "query",
+//						},
+//					},
+//					"datasource": map[string]interface{}{
+//						"type": "__expr__",
+//						"uid":  "__expr__",
+//					},
+//					"expression":    "A",
+//					"intervalMs":    1000,
+//					"maxDataPoints": 43200,
+//					"refId":         "C",
+//					"type":          "threshold",
+//				},
+//				"datasource_uid": "__expr__",
+//				"query_type":     "",
+//				"source":         false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
+//			_, err = alerting.NewAlertRule(ctx, "example", &alerting.AlertRuleArgs{
+//				Metadata: &alertingv0alpha1.AlertRuleMetadataArgs{
+//					Uid:       pulumi.String("example-alert-rule"),
+//					FolderUid: alertruleFolder.Uid,
+//				},
+//				Spec: &alertingv0alpha1.AlertRuleSpecArgs{
+//					Title: pulumi.String("Example Alert Rule"),
+//					Trigger: &alertingv0alpha1.AlertRuleSpecTriggerArgs{
+//						Interval: pulumi.String("1m"),
+//					},
+//					Paused: pulumi.Bool(true),
+//					Expressions: pulumi.StringMap{
+//						"A": pulumi.String(pulumi.String(json0)),
+//						"B": pulumi.String(pulumi.String(json1)),
+//					},
+//					For: pulumi.String("5m"),
+//					Labels: pulumi.StringMap{
+//						"severity": pulumi.String("critical"),
+//					},
+//					Annotations: pulumi.StringMap{
+//						"runbook_url": pulumi.String("https://example.com"),
+//					},
+//					NoDataState:                 pulumi.String("KeepLast"),
+//					ExecErrState:                pulumi.String("KeepLast"),
+//					MissingSeriesEvalsToResolve: pulumi.Int(5),
+//					NotificationSettings: &alertingv0alpha1.AlertRuleSpecNotificationSettingsArgs{
+//						ContactPoint: pulumi.String("grafana-default-email"),
+//					},
+//					PanelRef: pulumi.StringMap{
+//						"dashboard_uid": pulumi.String("dashboard123"),
+//						"panel_id":      pulumi.String("5"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Deprecated: grafana.alerting/alertrulev0alpha1.AlertRuleV0Alpha1 has been deprecated in favor of grafana.alerting/v0alpha1/alertrule.AlertRule
 type AlertRuleV0Alpha1 struct {
 	pulumi.CustomResourceState
 
@@ -30,6 +171,12 @@ func NewAlertRuleV0Alpha1(ctx *pulumi.Context,
 		args = &AlertRuleV0Alpha1Args{}
 	}
 
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AlertRuleV0Alpha1
 	err := ctx.RegisterResource("grafana:alerting/alertRuleV0Alpha1:AlertRuleV0Alpha1", name, args, &resource, opts...)

@@ -26,16 +26,17 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
+//	cloudv1alpha1 "github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud/v1alpha1"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloud.NewProductActivationK8sO11yConfigV1Alpha1(ctx, "example", &cloud.ProductActivationK8sO11yConfigV1Alpha1Args{
-//				Metadata: &cloud.ProductActivationK8sO11yConfigV1Alpha1MetadataArgs{
+//			_, err := cloud.NewProductActivationK8sO11yConfig(ctx, "example", &cloud.ProductActivationK8sO11yConfigArgs{
+//				Metadata: &cloudv1alpha1.ProductActivationK8sO11yConfigMetadataArgs{
 //					Uid: pulumi.String("global"),
 //				},
-//				Spec: &cloud.ProductActivationK8sO11yConfigV1Alpha1SpecArgs{
+//				Spec: &cloudv1alpha1.ProductActivationK8sO11yConfigSpecArgs{
 //					Enabled: pulumi.Bool(true),
 //				},
 //			})
@@ -50,13 +51,14 @@ import (
 //
 // ## Import
 //
-// #!/bin/bash
-//
-// # Import an existing Kubernetes observability config by its UID
+// !/bin/bash
+// Import an existing Kubernetes observability config by its UID
 //
 // ```sh
 // $ pulumi import grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1 example my-k8s-o11y-config
 // ```
+//
+// Deprecated: grafana.cloud/productactivationk8so11yconfigv1alpha1.ProductActivationK8sO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationk8so11yconfig.ProductActivationK8sO11yConfig
 type ProductActivationK8sO11yConfigV1Alpha1 struct {
 	pulumi.CustomResourceState
 
@@ -75,6 +77,12 @@ func NewProductActivationK8sO11yConfigV1Alpha1(ctx *pulumi.Context,
 		args = &ProductActivationK8sO11yConfigV1Alpha1Args{}
 	}
 
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1"),
+		},
+	})
+	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ProductActivationK8sO11yConfigV1Alpha1
 	err := ctx.RegisterResource("grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1", name, args, &resource, opts...)

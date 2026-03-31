@@ -56,8 +56,8 @@ import (
 //			foo, err := oss.NewDataSource(ctx, "foo", &oss.DataSourceArgs{
 //				Type:                  pulumi.String("cloudwatch"),
 //				Name:                  pulumi.String("cw-example"),
-//				JsonDataEncoded:       pulumi.String(json0),
-//				SecureJsonDataEncoded: pulumi.String(json1),
+//				JsonDataEncoded:       pulumi.String(pulumi.String(json0)),
+//				SecureJsonDataEncoded: pulumi.String(pulumi.String(json1)),
 //			})
 //			if err != nil {
 //				return err
@@ -119,11 +119,8 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem name "{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem name "{{ orgID }}:{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+// terraform import grafana_data_source_permission_item.name "{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+// terraform import grafana_data_source_permission_item.name "{{ orgID }}:{{ datasourceUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
 // ```
 type DataSourcePermissionItem struct {
 	pulumi.CustomResourceState

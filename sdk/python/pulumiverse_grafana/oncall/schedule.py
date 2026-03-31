@@ -32,6 +32,7 @@ class ScheduleArgs:
                  time_zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Schedule resource.
+
         :param pulumi.Input[_builtins.str] type: The schedule's type. Valid values are `ical`, `calendar`, `web`.
         :param pulumi.Input[_builtins.bool] enable_web_overrides: Enable overrides via web UI (it will ignore ical*url*overrides).
         :param pulumi.Input[_builtins.str] ical_url_overrides: The URL of external iCal calendar which override primary events.
@@ -183,6 +184,7 @@ class _ScheduleState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Schedule resources.
+
         :param pulumi.Input[_builtins.bool] enable_web_overrides: Enable overrides via web UI (it will ignore ical*url*overrides).
         :param pulumi.Input[_builtins.str] ical_url_overrides: The URL of external iCal calendar which override primary events.
         :param pulumi.Input[_builtins.str] ical_url_primary: The URL of the external calendar iCal file.
@@ -343,8 +345,9 @@ class Schedule(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/schedule:Schedule name "{{ id }}"
+        terraform import grafana_oncall_schedule.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -370,8 +373,9 @@ class Schedule(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/schedule:Schedule name "{{ id }}"
+        terraform import grafana_oncall_schedule.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ScheduleArgs args: The arguments to use to populate this resource's properties.

@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * Manages Grafana annotations.
+ *
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/annotations/)
  *
@@ -20,11 +22,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/annotation:Annotation name "{{ id }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:oss/annotation:Annotation name "{{ orgID }}:{{ id }}"
+ * terraform import grafana_annotation.name "{{ id }}"
+ * terraform import grafana_annotation.name "{{ orgID }}:{{ id }}"
  * ```
  */
 export class Annotation extends pulumi.CustomResource {
@@ -60,9 +59,9 @@ export class Annotation extends pulumi.CustomResource {
      */
     declare public readonly dashboardUid: pulumi.Output<string | undefined>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
-    declare public readonly orgId: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * The ID of the dashboard panel on which to create the annotation.
      */
@@ -133,7 +132,7 @@ export interface AnnotationState {
      */
     dashboardUid?: pulumi.Input<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     /**
@@ -167,7 +166,7 @@ export interface AnnotationArgs {
      */
     dashboardUid?: pulumi.Input<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     /**

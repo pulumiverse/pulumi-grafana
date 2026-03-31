@@ -29,7 +29,13 @@ export function getPrivateDataSourceConnectNetworks(args?: GetPrivateDataSourceC
  * A collection of arguments for invoking getPrivateDataSourceConnectNetworks.
  */
 export interface GetPrivateDataSourceConnectNetworksArgs {
+    /**
+     * If set, only private data source connect networks with the specified name will be returned. This is faster than filtering in Terraform.
+     */
     nameFilter?: string;
+    /**
+     * If set, only private data source connect networks in the specified region will be returned. This is faster than filtering in Terraform.
+     */
     regionFilter?: string;
 }
 
@@ -41,8 +47,14 @@ export interface GetPrivateDataSourceConnectNetworksResult {
      * The ID of this datasource. This is an internal identifier used by the provider to track this datasource.
      */
     readonly id: string;
+    /**
+     * If set, only private data source connect networks with the specified name will be returned. This is faster than filtering in Terraform.
+     */
     readonly nameFilter?: string;
     readonly privateDataSourceConnectNetworks: outputs.cloud.GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetwork[];
+    /**
+     * If set, only private data source connect networks in the specified region will be returned. This is faster than filtering in Terraform.
+     */
     readonly regionFilter?: string;
 }
 /**
@@ -68,6 +80,12 @@ export function getPrivateDataSourceConnectNetworksOutput(args?: GetPrivateDataS
  * A collection of arguments for invoking getPrivateDataSourceConnectNetworks.
  */
 export interface GetPrivateDataSourceConnectNetworksOutputArgs {
+    /**
+     * If set, only private data source connect networks with the specified name will be returned. This is faster than filtering in Terraform.
+     */
     nameFilter?: pulumi.Input<string>;
+    /**
+     * If set, only private data source connect networks in the specified region will be returned. This is faster than filtering in Terraform.
+     */
     regionFilter?: pulumi.Input<string>;
 }

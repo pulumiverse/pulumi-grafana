@@ -51,11 +51,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:alerting/muteTiming:MuteTiming name "{{ name }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:alerting/muteTiming:MuteTiming name "{{ orgID }}:{{ name }}"
+ * terraform import grafana_mute_timing.name "{{ name }}"
+ * terraform import grafana_mute_timing.name "{{ orgID }}:{{ name }}"
  * ```
  */
 export class MuteTiming extends pulumi.CustomResource {
@@ -86,6 +83,9 @@ export class MuteTiming extends pulumi.CustomResource {
         return obj['__pulumiType'] === MuteTiming.__pulumiType;
     }
 
+    /**
+     * Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
+     */
     declare public readonly disableProvenance: pulumi.Output<boolean | undefined>;
     /**
      * The time intervals at which to mute notifications. Use an empty block to mute all the time.
@@ -135,6 +135,9 @@ export class MuteTiming extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MuteTiming resources.
  */
 export interface MuteTimingState {
+    /**
+     * Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
+     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * The time intervals at which to mute notifications. Use an empty block to mute all the time.
@@ -154,6 +157,9 @@ export interface MuteTimingState {
  * The set of arguments for constructing a MuteTiming resource.
  */
 export interface MuteTimingArgs {
+    /**
+     * Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.
+     */
     disableProvenance?: pulumi.Input<boolean>;
     /**
      * The time intervals at which to mute notifications. Use an empty block to mute all the time.

@@ -25,6 +25,7 @@ class ServiceAccountArgs:
                  org_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceAccount resource.
+
         :param pulumi.Input[_builtins.str] role: The basic role of the service account in the organization.
         :param pulumi.Input[_builtins.bool] is_disabled: The disabled status for the service account. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: The name of the service account.
@@ -96,6 +97,7 @@ class _ServiceAccountState:
                  role: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceAccount resources.
+
         :param pulumi.Input[_builtins.bool] is_disabled: The disabled status for the service account. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: The name of the service account.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -191,12 +193,10 @@ class ServiceAccount(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/serviceAccount:ServiceAccount name "{{ id }}"
+        terraform import grafana_service_account.name "{{ id }}"
+        terraform import grafana_service_account.name "{{ orgID }}:{{ id }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/serviceAccount:ServiceAccount name "{{ orgID }}:{{ id }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -232,12 +232,10 @@ class ServiceAccount(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:oss/serviceAccount:ServiceAccount name "{{ id }}"
+        terraform import grafana_service_account.name "{{ id }}"
+        terraform import grafana_service_account.name "{{ orgID }}:{{ id }}"
         ```
 
-        ```sh
-        $ pulumi import grafana:oss/serviceAccount:ServiceAccount name "{{ orgID }}:{{ id }}"
-        ```
 
         :param str resource_name: The name of the resource.
         :param ServiceAccountArgs args: The arguments to use to populate this resource's properties.

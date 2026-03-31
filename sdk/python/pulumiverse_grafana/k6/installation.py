@@ -26,6 +26,7 @@ class InstallationArgs:
                  k6_api_url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Installation resource.
+
         :param pulumi.Input[_builtins.str] cloud_access_policy_token: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
         :param pulumi.Input[_builtins.str] grafana_sa_token: The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
         :param pulumi.Input[_builtins.str] grafana_user: The user to use for the installation.
@@ -112,6 +113,7 @@ class _InstallationState:
                  stack_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Installation resources.
+
         :param pulumi.Input[_builtins.str] cloud_access_policy_token: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
         :param pulumi.Input[_builtins.str] grafana_sa_token: The [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token.
         :param pulumi.Input[_builtins.str] grafana_user: The user to use for the installation.
@@ -285,6 +287,7 @@ class Installation(pulumi.CustomResource):
         my_k6_project = grafana.k6.Project("my_k6_project", name="k6 Project created with TF")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cloud_access_policy_token: The [Grafana Cloud access policy](https://grafana.com/docs/grafana-cloud/account-management/authentication-and-permissions/access-policies/).
@@ -351,6 +354,7 @@ class Installation(pulumi.CustomResource):
             grafana_user="admin")
         my_k6_project = grafana.k6.Project("my_k6_project", name="k6 Project created with TF")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstallationArgs args: The arguments to use to populate this resource's properties.

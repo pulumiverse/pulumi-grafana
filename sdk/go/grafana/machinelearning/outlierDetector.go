@@ -106,7 +106,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:machineLearning/outlierDetector:OutlierDetector name "{{ id }}"
+// terraform import grafana_machine_learning_outlier_detector.name "{{ id }}"
 // ```
 type OutlierDetector struct {
 	pulumi.CustomResourceState

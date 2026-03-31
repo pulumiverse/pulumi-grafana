@@ -122,13 +122,42 @@ class AppsDashboardMetadata(dict):
 
 @pulumi.output_type
 class AppsDashboardOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowUiUpdates":
+            suggest = "allow_ui_updates"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AppsDashboardOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AppsDashboardOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AppsDashboardOptions.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
+                 allow_ui_updates: Optional[_builtins.bool] = None,
                  overwrite: Optional[_builtins.bool] = None):
         """
+        :param _builtins.bool allow_ui_updates: Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
         :param _builtins.bool overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         """
+        if allow_ui_updates is not None:
+            pulumi.set(__self__, "allow_ui_updates", allow_ui_updates)
         if overwrite is not None:
             pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter(name="allowUiUpdates")
+    def allow_ui_updates(self) -> Optional[_builtins.bool]:
+        """
+        Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+        """
+        return pulumi.get(self, "allow_ui_updates")
 
     @_builtins.property
     @pulumi.getter

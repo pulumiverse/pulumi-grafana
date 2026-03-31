@@ -53,7 +53,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:cloud/accessPolicy:AccessPolicy name "{{ region }}:{{ policyId }}"
+ * terraform import grafana_cloud_access_policy.name "{{ region }}:{{ policyId }}"
  * ```
  */
 export class AccessPolicy extends pulumi.CustomResource {

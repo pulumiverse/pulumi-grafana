@@ -7,6 +7,13 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * This data source allows you to look up all existing Grafana Cloud AWS CloudWatch Scrape Job resources in your stack.
+ *
+ * See the Grafana Provider configuration docs
+ * for information on authentication and required access policy scopes.
+ *
+ * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -37,6 +44,9 @@ export interface GetAwsCloudwatchScrapeJobsArgs {
      * A list of AWS CloudWatch Scrape Job objects associated with the given StackID.
      */
     scrapeJobs?: inputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJob[];
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: string;
 }
 
@@ -44,14 +54,27 @@ export interface GetAwsCloudwatchScrapeJobsArgs {
  * A collection of values returned by getAwsCloudwatchScrapeJobs.
  */
 export interface GetAwsCloudwatchScrapeJobsResult {
+    /**
+     * The Terraform Resource ID. This has the format "{{ stackId }}".
+     */
     readonly id: string;
     /**
      * A list of AWS CloudWatch Scrape Job objects associated with the given StackID.
      */
     readonly scrapeJobs?: outputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJob[];
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     readonly stackId: string;
 }
 /**
+ * This data source allows you to look up all existing Grafana Cloud AWS CloudWatch Scrape Job resources in your stack.
+ *
+ * See the Grafana Provider configuration docs
+ * for information on authentication and required access policy scopes.
+ *
+ * * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -82,5 +105,8 @@ export interface GetAwsCloudwatchScrapeJobsOutputArgs {
      * A list of AWS CloudWatch Scrape Job objects associated with the given StackID.
      */
     scrapeJobs?: pulumi.Input<pulumi.Input<inputs.cloudProvider.GetAwsCloudwatchScrapeJobsScrapeJobArgs>[]>;
+    /**
+     * The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+     */
     stackId: pulumi.Input<string>;
 }

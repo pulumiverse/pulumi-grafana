@@ -63,8 +63,8 @@ import (
 //				Url:                   pulumi.String("https://my-instance.com"),
 //				BasicAuthEnabled:      pulumi.Bool(true),
 //				BasicAuthUsername:     pulumi.String("username"),
-//				JsonDataEncoded:       pulumi.String(json0),
-//				SecureJsonDataEncoded: pulumi.String(json1),
+//				JsonDataEncoded:       pulumi.String(pulumi.String(json0)),
+//				SecureJsonDataEncoded: pulumi.String(pulumi.String(json1)),
 //			})
 //			if err != nil {
 //				return err
@@ -129,8 +129,8 @@ import (
 //				Url:                   pulumi.String("https://my-instance.com"),
 //				BasicAuthEnabled:      pulumi.Bool(true),
 //				BasicAuthUsername:     pulumi.String("username"),
-//				JsonDataEncoded:       pulumi.String(json0),
-//				SecureJsonDataEncoded: pulumi.String(json1),
+//				JsonDataEncoded:       pulumi.String(pulumi.String(json0)),
+//				SecureJsonDataEncoded: pulumi.String(pulumi.String(json1)),
 //			})
 //			if err != nil {
 //				return err
@@ -202,8 +202,8 @@ import (
 //				Url:                   pulumi.String("https://my-instance.com"),
 //				BasicAuthEnabled:      pulumi.Bool(true),
 //				BasicAuthUsername:     pulumi.String("username"),
-//				JsonDataEncoded:       pulumi.String(json0),
-//				SecureJsonDataEncoded: pulumi.String(json1),
+//				JsonDataEncoded:       pulumi.String(pulumi.String(json0)),
+//				SecureJsonDataEncoded: pulumi.String(pulumi.String(json1)),
 //			})
 //			if err != nil {
 //				return err
@@ -271,8 +271,8 @@ import (
 //				Url:                   pulumi.String("https://my-instance.com"),
 //				BasicAuthEnabled:      pulumi.Bool(true),
 //				BasicAuthUsername:     pulumi.String("username"),
-//				JsonDataEncoded:       pulumi.String(json0),
-//				SecureJsonDataEncoded: pulumi.String(json1),
+//				JsonDataEncoded:       pulumi.String(pulumi.String(json0)),
+//				SecureJsonDataEncoded: pulumi.String(pulumi.String(json1)),
 //			})
 //			if err != nil {
 //				return err
@@ -314,7 +314,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:machineLearning/job:Job name "{{ id }}"
+// terraform import grafana_machine_learning_job.name "{{ id }}"
 // ```
 type Job struct {
 	pulumi.CustomResourceState

@@ -63,7 +63,7 @@ namespace Pulumiverse.Grafana.Assert
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig name "{{ name }}"
+    /// terraform import grafana_asserts_suppressed_assertions_config.name "{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig")]

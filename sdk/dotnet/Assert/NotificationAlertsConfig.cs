@@ -123,7 +123,7 @@ namespace Pulumiverse.Grafana.Assert
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:assert/notificationAlertsConfig:NotificationAlertsConfig name "{{ name }}"
+    /// terraform import grafana_asserts_notification_alerts_config.name "{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:assert/notificationAlertsConfig:NotificationAlertsConfig")]

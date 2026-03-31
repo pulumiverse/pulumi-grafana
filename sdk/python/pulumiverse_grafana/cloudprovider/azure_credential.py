@@ -31,8 +31,10 @@ class AzureCredentialArgs:
                  resource_tags_to_add_to_metrics: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AzureCredential resource.
+
         :param pulumi.Input[_builtins.str] client_id: The client ID of the Azure Credential.
         :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Credential.
+        :param pulumi.Input[_builtins.str] stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant ID of the Azure Credential.
         :param pulumi.Input[Sequence[pulumi.Input['AzureCredentialAutoDiscoveryConfigurationArgs']]] auto_discovery_configurations: The list of auto discovery configurations.
         :param pulumi.Input[_builtins.str] name: The name of the Azure Credential.
@@ -79,6 +81,9 @@ class AzureCredentialArgs:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
@@ -160,6 +165,7 @@ class _AzureCredentialState:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AzureCredential resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['AzureCredentialAutoDiscoveryConfigurationArgs']]] auto_discovery_configurations: The list of auto discovery configurations.
         :param pulumi.Input[_builtins.str] client_id: The client ID of the Azure Credential.
         :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Credential.
@@ -167,6 +173,7 @@ class _AzureCredentialState:
         :param pulumi.Input[Sequence[pulumi.Input['AzureCredentialResourceDiscoveryTagFilterArgs']]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
         :param pulumi.Input[_builtins.str] resource_id: The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_tags_to_add_to_metrics: The list of resource tags to add to metrics.
+        :param pulumi.Input[_builtins.str] stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant ID of the Azure Credential.
         """
         if auto_discovery_configurations is not None:
@@ -275,6 +282,9 @@ class _AzureCredentialState:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
@@ -310,6 +320,13 @@ class AzureCredential(pulumi.CustomResource):
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        This resource allows you to autodiscover resources in your Azure tenant and scrape Azure Monitor metrics for those resources in Grafana Cloud without needing to run your own infrastructure.
+
+        See the Grafana Provider configuration docs
+        for information on authentication and required access policy scopes.
+
+        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+
         ## Example Usage
 
         ```python
@@ -363,8 +380,9 @@ class AzureCredential(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloudProvider/azureCredential:AzureCredential name "{{ stack_id }}:{{ resource_id }}"
+        terraform import grafana_cloud_provider_azure_credential.name "{{ stack_id }}:{{ resource_id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -374,6 +392,7 @@ class AzureCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the Azure Credential.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialResourceDiscoveryTagFilterArgs', 'AzureCredentialResourceDiscoveryTagFilterArgsDict']]]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_tags_to_add_to_metrics: The list of resource tags to add to metrics.
+        :param pulumi.Input[_builtins.str] stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant ID of the Azure Credential.
         """
         ...
@@ -383,6 +402,13 @@ class AzureCredential(pulumi.CustomResource):
                  args: AzureCredentialArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        This resource allows you to autodiscover resources in your Azure tenant and scrape Azure Monitor metrics for those resources in Grafana Cloud without needing to run your own infrastructure.
+
+        See the Grafana Provider configuration docs
+        for information on authentication and required access policy scopes.
+
+        * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/azure/)
+
         ## Example Usage
 
         ```python
@@ -436,8 +462,9 @@ class AzureCredential(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloudProvider/azureCredential:AzureCredential name "{{ stack_id }}:{{ resource_id }}"
+        terraform import grafana_cloud_provider_azure_credential.name "{{ stack_id }}:{{ resource_id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AzureCredentialArgs args: The arguments to use to populate this resource's properties.
@@ -523,6 +550,7 @@ class AzureCredential(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['AzureCredentialResourceDiscoveryTagFilterArgs', 'AzureCredentialResourceDiscoveryTagFilterArgsDict']]]] resource_discovery_tag_filters: The list of tag filters to apply to resources.
         :param pulumi.Input[_builtins.str] resource_id: The ID given by the Grafana Cloud Provider API to this Azure Credential resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_tags_to_add_to_metrics: The list of resource tags to add to metrics.
+        :param pulumi.Input[_builtins.str] stack_id: The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant ID of the Azure Credential.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -599,6 +627,9 @@ class AzureCredential(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The StackID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @_builtins.property

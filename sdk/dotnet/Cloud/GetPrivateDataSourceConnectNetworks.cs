@@ -55,9 +55,15 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class GetPrivateDataSourceConnectNetworksArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// If set, only private data source connect networks with the specified name will be returned. This is faster than filtering in Terraform.
+        /// </summary>
         [Input("nameFilter")]
         public string? NameFilter { get; set; }
 
+        /// <summary>
+        /// If set, only private data source connect networks in the specified region will be returned. This is faster than filtering in Terraform.
+        /// </summary>
         [Input("regionFilter")]
         public string? RegionFilter { get; set; }
 
@@ -69,9 +75,15 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class GetPrivateDataSourceConnectNetworksInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// If set, only private data source connect networks with the specified name will be returned. This is faster than filtering in Terraform.
+        /// </summary>
         [Input("nameFilter")]
         public Input<string>? NameFilter { get; set; }
 
+        /// <summary>
+        /// If set, only private data source connect networks in the specified region will be returned. This is faster than filtering in Terraform.
+        /// </summary>
         [Input("regionFilter")]
         public Input<string>? RegionFilter { get; set; }
 
@@ -89,8 +101,14 @@ namespace Pulumiverse.Grafana.Cloud
         /// The ID of this datasource. This is an internal identifier used by the provider to track this datasource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// If set, only private data source connect networks with the specified name will be returned. This is faster than filtering in Terraform.
+        /// </summary>
         public readonly string? NameFilter;
         public readonly ImmutableArray<Outputs.GetPrivateDataSourceConnectNetworksPrivateDataSourceConnectNetworkResult> PrivateDataSourceConnectNetworks;
+        /// <summary>
+        /// If set, only private data source connect networks in the specified region will be returned. This is faster than filtering in Terraform.
+        /// </summary>
         public readonly string? RegionFilter;
 
         [OutputConstructor]

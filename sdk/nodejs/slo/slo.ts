@@ -220,7 +220,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:slo/sLO:SLO name "{{ uuid }}"
+ * terraform import grafana_slo.name "{{ uuid }}"
  * ```
  */
 export class SLO extends pulumi.CustomResource {

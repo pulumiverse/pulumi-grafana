@@ -23,6 +23,7 @@ class ProjectAllowedLoadZonesArgs:
                  project_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a ProjectAllowedLoadZones resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_load_zones: List of allowed private k6 load zone IDs for this project.
         :param pulumi.Input[_builtins.str] project_id: The identifier of the project to manage private allowed load zones for.
         """
@@ -61,6 +62,7 @@ class _ProjectAllowedLoadZonesState:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProjectAllowedLoadZones resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_load_zones: List of allowed private k6 load zone IDs for this project.
         :param pulumi.Input[_builtins.str] project_id: The identifier of the project to manage private allowed load zones for.
         """
@@ -124,8 +126,9 @@ class ProjectAllowedLoadZones(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:k6/projectAllowedLoadZones:ProjectAllowedLoadZones name "{{ project_id }}"
+        terraform import grafana_k6_project_allowed_load_zones.name "{{ project_id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -159,8 +162,9 @@ class ProjectAllowedLoadZones(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:k6/projectAllowedLoadZones:ProjectAllowedLoadZones name "{{ project_id }}"
+        terraform import grafana_k6_project_allowed_load_zones.name "{{ project_id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProjectAllowedLoadZonesArgs args: The arguments to use to populate this resource's properties.

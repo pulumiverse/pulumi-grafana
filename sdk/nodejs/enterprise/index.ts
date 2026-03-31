@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { DataSourceCacheConfigArgs, DataSourceCacheConfigState } from "./dataSourceCacheConfig";
+export type DataSourceCacheConfig = import("./dataSourceCacheConfig").DataSourceCacheConfig;
+export const DataSourceCacheConfig: typeof import("./dataSourceCacheConfig").DataSourceCacheConfig = null as any;
+utilities.lazyLoad(exports, ["DataSourceCacheConfig"], () => require("./dataSourceCacheConfig"));
+
 export { DataSourceConfigLbacRulesArgs, DataSourceConfigLbacRulesState } from "./dataSourceConfigLbacRules";
 export type DataSourceConfigLbacRules = import("./dataSourceConfigLbacRules").DataSourceConfigLbacRules;
 export const DataSourceConfigLbacRules: typeof import("./dataSourceConfigLbacRules").DataSourceConfigLbacRules = null as any;
@@ -56,10 +61,19 @@ export const TeamExternalGroup: typeof import("./teamExternalGroup").TeamExterna
 utilities.lazyLoad(exports, ["TeamExternalGroup"], () => require("./teamExternalGroup"));
 
 
+// Export sub-modules:
+import * as v1beta1 from "./v1beta1";
+
+export {
+    v1beta1,
+};
+
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "grafana:enterprise/dataSourceCacheConfig:DataSourceCacheConfig":
+                return new DataSourceCacheConfig(name, <any>undefined, { urn })
             case "grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules":
                 return new DataSourceConfigLbacRules(name, <any>undefined, { urn })
             case "grafana:enterprise/dataSourcePermission:DataSourcePermission":
@@ -83,6 +97,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("grafana", "enterprise/dataSourceCacheConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/dataSourceConfigLbacRules", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/dataSourcePermission", _module)
 pulumi.runtime.registerResourceModule("grafana", "enterprise/dataSourcePermissionItem", _module)

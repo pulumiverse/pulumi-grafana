@@ -44,7 +44,7 @@ namespace Pulumiverse.Grafana.Cloud
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:cloud/pluginInstallation:PluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
+    /// terraform import grafana_cloud_plugin_installation.name "{{ stackSlug }}:{{ pluginSlug }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:cloud/pluginInstallation:PluginInstallation")]
@@ -62,6 +62,9 @@ namespace Pulumiverse.Grafana.Cloud
         [Output("stackSlug")]
         public Output<string> StackSlug { get; private set; } = null!;
 
+        /// <summary>
+        /// Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `Latest`.
+        /// </summary>
         [Output("version")]
         public Output<string?> Version { get; private set; } = null!;
 
@@ -124,6 +127,9 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("stackSlug", required: true)]
         public Input<string> StackSlug { get; set; } = null!;
 
+        /// <summary>
+        /// Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `Latest`.
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 
@@ -147,6 +153,9 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("stackSlug")]
         public Input<string>? StackSlug { get; set; }
 
+        /// <summary>
+        /// Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `Latest`.
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 

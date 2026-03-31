@@ -19,7 +19,7 @@ namespace Pulumiverse.Grafana.Connections
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -42,7 +42,7 @@ namespace Pulumiverse.Grafana.Connections
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -65,7 +65,7 @@ namespace Pulumiverse.Grafana.Connections
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Grafana = Pulumi.Grafana;
+        /// using Grafana = Pulumiverse.Grafana;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -85,9 +85,15 @@ namespace Pulumiverse.Grafana.Connections
 
     public sealed class GetMetricsEndpointScrapeJobArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public string StackId { get; set; } = null!;
 
@@ -99,9 +105,15 @@ namespace Pulumiverse.Grafana.Connections
 
     public sealed class GetMetricsEndpointScrapeJobInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public Input<string> StackId { get; set; } = null!;
 
@@ -135,12 +147,21 @@ namespace Pulumiverse.Grafana.Connections
         /// Whether the metrics endpoint scrape job is enabled or not.
         /// </summary>
         public readonly bool Enabled;
+        /// <summary>
+        /// The Terraform Resource ID. This has the format "{{ StackId }}:{{ name }}".
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The name of the Metrics Endpoint Scrape Job. Part of the Terraform Resource ID.
+        /// </summary>
         public readonly string Name;
         /// <summary>
         /// Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
         /// </summary>
         public readonly int ScrapeIntervalSeconds;
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         public readonly string StackId;
         /// <summary>
         /// The url to scrape metrics.

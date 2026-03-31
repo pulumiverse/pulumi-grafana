@@ -58,6 +58,9 @@ namespace Pulumiverse.Grafana.Cloud
     [GrafanaResourceType("grafana:cloud/stackServiceAccountRotatingToken:StackServiceAccountRotatingToken")]
     public partial class StackServiceAccountRotatingToken : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `Expiration` time. Use it with `lifecycle { CreateBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `False`.
+        /// </summary>
         [Output("deleteOnDestroy")]
         public Output<bool?> DeleteOnDestroy { get; private set; } = null!;
 
@@ -169,6 +172,9 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class StackServiceAccountRotatingTokenArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `Expiration` time. Use it with `lifecycle { CreateBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `False`.
+        /// </summary>
         [Input("deleteOnDestroy")]
         public Input<bool>? DeleteOnDestroy { get; set; }
 
@@ -207,6 +213,9 @@ namespace Pulumiverse.Grafana.Cloud
 
     public sealed class StackServiceAccountRotatingTokenState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `Expiration` time. Use it with `lifecycle { CreateBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `False`.
+        /// </summary>
         [Input("deleteOnDestroy")]
         public Input<bool>? DeleteOnDestroy { get; set; }
 

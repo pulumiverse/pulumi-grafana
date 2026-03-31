@@ -26,10 +26,12 @@ class ServiceAccountRotatingTokenArgs:
                  delete_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ServiceAccountRotatingToken resource.
+
         :param pulumi.Input[_builtins.int] early_rotation_window_seconds: Duration of the time window before expiring where the token can be rotated, in seconds.
         :param pulumi.Input[_builtins.str] name_prefix: Prefix for the name of the service account tokens created by this resource. The actual name will be stored in the computed field `name`, which will be in the format `<name_prefix>-<additional_characters>`.
         :param pulumi.Input[_builtins.int] seconds_to_live: The token expiration in seconds.
         :param pulumi.Input[_builtins.str] service_account_id: The ID of the service account to which the token belongs.
+        :param pulumi.Input[_builtins.bool] delete_on_destroy: Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { create_before_destroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
         """
         pulumi.set(__self__, "early_rotation_window_seconds", early_rotation_window_seconds)
         pulumi.set(__self__, "name_prefix", name_prefix)
@@ -89,6 +91,9 @@ class ServiceAccountRotatingTokenArgs:
     @_builtins.property
     @pulumi.getter(name="deleteOnDestroy")
     def delete_on_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { create_before_destroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+        """
         return pulumi.get(self, "delete_on_destroy")
 
     @delete_on_destroy.setter
@@ -111,6 +116,8 @@ class _ServiceAccountRotatingTokenState:
                  service_account_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceAccountRotatingToken resources.
+
+        :param pulumi.Input[_builtins.bool] delete_on_destroy: Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { create_before_destroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
         :param pulumi.Input[_builtins.int] early_rotation_window_seconds: Duration of the time window before expiring where the token can be rotated, in seconds.
         :param pulumi.Input[_builtins.str] expiration: The expiration date of the service account token.
         :param pulumi.Input[_builtins.bool] has_expired: The status of the service account token.
@@ -145,6 +152,9 @@ class _ServiceAccountRotatingTokenState:
     @_builtins.property
     @pulumi.getter(name="deleteOnDestroy")
     def delete_on_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { create_before_destroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+        """
         return pulumi.get(self, "delete_on_destroy")
 
     @delete_on_destroy.setter
@@ -295,8 +305,10 @@ class ServiceAccountRotatingToken(pulumi.CustomResource):
         pulumi.export("serviceAccountTokenFooKey", foo.key)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] delete_on_destroy: Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { create_before_destroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
         :param pulumi.Input[_builtins.int] early_rotation_window_seconds: Duration of the time window before expiring where the token can be rotated, in seconds.
         :param pulumi.Input[_builtins.str] name_prefix: Prefix for the name of the service account tokens created by this resource. The actual name will be stored in the computed field `name`, which will be in the format `<name_prefix>-<additional_characters>`.
         :param pulumi.Input[_builtins.int] seconds_to_live: The token expiration in seconds.
@@ -330,6 +342,7 @@ class ServiceAccountRotatingToken(pulumi.CustomResource):
             early_rotation_window_seconds=604800)
         pulumi.export("serviceAccountTokenFooKey", foo.key)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceAccountRotatingTokenArgs args: The arguments to use to populate this resource's properties.
@@ -407,6 +420,7 @@ class ServiceAccountRotatingToken(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] delete_on_destroy: Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { create_before_destroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
         :param pulumi.Input[_builtins.int] early_rotation_window_seconds: Duration of the time window before expiring where the token can be rotated, in seconds.
         :param pulumi.Input[_builtins.str] expiration: The expiration date of the service account token.
         :param pulumi.Input[_builtins.bool] has_expired: The status of the service account token.
@@ -436,6 +450,9 @@ class ServiceAccountRotatingToken(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="deleteOnDestroy")
     def delete_on_destroy(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { create_before_destroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
+        """
         return pulumi.get(self, "delete_on_destroy")
 
     @_builtins.property

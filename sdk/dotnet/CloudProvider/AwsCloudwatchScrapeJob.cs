@@ -11,12 +11,125 @@ using Pulumi;
 namespace Pulumiverse.Grafana.CloudProvider
 {
     /// <summary>
+    /// This resource allows you to scrape AWS CloudWatch metrics in Grafana Cloud without needing to run your own infrastructure.
+    /// 
+    /// See the Grafana Provider configuration docs
+    /// for information on authentication and required access policy scopes.
+    /// 
+    /// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+    /// 
     /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = Grafana.Cloud.GetStack.Invoke(new()
+    ///     {
+    ///         Slug = "gcloudstacktest",
+    ///     });
+    /// 
+    ///     var testIamRole = Aws.Index.IamRole.Invoke(new()
+    ///     {
+    ///         Name = "my-role",
+    ///     });
+    /// 
+    ///     var testAwsAccount = new Grafana.CloudProvider.AwsAccount("test", new()
+    ///     {
+    ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
+    ///         RoleArn = testIamRole.Arn,
+    ///         Regions = new[]
+    ///         {
+    ///             "us-east-1",
+    ///             "us-east-2",
+    ///             "us-west-1",
+    ///         },
+    ///     });
+    /// 
+    ///     var testAwsCloudwatchScrapeJob = new Grafana.CloudProvider.AwsCloudwatchScrapeJob("test", new()
+    ///     {
+    ///         StackId = test.Apply(getStackResult =&gt; getStackResult.Id),
+    ///         Name = "my-cloudwatch-scrape-job",
+    ///         AwsAccountResourceId = testAwsAccount.ResourceId,
+    ///         ExportTags = true,
+    ///         Services = new[]
+    ///         {
+    ///             new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceArgs
+    ///             {
+    ///                 Name = "AWS/EC2",
+    ///                 Metrics = new[]
+    ///                 {
+    ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceMetricArgs
+    ///                     {
+    ///                         Name = "CPUUtilization",
+    ///                         Statistics = new[]
+    ///                         {
+    ///                             "Average",
+    ///                         },
+    ///                     },
+    ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceMetricArgs
+    ///                     {
+    ///                         Name = "StatusCheckFailed",
+    ///                         Statistics = new[]
+    ///                         {
+    ///                             "Maximum",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 ScrapeIntervalSeconds = 300,
+    ///                 ResourceDiscoveryTagFilters = new[]
+    ///                 {
+    ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs
+    ///                     {
+    ///                         Key = "k8s.io/cluster-autoscaler/enabled",
+    ///                         Value = "true",
+    ///                     },
+    ///                 },
+    ///                 TagsToAddToMetrics = new[]
+    ///                 {
+    ///                     "eks:cluster-name",
+    ///                 },
+    ///             },
+    ///         },
+    ///         CustomNamespaces = new[]
+    ///         {
+    ///             new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobCustomNamespaceArgs
+    ///             {
+    ///                 Name = "CoolApp",
+    ///                 Metrics = new[]
+    ///                 {
+    ///                     new Grafana.CloudProvider.Inputs.AwsCloudwatchScrapeJobCustomNamespaceMetricArgs
+    ///                     {
+    ///                         Name = "CoolMetric",
+    ///                         Statistics = new[]
+    ///                         {
+    ///                             "Maximum",
+    ///                             "Sum",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 ScrapeIntervalSeconds = 300,
+    ///             },
+    ///         },
+    ///         StaticLabels = 
+    ///         {
+    ///             { "label1", "value1" },
+    ///             { "label2", "value2" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob name "{{ stack_id }}:{{ name }}"
+    /// terraform import grafana_cloud_provider_aws_cloudwatch_scrape_job.name "{{ stack_id }}:{{ name }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob")]
@@ -52,6 +165,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Output("exportTags")]
         public Output<bool> ExportTags { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -67,6 +183,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Output("services")]
         public Output<ImmutableArray<Outputs.AwsCloudwatchScrapeJobService>> Services { get; private set; } = null!;
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Output("stackId")]
         public Output<string> StackId { get; private set; } = null!;
 
@@ -153,6 +272,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Input("exportTags")]
         public Input<bool>? ExportTags { get; set; }
 
+        /// <summary>
+        /// The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -180,6 +302,9 @@ namespace Pulumiverse.Grafana.CloudProvider
             set => _services = value;
         }
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId", required: true)]
         public Input<string> StackId { get; set; } = null!;
 
@@ -239,6 +364,9 @@ namespace Pulumiverse.Grafana.CloudProvider
         [Input("exportTags")]
         public Input<bool>? ExportTags { get; set; }
 
+        /// <summary>
+        /// The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -266,6 +394,9 @@ namespace Pulumiverse.Grafana.CloudProvider
             set => _services = value;
         }
 
+        /// <summary>
+        /// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        /// </summary>
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
 

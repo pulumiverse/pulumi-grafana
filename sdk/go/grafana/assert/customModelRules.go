@@ -79,7 +79,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:assert/customModelRules:CustomModelRules name "{{ name }}"
+// terraform import grafana_asserts_custom_model_rules.name "{{ name }}"
 // ```
 type CustomModelRules struct {
 	pulumi.CustomResourceState

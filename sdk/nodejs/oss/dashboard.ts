@@ -32,11 +32,8 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:oss/dashboard:Dashboard name "{{ uid }}"
- * ```
- *
- * ```sh
- * $ pulumi import grafana:oss/dashboard:Dashboard name "{{ orgID }}:{{ uid }}"
+ * terraform import grafana_dashboard.name "{{ uid }}"
+ * terraform import grafana_dashboard.name "{{ orgID }}:{{ uid }}"
  * ```
  */
 export class Dashboard extends pulumi.CustomResource {

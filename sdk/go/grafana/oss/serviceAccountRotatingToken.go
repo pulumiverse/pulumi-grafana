@@ -56,6 +56,7 @@ import (
 type ServiceAccountRotatingToken struct {
 	pulumi.CustomResourceState
 
+	// Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
 	DeleteOnDestroy pulumi.BoolPtrOutput `pulumi:"deleteOnDestroy"`
 	// Duration of the time window before expiring where the token can be rotated, in seconds.
 	EarlyRotationWindowSeconds pulumi.IntOutput `pulumi:"earlyRotationWindowSeconds"`
@@ -123,6 +124,7 @@ func GetServiceAccountRotatingToken(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServiceAccountRotatingToken resources.
 type serviceAccountRotatingTokenState struct {
+	// Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
 	DeleteOnDestroy *bool `pulumi:"deleteOnDestroy"`
 	// Duration of the time window before expiring where the token can be rotated, in seconds.
 	EarlyRotationWindowSeconds *int `pulumi:"earlyRotationWindowSeconds"`
@@ -145,6 +147,7 @@ type serviceAccountRotatingTokenState struct {
 }
 
 type ServiceAccountRotatingTokenState struct {
+	// Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
 	DeleteOnDestroy pulumi.BoolPtrInput
 	// Duration of the time window before expiring where the token can be rotated, in seconds.
 	EarlyRotationWindowSeconds pulumi.IntPtrInput
@@ -171,6 +174,7 @@ func (ServiceAccountRotatingTokenState) ElementType() reflect.Type {
 }
 
 type serviceAccountRotatingTokenArgs struct {
+	// Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
 	DeleteOnDestroy *bool `pulumi:"deleteOnDestroy"`
 	// Duration of the time window before expiring where the token can be rotated, in seconds.
 	EarlyRotationWindowSeconds int `pulumi:"earlyRotationWindowSeconds"`
@@ -184,6 +188,7 @@ type serviceAccountRotatingTokenArgs struct {
 
 // The set of arguments for constructing a ServiceAccountRotatingToken resource.
 type ServiceAccountRotatingTokenArgs struct {
+	// Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
 	DeleteOnDestroy pulumi.BoolPtrInput
 	// Duration of the time window before expiring where the token can be rotated, in seconds.
 	EarlyRotationWindowSeconds pulumi.IntInput
@@ -282,6 +287,7 @@ func (o ServiceAccountRotatingTokenOutput) ToServiceAccountRotatingTokenOutputWi
 	return o
 }
 
+// Deletes the service account token in Grafana when the resource is destroyed in Terraform, instead of leaving it to expire at its `expiration` time. Use it with `lifecycle { createBeforeDestroy = true }` to make sure that the new token is created before the old one is deleted. Defaults to `false`.
 func (o ServiceAccountRotatingTokenOutput) DeleteOnDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceAccountRotatingToken) pulumi.BoolPtrOutput { return v.DeleteOnDestroy }).(pulumi.BoolPtrOutput)
 }

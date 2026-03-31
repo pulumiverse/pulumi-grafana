@@ -28,6 +28,7 @@ class HolidayArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Holiday resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['HolidayCustomPeriodArgs']]] custom_periods: A list of custom periods for the holiday.
         :param pulumi.Input[_builtins.str] description: A description of the holiday.
         :param pulumi.Input[_builtins.str] ical_timezone: The timezone to use for events in the iCal file pointed to by ical_url.
@@ -116,6 +117,7 @@ class _HolidayState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Holiday resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['HolidayCustomPeriodArgs']]] custom_periods: A list of custom periods for the holiday.
         :param pulumi.Input[_builtins.str] description: A description of the holiday.
         :param pulumi.Input[_builtins.str] ical_timezone: The timezone to use for events in the iCal file pointed to by ical_url.
@@ -254,8 +256,9 @@ class Holiday(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:machineLearning/holiday:Holiday name "{{ id }}"
+        terraform import grafana_machine_learning_holiday.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -319,8 +322,9 @@ class Holiday(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:machineLearning/holiday:Holiday name "{{ id }}"
+        terraform import grafana_machine_learning_holiday.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param HolidayArgs args: The arguments to use to populate this resource's properties.

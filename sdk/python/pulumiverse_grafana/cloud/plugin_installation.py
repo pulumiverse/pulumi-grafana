@@ -24,8 +24,10 @@ class PluginInstallationArgs:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PluginInstallation resource.
+
         :param pulumi.Input[_builtins.str] slug: Slug of the plugin to be installed.
         :param pulumi.Input[_builtins.str] stack_slug: The stack id to which the plugin should be installed.
+        :param pulumi.Input[_builtins.str] version: Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
         """
         pulumi.set(__self__, "slug", slug)
         pulumi.set(__self__, "stack_slug", stack_slug)
@@ -59,6 +61,9 @@ class PluginInstallationArgs:
     @_builtins.property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -74,8 +79,10 @@ class _PluginInstallationState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PluginInstallation resources.
+
         :param pulumi.Input[_builtins.str] slug: Slug of the plugin to be installed.
         :param pulumi.Input[_builtins.str] stack_slug: The stack id to which the plugin should be installed.
+        :param pulumi.Input[_builtins.str] version: Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
         """
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
@@ -111,6 +118,9 @@ class _PluginInstallationState:
     @_builtins.property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -154,13 +164,15 @@ class PluginInstallation(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/pluginInstallation:PluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
+        terraform import grafana_cloud_plugin_installation.name "{{ stackSlug }}:{{ pluginSlug }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] slug: Slug of the plugin to be installed.
         :param pulumi.Input[_builtins.str] stack_slug: The stack id to which the plugin should be installed.
+        :param pulumi.Input[_builtins.str] version: Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
         """
         ...
     @overload
@@ -194,8 +206,9 @@ class PluginInstallation(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:cloud/pluginInstallation:PluginInstallation name "{{ stackSlug }}:{{ pluginSlug }}"
+        terraform import grafana_cloud_plugin_installation.name "{{ stackSlug }}:{{ pluginSlug }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PluginInstallationArgs args: The arguments to use to populate this resource's properties.
@@ -253,6 +266,7 @@ class PluginInstallation(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] slug: Slug of the plugin to be installed.
         :param pulumi.Input[_builtins.str] stack_slug: The stack id to which the plugin should be installed.
+        :param pulumi.Input[_builtins.str] version: Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -282,5 +296,8 @@ class PluginInstallation(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def version(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Version of the plugin to be installed. Defaults to 'latest' and installs the most recent version. Terraform will detect new version as drift for plan/apply. Defaults to `latest`.
+        """
         return pulumi.get(self, "version")
 

@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import grafana:onCall/escalationChain:EscalationChain name "{{ id }}"
+ * terraform import grafana_oncall_escalation_chain.name "{{ id }}"
  * ```
  */
 export class EscalationChain extends pulumi.CustomResource {

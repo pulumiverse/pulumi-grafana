@@ -35,16 +35,11 @@ __all__ = [
     'ProductActivationK8sO11yConfigV1Alpha1SpecArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AccessPolicyConditionArgsDict(TypedDict):
-        allowed_subnets: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Conditions that apply to the access policy,such as IP Allow lists.
-        """
-elif False:
-    AccessPolicyConditionArgsDict: TypeAlias = Mapping[str, Any]
+class AccessPolicyConditionArgsDict(TypedDict):
+    allowed_subnets: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Conditions that apply to the access policy,such as IP Allow lists.
+    """
 
 @pulumi.input_type
 class AccessPolicyConditionArgs:
@@ -68,19 +63,16 @@ class AccessPolicyConditionArgs:
         pulumi.set(self, "allowed_subnets", value)
 
 
-if not MYPY:
-    class AccessPolicyRealmArgsDict(TypedDict):
-        identifier: pulumi.Input[_builtins.str]
-        """
-        The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
-        """
-        label_policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['AccessPolicyRealmLabelPolicyArgsDict']]]]
-elif False:
-    AccessPolicyRealmArgsDict: TypeAlias = Mapping[str, Any]
+class AccessPolicyRealmArgsDict(TypedDict):
+    identifier: pulumi.Input[_builtins.str]
+    """
+    The identifier of the org or stack. For orgs, this is the slug, for stacks, this is the stack ID.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Whether a policy applies to a Cloud org or a specific stack. Should be one of `org` or `stack`.
+    """
+    label_policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['AccessPolicyRealmLabelPolicyArgsDict']]]]
 
 @pulumi.input_type
 class AccessPolicyRealmArgs:
@@ -131,14 +123,11 @@ class AccessPolicyRealmArgs:
         pulumi.set(self, "label_policies", value)
 
 
-if not MYPY:
-    class AccessPolicyRealmLabelPolicyArgsDict(TypedDict):
-        selector: pulumi.Input[_builtins.str]
-        """
-        The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
-        """
-elif False:
-    AccessPolicyRealmLabelPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class AccessPolicyRealmLabelPolicyArgsDict(TypedDict):
+    selector: pulumi.Input[_builtins.str]
+    """
+    The label selector to match in metrics or logs query. Should be in PromQL or LogQL format.
+    """
 
 @pulumi.input_type
 class AccessPolicyRealmLabelPolicyArgs:
@@ -162,34 +151,31 @@ class AccessPolicyRealmLabelPolicyArgs:
         pulumi.set(self, "selector", value)
 
 
-if not MYPY:
-    class ProductActivationAppO11yConfigV1Alpha1MetadataArgsDict(TypedDict):
-        uid: pulumi.Input[_builtins.str]
-        """
-        The unique identifier of the resource.
-        """
-        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Annotations of the resource.
-        """
-        folder_uid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The UID of the folder to save the resource in.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The full URL of the resource.
-        """
-        uuid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The globally unique identifier of a resource, used by the API for tracking.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The version of the resource.
-        """
-elif False:
-    ProductActivationAppO11yConfigV1Alpha1MetadataArgsDict: TypeAlias = Mapping[str, Any]
+class ProductActivationAppO11yConfigV1Alpha1MetadataArgsDict(TypedDict):
+    uid: pulumi.Input[_builtins.str]
+    """
+    The unique identifier of the resource.
+    """
+    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Annotations of the resource.
+    """
+    folder_uid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The UID of the folder to save the resource in.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The full URL of the resource.
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The globally unique identifier of a resource, used by the API for tracking.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The version of the resource.
+    """
 
 @pulumi.input_type
 class ProductActivationAppO11yConfigV1Alpha1MetadataArgs:
@@ -293,14 +279,11 @@ class ProductActivationAppO11yConfigV1Alpha1MetadataArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ProductActivationAppO11yConfigV1Alpha1OptionsArgsDict(TypedDict):
-        overwrite: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-        """
-elif False:
-    ProductActivationAppO11yConfigV1Alpha1OptionsArgsDict: TypeAlias = Mapping[str, Any]
+class ProductActivationAppO11yConfigV1Alpha1OptionsArgsDict(TypedDict):
+    overwrite: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+    """
 
 @pulumi.input_type
 class ProductActivationAppO11yConfigV1Alpha1OptionsArgs:
@@ -325,14 +308,11 @@ class ProductActivationAppO11yConfigV1Alpha1OptionsArgs:
         pulumi.set(self, "overwrite", value)
 
 
-if not MYPY:
-    class ProductActivationAppO11yConfigV1Alpha1SpecArgsDict(TypedDict):
-        enabled: pulumi.Input[_builtins.bool]
-        """
-        Whether application observability is enabled.
-        """
-elif False:
-    ProductActivationAppO11yConfigV1Alpha1SpecArgsDict: TypeAlias = Mapping[str, Any]
+class ProductActivationAppO11yConfigV1Alpha1SpecArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    """
+    Whether application observability is enabled.
+    """
 
 @pulumi.input_type
 class ProductActivationAppO11yConfigV1Alpha1SpecArgs:
@@ -356,34 +336,31 @@ class ProductActivationAppO11yConfigV1Alpha1SpecArgs:
         pulumi.set(self, "enabled", value)
 
 
-if not MYPY:
-    class ProductActivationK8sO11yConfigV1Alpha1MetadataArgsDict(TypedDict):
-        uid: pulumi.Input[_builtins.str]
-        """
-        The unique identifier of the resource.
-        """
-        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Annotations of the resource.
-        """
-        folder_uid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The UID of the folder to save the resource in.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The full URL of the resource.
-        """
-        uuid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The globally unique identifier of a resource, used by the API for tracking.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The version of the resource.
-        """
-elif False:
-    ProductActivationK8sO11yConfigV1Alpha1MetadataArgsDict: TypeAlias = Mapping[str, Any]
+class ProductActivationK8sO11yConfigV1Alpha1MetadataArgsDict(TypedDict):
+    uid: pulumi.Input[_builtins.str]
+    """
+    The unique identifier of the resource.
+    """
+    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Annotations of the resource.
+    """
+    folder_uid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The UID of the folder to save the resource in.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The full URL of the resource.
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The globally unique identifier of a resource, used by the API for tracking.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The version of the resource.
+    """
 
 @pulumi.input_type
 class ProductActivationK8sO11yConfigV1Alpha1MetadataArgs:
@@ -487,14 +464,11 @@ class ProductActivationK8sO11yConfigV1Alpha1MetadataArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ProductActivationK8sO11yConfigV1Alpha1OptionsArgsDict(TypedDict):
-        overwrite: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-        """
-elif False:
-    ProductActivationK8sO11yConfigV1Alpha1OptionsArgsDict: TypeAlias = Mapping[str, Any]
+class ProductActivationK8sO11yConfigV1Alpha1OptionsArgsDict(TypedDict):
+    overwrite: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+    """
 
 @pulumi.input_type
 class ProductActivationK8sO11yConfigV1Alpha1OptionsArgs:
@@ -519,14 +493,11 @@ class ProductActivationK8sO11yConfigV1Alpha1OptionsArgs:
         pulumi.set(self, "overwrite", value)
 
 
-if not MYPY:
-    class ProductActivationK8sO11yConfigV1Alpha1SpecArgsDict(TypedDict):
-        enabled: pulumi.Input[_builtins.bool]
-        """
-        Whether Kubernetes observability is enabled.
-        """
-elif False:
-    ProductActivationK8sO11yConfigV1Alpha1SpecArgsDict: TypeAlias = Mapping[str, Any]
+class ProductActivationK8sO11yConfigV1Alpha1SpecArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    """
+    Whether Kubernetes observability is enabled.
+    """
 
 @pulumi.input_type
 class ProductActivationK8sO11yConfigV1Alpha1SpecArgs:

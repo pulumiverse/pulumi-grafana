@@ -30,12 +30,15 @@ class MetricsEndpointScrapeJobArgs:
                  scrape_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a MetricsEndpointScrapeJob resource.
+
         :param pulumi.Input[_builtins.str] authentication_method: Method to pass authentication credentials: basic or bearer.
+        :param pulumi.Input[_builtins.str] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.str] url: The url to scrape metrics from; a valid HTTPs URL is required.
         :param pulumi.Input[_builtins.str] authentication_basic_password: Password for basic authentication, use if scrape job is using basic authentication method
         :param pulumi.Input[_builtins.str] authentication_basic_username: Username for basic authentication, use if scrape job is using basic authentication method
         :param pulumi.Input[_builtins.str] authentication_bearer_token: Bearer token used for authentication, use if scrape job is using bearer authentication method
         :param pulumi.Input[_builtins.bool] enabled: Whether the metrics endpoint scrape job is enabled or not.
+        :param pulumi.Input[_builtins.str] name: The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.int] scrape_interval_seconds: Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
         """
         pulumi.set(__self__, "authentication_method", authentication_method)
@@ -69,6 +72,9 @@ class MetricsEndpointScrapeJobArgs:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
@@ -138,6 +144,9 @@ class MetricsEndpointScrapeJobArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -171,12 +180,15 @@ class _MetricsEndpointScrapeJobState:
                  url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MetricsEndpointScrapeJob resources.
+
         :param pulumi.Input[_builtins.str] authentication_basic_password: Password for basic authentication, use if scrape job is using basic authentication method
         :param pulumi.Input[_builtins.str] authentication_basic_username: Username for basic authentication, use if scrape job is using basic authentication method
         :param pulumi.Input[_builtins.str] authentication_bearer_token: Bearer token used for authentication, use if scrape job is using bearer authentication method
         :param pulumi.Input[_builtins.str] authentication_method: Method to pass authentication credentials: basic or bearer.
         :param pulumi.Input[_builtins.bool] enabled: Whether the metrics endpoint scrape job is enabled or not.
+        :param pulumi.Input[_builtins.str] name: The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.int] scrape_interval_seconds: Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
+        :param pulumi.Input[_builtins.str] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.str] url: The url to scrape metrics from; a valid HTTPs URL is required.
         """
         if authentication_basic_password is not None:
@@ -261,6 +273,9 @@ class _MetricsEndpointScrapeJobState:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -282,6 +297,9 @@ class _MetricsEndpointScrapeJobState:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @stack_id.setter
@@ -338,8 +356,9 @@ class MetricsEndpointScrapeJob(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob name "{{ stack_id }}:{{ name }}"
+        terraform import grafana_connections_metrics_endpoint_scrape_job.name "{{ stack_id }}:{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -348,7 +367,9 @@ class MetricsEndpointScrapeJob(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] authentication_bearer_token: Bearer token used for authentication, use if scrape job is using bearer authentication method
         :param pulumi.Input[_builtins.str] authentication_method: Method to pass authentication credentials: basic or bearer.
         :param pulumi.Input[_builtins.bool] enabled: Whether the metrics endpoint scrape job is enabled or not.
+        :param pulumi.Input[_builtins.str] name: The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.int] scrape_interval_seconds: Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
+        :param pulumi.Input[_builtins.str] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.str] url: The url to scrape metrics from; a valid HTTPs URL is required.
         """
         ...
@@ -378,8 +399,9 @@ class MetricsEndpointScrapeJob(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:connections/metricsEndpointScrapeJob:MetricsEndpointScrapeJob name "{{ stack_id }}:{{ name }}"
+        terraform import grafana_connections_metrics_endpoint_scrape_job.name "{{ stack_id }}:{{ name }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MetricsEndpointScrapeJobArgs args: The arguments to use to populate this resource's properties.
@@ -462,7 +484,9 @@ class MetricsEndpointScrapeJob(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] authentication_bearer_token: Bearer token used for authentication, use if scrape job is using bearer authentication method
         :param pulumi.Input[_builtins.str] authentication_method: Method to pass authentication credentials: basic or bearer.
         :param pulumi.Input[_builtins.bool] enabled: Whether the metrics endpoint scrape job is enabled or not.
+        :param pulumi.Input[_builtins.str] name: The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.int] scrape_interval_seconds: Frequency for scraping the metrics endpoint: 30, 60, or 120 seconds.
+        :param pulumi.Input[_builtins.str] stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
         :param pulumi.Input[_builtins.str] url: The url to scrape metrics from; a valid HTTPs URL is required.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -523,6 +547,9 @@ class MetricsEndpointScrapeJob(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of the metrics endpoint scrape job. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
@@ -536,6 +563,9 @@ class MetricsEndpointScrapeJob(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
     @_builtins.property

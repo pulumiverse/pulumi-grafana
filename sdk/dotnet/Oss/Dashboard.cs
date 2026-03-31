@@ -49,11 +49,8 @@ namespace Pulumiverse.Grafana.Oss
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:oss/dashboard:Dashboard name "{{ uid }}"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import grafana:oss/dashboard:Dashboard name "{{ orgID }}:{{ uid }}"
+    /// terraform import grafana_dashboard.name "{{ uid }}"
+    /// terraform import grafana_dashboard.name "{{ orgID }}:{{ uid }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:oss/dashboard:Dashboard")]

@@ -37,6 +37,7 @@ class EscalationArgs:
                  severity: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Escalation resource.
+
         :param pulumi.Input[_builtins.str] escalation_chain_id: The ID of the escalation chain.
         :param pulumi.Input[_builtins.int] position: The position of the escalation step (starts from 0).
         :param pulumi.Input[_builtins.str] type: The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
@@ -298,6 +299,7 @@ class _EscalationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Escalation resources.
+
         :param pulumi.Input[_builtins.str] action_to_trigger: The ID of an Action for trigger_webhook type step.
         :param pulumi.Input[_builtins.int] duration: The duration of delay for wait type step. (60-86400) seconds
         :param pulumi.Input[_builtins.str] escalation_chain_id: The ID of the escalation chain.
@@ -571,8 +573,9 @@ class Escalation(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/escalation:Escalation name "{{ id }}"
+        terraform import grafana_oncall_escalation.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -606,8 +609,9 @@ class Escalation(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import grafana:onCall/escalation:Escalation name "{{ id }}"
+        terraform import grafana_oncall_escalation.name "{{ id }}"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EscalationArgs args: The arguments to use to populate this resource's properties.

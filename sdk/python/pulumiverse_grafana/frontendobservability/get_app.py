@@ -76,11 +76,17 @@ class GetAppResult:
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.int:
+        """
+        The Terraform Resource ID. This auto-generated from Frontend Observability API.
+        """
         return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
+        """
+        The name of the Frontend Observability App. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
@@ -94,6 +100,9 @@ class GetAppResult:
     @_builtins.property
     @pulumi.getter(name="stackId")
     def stack_id(self) -> _builtins.int:
+        """
+        The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+        """
         return pulumi.get(self, "stack_id")
 
 
@@ -117,6 +126,10 @@ def get_app(name: Optional[_builtins.str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAppResult:
     """
     ## Example Usage
+
+
+    :param _builtins.str name: The name of the Frontend Observability App. Part of the Terraform Resource ID.
+    :param _builtins.int stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -137,6 +150,10 @@ def get_app_output(name: Optional[pulumi.Input[_builtins.str]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAppResult]:
     """
     ## Example Usage
+
+
+    :param _builtins.str name: The name of the Frontend Observability App. Part of the Terraform Resource ID.
+    :param _builtins.int stack_id: The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
     """
     __args__ = dict()
     __args__['name'] = name

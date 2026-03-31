@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.cloud.ProductActivationK8sO11yConfigV1Alpha1("example", {
+ * const example = new grafana.cloud.v1alpha1.ProductActivationK8sO11yConfig("example", {
  *     metadata: {
  *         uid: "global",
  *     },
@@ -31,13 +31,14 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * #!/bin/bash
- *
+ * !/bin/bash
  * Import an existing Kubernetes observability config by its UID
  *
  * ```sh
  * $ pulumi import grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1 example my-k8s-o11y-config
  * ```
+ *
+ * @deprecated grafana.cloud/productactivationk8so11yconfigv1alpha1.ProductActivationK8sO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationk8so11yconfig.ProductActivationK8sO11yConfig
  */
 export class ProductActivationK8sO11yConfigV1Alpha1 extends pulumi.CustomResource {
     /**
@@ -50,6 +51,7 @@ export class ProductActivationK8sO11yConfigV1Alpha1 extends pulumi.CustomResourc
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ProductActivationK8sO11yConfigV1Alpha1State, opts?: pulumi.CustomResourceOptions): ProductActivationK8sO11yConfigV1Alpha1 {
+        pulumi.log.warn("ProductActivationK8sO11yConfigV1Alpha1 is deprecated: grafana.cloud/productactivationk8so11yconfigv1alpha1.ProductActivationK8sO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationk8so11yconfig.ProductActivationK8sO11yConfig")
         return new ProductActivationK8sO11yConfigV1Alpha1(name, <any>state, { ...opts, id: id });
     }
 
@@ -87,8 +89,11 @@ export class ProductActivationK8sO11yConfigV1Alpha1 extends pulumi.CustomResourc
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated grafana.cloud/productactivationk8so11yconfigv1alpha1.ProductActivationK8sO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationk8so11yconfig.ProductActivationK8sO11yConfig */
     constructor(name: string, args?: ProductActivationK8sO11yConfigV1Alpha1Args, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated grafana.cloud/productactivationk8so11yconfigv1alpha1.ProductActivationK8sO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationk8so11yconfig.ProductActivationK8sO11yConfig */
     constructor(name: string, argsOrState?: ProductActivationK8sO11yConfigV1Alpha1Args | ProductActivationK8sO11yConfigV1Alpha1State, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ProductActivationK8sO11yConfigV1Alpha1 is deprecated: grafana.cloud/productactivationk8so11yconfigv1alpha1.ProductActivationK8sO11yConfigV1Alpha1 has been deprecated in favor of grafana.cloud/v1alpha1/productactivationk8so11yconfig.ProductActivationK8sO11yConfig")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -103,6 +108,8 @@ export class ProductActivationK8sO11yConfigV1Alpha1 extends pulumi.CustomResourc
             resourceInputs["spec"] = args?.spec;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "grafana:cloud/productActivationK8sO11yConfigV1Alpha1:ProductActivationK8sO11yConfigV1Alpha1" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(ProductActivationK8sO11yConfigV1Alpha1.__pulumiType, name, resourceInputs, opts);
     }
 }

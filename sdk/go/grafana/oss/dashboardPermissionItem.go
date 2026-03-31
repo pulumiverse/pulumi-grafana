@@ -53,7 +53,7 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			dashboard, err := oss.NewDashboard(ctx, "dashboard", &oss.DashboardArgs{
-//				ConfigJson: pulumi.String(json0),
+//				ConfigJson: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
@@ -91,11 +91,8 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import grafana:oss/dashboardPermissionItem:DashboardPermissionItem name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
-// ```
-//
-// ```sh
-// $ pulumi import grafana:oss/dashboardPermissionItem:DashboardPermissionItem name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+// terraform import grafana_dashboard_permission_item.name "{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
+// terraform import grafana_dashboard_permission_item.name "{{ orgID }}:{{ dashboardUID }}:{{ type (role, team, or user) }}:{{ identifier }}"
 // ```
 type DashboardPermissionItem struct {
 	pulumi.CustomResourceState

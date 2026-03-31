@@ -11,7 +11,121 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+// This data source allows you to look up an existing Grafana Cloud AWS CloudWatch Scrape Job resource in your stack.
+//
+// See the Grafana Provider configuration docs
+// for information on authentication and required access policy scopes.
+//
+// * [Official Grafana Cloud documentation](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/monitor-cloud-provider/aws/)
+//
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/go/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloudprovider"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := cloud.LookupStack(ctx, &cloud.LookupStackArgs{
+//				Slug: "gcloudstacktest",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			testIamRole, err := aws.IamRole(ctx, map[string]interface{}{
+//				"name": "my-role",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			testAwsAccount, err := cloudprovider.NewAwsAccount(ctx, "test", &cloudprovider.AwsAccountArgs{
+//				StackId: pulumi.String(pulumi.String(test.Id)),
+//				RoleArn: pulumi.Any(testIamRole.Arn),
+//				Regions: pulumi.StringArray{
+//					pulumi.String("us-east-1"),
+//					pulumi.String("us-east-2"),
+//					pulumi.String("us-west-1"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testAwsCloudwatchScrapeJob, err := cloudprovider.NewAwsCloudwatchScrapeJob(ctx, "test", &cloudprovider.AwsCloudwatchScrapeJobArgs{
+//				StackId:              pulumi.String(pulumi.String(test.Id)),
+//				Name:                 pulumi.String("my-cloudwatch-scrape-job"),
+//				AwsAccountResourceId: testAwsAccount.ResourceId,
+//				ExportTags:           pulumi.Bool(true),
+//				Services: cloudprovider.AwsCloudwatchScrapeJobServiceArray{
+//					&cloudprovider.AwsCloudwatchScrapeJobServiceArgs{
+//						Name: pulumi.String("AWS/EC2"),
+//						Metrics: cloudprovider.AwsCloudwatchScrapeJobServiceMetricArray{
+//							&cloudprovider.AwsCloudwatchScrapeJobServiceMetricArgs{
+//								Name: pulumi.String("CPUUtilization"),
+//								Statistics: pulumi.StringArray{
+//									pulumi.String("Average"),
+//								},
+//							},
+//							&cloudprovider.AwsCloudwatchScrapeJobServiceMetricArgs{
+//								Name: pulumi.String("StatusCheckFailed"),
+//								Statistics: pulumi.StringArray{
+//									pulumi.String("Maximum"),
+//								},
+//							},
+//						},
+//						ScrapeIntervalSeconds: pulumi.Int(300),
+//						ResourceDiscoveryTagFilters: cloudprovider.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArray{
+//							&cloudprovider.AwsCloudwatchScrapeJobServiceResourceDiscoveryTagFilterArgs{
+//								Key:   pulumi.String("k8s.io/cluster-autoscaler/enabled"),
+//								Value: pulumi.String("true"),
+//							},
+//						},
+//						TagsToAddToMetrics: pulumi.StringArray{
+//							pulumi.String("eks:cluster-name"),
+//						},
+//					},
+//				},
+//				CustomNamespaces: cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceArray{
+//					&cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceArgs{
+//						Name: pulumi.String("CoolApp"),
+//						Metrics: cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceMetricArray{
+//							&cloudprovider.AwsCloudwatchScrapeJobCustomNamespaceMetricArgs{
+//								Name: pulumi.String("CoolMetric"),
+//								Statistics: pulumi.StringArray{
+//									pulumi.String("Maximum"),
+//									pulumi.String("Sum"),
+//								},
+//							},
+//						},
+//						ScrapeIntervalSeconds: pulumi.Int(300),
+//					},
+//				},
+//				StaticLabels: pulumi.StringMap{
+//					"label1": pulumi.String("value1"),
+//					"label2": pulumi.String("value2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = testAwsCloudwatchScrapeJob.Name.ApplyT(func(name string) (cloudprovider.GetAwsCloudwatchScrapeJobResult, error) {
+//				return cloudprovider.GetAwsCloudwatchScrapeJobResult(cloudprovider.GetAwsCloudwatchScrapeJob(ctx, &cloudprovider.GetAwsCloudwatchScrapeJobArgs{
+//					StackId: test.Id,
+//					Name:    name,
+//				}, nil)), nil
+//			}).(cloudprovider.GetAwsCloudwatchScrapeJobResultOutput)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupAwsCloudwatchScrapeJob(ctx *pulumi.Context, args *LookupAwsCloudwatchScrapeJobArgs, opts ...pulumi.InvokeOption) (*LookupAwsCloudwatchScrapeJobResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAwsCloudwatchScrapeJobResult
@@ -26,10 +140,12 @@ func LookupAwsCloudwatchScrapeJob(ctx *pulumi.Context, args *LookupAwsCloudwatch
 type LookupAwsCloudwatchScrapeJobArgs struct {
 	// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces []GetAwsCloudwatchScrapeJobCustomNamespace `pulumi:"customNamespaces"`
-	Name             string                                     `pulumi:"name"`
+	// The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+	Name string `pulumi:"name"`
 	// One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services []GetAwsCloudwatchScrapeJobService `pulumi:"services"`
-	StackId  string                             `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId string `pulumi:"stackId"`
 }
 
 // A collection of values returned by getAwsCloudwatchScrapeJob.
@@ -43,9 +159,11 @@ type LookupAwsCloudwatchScrapeJobResult struct {
 	// Whether the AWS CloudWatch Scrape Job is enabled or not.
 	Enabled bool `pulumi:"enabled"`
 	// When enabled, AWS resource tags are exported as Prometheus labels to metrics formatted as `aws_<service_name>_info`.
-	ExportTags bool   `pulumi:"exportTags"`
-	Id         string `pulumi:"id"`
-	Name       string `pulumi:"name"`
+	ExportTags bool `pulumi:"exportTags"`
+	// The Terraform Resource ID. This has the format "{{ stackId }}:{{ name }}".
+	Id string `pulumi:"id"`
+	// The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+	Name string `pulumi:"name"`
 	// The set of AWS region names that this AWS CloudWatch Scrape Job is configured to scrape.
 	Regions []string `pulumi:"regions"`
 	// When true, the `regions` attribute will be the set of regions configured in the override. When false, the `regions` attribute will be the set of regions belonging to the AWS Account resource that is associated with this AWS CloudWatch Scrape Job.
@@ -54,7 +172,8 @@ type LookupAwsCloudwatchScrapeJobResult struct {
 	RoleArn string `pulumi:"roleArn"`
 	// One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services []GetAwsCloudwatchScrapeJobService `pulumi:"services"`
-	StackId  string                             `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId string `pulumi:"stackId"`
 	// A set of static labels to add to all metrics exported by this scrape job.
 	StaticLabels map[string]string `pulumi:"staticLabels"`
 }
@@ -72,10 +191,12 @@ func LookupAwsCloudwatchScrapeJobOutput(ctx *pulumi.Context, args LookupAwsCloud
 type LookupAwsCloudwatchScrapeJobOutputArgs struct {
 	// Zero or more configuration blocks to configure custom namespaces for the AWS CloudWatch Scrape Job to scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	CustomNamespaces GetAwsCloudwatchScrapeJobCustomNamespaceArrayInput `pulumi:"customNamespaces"`
-	Name             pulumi.StringInput                                 `pulumi:"name"`
+	// The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
+	Name pulumi.StringInput `pulumi:"name"`
 	// One or more configuration blocks to dictate what this AWS CloudWatch Scrape Job should scrape. Each block must have a distinct `name` attribute. When accessing this as an attribute reference, it is a list of objects.
 	Services GetAwsCloudwatchScrapeJobServiceArrayInput `pulumi:"services"`
-	StackId  pulumi.StringInput                         `pulumi:"stackId"`
+	// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
+	StackId pulumi.StringInput `pulumi:"stackId"`
 }
 
 func (LookupAwsCloudwatchScrapeJobOutputArgs) ElementType() reflect.Type {
@@ -124,10 +245,12 @@ func (o LookupAwsCloudwatchScrapeJobResultOutput) ExportTags() pulumi.BoolOutput
 	return o.ApplyT(func(v LookupAwsCloudwatchScrapeJobResult) bool { return v.ExportTags }).(pulumi.BoolOutput)
 }
 
+// The Terraform Resource ID. This has the format "{{ stackId }}:{{ name }}".
 func (o LookupAwsCloudwatchScrapeJobResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsCloudwatchScrapeJobResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The name of the AWS CloudWatch Scrape Job. Part of the Terraform Resource ID.
 func (o LookupAwsCloudwatchScrapeJobResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsCloudwatchScrapeJobResult) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -152,6 +275,7 @@ func (o LookupAwsCloudwatchScrapeJobResultOutput) Services() GetAwsCloudwatchScr
 	return o.ApplyT(func(v LookupAwsCloudwatchScrapeJobResult) []GetAwsCloudwatchScrapeJobService { return v.Services }).(GetAwsCloudwatchScrapeJobServiceArrayOutput)
 }
 
+// The Stack ID of the Grafana Cloud instance. Part of the Terraform Resource ID.
 func (o LookupAwsCloudwatchScrapeJobResultOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsCloudwatchScrapeJobResult) string { return v.StackId }).(pulumi.StringOutput)
 }

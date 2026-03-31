@@ -87,9 +87,17 @@ export interface GetStackResult {
      */
     readonly fleetManagementName: string;
     /**
+     * Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly fleetManagementPrivateConnectivityInfoAvailabilityZones: string[];
+    /**
      * Private DNS for Fleet Management when using AWS PrivateLink (only for AWS stacks)
      */
     readonly fleetManagementPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Regions for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly fleetManagementPrivateConnectivityInfoRegions: string[];
     /**
      * Service Name for Fleet Management when using AWS PrivateLink (only for AWS stacks)
      */
@@ -116,9 +124,17 @@ export interface GetStackResult {
     readonly graphiteIpAllowListCname: string;
     readonly graphiteName: string;
     /**
+     * Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly graphitePrivateConnectivityInfoAvailabilityZones: string[];
+    /**
      * Private DNS for Graphite when using AWS PrivateLink (only for AWS stacks)
      */
     readonly graphitePrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Regions for Graphite when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly graphitePrivateConnectivityInfoRegions: string[];
     /**
      * Service Name for Graphite when using AWS PrivateLink (only for AWS stacks)
      */
@@ -144,9 +160,17 @@ export interface GetStackResult {
     readonly logsIpAllowListCname: string;
     readonly logsName: string;
     /**
+     * Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly logsPrivateConnectivityInfoAvailabilityZones: string[];
+    /**
      * Private DNS for Logs when using AWS PrivateLink (only for AWS stacks)
      */
     readonly logsPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Regions for Logs when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly logsPrivateConnectivityInfoRegions: string[];
     /**
      * Service Name for Logs when using AWS PrivateLink (only for AWS stacks)
      */
@@ -175,9 +199,17 @@ export interface GetStackResult {
      */
     readonly orgSlug: string;
     /**
+     * Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly otlpPrivateConnectivityInfoAvailabilityZones: string[];
+    /**
      * Private DNS for OTLP when using AWS PrivateLink (only for AWS stacks)
      */
     readonly otlpPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Regions for OTLP when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly otlpPrivateConnectivityInfoRegions: string[];
     /**
      * Service Name for OTLP when using AWS PrivateLink (only for AWS stacks)
      */
@@ -187,17 +219,33 @@ export interface GetStackResult {
      */
     readonly otlpUrl: string;
     /**
+     * Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly pdcApiPrivateConnectivityInfoAvailabilityZones: string[];
+    /**
      * Private DNS for PDC's API when using AWS PrivateLink (only for AWS stacks)
      */
     readonly pdcApiPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Regions for PDC's API when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly pdcApiPrivateConnectivityInfoRegions: string[];
     /**
      * Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
      */
     readonly pdcApiPrivateConnectivityInfoServiceName: string;
     /**
+     * Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly pdcGatewayPrivateConnectivityInfoAvailabilityZones: string[];
+    /**
      * Private DNS for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
      */
     readonly pdcGatewayPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Regions for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly pdcGatewayPrivateConnectivityInfoRegions: string[];
     /**
      * Service Name for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
      */
@@ -208,9 +256,17 @@ export interface GetStackResult {
     readonly profilesIpAllowListCname: string;
     readonly profilesName: string;
     /**
+     * Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly profilesPrivateConnectivityInfoAvailabilityZones: string[];
+    /**
      * Private DNS for Profiles when using AWS PrivateLink (only for AWS stacks)
      */
     readonly profilesPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Regions for Profiles when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly profilesPrivateConnectivityInfoRegions: string[];
     /**
      * Service Name for Profiles when using AWS PrivateLink (only for AWS stacks)
      */
@@ -227,9 +283,17 @@ export interface GetStackResult {
      */
     readonly prometheusName: string;
     /**
+     * Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly prometheusPrivateConnectivityInfoAvailabilityZones: string[];
+    /**
      * Private DNS for Prometheus when using AWS PrivateLink (only for AWS stacks)
      */
     readonly prometheusPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Regions for Prometheus when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly prometheusPrivateConnectivityInfoRegions: string[];
     /**
      * Service Name for Prometheus when using AWS PrivateLink (only for AWS stacks)
      */
@@ -273,9 +337,17 @@ export interface GetStackResult {
     readonly tracesIpAllowListCname: string;
     readonly tracesName: string;
     /**
+     * Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly tracesPrivateConnectivityInfoAvailabilityZones: string[];
+    /**
      * Private DNS for Traces when using AWS PrivateLink (only for AWS stacks)
      */
     readonly tracesPrivateConnectivityInfoPrivateDns: string;
+    /**
+     * Regions for Traces when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly tracesPrivateConnectivityInfoRegions: string[];
     /**
      * Service Name for Traces when using AWS PrivateLink (only for AWS stacks)
      */

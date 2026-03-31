@@ -37,7 +37,7 @@ namespace Pulumiverse.Grafana.Oss
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import grafana:oss/organizationPreferences:OrganizationPreferences name "{{ orgID }}"
+    /// terraform import grafana_organization_preferences.name "{{ orgID }}"
     /// ```
     /// </summary>
     [GrafanaResourceType("grafana:oss/organizationPreferences:OrganizationPreferences")]
