@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Apps.V2
 {
     /// <summary>
     /// Manages Grafana dashboards using the v2 (Dynamic Dashboards) schema.
@@ -27,13 +27,13 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.AppsDashboardDashboardV2("example", new()
+    ///     var example = new Grafana.Apps.V2.Dashboard("example", new()
     ///     {
-    ///         Metadata = new Grafana.Inputs.AppsDashboardDashboardV2MetadataArgs
+    ///         Metadata = new Grafana.Apps.V2.Inputs.DashboardMetadataArgs
     ///         {
     ///             Uid = "example-dashboard-v2",
     ///         },
-    ///         Spec = new Grafana.Inputs.AppsDashboardDashboardV2SpecArgs
+    ///         Spec = new Grafana.Apps.V2.Inputs.DashboardSpecArgs
     ///         {
     ///             Title = "Example Dashboard V2",
     ///             Json = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
@@ -76,42 +76,42 @@ namespace Pulumiverse.Grafana
     /// });
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/appsDashboardDashboardV2:AppsDashboardDashboardV2")]
-    public partial class AppsDashboardDashboardV2 : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:apps/v2/dashboard:Dashboard")]
+    public partial class Dashboard : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Output("metadata")]
-        public Output<Outputs.AppsDashboardDashboardV2Metadata?> Metadata { get; private set; } = null!;
+        public Output<Outputs.DashboardMetadata?> Metadata { get; private set; } = null!;
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Output("options")]
-        public Output<Outputs.AppsDashboardDashboardV2Options?> Options { get; private set; } = null!;
+        public Output<Outputs.DashboardOptions?> Options { get; private set; } = null!;
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Output("spec")]
-        public Output<Outputs.AppsDashboardDashboardV2Spec?> Spec { get; private set; } = null!;
+        public Output<Outputs.DashboardSpec?> Spec { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a AppsDashboardDashboardV2 resource with the given unique name, arguments, and options.
+        /// Create a Dashboard resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AppsDashboardDashboardV2(string name, AppsDashboardDashboardV2Args? args = null, CustomResourceOptions? options = null)
-            : base("grafana:index/appsDashboardDashboardV2:AppsDashboardDashboardV2", name, args ?? new AppsDashboardDashboardV2Args(), MakeResourceOptions(options, ""))
+        public Dashboard(string name, DashboardArgs? args = null, CustomResourceOptions? options = null)
+            : base("grafana:apps/v2/dashboard:Dashboard", name, args ?? new DashboardArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AppsDashboardDashboardV2(string name, Input<string> id, AppsDashboardDashboardV2State? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/appsDashboardDashboardV2:AppsDashboardDashboardV2", name, state, MakeResourceOptions(options, id))
+        private Dashboard(string name, Input<string> id, DashboardState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:apps/v2/dashboard:Dashboard", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -128,7 +128,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing AppsDashboardDashboardV2 resource's state with the given name, ID, and optional extra
+        /// Get an existing Dashboard resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -136,61 +136,61 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AppsDashboardDashboardV2 Get(string name, Input<string> id, AppsDashboardDashboardV2State? state = null, CustomResourceOptions? options = null)
+        public static Dashboard Get(string name, Input<string> id, DashboardState? state = null, CustomResourceOptions? options = null)
         {
-            return new AppsDashboardDashboardV2(name, id, state, options);
+            return new Dashboard(name, id, state, options);
         }
     }
 
-    public sealed class AppsDashboardDashboardV2Args : global::Pulumi.ResourceArgs
+    public sealed class DashboardArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Input("metadata")]
-        public Input<Inputs.AppsDashboardDashboardV2MetadataArgs>? Metadata { get; set; }
+        public Input<Inputs.DashboardMetadataArgs>? Metadata { get; set; }
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Input("options")]
-        public Input<Inputs.AppsDashboardDashboardV2OptionsArgs>? Options { get; set; }
+        public Input<Inputs.DashboardOptionsArgs>? Options { get; set; }
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Input("spec")]
-        public Input<Inputs.AppsDashboardDashboardV2SpecArgs>? Spec { get; set; }
+        public Input<Inputs.DashboardSpecArgs>? Spec { get; set; }
 
-        public AppsDashboardDashboardV2Args()
+        public DashboardArgs()
         {
         }
-        public static new AppsDashboardDashboardV2Args Empty => new AppsDashboardDashboardV2Args();
+        public static new DashboardArgs Empty => new DashboardArgs();
     }
 
-    public sealed class AppsDashboardDashboardV2State : global::Pulumi.ResourceArgs
+    public sealed class DashboardState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Input("metadata")]
-        public Input<Inputs.AppsDashboardDashboardV2MetadataGetArgs>? Metadata { get; set; }
+        public Input<Inputs.DashboardMetadataGetArgs>? Metadata { get; set; }
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Input("options")]
-        public Input<Inputs.AppsDashboardDashboardV2OptionsGetArgs>? Options { get; set; }
+        public Input<Inputs.DashboardOptionsGetArgs>? Options { get; set; }
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Input("spec")]
-        public Input<Inputs.AppsDashboardDashboardV2SpecGetArgs>? Spec { get; set; }
+        public Input<Inputs.DashboardSpecGetArgs>? Spec { get; set; }
 
-        public AppsDashboardDashboardV2State()
+        public DashboardState()
         {
         }
-        public static new AppsDashboardDashboardV2State Empty => new AppsDashboardDashboardV2State();
+        public static new DashboardState Empty => new DashboardState();
     }
 }

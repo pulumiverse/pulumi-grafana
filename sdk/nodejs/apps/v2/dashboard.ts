@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../../types/input";
+import * as outputs from "../../types/output";
+import * as utilities from "../../utilities";
 
 /**
  * Manages Grafana dashboards using the v2 (Dynamic Dashboards) schema.
@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.AppsDashboardDashboardV2("example", {
+ * const example = new grafana.apps.v2.Dashboard("example", {
  *     metadata: {
  *         uid: "example-dashboard-v2",
  *     },
@@ -48,9 +48,9 @@ import * as utilities from "./utilities";
  * });
  * ```
  */
-export class AppsDashboardDashboardV2 extends pulumi.CustomResource {
+export class Dashboard extends pulumi.CustomResource {
     /**
-     * Get an existing AppsDashboardDashboardV2 resource's state with the given name, ID, and optional extra
+     * Get an existing Dashboard resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -58,96 +58,96 @@ export class AppsDashboardDashboardV2 extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AppsDashboardDashboardV2State, opts?: pulumi.CustomResourceOptions): AppsDashboardDashboardV2 {
-        return new AppsDashboardDashboardV2(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DashboardState, opts?: pulumi.CustomResourceOptions): Dashboard {
+        return new Dashboard(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/appsDashboardDashboardV2:AppsDashboardDashboardV2';
+    public static readonly __pulumiType = 'grafana:apps/v2/dashboard:Dashboard';
 
     /**
-     * Returns true if the given object is an instance of AppsDashboardDashboardV2.  This is designed to work even
+     * Returns true if the given object is an instance of Dashboard.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AppsDashboardDashboardV2 {
+    public static isInstance(obj: any): obj is Dashboard {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AppsDashboardDashboardV2.__pulumiType;
+        return obj['__pulumiType'] === Dashboard.__pulumiType;
     }
 
     /**
      * The metadata of the resource.
      */
-    declare public readonly metadata: pulumi.Output<outputs.AppsDashboardDashboardV2Metadata | undefined>;
+    declare public readonly metadata: pulumi.Output<outputs.apps.v2.DashboardMetadata | undefined>;
     /**
      * Options for applying the resource.
      */
-    declare public readonly options: pulumi.Output<outputs.AppsDashboardDashboardV2Options | undefined>;
+    declare public readonly options: pulumi.Output<outputs.apps.v2.DashboardOptions | undefined>;
     /**
      * The spec of the resource.
      */
-    declare public readonly spec: pulumi.Output<outputs.AppsDashboardDashboardV2Spec | undefined>;
+    declare public readonly spec: pulumi.Output<outputs.apps.v2.DashboardSpec | undefined>;
 
     /**
-     * Create a AppsDashboardDashboardV2 resource with the given unique name, arguments, and options.
+     * Create a Dashboard resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: AppsDashboardDashboardV2Args, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AppsDashboardDashboardV2Args | AppsDashboardDashboardV2State, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: DashboardArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: DashboardArgs | DashboardState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AppsDashboardDashboardV2State | undefined;
+            const state = argsOrState as DashboardState | undefined;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["options"] = state?.options;
             resourceInputs["spec"] = state?.spec;
         } else {
-            const args = argsOrState as AppsDashboardDashboardV2Args | undefined;
+            const args = argsOrState as DashboardArgs | undefined;
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["options"] = args?.options;
             resourceInputs["spec"] = args?.spec;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AppsDashboardDashboardV2.__pulumiType, name, resourceInputs, opts);
+        super(Dashboard.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AppsDashboardDashboardV2 resources.
+ * Input properties used for looking up and filtering Dashboard resources.
  */
-export interface AppsDashboardDashboardV2State {
+export interface DashboardState {
     /**
      * The metadata of the resource.
      */
-    metadata?: pulumi.Input<inputs.AppsDashboardDashboardV2Metadata>;
+    metadata?: pulumi.Input<inputs.apps.v2.DashboardMetadata>;
     /**
      * Options for applying the resource.
      */
-    options?: pulumi.Input<inputs.AppsDashboardDashboardV2Options>;
+    options?: pulumi.Input<inputs.apps.v2.DashboardOptions>;
     /**
      * The spec of the resource.
      */
-    spec?: pulumi.Input<inputs.AppsDashboardDashboardV2Spec>;
+    spec?: pulumi.Input<inputs.apps.v2.DashboardSpec>;
 }
 
 /**
- * The set of arguments for constructing a AppsDashboardDashboardV2 resource.
+ * The set of arguments for constructing a Dashboard resource.
  */
-export interface AppsDashboardDashboardV2Args {
+export interface DashboardArgs {
     /**
      * The metadata of the resource.
      */
-    metadata?: pulumi.Input<inputs.AppsDashboardDashboardV2Metadata>;
+    metadata?: pulumi.Input<inputs.apps.v2.DashboardMetadata>;
     /**
      * Options for applying the resource.
      */
-    options?: pulumi.Input<inputs.AppsDashboardDashboardV2Options>;
+    options?: pulumi.Input<inputs.apps.v2.DashboardOptions>;
     /**
      * The spec of the resource.
      */
-    spec?: pulumi.Input<inputs.AppsDashboardDashboardV2Spec>;
+    spec?: pulumi.Input<inputs.apps.v2.DashboardSpec>;
 }

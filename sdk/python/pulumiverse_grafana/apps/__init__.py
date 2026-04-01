@@ -12,10 +12,13 @@ if typing.TYPE_CHECKING:
     v0alpha1 = __v0alpha1
     import pulumiverse_grafana.apps.v1beta1 as __v1beta1
     v1beta1 = __v1beta1
+    import pulumiverse_grafana.apps.v2 as __v2
+    v2 = __v2
     import pulumiverse_grafana.apps.v2beta1 as __v2beta1
     v2beta1 = __v2beta1
 else:
     v0alpha1 = _utilities.lazy_import('pulumiverse_grafana.apps.v0alpha1')
     v1beta1 = _utilities.lazy_import('pulumiverse_grafana.apps.v1beta1')
+    v2 = _utilities.lazy_import('pulumiverse_grafana.apps.v2')
     v2beta1 = _utilities.lazy_import('pulumiverse_grafana.apps.v2beta1')
 

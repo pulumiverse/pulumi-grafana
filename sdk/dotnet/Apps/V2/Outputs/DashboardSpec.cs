@@ -8,38 +8,36 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Apps.V2.Outputs
 {
 
-    public sealed class AppsDashboardDashboardV2SpecArgs : global::Pulumi.ResourceArgs
+    [OutputType]
+    public sealed class DashboardSpec
     {
         /// <summary>
         /// The JSON representation of the dashboard v2 spec.
         /// </summary>
-        [Input("json", required: true)]
-        public Input<string> Json { get; set; } = null!;
-
-        [Input("tags")]
-        private InputList<string>? _tags;
-
+        public readonly string Json;
         /// <summary>
         /// The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
         /// </summary>
-        public InputList<string> Tags
-        {
-            get => _tags ?? (_tags = new InputList<string>());
-            set => _tags = value;
-        }
-
+        public readonly ImmutableArray<string> Tags;
         /// <summary>
         /// The title of the dashboard. If not set, the title will be derived from the JSON spec.
         /// </summary>
-        [Input("title")]
-        public Input<string>? Title { get; set; }
+        public readonly string? Title;
 
-        public AppsDashboardDashboardV2SpecArgs()
+        [OutputConstructor]
+        private DashboardSpec(
+            string json,
+
+            ImmutableArray<string> tags,
+
+            string? title)
         {
+            Json = json;
+            Tags = tags;
+            Title = title;
         }
-        public static new AppsDashboardDashboardV2SpecArgs Empty => new AppsDashboardDashboardV2SpecArgs();
     }
 }

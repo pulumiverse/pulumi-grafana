@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Apps.V2.Inputs
 {
 
-    public sealed class AppsDashboardDashboardV2SpecGetArgs : global::Pulumi.ResourceArgs
+    public sealed class DashboardSpecArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The JSON representation of the dashboard v2 spec.
@@ -37,9 +37,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("title")]
         public Input<string>? Title { get; set; }
 
-        public AppsDashboardDashboardV2SpecGetArgs()
+        public DashboardSpecArgs()
         {
         }
-        public static new AppsDashboardDashboardV2SpecGetArgs Empty => new AppsDashboardDashboardV2SpecGetArgs();
+        public static new DashboardSpecArgs Empty => new DashboardSpecArgs();
     }
 }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Apps.V2.Inputs
 {
 
-    public sealed class AppsDashboardDashboardV2MetadataArgs : global::Pulumi.ResourceArgs
+    public sealed class DashboardMetadataGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
@@ -55,9 +55,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("version")]
         public Input<string>? Version { get; set; }
 
-        public AppsDashboardDashboardV2MetadataArgs()
+        public DashboardMetadataGetArgs()
         {
         }
-        public static new AppsDashboardDashboardV2MetadataArgs Empty => new AppsDashboardDashboardV2MetadataArgs();
+        public static new DashboardMetadataGetArgs Empty => new DashboardMetadataGetArgs();
     }
 }

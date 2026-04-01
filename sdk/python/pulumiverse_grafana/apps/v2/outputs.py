@@ -12,16 +12,16 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from ... import _utilities
 
 __all__ = [
-    'AppsDashboardDashboardV2Metadata',
-    'AppsDashboardDashboardV2Options',
-    'AppsDashboardDashboardV2Spec',
+    'DashboardMetadata',
+    'DashboardOptions',
+    'DashboardSpec',
 ]
 
 @pulumi.output_type
-class AppsDashboardDashboardV2Metadata(dict):
+class DashboardMetadata(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -29,14 +29,14 @@ class AppsDashboardDashboardV2Metadata(dict):
             suggest = "folder_uid"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in AppsDashboardDashboardV2Metadata. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in DashboardMetadata. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        AppsDashboardDashboardV2Metadata.__key_warning(key)
+        DashboardMetadata.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        AppsDashboardDashboardV2Metadata.__key_warning(key)
+        DashboardMetadata.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -116,7 +116,7 @@ class AppsDashboardDashboardV2Metadata(dict):
 
 
 @pulumi.output_type
-class AppsDashboardDashboardV2Options(dict):
+class DashboardOptions(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -124,14 +124,14 @@ class AppsDashboardDashboardV2Options(dict):
             suggest = "allow_ui_updates"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in AppsDashboardDashboardV2Options. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in DashboardOptions. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        AppsDashboardDashboardV2Options.__key_warning(key)
+        DashboardOptions.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        AppsDashboardDashboardV2Options.__key_warning(key)
+        DashboardOptions.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -164,7 +164,7 @@ class AppsDashboardDashboardV2Options(dict):
 
 
 @pulumi.output_type
-class AppsDashboardDashboardV2Spec(dict):
+class DashboardSpec(dict):
     def __init__(__self__, *,
                  json: _builtins.str,
                  tags: Optional[Sequence[_builtins.str]] = None,

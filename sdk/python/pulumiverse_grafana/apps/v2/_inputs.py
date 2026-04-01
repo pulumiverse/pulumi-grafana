@@ -12,18 +12,18 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from ... import _utilities
 
 __all__ = [
-    'AppsDashboardDashboardV2MetadataArgs',
-    'AppsDashboardDashboardV2MetadataArgsDict',
-    'AppsDashboardDashboardV2OptionsArgs',
-    'AppsDashboardDashboardV2OptionsArgsDict',
-    'AppsDashboardDashboardV2SpecArgs',
-    'AppsDashboardDashboardV2SpecArgsDict',
+    'DashboardMetadataArgs',
+    'DashboardMetadataArgsDict',
+    'DashboardOptionsArgs',
+    'DashboardOptionsArgsDict',
+    'DashboardSpecArgs',
+    'DashboardSpecArgsDict',
 ]
 
-class AppsDashboardDashboardV2MetadataArgsDict(TypedDict):
+class DashboardMetadataArgsDict(TypedDict):
     uid: pulumi.Input[_builtins.str]
     """
     The unique identifier of the resource.
@@ -50,7 +50,7 @@ class AppsDashboardDashboardV2MetadataArgsDict(TypedDict):
     """
 
 @pulumi.input_type
-class AppsDashboardDashboardV2MetadataArgs:
+class DashboardMetadataArgs:
     def __init__(__self__, *,
                  uid: pulumi.Input[_builtins.str],
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -151,7 +151,7 @@ class AppsDashboardDashboardV2MetadataArgs:
         pulumi.set(self, "version", value)
 
 
-class AppsDashboardDashboardV2OptionsArgsDict(TypedDict):
+class DashboardOptionsArgsDict(TypedDict):
     allow_ui_updates: NotRequired[pulumi.Input[_builtins.bool]]
     """
     Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
@@ -162,7 +162,7 @@ class AppsDashboardDashboardV2OptionsArgsDict(TypedDict):
     """
 
 @pulumi.input_type
-class AppsDashboardDashboardV2OptionsArgs:
+class DashboardOptionsArgs:
     def __init__(__self__, *,
                  allow_ui_updates: Optional[pulumi.Input[_builtins.bool]] = None,
                  overwrite: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -200,7 +200,7 @@ class AppsDashboardDashboardV2OptionsArgs:
         pulumi.set(self, "overwrite", value)
 
 
-class AppsDashboardDashboardV2SpecArgsDict(TypedDict):
+class DashboardSpecArgsDict(TypedDict):
     json: pulumi.Input[_builtins.str]
     """
     The JSON representation of the dashboard v2 spec.
@@ -215,7 +215,7 @@ class AppsDashboardDashboardV2SpecArgsDict(TypedDict):
     """
 
 @pulumi.input_type
-class AppsDashboardDashboardV2SpecArgs:
+class DashboardSpecArgs:
     def __init__(__self__, *,
                  json: pulumi.Input[_builtins.str],
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,

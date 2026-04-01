@@ -6,10 +6,7 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .apps_dashboard_dashboard_v2 import *
 from .provider import *
-from ._inputs import *
-from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -195,6 +192,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.apps.v1beta1",
   "classes": {
    "grafana:apps/v1beta1/dashboard:Dashboard": "Dashboard"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "apps/v2/dashboard",
+  "fqn": "pulumiverse_grafana.apps.v2",
+  "classes": {
+   "grafana:apps/v2/dashboard:Dashboard": "Dashboard"
   }
  },
  {
@@ -579,14 +584,6 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
-  }
- },
- {
-  "pkg": "grafana",
-  "mod": "index/appsDashboardDashboardV2",
-  "fqn": "pulumiverse_grafana",
-  "classes": {
-   "grafana:index/appsDashboardDashboardV2:AppsDashboardDashboardV2": "AppsDashboardDashboardV2"
   }
  },
  {

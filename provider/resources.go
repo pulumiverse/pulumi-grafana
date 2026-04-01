@@ -311,6 +311,9 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_apps_dashboard_dashboard_v2beta1": {
 				Tok: grafanaVersionedResource(appsMod, "v2beta1", "Dashboard"),
 			},
+			"grafana_apps_dashboard_dashboard_v2": {
+				Tok: grafanaVersionedResource(appsMod, "v2", "Dashboard"),
+			},
 			"grafana_apps_playlist_playlist_v0alpha1": {
 				Tok: grafanaVersionedResource(appsMod, "v0alpha1", "Playlist"),
 				Aliases: []tfbridge.AliasInfo{

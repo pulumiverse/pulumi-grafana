@@ -6,10 +6,12 @@ import * as utilities from "../utilities";
 // Export sub-modules:
 import * as v0alpha1 from "./v0alpha1";
 import * as v1beta1 from "./v1beta1";
+import * as v2 from "./v2";
 import * as v2beta1 from "./v2beta1";
 
 export {
     v0alpha1,
     v1beta1,
+    v2,
     v2beta1,
 };

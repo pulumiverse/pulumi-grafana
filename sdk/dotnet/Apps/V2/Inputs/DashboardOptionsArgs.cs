@@ -8,29 +8,26 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Apps.V2.Inputs
 {
 
-    [OutputType]
-    public sealed class AppsDashboardDashboardV2Options
+    public sealed class DashboardOptionsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
         /// </summary>
-        public readonly bool? AllowUiUpdates;
+        [Input("allowUiUpdates")]
+        public Input<bool>? AllowUiUpdates { get; set; }
+
         /// <summary>
         /// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         /// </summary>
-        public readonly bool? Overwrite;
+        [Input("overwrite")]
+        public Input<bool>? Overwrite { get; set; }
 
-        [OutputConstructor]
-        private AppsDashboardDashboardV2Options(
-            bool? allowUiUpdates,
-
-            bool? overwrite)
+        public DashboardOptionsArgs()
         {
-            AllowUiUpdates = allowUiUpdates;
-            Overwrite = overwrite;
         }
+        public static new DashboardOptionsArgs Empty => new DashboardOptionsArgs();
     }
 }

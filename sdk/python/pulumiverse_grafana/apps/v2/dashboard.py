@@ -12,24 +12,24 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from ... import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['AppsDashboardDashboardV2Args', 'AppsDashboardDashboardV2']
+__all__ = ['DashboardArgs', 'Dashboard']
 
 @pulumi.input_type
-class AppsDashboardDashboardV2Args:
+class DashboardArgs:
     def __init__(__self__, *,
-                 metadata: Optional[pulumi.Input['AppsDashboardDashboardV2MetadataArgs']] = None,
-                 options: Optional[pulumi.Input['AppsDashboardDashboardV2OptionsArgs']] = None,
-                 spec: Optional[pulumi.Input['AppsDashboardDashboardV2SpecArgs']] = None):
+                 metadata: Optional[pulumi.Input['DashboardMetadataArgs']] = None,
+                 options: Optional[pulumi.Input['DashboardOptionsArgs']] = None,
+                 spec: Optional[pulumi.Input['DashboardSpecArgs']] = None):
         """
-        The set of arguments for constructing a AppsDashboardDashboardV2 resource.
+        The set of arguments for constructing a Dashboard resource.
 
-        :param pulumi.Input['AppsDashboardDashboardV2MetadataArgs'] metadata: The metadata of the resource.
-        :param pulumi.Input['AppsDashboardDashboardV2OptionsArgs'] options: Options for applying the resource.
-        :param pulumi.Input['AppsDashboardDashboardV2SpecArgs'] spec: The spec of the resource.
+        :param pulumi.Input['DashboardMetadataArgs'] metadata: The metadata of the resource.
+        :param pulumi.Input['DashboardOptionsArgs'] options: Options for applying the resource.
+        :param pulumi.Input['DashboardSpecArgs'] spec: The spec of the resource.
         """
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
@@ -40,53 +40,53 @@ class AppsDashboardDashboardV2Args:
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input['AppsDashboardDashboardV2MetadataArgs']]:
+    def metadata(self) -> Optional[pulumi.Input['DashboardMetadataArgs']]:
         """
         The metadata of the resource.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input['AppsDashboardDashboardV2MetadataArgs']]):
+    def metadata(self, value: Optional[pulumi.Input['DashboardMetadataArgs']]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input['AppsDashboardDashboardV2OptionsArgs']]:
+    def options(self) -> Optional[pulumi.Input['DashboardOptionsArgs']]:
         """
         Options for applying the resource.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input['AppsDashboardDashboardV2OptionsArgs']]):
+    def options(self, value: Optional[pulumi.Input['DashboardOptionsArgs']]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter
-    def spec(self) -> Optional[pulumi.Input['AppsDashboardDashboardV2SpecArgs']]:
+    def spec(self) -> Optional[pulumi.Input['DashboardSpecArgs']]:
         """
         The spec of the resource.
         """
         return pulumi.get(self, "spec")
 
     @spec.setter
-    def spec(self, value: Optional[pulumi.Input['AppsDashboardDashboardV2SpecArgs']]):
+    def spec(self, value: Optional[pulumi.Input['DashboardSpecArgs']]):
         pulumi.set(self, "spec", value)
 
 
 @pulumi.input_type
-class _AppsDashboardDashboardV2State:
+class _DashboardState:
     def __init__(__self__, *,
-                 metadata: Optional[pulumi.Input['AppsDashboardDashboardV2MetadataArgs']] = None,
-                 options: Optional[pulumi.Input['AppsDashboardDashboardV2OptionsArgs']] = None,
-                 spec: Optional[pulumi.Input['AppsDashboardDashboardV2SpecArgs']] = None):
+                 metadata: Optional[pulumi.Input['DashboardMetadataArgs']] = None,
+                 options: Optional[pulumi.Input['DashboardOptionsArgs']] = None,
+                 spec: Optional[pulumi.Input['DashboardSpecArgs']] = None):
         """
-        Input properties used for looking up and filtering AppsDashboardDashboardV2 resources.
+        Input properties used for looking up and filtering Dashboard resources.
 
-        :param pulumi.Input['AppsDashboardDashboardV2MetadataArgs'] metadata: The metadata of the resource.
-        :param pulumi.Input['AppsDashboardDashboardV2OptionsArgs'] options: Options for applying the resource.
-        :param pulumi.Input['AppsDashboardDashboardV2SpecArgs'] spec: The spec of the resource.
+        :param pulumi.Input['DashboardMetadataArgs'] metadata: The metadata of the resource.
+        :param pulumi.Input['DashboardOptionsArgs'] options: Options for applying the resource.
+        :param pulumi.Input['DashboardSpecArgs'] spec: The spec of the resource.
         """
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
@@ -97,50 +97,50 @@ class _AppsDashboardDashboardV2State:
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input['AppsDashboardDashboardV2MetadataArgs']]:
+    def metadata(self) -> Optional[pulumi.Input['DashboardMetadataArgs']]:
         """
         The metadata of the resource.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input['AppsDashboardDashboardV2MetadataArgs']]):
+    def metadata(self, value: Optional[pulumi.Input['DashboardMetadataArgs']]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input['AppsDashboardDashboardV2OptionsArgs']]:
+    def options(self) -> Optional[pulumi.Input['DashboardOptionsArgs']]:
         """
         Options for applying the resource.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input['AppsDashboardDashboardV2OptionsArgs']]):
+    def options(self, value: Optional[pulumi.Input['DashboardOptionsArgs']]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter
-    def spec(self) -> Optional[pulumi.Input['AppsDashboardDashboardV2SpecArgs']]:
+    def spec(self) -> Optional[pulumi.Input['DashboardSpecArgs']]:
         """
         The spec of the resource.
         """
         return pulumi.get(self, "spec")
 
     @spec.setter
-    def spec(self, value: Optional[pulumi.Input['AppsDashboardDashboardV2SpecArgs']]):
+    def spec(self, value: Optional[pulumi.Input['DashboardSpecArgs']]):
         pulumi.set(self, "spec", value)
 
 
-@pulumi.type_token("grafana:index/appsDashboardDashboardV2:AppsDashboardDashboardV2")
-class AppsDashboardDashboardV2(pulumi.CustomResource):
+@pulumi.type_token("grafana:apps/v2/dashboard:Dashboard")
+class Dashboard(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 metadata: Optional[pulumi.Input[Union['AppsDashboardDashboardV2MetadataArgs', 'AppsDashboardDashboardV2MetadataArgsDict']]] = None,
-                 options: Optional[pulumi.Input[Union['AppsDashboardDashboardV2OptionsArgs', 'AppsDashboardDashboardV2OptionsArgsDict']]] = None,
-                 spec: Optional[pulumi.Input[Union['AppsDashboardDashboardV2SpecArgs', 'AppsDashboardDashboardV2SpecArgsDict']]] = None,
+                 metadata: Optional[pulumi.Input[Union['DashboardMetadataArgs', 'DashboardMetadataArgsDict']]] = None,
+                 options: Optional[pulumi.Input[Union['DashboardOptionsArgs', 'DashboardOptionsArgsDict']]] = None,
+                 spec: Optional[pulumi.Input[Union['DashboardSpecArgs', 'DashboardSpecArgsDict']]] = None,
                  __props__=None):
         """
         Manages Grafana dashboards using the v2 (Dynamic Dashboards) schema.
@@ -155,7 +155,7 @@ class AppsDashboardDashboardV2(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        example = grafana.AppsDashboardDashboardV2("example",
+        example = grafana.apps.v2.Dashboard("example",
             metadata={
                 "uid": "example-dashboard-v2",
             },
@@ -187,15 +187,15 @@ class AppsDashboardDashboardV2(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['AppsDashboardDashboardV2MetadataArgs', 'AppsDashboardDashboardV2MetadataArgsDict']] metadata: The metadata of the resource.
-        :param pulumi.Input[Union['AppsDashboardDashboardV2OptionsArgs', 'AppsDashboardDashboardV2OptionsArgsDict']] options: Options for applying the resource.
-        :param pulumi.Input[Union['AppsDashboardDashboardV2SpecArgs', 'AppsDashboardDashboardV2SpecArgsDict']] spec: The spec of the resource.
+        :param pulumi.Input[Union['DashboardMetadataArgs', 'DashboardMetadataArgsDict']] metadata: The metadata of the resource.
+        :param pulumi.Input[Union['DashboardOptionsArgs', 'DashboardOptionsArgsDict']] options: Options for applying the resource.
+        :param pulumi.Input[Union['DashboardSpecArgs', 'DashboardSpecArgsDict']] spec: The spec of the resource.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[AppsDashboardDashboardV2Args] = None,
+                 args: Optional[DashboardArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages Grafana dashboards using the v2 (Dynamic Dashboards) schema.
@@ -210,7 +210,7 @@ class AppsDashboardDashboardV2(pulumi.CustomResource):
         import json
         import pulumiverse_grafana as grafana
 
-        example = grafana.AppsDashboardDashboardV2("example",
+        example = grafana.apps.v2.Dashboard("example",
             metadata={
                 "uid": "example-dashboard-v2",
             },
@@ -241,12 +241,12 @@ class AppsDashboardDashboardV2(pulumi.CustomResource):
 
 
         :param str resource_name: The name of the resource.
-        :param AppsDashboardDashboardV2Args args: The arguments to use to populate this resource's properties.
+        :param DashboardArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AppsDashboardDashboardV2Args, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(DashboardArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -255,9 +255,9 @@ class AppsDashboardDashboardV2(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 metadata: Optional[pulumi.Input[Union['AppsDashboardDashboardV2MetadataArgs', 'AppsDashboardDashboardV2MetadataArgsDict']]] = None,
-                 options: Optional[pulumi.Input[Union['AppsDashboardDashboardV2OptionsArgs', 'AppsDashboardDashboardV2OptionsArgsDict']]] = None,
-                 spec: Optional[pulumi.Input[Union['AppsDashboardDashboardV2SpecArgs', 'AppsDashboardDashboardV2SpecArgsDict']]] = None,
+                 metadata: Optional[pulumi.Input[Union['DashboardMetadataArgs', 'DashboardMetadataArgsDict']]] = None,
+                 options: Optional[pulumi.Input[Union['DashboardOptionsArgs', 'DashboardOptionsArgsDict']]] = None,
+                 spec: Optional[pulumi.Input[Union['DashboardSpecArgs', 'DashboardSpecArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -265,13 +265,13 @@ class AppsDashboardDashboardV2(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AppsDashboardDashboardV2Args.__new__(AppsDashboardDashboardV2Args)
+            __props__ = DashboardArgs.__new__(DashboardArgs)
 
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["options"] = options
             __props__.__dict__["spec"] = spec
-        super(AppsDashboardDashboardV2, __self__).__init__(
-            'grafana:index/appsDashboardDashboardV2:AppsDashboardDashboardV2',
+        super(Dashboard, __self__).__init__(
+            'grafana:apps/v2/dashboard:Dashboard',
             resource_name,
             __props__,
             opts)
@@ -280,32 +280,32 @@ class AppsDashboardDashboardV2(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            metadata: Optional[pulumi.Input[Union['AppsDashboardDashboardV2MetadataArgs', 'AppsDashboardDashboardV2MetadataArgsDict']]] = None,
-            options: Optional[pulumi.Input[Union['AppsDashboardDashboardV2OptionsArgs', 'AppsDashboardDashboardV2OptionsArgsDict']]] = None,
-            spec: Optional[pulumi.Input[Union['AppsDashboardDashboardV2SpecArgs', 'AppsDashboardDashboardV2SpecArgsDict']]] = None) -> 'AppsDashboardDashboardV2':
+            metadata: Optional[pulumi.Input[Union['DashboardMetadataArgs', 'DashboardMetadataArgsDict']]] = None,
+            options: Optional[pulumi.Input[Union['DashboardOptionsArgs', 'DashboardOptionsArgsDict']]] = None,
+            spec: Optional[pulumi.Input[Union['DashboardSpecArgs', 'DashboardSpecArgsDict']]] = None) -> 'Dashboard':
         """
-        Get an existing AppsDashboardDashboardV2 resource's state with the given name, id, and optional extra
+        Get an existing Dashboard resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['AppsDashboardDashboardV2MetadataArgs', 'AppsDashboardDashboardV2MetadataArgsDict']] metadata: The metadata of the resource.
-        :param pulumi.Input[Union['AppsDashboardDashboardV2OptionsArgs', 'AppsDashboardDashboardV2OptionsArgsDict']] options: Options for applying the resource.
-        :param pulumi.Input[Union['AppsDashboardDashboardV2SpecArgs', 'AppsDashboardDashboardV2SpecArgsDict']] spec: The spec of the resource.
+        :param pulumi.Input[Union['DashboardMetadataArgs', 'DashboardMetadataArgsDict']] metadata: The metadata of the resource.
+        :param pulumi.Input[Union['DashboardOptionsArgs', 'DashboardOptionsArgsDict']] options: Options for applying the resource.
+        :param pulumi.Input[Union['DashboardSpecArgs', 'DashboardSpecArgsDict']] spec: The spec of the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _AppsDashboardDashboardV2State.__new__(_AppsDashboardDashboardV2State)
+        __props__ = _DashboardState.__new__(_DashboardState)
 
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["options"] = options
         __props__.__dict__["spec"] = spec
-        return AppsDashboardDashboardV2(resource_name, opts=opts, __props__=__props__)
+        return Dashboard(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> pulumi.Output[Optional['outputs.AppsDashboardDashboardV2Metadata']]:
+    def metadata(self) -> pulumi.Output[Optional['outputs.DashboardMetadata']]:
         """
         The metadata of the resource.
         """
@@ -313,7 +313,7 @@ class AppsDashboardDashboardV2(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> pulumi.Output[Optional['outputs.AppsDashboardDashboardV2Options']]:
+    def options(self) -> pulumi.Output[Optional['outputs.DashboardOptions']]:
         """
         Options for applying the resource.
         """
@@ -321,7 +321,7 @@ class AppsDashboardDashboardV2(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def spec(self) -> pulumi.Output[Optional['outputs.AppsDashboardDashboardV2Spec']]:
+    def spec(self) -> pulumi.Output[Optional['outputs.DashboardSpec']]:
         """
         The spec of the resource.
         """
