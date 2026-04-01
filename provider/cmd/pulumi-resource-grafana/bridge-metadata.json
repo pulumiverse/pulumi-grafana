@@ -94,6 +94,19 @@
                     }
                 }
             },
+            "grafana_apps_dashboard_dashboard_v2": {
+                "current": "grafana:index/appsDashboardDashboardV2:AppsDashboardDashboardV2",
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "tags": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
             "grafana_apps_dashboard_dashboard_v2beta1": {
                 "current": "grafana:apps/v2beta1/dashboard:Dashboard",
                 "majorVersion": 2,
@@ -2458,7 +2471,7 @@
             "grafana:enterprise/role:Role": 0,
             "grafana:enterprise/roleAssignment:RoleAssignment": 0,
             "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem": 1,
-            "grafana:enterprise/scimConfig:ScimConfig": 0,
+            "grafana:enterprise/scimConfig:ScimConfig": 1,
             "grafana:enterprise/teamExternalGroup:TeamExternalGroup": 0,
             "grafana:enterprise/v1beta1/secretKeeper:SecretKeeper": 1,
             "grafana:enterprise/v1beta1/secretKeeperActivation:SecretKeeperActivation": 1,
@@ -2468,6 +2481,7 @@
             "grafana:fleetManagement/collector:Collector": 1,
             "grafana:fleetManagement/pipeline:Pipeline": 1,
             "grafana:frontendObservability/app:App": 1,
+            "grafana:index/appsDashboardDashboardV2:AppsDashboardDashboardV2": 1,
             "grafana:k6/installation:Installation": 0,
             "grafana:k6/loadTest:LoadTest": 1,
             "grafana:k6/project:Project": 1,
@@ -2499,7 +2513,7 @@
             "grafana:oss/libraryPanel:LibraryPanel": 0,
             "grafana:oss/organization:Organization": 0,
             "grafana:oss/organizationPreferences:OrganizationPreferences": 0,
-            "grafana:oss/playlist:Playlist": 0,
+            "grafana:oss/playlist:Playlist": 1,
             "grafana:oss/serviceAccount:ServiceAccount": 0,
             "grafana:oss/serviceAccountPermission:ServiceAccountPermission": 0,
             "grafana:oss/serviceAccountPermissionItem:ServiceAccountPermissionItem": 1,
