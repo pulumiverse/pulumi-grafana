@@ -12,6 +12,8 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
+// Manages Grafana playlists.
+//
 // * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
 // * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
 //
@@ -68,7 +70,7 @@ type Playlist struct {
 	// The name of the playlist.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 }
 
 // NewPlaylist registers a new resource with the given unique name, arguments, and options.
@@ -80,9 +82,6 @@ func NewPlaylist(ctx *pulumi.Context,
 
 	if args.Interval == nil {
 		return nil, errors.New("invalid value for required argument 'Interval'")
-	}
-	if args.Items == nil {
-		return nil, errors.New("invalid value for required argument 'Items'")
 	}
 	aliases := pulumi.Aliases([]pulumi.Alias{
 		{
@@ -254,8 +253,8 @@ func (o PlaylistOutput) Name() pulumi.StringOutput {
 }
 
 // The Organization ID. If not set, the Org ID defined in the provider block will be used.
-func (o PlaylistOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Playlist) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+func (o PlaylistOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Playlist) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 type PlaylistArrayOutput struct{ *pulumi.OutputState }

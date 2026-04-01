@@ -7,6 +7,8 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * Manages Grafana playlists.
+ *
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
  * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
  *
@@ -70,7 +72,7 @@ export class Playlist extends pulumi.CustomResource {
     }
 
     declare public readonly interval: pulumi.Output<string>;
-    declare public readonly items: pulumi.Output<outputs.oss.PlaylistItem[]>;
+    declare public readonly items: pulumi.Output<outputs.oss.PlaylistItem[] | undefined>;
     /**
      * The name of the playlist.
      */
@@ -78,7 +80,7 @@ export class Playlist extends pulumi.CustomResource {
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    declare public readonly orgId: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string>;
 
     /**
      * Create a Playlist resource with the given unique name, arguments, and options.
@@ -101,9 +103,6 @@ export class Playlist extends pulumi.CustomResource {
             const args = argsOrState as PlaylistArgs | undefined;
             if (args?.interval === undefined && !opts.urn) {
                 throw new Error("Missing required property 'interval'");
-            }
-            if (args?.items === undefined && !opts.urn) {
-                throw new Error("Missing required property 'items'");
             }
             resourceInputs["interval"] = args?.interval;
             resourceInputs["items"] = args?.items;
@@ -138,7 +137,7 @@ export interface PlaylistState {
  */
 export interface PlaylistArgs {
     interval: pulumi.Input<string>;
-    items: pulumi.Input<pulumi.Input<inputs.oss.PlaylistItem>[]>;
+    items?: pulumi.Input<pulumi.Input<inputs.oss.PlaylistItem>[]>;
     /**
      * The name of the playlist.
      */

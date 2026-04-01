@@ -22,7 +22,7 @@ __all__ = ['PlaylistArgs', 'Playlist']
 class PlaylistArgs:
     def __init__(__self__, *,
                  interval: pulumi.Input[_builtins.str],
-                 items: pulumi.Input[Sequence[pulumi.Input['PlaylistItemArgs']]],
+                 items: Optional[pulumi.Input[Sequence[pulumi.Input['PlaylistItemArgs']]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  org_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -32,7 +32,8 @@ class PlaylistArgs:
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """
         pulumi.set(__self__, "interval", interval)
-        pulumi.set(__self__, "items", items)
+        if items is not None:
+            pulumi.set(__self__, "items", items)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if org_id is not None:
@@ -49,11 +50,11 @@ class PlaylistArgs:
 
     @_builtins.property
     @pulumi.getter
-    def items(self) -> pulumi.Input[Sequence[pulumi.Input['PlaylistItemArgs']]]:
+    def items(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PlaylistItemArgs']]]]:
         return pulumi.get(self, "items")
 
     @items.setter
-    def items(self, value: pulumi.Input[Sequence[pulumi.Input['PlaylistItemArgs']]]):
+    def items(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PlaylistItemArgs']]]]):
         pulumi.set(self, "items", value)
 
     @_builtins.property
@@ -158,6 +159,8 @@ class Playlist(pulumi.CustomResource):
                  org_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Manages Grafana playlists.
+
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
 
@@ -204,6 +207,8 @@ class Playlist(pulumi.CustomResource):
                  args: PlaylistArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages Grafana playlists.
+
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
         * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
 
@@ -269,8 +274,6 @@ class Playlist(pulumi.CustomResource):
             if interval is None and not opts.urn:
                 raise TypeError("Missing required property 'interval'")
             __props__.__dict__["interval"] = interval
-            if items is None and not opts.urn:
-                raise TypeError("Missing required property 'items'")
             __props__.__dict__["items"] = items
             __props__.__dict__["name"] = name
             __props__.__dict__["org_id"] = org_id
@@ -317,7 +320,7 @@ class Playlist(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def items(self) -> pulumi.Output[Sequence['outputs.PlaylistItem']]:
+    def items(self) -> pulumi.Output[Optional[Sequence['outputs.PlaylistItem']]]:
         return pulumi.get(self, "items")
 
     @_builtins.property
@@ -330,7 +333,7 @@ class Playlist(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def org_id(self) -> pulumi.Output[_builtins.str]:
         """
         The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """

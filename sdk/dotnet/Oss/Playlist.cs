@@ -11,6 +11,8 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Oss
 {
     /// <summary>
+    /// Manages Grafana playlists.
+    /// 
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
     /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
     /// 
@@ -74,7 +76,7 @@ namespace Pulumiverse.Grafana.Oss
         /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
         [Output("orgId")]
-        public Output<string?> OrgId { get; private set; } = null!;
+        public Output<string> OrgId { get; private set; } = null!;
 
 
         /// <summary>
@@ -130,7 +132,7 @@ namespace Pulumiverse.Grafana.Oss
         [Input("interval", required: true)]
         public Input<string> Interval { get; set; } = null!;
 
-        [Input("items", required: true)]
+        [Input("items")]
         private InputList<Inputs.PlaylistItemArgs>? _items;
         public InputList<Inputs.PlaylistItemArgs> Items
         {

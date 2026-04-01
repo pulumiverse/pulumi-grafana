@@ -5,6 +5,58 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppsDashboardDashboardV2Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsDashboardDashboardV2Options {
+    /**
+     * Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+     */
+    allowUiUpdates?: pulumi.Input<boolean>;
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsDashboardDashboardV2Spec {
+    /**
+     * The JSON representation of the dashboard v2 spec.
+     */
+    json: pulumi.Input<string>;
+    /**
+     * The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The title of the dashboard. If not set, the title will be derived from the JSON spec.
+     */
+    title?: pulumi.Input<string>;
+}
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**

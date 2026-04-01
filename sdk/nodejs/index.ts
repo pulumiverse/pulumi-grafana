@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AppsDashboardDashboardV2Args, AppsDashboardDashboardV2State } from "./appsDashboardDashboardV2";
+export type AppsDashboardDashboardV2 = import("./appsDashboardDashboardV2").AppsDashboardDashboardV2;
+export const AppsDashboardDashboardV2: typeof import("./appsDashboardDashboardV2").AppsDashboardDashboardV2 = null as any;
+utilities.lazyLoad(exports, ["AppsDashboardDashboardV2"], () => require("./appsDashboardDashboardV2"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -49,6 +54,19 @@ export {
     syntheticmonitoring,
     types,
 };
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "grafana:index/appsDashboardDashboardV2:AppsDashboardDashboardV2":
+                return new AppsDashboardDashboardV2(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("grafana", "index/appsDashboardDashboardV2", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {
