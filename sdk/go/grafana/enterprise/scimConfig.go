@@ -57,8 +57,8 @@ type ScimConfig struct {
 	EnableGroupSync pulumi.BoolOutput `pulumi:"enableGroupSync"`
 	// Whether user synchronization is enabled.
 	EnableUserSync pulumi.BoolOutput `pulumi:"enableUserSync"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
 	RejectNonProvisionedUsers pulumi.BoolOutput `pulumi:"rejectNonProvisionedUsers"`
 }
@@ -106,7 +106,7 @@ type scimConfigState struct {
 	EnableGroupSync *bool `pulumi:"enableGroupSync"`
 	// Whether user synchronization is enabled.
 	EnableUserSync *bool `pulumi:"enableUserSync"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
 	RejectNonProvisionedUsers *bool `pulumi:"rejectNonProvisionedUsers"`
@@ -117,7 +117,7 @@ type ScimConfigState struct {
 	EnableGroupSync pulumi.BoolPtrInput
 	// Whether user synchronization is enabled.
 	EnableUserSync pulumi.BoolPtrInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
 	RejectNonProvisionedUsers pulumi.BoolPtrInput
@@ -132,7 +132,7 @@ type scimConfigArgs struct {
 	EnableGroupSync bool `pulumi:"enableGroupSync"`
 	// Whether user synchronization is enabled.
 	EnableUserSync bool `pulumi:"enableUserSync"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
 	RejectNonProvisionedUsers bool `pulumi:"rejectNonProvisionedUsers"`
@@ -144,7 +144,7 @@ type ScimConfigArgs struct {
 	EnableGroupSync pulumi.BoolInput
 	// Whether user synchronization is enabled.
 	EnableUserSync pulumi.BoolInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
 	RejectNonProvisionedUsers pulumi.BoolInput
@@ -247,9 +247,9 @@ func (o ScimConfigOutput) EnableUserSync() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ScimConfig) pulumi.BoolOutput { return v.EnableUserSync }).(pulumi.BoolOutput)
 }
 
-// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-func (o ScimConfigOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ScimConfig) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+func (o ScimConfigOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScimConfig) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 // Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.

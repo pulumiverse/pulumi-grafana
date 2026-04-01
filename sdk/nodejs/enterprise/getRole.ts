@@ -107,7 +107,7 @@ export interface GetRoleResult {
      */
     readonly uid: string;
     /**
-     * Version of the role. A role is updated only on version increase. This field or `autoIncrementVersion` should be set.
+     * Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `autoIncrementVersion` should be set; `autoIncrementVersion` is recommended.
      */
     readonly version: number;
 }

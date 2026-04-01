@@ -5409,6 +5409,88 @@
                 "json"
             ]
         },
+        "grafana:apps/v2/DashboardMetadata:DashboardMetadata": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Annotations of the resource.\n"
+                },
+                "folderUid": {
+                    "type": "string",
+                    "description": "The UID of the folder to save the resource in.\n"
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "The unique identifier of the resource.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The full URL of the resource.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "The globally unique identifier of a resource, used by the API for tracking.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the resource.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "uid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "annotations",
+                        "uid",
+                        "url",
+                        "uuid",
+                        "version"
+                    ]
+                }
+            }
+        },
+        "grafana:apps/v2/DashboardOptions:DashboardOptions": {
+            "properties": {
+                "allowUiUpdates": {
+                    "type": "boolean",
+                    "description": "Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.\n"
+                },
+                "overwrite": {
+                    "type": "boolean",
+                    "description": "Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:apps/v2/DashboardSpec:DashboardSpec": {
+            "properties": {
+                "json": {
+                    "type": "string",
+                    "description": "The JSON representation of the dashboard v2 spec.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags of the dashboard. If not set, the tags will be derived from the JSON spec.\n"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the dashboard. If not set, the title will be derived from the JSON spec.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "json"
+            ]
+        },
         "grafana:apps/v2beta1/DashboardMetadata:DashboardMetadata": {
             "properties": {
                 "annotations": {
@@ -12468,6 +12550,55 @@
                 }
             ]
         },
+        "grafana:apps/v2/dashboard:Dashboard": {
+            "description": "Manages Grafana dashboards using the v2 (Dynamic Dashboards) schema.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.apps.v2.Dashboard(\"example\", {\n    metadata: {\n        uid: \"example-dashboard-v2\",\n    },\n    spec: {\n        title: \"Example Dashboard V2\",\n        json: JSON.stringify({\n            title: \"Example Dashboard V2\",\n            cursorSync: \"Off\",\n            elements: {},\n            layout: {\n                kind: \"GridLayout\",\n                spec: {\n                    items: [],\n                },\n            },\n            links: [],\n            preload: false,\n            annotations: [],\n            variables: [],\n            timeSettings: {\n                timezone: \"browser\",\n                from: \"now-6h\",\n                to: \"now\",\n            },\n        }),\n    },\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.apps.v2.Dashboard(\"example\",\n    metadata={\n        \"uid\": \"example-dashboard-v2\",\n    },\n    spec={\n        \"title\": \"Example Dashboard V2\",\n        \"json\": json.dumps({\n            \"title\": \"Example Dashboard V2\",\n            \"cursorSync\": \"Off\",\n            \"elements\": {},\n            \"layout\": {\n                \"kind\": \"GridLayout\",\n                \"spec\": {\n                    \"items\": [],\n                },\n            },\n            \"links\": [],\n            \"preload\": False,\n            \"annotations\": [],\n            \"variables\": [],\n            \"timeSettings\": {\n                \"timezone\": \"browser\",\n                \"from\": \"now-6h\",\n                \"to\": \"now\",\n            },\n        }),\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Apps.V2.Dashboard(\"example\", new()\n    {\n        Metadata = new Grafana.Apps.V2.Inputs.DashboardMetadataArgs\n        {\n            Uid = \"example-dashboard-v2\",\n        },\n        Spec = new Grafana.Apps.V2.Inputs.DashboardSpecArgs\n        {\n            Title = \"Example Dashboard V2\",\n            Json = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n            {\n                [\"title\"] = \"Example Dashboard V2\",\n                [\"cursorSync\"] = \"Off\",\n                [\"elements\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                },\n                [\"layout\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"kind\"] = \"GridLayout\",\n                    [\"spec\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"items\"] = new[]\n                        {\n                        },\n                    },\n                },\n                [\"links\"] = new[]\n                {\n                },\n                [\"preload\"] = false,\n                [\"annotations\"] = new[]\n                {\n                },\n                [\"variables\"] = new[]\n                {\n                },\n                [\"timeSettings\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"timezone\"] = \"browser\",\n                    [\"from\"] = \"now-6h\",\n                    [\"to\"] = \"now\",\n                },\n            }),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"title\":      \"Example Dashboard V2\",\n\t\t\t\"cursorSync\": \"Off\",\n\t\t\t\"elements\":   map[string]interface{}{},\n\t\t\t\"layout\": map[string]interface{}{\n\t\t\t\t\"kind\": \"GridLayout\",\n\t\t\t\t\"spec\": map[string]interface{}{\n\t\t\t\t\t\"items\": []interface{}{},\n\t\t\t\t},\n\t\t\t},\n\t\t\t\"links\":       []interface{}{},\n\t\t\t\"preload\":     false,\n\t\t\t\"annotations\": []interface{}{},\n\t\t\t\"variables\":   []interface{}{},\n\t\t\t\"timeSettings\": map[string]interface{}{\n\t\t\t\t\"timezone\": \"browser\",\n\t\t\t\t\"from\":     \"now-6h\",\n\t\t\t\t\"to\":       \"now\",\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = apps.NewDashboard(ctx, \"example\", \u0026apps.DashboardArgs{\n\t\t\tMetadata: \u0026v2.DashboardMetadataArgs{\n\t\t\t\tUid: pulumi.String(\"example-dashboard-v2\"),\n\t\t\t},\n\t\t\tSpec: \u0026v2.DashboardSpecArgs{\n\t\t\t\tTitle: pulumi.String(\"Example Dashboard V2\"),\n\t\t\t\tJson:  pulumi.String(pulumi.String(json0)),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.apps_v2.Dashboard;\nimport com.pulumi.grafana.apps_v2.DashboardArgs;\nimport com.pulumi.grafana.apps.inputs.DashboardMetadataArgs;\nimport com.pulumi.grafana.apps.inputs.DashboardSpecArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Dashboard(\"example\", DashboardArgs.builder()\n            .metadata(DashboardMetadataArgs.builder()\n                .uid(\"example-dashboard-v2\")\n                .build())\n            .spec(DashboardSpecArgs.builder()\n                .title(\"Example Dashboard V2\")\n                .json(serializeJson(\n                    jsonObject(\n                        jsonProperty(\"title\", \"Example Dashboard V2\"),\n                        jsonProperty(\"cursorSync\", \"Off\"),\n                        jsonProperty(\"elements\", jsonObject(\n\n                        )),\n                        jsonProperty(\"layout\", jsonObject(\n                            jsonProperty(\"kind\", \"GridLayout\"),\n                            jsonProperty(\"spec\", jsonObject(\n                                jsonProperty(\"items\", jsonArray(\n                                ))\n                            ))\n                        )),\n                        jsonProperty(\"links\", jsonArray(\n                        )),\n                        jsonProperty(\"preload\", false),\n                        jsonProperty(\"annotations\", jsonArray(\n                        )),\n                        jsonProperty(\"variables\", jsonArray(\n                        )),\n                        jsonProperty(\"timeSettings\", jsonObject(\n                            jsonProperty(\"timezone\", \"browser\"),\n                            jsonProperty(\"from\", \"now-6h\"),\n                            jsonProperty(\"to\", \"now\")\n                        ))\n                    )))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:apps/v2:Dashboard\n    properties:\n      metadata:\n        uid: example-dashboard-v2\n      spec:\n        title: Example Dashboard V2\n        json:\n          fn::toJSON:\n            title: Example Dashboard V2\n            cursorSync: Off\n            elements: {}\n            layout:\n              kind: GridLayout\n              spec:\n                items: []\n            links: []\n            preload: false\n            annotations: []\n            variables: []\n            timeSettings:\n              timezone: browser\n              from: now-6h\n              to: now\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:apps/v2/DashboardMetadata:DashboardMetadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:apps/v2/DashboardOptions:DashboardOptions",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:apps/v2/DashboardSpec:DashboardSpec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "inputProperties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:apps/v2/DashboardMetadata:DashboardMetadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:apps/v2/DashboardOptions:DashboardOptions",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:apps/v2/DashboardSpec:DashboardSpec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Dashboard resources.\n",
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/types/grafana:apps/v2/DashboardMetadata:DashboardMetadata",
+                        "description": "The metadata of the resource.\n"
+                    },
+                    "options": {
+                        "$ref": "#/types/grafana:apps/v2/DashboardOptions:DashboardOptions",
+                        "description": "Options for applying the resource.\n"
+                    },
+                    "spec": {
+                        "$ref": "#/types/grafana:apps/v2/DashboardSpec:DashboardSpec",
+                        "description": "The spec of the resource.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:apps/v2beta1/dashboard:Dashboard": {
             "description": "Manages Grafana dashboards using the v2beta1 (Dynamic Dashboards) schema.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/#new-dashboard-apis)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.apps.v2beta1.Dashboard(\"example\", {\n    metadata: {\n        uid: \"example-dashboard-v2\",\n    },\n    spec: {\n        title: \"Example Dashboard V2\",\n        json: JSON.stringify({\n            title: \"Example Dashboard V2\",\n            cursorSync: \"Off\",\n            elements: {},\n            layout: {\n                kind: \"GridLayout\",\n                spec: {\n                    items: [],\n                },\n            },\n            links: [],\n            preload: false,\n            annotations: [],\n            variables: [],\n            timeSettings: {\n                timezone: \"browser\",\n                from: \"now-6h\",\n                to: \"now\",\n            },\n        }),\n    },\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_grafana as grafana\n\nexample = grafana.apps.v2beta1.Dashboard(\"example\",\n    metadata={\n        \"uid\": \"example-dashboard-v2\",\n    },\n    spec={\n        \"title\": \"Example Dashboard V2\",\n        \"json\": json.dumps({\n            \"title\": \"Example Dashboard V2\",\n            \"cursorSync\": \"Off\",\n            \"elements\": {},\n            \"layout\": {\n                \"kind\": \"GridLayout\",\n                \"spec\": {\n                    \"items\": [],\n                },\n            },\n            \"links\": [],\n            \"preload\": False,\n            \"annotations\": [],\n            \"variables\": [],\n            \"timeSettings\": {\n                \"timezone\": \"browser\",\n                \"from\": \"now-6h\",\n                \"to\": \"now\",\n            },\n        }),\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Apps.V2Beta1.Dashboard(\"example\", new()\n    {\n        Metadata = new Grafana.Apps.V2Beta1.Inputs.DashboardMetadataArgs\n        {\n            Uid = \"example-dashboard-v2\",\n        },\n        Spec = new Grafana.Apps.V2Beta1.Inputs.DashboardSpecArgs\n        {\n            Title = \"Example Dashboard V2\",\n            Json = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n            {\n                [\"title\"] = \"Example Dashboard V2\",\n                [\"cursorSync\"] = \"Off\",\n                [\"elements\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                },\n                [\"layout\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"kind\"] = \"GridLayout\",\n                    [\"spec\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"items\"] = new[]\n                        {\n                        },\n                    },\n                },\n                [\"links\"] = new[]\n                {\n                },\n                [\"preload\"] = false,\n                [\"annotations\"] = new[]\n                {\n                },\n                [\"variables\"] = new[]\n                {\n                },\n                [\"timeSettings\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"timezone\"] = \"browser\",\n                    [\"from\"] = \"now-6h\",\n                    [\"to\"] = \"now\",\n                },\n            }),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps\"\n\tappsv2beta1 \"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps/v2beta1\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"title\":      \"Example Dashboard V2\",\n\t\t\t\"cursorSync\": \"Off\",\n\t\t\t\"elements\":   map[string]interface{}{},\n\t\t\t\"layout\": map[string]interface{}{\n\t\t\t\t\"kind\": \"GridLayout\",\n\t\t\t\t\"spec\": map[string]interface{}{\n\t\t\t\t\t\"items\": []interface{}{},\n\t\t\t\t},\n\t\t\t},\n\t\t\t\"links\":       []interface{}{},\n\t\t\t\"preload\":     false,\n\t\t\t\"annotations\": []interface{}{},\n\t\t\t\"variables\":   []interface{}{},\n\t\t\t\"timeSettings\": map[string]interface{}{\n\t\t\t\t\"timezone\": \"browser\",\n\t\t\t\t\"from\":     \"now-6h\",\n\t\t\t\t\"to\":       \"now\",\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = apps.NewDashboard(ctx, \"example\", \u0026apps.DashboardArgs{\n\t\t\tMetadata: \u0026appsv2beta1.DashboardMetadataArgs{\n\t\t\t\tUid: pulumi.String(\"example-dashboard-v2\"),\n\t\t\t},\n\t\t\tSpec: \u0026appsv2beta1.DashboardSpecArgs{\n\t\t\t\tTitle: pulumi.String(\"Example Dashboard V2\"),\n\t\t\t\tJson:  pulumi.String(pulumi.String(json0)),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.apps_v2beta1.Dashboard;\nimport com.pulumi.grafana.apps_v2beta1.DashboardArgs;\nimport com.pulumi.grafana.apps.inputs.DashboardMetadataArgs;\nimport com.pulumi.grafana.apps.inputs.DashboardSpecArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Dashboard(\"example\", DashboardArgs.builder()\n            .metadata(DashboardMetadataArgs.builder()\n                .uid(\"example-dashboard-v2\")\n                .build())\n            .spec(DashboardSpecArgs.builder()\n                .title(\"Example Dashboard V2\")\n                .json(serializeJson(\n                    jsonObject(\n                        jsonProperty(\"title\", \"Example Dashboard V2\"),\n                        jsonProperty(\"cursorSync\", \"Off\"),\n                        jsonProperty(\"elements\", jsonObject(\n\n                        )),\n                        jsonProperty(\"layout\", jsonObject(\n                            jsonProperty(\"kind\", \"GridLayout\"),\n                            jsonProperty(\"spec\", jsonObject(\n                                jsonProperty(\"items\", jsonArray(\n                                ))\n                            ))\n                        )),\n                        jsonProperty(\"links\", jsonArray(\n                        )),\n                        jsonProperty(\"preload\", false),\n                        jsonProperty(\"annotations\", jsonArray(\n                        )),\n                        jsonProperty(\"variables\", jsonArray(\n                        )),\n                        jsonProperty(\"timeSettings\", jsonObject(\n                            jsonProperty(\"timezone\", \"browser\"),\n                            jsonProperty(\"from\", \"now-6h\"),\n                            jsonProperty(\"to\", \"now\")\n                        ))\n                    )))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:apps/v2beta1:Dashboard\n    properties:\n      metadata:\n        uid: example-dashboard-v2\n      spec:\n        title: Example Dashboard V2\n        json:\n          fn::toJSON:\n            title: Example Dashboard V2\n            cursorSync: Off\n            elements: {}\n            layout:\n              kind: GridLayout\n              spec:\n                items: []\n            links: []\n            preload: false\n            annotations: []\n            variables: []\n            timeSettings:\n              timezone: browser\n              from: now-6h\n              to: now\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
@@ -16866,7 +16997,7 @@
             "properties": {
                 "autoIncrementVersion": {
                     "type": "boolean",
-                    "description": "Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or \u003cspan pulumi-lang-nodejs=\"`version`\" pulumi-lang-dotnet=\"`Version`\" pulumi-lang-go=\"`version`\" pulumi-lang-python=\"`version`\" pulumi-lang-yaml=\"`version`\" pulumi-lang-java=\"`version`\"\u003e`version`\u003c/span\u003e should be set.\n"
+                    "description": "Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or \u003cspan pulumi-lang-nodejs=\"`version`\" pulumi-lang-dotnet=\"`Version`\" pulumi-lang-go=\"`version`\" pulumi-lang-python=\"`version`\" pulumi-lang-yaml=\"`version`\" pulumi-lang-java=\"`version`\"\u003e`version`\u003c/span\u003e should be set.\n"
                 },
                 "description": {
                     "type": "string",
@@ -16909,7 +17040,7 @@
                 },
                 "version": {
                     "type": "integer",
-                    "description": "Version of the role. A role is updated only on version increase. This field or \u003cspan pulumi-lang-nodejs=\"`autoIncrementVersion`\" pulumi-lang-dotnet=\"`AutoIncrementVersion`\" pulumi-lang-go=\"`autoIncrementVersion`\" pulumi-lang-python=\"`auto_increment_version`\" pulumi-lang-yaml=\"`autoIncrementVersion`\" pulumi-lang-java=\"`autoIncrementVersion`\"\u003e`autoIncrementVersion`\u003c/span\u003e should be set.\n"
+                    "description": "Version of the role. On create, must be \u003cspan pulumi-lang-nodejs=\"`1`\" pulumi-lang-dotnet=\"`1`\" pulumi-lang-go=\"`1`\" pulumi-lang-python=\"`1`\" pulumi-lang-yaml=\"`1`\" pulumi-lang-java=\"`1`\"\u003e`1`\u003c/span\u003e. On update, must be exactly one greater than the previous state. This field or \u003cspan pulumi-lang-nodejs=\"`autoIncrementVersion`\" pulumi-lang-dotnet=\"`AutoIncrementVersion`\" pulumi-lang-go=\"`autoIncrementVersion`\" pulumi-lang-python=\"`auto_increment_version`\" pulumi-lang-yaml=\"`autoIncrementVersion`\" pulumi-lang-java=\"`autoIncrementVersion`\"\u003e`autoIncrementVersion`\u003c/span\u003e should be set; \u003cspan pulumi-lang-nodejs=\"`autoIncrementVersion`\" pulumi-lang-dotnet=\"`AutoIncrementVersion`\" pulumi-lang-go=\"`autoIncrementVersion`\" pulumi-lang-python=\"`auto_increment_version`\" pulumi-lang-yaml=\"`autoIncrementVersion`\" pulumi-lang-java=\"`autoIncrementVersion`\"\u003e`autoIncrementVersion`\u003c/span\u003e is recommended.\n"
                 }
             },
             "required": [
@@ -16919,7 +17050,7 @@
             "inputProperties": {
                 "autoIncrementVersion": {
                     "type": "boolean",
-                    "description": "Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or \u003cspan pulumi-lang-nodejs=\"`version`\" pulumi-lang-dotnet=\"`Version`\" pulumi-lang-go=\"`version`\" pulumi-lang-python=\"`version`\" pulumi-lang-yaml=\"`version`\" pulumi-lang-java=\"`version`\"\u003e`version`\u003c/span\u003e should be set.\n"
+                    "description": "Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or \u003cspan pulumi-lang-nodejs=\"`version`\" pulumi-lang-dotnet=\"`Version`\" pulumi-lang-go=\"`version`\" pulumi-lang-python=\"`version`\" pulumi-lang-yaml=\"`version`\" pulumi-lang-java=\"`version`\"\u003e`version`\u003c/span\u003e should be set.\n"
                 },
                 "description": {
                     "type": "string",
@@ -16965,7 +17096,7 @@
                 },
                 "version": {
                     "type": "integer",
-                    "description": "Version of the role. A role is updated only on version increase. This field or \u003cspan pulumi-lang-nodejs=\"`autoIncrementVersion`\" pulumi-lang-dotnet=\"`AutoIncrementVersion`\" pulumi-lang-go=\"`autoIncrementVersion`\" pulumi-lang-python=\"`auto_increment_version`\" pulumi-lang-yaml=\"`autoIncrementVersion`\" pulumi-lang-java=\"`autoIncrementVersion`\"\u003e`autoIncrementVersion`\u003c/span\u003e should be set.\n"
+                    "description": "Version of the role. On create, must be \u003cspan pulumi-lang-nodejs=\"`1`\" pulumi-lang-dotnet=\"`1`\" pulumi-lang-go=\"`1`\" pulumi-lang-python=\"`1`\" pulumi-lang-yaml=\"`1`\" pulumi-lang-java=\"`1`\"\u003e`1`\u003c/span\u003e. On update, must be exactly one greater than the previous state. This field or \u003cspan pulumi-lang-nodejs=\"`autoIncrementVersion`\" pulumi-lang-dotnet=\"`AutoIncrementVersion`\" pulumi-lang-go=\"`autoIncrementVersion`\" pulumi-lang-python=\"`auto_increment_version`\" pulumi-lang-yaml=\"`autoIncrementVersion`\" pulumi-lang-java=\"`autoIncrementVersion`\"\u003e`autoIncrementVersion`\u003c/span\u003e should be set; \u003cspan pulumi-lang-nodejs=\"`autoIncrementVersion`\" pulumi-lang-dotnet=\"`AutoIncrementVersion`\" pulumi-lang-go=\"`autoIncrementVersion`\" pulumi-lang-python=\"`auto_increment_version`\" pulumi-lang-yaml=\"`autoIncrementVersion`\" pulumi-lang-java=\"`autoIncrementVersion`\"\u003e`autoIncrementVersion`\u003c/span\u003e is recommended.\n"
                 }
             },
             "stateInputs": {
@@ -16973,7 +17104,7 @@
                 "properties": {
                     "autoIncrementVersion": {
                         "type": "boolean",
-                        "description": "Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or \u003cspan pulumi-lang-nodejs=\"`version`\" pulumi-lang-dotnet=\"`Version`\" pulumi-lang-go=\"`version`\" pulumi-lang-python=\"`version`\" pulumi-lang-yaml=\"`version`\" pulumi-lang-java=\"`version`\"\u003e`version`\u003c/span\u003e should be set.\n"
+                        "description": "Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or \u003cspan pulumi-lang-nodejs=\"`version`\" pulumi-lang-dotnet=\"`Version`\" pulumi-lang-go=\"`version`\" pulumi-lang-python=\"`version`\" pulumi-lang-yaml=\"`version`\" pulumi-lang-java=\"`version`\"\u003e`version`\u003c/span\u003e should be set.\n"
                     },
                     "description": {
                         "type": "string",
@@ -17019,7 +17150,7 @@
                     },
                     "version": {
                         "type": "integer",
-                        "description": "Version of the role. A role is updated only on version increase. This field or \u003cspan pulumi-lang-nodejs=\"`autoIncrementVersion`\" pulumi-lang-dotnet=\"`AutoIncrementVersion`\" pulumi-lang-go=\"`autoIncrementVersion`\" pulumi-lang-python=\"`auto_increment_version`\" pulumi-lang-yaml=\"`autoIncrementVersion`\" pulumi-lang-java=\"`autoIncrementVersion`\"\u003e`autoIncrementVersion`\u003c/span\u003e should be set.\n"
+                        "description": "Version of the role. On create, must be \u003cspan pulumi-lang-nodejs=\"`1`\" pulumi-lang-dotnet=\"`1`\" pulumi-lang-go=\"`1`\" pulumi-lang-python=\"`1`\" pulumi-lang-yaml=\"`1`\" pulumi-lang-java=\"`1`\"\u003e`1`\u003c/span\u003e. On update, must be exactly one greater than the previous state. This field or \u003cspan pulumi-lang-nodejs=\"`autoIncrementVersion`\" pulumi-lang-dotnet=\"`AutoIncrementVersion`\" pulumi-lang-go=\"`autoIncrementVersion`\" pulumi-lang-python=\"`auto_increment_version`\" pulumi-lang-yaml=\"`autoIncrementVersion`\" pulumi-lang-java=\"`autoIncrementVersion`\"\u003e`autoIncrementVersion`\u003c/span\u003e should be set; \u003cspan pulumi-lang-nodejs=\"`autoIncrementVersion`\" pulumi-lang-dotnet=\"`AutoIncrementVersion`\" pulumi-lang-go=\"`autoIncrementVersion`\" pulumi-lang-python=\"`auto_increment_version`\" pulumi-lang-yaml=\"`autoIncrementVersion`\" pulumi-lang-java=\"`autoIncrementVersion`\"\u003e`autoIncrementVersion`\u003c/span\u003e is recommended.\n"
                     }
                 },
                 "type": "object"
@@ -17243,7 +17374,7 @@
                 },
                 "orgId": {
                     "type": "string",
-                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
+                    "description": "The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.\n"
                 },
                 "rejectNonProvisionedUsers": {
                     "type": "boolean",
@@ -17253,6 +17384,7 @@
             "required": [
                 "enableGroupSync",
                 "enableUserSync",
+                "orgId",
                 "rejectNonProvisionedUsers"
             ],
             "inputProperties": {
@@ -17266,8 +17398,7 @@
                 },
                 "orgId": {
                     "type": "string",
-                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.\n"
                 },
                 "rejectNonProvisionedUsers": {
                     "type": "boolean",
@@ -17292,8 +17423,7 @@
                     },
                     "orgId": {
                         "type": "string",
-                        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.\n"
                     },
                     "rejectNonProvisionedUsers": {
                         "type": "boolean",
@@ -21741,7 +21871,7 @@
             ]
         },
         "grafana:oss/playlist:Playlist": {
-            "description": "* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.oss.Playlist(\"test\", {\n    name: \"My Playlist!\",\n    interval: \"5m\",\n    items: [\n        {\n            order: 2,\n            type: \"dashboard_by_tag\",\n            value: \"terraform\",\n        },\n        {\n            order: 1,\n            type: \"dashboard_by_uid\",\n            value: \"cIBgcSjkk\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest = grafana.oss.Playlist(\"test\",\n    name=\"My Playlist!\",\n    interval=\"5m\",\n    items=[\n        {\n            \"order\": 2,\n            \"type\": \"dashboard_by_tag\",\n            \"value\": \"terraform\",\n        },\n        {\n            \"order\": 1,\n            \"type\": \"dashboard_by_uid\",\n            \"value\": \"cIBgcSjkk\",\n        },\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Oss.Playlist(\"test\", new()\n    {\n        Name = \"My Playlist!\",\n        Interval = \"5m\",\n        Items = new[]\n        {\n            new Grafana.Oss.Inputs.PlaylistItemArgs\n            {\n                Order = 2,\n                Type = \"dashboard_by_tag\",\n                Value = \"terraform\",\n            },\n            new Grafana.Oss.Inputs.PlaylistItemArgs\n            {\n                Order = 1,\n                Type = \"dashboard_by_uid\",\n                Value = \"cIBgcSjkk\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oss.NewPlaylist(ctx, \"test\", \u0026oss.PlaylistArgs{\n\t\t\tName:     pulumi.String(\"My Playlist!\"),\n\t\t\tInterval: pulumi.String(\"5m\"),\n\t\t\tItems: oss.PlaylistItemArray{\n\t\t\t\t\u0026oss.PlaylistItemArgs{\n\t\t\t\t\tOrder: pulumi.Int(2),\n\t\t\t\t\tType:  pulumi.String(\"dashboard_by_tag\"),\n\t\t\t\t\tValue: pulumi.String(\"terraform\"),\n\t\t\t\t},\n\t\t\t\t\u0026oss.PlaylistItemArgs{\n\t\t\t\t\tOrder: pulumi.Int(1),\n\t\t\t\t\tType:  pulumi.String(\"dashboard_by_uid\"),\n\t\t\t\t\tValue: pulumi.String(\"cIBgcSjkk\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.Playlist;\nimport com.pulumi.grafana.oss.PlaylistArgs;\nimport com.pulumi.grafana.oss.inputs.PlaylistItemArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Playlist(\"test\", PlaylistArgs.builder()\n            .name(\"My Playlist!\")\n            .interval(\"5m\")\n            .items(            \n                PlaylistItemArgs.builder()\n                    .order(2)\n                    .type(\"dashboard_by_tag\")\n                    .value(\"terraform\")\n                    .build(),\n                PlaylistItemArgs.builder()\n                    .order(1)\n                    .type(\"dashboard_by_uid\")\n                    .value(\"cIBgcSjkk\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:oss:Playlist\n    properties:\n      name: My Playlist!\n      interval: 5m\n      items:\n        - order: 2\n          type: dashboard_by_tag\n          value: terraform\n        - order: 1\n          type: dashboard_by_uid\n          value: cIBgcSjkk\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_playlist.name \"{{ uid }}\"\nterraform import grafana_playlist.name \"{{ orgID }}:{{ uid }}\"\n```\n\n",
+            "description": "Manages Grafana playlists.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.oss.Playlist(\"test\", {\n    name: \"My Playlist!\",\n    interval: \"5m\",\n    items: [\n        {\n            order: 2,\n            type: \"dashboard_by_tag\",\n            value: \"terraform\",\n        },\n        {\n            order: 1,\n            type: \"dashboard_by_uid\",\n            value: \"cIBgcSjkk\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ntest = grafana.oss.Playlist(\"test\",\n    name=\"My Playlist!\",\n    interval=\"5m\",\n    items=[\n        {\n            \"order\": 2,\n            \"type\": \"dashboard_by_tag\",\n            \"value\": \"terraform\",\n        },\n        {\n            \"order\": 1,\n            \"type\": \"dashboard_by_uid\",\n            \"value\": \"cIBgcSjkk\",\n        },\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Oss.Playlist(\"test\", new()\n    {\n        Name = \"My Playlist!\",\n        Interval = \"5m\",\n        Items = new[]\n        {\n            new Grafana.Oss.Inputs.PlaylistItemArgs\n            {\n                Order = 2,\n                Type = \"dashboard_by_tag\",\n                Value = \"terraform\",\n            },\n            new Grafana.Oss.Inputs.PlaylistItemArgs\n            {\n                Order = 1,\n                Type = \"dashboard_by_uid\",\n                Value = \"cIBgcSjkk\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/oss\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := oss.NewPlaylist(ctx, \"test\", \u0026oss.PlaylistArgs{\n\t\t\tName:     pulumi.String(\"My Playlist!\"),\n\t\t\tInterval: pulumi.String(\"5m\"),\n\t\t\tItems: oss.PlaylistItemArray{\n\t\t\t\t\u0026oss.PlaylistItemArgs{\n\t\t\t\t\tOrder: pulumi.Int(2),\n\t\t\t\t\tType:  pulumi.String(\"dashboard_by_tag\"),\n\t\t\t\t\tValue: pulumi.String(\"terraform\"),\n\t\t\t\t},\n\t\t\t\t\u0026oss.PlaylistItemArgs{\n\t\t\t\t\tOrder: pulumi.Int(1),\n\t\t\t\t\tType:  pulumi.String(\"dashboard_by_uid\"),\n\t\t\t\t\tValue: pulumi.String(\"cIBgcSjkk\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.oss.Playlist;\nimport com.pulumi.grafana.oss.PlaylistArgs;\nimport com.pulumi.grafana.oss.inputs.PlaylistItemArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Playlist(\"test\", PlaylistArgs.builder()\n            .name(\"My Playlist!\")\n            .interval(\"5m\")\n            .items(            \n                PlaylistItemArgs.builder()\n                    .order(2)\n                    .type(\"dashboard_by_tag\")\n                    .value(\"terraform\")\n                    .build(),\n                PlaylistItemArgs.builder()\n                    .order(1)\n                    .type(\"dashboard_by_uid\")\n                    .value(\"cIBgcSjkk\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:oss:Playlist\n    properties:\n      name: My Playlist!\n      interval: 5m\n      items:\n        - order: 2\n          type: dashboard_by_tag\n          value: terraform\n        - order: 1\n          type: dashboard_by_uid\n          value: cIBgcSjkk\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\nterraform import grafana_playlist.name \"{{ uid }}\"\nterraform import grafana_playlist.name \"{{ orgID }}:{{ uid }}\"\n```\n\n",
             "properties": {
                 "interval": {
                     "type": "string"
@@ -21763,8 +21893,8 @@
             },
             "required": [
                 "interval",
-                "items",
-                "name"
+                "name",
+                "orgId"
             ],
             "inputProperties": {
                 "interval": {
@@ -21778,18 +21908,15 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the playlist.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The name of the playlist.\n"
                 },
                 "orgId": {
                     "type": "string",
-                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
                 }
             },
             "requiredInputs": [
-                "interval",
-                "items"
+                "interval"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Playlist resources.\n",
@@ -21805,13 +21932,11 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the playlist.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The name of the playlist.\n"
                     },
                     "orgId": {
                         "type": "string",
-                        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.\n"
                     }
                 },
                 "type": "object"
@@ -24433,7 +24558,7 @@
                         "type": "string"
                     },
                     "version": {
-                        "description": "Version of the role. A role is updated only on version increase. This field or \u003cspan pulumi-lang-nodejs=\"`autoIncrementVersion`\" pulumi-lang-dotnet=\"`AutoIncrementVersion`\" pulumi-lang-go=\"`autoIncrementVersion`\" pulumi-lang-python=\"`auto_increment_version`\" pulumi-lang-yaml=\"`autoIncrementVersion`\" pulumi-lang-java=\"`autoIncrementVersion`\"\u003e`autoIncrementVersion`\u003c/span\u003e should be set.\n",
+                        "description": "Version of the role. On create, must be \u003cspan pulumi-lang-nodejs=\"`1`\" pulumi-lang-dotnet=\"`1`\" pulumi-lang-go=\"`1`\" pulumi-lang-python=\"`1`\" pulumi-lang-yaml=\"`1`\" pulumi-lang-java=\"`1`\"\u003e`1`\u003c/span\u003e. On update, must be exactly one greater than the previous state. This field or \u003cspan pulumi-lang-nodejs=\"`autoIncrementVersion`\" pulumi-lang-dotnet=\"`AutoIncrementVersion`\" pulumi-lang-go=\"`autoIncrementVersion`\" pulumi-lang-python=\"`auto_increment_version`\" pulumi-lang-yaml=\"`autoIncrementVersion`\" pulumi-lang-java=\"`autoIncrementVersion`\"\u003e`autoIncrementVersion`\u003c/span\u003e should be set; \u003cspan pulumi-lang-nodejs=\"`autoIncrementVersion`\" pulumi-lang-dotnet=\"`AutoIncrementVersion`\" pulumi-lang-go=\"`autoIncrementVersion`\" pulumi-lang-python=\"`auto_increment_version`\" pulumi-lang-yaml=\"`autoIncrementVersion`\" pulumi-lang-java=\"`autoIncrementVersion`\"\u003e`autoIncrementVersion`\u003c/span\u003e is recommended.\n",
                         "type": "integer"
                     }
                 },

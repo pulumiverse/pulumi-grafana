@@ -58,10 +58,10 @@ namespace Pulumiverse.Grafana.Enterprise
         public Output<bool> EnableUserSync { get; private set; } = null!;
 
         /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         /// </summary>
         [Output("orgId")]
-        public Output<string?> OrgId { get; private set; } = null!;
+        public Output<string> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
@@ -129,7 +129,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<bool> EnableUserSync { get; set; } = null!;
 
         /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
@@ -161,7 +161,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<bool>? EnableUserSync { get; set; }
 
         /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }

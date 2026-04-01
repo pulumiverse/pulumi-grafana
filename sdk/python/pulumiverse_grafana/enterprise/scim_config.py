@@ -29,7 +29,7 @@ class ScimConfigArgs:
         :param pulumi.Input[_builtins.bool] enable_group_sync: Whether group synchronization is enabled.
         :param pulumi.Input[_builtins.bool] enable_user_sync: Whether user synchronization is enabled.
         :param pulumi.Input[_builtins.bool] reject_non_provisioned_users: Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         pulumi.set(__self__, "enable_group_sync", enable_group_sync)
         pulumi.set(__self__, "enable_user_sync", enable_user_sync)
@@ -77,7 +77,7 @@ class ScimConfigArgs:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -98,7 +98,7 @@ class _ScimConfigState:
 
         :param pulumi.Input[_builtins.bool] enable_group_sync: Whether group synchronization is enabled.
         :param pulumi.Input[_builtins.bool] enable_user_sync: Whether user synchronization is enabled.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.bool] reject_non_provisioned_users: Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
         """
         if enable_group_sync is not None:
@@ -138,7 +138,7 @@ class _ScimConfigState:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -199,7 +199,7 @@ class ScimConfig(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] enable_group_sync: Whether group synchronization is enabled.
         :param pulumi.Input[_builtins.bool] enable_user_sync: Whether user synchronization is enabled.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.bool] reject_non_provisioned_users: Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
         """
         ...
@@ -294,7 +294,7 @@ class ScimConfig(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] enable_group_sync: Whether group synchronization is enabled.
         :param pulumi.Input[_builtins.bool] enable_user_sync: Whether user synchronization is enabled.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.bool] reject_non_provisioned_users: Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -325,9 +325,9 @@ class ScimConfig(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def org_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 

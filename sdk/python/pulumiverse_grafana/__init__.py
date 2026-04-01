@@ -196,6 +196,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "apps/v2/dashboard",
+  "fqn": "pulumiverse_grafana.apps.v2",
+  "classes": {
+   "grafana:apps/v2/dashboard:Dashboard": "Dashboard"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "apps/v2beta1/dashboard",
   "fqn": "pulumiverse_grafana.apps.v2beta1",
   "classes": {

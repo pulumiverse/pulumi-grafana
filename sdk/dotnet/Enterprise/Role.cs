@@ -67,7 +67,7 @@ namespace Pulumiverse.Grafana.Enterprise
     public partial class Role : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `Version` should be set.
+        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or `Version` should be set.
         /// </summary>
         [Output("autoIncrementVersion")]
         public Output<bool?> AutoIncrementVersion { get; private set; } = null!;
@@ -127,7 +127,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Output<string> Uid { get; private set; } = null!;
 
         /// <summary>
-        /// Version of the role. A role is updated only on version increase. This field or `AutoIncrementVersion` should be set.
+        /// Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `AutoIncrementVersion` should be set; `AutoIncrementVersion` is recommended.
         /// </summary>
         [Output("version")]
         public Output<int?> Version { get; private set; } = null!;
@@ -184,7 +184,7 @@ namespace Pulumiverse.Grafana.Enterprise
     public sealed class RoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `Version` should be set.
+        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or `Version` should be set.
         /// </summary>
         [Input("autoIncrementVersion")]
         public Input<bool>? AutoIncrementVersion { get; set; }
@@ -250,7 +250,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? Uid { get; set; }
 
         /// <summary>
-        /// Version of the role. A role is updated only on version increase. This field or `AutoIncrementVersion` should be set.
+        /// Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `AutoIncrementVersion` should be set; `AutoIncrementVersion` is recommended.
         /// </summary>
         [Input("version")]
         public Input<int>? Version { get; set; }
@@ -264,7 +264,7 @@ namespace Pulumiverse.Grafana.Enterprise
     public sealed class RoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). This field or `Version` should be set.
+        /// Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or `Version` should be set.
         /// </summary>
         [Input("autoIncrementVersion")]
         public Input<bool>? AutoIncrementVersion { get; set; }
@@ -330,7 +330,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? Uid { get; set; }
 
         /// <summary>
-        /// Version of the role. A role is updated only on version increase. This field or `AutoIncrementVersion` should be set.
+        /// Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `AutoIncrementVersion` should be set; `AutoIncrementVersion` is recommended.
         /// </summary>
         [Input("version")]
         public Input<int>? Version { get; set; }

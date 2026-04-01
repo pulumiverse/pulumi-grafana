@@ -66,9 +66,9 @@ export class ScimConfig extends pulumi.CustomResource {
      */
     declare public readonly enableUserSync: pulumi.Output<boolean>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
-    declare public readonly orgId: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * Whether to block non-provisioned user access to Grafana. Cloud Portal users will always be able to access Grafana, regardless of this setting.
      */
@@ -125,7 +125,7 @@ export interface ScimConfigState {
      */
     enableUserSync?: pulumi.Input<boolean>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     /**
@@ -147,7 +147,7 @@ export interface ScimConfigArgs {
      */
     enableUserSync: pulumi.Input<boolean>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     /**

@@ -35,6 +35,8 @@
         "apps/v0alpha1/provisioningRepository.ts",
         "apps/v1beta1/dashboard.ts",
         "apps/v1beta1/index.ts",
+        "apps/v2/dashboard.ts",
+        "apps/v2/index.ts",
         "apps/v2beta1/dashboard.ts",
         "apps/v2beta1/index.ts",
         "assert/customModelRules.ts",
