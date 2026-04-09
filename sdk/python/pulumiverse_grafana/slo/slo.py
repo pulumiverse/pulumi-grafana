@@ -491,6 +491,9 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
+                    "enrichments": [{
+                        "type": "assistantInvestigation",
+                    }],
                 },
                 "slowburn": {
                     "annotations": [
@@ -503,6 +506,9 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
+                    "enrichments": [{
+                        "type": "assistantInvestigation",
+                    }],
                 },
             })
         ```
@@ -730,6 +736,9 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
+                    "enrichments": [{
+                        "type": "assistantInvestigation",
+                    }],
                 },
                 "slowburn": {
                     "annotations": [
@@ -742,6 +751,9 @@ class SLO(pulumi.CustomResource):
                             "value": "Error budget is burning too fast",
                         },
                     ],
+                    "enrichments": [{
+                        "type": "assistantInvestigation",
+                    }],
                 },
             })
         ```

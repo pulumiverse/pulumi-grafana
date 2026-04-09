@@ -39,6 +39,10 @@ __all__ = [
     'TeamPreferencesArgsDict',
     'TeamTeamSyncArgs',
     'TeamTeamSyncArgsDict',
+    'GetTeamPreferenceArgs',
+    'GetTeamPreferenceArgsDict',
+    'GetTeamTeamSyncArgs',
+    'GetTeamTeamSyncArgsDict',
 ]
 
 class DashboardPermissionPermissionArgsDict(TypedDict):
@@ -132,7 +136,7 @@ class DashboardPermissionPermissionArgs:
 class FolderPermissionPermissionArgsDict(TypedDict):
     permission: pulumi.Input[_builtins.str]
     """
-    Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+    Permission to associate with item. Options: View, Edit, Admin.
     """
     role: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -140,11 +144,11 @@ class FolderPermissionPermissionArgsDict(TypedDict):
     """
     team_id: NotRequired[pulumi.Input[_builtins.str]]
     """
-    ID of the team to manage permissions for. Defaults to `0`.
+    ID of the team to manage permissions for.
     """
     user_id: NotRequired[pulumi.Input[_builtins.str]]
     """
-    ID of the user or service account to manage permissions for. Defaults to `0`.
+    ID of the user or service account to manage permissions for.
     """
 
 @pulumi.input_type
@@ -155,10 +159,10 @@ class FolderPermissionPermissionArgs:
                  team_id: Optional[pulumi.Input[_builtins.str]] = None,
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        :param pulumi.Input[_builtins.str] permission: Permission to associate with item. Options: View, Edit, Admin.
         :param pulumi.Input[_builtins.str] role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
-        :param pulumi.Input[_builtins.str] team_id: ID of the team to manage permissions for. Defaults to `0`.
-        :param pulumi.Input[_builtins.str] user_id: ID of the user or service account to manage permissions for. Defaults to `0`.
+        :param pulumi.Input[_builtins.str] team_id: ID of the team to manage permissions for.
+        :param pulumi.Input[_builtins.str] user_id: ID of the user or service account to manage permissions for.
         """
         pulumi.set(__self__, "permission", permission)
         if role is not None:
@@ -172,7 +176,7 @@ class FolderPermissionPermissionArgs:
     @pulumi.getter
     def permission(self) -> pulumi.Input[_builtins.str]:
         """
-        Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        Permission to associate with item. Options: View, Edit, Admin.
         """
         return pulumi.get(self, "permission")
 
@@ -196,7 +200,7 @@ class FolderPermissionPermissionArgs:
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        ID of the team to manage permissions for. Defaults to `0`.
+        ID of the team to manage permissions for.
         """
         return pulumi.get(self, "team_id")
 
@@ -208,7 +212,7 @@ class FolderPermissionPermissionArgs:
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        ID of the user or service account to manage permissions for. Defaults to `0`.
+        ID of the user or service account to manage permissions for.
         """
         return pulumi.get(self, "user_id")
 
@@ -2715,6 +2719,110 @@ class TeamTeamSyncArgs:
 
     @groups.setter
     def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "groups", value)
+
+
+class GetTeamPreferenceArgsDict(TypedDict):
+    home_dashboard_uid: _builtins.str
+    """
+    The UID of the dashboard to display when a team member logs in.
+    """
+    theme: _builtins.str
+    """
+    The default theme for this team.
+    """
+    timezone: _builtins.str
+    """
+    The default timezone for this team.
+    """
+    week_start: _builtins.str
+    """
+    The default week start day for this team.
+    """
+
+@pulumi.input_type
+class GetTeamPreferenceArgs:
+    def __init__(__self__, *,
+                 home_dashboard_uid: _builtins.str,
+                 theme: _builtins.str,
+                 timezone: _builtins.str,
+                 week_start: _builtins.str):
+        """
+        :param _builtins.str home_dashboard_uid: The UID of the dashboard to display when a team member logs in.
+        :param _builtins.str theme: The default theme for this team.
+        :param _builtins.str timezone: The default timezone for this team.
+        :param _builtins.str week_start: The default week start day for this team.
+        """
+        pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
+        pulumi.set(__self__, "theme", theme)
+        pulumi.set(__self__, "timezone", timezone)
+        pulumi.set(__self__, "week_start", week_start)
+
+    @_builtins.property
+    @pulumi.getter(name="homeDashboardUid")
+    def home_dashboard_uid(self) -> _builtins.str:
+        """
+        The UID of the dashboard to display when a team member logs in.
+        """
+        return pulumi.get(self, "home_dashboard_uid")
+
+    @home_dashboard_uid.setter
+    def home_dashboard_uid(self, value: _builtins.str):
+        pulumi.set(self, "home_dashboard_uid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def theme(self) -> _builtins.str:
+        """
+        The default theme for this team.
+        """
+        return pulumi.get(self, "theme")
+
+    @theme.setter
+    def theme(self, value: _builtins.str):
+        pulumi.set(self, "theme", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timezone(self) -> _builtins.str:
+        """
+        The default timezone for this team.
+        """
+        return pulumi.get(self, "timezone")
+
+    @timezone.setter
+    def timezone(self, value: _builtins.str):
+        pulumi.set(self, "timezone", value)
+
+    @_builtins.property
+    @pulumi.getter(name="weekStart")
+    def week_start(self) -> _builtins.str:
+        """
+        The default week start day for this team.
+        """
+        return pulumi.get(self, "week_start")
+
+    @week_start.setter
+    def week_start(self, value: _builtins.str):
+        pulumi.set(self, "week_start", value)
+
+
+class GetTeamTeamSyncArgsDict(TypedDict):
+    groups: Sequence[_builtins.str]
+
+@pulumi.input_type
+class GetTeamTeamSyncArgs:
+    def __init__(__self__, *,
+                 groups: Sequence[_builtins.str]):
+        pulumi.set(__self__, "groups", groups)
+
+    @_builtins.property
+    @pulumi.getter
+    def groups(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "groups")
+
+    @groups.setter
+    def groups(self, value: Sequence[_builtins.str]):
         pulumi.set(self, "groups", value)
 
 

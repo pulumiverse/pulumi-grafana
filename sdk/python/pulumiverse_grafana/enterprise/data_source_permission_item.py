@@ -21,6 +21,7 @@ class DataSourcePermissionItemArgs:
     def __init__(__self__, *,
                  datasource_uid: pulumi.Input[_builtins.str],
                  permission: pulumi.Input[_builtins.str],
+                 datasource_type: Optional[pulumi.Input[_builtins.str]] = None,
                  org_id: Optional[pulumi.Input[_builtins.str]] = None,
                  role: Optional[pulumi.Input[_builtins.str]] = None,
                  team: Optional[pulumi.Input[_builtins.str]] = None,
@@ -30,6 +31,7 @@ class DataSourcePermissionItemArgs:
 
         :param pulumi.Input[_builtins.str] datasource_uid: The UID of the datasource.
         :param pulumi.Input[_builtins.str] permission: the permission to be assigned
+        :param pulumi.Input[_builtins.str] datasource_type: The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.str] role: the role onto which the permission is to be assigned
         :param pulumi.Input[_builtins.str] team: the team onto which the permission is to be assigned
@@ -37,6 +39,8 @@ class DataSourcePermissionItemArgs:
         """
         pulumi.set(__self__, "datasource_uid", datasource_uid)
         pulumi.set(__self__, "permission", permission)
+        if datasource_type is not None:
+            pulumi.set(__self__, "datasource_type", datasource_type)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
         if role is not None:
@@ -69,6 +73,18 @@ class DataSourcePermissionItemArgs:
     @permission.setter
     def permission(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "permission", value)
+
+    @_builtins.property
+    @pulumi.getter(name="datasourceType")
+    def datasource_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+        """
+        return pulumi.get(self, "datasource_type")
+
+    @datasource_type.setter
+    def datasource_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "datasource_type", value)
 
     @_builtins.property
     @pulumi.getter(name="orgId")
@@ -122,6 +138,7 @@ class DataSourcePermissionItemArgs:
 @pulumi.input_type
 class _DataSourcePermissionItemState:
     def __init__(__self__, *,
+                 datasource_type: Optional[pulumi.Input[_builtins.str]] = None,
                  datasource_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  org_id: Optional[pulumi.Input[_builtins.str]] = None,
                  permission: Optional[pulumi.Input[_builtins.str]] = None,
@@ -131,6 +148,7 @@ class _DataSourcePermissionItemState:
         """
         Input properties used for looking up and filtering DataSourcePermissionItem resources.
 
+        :param pulumi.Input[_builtins.str] datasource_type: The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
         :param pulumi.Input[_builtins.str] datasource_uid: The UID of the datasource.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.str] permission: the permission to be assigned
@@ -138,6 +156,8 @@ class _DataSourcePermissionItemState:
         :param pulumi.Input[_builtins.str] team: the team onto which the permission is to be assigned
         :param pulumi.Input[_builtins.str] user: the user or service account onto which the permission is to be assigned
         """
+        if datasource_type is not None:
+            pulumi.set(__self__, "datasource_type", datasource_type)
         if datasource_uid is not None:
             pulumi.set(__self__, "datasource_uid", datasource_uid)
         if org_id is not None:
@@ -150,6 +170,18 @@ class _DataSourcePermissionItemState:
             pulumi.set(__self__, "team", team)
         if user is not None:
             pulumi.set(__self__, "user", user)
+
+    @_builtins.property
+    @pulumi.getter(name="datasourceType")
+    def datasource_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+        """
+        return pulumi.get(self, "datasource_type")
+
+    @datasource_type.setter
+    def datasource_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "datasource_type", value)
 
     @_builtins.property
     @pulumi.getter(name="datasourceUid")
@@ -230,6 +262,7 @@ class DataSourcePermissionItem(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 datasource_type: Optional[pulumi.Input[_builtins.str]] = None,
                  datasource_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  org_id: Optional[pulumi.Input[_builtins.str]] = None,
                  permission: Optional[pulumi.Input[_builtins.str]] = None,
@@ -295,6 +328,7 @@ class DataSourcePermissionItem(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] datasource_type: The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
         :param pulumi.Input[_builtins.str] datasource_uid: The UID of the datasource.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.str] permission: the permission to be assigned
@@ -379,6 +413,7 @@ class DataSourcePermissionItem(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 datasource_type: Optional[pulumi.Input[_builtins.str]] = None,
                  datasource_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  org_id: Optional[pulumi.Input[_builtins.str]] = None,
                  permission: Optional[pulumi.Input[_builtins.str]] = None,
@@ -394,6 +429,7 @@ class DataSourcePermissionItem(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DataSourcePermissionItemArgs.__new__(DataSourcePermissionItemArgs)
 
+            __props__.__dict__["datasource_type"] = datasource_type
             if datasource_uid is None and not opts.urn:
                 raise TypeError("Missing required property 'datasource_uid'")
             __props__.__dict__["datasource_uid"] = datasource_uid
@@ -416,6 +452,7 @@ class DataSourcePermissionItem(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            datasource_type: Optional[pulumi.Input[_builtins.str]] = None,
             datasource_uid: Optional[pulumi.Input[_builtins.str]] = None,
             org_id: Optional[pulumi.Input[_builtins.str]] = None,
             permission: Optional[pulumi.Input[_builtins.str]] = None,
@@ -429,6 +466,7 @@ class DataSourcePermissionItem(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] datasource_type: The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
         :param pulumi.Input[_builtins.str] datasource_uid: The UID of the datasource.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.str] permission: the permission to be assigned
@@ -440,6 +478,7 @@ class DataSourcePermissionItem(pulumi.CustomResource):
 
         __props__ = _DataSourcePermissionItemState.__new__(_DataSourcePermissionItemState)
 
+        __props__.__dict__["datasource_type"] = datasource_type
         __props__.__dict__["datasource_uid"] = datasource_uid
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["permission"] = permission
@@ -447,6 +486,14 @@ class DataSourcePermissionItem(pulumi.CustomResource):
         __props__.__dict__["team"] = team
         __props__.__dict__["user"] = user
         return DataSourcePermissionItem(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="datasourceType")
+    def datasource_type(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+        """
+        return pulumi.get(self, "datasource_type")
 
     @_builtins.property
     @pulumi.getter(name="datasourceUid")

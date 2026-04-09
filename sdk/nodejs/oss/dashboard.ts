@@ -8,7 +8,8 @@ import * as utilities from "../utilities";
  * Manages Grafana dashboards.
  *
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+ * * [HTTP API (legacy API, recommended for Grafana 12 or earlier)](https://grafana.com/docs/grafana/v11.6/developers/http_api/dashboard/)
+ * * [HTTP API (new Kubernetes-style API, recommended for Grafana 13 and later)](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
  *
  * ## Example Usage
  *

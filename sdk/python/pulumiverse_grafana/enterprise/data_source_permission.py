@@ -22,16 +22,20 @@ __all__ = ['DataSourcePermissionArgs', 'DataSourcePermission']
 class DataSourcePermissionArgs:
     def __init__(__self__, *,
                  datasource_uid: pulumi.Input[_builtins.str],
+                 datasource_type: Optional[pulumi.Input[_builtins.str]] = None,
                  org_id: Optional[pulumi.Input[_builtins.str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]]] = None):
         """
         The set of arguments for constructing a DataSourcePermission resource.
 
         :param pulumi.Input[_builtins.str] datasource_uid: UID of the datasource to apply permissions to.
+        :param pulumi.Input[_builtins.str] datasource_type: The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         pulumi.set(__self__, "datasource_uid", datasource_uid)
+        if datasource_type is not None:
+            pulumi.set(__self__, "datasource_type", datasource_type)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
         if permissions is not None:
@@ -48,6 +52,18 @@ class DataSourcePermissionArgs:
     @datasource_uid.setter
     def datasource_uid(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "datasource_uid", value)
+
+    @_builtins.property
+    @pulumi.getter(name="datasourceType")
+    def datasource_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+        """
+        return pulumi.get(self, "datasource_type")
+
+    @datasource_type.setter
+    def datasource_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "datasource_type", value)
 
     @_builtins.property
     @pulumi.getter(name="orgId")
@@ -77,22 +93,38 @@ class DataSourcePermissionArgs:
 @pulumi.input_type
 class _DataSourcePermissionState:
     def __init__(__self__, *,
+                 datasource_type: Optional[pulumi.Input[_builtins.str]] = None,
                  datasource_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  org_id: Optional[pulumi.Input[_builtins.str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]]] = None):
         """
         Input properties used for looking up and filtering DataSourcePermission resources.
 
+        :param pulumi.Input[_builtins.str] datasource_type: The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
         :param pulumi.Input[_builtins.str] datasource_uid: UID of the datasource to apply permissions to.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['DataSourcePermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
+        if datasource_type is not None:
+            pulumi.set(__self__, "datasource_type", datasource_type)
         if datasource_uid is not None:
             pulumi.set(__self__, "datasource_uid", datasource_uid)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
         if permissions is not None:
             pulumi.set(__self__, "permissions", permissions)
+
+    @_builtins.property
+    @pulumi.getter(name="datasourceType")
+    def datasource_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+        """
+        return pulumi.get(self, "datasource_type")
+
+    @datasource_type.setter
+    def datasource_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "datasource_type", value)
 
     @_builtins.property
     @pulumi.getter(name="datasourceUid")
@@ -137,6 +169,7 @@ class DataSourcePermission(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 datasource_type: Optional[pulumi.Input[_builtins.str]] = None,
                  datasource_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  org_id: Optional[pulumi.Input[_builtins.str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DataSourcePermissionPermissionArgs', 'DataSourcePermissionPermissionArgsDict']]]]] = None,
@@ -204,6 +237,7 @@ class DataSourcePermission(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] datasource_type: The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
         :param pulumi.Input[_builtins.str] datasource_uid: UID of the datasource to apply permissions to.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DataSourcePermissionPermissionArgs', 'DataSourcePermissionPermissionArgsDict']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
@@ -290,6 +324,7 @@ class DataSourcePermission(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 datasource_type: Optional[pulumi.Input[_builtins.str]] = None,
                  datasource_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  org_id: Optional[pulumi.Input[_builtins.str]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DataSourcePermissionPermissionArgs', 'DataSourcePermissionPermissionArgsDict']]]]] = None,
@@ -302,6 +337,7 @@ class DataSourcePermission(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DataSourcePermissionArgs.__new__(DataSourcePermissionArgs)
 
+            __props__.__dict__["datasource_type"] = datasource_type
             if datasource_uid is None and not opts.urn:
                 raise TypeError("Missing required property 'datasource_uid'")
             __props__.__dict__["datasource_uid"] = datasource_uid
@@ -319,6 +355,7 @@ class DataSourcePermission(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            datasource_type: Optional[pulumi.Input[_builtins.str]] = None,
             datasource_uid: Optional[pulumi.Input[_builtins.str]] = None,
             org_id: Optional[pulumi.Input[_builtins.str]] = None,
             permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DataSourcePermissionPermissionArgs', 'DataSourcePermissionPermissionArgsDict']]]]] = None) -> 'DataSourcePermission':
@@ -329,6 +366,7 @@ class DataSourcePermission(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] datasource_type: The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
         :param pulumi.Input[_builtins.str] datasource_uid: UID of the datasource to apply permissions to.
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DataSourcePermissionPermissionArgs', 'DataSourcePermissionPermissionArgsDict']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
@@ -337,10 +375,19 @@ class DataSourcePermission(pulumi.CustomResource):
 
         __props__ = _DataSourcePermissionState.__new__(_DataSourcePermissionState)
 
+        __props__.__dict__["datasource_type"] = datasource_type
         __props__.__dict__["datasource_uid"] = datasource_uid
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["permissions"] = permissions
         return DataSourcePermission(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="datasourceType")
+    def datasource_type(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+        """
+        return pulumi.get(self, "datasource_type")
 
     @_builtins.property
     @pulumi.getter(name="datasourceUid")

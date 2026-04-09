@@ -28,7 +28,7 @@ class FolderPermissionArgs:
         The set of arguments for constructing a FolderPermission resource.
 
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         pulumi.set(__self__, "folder_uid", folder_uid)
@@ -53,7 +53,7 @@ class FolderPermissionArgs:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -84,7 +84,7 @@ class _FolderPermissionState:
         Input properties used for looking up and filtering FolderPermission resources.
 
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[Sequence[pulumi.Input['FolderPermissionPermissionArgs']]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         if folder_uid is not None:
@@ -110,7 +110,7 @@ class _FolderPermissionState:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -187,7 +187,7 @@ class FolderPermission(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FolderPermissionPermissionArgs', 'FolderPermissionPermissionArgsDict']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         ...
@@ -294,7 +294,7 @@ class FolderPermission(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] folder_uid: The UID of the folder.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FolderPermissionPermissionArgs', 'FolderPermissionPermissionArgsDict']]]] permissions: The permission items to add/update. Items that are omitted from the list will be removed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -316,9 +316,9 @@ class FolderPermission(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def org_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 

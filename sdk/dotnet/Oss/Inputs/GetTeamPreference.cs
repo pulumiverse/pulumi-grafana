@@ -8,43 +8,38 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Oss.Outputs
+namespace Pulumiverse.Grafana.Oss.Inputs
 {
 
-    [OutputType]
-    public sealed class GetTeamPreferenceResult
+    public sealed class GetTeamPreferenceArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The UID of the dashboard to display when a team member logs in.
         /// </summary>
-        public readonly string HomeDashboardUid;
+        [Input("homeDashboardUid", required: true)]
+        public string HomeDashboardUid { get; set; } = null!;
+
         /// <summary>
         /// The default theme for this team.
         /// </summary>
-        public readonly string Theme;
+        [Input("theme", required: true)]
+        public string Theme { get; set; } = null!;
+
         /// <summary>
         /// The default timezone for this team.
         /// </summary>
-        public readonly string Timezone;
+        [Input("timezone", required: true)]
+        public string Timezone { get; set; } = null!;
+
         /// <summary>
         /// The default week start day for this team.
         /// </summary>
-        public readonly string WeekStart;
+        [Input("weekStart", required: true)]
+        public string WeekStart { get; set; } = null!;
 
-        [OutputConstructor]
-        private GetTeamPreferenceResult(
-            string homeDashboardUid,
-
-            string theme,
-
-            string timezone,
-
-            string weekStart)
+        public GetTeamPreferenceArgs()
         {
-            HomeDashboardUid = homeDashboardUid;
-            Theme = theme;
-            Timezone = timezone;
-            WeekStart = weekStart;
         }
+        public static new GetTeamPreferenceArgs Empty => new GetTeamPreferenceArgs();
     }
 }

@@ -39,6 +39,7 @@
         "apps/v2/index.ts",
         "apps/v2beta1/dashboard.ts",
         "apps/v2beta1/index.ts",
+        "appsGenericResource.ts",
         "assert/customModelRules.ts",
         "assert/index.ts",
         "assert/logConfig.ts",

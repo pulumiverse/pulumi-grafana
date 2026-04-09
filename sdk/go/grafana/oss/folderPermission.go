@@ -87,8 +87,8 @@ type FolderPermission struct {
 
 	// The UID of the folder.
 	FolderUid pulumi.StringOutput `pulumi:"folderUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions FolderPermissionPermissionArrayOutput `pulumi:"permissions"`
 }
@@ -134,7 +134,7 @@ func GetFolderPermission(ctx *pulumi.Context,
 type folderPermissionState struct {
 	// The UID of the folder.
 	FolderUid *string `pulumi:"folderUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []FolderPermissionPermission `pulumi:"permissions"`
@@ -143,7 +143,7 @@ type folderPermissionState struct {
 type FolderPermissionState struct {
 	// The UID of the folder.
 	FolderUid pulumi.StringPtrInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions FolderPermissionPermissionArrayInput
@@ -156,7 +156,7 @@ func (FolderPermissionState) ElementType() reflect.Type {
 type folderPermissionArgs struct {
 	// The UID of the folder.
 	FolderUid string `pulumi:"folderUid"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions []FolderPermissionPermission `pulumi:"permissions"`
@@ -166,7 +166,7 @@ type folderPermissionArgs struct {
 type FolderPermissionArgs struct {
 	// The UID of the folder.
 	FolderUid pulumi.StringInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// The permission items to add/update. Items that are omitted from the list will be removed.
 	Permissions FolderPermissionPermissionArrayInput
@@ -264,9 +264,9 @@ func (o FolderPermissionOutput) FolderUid() pulumi.StringOutput {
 	return o.ApplyT(func(v *FolderPermission) pulumi.StringOutput { return v.FolderUid }).(pulumi.StringOutput)
 }
 
-// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-func (o FolderPermissionOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FolderPermission) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+func (o FolderPermissionOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FolderPermission) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 // The permission items to add/update. Items that are omitted from the list will be removed.

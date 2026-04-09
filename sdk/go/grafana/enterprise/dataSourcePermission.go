@@ -118,6 +118,8 @@ import (
 type DataSourcePermission struct {
 	pulumi.CustomResourceState
 
+	// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+	DatasourceType pulumi.StringPtrOutput `pulumi:"datasourceType"`
 	// UID of the datasource to apply permissions to.
 	DatasourceUid pulumi.StringOutput `pulumi:"datasourceUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -165,6 +167,8 @@ func GetDataSourcePermission(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DataSourcePermission resources.
 type dataSourcePermissionState struct {
+	// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+	DatasourceType *string `pulumi:"datasourceType"`
 	// UID of the datasource to apply permissions to.
 	DatasourceUid *string `pulumi:"datasourceUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -174,6 +178,8 @@ type dataSourcePermissionState struct {
 }
 
 type DataSourcePermissionState struct {
+	// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+	DatasourceType pulumi.StringPtrInput
 	// UID of the datasource to apply permissions to.
 	DatasourceUid pulumi.StringPtrInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -187,6 +193,8 @@ func (DataSourcePermissionState) ElementType() reflect.Type {
 }
 
 type dataSourcePermissionArgs struct {
+	// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+	DatasourceType *string `pulumi:"datasourceType"`
 	// UID of the datasource to apply permissions to.
 	DatasourceUid string `pulumi:"datasourceUid"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -197,6 +205,8 @@ type dataSourcePermissionArgs struct {
 
 // The set of arguments for constructing a DataSourcePermission resource.
 type DataSourcePermissionArgs struct {
+	// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+	DatasourceType pulumi.StringPtrInput
 	// UID of the datasource to apply permissions to.
 	DatasourceUid pulumi.StringInput
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
@@ -290,6 +300,11 @@ func (o DataSourcePermissionOutput) ToDataSourcePermissionOutput() DataSourcePer
 
 func (o DataSourcePermissionOutput) ToDataSourcePermissionOutputWithContext(ctx context.Context) DataSourcePermissionOutput {
 	return o
+}
+
+// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+func (o DataSourcePermissionOutput) DatasourceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataSourcePermission) pulumi.StringPtrOutput { return v.DatasourceType }).(pulumi.StringPtrOutput)
 }
 
 // UID of the datasource to apply permissions to.

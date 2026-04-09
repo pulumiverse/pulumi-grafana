@@ -14,7 +14,7 @@ import (
 
 // Manages Grafana Cloud Plugin Installations.
 //
-// * [Plugin Catalog](https://grafana.com/grafana/plugins/)
+// * [Plugin management](https://grafana.com/docs/grafana/latest/administration/plugin-management/)
 //
 // Required access policy scopes:
 //

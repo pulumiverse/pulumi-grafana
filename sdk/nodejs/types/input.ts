@@ -5425,7 +5425,7 @@ export namespace oss {
 
     export interface FolderPermissionPermission {
         /**
-         * Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+         * Permission to associate with item. Options: View, Edit, Admin.
          */
         permission: pulumi.Input<string>;
         /**
@@ -5433,13 +5433,59 @@ export namespace oss {
          */
         role?: pulumi.Input<string>;
         /**
-         * ID of the team to manage permissions for. Defaults to `0`.
+         * ID of the team to manage permissions for.
          */
         teamId?: pulumi.Input<string>;
         /**
-         * ID of the user or service account to manage permissions for. Defaults to `0`.
+         * ID of the user or service account to manage permissions for.
          */
         userId?: pulumi.Input<string>;
+    }
+
+    export interface GetTeamPreference {
+        /**
+         * The UID of the dashboard to display when a team member logs in.
+         */
+        homeDashboardUid?: string;
+        /**
+         * The default theme for this team.
+         */
+        theme?: string;
+        /**
+         * The default timezone for this team.
+         */
+        timezone?: string;
+        /**
+         * The default week start day for this team.
+         */
+        weekStart?: string;
+    }
+
+    export interface GetTeamPreferenceArgs {
+        /**
+         * The UID of the dashboard to display when a team member logs in.
+         */
+        homeDashboardUid?: pulumi.Input<string>;
+        /**
+         * The default theme for this team.
+         */
+        theme?: pulumi.Input<string>;
+        /**
+         * The default timezone for this team.
+         */
+        timezone?: pulumi.Input<string>;
+        /**
+         * The default week start day for this team.
+         */
+        weekStart?: pulumi.Input<string>;
+    }
+
+    export interface GetTeamTeamSync {
+        groups?: string[];
+    }
+
+    export interface GetTeamTeamSyncArgs {
+        groups?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface PlaylistItem {
@@ -5998,6 +6044,10 @@ export namespace slo {
          */
         annotations?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlertingFastburnAnnotation>[]>;
         /**
+         * Enrichments to attach only to Fast Burn alerts.
+         */
+        enrichments?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlertingFastburnEnrichment>[]>;
+        /**
          * Labels to attach only to Fast Burn alerts.
          */
         labels?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlertingFastburnLabel>[]>;
@@ -6012,6 +6062,13 @@ export namespace slo {
          * Templatable value
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface SLOAlertingFastburnEnrichment {
+        /**
+         * Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+         */
+        type: pulumi.Input<string>;
     }
 
     export interface SLOAlertingFastburnLabel {
@@ -6042,6 +6099,10 @@ export namespace slo {
          */
         annotations?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlertingSlowburnAnnotation>[]>;
         /**
+         * Enrichments to attach only to Slow Burn alerts.
+         */
+        enrichments?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlertingSlowburnEnrichment>[]>;
+        /**
          * Labels to attach only to Slow Burn alerts.
          */
         labels?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlertingSlowburnLabel>[]>;
@@ -6056,6 +6117,13 @@ export namespace slo {
          * Templatable value
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface SLOAlertingSlowburnEnrichment {
+        /**
+         * Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+         */
+        type: pulumi.Input<string>;
     }
 
     export interface SLOAlertingSlowburnLabel {

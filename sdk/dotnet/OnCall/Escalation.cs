@@ -48,7 +48,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string?> GroupToNotify { get; private set; } = null!;
 
         /// <summary>
-        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
+        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*next*on*call*from*schedule, notify*user*group and notify*team*members
         /// </summary>
         [Output("important")]
         public Output<bool?> Important { get; private set; } = null!;
@@ -66,7 +66,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string?> NotifyIfTimeTo { get; private set; } = null!;
 
         /// <summary>
-        /// ID of a Schedule for notify*on*call*from*schedule type step.
+        /// ID of a Schedule for notify*on*call*from*schedule or notify*next*on*call*from_schedule type step.
         /// </summary>
         [Output("notifyOnCallFromSchedule")]
         public Output<string?> NotifyOnCallFromSchedule { get; private set; } = null!;
@@ -114,7 +114,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Output<string?> Severity { get; private set; } = null!;
 
         /// <summary>
-        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
+        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*next*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare*incident
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -191,7 +191,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? GroupToNotify { get; set; }
 
         /// <summary>
-        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
+        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*next*on*call*from*schedule, notify*user*group and notify*team*members
         /// </summary>
         [Input("important")]
         public Input<bool>? Important { get; set; }
@@ -209,7 +209,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? NotifyIfTimeTo { get; set; }
 
         /// <summary>
-        /// ID of a Schedule for notify*on*call*from*schedule type step.
+        /// ID of a Schedule for notify*on*call*from*schedule or notify*next*on*call*from_schedule type step.
         /// </summary>
         [Input("notifyOnCallFromSchedule")]
         public Input<string>? NotifyOnCallFromSchedule { get; set; }
@@ -269,7 +269,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? Severity { get; set; }
 
         /// <summary>
-        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
+        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*next*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare*incident
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -307,7 +307,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? GroupToNotify { get; set; }
 
         /// <summary>
-        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
+        /// Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*next*on*call*from*schedule, notify*user*group and notify*team*members
         /// </summary>
         [Input("important")]
         public Input<bool>? Important { get; set; }
@@ -325,7 +325,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? NotifyIfTimeTo { get; set; }
 
         /// <summary>
-        /// ID of a Schedule for notify*on*call*from*schedule type step.
+        /// ID of a Schedule for notify*on*call*from*schedule or notify*next*on*call*from_schedule type step.
         /// </summary>
         [Input("notifyOnCallFromSchedule")]
         public Input<string>? NotifyOnCallFromSchedule { get; set; }
@@ -385,7 +385,7 @@ namespace Pulumiverse.Grafana.OnCall
         public Input<string>? Severity { get; set; }
 
         /// <summary>
-        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
+        /// The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*next*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare*incident
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

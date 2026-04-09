@@ -6,6 +6,7 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .apps_generic_resource import *
 from .provider import *
 
 # Make subpackages available:
@@ -584,6 +585,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsGenericResource",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsGenericResource:AppsGenericResource": "AppsGenericResource"
   }
  },
  {

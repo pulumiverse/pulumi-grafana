@@ -138,13 +138,13 @@ func (o DashboardPermissionPermissionArrayOutput) Index(i pulumi.IntInput) Dashb
 }
 
 type FolderPermissionPermission struct {
-	// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+	// Permission to associate with item. Options: View, Edit, Admin.
 	Permission string `pulumi:"permission"`
 	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role *string `pulumi:"role"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId *string `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId *string `pulumi:"userId"`
 }
 
@@ -160,13 +160,13 @@ type FolderPermissionPermissionInput interface {
 }
 
 type FolderPermissionPermissionArgs struct {
-	// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+	// Permission to associate with item. Options: View, Edit, Admin.
 	Permission pulumi.StringInput `pulumi:"permission"`
 	// Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
 	Role pulumi.StringPtrInput `pulumi:"role"`
-	// ID of the team to manage permissions for. Defaults to `0`.
+	// ID of the team to manage permissions for.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
-	// ID of the user or service account to manage permissions for. Defaults to `0`.
+	// ID of the user or service account to manage permissions for.
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 }
 
@@ -221,7 +221,7 @@ func (o FolderPermissionPermissionOutput) ToFolderPermissionPermissionOutputWith
 	return o
 }
 
-// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+// Permission to associate with item. Options: View, Edit, Admin.
 func (o FolderPermissionPermissionOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v FolderPermissionPermission) string { return v.Permission }).(pulumi.StringOutput)
 }
@@ -231,12 +231,12 @@ func (o FolderPermissionPermissionOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FolderPermissionPermission) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
 
-// ID of the team to manage permissions for. Defaults to `0`.
+// ID of the team to manage permissions for.
 func (o FolderPermissionPermissionOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FolderPermissionPermission) *string { return v.TeamId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the user or service account to manage permissions for. Defaults to `0`.
+// ID of the user or service account to manage permissions for.
 func (o FolderPermissionPermissionOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FolderPermissionPermission) *string { return v.UserId }).(pulumi.StringPtrOutput)
 }
@@ -3654,13 +3654,13 @@ func (o GetLibraryPanelsPanelArrayOutput) Index(i pulumi.IntInput) GetLibraryPan
 
 type GetTeamPreference struct {
 	// The UID of the dashboard to display when a team member logs in.
-	HomeDashboardUid *string `pulumi:"homeDashboardUid"`
-	// The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
-	Theme *string `pulumi:"theme"`
-	// The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
-	Timezone *string `pulumi:"timezone"`
-	// The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
-	WeekStart *string `pulumi:"weekStart"`
+	HomeDashboardUid string `pulumi:"homeDashboardUid"`
+	// The default theme for this team.
+	Theme string `pulumi:"theme"`
+	// The default timezone for this team.
+	Timezone string `pulumi:"timezone"`
+	// The default week start day for this team.
+	WeekStart string `pulumi:"weekStart"`
 }
 
 // GetTeamPreferenceInput is an input type that accepts GetTeamPreferenceArgs and GetTeamPreferenceOutput values.
@@ -3676,13 +3676,13 @@ type GetTeamPreferenceInput interface {
 
 type GetTeamPreferenceArgs struct {
 	// The UID of the dashboard to display when a team member logs in.
-	HomeDashboardUid pulumi.StringPtrInput `pulumi:"homeDashboardUid"`
-	// The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
-	Theme pulumi.StringPtrInput `pulumi:"theme"`
-	// The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
-	Timezone pulumi.StringPtrInput `pulumi:"timezone"`
-	// The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
-	WeekStart pulumi.StringPtrInput `pulumi:"weekStart"`
+	HomeDashboardUid pulumi.StringInput `pulumi:"homeDashboardUid"`
+	// The default theme for this team.
+	Theme pulumi.StringInput `pulumi:"theme"`
+	// The default timezone for this team.
+	Timezone pulumi.StringInput `pulumi:"timezone"`
+	// The default week start day for this team.
+	WeekStart pulumi.StringInput `pulumi:"weekStart"`
 }
 
 func (GetTeamPreferenceArgs) ElementType() reflect.Type {
@@ -3737,23 +3737,23 @@ func (o GetTeamPreferenceOutput) ToGetTeamPreferenceOutputWithContext(ctx contex
 }
 
 // The UID of the dashboard to display when a team member logs in.
-func (o GetTeamPreferenceOutput) HomeDashboardUid() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetTeamPreference) *string { return v.HomeDashboardUid }).(pulumi.StringPtrOutput)
+func (o GetTeamPreferenceOutput) HomeDashboardUid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamPreference) string { return v.HomeDashboardUid }).(pulumi.StringOutput)
 }
 
-// The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
-func (o GetTeamPreferenceOutput) Theme() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetTeamPreference) *string { return v.Theme }).(pulumi.StringPtrOutput)
+// The default theme for this team.
+func (o GetTeamPreferenceOutput) Theme() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamPreference) string { return v.Theme }).(pulumi.StringOutput)
 }
 
-// The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
-func (o GetTeamPreferenceOutput) Timezone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetTeamPreference) *string { return v.Timezone }).(pulumi.StringPtrOutput)
+// The default timezone for this team.
+func (o GetTeamPreferenceOutput) Timezone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamPreference) string { return v.Timezone }).(pulumi.StringOutput)
 }
 
-// The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
-func (o GetTeamPreferenceOutput) WeekStart() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetTeamPreference) *string { return v.WeekStart }).(pulumi.StringPtrOutput)
+// The default week start day for this team.
+func (o GetTeamPreferenceOutput) WeekStart() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamPreference) string { return v.WeekStart }).(pulumi.StringOutput)
 }
 
 type GetTeamPreferenceArrayOutput struct{ *pulumi.OutputState }

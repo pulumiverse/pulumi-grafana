@@ -34,7 +34,9 @@ export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise
     return pulumi.runtime.invoke("grafana:oss/getTeam:getTeam", {
         "name": args.name,
         "orgId": args.orgId,
+        "preferences": args.preferences,
         "readTeamSync": args.readTeamSync,
+        "teamSyncs": args.teamSyncs,
     }, opts);
 }
 
@@ -42,27 +44,71 @@ export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise
  * A collection of arguments for invoking getTeam.
  */
 export interface GetTeamArgs {
+    /**
+     * The name of the Grafana team.
+     */
     name: string;
+    /**
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+     */
     orgId?: string;
+    /**
+     * Team preferences.
+     */
+    preferences?: inputs.oss.GetTeamPreference[];
+    /**
+     * Whether to read the team sync settings. This is only available in Grafana Enterprise.
+     */
     readTeamSync?: boolean;
+    /**
+     * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+     */
+    teamSyncs?: inputs.oss.GetTeamTeamSync[];
 }
 
 /**
  * A collection of values returned by getTeam.
  */
 export interface GetTeamResult {
+    /**
+     * An email address for the team.
+     */
     readonly email: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this resource.
      */
     readonly id: string;
+    /**
+     * A set of email addresses corresponding to users who are members of the team.
+     */
     readonly members: string[];
+    /**
+     * The name of the Grafana team.
+     */
     readonly name: string;
-    readonly orgId?: string;
-    readonly preferences: outputs.oss.GetTeamPreference[];
+    /**
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+     */
+    readonly orgId: string;
+    /**
+     * Team preferences.
+     */
+    readonly preferences?: outputs.oss.GetTeamPreference[];
+    /**
+     * Whether to read the team sync settings. This is only available in Grafana Enterprise.
+     */
     readonly readTeamSync?: boolean;
+    /**
+     * The team id assigned to this team by Grafana.
+     */
     readonly teamId: number;
-    readonly teamSyncs: outputs.oss.GetTeamTeamSync[];
+    /**
+     * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+     */
+    readonly teamSyncs?: outputs.oss.GetTeamTeamSync[];
+    /**
+     * The team uid assigned to this team by Grafana.
+     */
     readonly teamUid: string;
 }
 /**
@@ -93,7 +139,9 @@ export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOutpu
     return pulumi.runtime.invokeOutput("grafana:oss/getTeam:getTeam", {
         "name": args.name,
         "orgId": args.orgId,
+        "preferences": args.preferences,
         "readTeamSync": args.readTeamSync,
+        "teamSyncs": args.teamSyncs,
     }, opts);
 }
 
@@ -101,7 +149,24 @@ export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOutpu
  * A collection of arguments for invoking getTeam.
  */
 export interface GetTeamOutputArgs {
+    /**
+     * The name of the Grafana team.
+     */
     name: pulumi.Input<string>;
+    /**
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+     */
     orgId?: pulumi.Input<string>;
+    /**
+     * Team preferences.
+     */
+    preferences?: pulumi.Input<pulumi.Input<inputs.oss.GetTeamPreferenceArgs>[]>;
+    /**
+     * Whether to read the team sync settings. This is only available in Grafana Enterprise.
+     */
     readTeamSync?: pulumi.Input<boolean>;
+    /**
+     * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+     */
+    teamSyncs?: pulumi.Input<pulumi.Input<inputs.oss.GetTeamTeamSyncArgs>[]>;
 }

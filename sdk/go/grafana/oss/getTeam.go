@@ -59,24 +59,40 @@ func LookupTeam(ctx *pulumi.Context, args *LookupTeamArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getTeam.
 type LookupTeamArgs struct {
-	Name         string  `pulumi:"name"`
-	OrgId        *string `pulumi:"orgId"`
-	ReadTeamSync *bool   `pulumi:"readTeamSync"`
+	// The name of the Grafana team.
+	Name string `pulumi:"name"`
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+	OrgId *string `pulumi:"orgId"`
+	// Team preferences.
+	Preferences []GetTeamPreference `pulumi:"preferences"`
+	// Whether to read the team sync settings. This is only available in Grafana Enterprise.
+	ReadTeamSync *bool `pulumi:"readTeamSync"`
+	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+	TeamSyncs []GetTeamTeamSync `pulumi:"teamSyncs"`
 }
 
 // A collection of values returned by getTeam.
 type LookupTeamResult struct {
+	// An email address for the team.
 	Email string `pulumi:"email"`
-	// The provider-assigned unique ID for this managed resource.
-	Id           string              `pulumi:"id"`
-	Members      []string            `pulumi:"members"`
-	Name         string              `pulumi:"name"`
-	OrgId        *string             `pulumi:"orgId"`
-	Preferences  []GetTeamPreference `pulumi:"preferences"`
-	ReadTeamSync *bool               `pulumi:"readTeamSync"`
-	TeamId       int                 `pulumi:"teamId"`
-	TeamSyncs    []GetTeamTeamSync   `pulumi:"teamSyncs"`
-	TeamUid      string              `pulumi:"teamUid"`
+	// The ID of this resource.
+	Id string `pulumi:"id"`
+	// A set of email addresses corresponding to users who are members of the team.
+	Members []string `pulumi:"members"`
+	// The name of the Grafana team.
+	Name string `pulumi:"name"`
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+	OrgId string `pulumi:"orgId"`
+	// Team preferences.
+	Preferences []GetTeamPreference `pulumi:"preferences"`
+	// Whether to read the team sync settings. This is only available in Grafana Enterprise.
+	ReadTeamSync *bool `pulumi:"readTeamSync"`
+	// The team id assigned to this team by Grafana.
+	TeamId int `pulumi:"teamId"`
+	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+	TeamSyncs []GetTeamTeamSync `pulumi:"teamSyncs"`
+	// The team uid assigned to this team by Grafana.
+	TeamUid string `pulumi:"teamUid"`
 }
 
 func LookupTeamOutput(ctx *pulumi.Context, args LookupTeamOutputArgs, opts ...pulumi.InvokeOption) LookupTeamResultOutput {
@@ -90,9 +106,16 @@ func LookupTeamOutput(ctx *pulumi.Context, args LookupTeamOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getTeam.
 type LookupTeamOutputArgs struct {
-	Name         pulumi.StringInput    `pulumi:"name"`
-	OrgId        pulumi.StringPtrInput `pulumi:"orgId"`
-	ReadTeamSync pulumi.BoolPtrInput   `pulumi:"readTeamSync"`
+	// The name of the Grafana team.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
+	// Team preferences.
+	Preferences GetTeamPreferenceArrayInput `pulumi:"preferences"`
+	// Whether to read the team sync settings. This is only available in Grafana Enterprise.
+	ReadTeamSync pulumi.BoolPtrInput `pulumi:"readTeamSync"`
+	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+	TeamSyncs GetTeamTeamSyncArrayInput `pulumi:"teamSyncs"`
 }
 
 func (LookupTeamOutputArgs) ElementType() reflect.Type {
@@ -114,43 +137,52 @@ func (o LookupTeamResultOutput) ToLookupTeamResultOutputWithContext(ctx context.
 	return o
 }
 
+// An email address for the team.
 func (o LookupTeamResultOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamResult) string { return v.Email }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource.
 func (o LookupTeamResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// A set of email addresses corresponding to users who are members of the team.
 func (o LookupTeamResultOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupTeamResult) []string { return v.Members }).(pulumi.StringArrayOutput)
 }
 
+// The name of the Grafana team.
 func (o LookupTeamResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o LookupTeamResultOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupTeamResult) *string { return v.OrgId }).(pulumi.StringPtrOutput)
+// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+func (o LookupTeamResultOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTeamResult) string { return v.OrgId }).(pulumi.StringOutput)
 }
 
+// Team preferences.
 func (o LookupTeamResultOutput) Preferences() GetTeamPreferenceArrayOutput {
 	return o.ApplyT(func(v LookupTeamResult) []GetTeamPreference { return v.Preferences }).(GetTeamPreferenceArrayOutput)
 }
 
+// Whether to read the team sync settings. This is only available in Grafana Enterprise.
 func (o LookupTeamResultOutput) ReadTeamSync() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupTeamResult) *bool { return v.ReadTeamSync }).(pulumi.BoolPtrOutput)
 }
 
+// The team id assigned to this team by Grafana.
 func (o LookupTeamResultOutput) TeamId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTeamResult) int { return v.TeamId }).(pulumi.IntOutput)
 }
 
+// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
 func (o LookupTeamResultOutput) TeamSyncs() GetTeamTeamSyncArrayOutput {
 	return o.ApplyT(func(v LookupTeamResult) []GetTeamTeamSync { return v.TeamSyncs }).(GetTeamTeamSyncArrayOutput)
 }
 
+// The team uid assigned to this team by Grafana.
 func (o LookupTeamResultOutput) TeamUid() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamResult) string { return v.TeamUid }).(pulumi.StringOutput)
 }
