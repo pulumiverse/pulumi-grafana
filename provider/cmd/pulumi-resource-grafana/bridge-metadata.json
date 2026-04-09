@@ -120,6 +120,10 @@
                     }
                 }
             },
+            "grafana_apps_generic_resource": {
+                "current": "grafana:index/appsGenericResource:AppsGenericResource",
+                "majorVersion": 2
+            },
             "grafana_apps_notifications_inhibitionrule_v1beta1": {
                 "current": "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule",
                 "majorVersion": 2,
@@ -1415,6 +1419,9 @@
                                             "annotation": {
                                                 "maxItemsOne": false
                                             },
+                                            "enrichment": {
+                                                "maxItemsOne": false
+                                            },
                                             "label": {
                                                 "maxItemsOne": false
                                             }
@@ -1429,6 +1436,9 @@
                                     "elem": {
                                         "fields": {
                                             "annotation": {
+                                                "maxItemsOne": false
+                                            },
+                                            "enrichment": {
                                                 "maxItemsOne": false
                                             },
                                             "label": {
@@ -2269,6 +2279,9 @@
                                                         "annotation": {
                                                             "maxItemsOne": false
                                                         },
+                                                        "enrichment": {
+                                                            "maxItemsOne": false
+                                                        },
                                                         "label": {
                                                             "maxItemsOne": false
                                                         }
@@ -2283,6 +2296,9 @@
                                                 "elem": {
                                                     "fields": {
                                                         "annotation": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "enrichment": {
                                                             "maxItemsOne": false
                                                         },
                                                         "label": {
@@ -2482,6 +2498,7 @@
             "grafana:fleetManagement/collector:Collector": 1,
             "grafana:fleetManagement/pipeline:Pipeline": 1,
             "grafana:frontendObservability/app:App": 1,
+            "grafana:index/appsGenericResource:AppsGenericResource": 1,
             "grafana:k6/installation:Installation": 0,
             "grafana:k6/loadTest:LoadTest": 1,
             "grafana:k6/project:Project": 1,
@@ -2508,7 +2525,7 @@
             "grafana:oss/dataSource:DataSource": 0,
             "grafana:oss/dataSourceConfig:DataSourceConfig": 0,
             "grafana:oss/folder:Folder": 0,
-            "grafana:oss/folderPermission:FolderPermission": 0,
+            "grafana:oss/folderPermission:FolderPermission": 1,
             "grafana:oss/folderPermissionItem:FolderPermissionItem": 1,
             "grafana:oss/libraryPanel:LibraryPanel": 0,
             "grafana:oss/organization:Organization": 0,
@@ -2572,7 +2589,7 @@
             "grafana:oss/getOrganizationPreferences:getOrganizationPreferences": 0,
             "grafana:oss/getOrganizationUser:getOrganizationUser": 0,
             "grafana:oss/getServiceAccount:getServiceAccount": 0,
-            "grafana:oss/getTeam:getTeam": 0,
+            "grafana:oss/getTeam:getTeam": 1,
             "grafana:oss/getUser:getUser": 0,
             "grafana:oss/getUsers:getUsers": 0,
             "grafana:slo/getSlos:getSlos": 0,
