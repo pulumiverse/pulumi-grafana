@@ -101,7 +101,7 @@ export class DashboardPublic extends pulumi.CustomResource {
     /**
      * Set to `true` to show annotations. The default value is `false`.
      */
-    declare public readonly annotationsEnabled: pulumi.Output<boolean | undefined>;
+    declare public readonly annotationsEnabled: pulumi.Output<boolean>;
     /**
      * The unique identifier of the original dashboard.
      */
@@ -109,19 +109,19 @@ export class DashboardPublic extends pulumi.CustomResource {
     /**
      * Set to `true` to enable the public dashboard. The default value is `false`.
      */
-    declare public readonly isEnabled: pulumi.Output<boolean | undefined>;
+    declare public readonly isEnabled: pulumi.Output<boolean>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
-    declare public readonly orgId: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * Set the share mode. The default value is `public`.
      */
-    declare public readonly share: pulumi.Output<string | undefined>;
+    declare public readonly share: pulumi.Output<string>;
     /**
      * Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
      */
-    declare public readonly timeSelectionEnabled: pulumi.Output<boolean | undefined>;
+    declare public readonly timeSelectionEnabled: pulumi.Output<boolean>;
     /**
      * The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
      */
@@ -190,7 +190,7 @@ export interface DashboardPublicState {
      */
     isEnabled?: pulumi.Input<boolean>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     /**
@@ -228,7 +228,7 @@ export interface DashboardPublicArgs {
      */
     isEnabled?: pulumi.Input<boolean>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     /**

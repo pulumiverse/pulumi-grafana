@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Oss.Inputs
     public sealed class FolderPermissionPermissionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        /// Permission to associate with item. Options: View, Edit, Admin.
         /// </summary>
         [Input("permission", required: true)]
         public Input<string> Permission { get; set; } = null!;
@@ -26,13 +26,13 @@ namespace Pulumiverse.Grafana.Oss.Inputs
         public Input<string>? Role { get; set; }
 
         /// <summary>
-        /// ID of the team to manage permissions for. Defaults to `0`.
+        /// ID of the team to manage permissions for.
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
         /// <summary>
-        /// ID of the user or service account to manage permissions for. Defaults to `0`.
+        /// ID of the user or service account to manage permissions for.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

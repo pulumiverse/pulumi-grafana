@@ -41,7 +41,7 @@ namespace Pulumiverse.Grafana.Experimental
     ///                 new Grafana.Apps.V0Alpha1.Inputs.PlaylistSpecItemArgs
     ///                 {
     ///                     Type = "dashboard_by_uid",
-    ///                     Value = "example-dashboard-uid",
+    ///                     Value = "example-dashboard",
     ///                 },
     ///             },
     ///         },

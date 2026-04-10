@@ -25,6 +25,18 @@ namespace Pulumiverse.Grafana.Slo.Inputs
             set => _annotations = value;
         }
 
+        [Input("enrichments")]
+        private InputList<Inputs.SLOAlertingSlowburnEnrichmentGetArgs>? _enrichments;
+
+        /// <summary>
+        /// Enrichments to attach only to Slow Burn alerts.
+        /// </summary>
+        public InputList<Inputs.SLOAlertingSlowburnEnrichmentGetArgs> Enrichments
+        {
+            get => _enrichments ?? (_enrichments = new InputList<Inputs.SLOAlertingSlowburnEnrichmentGetArgs>());
+            set => _enrichments = value;
+        }
+
         [Input("labels")]
         private InputList<Inputs.SLOAlertingSlowburnLabelGetArgs>? _labels;
 

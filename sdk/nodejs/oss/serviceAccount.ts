@@ -61,7 +61,7 @@ export class ServiceAccount extends pulumi.CustomResource {
     /**
      * The disabled status for the service account. Defaults to `false`.
      */
-    declare public readonly isDisabled: pulumi.Output<boolean | undefined>;
+    declare public readonly isDisabled: pulumi.Output<boolean>;
     /**
      * The name of the service account.
      */
@@ -69,7 +69,7 @@ export class ServiceAccount extends pulumi.CustomResource {
     /**
      * The Organization ID. If not set, the Org ID defined in the provider block will be used.
      */
-    declare public readonly orgId: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * The basic role of the service account in the organization.
      */

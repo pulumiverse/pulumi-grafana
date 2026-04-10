@@ -168,7 +168,7 @@ class AppsPlaylistV0Alpha1(pulumi.CustomResource):
                 "interval": "5m",
                 "items": [{
                     "type": "dashboard_by_uid",
-                    "value": "example-dashboard-uid",
+                    "value": "example-dashboard",
                 }],
             })
         ```
@@ -207,7 +207,7 @@ class AppsPlaylistV0Alpha1(pulumi.CustomResource):
                 "interval": "5m",
                 "items": [{
                     "type": "dashboard_by_uid",
-                    "value": "example-dashboard-uid",
+                    "value": "example-dashboard",
                 }],
             })
         ```

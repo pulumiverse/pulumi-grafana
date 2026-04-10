@@ -41,7 +41,7 @@ import (
 //					Items: appsv0alpha1.PlaylistSpecItemArray{
 //						&appsv0alpha1.PlaylistSpecItemArgs{
 //							Type:  pulumi.String("dashboard_by_uid"),
-//							Value: pulumi.String("example-dashboard-uid"),
+//							Value: pulumi.String("example-dashboard"),
 //						},
 //					},
 //				},

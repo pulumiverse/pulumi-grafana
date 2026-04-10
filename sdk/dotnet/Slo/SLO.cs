@@ -172,6 +172,13 @@ namespace Pulumiverse.Grafana.Slo
     ///                         Value = "Error budget is burning too fast",
     ///                     },
     ///                 },
+    ///                 Enrichments = new[]
+    ///                 {
+    ///                     new Grafana.Slo.Inputs.SLOAlertingFastburnEnrichmentArgs
+    ///                     {
+    ///                         Type = "assistantInvestigation",
+    ///                     },
+    ///                 },
     ///             },
     ///             Slowburn = new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs
     ///             {
@@ -186,6 +193,13 @@ namespace Pulumiverse.Grafana.Slo
     ///                     {
     ///                         Key = "description",
     ///                         Value = "Error budget is burning too fast",
+    ///                     },
+    ///                 },
+    ///                 Enrichments = new[]
+    ///                 {
+    ///                     new Grafana.Slo.Inputs.SLOAlertingSlowburnEnrichmentArgs
+    ///                     {
+    ///                         Type = "assistantInvestigation",
     ///                     },
     ///                 },
     ///             },

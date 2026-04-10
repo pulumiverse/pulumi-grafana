@@ -127,17 +127,17 @@ type DashboardPublic struct {
 	// A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
 	AccessToken pulumi.StringOutput `pulumi:"accessToken"`
 	// Set to `true` to show annotations. The default value is `false`.
-	AnnotationsEnabled pulumi.BoolPtrOutput `pulumi:"annotationsEnabled"`
+	AnnotationsEnabled pulumi.BoolOutput `pulumi:"annotationsEnabled"`
 	// The unique identifier of the original dashboard.
 	DashboardUid pulumi.StringOutput `pulumi:"dashboardUid"`
 	// Set to `true` to enable the public dashboard. The default value is `false`.
-	IsEnabled pulumi.BoolPtrOutput `pulumi:"isEnabled"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	IsEnabled pulumi.BoolOutput `pulumi:"isEnabled"`
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// Set the share mode. The default value is `public`.
-	Share pulumi.StringPtrOutput `pulumi:"share"`
+	Share pulumi.StringOutput `pulumi:"share"`
 	// Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
-	TimeSelectionEnabled pulumi.BoolPtrOutput `pulumi:"timeSelectionEnabled"`
+	TimeSelectionEnabled pulumi.BoolOutput `pulumi:"timeSelectionEnabled"`
 	// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
 	Uid pulumi.StringOutput `pulumi:"uid"`
 }
@@ -189,7 +189,7 @@ type dashboardPublicState struct {
 	DashboardUid *string `pulumi:"dashboardUid"`
 	// Set to `true` to enable the public dashboard. The default value is `false`.
 	IsEnabled *bool `pulumi:"isEnabled"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// Set the share mode. The default value is `public`.
 	Share *string `pulumi:"share"`
@@ -208,7 +208,7 @@ type DashboardPublicState struct {
 	DashboardUid pulumi.StringPtrInput
 	// Set to `true` to enable the public dashboard. The default value is `false`.
 	IsEnabled pulumi.BoolPtrInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// Set the share mode. The default value is `public`.
 	Share pulumi.StringPtrInput
@@ -231,7 +231,7 @@ type dashboardPublicArgs struct {
 	DashboardUid string `pulumi:"dashboardUid"`
 	// Set to `true` to enable the public dashboard. The default value is `false`.
 	IsEnabled *bool `pulumi:"isEnabled"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
 	// Set the share mode. The default value is `public`.
 	Share *string `pulumi:"share"`
@@ -251,7 +251,7 @@ type DashboardPublicArgs struct {
 	DashboardUid pulumi.StringInput
 	// Set to `true` to enable the public dashboard. The default value is `false`.
 	IsEnabled pulumi.BoolPtrInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
 	// Set the share mode. The default value is `public`.
 	Share pulumi.StringPtrInput
@@ -354,8 +354,8 @@ func (o DashboardPublicOutput) AccessToken() pulumi.StringOutput {
 }
 
 // Set to `true` to show annotations. The default value is `false`.
-func (o DashboardPublicOutput) AnnotationsEnabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DashboardPublic) pulumi.BoolPtrOutput { return v.AnnotationsEnabled }).(pulumi.BoolPtrOutput)
+func (o DashboardPublicOutput) AnnotationsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DashboardPublic) pulumi.BoolOutput { return v.AnnotationsEnabled }).(pulumi.BoolOutput)
 }
 
 // The unique identifier of the original dashboard.
@@ -364,23 +364,23 @@ func (o DashboardPublicOutput) DashboardUid() pulumi.StringOutput {
 }
 
 // Set to `true` to enable the public dashboard. The default value is `false`.
-func (o DashboardPublicOutput) IsEnabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DashboardPublic) pulumi.BoolPtrOutput { return v.IsEnabled }).(pulumi.BoolPtrOutput)
+func (o DashboardPublicOutput) IsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DashboardPublic) pulumi.BoolOutput { return v.IsEnabled }).(pulumi.BoolOutput)
 }
 
-// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-func (o DashboardPublicOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DashboardPublic) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+func (o DashboardPublicOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DashboardPublic) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 // Set the share mode. The default value is `public`.
-func (o DashboardPublicOutput) Share() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DashboardPublic) pulumi.StringPtrOutput { return v.Share }).(pulumi.StringPtrOutput)
+func (o DashboardPublicOutput) Share() pulumi.StringOutput {
+	return o.ApplyT(func(v *DashboardPublic) pulumi.StringOutput { return v.Share }).(pulumi.StringOutput)
 }
 
 // Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
-func (o DashboardPublicOutput) TimeSelectionEnabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DashboardPublic) pulumi.BoolPtrOutput { return v.TimeSelectionEnabled }).(pulumi.BoolPtrOutput)
+func (o DashboardPublicOutput) TimeSelectionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DashboardPublic) pulumi.BoolOutput { return v.TimeSelectionEnabled }).(pulumi.BoolOutput)
 }
 
 // The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.

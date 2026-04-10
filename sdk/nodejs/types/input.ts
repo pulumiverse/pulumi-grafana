@@ -5,6 +5,59 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppsPlaylistPlaylistV1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsPlaylistPlaylistV1Options {
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsPlaylistPlaylistV1Spec {
+    /**
+     * The interval of the playlist.
+     */
+    interval?: pulumi.Input<string>;
+    /**
+     * The items of the playlist.
+     */
+    items: pulumi.Input<pulumi.Input<inputs.AppsPlaylistPlaylistV1SpecItem>[]>;
+    /**
+     * The title of the playlist.
+     */
+    title: pulumi.Input<string>;
+}
+
+export interface AppsPlaylistPlaylistV1SpecItem {
+    type: pulumi.Input<string>;
+    value: pulumi.Input<string>;
+}
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -4726,7 +4779,7 @@ export namespace enterprise {
          */
         frequency: pulumi.Input<string>;
         /**
-         * Send the report on the last day of the month Defaults to `false`.
+         * Send the report on the last day of the month
          */
         lastDayOfMonth?: pulumi.Input<boolean>;
         /**
@@ -4734,11 +4787,11 @@ export namespace enterprise {
          */
         startTime?: pulumi.Input<string>;
         /**
-         * Set the report time zone. Defaults to `GMT`.
+         * Set the report time zone.
          */
         timezone?: pulumi.Input<string>;
         /**
-         * Whether to send the report only on work days. Defaults to `false`.
+         * Whether to send the report only on work days.
          */
         workdaysOnly?: pulumi.Input<boolean>;
     }
@@ -5406,7 +5459,7 @@ export namespace onCall {
 export namespace oss {
     export interface DashboardPermissionPermission {
         /**
-         * Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+         * Permission to associate with item. Options: View, Edit, Admin.
          */
         permission: pulumi.Input<string>;
         /**
@@ -5414,18 +5467,18 @@ export namespace oss {
          */
         role?: pulumi.Input<string>;
         /**
-         * ID of the team to manage permissions for. Defaults to `0`.
+         * ID of the team to manage permissions for.
          */
         teamId?: pulumi.Input<string>;
         /**
-         * ID of the user or service account to manage permissions for. Defaults to `0`.
+         * ID of the user or service account to manage permissions for.
          */
         userId?: pulumi.Input<string>;
     }
 
     export interface FolderPermissionPermission {
         /**
-         * Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+         * Permission to associate with item. Options: View, Edit, Admin.
          */
         permission: pulumi.Input<string>;
         /**
@@ -5433,13 +5486,59 @@ export namespace oss {
          */
         role?: pulumi.Input<string>;
         /**
-         * ID of the team to manage permissions for. Defaults to `0`.
+         * ID of the team to manage permissions for.
          */
         teamId?: pulumi.Input<string>;
         /**
-         * ID of the user or service account to manage permissions for. Defaults to `0`.
+         * ID of the user or service account to manage permissions for.
          */
         userId?: pulumi.Input<string>;
+    }
+
+    export interface GetTeamPreference {
+        /**
+         * The UID of the dashboard to display when a team member logs in.
+         */
+        homeDashboardUid?: string;
+        /**
+         * The default theme for this team.
+         */
+        theme?: string;
+        /**
+         * The default timezone for this team.
+         */
+        timezone?: string;
+        /**
+         * The default week start day for this team.
+         */
+        weekStart?: string;
+    }
+
+    export interface GetTeamPreferenceArgs {
+        /**
+         * The UID of the dashboard to display when a team member logs in.
+         */
+        homeDashboardUid?: pulumi.Input<string>;
+        /**
+         * The default theme for this team.
+         */
+        theme?: pulumi.Input<string>;
+        /**
+         * The default timezone for this team.
+         */
+        timezone?: pulumi.Input<string>;
+        /**
+         * The default week start day for this team.
+         */
+        weekStart?: pulumi.Input<string>;
+    }
+
+    export interface GetTeamTeamSync {
+        groups?: string[];
+    }
+
+    export interface GetTeamTeamSyncArgs {
+        groups?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface PlaylistItem {
@@ -5998,6 +6097,10 @@ export namespace slo {
          */
         annotations?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlertingFastburnAnnotation>[]>;
         /**
+         * Enrichments to attach only to Fast Burn alerts.
+         */
+        enrichments?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlertingFastburnEnrichment>[]>;
+        /**
          * Labels to attach only to Fast Burn alerts.
          */
         labels?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlertingFastburnLabel>[]>;
@@ -6012,6 +6115,13 @@ export namespace slo {
          * Templatable value
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface SLOAlertingFastburnEnrichment {
+        /**
+         * Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+         */
+        type: pulumi.Input<string>;
     }
 
     export interface SLOAlertingFastburnLabel {
@@ -6042,6 +6152,10 @@ export namespace slo {
          */
         annotations?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlertingSlowburnAnnotation>[]>;
         /**
+         * Enrichments to attach only to Slow Burn alerts.
+         */
+        enrichments?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlertingSlowburnEnrichment>[]>;
+        /**
          * Labels to attach only to Slow Burn alerts.
          */
         labels?: pulumi.Input<pulumi.Input<inputs.slo.SLOAlertingSlowburnLabel>[]>;
@@ -6056,6 +6170,13 @@ export namespace slo {
          * Templatable value
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface SLOAlertingSlowburnEnrichment {
+        /**
+         * Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+         */
+        type: pulumi.Input<string>;
     }
 
     export interface SLOAlertingSlowburnLabel {

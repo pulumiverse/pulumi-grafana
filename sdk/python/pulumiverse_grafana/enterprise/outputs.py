@@ -248,10 +248,10 @@ class ReportSchedule(dict):
         :param _builtins.str custom_interval: Custom interval of the report.
                **Note:** This field is only available when frequency is set to `custom`.
         :param _builtins.str end_time: End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
-        :param _builtins.bool last_day_of_month: Send the report on the last day of the month Defaults to `false`.
+        :param _builtins.bool last_day_of_month: Send the report on the last day of the month
         :param _builtins.str start_time: Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
-        :param _builtins.str timezone: Set the report time zone. Defaults to `GMT`.
-        :param _builtins.bool workdays_only: Whether to send the report only on work days. Defaults to `false`.
+        :param _builtins.str timezone: Set the report time zone.
+        :param _builtins.bool workdays_only: Whether to send the report only on work days.
         """
         pulumi.set(__self__, "frequency", frequency)
         if custom_interval is not None:
@@ -296,7 +296,7 @@ class ReportSchedule(dict):
     @pulumi.getter(name="lastDayOfMonth")
     def last_day_of_month(self) -> Optional[_builtins.bool]:
         """
-        Send the report on the last day of the month Defaults to `false`.
+        Send the report on the last day of the month
         """
         return pulumi.get(self, "last_day_of_month")
 
@@ -312,7 +312,7 @@ class ReportSchedule(dict):
     @pulumi.getter
     def timezone(self) -> Optional[_builtins.str]:
         """
-        Set the report time zone. Defaults to `GMT`.
+        Set the report time zone.
         """
         return pulumi.get(self, "timezone")
 
@@ -320,7 +320,7 @@ class ReportSchedule(dict):
     @pulumi.getter(name="workdaysOnly")
     def workdays_only(self) -> Optional[_builtins.bool]:
         """
-        Whether to send the report only on work days. Defaults to `false`.
+        Whether to send the report only on work days.
         """
         return pulumi.get(self, "workdays_only")
 

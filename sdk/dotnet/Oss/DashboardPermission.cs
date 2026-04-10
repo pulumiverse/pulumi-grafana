@@ -90,10 +90,10 @@ namespace Pulumiverse.Grafana.Oss
         public Output<string> DashboardUid { get; private set; } = null!;
 
         /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         /// </summary>
         [Output("orgId")]
-        public Output<string?> OrgId { get; private set; } = null!;
+        public Output<string> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// The permission items to add/update. Items that are omitted from the list will be removed.
@@ -109,7 +109,7 @@ namespace Pulumiverse.Grafana.Oss
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DashboardPermission(string name, DashboardPermissionArgs? args = null, CustomResourceOptions? options = null)
+        public DashboardPermission(string name, DashboardPermissionArgs args, CustomResourceOptions? options = null)
             : base("grafana:oss/dashboardPermission:DashboardPermission", name, args ?? new DashboardPermissionArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -155,11 +155,11 @@ namespace Pulumiverse.Grafana.Oss
         /// <summary>
         /// UID of the dashboard to apply permissions to.
         /// </summary>
-        [Input("dashboardUid")]
-        public Input<string>? DashboardUid { get; set; }
+        [Input("dashboardUid", required: true)]
+        public Input<string> DashboardUid { get; set; } = null!;
 
         /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
@@ -191,7 +191,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<string>? DashboardUid { get; set; }
 
         /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }

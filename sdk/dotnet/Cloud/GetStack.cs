@@ -185,6 +185,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string FleetManagementName;
         /// <summary>
+        /// Availability Zone IDs for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly ImmutableArray<string> FleetManagementPrivateConnectivityInfoAvailabilityZoneIds;
+        /// <summary>
         /// Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         public readonly ImmutableArray<string> FleetManagementPrivateConnectivityInfoAvailabilityZones;
@@ -222,6 +226,10 @@ namespace Pulumiverse.Grafana.Cloud
         public readonly string GraphiteIpAllowListCname;
         public readonly string GraphiteName;
         /// <summary>
+        /// Availability Zone IDs for Graphite when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly ImmutableArray<string> GraphitePrivateConnectivityInfoAvailabilityZoneIds;
+        /// <summary>
         /// Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         public readonly ImmutableArray<string> GraphitePrivateConnectivityInfoAvailabilityZones;
@@ -257,6 +265,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string LogsIpAllowListCname;
         public readonly string LogsName;
+        /// <summary>
+        /// Availability Zone IDs for Logs when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly ImmutableArray<string> LogsPrivateConnectivityInfoAvailabilityZoneIds;
         /// <summary>
         /// Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
@@ -297,6 +309,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string OrgSlug;
         /// <summary>
+        /// Availability Zone IDs for OTLP when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly ImmutableArray<string> OtlpPrivateConnectivityInfoAvailabilityZoneIds;
+        /// <summary>
         /// Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         public readonly ImmutableArray<string> OtlpPrivateConnectivityInfoAvailabilityZones;
@@ -317,6 +333,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string OtlpUrl;
         /// <summary>
+        /// Availability Zone IDs for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly ImmutableArray<string> PdcApiPrivateConnectivityInfoAvailabilityZoneIds;
+        /// <summary>
         /// Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         public readonly ImmutableArray<string> PdcApiPrivateConnectivityInfoAvailabilityZones;
@@ -332,6 +352,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         public readonly string PdcApiPrivateConnectivityInfoServiceName;
+        /// <summary>
+        /// Availability Zone IDs for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly ImmutableArray<string> PdcGatewayPrivateConnectivityInfoAvailabilityZoneIds;
         /// <summary>
         /// Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
@@ -353,6 +377,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string ProfilesIpAllowListCname;
         public readonly string ProfilesName;
+        /// <summary>
+        /// Availability Zone IDs for Profiles when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly ImmutableArray<string> ProfilesPrivateConnectivityInfoAvailabilityZoneIds;
         /// <summary>
         /// Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
@@ -380,6 +408,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// Prometheus name for this instance.
         /// </summary>
         public readonly string PrometheusName;
+        /// <summary>
+        /// Availability Zone IDs for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly ImmutableArray<string> PrometheusPrivateConnectivityInfoAvailabilityZoneIds;
         /// <summary>
         /// Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
@@ -435,6 +467,10 @@ namespace Pulumiverse.Grafana.Cloud
         public readonly string TracesIpAllowListCname;
         public readonly string TracesName;
         /// <summary>
+        /// Availability Zone IDs for Traces when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public readonly ImmutableArray<string> TracesPrivateConnectivityInfoAvailabilityZoneIds;
+        /// <summary>
         /// Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         public readonly ImmutableArray<string> TracesPrivateConnectivityInfoAvailabilityZones;
@@ -483,6 +519,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             string fleetManagementName,
 
+            ImmutableArray<string> fleetManagementPrivateConnectivityInfoAvailabilityZoneIds,
+
             ImmutableArray<string> fleetManagementPrivateConnectivityInfoAvailabilityZones,
 
             string fleetManagementPrivateConnectivityInfoPrivateDns,
@@ -502,6 +540,8 @@ namespace Pulumiverse.Grafana.Cloud
             string graphiteIpAllowListCname,
 
             string graphiteName,
+
+            ImmutableArray<string> graphitePrivateConnectivityInfoAvailabilityZoneIds,
 
             ImmutableArray<string> graphitePrivateConnectivityInfoAvailabilityZones,
 
@@ -527,6 +567,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             string logsName,
 
+            ImmutableArray<string> logsPrivateConnectivityInfoAvailabilityZoneIds,
+
             ImmutableArray<string> logsPrivateConnectivityInfoAvailabilityZones,
 
             string logsPrivateConnectivityInfoPrivateDns,
@@ -551,6 +593,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             string orgSlug,
 
+            ImmutableArray<string> otlpPrivateConnectivityInfoAvailabilityZoneIds,
+
             ImmutableArray<string> otlpPrivateConnectivityInfoAvailabilityZones,
 
             string otlpPrivateConnectivityInfoPrivateDns,
@@ -561,6 +605,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             string otlpUrl,
 
+            ImmutableArray<string> pdcApiPrivateConnectivityInfoAvailabilityZoneIds,
+
             ImmutableArray<string> pdcApiPrivateConnectivityInfoAvailabilityZones,
 
             string pdcApiPrivateConnectivityInfoPrivateDns,
@@ -568,6 +614,8 @@ namespace Pulumiverse.Grafana.Cloud
             ImmutableArray<string> pdcApiPrivateConnectivityInfoRegions,
 
             string pdcApiPrivateConnectivityInfoServiceName,
+
+            ImmutableArray<string> pdcGatewayPrivateConnectivityInfoAvailabilityZoneIds,
 
             ImmutableArray<string> pdcGatewayPrivateConnectivityInfoAvailabilityZones,
 
@@ -580,6 +628,8 @@ namespace Pulumiverse.Grafana.Cloud
             string profilesIpAllowListCname,
 
             string profilesName,
+
+            ImmutableArray<string> profilesPrivateConnectivityInfoAvailabilityZoneIds,
 
             ImmutableArray<string> profilesPrivateConnectivityInfoAvailabilityZones,
 
@@ -598,6 +648,8 @@ namespace Pulumiverse.Grafana.Cloud
             string prometheusIpAllowListCname,
 
             string prometheusName,
+
+            ImmutableArray<string> prometheusPrivateConnectivityInfoAvailabilityZoneIds,
 
             ImmutableArray<string> prometheusPrivateConnectivityInfoAvailabilityZones,
 
@@ -627,6 +679,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             string tracesName,
 
+            ImmutableArray<string> tracesPrivateConnectivityInfoAvailabilityZoneIds,
+
             ImmutableArray<string> tracesPrivateConnectivityInfoAvailabilityZones,
 
             string tracesPrivateConnectivityInfoPrivateDns,
@@ -653,6 +707,7 @@ namespace Pulumiverse.Grafana.Cloud
             DeleteProtection = deleteProtection;
             Description = description;
             FleetManagementName = fleetManagementName;
+            FleetManagementPrivateConnectivityInfoAvailabilityZoneIds = fleetManagementPrivateConnectivityInfoAvailabilityZoneIds;
             FleetManagementPrivateConnectivityInfoAvailabilityZones = fleetManagementPrivateConnectivityInfoAvailabilityZones;
             FleetManagementPrivateConnectivityInfoPrivateDns = fleetManagementPrivateConnectivityInfoPrivateDns;
             FleetManagementPrivateConnectivityInfoRegions = fleetManagementPrivateConnectivityInfoRegions;
@@ -663,6 +718,7 @@ namespace Pulumiverse.Grafana.Cloud
             GrafanasIpAllowListCname = grafanasIpAllowListCname;
             GraphiteIpAllowListCname = graphiteIpAllowListCname;
             GraphiteName = graphiteName;
+            GraphitePrivateConnectivityInfoAvailabilityZoneIds = graphitePrivateConnectivityInfoAvailabilityZoneIds;
             GraphitePrivateConnectivityInfoAvailabilityZones = graphitePrivateConnectivityInfoAvailabilityZones;
             GraphitePrivateConnectivityInfoPrivateDns = graphitePrivateConnectivityInfoPrivateDns;
             GraphitePrivateConnectivityInfoRegions = graphitePrivateConnectivityInfoRegions;
@@ -675,6 +731,7 @@ namespace Pulumiverse.Grafana.Cloud
             Labels = labels;
             LogsIpAllowListCname = logsIpAllowListCname;
             LogsName = logsName;
+            LogsPrivateConnectivityInfoAvailabilityZoneIds = logsPrivateConnectivityInfoAvailabilityZoneIds;
             LogsPrivateConnectivityInfoAvailabilityZones = logsPrivateConnectivityInfoAvailabilityZones;
             LogsPrivateConnectivityInfoPrivateDns = logsPrivateConnectivityInfoPrivateDns;
             LogsPrivateConnectivityInfoRegions = logsPrivateConnectivityInfoRegions;
@@ -687,21 +744,25 @@ namespace Pulumiverse.Grafana.Cloud
             OrgId = orgId;
             OrgName = orgName;
             OrgSlug = orgSlug;
+            OtlpPrivateConnectivityInfoAvailabilityZoneIds = otlpPrivateConnectivityInfoAvailabilityZoneIds;
             OtlpPrivateConnectivityInfoAvailabilityZones = otlpPrivateConnectivityInfoAvailabilityZones;
             OtlpPrivateConnectivityInfoPrivateDns = otlpPrivateConnectivityInfoPrivateDns;
             OtlpPrivateConnectivityInfoRegions = otlpPrivateConnectivityInfoRegions;
             OtlpPrivateConnectivityInfoServiceName = otlpPrivateConnectivityInfoServiceName;
             OtlpUrl = otlpUrl;
+            PdcApiPrivateConnectivityInfoAvailabilityZoneIds = pdcApiPrivateConnectivityInfoAvailabilityZoneIds;
             PdcApiPrivateConnectivityInfoAvailabilityZones = pdcApiPrivateConnectivityInfoAvailabilityZones;
             PdcApiPrivateConnectivityInfoPrivateDns = pdcApiPrivateConnectivityInfoPrivateDns;
             PdcApiPrivateConnectivityInfoRegions = pdcApiPrivateConnectivityInfoRegions;
             PdcApiPrivateConnectivityInfoServiceName = pdcApiPrivateConnectivityInfoServiceName;
+            PdcGatewayPrivateConnectivityInfoAvailabilityZoneIds = pdcGatewayPrivateConnectivityInfoAvailabilityZoneIds;
             PdcGatewayPrivateConnectivityInfoAvailabilityZones = pdcGatewayPrivateConnectivityInfoAvailabilityZones;
             PdcGatewayPrivateConnectivityInfoPrivateDns = pdcGatewayPrivateConnectivityInfoPrivateDns;
             PdcGatewayPrivateConnectivityInfoRegions = pdcGatewayPrivateConnectivityInfoRegions;
             PdcGatewayPrivateConnectivityInfoServiceName = pdcGatewayPrivateConnectivityInfoServiceName;
             ProfilesIpAllowListCname = profilesIpAllowListCname;
             ProfilesName = profilesName;
+            ProfilesPrivateConnectivityInfoAvailabilityZoneIds = profilesPrivateConnectivityInfoAvailabilityZoneIds;
             ProfilesPrivateConnectivityInfoAvailabilityZones = profilesPrivateConnectivityInfoAvailabilityZones;
             ProfilesPrivateConnectivityInfoPrivateDns = profilesPrivateConnectivityInfoPrivateDns;
             ProfilesPrivateConnectivityInfoRegions = profilesPrivateConnectivityInfoRegions;
@@ -711,6 +772,7 @@ namespace Pulumiverse.Grafana.Cloud
             ProfilesUserId = profilesUserId;
             PrometheusIpAllowListCname = prometheusIpAllowListCname;
             PrometheusName = prometheusName;
+            PrometheusPrivateConnectivityInfoAvailabilityZoneIds = prometheusPrivateConnectivityInfoAvailabilityZoneIds;
             PrometheusPrivateConnectivityInfoAvailabilityZones = prometheusPrivateConnectivityInfoAvailabilityZones;
             PrometheusPrivateConnectivityInfoPrivateDns = prometheusPrivateConnectivityInfoPrivateDns;
             PrometheusPrivateConnectivityInfoRegions = prometheusPrivateConnectivityInfoRegions;
@@ -725,6 +787,7 @@ namespace Pulumiverse.Grafana.Cloud
             Status = status;
             TracesIpAllowListCname = tracesIpAllowListCname;
             TracesName = tracesName;
+            TracesPrivateConnectivityInfoAvailabilityZoneIds = tracesPrivateConnectivityInfoAvailabilityZoneIds;
             TracesPrivateConnectivityInfoAvailabilityZones = tracesPrivateConnectivityInfoAvailabilityZones;
             TracesPrivateConnectivityInfoPrivateDns = tracesPrivateConnectivityInfoPrivateDns;
             TracesPrivateConnectivityInfoRegions = tracesPrivateConnectivityInfoRegions;

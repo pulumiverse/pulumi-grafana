@@ -163,7 +163,7 @@ class Playlist(pulumi.CustomResource):
                 "interval": "5m",
                 "items": [{
                     "type": "dashboard_by_uid",
-                    "value": "example-dashboard-uid",
+                    "value": "example-dashboard",
                 }],
             })
         ```
@@ -202,7 +202,7 @@ class Playlist(pulumi.CustomResource):
                 "interval": "5m",
                 "items": [{
                     "type": "dashboard_by_uid",
-                    "value": "example-dashboard-uid",
+                    "value": "example-dashboard",
                 }],
             })
         ```

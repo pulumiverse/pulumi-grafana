@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  *         interval: "5m",
  *         items: [{
  *             type: "dashboard_by_uid",
- *             value: "example-dashboard-uid",
+ *             value: "example-dashboard",
  *         }],
  *     },
  * });

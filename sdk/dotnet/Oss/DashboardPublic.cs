@@ -111,7 +111,7 @@ namespace Pulumiverse.Grafana.Oss
         /// Set to `True` to show annotations. The default value is `False`.
         /// </summary>
         [Output("annotationsEnabled")]
-        public Output<bool?> AnnotationsEnabled { get; private set; } = null!;
+        public Output<bool> AnnotationsEnabled { get; private set; } = null!;
 
         /// <summary>
         /// The unique identifier of the original dashboard.
@@ -123,25 +123,25 @@ namespace Pulumiverse.Grafana.Oss
         /// Set to `True` to enable the public dashboard. The default value is `False`.
         /// </summary>
         [Output("isEnabled")]
-        public Output<bool?> IsEnabled { get; private set; } = null!;
+        public Output<bool> IsEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         /// </summary>
         [Output("orgId")]
-        public Output<string?> OrgId { get; private set; } = null!;
+        public Output<string> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// Set the share mode. The default value is `Public`.
         /// </summary>
         [Output("share")]
-        public Output<string?> Share { get; private set; } = null!;
+        public Output<string> Share { get; private set; } = null!;
 
         /// <summary>
         /// Set to `True` to enable the time picker in the public dashboard. The default value is `False`.
         /// </summary>
         [Output("timeSelectionEnabled")]
-        public Output<bool?> TimeSelectionEnabled { get; private set; } = null!;
+        public Output<bool> TimeSelectionEnabled { get; private set; } = null!;
 
         /// <summary>
         /// The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
@@ -225,7 +225,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<bool>? IsEnabled { get; set; }
 
         /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
@@ -281,7 +281,7 @@ namespace Pulumiverse.Grafana.Oss
         public Input<bool>? IsEnabled { get; set; }
 
         /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }

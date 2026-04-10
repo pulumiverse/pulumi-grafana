@@ -82,22 +82,22 @@ namespace Pulumiverse.Grafana.Enterprise
         public Output<ImmutableArray<string>> Formats { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to include a link to the dashboard in the report. Defaults to `True`.
+        /// Whether to include a link to the dashboard in the report.
         /// </summary>
         [Output("includeDashboardLink")]
-        public Output<bool?> IncludeDashboardLink { get; private set; } = null!;
+        public Output<bool> IncludeDashboardLink { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to include a CSV file of table panel data. Defaults to `False`.
+        /// Whether to include a CSV file of table panel data.
         /// </summary>
         [Output("includeTableCsv")]
-        public Output<bool?> IncludeTableCsv { get; private set; } = null!;
+        public Output<bool> IncludeTableCsv { get; private set; } = null!;
 
         /// <summary>
-        /// Layout of the report. Allowed values: `Simple`, `Grid`. Defaults to `Grid`.
+        /// Layout of the report. Allowed values: `Simple`, `Grid`.
         /// </summary>
         [Output("layout")]
-        public Output<string?> Layout { get; private set; } = null!;
+        public Output<string> Layout { get; private set; } = null!;
 
         /// <summary>
         /// Message to be sent in the report.
@@ -112,16 +112,16 @@ namespace Pulumiverse.Grafana.Enterprise
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         /// </summary>
         [Output("orgId")]
-        public Output<string?> OrgId { get; private set; } = null!;
+        public Output<string> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// Orientation of the report. Allowed values: `Landscape`, `Portrait`. Defaults to `Landscape`.
+        /// Orientation of the report. Allowed values: `Landscape`, `Portrait`.
         /// </summary>
         [Output("orientation")]
-        public Output<string?> Orientation { get; private set; } = null!;
+        public Output<string> Orientation { get; private set; } = null!;
 
         /// <summary>
         /// List of recipients of the report.
@@ -136,10 +136,10 @@ namespace Pulumiverse.Grafana.Enterprise
         public Output<string?> ReplyTo { get; private set; } = null!;
 
         /// <summary>
-        /// Schedule of the report.
+        /// (Required) Schedule of the report.
         /// </summary>
         [Output("schedule")]
-        public Output<Outputs.ReportSchedule> Schedule { get; private set; } = null!;
+        public Output<Outputs.ReportSchedule?> Schedule { get; private set; } = null!;
 
 
         /// <summary>
@@ -217,19 +217,19 @@ namespace Pulumiverse.Grafana.Enterprise
         }
 
         /// <summary>
-        /// Whether to include a link to the dashboard in the report. Defaults to `True`.
+        /// Whether to include a link to the dashboard in the report.
         /// </summary>
         [Input("includeDashboardLink")]
         public Input<bool>? IncludeDashboardLink { get; set; }
 
         /// <summary>
-        /// Whether to include a CSV file of table panel data. Defaults to `False`.
+        /// Whether to include a CSV file of table panel data.
         /// </summary>
         [Input("includeTableCsv")]
         public Input<bool>? IncludeTableCsv { get; set; }
 
         /// <summary>
-        /// Layout of the report. Allowed values: `Simple`, `Grid`. Defaults to `Grid`.
+        /// Layout of the report. Allowed values: `Simple`, `Grid`.
         /// </summary>
         [Input("layout")]
         public Input<string>? Layout { get; set; }
@@ -247,13 +247,13 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// Orientation of the report. Allowed values: `Landscape`, `Portrait`. Defaults to `Landscape`.
+        /// Orientation of the report. Allowed values: `Landscape`, `Portrait`.
         /// </summary>
         [Input("orientation")]
         public Input<string>? Orientation { get; set; }
@@ -277,10 +277,10 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? ReplyTo { get; set; }
 
         /// <summary>
-        /// Schedule of the report.
+        /// (Required) Schedule of the report.
         /// </summary>
-        [Input("schedule", required: true)]
-        public Input<Inputs.ReportScheduleArgs> Schedule { get; set; } = null!;
+        [Input("schedule")]
+        public Input<Inputs.ReportScheduleArgs>? Schedule { get; set; }
 
         public ReportArgs()
         {
@@ -315,19 +315,19 @@ namespace Pulumiverse.Grafana.Enterprise
         }
 
         /// <summary>
-        /// Whether to include a link to the dashboard in the report. Defaults to `True`.
+        /// Whether to include a link to the dashboard in the report.
         /// </summary>
         [Input("includeDashboardLink")]
         public Input<bool>? IncludeDashboardLink { get; set; }
 
         /// <summary>
-        /// Whether to include a CSV file of table panel data. Defaults to `False`.
+        /// Whether to include a CSV file of table panel data.
         /// </summary>
         [Input("includeTableCsv")]
         public Input<bool>? IncludeTableCsv { get; set; }
 
         /// <summary>
-        /// Layout of the report. Allowed values: `Simple`, `Grid`. Defaults to `Grid`.
+        /// Layout of the report. Allowed values: `Simple`, `Grid`.
         /// </summary>
         [Input("layout")]
         public Input<string>? Layout { get; set; }
@@ -345,13 +345,13 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// Orientation of the report. Allowed values: `Landscape`, `Portrait`. Defaults to `Landscape`.
+        /// Orientation of the report. Allowed values: `Landscape`, `Portrait`.
         /// </summary>
         [Input("orientation")]
         public Input<string>? Orientation { get; set; }
@@ -375,7 +375,7 @@ namespace Pulumiverse.Grafana.Enterprise
         public Input<string>? ReplyTo { get; set; }
 
         /// <summary>
-        /// Schedule of the report.
+        /// (Required) Schedule of the report.
         /// </summary>
         [Input("schedule")]
         public Input<Inputs.ReportScheduleGetArgs>? Schedule { get; set; }

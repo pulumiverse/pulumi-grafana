@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AppsGenericResourceArgs, AppsGenericResourceState } from "./appsGenericResource";
+export type AppsGenericResource = import("./appsGenericResource").AppsGenericResource;
+export const AppsGenericResource: typeof import("./appsGenericResource").AppsGenericResource = null as any;
+utilities.lazyLoad(exports, ["AppsGenericResource"], () => require("./appsGenericResource"));
+
+export { AppsPlaylistPlaylistV1Args, AppsPlaylistPlaylistV1State } from "./appsPlaylistPlaylistV1";
+export type AppsPlaylistPlaylistV1 = import("./appsPlaylistPlaylistV1").AppsPlaylistPlaylistV1;
+export const AppsPlaylistPlaylistV1: typeof import("./appsPlaylistPlaylistV1").AppsPlaylistPlaylistV1 = null as any;
+utilities.lazyLoad(exports, ["AppsPlaylistPlaylistV1"], () => require("./appsPlaylistPlaylistV1"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -49,6 +59,22 @@ export {
     syntheticmonitoring,
     types,
 };
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "grafana:index/appsGenericResource:AppsGenericResource":
+                return new AppsGenericResource(name, <any>undefined, { urn })
+            case "grafana:index/appsPlaylistPlaylistV1:AppsPlaylistPlaylistV1":
+                return new AppsPlaylistPlaylistV1(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("grafana", "index/appsGenericResource", _module)
+pulumi.runtime.registerResourceModule("grafana", "index/appsPlaylistPlaylistV1", _module)
 pulumi.runtime.registerResourcePackage("grafana", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

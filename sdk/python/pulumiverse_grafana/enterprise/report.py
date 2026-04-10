@@ -22,7 +22,6 @@ __all__ = ['ReportArgs', 'Report']
 class ReportArgs:
     def __init__(__self__, *,
                  recipients: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 schedule: pulumi.Input['ReportScheduleArgs'],
                  dashboards: Optional[pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]]] = None,
                  formats: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  include_dashboard_link: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -32,25 +31,25 @@ class ReportArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  org_id: Optional[pulumi.Input[_builtins.str]] = None,
                  orientation: Optional[pulumi.Input[_builtins.str]] = None,
-                 reply_to: Optional[pulumi.Input[_builtins.str]] = None):
+                 reply_to: Optional[pulumi.Input[_builtins.str]] = None,
+                 schedule: Optional[pulumi.Input['ReportScheduleArgs']] = None):
         """
         The set of arguments for constructing a Report resource.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] recipients: List of recipients of the report.
-        :param pulumi.Input['ReportScheduleArgs'] schedule: Schedule of the report.
         :param pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
-        :param pulumi.Input[_builtins.bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
-        :param pulumi.Input[_builtins.bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] layout: Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+        :param pulumi.Input[_builtins.bool] include_dashboard_link: Whether to include a link to the dashboard in the report.
+        :param pulumi.Input[_builtins.bool] include_table_csv: Whether to include a CSV file of table panel data.
+        :param pulumi.Input[_builtins.str] layout: Layout of the report. Allowed values: `simple`, `grid`.
         :param pulumi.Input[_builtins.str] message: Message to be sent in the report.
         :param pulumi.Input[_builtins.str] name: Name of the report.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[_builtins.str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+        :param pulumi.Input[_builtins.str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`.
         :param pulumi.Input[_builtins.str] reply_to: Reply-to email address of the report.
+        :param pulumi.Input['ReportScheduleArgs'] schedule: (Required) Schedule of the report.
         """
         pulumi.set(__self__, "recipients", recipients)
-        pulumi.set(__self__, "schedule", schedule)
         if dashboards is not None:
             pulumi.set(__self__, "dashboards", dashboards)
         if formats is not None:
@@ -71,6 +70,8 @@ class ReportArgs:
             pulumi.set(__self__, "orientation", orientation)
         if reply_to is not None:
             pulumi.set(__self__, "reply_to", reply_to)
+        if schedule is not None:
+            pulumi.set(__self__, "schedule", schedule)
 
     @_builtins.property
     @pulumi.getter
@@ -83,18 +84,6 @@ class ReportArgs:
     @recipients.setter
     def recipients(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         pulumi.set(self, "recipients", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def schedule(self) -> pulumi.Input['ReportScheduleArgs']:
-        """
-        Schedule of the report.
-        """
-        return pulumi.get(self, "schedule")
-
-    @schedule.setter
-    def schedule(self, value: pulumi.Input['ReportScheduleArgs']):
-        pulumi.set(self, "schedule", value)
 
     @_builtins.property
     @pulumi.getter
@@ -124,7 +113,7 @@ class ReportArgs:
     @pulumi.getter(name="includeDashboardLink")
     def include_dashboard_link(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether to include a link to the dashboard in the report. Defaults to `true`.
+        Whether to include a link to the dashboard in the report.
         """
         return pulumi.get(self, "include_dashboard_link")
 
@@ -136,7 +125,7 @@ class ReportArgs:
     @pulumi.getter(name="includeTableCsv")
     def include_table_csv(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether to include a CSV file of table panel data. Defaults to `false`.
+        Whether to include a CSV file of table panel data.
         """
         return pulumi.get(self, "include_table_csv")
 
@@ -148,7 +137,7 @@ class ReportArgs:
     @pulumi.getter
     def layout(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+        Layout of the report. Allowed values: `simple`, `grid`.
         """
         return pulumi.get(self, "layout")
 
@@ -184,7 +173,7 @@ class ReportArgs:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -196,7 +185,7 @@ class ReportArgs:
     @pulumi.getter
     def orientation(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+        Orientation of the report. Allowed values: `landscape`, `portrait`.
         """
         return pulumi.get(self, "orientation")
 
@@ -215,6 +204,18 @@ class ReportArgs:
     @reply_to.setter
     def reply_to(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "reply_to", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> Optional[pulumi.Input['ReportScheduleArgs']]:
+        """
+        (Required) Schedule of the report.
+        """
+        return pulumi.get(self, "schedule")
+
+    @schedule.setter
+    def schedule(self, value: Optional[pulumi.Input['ReportScheduleArgs']]):
+        pulumi.set(self, "schedule", value)
 
 
 @pulumi.input_type
@@ -237,16 +238,16 @@ class _ReportState:
 
         :param pulumi.Input[Sequence[pulumi.Input['ReportDashboardArgs']]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
-        :param pulumi.Input[_builtins.bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
-        :param pulumi.Input[_builtins.bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] layout: Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+        :param pulumi.Input[_builtins.bool] include_dashboard_link: Whether to include a link to the dashboard in the report.
+        :param pulumi.Input[_builtins.bool] include_table_csv: Whether to include a CSV file of table panel data.
+        :param pulumi.Input[_builtins.str] layout: Layout of the report. Allowed values: `simple`, `grid`.
         :param pulumi.Input[_builtins.str] message: Message to be sent in the report.
         :param pulumi.Input[_builtins.str] name: Name of the report.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[_builtins.str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+        :param pulumi.Input[_builtins.str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] recipients: List of recipients of the report.
         :param pulumi.Input[_builtins.str] reply_to: Reply-to email address of the report.
-        :param pulumi.Input['ReportScheduleArgs'] schedule: Schedule of the report.
+        :param pulumi.Input['ReportScheduleArgs'] schedule: (Required) Schedule of the report.
         """
         if dashboards is not None:
             pulumi.set(__self__, "dashboards", dashboards)
@@ -301,7 +302,7 @@ class _ReportState:
     @pulumi.getter(name="includeDashboardLink")
     def include_dashboard_link(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether to include a link to the dashboard in the report. Defaults to `true`.
+        Whether to include a link to the dashboard in the report.
         """
         return pulumi.get(self, "include_dashboard_link")
 
@@ -313,7 +314,7 @@ class _ReportState:
     @pulumi.getter(name="includeTableCsv")
     def include_table_csv(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether to include a CSV file of table panel data. Defaults to `false`.
+        Whether to include a CSV file of table panel data.
         """
         return pulumi.get(self, "include_table_csv")
 
@@ -325,7 +326,7 @@ class _ReportState:
     @pulumi.getter
     def layout(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+        Layout of the report. Allowed values: `simple`, `grid`.
         """
         return pulumi.get(self, "layout")
 
@@ -361,7 +362,7 @@ class _ReportState:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -373,7 +374,7 @@ class _ReportState:
     @pulumi.getter
     def orientation(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+        Orientation of the report. Allowed values: `landscape`, `portrait`.
         """
         return pulumi.get(self, "orientation")
 
@@ -409,7 +410,7 @@ class _ReportState:
     @pulumi.getter
     def schedule(self) -> Optional[pulumi.Input['ReportScheduleArgs']]:
         """
-        Schedule of the report.
+        (Required) Schedule of the report.
         """
         return pulumi.get(self, "schedule")
 
@@ -479,16 +480,16 @@ class Report(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ReportDashboardArgs', 'ReportDashboardArgsDict']]]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
-        :param pulumi.Input[_builtins.bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
-        :param pulumi.Input[_builtins.bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] layout: Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+        :param pulumi.Input[_builtins.bool] include_dashboard_link: Whether to include a link to the dashboard in the report.
+        :param pulumi.Input[_builtins.bool] include_table_csv: Whether to include a CSV file of table panel data.
+        :param pulumi.Input[_builtins.str] layout: Layout of the report. Allowed values: `simple`, `grid`.
         :param pulumi.Input[_builtins.str] message: Message to be sent in the report.
         :param pulumi.Input[_builtins.str] name: Name of the report.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[_builtins.str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+        :param pulumi.Input[_builtins.str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] recipients: List of recipients of the report.
         :param pulumi.Input[_builtins.str] reply_to: Reply-to email address of the report.
-        :param pulumi.Input[Union['ReportScheduleArgs', 'ReportScheduleArgsDict']] schedule: Schedule of the report.
+        :param pulumi.Input[Union['ReportScheduleArgs', 'ReportScheduleArgsDict']] schedule: (Required) Schedule of the report.
         """
         ...
     @overload
@@ -583,8 +584,6 @@ class Report(pulumi.CustomResource):
                 raise TypeError("Missing required property 'recipients'")
             __props__.__dict__["recipients"] = recipients
             __props__.__dict__["reply_to"] = reply_to
-            if schedule is None and not opts.urn:
-                raise TypeError("Missing required property 'schedule'")
             __props__.__dict__["schedule"] = schedule
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="grafana:index/report:Report")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
@@ -619,16 +618,16 @@ class Report(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ReportDashboardArgs', 'ReportDashboardArgsDict']]]] dashboards: List of dashboards to render into the report
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] formats: Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
-        :param pulumi.Input[_builtins.bool] include_dashboard_link: Whether to include a link to the dashboard in the report. Defaults to `true`.
-        :param pulumi.Input[_builtins.bool] include_table_csv: Whether to include a CSV file of table panel data. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] layout: Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+        :param pulumi.Input[_builtins.bool] include_dashboard_link: Whether to include a link to the dashboard in the report.
+        :param pulumi.Input[_builtins.bool] include_table_csv: Whether to include a CSV file of table panel data.
+        :param pulumi.Input[_builtins.str] layout: Layout of the report. Allowed values: `simple`, `grid`.
         :param pulumi.Input[_builtins.str] message: Message to be sent in the report.
         :param pulumi.Input[_builtins.str] name: Name of the report.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
-        :param pulumi.Input[_builtins.str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+        :param pulumi.Input[_builtins.str] orientation: Orientation of the report. Allowed values: `landscape`, `portrait`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] recipients: List of recipients of the report.
         :param pulumi.Input[_builtins.str] reply_to: Reply-to email address of the report.
-        :param pulumi.Input[Union['ReportScheduleArgs', 'ReportScheduleArgsDict']] schedule: Schedule of the report.
+        :param pulumi.Input[Union['ReportScheduleArgs', 'ReportScheduleArgsDict']] schedule: (Required) Schedule of the report.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -666,25 +665,25 @@ class Report(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="includeDashboardLink")
-    def include_dashboard_link(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def include_dashboard_link(self) -> pulumi.Output[_builtins.bool]:
         """
-        Whether to include a link to the dashboard in the report. Defaults to `true`.
+        Whether to include a link to the dashboard in the report.
         """
         return pulumi.get(self, "include_dashboard_link")
 
     @_builtins.property
     @pulumi.getter(name="includeTableCsv")
-    def include_table_csv(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def include_table_csv(self) -> pulumi.Output[_builtins.bool]:
         """
-        Whether to include a CSV file of table panel data. Defaults to `false`.
+        Whether to include a CSV file of table panel data.
         """
         return pulumi.get(self, "include_table_csv")
 
     @_builtins.property
     @pulumi.getter
-    def layout(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def layout(self) -> pulumi.Output[_builtins.str]:
         """
-        Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+        Layout of the report. Allowed values: `simple`, `grid`.
         """
         return pulumi.get(self, "layout")
 
@@ -706,17 +705,17 @@ class Report(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def org_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
     @_builtins.property
     @pulumi.getter
-    def orientation(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def orientation(self) -> pulumi.Output[_builtins.str]:
         """
-        Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+        Orientation of the report. Allowed values: `landscape`, `portrait`.
         """
         return pulumi.get(self, "orientation")
 
@@ -738,9 +737,9 @@ class Report(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def schedule(self) -> pulumi.Output['outputs.ReportSchedule']:
+    def schedule(self) -> pulumi.Output[Optional['outputs.ReportSchedule']]:
         """
-        Schedule of the report.
+        (Required) Schedule of the report.
         """
         return pulumi.get(self, "schedule")
 

@@ -75,26 +75,26 @@ type Report struct {
 	Dashboards ReportDashboardArrayOutput `pulumi:"dashboards"`
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats pulumi.StringArrayOutput `pulumi:"formats"`
-	// Whether to include a link to the dashboard in the report. Defaults to `true`.
-	IncludeDashboardLink pulumi.BoolPtrOutput `pulumi:"includeDashboardLink"`
-	// Whether to include a CSV file of table panel data. Defaults to `false`.
-	IncludeTableCsv pulumi.BoolPtrOutput `pulumi:"includeTableCsv"`
-	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
-	Layout pulumi.StringPtrOutput `pulumi:"layout"`
+	// Whether to include a link to the dashboard in the report.
+	IncludeDashboardLink pulumi.BoolOutput `pulumi:"includeDashboardLink"`
+	// Whether to include a CSV file of table panel data.
+	IncludeTableCsv pulumi.BoolOutput `pulumi:"includeTableCsv"`
+	// Layout of the report. Allowed values: `simple`, `grid`.
+	Layout pulumi.StringOutput `pulumi:"layout"`
 	// Message to be sent in the report.
 	Message pulumi.StringPtrOutput `pulumi:"message"`
 	// Name of the report.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
-	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
-	Orientation pulumi.StringPtrOutput `pulumi:"orientation"`
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
+	// Orientation of the report. Allowed values: `landscape`, `portrait`.
+	Orientation pulumi.StringOutput `pulumi:"orientation"`
 	// List of recipients of the report.
 	Recipients pulumi.StringArrayOutput `pulumi:"recipients"`
 	// Reply-to email address of the report.
 	ReplyTo pulumi.StringPtrOutput `pulumi:"replyTo"`
-	// Schedule of the report.
-	Schedule ReportScheduleOutput `pulumi:"schedule"`
+	// (Required) Schedule of the report.
+	Schedule ReportSchedulePtrOutput `pulumi:"schedule"`
 }
 
 // NewReport registers a new resource with the given unique name, arguments, and options.
@@ -106,9 +106,6 @@ func NewReport(ctx *pulumi.Context,
 
 	if args.Recipients == nil {
 		return nil, errors.New("invalid value for required argument 'Recipients'")
-	}
-	if args.Schedule == nil {
-		return nil, errors.New("invalid value for required argument 'Schedule'")
 	}
 	aliases := pulumi.Aliases([]pulumi.Alias{
 		{
@@ -143,25 +140,25 @@ type reportState struct {
 	Dashboards []ReportDashboard `pulumi:"dashboards"`
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats []string `pulumi:"formats"`
-	// Whether to include a link to the dashboard in the report. Defaults to `true`.
+	// Whether to include a link to the dashboard in the report.
 	IncludeDashboardLink *bool `pulumi:"includeDashboardLink"`
-	// Whether to include a CSV file of table panel data. Defaults to `false`.
+	// Whether to include a CSV file of table panel data.
 	IncludeTableCsv *bool `pulumi:"includeTableCsv"`
-	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`.
 	Layout *string `pulumi:"layout"`
 	// Message to be sent in the report.
 	Message *string `pulumi:"message"`
 	// Name of the report.
 	Name *string `pulumi:"name"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
-	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`.
 	Orientation *string `pulumi:"orientation"`
 	// List of recipients of the report.
 	Recipients []string `pulumi:"recipients"`
 	// Reply-to email address of the report.
 	ReplyTo *string `pulumi:"replyTo"`
-	// Schedule of the report.
+	// (Required) Schedule of the report.
 	Schedule *ReportSchedule `pulumi:"schedule"`
 }
 
@@ -170,25 +167,25 @@ type ReportState struct {
 	Dashboards ReportDashboardArrayInput
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats pulumi.StringArrayInput
-	// Whether to include a link to the dashboard in the report. Defaults to `true`.
+	// Whether to include a link to the dashboard in the report.
 	IncludeDashboardLink pulumi.BoolPtrInput
-	// Whether to include a CSV file of table panel data. Defaults to `false`.
+	// Whether to include a CSV file of table panel data.
 	IncludeTableCsv pulumi.BoolPtrInput
-	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`.
 	Layout pulumi.StringPtrInput
 	// Message to be sent in the report.
 	Message pulumi.StringPtrInput
 	// Name of the report.
 	Name pulumi.StringPtrInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
-	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`.
 	Orientation pulumi.StringPtrInput
 	// List of recipients of the report.
 	Recipients pulumi.StringArrayInput
 	// Reply-to email address of the report.
 	ReplyTo pulumi.StringPtrInput
-	// Schedule of the report.
+	// (Required) Schedule of the report.
 	Schedule ReportSchedulePtrInput
 }
 
@@ -201,26 +198,26 @@ type reportArgs struct {
 	Dashboards []ReportDashboard `pulumi:"dashboards"`
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats []string `pulumi:"formats"`
-	// Whether to include a link to the dashboard in the report. Defaults to `true`.
+	// Whether to include a link to the dashboard in the report.
 	IncludeDashboardLink *bool `pulumi:"includeDashboardLink"`
-	// Whether to include a CSV file of table panel data. Defaults to `false`.
+	// Whether to include a CSV file of table panel data.
 	IncludeTableCsv *bool `pulumi:"includeTableCsv"`
-	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`.
 	Layout *string `pulumi:"layout"`
 	// Message to be sent in the report.
 	Message *string `pulumi:"message"`
 	// Name of the report.
 	Name *string `pulumi:"name"`
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId *string `pulumi:"orgId"`
-	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`.
 	Orientation *string `pulumi:"orientation"`
 	// List of recipients of the report.
 	Recipients []string `pulumi:"recipients"`
 	// Reply-to email address of the report.
 	ReplyTo *string `pulumi:"replyTo"`
-	// Schedule of the report.
-	Schedule ReportSchedule `pulumi:"schedule"`
+	// (Required) Schedule of the report.
+	Schedule *ReportSchedule `pulumi:"schedule"`
 }
 
 // The set of arguments for constructing a Report resource.
@@ -229,26 +226,26 @@ type ReportArgs struct {
 	Dashboards ReportDashboardArrayInput
 	// Specifies what kind of attachment to generate for the report. Allowed values: `pdf`, `csv`, `image`.
 	Formats pulumi.StringArrayInput
-	// Whether to include a link to the dashboard in the report. Defaults to `true`.
+	// Whether to include a link to the dashboard in the report.
 	IncludeDashboardLink pulumi.BoolPtrInput
-	// Whether to include a CSV file of table panel data. Defaults to `false`.
+	// Whether to include a CSV file of table panel data.
 	IncludeTableCsv pulumi.BoolPtrInput
-	// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+	// Layout of the report. Allowed values: `simple`, `grid`.
 	Layout pulumi.StringPtrInput
 	// Message to be sent in the report.
 	Message pulumi.StringPtrInput
 	// Name of the report.
 	Name pulumi.StringPtrInput
-	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
+	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
 	OrgId pulumi.StringPtrInput
-	// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+	// Orientation of the report. Allowed values: `landscape`, `portrait`.
 	Orientation pulumi.StringPtrInput
 	// List of recipients of the report.
 	Recipients pulumi.StringArrayInput
 	// Reply-to email address of the report.
 	ReplyTo pulumi.StringPtrInput
-	// Schedule of the report.
-	Schedule ReportScheduleInput
+	// (Required) Schedule of the report.
+	Schedule ReportSchedulePtrInput
 }
 
 func (ReportArgs) ElementType() reflect.Type {
@@ -348,19 +345,19 @@ func (o ReportOutput) Formats() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Report) pulumi.StringArrayOutput { return v.Formats }).(pulumi.StringArrayOutput)
 }
 
-// Whether to include a link to the dashboard in the report. Defaults to `true`.
-func (o ReportOutput) IncludeDashboardLink() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Report) pulumi.BoolPtrOutput { return v.IncludeDashboardLink }).(pulumi.BoolPtrOutput)
+// Whether to include a link to the dashboard in the report.
+func (o ReportOutput) IncludeDashboardLink() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Report) pulumi.BoolOutput { return v.IncludeDashboardLink }).(pulumi.BoolOutput)
 }
 
-// Whether to include a CSV file of table panel data. Defaults to `false`.
-func (o ReportOutput) IncludeTableCsv() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Report) pulumi.BoolPtrOutput { return v.IncludeTableCsv }).(pulumi.BoolPtrOutput)
+// Whether to include a CSV file of table panel data.
+func (o ReportOutput) IncludeTableCsv() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Report) pulumi.BoolOutput { return v.IncludeTableCsv }).(pulumi.BoolOutput)
 }
 
-// Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
-func (o ReportOutput) Layout() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Report) pulumi.StringPtrOutput { return v.Layout }).(pulumi.StringPtrOutput)
+// Layout of the report. Allowed values: `simple`, `grid`.
+func (o ReportOutput) Layout() pulumi.StringOutput {
+	return o.ApplyT(func(v *Report) pulumi.StringOutput { return v.Layout }).(pulumi.StringOutput)
 }
 
 // Message to be sent in the report.
@@ -373,14 +370,14 @@ func (o ReportOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Report) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-func (o ReportOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Report) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+func (o ReportOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Report) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
-// Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
-func (o ReportOutput) Orientation() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Report) pulumi.StringPtrOutput { return v.Orientation }).(pulumi.StringPtrOutput)
+// Orientation of the report. Allowed values: `landscape`, `portrait`.
+func (o ReportOutput) Orientation() pulumi.StringOutput {
+	return o.ApplyT(func(v *Report) pulumi.StringOutput { return v.Orientation }).(pulumi.StringOutput)
 }
 
 // List of recipients of the report.
@@ -393,9 +390,9 @@ func (o ReportOutput) ReplyTo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Report) pulumi.StringPtrOutput { return v.ReplyTo }).(pulumi.StringPtrOutput)
 }
 
-// Schedule of the report.
-func (o ReportOutput) Schedule() ReportScheduleOutput {
-	return o.ApplyT(func(v *Report) ReportScheduleOutput { return v.Schedule }).(ReportScheduleOutput)
+// (Required) Schedule of the report.
+func (o ReportOutput) Schedule() ReportSchedulePtrOutput {
+	return o.ApplyT(func(v *Report) ReportSchedulePtrOutput { return v.Schedule }).(ReportSchedulePtrOutput)
 }
 
 type ReportArrayOutput struct{ *pulumi.OutputState }

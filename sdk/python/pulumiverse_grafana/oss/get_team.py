@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetTeamResult',
@@ -62,54 +63,81 @@ class GetTeamResult:
     @_builtins.property
     @pulumi.getter
     def email(self) -> _builtins.str:
+        """
+        An email address for the team.
+        """
         return pulumi.get(self, "email")
 
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this resource.
         """
         return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
     def members(self) -> Sequence[_builtins.str]:
+        """
+        A set of email addresses corresponding to users who are members of the team.
+        """
         return pulumi.get(self, "members")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
+        """
+        The name of the Grafana team.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> Optional[_builtins.str]:
+    def org_id(self) -> _builtins.str:
+        """
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+        """
         return pulumi.get(self, "org_id")
 
     @_builtins.property
     @pulumi.getter
-    def preferences(self) -> Sequence['outputs.GetTeamPreferenceResult']:
+    def preferences(self) -> Optional[Sequence['outputs.GetTeamPreferenceResult']]:
+        """
+        Team preferences.
+        """
         return pulumi.get(self, "preferences")
 
     @_builtins.property
     @pulumi.getter(name="readTeamSync")
     def read_team_sync(self) -> Optional[_builtins.bool]:
+        """
+        Whether to read the team sync settings. This is only available in Grafana Enterprise.
+        """
         return pulumi.get(self, "read_team_sync")
 
     @_builtins.property
     @pulumi.getter(name="teamId")
     def team_id(self) -> _builtins.int:
+        """
+        The team id assigned to this team by Grafana.
+        """
         return pulumi.get(self, "team_id")
 
     @_builtins.property
     @pulumi.getter(name="teamSyncs")
-    def team_syncs(self) -> Sequence['outputs.GetTeamTeamSyncResult']:
+    def team_syncs(self) -> Optional[Sequence['outputs.GetTeamTeamSyncResult']]:
+        """
+        Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+        """
         return pulumi.get(self, "team_syncs")
 
     @_builtins.property
     @pulumi.getter(name="teamUid")
     def team_uid(self) -> _builtins.str:
+        """
+        The team uid assigned to this team by Grafana.
+        """
         return pulumi.get(self, "team_uid")
 
 
@@ -133,7 +161,9 @@ class AwaitableGetTeamResult(GetTeamResult):
 
 def get_team(name: Optional[_builtins.str] = None,
              org_id: Optional[_builtins.str] = None,
+             preferences: Optional[Sequence[Union['GetTeamPreferenceArgs', 'GetTeamPreferenceArgsDict']]] = None,
              read_team_sync: Optional[_builtins.bool] = None,
+             team_syncs: Optional[Sequence[Union['GetTeamTeamSyncArgs', 'GetTeamTeamSyncArgsDict']]] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTeamResult:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
@@ -155,11 +185,20 @@ def get_team(name: Optional[_builtins.str] = None,
         })
     from_name = grafana.oss.get_team_output(name=test.name)
     ```
+
+
+    :param _builtins.str name: The name of the Grafana team.
+    :param _builtins.str org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+    :param Sequence[Union['GetTeamPreferenceArgs', 'GetTeamPreferenceArgsDict']] preferences: Team preferences.
+    :param _builtins.bool read_team_sync: Whether to read the team sync settings. This is only available in Grafana Enterprise.
+    :param Sequence[Union['GetTeamTeamSyncArgs', 'GetTeamTeamSyncArgsDict']] team_syncs: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['orgId'] = org_id
+    __args__['preferences'] = preferences
     __args__['readTeamSync'] = read_team_sync
+    __args__['teamSyncs'] = team_syncs
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:oss/getTeam:getTeam', __args__, opts=opts, typ=GetTeamResult).value
 
@@ -176,7 +215,9 @@ def get_team(name: Optional[_builtins.str] = None,
         team_uid=pulumi.get(__ret__, 'team_uid'))
 def get_team_output(name: Optional[pulumi.Input[_builtins.str]] = None,
                     org_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                    preferences: Optional[pulumi.Input[Optional[Sequence[Union['GetTeamPreferenceArgs', 'GetTeamPreferenceArgsDict']]]]] = None,
                     read_team_sync: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+                    team_syncs: Optional[pulumi.Input[Optional[Sequence[Union['GetTeamTeamSyncArgs', 'GetTeamTeamSyncArgsDict']]]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTeamResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
@@ -198,11 +239,20 @@ def get_team_output(name: Optional[pulumi.Input[_builtins.str]] = None,
         })
     from_name = grafana.oss.get_team_output(name=test.name)
     ```
+
+
+    :param _builtins.str name: The name of the Grafana team.
+    :param _builtins.str org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+    :param Sequence[Union['GetTeamPreferenceArgs', 'GetTeamPreferenceArgsDict']] preferences: Team preferences.
+    :param _builtins.bool read_team_sync: Whether to read the team sync settings. This is only available in Grafana Enterprise.
+    :param Sequence[Union['GetTeamTeamSyncArgs', 'GetTeamTeamSyncArgsDict']] team_syncs: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['orgId'] = org_id
+    __args__['preferences'] = preferences
     __args__['readTeamSync'] = read_team_sync
+    __args__['teamSyncs'] = team_syncs
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:oss/getTeam:getTeam', __args__, opts=opts, typ=GetTeamResult)
     return __ret__.apply(lambda __response__: GetTeamResult(
