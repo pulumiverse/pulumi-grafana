@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Apps.V1.Outputs
 {
 
     [OutputType]
-    public sealed class AppsPlaylistPlaylistV1SpecItem
+    public sealed class PlaylistSpecItem
     {
         public readonly string Type;
         public readonly string Value;
 
         [OutputConstructor]
-        private AppsPlaylistPlaylistV1SpecItem(
+        private PlaylistSpecItem(
             string type,
 
             string value)

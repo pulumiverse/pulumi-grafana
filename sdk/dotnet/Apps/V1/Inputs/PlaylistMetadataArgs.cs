@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Apps.V1.Inputs
 {
 
-    public sealed class AppsPlaylistPlaylistV1MetadataArgs : global::Pulumi.ResourceArgs
+    public sealed class PlaylistMetadataArgs : global::Pulumi.ResourceArgs
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
@@ -55,9 +55,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("version")]
         public Input<string>? Version { get; set; }
 
-        public AppsPlaylistPlaylistV1MetadataArgs()
+        public PlaylistMetadataArgs()
         {
         }
-        public static new AppsPlaylistPlaylistV1MetadataArgs Empty => new AppsPlaylistPlaylistV1MetadataArgs();
+        public static new PlaylistMetadataArgs Empty => new PlaylistMetadataArgs();
     }
 }

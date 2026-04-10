@@ -8,21 +8,20 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Apps.V1.Inputs
 {
 
-    [OutputType]
-    public sealed class AppsPlaylistPlaylistV1Options
+    public sealed class PlaylistOptionsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         /// </summary>
-        public readonly bool? Overwrite;
+        [Input("overwrite")]
+        public Input<bool>? Overwrite { get; set; }
 
-        [OutputConstructor]
-        private AppsPlaylistPlaylistV1Options(bool? overwrite)
+        public PlaylistOptionsGetArgs()
         {
-            Overwrite = overwrite;
         }
+        public static new PlaylistOptionsGetArgs Empty => new PlaylistOptionsGetArgs();
     }
 }

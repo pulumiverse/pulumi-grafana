@@ -12,20 +12,20 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from ... import _utilities
 
 __all__ = [
-    'AppsPlaylistPlaylistV1MetadataArgs',
-    'AppsPlaylistPlaylistV1MetadataArgsDict',
-    'AppsPlaylistPlaylistV1OptionsArgs',
-    'AppsPlaylistPlaylistV1OptionsArgsDict',
-    'AppsPlaylistPlaylistV1SpecArgs',
-    'AppsPlaylistPlaylistV1SpecArgsDict',
-    'AppsPlaylistPlaylistV1SpecItemArgs',
-    'AppsPlaylistPlaylistV1SpecItemArgsDict',
+    'PlaylistMetadataArgs',
+    'PlaylistMetadataArgsDict',
+    'PlaylistOptionsArgs',
+    'PlaylistOptionsArgsDict',
+    'PlaylistSpecArgs',
+    'PlaylistSpecArgsDict',
+    'PlaylistSpecItemArgs',
+    'PlaylistSpecItemArgsDict',
 ]
 
-class AppsPlaylistPlaylistV1MetadataArgsDict(TypedDict):
+class PlaylistMetadataArgsDict(TypedDict):
     uid: pulumi.Input[_builtins.str]
     """
     The unique identifier of the resource.
@@ -52,7 +52,7 @@ class AppsPlaylistPlaylistV1MetadataArgsDict(TypedDict):
     """
 
 @pulumi.input_type
-class AppsPlaylistPlaylistV1MetadataArgs:
+class PlaylistMetadataArgs:
     def __init__(__self__, *,
                  uid: pulumi.Input[_builtins.str],
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -153,14 +153,14 @@ class AppsPlaylistPlaylistV1MetadataArgs:
         pulumi.set(self, "version", value)
 
 
-class AppsPlaylistPlaylistV1OptionsArgsDict(TypedDict):
+class PlaylistOptionsArgsDict(TypedDict):
     overwrite: NotRequired[pulumi.Input[_builtins.bool]]
     """
     Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
     """
 
 @pulumi.input_type
-class AppsPlaylistPlaylistV1OptionsArgs:
+class PlaylistOptionsArgs:
     def __init__(__self__, *,
                  overwrite: Optional[pulumi.Input[_builtins.bool]] = None):
         """
@@ -182,8 +182,8 @@ class AppsPlaylistPlaylistV1OptionsArgs:
         pulumi.set(self, "overwrite", value)
 
 
-class AppsPlaylistPlaylistV1SpecArgsDict(TypedDict):
-    items: pulumi.Input[Sequence[pulumi.Input['AppsPlaylistPlaylistV1SpecItemArgsDict']]]
+class PlaylistSpecArgsDict(TypedDict):
+    items: pulumi.Input[Sequence[pulumi.Input['PlaylistSpecItemArgsDict']]]
     """
     The items of the playlist.
     """
@@ -197,13 +197,13 @@ class AppsPlaylistPlaylistV1SpecArgsDict(TypedDict):
     """
 
 @pulumi.input_type
-class AppsPlaylistPlaylistV1SpecArgs:
+class PlaylistSpecArgs:
     def __init__(__self__, *,
-                 items: pulumi.Input[Sequence[pulumi.Input['AppsPlaylistPlaylistV1SpecItemArgs']]],
+                 items: pulumi.Input[Sequence[pulumi.Input['PlaylistSpecItemArgs']]],
                  title: pulumi.Input[_builtins.str],
                  interval: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input['AppsPlaylistPlaylistV1SpecItemArgs']]] items: The items of the playlist.
+        :param pulumi.Input[Sequence[pulumi.Input['PlaylistSpecItemArgs']]] items: The items of the playlist.
         :param pulumi.Input[_builtins.str] title: The title of the playlist.
         :param pulumi.Input[_builtins.str] interval: The interval of the playlist.
         """
@@ -214,14 +214,14 @@ class AppsPlaylistPlaylistV1SpecArgs:
 
     @_builtins.property
     @pulumi.getter
-    def items(self) -> pulumi.Input[Sequence[pulumi.Input['AppsPlaylistPlaylistV1SpecItemArgs']]]:
+    def items(self) -> pulumi.Input[Sequence[pulumi.Input['PlaylistSpecItemArgs']]]:
         """
         The items of the playlist.
         """
         return pulumi.get(self, "items")
 
     @items.setter
-    def items(self, value: pulumi.Input[Sequence[pulumi.Input['AppsPlaylistPlaylistV1SpecItemArgs']]]):
+    def items(self, value: pulumi.Input[Sequence[pulumi.Input['PlaylistSpecItemArgs']]]):
         pulumi.set(self, "items", value)
 
     @_builtins.property
@@ -249,12 +249,12 @@ class AppsPlaylistPlaylistV1SpecArgs:
         pulumi.set(self, "interval", value)
 
 
-class AppsPlaylistPlaylistV1SpecItemArgsDict(TypedDict):
+class PlaylistSpecItemArgsDict(TypedDict):
     type: pulumi.Input[_builtins.str]
     value: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
-class AppsPlaylistPlaylistV1SpecItemArgs:
+class PlaylistSpecItemArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
                  value: pulumi.Input[_builtins.str]):

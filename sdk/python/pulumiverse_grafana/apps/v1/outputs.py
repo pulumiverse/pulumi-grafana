@@ -12,18 +12,18 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from ... import _utilities
 from . import outputs
 
 __all__ = [
-    'AppsPlaylistPlaylistV1Metadata',
-    'AppsPlaylistPlaylistV1Options',
-    'AppsPlaylistPlaylistV1Spec',
-    'AppsPlaylistPlaylistV1SpecItem',
+    'PlaylistMetadata',
+    'PlaylistOptions',
+    'PlaylistSpec',
+    'PlaylistSpecItem',
 ]
 
 @pulumi.output_type
-class AppsPlaylistPlaylistV1Metadata(dict):
+class PlaylistMetadata(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -31,14 +31,14 @@ class AppsPlaylistPlaylistV1Metadata(dict):
             suggest = "folder_uid"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in AppsPlaylistPlaylistV1Metadata. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in PlaylistMetadata. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        AppsPlaylistPlaylistV1Metadata.__key_warning(key)
+        PlaylistMetadata.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        AppsPlaylistPlaylistV1Metadata.__key_warning(key)
+        PlaylistMetadata.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -118,7 +118,7 @@ class AppsPlaylistPlaylistV1Metadata(dict):
 
 
 @pulumi.output_type
-class AppsPlaylistPlaylistV1Options(dict):
+class PlaylistOptions(dict):
     def __init__(__self__, *,
                  overwrite: Optional[_builtins.bool] = None):
         """
@@ -137,13 +137,13 @@ class AppsPlaylistPlaylistV1Options(dict):
 
 
 @pulumi.output_type
-class AppsPlaylistPlaylistV1Spec(dict):
+class PlaylistSpec(dict):
     def __init__(__self__, *,
-                 items: Sequence['outputs.AppsPlaylistPlaylistV1SpecItem'],
+                 items: Sequence['outputs.PlaylistSpecItem'],
                  title: _builtins.str,
                  interval: Optional[_builtins.str] = None):
         """
-        :param Sequence['AppsPlaylistPlaylistV1SpecItemArgs'] items: The items of the playlist.
+        :param Sequence['PlaylistSpecItemArgs'] items: The items of the playlist.
         :param _builtins.str title: The title of the playlist.
         :param _builtins.str interval: The interval of the playlist.
         """
@@ -154,7 +154,7 @@ class AppsPlaylistPlaylistV1Spec(dict):
 
     @_builtins.property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.AppsPlaylistPlaylistV1SpecItem']:
+    def items(self) -> Sequence['outputs.PlaylistSpecItem']:
         """
         The items of the playlist.
         """
@@ -178,7 +178,7 @@ class AppsPlaylistPlaylistV1Spec(dict):
 
 
 @pulumi.output_type
-class AppsPlaylistPlaylistV1SpecItem(dict):
+class PlaylistSpecItem(dict):
     def __init__(__self__, *,
                  type: _builtins.str,
                  value: _builtins.str):

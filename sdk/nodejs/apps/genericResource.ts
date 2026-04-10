@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages arbitrary Grafana App Platform resources when a typed Terraform resource is not yet available. The resource is still experimental; diffing semantics are subject to change - feedback welcome in https://github.com/grafana/terraform-provider-grafana/issues.
@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  *
  * // Repository with secure fields.
  * // Secure values are top-level because `secure` is write-only and cannot live in the manifest.
- * const repository = new grafana.AppsGenericResource("repository", {
+ * const repository = new grafana.apps.GenericResource("repository", {
  *     manifest: {
  *         apiVersion: "provisioning.grafana.app/v1beta1",
  *         kind: "Repository",
@@ -75,14 +75,14 @@ import * as utilities from "./utilities";
  * Import uses the format `<api_group>/<version>/<kind>/<object_name>`:
  *
  * ```sh
- * $ pulumi import grafana:index/appsGenericResource:AppsGenericResource example provisioning.grafana.app/v1beta1/Repository/platform-repo
+ * $ pulumi import grafana:apps/genericResource:GenericResource example provisioning.grafana.app/v1beta1/Repository/platform-repo
  * ```
  *
  * After import, add `secure` and `secureVersion` back manually because write-only arguments are not stored in state.
  */
-export class AppsGenericResource extends pulumi.CustomResource {
+export class GenericResource extends pulumi.CustomResource {
     /**
-     * Get an existing AppsGenericResource resource's state with the given name, ID, and optional extra
+     * Get an existing GenericResource resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -90,22 +90,22 @@ export class AppsGenericResource extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AppsGenericResourceState, opts?: pulumi.CustomResourceOptions): AppsGenericResource {
-        return new AppsGenericResource(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: GenericResourceState, opts?: pulumi.CustomResourceOptions): GenericResource {
+        return new GenericResource(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/appsGenericResource:AppsGenericResource';
+    public static readonly __pulumiType = 'grafana:apps/genericResource:GenericResource';
 
     /**
-     * Returns true if the given object is an instance of AppsGenericResource.  This is designed to work even
+     * Returns true if the given object is an instance of GenericResource.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AppsGenericResource {
+    public static isInstance(obj: any): obj is GenericResource {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AppsGenericResource.__pulumiType;
+        return obj['__pulumiType'] === GenericResource.__pulumiType;
     }
 
     /**
@@ -127,24 +127,24 @@ export class AppsGenericResource extends pulumi.CustomResource {
     declare public readonly secureVersion: pulumi.Output<number | undefined>;
 
     /**
-     * Create a AppsGenericResource resource with the given unique name, arguments, and options.
+     * Create a GenericResource resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: AppsGenericResourceArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AppsGenericResourceArgs | AppsGenericResourceState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: GenericResourceArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: GenericResourceArgs | GenericResourceState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AppsGenericResourceState | undefined;
+            const state = argsOrState as GenericResourceState | undefined;
             resourceInputs["allowUiUpdates"] = state?.allowUiUpdates;
             resourceInputs["manifest"] = state?.manifest;
             resourceInputs["secure"] = state?.secure;
             resourceInputs["secureVersion"] = state?.secureVersion;
         } else {
-            const args = argsOrState as AppsGenericResourceArgs | undefined;
+            const args = argsOrState as GenericResourceArgs | undefined;
             resourceInputs["allowUiUpdates"] = args?.allowUiUpdates;
             resourceInputs["manifest"] = args?.manifest;
             resourceInputs["secure"] = args?.secure ? pulumi.secret(args.secure) : undefined;
@@ -153,14 +153,14 @@ export class AppsGenericResource extends pulumi.CustomResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["secure"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
-        super(AppsGenericResource.__pulumiType, name, resourceInputs, opts);
+        super(GenericResource.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AppsGenericResource resources.
+ * Input properties used for looking up and filtering GenericResource resources.
  */
-export interface AppsGenericResourceState {
+export interface GenericResourceState {
     /**
      * Whether the resource can be edited from the Grafana UI. Defaults to `false` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `true` to allow UI modifications; not supported by all resources.
      */
@@ -181,9 +181,9 @@ export interface AppsGenericResourceState {
 }
 
 /**
- * The set of arguments for constructing a AppsGenericResource resource.
+ * The set of arguments for constructing a GenericResource resource.
  */
-export interface AppsGenericResourceArgs {
+export interface GenericResourceArgs {
     /**
      * Whether the resource can be edited from the Grafana UI. Defaults to `false` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `true` to allow UI modifications; not supported by all resources.
      */

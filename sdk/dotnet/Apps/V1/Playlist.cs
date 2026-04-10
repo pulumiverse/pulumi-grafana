@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Apps.V1
 {
     /// <summary>
     /// Manages Grafana playlists using the new Grafana APIs.
@@ -26,19 +26,19 @@ namespace Pulumiverse.Grafana
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Grafana.AppsPlaylistPlaylistV1("example", new()
+    ///     var example = new Grafana.Apps.V1.Playlist("example", new()
     ///     {
-    ///         Metadata = new Grafana.Inputs.AppsPlaylistPlaylistV1MetadataArgs
+    ///         Metadata = new Grafana.Apps.V1.Inputs.PlaylistMetadataArgs
     ///         {
     ///             Uid = "example-playlist",
     ///         },
-    ///         Spec = new Grafana.Inputs.AppsPlaylistPlaylistV1SpecArgs
+    ///         Spec = new Grafana.Apps.V1.Inputs.PlaylistSpecArgs
     ///         {
     ///             Title = "Example Playlist",
     ///             Interval = "5m",
     ///             Items = new[]
     ///             {
-    ///                 new Grafana.Inputs.AppsPlaylistPlaylistV1SpecItemArgs
+    ///                 new Grafana.Apps.V1.Inputs.PlaylistSpecItemArgs
     ///                 {
     ///                     Type = "dashboard_by_uid",
     ///                     Value = "example-dashboard",
@@ -50,42 +50,42 @@ namespace Pulumiverse.Grafana
     /// });
     /// ```
     /// </summary>
-    [GrafanaResourceType("grafana:index/appsPlaylistPlaylistV1:AppsPlaylistPlaylistV1")]
-    public partial class AppsPlaylistPlaylistV1 : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:apps/v1/playlist:Playlist")]
+    public partial class Playlist : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Output("metadata")]
-        public Output<Outputs.AppsPlaylistPlaylistV1Metadata?> Metadata { get; private set; } = null!;
+        public Output<Outputs.PlaylistMetadata?> Metadata { get; private set; } = null!;
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Output("options")]
-        public Output<Outputs.AppsPlaylistPlaylistV1Options?> Options { get; private set; } = null!;
+        public Output<Outputs.PlaylistOptions?> Options { get; private set; } = null!;
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Output("spec")]
-        public Output<Outputs.AppsPlaylistPlaylistV1Spec?> Spec { get; private set; } = null!;
+        public Output<Outputs.PlaylistSpec?> Spec { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a AppsPlaylistPlaylistV1 resource with the given unique name, arguments, and options.
+        /// Create a Playlist resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AppsPlaylistPlaylistV1(string name, AppsPlaylistPlaylistV1Args? args = null, CustomResourceOptions? options = null)
-            : base("grafana:index/appsPlaylistPlaylistV1:AppsPlaylistPlaylistV1", name, args ?? new AppsPlaylistPlaylistV1Args(), MakeResourceOptions(options, ""))
+        public Playlist(string name, PlaylistArgs? args = null, CustomResourceOptions? options = null)
+            : base("grafana:apps/v1/playlist:Playlist", name, args ?? new PlaylistArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AppsPlaylistPlaylistV1(string name, Input<string> id, AppsPlaylistPlaylistV1State? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/appsPlaylistPlaylistV1:AppsPlaylistPlaylistV1", name, state, MakeResourceOptions(options, id))
+        private Playlist(string name, Input<string> id, PlaylistState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:apps/v1/playlist:Playlist", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -102,7 +102,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing AppsPlaylistPlaylistV1 resource's state with the given name, ID, and optional extra
+        /// Get an existing Playlist resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -110,61 +110,61 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AppsPlaylistPlaylistV1 Get(string name, Input<string> id, AppsPlaylistPlaylistV1State? state = null, CustomResourceOptions? options = null)
+        public static Playlist Get(string name, Input<string> id, PlaylistState? state = null, CustomResourceOptions? options = null)
         {
-            return new AppsPlaylistPlaylistV1(name, id, state, options);
+            return new Playlist(name, id, state, options);
         }
     }
 
-    public sealed class AppsPlaylistPlaylistV1Args : global::Pulumi.ResourceArgs
+    public sealed class PlaylistArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Input("metadata")]
-        public Input<Inputs.AppsPlaylistPlaylistV1MetadataArgs>? Metadata { get; set; }
+        public Input<Inputs.PlaylistMetadataArgs>? Metadata { get; set; }
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Input("options")]
-        public Input<Inputs.AppsPlaylistPlaylistV1OptionsArgs>? Options { get; set; }
+        public Input<Inputs.PlaylistOptionsArgs>? Options { get; set; }
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Input("spec")]
-        public Input<Inputs.AppsPlaylistPlaylistV1SpecArgs>? Spec { get; set; }
+        public Input<Inputs.PlaylistSpecArgs>? Spec { get; set; }
 
-        public AppsPlaylistPlaylistV1Args()
+        public PlaylistArgs()
         {
         }
-        public static new AppsPlaylistPlaylistV1Args Empty => new AppsPlaylistPlaylistV1Args();
+        public static new PlaylistArgs Empty => new PlaylistArgs();
     }
 
-    public sealed class AppsPlaylistPlaylistV1State : global::Pulumi.ResourceArgs
+    public sealed class PlaylistState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The metadata of the resource.
         /// </summary>
         [Input("metadata")]
-        public Input<Inputs.AppsPlaylistPlaylistV1MetadataGetArgs>? Metadata { get; set; }
+        public Input<Inputs.PlaylistMetadataGetArgs>? Metadata { get; set; }
 
         /// <summary>
         /// Options for applying the resource.
         /// </summary>
         [Input("options")]
-        public Input<Inputs.AppsPlaylistPlaylistV1OptionsGetArgs>? Options { get; set; }
+        public Input<Inputs.PlaylistOptionsGetArgs>? Options { get; set; }
 
         /// <summary>
         /// The spec of the resource.
         /// </summary>
         [Input("spec")]
-        public Input<Inputs.AppsPlaylistPlaylistV1SpecGetArgs>? Spec { get; set; }
+        public Input<Inputs.PlaylistSpecGetArgs>? Spec { get; set; }
 
-        public AppsPlaylistPlaylistV1State()
+        public PlaylistState()
         {
         }
-        public static new AppsPlaylistPlaylistV1State Empty => new AppsPlaylistPlaylistV1State();
+        public static new PlaylistState Empty => new PlaylistState();
     }
 }

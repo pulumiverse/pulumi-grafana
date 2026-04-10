@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../../types/input";
+import * as outputs from "../../types/output";
+import * as utilities from "../../utilities";
 
 /**
  * Manages Grafana playlists using the new Grafana APIs.
@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const example = new grafana.AppsPlaylistPlaylistV1("example", {
+ * const example = new grafana.apps.v1.Playlist("example", {
  *     metadata: {
  *         uid: "example-playlist",
  *     },
@@ -33,9 +33,9 @@ import * as utilities from "./utilities";
  * });
  * ```
  */
-export class AppsPlaylistPlaylistV1 extends pulumi.CustomResource {
+export class Playlist extends pulumi.CustomResource {
     /**
-     * Get an existing AppsPlaylistPlaylistV1 resource's state with the given name, ID, and optional extra
+     * Get an existing Playlist resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -43,96 +43,96 @@ export class AppsPlaylistPlaylistV1 extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AppsPlaylistPlaylistV1State, opts?: pulumi.CustomResourceOptions): AppsPlaylistPlaylistV1 {
-        return new AppsPlaylistPlaylistV1(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: PlaylistState, opts?: pulumi.CustomResourceOptions): Playlist {
+        return new Playlist(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'grafana:index/appsPlaylistPlaylistV1:AppsPlaylistPlaylistV1';
+    public static readonly __pulumiType = 'grafana:apps/v1/playlist:Playlist';
 
     /**
-     * Returns true if the given object is an instance of AppsPlaylistPlaylistV1.  This is designed to work even
+     * Returns true if the given object is an instance of Playlist.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AppsPlaylistPlaylistV1 {
+    public static isInstance(obj: any): obj is Playlist {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AppsPlaylistPlaylistV1.__pulumiType;
+        return obj['__pulumiType'] === Playlist.__pulumiType;
     }
 
     /**
      * The metadata of the resource.
      */
-    declare public readonly metadata: pulumi.Output<outputs.AppsPlaylistPlaylistV1Metadata | undefined>;
+    declare public readonly metadata: pulumi.Output<outputs.apps.v1.PlaylistMetadata | undefined>;
     /**
      * Options for applying the resource.
      */
-    declare public readonly options: pulumi.Output<outputs.AppsPlaylistPlaylistV1Options | undefined>;
+    declare public readonly options: pulumi.Output<outputs.apps.v1.PlaylistOptions | undefined>;
     /**
      * The spec of the resource.
      */
-    declare public readonly spec: pulumi.Output<outputs.AppsPlaylistPlaylistV1Spec | undefined>;
+    declare public readonly spec: pulumi.Output<outputs.apps.v1.PlaylistSpec | undefined>;
 
     /**
-     * Create a AppsPlaylistPlaylistV1 resource with the given unique name, arguments, and options.
+     * Create a Playlist resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: AppsPlaylistPlaylistV1Args, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AppsPlaylistPlaylistV1Args | AppsPlaylistPlaylistV1State, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: PlaylistArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: PlaylistArgs | PlaylistState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AppsPlaylistPlaylistV1State | undefined;
+            const state = argsOrState as PlaylistState | undefined;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["options"] = state?.options;
             resourceInputs["spec"] = state?.spec;
         } else {
-            const args = argsOrState as AppsPlaylistPlaylistV1Args | undefined;
+            const args = argsOrState as PlaylistArgs | undefined;
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["options"] = args?.options;
             resourceInputs["spec"] = args?.spec;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AppsPlaylistPlaylistV1.__pulumiType, name, resourceInputs, opts);
+        super(Playlist.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AppsPlaylistPlaylistV1 resources.
+ * Input properties used for looking up and filtering Playlist resources.
  */
-export interface AppsPlaylistPlaylistV1State {
+export interface PlaylistState {
     /**
      * The metadata of the resource.
      */
-    metadata?: pulumi.Input<inputs.AppsPlaylistPlaylistV1Metadata>;
+    metadata?: pulumi.Input<inputs.apps.v1.PlaylistMetadata>;
     /**
      * Options for applying the resource.
      */
-    options?: pulumi.Input<inputs.AppsPlaylistPlaylistV1Options>;
+    options?: pulumi.Input<inputs.apps.v1.PlaylistOptions>;
     /**
      * The spec of the resource.
      */
-    spec?: pulumi.Input<inputs.AppsPlaylistPlaylistV1Spec>;
+    spec?: pulumi.Input<inputs.apps.v1.PlaylistSpec>;
 }
 
 /**
- * The set of arguments for constructing a AppsPlaylistPlaylistV1 resource.
+ * The set of arguments for constructing a Playlist resource.
  */
-export interface AppsPlaylistPlaylistV1Args {
+export interface PlaylistArgs {
     /**
      * The metadata of the resource.
      */
-    metadata?: pulumi.Input<inputs.AppsPlaylistPlaylistV1Metadata>;
+    metadata?: pulumi.Input<inputs.apps.v1.PlaylistMetadata>;
     /**
      * Options for applying the resource.
      */
-    options?: pulumi.Input<inputs.AppsPlaylistPlaylistV1Options>;
+    options?: pulumi.Input<inputs.apps.v1.PlaylistOptions>;
     /**
      * The spec of the resource.
      */
-    spec?: pulumi.Input<inputs.AppsPlaylistPlaylistV1Spec>;
+    spec?: pulumi.Input<inputs.apps.v1.PlaylistSpec>;
 }

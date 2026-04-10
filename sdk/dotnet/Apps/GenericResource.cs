@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Apps
 {
     /// <summary>
     /// Manages arbitrary Grafana App Platform resources when a typed Terraform resource is not yet available. The resource is still experimental; diffing semantics are subject to change - feedback welcome in https://github.com/grafana/terraform-provider-grafana/issues.
@@ -43,7 +43,7 @@ namespace Pulumiverse.Grafana
     /// {
     ///     // Repository with secure fields.
     ///     // Secure values are top-level because `secure` is write-only and cannot live in the manifest.
-    ///     var repository = new Grafana.AppsGenericResource("repository", new()
+    ///     var repository = new Grafana.Apps.GenericResource("repository", new()
     ///     {
     ///         Manifest = new Dictionary&lt;string, object?&gt;
     ///         {
@@ -99,13 +99,13 @@ namespace Pulumiverse.Grafana
     /// Import uses the format `&lt;api_group&gt;/&lt;version&gt;/&lt;kind&gt;/&lt;object_name&gt;`:
     /// 
     /// ```sh
-    /// $ pulumi import grafana:index/appsGenericResource:AppsGenericResource example provisioning.grafana.app/v1beta1/Repository/platform-repo
+    /// $ pulumi import grafana:apps/genericResource:GenericResource example provisioning.grafana.app/v1beta1/Repository/platform-repo
     /// ```
     /// 
     /// After import, add `Secure` and `SecureVersion` back manually because write-only arguments are not stored in state.
     /// </summary>
-    [GrafanaResourceType("grafana:index/appsGenericResource:AppsGenericResource")]
-    public partial class AppsGenericResource : global::Pulumi.CustomResource
+    [GrafanaResourceType("grafana:apps/genericResource:GenericResource")]
+    public partial class GenericResource : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether the resource can be edited from the Grafana UI. Defaults to `False` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `True` to allow UI modifications; not supported by all resources.
@@ -134,19 +134,19 @@ namespace Pulumiverse.Grafana
 
 
         /// <summary>
-        /// Create a AppsGenericResource resource with the given unique name, arguments, and options.
+        /// Create a GenericResource resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AppsGenericResource(string name, AppsGenericResourceArgs? args = null, CustomResourceOptions? options = null)
-            : base("grafana:index/appsGenericResource:AppsGenericResource", name, args ?? new AppsGenericResourceArgs(), MakeResourceOptions(options, ""))
+        public GenericResource(string name, GenericResourceArgs? args = null, CustomResourceOptions? options = null)
+            : base("grafana:apps/genericResource:GenericResource", name, args ?? new GenericResourceArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AppsGenericResource(string name, Input<string> id, AppsGenericResourceState? state = null, CustomResourceOptions? options = null)
-            : base("grafana:index/appsGenericResource:AppsGenericResource", name, state, MakeResourceOptions(options, id))
+        private GenericResource(string name, Input<string> id, GenericResourceState? state = null, CustomResourceOptions? options = null)
+            : base("grafana:apps/genericResource:GenericResource", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -167,7 +167,7 @@ namespace Pulumiverse.Grafana
             return merged;
         }
         /// <summary>
-        /// Get an existing AppsGenericResource resource's state with the given name, ID, and optional extra
+        /// Get an existing GenericResource resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -175,13 +175,13 @@ namespace Pulumiverse.Grafana
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AppsGenericResource Get(string name, Input<string> id, AppsGenericResourceState? state = null, CustomResourceOptions? options = null)
+        public static GenericResource Get(string name, Input<string> id, GenericResourceState? state = null, CustomResourceOptions? options = null)
         {
-            return new AppsGenericResource(name, id, state, options);
+            return new GenericResource(name, id, state, options);
         }
     }
 
-    public sealed class AppsGenericResourceArgs : global::Pulumi.ResourceArgs
+    public sealed class GenericResourceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether the resource can be edited from the Grafana UI. Defaults to `False` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `True` to allow UI modifications; not supported by all resources.
@@ -218,13 +218,13 @@ namespace Pulumiverse.Grafana
         [Input("secureVersion")]
         public Input<int>? SecureVersion { get; set; }
 
-        public AppsGenericResourceArgs()
+        public GenericResourceArgs()
         {
         }
-        public static new AppsGenericResourceArgs Empty => new AppsGenericResourceArgs();
+        public static new GenericResourceArgs Empty => new GenericResourceArgs();
     }
 
-    public sealed class AppsGenericResourceState : global::Pulumi.ResourceArgs
+    public sealed class GenericResourceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether the resource can be edited from the Grafana UI. Defaults to `False` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `True` to allow UI modifications; not supported by all resources.
@@ -261,9 +261,9 @@ namespace Pulumiverse.Grafana
         [Input("secureVersion")]
         public Input<int>? SecureVersion { get; set; }
 
-        public AppsGenericResourceState()
+        public GenericResourceState()
         {
         }
-        public static new AppsGenericResourceState Empty => new AppsGenericResourceState();
+        public static new GenericResourceState Empty => new GenericResourceState();
     }
 }

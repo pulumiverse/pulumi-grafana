@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Apps.V1.Inputs
 {
 
-    public sealed class AppsPlaylistPlaylistV1SpecItemArgs : global::Pulumi.ResourceArgs
+    public sealed class PlaylistSpecItemArgs : global::Pulumi.ResourceArgs
     {
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -19,9 +19,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 
-        public AppsPlaylistPlaylistV1SpecItemArgs()
+        public PlaylistSpecItemArgs()
         {
         }
-        public static new AppsPlaylistPlaylistV1SpecItemArgs Empty => new AppsPlaylistPlaylistV1SpecItemArgs();
+        public static new PlaylistSpecItemArgs Empty => new PlaylistSpecItemArgs();
     }
 }

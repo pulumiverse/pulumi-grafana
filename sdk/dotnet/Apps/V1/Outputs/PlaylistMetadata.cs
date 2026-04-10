@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Apps.V1.Outputs
 {
 
     [OutputType]
-    public sealed class AppsPlaylistPlaylistV1Metadata
+    public sealed class PlaylistMetadata
     {
         /// <summary>
         /// Annotations of the resource.
@@ -40,7 +40,7 @@ namespace Pulumiverse.Grafana.Outputs
         public readonly string? Version;
 
         [OutputConstructor]
-        private AppsPlaylistPlaylistV1Metadata(
+        private PlaylistMetadata(
             ImmutableDictionary<string, string>? annotations,
 
             string? folderUid,

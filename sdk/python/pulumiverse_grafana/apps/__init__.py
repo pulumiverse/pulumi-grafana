@@ -5,11 +5,15 @@
 import builtins as _builtins
 from .. import _utilities
 import typing
+# Export this package's modules as members:
+from .generic_resource import *
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
     import pulumiverse_grafana.apps.v0alpha1 as __v0alpha1
     v0alpha1 = __v0alpha1
+    import pulumiverse_grafana.apps.v1 as __v1
+    v1 = __v1
     import pulumiverse_grafana.apps.v1beta1 as __v1beta1
     v1beta1 = __v1beta1
     import pulumiverse_grafana.apps.v2 as __v2
@@ -18,6 +22,7 @@ if typing.TYPE_CHECKING:
     v2beta1 = __v2beta1
 else:
     v0alpha1 = _utilities.lazy_import('pulumiverse_grafana.apps.v0alpha1')
+    v1 = _utilities.lazy_import('pulumiverse_grafana.apps.v1')
     v1beta1 = _utilities.lazy_import('pulumiverse_grafana.apps.v1beta1')
     v2 = _utilities.lazy_import('pulumiverse_grafana.apps.v2')
     v2beta1 = _utilities.lazy_import('pulumiverse_grafana.apps.v2beta1')

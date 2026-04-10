@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Apps.V1.Inputs
 {
 
-    public sealed class AppsPlaylistPlaylistV1SpecArgs : global::Pulumi.ResourceArgs
+    public sealed class PlaylistSpecArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The interval of the playlist.
@@ -20,14 +20,14 @@ namespace Pulumiverse.Grafana.Inputs
         public Input<string>? Interval { get; set; }
 
         [Input("items", required: true)]
-        private InputList<Inputs.AppsPlaylistPlaylistV1SpecItemArgs>? _items;
+        private InputList<Inputs.PlaylistSpecItemArgs>? _items;
 
         /// <summary>
         /// The items of the playlist.
         /// </summary>
-        public InputList<Inputs.AppsPlaylistPlaylistV1SpecItemArgs> Items
+        public InputList<Inputs.PlaylistSpecItemArgs> Items
         {
-            get => _items ?? (_items = new InputList<Inputs.AppsPlaylistPlaylistV1SpecItemArgs>());
+            get => _items ?? (_items = new InputList<Inputs.PlaylistSpecItemArgs>());
             set => _items = value;
         }
 
@@ -37,9 +37,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("title", required: true)]
         public Input<string> Title { get; set; } = null!;
 
-        public AppsPlaylistPlaylistV1SpecArgs()
+        public PlaylistSpecArgs()
         {
         }
-        public static new AppsPlaylistPlaylistV1SpecArgs Empty => new AppsPlaylistPlaylistV1SpecArgs();
+        public static new PlaylistSpecArgs Empty => new PlaylistSpecArgs();
     }
 }

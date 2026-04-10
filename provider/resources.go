@@ -314,6 +314,9 @@ func Provider() tfbridge.ProviderInfo {
 			"grafana_apps_dashboard_dashboard_v2": {
 				Tok: grafanaVersionedResource(appsMod, "v2", "Dashboard"),
 			},
+			"grafana_apps_generic_resource": {
+				Tok: grafanaResource(appsMod, "GenericResource"),
+			},
 			"grafana_apps_playlist_playlist_v0alpha1": {
 				Tok: grafanaVersionedResource(appsMod, "v0alpha1", "Playlist"),
 				Aliases: []tfbridge.AliasInfo{
@@ -321,6 +324,9 @@ func Provider() tfbridge.ProviderInfo {
 						Type: grafanaResourceAlias(experimentalMod, "AppsPlaylistV0Alpha1"),
 					},
 				},
+			},
+			"grafana_apps_playlist_playlist_v1": {
+				Tok: grafanaVersionedResource(appsMod, "v1", "Playlist"),
 			},
 			"grafana_apps_provisioning_connection_v0alpha1": {
 				Tok: grafanaVersionedResource(appsMod, "v0alpha1", "ProvisioningConnection"),

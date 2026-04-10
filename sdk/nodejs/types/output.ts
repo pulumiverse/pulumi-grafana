@@ -5,60 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface AppsPlaylistPlaylistV1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations: {[key: string]: string};
-    /**
-     * The UID of the folder to save the resource in.
-     */
-    folderUid?: string;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: string;
-    /**
-     * The full URL of the resource.
-     */
-    url: string;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid: string;
-    /**
-     * The version of the resource.
-     */
-    version: string;
-}
-
-export interface AppsPlaylistPlaylistV1Options {
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: boolean;
-}
-
-export interface AppsPlaylistPlaylistV1Spec {
-    /**
-     * The interval of the playlist.
-     */
-    interval?: string;
-    /**
-     * The items of the playlist.
-     */
-    items: outputs.AppsPlaylistPlaylistV1SpecItem[];
-    /**
-     * The title of the playlist.
-     */
-    title: string;
-}
-
-export interface AppsPlaylistPlaylistV1SpecItem {
-    type: string;
-    value: string;
-}
-
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -3484,6 +3430,63 @@ export namespace apps {
              * Sync target: instance or folder.
              */
             target: string;
+        }
+
+    }
+
+    export namespace v1 {
+        export interface PlaylistMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface PlaylistOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface PlaylistSpec {
+            /**
+             * The interval of the playlist.
+             */
+            interval?: string;
+            /**
+             * The items of the playlist.
+             */
+            items: outputs.apps.v1.PlaylistSpecItem[];
+            /**
+             * The title of the playlist.
+             */
+            title: string;
+        }
+
+        export interface PlaylistSpecItem {
+            type: string;
+            value: string;
         }
 
     }

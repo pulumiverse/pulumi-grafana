@@ -12,24 +12,24 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from ... import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['AppsPlaylistPlaylistV1Args', 'AppsPlaylistPlaylistV1']
+__all__ = ['PlaylistArgs', 'Playlist']
 
 @pulumi.input_type
-class AppsPlaylistPlaylistV1Args:
+class PlaylistArgs:
     def __init__(__self__, *,
-                 metadata: Optional[pulumi.Input['AppsPlaylistPlaylistV1MetadataArgs']] = None,
-                 options: Optional[pulumi.Input['AppsPlaylistPlaylistV1OptionsArgs']] = None,
-                 spec: Optional[pulumi.Input['AppsPlaylistPlaylistV1SpecArgs']] = None):
+                 metadata: Optional[pulumi.Input['PlaylistMetadataArgs']] = None,
+                 options: Optional[pulumi.Input['PlaylistOptionsArgs']] = None,
+                 spec: Optional[pulumi.Input['PlaylistSpecArgs']] = None):
         """
-        The set of arguments for constructing a AppsPlaylistPlaylistV1 resource.
+        The set of arguments for constructing a Playlist resource.
 
-        :param pulumi.Input['AppsPlaylistPlaylistV1MetadataArgs'] metadata: The metadata of the resource.
-        :param pulumi.Input['AppsPlaylistPlaylistV1OptionsArgs'] options: Options for applying the resource.
-        :param pulumi.Input['AppsPlaylistPlaylistV1SpecArgs'] spec: The spec of the resource.
+        :param pulumi.Input['PlaylistMetadataArgs'] metadata: The metadata of the resource.
+        :param pulumi.Input['PlaylistOptionsArgs'] options: Options for applying the resource.
+        :param pulumi.Input['PlaylistSpecArgs'] spec: The spec of the resource.
         """
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
@@ -40,53 +40,53 @@ class AppsPlaylistPlaylistV1Args:
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input['AppsPlaylistPlaylistV1MetadataArgs']]:
+    def metadata(self) -> Optional[pulumi.Input['PlaylistMetadataArgs']]:
         """
         The metadata of the resource.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input['AppsPlaylistPlaylistV1MetadataArgs']]):
+    def metadata(self, value: Optional[pulumi.Input['PlaylistMetadataArgs']]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input['AppsPlaylistPlaylistV1OptionsArgs']]:
+    def options(self) -> Optional[pulumi.Input['PlaylistOptionsArgs']]:
         """
         Options for applying the resource.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input['AppsPlaylistPlaylistV1OptionsArgs']]):
+    def options(self, value: Optional[pulumi.Input['PlaylistOptionsArgs']]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter
-    def spec(self) -> Optional[pulumi.Input['AppsPlaylistPlaylistV1SpecArgs']]:
+    def spec(self) -> Optional[pulumi.Input['PlaylistSpecArgs']]:
         """
         The spec of the resource.
         """
         return pulumi.get(self, "spec")
 
     @spec.setter
-    def spec(self, value: Optional[pulumi.Input['AppsPlaylistPlaylistV1SpecArgs']]):
+    def spec(self, value: Optional[pulumi.Input['PlaylistSpecArgs']]):
         pulumi.set(self, "spec", value)
 
 
 @pulumi.input_type
-class _AppsPlaylistPlaylistV1State:
+class _PlaylistState:
     def __init__(__self__, *,
-                 metadata: Optional[pulumi.Input['AppsPlaylistPlaylistV1MetadataArgs']] = None,
-                 options: Optional[pulumi.Input['AppsPlaylistPlaylistV1OptionsArgs']] = None,
-                 spec: Optional[pulumi.Input['AppsPlaylistPlaylistV1SpecArgs']] = None):
+                 metadata: Optional[pulumi.Input['PlaylistMetadataArgs']] = None,
+                 options: Optional[pulumi.Input['PlaylistOptionsArgs']] = None,
+                 spec: Optional[pulumi.Input['PlaylistSpecArgs']] = None):
         """
-        Input properties used for looking up and filtering AppsPlaylistPlaylistV1 resources.
+        Input properties used for looking up and filtering Playlist resources.
 
-        :param pulumi.Input['AppsPlaylistPlaylistV1MetadataArgs'] metadata: The metadata of the resource.
-        :param pulumi.Input['AppsPlaylistPlaylistV1OptionsArgs'] options: Options for applying the resource.
-        :param pulumi.Input['AppsPlaylistPlaylistV1SpecArgs'] spec: The spec of the resource.
+        :param pulumi.Input['PlaylistMetadataArgs'] metadata: The metadata of the resource.
+        :param pulumi.Input['PlaylistOptionsArgs'] options: Options for applying the resource.
+        :param pulumi.Input['PlaylistSpecArgs'] spec: The spec of the resource.
         """
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
@@ -97,50 +97,50 @@ class _AppsPlaylistPlaylistV1State:
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input['AppsPlaylistPlaylistV1MetadataArgs']]:
+    def metadata(self) -> Optional[pulumi.Input['PlaylistMetadataArgs']]:
         """
         The metadata of the resource.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input['AppsPlaylistPlaylistV1MetadataArgs']]):
+    def metadata(self, value: Optional[pulumi.Input['PlaylistMetadataArgs']]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input['AppsPlaylistPlaylistV1OptionsArgs']]:
+    def options(self) -> Optional[pulumi.Input['PlaylistOptionsArgs']]:
         """
         Options for applying the resource.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input['AppsPlaylistPlaylistV1OptionsArgs']]):
+    def options(self, value: Optional[pulumi.Input['PlaylistOptionsArgs']]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter
-    def spec(self) -> Optional[pulumi.Input['AppsPlaylistPlaylistV1SpecArgs']]:
+    def spec(self) -> Optional[pulumi.Input['PlaylistSpecArgs']]:
         """
         The spec of the resource.
         """
         return pulumi.get(self, "spec")
 
     @spec.setter
-    def spec(self, value: Optional[pulumi.Input['AppsPlaylistPlaylistV1SpecArgs']]):
+    def spec(self, value: Optional[pulumi.Input['PlaylistSpecArgs']]):
         pulumi.set(self, "spec", value)
 
 
-@pulumi.type_token("grafana:index/appsPlaylistPlaylistV1:AppsPlaylistPlaylistV1")
-class AppsPlaylistPlaylistV1(pulumi.CustomResource):
+@pulumi.type_token("grafana:apps/v1/playlist:Playlist")
+class Playlist(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 metadata: Optional[pulumi.Input[Union['AppsPlaylistPlaylistV1MetadataArgs', 'AppsPlaylistPlaylistV1MetadataArgsDict']]] = None,
-                 options: Optional[pulumi.Input[Union['AppsPlaylistPlaylistV1OptionsArgs', 'AppsPlaylistPlaylistV1OptionsArgsDict']]] = None,
-                 spec: Optional[pulumi.Input[Union['AppsPlaylistPlaylistV1SpecArgs', 'AppsPlaylistPlaylistV1SpecArgsDict']]] = None,
+                 metadata: Optional[pulumi.Input[Union['PlaylistMetadataArgs', 'PlaylistMetadataArgsDict']]] = None,
+                 options: Optional[pulumi.Input[Union['PlaylistOptionsArgs', 'PlaylistOptionsArgsDict']]] = None,
+                 spec: Optional[pulumi.Input[Union['PlaylistSpecArgs', 'PlaylistSpecArgsDict']]] = None,
                  __props__=None):
         """
         Manages Grafana playlists using the new Grafana APIs.
@@ -154,7 +154,7 @@ class AppsPlaylistPlaylistV1(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.AppsPlaylistPlaylistV1("example",
+        example = grafana.apps.v1.Playlist("example",
             metadata={
                 "uid": "example-playlist",
             },
@@ -171,15 +171,15 @@ class AppsPlaylistPlaylistV1(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['AppsPlaylistPlaylistV1MetadataArgs', 'AppsPlaylistPlaylistV1MetadataArgsDict']] metadata: The metadata of the resource.
-        :param pulumi.Input[Union['AppsPlaylistPlaylistV1OptionsArgs', 'AppsPlaylistPlaylistV1OptionsArgsDict']] options: Options for applying the resource.
-        :param pulumi.Input[Union['AppsPlaylistPlaylistV1SpecArgs', 'AppsPlaylistPlaylistV1SpecArgsDict']] spec: The spec of the resource.
+        :param pulumi.Input[Union['PlaylistMetadataArgs', 'PlaylistMetadataArgsDict']] metadata: The metadata of the resource.
+        :param pulumi.Input[Union['PlaylistOptionsArgs', 'PlaylistOptionsArgsDict']] options: Options for applying the resource.
+        :param pulumi.Input[Union['PlaylistSpecArgs', 'PlaylistSpecArgsDict']] spec: The spec of the resource.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[AppsPlaylistPlaylistV1Args] = None,
+                 args: Optional[PlaylistArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages Grafana playlists using the new Grafana APIs.
@@ -193,7 +193,7 @@ class AppsPlaylistPlaylistV1(pulumi.CustomResource):
         import pulumi
         import pulumiverse_grafana as grafana
 
-        example = grafana.AppsPlaylistPlaylistV1("example",
+        example = grafana.apps.v1.Playlist("example",
             metadata={
                 "uid": "example-playlist",
             },
@@ -209,12 +209,12 @@ class AppsPlaylistPlaylistV1(pulumi.CustomResource):
 
 
         :param str resource_name: The name of the resource.
-        :param AppsPlaylistPlaylistV1Args args: The arguments to use to populate this resource's properties.
+        :param PlaylistArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AppsPlaylistPlaylistV1Args, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(PlaylistArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -223,9 +223,9 @@ class AppsPlaylistPlaylistV1(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 metadata: Optional[pulumi.Input[Union['AppsPlaylistPlaylistV1MetadataArgs', 'AppsPlaylistPlaylistV1MetadataArgsDict']]] = None,
-                 options: Optional[pulumi.Input[Union['AppsPlaylistPlaylistV1OptionsArgs', 'AppsPlaylistPlaylistV1OptionsArgsDict']]] = None,
-                 spec: Optional[pulumi.Input[Union['AppsPlaylistPlaylistV1SpecArgs', 'AppsPlaylistPlaylistV1SpecArgsDict']]] = None,
+                 metadata: Optional[pulumi.Input[Union['PlaylistMetadataArgs', 'PlaylistMetadataArgsDict']]] = None,
+                 options: Optional[pulumi.Input[Union['PlaylistOptionsArgs', 'PlaylistOptionsArgsDict']]] = None,
+                 spec: Optional[pulumi.Input[Union['PlaylistSpecArgs', 'PlaylistSpecArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -233,13 +233,13 @@ class AppsPlaylistPlaylistV1(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AppsPlaylistPlaylistV1Args.__new__(AppsPlaylistPlaylistV1Args)
+            __props__ = PlaylistArgs.__new__(PlaylistArgs)
 
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["options"] = options
             __props__.__dict__["spec"] = spec
-        super(AppsPlaylistPlaylistV1, __self__).__init__(
-            'grafana:index/appsPlaylistPlaylistV1:AppsPlaylistPlaylistV1',
+        super(Playlist, __self__).__init__(
+            'grafana:apps/v1/playlist:Playlist',
             resource_name,
             __props__,
             opts)
@@ -248,32 +248,32 @@ class AppsPlaylistPlaylistV1(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            metadata: Optional[pulumi.Input[Union['AppsPlaylistPlaylistV1MetadataArgs', 'AppsPlaylistPlaylistV1MetadataArgsDict']]] = None,
-            options: Optional[pulumi.Input[Union['AppsPlaylistPlaylistV1OptionsArgs', 'AppsPlaylistPlaylistV1OptionsArgsDict']]] = None,
-            spec: Optional[pulumi.Input[Union['AppsPlaylistPlaylistV1SpecArgs', 'AppsPlaylistPlaylistV1SpecArgsDict']]] = None) -> 'AppsPlaylistPlaylistV1':
+            metadata: Optional[pulumi.Input[Union['PlaylistMetadataArgs', 'PlaylistMetadataArgsDict']]] = None,
+            options: Optional[pulumi.Input[Union['PlaylistOptionsArgs', 'PlaylistOptionsArgsDict']]] = None,
+            spec: Optional[pulumi.Input[Union['PlaylistSpecArgs', 'PlaylistSpecArgsDict']]] = None) -> 'Playlist':
         """
-        Get an existing AppsPlaylistPlaylistV1 resource's state with the given name, id, and optional extra
+        Get an existing Playlist resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['AppsPlaylistPlaylistV1MetadataArgs', 'AppsPlaylistPlaylistV1MetadataArgsDict']] metadata: The metadata of the resource.
-        :param pulumi.Input[Union['AppsPlaylistPlaylistV1OptionsArgs', 'AppsPlaylistPlaylistV1OptionsArgsDict']] options: Options for applying the resource.
-        :param pulumi.Input[Union['AppsPlaylistPlaylistV1SpecArgs', 'AppsPlaylistPlaylistV1SpecArgsDict']] spec: The spec of the resource.
+        :param pulumi.Input[Union['PlaylistMetadataArgs', 'PlaylistMetadataArgsDict']] metadata: The metadata of the resource.
+        :param pulumi.Input[Union['PlaylistOptionsArgs', 'PlaylistOptionsArgsDict']] options: Options for applying the resource.
+        :param pulumi.Input[Union['PlaylistSpecArgs', 'PlaylistSpecArgsDict']] spec: The spec of the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _AppsPlaylistPlaylistV1State.__new__(_AppsPlaylistPlaylistV1State)
+        __props__ = _PlaylistState.__new__(_PlaylistState)
 
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["options"] = options
         __props__.__dict__["spec"] = spec
-        return AppsPlaylistPlaylistV1(resource_name, opts=opts, __props__=__props__)
+        return Playlist(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> pulumi.Output[Optional['outputs.AppsPlaylistPlaylistV1Metadata']]:
+    def metadata(self) -> pulumi.Output[Optional['outputs.PlaylistMetadata']]:
         """
         The metadata of the resource.
         """
@@ -281,7 +281,7 @@ class AppsPlaylistPlaylistV1(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> pulumi.Output[Optional['outputs.AppsPlaylistPlaylistV1Options']]:
+    def options(self) -> pulumi.Output[Optional['outputs.PlaylistOptions']]:
         """
         Options for applying the resource.
         """
@@ -289,7 +289,7 @@ class AppsPlaylistPlaylistV1(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def spec(self) -> pulumi.Output[Optional['outputs.AppsPlaylistPlaylistV1Spec']]:
+    def spec(self) -> pulumi.Output[Optional['outputs.PlaylistSpec']]:
         """
         The spec of the resource.
         """

@@ -12,19 +12,19 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['AppsGenericResourceArgs', 'AppsGenericResource']
+__all__ = ['GenericResourceArgs', 'GenericResource']
 
 @pulumi.input_type
-class AppsGenericResourceArgs:
+class GenericResourceArgs:
     def __init__(__self__, *,
                  allow_ui_updates: Optional[pulumi.Input[_builtins.bool]] = None,
                  manifest: Optional[Any] = None,
                  secure: Optional[Any] = None,
                  secure_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
-        The set of arguments for constructing a AppsGenericResource resource.
+        The set of arguments for constructing a GenericResource resource.
 
         :param pulumi.Input[_builtins.bool] allow_ui_updates: Whether the resource can be edited from the Grafana UI. Defaults to `false` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `true` to allow UI modifications; not supported by all resources.
         :param Any manifest: Kubernetes-style manifest, typically from `yamldecode(file(...))` or `jsondecode(file(...))`. Must contain `apiVersion`, `kind`, `metadata` (with `name` or `uid`), and `spec`. Use HCL `merge()` to inject Terraform variables. If you start from an exported manifest, remove noisy server-managed metadata such as `resourceVersion`, `generation`, and `managedFields`, or import the resource first and use the normalized state shape. If `metadata.namespace` is set, it must match the namespace selected from provider `org_id` or `stack_id` / autodiscovery. Top-level manifest fields are limited to `apiVersion`, `kind`, `metadata`, `spec`, and the ignored `status` field. The `secure` field must not be set here; use the top-level `secure` argument instead.
@@ -92,14 +92,14 @@ class AppsGenericResourceArgs:
 
 
 @pulumi.input_type
-class _AppsGenericResourceState:
+class _GenericResourceState:
     def __init__(__self__, *,
                  allow_ui_updates: Optional[pulumi.Input[_builtins.bool]] = None,
                  manifest: Optional[Any] = None,
                  secure: Optional[Any] = None,
                  secure_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
-        Input properties used for looking up and filtering AppsGenericResource resources.
+        Input properties used for looking up and filtering GenericResource resources.
 
         :param pulumi.Input[_builtins.bool] allow_ui_updates: Whether the resource can be edited from the Grafana UI. Defaults to `false` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `true` to allow UI modifications; not supported by all resources.
         :param Any manifest: Kubernetes-style manifest, typically from `yamldecode(file(...))` or `jsondecode(file(...))`. Must contain `apiVersion`, `kind`, `metadata` (with `name` or `uid`), and `spec`. Use HCL `merge()` to inject Terraform variables. If you start from an exported manifest, remove noisy server-managed metadata such as `resourceVersion`, `generation`, and `managedFields`, or import the resource first and use the normalized state shape. If `metadata.namespace` is set, it must match the namespace selected from provider `org_id` or `stack_id` / autodiscovery. Top-level manifest fields are limited to `apiVersion`, `kind`, `metadata`, `spec`, and the ignored `status` field. The `secure` field must not be set here; use the top-level `secure` argument instead.
@@ -166,8 +166,8 @@ class _AppsGenericResourceState:
         pulumi.set(self, "secure_version", value)
 
 
-@pulumi.type_token("grafana:index/appsGenericResource:AppsGenericResource")
-class AppsGenericResource(pulumi.CustomResource):
+@pulumi.type_token("grafana:apps/genericResource:GenericResource")
+class GenericResource(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -206,7 +206,7 @@ class AppsGenericResource(pulumi.CustomResource):
 
         # Repository with secure fields.
         # Secure values are top-level because `secure` is write-only and cannot live in the manifest.
-        repository = grafana.AppsGenericResource("repository",
+        repository = grafana.apps.GenericResource("repository",
             manifest={
                 "apiVersion": "provisioning.grafana.app/v1beta1",
                 "kind": "Repository",
@@ -247,7 +247,7 @@ class AppsGenericResource(pulumi.CustomResource):
         Import uses the format `<api_group>/<version>/<kind>/<object_name>`:
 
         ```sh
-        $ pulumi import grafana:index/appsGenericResource:AppsGenericResource example provisioning.grafana.app/v1beta1/Repository/platform-repo
+        $ pulumi import grafana:apps/genericResource:GenericResource example provisioning.grafana.app/v1beta1/Repository/platform-repo
         ```
 
         After import, add `secure` and `secure_version` back manually because write-only arguments are not stored in state.
@@ -265,7 +265,7 @@ class AppsGenericResource(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[AppsGenericResourceArgs] = None,
+                 args: Optional[GenericResourceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages arbitrary Grafana App Platform resources when a typed Terraform resource is not yet available. The resource is still experimental; diffing semantics are subject to change - feedback welcome in https://github.com/grafana/terraform-provider-grafana/issues.
@@ -296,7 +296,7 @@ class AppsGenericResource(pulumi.CustomResource):
 
         # Repository with secure fields.
         # Secure values are top-level because `secure` is write-only and cannot live in the manifest.
-        repository = grafana.AppsGenericResource("repository",
+        repository = grafana.apps.GenericResource("repository",
             manifest={
                 "apiVersion": "provisioning.grafana.app/v1beta1",
                 "kind": "Repository",
@@ -337,19 +337,19 @@ class AppsGenericResource(pulumi.CustomResource):
         Import uses the format `<api_group>/<version>/<kind>/<object_name>`:
 
         ```sh
-        $ pulumi import grafana:index/appsGenericResource:AppsGenericResource example provisioning.grafana.app/v1beta1/Repository/platform-repo
+        $ pulumi import grafana:apps/genericResource:GenericResource example provisioning.grafana.app/v1beta1/Repository/platform-repo
         ```
 
         After import, add `secure` and `secure_version` back manually because write-only arguments are not stored in state.
 
 
         :param str resource_name: The name of the resource.
-        :param AppsGenericResourceArgs args: The arguments to use to populate this resource's properties.
+        :param GenericResourceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AppsGenericResourceArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(GenericResourceArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -369,7 +369,7 @@ class AppsGenericResource(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AppsGenericResourceArgs.__new__(AppsGenericResourceArgs)
+            __props__ = GenericResourceArgs.__new__(GenericResourceArgs)
 
             __props__.__dict__["allow_ui_updates"] = allow_ui_updates
             __props__.__dict__["manifest"] = manifest
@@ -377,8 +377,8 @@ class AppsGenericResource(pulumi.CustomResource):
             __props__.__dict__["secure_version"] = secure_version
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secure"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
-        super(AppsGenericResource, __self__).__init__(
-            'grafana:index/appsGenericResource:AppsGenericResource',
+        super(GenericResource, __self__).__init__(
+            'grafana:apps/genericResource:GenericResource',
             resource_name,
             __props__,
             opts)
@@ -390,9 +390,9 @@ class AppsGenericResource(pulumi.CustomResource):
             allow_ui_updates: Optional[pulumi.Input[_builtins.bool]] = None,
             manifest: Optional[Any] = None,
             secure: Optional[Any] = None,
-            secure_version: Optional[pulumi.Input[_builtins.int]] = None) -> 'AppsGenericResource':
+            secure_version: Optional[pulumi.Input[_builtins.int]] = None) -> 'GenericResource':
         """
-        Get an existing AppsGenericResource resource's state with the given name, id, and optional extra
+        Get an existing GenericResource resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -406,13 +406,13 @@ class AppsGenericResource(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _AppsGenericResourceState.__new__(_AppsGenericResourceState)
+        __props__ = _GenericResourceState.__new__(_GenericResourceState)
 
         __props__.__dict__["allow_ui_updates"] = allow_ui_updates
         __props__.__dict__["manifest"] = manifest
         __props__.__dict__["secure"] = secure
         __props__.__dict__["secure_version"] = secure_version
-        return AppsGenericResource(resource_name, opts=opts, __props__=__props__)
+        return GenericResource(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="allowUiUpdates")

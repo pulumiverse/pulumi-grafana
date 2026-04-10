@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Apps.V1.Outputs
 {
 
     [OutputType]
-    public sealed class AppsPlaylistPlaylistV1Spec
+    public sealed class PlaylistSpec
     {
         /// <summary>
         /// The interval of the playlist.
@@ -21,17 +21,17 @@ namespace Pulumiverse.Grafana.Outputs
         /// <summary>
         /// The items of the playlist.
         /// </summary>
-        public readonly ImmutableArray<Outputs.AppsPlaylistPlaylistV1SpecItem> Items;
+        public readonly ImmutableArray<Outputs.PlaylistSpecItem> Items;
         /// <summary>
         /// The title of the playlist.
         /// </summary>
         public readonly string Title;
 
         [OutputConstructor]
-        private AppsPlaylistPlaylistV1Spec(
+        private PlaylistSpec(
             string? interval,
 
-            ImmutableArray<Outputs.AppsPlaylistPlaylistV1SpecItem> items,
+            ImmutableArray<Outputs.PlaylistSpecItem> items,
 
             string title)
         {
