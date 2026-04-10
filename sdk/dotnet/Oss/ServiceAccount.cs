@@ -50,7 +50,7 @@ namespace Pulumiverse.Grafana.Oss
         /// The disabled status for the service account. Defaults to `False`.
         /// </summary>
         [Output("isDisabled")]
-        public Output<bool?> IsDisabled { get; private set; } = null!;
+        public Output<bool> IsDisabled { get; private set; } = null!;
 
         /// <summary>
         /// The name of the service account.
@@ -62,7 +62,7 @@ namespace Pulumiverse.Grafana.Oss
         /// The Organization ID. If not set, the Org ID defined in the provider block will be used.
         /// </summary>
         [Output("orgId")]
-        public Output<string?> OrgId { get; private set; } = null!;
+        public Output<string> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// The basic role of the service account in the organization.

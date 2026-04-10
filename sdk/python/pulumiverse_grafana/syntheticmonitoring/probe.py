@@ -35,7 +35,7 @@ class ProbeArgs:
         :param pulumi.Input[_builtins.str] region: Region of the probe.
         :param pulumi.Input[_builtins.bool] disable_browser_checks: Disables browser checks for this probe. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Custom labels to be included with collected metrics and logs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
         :param pulumi.Input[_builtins.str] name: Name of the probe.
         :param pulumi.Input[_builtins.bool] public: Public probes are run by Grafana Labs and can be used by all users. Only Grafana Labs managed public probes will be set to `true`. Defaults to `false`.
         """
@@ -117,7 +117,7 @@ class ProbeArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Custom labels to be included with collected metrics and logs.
+        Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
         """
         return pulumi.get(self, "labels")
 
@@ -169,7 +169,7 @@ class _ProbeState:
         :param pulumi.Input[_builtins.str] auth_token: The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
         :param pulumi.Input[_builtins.bool] disable_browser_checks: Disables browser checks for this probe. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Custom labels to be included with collected metrics and logs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
         :param pulumi.Input[_builtins.float] latitude: Latitude coordinates.
         :param pulumi.Input[_builtins.float] longitude: Longitude coordinates.
         :param pulumi.Input[_builtins.str] name: Name of the probe.
@@ -238,7 +238,7 @@ class _ProbeState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Custom labels to be included with collected metrics and logs.
+        Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
         """
         return pulumi.get(self, "labels")
 
@@ -370,7 +370,7 @@ class Probe(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] disable_browser_checks: Disables browser checks for this probe. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Custom labels to be included with collected metrics and logs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
         :param pulumi.Input[_builtins.float] latitude: Latitude coordinates.
         :param pulumi.Input[_builtins.float] longitude: Longitude coordinates.
         :param pulumi.Input[_builtins.str] name: Name of the probe.
@@ -495,7 +495,7 @@ class Probe(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] auth_token: The probe authentication token. Your probe must use this to authenticate with Grafana Cloud.
         :param pulumi.Input[_builtins.bool] disable_browser_checks: Disables browser checks for this probe. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] disable_scripted_checks: Disables scripted checks for this probe. Defaults to `false`.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Custom labels to be included with collected metrics and logs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
         :param pulumi.Input[_builtins.float] latitude: Latitude coordinates.
         :param pulumi.Input[_builtins.float] longitude: Longitude coordinates.
         :param pulumi.Input[_builtins.str] name: Name of the probe.
@@ -547,7 +547,7 @@ class Probe(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         """
-        Custom labels to be included with collected metrics and logs.
+        Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
         """
         return pulumi.get(self, "labels")
 

@@ -311,7 +311,7 @@ class ServiceAccount(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="isDisabled")
-    def is_disabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def is_disabled(self) -> pulumi.Output[_builtins.bool]:
         """
         The disabled status for the service account. Defaults to `false`.
         """
@@ -327,7 +327,7 @@ class ServiceAccount(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def org_id(self) -> pulumi.Output[_builtins.str]:
         """
         The Organization ID. If not set, the Org ID defined in the provider block will be used.
         """

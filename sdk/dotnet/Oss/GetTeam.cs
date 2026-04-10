@@ -124,14 +124,47 @@ namespace Pulumiverse.Grafana.Oss
 
     public sealed class GetTeamArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the Grafana team.
+        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
+        /// <summary>
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+        /// </summary>
         [Input("orgId")]
         public string? OrgId { get; set; }
 
+        [Input("preferences")]
+        private List<Inputs.GetTeamPreferenceArgs>? _preferences;
+
+        /// <summary>
+        /// Team preferences.
+        /// </summary>
+        public List<Inputs.GetTeamPreferenceArgs> Preferences
+        {
+            get => _preferences ?? (_preferences = new List<Inputs.GetTeamPreferenceArgs>());
+            set => _preferences = value;
+        }
+
+        /// <summary>
+        /// Whether to read the team sync settings. This is only available in Grafana Enterprise.
+        /// </summary>
         [Input("readTeamSync")]
         public bool? ReadTeamSync { get; set; }
+
+        [Input("teamSyncs")]
+        private List<Inputs.GetTeamTeamSyncArgs>? _teamSyncs;
+
+        /// <summary>
+        /// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+        /// </summary>
+        public List<Inputs.GetTeamTeamSyncArgs> TeamSyncs
+        {
+            get => _teamSyncs ?? (_teamSyncs = new List<Inputs.GetTeamTeamSyncArgs>());
+            set => _teamSyncs = value;
+        }
 
         public GetTeamArgs()
         {
@@ -141,14 +174,47 @@ namespace Pulumiverse.Grafana.Oss
 
     public sealed class GetTeamInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the Grafana team.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+        /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
 
+        [Input("preferences")]
+        private InputList<Inputs.GetTeamPreferenceInputArgs>? _preferences;
+
+        /// <summary>
+        /// Team preferences.
+        /// </summary>
+        public InputList<Inputs.GetTeamPreferenceInputArgs> Preferences
+        {
+            get => _preferences ?? (_preferences = new InputList<Inputs.GetTeamPreferenceInputArgs>());
+            set => _preferences = value;
+        }
+
+        /// <summary>
+        /// Whether to read the team sync settings. This is only available in Grafana Enterprise.
+        /// </summary>
         [Input("readTeamSync")]
         public Input<bool>? ReadTeamSync { get; set; }
+
+        [Input("teamSyncs")]
+        private InputList<Inputs.GetTeamTeamSyncInputArgs>? _teamSyncs;
+
+        /// <summary>
+        /// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+        /// </summary>
+        public InputList<Inputs.GetTeamTeamSyncInputArgs> TeamSyncs
+        {
+            get => _teamSyncs ?? (_teamSyncs = new InputList<Inputs.GetTeamTeamSyncInputArgs>());
+            set => _teamSyncs = value;
+        }
 
         public GetTeamInvokeArgs()
         {
@@ -160,18 +226,45 @@ namespace Pulumiverse.Grafana.Oss
     [OutputType]
     public sealed class GetTeamResult
     {
+        /// <summary>
+        /// An email address for the team.
+        /// </summary>
         public readonly string Email;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A set of email addresses corresponding to users who are members of the team.
+        /// </summary>
         public readonly ImmutableArray<string> Members;
+        /// <summary>
+        /// The name of the Grafana team.
+        /// </summary>
         public readonly string Name;
-        public readonly string? OrgId;
+        /// <summary>
+        /// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
+        /// </summary>
+        public readonly string OrgId;
+        /// <summary>
+        /// Team preferences.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetTeamPreferenceResult> Preferences;
+        /// <summary>
+        /// Whether to read the team sync settings. This is only available in Grafana Enterprise.
+        /// </summary>
         public readonly bool? ReadTeamSync;
+        /// <summary>
+        /// The team id assigned to this team by Grafana.
+        /// </summary>
         public readonly int TeamId;
+        /// <summary>
+        /// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetTeamTeamSyncResult> TeamSyncs;
+        /// <summary>
+        /// The team uid assigned to this team by Grafana.
+        /// </summary>
         public readonly string TeamUid;
 
         [OutputConstructor]
@@ -184,7 +277,7 @@ namespace Pulumiverse.Grafana.Oss
 
             string name,
 
-            string? orgId,
+            string orgId,
 
             ImmutableArray<Outputs.GetTeamPreferenceResult> preferences,
 

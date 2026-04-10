@@ -120,6 +120,10 @@
                     }
                 }
             },
+            "grafana_apps_generic_resource": {
+                "current": "grafana:apps/genericResource:GenericResource",
+                "majorVersion": 2
+            },
             "grafana_apps_notifications_inhibitionrule_v1beta1": {
                 "current": "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule",
                 "majorVersion": 2,
@@ -148,6 +152,19 @@
                         "majorVersion": 2
                     }
                 ],
+                "majorVersion": 2,
+                "fields": {
+                    "spec": {
+                        "fields": {
+                            "items": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
+            "grafana_apps_playlist_playlist_v1": {
+                "current": "grafana:apps/v1/playlist:Playlist",
                 "majorVersion": 2,
                 "fields": {
                     "spec": {
@@ -592,10 +609,16 @@
                 "current": "grafana:cloud/stack:Stack",
                 "majorVersion": 2,
                 "fields": {
+                    "fleet_management_private_connectivity_info_availability_zone_ids": {
+                        "maxItemsOne": false
+                    },
                     "fleet_management_private_connectivity_info_availability_zones": {
                         "maxItemsOne": false
                     },
                     "fleet_management_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "graphite_private_connectivity_info_availability_zone_ids": {
                         "maxItemsOne": false
                     },
                     "graphite_private_connectivity_info_availability_zones": {
@@ -604,10 +627,16 @@
                     "graphite_private_connectivity_info_regions": {
                         "maxItemsOne": false
                     },
+                    "logs_private_connectivity_info_availability_zone_ids": {
+                        "maxItemsOne": false
+                    },
                     "logs_private_connectivity_info_availability_zones": {
                         "maxItemsOne": false
                     },
                     "logs_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "otlp_private_connectivity_info_availability_zone_ids": {
                         "maxItemsOne": false
                     },
                     "otlp_private_connectivity_info_availability_zones": {
@@ -616,10 +645,16 @@
                     "otlp_private_connectivity_info_regions": {
                         "maxItemsOne": false
                     },
+                    "pdc_api_private_connectivity_info_availability_zone_ids": {
+                        "maxItemsOne": false
+                    },
                     "pdc_api_private_connectivity_info_availability_zones": {
                         "maxItemsOne": false
                     },
                     "pdc_api_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "pdc_gateway_private_connectivity_info_availability_zone_ids": {
                         "maxItemsOne": false
                     },
                     "pdc_gateway_private_connectivity_info_availability_zones": {
@@ -628,16 +663,25 @@
                     "pdc_gateway_private_connectivity_info_regions": {
                         "maxItemsOne": false
                     },
+                    "profiles_private_connectivity_info_availability_zone_ids": {
+                        "maxItemsOne": false
+                    },
                     "profiles_private_connectivity_info_availability_zones": {
                         "maxItemsOne": false
                     },
                     "profiles_private_connectivity_info_regions": {
                         "maxItemsOne": false
                     },
+                    "prometheus_private_connectivity_info_availability_zone_ids": {
+                        "maxItemsOne": false
+                    },
                     "prometheus_private_connectivity_info_availability_zones": {
                         "maxItemsOne": false
                     },
                     "prometheus_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "traces_private_connectivity_info_availability_zone_ids": {
                         "maxItemsOne": false
                     },
                     "traces_private_connectivity_info_availability_zones": {
@@ -1415,6 +1459,9 @@
                                             "annotation": {
                                                 "maxItemsOne": false
                                             },
+                                            "enrichment": {
+                                                "maxItemsOne": false
+                                            },
                                             "label": {
                                                 "maxItemsOne": false
                                             }
@@ -1429,6 +1476,9 @@
                                     "elem": {
                                         "fields": {
                                             "annotation": {
+                                                "maxItemsOne": false
+                                            },
+                                            "enrichment": {
                                                 "maxItemsOne": false
                                             },
                                             "label": {
@@ -1955,10 +2005,16 @@
                 "current": "grafana:cloud/getStack:getStack",
                 "majorVersion": 2,
                 "fields": {
+                    "fleet_management_private_connectivity_info_availability_zone_ids": {
+                        "maxItemsOne": false
+                    },
                     "fleet_management_private_connectivity_info_availability_zones": {
                         "maxItemsOne": false
                     },
                     "fleet_management_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "graphite_private_connectivity_info_availability_zone_ids": {
                         "maxItemsOne": false
                     },
                     "graphite_private_connectivity_info_availability_zones": {
@@ -1967,10 +2023,16 @@
                     "graphite_private_connectivity_info_regions": {
                         "maxItemsOne": false
                     },
+                    "logs_private_connectivity_info_availability_zone_ids": {
+                        "maxItemsOne": false
+                    },
                     "logs_private_connectivity_info_availability_zones": {
                         "maxItemsOne": false
                     },
                     "logs_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "otlp_private_connectivity_info_availability_zone_ids": {
                         "maxItemsOne": false
                     },
                     "otlp_private_connectivity_info_availability_zones": {
@@ -1979,10 +2041,16 @@
                     "otlp_private_connectivity_info_regions": {
                         "maxItemsOne": false
                     },
+                    "pdc_api_private_connectivity_info_availability_zone_ids": {
+                        "maxItemsOne": false
+                    },
                     "pdc_api_private_connectivity_info_availability_zones": {
                         "maxItemsOne": false
                     },
                     "pdc_api_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "pdc_gateway_private_connectivity_info_availability_zone_ids": {
                         "maxItemsOne": false
                     },
                     "pdc_gateway_private_connectivity_info_availability_zones": {
@@ -1991,16 +2059,25 @@
                     "pdc_gateway_private_connectivity_info_regions": {
                         "maxItemsOne": false
                     },
+                    "profiles_private_connectivity_info_availability_zone_ids": {
+                        "maxItemsOne": false
+                    },
                     "profiles_private_connectivity_info_availability_zones": {
                         "maxItemsOne": false
                     },
                     "profiles_private_connectivity_info_regions": {
                         "maxItemsOne": false
                     },
+                    "prometheus_private_connectivity_info_availability_zone_ids": {
+                        "maxItemsOne": false
+                    },
                     "prometheus_private_connectivity_info_availability_zones": {
                         "maxItemsOne": false
                     },
                     "prometheus_private_connectivity_info_regions": {
+                        "maxItemsOne": false
+                    },
+                    "traces_private_connectivity_info_availability_zone_ids": {
                         "maxItemsOne": false
                     },
                     "traces_private_connectivity_info_availability_zones": {
@@ -2269,6 +2346,9 @@
                                                         "annotation": {
                                                             "maxItemsOne": false
                                                         },
+                                                        "enrichment": {
+                                                            "maxItemsOne": false
+                                                        },
                                                         "label": {
                                                             "maxItemsOne": false
                                                         }
@@ -2283,6 +2363,9 @@
                                                 "elem": {
                                                     "fields": {
                                                         "annotation": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "enrichment": {
                                                             "maxItemsOne": false
                                                         },
                                                         "label": {
@@ -2429,9 +2512,11 @@
             "grafana:alerting/v0alpha1/recordingRule:RecordingRule": 1,
             "grafana:alerting/v1beta1/alertEnrichment:AlertEnrichment": 1,
             "grafana:alerting/v1beta1/notificationsInhibitionRule:NotificationsInhibitionRule": 1,
+            "grafana:apps/genericResource:GenericResource": 1,
             "grafana:apps/v0alpha1/playlist:Playlist": 1,
             "grafana:apps/v0alpha1/provisioningConnection:ProvisioningConnection": 1,
             "grafana:apps/v0alpha1/provisioningRepository:ProvisioningRepository": 1,
+            "grafana:apps/v1/playlist:Playlist": 1,
             "grafana:apps/v1beta1/dashboard:Dashboard": 1,
             "grafana:apps/v2/dashboard:Dashboard": 1,
             "grafana:apps/v2beta1/dashboard:Dashboard": 1,
@@ -2468,7 +2553,7 @@
             "grafana:enterprise/dataSourceConfigLbacRules:DataSourceConfigLbacRules": 1,
             "grafana:enterprise/dataSourcePermission:DataSourcePermission": 0,
             "grafana:enterprise/dataSourcePermissionItem:DataSourcePermissionItem": 1,
-            "grafana:enterprise/report:Report": 0,
+            "grafana:enterprise/report:Report": 1,
             "grafana:enterprise/role:Role": 0,
             "grafana:enterprise/roleAssignment:RoleAssignment": 0,
             "grafana:enterprise/roleAssignmentItem:RoleAssignmentItem": 1,
@@ -2502,25 +2587,25 @@
             "grafana:onCall/userNotificationRule:UserNotificationRule": 1,
             "grafana:oss/annotation:Annotation": 1,
             "grafana:oss/dashboard:Dashboard": 0,
-            "grafana:oss/dashboardPermission:DashboardPermission": 0,
+            "grafana:oss/dashboardPermission:DashboardPermission": 1,
             "grafana:oss/dashboardPermissionItem:DashboardPermissionItem": 1,
-            "grafana:oss/dashboardPublic:DashboardPublic": 0,
+            "grafana:oss/dashboardPublic:DashboardPublic": 1,
             "grafana:oss/dataSource:DataSource": 0,
             "grafana:oss/dataSourceConfig:DataSourceConfig": 0,
             "grafana:oss/folder:Folder": 0,
-            "grafana:oss/folderPermission:FolderPermission": 0,
+            "grafana:oss/folderPermission:FolderPermission": 1,
             "grafana:oss/folderPermissionItem:FolderPermissionItem": 1,
             "grafana:oss/libraryPanel:LibraryPanel": 0,
             "grafana:oss/organization:Organization": 0,
             "grafana:oss/organizationPreferences:OrganizationPreferences": 0,
             "grafana:oss/playlist:Playlist": 1,
-            "grafana:oss/serviceAccount:ServiceAccount": 0,
+            "grafana:oss/serviceAccount:ServiceAccount": 1,
             "grafana:oss/serviceAccountPermission:ServiceAccountPermission": 0,
             "grafana:oss/serviceAccountPermissionItem:ServiceAccountPermissionItem": 1,
             "grafana:oss/serviceAccountRotatingToken:ServiceAccountRotatingToken": 0,
             "grafana:oss/serviceAccountToken:ServiceAccountToken": 0,
             "grafana:oss/ssoSettings:SsoSettings": 0,
-            "grafana:oss/team:Team": 0,
+            "grafana:oss/team:Team": 1,
             "grafana:oss/user:User": 0,
             "grafana:slo/sLO:SLO": 0,
             "grafana:syntheticMonitoring/check:Check": 0,
@@ -2572,12 +2657,12 @@
             "grafana:oss/getOrganizationPreferences:getOrganizationPreferences": 0,
             "grafana:oss/getOrganizationUser:getOrganizationUser": 0,
             "grafana:oss/getServiceAccount:getServiceAccount": 0,
-            "grafana:oss/getTeam:getTeam": 0,
+            "grafana:oss/getTeam:getTeam": 1,
             "grafana:oss/getUser:getUser": 0,
             "grafana:oss/getUsers:getUsers": 0,
             "grafana:slo/getSlos:getSlos": 0,
-            "grafana:syntheticMonitoring/getProbe:getProbe": 0,
-            "grafana:syntheticMonitoring/getProbes:getProbes": 0
+            "grafana:syntheticMonitoring/getProbe:getProbe": 1,
+            "grafana:syntheticMonitoring/getProbes:getProbes": 1
         }
     }
 }

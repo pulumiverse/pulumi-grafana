@@ -64,7 +64,7 @@ type LookupServiceAccountArgs struct {
 
 // A collection of values returned by getServiceAccount.
 type LookupServiceAccountResult struct {
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource.
 	Id string `pulumi:"id"`
 	// The disabled status for the service account.
 	IsDisabled bool `pulumi:"isDisabled"`
@@ -112,7 +112,7 @@ func (o LookupServiceAccountResultOutput) ToLookupServiceAccountResultOutputWith
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource.
 func (o LookupServiceAccountResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServiceAccountResult) string { return v.Id }).(pulumi.StringOutput)
 }

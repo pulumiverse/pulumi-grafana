@@ -125,6 +125,8 @@ import (
 type DataSourcePermissionItem struct {
 	pulumi.CustomResourceState
 
+	// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+	DatasourceType pulumi.StringPtrOutput `pulumi:"datasourceType"`
 	// The UID of the datasource.
 	DatasourceUid pulumi.StringOutput `pulumi:"datasourceUid"`
 	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
@@ -181,6 +183,8 @@ func GetDataSourcePermissionItem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DataSourcePermissionItem resources.
 type dataSourcePermissionItemState struct {
+	// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+	DatasourceType *string `pulumi:"datasourceType"`
 	// The UID of the datasource.
 	DatasourceUid *string `pulumi:"datasourceUid"`
 	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
@@ -196,6 +200,8 @@ type dataSourcePermissionItemState struct {
 }
 
 type DataSourcePermissionItemState struct {
+	// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+	DatasourceType pulumi.StringPtrInput
 	// The UID of the datasource.
 	DatasourceUid pulumi.StringPtrInput
 	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
@@ -215,6 +221,8 @@ func (DataSourcePermissionItemState) ElementType() reflect.Type {
 }
 
 type dataSourcePermissionItemArgs struct {
+	// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+	DatasourceType *string `pulumi:"datasourceType"`
 	// The UID of the datasource.
 	DatasourceUid string `pulumi:"datasourceUid"`
 	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
@@ -231,6 +239,8 @@ type dataSourcePermissionItemArgs struct {
 
 // The set of arguments for constructing a DataSourcePermissionItem resource.
 type DataSourcePermissionItemArgs struct {
+	// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+	DatasourceType pulumi.StringPtrInput
 	// The UID of the datasource.
 	DatasourceUid pulumi.StringInput
 	// The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
@@ -330,6 +340,11 @@ func (o DataSourcePermissionItemOutput) ToDataSourcePermissionItemOutput() DataS
 
 func (o DataSourcePermissionItemOutput) ToDataSourcePermissionItemOutputWithContext(ctx context.Context) DataSourcePermissionItemOutput {
 	return o
+}
+
+// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+func (o DataSourcePermissionItemOutput) DatasourceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataSourcePermissionItem) pulumi.StringPtrOutput { return v.DatasourceType }).(pulumi.StringPtrOutput)
 }
 
 // The UID of the datasource.

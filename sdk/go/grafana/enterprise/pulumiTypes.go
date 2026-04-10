@@ -416,13 +416,13 @@ type ReportSchedule struct {
 	EndTime *string `pulumi:"endTime"`
 	// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
 	Frequency string `pulumi:"frequency"`
-	// Send the report on the last day of the month Defaults to `false`.
+	// Send the report on the last day of the month
 	LastDayOfMonth *bool `pulumi:"lastDayOfMonth"`
 	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 	StartTime *string `pulumi:"startTime"`
-	// Set the report time zone. Defaults to `GMT`.
+	// Set the report time zone.
 	Timezone *string `pulumi:"timezone"`
-	// Whether to send the report only on work days. Defaults to `false`.
+	// Whether to send the report only on work days.
 	WorkdaysOnly *bool `pulumi:"workdaysOnly"`
 }
 
@@ -445,13 +445,13 @@ type ReportScheduleArgs struct {
 	EndTime pulumi.StringPtrInput `pulumi:"endTime"`
 	// Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
 	Frequency pulumi.StringInput `pulumi:"frequency"`
-	// Send the report on the last day of the month Defaults to `false`.
+	// Send the report on the last day of the month
 	LastDayOfMonth pulumi.BoolPtrInput `pulumi:"lastDayOfMonth"`
 	// Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
 	StartTime pulumi.StringPtrInput `pulumi:"startTime"`
-	// Set the report time zone. Defaults to `GMT`.
+	// Set the report time zone.
 	Timezone pulumi.StringPtrInput `pulumi:"timezone"`
-	// Whether to send the report only on work days. Defaults to `false`.
+	// Whether to send the report only on work days.
 	WorkdaysOnly pulumi.BoolPtrInput `pulumi:"workdaysOnly"`
 }
 
@@ -548,7 +548,7 @@ func (o ReportScheduleOutput) Frequency() pulumi.StringOutput {
 	return o.ApplyT(func(v ReportSchedule) string { return v.Frequency }).(pulumi.StringOutput)
 }
 
-// Send the report on the last day of the month Defaults to `false`.
+// Send the report on the last day of the month
 func (o ReportScheduleOutput) LastDayOfMonth() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *bool { return v.LastDayOfMonth }).(pulumi.BoolPtrOutput)
 }
@@ -558,12 +558,12 @@ func (o ReportScheduleOutput) StartTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *string { return v.StartTime }).(pulumi.StringPtrOutput)
 }
 
-// Set the report time zone. Defaults to `GMT`.
+// Set the report time zone.
 func (o ReportScheduleOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *string { return v.Timezone }).(pulumi.StringPtrOutput)
 }
 
-// Whether to send the report only on work days. Defaults to `false`.
+// Whether to send the report only on work days.
 func (o ReportScheduleOutput) WorkdaysOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ReportSchedule) *bool { return v.WorkdaysOnly }).(pulumi.BoolPtrOutput)
 }
@@ -623,7 +623,7 @@ func (o ReportSchedulePtrOutput) Frequency() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Send the report on the last day of the month Defaults to `false`.
+// Send the report on the last day of the month
 func (o ReportSchedulePtrOutput) LastDayOfMonth() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ReportSchedule) *bool {
 		if v == nil {
@@ -643,7 +643,7 @@ func (o ReportSchedulePtrOutput) StartTime() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Set the report time zone. Defaults to `GMT`.
+// Set the report time zone.
 func (o ReportSchedulePtrOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ReportSchedule) *string {
 		if v == nil {
@@ -653,7 +653,7 @@ func (o ReportSchedulePtrOutput) Timezone() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Whether to send the report only on work days. Defaults to `false`.
+// Whether to send the report only on work days.
 func (o ReportSchedulePtrOutput) WorkdaysOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ReportSchedule) *bool {
 		if v == nil {

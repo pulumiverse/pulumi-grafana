@@ -77,7 +77,7 @@ export class Probe extends pulumi.CustomResource {
      */
     declare public readonly disableScriptedChecks: pulumi.Output<boolean | undefined>;
     /**
-     * Custom labels to be included with collected metrics and logs.
+     * Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
      */
     declare public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -174,7 +174,7 @@ export interface ProbeState {
      */
     disableScriptedChecks?: pulumi.Input<boolean>;
     /**
-     * Custom labels to be included with collected metrics and logs.
+     * Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -216,7 +216,7 @@ export interface ProbeArgs {
      */
     disableScriptedChecks?: pulumi.Input<boolean>;
     /**
-     * Custom labels to be included with collected metrics and logs.
+     * Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

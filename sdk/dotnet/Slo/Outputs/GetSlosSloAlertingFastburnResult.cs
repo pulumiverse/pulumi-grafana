@@ -19,6 +19,10 @@ namespace Pulumiverse.Grafana.Slo.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloAlertingFastburnAnnotationResult> Annotations;
         /// <summary>
+        /// Enrichments to attach only to Fast Burn alerts.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetSlosSloAlertingFastburnEnrichmentResult> Enrichments;
+        /// <summary>
         /// Labels to attach only to Fast Burn alerts.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloAlertingFastburnLabelResult> Labels;
@@ -27,9 +31,12 @@ namespace Pulumiverse.Grafana.Slo.Outputs
         private GetSlosSloAlertingFastburnResult(
             ImmutableArray<Outputs.GetSlosSloAlertingFastburnAnnotationResult> annotations,
 
+            ImmutableArray<Outputs.GetSlosSloAlertingFastburnEnrichmentResult> enrichments,
+
             ImmutableArray<Outputs.GetSlosSloAlertingFastburnLabelResult> labels)
         {
             Annotations = annotations;
+            Enrichments = enrichments;
             Labels = labels;
         }
     }

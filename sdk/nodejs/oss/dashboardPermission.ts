@@ -86,9 +86,9 @@ export class DashboardPermission extends pulumi.CustomResource {
      */
     declare public readonly dashboardUid: pulumi.Output<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
-    declare public readonly orgId: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * The permission items to add/update. Items that are omitted from the list will be removed.
      */
@@ -101,7 +101,7 @@ export class DashboardPermission extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: DashboardPermissionArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: DashboardPermissionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DashboardPermissionArgs | DashboardPermissionState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -112,6 +112,9 @@ export class DashboardPermission extends pulumi.CustomResource {
             resourceInputs["permissions"] = state?.permissions;
         } else {
             const args = argsOrState as DashboardPermissionArgs | undefined;
+            if (args?.dashboardUid === undefined && !opts.urn) {
+                throw new Error("Missing required property 'dashboardUid'");
+            }
             resourceInputs["dashboardUid"] = args?.dashboardUid;
             resourceInputs["orgId"] = args?.orgId;
             resourceInputs["permissions"] = args?.permissions;
@@ -132,7 +135,7 @@ export interface DashboardPermissionState {
      */
     dashboardUid?: pulumi.Input<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     /**
@@ -148,9 +151,9 @@ export interface DashboardPermissionArgs {
     /**
      * UID of the dashboard to apply permissions to.
      */
-    dashboardUid?: pulumi.Input<string>;
+    dashboardUid: pulumi.Input<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     /**

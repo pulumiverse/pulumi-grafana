@@ -113,6 +113,9 @@ import * as utilities from "../utilities";
  *                     value: "Error budget is burning too fast",
  *                 },
  *             ],
+ *             enrichments: [{
+ *                 type: "assistantInvestigation",
+ *             }],
  *         },
  *         slowburn: {
  *             annotations: [
@@ -125,6 +128,9 @@ import * as utilities from "../utilities";
  *                     value: "Error budget is burning too fast",
  *                 },
  *             ],
+ *             enrichments: [{
+ *                 type: "assistantInvestigation",
+ *             }],
  *         },
  *     },
  * });

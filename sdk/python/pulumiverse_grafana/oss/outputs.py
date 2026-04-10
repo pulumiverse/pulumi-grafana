@@ -63,10 +63,10 @@ class DashboardPermissionPermission(dict):
                  team_id: Optional[_builtins.str] = None,
                  user_id: Optional[_builtins.str] = None):
         """
-        :param _builtins.str permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        :param _builtins.str permission: Permission to associate with item. Options: View, Edit, Admin.
         :param _builtins.str role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
-        :param _builtins.str team_id: ID of the team to manage permissions for. Defaults to `0`.
-        :param _builtins.str user_id: ID of the user or service account to manage permissions for. Defaults to `0`.
+        :param _builtins.str team_id: ID of the team to manage permissions for.
+        :param _builtins.str user_id: ID of the user or service account to manage permissions for.
         """
         pulumi.set(__self__, "permission", permission)
         if role is not None:
@@ -80,7 +80,7 @@ class DashboardPermissionPermission(dict):
     @pulumi.getter
     def permission(self) -> _builtins.str:
         """
-        Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        Permission to associate with item. Options: View, Edit, Admin.
         """
         return pulumi.get(self, "permission")
 
@@ -96,7 +96,7 @@ class DashboardPermissionPermission(dict):
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[_builtins.str]:
         """
-        ID of the team to manage permissions for. Defaults to `0`.
+        ID of the team to manage permissions for.
         """
         return pulumi.get(self, "team_id")
 
@@ -104,7 +104,7 @@ class DashboardPermissionPermission(dict):
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[_builtins.str]:
         """
-        ID of the user or service account to manage permissions for. Defaults to `0`.
+        ID of the user or service account to manage permissions for.
         """
         return pulumi.get(self, "user_id")
 
@@ -136,10 +136,10 @@ class FolderPermissionPermission(dict):
                  team_id: Optional[_builtins.str] = None,
                  user_id: Optional[_builtins.str] = None):
         """
-        :param _builtins.str permission: Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        :param _builtins.str permission: Permission to associate with item. Options: View, Edit, Admin.
         :param _builtins.str role: Name of the basic role to manage permissions for. Options: `Viewer`, `Editor` or `Admin`.
-        :param _builtins.str team_id: ID of the team to manage permissions for. Defaults to `0`.
-        :param _builtins.str user_id: ID of the user or service account to manage permissions for. Defaults to `0`.
+        :param _builtins.str team_id: ID of the team to manage permissions for.
+        :param _builtins.str user_id: ID of the user or service account to manage permissions for.
         """
         pulumi.set(__self__, "permission", permission)
         if role is not None:
@@ -153,7 +153,7 @@ class FolderPermissionPermission(dict):
     @pulumi.getter
     def permission(self) -> _builtins.str:
         """
-        Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        Permission to associate with item. Options: View, Edit, Admin.
         """
         return pulumi.get(self, "permission")
 
@@ -169,7 +169,7 @@ class FolderPermissionPermission(dict):
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[_builtins.str]:
         """
-        ID of the team to manage permissions for. Defaults to `0`.
+        ID of the team to manage permissions for.
         """
         return pulumi.get(self, "team_id")
 
@@ -177,7 +177,7 @@ class FolderPermissionPermission(dict):
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[_builtins.str]:
         """
-        ID of the user or service account to manage permissions for. Defaults to `0`.
+        ID of the user or service account to manage permissions for.
         """
         return pulumi.get(self, "user_id")
 
@@ -2121,28 +2121,24 @@ class GetLibraryPanelsPanelResult(dict):
 @pulumi.output_type
 class GetTeamPreferenceResult(dict):
     def __init__(__self__, *,
-                 home_dashboard_uid: Optional[_builtins.str] = None,
-                 theme: Optional[_builtins.str] = None,
-                 timezone: Optional[_builtins.str] = None,
-                 week_start: Optional[_builtins.str] = None):
+                 home_dashboard_uid: _builtins.str,
+                 theme: _builtins.str,
+                 timezone: _builtins.str,
+                 week_start: _builtins.str):
         """
         :param _builtins.str home_dashboard_uid: The UID of the dashboard to display when a team member logs in.
-        :param _builtins.str theme: The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
-        :param _builtins.str timezone: The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
-        :param _builtins.str week_start: The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+        :param _builtins.str theme: The default theme for this team.
+        :param _builtins.str timezone: The default timezone for this team.
+        :param _builtins.str week_start: The default week start day for this team.
         """
-        if home_dashboard_uid is not None:
-            pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
-        if theme is not None:
-            pulumi.set(__self__, "theme", theme)
-        if timezone is not None:
-            pulumi.set(__self__, "timezone", timezone)
-        if week_start is not None:
-            pulumi.set(__self__, "week_start", week_start)
+        pulumi.set(__self__, "home_dashboard_uid", home_dashboard_uid)
+        pulumi.set(__self__, "theme", theme)
+        pulumi.set(__self__, "timezone", timezone)
+        pulumi.set(__self__, "week_start", week_start)
 
     @_builtins.property
     @pulumi.getter(name="homeDashboardUid")
-    def home_dashboard_uid(self) -> Optional[_builtins.str]:
+    def home_dashboard_uid(self) -> _builtins.str:
         """
         The UID of the dashboard to display when a team member logs in.
         """
@@ -2150,25 +2146,25 @@ class GetTeamPreferenceResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def theme(self) -> Optional[_builtins.str]:
+    def theme(self) -> _builtins.str:
         """
-        The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
+        The default theme for this team.
         """
         return pulumi.get(self, "theme")
 
     @_builtins.property
     @pulumi.getter
-    def timezone(self) -> Optional[_builtins.str]:
+    def timezone(self) -> _builtins.str:
         """
-        The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
+        The default timezone for this team.
         """
         return pulumi.get(self, "timezone")
 
     @_builtins.property
     @pulumi.getter(name="weekStart")
-    def week_start(self) -> Optional[_builtins.str]:
+    def week_start(self) -> _builtins.str:
         """
-        The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+        The default week start day for this team.
         """
         return pulumi.get(self, "week_start")
 
@@ -2176,13 +2172,12 @@ class GetTeamPreferenceResult(dict):
 @pulumi.output_type
 class GetTeamTeamSyncResult(dict):
     def __init__(__self__, *,
-                 groups: Optional[Sequence[_builtins.str]] = None):
-        if groups is not None:
-            pulumi.set(__self__, "groups", groups)
+                 groups: Sequence[_builtins.str]):
+        pulumi.set(__self__, "groups", groups)
 
     @_builtins.property
     @pulumi.getter
-    def groups(self) -> Optional[Sequence[_builtins.str]]:
+    def groups(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "groups")
 
 

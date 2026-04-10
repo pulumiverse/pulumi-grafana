@@ -3434,6 +3434,63 @@ export namespace apps {
 
     }
 
+    export namespace v1 {
+        export interface PlaylistMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations: {[key: string]: string};
+            /**
+             * The UID of the folder to save the resource in.
+             */
+            folderUid?: string;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: string;
+            /**
+             * The full URL of the resource.
+             */
+            url: string;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid: string;
+            /**
+             * The version of the resource.
+             */
+            version: string;
+        }
+
+        export interface PlaylistOptions {
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: boolean;
+        }
+
+        export interface PlaylistSpec {
+            /**
+             * The interval of the playlist.
+             */
+            interval?: string;
+            /**
+             * The items of the playlist.
+             */
+            items: outputs.apps.v1.PlaylistSpecItem[];
+            /**
+             * The title of the playlist.
+             */
+            title: string;
+        }
+
+        export interface PlaylistSpecItem {
+            type: string;
+            value: string;
+        }
+
+    }
+
     export namespace v1beta1 {
         export interface DashboardMetadata {
             /**
@@ -4528,27 +4585,27 @@ export namespace enterprise {
         /**
          * End time of the report. If empty, the report will be sent indefinitely (according to frequency). Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
          */
-        endTime?: string;
+        endTime: string;
         /**
          * Frequency of the report. Allowed values: `never`, `once`, `hourly`, `daily`, `weekly`, `monthly`, `custom`.
          */
         frequency: string;
         /**
-         * Send the report on the last day of the month Defaults to `false`.
+         * Send the report on the last day of the month
          */
-        lastDayOfMonth?: boolean;
+        lastDayOfMonth: boolean;
         /**
          * Start time of the report. If empty, the start date will be set to the creation time. Note that times will be saved as UTC in Grafana. Use 2006-01-02T15:04:05 format if you want to set a custom timezone
          */
-        startTime?: string;
+        startTime: string;
         /**
-         * Set the report time zone. Defaults to `GMT`.
+         * Set the report time zone.
          */
-        timezone?: string;
+        timezone: string;
         /**
-         * Whether to send the report only on work days. Defaults to `false`.
+         * Whether to send the report only on work days.
          */
-        workdaysOnly?: boolean;
+        workdaysOnly: boolean;
     }
 
     export interface RolePermission {
@@ -5244,7 +5301,7 @@ export namespace onCall {
 export namespace oss {
     export interface DashboardPermissionPermission {
         /**
-         * Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+         * Permission to associate with item. Options: View, Edit, Admin.
          */
         permission: string;
         /**
@@ -5252,18 +5309,18 @@ export namespace oss {
          */
         role?: string;
         /**
-         * ID of the team to manage permissions for. Defaults to `0`.
+         * ID of the team to manage permissions for.
          */
         teamId?: string;
         /**
-         * ID of the user or service account to manage permissions for. Defaults to `0`.
+         * ID of the user or service account to manage permissions for.
          */
         userId?: string;
     }
 
     export interface FolderPermissionPermission {
         /**
-         * Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+         * Permission to associate with item. Options: View, Edit, Admin.
          */
         permission: string;
         /**
@@ -5271,11 +5328,11 @@ export namespace oss {
          */
         role?: string;
         /**
-         * ID of the team to manage permissions for. Defaults to `0`.
+         * ID of the team to manage permissions for.
          */
         teamId?: string;
         /**
-         * ID of the user or service account to manage permissions for. Defaults to `0`.
+         * ID of the user or service account to manage permissions for.
          */
         userId?: string;
     }
@@ -5317,23 +5374,23 @@ export namespace oss {
         /**
          * The UID of the dashboard to display when a team member logs in.
          */
-        homeDashboardUid?: string;
+        homeDashboardUid: string;
         /**
-         * The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
+         * The default theme for this team.
          */
-        theme?: string;
+        theme: string;
         /**
-         * The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
+         * The default timezone for this team.
          */
-        timezone?: string;
+        timezone: string;
         /**
-         * The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
+         * The default week start day for this team.
          */
-        weekStart?: string;
+        weekStart: string;
     }
 
     export interface GetTeamTeamSync {
-        groups?: string[];
+        groups: string[];
     }
 
     export interface GetUsersUser {
@@ -5847,19 +5904,19 @@ export namespace oss {
         /**
          * The UID of the dashboard to display when a team member logs in.
          */
-        homeDashboardUid?: string;
+        homeDashboardUid: string;
         /**
          * The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.
          */
-        theme?: string;
+        theme: string;
         /**
          * The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.
          */
-        timezone?: string;
+        timezone: string;
         /**
          * The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.
          */
-        weekStart?: string;
+        weekStart: string;
     }
 
     export interface TeamTeamSync {
@@ -5963,6 +6020,10 @@ export namespace slo {
          */
         annotations?: outputs.slo.GetSlosSloAlertingFastburnAnnotation[];
         /**
+         * Enrichments to attach only to Fast Burn alerts.
+         */
+        enrichments?: outputs.slo.GetSlosSloAlertingFastburnEnrichment[];
+        /**
          * Labels to attach only to Fast Burn alerts.
          */
         labels?: outputs.slo.GetSlosSloAlertingFastburnLabel[];
@@ -5977,6 +6038,13 @@ export namespace slo {
          * Templatable value
          */
         value: string;
+    }
+
+    export interface GetSlosSloAlertingFastburnEnrichment {
+        /**
+         * Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+         */
+        type: string;
     }
 
     export interface GetSlosSloAlertingFastburnLabel {
@@ -6007,6 +6075,10 @@ export namespace slo {
          */
         annotations?: outputs.slo.GetSlosSloAlertingSlowburnAnnotation[];
         /**
+         * Enrichments to attach only to Slow Burn alerts.
+         */
+        enrichments?: outputs.slo.GetSlosSloAlertingSlowburnEnrichment[];
+        /**
          * Labels to attach only to Slow Burn alerts.
          */
         labels?: outputs.slo.GetSlosSloAlertingSlowburnLabel[];
@@ -6021,6 +6093,13 @@ export namespace slo {
          * Templatable value
          */
         value: string;
+    }
+
+    export interface GetSlosSloAlertingSlowburnEnrichment {
+        /**
+         * Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+         */
+        type: string;
     }
 
     export interface GetSlosSloAlertingSlowburnLabel {
@@ -6152,6 +6231,10 @@ export namespace slo {
          */
         annotations?: outputs.slo.SLOAlertingFastburnAnnotation[];
         /**
+         * Enrichments to attach only to Fast Burn alerts.
+         */
+        enrichments?: outputs.slo.SLOAlertingFastburnEnrichment[];
+        /**
          * Labels to attach only to Fast Burn alerts.
          */
         labels?: outputs.slo.SLOAlertingFastburnLabel[];
@@ -6166,6 +6249,13 @@ export namespace slo {
          * Templatable value
          */
         value: string;
+    }
+
+    export interface SLOAlertingFastburnEnrichment {
+        /**
+         * Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+         */
+        type: string;
     }
 
     export interface SLOAlertingFastburnLabel {
@@ -6196,6 +6286,10 @@ export namespace slo {
          */
         annotations?: outputs.slo.SLOAlertingSlowburnAnnotation[];
         /**
+         * Enrichments to attach only to Slow Burn alerts.
+         */
+        enrichments?: outputs.slo.SLOAlertingSlowburnEnrichment[];
+        /**
          * Labels to attach only to Slow Burn alerts.
          */
         labels?: outputs.slo.SLOAlertingSlowburnLabel[];
@@ -6210,6 +6304,13 @@ export namespace slo {
          * Templatable value
          */
         value: string;
+    }
+
+    export interface SLOAlertingSlowburnEnrichment {
+        /**
+         * Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+         */
+        type: string;
     }
 
     export interface SLOAlertingSlowburnLabel {

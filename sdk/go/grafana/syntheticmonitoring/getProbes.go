@@ -56,7 +56,7 @@ type GetProbesArgs struct {
 type GetProbesResult struct {
 	// If true, only probes that are not deprecated will be returned. Defaults to `true`.
 	FilterDeprecated *bool `pulumi:"filterDeprecated"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource.
 	Id string `pulumi:"id"`
 	// Map of probes with their names as keys and IDs as values.
 	Probes map[string]int `pulumi:"probes"`
@@ -101,7 +101,7 @@ func (o GetProbesResultOutput) FilterDeprecated() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetProbesResult) *bool { return v.FilterDeprecated }).(pulumi.BoolPtrOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource.
 func (o GetProbesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProbesResult) string { return v.Id }).(pulumi.StringOutput)
 }

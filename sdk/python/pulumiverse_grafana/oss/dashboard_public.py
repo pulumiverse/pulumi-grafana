@@ -34,7 +34,7 @@ class DashboardPublicArgs:
         :param pulumi.Input[_builtins.str] access_token: A public unique identifier of a public dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a public dashboard.
         :param pulumi.Input[_builtins.bool] annotations_enabled: Set to `true` to show annotations. The default value is `false`.
         :param pulumi.Input[_builtins.bool] is_enabled: Set to `true` to enable the public dashboard. The default value is `false`.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.str] share: Set the share mode. The default value is `public`.
         :param pulumi.Input[_builtins.bool] time_selection_enabled: Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
         :param pulumi.Input[_builtins.str] uid: The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
@@ -107,7 +107,7 @@ class DashboardPublicArgs:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -170,7 +170,7 @@ class _DashboardPublicState:
         :param pulumi.Input[_builtins.bool] annotations_enabled: Set to `true` to show annotations. The default value is `false`.
         :param pulumi.Input[_builtins.str] dashboard_uid: The unique identifier of the original dashboard.
         :param pulumi.Input[_builtins.bool] is_enabled: Set to `true` to enable the public dashboard. The default value is `false`.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.str] share: Set the share mode. The default value is `public`.
         :param pulumi.Input[_builtins.bool] time_selection_enabled: Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
         :param pulumi.Input[_builtins.str] uid: The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
@@ -244,7 +244,7 @@ class _DashboardPublicState:
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
@@ -369,7 +369,7 @@ class DashboardPublic(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] annotations_enabled: Set to `true` to show annotations. The default value is `false`.
         :param pulumi.Input[_builtins.str] dashboard_uid: The unique identifier of the original dashboard.
         :param pulumi.Input[_builtins.bool] is_enabled: Set to `true` to enable the public dashboard. The default value is `false`.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.str] share: Set the share mode. The default value is `public`.
         :param pulumi.Input[_builtins.bool] time_selection_enabled: Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
         :param pulumi.Input[_builtins.str] uid: The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
@@ -512,7 +512,7 @@ class DashboardPublic(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] annotations_enabled: Set to `true` to show annotations. The default value is `false`.
         :param pulumi.Input[_builtins.str] dashboard_uid: The unique identifier of the original dashboard.
         :param pulumi.Input[_builtins.bool] is_enabled: Set to `true` to enable the public dashboard. The default value is `false`.
-        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[_builtins.str] share: Set the share mode. The default value is `public`.
         :param pulumi.Input[_builtins.bool] time_selection_enabled: Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
         :param pulumi.Input[_builtins.str] uid: The unique identifier of a public dashboard. It's automatically generated if not provided when creating a public dashboard.
@@ -541,7 +541,7 @@ class DashboardPublic(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="annotationsEnabled")
-    def annotations_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def annotations_enabled(self) -> pulumi.Output[_builtins.bool]:
         """
         Set to `true` to show annotations. The default value is `false`.
         """
@@ -557,7 +557,7 @@ class DashboardPublic(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="isEnabled")
-    def is_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def is_enabled(self) -> pulumi.Output[_builtins.bool]:
         """
         Set to `true` to enable the public dashboard. The default value is `false`.
         """
@@ -565,15 +565,15 @@ class DashboardPublic(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def org_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The Organization ID. If not set, the Org ID defined in the provider block will be used.
+        The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         """
         return pulumi.get(self, "org_id")
 
     @_builtins.property
     @pulumi.getter
-    def share(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def share(self) -> pulumi.Output[_builtins.str]:
         """
         Set the share mode. The default value is `public`.
         """
@@ -581,7 +581,7 @@ class DashboardPublic(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="timeSelectionEnabled")
-    def time_selection_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def time_selection_enabled(self) -> pulumi.Output[_builtins.bool]:
         """
         Set to `true` to enable the time picker in the public dashboard. The default value is `false`.
         """

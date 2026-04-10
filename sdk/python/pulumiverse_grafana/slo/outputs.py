@@ -21,10 +21,12 @@ __all__ = [
     'SLOAlertingAnnotation',
     'SLOAlertingFastburn',
     'SLOAlertingFastburnAnnotation',
+    'SLOAlertingFastburnEnrichment',
     'SLOAlertingFastburnLabel',
     'SLOAlertingLabel',
     'SLOAlertingSlowburn',
     'SLOAlertingSlowburnAnnotation',
+    'SLOAlertingSlowburnEnrichment',
     'SLOAlertingSlowburnLabel',
     'SLODestinationDatasource',
     'SLOLabel',
@@ -39,10 +41,12 @@ __all__ = [
     'GetSlosSloAlertingAnnotationResult',
     'GetSlosSloAlertingFastburnResult',
     'GetSlosSloAlertingFastburnAnnotationResult',
+    'GetSlosSloAlertingFastburnEnrichmentResult',
     'GetSlosSloAlertingFastburnLabelResult',
     'GetSlosSloAlertingLabelResult',
     'GetSlosSloAlertingSlowburnResult',
     'GetSlosSloAlertingSlowburnAnnotationResult',
+    'GetSlosSloAlertingSlowburnEnrichmentResult',
     'GetSlosSloAlertingSlowburnLabelResult',
     'GetSlosSloDestinationDatasourceResult',
     'GetSlosSloLabelResult',
@@ -206,13 +210,17 @@ class SLOAlertingAnnotation(dict):
 class SLOAlertingFastburn(dict):
     def __init__(__self__, *,
                  annotations: Optional[Sequence['outputs.SLOAlertingFastburnAnnotation']] = None,
+                 enrichments: Optional[Sequence['outputs.SLOAlertingFastburnEnrichment']] = None,
                  labels: Optional[Sequence['outputs.SLOAlertingFastburnLabel']] = None):
         """
         :param Sequence['SLOAlertingFastburnAnnotationArgs'] annotations: Annotations to attach only to Fast Burn alerts.
+        :param Sequence['SLOAlertingFastburnEnrichmentArgs'] enrichments: Enrichments to attach only to Fast Burn alerts.
         :param Sequence['SLOAlertingFastburnLabelArgs'] labels: Labels to attach only to Fast Burn alerts.
         """
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
+        if enrichments is not None:
+            pulumi.set(__self__, "enrichments", enrichments)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
 
@@ -223,6 +231,14 @@ class SLOAlertingFastburn(dict):
         Annotations to attach only to Fast Burn alerts.
         """
         return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter
+    def enrichments(self) -> Optional[Sequence['outputs.SLOAlertingFastburnEnrichment']]:
+        """
+        Enrichments to attach only to Fast Burn alerts.
+        """
+        return pulumi.get(self, "enrichments")
 
     @_builtins.property
     @pulumi.getter
@@ -260,6 +276,24 @@ class SLOAlertingFastburnAnnotation(dict):
         Templatable value
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SLOAlertingFastburnEnrichment(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -324,13 +358,17 @@ class SLOAlertingLabel(dict):
 class SLOAlertingSlowburn(dict):
     def __init__(__self__, *,
                  annotations: Optional[Sequence['outputs.SLOAlertingSlowburnAnnotation']] = None,
+                 enrichments: Optional[Sequence['outputs.SLOAlertingSlowburnEnrichment']] = None,
                  labels: Optional[Sequence['outputs.SLOAlertingSlowburnLabel']] = None):
         """
         :param Sequence['SLOAlertingSlowburnAnnotationArgs'] annotations: Annotations to attach only to Slow Burn alerts.
+        :param Sequence['SLOAlertingSlowburnEnrichmentArgs'] enrichments: Enrichments to attach only to Slow Burn alerts.
         :param Sequence['SLOAlertingSlowburnLabelArgs'] labels: Labels to attach only to Slow Burn alerts.
         """
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
+        if enrichments is not None:
+            pulumi.set(__self__, "enrichments", enrichments)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
 
@@ -341,6 +379,14 @@ class SLOAlertingSlowburn(dict):
         Annotations to attach only to Slow Burn alerts.
         """
         return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter
+    def enrichments(self) -> Optional[Sequence['outputs.SLOAlertingSlowburnEnrichment']]:
+        """
+        Enrichments to attach only to Slow Burn alerts.
+        """
+        return pulumi.get(self, "enrichments")
 
     @_builtins.property
     @pulumi.getter
@@ -378,6 +424,24 @@ class SLOAlertingSlowburnAnnotation(dict):
         Templatable value
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SLOAlertingSlowburnEnrichment(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -907,13 +971,17 @@ class GetSlosSloAlertingAnnotationResult(dict):
 class GetSlosSloAlertingFastburnResult(dict):
     def __init__(__self__, *,
                  annotations: Optional[Sequence['outputs.GetSlosSloAlertingFastburnAnnotationResult']] = None,
+                 enrichments: Optional[Sequence['outputs.GetSlosSloAlertingFastburnEnrichmentResult']] = None,
                  labels: Optional[Sequence['outputs.GetSlosSloAlertingFastburnLabelResult']] = None):
         """
         :param Sequence['GetSlosSloAlertingFastburnAnnotationArgs'] annotations: Annotations to attach only to Fast Burn alerts.
+        :param Sequence['GetSlosSloAlertingFastburnEnrichmentArgs'] enrichments: Enrichments to attach only to Fast Burn alerts.
         :param Sequence['GetSlosSloAlertingFastburnLabelArgs'] labels: Labels to attach only to Fast Burn alerts.
         """
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
+        if enrichments is not None:
+            pulumi.set(__self__, "enrichments", enrichments)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
 
@@ -924,6 +992,14 @@ class GetSlosSloAlertingFastburnResult(dict):
         Annotations to attach only to Fast Burn alerts.
         """
         return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter
+    def enrichments(self) -> Optional[Sequence['outputs.GetSlosSloAlertingFastburnEnrichmentResult']]:
+        """
+        Enrichments to attach only to Fast Burn alerts.
+        """
+        return pulumi.get(self, "enrichments")
 
     @_builtins.property
     @pulumi.getter
@@ -961,6 +1037,24 @@ class GetSlosSloAlertingFastburnAnnotationResult(dict):
         Templatable value
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSlosSloAlertingFastburnEnrichmentResult(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -1025,13 +1119,17 @@ class GetSlosSloAlertingLabelResult(dict):
 class GetSlosSloAlertingSlowburnResult(dict):
     def __init__(__self__, *,
                  annotations: Optional[Sequence['outputs.GetSlosSloAlertingSlowburnAnnotationResult']] = None,
+                 enrichments: Optional[Sequence['outputs.GetSlosSloAlertingSlowburnEnrichmentResult']] = None,
                  labels: Optional[Sequence['outputs.GetSlosSloAlertingSlowburnLabelResult']] = None):
         """
         :param Sequence['GetSlosSloAlertingSlowburnAnnotationArgs'] annotations: Annotations to attach only to Slow Burn alerts.
+        :param Sequence['GetSlosSloAlertingSlowburnEnrichmentArgs'] enrichments: Enrichments to attach only to Slow Burn alerts.
         :param Sequence['GetSlosSloAlertingSlowburnLabelArgs'] labels: Labels to attach only to Slow Burn alerts.
         """
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
+        if enrichments is not None:
+            pulumi.set(__self__, "enrichments", enrichments)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
 
@@ -1042,6 +1140,14 @@ class GetSlosSloAlertingSlowburnResult(dict):
         Annotations to attach only to Slow Burn alerts.
         """
         return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter
+    def enrichments(self) -> Optional[Sequence['outputs.GetSlosSloAlertingSlowburnEnrichmentResult']]:
+        """
+        Enrichments to attach only to Slow Burn alerts.
+        """
+        return pulumi.get(self, "enrichments")
 
     @_builtins.property
     @pulumi.getter
@@ -1079,6 +1185,24 @@ class GetSlosSloAlertingSlowburnAnnotationResult(dict):
         Templatable value
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSlosSloAlertingSlowburnEnrichmentResult(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type

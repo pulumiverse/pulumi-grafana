@@ -101,6 +101,12 @@ namespace Pulumiverse.Grafana.Enterprise
     public partial class DataSourcePermissionItem : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+        /// </summary>
+        [Output("datasourceType")]
+        public Output<string?> DatasourceType { get; private set; } = null!;
+
+        /// <summary>
         /// The UID of the datasource.
         /// </summary>
         [Output("datasourceUid")]
@@ -188,6 +194,12 @@ namespace Pulumiverse.Grafana.Enterprise
     public sealed class DataSourcePermissionItemArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+        /// </summary>
+        [Input("datasourceType")]
+        public Input<string>? DatasourceType { get; set; }
+
+        /// <summary>
         /// The UID of the datasource.
         /// </summary>
         [Input("datasourceUid", required: true)]
@@ -231,6 +243,12 @@ namespace Pulumiverse.Grafana.Enterprise
 
     public sealed class DataSourcePermissionItemState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+        /// </summary>
+        [Input("datasourceType")]
+        public Input<string>? DatasourceType { get; set; }
+
         /// <summary>
         /// The UID of the datasource.
         /// </summary>

@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Oss.Outputs
     public sealed class DashboardPermissionPermission
     {
         /// <summary>
-        /// Permission to associate with item. Must be one of `View`, `Edit`, or `Admin`.
+        /// Permission to associate with item. Options: View, Edit, Admin.
         /// </summary>
         public readonly string Permission;
         /// <summary>
@@ -23,11 +23,11 @@ namespace Pulumiverse.Grafana.Oss.Outputs
         /// </summary>
         public readonly string? Role;
         /// <summary>
-        /// ID of the team to manage permissions for. Defaults to `0`.
+        /// ID of the team to manage permissions for.
         /// </summary>
         public readonly string? TeamId;
         /// <summary>
-        /// ID of the user or service account to manage permissions for. Defaults to `0`.
+        /// ID of the user or service account to manage permissions for.
         /// </summary>
         public readonly string? UserId;
 

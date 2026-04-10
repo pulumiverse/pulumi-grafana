@@ -72,7 +72,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         public Output<bool?> DisableScriptedChecks { get; private set; } = null!;
 
         /// <summary>
-        /// Custom labels to be included with collected metrics and logs.
+        /// Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
@@ -180,7 +180,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Custom labels to be included with collected metrics and logs.
+        /// Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -258,7 +258,7 @@ namespace Pulumiverse.Grafana.SyntheticMonitoring
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// Custom labels to be included with collected metrics and logs.
+        /// Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
         /// </summary>
         public InputMap<string> Labels
         {

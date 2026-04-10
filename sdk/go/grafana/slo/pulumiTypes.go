@@ -472,6 +472,8 @@ func (o SLOAlertingAnnotationArrayOutput) Index(i pulumi.IntInput) SLOAlertingAn
 type SLOAlertingFastburn struct {
 	// Annotations to attach only to Fast Burn alerts.
 	Annotations []SLOAlertingFastburnAnnotation `pulumi:"annotations"`
+	// Enrichments to attach only to Fast Burn alerts.
+	Enrichments []SLOAlertingFastburnEnrichment `pulumi:"enrichments"`
 	// Labels to attach only to Fast Burn alerts.
 	Labels []SLOAlertingFastburnLabel `pulumi:"labels"`
 }
@@ -490,6 +492,8 @@ type SLOAlertingFastburnInput interface {
 type SLOAlertingFastburnArgs struct {
 	// Annotations to attach only to Fast Burn alerts.
 	Annotations SLOAlertingFastburnAnnotationArrayInput `pulumi:"annotations"`
+	// Enrichments to attach only to Fast Burn alerts.
+	Enrichments SLOAlertingFastburnEnrichmentArrayInput `pulumi:"enrichments"`
 	// Labels to attach only to Fast Burn alerts.
 	Labels SLOAlertingFastburnLabelArrayInput `pulumi:"labels"`
 }
@@ -576,6 +580,11 @@ func (o SLOAlertingFastburnOutput) Annotations() SLOAlertingFastburnAnnotationAr
 	return o.ApplyT(func(v SLOAlertingFastburn) []SLOAlertingFastburnAnnotation { return v.Annotations }).(SLOAlertingFastburnAnnotationArrayOutput)
 }
 
+// Enrichments to attach only to Fast Burn alerts.
+func (o SLOAlertingFastburnOutput) Enrichments() SLOAlertingFastburnEnrichmentArrayOutput {
+	return o.ApplyT(func(v SLOAlertingFastburn) []SLOAlertingFastburnEnrichment { return v.Enrichments }).(SLOAlertingFastburnEnrichmentArrayOutput)
+}
+
 // Labels to attach only to Fast Burn alerts.
 func (o SLOAlertingFastburnOutput) Labels() SLOAlertingFastburnLabelArrayOutput {
 	return o.ApplyT(func(v SLOAlertingFastburn) []SLOAlertingFastburnLabel { return v.Labels }).(SLOAlertingFastburnLabelArrayOutput)
@@ -613,6 +622,16 @@ func (o SLOAlertingFastburnPtrOutput) Annotations() SLOAlertingFastburnAnnotatio
 		}
 		return v.Annotations
 	}).(SLOAlertingFastburnAnnotationArrayOutput)
+}
+
+// Enrichments to attach only to Fast Burn alerts.
+func (o SLOAlertingFastburnPtrOutput) Enrichments() SLOAlertingFastburnEnrichmentArrayOutput {
+	return o.ApplyT(func(v *SLOAlertingFastburn) []SLOAlertingFastburnEnrichment {
+		if v == nil {
+			return nil
+		}
+		return v.Enrichments
+	}).(SLOAlertingFastburnEnrichmentArrayOutput)
 }
 
 // Labels to attach only to Fast Burn alerts.
@@ -729,6 +748,103 @@ func (o SLOAlertingFastburnAnnotationArrayOutput) Index(i pulumi.IntInput) SLOAl
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SLOAlertingFastburnAnnotation {
 		return vs[0].([]SLOAlertingFastburnAnnotation)[vs[1].(int)]
 	}).(SLOAlertingFastburnAnnotationOutput)
+}
+
+type SLOAlertingFastburnEnrichment struct {
+	// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+	Type string `pulumi:"type"`
+}
+
+// SLOAlertingFastburnEnrichmentInput is an input type that accepts SLOAlertingFastburnEnrichmentArgs and SLOAlertingFastburnEnrichmentOutput values.
+// You can construct a concrete instance of `SLOAlertingFastburnEnrichmentInput` via:
+//
+//	SLOAlertingFastburnEnrichmentArgs{...}
+type SLOAlertingFastburnEnrichmentInput interface {
+	pulumi.Input
+
+	ToSLOAlertingFastburnEnrichmentOutput() SLOAlertingFastburnEnrichmentOutput
+	ToSLOAlertingFastburnEnrichmentOutputWithContext(context.Context) SLOAlertingFastburnEnrichmentOutput
+}
+
+type SLOAlertingFastburnEnrichmentArgs struct {
+	// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (SLOAlertingFastburnEnrichmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOAlertingFastburnEnrichment)(nil)).Elem()
+}
+
+func (i SLOAlertingFastburnEnrichmentArgs) ToSLOAlertingFastburnEnrichmentOutput() SLOAlertingFastburnEnrichmentOutput {
+	return i.ToSLOAlertingFastburnEnrichmentOutputWithContext(context.Background())
+}
+
+func (i SLOAlertingFastburnEnrichmentArgs) ToSLOAlertingFastburnEnrichmentOutputWithContext(ctx context.Context) SLOAlertingFastburnEnrichmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOAlertingFastburnEnrichmentOutput)
+}
+
+// SLOAlertingFastburnEnrichmentArrayInput is an input type that accepts SLOAlertingFastburnEnrichmentArray and SLOAlertingFastburnEnrichmentArrayOutput values.
+// You can construct a concrete instance of `SLOAlertingFastburnEnrichmentArrayInput` via:
+//
+//	SLOAlertingFastburnEnrichmentArray{ SLOAlertingFastburnEnrichmentArgs{...} }
+type SLOAlertingFastburnEnrichmentArrayInput interface {
+	pulumi.Input
+
+	ToSLOAlertingFastburnEnrichmentArrayOutput() SLOAlertingFastburnEnrichmentArrayOutput
+	ToSLOAlertingFastburnEnrichmentArrayOutputWithContext(context.Context) SLOAlertingFastburnEnrichmentArrayOutput
+}
+
+type SLOAlertingFastburnEnrichmentArray []SLOAlertingFastburnEnrichmentInput
+
+func (SLOAlertingFastburnEnrichmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLOAlertingFastburnEnrichment)(nil)).Elem()
+}
+
+func (i SLOAlertingFastburnEnrichmentArray) ToSLOAlertingFastburnEnrichmentArrayOutput() SLOAlertingFastburnEnrichmentArrayOutput {
+	return i.ToSLOAlertingFastburnEnrichmentArrayOutputWithContext(context.Background())
+}
+
+func (i SLOAlertingFastburnEnrichmentArray) ToSLOAlertingFastburnEnrichmentArrayOutputWithContext(ctx context.Context) SLOAlertingFastburnEnrichmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOAlertingFastburnEnrichmentArrayOutput)
+}
+
+type SLOAlertingFastburnEnrichmentOutput struct{ *pulumi.OutputState }
+
+func (SLOAlertingFastburnEnrichmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOAlertingFastburnEnrichment)(nil)).Elem()
+}
+
+func (o SLOAlertingFastburnEnrichmentOutput) ToSLOAlertingFastburnEnrichmentOutput() SLOAlertingFastburnEnrichmentOutput {
+	return o
+}
+
+func (o SLOAlertingFastburnEnrichmentOutput) ToSLOAlertingFastburnEnrichmentOutputWithContext(ctx context.Context) SLOAlertingFastburnEnrichmentOutput {
+	return o
+}
+
+// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+func (o SLOAlertingFastburnEnrichmentOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOAlertingFastburnEnrichment) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type SLOAlertingFastburnEnrichmentArrayOutput struct{ *pulumi.OutputState }
+
+func (SLOAlertingFastburnEnrichmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLOAlertingFastburnEnrichment)(nil)).Elem()
+}
+
+func (o SLOAlertingFastburnEnrichmentArrayOutput) ToSLOAlertingFastburnEnrichmentArrayOutput() SLOAlertingFastburnEnrichmentArrayOutput {
+	return o
+}
+
+func (o SLOAlertingFastburnEnrichmentArrayOutput) ToSLOAlertingFastburnEnrichmentArrayOutputWithContext(ctx context.Context) SLOAlertingFastburnEnrichmentArrayOutput {
+	return o
+}
+
+func (o SLOAlertingFastburnEnrichmentArrayOutput) Index(i pulumi.IntInput) SLOAlertingFastburnEnrichmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SLOAlertingFastburnEnrichment {
+		return vs[0].([]SLOAlertingFastburnEnrichment)[vs[1].(int)]
+	}).(SLOAlertingFastburnEnrichmentOutput)
 }
 
 type SLOAlertingFastburnLabel struct {
@@ -946,6 +1062,8 @@ func (o SLOAlertingLabelArrayOutput) Index(i pulumi.IntInput) SLOAlertingLabelOu
 type SLOAlertingSlowburn struct {
 	// Annotations to attach only to Slow Burn alerts.
 	Annotations []SLOAlertingSlowburnAnnotation `pulumi:"annotations"`
+	// Enrichments to attach only to Slow Burn alerts.
+	Enrichments []SLOAlertingSlowburnEnrichment `pulumi:"enrichments"`
 	// Labels to attach only to Slow Burn alerts.
 	Labels []SLOAlertingSlowburnLabel `pulumi:"labels"`
 }
@@ -964,6 +1082,8 @@ type SLOAlertingSlowburnInput interface {
 type SLOAlertingSlowburnArgs struct {
 	// Annotations to attach only to Slow Burn alerts.
 	Annotations SLOAlertingSlowburnAnnotationArrayInput `pulumi:"annotations"`
+	// Enrichments to attach only to Slow Burn alerts.
+	Enrichments SLOAlertingSlowburnEnrichmentArrayInput `pulumi:"enrichments"`
 	// Labels to attach only to Slow Burn alerts.
 	Labels SLOAlertingSlowburnLabelArrayInput `pulumi:"labels"`
 }
@@ -1050,6 +1170,11 @@ func (o SLOAlertingSlowburnOutput) Annotations() SLOAlertingSlowburnAnnotationAr
 	return o.ApplyT(func(v SLOAlertingSlowburn) []SLOAlertingSlowburnAnnotation { return v.Annotations }).(SLOAlertingSlowburnAnnotationArrayOutput)
 }
 
+// Enrichments to attach only to Slow Burn alerts.
+func (o SLOAlertingSlowburnOutput) Enrichments() SLOAlertingSlowburnEnrichmentArrayOutput {
+	return o.ApplyT(func(v SLOAlertingSlowburn) []SLOAlertingSlowburnEnrichment { return v.Enrichments }).(SLOAlertingSlowburnEnrichmentArrayOutput)
+}
+
 // Labels to attach only to Slow Burn alerts.
 func (o SLOAlertingSlowburnOutput) Labels() SLOAlertingSlowburnLabelArrayOutput {
 	return o.ApplyT(func(v SLOAlertingSlowburn) []SLOAlertingSlowburnLabel { return v.Labels }).(SLOAlertingSlowburnLabelArrayOutput)
@@ -1087,6 +1212,16 @@ func (o SLOAlertingSlowburnPtrOutput) Annotations() SLOAlertingSlowburnAnnotatio
 		}
 		return v.Annotations
 	}).(SLOAlertingSlowburnAnnotationArrayOutput)
+}
+
+// Enrichments to attach only to Slow Burn alerts.
+func (o SLOAlertingSlowburnPtrOutput) Enrichments() SLOAlertingSlowburnEnrichmentArrayOutput {
+	return o.ApplyT(func(v *SLOAlertingSlowburn) []SLOAlertingSlowburnEnrichment {
+		if v == nil {
+			return nil
+		}
+		return v.Enrichments
+	}).(SLOAlertingSlowburnEnrichmentArrayOutput)
 }
 
 // Labels to attach only to Slow Burn alerts.
@@ -1203,6 +1338,103 @@ func (o SLOAlertingSlowburnAnnotationArrayOutput) Index(i pulumi.IntInput) SLOAl
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SLOAlertingSlowburnAnnotation {
 		return vs[0].([]SLOAlertingSlowburnAnnotation)[vs[1].(int)]
 	}).(SLOAlertingSlowburnAnnotationOutput)
+}
+
+type SLOAlertingSlowburnEnrichment struct {
+	// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+	Type string `pulumi:"type"`
+}
+
+// SLOAlertingSlowburnEnrichmentInput is an input type that accepts SLOAlertingSlowburnEnrichmentArgs and SLOAlertingSlowburnEnrichmentOutput values.
+// You can construct a concrete instance of `SLOAlertingSlowburnEnrichmentInput` via:
+//
+//	SLOAlertingSlowburnEnrichmentArgs{...}
+type SLOAlertingSlowburnEnrichmentInput interface {
+	pulumi.Input
+
+	ToSLOAlertingSlowburnEnrichmentOutput() SLOAlertingSlowburnEnrichmentOutput
+	ToSLOAlertingSlowburnEnrichmentOutputWithContext(context.Context) SLOAlertingSlowburnEnrichmentOutput
+}
+
+type SLOAlertingSlowburnEnrichmentArgs struct {
+	// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (SLOAlertingSlowburnEnrichmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOAlertingSlowburnEnrichment)(nil)).Elem()
+}
+
+func (i SLOAlertingSlowburnEnrichmentArgs) ToSLOAlertingSlowburnEnrichmentOutput() SLOAlertingSlowburnEnrichmentOutput {
+	return i.ToSLOAlertingSlowburnEnrichmentOutputWithContext(context.Background())
+}
+
+func (i SLOAlertingSlowburnEnrichmentArgs) ToSLOAlertingSlowburnEnrichmentOutputWithContext(ctx context.Context) SLOAlertingSlowburnEnrichmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOAlertingSlowburnEnrichmentOutput)
+}
+
+// SLOAlertingSlowburnEnrichmentArrayInput is an input type that accepts SLOAlertingSlowburnEnrichmentArray and SLOAlertingSlowburnEnrichmentArrayOutput values.
+// You can construct a concrete instance of `SLOAlertingSlowburnEnrichmentArrayInput` via:
+//
+//	SLOAlertingSlowburnEnrichmentArray{ SLOAlertingSlowburnEnrichmentArgs{...} }
+type SLOAlertingSlowburnEnrichmentArrayInput interface {
+	pulumi.Input
+
+	ToSLOAlertingSlowburnEnrichmentArrayOutput() SLOAlertingSlowburnEnrichmentArrayOutput
+	ToSLOAlertingSlowburnEnrichmentArrayOutputWithContext(context.Context) SLOAlertingSlowburnEnrichmentArrayOutput
+}
+
+type SLOAlertingSlowburnEnrichmentArray []SLOAlertingSlowburnEnrichmentInput
+
+func (SLOAlertingSlowburnEnrichmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLOAlertingSlowburnEnrichment)(nil)).Elem()
+}
+
+func (i SLOAlertingSlowburnEnrichmentArray) ToSLOAlertingSlowburnEnrichmentArrayOutput() SLOAlertingSlowburnEnrichmentArrayOutput {
+	return i.ToSLOAlertingSlowburnEnrichmentArrayOutputWithContext(context.Background())
+}
+
+func (i SLOAlertingSlowburnEnrichmentArray) ToSLOAlertingSlowburnEnrichmentArrayOutputWithContext(ctx context.Context) SLOAlertingSlowburnEnrichmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOAlertingSlowburnEnrichmentArrayOutput)
+}
+
+type SLOAlertingSlowburnEnrichmentOutput struct{ *pulumi.OutputState }
+
+func (SLOAlertingSlowburnEnrichmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOAlertingSlowburnEnrichment)(nil)).Elem()
+}
+
+func (o SLOAlertingSlowburnEnrichmentOutput) ToSLOAlertingSlowburnEnrichmentOutput() SLOAlertingSlowburnEnrichmentOutput {
+	return o
+}
+
+func (o SLOAlertingSlowburnEnrichmentOutput) ToSLOAlertingSlowburnEnrichmentOutputWithContext(ctx context.Context) SLOAlertingSlowburnEnrichmentOutput {
+	return o
+}
+
+// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+func (o SLOAlertingSlowburnEnrichmentOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOAlertingSlowburnEnrichment) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type SLOAlertingSlowburnEnrichmentArrayOutput struct{ *pulumi.OutputState }
+
+func (SLOAlertingSlowburnEnrichmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLOAlertingSlowburnEnrichment)(nil)).Elem()
+}
+
+func (o SLOAlertingSlowburnEnrichmentArrayOutput) ToSLOAlertingSlowburnEnrichmentArrayOutput() SLOAlertingSlowburnEnrichmentArrayOutput {
+	return o
+}
+
+func (o SLOAlertingSlowburnEnrichmentArrayOutput) ToSLOAlertingSlowburnEnrichmentArrayOutputWithContext(ctx context.Context) SLOAlertingSlowburnEnrichmentArrayOutput {
+	return o
+}
+
+func (o SLOAlertingSlowburnEnrichmentArrayOutput) Index(i pulumi.IntInput) SLOAlertingSlowburnEnrichmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SLOAlertingSlowburnEnrichment {
+		return vs[0].([]SLOAlertingSlowburnEnrichment)[vs[1].(int)]
+	}).(SLOAlertingSlowburnEnrichmentOutput)
 }
 
 type SLOAlertingSlowburnLabel struct {
@@ -2797,6 +3029,8 @@ func (o GetSlosSloAlertingAnnotationArrayOutput) Index(i pulumi.IntInput) GetSlo
 type GetSlosSloAlertingFastburn struct {
 	// Annotations to attach only to Fast Burn alerts.
 	Annotations []GetSlosSloAlertingFastburnAnnotation `pulumi:"annotations"`
+	// Enrichments to attach only to Fast Burn alerts.
+	Enrichments []GetSlosSloAlertingFastburnEnrichment `pulumi:"enrichments"`
 	// Labels to attach only to Fast Burn alerts.
 	Labels []GetSlosSloAlertingFastburnLabel `pulumi:"labels"`
 }
@@ -2815,6 +3049,8 @@ type GetSlosSloAlertingFastburnInput interface {
 type GetSlosSloAlertingFastburnArgs struct {
 	// Annotations to attach only to Fast Burn alerts.
 	Annotations GetSlosSloAlertingFastburnAnnotationArrayInput `pulumi:"annotations"`
+	// Enrichments to attach only to Fast Burn alerts.
+	Enrichments GetSlosSloAlertingFastburnEnrichmentArrayInput `pulumi:"enrichments"`
 	// Labels to attach only to Fast Burn alerts.
 	Labels GetSlosSloAlertingFastburnLabelArrayInput `pulumi:"labels"`
 }
@@ -2901,6 +3137,11 @@ func (o GetSlosSloAlertingFastburnOutput) Annotations() GetSlosSloAlertingFastbu
 	return o.ApplyT(func(v GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnAnnotation { return v.Annotations }).(GetSlosSloAlertingFastburnAnnotationArrayOutput)
 }
 
+// Enrichments to attach only to Fast Burn alerts.
+func (o GetSlosSloAlertingFastburnOutput) Enrichments() GetSlosSloAlertingFastburnEnrichmentArrayOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnEnrichment { return v.Enrichments }).(GetSlosSloAlertingFastburnEnrichmentArrayOutput)
+}
+
 // Labels to attach only to Fast Burn alerts.
 func (o GetSlosSloAlertingFastburnOutput) Labels() GetSlosSloAlertingFastburnLabelArrayOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnLabel { return v.Labels }).(GetSlosSloAlertingFastburnLabelArrayOutput)
@@ -2938,6 +3179,16 @@ func (o GetSlosSloAlertingFastburnPtrOutput) Annotations() GetSlosSloAlertingFas
 		}
 		return v.Annotations
 	}).(GetSlosSloAlertingFastburnAnnotationArrayOutput)
+}
+
+// Enrichments to attach only to Fast Burn alerts.
+func (o GetSlosSloAlertingFastburnPtrOutput) Enrichments() GetSlosSloAlertingFastburnEnrichmentArrayOutput {
+	return o.ApplyT(func(v *GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnEnrichment {
+		if v == nil {
+			return nil
+		}
+		return v.Enrichments
+	}).(GetSlosSloAlertingFastburnEnrichmentArrayOutput)
 }
 
 // Labels to attach only to Fast Burn alerts.
@@ -3054,6 +3305,103 @@ func (o GetSlosSloAlertingFastburnAnnotationArrayOutput) Index(i pulumi.IntInput
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingFastburnAnnotation {
 		return vs[0].([]GetSlosSloAlertingFastburnAnnotation)[vs[1].(int)]
 	}).(GetSlosSloAlertingFastburnAnnotationOutput)
+}
+
+type GetSlosSloAlertingFastburnEnrichment struct {
+	// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+	Type string `pulumi:"type"`
+}
+
+// GetSlosSloAlertingFastburnEnrichmentInput is an input type that accepts GetSlosSloAlertingFastburnEnrichmentArgs and GetSlosSloAlertingFastburnEnrichmentOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingFastburnEnrichmentInput` via:
+//
+//	GetSlosSloAlertingFastburnEnrichmentArgs{...}
+type GetSlosSloAlertingFastburnEnrichmentInput interface {
+	pulumi.Input
+
+	ToGetSlosSloAlertingFastburnEnrichmentOutput() GetSlosSloAlertingFastburnEnrichmentOutput
+	ToGetSlosSloAlertingFastburnEnrichmentOutputWithContext(context.Context) GetSlosSloAlertingFastburnEnrichmentOutput
+}
+
+type GetSlosSloAlertingFastburnEnrichmentArgs struct {
+	// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetSlosSloAlertingFastburnEnrichmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingFastburnEnrichment)(nil)).Elem()
+}
+
+func (i GetSlosSloAlertingFastburnEnrichmentArgs) ToGetSlosSloAlertingFastburnEnrichmentOutput() GetSlosSloAlertingFastburnEnrichmentOutput {
+	return i.ToGetSlosSloAlertingFastburnEnrichmentOutputWithContext(context.Background())
+}
+
+func (i GetSlosSloAlertingFastburnEnrichmentArgs) ToGetSlosSloAlertingFastburnEnrichmentOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnEnrichmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingFastburnEnrichmentOutput)
+}
+
+// GetSlosSloAlertingFastburnEnrichmentArrayInput is an input type that accepts GetSlosSloAlertingFastburnEnrichmentArray and GetSlosSloAlertingFastburnEnrichmentArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingFastburnEnrichmentArrayInput` via:
+//
+//	GetSlosSloAlertingFastburnEnrichmentArray{ GetSlosSloAlertingFastburnEnrichmentArgs{...} }
+type GetSlosSloAlertingFastburnEnrichmentArrayInput interface {
+	pulumi.Input
+
+	ToGetSlosSloAlertingFastburnEnrichmentArrayOutput() GetSlosSloAlertingFastburnEnrichmentArrayOutput
+	ToGetSlosSloAlertingFastburnEnrichmentArrayOutputWithContext(context.Context) GetSlosSloAlertingFastburnEnrichmentArrayOutput
+}
+
+type GetSlosSloAlertingFastburnEnrichmentArray []GetSlosSloAlertingFastburnEnrichmentInput
+
+func (GetSlosSloAlertingFastburnEnrichmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingFastburnEnrichment)(nil)).Elem()
+}
+
+func (i GetSlosSloAlertingFastburnEnrichmentArray) ToGetSlosSloAlertingFastburnEnrichmentArrayOutput() GetSlosSloAlertingFastburnEnrichmentArrayOutput {
+	return i.ToGetSlosSloAlertingFastburnEnrichmentArrayOutputWithContext(context.Background())
+}
+
+func (i GetSlosSloAlertingFastburnEnrichmentArray) ToGetSlosSloAlertingFastburnEnrichmentArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnEnrichmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingFastburnEnrichmentArrayOutput)
+}
+
+type GetSlosSloAlertingFastburnEnrichmentOutput struct{ *pulumi.OutputState }
+
+func (GetSlosSloAlertingFastburnEnrichmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingFastburnEnrichment)(nil)).Elem()
+}
+
+func (o GetSlosSloAlertingFastburnEnrichmentOutput) ToGetSlosSloAlertingFastburnEnrichmentOutput() GetSlosSloAlertingFastburnEnrichmentOutput {
+	return o
+}
+
+func (o GetSlosSloAlertingFastburnEnrichmentOutput) ToGetSlosSloAlertingFastburnEnrichmentOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnEnrichmentOutput {
+	return o
+}
+
+// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+func (o GetSlosSloAlertingFastburnEnrichmentOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingFastburnEnrichment) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetSlosSloAlertingFastburnEnrichmentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSlosSloAlertingFastburnEnrichmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingFastburnEnrichment)(nil)).Elem()
+}
+
+func (o GetSlosSloAlertingFastburnEnrichmentArrayOutput) ToGetSlosSloAlertingFastburnEnrichmentArrayOutput() GetSlosSloAlertingFastburnEnrichmentArrayOutput {
+	return o
+}
+
+func (o GetSlosSloAlertingFastburnEnrichmentArrayOutput) ToGetSlosSloAlertingFastburnEnrichmentArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingFastburnEnrichmentArrayOutput {
+	return o
+}
+
+func (o GetSlosSloAlertingFastburnEnrichmentArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlertingFastburnEnrichmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingFastburnEnrichment {
+		return vs[0].([]GetSlosSloAlertingFastburnEnrichment)[vs[1].(int)]
+	}).(GetSlosSloAlertingFastburnEnrichmentOutput)
 }
 
 type GetSlosSloAlertingFastburnLabel struct {
@@ -3271,6 +3619,8 @@ func (o GetSlosSloAlertingLabelArrayOutput) Index(i pulumi.IntInput) GetSlosSloA
 type GetSlosSloAlertingSlowburn struct {
 	// Annotations to attach only to Slow Burn alerts.
 	Annotations []GetSlosSloAlertingSlowburnAnnotation `pulumi:"annotations"`
+	// Enrichments to attach only to Slow Burn alerts.
+	Enrichments []GetSlosSloAlertingSlowburnEnrichment `pulumi:"enrichments"`
 	// Labels to attach only to Slow Burn alerts.
 	Labels []GetSlosSloAlertingSlowburnLabel `pulumi:"labels"`
 }
@@ -3289,6 +3639,8 @@ type GetSlosSloAlertingSlowburnInput interface {
 type GetSlosSloAlertingSlowburnArgs struct {
 	// Annotations to attach only to Slow Burn alerts.
 	Annotations GetSlosSloAlertingSlowburnAnnotationArrayInput `pulumi:"annotations"`
+	// Enrichments to attach only to Slow Burn alerts.
+	Enrichments GetSlosSloAlertingSlowburnEnrichmentArrayInput `pulumi:"enrichments"`
 	// Labels to attach only to Slow Burn alerts.
 	Labels GetSlosSloAlertingSlowburnLabelArrayInput `pulumi:"labels"`
 }
@@ -3375,6 +3727,11 @@ func (o GetSlosSloAlertingSlowburnOutput) Annotations() GetSlosSloAlertingSlowbu
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnAnnotation { return v.Annotations }).(GetSlosSloAlertingSlowburnAnnotationArrayOutput)
 }
 
+// Enrichments to attach only to Slow Burn alerts.
+func (o GetSlosSloAlertingSlowburnOutput) Enrichments() GetSlosSloAlertingSlowburnEnrichmentArrayOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnEnrichment { return v.Enrichments }).(GetSlosSloAlertingSlowburnEnrichmentArrayOutput)
+}
+
 // Labels to attach only to Slow Burn alerts.
 func (o GetSlosSloAlertingSlowburnOutput) Labels() GetSlosSloAlertingSlowburnLabelArrayOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnLabel { return v.Labels }).(GetSlosSloAlertingSlowburnLabelArrayOutput)
@@ -3412,6 +3769,16 @@ func (o GetSlosSloAlertingSlowburnPtrOutput) Annotations() GetSlosSloAlertingSlo
 		}
 		return v.Annotations
 	}).(GetSlosSloAlertingSlowburnAnnotationArrayOutput)
+}
+
+// Enrichments to attach only to Slow Burn alerts.
+func (o GetSlosSloAlertingSlowburnPtrOutput) Enrichments() GetSlosSloAlertingSlowburnEnrichmentArrayOutput {
+	return o.ApplyT(func(v *GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnEnrichment {
+		if v == nil {
+			return nil
+		}
+		return v.Enrichments
+	}).(GetSlosSloAlertingSlowburnEnrichmentArrayOutput)
 }
 
 // Labels to attach only to Slow Burn alerts.
@@ -3528,6 +3895,103 @@ func (o GetSlosSloAlertingSlowburnAnnotationArrayOutput) Index(i pulumi.IntInput
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingSlowburnAnnotation {
 		return vs[0].([]GetSlosSloAlertingSlowburnAnnotation)[vs[1].(int)]
 	}).(GetSlosSloAlertingSlowburnAnnotationOutput)
+}
+
+type GetSlosSloAlertingSlowburnEnrichment struct {
+	// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+	Type string `pulumi:"type"`
+}
+
+// GetSlosSloAlertingSlowburnEnrichmentInput is an input type that accepts GetSlosSloAlertingSlowburnEnrichmentArgs and GetSlosSloAlertingSlowburnEnrichmentOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingSlowburnEnrichmentInput` via:
+//
+//	GetSlosSloAlertingSlowburnEnrichmentArgs{...}
+type GetSlosSloAlertingSlowburnEnrichmentInput interface {
+	pulumi.Input
+
+	ToGetSlosSloAlertingSlowburnEnrichmentOutput() GetSlosSloAlertingSlowburnEnrichmentOutput
+	ToGetSlosSloAlertingSlowburnEnrichmentOutputWithContext(context.Context) GetSlosSloAlertingSlowburnEnrichmentOutput
+}
+
+type GetSlosSloAlertingSlowburnEnrichmentArgs struct {
+	// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetSlosSloAlertingSlowburnEnrichmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingSlowburnEnrichment)(nil)).Elem()
+}
+
+func (i GetSlosSloAlertingSlowburnEnrichmentArgs) ToGetSlosSloAlertingSlowburnEnrichmentOutput() GetSlosSloAlertingSlowburnEnrichmentOutput {
+	return i.ToGetSlosSloAlertingSlowburnEnrichmentOutputWithContext(context.Background())
+}
+
+func (i GetSlosSloAlertingSlowburnEnrichmentArgs) ToGetSlosSloAlertingSlowburnEnrichmentOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnEnrichmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingSlowburnEnrichmentOutput)
+}
+
+// GetSlosSloAlertingSlowburnEnrichmentArrayInput is an input type that accepts GetSlosSloAlertingSlowburnEnrichmentArray and GetSlosSloAlertingSlowburnEnrichmentArrayOutput values.
+// You can construct a concrete instance of `GetSlosSloAlertingSlowburnEnrichmentArrayInput` via:
+//
+//	GetSlosSloAlertingSlowburnEnrichmentArray{ GetSlosSloAlertingSlowburnEnrichmentArgs{...} }
+type GetSlosSloAlertingSlowburnEnrichmentArrayInput interface {
+	pulumi.Input
+
+	ToGetSlosSloAlertingSlowburnEnrichmentArrayOutput() GetSlosSloAlertingSlowburnEnrichmentArrayOutput
+	ToGetSlosSloAlertingSlowburnEnrichmentArrayOutputWithContext(context.Context) GetSlosSloAlertingSlowburnEnrichmentArrayOutput
+}
+
+type GetSlosSloAlertingSlowburnEnrichmentArray []GetSlosSloAlertingSlowburnEnrichmentInput
+
+func (GetSlosSloAlertingSlowburnEnrichmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingSlowburnEnrichment)(nil)).Elem()
+}
+
+func (i GetSlosSloAlertingSlowburnEnrichmentArray) ToGetSlosSloAlertingSlowburnEnrichmentArrayOutput() GetSlosSloAlertingSlowburnEnrichmentArrayOutput {
+	return i.ToGetSlosSloAlertingSlowburnEnrichmentArrayOutputWithContext(context.Background())
+}
+
+func (i GetSlosSloAlertingSlowburnEnrichmentArray) ToGetSlosSloAlertingSlowburnEnrichmentArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnEnrichmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSlosSloAlertingSlowburnEnrichmentArrayOutput)
+}
+
+type GetSlosSloAlertingSlowburnEnrichmentOutput struct{ *pulumi.OutputState }
+
+func (GetSlosSloAlertingSlowburnEnrichmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosSloAlertingSlowburnEnrichment)(nil)).Elem()
+}
+
+func (o GetSlosSloAlertingSlowburnEnrichmentOutput) ToGetSlosSloAlertingSlowburnEnrichmentOutput() GetSlosSloAlertingSlowburnEnrichmentOutput {
+	return o
+}
+
+func (o GetSlosSloAlertingSlowburnEnrichmentOutput) ToGetSlosSloAlertingSlowburnEnrichmentOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnEnrichmentOutput {
+	return o
+}
+
+// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+func (o GetSlosSloAlertingSlowburnEnrichmentOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingSlowburnEnrichment) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetSlosSloAlertingSlowburnEnrichmentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSlosSloAlertingSlowburnEnrichmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSlosSloAlertingSlowburnEnrichment)(nil)).Elem()
+}
+
+func (o GetSlosSloAlertingSlowburnEnrichmentArrayOutput) ToGetSlosSloAlertingSlowburnEnrichmentArrayOutput() GetSlosSloAlertingSlowburnEnrichmentArrayOutput {
+	return o
+}
+
+func (o GetSlosSloAlertingSlowburnEnrichmentArrayOutput) ToGetSlosSloAlertingSlowburnEnrichmentArrayOutputWithContext(ctx context.Context) GetSlosSloAlertingSlowburnEnrichmentArrayOutput {
+	return o
+}
+
+func (o GetSlosSloAlertingSlowburnEnrichmentArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlertingSlowburnEnrichmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSlosSloAlertingSlowburnEnrichment {
+		return vs[0].([]GetSlosSloAlertingSlowburnEnrichment)[vs[1].(int)]
+	}).(GetSlosSloAlertingSlowburnEnrichmentOutput)
 }
 
 type GetSlosSloAlertingSlowburnLabel struct {
@@ -4523,6 +4987,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingFastburnPtrInput)(nil)).Elem(), SLOAlertingFastburnArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingFastburnAnnotationInput)(nil)).Elem(), SLOAlertingFastburnAnnotationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingFastburnAnnotationArrayInput)(nil)).Elem(), SLOAlertingFastburnAnnotationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingFastburnEnrichmentInput)(nil)).Elem(), SLOAlertingFastburnEnrichmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingFastburnEnrichmentArrayInput)(nil)).Elem(), SLOAlertingFastburnEnrichmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingFastburnLabelInput)(nil)).Elem(), SLOAlertingFastburnLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingFastburnLabelArrayInput)(nil)).Elem(), SLOAlertingFastburnLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingLabelInput)(nil)).Elem(), SLOAlertingLabelArgs{})
@@ -4531,6 +4997,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingSlowburnPtrInput)(nil)).Elem(), SLOAlertingSlowburnArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingSlowburnAnnotationInput)(nil)).Elem(), SLOAlertingSlowburnAnnotationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingSlowburnAnnotationArrayInput)(nil)).Elem(), SLOAlertingSlowburnAnnotationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingSlowburnEnrichmentInput)(nil)).Elem(), SLOAlertingSlowburnEnrichmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingSlowburnEnrichmentArrayInput)(nil)).Elem(), SLOAlertingSlowburnEnrichmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingSlowburnLabelInput)(nil)).Elem(), SLOAlertingSlowburnLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOAlertingSlowburnLabelArrayInput)(nil)).Elem(), SLOAlertingSlowburnLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLODestinationDatasourceInput)(nil)).Elem(), SLODestinationDatasourceArgs{})
@@ -4559,6 +5027,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnPtrInput)(nil)).Elem(), GetSlosSloAlertingFastburnArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnAnnotationInput)(nil)).Elem(), GetSlosSloAlertingFastburnAnnotationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnAnnotationArrayInput)(nil)).Elem(), GetSlosSloAlertingFastburnAnnotationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnEnrichmentInput)(nil)).Elem(), GetSlosSloAlertingFastburnEnrichmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnEnrichmentArrayInput)(nil)).Elem(), GetSlosSloAlertingFastburnEnrichmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnLabelInput)(nil)).Elem(), GetSlosSloAlertingFastburnLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingFastburnLabelArrayInput)(nil)).Elem(), GetSlosSloAlertingFastburnLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingLabelInput)(nil)).Elem(), GetSlosSloAlertingLabelArgs{})
@@ -4567,6 +5037,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnPtrInput)(nil)).Elem(), GetSlosSloAlertingSlowburnArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnAnnotationInput)(nil)).Elem(), GetSlosSloAlertingSlowburnAnnotationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnAnnotationArrayInput)(nil)).Elem(), GetSlosSloAlertingSlowburnAnnotationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnEnrichmentInput)(nil)).Elem(), GetSlosSloAlertingSlowburnEnrichmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnEnrichmentArrayInput)(nil)).Elem(), GetSlosSloAlertingSlowburnEnrichmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnLabelInput)(nil)).Elem(), GetSlosSloAlertingSlowburnLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloAlertingSlowburnLabelArrayInput)(nil)).Elem(), GetSlosSloAlertingSlowburnLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSlosSloDestinationDatasourceInput)(nil)).Elem(), GetSlosSloDestinationDatasourceArgs{})
@@ -4593,6 +5065,8 @@ func init() {
 	pulumi.RegisterOutputType(SLOAlertingFastburnPtrOutput{})
 	pulumi.RegisterOutputType(SLOAlertingFastburnAnnotationOutput{})
 	pulumi.RegisterOutputType(SLOAlertingFastburnAnnotationArrayOutput{})
+	pulumi.RegisterOutputType(SLOAlertingFastburnEnrichmentOutput{})
+	pulumi.RegisterOutputType(SLOAlertingFastburnEnrichmentArrayOutput{})
 	pulumi.RegisterOutputType(SLOAlertingFastburnLabelOutput{})
 	pulumi.RegisterOutputType(SLOAlertingFastburnLabelArrayOutput{})
 	pulumi.RegisterOutputType(SLOAlertingLabelOutput{})
@@ -4601,6 +5075,8 @@ func init() {
 	pulumi.RegisterOutputType(SLOAlertingSlowburnPtrOutput{})
 	pulumi.RegisterOutputType(SLOAlertingSlowburnAnnotationOutput{})
 	pulumi.RegisterOutputType(SLOAlertingSlowburnAnnotationArrayOutput{})
+	pulumi.RegisterOutputType(SLOAlertingSlowburnEnrichmentOutput{})
+	pulumi.RegisterOutputType(SLOAlertingSlowburnEnrichmentArrayOutput{})
 	pulumi.RegisterOutputType(SLOAlertingSlowburnLabelOutput{})
 	pulumi.RegisterOutputType(SLOAlertingSlowburnLabelArrayOutput{})
 	pulumi.RegisterOutputType(SLODestinationDatasourceOutput{})
@@ -4629,6 +5105,8 @@ func init() {
 	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnPtrOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnAnnotationOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnAnnotationArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnEnrichmentOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnEnrichmentArrayOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnLabelOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingFastburnLabelArrayOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingLabelOutput{})
@@ -4637,6 +5115,8 @@ func init() {
 	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnPtrOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnAnnotationOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnAnnotationArrayOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnEnrichmentOutput{})
+	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnEnrichmentArrayOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnLabelOutput{})
 	pulumi.RegisterOutputType(GetSlosSloAlertingSlowburnLabelArrayOutput{})
 	pulumi.RegisterOutputType(GetSlosSloDestinationDatasourceOutput{})

@@ -55,11 +55,11 @@ type ServiceAccount struct {
 	pulumi.CustomResourceState
 
 	// The disabled status for the service account. Defaults to `false`.
-	IsDisabled pulumi.BoolPtrOutput `pulumi:"isDisabled"`
+	IsDisabled pulumi.BoolOutput `pulumi:"isDisabled"`
 	// The name of the service account.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The Organization ID. If not set, the Org ID defined in the provider block will be used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// The basic role of the service account in the organization.
 	Role pulumi.StringOutput `pulumi:"role"`
 }
@@ -239,8 +239,8 @@ func (o ServiceAccountOutput) ToServiceAccountOutputWithContext(ctx context.Cont
 }
 
 // The disabled status for the service account. Defaults to `false`.
-func (o ServiceAccountOutput) IsDisabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ServiceAccount) pulumi.BoolPtrOutput { return v.IsDisabled }).(pulumi.BoolPtrOutput)
+func (o ServiceAccountOutput) IsDisabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ServiceAccount) pulumi.BoolOutput { return v.IsDisabled }).(pulumi.BoolOutput)
 }
 
 // The name of the service account.
@@ -249,8 +249,8 @@ func (o ServiceAccountOutput) Name() pulumi.StringOutput {
 }
 
 // The Organization ID. If not set, the Org ID defined in the provider block will be used.
-func (o ServiceAccountOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServiceAccount) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+func (o ServiceAccountOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServiceAccount) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 // The basic role of the service account in the organization.

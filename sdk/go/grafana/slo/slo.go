@@ -153,6 +153,11 @@ import (
 //								Value: pulumi.String("Error budget is burning too fast"),
 //							},
 //						},
+//						Enrichments: slo.SLOAlertingFastburnEnrichmentArray{
+//							&slo.SLOAlertingFastburnEnrichmentArgs{
+//								Type: pulumi.String("assistantInvestigation"),
+//							},
+//						},
 //					},
 //					Slowburn: &slo.SLOAlertingSlowburnArgs{
 //						Annotations: slo.SLOAlertingSlowburnAnnotationArray{
@@ -163,6 +168,11 @@ import (
 //							&slo.SLOAlertingSlowburnAnnotationArgs{
 //								Key:   pulumi.String("description"),
 //								Value: pulumi.String("Error budget is burning too fast"),
+//							},
+//						},
+//						Enrichments: slo.SLOAlertingSlowburnEnrichmentArray{
+//							&slo.SLOAlertingSlowburnEnrichmentArgs{
+//								Type: pulumi.String("assistantInvestigation"),
 //							},
 //						},
 //					},

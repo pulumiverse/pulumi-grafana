@@ -87,6 +87,10 @@ export interface GetStackResult {
      */
     readonly fleetManagementName: string;
     /**
+     * Availability Zone IDs for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly fleetManagementPrivateConnectivityInfoAvailabilityZoneIds: string[];
+    /**
      * Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
      */
     readonly fleetManagementPrivateConnectivityInfoAvailabilityZones: string[];
@@ -124,6 +128,10 @@ export interface GetStackResult {
     readonly graphiteIpAllowListCname: string;
     readonly graphiteName: string;
     /**
+     * Availability Zone IDs for Graphite when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly graphitePrivateConnectivityInfoAvailabilityZoneIds: string[];
+    /**
      * Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
      */
     readonly graphitePrivateConnectivityInfoAvailabilityZones: string[];
@@ -159,6 +167,10 @@ export interface GetStackResult {
      */
     readonly logsIpAllowListCname: string;
     readonly logsName: string;
+    /**
+     * Availability Zone IDs for Logs when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly logsPrivateConnectivityInfoAvailabilityZoneIds: string[];
     /**
      * Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
      */
@@ -199,6 +211,10 @@ export interface GetStackResult {
      */
     readonly orgSlug: string;
     /**
+     * Availability Zone IDs for OTLP when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly otlpPrivateConnectivityInfoAvailabilityZoneIds: string[];
+    /**
      * Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
      */
     readonly otlpPrivateConnectivityInfoAvailabilityZones: string[];
@@ -219,6 +235,10 @@ export interface GetStackResult {
      */
     readonly otlpUrl: string;
     /**
+     * Availability Zone IDs for PDC's API when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly pdcApiPrivateConnectivityInfoAvailabilityZoneIds: string[];
+    /**
      * Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
      */
     readonly pdcApiPrivateConnectivityInfoAvailabilityZones: string[];
@@ -234,6 +254,10 @@ export interface GetStackResult {
      * Service Name for PDC's API when using AWS PrivateLink (only for AWS stacks)
      */
     readonly pdcApiPrivateConnectivityInfoServiceName: string;
+    /**
+     * Availability Zone IDs for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly pdcGatewayPrivateConnectivityInfoAvailabilityZoneIds: string[];
     /**
      * Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
      */
@@ -255,6 +279,10 @@ export interface GetStackResult {
      */
     readonly profilesIpAllowListCname: string;
     readonly profilesName: string;
+    /**
+     * Availability Zone IDs for Profiles when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly profilesPrivateConnectivityInfoAvailabilityZoneIds: string[];
     /**
      * Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
      */
@@ -282,6 +310,10 @@ export interface GetStackResult {
      * Prometheus name for this instance.
      */
     readonly prometheusName: string;
+    /**
+     * Availability Zone IDs for Prometheus when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly prometheusPrivateConnectivityInfoAvailabilityZoneIds: string[];
     /**
      * Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
      */
@@ -336,6 +368,10 @@ export interface GetStackResult {
      */
     readonly tracesIpAllowListCname: string;
     readonly tracesName: string;
+    /**
+     * Availability Zone IDs for Traces when using AWS PrivateLink (only for AWS stacks)
+     */
+    readonly tracesPrivateConnectivityInfoAvailabilityZoneIds: string[];
     /**
      * Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
      */

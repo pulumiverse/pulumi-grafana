@@ -110,6 +110,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> FleetManagementName { get; private set; } = null!;
 
         /// <summary>
+        /// Availability Zone IDs for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("fleetManagementPrivateConnectivityInfoAvailabilityZoneIds")]
+        public Output<ImmutableArray<string>> FleetManagementPrivateConnectivityInfoAvailabilityZoneIds { get; private set; } = null!;
+
+        /// <summary>
         /// Availability Zones for Fleet Management when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Output("fleetManagementPrivateConnectivityInfoAvailabilityZones")]
@@ -167,6 +173,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> GraphiteName { get; private set; } = null!;
 
         /// <summary>
+        /// Availability Zone IDs for Graphite when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("graphitePrivateConnectivityInfoAvailabilityZoneIds")]
+        public Output<ImmutableArray<string>> GraphitePrivateConnectivityInfoAvailabilityZoneIds { get; private set; } = null!;
+
+        /// <summary>
         /// Availability Zones for Graphite when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Output("graphitePrivateConnectivityInfoAvailabilityZones")]
@@ -219,6 +231,12 @@ namespace Pulumiverse.Grafana.Cloud
 
         [Output("logsName")]
         public Output<string> LogsName { get; private set; } = null!;
+
+        /// <summary>
+        /// Availability Zone IDs for Logs when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("logsPrivateConnectivityInfoAvailabilityZoneIds")]
+        public Output<ImmutableArray<string>> LogsPrivateConnectivityInfoAvailabilityZoneIds { get; private set; } = null!;
 
         /// <summary>
         /// Availability Zones for Logs when using AWS PrivateLink (only for AWS stacks)
@@ -284,6 +302,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> OrgSlug { get; private set; } = null!;
 
         /// <summary>
+        /// Availability Zone IDs for OTLP when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("otlpPrivateConnectivityInfoAvailabilityZoneIds")]
+        public Output<ImmutableArray<string>> OtlpPrivateConnectivityInfoAvailabilityZoneIds { get; private set; } = null!;
+
+        /// <summary>
         /// Availability Zones for OTLP when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Output("otlpPrivateConnectivityInfoAvailabilityZones")]
@@ -314,6 +338,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> OtlpUrl { get; private set; } = null!;
 
         /// <summary>
+        /// Availability Zone IDs for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("pdcApiPrivateConnectivityInfoAvailabilityZoneIds")]
+        public Output<ImmutableArray<string>> PdcApiPrivateConnectivityInfoAvailabilityZoneIds { get; private set; } = null!;
+
+        /// <summary>
         /// Availability Zones for PDC's API when using AWS PrivateLink (only for AWS stacks)
         /// </summary>
         [Output("pdcApiPrivateConnectivityInfoAvailabilityZones")]
@@ -336,6 +366,12 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Output("pdcApiPrivateConnectivityInfoServiceName")]
         public Output<string> PdcApiPrivateConnectivityInfoServiceName { get; private set; } = null!;
+
+        /// <summary>
+        /// Availability Zone IDs for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("pdcGatewayPrivateConnectivityInfoAvailabilityZoneIds")]
+        public Output<ImmutableArray<string>> PdcGatewayPrivateConnectivityInfoAvailabilityZoneIds { get; private set; } = null!;
 
         /// <summary>
         /// Availability Zones for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
@@ -369,6 +405,12 @@ namespace Pulumiverse.Grafana.Cloud
 
         [Output("profilesName")]
         public Output<string> ProfilesName { get; private set; } = null!;
+
+        /// <summary>
+        /// Availability Zone IDs for Profiles when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("profilesPrivateConnectivityInfoAvailabilityZoneIds")]
+        public Output<ImmutableArray<string>> ProfilesPrivateConnectivityInfoAvailabilityZoneIds { get; private set; } = null!;
 
         /// <summary>
         /// Availability Zones for Profiles when using AWS PrivateLink (only for AWS stacks)
@@ -414,6 +456,12 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Output("prometheusName")]
         public Output<string> PrometheusName { get; private set; } = null!;
+
+        /// <summary>
+        /// Availability Zone IDs for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("prometheusPrivateConnectivityInfoAvailabilityZoneIds")]
+        public Output<ImmutableArray<string>> PrometheusPrivateConnectivityInfoAvailabilityZoneIds { get; private set; } = null!;
 
         /// <summary>
         /// Availability Zones for Prometheus when using AWS PrivateLink (only for AWS stacks)
@@ -495,6 +543,12 @@ namespace Pulumiverse.Grafana.Cloud
 
         [Output("tracesName")]
         public Output<string> TracesName { get; private set; } = null!;
+
+        /// <summary>
+        /// Availability Zone IDs for Traces when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        [Output("tracesPrivateConnectivityInfoAvailabilityZoneIds")]
+        public Output<ImmutableArray<string>> TracesPrivateConnectivityInfoAvailabilityZoneIds { get; private set; } = null!;
 
         /// <summary>
         /// Availability Zones for Traces when using AWS PrivateLink (only for AWS stacks)
@@ -725,6 +779,18 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("fleetManagementName")]
         public Input<string>? FleetManagementName { get; set; }
 
+        [Input("fleetManagementPrivateConnectivityInfoAvailabilityZoneIds")]
+        private InputList<string>? _fleetManagementPrivateConnectivityInfoAvailabilityZoneIds;
+
+        /// <summary>
+        /// Availability Zone IDs for Fleet Management when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> FleetManagementPrivateConnectivityInfoAvailabilityZoneIds
+        {
+            get => _fleetManagementPrivateConnectivityInfoAvailabilityZoneIds ?? (_fleetManagementPrivateConnectivityInfoAvailabilityZoneIds = new InputList<string>());
+            set => _fleetManagementPrivateConnectivityInfoAvailabilityZoneIds = value;
+        }
+
         [Input("fleetManagementPrivateConnectivityInfoAvailabilityZones")]
         private InputList<string>? _fleetManagementPrivateConnectivityInfoAvailabilityZones;
 
@@ -793,6 +859,18 @@ namespace Pulumiverse.Grafana.Cloud
 
         [Input("graphiteName")]
         public Input<string>? GraphiteName { get; set; }
+
+        [Input("graphitePrivateConnectivityInfoAvailabilityZoneIds")]
+        private InputList<string>? _graphitePrivateConnectivityInfoAvailabilityZoneIds;
+
+        /// <summary>
+        /// Availability Zone IDs for Graphite when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> GraphitePrivateConnectivityInfoAvailabilityZoneIds
+        {
+            get => _graphitePrivateConnectivityInfoAvailabilityZoneIds ?? (_graphitePrivateConnectivityInfoAvailabilityZoneIds = new InputList<string>());
+            set => _graphitePrivateConnectivityInfoAvailabilityZoneIds = value;
+        }
 
         [Input("graphitePrivateConnectivityInfoAvailabilityZones")]
         private InputList<string>? _graphitePrivateConnectivityInfoAvailabilityZones;
@@ -865,6 +943,18 @@ namespace Pulumiverse.Grafana.Cloud
 
         [Input("logsName")]
         public Input<string>? LogsName { get; set; }
+
+        [Input("logsPrivateConnectivityInfoAvailabilityZoneIds")]
+        private InputList<string>? _logsPrivateConnectivityInfoAvailabilityZoneIds;
+
+        /// <summary>
+        /// Availability Zone IDs for Logs when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> LogsPrivateConnectivityInfoAvailabilityZoneIds
+        {
+            get => _logsPrivateConnectivityInfoAvailabilityZoneIds ?? (_logsPrivateConnectivityInfoAvailabilityZoneIds = new InputList<string>());
+            set => _logsPrivateConnectivityInfoAvailabilityZoneIds = value;
+        }
 
         [Input("logsPrivateConnectivityInfoAvailabilityZones")]
         private InputList<string>? _logsPrivateConnectivityInfoAvailabilityZones;
@@ -941,6 +1031,18 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("orgSlug")]
         public Input<string>? OrgSlug { get; set; }
 
+        [Input("otlpPrivateConnectivityInfoAvailabilityZoneIds")]
+        private InputList<string>? _otlpPrivateConnectivityInfoAvailabilityZoneIds;
+
+        /// <summary>
+        /// Availability Zone IDs for OTLP when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> OtlpPrivateConnectivityInfoAvailabilityZoneIds
+        {
+            get => _otlpPrivateConnectivityInfoAvailabilityZoneIds ?? (_otlpPrivateConnectivityInfoAvailabilityZoneIds = new InputList<string>());
+            set => _otlpPrivateConnectivityInfoAvailabilityZoneIds = value;
+        }
+
         [Input("otlpPrivateConnectivityInfoAvailabilityZones")]
         private InputList<string>? _otlpPrivateConnectivityInfoAvailabilityZones;
 
@@ -983,6 +1085,18 @@ namespace Pulumiverse.Grafana.Cloud
         [Input("otlpUrl")]
         public Input<string>? OtlpUrl { get; set; }
 
+        [Input("pdcApiPrivateConnectivityInfoAvailabilityZoneIds")]
+        private InputList<string>? _pdcApiPrivateConnectivityInfoAvailabilityZoneIds;
+
+        /// <summary>
+        /// Availability Zone IDs for PDC's API when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> PdcApiPrivateConnectivityInfoAvailabilityZoneIds
+        {
+            get => _pdcApiPrivateConnectivityInfoAvailabilityZoneIds ?? (_pdcApiPrivateConnectivityInfoAvailabilityZoneIds = new InputList<string>());
+            set => _pdcApiPrivateConnectivityInfoAvailabilityZoneIds = value;
+        }
+
         [Input("pdcApiPrivateConnectivityInfoAvailabilityZones")]
         private InputList<string>? _pdcApiPrivateConnectivityInfoAvailabilityZones;
 
@@ -1018,6 +1132,18 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Input("pdcApiPrivateConnectivityInfoServiceName")]
         public Input<string>? PdcApiPrivateConnectivityInfoServiceName { get; set; }
+
+        [Input("pdcGatewayPrivateConnectivityInfoAvailabilityZoneIds")]
+        private InputList<string>? _pdcGatewayPrivateConnectivityInfoAvailabilityZoneIds;
+
+        /// <summary>
+        /// Availability Zone IDs for PDC's Gateway when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> PdcGatewayPrivateConnectivityInfoAvailabilityZoneIds
+        {
+            get => _pdcGatewayPrivateConnectivityInfoAvailabilityZoneIds ?? (_pdcGatewayPrivateConnectivityInfoAvailabilityZoneIds = new InputList<string>());
+            set => _pdcGatewayPrivateConnectivityInfoAvailabilityZoneIds = value;
+        }
 
         [Input("pdcGatewayPrivateConnectivityInfoAvailabilityZones")]
         private InputList<string>? _pdcGatewayPrivateConnectivityInfoAvailabilityZones;
@@ -1063,6 +1189,18 @@ namespace Pulumiverse.Grafana.Cloud
 
         [Input("profilesName")]
         public Input<string>? ProfilesName { get; set; }
+
+        [Input("profilesPrivateConnectivityInfoAvailabilityZoneIds")]
+        private InputList<string>? _profilesPrivateConnectivityInfoAvailabilityZoneIds;
+
+        /// <summary>
+        /// Availability Zone IDs for Profiles when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> ProfilesPrivateConnectivityInfoAvailabilityZoneIds
+        {
+            get => _profilesPrivateConnectivityInfoAvailabilityZoneIds ?? (_profilesPrivateConnectivityInfoAvailabilityZoneIds = new InputList<string>());
+            set => _profilesPrivateConnectivityInfoAvailabilityZoneIds = value;
+        }
 
         [Input("profilesPrivateConnectivityInfoAvailabilityZones")]
         private InputList<string>? _profilesPrivateConnectivityInfoAvailabilityZones;
@@ -1120,6 +1258,18 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Input("prometheusName")]
         public Input<string>? PrometheusName { get; set; }
+
+        [Input("prometheusPrivateConnectivityInfoAvailabilityZoneIds")]
+        private InputList<string>? _prometheusPrivateConnectivityInfoAvailabilityZoneIds;
+
+        /// <summary>
+        /// Availability Zone IDs for Prometheus when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> PrometheusPrivateConnectivityInfoAvailabilityZoneIds
+        {
+            get => _prometheusPrivateConnectivityInfoAvailabilityZoneIds ?? (_prometheusPrivateConnectivityInfoAvailabilityZoneIds = new InputList<string>());
+            set => _prometheusPrivateConnectivityInfoAvailabilityZoneIds = value;
+        }
 
         [Input("prometheusPrivateConnectivityInfoAvailabilityZones")]
         private InputList<string>? _prometheusPrivateConnectivityInfoAvailabilityZones;
@@ -1213,6 +1363,18 @@ namespace Pulumiverse.Grafana.Cloud
 
         [Input("tracesName")]
         public Input<string>? TracesName { get; set; }
+
+        [Input("tracesPrivateConnectivityInfoAvailabilityZoneIds")]
+        private InputList<string>? _tracesPrivateConnectivityInfoAvailabilityZoneIds;
+
+        /// <summary>
+        /// Availability Zone IDs for Traces when using AWS PrivateLink (only for AWS stacks)
+        /// </summary>
+        public InputList<string> TracesPrivateConnectivityInfoAvailabilityZoneIds
+        {
+            get => _tracesPrivateConnectivityInfoAvailabilityZoneIds ?? (_tracesPrivateConnectivityInfoAvailabilityZoneIds = new InputList<string>());
+            set => _tracesPrivateConnectivityInfoAvailabilityZoneIds = value;
+        }
 
         [Input("tracesPrivateConnectivityInfoAvailabilityZones")]
         private InputList<string>? _tracesPrivateConnectivityInfoAvailabilityZones;

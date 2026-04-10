@@ -94,6 +94,10 @@ export class DataSourcePermissionItem extends pulumi.CustomResource {
     }
 
     /**
+     * The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+     */
+    declare public readonly datasourceType: pulumi.Output<string | undefined>;
+    /**
      * The UID of the datasource.
      */
     declare public readonly datasourceUid: pulumi.Output<string>;
@@ -131,6 +135,7 @@ export class DataSourcePermissionItem extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DataSourcePermissionItemState | undefined;
+            resourceInputs["datasourceType"] = state?.datasourceType;
             resourceInputs["datasourceUid"] = state?.datasourceUid;
             resourceInputs["orgId"] = state?.orgId;
             resourceInputs["permission"] = state?.permission;
@@ -145,6 +150,7 @@ export class DataSourcePermissionItem extends pulumi.CustomResource {
             if (args?.permission === undefined && !opts.urn) {
                 throw new Error("Missing required property 'permission'");
             }
+            resourceInputs["datasourceType"] = args?.datasourceType;
             resourceInputs["datasourceUid"] = args?.datasourceUid;
             resourceInputs["orgId"] = args?.orgId;
             resourceInputs["permission"] = args?.permission;
@@ -163,6 +169,10 @@ export class DataSourcePermissionItem extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DataSourcePermissionItem resources.
  */
 export interface DataSourcePermissionItemState {
+    /**
+     * The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+     */
+    datasourceType?: pulumi.Input<string>;
     /**
      * The UID of the datasource.
      */
@@ -193,6 +203,10 @@ export interface DataSourcePermissionItemState {
  * The set of arguments for constructing a DataSourcePermissionItem resource.
  */
 export interface DataSourcePermissionItemArgs {
+    /**
+     * The plugin type of the datasource (e.g. "prometheus"). If set, skips the lookup of the datasource type from the API.
+     */
+    datasourceType?: pulumi.Input<string>;
     /**
      * The UID of the datasource.
      */

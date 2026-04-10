@@ -164,6 +164,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "apps/genericResource",
+  "fqn": "pulumiverse_grafana.apps",
+  "classes": {
+   "grafana:apps/genericResource:GenericResource": "GenericResource"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "apps/v0alpha1/playlist",
   "fqn": "pulumiverse_grafana.apps.v0alpha1",
   "classes": {
@@ -184,6 +192,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.apps.v0alpha1",
   "classes": {
    "grafana:apps/v0alpha1/provisioningRepository:ProvisioningRepository": "ProvisioningRepository"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "apps/v1/playlist",
+  "fqn": "pulumiverse_grafana.apps.v1",
+  "classes": {
+   "grafana:apps/v1/playlist:Playlist": "Playlist"
   }
  },
  {

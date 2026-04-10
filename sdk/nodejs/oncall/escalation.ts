@@ -59,7 +59,7 @@ export class Escalation extends pulumi.CustomResource {
      */
     declare public readonly groupToNotify: pulumi.Output<string | undefined>;
     /**
-     * Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
+     * Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*next*on*call*from*schedule, notify*user*group and notify*team*members
      */
     declare public readonly important: pulumi.Output<boolean | undefined>;
     /**
@@ -71,7 +71,7 @@ export class Escalation extends pulumi.CustomResource {
      */
     declare public readonly notifyIfTimeTo: pulumi.Output<string | undefined>;
     /**
-     * ID of a Schedule for notify*on*call*from*schedule type step.
+     * ID of a Schedule for notify*on*call*from*schedule or notify*next*on*call*from_schedule type step.
      */
     declare public readonly notifyOnCallFromSchedule: pulumi.Output<string | undefined>;
     /**
@@ -103,7 +103,7 @@ export class Escalation extends pulumi.CustomResource {
      */
     declare public readonly severity: pulumi.Output<string | undefined>;
     /**
-     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
+     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*next*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare*incident
      */
     declare public readonly type: pulumi.Output<string>;
 
@@ -190,7 +190,7 @@ export interface EscalationState {
      */
     groupToNotify?: pulumi.Input<string>;
     /**
-     * Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
+     * Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*next*on*call*from*schedule, notify*user*group and notify*team*members
      */
     important?: pulumi.Input<boolean>;
     /**
@@ -202,7 +202,7 @@ export interface EscalationState {
      */
     notifyIfTimeTo?: pulumi.Input<string>;
     /**
-     * ID of a Schedule for notify*on*call*from*schedule type step.
+     * ID of a Schedule for notify*on*call*from*schedule or notify*next*on*call*from_schedule type step.
      */
     notifyOnCallFromSchedule?: pulumi.Input<string>;
     /**
@@ -234,7 +234,7 @@ export interface EscalationState {
      */
     severity?: pulumi.Input<string>;
     /**
-     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
+     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*next*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare*incident
      */
     type?: pulumi.Input<string>;
 }
@@ -260,7 +260,7 @@ export interface EscalationArgs {
      */
     groupToNotify?: pulumi.Input<string>;
     /**
-     * Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*user*group and notify*team_members
+     * Will activate "important" personal notification rules. Actual for steps: notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*next*on*call*from*schedule, notify*user*group and notify*team*members
      */
     important?: pulumi.Input<boolean>;
     /**
@@ -272,7 +272,7 @@ export interface EscalationArgs {
      */
     notifyIfTimeTo?: pulumi.Input<string>;
     /**
-     * ID of a Schedule for notify*on*call*from*schedule type step.
+     * ID of a Schedule for notify*on*call*from*schedule or notify*next*on*call*from_schedule type step.
      */
     notifyOnCallFromSchedule?: pulumi.Input<string>;
     /**
@@ -304,7 +304,7 @@ export interface EscalationArgs {
      */
     severity?: pulumi.Input<string>;
     /**
-     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare_incident
+     * The type of escalation policy. Can be wait, notify*persons, notify*person*next*each*time, notify*on*call*from*schedule, notify*next*on*call*from*schedule, trigger*webhook, notify*user*group, resolve, notify*whole*channel, notify*if*time*from*to, notify*if*num*alerts*in*window, repeat*escalation, notify*team*members, declare*incident
      */
     type: pulumi.Input<string>;
 }

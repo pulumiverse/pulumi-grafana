@@ -19,6 +19,10 @@ namespace Pulumiverse.Grafana.Slo.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloAlertingSlowburnAnnotationResult> Annotations;
         /// <summary>
+        /// Enrichments to attach only to Slow Burn alerts.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetSlosSloAlertingSlowburnEnrichmentResult> Enrichments;
+        /// <summary>
         /// Labels to attach only to Slow Burn alerts.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloAlertingSlowburnLabelResult> Labels;
@@ -27,9 +31,12 @@ namespace Pulumiverse.Grafana.Slo.Outputs
         private GetSlosSloAlertingSlowburnResult(
             ImmutableArray<Outputs.GetSlosSloAlertingSlowburnAnnotationResult> annotations,
 
+            ImmutableArray<Outputs.GetSlosSloAlertingSlowburnEnrichmentResult> enrichments,
+
             ImmutableArray<Outputs.GetSlosSloAlertingSlowburnLabelResult> labels)
         {
             Annotations = annotations;
+            Enrichments = enrichments;
             Labels = labels;
         }
     }

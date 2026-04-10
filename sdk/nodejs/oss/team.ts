@@ -67,25 +67,23 @@ export class Team extends pulumi.CustomResource {
     /**
      * An email address for the team.
      */
-    declare public readonly email: pulumi.Output<string | undefined>;
+    declare public readonly email: pulumi.Output<string>;
     /**
-     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
-     * Team Sync can be provisioned using [grafana.enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be provisioned using [grafana.enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
      */
-    declare public readonly ignoreExternallySyncedMembers: pulumi.Output<boolean | undefined>;
+    declare public readonly ignoreExternallySyncedMembers: pulumi.Output<boolean>;
     /**
-     * A set of email addresses corresponding to users who should be given membership
-     * to the team. Note: users specified here must already exist in Grafana.
+     * A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
      */
-    declare public readonly members: pulumi.Output<string[] | undefined>;
+    declare public readonly members: pulumi.Output<string[]>;
     /**
      * The display name for the Grafana team created.
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
-    declare public readonly orgId: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string>;
     declare public readonly preferences: pulumi.Output<outputs.oss.TeamPreferences | undefined>;
     /**
      * The team id assigned to this team by Grafana.
@@ -93,8 +91,8 @@ export class Team extends pulumi.CustomResource {
     declare public /*out*/ readonly teamId: pulumi.Output<number>;
     /**
      * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
-     * 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-     * 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      */
     declare public readonly teamSync: pulumi.Output<outputs.oss.TeamTeamSync | undefined>;
     /**
@@ -152,13 +150,11 @@ export interface TeamState {
      */
     email?: pulumi.Input<string>;
     /**
-     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
-     * Team Sync can be provisioned using [grafana.enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be provisioned using [grafana.enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
      */
     ignoreExternallySyncedMembers?: pulumi.Input<boolean>;
     /**
-     * A set of email addresses corresponding to users who should be given membership
-     * to the team. Note: users specified here must already exist in Grafana.
+     * A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
      */
     members?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -166,7 +162,7 @@ export interface TeamState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     preferences?: pulumi.Input<inputs.oss.TeamPreferences>;
@@ -176,8 +172,8 @@ export interface TeamState {
     teamId?: pulumi.Input<number>;
     /**
      * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
-     * 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-     * 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      */
     teamSync?: pulumi.Input<inputs.oss.TeamTeamSync>;
     /**
@@ -195,13 +191,11 @@ export interface TeamArgs {
      */
     email?: pulumi.Input<string>;
     /**
-     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/).
-     * Team Sync can be provisioned using [grafana.enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
+     * Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be provisioned using [grafana.enterprise.TeamExternalGroup resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).
      */
     ignoreExternallySyncedMembers?: pulumi.Input<boolean>;
     /**
-     * A set of email addresses corresponding to users who should be given membership
-     * to the team. Note: users specified here must already exist in Grafana.
+     * A set of email addresses corresponding to users who should be given membership to the team. Note: users specified here must already exist in Grafana.
      */
     members?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -209,14 +203,14 @@ export interface TeamArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     preferences?: pulumi.Input<inputs.oss.TeamPreferences>;
     /**
      * Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
-     * 	* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-     * 	* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+     * * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
+     * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
      */
     teamSync?: pulumi.Input<inputs.oss.TeamTeamSync>;
 }

@@ -82,17 +82,17 @@ export class Report extends pulumi.CustomResource {
      */
     declare public readonly formats: pulumi.Output<string[] | undefined>;
     /**
-     * Whether to include a link to the dashboard in the report. Defaults to `true`.
+     * Whether to include a link to the dashboard in the report.
      */
-    declare public readonly includeDashboardLink: pulumi.Output<boolean | undefined>;
+    declare public readonly includeDashboardLink: pulumi.Output<boolean>;
     /**
-     * Whether to include a CSV file of table panel data. Defaults to `false`.
+     * Whether to include a CSV file of table panel data.
      */
-    declare public readonly includeTableCsv: pulumi.Output<boolean | undefined>;
+    declare public readonly includeTableCsv: pulumi.Output<boolean>;
     /**
-     * Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+     * Layout of the report. Allowed values: `simple`, `grid`.
      */
-    declare public readonly layout: pulumi.Output<string | undefined>;
+    declare public readonly layout: pulumi.Output<string>;
     /**
      * Message to be sent in the report.
      */
@@ -102,13 +102,13 @@ export class Report extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
-    declare public readonly orgId: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
-     * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+     * Orientation of the report. Allowed values: `landscape`, `portrait`.
      */
-    declare public readonly orientation: pulumi.Output<string | undefined>;
+    declare public readonly orientation: pulumi.Output<string>;
     /**
      * List of recipients of the report.
      */
@@ -118,9 +118,9 @@ export class Report extends pulumi.CustomResource {
      */
     declare public readonly replyTo: pulumi.Output<string | undefined>;
     /**
-     * Schedule of the report.
+     * (Required) Schedule of the report.
      */
-    declare public readonly schedule: pulumi.Output<outputs.enterprise.ReportSchedule>;
+    declare public readonly schedule: pulumi.Output<outputs.enterprise.ReportSchedule | undefined>;
 
     /**
      * Create a Report resource with the given unique name, arguments, and options.
@@ -151,9 +151,6 @@ export class Report extends pulumi.CustomResource {
             const args = argsOrState as ReportArgs | undefined;
             if (args?.recipients === undefined && !opts.urn) {
                 throw new Error("Missing required property 'recipients'");
-            }
-            if (args?.schedule === undefined && !opts.urn) {
-                throw new Error("Missing required property 'schedule'");
             }
             resourceInputs["dashboards"] = args?.dashboards;
             resourceInputs["formats"] = args?.formats;
@@ -188,15 +185,15 @@ export interface ReportState {
      */
     formats?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Whether to include a link to the dashboard in the report. Defaults to `true`.
+     * Whether to include a link to the dashboard in the report.
      */
     includeDashboardLink?: pulumi.Input<boolean>;
     /**
-     * Whether to include a CSV file of table panel data. Defaults to `false`.
+     * Whether to include a CSV file of table panel data.
      */
     includeTableCsv?: pulumi.Input<boolean>;
     /**
-     * Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+     * Layout of the report. Allowed values: `simple`, `grid`.
      */
     layout?: pulumi.Input<string>;
     /**
@@ -208,11 +205,11 @@ export interface ReportState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     /**
-     * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+     * Orientation of the report. Allowed values: `landscape`, `portrait`.
      */
     orientation?: pulumi.Input<string>;
     /**
@@ -224,7 +221,7 @@ export interface ReportState {
      */
     replyTo?: pulumi.Input<string>;
     /**
-     * Schedule of the report.
+     * (Required) Schedule of the report.
      */
     schedule?: pulumi.Input<inputs.enterprise.ReportSchedule>;
 }
@@ -242,15 +239,15 @@ export interface ReportArgs {
      */
     formats?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Whether to include a link to the dashboard in the report. Defaults to `true`.
+     * Whether to include a link to the dashboard in the report.
      */
     includeDashboardLink?: pulumi.Input<boolean>;
     /**
-     * Whether to include a CSV file of table panel data. Defaults to `false`.
+     * Whether to include a CSV file of table panel data.
      */
     includeTableCsv?: pulumi.Input<boolean>;
     /**
-     * Layout of the report. Allowed values: `simple`, `grid`. Defaults to `grid`.
+     * Layout of the report. Allowed values: `simple`, `grid`.
      */
     layout?: pulumi.Input<string>;
     /**
@@ -262,11 +259,11 @@ export interface ReportArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The Organization ID. If not set, the Org ID defined in the provider block will be used.
+     * The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
      */
     orgId?: pulumi.Input<string>;
     /**
-     * Orientation of the report. Allowed values: `landscape`, `portrait`. Defaults to `landscape`.
+     * Orientation of the report. Allowed values: `landscape`, `portrait`.
      */
     orientation?: pulumi.Input<string>;
     /**
@@ -278,7 +275,7 @@ export interface ReportArgs {
      */
     replyTo?: pulumi.Input<string>;
     /**
-     * Schedule of the report.
+     * (Required) Schedule of the report.
      */
-    schedule: pulumi.Input<inputs.enterprise.ReportSchedule>;
+    schedule?: pulumi.Input<inputs.enterprise.ReportSchedule>;
 }

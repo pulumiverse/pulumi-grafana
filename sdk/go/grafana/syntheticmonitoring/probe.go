@@ -66,7 +66,7 @@ type Probe struct {
 	DisableBrowserChecks pulumi.BoolPtrOutput `pulumi:"disableBrowserChecks"`
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks pulumi.BoolPtrOutput `pulumi:"disableScriptedChecks"`
-	// Custom labels to be included with collected metrics and logs.
+	// Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Latitude coordinates.
 	Latitude pulumi.Float64Output `pulumi:"latitude"`
@@ -131,7 +131,7 @@ type probeState struct {
 	DisableBrowserChecks *bool `pulumi:"disableBrowserChecks"`
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks *bool `pulumi:"disableScriptedChecks"`
-	// Custom labels to be included with collected metrics and logs.
+	// Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
 	Labels map[string]string `pulumi:"labels"`
 	// Latitude coordinates.
 	Latitude *float64 `pulumi:"latitude"`
@@ -154,7 +154,7 @@ type ProbeState struct {
 	DisableBrowserChecks pulumi.BoolPtrInput
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks pulumi.BoolPtrInput
-	// Custom labels to be included with collected metrics and logs.
+	// Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
 	Labels pulumi.StringMapInput
 	// Latitude coordinates.
 	Latitude pulumi.Float64PtrInput
@@ -179,7 +179,7 @@ type probeArgs struct {
 	DisableBrowserChecks *bool `pulumi:"disableBrowserChecks"`
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks *bool `pulumi:"disableScriptedChecks"`
-	// Custom labels to be included with collected metrics and logs.
+	// Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
 	Labels map[string]string `pulumi:"labels"`
 	// Latitude coordinates.
 	Latitude float64 `pulumi:"latitude"`
@@ -199,7 +199,7 @@ type ProbeArgs struct {
 	DisableBrowserChecks pulumi.BoolPtrInput
 	// Disables scripted checks for this probe. Defaults to `false`.
 	DisableScriptedChecks pulumi.BoolPtrInput
-	// Custom labels to be included with collected metrics and logs.
+	// Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
 	Labels pulumi.StringMapInput
 	// Latitude coordinates.
 	Latitude pulumi.Float64Input
@@ -315,7 +315,7 @@ func (o ProbeOutput) DisableScriptedChecks() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Probe) pulumi.BoolPtrOutput { return v.DisableScriptedChecks }).(pulumi.BoolPtrOutput)
 }
 
-// Custom labels to be included with collected metrics and logs.
+// Custom labels to be included with collected metrics and logs. The maximum number of labels for private probes is 3.
 func (o ProbeOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Probe) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
