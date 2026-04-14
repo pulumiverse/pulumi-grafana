@@ -2526,7 +2526,7 @@
             "grafana:assert/profileConfig:ProfileConfig": 0,
             "grafana:assert/promRuleFile:PromRuleFile": 0,
             "grafana:assert/stack:Stack": 0,
-            "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig": 0,
+            "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig": 1,
             "grafana:assert/thresholds:Thresholds": 0,
             "grafana:assert/traceConfig:TraceConfig": 0,
             "grafana:cloud/accessPolicy:AccessPolicy": 0,
