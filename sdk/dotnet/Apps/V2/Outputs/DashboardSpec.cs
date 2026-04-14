@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Apps.V2.Outputs
     public sealed class DashboardSpec
     {
         /// <summary>
-        /// The JSON representation of the dashboard v2 spec.
+        /// The JSON representation of the dashboard v2 spec. Must be the spec object only — not the full Kubernetes envelope. Use: json = jsonencode(jsondecode(file("dashboard.json")).spec)
         /// </summary>
         public readonly string Json;
         /// <summary>

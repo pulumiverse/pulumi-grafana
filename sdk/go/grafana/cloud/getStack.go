@@ -73,10 +73,14 @@ type LookupStackResult struct {
 	AlertmanagerUrl string `pulumi:"alertmanagerUrl"`
 	// User ID of the Alertmanager instance configured for this stack.
 	AlertmanagerUserId int `pulumi:"alertmanagerUserId"`
+	// Base URL of the Cloud Provider API for this stack's cluster. This can be used with the `cloudProviderUrl` provider config option to manage Cloud Provider resources for this stack.
+	CloudProviderUrl string `pulumi:"cloudProviderUrl"`
 	// Name of the cluster where this stack resides.
 	ClusterName string `pulumi:"clusterName"`
 	// Slug of the cluster where this stack resides.
 	ClusterSlug string `pulumi:"clusterSlug"`
+	// Base URL of the Connections API for this stack's cluster. This can be used with the `connectionsApiUrl` provider config option to manage Connections resources for this stack.
+	ConnectionsApiUrl string `pulumi:"connectionsApiUrl"`
 	// Whether to enable delete protection for the stack, preventing accidental deletion.
 	DeleteProtection bool `pulumi:"deleteProtection"`
 	// Description of stack.
@@ -226,6 +230,8 @@ type LookupStackResult struct {
 	// Subdomain that the Grafana instance will be available at (i.e. setting slug to “\n\n” will make the instance
 	// available at “https://\n\n.grafana.net".
 	Slug string `pulumi:"slug"`
+	// Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `smUrl` provider config option. Note: Synthetic Monitoring requires activation either via the `syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
+	SmUrl string `pulumi:"smUrl"`
 	// Status of the stack.
 	Status string `pulumi:"status"`
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
@@ -309,6 +315,11 @@ func (o LookupStackResultOutput) AlertmanagerUserId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupStackResult) int { return v.AlertmanagerUserId }).(pulumi.IntOutput)
 }
 
+// Base URL of the Cloud Provider API for this stack's cluster. This can be used with the `cloudProviderUrl` provider config option to manage Cloud Provider resources for this stack.
+func (o LookupStackResultOutput) CloudProviderUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.CloudProviderUrl }).(pulumi.StringOutput)
+}
+
 // Name of the cluster where this stack resides.
 func (o LookupStackResultOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.ClusterName }).(pulumi.StringOutput)
@@ -317,6 +328,11 @@ func (o LookupStackResultOutput) ClusterName() pulumi.StringOutput {
 // Slug of the cluster where this stack resides.
 func (o LookupStackResultOutput) ClusterSlug() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.ClusterSlug }).(pulumi.StringOutput)
+}
+
+// Base URL of the Connections API for this stack's cluster. This can be used with the `connectionsApiUrl` provider config option to manage Connections resources for this stack.
+func (o LookupStackResultOutput) ConnectionsApiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.ConnectionsApiUrl }).(pulumi.StringOutput)
 }
 
 // Whether to enable delete protection for the stack, preventing accidental deletion.
@@ -706,6 +722,11 @@ func (o LookupStackResultOutput) RegionSlug() pulumi.StringOutput {
 // available at “https://\n\n.grafana.net".
 func (o LookupStackResultOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.Slug }).(pulumi.StringOutput)
+}
+
+// Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `smUrl` provider config option. Note: Synthetic Monitoring requires activation either via the `syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
+func (o LookupStackResultOutput) SmUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.SmUrl }).(pulumi.StringOutput)
 }
 
 // Status of the stack.

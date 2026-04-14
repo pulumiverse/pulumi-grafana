@@ -82,11 +82,11 @@ export class Provider extends pulumi.ProviderResource {
      */
     declare public readonly k6Url: pulumi.Output<string | undefined>;
     /**
-     * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
+     * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the `auth` and `url` provider attributes instead.
      */
     declare public readonly oncallAccessToken: pulumi.Output<string | undefined>;
     /**
-     * An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
+     * A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.
      */
     declare public readonly oncallUrl: pulumi.Output<string | undefined>;
     /**
@@ -236,11 +236,11 @@ export interface ProviderArgs {
      */
     k6Url?: pulumi.Input<string>;
     /**
-     * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
+     * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the `auth` and `url` provider attributes instead.
      */
     oncallAccessToken?: pulumi.Input<string>;
     /**
-     * An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
+     * A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.
      */
     oncallUrl?: pulumi.Input<string>;
     /**

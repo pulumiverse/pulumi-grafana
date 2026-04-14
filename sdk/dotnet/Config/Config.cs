@@ -194,7 +194,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<string?> _oncallAccessToken = new __Value<string?>(() => __config.Get("oncallAccessToken") ?? Utilities.GetEnv("GRAFANA_ONCALL_ACCESS_TOKEN"));
         /// <summary>
-        /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
+        /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the `Auth` and `Url` provider attributes instead.
         /// </summary>
         public static string? OncallAccessToken
         {
@@ -204,7 +204,7 @@ namespace Pulumiverse.Grafana
 
         private static readonly __Value<string?> _oncallUrl = new __Value<string?>(() => __config.Get("oncallUrl") ?? Utilities.GetEnv("GRAFANA_ONCALL_URL"));
         /// <summary>
-        /// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
+        /// A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.
         /// </summary>
         public static string? OncallUrl
         {

@@ -82,6 +82,10 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly alertmanagerUserId: pulumi.Output<number>;
     /**
+     * Base URL of the Cloud Provider API for this stack's cluster. This can be used with the `cloudProviderUrl` provider config option to manage Cloud Provider resources for this stack.
+     */
+    declare public /*out*/ readonly cloudProviderUrl: pulumi.Output<string>;
+    /**
      * Name of the cluster where this stack resides.
      */
     declare public /*out*/ readonly clusterName: pulumi.Output<string>;
@@ -89,6 +93,10 @@ export class Stack extends pulumi.CustomResource {
      * Slug of the cluster where this stack resides.
      */
     declare public /*out*/ readonly clusterSlug: pulumi.Output<string>;
+    /**
+     * Base URL of the Connections API for this stack's cluster. This can be used with the `connectionsApiUrl` provider config option to manage Connections resources for this stack.
+     */
+    declare public /*out*/ readonly connectionsApiUrl: pulumi.Output<string>;
     /**
      * Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
      */
@@ -370,6 +378,10 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public readonly slug: pulumi.Output<string>;
     /**
+     * Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `smUrl` provider config option. Note: Synthetic Monitoring requires activation either via the `grafana.syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
+     */
+    declare public /*out*/ readonly smUrl: pulumi.Output<string>;
+    /**
      * Status of the stack.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -435,8 +447,10 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["alertmanagerStatus"] = state?.alertmanagerStatus;
             resourceInputs["alertmanagerUrl"] = state?.alertmanagerUrl;
             resourceInputs["alertmanagerUserId"] = state?.alertmanagerUserId;
+            resourceInputs["cloudProviderUrl"] = state?.cloudProviderUrl;
             resourceInputs["clusterName"] = state?.clusterName;
             resourceInputs["clusterSlug"] = state?.clusterSlug;
+            resourceInputs["connectionsApiUrl"] = state?.connectionsApiUrl;
             resourceInputs["deleteProtection"] = state?.deleteProtection;
             resourceInputs["description"] = state?.description;
             resourceInputs["fleetManagementName"] = state?.fleetManagementName;
@@ -516,6 +530,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["prometheusUserId"] = state?.prometheusUserId;
             resourceInputs["regionSlug"] = state?.regionSlug;
             resourceInputs["slug"] = state?.slug;
+            resourceInputs["smUrl"] = state?.smUrl;
             resourceInputs["status"] = state?.status;
             resourceInputs["tracesIpAllowListCname"] = state?.tracesIpAllowListCname;
             resourceInputs["tracesName"] = state?.tracesName;
@@ -549,8 +564,10 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["alertmanagerStatus"] = undefined /*out*/;
             resourceInputs["alertmanagerUrl"] = undefined /*out*/;
             resourceInputs["alertmanagerUserId"] = undefined /*out*/;
+            resourceInputs["cloudProviderUrl"] = undefined /*out*/;
             resourceInputs["clusterName"] = undefined /*out*/;
             resourceInputs["clusterSlug"] = undefined /*out*/;
+            resourceInputs["connectionsApiUrl"] = undefined /*out*/;
             resourceInputs["fleetManagementName"] = undefined /*out*/;
             resourceInputs["fleetManagementPrivateConnectivityInfoAvailabilityZoneIds"] = undefined /*out*/;
             resourceInputs["fleetManagementPrivateConnectivityInfoAvailabilityZones"] = undefined /*out*/;
@@ -624,6 +641,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["prometheusStatus"] = undefined /*out*/;
             resourceInputs["prometheusUrl"] = undefined /*out*/;
             resourceInputs["prometheusUserId"] = undefined /*out*/;
+            resourceInputs["smUrl"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["tracesIpAllowListCname"] = undefined /*out*/;
             resourceInputs["tracesName"] = undefined /*out*/;
@@ -666,6 +684,10 @@ export interface StackState {
      */
     alertmanagerUserId?: pulumi.Input<number>;
     /**
+     * Base URL of the Cloud Provider API for this stack's cluster. This can be used with the `cloudProviderUrl` provider config option to manage Cloud Provider resources for this stack.
+     */
+    cloudProviderUrl?: pulumi.Input<string>;
+    /**
      * Name of the cluster where this stack resides.
      */
     clusterName?: pulumi.Input<string>;
@@ -673,6 +695,10 @@ export interface StackState {
      * Slug of the cluster where this stack resides.
      */
     clusterSlug?: pulumi.Input<string>;
+    /**
+     * Base URL of the Connections API for this stack's cluster. This can be used with the `connectionsApiUrl` provider config option to manage Connections resources for this stack.
+     */
+    connectionsApiUrl?: pulumi.Input<string>;
     /**
      * Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
      */
@@ -953,6 +979,10 @@ export interface StackState {
      * Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
      */
     slug?: pulumi.Input<string>;
+    /**
+     * Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `smUrl` provider config option. Note: Synthetic Monitoring requires activation either via the `grafana.syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
+     */
+    smUrl?: pulumi.Input<string>;
     /**
      * Status of the stack.
      */

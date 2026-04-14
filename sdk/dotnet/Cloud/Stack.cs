@@ -80,6 +80,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<int> AlertmanagerUserId { get; private set; } = null!;
 
         /// <summary>
+        /// Base URL of the Cloud Provider API for this stack's cluster. This can be used with the `CloudProviderUrl` provider config option to manage Cloud Provider resources for this stack.
+        /// </summary>
+        [Output("cloudProviderUrl")]
+        public Output<string> CloudProviderUrl { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the cluster where this stack resides.
         /// </summary>
         [Output("clusterName")]
@@ -90,6 +96,12 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Output("clusterSlug")]
         public Output<string> ClusterSlug { get; private set; } = null!;
+
+        /// <summary>
+        /// Base URL of the Connections API for this stack's cluster. This can be used with the `ConnectionsApiUrl` provider config option to manage Connections resources for this stack.
+        /// </summary>
+        [Output("connectionsApiUrl")]
+        public Output<string> ConnectionsApiUrl { get; private set; } = null!;
 
         /// <summary>
         /// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `True`.
@@ -530,6 +542,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<string> Slug { get; private set; } = null!;
 
         /// <summary>
+        /// Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `SmUrl` provider config option. Note: Synthetic Monitoring requires activation either via the `grafana.syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
+        /// </summary>
+        [Output("smUrl")]
+        public Output<string> SmUrl { get; private set; } = null!;
+
+        /// <summary>
         /// Status of the stack.
         /// </summary>
         [Output("status")]
@@ -750,6 +768,12 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<int>? AlertmanagerUserId { get; set; }
 
         /// <summary>
+        /// Base URL of the Cloud Provider API for this stack's cluster. This can be used with the `CloudProviderUrl` provider config option to manage Cloud Provider resources for this stack.
+        /// </summary>
+        [Input("cloudProviderUrl")]
+        public Input<string>? CloudProviderUrl { get; set; }
+
+        /// <summary>
         /// Name of the cluster where this stack resides.
         /// </summary>
         [Input("clusterName")]
@@ -760,6 +784,12 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Input("clusterSlug")]
         public Input<string>? ClusterSlug { get; set; }
+
+        /// <summary>
+        /// Base URL of the Connections API for this stack's cluster. This can be used with the `ConnectionsApiUrl` provider config option to manage Connections resources for this stack.
+        /// </summary>
+        [Input("connectionsApiUrl")]
+        public Input<string>? ConnectionsApiUrl { get; set; }
 
         /// <summary>
         /// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `True`.
@@ -1348,6 +1378,12 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
+
+        /// <summary>
+        /// Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `SmUrl` provider config option. Note: Synthetic Monitoring requires activation either via the `grafana.syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
+        /// </summary>
+        [Input("smUrl")]
+        public Input<string>? SmUrl { get; set; }
 
         /// <summary>
         /// Status of the stack.

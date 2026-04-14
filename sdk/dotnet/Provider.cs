@@ -104,13 +104,13 @@ namespace Pulumiverse.Grafana
         public Output<string?> K6Url { get; private set; } = null!;
 
         /// <summary>
-        /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
+        /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the `Auth` and `Url` provider attributes instead.
         /// </summary>
         [Output("oncallAccessToken")]
         public Output<string?> OncallAccessToken { get; private set; } = null!;
 
         /// <summary>
-        /// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
+        /// A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.
         /// </summary>
         [Output("oncallUrl")]
         public Output<string?> OncallUrl { get; private set; } = null!;
@@ -373,7 +373,7 @@ namespace Pulumiverse.Grafana
         private Input<string>? _oncallAccessToken;
 
         /// <summary>
-        /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
+        /// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the `Auth` and `Url` provider attributes instead.
         /// </summary>
         public Input<string>? OncallAccessToken
         {
@@ -386,7 +386,7 @@ namespace Pulumiverse.Grafana
         }
 
         /// <summary>
-        /// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
+        /// A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.
         /// </summary>
         [Input("oncallUrl")]
         public Input<string>? OncallUrl { get; set; }

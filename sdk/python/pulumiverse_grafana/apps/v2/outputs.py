@@ -49,7 +49,7 @@ class DashboardMetadata(dict):
         """
         :param _builtins.str uid: The unique identifier of the resource.
         :param Mapping[str, _builtins.str] annotations: Annotations of the resource.
-        :param _builtins.str folder_uid: The UID of the folder to save the resource in.
+        :param _builtins.str folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
         :param _builtins.str url: The full URL of the resource.
         :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
         :param _builtins.str version: The version of the resource.
@@ -86,7 +86,7 @@ class DashboardMetadata(dict):
     @pulumi.getter(name="folderUid")
     def folder_uid(self) -> Optional[_builtins.str]:
         """
-        The UID of the folder to save the resource in.
+        The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
         """
         return pulumi.get(self, "folder_uid")
 
@@ -170,7 +170,7 @@ class DashboardSpec(dict):
                  tags: Optional[Sequence[_builtins.str]] = None,
                  title: Optional[_builtins.str] = None):
         """
-        :param _builtins.str json: The JSON representation of the dashboard v2 spec.
+        :param _builtins.str json: The JSON representation of the dashboard v2 spec. Must be the spec object only — not the full Kubernetes envelope. Use: json = jsonencode(jsondecode(file("dashboard.json")).spec)
         :param Sequence[_builtins.str] tags: The tags of the dashboard. If not set, the tags will be derived from the JSON spec.
         :param _builtins.str title: The title of the dashboard. If not set, the title will be derived from the JSON spec.
         """
@@ -184,7 +184,7 @@ class DashboardSpec(dict):
     @pulumi.getter
     def json(self) -> _builtins.str:
         """
-        The JSON representation of the dashboard v2 spec.
+        The JSON representation of the dashboard v2 spec. Must be the spec object only — not the full Kubernetes envelope. Use: json = jsonencode(jsondecode(file("dashboard.json")).spec)
         """
         return pulumi.get(self, "json")
 

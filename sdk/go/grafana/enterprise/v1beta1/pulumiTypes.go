@@ -248,7 +248,7 @@ func (o SecretKeeperActivationMetadataPtrOutput) Version() pulumi.StringPtrOutpu
 type SecretKeeperMetadata struct {
 	// Annotations of the resource.
 	Annotations map[string]string `pulumi:"annotations"`
-	// The UID of the folder to save the resource in.
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid *string `pulumi:"folderUid"`
 	// The unique identifier of the resource.
 	Uid string `pulumi:"uid"`
@@ -274,7 +274,7 @@ type SecretKeeperMetadataInput interface {
 type SecretKeeperMetadataArgs struct {
 	// Annotations of the resource.
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
-	// The UID of the folder to save the resource in.
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
 	// The unique identifier of the resource.
 	Uid pulumi.StringInput `pulumi:"uid"`
@@ -368,7 +368,7 @@ func (o SecretKeeperMetadataOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v SecretKeeperMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
-// The UID of the folder to save the resource in.
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 func (o SecretKeeperMetadataOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretKeeperMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
@@ -427,7 +427,7 @@ func (o SecretKeeperMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
 	}).(pulumi.StringMapOutput)
 }
 
-// The UID of the folder to save the resource in.
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 func (o SecretKeeperMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretKeeperMetadata) *string {
 		if v == nil {
@@ -1085,7 +1085,7 @@ func (o SecretKeeperSpecAwsAssumeRolePtrOutput) ExternalId() pulumi.StringPtrOut
 type SecretSecureValueMetadata struct {
 	// Annotations of the resource.
 	Annotations map[string]string `pulumi:"annotations"`
-	// The UID of the folder to save the resource in.
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid *string `pulumi:"folderUid"`
 	// The unique identifier of the resource.
 	Uid string `pulumi:"uid"`
@@ -1111,7 +1111,7 @@ type SecretSecureValueMetadataInput interface {
 type SecretSecureValueMetadataArgs struct {
 	// Annotations of the resource.
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
-	// The UID of the folder to save the resource in.
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
 	// The unique identifier of the resource.
 	Uid pulumi.StringInput `pulumi:"uid"`
@@ -1205,7 +1205,7 @@ func (o SecretSecureValueMetadataOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v SecretSecureValueMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
-// The UID of the folder to save the resource in.
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 func (o SecretSecureValueMetadataOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretSecureValueMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
@@ -1264,7 +1264,7 @@ func (o SecretSecureValueMetadataPtrOutput) Annotations() pulumi.StringMapOutput
 	}).(pulumi.StringMapOutput)
 }
 
-// The UID of the folder to save the resource in.
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 func (o SecretSecureValueMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretSecureValueMetadata) *string {
 		if v == nil {

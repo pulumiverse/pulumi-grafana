@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Apps.V2Beta1.Inputs
     public sealed class DashboardSpecArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The JSON representation of the dashboard v2beta1 spec.
+        /// The JSON representation of the dashboard v2beta1 spec. Must be the spec object only — not the full Kubernetes envelope. Use: json = jsonencode(jsondecode(file("dashboard.json")).spec)
         /// </summary>
         [Input("json", required: true)]
         public Input<string> Json { get; set; } = null!;

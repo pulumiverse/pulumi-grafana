@@ -67,6 +67,10 @@ export interface GetStackResult {
      */
     readonly alertmanagerUserId: number;
     /**
+     * Base URL of the Cloud Provider API for this stack's cluster. This can be used with the `cloudProviderUrl` provider config option to manage Cloud Provider resources for this stack.
+     */
+    readonly cloudProviderUrl: string;
+    /**
      * Name of the cluster where this stack resides.
      */
     readonly clusterName: string;
@@ -74,6 +78,10 @@ export interface GetStackResult {
      * Slug of the cluster where this stack resides.
      */
     readonly clusterSlug: string;
+    /**
+     * Base URL of the Connections API for this stack's cluster. This can be used with the `connectionsApiUrl` provider config option to manage Connections resources for this stack.
+     */
+    readonly connectionsApiUrl: string;
     /**
      * Whether to enable delete protection for the stack, preventing accidental deletion.
      */
@@ -359,6 +367,10 @@ export interface GetStackResult {
      * available at “https://\n\n.grafana.net".
      */
     readonly slug: string;
+    /**
+     * Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `smUrl` provider config option. Note: Synthetic Monitoring requires activation either via the `grafana.syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
+     */
+    readonly smUrl: string;
     /**
      * Status of the stack.
      */

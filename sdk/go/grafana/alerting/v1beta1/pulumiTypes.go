@@ -16,7 +16,7 @@ var _ = internal.GetEnvOrDefault
 type AlertEnrichmentMetadata struct {
 	// Annotations of the resource.
 	Annotations map[string]string `pulumi:"annotations"`
-	// The UID of the folder to save the resource in.
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid *string `pulumi:"folderUid"`
 	// The unique identifier of the resource.
 	Uid string `pulumi:"uid"`
@@ -42,7 +42,7 @@ type AlertEnrichmentMetadataInput interface {
 type AlertEnrichmentMetadataArgs struct {
 	// Annotations of the resource.
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
-	// The UID of the folder to save the resource in.
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
 	// The unique identifier of the resource.
 	Uid pulumi.StringInput `pulumi:"uid"`
@@ -136,7 +136,7 @@ func (o AlertEnrichmentMetadataOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v AlertEnrichmentMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
-// The UID of the folder to save the resource in.
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 func (o AlertEnrichmentMetadataOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertEnrichmentMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
@@ -195,7 +195,7 @@ func (o AlertEnrichmentMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
 	}).(pulumi.StringMapOutput)
 }
 
-// The UID of the folder to save the resource in.
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 func (o AlertEnrichmentMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertEnrichmentMetadata) *string {
 		if v == nil {
@@ -6577,7 +6577,7 @@ func (o AlertEnrichmentSpecStepSiftPtrOutput) Timeout() pulumi.StringPtrOutput {
 type NotificationsInhibitionRuleMetadata struct {
 	// Annotations of the resource.
 	Annotations map[string]string `pulumi:"annotations"`
-	// The UID of the folder to save the resource in.
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid *string `pulumi:"folderUid"`
 	// The unique identifier of the resource.
 	Uid string `pulumi:"uid"`
@@ -6603,7 +6603,7 @@ type NotificationsInhibitionRuleMetadataInput interface {
 type NotificationsInhibitionRuleMetadataArgs struct {
 	// Annotations of the resource.
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
-	// The UID of the folder to save the resource in.
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
 	// The unique identifier of the resource.
 	Uid pulumi.StringInput `pulumi:"uid"`
@@ -6697,7 +6697,7 @@ func (o NotificationsInhibitionRuleMetadataOutput) Annotations() pulumi.StringMa
 	return o.ApplyT(func(v NotificationsInhibitionRuleMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
-// The UID of the folder to save the resource in.
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 func (o NotificationsInhibitionRuleMetadataOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NotificationsInhibitionRuleMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
 }
@@ -6756,7 +6756,7 @@ func (o NotificationsInhibitionRuleMetadataPtrOutput) Annotations() pulumi.Strin
 	}).(pulumi.StringMapOutput)
 }
 
-// The UID of the folder to save the resource in.
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
 func (o NotificationsInhibitionRuleMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NotificationsInhibitionRuleMetadata) *string {
 		if v == nil {

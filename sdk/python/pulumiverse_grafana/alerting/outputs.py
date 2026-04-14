@@ -144,7 +144,7 @@ class AlertEnrichmentMetadata(dict):
         """
         :param _builtins.str uid: The unique identifier of the resource.
         :param Mapping[str, _builtins.str] annotations: Annotations of the resource.
-        :param _builtins.str folder_uid: The UID of the folder to save the resource in.
+        :param _builtins.str folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
         :param _builtins.str url: The full URL of the resource.
         :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
         :param _builtins.str version: The version of the resource.
@@ -181,7 +181,7 @@ class AlertEnrichmentMetadata(dict):
     @pulumi.getter(name="folderUid")
     def folder_uid(self) -> Optional[_builtins.str]:
         """
-        The UID of the folder to save the resource in.
+        The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
         """
         return pulumi.get(self, "folder_uid")
 
@@ -2020,7 +2020,7 @@ class AlertRuleV0Alpha1Metadata(dict):
         """
         :param _builtins.str uid: The unique identifier of the resource.
         :param Mapping[str, _builtins.str] annotations: Annotations of the resource.
-        :param _builtins.str folder_uid: The UID of the folder to save the resource in.
+        :param _builtins.str folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
         :param _builtins.str url: The full URL of the resource.
         :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
         :param _builtins.str version: The version of the resource.
@@ -2057,7 +2057,7 @@ class AlertRuleV0Alpha1Metadata(dict):
     @pulumi.getter(name="folderUid")
     def folder_uid(self) -> Optional[_builtins.str]:
         """
-        The UID of the folder to save the resource in.
+        The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
         """
         return pulumi.get(self, "folder_uid")
 
@@ -7369,7 +7369,7 @@ class RecordingRuleV0Alpha1Metadata(dict):
         """
         :param _builtins.str uid: The unique identifier of the resource.
         :param Mapping[str, _builtins.str] annotations: Annotations of the resource.
-        :param _builtins.str folder_uid: The UID of the folder to save the resource in.
+        :param _builtins.str folder_uid: The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
         :param _builtins.str url: The full URL of the resource.
         :param _builtins.str uuid: The globally unique identifier of a resource, used by the API for tracking.
         :param _builtins.str version: The version of the resource.
@@ -7406,7 +7406,7 @@ class RecordingRuleV0Alpha1Metadata(dict):
     @pulumi.getter(name="folderUid")
     def folder_uid(self) -> Optional[_builtins.str]:
         """
-        The UID of the folder to save the resource in.
+        The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
         """
         return pulumi.get(self, "folder_uid")
 
