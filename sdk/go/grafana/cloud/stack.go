@@ -67,10 +67,14 @@ type Stack struct {
 	AlertmanagerUrl pulumi.StringOutput `pulumi:"alertmanagerUrl"`
 	// User ID of the Alertmanager instance configured for this stack.
 	AlertmanagerUserId pulumi.IntOutput `pulumi:"alertmanagerUserId"`
+	// Base URL of the Cloud Provider API for this stack's cluster. This can be used with the `cloudProviderUrl` provider config option to manage Cloud Provider resources for this stack.
+	CloudProviderUrl pulumi.StringOutput `pulumi:"cloudProviderUrl"`
 	// Name of the cluster where this stack resides.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// Slug of the cluster where this stack resides.
 	ClusterSlug pulumi.StringOutput `pulumi:"clusterSlug"`
+	// Base URL of the Connections API for this stack's cluster. This can be used with the `connectionsApiUrl` provider config option to manage Connections resources for this stack.
+	ConnectionsApiUrl pulumi.StringOutput `pulumi:"connectionsApiUrl"`
 	// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
 	DeleteProtection pulumi.BoolPtrOutput `pulumi:"deleteProtection"`
 	// Description of stack.
@@ -217,6 +221,8 @@ type Stack struct {
 	RegionSlug pulumi.StringPtrOutput `pulumi:"regionSlug"`
 	// Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
 	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `smUrl` provider config option. Note: Synthetic Monitoring requires activation either via the `syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
+	SmUrl pulumi.StringOutput `pulumi:"smUrl"`
 	// Status of the stack.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
@@ -287,10 +293,14 @@ type stackState struct {
 	AlertmanagerUrl *string `pulumi:"alertmanagerUrl"`
 	// User ID of the Alertmanager instance configured for this stack.
 	AlertmanagerUserId *int `pulumi:"alertmanagerUserId"`
+	// Base URL of the Cloud Provider API for this stack's cluster. This can be used with the `cloudProviderUrl` provider config option to manage Cloud Provider resources for this stack.
+	CloudProviderUrl *string `pulumi:"cloudProviderUrl"`
 	// Name of the cluster where this stack resides.
 	ClusterName *string `pulumi:"clusterName"`
 	// Slug of the cluster where this stack resides.
 	ClusterSlug *string `pulumi:"clusterSlug"`
+	// Base URL of the Connections API for this stack's cluster. This can be used with the `connectionsApiUrl` provider config option to manage Connections resources for this stack.
+	ConnectionsApiUrl *string `pulumi:"connectionsApiUrl"`
 	// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
 	DeleteProtection *bool `pulumi:"deleteProtection"`
 	// Description of stack.
@@ -437,6 +447,8 @@ type stackState struct {
 	RegionSlug *string `pulumi:"regionSlug"`
 	// Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
 	Slug *string `pulumi:"slug"`
+	// Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `smUrl` provider config option. Note: Synthetic Monitoring requires activation either via the `syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
+	SmUrl *string `pulumi:"smUrl"`
 	// Status of the stack.
 	Status *string `pulumi:"status"`
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
@@ -475,10 +487,14 @@ type StackState struct {
 	AlertmanagerUrl pulumi.StringPtrInput
 	// User ID of the Alertmanager instance configured for this stack.
 	AlertmanagerUserId pulumi.IntPtrInput
+	// Base URL of the Cloud Provider API for this stack's cluster. This can be used with the `cloudProviderUrl` provider config option to manage Cloud Provider resources for this stack.
+	CloudProviderUrl pulumi.StringPtrInput
 	// Name of the cluster where this stack resides.
 	ClusterName pulumi.StringPtrInput
 	// Slug of the cluster where this stack resides.
 	ClusterSlug pulumi.StringPtrInput
+	// Base URL of the Connections API for this stack's cluster. This can be used with the `connectionsApiUrl` provider config option to manage Connections resources for this stack.
+	ConnectionsApiUrl pulumi.StringPtrInput
 	// Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
 	DeleteProtection pulumi.BoolPtrInput
 	// Description of stack.
@@ -625,6 +641,8 @@ type StackState struct {
 	RegionSlug pulumi.StringPtrInput
 	// Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
 	Slug pulumi.StringPtrInput
+	// Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `smUrl` provider config option. Note: Synthetic Monitoring requires activation either via the `syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
+	SmUrl pulumi.StringPtrInput
 	// Status of the stack.
 	Status pulumi.StringPtrInput
 	// Comma-separated list of CNAMEs that can be whitelisted to access the Traces instance (Optional)
@@ -811,6 +829,11 @@ func (o StackOutput) AlertmanagerUserId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Stack) pulumi.IntOutput { return v.AlertmanagerUserId }).(pulumi.IntOutput)
 }
 
+// Base URL of the Cloud Provider API for this stack's cluster. This can be used with the `cloudProviderUrl` provider config option to manage Cloud Provider resources for this stack.
+func (o StackOutput) CloudProviderUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.CloudProviderUrl }).(pulumi.StringOutput)
+}
+
 // Name of the cluster where this stack resides.
 func (o StackOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
@@ -819,6 +842,11 @@ func (o StackOutput) ClusterName() pulumi.StringOutput {
 // Slug of the cluster where this stack resides.
 func (o StackOutput) ClusterSlug() pulumi.StringOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.ClusterSlug }).(pulumi.StringOutput)
+}
+
+// Base URL of the Connections API for this stack's cluster. This can be used with the `connectionsApiUrl` provider config option to manage Connections resources for this stack.
+func (o StackOutput) ConnectionsApiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.ConnectionsApiUrl }).(pulumi.StringOutput)
 }
 
 // Whether to enable delete protection for the stack, preventing accidental deletion. Defaults to `true`.
@@ -1206,6 +1234,11 @@ func (o StackOutput) RegionSlug() pulumi.StringPtrOutput {
 // Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
 func (o StackOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
+}
+
+// Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `smUrl` provider config option. Note: Synthetic Monitoring requires activation either via the `syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
+func (o StackOutput) SmUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.SmUrl }).(pulumi.StringOutput)
 }
 
 // Status of the stack.

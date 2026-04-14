@@ -200,7 +200,7 @@
             },
             "oncallAccessToken": {
                 "type": "string",
-                "description": "A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.",
+                "description": "A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the \u003cspan pulumi-lang-nodejs=\"`auth`\" pulumi-lang-dotnet=\"`Auth`\" pulumi-lang-go=\"`auth`\" pulumi-lang-python=\"`auth`\" pulumi-lang-yaml=\"`auth`\" pulumi-lang-java=\"`auth`\"\u003e`auth`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`url`\" pulumi-lang-dotnet=\"`Url`\" pulumi-lang-go=\"`url`\" pulumi-lang-python=\"`url`\" pulumi-lang-yaml=\"`url`\" pulumi-lang-java=\"`url`\"\u003e`url`\u003c/span\u003e provider attributes instead.",
                 "defaultInfo": {
                     "environment": [
                         "GRAFANA_ONCALL_ACCESS_TOKEN"
@@ -210,7 +210,7 @@
             },
             "oncallUrl": {
                 "type": "string",
-                "description": "An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.",
+                "description": "A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.",
                 "defaultInfo": {
                     "environment": [
                         "GRAFANA_ONCALL_URL"
@@ -320,7 +320,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -1116,7 +1116,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -3348,7 +3348,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -3657,7 +3657,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -3844,7 +3844,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -3956,7 +3956,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -4752,7 +4752,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -4871,7 +4871,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -4965,7 +4965,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -5087,7 +5087,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -5338,7 +5338,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -5432,7 +5432,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -5514,7 +5514,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -5566,7 +5566,7 @@
             "properties": {
                 "json": {
                     "type": "string",
-                    "description": "The JSON representation of the dashboard v2 spec.\n"
+                    "description": "The JSON representation of the dashboard v2 spec. Must be the spec object only — not the full Kubernetes envelope. Use: json = jsonencode(jsondecode(file(\"dashboard.json\")).spec)\n"
                 },
                 "tags": {
                     "type": "array",
@@ -5596,7 +5596,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -5648,7 +5648,7 @@
             "properties": {
                 "json": {
                     "type": "string",
-                    "description": "The JSON representation of the dashboard v2beta1 spec.\n"
+                    "description": "The JSON representation of the dashboard v2beta1 spec. Must be the spec object only — not the full Kubernetes envelope. Use: json = jsonencode(jsondecode(file(\"dashboard.json\")).spec)\n"
                 },
                 "tags": {
                     "type": "array",
@@ -6167,7 +6167,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -6234,7 +6234,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -6365,7 +6365,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -6432,7 +6432,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -7419,7 +7419,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -7516,7 +7516,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -7608,7 +7608,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -7690,7 +7690,7 @@
                 },
                 "folderUid": {
                     "type": "string",
-                    "description": "The UID of the folder to save the resource in.\n"
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
                 },
                 "uid": {
                     "type": "string",
@@ -10927,12 +10927,12 @@
             },
             "oncallAccessToken": {
                 "type": "string",
-                "description": "A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.",
+                "description": "A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the \u003cspan pulumi-lang-nodejs=\"`auth`\" pulumi-lang-dotnet=\"`Auth`\" pulumi-lang-go=\"`auth`\" pulumi-lang-python=\"`auth`\" pulumi-lang-yaml=\"`auth`\" pulumi-lang-java=\"`auth`\"\u003e`auth`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`url`\" pulumi-lang-dotnet=\"`Url`\" pulumi-lang-go=\"`url`\" pulumi-lang-python=\"`url`\" pulumi-lang-yaml=\"`url`\" pulumi-lang-java=\"`url`\"\u003e`url`\u003c/span\u003e provider attributes instead.",
                 "secret": true
             },
             "oncallUrl": {
                 "type": "string",
-                "description": "An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable."
+                "description": "A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL."
             },
             "orgId": {
                 "type": "integer",
@@ -11087,7 +11087,7 @@
             },
             "oncallAccessToken": {
                 "type": "string",
-                "description": "A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.",
+                "description": "A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the \u003cspan pulumi-lang-nodejs=\"`auth`\" pulumi-lang-dotnet=\"`Auth`\" pulumi-lang-go=\"`auth`\" pulumi-lang-python=\"`auth`\" pulumi-lang-yaml=\"`auth`\" pulumi-lang-java=\"`auth`\"\u003e`auth`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`url`\" pulumi-lang-dotnet=\"`Url`\" pulumi-lang-go=\"`url`\" pulumi-lang-python=\"`url`\" pulumi-lang-yaml=\"`url`\" pulumi-lang-java=\"`url`\"\u003e`url`\u003c/span\u003e provider attributes instead.",
                 "defaultInfo": {
                     "environment": [
                         "GRAFANA_ONCALL_ACCESS_TOKEN"
@@ -11097,7 +11097,7 @@
             },
             "oncallUrl": {
                 "type": "string",
-                "description": "An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.",
+                "description": "A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.",
                 "defaultInfo": {
                     "environment": [
                         "GRAFANA_ONCALL_URL"
@@ -13588,8 +13588,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the disabled alert configuration.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The name of the disabled alert configuration.\n"
                 }
             },
             "stateInputs": {
@@ -13604,8 +13603,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the disabled alert configuration.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The name of the disabled alert configuration.\n"
                     }
                 },
                 "type": "object"
@@ -14731,6 +14729,10 @@
                     "type": "integer",
                     "description": "User ID of the Alertmanager instance configured for this stack.\n"
                 },
+                "cloudProviderUrl": {
+                    "type": "string",
+                    "description": "Base URL of the Cloud Provider API for this stack's cluster. This can be used with the \u003cspan pulumi-lang-nodejs=\"`cloudProviderUrl`\" pulumi-lang-dotnet=\"`CloudProviderUrl`\" pulumi-lang-go=\"`cloudProviderUrl`\" pulumi-lang-python=\"`cloud_provider_url`\" pulumi-lang-yaml=\"`cloudProviderUrl`\" pulumi-lang-java=\"`cloudProviderUrl`\"\u003e`cloudProviderUrl`\u003c/span\u003e provider config option to manage Cloud Provider resources for this stack.\n"
+                },
                 "clusterName": {
                     "type": "string",
                     "description": "Name of the cluster where this stack resides.\n"
@@ -14738,6 +14740,10 @@
                 "clusterSlug": {
                     "type": "string",
                     "description": "Slug of the cluster where this stack resides.\n"
+                },
+                "connectionsApiUrl": {
+                    "type": "string",
+                    "description": "Base URL of the Connections API for this stack's cluster. This can be used with the \u003cspan pulumi-lang-nodejs=\"`connectionsApiUrl`\" pulumi-lang-dotnet=\"`ConnectionsApiUrl`\" pulumi-lang-go=\"`connectionsApiUrl`\" pulumi-lang-python=\"`connections_api_url`\" pulumi-lang-yaml=\"`connectionsApiUrl`\" pulumi-lang-java=\"`connectionsApiUrl`\"\u003e`connectionsApiUrl`\u003c/span\u003e provider config option to manage Connections resources for this stack.\n"
                 },
                 "deleteProtection": {
                     "type": "boolean",
@@ -15118,6 +15124,10 @@
                     "type": "string",
                     "description": "Subdomain that the Grafana instance will be available at. Setting slug to `\u003cstack_slug\u003e` will make the instance available at `https://\u003cstack_slug\u003e.grafana.net`.\n"
                 },
+                "smUrl": {
+                    "type": "string",
+                    "description": "Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the \u003cspan pulumi-lang-nodejs=\"`smUrl`\" pulumi-lang-dotnet=\"`SmUrl`\" pulumi-lang-go=\"`smUrl`\" pulumi-lang-python=\"`sm_url`\" pulumi-lang-yaml=\"`smUrl`\" pulumi-lang-java=\"`smUrl`\"\u003e`smUrl`\u003c/span\u003e provider config option. Note: Synthetic Monitoring requires activation either via the \u003cspan pulumi-lang-nodejs=\"`grafana.syntheticMonitoring.Installation`\" pulumi-lang-dotnet=\"`grafana.syntheticMonitoring.Installation`\" pulumi-lang-go=\"`syntheticMonitoring.Installation`\" pulumi-lang-python=\"`syntheticMonitoring.Installation`\" pulumi-lang-yaml=\"`grafana.syntheticMonitoring.Installation`\" pulumi-lang-java=\"`grafana.syntheticMonitoring.Installation`\"\u003e`grafana.syntheticMonitoring.Installation`\u003c/span\u003e resource or manually in the Grafana Cloud UI before it can be used.\n"
+                },
                 "status": {
                     "type": "string",
                     "description": "Status of the stack.\n"
@@ -15187,8 +15197,10 @@
                 "alertmanagerStatus",
                 "alertmanagerUrl",
                 "alertmanagerUserId",
+                "cloudProviderUrl",
                 "clusterName",
                 "clusterSlug",
+                "connectionsApiUrl",
                 "fleetManagementName",
                 "fleetManagementPrivateConnectivityInfoAvailabilityZoneIds",
                 "fleetManagementPrivateConnectivityInfoAvailabilityZones",
@@ -15264,6 +15276,7 @@
                 "prometheusUrl",
                 "prometheusUserId",
                 "slug",
+                "smUrl",
                 "status",
                 "tracesIpAllowListCname",
                 "tracesName",
@@ -15345,6 +15358,10 @@
                         "type": "integer",
                         "description": "User ID of the Alertmanager instance configured for this stack.\n"
                     },
+                    "cloudProviderUrl": {
+                        "type": "string",
+                        "description": "Base URL of the Cloud Provider API for this stack's cluster. This can be used with the \u003cspan pulumi-lang-nodejs=\"`cloudProviderUrl`\" pulumi-lang-dotnet=\"`CloudProviderUrl`\" pulumi-lang-go=\"`cloudProviderUrl`\" pulumi-lang-python=\"`cloud_provider_url`\" pulumi-lang-yaml=\"`cloudProviderUrl`\" pulumi-lang-java=\"`cloudProviderUrl`\"\u003e`cloudProviderUrl`\u003c/span\u003e provider config option to manage Cloud Provider resources for this stack.\n"
+                    },
                     "clusterName": {
                         "type": "string",
                         "description": "Name of the cluster where this stack resides.\n"
@@ -15352,6 +15369,10 @@
                     "clusterSlug": {
                         "type": "string",
                         "description": "Slug of the cluster where this stack resides.\n"
+                    },
+                    "connectionsApiUrl": {
+                        "type": "string",
+                        "description": "Base URL of the Connections API for this stack's cluster. This can be used with the \u003cspan pulumi-lang-nodejs=\"`connectionsApiUrl`\" pulumi-lang-dotnet=\"`ConnectionsApiUrl`\" pulumi-lang-go=\"`connectionsApiUrl`\" pulumi-lang-python=\"`connections_api_url`\" pulumi-lang-yaml=\"`connectionsApiUrl`\" pulumi-lang-java=\"`connectionsApiUrl`\"\u003e`connectionsApiUrl`\u003c/span\u003e provider config option to manage Connections resources for this stack.\n"
                     },
                     "deleteProtection": {
                         "type": "boolean",
@@ -15732,6 +15753,10 @@
                     "slug": {
                         "type": "string",
                         "description": "Subdomain that the Grafana instance will be available at. Setting slug to `\u003cstack_slug\u003e` will make the instance available at `https://\u003cstack_slug\u003e.grafana.net`.\n"
+                    },
+                    "smUrl": {
+                        "type": "string",
+                        "description": "Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the \u003cspan pulumi-lang-nodejs=\"`smUrl`\" pulumi-lang-dotnet=\"`SmUrl`\" pulumi-lang-go=\"`smUrl`\" pulumi-lang-python=\"`sm_url`\" pulumi-lang-yaml=\"`smUrl`\" pulumi-lang-java=\"`smUrl`\"\u003e`smUrl`\u003c/span\u003e provider config option. Note: Synthetic Monitoring requires activation either via the \u003cspan pulumi-lang-nodejs=\"`grafana.syntheticMonitoring.Installation`\" pulumi-lang-dotnet=\"`grafana.syntheticMonitoring.Installation`\" pulumi-lang-go=\"`syntheticMonitoring.Installation`\" pulumi-lang-python=\"`syntheticMonitoring.Installation`\" pulumi-lang-yaml=\"`grafana.syntheticMonitoring.Installation`\" pulumi-lang-java=\"`grafana.syntheticMonitoring.Installation`\"\u003e`grafana.syntheticMonitoring.Installation`\u003c/span\u003e resource or manually in the Grafana Cloud UI before it can be used.\n"
                     },
                     "status": {
                         "type": "string",
@@ -24110,12 +24135,20 @@
                         "description": "User ID of the Alertmanager instance configured for this stack.\n",
                         "type": "integer"
                     },
+                    "cloudProviderUrl": {
+                        "description": "Base URL of the Cloud Provider API for this stack's cluster. This can be used with the \u003cspan pulumi-lang-nodejs=\"`cloudProviderUrl`\" pulumi-lang-dotnet=\"`CloudProviderUrl`\" pulumi-lang-go=\"`cloudProviderUrl`\" pulumi-lang-python=\"`cloud_provider_url`\" pulumi-lang-yaml=\"`cloudProviderUrl`\" pulumi-lang-java=\"`cloudProviderUrl`\"\u003e`cloudProviderUrl`\u003c/span\u003e provider config option to manage Cloud Provider resources for this stack.\n",
+                        "type": "string"
+                    },
                     "clusterName": {
                         "description": "Name of the cluster where this stack resides.\n",
                         "type": "string"
                     },
                     "clusterSlug": {
                         "description": "Slug of the cluster where this stack resides.\n",
+                        "type": "string"
+                    },
+                    "connectionsApiUrl": {
+                        "description": "Base URL of the Connections API for this stack's cluster. This can be used with the \u003cspan pulumi-lang-nodejs=\"`connectionsApiUrl`\" pulumi-lang-dotnet=\"`ConnectionsApiUrl`\" pulumi-lang-go=\"`connectionsApiUrl`\" pulumi-lang-python=\"`connections_api_url`\" pulumi-lang-yaml=\"`connectionsApiUrl`\" pulumi-lang-java=\"`connectionsApiUrl`\"\u003e`connectionsApiUrl`\u003c/span\u003e provider config option to manage Connections resources for this stack.\n",
                         "type": "string"
                     },
                     "deleteProtection": {
@@ -24501,6 +24534,10 @@
                         "description": "Subdomain that the Grafana instance will be available at (i.e. setting slug to “\\n\\n” will make the instance\navailable at “https://\\n\\n.grafana.net\".\n",
                         "type": "string"
                     },
+                    "smUrl": {
+                        "description": "Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the \u003cspan pulumi-lang-nodejs=\"`smUrl`\" pulumi-lang-dotnet=\"`SmUrl`\" pulumi-lang-go=\"`smUrl`\" pulumi-lang-python=\"`sm_url`\" pulumi-lang-yaml=\"`smUrl`\" pulumi-lang-java=\"`smUrl`\"\u003e`smUrl`\u003c/span\u003e provider config option. Note: Synthetic Monitoring requires activation either via the \u003cspan pulumi-lang-nodejs=\"`grafana.syntheticMonitoring.Installation`\" pulumi-lang-dotnet=\"`grafana.syntheticMonitoring.Installation`\" pulumi-lang-go=\"`syntheticMonitoring.Installation`\" pulumi-lang-python=\"`syntheticMonitoring.Installation`\" pulumi-lang-yaml=\"`grafana.syntheticMonitoring.Installation`\" pulumi-lang-java=\"`grafana.syntheticMonitoring.Installation`\"\u003e`grafana.syntheticMonitoring.Installation`\u003c/span\u003e resource or manually in the Grafana Cloud UI before it can be used.\n",
+                        "type": "string"
+                    },
                     "status": {
                         "description": "Status of the stack.\n",
                         "type": "string"
@@ -24562,8 +24599,10 @@
                     "alertmanagerStatus",
                     "alertmanagerUrl",
                     "alertmanagerUserId",
+                    "cloudProviderUrl",
                     "clusterName",
                     "clusterSlug",
+                    "connectionsApiUrl",
                     "deleteProtection",
                     "description",
                     "fleetManagementName",
@@ -24644,6 +24683,7 @@
                     "prometheusUserId",
                     "regionSlug",
                     "slug",
+                    "smUrl",
                     "status",
                     "tracesIpAllowListCname",
                     "tracesName",

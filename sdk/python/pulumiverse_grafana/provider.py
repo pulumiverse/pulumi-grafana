@@ -67,8 +67,8 @@ class ProviderArgs:
         :param pulumi.Input[_builtins.bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[_builtins.str] k6_access_token: The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[_builtins.str] k6_url: The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
-        :param pulumi.Input[_builtins.str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
-        :param pulumi.Input[_builtins.str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
+        :param pulumi.Input[_builtins.str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the `auth` and `url` provider attributes instead.
+        :param pulumi.Input[_builtins.str] oncall_url: A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.
         :param pulumi.Input[_builtins.int] org_id: The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
         :param pulumi.Input[_builtins.int] retries: The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRIES` environment variable.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] retry_status_codes: The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429 and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
@@ -366,7 +366,7 @@ class ProviderArgs:
     @pulumi.getter(name="oncallAccessToken")
     def oncall_access_token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
+        A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the `auth` and `url` provider attributes instead.
         """
         return pulumi.get(self, "oncall_access_token")
 
@@ -378,7 +378,7 @@ class ProviderArgs:
     @pulumi.getter(name="oncallUrl")
     def oncall_url(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
+        A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.
         """
         return pulumi.get(self, "oncall_url")
 
@@ -580,8 +580,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[_builtins.bool] insecure_skip_verify: Skip TLS certificate verification. May alternatively be set via the `GRAFANA_INSECURE_SKIP_VERIFY` environment variable.
         :param pulumi.Input[_builtins.str] k6_access_token: The k6 Cloud API token. May alternatively be set via the `GRAFANA_K6_ACCESS_TOKEN` environment variable.
         :param pulumi.Input[_builtins.str] k6_url: The k6 Cloud API url. May alternatively be set via the `GRAFANA_K6_URL` environment variable.
-        :param pulumi.Input[_builtins.str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
-        :param pulumi.Input[_builtins.str] oncall_url: An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
+        :param pulumi.Input[_builtins.str] oncall_access_token: A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the `auth` and `url` provider attributes instead.
+        :param pulumi.Input[_builtins.str] oncall_url: A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.
         :param pulumi.Input[_builtins.int] org_id: The Grafana org ID, if you are using a self-hosted OSS or enterprise Grafana instance. May alternatively be set via the `GRAFANA_ORG_ID` environment variable.
         :param pulumi.Input[_builtins.int] retries: The amount of retries to use for Grafana API and Grafana Cloud API calls. May alternatively be set via the `GRAFANA_RETRIES` environment variable.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] retry_status_codes: The status codes to retry on for Grafana API and Grafana Cloud API calls. Use `x` as a digit wildcard. Defaults to 429 and 5xx. May alternatively be set via the `GRAFANA_RETRY_STATUS_CODES` environment variable.
@@ -843,7 +843,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="oncallAccessToken")
     def oncall_access_token(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
+        A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the `auth` and `url` provider attributes instead.
         """
         return pulumi.get(self, "oncall_access_token")
 
@@ -851,7 +851,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="oncallUrl")
     def oncall_url(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
+        A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.
         """
         return pulumi.get(self, "oncall_url")
 

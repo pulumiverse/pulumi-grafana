@@ -131,7 +131,7 @@ func GetK6Url(ctx *pulumi.Context) string {
 	return config.Get(ctx, "grafana:k6Url")
 }
 
-// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
+// A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the `auth` and `url` provider attributes instead.
 func GetOncallAccessToken(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:oncallAccessToken")
 	if err == nil {
@@ -144,7 +144,7 @@ func GetOncallAccessToken(ctx *pulumi.Context) string {
 	return value
 }
 
-// An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
+// A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.
 func GetOncallUrl(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "grafana:oncallUrl")
 	if err == nil {

@@ -165,6 +165,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly int AlertmanagerUserId;
         /// <summary>
+        /// Base URL of the Cloud Provider API for this stack's cluster. This can be used with the `CloudProviderUrl` provider config option to manage Cloud Provider resources for this stack.
+        /// </summary>
+        public readonly string CloudProviderUrl;
+        /// <summary>
         /// Name of the cluster where this stack resides.
         /// </summary>
         public readonly string ClusterName;
@@ -172,6 +176,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// Slug of the cluster where this stack resides.
         /// </summary>
         public readonly string ClusterSlug;
+        /// <summary>
+        /// Base URL of the Connections API for this stack's cluster. This can be used with the `ConnectionsApiUrl` provider config option to manage Connections resources for this stack.
+        /// </summary>
+        public readonly string ConnectionsApiUrl;
         /// <summary>
         /// Whether to enable delete protection for the stack, preventing accidental deletion.
         /// </summary>
@@ -458,6 +466,10 @@ namespace Pulumiverse.Grafana.Cloud
         /// </summary>
         public readonly string Slug;
         /// <summary>
+        /// Base URL of the Synthetic Monitoring API for this stack's region. This can be used with the `SmUrl` provider config option. Note: Synthetic Monitoring requires activation either via the `grafana.syntheticMonitoring.Installation` resource or manually in the Grafana Cloud UI before it can be used.
+        /// </summary>
+        public readonly string SmUrl;
+        /// <summary>
         /// Status of the stack.
         /// </summary>
         public readonly string Status;
@@ -509,9 +521,13 @@ namespace Pulumiverse.Grafana.Cloud
 
             int alertmanagerUserId,
 
+            string cloudProviderUrl,
+
             string clusterName,
 
             string clusterSlug,
+
+            string connectionsApiUrl,
 
             bool deleteProtection,
 
@@ -673,6 +689,8 @@ namespace Pulumiverse.Grafana.Cloud
 
             string slug,
 
+            string smUrl,
+
             string status,
 
             string tracesIpAllowListCname,
@@ -702,8 +720,10 @@ namespace Pulumiverse.Grafana.Cloud
             AlertmanagerStatus = alertmanagerStatus;
             AlertmanagerUrl = alertmanagerUrl;
             AlertmanagerUserId = alertmanagerUserId;
+            CloudProviderUrl = cloudProviderUrl;
             ClusterName = clusterName;
             ClusterSlug = clusterSlug;
+            ConnectionsApiUrl = connectionsApiUrl;
             DeleteProtection = deleteProtection;
             Description = description;
             FleetManagementName = fleetManagementName;
@@ -784,6 +804,7 @@ namespace Pulumiverse.Grafana.Cloud
             PrometheusUserId = prometheusUserId;
             RegionSlug = regionSlug;
             Slug = slug;
+            SmUrl = smUrl;
             Status = status;
             TracesIpAllowListCname = tracesIpAllowListCname;
             TracesName = tracesName;

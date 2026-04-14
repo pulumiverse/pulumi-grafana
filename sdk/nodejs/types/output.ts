@@ -12,7 +12,7 @@ export namespace alerting {
          */
         annotations: {[key: string]: string};
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: string;
         /**
@@ -548,7 +548,7 @@ export namespace alerting {
          */
         annotations: {[key: string]: string};
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: string;
         /**
@@ -2092,7 +2092,7 @@ export namespace alerting {
          */
         annotations: {[key: string]: string};
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: string;
         /**
@@ -2304,7 +2304,7 @@ export namespace alerting {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -2431,7 +2431,7 @@ export namespace alerting {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -2506,7 +2506,7 @@ export namespace alerting {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -3042,7 +3042,7 @@ export namespace alerting {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -3108,7 +3108,7 @@ export namespace apps {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -3162,7 +3162,7 @@ export namespace apps {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -3243,7 +3243,7 @@ export namespace apps {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -3441,7 +3441,7 @@ export namespace apps {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -3498,7 +3498,7 @@ export namespace apps {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -3554,7 +3554,7 @@ export namespace apps {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -3588,7 +3588,7 @@ export namespace apps {
 
         export interface DashboardSpec {
             /**
-             * The JSON representation of the dashboard v2 spec.
+             * The JSON representation of the dashboard v2 spec. Must be the spec object only — not the full Kubernetes envelope. Use: json = jsonencode(jsondecode(file("dashboard.json")).spec)
              */
             json: string;
             /**
@@ -3610,7 +3610,7 @@ export namespace apps {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -3644,7 +3644,7 @@ export namespace apps {
 
         export interface DashboardSpec {
             /**
-             * The JSON representation of the dashboard v2beta1 spec.
+             * The JSON representation of the dashboard v2beta1 spec. Must be the spec object only — not the full Kubernetes envelope. Use: json = jsonencode(jsondecode(file("dashboard.json")).spec)
              */
             json: string;
             /**
@@ -3994,7 +3994,7 @@ export namespace cloud {
          */
         annotations: {[key: string]: string};
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: string;
         /**
@@ -4035,7 +4035,7 @@ export namespace cloud {
          */
         annotations: {[key: string]: string};
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: string;
         /**
@@ -4077,7 +4077,7 @@ export namespace cloud {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -4118,7 +4118,7 @@ export namespace cloud {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -4653,7 +4653,7 @@ export namespace enterprise {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -4720,7 +4720,7 @@ export namespace enterprise {
              */
             annotations: {[key: string]: string};
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: string;
             /**
@@ -4782,7 +4782,7 @@ export namespace experimental {
          */
         annotations: {[key: string]: string};
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: string;
         /**
@@ -4835,7 +4835,7 @@ export namespace experimental {
          */
         annotations: {[key: string]: string};
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: string;
         /**

@@ -184,7 +184,7 @@ Object.defineProperty(exports, "k6Url", {
 });
 
 /**
- * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable.
+ * A Grafana OnCall access token. May alternatively be set via the `GRAFANA_ONCALL_ACCESS_TOKEN` environment variable. This is only required when using a dedicated OnCall API token. When using Grafana Cloud, OnCall can be accessed through the `auth` and `url` provider attributes instead.
  */
 export declare const oncallAccessToken: string | undefined;
 Object.defineProperty(exports, "oncallAccessToken", {
@@ -195,7 +195,7 @@ Object.defineProperty(exports, "oncallAccessToken", {
 });
 
 /**
- * An Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable.
+ * A Grafana OnCall backend address. May alternatively be set via the `GRAFANA_ONCALL_URL` environment variable. This is only required when using Grafana OnCall OSS. In Grafana Cloud, the OnCall URL is automatically inferred from the Grafana instance URL.
  */
 export declare const oncallUrl: string | undefined;
 Object.defineProperty(exports, "oncallUrl", {

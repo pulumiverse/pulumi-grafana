@@ -12,7 +12,7 @@ export namespace alerting {
          */
         annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: pulumi.Input<string>;
         /**
@@ -548,7 +548,7 @@ export namespace alerting {
          */
         annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: pulumi.Input<string>;
         /**
@@ -2092,7 +2092,7 @@ export namespace alerting {
          */
         annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: pulumi.Input<string>;
         /**
@@ -2303,7 +2303,7 @@ export namespace alerting {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -2430,7 +2430,7 @@ export namespace alerting {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -2504,7 +2504,7 @@ export namespace alerting {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -3040,7 +3040,7 @@ export namespace alerting {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -3105,7 +3105,7 @@ export namespace apps {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -3159,7 +3159,7 @@ export namespace apps {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -3240,7 +3240,7 @@ export namespace apps {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -3437,7 +3437,7 @@ export namespace apps {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -3493,7 +3493,7 @@ export namespace apps {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -3548,7 +3548,7 @@ export namespace apps {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -3582,7 +3582,7 @@ export namespace apps {
 
         export interface DashboardSpec {
             /**
-             * The JSON representation of the dashboard v2 spec.
+             * The JSON representation of the dashboard v2 spec. Must be the spec object only — not the full Kubernetes envelope. Use: json = jsonencode(jsondecode(file("dashboard.json")).spec)
              */
             json: pulumi.Input<string>;
             /**
@@ -3603,7 +3603,7 @@ export namespace apps {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -3637,7 +3637,7 @@ export namespace apps {
 
         export interface DashboardSpec {
             /**
-             * The JSON representation of the dashboard v2beta1 spec.
+             * The JSON representation of the dashboard v2beta1 spec. Must be the spec object only — not the full Kubernetes envelope. Use: json = jsonencode(jsondecode(file("dashboard.json")).spec)
              */
             json: pulumi.Input<string>;
             /**
@@ -3969,7 +3969,7 @@ export namespace cloud {
          */
         annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: pulumi.Input<string>;
         /**
@@ -4010,7 +4010,7 @@ export namespace cloud {
          */
         annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: pulumi.Input<string>;
         /**
@@ -4051,7 +4051,7 @@ export namespace cloud {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -4092,7 +4092,7 @@ export namespace cloud {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -4843,7 +4843,7 @@ export namespace enterprise {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -4910,7 +4910,7 @@ export namespace enterprise {
              */
             annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
-             * The UID of the folder to save the resource in.
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
              */
             folderUid?: pulumi.Input<string>;
             /**
@@ -4971,7 +4971,7 @@ export namespace experimental {
          */
         annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: pulumi.Input<string>;
         /**
@@ -5024,7 +5024,7 @@ export namespace experimental {
          */
         annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
-         * The UID of the folder to save the resource in.
+         * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
          */
         folderUid?: pulumi.Input<string>;
         /**

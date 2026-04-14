@@ -19,7 +19,7 @@ namespace Pulumiverse.Grafana.Apps.V2.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Annotations;
         /// <summary>
-        /// The UID of the folder to save the resource in.
+        /// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
         /// </summary>
         public readonly string? FolderUid;
         /// <summary>
