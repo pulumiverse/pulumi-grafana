@@ -12,7 +12,6 @@ import (
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-// * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
 // * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
 //
 // ## Example Usage

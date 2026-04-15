@@ -45,6 +45,11 @@ export const getStack: typeof import("./getStack").getStack = null as any;
 export const getStackOutput: typeof import("./getStack").getStackOutput = null as any;
 utilities.lazyLoad(exports, ["getStack","getStackOutput"], () => require("./getStack"));
 
+export { IntegrationArgs, IntegrationState } from "./integration";
+export type Integration = import("./integration").Integration;
+export const Integration: typeof import("./integration").Integration = null as any;
+utilities.lazyLoad(exports, ["Integration"], () => require("./integration"));
+
 export { OrgMemberArgs, OrgMemberState } from "./orgMember";
 export type OrgMember = import("./orgMember").OrgMember;
 export const OrgMember: typeof import("./orgMember").OrgMember = null as any;
@@ -113,6 +118,8 @@ const _module = {
                 return new AccessPolicyRotatingToken(name, <any>undefined, { urn })
             case "grafana:cloud/accessPolicyToken:AccessPolicyToken":
                 return new AccessPolicyToken(name, <any>undefined, { urn })
+            case "grafana:cloud/integration:Integration":
+                return new Integration(name, <any>undefined, { urn })
             case "grafana:cloud/orgMember:OrgMember":
                 return new OrgMember(name, <any>undefined, { urn })
             case "grafana:cloud/pluginInstallation:PluginInstallation":
@@ -141,6 +148,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicy", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicyRotatingToken", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/accessPolicyToken", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloud/integration", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/orgMember", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/pluginInstallation", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/privateDataSourceConnectNetwork", _module)

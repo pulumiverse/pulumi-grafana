@@ -61,6 +61,7 @@
         "cloud/getPrivateDataSourceConnectNetworks.ts",
         "cloud/getStack.ts",
         "cloud/index.ts",
+        "cloud/integration.ts",
         "cloud/orgMember.ts",
         "cloud/pluginInstallation.ts",
         "cloud/privateDataSourceConnectNetwork.ts",
