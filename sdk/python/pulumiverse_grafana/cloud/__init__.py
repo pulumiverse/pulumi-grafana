@@ -14,6 +14,7 @@ from .get_ips import *
 from .get_organization import *
 from .get_private_data_source_connect_networks import *
 from .get_stack import *
+from .integration import *
 from .org_member import *
 from .plugin_installation import *
 from .private_data_source_connect_network import *

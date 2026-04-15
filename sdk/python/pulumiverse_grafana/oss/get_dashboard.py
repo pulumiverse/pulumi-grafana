@@ -175,7 +175,6 @@ def get_dashboard(dashboard_id: Optional[_builtins.int] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDashboardResult:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
     * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
 
     ## Example Usage
@@ -229,7 +228,6 @@ def get_dashboard_output(dashboard_id: Optional[pulumi.Input[Optional[_builtins.
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDashboardResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)
-    * [Folder/Dashboard Search HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder_dashboard_search/)
     * [Dashboard HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
 
     ## Example Usage

@@ -324,6 +324,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloud/integration",
+  "fqn": "pulumiverse_grafana.cloud",
+  "classes": {
+   "grafana:cloud/integration:Integration": "Integration"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloud/orgMember",
   "fqn": "pulumiverse_grafana.cloud",
   "classes": {
