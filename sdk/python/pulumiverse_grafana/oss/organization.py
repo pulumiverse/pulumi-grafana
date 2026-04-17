@@ -366,7 +366,7 @@ class Organization(pulumi.CustomResource):
                  __props__=None):
         """
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/org/)
 
         This resource represents an instance-scoped resource and uses Grafana's admin APIs.
         It does not work with API tokens or service accounts which are org-scoped.
@@ -438,7 +438,7 @@ class Organization(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/org/)
 
         This resource represents an instance-scoped resource and uses Grafana's admin APIs.
         It does not work with API tokens or service accounts which are org-scoped.

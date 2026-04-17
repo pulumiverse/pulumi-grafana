@@ -246,6 +246,8 @@ func (o ProductActivationAppO11yConfigMetadataPtrOutput) Version() pulumi.String
 }
 
 type ProductActivationAppO11yConfigOptions struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
 	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 	Overwrite *bool `pulumi:"overwrite"`
 }
@@ -262,6 +264,8 @@ type ProductActivationAppO11yConfigOptionsInput interface {
 }
 
 type ProductActivationAppO11yConfigOptionsArgs struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
 	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
 }
@@ -343,6 +347,11 @@ func (o ProductActivationAppO11yConfigOptionsOutput) ToProductActivationAppO11yC
 	}).(ProductActivationAppO11yConfigOptionsPtrOutput)
 }
 
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o ProductActivationAppO11yConfigOptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationAppO11yConfigOptions) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
 // Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 func (o ProductActivationAppO11yConfigOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ProductActivationAppO11yConfigOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
@@ -370,6 +379,16 @@ func (o ProductActivationAppO11yConfigOptionsPtrOutput) Elem() ProductActivation
 		var ret ProductActivationAppO11yConfigOptions
 		return ret
 	}).(ProductActivationAppO11yConfigOptionsOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o ProductActivationAppO11yConfigOptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationAppO11yConfigOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
 }
 
 // Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
@@ -752,6 +771,8 @@ func (o ProductActivationK8sO11yConfigMetadataPtrOutput) Version() pulumi.String
 }
 
 type ProductActivationK8sO11yConfigOptions struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
 	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 	Overwrite *bool `pulumi:"overwrite"`
 }
@@ -768,6 +789,8 @@ type ProductActivationK8sO11yConfigOptionsInput interface {
 }
 
 type ProductActivationK8sO11yConfigOptionsArgs struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
 	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
 }
@@ -849,6 +872,11 @@ func (o ProductActivationK8sO11yConfigOptionsOutput) ToProductActivationK8sO11yC
 	}).(ProductActivationK8sO11yConfigOptionsPtrOutput)
 }
 
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o ProductActivationK8sO11yConfigOptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationK8sO11yConfigOptions) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
 // Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 func (o ProductActivationK8sO11yConfigOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ProductActivationK8sO11yConfigOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
@@ -876,6 +904,16 @@ func (o ProductActivationK8sO11yConfigOptionsPtrOutput) Elem() ProductActivation
 		var ret ProductActivationK8sO11yConfigOptions
 		return ret
 	}).(ProductActivationK8sO11yConfigOptionsOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o ProductActivationK8sO11yConfigOptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationK8sO11yConfigOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
 }
 
 // Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.

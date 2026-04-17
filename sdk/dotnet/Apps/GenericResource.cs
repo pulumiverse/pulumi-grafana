@@ -114,6 +114,12 @@ namespace Pulumiverse.Grafana.Apps
         public Output<bool> AllowUiUpdates { get; private set; } = null!;
 
         /// <summary>
+        /// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Terraform workspaces targeting the same Grafana instance.
+        /// </summary>
+        [Output("managerIdentity")]
+        public Output<string?> ManagerIdentity { get; private set; } = null!;
+
+        /// <summary>
         /// Kubernetes-style manifest, typically from `yamldecode(file(...))` or `jsondecode(file(...))`. Must contain `apiVersion`, `Kind`, `Metadata` (with `Name` or `Uid`), and `Spec`. Use HCL `merge()` to inject Terraform variables. If you start from an exported manifest, remove noisy server-managed metadata such as `resourceVersion`, `Generation`, and `managedFields`, or import the resource first and use the normalized state shape. If `metadata.namespace` is set, it must match the namespace selected from provider `OrgId` or `StackId` / autodiscovery. Top-level manifest fields are limited to `apiVersion`, `Kind`, `Metadata`, `Spec`, and the ignored `Status` field. The `Secure` field must not be set here; use the top-level `Secure` argument instead.
         /// </summary>
         [Output("manifest")]
@@ -190,6 +196,12 @@ namespace Pulumiverse.Grafana.Apps
         public Input<bool>? AllowUiUpdates { get; set; }
 
         /// <summary>
+        /// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Terraform workspaces targeting the same Grafana instance.
+        /// </summary>
+        [Input("managerIdentity")]
+        public Input<string>? ManagerIdentity { get; set; }
+
+        /// <summary>
         /// Kubernetes-style manifest, typically from `yamldecode(file(...))` or `jsondecode(file(...))`. Must contain `apiVersion`, `Kind`, `Metadata` (with `Name` or `Uid`), and `Spec`. Use HCL `merge()` to inject Terraform variables. If you start from an exported manifest, remove noisy server-managed metadata such as `resourceVersion`, `Generation`, and `managedFields`, or import the resource first and use the normalized state shape. If `metadata.namespace` is set, it must match the namespace selected from provider `OrgId` or `StackId` / autodiscovery. Top-level manifest fields are limited to `apiVersion`, `Kind`, `Metadata`, `Spec`, and the ignored `Status` field. The `Secure` field must not be set here; use the top-level `Secure` argument instead.
         /// </summary>
         [Input("manifest")]
@@ -231,6 +243,12 @@ namespace Pulumiverse.Grafana.Apps
         /// </summary>
         [Input("allowUiUpdates")]
         public Input<bool>? AllowUiUpdates { get; set; }
+
+        /// <summary>
+        /// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Terraform workspaces targeting the same Grafana instance.
+        /// </summary>
+        [Input("managerIdentity")]
+        public Input<string>? ManagerIdentity { get; set; }
 
         /// <summary>
         /// Kubernetes-style manifest, typically from `yamldecode(file(...))` or `jsondecode(file(...))`. Must contain `apiVersion`, `Kind`, `Metadata` (with `Name` or `Uid`), and `Spec`. Use HCL `merge()` to inject Terraform variables. If you start from an exported manifest, remove noisy server-managed metadata such as `resourceVersion`, `Generation`, and `managedFields`, or import the resource first and use the normalized state shape. If `metadata.namespace` is set, it must match the namespace selected from provider `OrgId` or `StackId` / autodiscovery. Top-level manifest fields are limited to `apiVersion`, `Kind`, `Metadata`, `Spec`, and the ignored `Status` field. The `Secure` field must not be set here; use the top-level `Secure` argument instead.

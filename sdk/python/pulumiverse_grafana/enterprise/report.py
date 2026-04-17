@@ -442,7 +442,7 @@ class Report(pulumi.CustomResource):
         **Note:** This resource is available only with Grafana Enterprise 7.+.
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-reports/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/reporting/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/reporting/)
 
         ## Example Usage
 
@@ -501,7 +501,7 @@ class Report(pulumi.CustomResource):
         **Note:** This resource is available only with Grafana Enterprise 7.+.
 
         * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-reports/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/reporting/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/reporting/)
 
         ## Example Usage
 

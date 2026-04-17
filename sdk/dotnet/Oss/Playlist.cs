@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Oss
     /// Manages Grafana playlists.
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/playlist/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/playlist/)
     /// 
     /// ## Example Usage
     /// 

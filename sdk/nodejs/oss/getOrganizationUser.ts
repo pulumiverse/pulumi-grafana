@@ -6,7 +6,7 @@ import * as utilities from "../utilities";
 
 /**
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/#get-all-users-within-the-current-organization-lookup)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/org/#get-all-users-within-the-current-organization-lookup)
  *
  * ## Example Usage
  *
@@ -83,7 +83,7 @@ export interface GetOrganizationUserResult {
 }
 /**
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/#get-all-users-within-the-current-organization-lookup)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/org/#get-all-users-within-the-current-organization-lookup)
  *
  * ## Example Usage
  *

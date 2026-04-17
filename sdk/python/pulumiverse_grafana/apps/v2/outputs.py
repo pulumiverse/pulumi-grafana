@@ -122,6 +122,8 @@ class DashboardOptions(dict):
         suggest = None
         if key == "allowUiUpdates":
             suggest = "allow_ui_updates"
+        elif key == "managerIdentity":
+            suggest = "manager_identity"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in DashboardOptions. Access the value via the '{suggest}' property getter instead.")
@@ -136,13 +138,17 @@ class DashboardOptions(dict):
 
     def __init__(__self__, *,
                  allow_ui_updates: Optional[_builtins.bool] = None,
+                 manager_identity: Optional[_builtins.str] = None,
                  overwrite: Optional[_builtins.bool] = None):
         """
         :param _builtins.bool allow_ui_updates: Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
+        :param _builtins.str manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
         :param _builtins.bool overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         """
         if allow_ui_updates is not None:
             pulumi.set(__self__, "allow_ui_updates", allow_ui_updates)
+        if manager_identity is not None:
+            pulumi.set(__self__, "manager_identity", manager_identity)
         if overwrite is not None:
             pulumi.set(__self__, "overwrite", overwrite)
 
@@ -153,6 +159,14 @@ class DashboardOptions(dict):
         Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
         """
         return pulumi.get(self, "allow_ui_updates")
+
+    @_builtins.property
+    @pulumi.getter(name="managerIdentity")
+    def manager_identity(self) -> Optional[_builtins.str]:
+        """
+        Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        """
+        return pulumi.get(self, "manager_identity")
 
     @_builtins.property
     @pulumi.getter

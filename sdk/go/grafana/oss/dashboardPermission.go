@@ -14,7 +14,7 @@ import (
 
 // Manages the entire set of permissions for a dashboard. Permissions that aren't specified when applying this resource will be removed.
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard_permissions/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/dashboard_permissions/)
 //
 // ## Example Usage
 //

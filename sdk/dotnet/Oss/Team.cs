@@ -12,7 +12,7 @@ namespace Pulumiverse.Grafana.Oss
 {
     /// <summary>
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team/)
     /// 
     /// ## Example Usage
     /// 
@@ -97,7 +97,7 @@ namespace Pulumiverse.Grafana.Oss
         /// <summary>
         /// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
         /// </summary>
         [Output("teamSync")]
         public Output<Outputs.TeamTeamSync?> TeamSync { get; private set; } = null!;
@@ -201,7 +201,7 @@ namespace Pulumiverse.Grafana.Oss
         /// <summary>
         /// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
         /// </summary>
         [Input("teamSync")]
         public Input<Inputs.TeamTeamSyncArgs>? TeamSync { get; set; }
@@ -262,7 +262,7 @@ namespace Pulumiverse.Grafana.Oss
         /// <summary>
         /// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
         /// </summary>
         [Input("teamSync")]
         public Input<Inputs.TeamTeamSyncGetArgs>? TeamSync { get; set; }

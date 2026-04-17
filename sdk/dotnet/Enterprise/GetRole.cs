@@ -16,7 +16,7 @@ namespace Pulumiverse.Grafana.Enterprise
         /// **Note:** This resource is available only with Grafana Enterprise 8.+.
         /// 
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/access_control/)
         /// 
         /// ## Example Usage
         /// 
@@ -71,7 +71,7 @@ namespace Pulumiverse.Grafana.Enterprise
         /// **Note:** This resource is available only with Grafana Enterprise 8.+.
         /// 
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/access_control/)
         /// 
         /// ## Example Usage
         /// 
@@ -126,7 +126,7 @@ namespace Pulumiverse.Grafana.Enterprise
         /// **Note:** This resource is available only with Grafana Enterprise 8.+.
         /// 
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/access_control/)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/access_control/)
         /// 
         /// ## Example Usage
         /// 

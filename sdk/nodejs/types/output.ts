@@ -35,6 +35,10 @@ export namespace alerting {
 
     export interface AlertEnrichmentOptions {
         /**
+         * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+         */
+        managerIdentity?: string;
+        /**
          * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
          */
         overwrite?: boolean;
@@ -570,6 +574,10 @@ export namespace alerting {
     }
 
     export interface AlertRuleV0Alpha1Options {
+        /**
+         * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+         */
+        managerIdentity?: string;
         /**
          * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
          */
@@ -2115,6 +2123,10 @@ export namespace alerting {
 
     export interface RecordingRuleV0Alpha1Options {
         /**
+         * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+         */
+        managerIdentity?: string;
+        /**
          * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
          */
         overwrite?: boolean;
@@ -2327,6 +2339,10 @@ export namespace alerting {
 
         export interface AlertRuleOptions {
             /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
             overwrite?: boolean;
@@ -2454,6 +2470,10 @@ export namespace alerting {
 
         export interface RecordingRuleOptions {
             /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
             overwrite?: boolean;
@@ -2528,6 +2548,10 @@ export namespace alerting {
         }
 
         export interface AlertEnrichmentOptions {
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
             /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
@@ -3065,6 +3089,10 @@ export namespace alerting {
 
         export interface NotificationsInhibitionRuleOptions {
             /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
             overwrite?: boolean;
@@ -3131,6 +3159,10 @@ export namespace apps {
 
         export interface PlaylistOptions {
             /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
             overwrite?: boolean;
@@ -3184,6 +3216,10 @@ export namespace apps {
         }
 
         export interface ProvisioningConnectionOptions {
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
             /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
@@ -3265,6 +3301,10 @@ export namespace apps {
         }
 
         export interface ProvisioningRepositoryOptions {
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
             /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
@@ -3464,6 +3504,10 @@ export namespace apps {
 
         export interface PlaylistOptions {
             /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
             overwrite?: boolean;
@@ -3525,6 +3569,10 @@ export namespace apps {
              */
             allowUiUpdates?: boolean;
             /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
             overwrite?: boolean;
@@ -3581,6 +3629,10 @@ export namespace apps {
              */
             allowUiUpdates?: boolean;
             /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
             overwrite?: boolean;
@@ -3636,6 +3688,10 @@ export namespace apps {
              * Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
              */
             allowUiUpdates?: boolean;
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
             /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
@@ -4017,6 +4073,10 @@ export namespace cloud {
 
     export interface ProductActivationAppO11yConfigV1Alpha1Options {
         /**
+         * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+         */
+        managerIdentity?: string;
+        /**
          * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
          */
         overwrite?: boolean;
@@ -4057,6 +4117,10 @@ export namespace cloud {
     }
 
     export interface ProductActivationK8sO11yConfigV1Alpha1Options {
+        /**
+         * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+         */
+        managerIdentity?: string;
         /**
          * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
          */
@@ -4100,6 +4164,10 @@ export namespace cloud {
 
         export interface ProductActivationAppO11yConfigOptions {
             /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
             overwrite?: boolean;
@@ -4140,6 +4208,10 @@ export namespace cloud {
         }
 
         export interface ProductActivationK8sO11yConfigOptions {
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
             /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
@@ -4676,6 +4748,10 @@ export namespace enterprise {
 
         export interface SecretKeeperOptions {
             /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
             overwrite?: boolean;
@@ -4743,6 +4819,10 @@ export namespace enterprise {
 
         export interface SecretSecureValueOptions {
             /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: string;
+            /**
              * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
              */
             overwrite?: boolean;
@@ -4809,6 +4889,10 @@ export namespace experimental {
          */
         allowUiUpdates?: boolean;
         /**
+         * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+         */
+        managerIdentity?: string;
+        /**
          * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
          */
         overwrite?: boolean;
@@ -4857,6 +4941,10 @@ export namespace experimental {
     }
 
     export interface AppsPlaylistV0Alpha1Options {
+        /**
+         * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+         */
+        managerIdentity?: string;
         /**
          * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
          */

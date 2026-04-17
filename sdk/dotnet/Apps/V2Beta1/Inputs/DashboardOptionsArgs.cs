@@ -20,6 +20,12 @@ namespace Pulumiverse.Grafana.Apps.V2Beta1.Inputs
         public Input<bool>? AllowUiUpdates { get; set; }
 
         /// <summary>
+        /// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        /// </summary>
+        [Input("managerIdentity")]
+        public Input<string>? ManagerIdentity { get; set; }
+
+        /// <summary>
         /// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         /// </summary>
         [Input("overwrite")]

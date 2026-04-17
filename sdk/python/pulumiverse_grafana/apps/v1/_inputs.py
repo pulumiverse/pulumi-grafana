@@ -154,6 +154,10 @@ class PlaylistMetadataArgs:
 
 
 class PlaylistOptionsArgsDict(TypedDict):
+    manager_identity: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+    """
     overwrite: NotRequired[pulumi.Input[_builtins.bool]]
     """
     Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
@@ -162,12 +166,28 @@ class PlaylistOptionsArgsDict(TypedDict):
 @pulumi.input_type
 class PlaylistOptionsArgs:
     def __init__(__self__, *,
+                 manager_identity: Optional[pulumi.Input[_builtins.str]] = None,
                  overwrite: Optional[pulumi.Input[_builtins.bool]] = None):
         """
+        :param pulumi.Input[_builtins.str] manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
         :param pulumi.Input[_builtins.bool] overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         """
+        if manager_identity is not None:
+            pulumi.set(__self__, "manager_identity", manager_identity)
         if overwrite is not None:
             pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter(name="managerIdentity")
+    def manager_identity(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        """
+        return pulumi.get(self, "manager_identity")
+
+    @manager_identity.setter
+    def manager_identity(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "manager_identity", value)
 
     @_builtins.property
     @pulumi.getter

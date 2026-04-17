@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Oss
     {
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/preferences/#get-current-org-prefs)
         /// 
         /// ## Example Usage
         /// 
@@ -36,7 +36,7 @@ namespace Pulumiverse.Grafana.Oss
 
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/preferences/#get-current-org-prefs)
         /// 
         /// ## Example Usage
         /// 
@@ -58,7 +58,7 @@ namespace Pulumiverse.Grafana.Oss
 
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+        /// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/preferences/#get-current-org-prefs)
         /// 
         /// ## Example Usage
         /// 

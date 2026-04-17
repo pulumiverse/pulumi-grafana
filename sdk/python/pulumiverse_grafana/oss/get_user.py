@@ -115,7 +115,7 @@ def get_user(email: Optional[_builtins.str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserResult:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/user/)
 
     This data source uses Grafana's admin APIs for reading users which
     does not currently work with API Tokens. You must use basic auth.
@@ -164,7 +164,7 @@ def get_user_output(email: Optional[pulumi.Input[Optional[_builtins.str]]] = Non
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/user/)
 
     This data source uses Grafana's admin APIs for reading users which
     does not currently work with API Tokens. You must use basic auth.

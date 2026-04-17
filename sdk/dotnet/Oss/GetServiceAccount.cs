@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Oss
     {
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-        /// 		* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+        /// 		* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/serviceaccount/#service-account-api)
         /// 
         /// ## Example Usage
         /// 
@@ -46,7 +46,7 @@ namespace Pulumiverse.Grafana.Oss
 
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-        /// 		* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+        /// 		* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/serviceaccount/#service-account-api)
         /// 
         /// ## Example Usage
         /// 
@@ -78,7 +78,7 @@ namespace Pulumiverse.Grafana.Oss
 
         /// <summary>
         /// * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-        /// 		* [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+        /// 		* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/serviceaccount/#service-account-api)
         /// 
         /// ## Example Usage
         /// 

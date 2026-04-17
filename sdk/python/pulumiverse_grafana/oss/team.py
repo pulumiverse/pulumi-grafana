@@ -38,7 +38,7 @@ class TeamArgs:
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input['TeamTeamSyncArgs'] team_sync: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
                * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-               * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+               * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
         """
         if email is not None:
             pulumi.set(__self__, "email", email)
@@ -130,7 +130,7 @@ class TeamArgs:
         """
         Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
         * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
         """
         return pulumi.get(self, "team_sync")
 
@@ -162,7 +162,7 @@ class _TeamState:
         :param pulumi.Input[_builtins.int] team_id: The team id assigned to this team by Grafana.
         :param pulumi.Input['TeamTeamSyncArgs'] team_sync: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
                * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-               * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+               * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
         :param pulumi.Input[_builtins.str] team_uid: The team uid assigned to this team by Grafana.
         """
         if email is not None:
@@ -271,7 +271,7 @@ class _TeamState:
         """
         Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
         * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
         """
         return pulumi.get(self, "team_sync")
 
@@ -308,7 +308,7 @@ class Team(pulumi.CustomResource):
                  __props__=None):
         """
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team/)
 
         ## Example Usage
 
@@ -344,7 +344,7 @@ class Team(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.
         :param pulumi.Input[Union['TeamTeamSyncArgs', 'TeamTeamSyncArgsDict']] team_sync: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
                * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-               * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+               * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
         """
         ...
     @overload
@@ -354,7 +354,7 @@ class Team(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team/)
 
         ## Example Usage
 
@@ -457,7 +457,7 @@ class Team(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] team_id: The team id assigned to this team by Grafana.
         :param pulumi.Input[Union['TeamTeamSyncArgs', 'TeamTeamSyncArgsDict']] team_sync: Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
                * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-               * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+               * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
         :param pulumi.Input[_builtins.str] team_uid: The team uid assigned to this team by Grafana.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -534,7 +534,7 @@ class Team(pulumi.CustomResource):
         """
         Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
         * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
         """
         return pulumi.get(self, "team_sync")
 

@@ -248,6 +248,8 @@ func (o DashboardMetadataPtrOutput) Version() pulumi.StringPtrOutput {
 type DashboardOptions struct {
 	// Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
 	AllowUiUpdates *bool `pulumi:"allowUiUpdates"`
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
 	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 	Overwrite *bool `pulumi:"overwrite"`
 }
@@ -266,6 +268,8 @@ type DashboardOptionsInput interface {
 type DashboardOptionsArgs struct {
 	// Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
 	AllowUiUpdates pulumi.BoolPtrInput `pulumi:"allowUiUpdates"`
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
 	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
 }
@@ -352,6 +356,11 @@ func (o DashboardOptionsOutput) AllowUiUpdates() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DashboardOptions) *bool { return v.AllowUiUpdates }).(pulumi.BoolPtrOutput)
 }
 
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o DashboardOptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DashboardOptions) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
 // Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 func (o DashboardOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DashboardOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
@@ -389,6 +398,16 @@ func (o DashboardOptionsPtrOutput) AllowUiUpdates() pulumi.BoolPtrOutput {
 		}
 		return v.AllowUiUpdates
 	}).(pulumi.BoolPtrOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o DashboardOptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DashboardOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
 }
 
 // Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.

@@ -9,7 +9,7 @@ import * as utilities from "../utilities";
  * This can be used to bootstrap a management service account for a new stack
  *
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/serviceaccount/#service-account-api)
  *
  * Required access policy scopes:
  *
