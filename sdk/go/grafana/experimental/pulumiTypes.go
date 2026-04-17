@@ -248,6 +248,8 @@ func (o AppsDashboardMetadataPtrOutput) Version() pulumi.StringPtrOutput {
 type AppsDashboardOptions struct {
 	// Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
 	AllowUiUpdates *bool `pulumi:"allowUiUpdates"`
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
 	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 	Overwrite *bool `pulumi:"overwrite"`
 }
@@ -266,6 +268,8 @@ type AppsDashboardOptionsInput interface {
 type AppsDashboardOptionsArgs struct {
 	// Set to true to allow editing the resource from the Grafana UI. By default, resources managed by Terraform cannot be edited in the UI. Enabling this option will cause divergence between the Terraform configuration and the resource in Grafana.
 	AllowUiUpdates pulumi.BoolPtrInput `pulumi:"allowUiUpdates"`
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
 	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
 }
@@ -352,6 +356,11 @@ func (o AppsDashboardOptionsOutput) AllowUiUpdates() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AppsDashboardOptions) *bool { return v.AllowUiUpdates }).(pulumi.BoolPtrOutput)
 }
 
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o AppsDashboardOptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AppsDashboardOptions) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
 // Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 func (o AppsDashboardOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AppsDashboardOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
@@ -389,6 +398,16 @@ func (o AppsDashboardOptionsPtrOutput) AllowUiUpdates() pulumi.BoolPtrOutput {
 		}
 		return v.AllowUiUpdates
 	}).(pulumi.BoolPtrOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o AppsDashboardOptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AppsDashboardOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
 }
 
 // Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
@@ -809,6 +828,8 @@ func (o AppsPlaylistV0Alpha1MetadataPtrOutput) Version() pulumi.StringPtrOutput 
 }
 
 type AppsPlaylistV0Alpha1Options struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
 	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 	Overwrite *bool `pulumi:"overwrite"`
 }
@@ -825,6 +846,8 @@ type AppsPlaylistV0Alpha1OptionsInput interface {
 }
 
 type AppsPlaylistV0Alpha1OptionsArgs struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
 	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
 }
@@ -906,6 +929,11 @@ func (o AppsPlaylistV0Alpha1OptionsOutput) ToAppsPlaylistV0Alpha1OptionsPtrOutpu
 	}).(AppsPlaylistV0Alpha1OptionsPtrOutput)
 }
 
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o AppsPlaylistV0Alpha1OptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AppsPlaylistV0Alpha1Options) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
 // Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
 func (o AppsPlaylistV0Alpha1OptionsOutput) Overwrite() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AppsPlaylistV0Alpha1Options) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
@@ -933,6 +961,16 @@ func (o AppsPlaylistV0Alpha1OptionsPtrOutput) Elem() AppsPlaylistV0Alpha1Options
 		var ret AppsPlaylistV0Alpha1Options
 		return ret
 	}).(AppsPlaylistV0Alpha1OptionsOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o AppsPlaylistV0Alpha1OptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AppsPlaylistV0Alpha1Options) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
 }
 
 // Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.

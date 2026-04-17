@@ -12,7 +12,7 @@ import (
 )
 
 // * [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team/)
 //
 // ## Example Usage
 //
@@ -77,7 +77,7 @@ type Team struct {
 	TeamId pulumi.IntOutput `pulumi:"teamId"`
 	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
 	// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-	// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+	// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
 	TeamSync TeamTeamSyncPtrOutput `pulumi:"teamSync"`
 	// The team uid assigned to this team by Grafana.
 	TeamUid pulumi.StringOutput `pulumi:"teamUid"`
@@ -134,7 +134,7 @@ type teamState struct {
 	TeamId *int `pulumi:"teamId"`
 	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
 	// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-	// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+	// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
 	TeamSync *TeamTeamSync `pulumi:"teamSync"`
 	// The team uid assigned to this team by Grafana.
 	TeamUid *string `pulumi:"teamUid"`
@@ -156,7 +156,7 @@ type TeamState struct {
 	TeamId pulumi.IntPtrInput
 	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
 	// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-	// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+	// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
 	TeamSync TeamTeamSyncPtrInput
 	// The team uid assigned to this team by Grafana.
 	TeamUid pulumi.StringPtrInput
@@ -180,7 +180,7 @@ type teamArgs struct {
 	Preferences *TeamPreferences `pulumi:"preferences"`
 	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
 	// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-	// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+	// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
 	TeamSync *TeamTeamSync `pulumi:"teamSync"`
 }
 
@@ -199,7 +199,7 @@ type TeamArgs struct {
 	Preferences TeamPreferencesPtrInput
 	// Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
 	// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-	// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+	// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
 	TeamSync TeamTeamSyncPtrInput
 }
 
@@ -326,7 +326,7 @@ func (o TeamOutput) TeamId() pulumi.IntOutput {
 
 // Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.
 // * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)
-// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/team_sync/)
+// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)
 func (o TeamOutput) TeamSync() TeamTeamSyncPtrOutput {
 	return o.ApplyT(func(v *Team) TeamTeamSyncPtrOutput { return v.TeamSync }).(TeamTeamSyncPtrOutput)
 }

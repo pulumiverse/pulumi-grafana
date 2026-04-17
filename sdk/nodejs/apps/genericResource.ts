@@ -113,6 +113,10 @@ export class GenericResource extends pulumi.CustomResource {
      */
     declare public readonly allowUiUpdates: pulumi.Output<boolean>;
     /**
+     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Terraform workspaces targeting the same Grafana instance.
+     */
+    declare public readonly managerIdentity: pulumi.Output<string | undefined>;
+    /**
      * Kubernetes-style manifest, typically from `yamldecode(file(...))` or `jsondecode(file(...))`. Must contain `apiVersion`, `kind`, `metadata` (with `name` or `uid`), and `spec`. Use HCL `merge()` to inject Terraform variables. If you start from an exported manifest, remove noisy server-managed metadata such as `resourceVersion`, `generation`, and `managedFields`, or import the resource first and use the normalized state shape. If `metadata.namespace` is set, it must match the namespace selected from provider `orgId` or `stackId` / autodiscovery. Top-level manifest fields are limited to `apiVersion`, `kind`, `metadata`, `spec`, and the ignored `status` field. The `secure` field must not be set here; use the top-level `secure` argument instead.
      */
     declare public readonly manifest: pulumi.Output<any>;
@@ -140,12 +144,14 @@ export class GenericResource extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as GenericResourceState | undefined;
             resourceInputs["allowUiUpdates"] = state?.allowUiUpdates;
+            resourceInputs["managerIdentity"] = state?.managerIdentity;
             resourceInputs["manifest"] = state?.manifest;
             resourceInputs["secure"] = state?.secure;
             resourceInputs["secureVersion"] = state?.secureVersion;
         } else {
             const args = argsOrState as GenericResourceArgs | undefined;
             resourceInputs["allowUiUpdates"] = args?.allowUiUpdates;
+            resourceInputs["managerIdentity"] = args?.managerIdentity;
             resourceInputs["manifest"] = args?.manifest;
             resourceInputs["secure"] = args?.secure ? pulumi.secret(args.secure) : undefined;
             resourceInputs["secureVersion"] = args?.secureVersion;
@@ -165,6 +171,10 @@ export interface GenericResourceState {
      * Whether the resource can be edited from the Grafana UI. Defaults to `false` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `true` to allow UI modifications; not supported by all resources.
      */
     allowUiUpdates?: pulumi.Input<boolean>;
+    /**
+     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Terraform workspaces targeting the same Grafana instance.
+     */
+    managerIdentity?: pulumi.Input<string>;
     /**
      * Kubernetes-style manifest, typically from `yamldecode(file(...))` or `jsondecode(file(...))`. Must contain `apiVersion`, `kind`, `metadata` (with `name` or `uid`), and `spec`. Use HCL `merge()` to inject Terraform variables. If you start from an exported manifest, remove noisy server-managed metadata such as `resourceVersion`, `generation`, and `managedFields`, or import the resource first and use the normalized state shape. If `metadata.namespace` is set, it must match the namespace selected from provider `orgId` or `stackId` / autodiscovery. Top-level manifest fields are limited to `apiVersion`, `kind`, `metadata`, `spec`, and the ignored `status` field. The `secure` field must not be set here; use the top-level `secure` argument instead.
      */
@@ -188,6 +198,10 @@ export interface GenericResourceArgs {
      * Whether the resource can be edited from the Grafana UI. Defaults to `false` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `true` to allow UI modifications; not supported by all resources.
      */
     allowUiUpdates?: pulumi.Input<boolean>;
+    /**
+     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Terraform workspaces targeting the same Grafana instance.
+     */
+    managerIdentity?: pulumi.Input<string>;
     /**
      * Kubernetes-style manifest, typically from `yamldecode(file(...))` or `jsondecode(file(...))`. Must contain `apiVersion`, `kind`, `metadata` (with `name` or `uid`), and `spec`. Use HCL `merge()` to inject Terraform variables. If you start from an exported manifest, remove noisy server-managed metadata such as `resourceVersion`, `generation`, and `managedFields`, or import the resource first and use the normalized state shape. If `metadata.namespace` is set, it must match the namespace selected from provider `orgId` or `stackId` / autodiscovery. Top-level manifest fields are limited to `apiVersion`, `kind`, `metadata`, `spec`, and the ignored `status` field. The `secure` field must not be set here; use the top-level `secure` argument instead.
      */

@@ -20,6 +20,7 @@ __all__ = ['GenericResourceArgs', 'GenericResource']
 class GenericResourceArgs:
     def __init__(__self__, *,
                  allow_ui_updates: Optional[pulumi.Input[_builtins.bool]] = None,
+                 manager_identity: Optional[pulumi.Input[_builtins.str]] = None,
                  manifest: Optional[Any] = None,
                  secure: Optional[Any] = None,
                  secure_version: Optional[pulumi.Input[_builtins.int]] = None):
@@ -27,6 +28,7 @@ class GenericResourceArgs:
         The set of arguments for constructing a GenericResource resource.
 
         :param pulumi.Input[_builtins.bool] allow_ui_updates: Whether the resource can be edited from the Grafana UI. Defaults to `false` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `true` to allow UI modifications; not supported by all resources.
+        :param pulumi.Input[_builtins.str] manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Terraform workspaces targeting the same Grafana instance.
         :param Any manifest: Kubernetes-style manifest, typically from `yamldecode(file(...))` or `jsondecode(file(...))`. Must contain `apiVersion`, `kind`, `metadata` (with `name` or `uid`), and `spec`. Use HCL `merge()` to inject Terraform variables. If you start from an exported manifest, remove noisy server-managed metadata such as `resourceVersion`, `generation`, and `managedFields`, or import the resource first and use the normalized state shape. If `metadata.namespace` is set, it must match the namespace selected from provider `org_id` or `stack_id` / autodiscovery. Top-level manifest fields are limited to `apiVersion`, `kind`, `metadata`, `spec`, and the ignored `status` field. The `secure` field must not be set here; use the top-level `secure` argument instead.
         :param Any secure: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only secure values map. Each key must contain exactly one of `create` or `name`; empty objects are invalid.
@@ -34,6 +36,8 @@ class GenericResourceArgs:
         """
         if allow_ui_updates is not None:
             pulumi.set(__self__, "allow_ui_updates", allow_ui_updates)
+        if manager_identity is not None:
+            pulumi.set(__self__, "manager_identity", manager_identity)
         if manifest is not None:
             pulumi.set(__self__, "manifest", manifest)
         if secure is not None:
@@ -52,6 +56,18 @@ class GenericResourceArgs:
     @allow_ui_updates.setter
     def allow_ui_updates(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "allow_ui_updates", value)
+
+    @_builtins.property
+    @pulumi.getter(name="managerIdentity")
+    def manager_identity(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Terraform workspaces targeting the same Grafana instance.
+        """
+        return pulumi.get(self, "manager_identity")
+
+    @manager_identity.setter
+    def manager_identity(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "manager_identity", value)
 
     @_builtins.property
     @pulumi.getter
@@ -95,6 +111,7 @@ class GenericResourceArgs:
 class _GenericResourceState:
     def __init__(__self__, *,
                  allow_ui_updates: Optional[pulumi.Input[_builtins.bool]] = None,
+                 manager_identity: Optional[pulumi.Input[_builtins.str]] = None,
                  manifest: Optional[Any] = None,
                  secure: Optional[Any] = None,
                  secure_version: Optional[pulumi.Input[_builtins.int]] = None):
@@ -102,6 +119,7 @@ class _GenericResourceState:
         Input properties used for looking up and filtering GenericResource resources.
 
         :param pulumi.Input[_builtins.bool] allow_ui_updates: Whether the resource can be edited from the Grafana UI. Defaults to `false` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `true` to allow UI modifications; not supported by all resources.
+        :param pulumi.Input[_builtins.str] manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Terraform workspaces targeting the same Grafana instance.
         :param Any manifest: Kubernetes-style manifest, typically from `yamldecode(file(...))` or `jsondecode(file(...))`. Must contain `apiVersion`, `kind`, `metadata` (with `name` or `uid`), and `spec`. Use HCL `merge()` to inject Terraform variables. If you start from an exported manifest, remove noisy server-managed metadata such as `resourceVersion`, `generation`, and `managedFields`, or import the resource first and use the normalized state shape. If `metadata.namespace` is set, it must match the namespace selected from provider `org_id` or `stack_id` / autodiscovery. Top-level manifest fields are limited to `apiVersion`, `kind`, `metadata`, `spec`, and the ignored `status` field. The `secure` field must not be set here; use the top-level `secure` argument instead.
         :param Any secure: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only secure values map. Each key must contain exactly one of `create` or `name`; empty objects are invalid.
@@ -109,6 +127,8 @@ class _GenericResourceState:
         """
         if allow_ui_updates is not None:
             pulumi.set(__self__, "allow_ui_updates", allow_ui_updates)
+        if manager_identity is not None:
+            pulumi.set(__self__, "manager_identity", manager_identity)
         if manifest is not None:
             pulumi.set(__self__, "manifest", manifest)
         if secure is not None:
@@ -127,6 +147,18 @@ class _GenericResourceState:
     @allow_ui_updates.setter
     def allow_ui_updates(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "allow_ui_updates", value)
+
+    @_builtins.property
+    @pulumi.getter(name="managerIdentity")
+    def manager_identity(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Terraform workspaces targeting the same Grafana instance.
+        """
+        return pulumi.get(self, "manager_identity")
+
+    @manager_identity.setter
+    def manager_identity(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "manager_identity", value)
 
     @_builtins.property
     @pulumi.getter
@@ -173,6 +205,7 @@ class GenericResource(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_ui_updates: Optional[pulumi.Input[_builtins.bool]] = None,
+                 manager_identity: Optional[pulumi.Input[_builtins.str]] = None,
                  manifest: Optional[Any] = None,
                  secure: Optional[Any] = None,
                  secure_version: Optional[pulumi.Input[_builtins.int]] = None,
@@ -256,6 +289,7 @@ class GenericResource(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_ui_updates: Whether the resource can be edited from the Grafana UI. Defaults to `false` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `true` to allow UI modifications; not supported by all resources.
+        :param pulumi.Input[_builtins.str] manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Terraform workspaces targeting the same Grafana instance.
         :param Any manifest: Kubernetes-style manifest, typically from `yamldecode(file(...))` or `jsondecode(file(...))`. Must contain `apiVersion`, `kind`, `metadata` (with `name` or `uid`), and `spec`. Use HCL `merge()` to inject Terraform variables. If you start from an exported manifest, remove noisy server-managed metadata such as `resourceVersion`, `generation`, and `managedFields`, or import the resource first and use the normalized state shape. If `metadata.namespace` is set, it must match the namespace selected from provider `org_id` or `stack_id` / autodiscovery. Top-level manifest fields are limited to `apiVersion`, `kind`, `metadata`, `spec`, and the ignored `status` field. The `secure` field must not be set here; use the top-level `secure` argument instead.
         :param Any secure: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only secure values map. Each key must contain exactly one of `create` or `name`; empty objects are invalid.
@@ -359,6 +393,7 @@ class GenericResource(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_ui_updates: Optional[pulumi.Input[_builtins.bool]] = None,
+                 manager_identity: Optional[pulumi.Input[_builtins.str]] = None,
                  manifest: Optional[Any] = None,
                  secure: Optional[Any] = None,
                  secure_version: Optional[pulumi.Input[_builtins.int]] = None,
@@ -372,6 +407,7 @@ class GenericResource(pulumi.CustomResource):
             __props__ = GenericResourceArgs.__new__(GenericResourceArgs)
 
             __props__.__dict__["allow_ui_updates"] = allow_ui_updates
+            __props__.__dict__["manager_identity"] = manager_identity
             __props__.__dict__["manifest"] = manifest
             __props__.__dict__["secure"] = None if secure is None else pulumi.Output.secret(secure)
             __props__.__dict__["secure_version"] = secure_version
@@ -388,6 +424,7 @@ class GenericResource(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_ui_updates: Optional[pulumi.Input[_builtins.bool]] = None,
+            manager_identity: Optional[pulumi.Input[_builtins.str]] = None,
             manifest: Optional[Any] = None,
             secure: Optional[Any] = None,
             secure_version: Optional[pulumi.Input[_builtins.int]] = None) -> 'GenericResource':
@@ -399,6 +436,7 @@ class GenericResource(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_ui_updates: Whether the resource can be edited from the Grafana UI. Defaults to `false` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `true` to allow UI modifications; not supported by all resources.
+        :param pulumi.Input[_builtins.str] manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Terraform workspaces targeting the same Grafana instance.
         :param Any manifest: Kubernetes-style manifest, typically from `yamldecode(file(...))` or `jsondecode(file(...))`. Must contain `apiVersion`, `kind`, `metadata` (with `name` or `uid`), and `spec`. Use HCL `merge()` to inject Terraform variables. If you start from an exported manifest, remove noisy server-managed metadata such as `resourceVersion`, `generation`, and `managedFields`, or import the resource first and use the normalized state shape. If `metadata.namespace` is set, it must match the namespace selected from provider `org_id` or `stack_id` / autodiscovery. Top-level manifest fields are limited to `apiVersion`, `kind`, `metadata`, `spec`, and the ignored `status` field. The `secure` field must not be set here; use the top-level `secure` argument instead.
         :param Any secure: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only secure values map. Each key must contain exactly one of `create` or `name`; empty objects are invalid.
@@ -409,6 +447,7 @@ class GenericResource(pulumi.CustomResource):
         __props__ = _GenericResourceState.__new__(_GenericResourceState)
 
         __props__.__dict__["allow_ui_updates"] = allow_ui_updates
+        __props__.__dict__["manager_identity"] = manager_identity
         __props__.__dict__["manifest"] = manifest
         __props__.__dict__["secure"] = secure
         __props__.__dict__["secure_version"] = secure_version
@@ -421,6 +460,14 @@ class GenericResource(pulumi.CustomResource):
         Whether the resource can be edited from the Grafana UI. Defaults to `false` — Terraform-managed resources are locked from UI edits unless you opt in. Set to `true` to allow UI modifications; not supported by all resources.
         """
         return pulumi.get(self, "allow_ui_updates")
+
+    @_builtins.property
+    @pulumi.getter(name="managerIdentity")
+    def manager_identity(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Terraform workspaces targeting the same Grafana instance.
+        """
+        return pulumi.get(self, "manager_identity")
 
     @_builtins.property
     @pulumi.getter

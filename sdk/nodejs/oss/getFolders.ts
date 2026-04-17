@@ -8,7 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/folder/)
  *
  * ## Example Usage
  *
@@ -64,7 +64,7 @@ export interface GetFoldersResult {
 }
 /**
  * * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/folder/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/folder/)
  *
  * ## Example Usage
  *

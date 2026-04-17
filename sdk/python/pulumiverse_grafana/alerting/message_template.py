@@ -176,7 +176,7 @@ class MessageTemplate(pulumi.CustomResource):
         Manages Grafana Alerting notification template groups, including notification templates.
 
         * Official documentation
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#notification-template-groups)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/alerting_provisioning/#notification-template-groups)
 
         This resource requires Grafana 9.1.0 or later.
 
@@ -218,7 +218,7 @@ class MessageTemplate(pulumi.CustomResource):
         Manages Grafana Alerting notification template groups, including notification templates.
 
         * Official documentation
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#notification-template-groups)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/alerting_provisioning/#notification-template-groups)
 
         This resource requires Grafana 9.1.0 or later.
 

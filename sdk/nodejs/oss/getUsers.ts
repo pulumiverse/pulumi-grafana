@@ -8,7 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/user/)
  *
  * This data source uses Grafana's admin APIs for reading users which
  * does not currently work with API Tokens. You must use basic auth.
@@ -50,7 +50,7 @@ export interface GetUsersResult {
 }
 /**
  * * [Official documentation](https://grafana.com/docs/grafana/latest/administration/user-management/server-user-management/)
- * * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/user/)
+ * * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/user/)
  *
  * This data source uses Grafana's admin APIs for reading users which
  * does not currently work with API Tokens. You must use basic auth.

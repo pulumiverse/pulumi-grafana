@@ -101,7 +101,7 @@ def get_organization(name: Optional[_builtins.str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/org/)
 
     ## Example Usage
 
@@ -139,7 +139,7 @@ def get_organization_output(name: Optional[pulumi.Input[_builtins.str]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-    * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/org/)
+    * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/org/)
 
     ## Example Usage
 

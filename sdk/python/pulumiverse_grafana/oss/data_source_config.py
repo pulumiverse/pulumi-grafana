@@ -208,7 +208,7 @@ class DataSourceConfig(pulumi.CustomResource):
                  __props__=None):
         """
         * [Official documentation](https://grafana.com/docs/grafana/latest/datasources/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/data_source/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/data_source/)
 
         The required arguments for this resource vary depending on the type of data
         source selected (via the 'type' argument).
@@ -280,7 +280,7 @@ class DataSourceConfig(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         * [Official documentation](https://grafana.com/docs/grafana/latest/datasources/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/data_source/)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/data_source/)
 
         The required arguments for this resource vary depending on the type of data
         source selected (via the 'type' argument).

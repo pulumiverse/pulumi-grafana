@@ -15,13 +15,21 @@ namespace Pulumiverse.Grafana.Cloud.V1Alpha1.Outputs
     public sealed class ProductActivationAppO11yConfigOptions
     {
         /// <summary>
+        /// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        /// </summary>
+        public readonly string? ManagerIdentity;
+        /// <summary>
         /// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         /// </summary>
         public readonly bool? Overwrite;
 
         [OutputConstructor]
-        private ProductActivationAppO11yConfigOptions(bool? overwrite)
+        private ProductActivationAppO11yConfigOptions(
+            string? managerIdentity,
+
+            bool? overwrite)
         {
+            ManagerIdentity = managerIdentity;
             Overwrite = overwrite;
         }
     }

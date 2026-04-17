@@ -16,7 +16,7 @@ namespace Pulumiverse.Grafana.Alerting
     /// !&gt; This resource manages the entire notification policy tree and overwrites its policies. However, it does not overwrite internal policies created when alert rules directly set a contact point for notifications.
     /// 
     /// * Official documentation
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting_provisioning/#notification-policies)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/alerting_provisioning/#notification-policies)
     /// 
     /// This resource requires Grafana 9.1.0 or later.
     /// 

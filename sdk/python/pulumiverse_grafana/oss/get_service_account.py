@@ -102,7 +102,7 @@ def get_service_account(name: Optional[_builtins.str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceAccountResult:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-            * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+            * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/serviceaccount/#service-account-api)
 
     ## Example Usage
 
@@ -139,7 +139,7 @@ def get_service_account_output(name: Optional[pulumi.Input[_builtins.str]] = Non
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceAccountResult]:
     """
     * [Official documentation](https://grafana.com/docs/grafana/latest/administration/service-accounts/)
-            * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api)
+            * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/serviceaccount/#service-account-api)
 
     ## Example Usage
 

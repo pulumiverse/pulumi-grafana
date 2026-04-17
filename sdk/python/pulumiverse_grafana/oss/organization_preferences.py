@@ -208,7 +208,7 @@ class OrganizationPreferences(pulumi.CustomResource):
                  __props__=None):
         """
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/preferences/#get-current-org-prefs)
 
         ## Example Usage
 
@@ -245,7 +245,7 @@ class OrganizationPreferences(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         * [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)
-        * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/preferences/#get-current-org-prefs)
+        * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/preferences/#get-current-org-prefs)
 
         ## Example Usage
 

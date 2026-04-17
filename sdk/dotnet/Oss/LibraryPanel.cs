@@ -14,7 +14,7 @@ namespace Pulumiverse.Grafana.Oss
     /// Manages Grafana library panels.
     /// 
     /// * [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/)
-    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developers/http_api/library_element/)
+    /// * [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/library_element/)
     /// 
     /// ## Example Usage
     /// 

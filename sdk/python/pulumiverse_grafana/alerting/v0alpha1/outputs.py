@@ -124,13 +124,42 @@ class AlertRuleMetadata(dict):
 
 @pulumi.output_type
 class AlertRuleOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "managerIdentity":
+            suggest = "manager_identity"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertRuleOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertRuleOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertRuleOptions.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
+                 manager_identity: Optional[_builtins.str] = None,
                  overwrite: Optional[_builtins.bool] = None):
         """
+        :param _builtins.str manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
         :param _builtins.bool overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         """
+        if manager_identity is not None:
+            pulumi.set(__self__, "manager_identity", manager_identity)
         if overwrite is not None:
             pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter(name="managerIdentity")
+    def manager_identity(self) -> Optional[_builtins.str]:
+        """
+        Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        """
+        return pulumi.get(self, "manager_identity")
 
     @_builtins.property
     @pulumi.getter
@@ -563,13 +592,42 @@ class RecordingRuleMetadata(dict):
 
 @pulumi.output_type
 class RecordingRuleOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "managerIdentity":
+            suggest = "manager_identity"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RecordingRuleOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RecordingRuleOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RecordingRuleOptions.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
+                 manager_identity: Optional[_builtins.str] = None,
                  overwrite: Optional[_builtins.bool] = None):
         """
+        :param _builtins.str manager_identity: Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
         :param _builtins.bool overwrite: Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         """
+        if manager_identity is not None:
+            pulumi.set(__self__, "manager_identity", manager_identity)
         if overwrite is not None:
             pulumi.set(__self__, "overwrite", overwrite)
+
+    @_builtins.property
+    @pulumi.getter(name="managerIdentity")
+    def manager_identity(self) -> Optional[_builtins.str]:
+        """
+        Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        """
+        return pulumi.get(self, "manager_identity")
 
     @_builtins.property
     @pulumi.getter

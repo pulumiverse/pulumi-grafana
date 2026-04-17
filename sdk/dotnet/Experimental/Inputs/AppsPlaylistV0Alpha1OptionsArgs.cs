@@ -14,6 +14,12 @@ namespace Pulumiverse.Grafana.Experimental.Inputs
     public sealed class AppsPlaylistV0Alpha1OptionsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+        /// </summary>
+        [Input("managerIdentity")]
+        public Input<string>? ManagerIdentity { get; set; }
+
+        /// <summary>
         /// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         /// </summary>
         [Input("overwrite")]
