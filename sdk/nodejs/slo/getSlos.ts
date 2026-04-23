@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Datasource for retrieving all SLOs.
+ * Data source for retrieving all SLOs.
  *
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
  * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
@@ -65,10 +65,22 @@ import * as utilities from "../utilities";
  * const slos = grafana.slo.getSlos({});
  * ```
  */
-export function getSlos(opts?: pulumi.InvokeOptions): Promise<GetSlosResult> {
+export function getSlos(args?: GetSlosArgs, opts?: pulumi.InvokeOptions): Promise<GetSlosResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("grafana:slo/getSlos:getSlos", {
+        "slos": args.slos,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getSlos.
+ */
+export interface GetSlosArgs {
+    /**
+     * List of all SLOs.
+     */
+    slos?: inputs.slo.GetSlosSlo[];
 }
 
 /**
@@ -76,16 +88,16 @@ export function getSlos(opts?: pulumi.InvokeOptions): Promise<GetSlosResult> {
  */
 export interface GetSlosResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this datasource. This is a constant value.
      */
     readonly id: string;
     /**
-     * Returns a list of all SLOs"
+     * List of all SLOs.
      */
-    readonly slos: outputs.slo.GetSlosSlo[];
+    readonly slos?: outputs.slo.GetSlosSlo[];
 }
 /**
- * Datasource for retrieving all SLOs.
+ * Data source for retrieving all SLOs.
  *
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
  * * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
@@ -143,8 +155,20 @@ export interface GetSlosResult {
  * const slos = grafana.slo.getSlos({});
  * ```
  */
-export function getSlosOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSlosResult> {
+export function getSlosOutput(args?: GetSlosOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSlosResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("grafana:slo/getSlos:getSlos", {
+        "slos": args.slos,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getSlos.
+ */
+export interface GetSlosOutputArgs {
+    /**
+     * List of all SLOs.
+     */
+    slos?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloArgs>[]>;
 }

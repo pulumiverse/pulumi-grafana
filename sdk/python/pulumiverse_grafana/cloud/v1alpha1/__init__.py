@@ -7,6 +7,7 @@ from ... import _utilities
 import typing
 # Export this package's modules as members:
 from .product_activation_app_o11y_config import *
+from .product_activation_db_o11y_config import *
 from .product_activation_k8s_o11y_config import *
 from ._inputs import *
 from . import outputs

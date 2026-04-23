@@ -13,8 +13,8 @@ namespace Pulumiverse.Grafana.Slo
     public static class GetSlos
     {
         /// <summary>
-        /// Datasource for retrieving all SLOs.
-        /// 		
+        /// Data source for retrieving all SLOs.
+        /// 
         /// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
         /// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
         /// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
@@ -112,12 +112,12 @@ namespace Pulumiverse.Grafana.Slo
         /// });
         /// ```
         /// </summary>
-        public static Task<GetSlosResult> InvokeAsync(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetSlosResult>("grafana:slo/getSlos:getSlos", InvokeArgs.Empty, options.WithDefaults());
+        public static Task<GetSlosResult> InvokeAsync(GetSlosArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetSlosResult>("grafana:slo/getSlos:getSlos", args ?? new GetSlosArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Datasource for retrieving all SLOs.
-        /// 		
+        /// Data source for retrieving all SLOs.
+        /// 
         /// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
         /// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
         /// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
@@ -215,12 +215,12 @@ namespace Pulumiverse.Grafana.Slo
         /// });
         /// ```
         /// </summary>
-        public static Output<GetSlosResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetSlosResult>("grafana:slo/getSlos:getSlos", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetSlosResult> Invoke(GetSlosInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSlosResult>("grafana:slo/getSlos:getSlos", args ?? new GetSlosInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Datasource for retrieving all SLOs.
-        /// 		
+        /// Data source for retrieving all SLOs.
+        /// 
         /// * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
         /// * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
         /// * [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)
@@ -318,8 +318,49 @@ namespace Pulumiverse.Grafana.Slo
         /// });
         /// ```
         /// </summary>
-        public static Output<GetSlosResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<GetSlosResult>("grafana:slo/getSlos:getSlos", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetSlosResult> Invoke(GetSlosInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSlosResult>("grafana:slo/getSlos:getSlos", args ?? new GetSlosInvokeArgs(), options.WithDefaults());
+    }
+
+
+    public sealed class GetSlosArgs : global::Pulumi.InvokeArgs
+    {
+        [Input("slos")]
+        private List<Inputs.GetSlosSloArgs>? _slos;
+
+        /// <summary>
+        /// List of all SLOs.
+        /// </summary>
+        public List<Inputs.GetSlosSloArgs> Slos
+        {
+            get => _slos ?? (_slos = new List<Inputs.GetSlosSloArgs>());
+            set => _slos = value;
+        }
+
+        public GetSlosArgs()
+        {
+        }
+        public static new GetSlosArgs Empty => new GetSlosArgs();
+    }
+
+    public sealed class GetSlosInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        [Input("slos")]
+        private InputList<Inputs.GetSlosSloInputArgs>? _slos;
+
+        /// <summary>
+        /// List of all SLOs.
+        /// </summary>
+        public InputList<Inputs.GetSlosSloInputArgs> Slos
+        {
+            get => _slos ?? (_slos = new InputList<Inputs.GetSlosSloInputArgs>());
+            set => _slos = value;
+        }
+
+        public GetSlosInvokeArgs()
+        {
+        }
+        public static new GetSlosInvokeArgs Empty => new GetSlosInvokeArgs();
     }
 
 
@@ -327,11 +368,11 @@ namespace Pulumiverse.Grafana.Slo
     public sealed class GetSlosResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this datasource. This is a constant value.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Returns a list of all SLOs"
+        /// List of all SLOs.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloResult> Slos;
 

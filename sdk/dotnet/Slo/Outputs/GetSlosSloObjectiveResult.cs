@@ -15,11 +15,11 @@ namespace Pulumiverse.Grafana.Slo.Outputs
     public sealed class GetSlosSloObjectiveResult
     {
         /// <summary>
-        /// Value between 0 and 1. If the value of the query is above the objective, the SLO is met.
+        /// Objective value (between 0 and 1).
         /// </summary>
         public readonly double Value;
         /// <summary>
-        /// A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.
+        /// Time window for the objective.
         /// </summary>
         public readonly string Window;
 

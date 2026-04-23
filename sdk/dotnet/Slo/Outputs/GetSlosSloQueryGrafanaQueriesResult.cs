@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Slo.Outputs
     public sealed class GetSlosSloQueryGrafanaQueriesResult
     {
         /// <summary>
-        /// Query Object - Array of Grafana Query JSON objects
+        /// JSON string containing the Grafana queries.
         /// </summary>
         public readonly string GrafanaQueries;
 

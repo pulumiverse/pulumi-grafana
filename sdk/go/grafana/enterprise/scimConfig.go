@@ -12,11 +12,13 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
-// **Note:** This resource is available only with Grafana Enterprise.
+// **Note:** Available in [Grafana Enterprise](https://grafana.com/docs/grafana/latest/introduction/grafana-enterprise/) and [Grafana Cloud](https://grafana.com/docs/grafana-cloud/).
 //
-// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)
+// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-access/configure-scim-provisioning/)
 //
 // ## Example Usage
+//
+// ### Grafana Enterprise
 //
 // ```go
 // package main
@@ -31,6 +33,60 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := enterprise.NewScimConfig(ctx, "default", &enterprise.ScimConfigArgs{
+//				EnableUserSync:            pulumi.Bool(true),
+//				EnableGroupSync:           pulumi.Bool(false),
+//				RejectNonProvisionedUsers: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Grafana Cloud
+//
+// When using this resource against a Grafana Cloud stack authenticated with a stack service account token, the `stackId` attribute must be set on the provider block so the request is routed to the correct stack namespace. Without it, the API returns `403 authn.invalid-namespace`.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud"
+//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/enterprise"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myStack, err := cloud.NewStack(ctx, "my_stack", &cloud.StackArgs{
+//				Name: pulumi.String("my-stack"),
+//				Slug: pulumi.String("my-stack"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cloudSa, err := cloud.NewStackServiceAccount(ctx, "cloud_sa", &cloud.StackServiceAccountArgs{
+//				StackSlug: myStack.Slug,
+//				Name:      pulumi.String("scim-terraform"),
+//				Role:      pulumi.String("Admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloud.NewStackServiceAccountToken(ctx, "cloud_sa", &cloud.StackServiceAccountTokenArgs{
+//				StackSlug:        myStack.Slug,
+//				ServiceAccountId: cloudSa.ID(),
+//				Name:             pulumi.String("scim-terraform"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = enterprise.NewScimConfig(ctx, "default", &enterprise.ScimConfigArgs{
 //				EnableUserSync:            pulumi.Bool(true),
 //				EnableGroupSync:           pulumi.Bool(false),
 //				RejectNonProvisionedUsers: pulumi.Bool(false),

@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Slo.Outputs
     public sealed class GetSlosSloQueryFreeformResult
     {
         /// <summary>
-        /// Freeform Query Field - valid promQl
+        /// The PromQL query string.
         /// </summary>
         public readonly string Query;
 

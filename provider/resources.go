@@ -344,6 +344,9 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
+			"grafana_apps_productactivation_dbo11yconfig_v1alpha1": {
+				Tok: grafanaVersionedResource(cloudMod, "v1alpha1", "ProductActivationDbO11yConfig"),
+			},
 			"grafana_apps_productactivation_k8so11yconfig_v1alpha1": {
 				Tok: grafanaVersionedResource(cloudMod, "v1alpha1", "ProductActivationK8sO11yConfig"),
 				Aliases: []tfbridge.AliasInfo{

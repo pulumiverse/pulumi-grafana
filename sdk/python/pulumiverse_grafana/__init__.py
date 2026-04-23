@@ -420,6 +420,14 @@ _utilities.register(
  },
  {
   "pkg": "grafana",
+  "mod": "cloud/v1alpha1/productActivationDbO11yConfig",
+  "fqn": "pulumiverse_grafana.cloud.v1alpha1",
+  "classes": {
+   "grafana:cloud/v1alpha1/productActivationDbO11yConfig:ProductActivationDbO11yConfig": "ProductActivationDbO11yConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
   "mod": "cloud/v1alpha1/productActivationK8sO11yConfig",
   "fqn": "pulumiverse_grafana.cloud.v1alpha1",
   "classes": {

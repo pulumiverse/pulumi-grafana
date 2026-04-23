@@ -1893,10 +1893,12 @@ func (o SLOObjectiveArrayOutput) Index(i pulumi.IntInput) SLOObjectiveOutput {
 }
 
 type SLOQuery struct {
+	// Freeform query configuration.
 	Freeform *SLOQueryFreeform `pulumi:"freeform"`
 	// Array for holding a set of grafana queries
 	GrafanaQueries *SLOQueryGrafanaQueries `pulumi:"grafanaQueries"`
-	Ratio          *SLOQueryRatio          `pulumi:"ratio"`
+	// Ratio query configuration.
+	Ratio *SLOQueryRatio `pulumi:"ratio"`
 	// Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
 	Type string `pulumi:"type"`
 }
@@ -1913,10 +1915,12 @@ type SLOQueryInput interface {
 }
 
 type SLOQueryArgs struct {
+	// Freeform query configuration.
 	Freeform SLOQueryFreeformPtrInput `pulumi:"freeform"`
 	// Array for holding a set of grafana queries
 	GrafanaQueries SLOQueryGrafanaQueriesPtrInput `pulumi:"grafanaQueries"`
-	Ratio          SLOQueryRatioPtrInput          `pulumi:"ratio"`
+	// Ratio query configuration.
+	Ratio SLOQueryRatioPtrInput `pulumi:"ratio"`
 	// Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
 	Type pulumi.StringInput `pulumi:"type"`
 }
@@ -1972,6 +1976,7 @@ func (o SLOQueryOutput) ToSLOQueryOutputWithContext(ctx context.Context) SLOQuer
 	return o
 }
 
+// Freeform query configuration.
 func (o SLOQueryOutput) Freeform() SLOQueryFreeformPtrOutput {
 	return o.ApplyT(func(v SLOQuery) *SLOQueryFreeform { return v.Freeform }).(SLOQueryFreeformPtrOutput)
 }
@@ -1981,6 +1986,7 @@ func (o SLOQueryOutput) GrafanaQueries() SLOQueryGrafanaQueriesPtrOutput {
 	return o.ApplyT(func(v SLOQuery) *SLOQueryGrafanaQueries { return v.GrafanaQueries }).(SLOQueryGrafanaQueriesPtrOutput)
 }
 
+// Ratio query configuration.
 func (o SLOQueryOutput) Ratio() SLOQueryRatioPtrOutput {
 	return o.ApplyT(func(v SLOQuery) *SLOQueryRatio { return v.Ratio }).(SLOQueryRatioPtrOutput)
 }
@@ -2460,29 +2466,23 @@ func (o SLOQueryRatioPtrOutput) TotalMetric() pulumi.StringPtrOutput {
 }
 
 type GetSlosSlo struct {
-	// Configures the alerting rules that will be generated for each
-	// 				time window associated with the SLO. Grafana SLOs can generate
-	// 				alerts when the short-term error budget burn is very high, the
-	// 				long-term error budget burn rate is high, or when the remaining
-	// 				error budget is below a certain threshold. Annotations and Labels support templating.
+	// Alerting configuration for the SLO.
 	Alertings []GetSlosSloAlerting `pulumi:"alertings"`
-	// Description is a free-text field that can provide more context to an SLO.
+	// Description of the SLO.
 	Description string `pulumi:"description"`
-	// Destination Datasource sets the datasource defined for an SLO
+	// Destination datasource configuration.
 	DestinationDatasources []GetSlosSloDestinationDatasource `pulumi:"destinationDatasources"`
-	// UID for the SLO folder
-	FolderUid string `pulumi:"folderUid"`
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
+	// Labels attached to the SLO.
 	Labels []GetSlosSloLabel `pulumi:"labels"`
-	// Name should be a short description of your indicator. Consider names like "API Availability"
+	// Name of the SLO.
 	Name string `pulumi:"name"`
-	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+	// Objectives for the SLO.
 	Objectives []GetSlosSloObjective `pulumi:"objectives"`
-	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+	// Query configuration for the SLO.
 	Queries []GetSlosSloQuery `pulumi:"queries"`
-	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+	// The search expression associated with this SLO.
 	SearchExpression string `pulumi:"searchExpression"`
-	// A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
+	// A unique, random identifier. This value is read-only.
 	Uuid string `pulumi:"uuid"`
 }
 
@@ -2498,29 +2498,23 @@ type GetSlosSloInput interface {
 }
 
 type GetSlosSloArgs struct {
-	// Configures the alerting rules that will be generated for each
-	// 				time window associated with the SLO. Grafana SLOs can generate
-	// 				alerts when the short-term error budget burn is very high, the
-	// 				long-term error budget burn rate is high, or when the remaining
-	// 				error budget is below a certain threshold. Annotations and Labels support templating.
+	// Alerting configuration for the SLO.
 	Alertings GetSlosSloAlertingArrayInput `pulumi:"alertings"`
-	// Description is a free-text field that can provide more context to an SLO.
+	// Description of the SLO.
 	Description pulumi.StringInput `pulumi:"description"`
-	// Destination Datasource sets the datasource defined for an SLO
+	// Destination datasource configuration.
 	DestinationDatasources GetSlosSloDestinationDatasourceArrayInput `pulumi:"destinationDatasources"`
-	// UID for the SLO folder
-	FolderUid pulumi.StringInput `pulumi:"folderUid"`
-	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
+	// Labels attached to the SLO.
 	Labels GetSlosSloLabelArrayInput `pulumi:"labels"`
-	// Name should be a short description of your indicator. Consider names like "API Availability"
+	// Name of the SLO.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+	// Objectives for the SLO.
 	Objectives GetSlosSloObjectiveArrayInput `pulumi:"objectives"`
-	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+	// Query configuration for the SLO.
 	Queries GetSlosSloQueryArrayInput `pulumi:"queries"`
-	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+	// The search expression associated with this SLO.
 	SearchExpression pulumi.StringInput `pulumi:"searchExpression"`
-	// A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
+	// A unique, random identifier. This value is read-only.
 	Uuid pulumi.StringInput `pulumi:"uuid"`
 }
 
@@ -2575,57 +2569,47 @@ func (o GetSlosSloOutput) ToGetSlosSloOutputWithContext(ctx context.Context) Get
 	return o
 }
 
-// Configures the alerting rules that will be generated for each
-//
-//	time window associated with the SLO. Grafana SLOs can generate
-//	alerts when the short-term error budget burn is very high, the
-//	long-term error budget burn rate is high, or when the remaining
-//	error budget is below a certain threshold. Annotations and Labels support templating.
+// Alerting configuration for the SLO.
 func (o GetSlosSloOutput) Alertings() GetSlosSloAlertingArrayOutput {
 	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloAlerting { return v.Alertings }).(GetSlosSloAlertingArrayOutput)
 }
 
-// Description is a free-text field that can provide more context to an SLO.
+// Description of the SLO.
 func (o GetSlosSloOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSlo) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// Destination Datasource sets the datasource defined for an SLO
+// Destination datasource configuration.
 func (o GetSlosSloOutput) DestinationDatasources() GetSlosSloDestinationDatasourceArrayOutput {
 	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloDestinationDatasource { return v.DestinationDatasources }).(GetSlosSloDestinationDatasourceArrayOutput)
 }
 
-// UID for the SLO folder
-func (o GetSlosSloOutput) FolderUid() pulumi.StringOutput {
-	return o.ApplyT(func(v GetSlosSlo) string { return v.FolderUid }).(pulumi.StringOutput)
-}
-
-// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
+// Labels attached to the SLO.
 func (o GetSlosSloOutput) Labels() GetSlosSloLabelArrayOutput {
 	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloLabel { return v.Labels }).(GetSlosSloLabelArrayOutput)
 }
 
-// Name should be a short description of your indicator. Consider names like "API Availability"
+// Name of the SLO.
 func (o GetSlosSloOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSlo) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+// Objectives for the SLO.
 func (o GetSlosSloOutput) Objectives() GetSlosSloObjectiveArrayOutput {
 	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloObjective { return v.Objectives }).(GetSlosSloObjectiveArrayOutput)
 }
 
-// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+// Query configuration for the SLO.
 func (o GetSlosSloOutput) Queries() GetSlosSloQueryArrayOutput {
 	return o.ApplyT(func(v GetSlosSlo) []GetSlosSloQuery { return v.Queries }).(GetSlosSloQueryArrayOutput)
 }
 
-// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+// The search expression associated with this SLO.
 func (o GetSlosSloOutput) SearchExpression() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSlo) string { return v.SearchExpression }).(pulumi.StringOutput)
 }
 
-// A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
+// A unique, random identifier. This value is read-only.
 func (o GetSlosSloOutput) Uuid() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSlo) string { return v.Uuid }).(pulumi.StringOutput)
 }
@@ -2651,15 +2635,15 @@ func (o GetSlosSloArrayOutput) Index(i pulumi.IntInput) GetSlosSloOutput {
 }
 
 type GetSlosSloAlerting struct {
-	// Advanced Options for Alert Rules
+	// Advanced alerting options.
 	AdvancedOptions *GetSlosSloAlertingAdvancedOptions `pulumi:"advancedOptions"`
-	// Annotations will be attached to all alerts generated by any of these rules.
+	// Annotations attached to alerts.
 	Annotations []GetSlosSloAlertingAnnotation `pulumi:"annotations"`
-	// Alerting Rules generated for Fast Burn alerts
+	// Fast burn alert configuration.
 	Fastburn *GetSlosSloAlertingFastburn `pulumi:"fastburn"`
-	// Labels will be attached to all alerts generated by any of these rules.
+	// Labels attached to alerts.
 	Labels []GetSlosSloAlertingLabel `pulumi:"labels"`
-	// Alerting Rules generated for Slow Burn alerts
+	// Slow burn alert configuration.
 	Slowburn *GetSlosSloAlertingSlowburn `pulumi:"slowburn"`
 }
 
@@ -2675,15 +2659,15 @@ type GetSlosSloAlertingInput interface {
 }
 
 type GetSlosSloAlertingArgs struct {
-	// Advanced Options for Alert Rules
+	// Advanced alerting options.
 	AdvancedOptions GetSlosSloAlertingAdvancedOptionsPtrInput `pulumi:"advancedOptions"`
-	// Annotations will be attached to all alerts generated by any of these rules.
+	// Annotations attached to alerts.
 	Annotations GetSlosSloAlertingAnnotationArrayInput `pulumi:"annotations"`
-	// Alerting Rules generated for Fast Burn alerts
+	// Fast burn alert configuration.
 	Fastburn GetSlosSloAlertingFastburnPtrInput `pulumi:"fastburn"`
-	// Labels will be attached to all alerts generated by any of these rules.
+	// Labels attached to alerts.
 	Labels GetSlosSloAlertingLabelArrayInput `pulumi:"labels"`
-	// Alerting Rules generated for Slow Burn alerts
+	// Slow burn alert configuration.
 	Slowburn GetSlosSloAlertingSlowburnPtrInput `pulumi:"slowburn"`
 }
 
@@ -2738,27 +2722,27 @@ func (o GetSlosSloAlertingOutput) ToGetSlosSloAlertingOutputWithContext(ctx cont
 	return o
 }
 
-// Advanced Options for Alert Rules
+// Advanced alerting options.
 func (o GetSlosSloAlertingOutput) AdvancedOptions() GetSlosSloAlertingAdvancedOptionsPtrOutput {
 	return o.ApplyT(func(v GetSlosSloAlerting) *GetSlosSloAlertingAdvancedOptions { return v.AdvancedOptions }).(GetSlosSloAlertingAdvancedOptionsPtrOutput)
 }
 
-// Annotations will be attached to all alerts generated by any of these rules.
+// Annotations attached to alerts.
 func (o GetSlosSloAlertingOutput) Annotations() GetSlosSloAlertingAnnotationArrayOutput {
 	return o.ApplyT(func(v GetSlosSloAlerting) []GetSlosSloAlertingAnnotation { return v.Annotations }).(GetSlosSloAlertingAnnotationArrayOutput)
 }
 
-// Alerting Rules generated for Fast Burn alerts
+// Fast burn alert configuration.
 func (o GetSlosSloAlertingOutput) Fastburn() GetSlosSloAlertingFastburnPtrOutput {
 	return o.ApplyT(func(v GetSlosSloAlerting) *GetSlosSloAlertingFastburn { return v.Fastburn }).(GetSlosSloAlertingFastburnPtrOutput)
 }
 
-// Labels will be attached to all alerts generated by any of these rules.
+// Labels attached to alerts.
 func (o GetSlosSloAlertingOutput) Labels() GetSlosSloAlertingLabelArrayOutput {
 	return o.ApplyT(func(v GetSlosSloAlerting) []GetSlosSloAlertingLabel { return v.Labels }).(GetSlosSloAlertingLabelArrayOutput)
 }
 
-// Alerting Rules generated for Slow Burn alerts
+// Slow burn alert configuration.
 func (o GetSlosSloAlertingOutput) Slowburn() GetSlosSloAlertingSlowburnPtrOutput {
 	return o.ApplyT(func(v GetSlosSloAlerting) *GetSlosSloAlertingSlowburn { return v.Slowburn }).(GetSlosSloAlertingSlowburnPtrOutput)
 }
@@ -2784,8 +2768,8 @@ func (o GetSlosSloAlertingArrayOutput) Index(i pulumi.IntInput) GetSlosSloAlerti
 }
 
 type GetSlosSloAlertingAdvancedOptions struct {
-	// Minimum number of failed events to trigger an alert
-	MinFailures *int `pulumi:"minFailures"`
+	// Minimum number of failures before alerting.
+	MinFailures int `pulumi:"minFailures"`
 }
 
 // GetSlosSloAlertingAdvancedOptionsInput is an input type that accepts GetSlosSloAlertingAdvancedOptionsArgs and GetSlosSloAlertingAdvancedOptionsOutput values.
@@ -2800,8 +2784,8 @@ type GetSlosSloAlertingAdvancedOptionsInput interface {
 }
 
 type GetSlosSloAlertingAdvancedOptionsArgs struct {
-	// Minimum number of failed events to trigger an alert
-	MinFailures pulumi.IntPtrInput `pulumi:"minFailures"`
+	// Minimum number of failures before alerting.
+	MinFailures pulumi.IntInput `pulumi:"minFailures"`
 }
 
 func (GetSlosSloAlertingAdvancedOptionsArgs) ElementType() reflect.Type {
@@ -2881,9 +2865,9 @@ func (o GetSlosSloAlertingAdvancedOptionsOutput) ToGetSlosSloAlertingAdvancedOpt
 	}).(GetSlosSloAlertingAdvancedOptionsPtrOutput)
 }
 
-// Minimum number of failed events to trigger an alert
-func (o GetSlosSloAlertingAdvancedOptionsOutput) MinFailures() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetSlosSloAlertingAdvancedOptions) *int { return v.MinFailures }).(pulumi.IntPtrOutput)
+// Minimum number of failures before alerting.
+func (o GetSlosSloAlertingAdvancedOptionsOutput) MinFailures() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSlosSloAlertingAdvancedOptions) int { return v.MinFailures }).(pulumi.IntOutput)
 }
 
 type GetSlosSloAlertingAdvancedOptionsPtrOutput struct{ *pulumi.OutputState }
@@ -2910,20 +2894,20 @@ func (o GetSlosSloAlertingAdvancedOptionsPtrOutput) Elem() GetSlosSloAlertingAdv
 	}).(GetSlosSloAlertingAdvancedOptionsOutput)
 }
 
-// Minimum number of failed events to trigger an alert
+// Minimum number of failures before alerting.
 func (o GetSlosSloAlertingAdvancedOptionsPtrOutput) MinFailures() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *GetSlosSloAlertingAdvancedOptions) *int {
 		if v == nil {
 			return nil
 		}
-		return v.MinFailures
+		return &v.MinFailures
 	}).(pulumi.IntPtrOutput)
 }
 
 type GetSlosSloAlertingAnnotation struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key string `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value string `pulumi:"value"`
 }
 
@@ -2939,9 +2923,9 @@ type GetSlosSloAlertingAnnotationInput interface {
 }
 
 type GetSlosSloAlertingAnnotationArgs struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key pulumi.StringInput `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -2996,12 +2980,12 @@ func (o GetSlosSloAlertingAnnotationOutput) ToGetSlosSloAlertingAnnotationOutput
 	return o
 }
 
-// Key for filtering and identification
+// Key for filtering and identification.
 func (o GetSlosSloAlertingAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// Templatable value
+// Templatable value.
 func (o GetSlosSloAlertingAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -3027,11 +3011,11 @@ func (o GetSlosSloAlertingAnnotationArrayOutput) Index(i pulumi.IntInput) GetSlo
 }
 
 type GetSlosSloAlertingFastburn struct {
-	// Annotations to attach only to Fast Burn alerts.
+	// Annotations for fast burn alerts.
 	Annotations []GetSlosSloAlertingFastburnAnnotation `pulumi:"annotations"`
-	// Enrichments to attach only to Fast Burn alerts.
+	// Enrichments for fast burn alerts.
 	Enrichments []GetSlosSloAlertingFastburnEnrichment `pulumi:"enrichments"`
-	// Labels to attach only to Fast Burn alerts.
+	// Labels for fast burn alerts.
 	Labels []GetSlosSloAlertingFastburnLabel `pulumi:"labels"`
 }
 
@@ -3047,11 +3031,11 @@ type GetSlosSloAlertingFastburnInput interface {
 }
 
 type GetSlosSloAlertingFastburnArgs struct {
-	// Annotations to attach only to Fast Burn alerts.
+	// Annotations for fast burn alerts.
 	Annotations GetSlosSloAlertingFastburnAnnotationArrayInput `pulumi:"annotations"`
-	// Enrichments to attach only to Fast Burn alerts.
+	// Enrichments for fast burn alerts.
 	Enrichments GetSlosSloAlertingFastburnEnrichmentArrayInput `pulumi:"enrichments"`
-	// Labels to attach only to Fast Burn alerts.
+	// Labels for fast burn alerts.
 	Labels GetSlosSloAlertingFastburnLabelArrayInput `pulumi:"labels"`
 }
 
@@ -3132,17 +3116,17 @@ func (o GetSlosSloAlertingFastburnOutput) ToGetSlosSloAlertingFastburnPtrOutputW
 	}).(GetSlosSloAlertingFastburnPtrOutput)
 }
 
-// Annotations to attach only to Fast Burn alerts.
+// Annotations for fast burn alerts.
 func (o GetSlosSloAlertingFastburnOutput) Annotations() GetSlosSloAlertingFastburnAnnotationArrayOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnAnnotation { return v.Annotations }).(GetSlosSloAlertingFastburnAnnotationArrayOutput)
 }
 
-// Enrichments to attach only to Fast Burn alerts.
+// Enrichments for fast burn alerts.
 func (o GetSlosSloAlertingFastburnOutput) Enrichments() GetSlosSloAlertingFastburnEnrichmentArrayOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnEnrichment { return v.Enrichments }).(GetSlosSloAlertingFastburnEnrichmentArrayOutput)
 }
 
-// Labels to attach only to Fast Burn alerts.
+// Labels for fast burn alerts.
 func (o GetSlosSloAlertingFastburnOutput) Labels() GetSlosSloAlertingFastburnLabelArrayOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnLabel { return v.Labels }).(GetSlosSloAlertingFastburnLabelArrayOutput)
 }
@@ -3171,7 +3155,7 @@ func (o GetSlosSloAlertingFastburnPtrOutput) Elem() GetSlosSloAlertingFastburnOu
 	}).(GetSlosSloAlertingFastburnOutput)
 }
 
-// Annotations to attach only to Fast Burn alerts.
+// Annotations for fast burn alerts.
 func (o GetSlosSloAlertingFastburnPtrOutput) Annotations() GetSlosSloAlertingFastburnAnnotationArrayOutput {
 	return o.ApplyT(func(v *GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnAnnotation {
 		if v == nil {
@@ -3181,7 +3165,7 @@ func (o GetSlosSloAlertingFastburnPtrOutput) Annotations() GetSlosSloAlertingFas
 	}).(GetSlosSloAlertingFastburnAnnotationArrayOutput)
 }
 
-// Enrichments to attach only to Fast Burn alerts.
+// Enrichments for fast burn alerts.
 func (o GetSlosSloAlertingFastburnPtrOutput) Enrichments() GetSlosSloAlertingFastburnEnrichmentArrayOutput {
 	return o.ApplyT(func(v *GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnEnrichment {
 		if v == nil {
@@ -3191,7 +3175,7 @@ func (o GetSlosSloAlertingFastburnPtrOutput) Enrichments() GetSlosSloAlertingFas
 	}).(GetSlosSloAlertingFastburnEnrichmentArrayOutput)
 }
 
-// Labels to attach only to Fast Burn alerts.
+// Labels for fast burn alerts.
 func (o GetSlosSloAlertingFastburnPtrOutput) Labels() GetSlosSloAlertingFastburnLabelArrayOutput {
 	return o.ApplyT(func(v *GetSlosSloAlertingFastburn) []GetSlosSloAlertingFastburnLabel {
 		if v == nil {
@@ -3202,9 +3186,9 @@ func (o GetSlosSloAlertingFastburnPtrOutput) Labels() GetSlosSloAlertingFastburn
 }
 
 type GetSlosSloAlertingFastburnAnnotation struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key string `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value string `pulumi:"value"`
 }
 
@@ -3220,9 +3204,9 @@ type GetSlosSloAlertingFastburnAnnotationInput interface {
 }
 
 type GetSlosSloAlertingFastburnAnnotationArgs struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key pulumi.StringInput `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -3277,12 +3261,12 @@ func (o GetSlosSloAlertingFastburnAnnotationOutput) ToGetSlosSloAlertingFastburn
 	return o
 }
 
-// Key for filtering and identification
+// Key for filtering and identification.
 func (o GetSlosSloAlertingFastburnAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// Templatable value
+// Templatable value.
 func (o GetSlosSloAlertingFastburnAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -3308,7 +3292,7 @@ func (o GetSlosSloAlertingFastburnAnnotationArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetSlosSloAlertingFastburnEnrichment struct {
-	// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+	// Type of the alert enrichment.
 	Type string `pulumi:"type"`
 }
 
@@ -3324,7 +3308,7 @@ type GetSlosSloAlertingFastburnEnrichmentInput interface {
 }
 
 type GetSlosSloAlertingFastburnEnrichmentArgs struct {
-	// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+	// Type of the alert enrichment.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -3379,7 +3363,7 @@ func (o GetSlosSloAlertingFastburnEnrichmentOutput) ToGetSlosSloAlertingFastburn
 	return o
 }
 
-// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+// Type of the alert enrichment.
 func (o GetSlosSloAlertingFastburnEnrichmentOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburnEnrichment) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -3405,9 +3389,9 @@ func (o GetSlosSloAlertingFastburnEnrichmentArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetSlosSloAlertingFastburnLabel struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key string `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value string `pulumi:"value"`
 }
 
@@ -3423,9 +3407,9 @@ type GetSlosSloAlertingFastburnLabelInput interface {
 }
 
 type GetSlosSloAlertingFastburnLabelArgs struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key pulumi.StringInput `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -3480,12 +3464,12 @@ func (o GetSlosSloAlertingFastburnLabelOutput) ToGetSlosSloAlertingFastburnLabel
 	return o
 }
 
-// Key for filtering and identification
+// Key for filtering and identification.
 func (o GetSlosSloAlertingFastburnLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburnLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// Templatable value
+// Templatable value.
 func (o GetSlosSloAlertingFastburnLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingFastburnLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -3511,9 +3495,9 @@ func (o GetSlosSloAlertingFastburnLabelArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetSlosSloAlertingLabel struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key string `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value string `pulumi:"value"`
 }
 
@@ -3529,9 +3513,9 @@ type GetSlosSloAlertingLabelInput interface {
 }
 
 type GetSlosSloAlertingLabelArgs struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key pulumi.StringInput `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -3586,12 +3570,12 @@ func (o GetSlosSloAlertingLabelOutput) ToGetSlosSloAlertingLabelOutputWithContex
 	return o
 }
 
-// Key for filtering and identification
+// Key for filtering and identification.
 func (o GetSlosSloAlertingLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// Templatable value
+// Templatable value.
 func (o GetSlosSloAlertingLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -3617,11 +3601,11 @@ func (o GetSlosSloAlertingLabelArrayOutput) Index(i pulumi.IntInput) GetSlosSloA
 }
 
 type GetSlosSloAlertingSlowburn struct {
-	// Annotations to attach only to Slow Burn alerts.
+	// Annotations for slow burn alerts.
 	Annotations []GetSlosSloAlertingSlowburnAnnotation `pulumi:"annotations"`
-	// Enrichments to attach only to Slow Burn alerts.
+	// Enrichments for slow burn alerts.
 	Enrichments []GetSlosSloAlertingSlowburnEnrichment `pulumi:"enrichments"`
-	// Labels to attach only to Slow Burn alerts.
+	// Labels for slow burn alerts.
 	Labels []GetSlosSloAlertingSlowburnLabel `pulumi:"labels"`
 }
 
@@ -3637,11 +3621,11 @@ type GetSlosSloAlertingSlowburnInput interface {
 }
 
 type GetSlosSloAlertingSlowburnArgs struct {
-	// Annotations to attach only to Slow Burn alerts.
+	// Annotations for slow burn alerts.
 	Annotations GetSlosSloAlertingSlowburnAnnotationArrayInput `pulumi:"annotations"`
-	// Enrichments to attach only to Slow Burn alerts.
+	// Enrichments for slow burn alerts.
 	Enrichments GetSlosSloAlertingSlowburnEnrichmentArrayInput `pulumi:"enrichments"`
-	// Labels to attach only to Slow Burn alerts.
+	// Labels for slow burn alerts.
 	Labels GetSlosSloAlertingSlowburnLabelArrayInput `pulumi:"labels"`
 }
 
@@ -3722,17 +3706,17 @@ func (o GetSlosSloAlertingSlowburnOutput) ToGetSlosSloAlertingSlowburnPtrOutputW
 	}).(GetSlosSloAlertingSlowburnPtrOutput)
 }
 
-// Annotations to attach only to Slow Burn alerts.
+// Annotations for slow burn alerts.
 func (o GetSlosSloAlertingSlowburnOutput) Annotations() GetSlosSloAlertingSlowburnAnnotationArrayOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnAnnotation { return v.Annotations }).(GetSlosSloAlertingSlowburnAnnotationArrayOutput)
 }
 
-// Enrichments to attach only to Slow Burn alerts.
+// Enrichments for slow burn alerts.
 func (o GetSlosSloAlertingSlowburnOutput) Enrichments() GetSlosSloAlertingSlowburnEnrichmentArrayOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnEnrichment { return v.Enrichments }).(GetSlosSloAlertingSlowburnEnrichmentArrayOutput)
 }
 
-// Labels to attach only to Slow Burn alerts.
+// Labels for slow burn alerts.
 func (o GetSlosSloAlertingSlowburnOutput) Labels() GetSlosSloAlertingSlowburnLabelArrayOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnLabel { return v.Labels }).(GetSlosSloAlertingSlowburnLabelArrayOutput)
 }
@@ -3761,7 +3745,7 @@ func (o GetSlosSloAlertingSlowburnPtrOutput) Elem() GetSlosSloAlertingSlowburnOu
 	}).(GetSlosSloAlertingSlowburnOutput)
 }
 
-// Annotations to attach only to Slow Burn alerts.
+// Annotations for slow burn alerts.
 func (o GetSlosSloAlertingSlowburnPtrOutput) Annotations() GetSlosSloAlertingSlowburnAnnotationArrayOutput {
 	return o.ApplyT(func(v *GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnAnnotation {
 		if v == nil {
@@ -3771,7 +3755,7 @@ func (o GetSlosSloAlertingSlowburnPtrOutput) Annotations() GetSlosSloAlertingSlo
 	}).(GetSlosSloAlertingSlowburnAnnotationArrayOutput)
 }
 
-// Enrichments to attach only to Slow Burn alerts.
+// Enrichments for slow burn alerts.
 func (o GetSlosSloAlertingSlowburnPtrOutput) Enrichments() GetSlosSloAlertingSlowburnEnrichmentArrayOutput {
 	return o.ApplyT(func(v *GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnEnrichment {
 		if v == nil {
@@ -3781,7 +3765,7 @@ func (o GetSlosSloAlertingSlowburnPtrOutput) Enrichments() GetSlosSloAlertingSlo
 	}).(GetSlosSloAlertingSlowburnEnrichmentArrayOutput)
 }
 
-// Labels to attach only to Slow Burn alerts.
+// Labels for slow burn alerts.
 func (o GetSlosSloAlertingSlowburnPtrOutput) Labels() GetSlosSloAlertingSlowburnLabelArrayOutput {
 	return o.ApplyT(func(v *GetSlosSloAlertingSlowburn) []GetSlosSloAlertingSlowburnLabel {
 		if v == nil {
@@ -3792,9 +3776,9 @@ func (o GetSlosSloAlertingSlowburnPtrOutput) Labels() GetSlosSloAlertingSlowburn
 }
 
 type GetSlosSloAlertingSlowburnAnnotation struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key string `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value string `pulumi:"value"`
 }
 
@@ -3810,9 +3794,9 @@ type GetSlosSloAlertingSlowburnAnnotationInput interface {
 }
 
 type GetSlosSloAlertingSlowburnAnnotationArgs struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key pulumi.StringInput `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -3867,12 +3851,12 @@ func (o GetSlosSloAlertingSlowburnAnnotationOutput) ToGetSlosSloAlertingSlowburn
 	return o
 }
 
-// Key for filtering and identification
+// Key for filtering and identification.
 func (o GetSlosSloAlertingSlowburnAnnotationOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburnAnnotation) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// Templatable value
+// Templatable value.
 func (o GetSlosSloAlertingSlowburnAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburnAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -3898,7 +3882,7 @@ func (o GetSlosSloAlertingSlowburnAnnotationArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetSlosSloAlertingSlowburnEnrichment struct {
-	// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+	// Type of the alert enrichment.
 	Type string `pulumi:"type"`
 }
 
@@ -3914,7 +3898,7 @@ type GetSlosSloAlertingSlowburnEnrichmentInput interface {
 }
 
 type GetSlosSloAlertingSlowburnEnrichmentArgs struct {
-	// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+	// Type of the alert enrichment.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -3969,7 +3953,7 @@ func (o GetSlosSloAlertingSlowburnEnrichmentOutput) ToGetSlosSloAlertingSlowburn
 	return o
 }
 
-// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+// Type of the alert enrichment.
 func (o GetSlosSloAlertingSlowburnEnrichmentOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburnEnrichment) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -3995,9 +3979,9 @@ func (o GetSlosSloAlertingSlowburnEnrichmentArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetSlosSloAlertingSlowburnLabel struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key string `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value string `pulumi:"value"`
 }
 
@@ -4013,9 +3997,9 @@ type GetSlosSloAlertingSlowburnLabelInput interface {
 }
 
 type GetSlosSloAlertingSlowburnLabelArgs struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key pulumi.StringInput `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -4070,12 +4054,12 @@ func (o GetSlosSloAlertingSlowburnLabelOutput) ToGetSlosSloAlertingSlowburnLabel
 	return o
 }
 
-// Key for filtering and identification
+// Key for filtering and identification.
 func (o GetSlosSloAlertingSlowburnLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburnLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// Templatable value
+// Templatable value.
 func (o GetSlosSloAlertingSlowburnLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloAlertingSlowburnLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -4101,7 +4085,7 @@ func (o GetSlosSloAlertingSlowburnLabelArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetSlosSloDestinationDatasource struct {
-	// UID for the Datasource
+	// UID of the destination datasource.
 	Uid string `pulumi:"uid"`
 }
 
@@ -4117,7 +4101,7 @@ type GetSlosSloDestinationDatasourceInput interface {
 }
 
 type GetSlosSloDestinationDatasourceArgs struct {
-	// UID for the Datasource
+	// UID of the destination datasource.
 	Uid pulumi.StringInput `pulumi:"uid"`
 }
 
@@ -4172,7 +4156,7 @@ func (o GetSlosSloDestinationDatasourceOutput) ToGetSlosSloDestinationDatasource
 	return o
 }
 
-// UID for the Datasource
+// UID of the destination datasource.
 func (o GetSlosSloDestinationDatasourceOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloDestinationDatasource) string { return v.Uid }).(pulumi.StringOutput)
 }
@@ -4198,9 +4182,9 @@ func (o GetSlosSloDestinationDatasourceArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetSlosSloLabel struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key string `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value string `pulumi:"value"`
 }
 
@@ -4216,9 +4200,9 @@ type GetSlosSloLabelInput interface {
 }
 
 type GetSlosSloLabelArgs struct {
-	// Key for filtering and identification
+	// Key for filtering and identification.
 	Key pulumi.StringInput `pulumi:"key"`
-	// Templatable value
+	// Templatable value.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -4273,12 +4257,12 @@ func (o GetSlosSloLabelOutput) ToGetSlosSloLabelOutputWithContext(ctx context.Co
 	return o
 }
 
-// Key for filtering and identification
+// Key for filtering and identification.
 func (o GetSlosSloLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// Templatable value
+// Templatable value.
 func (o GetSlosSloLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -4304,9 +4288,9 @@ func (o GetSlosSloLabelArrayOutput) Index(i pulumi.IntInput) GetSlosSloLabelOutp
 }
 
 type GetSlosSloObjective struct {
-	// Value between 0 and 1. If the value of the query is above the objective, the SLO is met.
+	// Objective value (between 0 and 1).
 	Value float64 `pulumi:"value"`
-	// A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.
+	// Time window for the objective.
 	Window string `pulumi:"window"`
 }
 
@@ -4322,9 +4306,9 @@ type GetSlosSloObjectiveInput interface {
 }
 
 type GetSlosSloObjectiveArgs struct {
-	// Value between 0 and 1. If the value of the query is above the objective, the SLO is met.
+	// Objective value (between 0 and 1).
 	Value pulumi.Float64Input `pulumi:"value"`
-	// A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.
+	// Time window for the objective.
 	Window pulumi.StringInput `pulumi:"window"`
 }
 
@@ -4379,12 +4363,12 @@ func (o GetSlosSloObjectiveOutput) ToGetSlosSloObjectiveOutputWithContext(ctx co
 	return o
 }
 
-// Value between 0 and 1. If the value of the query is above the objective, the SLO is met.
+// Objective value (between 0 and 1).
 func (o GetSlosSloObjectiveOutput) Value() pulumi.Float64Output {
 	return o.ApplyT(func(v GetSlosSloObjective) float64 { return v.Value }).(pulumi.Float64Output)
 }
 
-// A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.
+// Time window for the objective.
 func (o GetSlosSloObjectiveOutput) Window() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloObjective) string { return v.Window }).(pulumi.StringOutput)
 }
@@ -4410,11 +4394,13 @@ func (o GetSlosSloObjectiveArrayOutput) Index(i pulumi.IntInput) GetSlosSloObjec
 }
 
 type GetSlosSloQuery struct {
+	// Freeform query configuration.
 	Freeform *GetSlosSloQueryFreeform `pulumi:"freeform"`
-	// Array for holding a set of grafana queries
+	// Grafana queries configuration.
 	GrafanaQueries *GetSlosSloQueryGrafanaQueries `pulumi:"grafanaQueries"`
-	Ratio          *GetSlosSloQueryRatio          `pulumi:"ratio"`
-	// Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
+	// Ratio query configuration.
+	Ratio *GetSlosSloQueryRatio `pulumi:"ratio"`
+	// Type of query (freeform, ratio, grafana_queries, etc.).
 	Type string `pulumi:"type"`
 }
 
@@ -4430,11 +4416,13 @@ type GetSlosSloQueryInput interface {
 }
 
 type GetSlosSloQueryArgs struct {
+	// Freeform query configuration.
 	Freeform GetSlosSloQueryFreeformPtrInput `pulumi:"freeform"`
-	// Array for holding a set of grafana queries
+	// Grafana queries configuration.
 	GrafanaQueries GetSlosSloQueryGrafanaQueriesPtrInput `pulumi:"grafanaQueries"`
-	Ratio          GetSlosSloQueryRatioPtrInput          `pulumi:"ratio"`
-	// Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
+	// Ratio query configuration.
+	Ratio GetSlosSloQueryRatioPtrInput `pulumi:"ratio"`
+	// Type of query (freeform, ratio, grafana_queries, etc.).
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -4489,20 +4477,22 @@ func (o GetSlosSloQueryOutput) ToGetSlosSloQueryOutputWithContext(ctx context.Co
 	return o
 }
 
+// Freeform query configuration.
 func (o GetSlosSloQueryOutput) Freeform() GetSlosSloQueryFreeformPtrOutput {
 	return o.ApplyT(func(v GetSlosSloQuery) *GetSlosSloQueryFreeform { return v.Freeform }).(GetSlosSloQueryFreeformPtrOutput)
 }
 
-// Array for holding a set of grafana queries
+// Grafana queries configuration.
 func (o GetSlosSloQueryOutput) GrafanaQueries() GetSlosSloQueryGrafanaQueriesPtrOutput {
 	return o.ApplyT(func(v GetSlosSloQuery) *GetSlosSloQueryGrafanaQueries { return v.GrafanaQueries }).(GetSlosSloQueryGrafanaQueriesPtrOutput)
 }
 
+// Ratio query configuration.
 func (o GetSlosSloQueryOutput) Ratio() GetSlosSloQueryRatioPtrOutput {
 	return o.ApplyT(func(v GetSlosSloQuery) *GetSlosSloQueryRatio { return v.Ratio }).(GetSlosSloQueryRatioPtrOutput)
 }
 
-// Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
+// Type of query (freeform, ratio, grafana_queries, etc.).
 func (o GetSlosSloQueryOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloQuery) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -4528,7 +4518,7 @@ func (o GetSlosSloQueryArrayOutput) Index(i pulumi.IntInput) GetSlosSloQueryOutp
 }
 
 type GetSlosSloQueryFreeform struct {
-	// Freeform Query Field - valid promQl
+	// The PromQL query string.
 	Query string `pulumi:"query"`
 }
 
@@ -4544,7 +4534,7 @@ type GetSlosSloQueryFreeformInput interface {
 }
 
 type GetSlosSloQueryFreeformArgs struct {
-	// Freeform Query Field - valid promQl
+	// The PromQL query string.
 	Query pulumi.StringInput `pulumi:"query"`
 }
 
@@ -4625,7 +4615,7 @@ func (o GetSlosSloQueryFreeformOutput) ToGetSlosSloQueryFreeformPtrOutputWithCon
 	}).(GetSlosSloQueryFreeformPtrOutput)
 }
 
-// Freeform Query Field - valid promQl
+// The PromQL query string.
 func (o GetSlosSloQueryFreeformOutput) Query() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloQueryFreeform) string { return v.Query }).(pulumi.StringOutput)
 }
@@ -4654,7 +4644,7 @@ func (o GetSlosSloQueryFreeformPtrOutput) Elem() GetSlosSloQueryFreeformOutput {
 	}).(GetSlosSloQueryFreeformOutput)
 }
 
-// Freeform Query Field - valid promQl
+// The PromQL query string.
 func (o GetSlosSloQueryFreeformPtrOutput) Query() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetSlosSloQueryFreeform) *string {
 		if v == nil {
@@ -4665,7 +4655,7 @@ func (o GetSlosSloQueryFreeformPtrOutput) Query() pulumi.StringPtrOutput {
 }
 
 type GetSlosSloQueryGrafanaQueries struct {
-	// Query Object - Array of Grafana Query JSON objects
+	// JSON string containing the Grafana queries.
 	GrafanaQueries string `pulumi:"grafanaQueries"`
 }
 
@@ -4681,7 +4671,7 @@ type GetSlosSloQueryGrafanaQueriesInput interface {
 }
 
 type GetSlosSloQueryGrafanaQueriesArgs struct {
-	// Query Object - Array of Grafana Query JSON objects
+	// JSON string containing the Grafana queries.
 	GrafanaQueries pulumi.StringInput `pulumi:"grafanaQueries"`
 }
 
@@ -4762,7 +4752,7 @@ func (o GetSlosSloQueryGrafanaQueriesOutput) ToGetSlosSloQueryGrafanaQueriesPtrO
 	}).(GetSlosSloQueryGrafanaQueriesPtrOutput)
 }
 
-// Query Object - Array of Grafana Query JSON objects
+// JSON string containing the Grafana queries.
 func (o GetSlosSloQueryGrafanaQueriesOutput) GrafanaQueries() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloQueryGrafanaQueries) string { return v.GrafanaQueries }).(pulumi.StringOutput)
 }
@@ -4791,7 +4781,7 @@ func (o GetSlosSloQueryGrafanaQueriesPtrOutput) Elem() GetSlosSloQueryGrafanaQue
 	}).(GetSlosSloQueryGrafanaQueriesOutput)
 }
 
-// Query Object - Array of Grafana Query JSON objects
+// JSON string containing the Grafana queries.
 func (o GetSlosSloQueryGrafanaQueriesPtrOutput) GrafanaQueries() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetSlosSloQueryGrafanaQueries) *string {
 		if v == nil {
@@ -4802,11 +4792,11 @@ func (o GetSlosSloQueryGrafanaQueriesPtrOutput) GrafanaQueries() pulumi.StringPt
 }
 
 type GetSlosSloQueryRatio struct {
-	// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
+	// Labels used for grouping.
 	GroupByLabels []string `pulumi:"groupByLabels"`
-	// Counter metric for success events (numerator)
+	// Counter metric for success events (numerator).
 	SuccessMetric string `pulumi:"successMetric"`
-	// Metric for total events (denominator)
+	// Metric for total events (denominator).
 	TotalMetric string `pulumi:"totalMetric"`
 }
 
@@ -4822,11 +4812,11 @@ type GetSlosSloQueryRatioInput interface {
 }
 
 type GetSlosSloQueryRatioArgs struct {
-	// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
+	// Labels used for grouping.
 	GroupByLabels pulumi.StringArrayInput `pulumi:"groupByLabels"`
-	// Counter metric for success events (numerator)
+	// Counter metric for success events (numerator).
 	SuccessMetric pulumi.StringInput `pulumi:"successMetric"`
-	// Metric for total events (denominator)
+	// Metric for total events (denominator).
 	TotalMetric pulumi.StringInput `pulumi:"totalMetric"`
 }
 
@@ -4907,17 +4897,17 @@ func (o GetSlosSloQueryRatioOutput) ToGetSlosSloQueryRatioPtrOutputWithContext(c
 	}).(GetSlosSloQueryRatioPtrOutput)
 }
 
-// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
+// Labels used for grouping.
 func (o GetSlosSloQueryRatioOutput) GroupByLabels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSlosSloQueryRatio) []string { return v.GroupByLabels }).(pulumi.StringArrayOutput)
 }
 
-// Counter metric for success events (numerator)
+// Counter metric for success events (numerator).
 func (o GetSlosSloQueryRatioOutput) SuccessMetric() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloQueryRatio) string { return v.SuccessMetric }).(pulumi.StringOutput)
 }
 
-// Metric for total events (denominator)
+// Metric for total events (denominator).
 func (o GetSlosSloQueryRatioOutput) TotalMetric() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosSloQueryRatio) string { return v.TotalMetric }).(pulumi.StringOutput)
 }
@@ -4946,7 +4936,7 @@ func (o GetSlosSloQueryRatioPtrOutput) Elem() GetSlosSloQueryRatioOutput {
 	}).(GetSlosSloQueryRatioOutput)
 }
 
-// Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
+// Labels used for grouping.
 func (o GetSlosSloQueryRatioPtrOutput) GroupByLabels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *GetSlosSloQueryRatio) []string {
 		if v == nil {
@@ -4956,7 +4946,7 @@ func (o GetSlosSloQueryRatioPtrOutput) GroupByLabels() pulumi.StringArrayOutput 
 	}).(pulumi.StringArrayOutput)
 }
 
-// Counter metric for success events (numerator)
+// Counter metric for success events (numerator).
 func (o GetSlosSloQueryRatioPtrOutput) SuccessMetric() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetSlosSloQueryRatio) *string {
 		if v == nil {
@@ -4966,7 +4956,7 @@ func (o GetSlosSloQueryRatioPtrOutput) SuccessMetric() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Metric for total events (denominator)
+// Metric for total events (denominator).
 func (o GetSlosSloQueryRatioPtrOutput) TotalMetric() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetSlosSloQueryRatio) *string {
 		if v == nil {

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/internal"
 )
 
-// Datasource for retrieving all SLOs.
+// Data source for retrieving all SLOs.
 //
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
 // * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
@@ -91,7 +91,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = slo.GetSlos(ctx, map[string]interface{}{}, nil)
+//			_, err = slo.GetSlos(ctx, &slo.GetSlosArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -100,29 +100,47 @@ import (
 //	}
 //
 // ```
-func GetSlos(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetSlosResult, error) {
+func GetSlos(ctx *pulumi.Context, args *GetSlosArgs, opts ...pulumi.InvokeOption) (*GetSlosResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSlosResult
-	err := ctx.Invoke("grafana:slo/getSlos:getSlos", nil, &rv, opts...)
+	err := ctx.Invoke("grafana:slo/getSlos:getSlos", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
-// A collection of values returned by getSlos.
-type GetSlosResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Returns a list of all SLOs"
+// A collection of arguments for invoking getSlos.
+type GetSlosArgs struct {
+	// List of all SLOs.
 	Slos []GetSlosSlo `pulumi:"slos"`
 }
 
-func GetSlosOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetSlosResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetSlosResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("grafana:slo/getSlos:getSlos", nil, GetSlosResultOutput{}, options).(GetSlosResultOutput), nil
-	}).(GetSlosResultOutput)
+// A collection of values returned by getSlos.
+type GetSlosResult struct {
+	// The ID of this datasource. This is a constant value.
+	Id string `pulumi:"id"`
+	// List of all SLOs.
+	Slos []GetSlosSlo `pulumi:"slos"`
+}
+
+func GetSlosOutput(ctx *pulumi.Context, args GetSlosOutputArgs, opts ...pulumi.InvokeOption) GetSlosResultOutput {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetSlosResultOutput, error) {
+			args := v.(GetSlosArgs)
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("grafana:slo/getSlos:getSlos", args, GetSlosResultOutput{}, options).(GetSlosResultOutput), nil
+		}).(GetSlosResultOutput)
+}
+
+// A collection of arguments for invoking getSlos.
+type GetSlosOutputArgs struct {
+	// List of all SLOs.
+	Slos GetSlosSloArrayInput `pulumi:"slos"`
+}
+
+func (GetSlosOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSlosArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getSlos.
@@ -140,12 +158,12 @@ func (o GetSlosResultOutput) ToGetSlosResultOutputWithContext(ctx context.Contex
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this datasource. This is a constant value.
 func (o GetSlosResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSlosResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Returns a list of all SLOs"
+// List of all SLOs.
 func (o GetSlosResultOutput) Slos() GetSlosSloArrayOutput {
 	return o.ApplyT(func(v GetSlosResult) []GetSlosSlo { return v.Slos }).(GetSlosSloArrayOutput)
 }

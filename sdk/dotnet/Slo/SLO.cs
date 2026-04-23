@@ -360,10 +360,10 @@ namespace Pulumiverse.Grafana.Slo
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Destination Datasource sets the datasource defined for an SLO
+        /// **Required.** Destination Datasource sets the datasource defined for an SLO.
         /// </summary>
         [Output("destinationDatasource")]
-        public Output<Outputs.SLODestinationDatasource> DestinationDatasource { get; private set; } = null!;
+        public Output<Outputs.SLODestinationDatasource?> DestinationDatasource { get; private set; } = null!;
 
         /// <summary>
         /// UID for the SLO folder
@@ -384,13 +384,13 @@ namespace Pulumiverse.Grafana.Slo
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+        /// **Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
         /// </summary>
         [Output("objectives")]
         public Output<ImmutableArray<Outputs.SLOObjective>> Objectives { get; private set; } = null!;
 
         /// <summary>
-        /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        /// **Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         /// </summary>
         [Output("queries")]
         public Output<ImmutableArray<Outputs.SLOQuery>> Queries { get; private set; } = null!;
@@ -475,10 +475,10 @@ namespace Pulumiverse.Grafana.Slo
         public Input<string> Description { get; set; } = null!;
 
         /// <summary>
-        /// Destination Datasource sets the datasource defined for an SLO
+        /// **Required.** Destination Datasource sets the datasource defined for an SLO.
         /// </summary>
-        [Input("destinationDatasource", required: true)]
-        public Input<Inputs.SLODestinationDatasourceArgs> DestinationDatasource { get; set; } = null!;
+        [Input("destinationDatasource")]
+        public Input<Inputs.SLODestinationDatasourceArgs>? DestinationDatasource { get; set; }
 
         /// <summary>
         /// UID for the SLO folder
@@ -504,11 +504,11 @@ namespace Pulumiverse.Grafana.Slo
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("objectives", required: true)]
+        [Input("objectives")]
         private InputList<Inputs.SLOObjectiveArgs>? _objectives;
 
         /// <summary>
-        /// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+        /// **Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
         /// </summary>
         public InputList<Inputs.SLOObjectiveArgs> Objectives
         {
@@ -516,11 +516,11 @@ namespace Pulumiverse.Grafana.Slo
             set => _objectives = value;
         }
 
-        [Input("queries", required: true)]
+        [Input("queries")]
         private InputList<Inputs.SLOQueryArgs>? _queries;
 
         /// <summary>
-        /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        /// **Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         /// </summary>
         public InputList<Inputs.SLOQueryArgs> Queries
         {
@@ -565,7 +565,7 @@ namespace Pulumiverse.Grafana.Slo
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Destination Datasource sets the datasource defined for an SLO
+        /// **Required.** Destination Datasource sets the datasource defined for an SLO.
         /// </summary>
         [Input("destinationDatasource")]
         public Input<Inputs.SLODestinationDatasourceGetArgs>? DestinationDatasource { get; set; }
@@ -598,7 +598,7 @@ namespace Pulumiverse.Grafana.Slo
         private InputList<Inputs.SLOObjectiveGetArgs>? _objectives;
 
         /// <summary>
-        /// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+        /// **Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
         /// </summary>
         public InputList<Inputs.SLOObjectiveGetArgs> Objectives
         {
@@ -610,7 +610,7 @@ namespace Pulumiverse.Grafana.Slo
         private InputList<Inputs.SLOQueryGetArgs>? _queries;
 
         /// <summary>
-        /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        /// **Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
         /// </summary>
         public InputList<Inputs.SLOQueryGetArgs> Queries
         {

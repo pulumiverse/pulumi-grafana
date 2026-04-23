@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "grafana:cloud/v1alpha1/productActivationAppO11yConfig:ProductActivationAppO11yConfig":
 		r = &ProductActivationAppO11yConfig{}
+	case "grafana:cloud/v1alpha1/productActivationDbO11yConfig:ProductActivationDbO11yConfig":
+		r = &ProductActivationDbO11yConfig{}
 	case "grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig":
 		r = &ProductActivationK8sO11yConfig{}
 	default:
@@ -41,6 +43,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"grafana",
 		"cloud/v1alpha1/productActivationAppO11yConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"grafana",
+		"cloud/v1alpha1/productActivationDbO11yConfig",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

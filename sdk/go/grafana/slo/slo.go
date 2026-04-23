@@ -318,17 +318,17 @@ type SLO struct {
 	Alerting SLOAlertingPtrOutput `pulumi:"alerting"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringOutput `pulumi:"description"`
-	// Destination Datasource sets the datasource defined for an SLO
-	DestinationDatasource SLODestinationDatasourceOutput `pulumi:"destinationDatasource"`
+	// **Required.** Destination Datasource sets the datasource defined for an SLO.
+	DestinationDatasource SLODestinationDatasourcePtrOutput `pulumi:"destinationDatasource"`
 	// UID for the SLO folder
 	FolderUid pulumi.StringPtrOutput `pulumi:"folderUid"`
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	Labels SLOLabelArrayOutput `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+	// **Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives SLOObjectiveArrayOutput `pulumi:"objectives"`
-	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+	// **Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries SLOQueryArrayOutput `pulumi:"queries"`
 	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
 	SearchExpression pulumi.StringPtrOutput `pulumi:"searchExpression"`
@@ -345,15 +345,6 @@ func NewSLO(ctx *pulumi.Context,
 
 	if args.Description == nil {
 		return nil, errors.New("invalid value for required argument 'Description'")
-	}
-	if args.DestinationDatasource == nil {
-		return nil, errors.New("invalid value for required argument 'DestinationDatasource'")
-	}
-	if args.Objectives == nil {
-		return nil, errors.New("invalid value for required argument 'Objectives'")
-	}
-	if args.Queries == nil {
-		return nil, errors.New("invalid value for required argument 'Queries'")
 	}
 	aliases := pulumi.Aliases([]pulumi.Alias{
 		{
@@ -392,7 +383,7 @@ type sloState struct {
 	Alerting *SLOAlerting `pulumi:"alerting"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description *string `pulumi:"description"`
-	// Destination Datasource sets the datasource defined for an SLO
+	// **Required.** Destination Datasource sets the datasource defined for an SLO.
 	DestinationDatasource *SLODestinationDatasource `pulumi:"destinationDatasource"`
 	// UID for the SLO folder
 	FolderUid *string `pulumi:"folderUid"`
@@ -400,9 +391,9 @@ type sloState struct {
 	Labels []SLOLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name *string `pulumi:"name"`
-	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+	// **Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives []SLOObjective `pulumi:"objectives"`
-	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+	// **Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries []SLOQuery `pulumi:"queries"`
 	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
 	SearchExpression *string `pulumi:"searchExpression"`
@@ -419,7 +410,7 @@ type SLOState struct {
 	Alerting SLOAlertingPtrInput
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringPtrInput
-	// Destination Datasource sets the datasource defined for an SLO
+	// **Required.** Destination Datasource sets the datasource defined for an SLO.
 	DestinationDatasource SLODestinationDatasourcePtrInput
 	// UID for the SLO folder
 	FolderUid pulumi.StringPtrInput
@@ -427,9 +418,9 @@ type SLOState struct {
 	Labels SLOLabelArrayInput
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringPtrInput
-	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+	// **Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives SLOObjectiveArrayInput
-	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+	// **Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries SLOQueryArrayInput
 	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
 	SearchExpression pulumi.StringPtrInput
@@ -450,17 +441,17 @@ type sloArgs struct {
 	Alerting *SLOAlerting `pulumi:"alerting"`
 	// Description is a free-text field that can provide more context to an SLO.
 	Description string `pulumi:"description"`
-	// Destination Datasource sets the datasource defined for an SLO
-	DestinationDatasource SLODestinationDatasource `pulumi:"destinationDatasource"`
+	// **Required.** Destination Datasource sets the datasource defined for an SLO.
+	DestinationDatasource *SLODestinationDatasource `pulumi:"destinationDatasource"`
 	// UID for the SLO folder
 	FolderUid *string `pulumi:"folderUid"`
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	Labels []SLOLabel `pulumi:"labels"`
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name *string `pulumi:"name"`
-	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+	// **Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives []SLOObjective `pulumi:"objectives"`
-	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+	// **Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries []SLOQuery `pulumi:"queries"`
 	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
 	SearchExpression *string `pulumi:"searchExpression"`
@@ -478,17 +469,17 @@ type SLOArgs struct {
 	Alerting SLOAlertingPtrInput
 	// Description is a free-text field that can provide more context to an SLO.
 	Description pulumi.StringInput
-	// Destination Datasource sets the datasource defined for an SLO
-	DestinationDatasource SLODestinationDatasourceInput
+	// **Required.** Destination Datasource sets the datasource defined for an SLO.
+	DestinationDatasource SLODestinationDatasourcePtrInput
 	// UID for the SLO folder
 	FolderUid pulumi.StringPtrInput
 	// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
 	Labels SLOLabelArrayInput
 	// Name should be a short description of your indicator. Consider names like "API Availability"
 	Name pulumi.StringPtrInput
-	// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+	// **Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 	Objectives SLOObjectiveArrayInput
-	// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+	// **Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 	Queries SLOQueryArrayInput
 	// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
 	SearchExpression pulumi.StringPtrInput
@@ -598,9 +589,9 @@ func (o SLOOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *SLO) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// Destination Datasource sets the datasource defined for an SLO
-func (o SLOOutput) DestinationDatasource() SLODestinationDatasourceOutput {
-	return o.ApplyT(func(v *SLO) SLODestinationDatasourceOutput { return v.DestinationDatasource }).(SLODestinationDatasourceOutput)
+// **Required.** Destination Datasource sets the datasource defined for an SLO.
+func (o SLOOutput) DestinationDatasource() SLODestinationDatasourcePtrOutput {
+	return o.ApplyT(func(v *SLO) SLODestinationDatasourcePtrOutput { return v.DestinationDatasource }).(SLODestinationDatasourcePtrOutput)
 }
 
 // UID for the SLO folder
@@ -618,12 +609,12 @@ func (o SLOOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SLO) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+// **Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
 func (o SLOOutput) Objectives() SLOObjectiveArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOObjectiveArrayOutput { return v.Objectives }).(SLOObjectiveArrayOutput)
 }
 
-// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+// **Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
 func (o SLOOutput) Queries() SLOQueryArrayOutput {
 	return o.ApplyT(func(v *SLO) SLOQueryArrayOutput { return v.Queries }).(SLOQueryArrayOutput)
 }

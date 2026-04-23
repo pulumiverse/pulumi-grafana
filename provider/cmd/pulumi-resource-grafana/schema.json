@@ -6489,6 +6489,77 @@
                 "enabled"
             ]
         },
+        "grafana:cloud/v1alpha1/ProductActivationDbO11yConfigMetadata:ProductActivationDbO11yConfigMetadata": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Annotations of the resource.\n"
+                },
+                "folderUid": {
+                    "type": "string",
+                    "description": "The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.\n"
+                },
+                "uid": {
+                    "type": "string",
+                    "description": "The unique identifier of the resource.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The full URL of the resource.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "The globally unique identifier of a resource, used by the API for tracking.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the resource.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "uid"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "annotations",
+                        "uid",
+                        "url",
+                        "uuid",
+                        "version"
+                    ]
+                }
+            }
+        },
+        "grafana:cloud/v1alpha1/ProductActivationDbO11yConfigOptions:ProductActivationDbO11yConfigOptions": {
+            "properties": {
+                "managerIdentity": {
+                    "type": "string",
+                    "description": "Override the identity stamped on this resource's manager metadata. Defaults to \"grafana-terraform-provider\". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.\n"
+                },
+                "overwrite": {
+                    "type": "boolean",
+                    "description": "Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.\n"
+                }
+            },
+            "type": "object"
+        },
+        "grafana:cloud/v1alpha1/ProductActivationDbO11yConfigSpec:ProductActivationDbO11yConfigSpec": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether database observability is enabled.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled"
+            ]
+        },
         "grafana:cloud/v1alpha1/ProductActivationK8sO11yConfigMetadata:ProductActivationK8sO11yConfigMetadata": {
             "properties": {
                 "annotations": {
@@ -9654,14 +9725,16 @@
         "grafana:slo/SLOQuery:SLOQuery": {
             "properties": {
                 "freeform": {
-                    "$ref": "#/types/grafana:slo/SLOQueryFreeform:SLOQueryFreeform"
+                    "$ref": "#/types/grafana:slo/SLOQueryFreeform:SLOQueryFreeform",
+                    "description": "Freeform query configuration.\n"
                 },
                 "grafanaQueries": {
                     "$ref": "#/types/grafana:slo/SLOQueryGrafanaQueries:SLOQueryGrafanaQueries",
                     "description": "Array for holding a set of grafana queries\n"
                 },
                 "ratio": {
-                    "$ref": "#/types/grafana:slo/SLOQueryRatio:SLOQueryRatio"
+                    "$ref": "#/types/grafana:slo/SLOQueryRatio:SLOQueryRatio",
+                    "description": "Ratio query configuration.\n"
                 },
                 "type": {
                     "type": "string",
@@ -9728,67 +9801,57 @@
                     "items": {
                         "$ref": "#/types/grafana:slo/getSlosSloAlerting:getSlosSloAlerting"
                     },
-                    "description": "Configures the alerting rules that will be generated for each\n\t\t\t\ttime window associated with the SLO. Grafana SLOs can generate\n\t\t\t\talerts when the short-term error budget burn is very high, the\n\t\t\t\tlong-term error budget burn rate is high, or when the remaining\n\t\t\t\terror budget is below a certain threshold. Annotations and Labels support templating.\n"
+                    "description": "Alerting configuration for the SLO.\n"
                 },
                 "description": {
                     "type": "string",
-                    "description": "Description is a free-text field that can provide more context to an SLO.\n"
+                    "description": "Description of the SLO.\n"
                 },
                 "destinationDatasources": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:slo/getSlosSloDestinationDatasource:getSlosSloDestinationDatasource"
                     },
-                    "description": "Destination Datasource sets the datasource defined for an SLO\n"
-                },
-                "folderUid": {
-                    "type": "string",
-                    "description": "UID for the SLO folder\n"
+                    "description": "Destination datasource configuration.\n"
                 },
                 "labels": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:slo/getSlosSloLabel:getSlosSloLabel"
                     },
-                    "description": "Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - \"^[a-zA-Z_][a-zA-Z0-9_]*$\"\n"
+                    "description": "Labels attached to the SLO.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name should be a short description of your indicator. Consider names like \"API Availability\"\n"
+                    "description": "Name of the SLO.\n"
                 },
                 "objectives": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:slo/getSlosSloObjective:getSlosSloObjective"
                     },
-                    "description": "Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.\n"
+                    "description": "Objectives for the SLO.\n"
                 },
                 "queries": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:slo/getSlosSloQuery:getSlosSloQuery"
                     },
-                    "description": "Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.\n"
+                    "description": "Query configuration for the SLO.\n"
                 },
                 "searchExpression": {
                     "type": "string",
-                    "description": "The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.\n"
+                    "description": "The search expression associated with this SLO.\n"
                 },
                 "uuid": {
                     "type": "string",
-                    "description": "A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.\n"
+                    "description": "A unique, random identifier. This value is read-only.\n"
                 }
             },
             "type": "object",
             "required": [
-                "alertings",
                 "description",
-                "destinationDatasources",
-                "folderUid",
-                "labels",
                 "name",
-                "objectives",
-                "queries",
                 "searchExpression",
                 "uuid"
             ],
@@ -9802,29 +9865,29 @@
             "properties": {
                 "advancedOptions": {
                     "$ref": "#/types/grafana:slo/getSlosSloAlertingAdvancedOptions:getSlosSloAlertingAdvancedOptions",
-                    "description": "Advanced Options for Alert Rules\n"
+                    "description": "Advanced alerting options.\n"
                 },
                 "annotations": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:slo/getSlosSloAlertingAnnotation:getSlosSloAlertingAnnotation"
                     },
-                    "description": "Annotations will be attached to all alerts generated by any of these rules.\n"
+                    "description": "Annotations attached to alerts.\n"
                 },
                 "fastburn": {
                     "$ref": "#/types/grafana:slo/getSlosSloAlertingFastburn:getSlosSloAlertingFastburn",
-                    "description": "Alerting Rules generated for Fast Burn alerts\n"
+                    "description": "Fast burn alert configuration.\n"
                 },
                 "labels": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:slo/getSlosSloAlertingLabel:getSlosSloAlertingLabel"
                     },
-                    "description": "Labels will be attached to all alerts generated by any of these rules.\n"
+                    "description": "Labels attached to alerts.\n"
                 },
                 "slowburn": {
                     "$ref": "#/types/grafana:slo/getSlosSloAlertingSlowburn:getSlosSloAlertingSlowburn",
-                    "description": "Alerting Rules generated for Slow Burn alerts\n"
+                    "description": "Slow burn alert configuration.\n"
                 }
             },
             "type": "object"
@@ -9833,20 +9896,28 @@
             "properties": {
                 "minFailures": {
                     "type": "integer",
-                    "description": "Minimum number of failed events to trigger an alert\n"
+                    "description": "Minimum number of failures before alerting.\n"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "minFailures"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "grafana:slo/getSlosSloAlertingAnnotation:getSlosSloAlertingAnnotation": {
             "properties": {
                 "key": {
                     "type": "string",
-                    "description": "Key for filtering and identification\n"
+                    "description": "Key for filtering and identification.\n"
                 },
                 "value": {
                     "type": "string",
-                    "description": "Templatable value\n"
+                    "description": "Templatable value.\n"
                 }
             },
             "type": "object",
@@ -9867,21 +9938,21 @@
                     "items": {
                         "$ref": "#/types/grafana:slo/getSlosSloAlertingFastburnAnnotation:getSlosSloAlertingFastburnAnnotation"
                     },
-                    "description": "Annotations to attach only to Fast Burn alerts.\n"
+                    "description": "Annotations for fast burn alerts.\n"
                 },
                 "enrichments": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:slo/getSlosSloAlertingFastburnEnrichment:getSlosSloAlertingFastburnEnrichment"
                     },
-                    "description": "Enrichments to attach only to Fast Burn alerts.\n"
+                    "description": "Enrichments for fast burn alerts.\n"
                 },
                 "labels": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:slo/getSlosSloAlertingFastburnLabel:getSlosSloAlertingFastburnLabel"
                     },
-                    "description": "Labels to attach only to Fast Burn alerts.\n"
+                    "description": "Labels for fast burn alerts.\n"
                 }
             },
             "type": "object"
@@ -9890,11 +9961,11 @@
             "properties": {
                 "key": {
                     "type": "string",
-                    "description": "Key for filtering and identification\n"
+                    "description": "Key for filtering and identification.\n"
                 },
                 "value": {
                     "type": "string",
-                    "description": "Templatable value\n"
+                    "description": "Templatable value.\n"
                 }
             },
             "type": "object",
@@ -9912,7 +9983,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "description": "Type of the alert enrichment. Currently only \"assistantInvestigation\" is supported.\n"
+                    "description": "Type of the alert enrichment.\n"
                 }
             },
             "type": "object",
@@ -9929,11 +10000,11 @@
             "properties": {
                 "key": {
                     "type": "string",
-                    "description": "Key for filtering and identification\n"
+                    "description": "Key for filtering and identification.\n"
                 },
                 "value": {
                     "type": "string",
-                    "description": "Templatable value\n"
+                    "description": "Templatable value.\n"
                 }
             },
             "type": "object",
@@ -9951,11 +10022,11 @@
             "properties": {
                 "key": {
                     "type": "string",
-                    "description": "Key for filtering and identification\n"
+                    "description": "Key for filtering and identification.\n"
                 },
                 "value": {
                     "type": "string",
-                    "description": "Templatable value\n"
+                    "description": "Templatable value.\n"
                 }
             },
             "type": "object",
@@ -9976,21 +10047,21 @@
                     "items": {
                         "$ref": "#/types/grafana:slo/getSlosSloAlertingSlowburnAnnotation:getSlosSloAlertingSlowburnAnnotation"
                     },
-                    "description": "Annotations to attach only to Slow Burn alerts.\n"
+                    "description": "Annotations for slow burn alerts.\n"
                 },
                 "enrichments": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:slo/getSlosSloAlertingSlowburnEnrichment:getSlosSloAlertingSlowburnEnrichment"
                     },
-                    "description": "Enrichments to attach only to Slow Burn alerts.\n"
+                    "description": "Enrichments for slow burn alerts.\n"
                 },
                 "labels": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:slo/getSlosSloAlertingSlowburnLabel:getSlosSloAlertingSlowburnLabel"
                     },
-                    "description": "Labels to attach only to Slow Burn alerts.\n"
+                    "description": "Labels for slow burn alerts.\n"
                 }
             },
             "type": "object"
@@ -9999,11 +10070,11 @@
             "properties": {
                 "key": {
                     "type": "string",
-                    "description": "Key for filtering and identification\n"
+                    "description": "Key for filtering and identification.\n"
                 },
                 "value": {
                     "type": "string",
-                    "description": "Templatable value\n"
+                    "description": "Templatable value.\n"
                 }
             },
             "type": "object",
@@ -10021,7 +10092,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "description": "Type of the alert enrichment. Currently only \"assistantInvestigation\" is supported.\n"
+                    "description": "Type of the alert enrichment.\n"
                 }
             },
             "type": "object",
@@ -10038,11 +10109,11 @@
             "properties": {
                 "key": {
                     "type": "string",
-                    "description": "Key for filtering and identification\n"
+                    "description": "Key for filtering and identification.\n"
                 },
                 "value": {
                     "type": "string",
-                    "description": "Templatable value\n"
+                    "description": "Templatable value.\n"
                 }
             },
             "type": "object",
@@ -10060,7 +10131,7 @@
             "properties": {
                 "uid": {
                     "type": "string",
-                    "description": "UID for the Datasource\n"
+                    "description": "UID of the destination datasource.\n"
                 }
             },
             "type": "object",
@@ -10077,11 +10148,11 @@
             "properties": {
                 "key": {
                     "type": "string",
-                    "description": "Key for filtering and identification\n"
+                    "description": "Key for filtering and identification.\n"
                 },
                 "value": {
                     "type": "string",
-                    "description": "Templatable value\n"
+                    "description": "Templatable value.\n"
                 }
             },
             "type": "object",
@@ -10099,11 +10170,11 @@
             "properties": {
                 "value": {
                     "type": "number",
-                    "description": "Value between 0 and 1. If the value of the query is above the objective, the SLO is met.\n"
+                    "description": "Objective value (between 0 and 1).\n"
                 },
                 "window": {
                     "type": "string",
-                    "description": "A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.\n"
+                    "description": "Time window for the objective.\n"
                 }
             },
             "type": "object",
@@ -10120,18 +10191,20 @@
         "grafana:slo/getSlosSloQuery:getSlosSloQuery": {
             "properties": {
                 "freeform": {
-                    "$ref": "#/types/grafana:slo/getSlosSloQueryFreeform:getSlosSloQueryFreeform"
+                    "$ref": "#/types/grafana:slo/getSlosSloQueryFreeform:getSlosSloQueryFreeform",
+                    "description": "Freeform query configuration.\n"
                 },
                 "grafanaQueries": {
                     "$ref": "#/types/grafana:slo/getSlosSloQueryGrafanaQueries:getSlosSloQueryGrafanaQueries",
-                    "description": "Array for holding a set of grafana queries\n"
+                    "description": "Grafana queries configuration.\n"
                 },
                 "ratio": {
-                    "$ref": "#/types/grafana:slo/getSlosSloQueryRatio:getSlosSloQueryRatio"
+                    "$ref": "#/types/grafana:slo/getSlosSloQueryRatio:getSlosSloQueryRatio",
+                    "description": "Ratio query configuration.\n"
                 },
                 "type": {
                     "type": "string",
-                    "description": "Query type must be one of: \"freeform\", \"query\", \"ratio\", \u003cspan pulumi-lang-nodejs=\"\"grafanaQueries\"\" pulumi-lang-dotnet=\"\"GrafanaQueries\"\" pulumi-lang-go=\"\"grafanaQueries\"\" pulumi-lang-python=\"\"grafana_queries\"\" pulumi-lang-yaml=\"\"grafanaQueries\"\" pulumi-lang-java=\"\"grafanaQueries\"\"\u003e\"grafanaQueries\"\u003c/span\u003e or \"threshold\"\n"
+                    "description": "Type of query (freeform, ratio, grafana_queries, etc.).\n"
                 }
             },
             "type": "object",
@@ -10148,7 +10221,7 @@
             "properties": {
                 "query": {
                     "type": "string",
-                    "description": "Freeform Query Field - valid promQl\n"
+                    "description": "The PromQL query string.\n"
                 }
             },
             "type": "object",
@@ -10165,7 +10238,7 @@
             "properties": {
                 "grafanaQueries": {
                     "type": "string",
-                    "description": "Query Object - Array of Grafana Query JSON objects\n"
+                    "description": "JSON string containing the Grafana queries.\n"
                 }
             },
             "type": "object",
@@ -10185,19 +10258,20 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - \"^[a-zA-Z_][a-zA-Z0-9_]*$\"\n"
+                    "description": "Labels used for grouping.\n"
                 },
                 "successMetric": {
                     "type": "string",
-                    "description": "Counter metric for success events (numerator)\n"
+                    "description": "Counter metric for success events (numerator).\n"
                 },
                 "totalMetric": {
                     "type": "string",
-                    "description": "Metric for total events (denominator)\n"
+                    "description": "Metric for total events (denominator).\n"
                 }
             },
             "type": "object",
             "required": [
+                "groupByLabels",
                 "successMetric",
                 "totalMetric"
             ],
@@ -16389,6 +16463,55 @@
                 }
             ]
         },
+        "grafana:cloud/v1alpha1/productActivationDbO11yConfig:ProductActivationDbO11yConfig": {
+            "description": "Manages Grafana Database Observability configurations using the Grafana APIs.\n\nThis resource allows you to enable or disable database observability features.\n\n**Note**: This is a singleton resource. The UID is automatically set to \"global\" and there can only be one per namespace.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.cloud.v1alpha1.ProductActivationDbO11yConfig(\"example\", {\n    metadata: {\n        uid: \"global\",\n    },\n    spec: {\n        enabled: true,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.cloud.v1alpha1.ProductActivationDbO11yConfig(\"example\",\n    metadata={\n        \"uid\": \"global\",\n    },\n    spec={\n        \"enabled\": True,\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Cloud.V1Alpha1.ProductActivationDbO11yConfig(\"example\", new()\n    {\n        Metadata = new Grafana.Cloud.V1Alpha1.Inputs.ProductActivationDbO11yConfigMetadataArgs\n        {\n            Uid = \"global\",\n        },\n        Spec = new Grafana.Cloud.V1Alpha1.Inputs.ProductActivationDbO11yConfigSpecArgs\n        {\n            Enabled = true,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n\tcloudv1alpha1 \"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud/v1alpha1\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloud.NewProductActivationDbO11yConfig(ctx, \"example\", \u0026cloud.ProductActivationDbO11yConfigArgs{\n\t\t\tMetadata: \u0026cloudv1alpha1.ProductActivationDbO11yConfigMetadataArgs{\n\t\t\t\tUid: pulumi.String(\"global\"),\n\t\t\t},\n\t\t\tSpec: \u0026cloudv1alpha1.ProductActivationDbO11yConfigSpecArgs{\n\t\t\t\tEnabled: pulumi.Bool(true),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud_v1alpha1.ProductActivationDbO11yConfig;\nimport com.pulumi.grafana.cloud_v1alpha1.ProductActivationDbO11yConfigArgs;\nimport com.pulumi.grafana.cloud.inputs.ProductActivationDbO11yConfigMetadataArgs;\nimport com.pulumi.grafana.cloud.inputs.ProductActivationDbO11yConfigSpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new ProductActivationDbO11yConfig(\"example\", ProductActivationDbO11yConfigArgs.builder()\n            .metadata(ProductActivationDbO11yConfigMetadataArgs.builder()\n                .uid(\"global\")\n                .build())\n            .spec(ProductActivationDbO11yConfigSpecArgs.builder()\n                .enabled(true)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:cloud/v1alpha1:ProductActivationDbO11yConfig\n    properties:\n      metadata:\n        uid: global\n      spec:\n        enabled: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n!/bin/bash\nImport an existing database observability config by its UID\n\n```sh\n$ pulumi import grafana:cloud/v1alpha1/productActivationDbO11yConfig:ProductActivationDbO11yConfig example my-db-o11y-config\n```\n\n",
+            "properties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:cloud/v1alpha1/ProductActivationDbO11yConfigMetadata:ProductActivationDbO11yConfigMetadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:cloud/v1alpha1/ProductActivationDbO11yConfigOptions:ProductActivationDbO11yConfigOptions",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:cloud/v1alpha1/ProductActivationDbO11yConfigSpec:ProductActivationDbO11yConfigSpec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "inputProperties": {
+                "metadata": {
+                    "$ref": "#/types/grafana:cloud/v1alpha1/ProductActivationDbO11yConfigMetadata:ProductActivationDbO11yConfigMetadata",
+                    "description": "The metadata of the resource.\n"
+                },
+                "options": {
+                    "$ref": "#/types/grafana:cloud/v1alpha1/ProductActivationDbO11yConfigOptions:ProductActivationDbO11yConfigOptions",
+                    "description": "Options for applying the resource.\n"
+                },
+                "spec": {
+                    "$ref": "#/types/grafana:cloud/v1alpha1/ProductActivationDbO11yConfigSpec:ProductActivationDbO11yConfigSpec",
+                    "description": "The spec of the resource.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ProductActivationDbO11yConfig resources.\n",
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/types/grafana:cloud/v1alpha1/ProductActivationDbO11yConfigMetadata:ProductActivationDbO11yConfigMetadata",
+                        "description": "The metadata of the resource.\n"
+                    },
+                    "options": {
+                        "$ref": "#/types/grafana:cloud/v1alpha1/ProductActivationDbO11yConfigOptions:ProductActivationDbO11yConfigOptions",
+                        "description": "Options for applying the resource.\n"
+                    },
+                    "spec": {
+                        "$ref": "#/types/grafana:cloud/v1alpha1/ProductActivationDbO11yConfigSpec:ProductActivationDbO11yConfigSpec",
+                        "description": "The spec of the resource.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig": {
             "description": "Manages Grafana Kubernetes Observability configurations using the Grafana APIs.\n\nThis resource allows you to enable or disable Kubernetes observability features.\n\n**Note**: This is a singleton resource. The UID is automatically set to \"global\" and there can only be one per namespace.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst example = new grafana.cloud.v1alpha1.ProductActivationK8sO11yConfig(\"example\", {\n    metadata: {\n        uid: \"global\",\n    },\n    spec: {\n        enabled: true,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nexample = grafana.cloud.v1alpha1.ProductActivationK8sO11yConfig(\"example\",\n    metadata={\n        \"uid\": \"global\",\n    },\n    spec={\n        \"enabled\": True,\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Grafana.Cloud.V1Alpha1.ProductActivationK8sO11yConfig(\"example\", new()\n    {\n        Metadata = new Grafana.Cloud.V1Alpha1.Inputs.ProductActivationK8sO11yConfigMetadataArgs\n        {\n            Uid = \"global\",\n        },\n        Spec = new Grafana.Cloud.V1Alpha1.Inputs.ProductActivationK8sO11yConfigSpecArgs\n        {\n            Enabled = true,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n\tcloudv1alpha1 \"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud/v1alpha1\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloud.NewProductActivationK8sO11yConfig(ctx, \"example\", \u0026cloud.ProductActivationK8sO11yConfigArgs{\n\t\t\tMetadata: \u0026cloudv1alpha1.ProductActivationK8sO11yConfigMetadataArgs{\n\t\t\t\tUid: pulumi.String(\"global\"),\n\t\t\t},\n\t\t\tSpec: \u0026cloudv1alpha1.ProductActivationK8sO11yConfigSpecArgs{\n\t\t\t\tEnabled: pulumi.Bool(true),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud_v1alpha1.ProductActivationK8sO11yConfig;\nimport com.pulumi.grafana.cloud_v1alpha1.ProductActivationK8sO11yConfigArgs;\nimport com.pulumi.grafana.cloud.inputs.ProductActivationK8sO11yConfigMetadataArgs;\nimport com.pulumi.grafana.cloud.inputs.ProductActivationK8sO11yConfigSpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new ProductActivationK8sO11yConfig(\"example\", ProductActivationK8sO11yConfigArgs.builder()\n            .metadata(ProductActivationK8sO11yConfigMetadataArgs.builder()\n                .uid(\"global\")\n                .build())\n            .spec(ProductActivationK8sO11yConfigSpecArgs.builder()\n                .enabled(true)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: grafana:cloud/v1alpha1:ProductActivationK8sO11yConfig\n    properties:\n      metadata:\n        uid: global\n      spec:\n        enabled: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n!/bin/bash\nImport an existing Kubernetes observability config by its UID\n\n```sh\n$ pulumi import grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig example my-k8s-o11y-config\n```\n\n",
             "properties": {
@@ -18067,7 +18190,7 @@
             ]
         },
         "grafana:enterprise/scimConfig:ScimConfig": {
-            "description": "**Note:** This resource is available only with Grafana Enterprise.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst _default = new grafana.enterprise.ScimConfig(\"default\", {\n    enableUserSync: true,\n    enableGroupSync: false,\n    rejectNonProvisionedUsers: false,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ndefault = grafana.enterprise.ScimConfig(\"default\",\n    enable_user_sync=True,\n    enable_group_sync=False,\n    reject_non_provisioned_users=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = new Grafana.Enterprise.ScimConfig(\"default\", new()\n    {\n        EnableUserSync = true,\n        EnableGroupSync = false,\n        RejectNonProvisionedUsers = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/enterprise\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := enterprise.NewScimConfig(ctx, \"default\", \u0026enterprise.ScimConfigArgs{\n\t\t\tEnableUserSync:            pulumi.Bool(true),\n\t\t\tEnableGroupSync:           pulumi.Bool(false),\n\t\t\tRejectNonProvisionedUsers: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.enterprise.ScimConfig;\nimport com.pulumi.grafana.enterprise.ScimConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var default_ = new ScimConfig(\"default\", ScimConfigArgs.builder()\n            .enableUserSync(true)\n            .enableGroupSync(false)\n            .rejectNonProvisionedUsers(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: grafana:enterprise:ScimConfig\n    properties:\n      enableUserSync: true\n      enableGroupSync: false\n      rejectNonProvisionedUsers: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:enterprise/scimConfig:ScimConfig name \"\"\nterraform import grafana_scim_config.name \"{{ orgID }}\"\n```\n\n",
+            "description": "**Note:** Available in [Grafana Enterprise](https://grafana.com/docs/grafana/latest/introduction/grafana-enterprise/) and [Grafana Cloud](https://grafana.com/docs/grafana-cloud/).\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-access/configure-scim-provisioning/)\n\n## Example Usage\n\n### Grafana Enterprise\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst _default = new grafana.enterprise.ScimConfig(\"default\", {\n    enableUserSync: true,\n    enableGroupSync: false,\n    rejectNonProvisionedUsers: false,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\ndefault = grafana.enterprise.ScimConfig(\"default\",\n    enable_user_sync=True,\n    enable_group_sync=False,\n    reject_non_provisioned_users=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = new Grafana.Enterprise.ScimConfig(\"default\", new()\n    {\n        EnableUserSync = true,\n        EnableGroupSync = false,\n        RejectNonProvisionedUsers = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/enterprise\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := enterprise.NewScimConfig(ctx, \"default\", \u0026enterprise.ScimConfigArgs{\n\t\t\tEnableUserSync:            pulumi.Bool(true),\n\t\t\tEnableGroupSync:           pulumi.Bool(false),\n\t\t\tRejectNonProvisionedUsers: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.enterprise.ScimConfig;\nimport com.pulumi.grafana.enterprise.ScimConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var default_ = new ScimConfig(\"default\", ScimConfigArgs.builder()\n            .enableUserSync(true)\n            .enableGroupSync(false)\n            .rejectNonProvisionedUsers(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: grafana:enterprise:ScimConfig\n    properties:\n      enableUserSync: true\n      enableGroupSync: false\n      rejectNonProvisionedUsers: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Grafana Cloud\n\nWhen using this resource against a Grafana Cloud stack authenticated with a stack service account token, the \u003cspan pulumi-lang-nodejs=\"`stackId`\" pulumi-lang-dotnet=\"`StackId`\" pulumi-lang-go=\"`stackId`\" pulumi-lang-python=\"`stack_id`\" pulumi-lang-yaml=\"`stackId`\" pulumi-lang-java=\"`stackId`\"\u003e`stackId`\u003c/span\u003e attribute must be set on the provider block so the request is routed to the correct stack namespace. Without it, the API returns `403 authn.invalid-namespace`.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst myStack = new grafana.cloud.Stack(\"my_stack\", {\n    name: \"my-stack\",\n    slug: \"my-stack\",\n});\nconst cloudSa = new grafana.cloud.StackServiceAccount(\"cloud_sa\", {\n    stackSlug: myStack.slug,\n    name: \"scim-terraform\",\n    role: \"Admin\",\n});\nconst cloudSaStackServiceAccountToken = new grafana.cloud.StackServiceAccountToken(\"cloud_sa\", {\n    stackSlug: myStack.slug,\n    serviceAccountId: cloudSa.id,\n    name: \"scim-terraform\",\n});\nconst _default = new grafana.enterprise.ScimConfig(\"default\", {\n    enableUserSync: true,\n    enableGroupSync: false,\n    rejectNonProvisionedUsers: false,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_grafana as grafana\n\nmy_stack = grafana.cloud.Stack(\"my_stack\",\n    name=\"my-stack\",\n    slug=\"my-stack\")\ncloud_sa = grafana.cloud.StackServiceAccount(\"cloud_sa\",\n    stack_slug=my_stack.slug,\n    name=\"scim-terraform\",\n    role=\"Admin\")\ncloud_sa_stack_service_account_token = grafana.cloud.StackServiceAccountToken(\"cloud_sa\",\n    stack_slug=my_stack.slug,\n    service_account_id=cloud_sa.id,\n    name=\"scim-terraform\")\ndefault = grafana.enterprise.ScimConfig(\"default\",\n    enable_user_sync=True,\n    enable_group_sync=False,\n    reject_non_provisioned_users=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myStack = new Grafana.Cloud.Stack(\"my_stack\", new()\n    {\n        Name = \"my-stack\",\n        Slug = \"my-stack\",\n    });\n\n    var cloudSa = new Grafana.Cloud.StackServiceAccount(\"cloud_sa\", new()\n    {\n        StackSlug = myStack.Slug,\n        Name = \"scim-terraform\",\n        Role = \"Admin\",\n    });\n\n    var cloudSaStackServiceAccountToken = new Grafana.Cloud.StackServiceAccountToken(\"cloud_sa\", new()\n    {\n        StackSlug = myStack.Slug,\n        ServiceAccountId = cloudSa.Id,\n        Name = \"scim-terraform\",\n    });\n\n    var @default = new Grafana.Enterprise.ScimConfig(\"default\", new()\n    {\n        EnableUserSync = true,\n        EnableGroupSync = false,\n        RejectNonProvisionedUsers = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/cloud\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/enterprise\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyStack, err := cloud.NewStack(ctx, \"my_stack\", \u0026cloud.StackArgs{\n\t\t\tName: pulumi.String(\"my-stack\"),\n\t\t\tSlug: pulumi.String(\"my-stack\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tcloudSa, err := cloud.NewStackServiceAccount(ctx, \"cloud_sa\", \u0026cloud.StackServiceAccountArgs{\n\t\t\tStackSlug: myStack.Slug,\n\t\t\tName:      pulumi.String(\"scim-terraform\"),\n\t\t\tRole:      pulumi.String(\"Admin\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloud.NewStackServiceAccountToken(ctx, \"cloud_sa\", \u0026cloud.StackServiceAccountTokenArgs{\n\t\t\tStackSlug:        myStack.Slug,\n\t\t\tServiceAccountId: cloudSa.ID(),\n\t\t\tName:             pulumi.String(\"scim-terraform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = enterprise.NewScimConfig(ctx, \"default\", \u0026enterprise.ScimConfigArgs{\n\t\t\tEnableUserSync:            pulumi.Bool(true),\n\t\t\tEnableGroupSync:           pulumi.Bool(false),\n\t\t\tRejectNonProvisionedUsers: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.cloud.Stack;\nimport com.pulumi.grafana.cloud.StackArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccount;\nimport com.pulumi.grafana.cloud.StackServiceAccountArgs;\nimport com.pulumi.grafana.cloud.StackServiceAccountToken;\nimport com.pulumi.grafana.cloud.StackServiceAccountTokenArgs;\nimport com.pulumi.grafana.enterprise.ScimConfig;\nimport com.pulumi.grafana.enterprise.ScimConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myStack = new Stack(\"myStack\", StackArgs.builder()\n            .name(\"my-stack\")\n            .slug(\"my-stack\")\n            .build());\n\n        var cloudSa = new StackServiceAccount(\"cloudSa\", StackServiceAccountArgs.builder()\n            .stackSlug(myStack.slug())\n            .name(\"scim-terraform\")\n            .role(\"Admin\")\n            .build());\n\n        var cloudSaStackServiceAccountToken = new StackServiceAccountToken(\"cloudSaStackServiceAccountToken\", StackServiceAccountTokenArgs.builder()\n            .stackSlug(myStack.slug())\n            .serviceAccountId(cloudSa.id())\n            .name(\"scim-terraform\")\n            .build());\n\n        var default_ = new ScimConfig(\"default\", ScimConfigArgs.builder()\n            .enableUserSync(true)\n            .enableGroupSync(false)\n            .rejectNonProvisionedUsers(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myStack:\n    type: grafana:cloud:Stack\n    name: my_stack\n    properties:\n      name: my-stack\n      slug: my-stack\n  cloudSa:\n    type: grafana:cloud:StackServiceAccount\n    name: cloud_sa\n    properties:\n      stackSlug: ${myStack.slug}\n      name: scim-terraform\n      role: Admin\n  cloudSaStackServiceAccountToken:\n    type: grafana:cloud:StackServiceAccountToken\n    name: cloud_sa\n    properties:\n      stackSlug: ${myStack.slug}\n      serviceAccountId: ${cloudSa.id}\n      name: scim-terraform\n  default:\n    type: grafana:enterprise:ScimConfig\n    properties:\n      enableUserSync: true\n      enableGroupSync: false\n      rejectNonProvisionedUsers: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n```sh\n$ pulumi import grafana:enterprise/scimConfig:ScimConfig name \"\"\nterraform import grafana_scim_config.name \"{{ orgID }}\"\n```\n\n",
             "properties": {
                 "enableGroupSync": {
                     "type": "boolean",
@@ -23439,7 +23562,7 @@
                 },
                 "destinationDatasource": {
                     "$ref": "#/types/grafana:slo/SLODestinationDatasource:SLODestinationDatasource",
-                    "description": "Destination Datasource sets the datasource defined for an SLO\n"
+                    "description": "**Required.** Destination Datasource sets the datasource defined for an SLO.\n"
                 },
                 "folderUid": {
                     "type": "string",
@@ -23461,14 +23584,14 @@
                     "items": {
                         "$ref": "#/types/grafana:slo/SLOObjective:SLOObjective"
                     },
-                    "description": "Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.\n"
+                    "description": "**Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.\n"
                 },
                 "queries": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:slo/SLOQuery:SLOQuery"
                     },
-                    "description": "Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.\n"
+                    "description": "**Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.\n"
                 },
                 "searchExpression": {
                     "type": "string",
@@ -23481,10 +23604,7 @@
             },
             "required": [
                 "description",
-                "destinationDatasource",
                 "name",
-                "objectives",
-                "queries",
                 "uuid"
             ],
             "inputProperties": {
@@ -23498,7 +23618,7 @@
                 },
                 "destinationDatasource": {
                     "$ref": "#/types/grafana:slo/SLODestinationDatasource:SLODestinationDatasource",
-                    "description": "Destination Datasource sets the datasource defined for an SLO\n"
+                    "description": "**Required.** Destination Datasource sets the datasource defined for an SLO.\n"
                 },
                 "folderUid": {
                     "type": "string",
@@ -23520,14 +23640,14 @@
                     "items": {
                         "$ref": "#/types/grafana:slo/SLOObjective:SLOObjective"
                     },
-                    "description": "Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.\n"
+                    "description": "**Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.\n"
                 },
                 "queries": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/grafana:slo/SLOQuery:SLOQuery"
                     },
-                    "description": "Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.\n"
+                    "description": "**Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.\n"
                 },
                 "searchExpression": {
                     "type": "string",
@@ -23539,10 +23659,7 @@
                 }
             },
             "requiredInputs": [
-                "description",
-                "destinationDatasource",
-                "objectives",
-                "queries"
+                "description"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering SLO resources.\n",
@@ -23557,7 +23674,7 @@
                     },
                     "destinationDatasource": {
                         "$ref": "#/types/grafana:slo/SLODestinationDatasource:SLODestinationDatasource",
-                        "description": "Destination Datasource sets the datasource defined for an SLO\n"
+                        "description": "**Required.** Destination Datasource sets the datasource defined for an SLO.\n"
                     },
                     "folderUid": {
                         "type": "string",
@@ -23579,14 +23696,14 @@
                         "items": {
                             "$ref": "#/types/grafana:slo/SLOObjective:SLOObjective"
                         },
-                        "description": "Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.\n"
+                        "description": "**Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.\n"
                     },
                     "queries": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/grafana:slo/SLOQuery:SLOQuery"
                         },
-                        "description": "Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.\n"
+                        "description": "**Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.\n"
                     },
                     "searchExpression": {
                         "type": "string",
@@ -27175,16 +27292,29 @@
             }
         },
         "grafana:slo/getSlos:getSlos": {
-            "description": "Datasource for retrieving all SLOs.\n\t\t\n* [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)\n* [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.slo.SLO(\"test\", {\n    name: \"Terraform Testing\",\n    description: \"Terraform Description\",\n    queries: [{\n        freeform: {\n            query: \"sum(rate(apiserver_request_total{code!=\\\"500\\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))\",\n        },\n        type: \"freeform\",\n    }],\n    objectives: [{\n        value: 0.995,\n        window: \"30d\",\n    }],\n    destinationDatasource: {\n        uid: \"grafanacloud-prom\",\n    },\n    labels: [{\n        key: \"custom\",\n        value: \"value\",\n    }],\n    alerting: {\n        fastburn: {\n            annotations: [{\n                key: \"name\",\n                value: \"Critical - SLO Burn Rate Alert\",\n            }],\n            labels: [{\n                key: \"type\",\n                value: \"slo\",\n            }],\n        },\n        slowburn: {\n            annotations: [{\n                key: \"name\",\n                value: \"Warning - SLO Burn Rate Alert\",\n            }],\n            labels: [{\n                key: \"type\",\n                value: \"slo\",\n            }],\n        },\n    },\n});\nconst slos = grafana.slo.getSlos({});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest = grafana.slo.SLO(\"test\",\n    name=\"Terraform Testing\",\n    description=\"Terraform Description\",\n    queries=[{\n        \"freeform\": {\n            \"query\": \"sum(rate(apiserver_request_total{code!=\\\"500\\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))\",\n        },\n        \"type\": \"freeform\",\n    }],\n    objectives=[{\n        \"value\": 0.995,\n        \"window\": \"30d\",\n    }],\n    destination_datasource={\n        \"uid\": \"grafanacloud-prom\",\n    },\n    labels=[{\n        \"key\": \"custom\",\n        \"value\": \"value\",\n    }],\n    alerting={\n        \"fastburn\": {\n            \"annotations\": [{\n                \"key\": \"name\",\n                \"value\": \"Critical - SLO Burn Rate Alert\",\n            }],\n            \"labels\": [{\n                \"key\": \"type\",\n                \"value\": \"slo\",\n            }],\n        },\n        \"slowburn\": {\n            \"annotations\": [{\n                \"key\": \"name\",\n                \"value\": \"Warning - SLO Burn Rate Alert\",\n            }],\n            \"labels\": [{\n                \"key\": \"type\",\n                \"value\": \"slo\",\n            }],\n        },\n    })\nslos = grafana.slo.get_slos()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Slo.SLO(\"test\", new()\n    {\n        Name = \"Terraform Testing\",\n        Description = \"Terraform Description\",\n        Queries = new[]\n        {\n            new Grafana.Slo.Inputs.SLOQueryArgs\n            {\n                Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs\n                {\n                    Query = \"sum(rate(apiserver_request_total{code!=\\\"500\\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))\",\n                },\n                Type = \"freeform\",\n            },\n        },\n        Objectives = new[]\n        {\n            new Grafana.Slo.Inputs.SLOObjectiveArgs\n            {\n                Value = 0.995,\n                Window = \"30d\",\n            },\n        },\n        DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs\n        {\n            Uid = \"grafanacloud-prom\",\n        },\n        Labels = new[]\n        {\n            new Grafana.Slo.Inputs.SLOLabelArgs\n            {\n                Key = \"custom\",\n                Value = \"value\",\n            },\n        },\n        Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs\n        {\n            Fastburn = new Grafana.Slo.Inputs.SLOAlertingFastburnArgs\n            {\n                Annotations = new[]\n                {\n                    new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs\n                    {\n                        Key = \"name\",\n                        Value = \"Critical - SLO Burn Rate Alert\",\n                    },\n                },\n                Labels = new[]\n                {\n                    new Grafana.Slo.Inputs.SLOAlertingFastburnLabelArgs\n                    {\n                        Key = \"type\",\n                        Value = \"slo\",\n                    },\n                },\n            },\n            Slowburn = new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs\n            {\n                Annotations = new[]\n                {\n                    new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs\n                    {\n                        Key = \"name\",\n                        Value = \"Warning - SLO Burn Rate Alert\",\n                    },\n                },\n                Labels = new[]\n                {\n                    new Grafana.Slo.Inputs.SLOAlertingSlowburnLabelArgs\n                    {\n                        Key = \"type\",\n                        Value = \"slo\",\n                    },\n                },\n            },\n        },\n    });\n\n    var slos = Grafana.Slo.GetSlos.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/slo\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := slo.NewSLO(ctx, \"test\", \u0026slo.SLOArgs{\n\t\t\tName:        pulumi.String(\"Terraform Testing\"),\n\t\t\tDescription: pulumi.String(\"Terraform Description\"),\n\t\t\tQueries: slo.SLOQueryArray{\n\t\t\t\t\u0026slo.SLOQueryArgs{\n\t\t\t\t\tFreeform: \u0026slo.SLOQueryFreeformArgs{\n\t\t\t\t\t\tQuery: pulumi.String(\"sum(rate(apiserver_request_total{code!=\\\"500\\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))\"),\n\t\t\t\t\t},\n\t\t\t\t\tType: pulumi.String(\"freeform\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tObjectives: slo.SLOObjectiveArray{\n\t\t\t\t\u0026slo.SLOObjectiveArgs{\n\t\t\t\t\tValue:  pulumi.Float64(0.995),\n\t\t\t\t\tWindow: pulumi.String(\"30d\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tDestinationDatasource: \u0026slo.SLODestinationDatasourceArgs{\n\t\t\t\tUid: pulumi.String(\"grafanacloud-prom\"),\n\t\t\t},\n\t\t\tLabels: slo.SLOLabelArray{\n\t\t\t\t\u0026slo.SLOLabelArgs{\n\t\t\t\t\tKey:   pulumi.String(\"custom\"),\n\t\t\t\t\tValue: pulumi.String(\"value\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tAlerting: \u0026slo.SLOAlertingArgs{\n\t\t\t\tFastburn: \u0026slo.SLOAlertingFastburnArgs{\n\t\t\t\t\tAnnotations: slo.SLOAlertingFastburnAnnotationArray{\n\t\t\t\t\t\t\u0026slo.SLOAlertingFastburnAnnotationArgs{\n\t\t\t\t\t\t\tKey:   pulumi.String(\"name\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"Critical - SLO Burn Rate Alert\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tLabels: slo.SLOAlertingFastburnLabelArray{\n\t\t\t\t\t\t\u0026slo.SLOAlertingFastburnLabelArgs{\n\t\t\t\t\t\t\tKey:   pulumi.String(\"type\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"slo\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\tSlowburn: \u0026slo.SLOAlertingSlowburnArgs{\n\t\t\t\t\tAnnotations: slo.SLOAlertingSlowburnAnnotationArray{\n\t\t\t\t\t\t\u0026slo.SLOAlertingSlowburnAnnotationArgs{\n\t\t\t\t\t\t\tKey:   pulumi.String(\"name\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"Warning - SLO Burn Rate Alert\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tLabels: slo.SLOAlertingSlowburnLabelArray{\n\t\t\t\t\t\t\u0026slo.SLOAlertingSlowburnLabelArgs{\n\t\t\t\t\t\t\tKey:   pulumi.String(\"type\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"slo\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = slo.GetSlos(ctx, map[string]interface{}{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.slo.SLO;\nimport com.pulumi.grafana.slo.SLOArgs;\nimport com.pulumi.grafana.slo.inputs.SLOQueryArgs;\nimport com.pulumi.grafana.slo.inputs.SLOQueryFreeformArgs;\nimport com.pulumi.grafana.slo.inputs.SLOObjectiveArgs;\nimport com.pulumi.grafana.slo.inputs.SLODestinationDatasourceArgs;\nimport com.pulumi.grafana.slo.inputs.SLOLabelArgs;\nimport com.pulumi.grafana.slo.inputs.SLOAlertingArgs;\nimport com.pulumi.grafana.slo.inputs.SLOAlertingFastburnArgs;\nimport com.pulumi.grafana.slo.inputs.SLOAlertingSlowburnArgs;\nimport com.pulumi.grafana.slo.SloFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new SLO(\"test\", SLOArgs.builder()\n            .name(\"Terraform Testing\")\n            .description(\"Terraform Description\")\n            .queries(SLOQueryArgs.builder()\n                .freeform(SLOQueryFreeformArgs.builder()\n                    .query(\"sum(rate(apiserver_request_total{code!=\\\"500\\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))\")\n                    .build())\n                .type(\"freeform\")\n                .build())\n            .objectives(SLOObjectiveArgs.builder()\n                .value(0.995)\n                .window(\"30d\")\n                .build())\n            .destinationDatasource(SLODestinationDatasourceArgs.builder()\n                .uid(\"grafanacloud-prom\")\n                .build())\n            .labels(SLOLabelArgs.builder()\n                .key(\"custom\")\n                .value(\"value\")\n                .build())\n            .alerting(SLOAlertingArgs.builder()\n                .fastburn(SLOAlertingFastburnArgs.builder()\n                    .annotations(SLOAlertingFastburnAnnotationArgs.builder()\n                        .key(\"name\")\n                        .value(\"Critical - SLO Burn Rate Alert\")\n                        .build())\n                    .labels(SLOAlertingFastburnLabelArgs.builder()\n                        .key(\"type\")\n                        .value(\"slo\")\n                        .build())\n                    .build())\n                .slowburn(SLOAlertingSlowburnArgs.builder()\n                    .annotations(SLOAlertingSlowburnAnnotationArgs.builder()\n                        .key(\"name\")\n                        .value(\"Warning - SLO Burn Rate Alert\")\n                        .build())\n                    .labels(SLOAlertingSlowburnLabelArgs.builder()\n                        .key(\"type\")\n                        .value(\"slo\")\n                        .build())\n                    .build())\n                .build())\n            .build());\n\n        final var slos = SloFunctions.getSlos(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:slo:SLO\n    properties:\n      name: Terraform Testing\n      description: Terraform Description\n      queries:\n        - freeform:\n            query: sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))\n          type: freeform\n      objectives:\n        - value: 0.995\n          window: 30d\n      destinationDatasource:\n        uid: grafanacloud-prom\n      labels:\n        - key: custom\n          value: value\n      alerting:\n        fastburn:\n          annotations:\n            - key: name\n              value: Critical - SLO Burn Rate Alert\n          labels:\n            - key: type\n              value: slo\n        slowburn:\n          annotations:\n            - key: name\n              value: Warning - SLO Burn Rate Alert\n          labels:\n            - key: type\n              value: slo\nvariables:\n  slos:\n    fn::invoke:\n      function: grafana:slo:getSlos\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Data source for retrieving all SLOs.\n\n* [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)\n* [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)\n* [Additional Information On Alerting Rule Annotations and Labels](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/#templating/)\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as grafana from \"@pulumiverse/grafana\";\n\nconst test = new grafana.slo.SLO(\"test\", {\n    name: \"Terraform Testing\",\n    description: \"Terraform Description\",\n    queries: [{\n        freeform: {\n            query: \"sum(rate(apiserver_request_total{code!=\\\"500\\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))\",\n        },\n        type: \"freeform\",\n    }],\n    objectives: [{\n        value: 0.995,\n        window: \"30d\",\n    }],\n    destinationDatasource: {\n        uid: \"grafanacloud-prom\",\n    },\n    labels: [{\n        key: \"custom\",\n        value: \"value\",\n    }],\n    alerting: {\n        fastburn: {\n            annotations: [{\n                key: \"name\",\n                value: \"Critical - SLO Burn Rate Alert\",\n            }],\n            labels: [{\n                key: \"type\",\n                value: \"slo\",\n            }],\n        },\n        slowburn: {\n            annotations: [{\n                key: \"name\",\n                value: \"Warning - SLO Burn Rate Alert\",\n            }],\n            labels: [{\n                key: \"type\",\n                value: \"slo\",\n            }],\n        },\n    },\n});\nconst slos = grafana.slo.getSlos({});\n```\n```python\nimport pulumi\nimport pulumi_grafana as grafana\nimport pulumiverse_grafana as grafana\n\ntest = grafana.slo.SLO(\"test\",\n    name=\"Terraform Testing\",\n    description=\"Terraform Description\",\n    queries=[{\n        \"freeform\": {\n            \"query\": \"sum(rate(apiserver_request_total{code!=\\\"500\\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))\",\n        },\n        \"type\": \"freeform\",\n    }],\n    objectives=[{\n        \"value\": 0.995,\n        \"window\": \"30d\",\n    }],\n    destination_datasource={\n        \"uid\": \"grafanacloud-prom\",\n    },\n    labels=[{\n        \"key\": \"custom\",\n        \"value\": \"value\",\n    }],\n    alerting={\n        \"fastburn\": {\n            \"annotations\": [{\n                \"key\": \"name\",\n                \"value\": \"Critical - SLO Burn Rate Alert\",\n            }],\n            \"labels\": [{\n                \"key\": \"type\",\n                \"value\": \"slo\",\n            }],\n        },\n        \"slowburn\": {\n            \"annotations\": [{\n                \"key\": \"name\",\n                \"value\": \"Warning - SLO Burn Rate Alert\",\n            }],\n            \"labels\": [{\n                \"key\": \"type\",\n                \"value\": \"slo\",\n            }],\n        },\n    })\nslos = grafana.slo.get_slos()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Grafana = Pulumiverse.Grafana;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Grafana.Slo.SLO(\"test\", new()\n    {\n        Name = \"Terraform Testing\",\n        Description = \"Terraform Description\",\n        Queries = new[]\n        {\n            new Grafana.Slo.Inputs.SLOQueryArgs\n            {\n                Freeform = new Grafana.Slo.Inputs.SLOQueryFreeformArgs\n                {\n                    Query = \"sum(rate(apiserver_request_total{code!=\\\"500\\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))\",\n                },\n                Type = \"freeform\",\n            },\n        },\n        Objectives = new[]\n        {\n            new Grafana.Slo.Inputs.SLOObjectiveArgs\n            {\n                Value = 0.995,\n                Window = \"30d\",\n            },\n        },\n        DestinationDatasource = new Grafana.Slo.Inputs.SLODestinationDatasourceArgs\n        {\n            Uid = \"grafanacloud-prom\",\n        },\n        Labels = new[]\n        {\n            new Grafana.Slo.Inputs.SLOLabelArgs\n            {\n                Key = \"custom\",\n                Value = \"value\",\n            },\n        },\n        Alerting = new Grafana.Slo.Inputs.SLOAlertingArgs\n        {\n            Fastburn = new Grafana.Slo.Inputs.SLOAlertingFastburnArgs\n            {\n                Annotations = new[]\n                {\n                    new Grafana.Slo.Inputs.SLOAlertingFastburnAnnotationArgs\n                    {\n                        Key = \"name\",\n                        Value = \"Critical - SLO Burn Rate Alert\",\n                    },\n                },\n                Labels = new[]\n                {\n                    new Grafana.Slo.Inputs.SLOAlertingFastburnLabelArgs\n                    {\n                        Key = \"type\",\n                        Value = \"slo\",\n                    },\n                },\n            },\n            Slowburn = new Grafana.Slo.Inputs.SLOAlertingSlowburnArgs\n            {\n                Annotations = new[]\n                {\n                    new Grafana.Slo.Inputs.SLOAlertingSlowburnAnnotationArgs\n                    {\n                        Key = \"name\",\n                        Value = \"Warning - SLO Burn Rate Alert\",\n                    },\n                },\n                Labels = new[]\n                {\n                    new Grafana.Slo.Inputs.SLOAlertingSlowburnLabelArgs\n                    {\n                        Key = \"type\",\n                        Value = \"slo\",\n                    },\n                },\n            },\n        },\n    });\n\n    var slos = Grafana.Slo.GetSlos.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/slo\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := slo.NewSLO(ctx, \"test\", \u0026slo.SLOArgs{\n\t\t\tName:        pulumi.String(\"Terraform Testing\"),\n\t\t\tDescription: pulumi.String(\"Terraform Description\"),\n\t\t\tQueries: slo.SLOQueryArray{\n\t\t\t\t\u0026slo.SLOQueryArgs{\n\t\t\t\t\tFreeform: \u0026slo.SLOQueryFreeformArgs{\n\t\t\t\t\t\tQuery: pulumi.String(\"sum(rate(apiserver_request_total{code!=\\\"500\\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))\"),\n\t\t\t\t\t},\n\t\t\t\t\tType: pulumi.String(\"freeform\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tObjectives: slo.SLOObjectiveArray{\n\t\t\t\t\u0026slo.SLOObjectiveArgs{\n\t\t\t\t\tValue:  pulumi.Float64(0.995),\n\t\t\t\t\tWindow: pulumi.String(\"30d\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tDestinationDatasource: \u0026slo.SLODestinationDatasourceArgs{\n\t\t\t\tUid: pulumi.String(\"grafanacloud-prom\"),\n\t\t\t},\n\t\t\tLabels: slo.SLOLabelArray{\n\t\t\t\t\u0026slo.SLOLabelArgs{\n\t\t\t\t\tKey:   pulumi.String(\"custom\"),\n\t\t\t\t\tValue: pulumi.String(\"value\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tAlerting: \u0026slo.SLOAlertingArgs{\n\t\t\t\tFastburn: \u0026slo.SLOAlertingFastburnArgs{\n\t\t\t\t\tAnnotations: slo.SLOAlertingFastburnAnnotationArray{\n\t\t\t\t\t\t\u0026slo.SLOAlertingFastburnAnnotationArgs{\n\t\t\t\t\t\t\tKey:   pulumi.String(\"name\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"Critical - SLO Burn Rate Alert\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tLabels: slo.SLOAlertingFastburnLabelArray{\n\t\t\t\t\t\t\u0026slo.SLOAlertingFastburnLabelArgs{\n\t\t\t\t\t\t\tKey:   pulumi.String(\"type\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"slo\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\tSlowburn: \u0026slo.SLOAlertingSlowburnArgs{\n\t\t\t\t\tAnnotations: slo.SLOAlertingSlowburnAnnotationArray{\n\t\t\t\t\t\t\u0026slo.SLOAlertingSlowburnAnnotationArgs{\n\t\t\t\t\t\t\tKey:   pulumi.String(\"name\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"Warning - SLO Burn Rate Alert\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tLabels: slo.SLOAlertingSlowburnLabelArray{\n\t\t\t\t\t\t\u0026slo.SLOAlertingSlowburnLabelArgs{\n\t\t\t\t\t\t\tKey:   pulumi.String(\"type\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"slo\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = slo.GetSlos(ctx, \u0026slo.GetSlosArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.grafana.slo.SLO;\nimport com.pulumi.grafana.slo.SLOArgs;\nimport com.pulumi.grafana.slo.inputs.SLOQueryArgs;\nimport com.pulumi.grafana.slo.inputs.SLOQueryFreeformArgs;\nimport com.pulumi.grafana.slo.inputs.SLOObjectiveArgs;\nimport com.pulumi.grafana.slo.inputs.SLODestinationDatasourceArgs;\nimport com.pulumi.grafana.slo.inputs.SLOLabelArgs;\nimport com.pulumi.grafana.slo.inputs.SLOAlertingArgs;\nimport com.pulumi.grafana.slo.inputs.SLOAlertingFastburnArgs;\nimport com.pulumi.grafana.slo.inputs.SLOAlertingSlowburnArgs;\nimport com.pulumi.grafana.slo.SloFunctions;\nimport com.pulumi.grafana.slo.inputs.GetSlosArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new SLO(\"test\", SLOArgs.builder()\n            .name(\"Terraform Testing\")\n            .description(\"Terraform Description\")\n            .queries(SLOQueryArgs.builder()\n                .freeform(SLOQueryFreeformArgs.builder()\n                    .query(\"sum(rate(apiserver_request_total{code!=\\\"500\\\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))\")\n                    .build())\n                .type(\"freeform\")\n                .build())\n            .objectives(SLOObjectiveArgs.builder()\n                .value(0.995)\n                .window(\"30d\")\n                .build())\n            .destinationDatasource(SLODestinationDatasourceArgs.builder()\n                .uid(\"grafanacloud-prom\")\n                .build())\n            .labels(SLOLabelArgs.builder()\n                .key(\"custom\")\n                .value(\"value\")\n                .build())\n            .alerting(SLOAlertingArgs.builder()\n                .fastburn(SLOAlertingFastburnArgs.builder()\n                    .annotations(SLOAlertingFastburnAnnotationArgs.builder()\n                        .key(\"name\")\n                        .value(\"Critical - SLO Burn Rate Alert\")\n                        .build())\n                    .labels(SLOAlertingFastburnLabelArgs.builder()\n                        .key(\"type\")\n                        .value(\"slo\")\n                        .build())\n                    .build())\n                .slowburn(SLOAlertingSlowburnArgs.builder()\n                    .annotations(SLOAlertingSlowburnAnnotationArgs.builder()\n                        .key(\"name\")\n                        .value(\"Warning - SLO Burn Rate Alert\")\n                        .build())\n                    .labels(SLOAlertingSlowburnLabelArgs.builder()\n                        .key(\"type\")\n                        .value(\"slo\")\n                        .build())\n                    .build())\n                .build())\n            .build());\n\n        final var slos = SloFunctions.getSlos(GetSlosArgs.builder()\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: grafana:slo:SLO\n    properties:\n      name: Terraform Testing\n      description: Terraform Description\n      queries:\n        - freeform:\n            query: sum(rate(apiserver_request_total{code!=\"500\"}[$__rate_interval])) / sum(rate(apiserver_request_total[$__rate_interval]))\n          type: freeform\n      objectives:\n        - value: 0.995\n          window: 30d\n      destinationDatasource:\n        uid: grafanacloud-prom\n      labels:\n        - key: custom\n          value: value\n      alerting:\n        fastburn:\n          annotations:\n            - key: name\n              value: Critical - SLO Burn Rate Alert\n          labels:\n            - key: type\n              value: slo\n        slowburn:\n          annotations:\n            - key: name\n              value: Warning - SLO Burn Rate Alert\n          labels:\n            - key: type\n              value: slo\nvariables:\n  slos:\n    fn::invoke:\n      function: grafana:slo:getSlos\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getSlos.\n",
+                "properties": {
+                    "slos": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/grafana:slo/getSlosSlo:getSlosSlo"
+                        },
+                        "description": "List of all SLOs.\n"
+                    }
+                },
+                "type": "object"
+            },
             "outputs": {
                 "description": "A collection of values returned by getSlos.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "description": "The ID of this datasource. This is a constant value.\n",
                         "type": "string"
                     },
                     "slos": {
-                        "description": "Returns a list of all SLOs\"\n",
+                        "description": "List of all SLOs.\n",
                         "items": {
                             "$ref": "#/types/grafana:slo/getSlosSlo:getSlosSlo"
                         },
@@ -27192,7 +27322,6 @@
                     }
                 },
                 "required": [
-                    "slos",
                     "id"
                 ],
                 "type": "object"

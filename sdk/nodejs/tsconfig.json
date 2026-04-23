@@ -74,6 +74,7 @@
         "cloud/stackServiceAccountToken.ts",
         "cloud/v1alpha1/index.ts",
         "cloud/v1alpha1/productActivationAppO11yConfig.ts",
+        "cloud/v1alpha1/productActivationDbO11yConfig.ts",
         "cloud/v1alpha1/productActivationK8sO11yConfig.ts",
         "cloudprovider/awsAccount.ts",
         "cloudprovider/awsCloudwatchScrapeJob.ts",

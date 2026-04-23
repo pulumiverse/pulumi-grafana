@@ -15,47 +15,39 @@ namespace Pulumiverse.Grafana.Slo.Outputs
     public sealed class GetSlosSloResult
     {
         /// <summary>
-        /// Configures the alerting rules that will be generated for each
-        /// 				time window associated with the SLO. Grafana SLOs can generate
-        /// 				alerts when the short-term error budget burn is very high, the
-        /// 				long-term error budget burn rate is high, or when the remaining
-        /// 				error budget is below a certain threshold. Annotations and Labels support templating.
+        /// Alerting configuration for the SLO.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloAlertingResult> Alertings;
         /// <summary>
-        /// Description is a free-text field that can provide more context to an SLO.
+        /// Description of the SLO.
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// Destination Datasource sets the datasource defined for an SLO
+        /// Destination datasource configuration.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloDestinationDatasourceResult> DestinationDatasources;
         /// <summary>
-        /// UID for the SLO folder
-        /// </summary>
-        public readonly string FolderUid;
-        /// <summary>
-        /// Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
+        /// Labels attached to the SLO.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloLabelResult> Labels;
         /// <summary>
-        /// Name should be a short description of your indicator. Consider names like "API Availability"
+        /// Name of the SLO.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+        /// Objectives for the SLO.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloObjectiveResult> Objectives;
         /// <summary>
-        /// Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+        /// Query configuration for the SLO.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloQueryResult> Queries;
         /// <summary>
-        /// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        /// The search expression associated with this SLO.
         /// </summary>
         public readonly string SearchExpression;
         /// <summary>
-        /// A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
+        /// A unique, random identifier. This value is read-only.
         /// </summary>
         public readonly string Uuid;
 
@@ -66,8 +58,6 @@ namespace Pulumiverse.Grafana.Slo.Outputs
             string description,
 
             ImmutableArray<Outputs.GetSlosSloDestinationDatasourceResult> destinationDatasources,
-
-            string folderUid,
 
             ImmutableArray<Outputs.GetSlosSloLabelResult> labels,
 
@@ -84,7 +74,6 @@ namespace Pulumiverse.Grafana.Slo.Outputs
             Alertings = alertings;
             Description = description;
             DestinationDatasources = destinationDatasources;
-            FolderUid = folderUid;
             Labels = labels;
             Name = name;
             Objectives = objectives;
