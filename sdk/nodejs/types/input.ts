@@ -5,50 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface AppsProductactivationDbo11yconfigV1alpha1Metadata {
-    /**
-     * Annotations of the resource.
-     */
-    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
-     */
-    folderUid?: pulumi.Input<string>;
-    /**
-     * The unique identifier of the resource.
-     */
-    uid: pulumi.Input<string>;
-    /**
-     * The full URL of the resource.
-     */
-    url?: pulumi.Input<string>;
-    /**
-     * The globally unique identifier of a resource, used by the API for tracking.
-     */
-    uuid?: pulumi.Input<string>;
-    /**
-     * The version of the resource.
-     */
-    version?: pulumi.Input<string>;
-}
-
-export interface AppsProductactivationDbo11yconfigV1alpha1Options {
-    /**
-     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
-     */
-    managerIdentity?: pulumi.Input<string>;
-    /**
-     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
-     */
-    overwrite?: pulumi.Input<boolean>;
-}
-
-export interface AppsProductactivationDbo11yconfigV1alpha1Spec {
-    /**
-     * Whether database observability is enabled.
-     */
-    enabled: pulumi.Input<boolean>;
-}
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -4194,6 +4150,51 @@ export namespace cloud {
         export interface ProductActivationAppO11yConfigSpec {
             /**
              * Whether application observability is enabled.
+             */
+            enabled: pulumi.Input<boolean>;
+        }
+
+        export interface ProductActivationDbO11yConfigMetadata {
+            /**
+             * Annotations of the resource.
+             */
+            annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+            /**
+             * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+             */
+            folderUid?: pulumi.Input<string>;
+            /**
+             * The unique identifier of the resource.
+             */
+            uid: pulumi.Input<string>;
+            /**
+             * The full URL of the resource.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * The globally unique identifier of a resource, used by the API for tracking.
+             */
+            uuid?: pulumi.Input<string>;
+            /**
+             * The version of the resource.
+             */
+            version?: pulumi.Input<string>;
+        }
+
+        export interface ProductActivationDbO11yConfigOptions {
+            /**
+             * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+             */
+            managerIdentity?: pulumi.Input<string>;
+            /**
+             * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+             */
+            overwrite?: pulumi.Input<boolean>;
+        }
+
+        export interface ProductActivationDbO11yConfigSpec {
+            /**
+             * Whether database observability is enabled.
              */
             enabled: pulumi.Input<boolean>;
         }

@@ -8,29 +8,26 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Outputs
+namespace Pulumiverse.Grafana.Cloud.V1Alpha1.Inputs
 {
 
-    [OutputType]
-    public sealed class AppsProductactivationDbo11yconfigV1alpha1Options
+    public sealed class ProductActivationDbO11yConfigOptionsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
         /// </summary>
-        public readonly string? ManagerIdentity;
+        [Input("managerIdentity")]
+        public Input<string>? ManagerIdentity { get; set; }
+
         /// <summary>
         /// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
         /// </summary>
-        public readonly bool? Overwrite;
+        [Input("overwrite")]
+        public Input<bool>? Overwrite { get; set; }
 
-        [OutputConstructor]
-        private AppsProductactivationDbo11yconfigV1alpha1Options(
-            string? managerIdentity,
-
-            bool? overwrite)
+        public ProductActivationDbO11yConfigOptionsArgs()
         {
-            ManagerIdentity = managerIdentity;
-            Overwrite = overwrite;
         }
+        public static new ProductActivationDbO11yConfigOptionsArgs Empty => new ProductActivationDbO11yConfigOptionsArgs();
     }
 }

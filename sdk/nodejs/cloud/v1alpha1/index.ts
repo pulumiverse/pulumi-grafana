@@ -10,6 +10,11 @@ export type ProductActivationAppO11yConfig = import("./productActivationAppO11yC
 export const ProductActivationAppO11yConfig: typeof import("./productActivationAppO11yConfig").ProductActivationAppO11yConfig = null as any;
 utilities.lazyLoad(exports, ["ProductActivationAppO11yConfig"], () => require("./productActivationAppO11yConfig"));
 
+export { ProductActivationDbO11yConfigArgs, ProductActivationDbO11yConfigState } from "./productActivationDbO11yConfig";
+export type ProductActivationDbO11yConfig = import("./productActivationDbO11yConfig").ProductActivationDbO11yConfig;
+export const ProductActivationDbO11yConfig: typeof import("./productActivationDbO11yConfig").ProductActivationDbO11yConfig = null as any;
+utilities.lazyLoad(exports, ["ProductActivationDbO11yConfig"], () => require("./productActivationDbO11yConfig"));
+
 export { ProductActivationK8sO11yConfigArgs, ProductActivationK8sO11yConfigState } from "./productActivationK8sO11yConfig";
 export type ProductActivationK8sO11yConfig = import("./productActivationK8sO11yConfig").ProductActivationK8sO11yConfig;
 export const ProductActivationK8sO11yConfig: typeof import("./productActivationK8sO11yConfig").ProductActivationK8sO11yConfig = null as any;
@@ -22,6 +27,8 @@ const _module = {
         switch (type) {
             case "grafana:cloud/v1alpha1/productActivationAppO11yConfig:ProductActivationAppO11yConfig":
                 return new ProductActivationAppO11yConfig(name, <any>undefined, { urn })
+            case "grafana:cloud/v1alpha1/productActivationDbO11yConfig:ProductActivationDbO11yConfig":
+                return new ProductActivationDbO11yConfig(name, <any>undefined, { urn })
             case "grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig":
                 return new ProductActivationK8sO11yConfig(name, <any>undefined, { urn })
             default:
@@ -30,4 +37,5 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("grafana", "cloud/v1alpha1/productActivationAppO11yConfig", _module)
+pulumi.runtime.registerResourceModule("grafana", "cloud/v1alpha1/productActivationDbO11yConfig", _module)
 pulumi.runtime.registerResourceModule("grafana", "cloud/v1alpha1/productActivationK8sO11yConfig", _module)

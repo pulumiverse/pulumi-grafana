@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana.Inputs
+namespace Pulumiverse.Grafana.Cloud.V1Alpha1.Inputs
 {
 
-    public sealed class AppsProductactivationDbo11yconfigV1alpha1MetadataGetArgs : global::Pulumi.ResourceArgs
+    public sealed class ProductActivationDbO11yConfigMetadataArgs : global::Pulumi.ResourceArgs
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
@@ -55,9 +55,9 @@ namespace Pulumiverse.Grafana.Inputs
         [Input("version")]
         public Input<string>? Version { get; set; }
 
-        public AppsProductactivationDbo11yconfigV1alpha1MetadataGetArgs()
+        public ProductActivationDbO11yConfigMetadataArgs()
         {
         }
-        public static new AppsProductactivationDbo11yconfigV1alpha1MetadataGetArgs Empty => new AppsProductactivationDbo11yconfigV1alpha1MetadataGetArgs();
+        public static new ProductActivationDbO11yConfigMetadataArgs Empty => new ProductActivationDbO11yConfigMetadataArgs();
     }
 }

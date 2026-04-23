@@ -188,7 +188,7 @@
                 "majorVersion": 2
             },
             "grafana_apps_productactivation_dbo11yconfig_v1alpha1": {
-                "current": "grafana:index/appsProductactivationDbo11yconfigV1alpha1:AppsProductactivationDbo11yconfigV1alpha1",
+                "current": "grafana:cloud/v1alpha1/productActivationDbO11yConfig:ProductActivationDbO11yConfig",
                 "majorVersion": 2
             },
             "grafana_apps_productactivation_k8so11yconfig_v1alpha1": {
@@ -2564,6 +2564,7 @@
             "grafana:cloud/stackServiceAccountRotatingToken:StackServiceAccountRotatingToken": 0,
             "grafana:cloud/stackServiceAccountToken:StackServiceAccountToken": 0,
             "grafana:cloud/v1alpha1/productActivationAppO11yConfig:ProductActivationAppO11yConfig": 1,
+            "grafana:cloud/v1alpha1/productActivationDbO11yConfig:ProductActivationDbO11yConfig": 1,
             "grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig": 1,
             "grafana:cloudProvider/awsAccount:AwsAccount": 1,
             "grafana:cloudProvider/awsCloudwatchScrapeJob:AwsCloudwatchScrapeJob": 1,
@@ -2588,7 +2589,6 @@
             "grafana:fleetManagement/collector:Collector": 1,
             "grafana:fleetManagement/pipeline:Pipeline": 1,
             "grafana:frontendObservability/app:App": 1,
-            "grafana:index/appsProductactivationDbo11yconfigV1alpha1:AppsProductactivationDbo11yconfigV1alpha1": 1,
             "grafana:k6/installation:Installation": 0,
             "grafana:k6/loadTest:LoadTest": 1,
             "grafana:k6/project:Project": 1,

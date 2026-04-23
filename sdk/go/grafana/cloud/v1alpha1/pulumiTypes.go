@@ -538,6 +538,531 @@ func (o ProductActivationAppO11yConfigSpecPtrOutput) Enabled() pulumi.BoolPtrOut
 	}).(pulumi.BoolPtrOutput)
 }
 
+type ProductActivationDbO11yConfigMetadata struct {
+	// Annotations of the resource.
+	Annotations map[string]string `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid *string `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid string `pulumi:"uid"`
+	// The full URL of the resource.
+	Url *string `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid *string `pulumi:"uuid"`
+	// The version of the resource.
+	Version *string `pulumi:"version"`
+}
+
+// ProductActivationDbO11yConfigMetadataInput is an input type that accepts ProductActivationDbO11yConfigMetadataArgs and ProductActivationDbO11yConfigMetadataOutput values.
+// You can construct a concrete instance of `ProductActivationDbO11yConfigMetadataInput` via:
+//
+//	ProductActivationDbO11yConfigMetadataArgs{...}
+type ProductActivationDbO11yConfigMetadataInput interface {
+	pulumi.Input
+
+	ToProductActivationDbO11yConfigMetadataOutput() ProductActivationDbO11yConfigMetadataOutput
+	ToProductActivationDbO11yConfigMetadataOutputWithContext(context.Context) ProductActivationDbO11yConfigMetadataOutput
+}
+
+type ProductActivationDbO11yConfigMetadataArgs struct {
+	// Annotations of the resource.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+	FolderUid pulumi.StringPtrInput `pulumi:"folderUid"`
+	// The unique identifier of the resource.
+	Uid pulumi.StringInput `pulumi:"uid"`
+	// The full URL of the resource.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// The globally unique identifier of a resource, used by the API for tracking.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The version of the resource.
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (ProductActivationDbO11yConfigMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationDbO11yConfigMetadata)(nil)).Elem()
+}
+
+func (i ProductActivationDbO11yConfigMetadataArgs) ToProductActivationDbO11yConfigMetadataOutput() ProductActivationDbO11yConfigMetadataOutput {
+	return i.ToProductActivationDbO11yConfigMetadataOutputWithContext(context.Background())
+}
+
+func (i ProductActivationDbO11yConfigMetadataArgs) ToProductActivationDbO11yConfigMetadataOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationDbO11yConfigMetadataOutput)
+}
+
+func (i ProductActivationDbO11yConfigMetadataArgs) ToProductActivationDbO11yConfigMetadataPtrOutput() ProductActivationDbO11yConfigMetadataPtrOutput {
+	return i.ToProductActivationDbO11yConfigMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i ProductActivationDbO11yConfigMetadataArgs) ToProductActivationDbO11yConfigMetadataPtrOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationDbO11yConfigMetadataOutput).ToProductActivationDbO11yConfigMetadataPtrOutputWithContext(ctx)
+}
+
+// ProductActivationDbO11yConfigMetadataPtrInput is an input type that accepts ProductActivationDbO11yConfigMetadataArgs, ProductActivationDbO11yConfigMetadataPtr and ProductActivationDbO11yConfigMetadataPtrOutput values.
+// You can construct a concrete instance of `ProductActivationDbO11yConfigMetadataPtrInput` via:
+//
+//	        ProductActivationDbO11yConfigMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProductActivationDbO11yConfigMetadataPtrInput interface {
+	pulumi.Input
+
+	ToProductActivationDbO11yConfigMetadataPtrOutput() ProductActivationDbO11yConfigMetadataPtrOutput
+	ToProductActivationDbO11yConfigMetadataPtrOutputWithContext(context.Context) ProductActivationDbO11yConfigMetadataPtrOutput
+}
+
+type productActivationDbO11yConfigMetadataPtrType ProductActivationDbO11yConfigMetadataArgs
+
+func ProductActivationDbO11yConfigMetadataPtr(v *ProductActivationDbO11yConfigMetadataArgs) ProductActivationDbO11yConfigMetadataPtrInput {
+	return (*productActivationDbO11yConfigMetadataPtrType)(v)
+}
+
+func (*productActivationDbO11yConfigMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationDbO11yConfigMetadata)(nil)).Elem()
+}
+
+func (i *productActivationDbO11yConfigMetadataPtrType) ToProductActivationDbO11yConfigMetadataPtrOutput() ProductActivationDbO11yConfigMetadataPtrOutput {
+	return i.ToProductActivationDbO11yConfigMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *productActivationDbO11yConfigMetadataPtrType) ToProductActivationDbO11yConfigMetadataPtrOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationDbO11yConfigMetadataPtrOutput)
+}
+
+type ProductActivationDbO11yConfigMetadataOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationDbO11yConfigMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationDbO11yConfigMetadata)(nil)).Elem()
+}
+
+func (o ProductActivationDbO11yConfigMetadataOutput) ToProductActivationDbO11yConfigMetadataOutput() ProductActivationDbO11yConfigMetadataOutput {
+	return o
+}
+
+func (o ProductActivationDbO11yConfigMetadataOutput) ToProductActivationDbO11yConfigMetadataOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigMetadataOutput {
+	return o
+}
+
+func (o ProductActivationDbO11yConfigMetadataOutput) ToProductActivationDbO11yConfigMetadataPtrOutput() ProductActivationDbO11yConfigMetadataPtrOutput {
+	return o.ToProductActivationDbO11yConfigMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o ProductActivationDbO11yConfigMetadataOutput) ToProductActivationDbO11yConfigMetadataPtrOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProductActivationDbO11yConfigMetadata) *ProductActivationDbO11yConfigMetadata {
+		return &v
+	}).(ProductActivationDbO11yConfigMetadataPtrOutput)
+}
+
+// Annotations of the resource.
+func (o ProductActivationDbO11yConfigMetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ProductActivationDbO11yConfigMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o ProductActivationDbO11yConfigMetadataOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationDbO11yConfigMetadata) *string { return v.FolderUid }).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o ProductActivationDbO11yConfigMetadataOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v ProductActivationDbO11yConfigMetadata) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+// The full URL of the resource.
+func (o ProductActivationDbO11yConfigMetadataOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationDbO11yConfigMetadata) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o ProductActivationDbO11yConfigMetadataOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationDbO11yConfigMetadata) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o ProductActivationDbO11yConfigMetadataOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationDbO11yConfigMetadata) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type ProductActivationDbO11yConfigMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationDbO11yConfigMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationDbO11yConfigMetadata)(nil)).Elem()
+}
+
+func (o ProductActivationDbO11yConfigMetadataPtrOutput) ToProductActivationDbO11yConfigMetadataPtrOutput() ProductActivationDbO11yConfigMetadataPtrOutput {
+	return o
+}
+
+func (o ProductActivationDbO11yConfigMetadataPtrOutput) ToProductActivationDbO11yConfigMetadataPtrOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigMetadataPtrOutput {
+	return o
+}
+
+func (o ProductActivationDbO11yConfigMetadataPtrOutput) Elem() ProductActivationDbO11yConfigMetadataOutput {
+	return o.ApplyT(func(v *ProductActivationDbO11yConfigMetadata) ProductActivationDbO11yConfigMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret ProductActivationDbO11yConfigMetadata
+		return ret
+	}).(ProductActivationDbO11yConfigMetadataOutput)
+}
+
+// Annotations of the resource.
+func (o ProductActivationDbO11yConfigMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ProductActivationDbO11yConfigMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+// The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+func (o ProductActivationDbO11yConfigMetadataPtrOutput) FolderUid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationDbO11yConfigMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FolderUid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The unique identifier of the resource.
+func (o ProductActivationDbO11yConfigMetadataPtrOutput) Uid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationDbO11yConfigMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The full URL of the resource.
+func (o ProductActivationDbO11yConfigMetadataPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationDbO11yConfigMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The globally unique identifier of a resource, used by the API for tracking.
+func (o ProductActivationDbO11yConfigMetadataPtrOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationDbO11yConfigMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uuid
+	}).(pulumi.StringPtrOutput)
+}
+
+// The version of the resource.
+func (o ProductActivationDbO11yConfigMetadataPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationDbO11yConfigMetadata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
+type ProductActivationDbO11yConfigOptions struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity *string `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite *bool `pulumi:"overwrite"`
+}
+
+// ProductActivationDbO11yConfigOptionsInput is an input type that accepts ProductActivationDbO11yConfigOptionsArgs and ProductActivationDbO11yConfigOptionsOutput values.
+// You can construct a concrete instance of `ProductActivationDbO11yConfigOptionsInput` via:
+//
+//	ProductActivationDbO11yConfigOptionsArgs{...}
+type ProductActivationDbO11yConfigOptionsInput interface {
+	pulumi.Input
+
+	ToProductActivationDbO11yConfigOptionsOutput() ProductActivationDbO11yConfigOptionsOutput
+	ToProductActivationDbO11yConfigOptionsOutputWithContext(context.Context) ProductActivationDbO11yConfigOptionsOutput
+}
+
+type ProductActivationDbO11yConfigOptionsArgs struct {
+	// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+	ManagerIdentity pulumi.StringPtrInput `pulumi:"managerIdentity"`
+	// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+	Overwrite pulumi.BoolPtrInput `pulumi:"overwrite"`
+}
+
+func (ProductActivationDbO11yConfigOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationDbO11yConfigOptions)(nil)).Elem()
+}
+
+func (i ProductActivationDbO11yConfigOptionsArgs) ToProductActivationDbO11yConfigOptionsOutput() ProductActivationDbO11yConfigOptionsOutput {
+	return i.ToProductActivationDbO11yConfigOptionsOutputWithContext(context.Background())
+}
+
+func (i ProductActivationDbO11yConfigOptionsArgs) ToProductActivationDbO11yConfigOptionsOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationDbO11yConfigOptionsOutput)
+}
+
+func (i ProductActivationDbO11yConfigOptionsArgs) ToProductActivationDbO11yConfigOptionsPtrOutput() ProductActivationDbO11yConfigOptionsPtrOutput {
+	return i.ToProductActivationDbO11yConfigOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i ProductActivationDbO11yConfigOptionsArgs) ToProductActivationDbO11yConfigOptionsPtrOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationDbO11yConfigOptionsOutput).ToProductActivationDbO11yConfigOptionsPtrOutputWithContext(ctx)
+}
+
+// ProductActivationDbO11yConfigOptionsPtrInput is an input type that accepts ProductActivationDbO11yConfigOptionsArgs, ProductActivationDbO11yConfigOptionsPtr and ProductActivationDbO11yConfigOptionsPtrOutput values.
+// You can construct a concrete instance of `ProductActivationDbO11yConfigOptionsPtrInput` via:
+//
+//	        ProductActivationDbO11yConfigOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProductActivationDbO11yConfigOptionsPtrInput interface {
+	pulumi.Input
+
+	ToProductActivationDbO11yConfigOptionsPtrOutput() ProductActivationDbO11yConfigOptionsPtrOutput
+	ToProductActivationDbO11yConfigOptionsPtrOutputWithContext(context.Context) ProductActivationDbO11yConfigOptionsPtrOutput
+}
+
+type productActivationDbO11yConfigOptionsPtrType ProductActivationDbO11yConfigOptionsArgs
+
+func ProductActivationDbO11yConfigOptionsPtr(v *ProductActivationDbO11yConfigOptionsArgs) ProductActivationDbO11yConfigOptionsPtrInput {
+	return (*productActivationDbO11yConfigOptionsPtrType)(v)
+}
+
+func (*productActivationDbO11yConfigOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationDbO11yConfigOptions)(nil)).Elem()
+}
+
+func (i *productActivationDbO11yConfigOptionsPtrType) ToProductActivationDbO11yConfigOptionsPtrOutput() ProductActivationDbO11yConfigOptionsPtrOutput {
+	return i.ToProductActivationDbO11yConfigOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *productActivationDbO11yConfigOptionsPtrType) ToProductActivationDbO11yConfigOptionsPtrOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationDbO11yConfigOptionsPtrOutput)
+}
+
+type ProductActivationDbO11yConfigOptionsOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationDbO11yConfigOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationDbO11yConfigOptions)(nil)).Elem()
+}
+
+func (o ProductActivationDbO11yConfigOptionsOutput) ToProductActivationDbO11yConfigOptionsOutput() ProductActivationDbO11yConfigOptionsOutput {
+	return o
+}
+
+func (o ProductActivationDbO11yConfigOptionsOutput) ToProductActivationDbO11yConfigOptionsOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigOptionsOutput {
+	return o
+}
+
+func (o ProductActivationDbO11yConfigOptionsOutput) ToProductActivationDbO11yConfigOptionsPtrOutput() ProductActivationDbO11yConfigOptionsPtrOutput {
+	return o.ToProductActivationDbO11yConfigOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o ProductActivationDbO11yConfigOptionsOutput) ToProductActivationDbO11yConfigOptionsPtrOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProductActivationDbO11yConfigOptions) *ProductActivationDbO11yConfigOptions {
+		return &v
+	}).(ProductActivationDbO11yConfigOptionsPtrOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o ProductActivationDbO11yConfigOptionsOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductActivationDbO11yConfigOptions) *string { return v.ManagerIdentity }).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o ProductActivationDbO11yConfigOptionsOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProductActivationDbO11yConfigOptions) *bool { return v.Overwrite }).(pulumi.BoolPtrOutput)
+}
+
+type ProductActivationDbO11yConfigOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationDbO11yConfigOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationDbO11yConfigOptions)(nil)).Elem()
+}
+
+func (o ProductActivationDbO11yConfigOptionsPtrOutput) ToProductActivationDbO11yConfigOptionsPtrOutput() ProductActivationDbO11yConfigOptionsPtrOutput {
+	return o
+}
+
+func (o ProductActivationDbO11yConfigOptionsPtrOutput) ToProductActivationDbO11yConfigOptionsPtrOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigOptionsPtrOutput {
+	return o
+}
+
+func (o ProductActivationDbO11yConfigOptionsPtrOutput) Elem() ProductActivationDbO11yConfigOptionsOutput {
+	return o.ApplyT(func(v *ProductActivationDbO11yConfigOptions) ProductActivationDbO11yConfigOptions {
+		if v != nil {
+			return *v
+		}
+		var ret ProductActivationDbO11yConfigOptions
+		return ret
+	}).(ProductActivationDbO11yConfigOptionsOutput)
+}
+
+// Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+func (o ProductActivationDbO11yConfigOptionsPtrOutput) ManagerIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductActivationDbO11yConfigOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagerIdentity
+	}).(pulumi.StringPtrOutput)
+}
+
+// Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+func (o ProductActivationDbO11yConfigOptionsPtrOutput) Overwrite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProductActivationDbO11yConfigOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Overwrite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type ProductActivationDbO11yConfigSpec struct {
+	// Whether database observability is enabled.
+	Enabled bool `pulumi:"enabled"`
+}
+
+// ProductActivationDbO11yConfigSpecInput is an input type that accepts ProductActivationDbO11yConfigSpecArgs and ProductActivationDbO11yConfigSpecOutput values.
+// You can construct a concrete instance of `ProductActivationDbO11yConfigSpecInput` via:
+//
+//	ProductActivationDbO11yConfigSpecArgs{...}
+type ProductActivationDbO11yConfigSpecInput interface {
+	pulumi.Input
+
+	ToProductActivationDbO11yConfigSpecOutput() ProductActivationDbO11yConfigSpecOutput
+	ToProductActivationDbO11yConfigSpecOutputWithContext(context.Context) ProductActivationDbO11yConfigSpecOutput
+}
+
+type ProductActivationDbO11yConfigSpecArgs struct {
+	// Whether database observability is enabled.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+}
+
+func (ProductActivationDbO11yConfigSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationDbO11yConfigSpec)(nil)).Elem()
+}
+
+func (i ProductActivationDbO11yConfigSpecArgs) ToProductActivationDbO11yConfigSpecOutput() ProductActivationDbO11yConfigSpecOutput {
+	return i.ToProductActivationDbO11yConfigSpecOutputWithContext(context.Background())
+}
+
+func (i ProductActivationDbO11yConfigSpecArgs) ToProductActivationDbO11yConfigSpecOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationDbO11yConfigSpecOutput)
+}
+
+func (i ProductActivationDbO11yConfigSpecArgs) ToProductActivationDbO11yConfigSpecPtrOutput() ProductActivationDbO11yConfigSpecPtrOutput {
+	return i.ToProductActivationDbO11yConfigSpecPtrOutputWithContext(context.Background())
+}
+
+func (i ProductActivationDbO11yConfigSpecArgs) ToProductActivationDbO11yConfigSpecPtrOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationDbO11yConfigSpecOutput).ToProductActivationDbO11yConfigSpecPtrOutputWithContext(ctx)
+}
+
+// ProductActivationDbO11yConfigSpecPtrInput is an input type that accepts ProductActivationDbO11yConfigSpecArgs, ProductActivationDbO11yConfigSpecPtr and ProductActivationDbO11yConfigSpecPtrOutput values.
+// You can construct a concrete instance of `ProductActivationDbO11yConfigSpecPtrInput` via:
+//
+//	        ProductActivationDbO11yConfigSpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProductActivationDbO11yConfigSpecPtrInput interface {
+	pulumi.Input
+
+	ToProductActivationDbO11yConfigSpecPtrOutput() ProductActivationDbO11yConfigSpecPtrOutput
+	ToProductActivationDbO11yConfigSpecPtrOutputWithContext(context.Context) ProductActivationDbO11yConfigSpecPtrOutput
+}
+
+type productActivationDbO11yConfigSpecPtrType ProductActivationDbO11yConfigSpecArgs
+
+func ProductActivationDbO11yConfigSpecPtr(v *ProductActivationDbO11yConfigSpecArgs) ProductActivationDbO11yConfigSpecPtrInput {
+	return (*productActivationDbO11yConfigSpecPtrType)(v)
+}
+
+func (*productActivationDbO11yConfigSpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationDbO11yConfigSpec)(nil)).Elem()
+}
+
+func (i *productActivationDbO11yConfigSpecPtrType) ToProductActivationDbO11yConfigSpecPtrOutput() ProductActivationDbO11yConfigSpecPtrOutput {
+	return i.ToProductActivationDbO11yConfigSpecPtrOutputWithContext(context.Background())
+}
+
+func (i *productActivationDbO11yConfigSpecPtrType) ToProductActivationDbO11yConfigSpecPtrOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductActivationDbO11yConfigSpecPtrOutput)
+}
+
+type ProductActivationDbO11yConfigSpecOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationDbO11yConfigSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductActivationDbO11yConfigSpec)(nil)).Elem()
+}
+
+func (o ProductActivationDbO11yConfigSpecOutput) ToProductActivationDbO11yConfigSpecOutput() ProductActivationDbO11yConfigSpecOutput {
+	return o
+}
+
+func (o ProductActivationDbO11yConfigSpecOutput) ToProductActivationDbO11yConfigSpecOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigSpecOutput {
+	return o
+}
+
+func (o ProductActivationDbO11yConfigSpecOutput) ToProductActivationDbO11yConfigSpecPtrOutput() ProductActivationDbO11yConfigSpecPtrOutput {
+	return o.ToProductActivationDbO11yConfigSpecPtrOutputWithContext(context.Background())
+}
+
+func (o ProductActivationDbO11yConfigSpecOutput) ToProductActivationDbO11yConfigSpecPtrOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigSpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProductActivationDbO11yConfigSpec) *ProductActivationDbO11yConfigSpec {
+		return &v
+	}).(ProductActivationDbO11yConfigSpecPtrOutput)
+}
+
+// Whether database observability is enabled.
+func (o ProductActivationDbO11yConfigSpecOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v ProductActivationDbO11yConfigSpec) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+type ProductActivationDbO11yConfigSpecPtrOutput struct{ *pulumi.OutputState }
+
+func (ProductActivationDbO11yConfigSpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductActivationDbO11yConfigSpec)(nil)).Elem()
+}
+
+func (o ProductActivationDbO11yConfigSpecPtrOutput) ToProductActivationDbO11yConfigSpecPtrOutput() ProductActivationDbO11yConfigSpecPtrOutput {
+	return o
+}
+
+func (o ProductActivationDbO11yConfigSpecPtrOutput) ToProductActivationDbO11yConfigSpecPtrOutputWithContext(ctx context.Context) ProductActivationDbO11yConfigSpecPtrOutput {
+	return o
+}
+
+func (o ProductActivationDbO11yConfigSpecPtrOutput) Elem() ProductActivationDbO11yConfigSpecOutput {
+	return o.ApplyT(func(v *ProductActivationDbO11yConfigSpec) ProductActivationDbO11yConfigSpec {
+		if v != nil {
+			return *v
+		}
+		var ret ProductActivationDbO11yConfigSpec
+		return ret
+	}).(ProductActivationDbO11yConfigSpecOutput)
+}
+
+// Whether database observability is enabled.
+func (o ProductActivationDbO11yConfigSpecPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProductActivationDbO11yConfigSpec) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProductActivationK8sO11yConfigMetadata struct {
 	// Annotations of the resource.
 	Annotations map[string]string `pulumi:"annotations"`
@@ -1070,6 +1595,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationAppO11yConfigOptionsPtrInput)(nil)).Elem(), ProductActivationAppO11yConfigOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationAppO11yConfigSpecInput)(nil)).Elem(), ProductActivationAppO11yConfigSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationAppO11yConfigSpecPtrInput)(nil)).Elem(), ProductActivationAppO11yConfigSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationDbO11yConfigMetadataInput)(nil)).Elem(), ProductActivationDbO11yConfigMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationDbO11yConfigMetadataPtrInput)(nil)).Elem(), ProductActivationDbO11yConfigMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationDbO11yConfigOptionsInput)(nil)).Elem(), ProductActivationDbO11yConfigOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationDbO11yConfigOptionsPtrInput)(nil)).Elem(), ProductActivationDbO11yConfigOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationDbO11yConfigSpecInput)(nil)).Elem(), ProductActivationDbO11yConfigSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationDbO11yConfigSpecPtrInput)(nil)).Elem(), ProductActivationDbO11yConfigSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationK8sO11yConfigMetadataInput)(nil)).Elem(), ProductActivationK8sO11yConfigMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationK8sO11yConfigMetadataPtrInput)(nil)).Elem(), ProductActivationK8sO11yConfigMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProductActivationK8sO11yConfigOptionsInput)(nil)).Elem(), ProductActivationK8sO11yConfigOptionsArgs{})
@@ -1082,6 +1613,12 @@ func init() {
 	pulumi.RegisterOutputType(ProductActivationAppO11yConfigOptionsPtrOutput{})
 	pulumi.RegisterOutputType(ProductActivationAppO11yConfigSpecOutput{})
 	pulumi.RegisterOutputType(ProductActivationAppO11yConfigSpecPtrOutput{})
+	pulumi.RegisterOutputType(ProductActivationDbO11yConfigMetadataOutput{})
+	pulumi.RegisterOutputType(ProductActivationDbO11yConfigMetadataPtrOutput{})
+	pulumi.RegisterOutputType(ProductActivationDbO11yConfigOptionsOutput{})
+	pulumi.RegisterOutputType(ProductActivationDbO11yConfigOptionsPtrOutput{})
+	pulumi.RegisterOutputType(ProductActivationDbO11yConfigSpecOutput{})
+	pulumi.RegisterOutputType(ProductActivationDbO11yConfigSpecPtrOutput{})
 	pulumi.RegisterOutputType(ProductActivationK8sO11yConfigMetadataOutput{})
 	pulumi.RegisterOutputType(ProductActivationK8sO11yConfigMetadataPtrOutput{})
 	pulumi.RegisterOutputType(ProductActivationK8sO11yConfigOptionsOutput{})
