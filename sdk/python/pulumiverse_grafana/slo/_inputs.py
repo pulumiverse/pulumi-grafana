@@ -53,6 +53,46 @@ __all__ = [
     'SLOQueryGrafanaQueriesArgsDict',
     'SLOQueryRatioArgs',
     'SLOQueryRatioArgsDict',
+    'GetSlosSloArgs',
+    'GetSlosSloArgsDict',
+    'GetSlosSloAlertingArgs',
+    'GetSlosSloAlertingArgsDict',
+    'GetSlosSloAlertingAdvancedOptionsArgs',
+    'GetSlosSloAlertingAdvancedOptionsArgsDict',
+    'GetSlosSloAlertingAnnotationArgs',
+    'GetSlosSloAlertingAnnotationArgsDict',
+    'GetSlosSloAlertingFastburnArgs',
+    'GetSlosSloAlertingFastburnArgsDict',
+    'GetSlosSloAlertingFastburnAnnotationArgs',
+    'GetSlosSloAlertingFastburnAnnotationArgsDict',
+    'GetSlosSloAlertingFastburnEnrichmentArgs',
+    'GetSlosSloAlertingFastburnEnrichmentArgsDict',
+    'GetSlosSloAlertingFastburnLabelArgs',
+    'GetSlosSloAlertingFastburnLabelArgsDict',
+    'GetSlosSloAlertingLabelArgs',
+    'GetSlosSloAlertingLabelArgsDict',
+    'GetSlosSloAlertingSlowburnArgs',
+    'GetSlosSloAlertingSlowburnArgsDict',
+    'GetSlosSloAlertingSlowburnAnnotationArgs',
+    'GetSlosSloAlertingSlowburnAnnotationArgsDict',
+    'GetSlosSloAlertingSlowburnEnrichmentArgs',
+    'GetSlosSloAlertingSlowburnEnrichmentArgsDict',
+    'GetSlosSloAlertingSlowburnLabelArgs',
+    'GetSlosSloAlertingSlowburnLabelArgsDict',
+    'GetSlosSloDestinationDatasourceArgs',
+    'GetSlosSloDestinationDatasourceArgsDict',
+    'GetSlosSloLabelArgs',
+    'GetSlosSloLabelArgsDict',
+    'GetSlosSloObjectiveArgs',
+    'GetSlosSloObjectiveArgsDict',
+    'GetSlosSloQueryArgs',
+    'GetSlosSloQueryArgsDict',
+    'GetSlosSloQueryFreeformArgs',
+    'GetSlosSloQueryFreeformArgsDict',
+    'GetSlosSloQueryGrafanaQueriesArgs',
+    'GetSlosSloQueryGrafanaQueriesArgsDict',
+    'GetSlosSloQueryRatioArgs',
+    'GetSlosSloQueryRatioArgsDict',
 ]
 
 class SLOAlertingArgsDict(TypedDict):
@@ -797,11 +837,17 @@ class SLOQueryArgsDict(TypedDict):
     Query type must be one of: "freeform", "query", "ratio", "grafana_queries" or "threshold"
     """
     freeform: NotRequired[pulumi.Input['SLOQueryFreeformArgsDict']]
+    """
+    Freeform query configuration.
+    """
     grafana_queries: NotRequired[pulumi.Input['SLOQueryGrafanaQueriesArgsDict']]
     """
     Array for holding a set of grafana queries
     """
     ratio: NotRequired[pulumi.Input['SLOQueryRatioArgsDict']]
+    """
+    Ratio query configuration.
+    """
 
 @pulumi.input_type
 class SLOQueryArgs:
@@ -812,7 +858,9 @@ class SLOQueryArgs:
                  ratio: Optional[pulumi.Input['SLOQueryRatioArgs']] = None):
         """
         :param pulumi.Input[_builtins.str] type: Query type must be one of: "freeform", "query", "ratio", "grafana_queries" or "threshold"
+        :param pulumi.Input['SLOQueryFreeformArgs'] freeform: Freeform query configuration.
         :param pulumi.Input['SLOQueryGrafanaQueriesArgs'] grafana_queries: Array for holding a set of grafana queries
+        :param pulumi.Input['SLOQueryRatioArgs'] ratio: Ratio query configuration.
         """
         pulumi.set(__self__, "type", type)
         if freeform is not None:
@@ -837,6 +885,9 @@ class SLOQueryArgs:
     @_builtins.property
     @pulumi.getter
     def freeform(self) -> Optional[pulumi.Input['SLOQueryFreeformArgs']]:
+        """
+        Freeform query configuration.
+        """
         return pulumi.get(self, "freeform")
 
     @freeform.setter
@@ -858,6 +909,9 @@ class SLOQueryArgs:
     @_builtins.property
     @pulumi.getter
     def ratio(self) -> Optional[pulumi.Input['SLOQueryRatioArgs']]:
+        """
+        Ratio query configuration.
+        """
         return pulumi.get(self, "ratio")
 
     @ratio.setter
@@ -986,5 +1040,1135 @@ class SLOQueryRatioArgs:
     @group_by_labels.setter
     def group_by_labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "group_by_labels", value)
+
+
+class GetSlosSloArgsDict(TypedDict):
+    description: _builtins.str
+    """
+    Description of the SLO.
+    """
+    name: _builtins.str
+    """
+    Name of the SLO.
+    """
+    search_expression: _builtins.str
+    """
+    The search expression associated with this SLO.
+    """
+    uuid: _builtins.str
+    """
+    A unique, random identifier. This value is read-only.
+    """
+    alertings: NotRequired[Sequence['GetSlosSloAlertingArgsDict']]
+    """
+    Alerting configuration for the SLO.
+    """
+    destination_datasources: NotRequired[Sequence['GetSlosSloDestinationDatasourceArgsDict']]
+    """
+    Destination datasource configuration.
+    """
+    labels: NotRequired[Sequence['GetSlosSloLabelArgsDict']]
+    """
+    Labels attached to the SLO.
+    """
+    objectives: NotRequired[Sequence['GetSlosSloObjectiveArgsDict']]
+    """
+    Objectives for the SLO.
+    """
+    queries: NotRequired[Sequence['GetSlosSloQueryArgsDict']]
+    """
+    Query configuration for the SLO.
+    """
+
+@pulumi.input_type
+class GetSlosSloArgs:
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 name: _builtins.str,
+                 search_expression: _builtins.str,
+                 uuid: _builtins.str,
+                 alertings: Optional[Sequence['GetSlosSloAlertingArgs']] = None,
+                 destination_datasources: Optional[Sequence['GetSlosSloDestinationDatasourceArgs']] = None,
+                 labels: Optional[Sequence['GetSlosSloLabelArgs']] = None,
+                 objectives: Optional[Sequence['GetSlosSloObjectiveArgs']] = None,
+                 queries: Optional[Sequence['GetSlosSloQueryArgs']] = None):
+        """
+        :param _builtins.str description: Description of the SLO.
+        :param _builtins.str name: Name of the SLO.
+        :param _builtins.str search_expression: The search expression associated with this SLO.
+        :param _builtins.str uuid: A unique, random identifier. This value is read-only.
+        :param Sequence['GetSlosSloAlertingArgs'] alertings: Alerting configuration for the SLO.
+        :param Sequence['GetSlosSloDestinationDatasourceArgs'] destination_datasources: Destination datasource configuration.
+        :param Sequence['GetSlosSloLabelArgs'] labels: Labels attached to the SLO.
+        :param Sequence['GetSlosSloObjectiveArgs'] objectives: Objectives for the SLO.
+        :param Sequence['GetSlosSloQueryArgs'] queries: Query configuration for the SLO.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "search_expression", search_expression)
+        pulumi.set(__self__, "uuid", uuid)
+        if alertings is not None:
+            pulumi.set(__self__, "alertings", alertings)
+        if destination_datasources is not None:
+            pulumi.set(__self__, "destination_datasources", destination_datasources)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if objectives is not None:
+            pulumi.set(__self__, "objectives", objectives)
+        if queries is not None:
+            pulumi.set(__self__, "queries", queries)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Description of the SLO.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: _builtins.str):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Name of the SLO.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: _builtins.str):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="searchExpression")
+    def search_expression(self) -> _builtins.str:
+        """
+        The search expression associated with this SLO.
+        """
+        return pulumi.get(self, "search_expression")
+
+    @search_expression.setter
+    def search_expression(self, value: _builtins.str):
+        pulumi.set(self, "search_expression", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> _builtins.str:
+        """
+        A unique, random identifier. This value is read-only.
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: _builtins.str):
+        pulumi.set(self, "uuid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def alertings(self) -> Optional[Sequence['GetSlosSloAlertingArgs']]:
+        """
+        Alerting configuration for the SLO.
+        """
+        return pulumi.get(self, "alertings")
+
+    @alertings.setter
+    def alertings(self, value: Optional[Sequence['GetSlosSloAlertingArgs']]):
+        pulumi.set(self, "alertings", value)
+
+    @_builtins.property
+    @pulumi.getter(name="destinationDatasources")
+    def destination_datasources(self) -> Optional[Sequence['GetSlosSloDestinationDatasourceArgs']]:
+        """
+        Destination datasource configuration.
+        """
+        return pulumi.get(self, "destination_datasources")
+
+    @destination_datasources.setter
+    def destination_datasources(self, value: Optional[Sequence['GetSlosSloDestinationDatasourceArgs']]):
+        pulumi.set(self, "destination_datasources", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Optional[Sequence['GetSlosSloLabelArgs']]:
+        """
+        Labels attached to the SLO.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[Sequence['GetSlosSloLabelArgs']]):
+        pulumi.set(self, "labels", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def objectives(self) -> Optional[Sequence['GetSlosSloObjectiveArgs']]:
+        """
+        Objectives for the SLO.
+        """
+        return pulumi.get(self, "objectives")
+
+    @objectives.setter
+    def objectives(self, value: Optional[Sequence['GetSlosSloObjectiveArgs']]):
+        pulumi.set(self, "objectives", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def queries(self) -> Optional[Sequence['GetSlosSloQueryArgs']]:
+        """
+        Query configuration for the SLO.
+        """
+        return pulumi.get(self, "queries")
+
+    @queries.setter
+    def queries(self, value: Optional[Sequence['GetSlosSloQueryArgs']]):
+        pulumi.set(self, "queries", value)
+
+
+class GetSlosSloAlertingArgsDict(TypedDict):
+    advanced_options: NotRequired['GetSlosSloAlertingAdvancedOptionsArgsDict']
+    """
+    Advanced alerting options.
+    """
+    annotations: NotRequired[Sequence['GetSlosSloAlertingAnnotationArgsDict']]
+    """
+    Annotations attached to alerts.
+    """
+    fastburn: NotRequired['GetSlosSloAlertingFastburnArgsDict']
+    """
+    Fast burn alert configuration.
+    """
+    labels: NotRequired[Sequence['GetSlosSloAlertingLabelArgsDict']]
+    """
+    Labels attached to alerts.
+    """
+    slowburn: NotRequired['GetSlosSloAlertingSlowburnArgsDict']
+    """
+    Slow burn alert configuration.
+    """
+
+@pulumi.input_type
+class GetSlosSloAlertingArgs:
+    def __init__(__self__, *,
+                 advanced_options: Optional['GetSlosSloAlertingAdvancedOptionsArgs'] = None,
+                 annotations: Optional[Sequence['GetSlosSloAlertingAnnotationArgs']] = None,
+                 fastburn: Optional['GetSlosSloAlertingFastburnArgs'] = None,
+                 labels: Optional[Sequence['GetSlosSloAlertingLabelArgs']] = None,
+                 slowburn: Optional['GetSlosSloAlertingSlowburnArgs'] = None):
+        """
+        :param 'GetSlosSloAlertingAdvancedOptionsArgs' advanced_options: Advanced alerting options.
+        :param Sequence['GetSlosSloAlertingAnnotationArgs'] annotations: Annotations attached to alerts.
+        :param 'GetSlosSloAlertingFastburnArgs' fastburn: Fast burn alert configuration.
+        :param Sequence['GetSlosSloAlertingLabelArgs'] labels: Labels attached to alerts.
+        :param 'GetSlosSloAlertingSlowburnArgs' slowburn: Slow burn alert configuration.
+        """
+        if advanced_options is not None:
+            pulumi.set(__self__, "advanced_options", advanced_options)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if fastburn is not None:
+            pulumi.set(__self__, "fastburn", fastburn)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if slowburn is not None:
+            pulumi.set(__self__, "slowburn", slowburn)
+
+    @_builtins.property
+    @pulumi.getter(name="advancedOptions")
+    def advanced_options(self) -> Optional['GetSlosSloAlertingAdvancedOptionsArgs']:
+        """
+        Advanced alerting options.
+        """
+        return pulumi.get(self, "advanced_options")
+
+    @advanced_options.setter
+    def advanced_options(self, value: Optional['GetSlosSloAlertingAdvancedOptionsArgs']):
+        pulumi.set(self, "advanced_options", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[Sequence['GetSlosSloAlertingAnnotationArgs']]:
+        """
+        Annotations attached to alerts.
+        """
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[Sequence['GetSlosSloAlertingAnnotationArgs']]):
+        pulumi.set(self, "annotations", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def fastburn(self) -> Optional['GetSlosSloAlertingFastburnArgs']:
+        """
+        Fast burn alert configuration.
+        """
+        return pulumi.get(self, "fastburn")
+
+    @fastburn.setter
+    def fastburn(self, value: Optional['GetSlosSloAlertingFastburnArgs']):
+        pulumi.set(self, "fastburn", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Optional[Sequence['GetSlosSloAlertingLabelArgs']]:
+        """
+        Labels attached to alerts.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[Sequence['GetSlosSloAlertingLabelArgs']]):
+        pulumi.set(self, "labels", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def slowburn(self) -> Optional['GetSlosSloAlertingSlowburnArgs']:
+        """
+        Slow burn alert configuration.
+        """
+        return pulumi.get(self, "slowburn")
+
+    @slowburn.setter
+    def slowburn(self, value: Optional['GetSlosSloAlertingSlowburnArgs']):
+        pulumi.set(self, "slowburn", value)
+
+
+class GetSlosSloAlertingAdvancedOptionsArgsDict(TypedDict):
+    min_failures: _builtins.int
+    """
+    Minimum number of failures before alerting.
+    """
+
+@pulumi.input_type
+class GetSlosSloAlertingAdvancedOptionsArgs:
+    def __init__(__self__, *,
+                 min_failures: _builtins.int):
+        """
+        :param _builtins.int min_failures: Minimum number of failures before alerting.
+        """
+        pulumi.set(__self__, "min_failures", min_failures)
+
+    @_builtins.property
+    @pulumi.getter(name="minFailures")
+    def min_failures(self) -> _builtins.int:
+        """
+        Minimum number of failures before alerting.
+        """
+        return pulumi.get(self, "min_failures")
+
+    @min_failures.setter
+    def min_failures(self, value: _builtins.int):
+        pulumi.set(self, "min_failures", value)
+
+
+class GetSlosSloAlertingAnnotationArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Key for filtering and identification.
+    """
+    value: _builtins.str
+    """
+    Templatable value.
+    """
+
+@pulumi.input_type
+class GetSlosSloAlertingAnnotationArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Key for filtering and identification.
+        :param _builtins.str value: Templatable value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Key for filtering and identification.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Templatable value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetSlosSloAlertingFastburnArgsDict(TypedDict):
+    annotations: NotRequired[Sequence['GetSlosSloAlertingFastburnAnnotationArgsDict']]
+    """
+    Annotations for fast burn alerts.
+    """
+    enrichments: NotRequired[Sequence['GetSlosSloAlertingFastburnEnrichmentArgsDict']]
+    """
+    Enrichments for fast burn alerts.
+    """
+    labels: NotRequired[Sequence['GetSlosSloAlertingFastburnLabelArgsDict']]
+    """
+    Labels for fast burn alerts.
+    """
+
+@pulumi.input_type
+class GetSlosSloAlertingFastburnArgs:
+    def __init__(__self__, *,
+                 annotations: Optional[Sequence['GetSlosSloAlertingFastburnAnnotationArgs']] = None,
+                 enrichments: Optional[Sequence['GetSlosSloAlertingFastburnEnrichmentArgs']] = None,
+                 labels: Optional[Sequence['GetSlosSloAlertingFastburnLabelArgs']] = None):
+        """
+        :param Sequence['GetSlosSloAlertingFastburnAnnotationArgs'] annotations: Annotations for fast burn alerts.
+        :param Sequence['GetSlosSloAlertingFastburnEnrichmentArgs'] enrichments: Enrichments for fast burn alerts.
+        :param Sequence['GetSlosSloAlertingFastburnLabelArgs'] labels: Labels for fast burn alerts.
+        """
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if enrichments is not None:
+            pulumi.set(__self__, "enrichments", enrichments)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[Sequence['GetSlosSloAlertingFastburnAnnotationArgs']]:
+        """
+        Annotations for fast burn alerts.
+        """
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[Sequence['GetSlosSloAlertingFastburnAnnotationArgs']]):
+        pulumi.set(self, "annotations", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enrichments(self) -> Optional[Sequence['GetSlosSloAlertingFastburnEnrichmentArgs']]:
+        """
+        Enrichments for fast burn alerts.
+        """
+        return pulumi.get(self, "enrichments")
+
+    @enrichments.setter
+    def enrichments(self, value: Optional[Sequence['GetSlosSloAlertingFastburnEnrichmentArgs']]):
+        pulumi.set(self, "enrichments", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Optional[Sequence['GetSlosSloAlertingFastburnLabelArgs']]:
+        """
+        Labels for fast burn alerts.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[Sequence['GetSlosSloAlertingFastburnLabelArgs']]):
+        pulumi.set(self, "labels", value)
+
+
+class GetSlosSloAlertingFastburnAnnotationArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Key for filtering and identification.
+    """
+    value: _builtins.str
+    """
+    Templatable value.
+    """
+
+@pulumi.input_type
+class GetSlosSloAlertingFastburnAnnotationArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Key for filtering and identification.
+        :param _builtins.str value: Templatable value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Key for filtering and identification.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Templatable value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetSlosSloAlertingFastburnEnrichmentArgsDict(TypedDict):
+    type: _builtins.str
+    """
+    Type of the alert enrichment.
+    """
+
+@pulumi.input_type
+class GetSlosSloAlertingFastburnEnrichmentArgs:
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Type of the alert enrichment.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the alert enrichment.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: _builtins.str):
+        pulumi.set(self, "type", value)
+
+
+class GetSlosSloAlertingFastburnLabelArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Key for filtering and identification.
+    """
+    value: _builtins.str
+    """
+    Templatable value.
+    """
+
+@pulumi.input_type
+class GetSlosSloAlertingFastburnLabelArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Key for filtering and identification.
+        :param _builtins.str value: Templatable value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Key for filtering and identification.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Templatable value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetSlosSloAlertingLabelArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Key for filtering and identification.
+    """
+    value: _builtins.str
+    """
+    Templatable value.
+    """
+
+@pulumi.input_type
+class GetSlosSloAlertingLabelArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Key for filtering and identification.
+        :param _builtins.str value: Templatable value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Key for filtering and identification.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Templatable value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetSlosSloAlertingSlowburnArgsDict(TypedDict):
+    annotations: NotRequired[Sequence['GetSlosSloAlertingSlowburnAnnotationArgsDict']]
+    """
+    Annotations for slow burn alerts.
+    """
+    enrichments: NotRequired[Sequence['GetSlosSloAlertingSlowburnEnrichmentArgsDict']]
+    """
+    Enrichments for slow burn alerts.
+    """
+    labels: NotRequired[Sequence['GetSlosSloAlertingSlowburnLabelArgsDict']]
+    """
+    Labels for slow burn alerts.
+    """
+
+@pulumi.input_type
+class GetSlosSloAlertingSlowburnArgs:
+    def __init__(__self__, *,
+                 annotations: Optional[Sequence['GetSlosSloAlertingSlowburnAnnotationArgs']] = None,
+                 enrichments: Optional[Sequence['GetSlosSloAlertingSlowburnEnrichmentArgs']] = None,
+                 labels: Optional[Sequence['GetSlosSloAlertingSlowburnLabelArgs']] = None):
+        """
+        :param Sequence['GetSlosSloAlertingSlowburnAnnotationArgs'] annotations: Annotations for slow burn alerts.
+        :param Sequence['GetSlosSloAlertingSlowburnEnrichmentArgs'] enrichments: Enrichments for slow burn alerts.
+        :param Sequence['GetSlosSloAlertingSlowburnLabelArgs'] labels: Labels for slow burn alerts.
+        """
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if enrichments is not None:
+            pulumi.set(__self__, "enrichments", enrichments)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[Sequence['GetSlosSloAlertingSlowburnAnnotationArgs']]:
+        """
+        Annotations for slow burn alerts.
+        """
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[Sequence['GetSlosSloAlertingSlowburnAnnotationArgs']]):
+        pulumi.set(self, "annotations", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enrichments(self) -> Optional[Sequence['GetSlosSloAlertingSlowburnEnrichmentArgs']]:
+        """
+        Enrichments for slow burn alerts.
+        """
+        return pulumi.get(self, "enrichments")
+
+    @enrichments.setter
+    def enrichments(self, value: Optional[Sequence['GetSlosSloAlertingSlowburnEnrichmentArgs']]):
+        pulumi.set(self, "enrichments", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Optional[Sequence['GetSlosSloAlertingSlowburnLabelArgs']]:
+        """
+        Labels for slow burn alerts.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[Sequence['GetSlosSloAlertingSlowburnLabelArgs']]):
+        pulumi.set(self, "labels", value)
+
+
+class GetSlosSloAlertingSlowburnAnnotationArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Key for filtering and identification.
+    """
+    value: _builtins.str
+    """
+    Templatable value.
+    """
+
+@pulumi.input_type
+class GetSlosSloAlertingSlowburnAnnotationArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Key for filtering and identification.
+        :param _builtins.str value: Templatable value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Key for filtering and identification.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Templatable value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetSlosSloAlertingSlowburnEnrichmentArgsDict(TypedDict):
+    type: _builtins.str
+    """
+    Type of the alert enrichment.
+    """
+
+@pulumi.input_type
+class GetSlosSloAlertingSlowburnEnrichmentArgs:
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Type of the alert enrichment.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the alert enrichment.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: _builtins.str):
+        pulumi.set(self, "type", value)
+
+
+class GetSlosSloAlertingSlowburnLabelArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Key for filtering and identification.
+    """
+    value: _builtins.str
+    """
+    Templatable value.
+    """
+
+@pulumi.input_type
+class GetSlosSloAlertingSlowburnLabelArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Key for filtering and identification.
+        :param _builtins.str value: Templatable value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Key for filtering and identification.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Templatable value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetSlosSloDestinationDatasourceArgsDict(TypedDict):
+    uid: _builtins.str
+    """
+    UID of the destination datasource.
+    """
+
+@pulumi.input_type
+class GetSlosSloDestinationDatasourceArgs:
+    def __init__(__self__, *,
+                 uid: _builtins.str):
+        """
+        :param _builtins.str uid: UID of the destination datasource.
+        """
+        pulumi.set(__self__, "uid", uid)
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.str:
+        """
+        UID of the destination datasource.
+        """
+        return pulumi.get(self, "uid")
+
+    @uid.setter
+    def uid(self, value: _builtins.str):
+        pulumi.set(self, "uid", value)
+
+
+class GetSlosSloLabelArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Key for filtering and identification.
+    """
+    value: _builtins.str
+    """
+    Templatable value.
+    """
+
+@pulumi.input_type
+class GetSlosSloLabelArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Key for filtering and identification.
+        :param _builtins.str value: Templatable value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Key for filtering and identification.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Templatable value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetSlosSloObjectiveArgsDict(TypedDict):
+    value: _builtins.float
+    """
+    Objective value (between 0 and 1).
+    """
+    window: _builtins.str
+    """
+    Time window for the objective.
+    """
+
+@pulumi.input_type
+class GetSlosSloObjectiveArgs:
+    def __init__(__self__, *,
+                 value: _builtins.float,
+                 window: _builtins.str):
+        """
+        :param _builtins.float value: Objective value (between 0 and 1).
+        :param _builtins.str window: Time window for the objective.
+        """
+        pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "window", window)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.float:
+        """
+        Objective value (between 0 and 1).
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.float):
+        pulumi.set(self, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def window(self) -> _builtins.str:
+        """
+        Time window for the objective.
+        """
+        return pulumi.get(self, "window")
+
+    @window.setter
+    def window(self, value: _builtins.str):
+        pulumi.set(self, "window", value)
+
+
+class GetSlosSloQueryArgsDict(TypedDict):
+    type: _builtins.str
+    """
+    Type of query (freeform, ratio, grafana_queries, etc.).
+    """
+    freeform: NotRequired['GetSlosSloQueryFreeformArgsDict']
+    """
+    Freeform query configuration.
+    """
+    grafana_queries: NotRequired['GetSlosSloQueryGrafanaQueriesArgsDict']
+    """
+    Grafana queries configuration.
+    """
+    ratio: NotRequired['GetSlosSloQueryRatioArgsDict']
+    """
+    Ratio query configuration.
+    """
+
+@pulumi.input_type
+class GetSlosSloQueryArgs:
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 freeform: Optional['GetSlosSloQueryFreeformArgs'] = None,
+                 grafana_queries: Optional['GetSlosSloQueryGrafanaQueriesArgs'] = None,
+                 ratio: Optional['GetSlosSloQueryRatioArgs'] = None):
+        """
+        :param _builtins.str type: Type of query (freeform, ratio, grafana_queries, etc.).
+        :param 'GetSlosSloQueryFreeformArgs' freeform: Freeform query configuration.
+        :param 'GetSlosSloQueryGrafanaQueriesArgs' grafana_queries: Grafana queries configuration.
+        :param 'GetSlosSloQueryRatioArgs' ratio: Ratio query configuration.
+        """
+        pulumi.set(__self__, "type", type)
+        if freeform is not None:
+            pulumi.set(__self__, "freeform", freeform)
+        if grafana_queries is not None:
+            pulumi.set(__self__, "grafana_queries", grafana_queries)
+        if ratio is not None:
+            pulumi.set(__self__, "ratio", ratio)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of query (freeform, ratio, grafana_queries, etc.).
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: _builtins.str):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def freeform(self) -> Optional['GetSlosSloQueryFreeformArgs']:
+        """
+        Freeform query configuration.
+        """
+        return pulumi.get(self, "freeform")
+
+    @freeform.setter
+    def freeform(self, value: Optional['GetSlosSloQueryFreeformArgs']):
+        pulumi.set(self, "freeform", value)
+
+    @_builtins.property
+    @pulumi.getter(name="grafanaQueries")
+    def grafana_queries(self) -> Optional['GetSlosSloQueryGrafanaQueriesArgs']:
+        """
+        Grafana queries configuration.
+        """
+        return pulumi.get(self, "grafana_queries")
+
+    @grafana_queries.setter
+    def grafana_queries(self, value: Optional['GetSlosSloQueryGrafanaQueriesArgs']):
+        pulumi.set(self, "grafana_queries", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ratio(self) -> Optional['GetSlosSloQueryRatioArgs']:
+        """
+        Ratio query configuration.
+        """
+        return pulumi.get(self, "ratio")
+
+    @ratio.setter
+    def ratio(self, value: Optional['GetSlosSloQueryRatioArgs']):
+        pulumi.set(self, "ratio", value)
+
+
+class GetSlosSloQueryFreeformArgsDict(TypedDict):
+    query: _builtins.str
+    """
+    The PromQL query string.
+    """
+
+@pulumi.input_type
+class GetSlosSloQueryFreeformArgs:
+    def __init__(__self__, *,
+                 query: _builtins.str):
+        """
+        :param _builtins.str query: The PromQL query string.
+        """
+        pulumi.set(__self__, "query", query)
+
+    @_builtins.property
+    @pulumi.getter
+    def query(self) -> _builtins.str:
+        """
+        The PromQL query string.
+        """
+        return pulumi.get(self, "query")
+
+    @query.setter
+    def query(self, value: _builtins.str):
+        pulumi.set(self, "query", value)
+
+
+class GetSlosSloQueryGrafanaQueriesArgsDict(TypedDict):
+    grafana_queries: _builtins.str
+    """
+    JSON string containing the Grafana queries.
+    """
+
+@pulumi.input_type
+class GetSlosSloQueryGrafanaQueriesArgs:
+    def __init__(__self__, *,
+                 grafana_queries: _builtins.str):
+        """
+        :param _builtins.str grafana_queries: JSON string containing the Grafana queries.
+        """
+        pulumi.set(__self__, "grafana_queries", grafana_queries)
+
+    @_builtins.property
+    @pulumi.getter(name="grafanaQueries")
+    def grafana_queries(self) -> _builtins.str:
+        """
+        JSON string containing the Grafana queries.
+        """
+        return pulumi.get(self, "grafana_queries")
+
+    @grafana_queries.setter
+    def grafana_queries(self, value: _builtins.str):
+        pulumi.set(self, "grafana_queries", value)
+
+
+class GetSlosSloQueryRatioArgsDict(TypedDict):
+    group_by_labels: Sequence[_builtins.str]
+    """
+    Labels used for grouping.
+    """
+    success_metric: _builtins.str
+    """
+    Counter metric for success events (numerator).
+    """
+    total_metric: _builtins.str
+    """
+    Metric for total events (denominator).
+    """
+
+@pulumi.input_type
+class GetSlosSloQueryRatioArgs:
+    def __init__(__self__, *,
+                 group_by_labels: Sequence[_builtins.str],
+                 success_metric: _builtins.str,
+                 total_metric: _builtins.str):
+        """
+        :param Sequence[_builtins.str] group_by_labels: Labels used for grouping.
+        :param _builtins.str success_metric: Counter metric for success events (numerator).
+        :param _builtins.str total_metric: Metric for total events (denominator).
+        """
+        pulumi.set(__self__, "group_by_labels", group_by_labels)
+        pulumi.set(__self__, "success_metric", success_metric)
+        pulumi.set(__self__, "total_metric", total_metric)
+
+    @_builtins.property
+    @pulumi.getter(name="groupByLabels")
+    def group_by_labels(self) -> Sequence[_builtins.str]:
+        """
+        Labels used for grouping.
+        """
+        return pulumi.get(self, "group_by_labels")
+
+    @group_by_labels.setter
+    def group_by_labels(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "group_by_labels", value)
+
+    @_builtins.property
+    @pulumi.getter(name="successMetric")
+    def success_metric(self) -> _builtins.str:
+        """
+        Counter metric for success events (numerator).
+        """
+        return pulumi.get(self, "success_metric")
+
+    @success_metric.setter
+    def success_metric(self, value: _builtins.str):
+        pulumi.set(self, "success_metric", value)
+
+    @_builtins.property
+    @pulumi.getter(name="totalMetric")
+    def total_metric(self) -> _builtins.str:
+        """
+        Metric for total events (denominator).
+        """
+        return pulumi.get(self, "total_metric")
+
+    @total_metric.setter
+    def total_metric(self, value: _builtins.str):
+        pulumi.set(self, "total_metric", value)
 
 

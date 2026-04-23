@@ -15,12 +15,12 @@ namespace Pulumiverse.Grafana.Slo.Outputs
     public sealed class GetSlosSloAlertingAdvancedOptionsResult
     {
         /// <summary>
-        /// Minimum number of failed events to trigger an alert
+        /// Minimum number of failures before alerting.
         /// </summary>
-        public readonly int? MinFailures;
+        public readonly int MinFailures;
 
         [OutputConstructor]
-        private GetSlosSloAlertingAdvancedOptionsResult(int? minFailures)
+        private GetSlosSloAlertingAdvancedOptionsResult(int minFailures)
         {
             MinFailures = minFailures;
         }

@@ -6,7 +6,10 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .apps_productactivation_dbo11yconfig_v1alpha1 import *
 from .provider import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -608,6 +611,14 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.frontendobservability",
   "classes": {
    "grafana:frontendObservability/app:App": "App"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "index/appsProductactivationDbo11yconfigV1alpha1",
+  "fqn": "pulumiverse_grafana",
+  "classes": {
+   "grafana:index/appsProductactivationDbo11yconfigV1alpha1:AppsProductactivationDbo11yconfigV1alpha1": "AppsProductactivationDbo11yconfigV1alpha1"
   }
  },
  {

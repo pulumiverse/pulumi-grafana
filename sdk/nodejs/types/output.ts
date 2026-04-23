@@ -5,6 +5,51 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppsProductactivationDbo11yconfigV1alpha1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations: {[key: string]: string};
+    /**
+     * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+     */
+    folderUid?: string;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: string;
+    /**
+     * The full URL of the resource.
+     */
+    url: string;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid: string;
+    /**
+     * The version of the resource.
+     */
+    version: string;
+}
+
+export interface AppsProductactivationDbo11yconfigV1alpha1Options {
+    /**
+     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+     */
+    managerIdentity?: string;
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: boolean;
+}
+
+export interface AppsProductactivationDbo11yconfigV1alpha1Spec {
+    /**
+     * Whether database observability is enabled.
+     */
+    enabled: boolean;
+}
+
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -6016,258 +6061,256 @@ export namespace oss {
 export namespace slo {
     export interface GetSlosSlo {
         /**
-         * Configures the alerting rules that will be generated for each
-         * 				time window associated with the SLO. Grafana SLOs can generate
-         * 				alerts when the short-term error budget burn is very high, the
-         * 				long-term error budget burn rate is high, or when the remaining
-         * 				error budget is below a certain threshold. Annotations and Labels support templating.
+         * Alerting configuration for the SLO.
          */
-        alertings: outputs.slo.GetSlosSloAlerting[];
+        alertings?: outputs.slo.GetSlosSloAlerting[];
         /**
-         * Description is a free-text field that can provide more context to an SLO.
+         * Description of the SLO.
          */
         description: string;
         /**
-         * Destination Datasource sets the datasource defined for an SLO
+         * Destination datasource configuration.
          */
-        destinationDatasources: outputs.slo.GetSlosSloDestinationDatasource[];
+        destinationDatasources?: outputs.slo.GetSlosSloDestinationDatasource[];
         /**
-         * UID for the SLO folder
+         * Labels attached to the SLO.
          */
-        folderUid: string;
+        labels?: outputs.slo.GetSlosSloLabel[];
         /**
-         * Additional labels that will be attached to all metrics generated from the query. These labels are useful for grouping SLOs in dashboard views that you create by hand. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
-         */
-        labels: outputs.slo.GetSlosSloLabel[];
-        /**
-         * Name should be a short description of your indicator. Consider names like "API Availability"
+         * Name of the SLO.
          */
         name: string;
         /**
-         * Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+         * Objectives for the SLO.
          */
-        objectives: outputs.slo.GetSlosSloObjective[];
+        objectives?: outputs.slo.GetSlosSloObjective[];
         /**
-         * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+         * Query configuration for the SLO.
          */
-        queries: outputs.slo.GetSlosSloQuery[];
+        queries?: outputs.slo.GetSlosSloQuery[];
         /**
-         * The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+         * The search expression associated with this SLO.
          */
         searchExpression: string;
         /**
-         * A unique, random identifier. This value will also be the name of the resource stored in the API server. This value is read-only.
+         * A unique, random identifier. This value is read-only.
          */
         uuid: string;
     }
 
     export interface GetSlosSloAlerting {
         /**
-         * Advanced Options for Alert Rules
+         * Advanced alerting options.
          */
         advancedOptions?: outputs.slo.GetSlosSloAlertingAdvancedOptions;
         /**
-         * Annotations will be attached to all alerts generated by any of these rules.
+         * Annotations attached to alerts.
          */
         annotations?: outputs.slo.GetSlosSloAlertingAnnotation[];
         /**
-         * Alerting Rules generated for Fast Burn alerts
+         * Fast burn alert configuration.
          */
         fastburn?: outputs.slo.GetSlosSloAlertingFastburn;
         /**
-         * Labels will be attached to all alerts generated by any of these rules.
+         * Labels attached to alerts.
          */
         labels?: outputs.slo.GetSlosSloAlertingLabel[];
         /**
-         * Alerting Rules generated for Slow Burn alerts
+         * Slow burn alert configuration.
          */
         slowburn?: outputs.slo.GetSlosSloAlertingSlowburn;
     }
 
     export interface GetSlosSloAlertingAdvancedOptions {
         /**
-         * Minimum number of failed events to trigger an alert
+         * Minimum number of failures before alerting.
          */
-        minFailures?: number;
+        minFailures: number;
     }
 
     export interface GetSlosSloAlertingAnnotation {
         /**
-         * Key for filtering and identification
+         * Key for filtering and identification.
          */
         key: string;
         /**
-         * Templatable value
+         * Templatable value.
          */
         value: string;
     }
 
     export interface GetSlosSloAlertingFastburn {
         /**
-         * Annotations to attach only to Fast Burn alerts.
+         * Annotations for fast burn alerts.
          */
         annotations?: outputs.slo.GetSlosSloAlertingFastburnAnnotation[];
         /**
-         * Enrichments to attach only to Fast Burn alerts.
+         * Enrichments for fast burn alerts.
          */
         enrichments?: outputs.slo.GetSlosSloAlertingFastburnEnrichment[];
         /**
-         * Labels to attach only to Fast Burn alerts.
+         * Labels for fast burn alerts.
          */
         labels?: outputs.slo.GetSlosSloAlertingFastburnLabel[];
     }
 
     export interface GetSlosSloAlertingFastburnAnnotation {
         /**
-         * Key for filtering and identification
+         * Key for filtering and identification.
          */
         key: string;
         /**
-         * Templatable value
+         * Templatable value.
          */
         value: string;
     }
 
     export interface GetSlosSloAlertingFastburnEnrichment {
         /**
-         * Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+         * Type of the alert enrichment.
          */
         type: string;
     }
 
     export interface GetSlosSloAlertingFastburnLabel {
         /**
-         * Key for filtering and identification
+         * Key for filtering and identification.
          */
         key: string;
         /**
-         * Templatable value
+         * Templatable value.
          */
         value: string;
     }
 
     export interface GetSlosSloAlertingLabel {
         /**
-         * Key for filtering and identification
+         * Key for filtering and identification.
          */
         key: string;
         /**
-         * Templatable value
+         * Templatable value.
          */
         value: string;
     }
 
     export interface GetSlosSloAlertingSlowburn {
         /**
-         * Annotations to attach only to Slow Burn alerts.
+         * Annotations for slow burn alerts.
          */
         annotations?: outputs.slo.GetSlosSloAlertingSlowburnAnnotation[];
         /**
-         * Enrichments to attach only to Slow Burn alerts.
+         * Enrichments for slow burn alerts.
          */
         enrichments?: outputs.slo.GetSlosSloAlertingSlowburnEnrichment[];
         /**
-         * Labels to attach only to Slow Burn alerts.
+         * Labels for slow burn alerts.
          */
         labels?: outputs.slo.GetSlosSloAlertingSlowburnLabel[];
     }
 
     export interface GetSlosSloAlertingSlowburnAnnotation {
         /**
-         * Key for filtering and identification
+         * Key for filtering and identification.
          */
         key: string;
         /**
-         * Templatable value
+         * Templatable value.
          */
         value: string;
     }
 
     export interface GetSlosSloAlertingSlowburnEnrichment {
         /**
-         * Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+         * Type of the alert enrichment.
          */
         type: string;
     }
 
     export interface GetSlosSloAlertingSlowburnLabel {
         /**
-         * Key for filtering and identification
+         * Key for filtering and identification.
          */
         key: string;
         /**
-         * Templatable value
+         * Templatable value.
          */
         value: string;
     }
 
     export interface GetSlosSloDestinationDatasource {
         /**
-         * UID for the Datasource
+         * UID of the destination datasource.
          */
         uid: string;
     }
 
     export interface GetSlosSloLabel {
         /**
-         * Key for filtering and identification
+         * Key for filtering and identification.
          */
         key: string;
         /**
-         * Templatable value
+         * Templatable value.
          */
         value: string;
     }
 
     export interface GetSlosSloObjective {
         /**
-         * Value between 0 and 1. If the value of the query is above the objective, the SLO is met.
+         * Objective value (between 0 and 1).
          */
         value: number;
         /**
-         * A Prometheus-parsable time duration string like 24h, 60m. This is the time window the objective is measured over.
+         * Time window for the objective.
          */
         window: string;
     }
 
     export interface GetSlosSloQuery {
+        /**
+         * Freeform query configuration.
+         */
         freeform?: outputs.slo.GetSlosSloQueryFreeform;
         /**
-         * Array for holding a set of grafana queries
+         * Grafana queries configuration.
          */
         grafanaQueries?: outputs.slo.GetSlosSloQueryGrafanaQueries;
+        /**
+         * Ratio query configuration.
+         */
         ratio?: outputs.slo.GetSlosSloQueryRatio;
         /**
-         * Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"
+         * Type of query (freeform, ratio, grafana_queries, etc.).
          */
         type: string;
     }
 
     export interface GetSlosSloQueryFreeform {
         /**
-         * Freeform Query Field - valid promQl
+         * The PromQL query string.
          */
         query: string;
     }
 
     export interface GetSlosSloQueryGrafanaQueries {
         /**
-         * Query Object - Array of Grafana Query JSON objects
+         * JSON string containing the Grafana queries.
          */
         grafanaQueries: string;
     }
 
     export interface GetSlosSloQueryRatio {
         /**
-         * Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z_][a-zA-Z0-9_]*$"
+         * Labels used for grouping.
          */
-        groupByLabels?: string[];
+        groupByLabels: string[];
         /**
-         * Counter metric for success events (numerator)
+         * Counter metric for success events (numerator).
          */
         successMetric: string;
         /**
-         * Metric for total events (denominator)
+         * Metric for total events (denominator).
          */
         totalMetric: string;
     }
@@ -6442,11 +6485,17 @@ export namespace slo {
     }
 
     export interface SLOQuery {
+        /**
+         * Freeform query configuration.
+         */
         freeform?: outputs.slo.SLOQueryFreeform;
         /**
          * Array for holding a set of grafana queries
          */
         grafanaQueries?: outputs.slo.SLOQueryGrafanaQueries;
+        /**
+         * Ratio query configuration.
+         */
         ratio?: outputs.slo.SLOQueryRatio;
         /**
          * Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"

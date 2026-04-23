@@ -42,6 +42,7 @@
         "apps/v2/index.ts",
         "apps/v2beta1/dashboard.ts",
         "apps/v2beta1/index.ts",
+        "appsProductactivationDbo11yconfigV1alpha1.ts",
         "assert/customModelRules.ts",
         "assert/index.ts",
         "assert/logConfig.ts",

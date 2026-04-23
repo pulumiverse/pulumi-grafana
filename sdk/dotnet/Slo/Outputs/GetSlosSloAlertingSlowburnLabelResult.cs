@@ -15,11 +15,11 @@ namespace Pulumiverse.Grafana.Slo.Outputs
     public sealed class GetSlosSloAlertingSlowburnLabelResult
     {
         /// <summary>
-        /// Key for filtering and identification
+        /// Key for filtering and identification.
         /// </summary>
         public readonly string Key;
         /// <summary>
-        /// Templatable value
+        /// Templatable value.
         /// </summary>
         public readonly string Value;
 

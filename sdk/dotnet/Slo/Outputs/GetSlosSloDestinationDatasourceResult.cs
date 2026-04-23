@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Slo.Outputs
     public sealed class GetSlosSloDestinationDatasourceResult
     {
         /// <summary>
-        /// UID for the Datasource
+        /// UID of the destination datasource.
         /// </summary>
         public readonly string Uid;
 

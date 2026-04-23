@@ -5,6 +5,50 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppsProductactivationDbo11yconfigV1alpha1Metadata {
+    /**
+     * Annotations of the resource.
+     */
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The UID of the folder to save the resource in. For example, it's supported for dashboards and folders. To know if it's supported for the specific resource you're using check the documentation.
+     */
+    folderUid?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the resource.
+     */
+    uid: pulumi.Input<string>;
+    /**
+     * The full URL of the resource.
+     */
+    url?: pulumi.Input<string>;
+    /**
+     * The globally unique identifier of a resource, used by the API for tracking.
+     */
+    uuid?: pulumi.Input<string>;
+    /**
+     * The version of the resource.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface AppsProductactivationDbo11yconfigV1alpha1Options {
+    /**
+     * Override the identity stamped on this resource's manager metadata. Defaults to "grafana-terraform-provider". Use this to distinguish resources managed by different Pulumi Stacks targeting the same Grafana instance.
+     */
+    managerIdentity?: pulumi.Input<string>;
+    /**
+     * Set to true if you want to overwrite existing resource with newer version, same resource title in folder or same resource uid.
+     */
+    overwrite?: pulumi.Input<boolean>;
+}
+
+export interface AppsProductactivationDbo11yconfigV1alpha1Spec {
+    /**
+     * Whether database observability is enabled.
+     */
+    enabled: pulumi.Input<boolean>;
+}
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
@@ -6141,6 +6185,518 @@ export namespace oss {
 }
 
 export namespace slo {
+    export interface GetSlosSlo {
+        /**
+         * Alerting configuration for the SLO.
+         */
+        alertings?: inputs.slo.GetSlosSloAlerting[];
+        /**
+         * Description of the SLO.
+         */
+        description?: string;
+        /**
+         * Destination datasource configuration.
+         */
+        destinationDatasources?: inputs.slo.GetSlosSloDestinationDatasource[];
+        /**
+         * Labels attached to the SLO.
+         */
+        labels?: inputs.slo.GetSlosSloLabel[];
+        /**
+         * Name of the SLO.
+         */
+        name?: string;
+        /**
+         * Objectives for the SLO.
+         */
+        objectives?: inputs.slo.GetSlosSloObjective[];
+        /**
+         * Query configuration for the SLO.
+         */
+        queries?: inputs.slo.GetSlosSloQuery[];
+        /**
+         * The search expression associated with this SLO.
+         */
+        searchExpression?: string;
+        /**
+         * A unique, random identifier. This value is read-only.
+         */
+        uuid?: string;
+    }
+
+    export interface GetSlosSloArgs {
+        /**
+         * Alerting configuration for the SLO.
+         */
+        alertings?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloAlertingArgs>[]>;
+        /**
+         * Description of the SLO.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * Destination datasource configuration.
+         */
+        destinationDatasources?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloDestinationDatasourceArgs>[]>;
+        /**
+         * Labels attached to the SLO.
+         */
+        labels?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloLabelArgs>[]>;
+        /**
+         * Name of the SLO.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * Objectives for the SLO.
+         */
+        objectives?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloObjectiveArgs>[]>;
+        /**
+         * Query configuration for the SLO.
+         */
+        queries?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloQueryArgs>[]>;
+        /**
+         * The search expression associated with this SLO.
+         */
+        searchExpression?: pulumi.Input<string>;
+        /**
+         * A unique, random identifier. This value is read-only.
+         */
+        uuid?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloAlerting {
+        /**
+         * Advanced alerting options.
+         */
+        advancedOptions?: inputs.slo.GetSlosSloAlertingAdvancedOptions;
+        /**
+         * Annotations attached to alerts.
+         */
+        annotations?: inputs.slo.GetSlosSloAlertingAnnotation[];
+        /**
+         * Fast burn alert configuration.
+         */
+        fastburn?: inputs.slo.GetSlosSloAlertingFastburn;
+        /**
+         * Labels attached to alerts.
+         */
+        labels?: inputs.slo.GetSlosSloAlertingLabel[];
+        /**
+         * Slow burn alert configuration.
+         */
+        slowburn?: inputs.slo.GetSlosSloAlertingSlowburn;
+    }
+
+    export interface GetSlosSloAlertingArgs {
+        /**
+         * Advanced alerting options.
+         */
+        advancedOptions?: pulumi.Input<inputs.slo.GetSlosSloAlertingAdvancedOptionsArgs>;
+        /**
+         * Annotations attached to alerts.
+         */
+        annotations?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloAlertingAnnotationArgs>[]>;
+        /**
+         * Fast burn alert configuration.
+         */
+        fastburn?: pulumi.Input<inputs.slo.GetSlosSloAlertingFastburnArgs>;
+        /**
+         * Labels attached to alerts.
+         */
+        labels?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloAlertingLabelArgs>[]>;
+        /**
+         * Slow burn alert configuration.
+         */
+        slowburn?: pulumi.Input<inputs.slo.GetSlosSloAlertingSlowburnArgs>;
+    }
+
+    export interface GetSlosSloAlertingAdvancedOptions {
+        /**
+         * Minimum number of failures before alerting.
+         */
+        minFailures?: number;
+    }
+
+    export interface GetSlosSloAlertingAdvancedOptionsArgs {
+        /**
+         * Minimum number of failures before alerting.
+         */
+        minFailures?: pulumi.Input<number>;
+    }
+
+    export interface GetSlosSloAlertingAnnotation {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: string;
+        /**
+         * Templatable value.
+         */
+        value?: string;
+    }
+
+    export interface GetSlosSloAlertingAnnotationArgs {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * Templatable value.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloAlertingFastburn {
+        /**
+         * Annotations for fast burn alerts.
+         */
+        annotations?: inputs.slo.GetSlosSloAlertingFastburnAnnotation[];
+        /**
+         * Enrichments for fast burn alerts.
+         */
+        enrichments?: inputs.slo.GetSlosSloAlertingFastburnEnrichment[];
+        /**
+         * Labels for fast burn alerts.
+         */
+        labels?: inputs.slo.GetSlosSloAlertingFastburnLabel[];
+    }
+
+    export interface GetSlosSloAlertingFastburnArgs {
+        /**
+         * Annotations for fast burn alerts.
+         */
+        annotations?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloAlertingFastburnAnnotationArgs>[]>;
+        /**
+         * Enrichments for fast burn alerts.
+         */
+        enrichments?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloAlertingFastburnEnrichmentArgs>[]>;
+        /**
+         * Labels for fast burn alerts.
+         */
+        labels?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloAlertingFastburnLabelArgs>[]>;
+    }
+
+    export interface GetSlosSloAlertingFastburnAnnotation {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: string;
+        /**
+         * Templatable value.
+         */
+        value?: string;
+    }
+
+    export interface GetSlosSloAlertingFastburnAnnotationArgs {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * Templatable value.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloAlertingFastburnEnrichment {
+        /**
+         * Type of the alert enrichment.
+         */
+        type?: string;
+    }
+
+    export interface GetSlosSloAlertingFastburnEnrichmentArgs {
+        /**
+         * Type of the alert enrichment.
+         */
+        type?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloAlertingFastburnLabel {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: string;
+        /**
+         * Templatable value.
+         */
+        value?: string;
+    }
+
+    export interface GetSlosSloAlertingFastburnLabelArgs {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * Templatable value.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloAlertingLabel {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: string;
+        /**
+         * Templatable value.
+         */
+        value?: string;
+    }
+
+    export interface GetSlosSloAlertingLabelArgs {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * Templatable value.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloAlertingSlowburn {
+        /**
+         * Annotations for slow burn alerts.
+         */
+        annotations?: inputs.slo.GetSlosSloAlertingSlowburnAnnotation[];
+        /**
+         * Enrichments for slow burn alerts.
+         */
+        enrichments?: inputs.slo.GetSlosSloAlertingSlowburnEnrichment[];
+        /**
+         * Labels for slow burn alerts.
+         */
+        labels?: inputs.slo.GetSlosSloAlertingSlowburnLabel[];
+    }
+
+    export interface GetSlosSloAlertingSlowburnArgs {
+        /**
+         * Annotations for slow burn alerts.
+         */
+        annotations?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloAlertingSlowburnAnnotationArgs>[]>;
+        /**
+         * Enrichments for slow burn alerts.
+         */
+        enrichments?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloAlertingSlowburnEnrichmentArgs>[]>;
+        /**
+         * Labels for slow burn alerts.
+         */
+        labels?: pulumi.Input<pulumi.Input<inputs.slo.GetSlosSloAlertingSlowburnLabelArgs>[]>;
+    }
+
+    export interface GetSlosSloAlertingSlowburnAnnotation {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: string;
+        /**
+         * Templatable value.
+         */
+        value?: string;
+    }
+
+    export interface GetSlosSloAlertingSlowburnAnnotationArgs {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * Templatable value.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloAlertingSlowburnEnrichment {
+        /**
+         * Type of the alert enrichment.
+         */
+        type?: string;
+    }
+
+    export interface GetSlosSloAlertingSlowburnEnrichmentArgs {
+        /**
+         * Type of the alert enrichment.
+         */
+        type?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloAlertingSlowburnLabel {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: string;
+        /**
+         * Templatable value.
+         */
+        value?: string;
+    }
+
+    export interface GetSlosSloAlertingSlowburnLabelArgs {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * Templatable value.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloDestinationDatasource {
+        /**
+         * UID of the destination datasource.
+         */
+        uid?: string;
+    }
+
+    export interface GetSlosSloDestinationDatasourceArgs {
+        /**
+         * UID of the destination datasource.
+         */
+        uid?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloLabel {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: string;
+        /**
+         * Templatable value.
+         */
+        value?: string;
+    }
+
+    export interface GetSlosSloLabelArgs {
+        /**
+         * Key for filtering and identification.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * Templatable value.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloObjective {
+        /**
+         * Objective value (between 0 and 1).
+         */
+        value?: number;
+        /**
+         * Time window for the objective.
+         */
+        window?: string;
+    }
+
+    export interface GetSlosSloObjectiveArgs {
+        /**
+         * Objective value (between 0 and 1).
+         */
+        value?: pulumi.Input<number>;
+        /**
+         * Time window for the objective.
+         */
+        window?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloQuery {
+        /**
+         * Freeform query configuration.
+         */
+        freeform?: inputs.slo.GetSlosSloQueryFreeform;
+        /**
+         * Grafana queries configuration.
+         */
+        grafanaQueries?: inputs.slo.GetSlosSloQueryGrafanaQueries;
+        /**
+         * Ratio query configuration.
+         */
+        ratio?: inputs.slo.GetSlosSloQueryRatio;
+        /**
+         * Type of query (freeform, ratio, grafana_queries, etc.).
+         */
+        type?: string;
+    }
+
+    export interface GetSlosSloQueryArgs {
+        /**
+         * Freeform query configuration.
+         */
+        freeform?: pulumi.Input<inputs.slo.GetSlosSloQueryFreeformArgs>;
+        /**
+         * Grafana queries configuration.
+         */
+        grafanaQueries?: pulumi.Input<inputs.slo.GetSlosSloQueryGrafanaQueriesArgs>;
+        /**
+         * Ratio query configuration.
+         */
+        ratio?: pulumi.Input<inputs.slo.GetSlosSloQueryRatioArgs>;
+        /**
+         * Type of query (freeform, ratio, grafana_queries, etc.).
+         */
+        type?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloQueryFreeform {
+        /**
+         * The PromQL query string.
+         */
+        query?: string;
+    }
+
+    export interface GetSlosSloQueryFreeformArgs {
+        /**
+         * The PromQL query string.
+         */
+        query?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloQueryGrafanaQueries {
+        /**
+         * JSON string containing the Grafana queries.
+         */
+        grafanaQueries?: string;
+    }
+
+    export interface GetSlosSloQueryGrafanaQueriesArgs {
+        /**
+         * JSON string containing the Grafana queries.
+         */
+        grafanaQueries?: pulumi.Input<string>;
+    }
+
+    export interface GetSlosSloQueryRatio {
+        /**
+         * Labels used for grouping.
+         */
+        groupByLabels?: string[];
+        /**
+         * Counter metric for success events (numerator).
+         */
+        successMetric?: string;
+        /**
+         * Metric for total events (denominator).
+         */
+        totalMetric?: string;
+    }
+
+    export interface GetSlosSloQueryRatioArgs {
+        /**
+         * Labels used for grouping.
+         */
+        groupByLabels?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Counter metric for success events (numerator).
+         */
+        successMetric?: pulumi.Input<string>;
+        /**
+         * Metric for total events (denominator).
+         */
+        totalMetric?: pulumi.Input<string>;
+    }
+
     export interface SLOAlerting {
         /**
          * Advanced Options for Alert Rules
@@ -6311,11 +6867,17 @@ export namespace slo {
     }
 
     export interface SLOQuery {
+        /**
+         * Freeform query configuration.
+         */
         freeform?: pulumi.Input<inputs.slo.SLOQueryFreeform>;
         /**
          * Array for holding a set of grafana queries
          */
         grafanaQueries?: pulumi.Input<inputs.slo.SLOQueryGrafanaQueries>;
+        /**
+         * Ratio query configuration.
+         */
         ratio?: pulumi.Input<inputs.slo.SLOQueryRatio>;
         /**
          * Query type must be one of: "freeform", "query", "ratio", "grafanaQueries" or "threshold"

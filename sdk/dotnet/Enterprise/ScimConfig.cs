@@ -11,11 +11,13 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Enterprise
 {
     /// <summary>
-    /// **Note:** This resource is available only with Grafana Enterprise.
+    /// **Note:** Available in [Grafana Enterprise](https://grafana.com/docs/grafana/latest/introduction/grafana-enterprise/) and [Grafana Cloud](https://grafana.com/docs/grafana-cloud/).
     /// 
-    /// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)
+    /// * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-access/configure-scim-provisioning/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ### Grafana Enterprise
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -25,6 +27,48 @@ namespace Pulumiverse.Grafana.Enterprise
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var @default = new Grafana.Enterprise.ScimConfig("default", new()
+    ///     {
+    ///         EnableUserSync = true,
+    ///         EnableGroupSync = false,
+    ///         RejectNonProvisionedUsers = false,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Grafana Cloud
+    /// 
+    /// When using this resource against a Grafana Cloud stack authenticated with a stack service account token, the `StackId` attribute must be set on the provider block so the request is routed to the correct stack namespace. Without it, the API returns `403 authn.invalid-namespace`.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Grafana = Pulumiverse.Grafana;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myStack = new Grafana.Cloud.Stack("my_stack", new()
+    ///     {
+    ///         Name = "my-stack",
+    ///         Slug = "my-stack",
+    ///     });
+    /// 
+    ///     var cloudSa = new Grafana.Cloud.StackServiceAccount("cloud_sa", new()
+    ///     {
+    ///         StackSlug = myStack.Slug,
+    ///         Name = "scim-terraform",
+    ///         Role = "Admin",
+    ///     });
+    /// 
+    ///     var cloudSaStackServiceAccountToken = new Grafana.Cloud.StackServiceAccountToken("cloud_sa", new()
+    ///     {
+    ///         StackSlug = myStack.Slug,
+    ///         ServiceAccountId = cloudSa.Id,
+    ///         Name = "scim-terraform",
+    ///     });
+    /// 
     ///     var @default = new Grafana.Enterprise.ScimConfig("default", new()
     ///     {
     ///         EnableUserSync = true,

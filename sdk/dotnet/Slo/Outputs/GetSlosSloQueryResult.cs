@@ -14,14 +14,20 @@ namespace Pulumiverse.Grafana.Slo.Outputs
     [OutputType]
     public sealed class GetSlosSloQueryResult
     {
+        /// <summary>
+        /// Freeform query configuration.
+        /// </summary>
         public readonly Outputs.GetSlosSloQueryFreeformResult? Freeform;
         /// <summary>
-        /// Array for holding a set of grafana queries
+        /// Grafana queries configuration.
         /// </summary>
         public readonly Outputs.GetSlosSloQueryGrafanaQueriesResult? GrafanaQueries;
+        /// <summary>
+        /// Ratio query configuration.
+        /// </summary>
         public readonly Outputs.GetSlosSloQueryRatioResult? Ratio;
         /// <summary>
-        /// Query type must be one of: "freeform", "query", "ratio", "GrafanaQueries" or "threshold"
+        /// Type of query (freeform, ratio, grafana_queries, etc.).
         /// </summary>
         public readonly string Type;
 

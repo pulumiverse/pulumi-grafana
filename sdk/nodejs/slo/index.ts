@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export { GetSlosResult } from "./getSlos";
+export { GetSlosArgs, GetSlosResult, GetSlosOutputArgs } from "./getSlos";
 export const getSlos: typeof import("./getSlos").getSlos = null as any;
 export const getSlosOutput: typeof import("./getSlos").getSlosOutput = null as any;
 utilities.lazyLoad(exports, ["getSlos","getSlosOutput"], () => require("./getSlos"));

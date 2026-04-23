@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetSlosResult',
@@ -39,15 +40,15 @@ class GetSlosResult:
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this datasource. This is a constant value.
         """
         return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
-    def slos(self) -> Sequence['outputs.GetSlosSloResult']:
+    def slos(self) -> Optional[Sequence['outputs.GetSlosSloResult']]:
         """
-        Returns a list of all SLOs"
+        List of all SLOs.
         """
         return pulumi.get(self, "slos")
 
@@ -62,9 +63,10 @@ class AwaitableGetSlosResult(GetSlosResult):
             slos=self.slos)
 
 
-def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosResult:
+def get_slos(slos: Optional[Sequence[Union['GetSlosSloArgs', 'GetSlosSloArgsDict']]] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosResult:
     """
-    Datasource for retrieving all SLOs.
+    Data source for retrieving all SLOs.
 
     * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
     * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
@@ -121,17 +123,22 @@ def get_slos(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSlosRes
         })
     slos = grafana.slo.get_slos()
     ```
+
+
+    :param Sequence[Union['GetSlosSloArgs', 'GetSlosSloArgsDict']] slos: List of all SLOs.
     """
     __args__ = dict()
+    __args__['slos'] = slos
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('grafana:slo/getSlos:getSlos', __args__, opts=opts, typ=GetSlosResult).value
 
     return AwaitableGetSlosResult(
         id=pulumi.get(__ret__, 'id'),
         slos=pulumi.get(__ret__, 'slos'))
-def get_slos_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSlosResult]:
+def get_slos_output(slos: Optional[pulumi.Input[Optional[Sequence[Union['GetSlosSloArgs', 'GetSlosSloArgsDict']]]]] = None,
+                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSlosResult]:
     """
-    Datasource for retrieving all SLOs.
+    Data source for retrieving all SLOs.
 
     * [Official documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/)
     * [API documentation](https://grafana.com/docs/grafana-cloud/alerting-and-irm/slo/api/)
@@ -188,8 +195,12 @@ def get_slos_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutp
         })
     slos = grafana.slo.get_slos()
     ```
+
+
+    :param Sequence[Union['GetSlosSloArgs', 'GetSlosSloArgsDict']] slos: List of all SLOs.
     """
     __args__ = dict()
+    __args__['slos'] = slos
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('grafana:slo/getSlos:getSlos', __args__, opts=opts, typ=GetSlosResult)
     return __ret__.apply(lambda __response__: GetSlosResult(

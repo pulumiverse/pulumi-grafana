@@ -270,9 +270,9 @@ export class SLO extends pulumi.CustomResource {
      */
     declare public readonly description: pulumi.Output<string>;
     /**
-     * Destination Datasource sets the datasource defined for an SLO
+     * **Required.** Destination Datasource sets the datasource defined for an SLO.
      */
-    declare public readonly destinationDatasource: pulumi.Output<outputs.slo.SLODestinationDatasource>;
+    declare public readonly destinationDatasource: pulumi.Output<outputs.slo.SLODestinationDatasource | undefined>;
     /**
      * UID for the SLO folder
      */
@@ -286,13 +286,13 @@ export class SLO extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+     * **Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
      */
-    declare public readonly objectives: pulumi.Output<outputs.slo.SLOObjective[]>;
+    declare public readonly objectives: pulumi.Output<outputs.slo.SLOObjective[] | undefined>;
     /**
-     * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * **Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
      */
-    declare public readonly queries: pulumi.Output<outputs.slo.SLOQuery[]>;
+    declare public readonly queries: pulumi.Output<outputs.slo.SLOQuery[] | undefined>;
     /**
      * The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
      */
@@ -330,15 +330,6 @@ export class SLO extends pulumi.CustomResource {
             if (args?.description === undefined && !opts.urn) {
                 throw new Error("Missing required property 'description'");
             }
-            if (args?.destinationDatasource === undefined && !opts.urn) {
-                throw new Error("Missing required property 'destinationDatasource'");
-            }
-            if (args?.objectives === undefined && !opts.urn) {
-                throw new Error("Missing required property 'objectives'");
-            }
-            if (args?.queries === undefined && !opts.urn) {
-                throw new Error("Missing required property 'queries'");
-            }
             resourceInputs["alerting"] = args?.alerting;
             resourceInputs["description"] = args?.description;
             resourceInputs["destinationDatasource"] = args?.destinationDatasource;
@@ -374,7 +365,7 @@ export interface SLOState {
      */
     description?: pulumi.Input<string>;
     /**
-     * Destination Datasource sets the datasource defined for an SLO
+     * **Required.** Destination Datasource sets the datasource defined for an SLO.
      */
     destinationDatasource?: pulumi.Input<inputs.slo.SLODestinationDatasource>;
     /**
@@ -390,11 +381,11 @@ export interface SLOState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+     * **Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
      */
     objectives?: pulumi.Input<pulumi.Input<inputs.slo.SLOObjective>[]>;
     /**
-     * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * **Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
      */
     queries?: pulumi.Input<pulumi.Input<inputs.slo.SLOQuery>[]>;
     /**
@@ -424,9 +415,9 @@ export interface SLOArgs {
      */
     description: pulumi.Input<string>;
     /**
-     * Destination Datasource sets the datasource defined for an SLO
+     * **Required.** Destination Datasource sets the datasource defined for an SLO.
      */
-    destinationDatasource: pulumi.Input<inputs.slo.SLODestinationDatasource>;
+    destinationDatasource?: pulumi.Input<inputs.slo.SLODestinationDatasource>;
     /**
      * UID for the SLO folder
      */
@@ -440,13 +431,13 @@ export interface SLOArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
+     * **Required.** Over each rolling time window, the remaining error budget will be calculated, and separate alerts can be generated for each time window based on the SLO burn rate or remaining error budget.
      */
-    objectives: pulumi.Input<pulumi.Input<inputs.slo.SLOObjective>[]>;
+    objectives?: pulumi.Input<pulumi.Input<inputs.slo.SLOObjective>[]>;
     /**
-     * Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
+     * **Required.** Query describes the indicator that will be measured against the objective. Freeform Query types are currently supported.
      */
-    queries: pulumi.Input<pulumi.Input<inputs.slo.SLOQuery>[]>;
+    queries?: pulumi.Input<pulumi.Input<inputs.slo.SLOQuery>[]>;
     /**
      * The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
      */

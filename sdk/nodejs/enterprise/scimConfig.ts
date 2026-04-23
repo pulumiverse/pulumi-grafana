@@ -5,16 +5,47 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * **Note:** This resource is available only with Grafana Enterprise.
+ * **Note:** Available in [Grafana Enterprise](https://grafana.com/docs/grafana/latest/introduction/grafana-enterprise/) and [Grafana Cloud](https://grafana.com/docs/grafana-cloud/).
  *
- * * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)
+ * * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-access/configure-scim-provisioning/)
  *
  * ## Example Usage
+ *
+ * ### Grafana Enterprise
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
+ * const _default = new grafana.enterprise.ScimConfig("default", {
+ *     enableUserSync: true,
+ *     enableGroupSync: false,
+ *     rejectNonProvisionedUsers: false,
+ * });
+ * ```
+ *
+ * ### Grafana Cloud
+ *
+ * When using this resource against a Grafana Cloud stack authenticated with a stack service account token, the `stackId` attribute must be set on the provider block so the request is routed to the correct stack namespace. Without it, the API returns `403 authn.invalid-namespace`.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as grafana from "@pulumiverse/grafana";
+ *
+ * const myStack = new grafana.cloud.Stack("my_stack", {
+ *     name: "my-stack",
+ *     slug: "my-stack",
+ * });
+ * const cloudSa = new grafana.cloud.StackServiceAccount("cloud_sa", {
+ *     stackSlug: myStack.slug,
+ *     name: "scim-terraform",
+ *     role: "Admin",
+ * });
+ * const cloudSaStackServiceAccountToken = new grafana.cloud.StackServiceAccountToken("cloud_sa", {
+ *     stackSlug: myStack.slug,
+ *     serviceAccountId: cloudSa.id,
+ *     name: "scim-terraform",
+ * });
  * const _default = new grafana.enterprise.ScimConfig("default", {
  *     enableUserSync: true,
  *     enableGroupSync: false,

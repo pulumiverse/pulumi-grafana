@@ -15,7 +15,7 @@ namespace Pulumiverse.Grafana.Slo.Outputs
     public sealed class GetSlosSloAlertingSlowburnEnrichmentResult
     {
         /// <summary>
-        /// Type of the alert enrichment. Currently only "assistantInvestigation" is supported.
+        /// Type of the alert enrichment.
         /// </summary>
         public readonly string Type;
 

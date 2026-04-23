@@ -171,16 +171,43 @@ class ScimConfig(pulumi.CustomResource):
                  reject_non_provisioned_users: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        **Note:** This resource is available only with Grafana Enterprise.
+        **Note:** Available in [Grafana Enterprise](https://grafana.com/docs/grafana/latest/introduction/grafana-enterprise/) and [Grafana Cloud](https://grafana.com/docs/grafana-cloud/).
 
-        * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-access/configure-scim-provisioning/)
 
         ## Example Usage
+
+        ### Grafana Enterprise
 
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
 
+        default = grafana.enterprise.ScimConfig("default",
+            enable_user_sync=True,
+            enable_group_sync=False,
+            reject_non_provisioned_users=False)
+        ```
+
+        ### Grafana Cloud
+
+        When using this resource against a Grafana Cloud stack authenticated with a stack service account token, the `stack_id` attribute must be set on the provider block so the request is routed to the correct stack namespace. Without it, the API returns `403 authn.invalid-namespace`.
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        my_stack = grafana.cloud.Stack("my_stack",
+            name="my-stack",
+            slug="my-stack")
+        cloud_sa = grafana.cloud.StackServiceAccount("cloud_sa",
+            stack_slug=my_stack.slug,
+            name="scim-terraform",
+            role="Admin")
+        cloud_sa_stack_service_account_token = grafana.cloud.StackServiceAccountToken("cloud_sa",
+            stack_slug=my_stack.slug,
+            service_account_id=cloud_sa.id,
+            name="scim-terraform")
         default = grafana.enterprise.ScimConfig("default",
             enable_user_sync=True,
             enable_group_sync=False,
@@ -209,16 +236,43 @@ class ScimConfig(pulumi.CustomResource):
                  args: ScimConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        **Note:** This resource is available only with Grafana Enterprise.
+        **Note:** Available in [Grafana Enterprise](https://grafana.com/docs/grafana/latest/introduction/grafana-enterprise/) and [Grafana Cloud](https://grafana.com/docs/grafana-cloud/).
 
-        * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-scim-provisioning/)
+        * [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-access/configure-scim-provisioning/)
 
         ## Example Usage
+
+        ### Grafana Enterprise
 
         ```python
         import pulumi
         import pulumiverse_grafana as grafana
 
+        default = grafana.enterprise.ScimConfig("default",
+            enable_user_sync=True,
+            enable_group_sync=False,
+            reject_non_provisioned_users=False)
+        ```
+
+        ### Grafana Cloud
+
+        When using this resource against a Grafana Cloud stack authenticated with a stack service account token, the `stack_id` attribute must be set on the provider block so the request is routed to the correct stack namespace. Without it, the API returns `403 authn.invalid-namespace`.
+
+        ```python
+        import pulumi
+        import pulumiverse_grafana as grafana
+
+        my_stack = grafana.cloud.Stack("my_stack",
+            name="my-stack",
+            slug="my-stack")
+        cloud_sa = grafana.cloud.StackServiceAccount("cloud_sa",
+            stack_slug=my_stack.slug,
+            name="scim-terraform",
+            role="Admin")
+        cloud_sa_stack_service_account_token = grafana.cloud.StackServiceAccountToken("cloud_sa",
+            stack_slug=my_stack.slug,
+            service_account_id=cloud_sa.id,
+            name="scim-terraform")
         default = grafana.enterprise.ScimConfig("default",
             enable_user_sync=True,
             enable_group_sync=False,

@@ -15,15 +15,15 @@ namespace Pulumiverse.Grafana.Slo.Outputs
     public sealed class GetSlosSloAlertingSlowburnResult
     {
         /// <summary>
-        /// Annotations to attach only to Slow Burn alerts.
+        /// Annotations for slow burn alerts.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloAlertingSlowburnAnnotationResult> Annotations;
         /// <summary>
-        /// Enrichments to attach only to Slow Burn alerts.
+        /// Enrichments for slow burn alerts.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloAlertingSlowburnEnrichmentResult> Enrichments;
         /// <summary>
-        /// Labels to attach only to Slow Burn alerts.
+        /// Labels for slow burn alerts.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSlosSloAlertingSlowburnLabelResult> Labels;
 

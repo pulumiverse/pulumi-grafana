@@ -13,6 +13,9 @@ namespace Pulumiverse.Grafana.Slo.Inputs
 
     public sealed class SLOQueryGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Freeform query configuration.
+        /// </summary>
         [Input("freeform")]
         public Input<Inputs.SLOQueryFreeformGetArgs>? Freeform { get; set; }
 
@@ -22,6 +25,9 @@ namespace Pulumiverse.Grafana.Slo.Inputs
         [Input("grafanaQueries")]
         public Input<Inputs.SLOQueryGrafanaQueriesGetArgs>? GrafanaQueries { get; set; }
 
+        /// <summary>
+        /// Ratio query configuration.
+        /// </summary>
         [Input("ratio")]
         public Input<Inputs.SLOQueryRatioGetArgs>? Ratio { get; set; }
 
