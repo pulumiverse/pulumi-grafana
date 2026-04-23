@@ -187,6 +187,10 @@
                 ],
                 "majorVersion": 2
             },
+            "grafana_apps_productactivation_dbo11yconfig_v1alpha1": {
+                "current": "grafana:index/appsProductactivationDbo11yconfigV1alpha1:AppsProductactivationDbo11yconfigV1alpha1",
+                "majorVersion": 2
+            },
             "grafana_apps_productactivation_k8so11yconfig_v1alpha1": {
                 "current": "grafana:cloud/v1alpha1/productActivationK8sO11yConfig:ProductActivationK8sO11yConfig",
                 "past": [
@@ -2500,6 +2504,18 @@
                     "grafana:alerting/recordingRuleV0Alpha1:RecordingRuleV0Alpha1"
                 ]
             }
+        },
+        "datasources": {
+            "grafana_slos": {
+                "maxItemsOneOverrides": {
+                    "slos.$.alerting.$.advanced_options": true,
+                    "slos.$.alerting.$.fastburn": true,
+                    "slos.$.alerting.$.slowburn": true,
+                    "slos.$.query.$.freeform": true,
+                    "slos.$.query.$.grafana_queries": true,
+                    "slos.$.query.$.ratio": true
+                }
+            }
         }
     },
     "mux": {
@@ -2572,6 +2588,7 @@
             "grafana:fleetManagement/collector:Collector": 1,
             "grafana:fleetManagement/pipeline:Pipeline": 1,
             "grafana:frontendObservability/app:App": 1,
+            "grafana:index/appsProductactivationDbo11yconfigV1alpha1:AppsProductactivationDbo11yconfigV1alpha1": 1,
             "grafana:k6/installation:Installation": 0,
             "grafana:k6/loadTest:LoadTest": 1,
             "grafana:k6/project:Project": 1,
@@ -2612,7 +2629,7 @@
             "grafana:oss/ssoSettings:SsoSettings": 0,
             "grafana:oss/team:Team": 1,
             "grafana:oss/user:User": 0,
-            "grafana:slo/sLO:SLO": 0,
+            "grafana:slo/sLO:SLO": 1,
             "grafana:syntheticMonitoring/check:Check": 0,
             "grafana:syntheticMonitoring/checkAlerts:CheckAlerts": 0,
             "grafana:syntheticMonitoring/installation:Installation": 0,
@@ -2665,7 +2682,7 @@
             "grafana:oss/getTeam:getTeam": 1,
             "grafana:oss/getUser:getUser": 0,
             "grafana:oss/getUsers:getUsers": 0,
-            "grafana:slo/getSlos:getSlos": 0,
+            "grafana:slo/getSlos:getSlos": 1,
             "grafana:syntheticMonitoring/getProbe:getProbe": 1,
             "grafana:syntheticMonitoring/getProbes:getProbes": 1
         }
