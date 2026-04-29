@@ -8,35 +8,6 @@ import * as utilities from "../../utilities";
 
 /**
  * Manages Grafana Git Sync connections used by repositories for provider authentication.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const example = new grafana.apps.v0alpha1.ProvisioningConnection("example", {
- *     metadata: {
- *         uid: "my-github-connection",
- *     },
- *     spec: {
- *         title: "My GitHub App Connection",
- *         description: "GitHub App connection used by a folder-scoped Git Sync repository",
- *         type: "github",
- *         url: "https://github.com",
- *         github: {
- *             appId: "12345",
- *             installationId: "67890",
- *         },
- *     },
- *     secure: {
- *         privateKey: {
- *             create: "replace-me",
- *         },
- *     },
- *     secureVersion: 1,
- * });
- * ```
  */
 export class ProvisioningConnection extends pulumi.CustomResource {
     /**

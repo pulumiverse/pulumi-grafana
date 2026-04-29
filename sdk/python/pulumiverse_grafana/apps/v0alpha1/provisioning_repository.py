@@ -250,61 +250,6 @@ class ProvisioningRepository(pulumi.CustomResource):
             secure_version=1)
         ```
 
-        ### GitHub Repository via GitHub App Connection
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        github_app = grafana.apps.v0alpha1.ProvisioningConnection("github_app",
-            metadata={
-                "uid": "my-github-app-connection",
-            },
-            spec={
-                "title": "My GitHub App Connection",
-                "description": "GitHub App connection used by a folder-scoped Git Sync repository",
-                "type": "github",
-                "url": "https://github.com",
-                "github": {
-                    "app_id": "12345",
-                    "installation_id": "67890",
-                },
-            },
-            secure={
-                "private_key": {
-                    "create": "replace-me",
-                },
-            },
-            secure_version=1)
-        github_app_provisioning_repository = grafana.apps.v0alpha1.ProvisioningRepository("github_app",
-            metadata={
-                "uid": "my-github-app-folder-repo",
-            },
-            spec={
-                "title": "My GitHub App Folder Repository",
-                "description": "Folder-scoped GitHub repository authenticated via a referenced GitHub App connection",
-                "type": "github",
-                "workflows": [
-                    "write",
-                    "branch",
-                ],
-                "sync": {
-                    "enabled": True,
-                    "target": "folder",
-                    "interval_seconds": 60,
-                },
-                "github": {
-                    "url": "https://github.com/example/grafana-dashboards",
-                    "branch": "main",
-                    "path": "grafanatftest",
-                },
-                "connection": {
-                    "name": github_app.metadata.uid,
-                },
-            },
-            opts = pulumi.ResourceOptions(depends_on=[github_app]))
-        ```
-
         ### Bitbucket Repository with Token Authentication - Enterprise/Cloud only
 
         ```python
@@ -496,61 +441,6 @@ class ProvisioningRepository(pulumi.CustomResource):
                 },
             },
             secure_version=1)
-        ```
-
-        ### GitHub Repository via GitHub App Connection
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        github_app = grafana.apps.v0alpha1.ProvisioningConnection("github_app",
-            metadata={
-                "uid": "my-github-app-connection",
-            },
-            spec={
-                "title": "My GitHub App Connection",
-                "description": "GitHub App connection used by a folder-scoped Git Sync repository",
-                "type": "github",
-                "url": "https://github.com",
-                "github": {
-                    "app_id": "12345",
-                    "installation_id": "67890",
-                },
-            },
-            secure={
-                "private_key": {
-                    "create": "replace-me",
-                },
-            },
-            secure_version=1)
-        github_app_provisioning_repository = grafana.apps.v0alpha1.ProvisioningRepository("github_app",
-            metadata={
-                "uid": "my-github-app-folder-repo",
-            },
-            spec={
-                "title": "My GitHub App Folder Repository",
-                "description": "Folder-scoped GitHub repository authenticated via a referenced GitHub App connection",
-                "type": "github",
-                "workflows": [
-                    "write",
-                    "branch",
-                ],
-                "sync": {
-                    "enabled": True,
-                    "target": "folder",
-                    "interval_seconds": 60,
-                },
-                "github": {
-                    "url": "https://github.com/example/grafana-dashboards",
-                    "branch": "main",
-                    "path": "grafanatftest",
-                },
-                "connection": {
-                    "name": github_app.metadata.uid,
-                },
-            },
-            opts = pulumi.ResourceOptions(depends_on=[github_app]))
         ```
 
         ### Bitbucket Repository with Token Authentication - Enterprise/Cloud only

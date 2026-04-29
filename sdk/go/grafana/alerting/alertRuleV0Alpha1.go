@@ -135,7 +135,9 @@ import (
 //					ExecErrState:                pulumi.String("KeepLast"),
 //					MissingSeriesEvalsToResolve: pulumi.Int(5),
 //					NotificationSettings: &alertingv0alpha1.AlertRuleSpecNotificationSettingsArgs{
-//						ContactPoint: pulumi.String("grafana-default-email"),
+//						SimplifiedRouting: &alertingv0alpha1.AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs{
+//							ContactPoint: pulumi.String("grafana-default-email"),
+//						},
 //					},
 //					PanelRef: pulumi.StringMap{
 //						"dashboard_uid": pulumi.String("dashboard123"),

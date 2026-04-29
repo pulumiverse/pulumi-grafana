@@ -22,7 +22,6 @@ import * as utilities from "../utilities";
  *     name: "test-role",
  *     description: "test-role description",
  *     uid: "test-ds-role-uid",
- *     version: 1,
  *     global: true,
  *     hidden: false,
  *     permissions: [
@@ -107,7 +106,9 @@ export interface GetRoleResult {
      */
     readonly uid: string;
     /**
-     * Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `autoIncrementVersion` should be set; `autoIncrementVersion` is recommended.
+     * Version of the role. The server manages this automatically.
+     *
+     * @deprecated This attribute is ignored. The server manages role versions automatically.
      */
     readonly version: number;
 }
@@ -127,7 +128,6 @@ export interface GetRoleResult {
  *     name: "test-role",
  *     description: "test-role description",
  *     uid: "test-ds-role-uid",
- *     version: 1,
  *     global: true,
  *     hidden: false,
  *     permissions: [

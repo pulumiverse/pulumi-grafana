@@ -49,64 +49,6 @@ import * as utilities from "../../utilities";
  * });
  * ```
  *
- * ### GitHub Repository via GitHub App Connection
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as grafana from "@pulumiverse/grafana";
- *
- * const githubApp = new grafana.apps.v0alpha1.ProvisioningConnection("github_app", {
- *     metadata: {
- *         uid: "my-github-app-connection",
- *     },
- *     spec: {
- *         title: "My GitHub App Connection",
- *         description: "GitHub App connection used by a folder-scoped Git Sync repository",
- *         type: "github",
- *         url: "https://github.com",
- *         github: {
- *             appId: "12345",
- *             installationId: "67890",
- *         },
- *     },
- *     secure: {
- *         privateKey: {
- *             create: "replace-me",
- *         },
- *     },
- *     secureVersion: 1,
- * });
- * const githubAppProvisioningRepository = new grafana.apps.v0alpha1.ProvisioningRepository("github_app", {
- *     metadata: {
- *         uid: "my-github-app-folder-repo",
- *     },
- *     spec: {
- *         title: "My GitHub App Folder Repository",
- *         description: "Folder-scoped GitHub repository authenticated via a referenced GitHub App connection",
- *         type: "github",
- *         workflows: [
- *             "write",
- *             "branch",
- *         ],
- *         sync: {
- *             enabled: true,
- *             target: "folder",
- *             intervalSeconds: 60,
- *         },
- *         github: {
- *             url: "https://github.com/example/grafana-dashboards",
- *             branch: "main",
- *             path: "grafanatftest",
- *         },
- *         connection: {
- *             name: githubApp.metadata.apply(metadata => metadata?.uid),
- *         },
- *     },
- * }, {
- *     dependsOn: [githubApp],
- * });
- * ```
- *
  * ### Bitbucket Repository with Token Authentication - Enterprise/Cloud only
  *
  * ```typescript

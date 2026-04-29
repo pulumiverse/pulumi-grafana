@@ -142,7 +142,10 @@ namespace Pulumiverse.Grafana.Alerting
     ///             MissingSeriesEvalsToResolve = 5,
     ///             NotificationSettings = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecNotificationSettingsArgs
     ///             {
-    ///                 ContactPoint = "grafana-default-email",
+    ///                 SimplifiedRouting = new Grafana.Alerting.V0Alpha1.Inputs.AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs
+    ///                 {
+    ///                     ContactPoint = "grafana-default-email",
+    ///                 },
     ///             },
     ///             PanelRef = 
     ///             {

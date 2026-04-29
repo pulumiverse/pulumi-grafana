@@ -240,7 +240,9 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                 "exec_err_state": "KeepLast",
                 "missing_series_evals_to_resolve": 5,
                 "notification_settings": {
-                    "contact_point": "grafana-default-email",
+                    "simplified_routing": {
+                        "contact_point": "grafana-default-email",
+                    },
                 },
                 "panel_ref": {
                     "dashboard_uid": "dashboard123",
@@ -355,7 +357,9 @@ class AlertRuleV0Alpha1(pulumi.CustomResource):
                 "exec_err_state": "KeepLast",
                 "missing_series_evals_to_resolve": 5,
                 "notification_settings": {
-                    "contact_point": "grafana-default-email",
+                    "simplified_routing": {
+                        "contact_point": "grafana-default-email",
+                    },
                 },
                 "panel_ref": {
                     "dashboard_uid": "dashboard123",

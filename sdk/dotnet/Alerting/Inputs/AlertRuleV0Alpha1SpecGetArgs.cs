@@ -80,7 +80,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<string> NoDataState { get; set; } = null!;
 
         /// <summary>
-        /// Notification settings for the rule. If specified, it overrides the notification policies.
+        /// Notification settings for the rule. If specified, it overrides the notification policies. The flat configuration is deprecated, please specify one of named*routing*tree or simplified*routing
         /// </summary>
         [Input("notificationSettings")]
         public Input<Inputs.AlertRuleV0Alpha1SpecNotificationSettingsGetArgs>? NotificationSettings { get; set; }

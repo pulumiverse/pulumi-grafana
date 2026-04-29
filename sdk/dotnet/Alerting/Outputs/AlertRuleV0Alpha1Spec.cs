@@ -47,7 +47,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly string NoDataState;
         /// <summary>
-        /// Notification settings for the rule. If specified, it overrides the notification policies.
+        /// Notification settings for the rule. If specified, it overrides the notification policies. The flat configuration is deprecated, please specify one of named*routing*tree or simplified*routing
         /// </summary>
         public readonly Outputs.AlertRuleV0Alpha1SpecNotificationSettings? NotificationSettings;
         /// <summary>

@@ -12,47 +12,6 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1
 {
     /// <summary>
     /// Manages Grafana Git Sync connections used by repositories for provider authentication.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Grafana = Pulumiverse.Grafana;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Grafana.Apps.V0Alpha1.ProvisioningConnection("example", new()
-    ///     {
-    ///         Metadata = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningConnectionMetadataArgs
-    ///         {
-    ///             Uid = "my-github-connection",
-    ///         },
-    ///         Spec = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningConnectionSpecArgs
-    ///         {
-    ///             Title = "My GitHub App Connection",
-    ///             Description = "GitHub App connection used by a folder-scoped Git Sync repository",
-    ///             Type = "github",
-    ///             Url = "https://github.com",
-    ///             Github = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningConnectionSpecGithubArgs
-    ///             {
-    ///                 AppId = "12345",
-    ///                 InstallationId = "67890",
-    ///             },
-    ///         },
-    ///         Secure = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningConnectionSecureArgs
-    ///         {
-    ///             PrivateKey = 
-    ///             {
-    ///                 { "create", "replace-me" },
-    ///             },
-    ///         },
-    ///         SecureVersion = 1,
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// </summary>
     [GrafanaResourceType("grafana:apps/v0alpha1/provisioningConnection:ProvisioningConnection")]
     public partial class ProvisioningConnection : global::Pulumi.CustomResource

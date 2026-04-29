@@ -17,8 +17,9 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1.Inputs
         private InputList<string>? _activeTimings;
 
         /// <summary>
-        /// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+        /// Deprecated. A list of time interval names to apply to alerts that match this policy.
         /// </summary>
+        [Obsolete(@"Use `simplified_routing.active_timings` instead.")]
         public InputList<string> ActiveTimings
         {
             get => _activeTimings ?? (_activeTimings = new InputList<string>());
@@ -26,17 +27,18 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1.Inputs
         }
 
         /// <summary>
-        /// The contact point to route notifications that match this rule to.
+        /// Deprecated. The contact point to route notifications that match this rule to.
         /// </summary>
-        [Input("contactPoint", required: true)]
-        public Input<string> ContactPoint { get; set; } = null!;
+        [Input("contactPoint")]
+        public Input<string>? ContactPoint { get; set; }
 
         [Input("groupBies")]
         private InputList<string>? _groupBies;
 
         /// <summary>
-        /// A list of alert labels to group alerts into notifications by.
+        /// Deprecated. A list of alert labels to group alerts into notifications by.
         /// </summary>
+        [Obsolete(@"Use `simplified_routing.group_by` instead.")]
         public InputList<string> GroupBies
         {
             get => _groupBies ?? (_groupBies = new InputList<string>());
@@ -44,13 +46,13 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1.Inputs
         }
 
         /// <summary>
-        /// Minimum time interval between two notifications for the same group.
+        /// Deprecated. Minimum time interval between two notifications for the same group.
         /// </summary>
         [Input("groupInterval")]
         public Input<string>? GroupInterval { get; set; }
 
         /// <summary>
-        /// Time to wait to buffer alerts of the same group before sending a notification.
+        /// Deprecated. Time to wait to buffer alerts of the same group before sending a notification.
         /// </summary>
         [Input("groupWait")]
         public Input<string>? GroupWait { get; set; }
@@ -59,8 +61,9 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1.Inputs
         private InputList<string>? _muteTimings;
 
         /// <summary>
-        /// A list of mute timing names to apply to alerts that match this policy.
+        /// Deprecated. A list of mute timing names to apply to alerts that match this policy.
         /// </summary>
+        [Obsolete(@"Use `simplified_routing.mute_timings` instead.")]
         public InputList<string> MuteTimings
         {
             get => _muteTimings ?? (_muteTimings = new InputList<string>());
@@ -68,10 +71,22 @@ namespace Pulumiverse.Grafana.Alerting.V0Alpha1.Inputs
         }
 
         /// <summary>
-        /// Minimum time interval for re-sending a notification if an alert is still firing.
+        /// Route notifications to a specific routing tree.
+        /// </summary>
+        [Input("namedRoutingTree")]
+        public Input<Inputs.AlertRuleSpecNotificationSettingsNamedRoutingTreeArgs>? NamedRoutingTree { get; set; }
+
+        /// <summary>
+        /// Deprecated. Minimum time interval for re-sending a notification if an alert is still firing.
         /// </summary>
         [Input("repeatInterval")]
         public Input<string>? RepeatInterval { get; set; }
+
+        /// <summary>
+        /// Simplified routing to a contact point with optional grouping and timing overrides.
+        /// </summary>
+        [Input("simplifiedRouting")]
+        public Input<Inputs.AlertRuleSpecNotificationSettingsSimplifiedRoutingArgs>? SimplifiedRouting { get; set; }
 
         public AlertRuleSpecNotificationSettingsArgs()
         {

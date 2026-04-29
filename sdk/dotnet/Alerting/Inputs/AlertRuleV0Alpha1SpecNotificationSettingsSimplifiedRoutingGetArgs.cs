@@ -11,15 +11,14 @@ using Pulumi;
 namespace Pulumiverse.Grafana.Alerting.Inputs
 {
 
-    public sealed class AlertRuleV0Alpha1SpecNotificationSettingsGetArgs : global::Pulumi.ResourceArgs
+    public sealed class AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("activeTimings")]
         private InputList<string>? _activeTimings;
 
         /// <summary>
-        /// Deprecated. A list of time interval names to apply to alerts that match this policy.
+        /// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
         /// </summary>
-        [Obsolete(@"Use `simplified_routing.active_timings` instead.")]
         public InputList<string> ActiveTimings
         {
             get => _activeTimings ?? (_activeTimings = new InputList<string>());
@@ -27,7 +26,7 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         }
 
         /// <summary>
-        /// Deprecated. The contact point to route notifications that match this rule to.
+        /// The contact point to route notifications that match this rule to.
         /// </summary>
         [Input("contactPoint")]
         public Input<string>? ContactPoint { get; set; }
@@ -36,9 +35,8 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         private InputList<string>? _groupBies;
 
         /// <summary>
-        /// Deprecated. A list of alert labels to group alerts into notifications by.
+        /// A list of alert labels to group alerts into notifications by.
         /// </summary>
-        [Obsolete(@"Use `simplified_routing.group_by` instead.")]
         public InputList<string> GroupBies
         {
             get => _groupBies ?? (_groupBies = new InputList<string>());
@@ -46,13 +44,13 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         }
 
         /// <summary>
-        /// Deprecated. Minimum time interval between two notifications for the same group.
+        /// Minimum time interval between two notifications for the same group.
         /// </summary>
         [Input("groupInterval")]
         public Input<string>? GroupInterval { get; set; }
 
         /// <summary>
-        /// Deprecated. Time to wait to buffer alerts of the same group before sending a notification.
+        /// Time to wait to buffer alerts of the same group before sending a notification.
         /// </summary>
         [Input("groupWait")]
         public Input<string>? GroupWait { get; set; }
@@ -61,9 +59,8 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         private InputList<string>? _muteTimings;
 
         /// <summary>
-        /// Deprecated. A list of mute timing names to apply to alerts that match this policy.
+        /// A list of mute timing names to apply to alerts that match this policy.
         /// </summary>
-        [Obsolete(@"Use `simplified_routing.mute_timings` instead.")]
         public InputList<string> MuteTimings
         {
             get => _muteTimings ?? (_muteTimings = new InputList<string>());
@@ -71,26 +68,14 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         }
 
         /// <summary>
-        /// Route notifications to a specific routing tree.
-        /// </summary>
-        [Input("namedRoutingTree")]
-        public Input<Inputs.AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeGetArgs>? NamedRoutingTree { get; set; }
-
-        /// <summary>
-        /// Deprecated. Minimum time interval for re-sending a notification if an alert is still firing.
+        /// Minimum time interval for re-sending a notification if an alert is still firing.
         /// </summary>
         [Input("repeatInterval")]
         public Input<string>? RepeatInterval { get; set; }
 
-        /// <summary>
-        /// Simplified routing to a contact point with optional grouping and timing overrides.
-        /// </summary>
-        [Input("simplifiedRouting")]
-        public Input<Inputs.AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingGetArgs>? SimplifiedRouting { get; set; }
-
-        public AlertRuleV0Alpha1SpecNotificationSettingsGetArgs()
+        public AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingGetArgs()
         {
         }
-        public static new AlertRuleV0Alpha1SpecNotificationSettingsGetArgs Empty => new AlertRuleV0Alpha1SpecNotificationSettingsGetArgs();
+        public static new AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingGetArgs Empty => new AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingGetArgs();
     }
 }

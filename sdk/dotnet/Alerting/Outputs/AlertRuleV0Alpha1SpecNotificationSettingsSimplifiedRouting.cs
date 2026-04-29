@@ -12,47 +12,39 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 {
 
     [OutputType]
-    public sealed class AlertRuleV0Alpha1SpecNotificationSettings
+    public sealed class AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting
     {
         /// <summary>
-        /// Deprecated. A list of time interval names to apply to alerts that match this policy.
+        /// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
         /// </summary>
         public readonly ImmutableArray<string> ActiveTimings;
         /// <summary>
-        /// Deprecated. The contact point to route notifications that match this rule to.
+        /// The contact point to route notifications that match this rule to.
         /// </summary>
         public readonly string? ContactPoint;
         /// <summary>
-        /// Deprecated. A list of alert labels to group alerts into notifications by.
+        /// A list of alert labels to group alerts into notifications by.
         /// </summary>
         public readonly ImmutableArray<string> GroupBies;
         /// <summary>
-        /// Deprecated. Minimum time interval between two notifications for the same group.
+        /// Minimum time interval between two notifications for the same group.
         /// </summary>
         public readonly string? GroupInterval;
         /// <summary>
-        /// Deprecated. Time to wait to buffer alerts of the same group before sending a notification.
+        /// Time to wait to buffer alerts of the same group before sending a notification.
         /// </summary>
         public readonly string? GroupWait;
         /// <summary>
-        /// Deprecated. A list of mute timing names to apply to alerts that match this policy.
+        /// A list of mute timing names to apply to alerts that match this policy.
         /// </summary>
         public readonly ImmutableArray<string> MuteTimings;
         /// <summary>
-        /// Route notifications to a specific routing tree.
-        /// </summary>
-        public readonly Outputs.AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree? NamedRoutingTree;
-        /// <summary>
-        /// Deprecated. Minimum time interval for re-sending a notification if an alert is still firing.
+        /// Minimum time interval for re-sending a notification if an alert is still firing.
         /// </summary>
         public readonly string? RepeatInterval;
-        /// <summary>
-        /// Simplified routing to a contact point with optional grouping and timing overrides.
-        /// </summary>
-        public readonly Outputs.AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting? SimplifiedRouting;
 
         [OutputConstructor]
-        private AlertRuleV0Alpha1SpecNotificationSettings(
+        private AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting(
             ImmutableArray<string> activeTimings,
 
             string? contactPoint,
@@ -65,11 +57,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
 
             ImmutableArray<string> muteTimings,
 
-            Outputs.AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree? namedRoutingTree,
-
-            string? repeatInterval,
-
-            Outputs.AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting? simplifiedRouting)
+            string? repeatInterval)
         {
             ActiveTimings = activeTimings;
             ContactPoint = contactPoint;
@@ -77,9 +65,7 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
             GroupInterval = groupInterval;
             GroupWait = groupWait;
             MuteTimings = muteTimings;
-            NamedRoutingTree = namedRoutingTree;
             RepeatInterval = repeatInterval;
-            SimplifiedRouting = simplifiedRouting;
         }
     }
 }

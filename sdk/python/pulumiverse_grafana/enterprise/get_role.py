@@ -144,9 +144,10 @@ class GetRoleResult:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This attribute is ignored. The server manages role versions automatically.""")
     def version(self) -> _builtins.int:
         """
-        Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `auto_increment_version` should be set; `auto_increment_version` is recommended.
+        Version of the role. The server manages this automatically.
         """
         return pulumi.get(self, "version")
 
@@ -189,7 +190,6 @@ def get_role(name: Optional[_builtins.str] = None,
         name="test-role",
         description="test-role description",
         uid="test-ds-role-uid",
-        version=1,
         global_=True,
         hidden=False,
         permissions=[
@@ -248,7 +248,6 @@ def get_role_output(name: Optional[pulumi.Input[_builtins.str]] = None,
         name="test-role",
         description="test-role description",
         uid="test-ds-role-uid",
-        version=1,
         global_=True,
         hidden=False,
         permissions=[
