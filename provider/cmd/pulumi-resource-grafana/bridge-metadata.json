@@ -242,6 +242,19 @@
                                     },
                                     "mute_timings": {
                                         "maxItemsOne": false
+                                    },
+                                    "simplified_routing": {
+                                        "fields": {
+                                            "active_timings": {
+                                                "maxItemsOne": false
+                                            },
+                                            "group_by": {
+                                                "maxItemsOne": false
+                                            },
+                                            "mute_timings": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
                                     }
                                 }
                             }
