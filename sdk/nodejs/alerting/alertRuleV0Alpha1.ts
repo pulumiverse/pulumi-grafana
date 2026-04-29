@@ -98,7 +98,9 @@ import * as utilities from "../utilities";
  *         execErrState: "KeepLast",
  *         missingSeriesEvalsToResolve: 5,
  *         notificationSettings: {
- *             contactPoint: "grafana-default-email",
+ *             simplifiedRouting: {
+ *                 contactPoint: "grafana-default-email",
+ *             },
  *         },
  *         panelRef: {
  *             dashboard_uid: "dashboard123",

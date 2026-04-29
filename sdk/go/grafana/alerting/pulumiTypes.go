@@ -6998,7 +6998,7 @@ type AlertRuleV0Alpha1Spec struct {
 	MissingSeriesEvalsToResolve *int `pulumi:"missingSeriesEvalsToResolve"`
 	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
 	NoDataState string `pulumi:"noDataState"`
-	// Notification settings for the rule. If specified, it overrides the notification policies.
+	// Notification settings for the rule. If specified, it overrides the notification policies. The flat configuration is deprecated, please specify one of named*routing*tree or simplified*routing
 	NotificationSettings *AlertRuleV0Alpha1SpecNotificationSettings `pulumi:"notificationSettings"`
 	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
 	PanelRef map[string]string `pulumi:"panelRef"`
@@ -7038,7 +7038,7 @@ type AlertRuleV0Alpha1SpecArgs struct {
 	MissingSeriesEvalsToResolve pulumi.IntPtrInput `pulumi:"missingSeriesEvalsToResolve"`
 	// Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting.
 	NoDataState pulumi.StringInput `pulumi:"noDataState"`
-	// Notification settings for the rule. If specified, it overrides the notification policies.
+	// Notification settings for the rule. If specified, it overrides the notification policies. The flat configuration is deprecated, please specify one of named*routing*tree or simplified*routing
 	NotificationSettings AlertRuleV0Alpha1SpecNotificationSettingsPtrInput `pulumi:"notificationSettings"`
 	// Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
 	PanelRef pulumi.StringMapInput `pulumi:"panelRef"`
@@ -7167,7 +7167,7 @@ func (o AlertRuleV0Alpha1SpecOutput) NoDataState() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) string { return v.NoDataState }).(pulumi.StringOutput)
 }
 
-// Notification settings for the rule. If specified, it overrides the notification policies.
+// Notification settings for the rule. If specified, it overrides the notification policies. The flat configuration is deprecated, please specify one of named*routing*tree or simplified*routing
 func (o AlertRuleV0Alpha1SpecOutput) NotificationSettings() AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput {
 	return o.ApplyT(func(v AlertRuleV0Alpha1Spec) *AlertRuleV0Alpha1SpecNotificationSettings {
 		return v.NotificationSettings
@@ -7298,7 +7298,7 @@ func (o AlertRuleV0Alpha1SpecPtrOutput) NoDataState() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Notification settings for the rule. If specified, it overrides the notification policies.
+// Notification settings for the rule. If specified, it overrides the notification policies. The flat configuration is deprecated, please specify one of named*routing*tree or simplified*routing
 func (o AlertRuleV0Alpha1SpecPtrOutput) NotificationSettings() AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput {
 	return o.ApplyT(func(v *AlertRuleV0Alpha1Spec) *AlertRuleV0Alpha1SpecNotificationSettings {
 		if v == nil {
@@ -7349,20 +7349,38 @@ func (o AlertRuleV0Alpha1SpecPtrOutput) Trigger() AlertRuleV0Alpha1SpecTriggerPt
 }
 
 type AlertRuleV0Alpha1SpecNotificationSettings struct {
-	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+	// Deprecated. A list of time interval names to apply to alerts that match this policy.
+	//
+	// Deprecated: Use `simplified_routing.active_timings` instead.
 	ActiveTimings []string `pulumi:"activeTimings"`
-	// The contact point to route notifications that match this rule to.
-	ContactPoint string `pulumi:"contactPoint"`
-	// A list of alert labels to group alerts into notifications by.
+	// Deprecated. The contact point to route notifications that match this rule to.
+	//
+	// Deprecated: Use `simplified_routing.contact_point` instead.
+	ContactPoint *string `pulumi:"contactPoint"`
+	// Deprecated. A list of alert labels to group alerts into notifications by.
+	//
+	// Deprecated: Use `simplified_routing.group_by` instead.
 	GroupBies []string `pulumi:"groupBies"`
-	// Minimum time interval between two notifications for the same group.
+	// Deprecated. Minimum time interval between two notifications for the same group.
+	//
+	// Deprecated: Use `simplified_routing.group_interval` instead.
 	GroupInterval *string `pulumi:"groupInterval"`
-	// Time to wait to buffer alerts of the same group before sending a notification.
+	// Deprecated. Time to wait to buffer alerts of the same group before sending a notification.
+	//
+	// Deprecated: Use `simplified_routing.group_wait` instead.
 	GroupWait *string `pulumi:"groupWait"`
-	// A list of mute timing names to apply to alerts that match this policy.
+	// Deprecated. A list of mute timing names to apply to alerts that match this policy.
+	//
+	// Deprecated: Use `simplified_routing.mute_timings` instead.
 	MuteTimings []string `pulumi:"muteTimings"`
-	// Minimum time interval for re-sending a notification if an alert is still firing.
+	// Route notifications to a specific routing tree.
+	NamedRoutingTree *AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree `pulumi:"namedRoutingTree"`
+	// Deprecated. Minimum time interval for re-sending a notification if an alert is still firing.
+	//
+	// Deprecated: Use `simplified_routing.repeat_interval` instead.
 	RepeatInterval *string `pulumi:"repeatInterval"`
+	// Simplified routing to a contact point with optional grouping and timing overrides.
+	SimplifiedRouting *AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting `pulumi:"simplifiedRouting"`
 }
 
 // AlertRuleV0Alpha1SpecNotificationSettingsInput is an input type that accepts AlertRuleV0Alpha1SpecNotificationSettingsArgs and AlertRuleV0Alpha1SpecNotificationSettingsOutput values.
@@ -7377,20 +7395,38 @@ type AlertRuleV0Alpha1SpecNotificationSettingsInput interface {
 }
 
 type AlertRuleV0Alpha1SpecNotificationSettingsArgs struct {
-	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+	// Deprecated. A list of time interval names to apply to alerts that match this policy.
+	//
+	// Deprecated: Use `simplified_routing.active_timings` instead.
 	ActiveTimings pulumi.StringArrayInput `pulumi:"activeTimings"`
-	// The contact point to route notifications that match this rule to.
-	ContactPoint pulumi.StringInput `pulumi:"contactPoint"`
-	// A list of alert labels to group alerts into notifications by.
+	// Deprecated. The contact point to route notifications that match this rule to.
+	//
+	// Deprecated: Use `simplified_routing.contact_point` instead.
+	ContactPoint pulumi.StringPtrInput `pulumi:"contactPoint"`
+	// Deprecated. A list of alert labels to group alerts into notifications by.
+	//
+	// Deprecated: Use `simplified_routing.group_by` instead.
 	GroupBies pulumi.StringArrayInput `pulumi:"groupBies"`
-	// Minimum time interval between two notifications for the same group.
+	// Deprecated. Minimum time interval between two notifications for the same group.
+	//
+	// Deprecated: Use `simplified_routing.group_interval` instead.
 	GroupInterval pulumi.StringPtrInput `pulumi:"groupInterval"`
-	// Time to wait to buffer alerts of the same group before sending a notification.
+	// Deprecated. Time to wait to buffer alerts of the same group before sending a notification.
+	//
+	// Deprecated: Use `simplified_routing.group_wait` instead.
 	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
-	// A list of mute timing names to apply to alerts that match this policy.
+	// Deprecated. A list of mute timing names to apply to alerts that match this policy.
+	//
+	// Deprecated: Use `simplified_routing.mute_timings` instead.
 	MuteTimings pulumi.StringArrayInput `pulumi:"muteTimings"`
-	// Minimum time interval for re-sending a notification if an alert is still firing.
+	// Route notifications to a specific routing tree.
+	NamedRoutingTree AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrInput `pulumi:"namedRoutingTree"`
+	// Deprecated. Minimum time interval for re-sending a notification if an alert is still firing.
+	//
+	// Deprecated: Use `simplified_routing.repeat_interval` instead.
 	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
+	// Simplified routing to a contact point with optional grouping and timing overrides.
+	SimplifiedRouting AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrInput `pulumi:"simplifiedRouting"`
 }
 
 func (AlertRuleV0Alpha1SpecNotificationSettingsArgs) ElementType() reflect.Type {
@@ -7470,39 +7506,67 @@ func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) ToAlertRuleV0Alpha1Spec
 	}).(AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput)
 }
 
-// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+// Deprecated. A list of time interval names to apply to alerts that match this policy.
+//
+// Deprecated: Use `simplified_routing.active_timings` instead.
 func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) ActiveTimings() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) []string { return v.ActiveTimings }).(pulumi.StringArrayOutput)
 }
 
-// The contact point to route notifications that match this rule to.
-func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) ContactPoint() pulumi.StringOutput {
-	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) string { return v.ContactPoint }).(pulumi.StringOutput)
+// Deprecated. The contact point to route notifications that match this rule to.
+//
+// Deprecated: Use `simplified_routing.contact_point` instead.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) ContactPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) *string { return v.ContactPoint }).(pulumi.StringPtrOutput)
 }
 
-// A list of alert labels to group alerts into notifications by.
+// Deprecated. A list of alert labels to group alerts into notifications by.
+//
+// Deprecated: Use `simplified_routing.group_by` instead.
 func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) GroupBies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) []string { return v.GroupBies }).(pulumi.StringArrayOutput)
 }
 
-// Minimum time interval between two notifications for the same group.
+// Deprecated. Minimum time interval between two notifications for the same group.
+//
+// Deprecated: Use `simplified_routing.group_interval` instead.
 func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) GroupInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) *string { return v.GroupInterval }).(pulumi.StringPtrOutput)
 }
 
-// Time to wait to buffer alerts of the same group before sending a notification.
+// Deprecated. Time to wait to buffer alerts of the same group before sending a notification.
+//
+// Deprecated: Use `simplified_routing.group_wait` instead.
 func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) GroupWait() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) *string { return v.GroupWait }).(pulumi.StringPtrOutput)
 }
 
-// A list of mute timing names to apply to alerts that match this policy.
+// Deprecated. A list of mute timing names to apply to alerts that match this policy.
+//
+// Deprecated: Use `simplified_routing.mute_timings` instead.
 func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) MuteTimings() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) []string { return v.MuteTimings }).(pulumi.StringArrayOutput)
 }
 
-// Minimum time interval for re-sending a notification if an alert is still firing.
+// Route notifications to a specific routing tree.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) NamedRoutingTree() AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) *AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree {
+		return v.NamedRoutingTree
+	}).(AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput)
+}
+
+// Deprecated. Minimum time interval for re-sending a notification if an alert is still firing.
+//
+// Deprecated: Use `simplified_routing.repeat_interval` instead.
 func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) RepeatInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) *string { return v.RepeatInterval }).(pulumi.StringPtrOutput)
+}
+
+// Simplified routing to a contact point with optional grouping and timing overrides.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsOutput) SimplifiedRouting() AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettings) *AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting {
+		return v.SimplifiedRouting
+	}).(AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput)
 }
 
 type AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput struct{ *pulumi.OutputState }
@@ -7529,7 +7593,9 @@ func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) Elem() AlertRuleV0Al
 	}).(AlertRuleV0Alpha1SpecNotificationSettingsOutput)
 }
 
-// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+// Deprecated. A list of time interval names to apply to alerts that match this policy.
+//
+// Deprecated: Use `simplified_routing.active_timings` instead.
 func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) ActiveTimings() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) []string {
 		if v == nil {
@@ -7539,17 +7605,21 @@ func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) ActiveTimings() pulu
 	}).(pulumi.StringArrayOutput)
 }
 
-// The contact point to route notifications that match this rule to.
+// Deprecated. The contact point to route notifications that match this rule to.
+//
+// Deprecated: Use `simplified_routing.contact_point` instead.
 func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) ContactPoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.ContactPoint
+		return v.ContactPoint
 	}).(pulumi.StringPtrOutput)
 }
 
-// A list of alert labels to group alerts into notifications by.
+// Deprecated. A list of alert labels to group alerts into notifications by.
+//
+// Deprecated: Use `simplified_routing.group_by` instead.
 func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) GroupBies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) []string {
 		if v == nil {
@@ -7559,7 +7629,9 @@ func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) GroupBies() pulumi.S
 	}).(pulumi.StringArrayOutput)
 }
 
-// Minimum time interval between two notifications for the same group.
+// Deprecated. Minimum time interval between two notifications for the same group.
+//
+// Deprecated: Use `simplified_routing.group_interval` instead.
 func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) GroupInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) *string {
 		if v == nil {
@@ -7569,7 +7641,9 @@ func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) GroupInterval() pulu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Time to wait to buffer alerts of the same group before sending a notification.
+// Deprecated. Time to wait to buffer alerts of the same group before sending a notification.
+//
+// Deprecated: Use `simplified_routing.group_wait` instead.
 func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) GroupWait() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) *string {
 		if v == nil {
@@ -7579,7 +7653,9 @@ func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) GroupWait() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
-// A list of mute timing names to apply to alerts that match this policy.
+// Deprecated. A list of mute timing names to apply to alerts that match this policy.
+//
+// Deprecated: Use `simplified_routing.mute_timings` instead.
 func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) MuteTimings() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) []string {
 		if v == nil {
@@ -7589,9 +7665,419 @@ func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) MuteTimings() pulumi
 	}).(pulumi.StringArrayOutput)
 }
 
-// Minimum time interval for re-sending a notification if an alert is still firing.
+// Route notifications to a specific routing tree.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) NamedRoutingTree() AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) *AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree {
+		if v == nil {
+			return nil
+		}
+		return v.NamedRoutingTree
+	}).(AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput)
+}
+
+// Deprecated. Minimum time interval for re-sending a notification if an alert is still firing.
+//
+// Deprecated: Use `simplified_routing.repeat_interval` instead.
 func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) RepeatInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RepeatInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+// Simplified routing to a contact point with optional grouping and timing overrides.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput) SimplifiedRouting() AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettings) *AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting {
+		if v == nil {
+			return nil
+		}
+		return v.SimplifiedRouting
+	}).(AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree struct {
+	// The name of the routing tree to use.
+	RoutingTree *string `pulumi:"routingTree"`
+}
+
+// AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeInput is an input type that accepts AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs and AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeInput` via:
+//
+//	AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs{...}
+type AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput() AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput
+	ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutputWithContext(context.Context) AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput
+}
+
+type AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs struct {
+	// The name of the routing tree to use.
+	RoutingTree pulumi.StringPtrInput `pulumi:"routingTree"`
+}
+
+func (AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree)(nil)).Elem()
+}
+
+func (i AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs) ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput() AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput {
+	return i.ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs) ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput)
+}
+
+func (i AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs) ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return i.ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs) ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput).ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(ctx)
+}
+
+// AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrInput is an input type that accepts AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs, AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtr and AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrInput` via:
+//
+//	        AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput
+	ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(context.Context) AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput
+}
+
+type alertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrType AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs
+
+func AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtr(v *AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs) AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrInput {
+	return (*alertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrType)(v)
+}
+
+func (*alertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree)(nil)).Elem()
+}
+
+func (i *alertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrType) ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return i.ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrType) ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput() AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return o.ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree) *AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree {
+		return &v
+	}).(AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput)
+}
+
+// The name of the routing tree to use.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput) RoutingTree() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree) *string { return v.RoutingTree }).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput) Elem() AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree) AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree
+		return ret
+	}).(AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput)
+}
+
+// The name of the routing tree to use.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput) RoutingTree() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoutingTree
+	}).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+	ActiveTimings []string `pulumi:"activeTimings"`
+	// The contact point to route notifications that match this rule to.
+	ContactPoint *string `pulumi:"contactPoint"`
+	// A list of alert labels to group alerts into notifications by.
+	GroupBies []string `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group.
+	GroupInterval *string `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification.
+	GroupWait *string `pulumi:"groupWait"`
+	// A list of mute timing names to apply to alerts that match this policy.
+	MuteTimings []string `pulumi:"muteTimings"`
+	// Minimum time interval for re-sending a notification if an alert is still firing.
+	RepeatInterval *string `pulumi:"repeatInterval"`
+}
+
+// AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingInput is an input type that accepts AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs and AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingInput` via:
+//
+//	AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs{...}
+type AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput() AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput
+	ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutputWithContext(context.Context) AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput
+}
+
+type AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs struct {
+	// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+	ActiveTimings pulumi.StringArrayInput `pulumi:"activeTimings"`
+	// The contact point to route notifications that match this rule to.
+	ContactPoint pulumi.StringPtrInput `pulumi:"contactPoint"`
+	// A list of alert labels to group alerts into notifications by.
+	GroupBies pulumi.StringArrayInput `pulumi:"groupBies"`
+	// Minimum time interval between two notifications for the same group.
+	GroupInterval pulumi.StringPtrInput `pulumi:"groupInterval"`
+	// Time to wait to buffer alerts of the same group before sending a notification.
+	GroupWait pulumi.StringPtrInput `pulumi:"groupWait"`
+	// A list of mute timing names to apply to alerts that match this policy.
+	MuteTimings pulumi.StringArrayInput `pulumi:"muteTimings"`
+	// Minimum time interval for re-sending a notification if an alert is still firing.
+	RepeatInterval pulumi.StringPtrInput `pulumi:"repeatInterval"`
+}
+
+func (AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting)(nil)).Elem()
+}
+
+func (i AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs) ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput() AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput {
+	return i.ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs) ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput)
+}
+
+func (i AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs) ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return i.ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(context.Background())
+}
+
+func (i AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs) ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput).ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(ctx)
+}
+
+// AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrInput is an input type that accepts AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs, AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtr and AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput values.
+// You can construct a concrete instance of `AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrInput` via:
+//
+//	        AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrInput interface {
+	pulumi.Input
+
+	ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput
+	ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(context.Context) AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput
+}
+
+type alertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrType AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs
+
+func AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtr(v *AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs) AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrInput {
+	return (*alertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrType)(v)
+}
+
+func (*alertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting)(nil)).Elem()
+}
+
+func (i *alertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrType) ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return i.ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(context.Background())
+}
+
+func (i *alertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrType) ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput() AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return o.ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(context.Background())
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) *AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting {
+		return &v
+	}).(AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput)
+}
+
+// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput) ActiveTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) []string { return v.ActiveTimings }).(pulumi.StringArrayOutput)
+}
+
+// The contact point to route notifications that match this rule to.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput) ContactPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) *string { return v.ContactPoint }).(pulumi.StringPtrOutput)
+}
+
+// A list of alert labels to group alerts into notifications by.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) []string { return v.GroupBies }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) *string { return v.GroupInterval }).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) *string { return v.GroupWait }).(pulumi.StringPtrOutput)
+}
+
+// A list of mute timing names to apply to alerts that match this policy.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput) MuteTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) []string { return v.MuteTimings }).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) *string { return v.RepeatInterval }).(pulumi.StringPtrOutput)
+}
+
+type AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting)(nil)).Elem()
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput() AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput) ToAlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutputWithContext(ctx context.Context) AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput {
+	return o
+}
+
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput) Elem() AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting {
+		if v != nil {
+			return *v
+		}
+		var ret AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting
+		return ret
+	}).(AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput)
+}
+
+// A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput) ActiveTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveTimings
+	}).(pulumi.StringArrayOutput)
+}
+
+// The contact point to route notifications that match this rule to.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput) ContactPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ContactPoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// A list of alert labels to group alerts into notifications by.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput) GroupBies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) []string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupBies
+	}).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval between two notifications for the same group.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput) GroupInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+// Time to wait to buffer alerts of the same group before sending a notification.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput) GroupWait() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GroupWait
+	}).(pulumi.StringPtrOutput)
+}
+
+// A list of mute timing names to apply to alerts that match this policy.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput) MuteTimings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) []string {
+		if v == nil {
+			return nil
+		}
+		return v.MuteTimings
+	}).(pulumi.StringArrayOutput)
+}
+
+// Minimum time interval for re-sending a notification if an alert is still firing.
+func (o AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput) RepeatInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting) *string {
 		if v == nil {
 			return nil
 		}
@@ -16370,6 +16856,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecPtrInput)(nil)).Elem(), AlertRuleV0Alpha1SpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsInput)(nil)).Elem(), AlertRuleV0Alpha1SpecNotificationSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsPtrInput)(nil)).Elem(), AlertRuleV0Alpha1SpecNotificationSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeInput)(nil)).Elem(), AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrInput)(nil)).Elem(), AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingInput)(nil)).Elem(), AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrInput)(nil)).Elem(), AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecTriggerInput)(nil)).Elem(), AlertRuleV0Alpha1SpecTriggerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertRuleV0Alpha1SpecTriggerPtrInput)(nil)).Elem(), AlertRuleV0Alpha1SpecTriggerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactPointAlertmanagerInput)(nil)).Elem(), ContactPointAlertmanagerArgs{})
@@ -16563,6 +17053,10 @@ func init() {
 	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecPtrOutput{})
 	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecNotificationSettingsOutput{})
 	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecNotificationSettingsPtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreePtrOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingOutput{})
+	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingPtrOutput{})
 	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecTriggerOutput{})
 	pulumi.RegisterOutputType(AlertRuleV0Alpha1SpecTriggerPtrOutput{})
 	pulumi.RegisterOutputType(ContactPointAlertmanagerOutput{})

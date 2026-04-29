@@ -211,34 +211,6 @@ class ProvisioningConnection(pulumi.CustomResource):
         """
         Manages Grafana Git Sync connections used by repositories for provider authentication.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        example = grafana.apps.v0alpha1.ProvisioningConnection("example",
-            metadata={
-                "uid": "my-github-connection",
-            },
-            spec={
-                "title": "My GitHub App Connection",
-                "description": "GitHub App connection used by a folder-scoped Git Sync repository",
-                "type": "github",
-                "url": "https://github.com",
-                "github": {
-                    "app_id": "12345",
-                    "installation_id": "67890",
-                },
-            },
-            secure={
-                "private_key": {
-                    "create": "replace-me",
-                },
-            },
-            secure_version=1)
-        ```
-
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -256,34 +228,6 @@ class ProvisioningConnection(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages Grafana Git Sync connections used by repositories for provider authentication.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_grafana as grafana
-
-        example = grafana.apps.v0alpha1.ProvisioningConnection("example",
-            metadata={
-                "uid": "my-github-connection",
-            },
-            spec={
-                "title": "My GitHub App Connection",
-                "description": "GitHub App connection used by a folder-scoped Git Sync repository",
-                "type": "github",
-                "url": "https://github.com",
-                "github": {
-                    "app_id": "12345",
-                    "installation_id": "67890",
-                },
-            },
-            secure={
-                "private_key": {
-                    "create": "replace-me",
-                },
-            },
-            secure_version=1)
-        ```
 
 
         :param str resource_name: The name of the resource.

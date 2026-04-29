@@ -33,7 +33,6 @@ namespace Pulumiverse.Grafana.Enterprise
         ///         Name = "test-role",
         ///         Description = "test-role description",
         ///         Uid = "test-ds-role-uid",
-        ///         Version = 1,
         ///         Global = true,
         ///         Hidden = false,
         ///         Permissions = new[]
@@ -88,7 +87,6 @@ namespace Pulumiverse.Grafana.Enterprise
         ///         Name = "test-role",
         ///         Description = "test-role description",
         ///         Uid = "test-ds-role-uid",
-        ///         Version = 1,
         ///         Global = true,
         ///         Hidden = false,
         ///         Permissions = new[]
@@ -143,7 +141,6 @@ namespace Pulumiverse.Grafana.Enterprise
         ///         Name = "test-role",
         ///         Description = "test-role description",
         ///         Uid = "test-ds-role-uid",
-        ///         Version = 1,
         ///         Global = true,
         ///         Hidden = false,
         ///         Permissions = new[]
@@ -252,7 +249,7 @@ namespace Pulumiverse.Grafana.Enterprise
         /// </summary>
         public readonly string Uid;
         /// <summary>
-        /// Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `AutoIncrementVersion` should be set; `AutoIncrementVersion` is recommended.
+        /// Version of the role. The server manages this automatically.
         /// </summary>
         public readonly int Version;
 

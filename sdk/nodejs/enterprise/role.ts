@@ -22,7 +22,6 @@ import * as utilities from "../utilities";
  *     name: "Super User",
  *     description: "My Super User description",
  *     uid: "superuseruid",
- *     version: 1,
  *     global: true,
  *     permissions: [
  *         {
@@ -77,7 +76,9 @@ export class Role extends pulumi.CustomResource {
     }
 
     /**
-     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or `version` should be set.
+     * Whether the role version should be incremented automatically on updates (and set to 1 on creation).
+     *
+     * @deprecated This attribute is ignored. The server manages role versions automatically.
      */
     declare public readonly autoIncrementVersion: pulumi.Output<boolean | undefined>;
     /**
@@ -117,9 +118,11 @@ export class Role extends pulumi.CustomResource {
      */
     declare public readonly uid: pulumi.Output<string>;
     /**
-     * Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `autoIncrementVersion` should be set; `autoIncrementVersion` is recommended.
+     * Version of the role. The server manages this automatically.
+     *
+     * @deprecated This attribute is ignored. The server manages role versions automatically.
      */
-    declare public readonly version: pulumi.Output<number | undefined>;
+    declare public readonly version: pulumi.Output<number>;
 
     /**
      * Create a Role resource with the given unique name, arguments, and options.
@@ -171,7 +174,9 @@ export class Role extends pulumi.CustomResource {
  */
 export interface RoleState {
     /**
-     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or `version` should be set.
+     * Whether the role version should be incremented automatically on updates (and set to 1 on creation).
+     *
+     * @deprecated This attribute is ignored. The server manages role versions automatically.
      */
     autoIncrementVersion?: pulumi.Input<boolean>;
     /**
@@ -211,7 +216,9 @@ export interface RoleState {
      */
     uid?: pulumi.Input<string>;
     /**
-     * Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `autoIncrementVersion` should be set; `autoIncrementVersion` is recommended.
+     * Version of the role. The server manages this automatically.
+     *
+     * @deprecated This attribute is ignored. The server manages role versions automatically.
      */
     version?: pulumi.Input<number>;
 }
@@ -221,7 +228,9 @@ export interface RoleState {
  */
 export interface RoleArgs {
     /**
-     * Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or `version` should be set.
+     * Whether the role version should be incremented automatically on updates (and set to 1 on creation).
+     *
+     * @deprecated This attribute is ignored. The server manages role versions automatically.
      */
     autoIncrementVersion?: pulumi.Input<boolean>;
     /**
@@ -261,7 +270,9 @@ export interface RoleArgs {
      */
     uid?: pulumi.Input<string>;
     /**
-     * Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `autoIncrementVersion` should be set; `autoIncrementVersion` is recommended.
+     * Version of the role. The server manages this automatically.
+     *
+     * @deprecated This attribute is ignored. The server manages role versions automatically.
      */
     version?: pulumi.Input<number>;
 }

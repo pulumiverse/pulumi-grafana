@@ -618,7 +618,7 @@ export namespace alerting {
          */
         noDataState: pulumi.Input<string>;
         /**
-         * Notification settings for the rule. If specified, it overrides the notification policies.
+         * Notification settings for the rule. If specified, it overrides the notification policies. The flat configuration is deprecated, please specify one of named*routing*tree or simplified*routing
          */
         notificationSettings?: pulumi.Input<inputs.alerting.AlertRuleV0Alpha1SpecNotificationSettings>;
         /**
@@ -641,13 +641,73 @@ export namespace alerting {
 
     export interface AlertRuleV0Alpha1SpecNotificationSettings {
         /**
+         * Deprecated. A list of time interval names to apply to alerts that match this policy.
+         *
+         * @deprecated Use `simplified_routing.active_timings` instead.
+         */
+        activeTimings?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Deprecated. The contact point to route notifications that match this rule to.
+         *
+         * @deprecated Use `simplified_routing.contact_point` instead.
+         */
+        contactPoint?: pulumi.Input<string>;
+        /**
+         * Deprecated. A list of alert labels to group alerts into notifications by.
+         *
+         * @deprecated Use `simplified_routing.group_by` instead.
+         */
+        groupBies?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Deprecated. Minimum time interval between two notifications for the same group.
+         *
+         * @deprecated Use `simplified_routing.group_interval` instead.
+         */
+        groupInterval?: pulumi.Input<string>;
+        /**
+         * Deprecated. Time to wait to buffer alerts of the same group before sending a notification.
+         *
+         * @deprecated Use `simplified_routing.group_wait` instead.
+         */
+        groupWait?: pulumi.Input<string>;
+        /**
+         * Deprecated. A list of mute timing names to apply to alerts that match this policy.
+         *
+         * @deprecated Use `simplified_routing.mute_timings` instead.
+         */
+        muteTimings?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Route notifications to a specific routing tree.
+         */
+        namedRoutingTree?: pulumi.Input<inputs.alerting.AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree>;
+        /**
+         * Deprecated. Minimum time interval for re-sending a notification if an alert is still firing.
+         *
+         * @deprecated Use `simplified_routing.repeat_interval` instead.
+         */
+        repeatInterval?: pulumi.Input<string>;
+        /**
+         * Simplified routing to a contact point with optional grouping and timing overrides.
+         */
+        simplifiedRouting?: pulumi.Input<inputs.alerting.AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting>;
+    }
+
+    export interface AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree {
+        /**
+         * The name of the routing tree to use.
+         */
+        routingTree?: pulumi.Input<string>;
+    }
+
+    export interface AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting {
+        /**
          * A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
          */
         activeTimings?: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * The contact point to route notifications that match this rule to.
          */
-        contactPoint: pulumi.Input<string>;
+        contactPoint?: pulumi.Input<string>;
         /**
          * A list of alert labels to group alerts into notifications by.
          */
@@ -2381,7 +2441,7 @@ export namespace alerting {
              */
             noDataState: pulumi.Input<string>;
             /**
-             * Notification settings for the rule. If specified, it overrides the notification policies.
+             * Notification settings for the rule. If specified, it overrides the notification policies. The flat configuration is deprecated, please specify one of named*routing*tree or simplified*routing
              */
             notificationSettings?: pulumi.Input<inputs.alerting.v0alpha1.AlertRuleSpecNotificationSettings>;
             /**
@@ -2404,13 +2464,73 @@ export namespace alerting {
 
         export interface AlertRuleSpecNotificationSettings {
             /**
+             * Deprecated. A list of time interval names to apply to alerts that match this policy.
+             *
+             * @deprecated Use `simplified_routing.active_timings` instead.
+             */
+            activeTimings?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Deprecated. The contact point to route notifications that match this rule to.
+             *
+             * @deprecated Use `simplified_routing.contact_point` instead.
+             */
+            contactPoint?: pulumi.Input<string>;
+            /**
+             * Deprecated. A list of alert labels to group alerts into notifications by.
+             *
+             * @deprecated Use `simplified_routing.group_by` instead.
+             */
+            groupBies?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Deprecated. Minimum time interval between two notifications for the same group.
+             *
+             * @deprecated Use `simplified_routing.group_interval` instead.
+             */
+            groupInterval?: pulumi.Input<string>;
+            /**
+             * Deprecated. Time to wait to buffer alerts of the same group before sending a notification.
+             *
+             * @deprecated Use `simplified_routing.group_wait` instead.
+             */
+            groupWait?: pulumi.Input<string>;
+            /**
+             * Deprecated. A list of mute timing names to apply to alerts that match this policy.
+             *
+             * @deprecated Use `simplified_routing.mute_timings` instead.
+             */
+            muteTimings?: pulumi.Input<pulumi.Input<string>[]>;
+            /**
+             * Route notifications to a specific routing tree.
+             */
+            namedRoutingTree?: pulumi.Input<inputs.alerting.v0alpha1.AlertRuleSpecNotificationSettingsNamedRoutingTree>;
+            /**
+             * Deprecated. Minimum time interval for re-sending a notification if an alert is still firing.
+             *
+             * @deprecated Use `simplified_routing.repeat_interval` instead.
+             */
+            repeatInterval?: pulumi.Input<string>;
+            /**
+             * Simplified routing to a contact point with optional grouping and timing overrides.
+             */
+            simplifiedRouting?: pulumi.Input<inputs.alerting.v0alpha1.AlertRuleSpecNotificationSettingsSimplifiedRouting>;
+        }
+
+        export interface AlertRuleSpecNotificationSettingsNamedRoutingTree {
+            /**
+             * The name of the routing tree to use.
+             */
+            routingTree?: pulumi.Input<string>;
+        }
+
+        export interface AlertRuleSpecNotificationSettingsSimplifiedRouting {
+            /**
              * A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
              */
             activeTimings?: pulumi.Input<pulumi.Input<string>[]>;
             /**
              * The contact point to route notifications that match this rule to.
              */
-            contactPoint: pulumi.Input<string>;
+            contactPoint?: pulumi.Input<string>;
             /**
              * A list of alert labels to group alerts into notifications by.
              */

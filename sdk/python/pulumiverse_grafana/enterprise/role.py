@@ -35,7 +35,7 @@ class RoleArgs:
         """
         The set of arguments for constructing a Role resource.
 
-        :param pulumi.Input[_builtins.bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or `version` should be set.
+        :param pulumi.Input[_builtins.bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation).
         :param pulumi.Input[_builtins.str] description: Description of the role.
         :param pulumi.Input[_builtins.str] display_name: Display name of the role. Available with Grafana 8.5+.
         :param pulumi.Input[_builtins.bool] global_: Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
@@ -45,8 +45,11 @@ class RoleArgs:
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['RolePermissionArgs']]] permissions: Specific set of actions granted by the role.
         :param pulumi.Input[_builtins.str] uid: Unique identifier of the role. Used for assignments.
-        :param pulumi.Input[_builtins.int] version: Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `auto_increment_version` should be set; `auto_increment_version` is recommended.
+        :param pulumi.Input[_builtins.int] version: Version of the role. The server manages this automatically.
         """
+        if auto_increment_version is not None:
+            warnings.warn("""This attribute is ignored. The server manages role versions automatically.""", DeprecationWarning)
+            pulumi.log.warn("""auto_increment_version is deprecated: This attribute is ignored. The server manages role versions automatically.""")
         if auto_increment_version is not None:
             pulumi.set(__self__, "auto_increment_version", auto_increment_version)
         if description is not None:
@@ -68,13 +71,17 @@ class RoleArgs:
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
         if version is not None:
+            warnings.warn("""This attribute is ignored. The server manages role versions automatically.""", DeprecationWarning)
+            pulumi.log.warn("""version is deprecated: This attribute is ignored. The server manages role versions automatically.""")
+        if version is not None:
             pulumi.set(__self__, "version", version)
 
     @_builtins.property
     @pulumi.getter(name="autoIncrementVersion")
+    @_utilities.deprecated("""This attribute is ignored. The server manages role versions automatically.""")
     def auto_increment_version(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or `version` should be set.
+        Whether the role version should be incremented automatically on updates (and set to 1 on creation).
         """
         return pulumi.get(self, "auto_increment_version")
 
@@ -192,9 +199,10 @@ class RoleArgs:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This attribute is ignored. The server manages role versions automatically.""")
     def version(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `auto_increment_version` should be set; `auto_increment_version` is recommended.
+        Version of the role. The server manages this automatically.
         """
         return pulumi.get(self, "version")
 
@@ -220,7 +228,7 @@ class _RoleState:
         """
         Input properties used for looking up and filtering Role resources.
 
-        :param pulumi.Input[_builtins.bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or `version` should be set.
+        :param pulumi.Input[_builtins.bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation).
         :param pulumi.Input[_builtins.str] description: Description of the role.
         :param pulumi.Input[_builtins.str] display_name: Display name of the role. Available with Grafana 8.5+.
         :param pulumi.Input[_builtins.bool] global_: Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
@@ -230,8 +238,11 @@ class _RoleState:
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input['RolePermissionArgs']]] permissions: Specific set of actions granted by the role.
         :param pulumi.Input[_builtins.str] uid: Unique identifier of the role. Used for assignments.
-        :param pulumi.Input[_builtins.int] version: Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `auto_increment_version` should be set; `auto_increment_version` is recommended.
+        :param pulumi.Input[_builtins.int] version: Version of the role. The server manages this automatically.
         """
+        if auto_increment_version is not None:
+            warnings.warn("""This attribute is ignored. The server manages role versions automatically.""", DeprecationWarning)
+            pulumi.log.warn("""auto_increment_version is deprecated: This attribute is ignored. The server manages role versions automatically.""")
         if auto_increment_version is not None:
             pulumi.set(__self__, "auto_increment_version", auto_increment_version)
         if description is not None:
@@ -253,13 +264,17 @@ class _RoleState:
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
         if version is not None:
+            warnings.warn("""This attribute is ignored. The server manages role versions automatically.""", DeprecationWarning)
+            pulumi.log.warn("""version is deprecated: This attribute is ignored. The server manages role versions automatically.""")
+        if version is not None:
             pulumi.set(__self__, "version", version)
 
     @_builtins.property
     @pulumi.getter(name="autoIncrementVersion")
+    @_utilities.deprecated("""This attribute is ignored. The server manages role versions automatically.""")
     def auto_increment_version(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or `version` should be set.
+        Whether the role version should be incremented automatically on updates (and set to 1 on creation).
         """
         return pulumi.get(self, "auto_increment_version")
 
@@ -377,9 +392,10 @@ class _RoleState:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This attribute is ignored. The server manages role versions automatically.""")
     def version(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `auto_increment_version` should be set; `auto_increment_version` is recommended.
+        Version of the role. The server manages this automatically.
         """
         return pulumi.get(self, "version")
 
@@ -422,7 +438,6 @@ class Role(pulumi.CustomResource):
             name="Super User",
             description="My Super User description",
             uid="superuseruid",
-            version=1,
             global_=True,
             permissions=[
                 {
@@ -450,7 +465,7 @@ class Role(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or `version` should be set.
+        :param pulumi.Input[_builtins.bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation).
         :param pulumi.Input[_builtins.str] description: Description of the role.
         :param pulumi.Input[_builtins.str] display_name: Display name of the role. Available with Grafana 8.5+.
         :param pulumi.Input[_builtins.bool] global_: Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
@@ -460,7 +475,7 @@ class Role(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RolePermissionArgs', 'RolePermissionArgsDict']]]] permissions: Specific set of actions granted by the role.
         :param pulumi.Input[_builtins.str] uid: Unique identifier of the role. Used for assignments.
-        :param pulumi.Input[_builtins.int] version: Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `auto_increment_version` should be set; `auto_increment_version` is recommended.
+        :param pulumi.Input[_builtins.int] version: Version of the role. The server manages this automatically.
         """
         ...
     @overload
@@ -484,7 +499,6 @@ class Role(pulumi.CustomResource):
             name="Super User",
             description="My Super User description",
             uid="superuseruid",
-            version=1,
             global_=True,
             permissions=[
                 {
@@ -586,7 +600,7 @@ class Role(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or `version` should be set.
+        :param pulumi.Input[_builtins.bool] auto_increment_version: Whether the role version should be incremented automatically on updates (and set to 1 on creation).
         :param pulumi.Input[_builtins.str] description: Description of the role.
         :param pulumi.Input[_builtins.str] display_name: Display name of the role. Available with Grafana 8.5+.
         :param pulumi.Input[_builtins.bool] global_: Boolean to state whether the role is available across all organizations or not. Defaults to `false`.
@@ -596,7 +610,7 @@ class Role(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] org_id: The Organization ID. If not set, the Org ID defined in the provider block will be used.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RolePermissionArgs', 'RolePermissionArgsDict']]]] permissions: Specific set of actions granted by the role.
         :param pulumi.Input[_builtins.str] uid: Unique identifier of the role. Used for assignments.
-        :param pulumi.Input[_builtins.int] version: Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `auto_increment_version` should be set; `auto_increment_version` is recommended.
+        :param pulumi.Input[_builtins.int] version: Version of the role. The server manages this automatically.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -617,9 +631,10 @@ class Role(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="autoIncrementVersion")
+    @_utilities.deprecated("""This attribute is ignored. The server manages role versions automatically.""")
     def auto_increment_version(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Whether the role version should be incremented automatically on updates (and set to 1 on creation). Recommended for most configurations. This field or `version` should be set.
+        Whether the role version should be incremented automatically on updates (and set to 1 on creation).
         """
         return pulumi.get(self, "auto_increment_version")
 
@@ -697,9 +712,10 @@ class Role(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> pulumi.Output[Optional[_builtins.int]]:
+    @_utilities.deprecated("""This attribute is ignored. The server manages role versions automatically.""")
+    def version(self) -> pulumi.Output[_builtins.int]:
         """
-        Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `auto_increment_version` should be set; `auto_increment_version` is recommended.
+        Version of the role. The server manages this automatically.
         """
         return pulumi.get(self, "version")
 

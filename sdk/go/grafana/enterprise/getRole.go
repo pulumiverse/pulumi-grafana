@@ -34,7 +34,6 @@ import (
 //				Name:        pulumi.String("test-role"),
 //				Description: pulumi.String("test-role description"),
 //				Uid:         pulumi.String("test-ds-role-uid"),
-//				Version:     pulumi.Int(1),
 //				Global:      pulumi.Bool(true),
 //				Hidden:      pulumi.Bool(false),
 //				Permissions: enterprise.RolePermissionArray{
@@ -101,7 +100,9 @@ type LookupRoleResult struct {
 	Permissions []GetRolePermission `pulumi:"permissions"`
 	// Unique identifier of the role. Used for assignments.
 	Uid string `pulumi:"uid"`
-	// Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `autoIncrementVersion` should be set; `autoIncrementVersion` is recommended.
+	// Version of the role. The server manages this automatically.
+	//
+	// Deprecated: This attribute is ignored. The server manages role versions automatically.
 	Version int `pulumi:"version"`
 }
 
@@ -189,7 +190,9 @@ func (o LookupRoleResultOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRoleResult) string { return v.Uid }).(pulumi.StringOutput)
 }
 
-// Version of the role. On create, must be `1`. On update, must be exactly one greater than the previous state. This field or `autoIncrementVersion` should be set; `autoIncrementVersion` is recommended.
+// Version of the role. The server manages this automatically.
+//
+// Deprecated: This attribute is ignored. The server manages role versions automatically.
 func (o LookupRoleResultOutput) Version() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRoleResult) int { return v.Version }).(pulumi.IntOutput)
 }

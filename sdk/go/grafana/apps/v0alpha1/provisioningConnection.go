@@ -12,51 +12,6 @@ import (
 )
 
 // Manages Grafana Git Sync connections used by repositories for provider authentication.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps"
-//	appsv0alpha1 "github.com/pulumiverse/pulumi-grafana/sdk/v2/go/grafana/apps/v0alpha1"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := apps.NewProvisioningConnection(ctx, "example", &apps.ProvisioningConnectionArgs{
-//				Metadata: &appsv0alpha1.ProvisioningConnectionMetadataArgs{
-//					Uid: pulumi.String("my-github-connection"),
-//				},
-//				Spec: &appsv0alpha1.ProvisioningConnectionSpecArgs{
-//					Title:       pulumi.String("My GitHub App Connection"),
-//					Description: pulumi.String("GitHub App connection used by a folder-scoped Git Sync repository"),
-//					Type:        pulumi.String("github"),
-//					Url:         pulumi.String("https://github.com"),
-//					Github: &appsv0alpha1.ProvisioningConnectionSpecGithubArgs{
-//						AppId:          pulumi.String("12345"),
-//						InstallationId: pulumi.String("67890"),
-//					},
-//				},
-//				Secure: &appsv0alpha1.ProvisioningConnectionSecureArgs{
-//					PrivateKey: pulumi.StringMap{
-//						"create": pulumi.String("replace-me"),
-//					},
-//				},
-//				SecureVersion: pulumi.Int(1),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type ProvisioningConnection struct {
 	pulumi.CustomResourceState
 

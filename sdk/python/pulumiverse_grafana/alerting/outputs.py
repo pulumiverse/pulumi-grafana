@@ -62,6 +62,8 @@ __all__ = [
     'AlertRuleV0Alpha1Options',
     'AlertRuleV0Alpha1Spec',
     'AlertRuleV0Alpha1SpecNotificationSettings',
+    'AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree',
+    'AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting',
     'AlertRuleV0Alpha1SpecTrigger',
     'ContactPointAlertmanager',
     'ContactPointDingding',
@@ -2218,7 +2220,7 @@ class AlertRuleV0Alpha1Spec(dict):
         :param _builtins.str keep_firing_for: The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.
         :param Mapping[str, _builtins.str] labels: Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing.
         :param _builtins.int missing_series_evals_to_resolve: The number of missing series evaluations that must occur before the rule is considered to be resolved.
-        :param 'AlertRuleV0Alpha1SpecNotificationSettingsArgs' notification_settings: Notification settings for the rule. If specified, it overrides the notification policies.
+        :param 'AlertRuleV0Alpha1SpecNotificationSettingsArgs' notification_settings: Notification settings for the rule. If specified, it overrides the notification policies. The flat configuration is deprecated, please specify one of named*routing*tree or simplified*routing
         :param Mapping[str, _builtins.str] panel_ref: Reference to a panel that this alert rule is associated with. Should be an object with 'dashboard*uid' (string) and 'panel*id' (number) fields.
         :param _builtins.bool paused: Sets whether the rule should be paused or not.
         :param 'AlertRuleV0Alpha1SpecTriggerArgs' trigger: The trigger configuration for the alert rule.
@@ -2322,7 +2324,7 @@ class AlertRuleV0Alpha1Spec(dict):
     @pulumi.getter(name="notificationSettings")
     def notification_settings(self) -> Optional['outputs.AlertRuleV0Alpha1SpecNotificationSettings']:
         """
-        Notification settings for the rule. If specified, it overrides the notification policies.
+        Notification settings for the rule. If specified, it overrides the notification policies. The flat configuration is deprecated, please specify one of named*routing*tree or simplified*routing
         """
         return pulumi.get(self, "notification_settings")
 
@@ -2356,10 +2358,10 @@ class AlertRuleV0Alpha1SpecNotificationSettings(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "contactPoint":
-            suggest = "contact_point"
-        elif key == "activeTimings":
+        if key == "activeTimings":
             suggest = "active_timings"
+        elif key == "contactPoint":
+            suggest = "contact_point"
         elif key == "groupBies":
             suggest = "group_bies"
         elif key == "groupInterval":
@@ -2368,8 +2370,12 @@ class AlertRuleV0Alpha1SpecNotificationSettings(dict):
             suggest = "group_wait"
         elif key == "muteTimings":
             suggest = "mute_timings"
+        elif key == "namedRoutingTree":
+            suggest = "named_routing_tree"
         elif key == "repeatInterval":
             suggest = "repeat_interval"
+        elif key == "simplifiedRouting":
+            suggest = "simplified_routing"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in AlertRuleV0Alpha1SpecNotificationSettings. Access the value via the '{suggest}' property getter instead.")
@@ -2383,25 +2389,213 @@ class AlertRuleV0Alpha1SpecNotificationSettings(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 contact_point: _builtins.str,
                  active_timings: Optional[Sequence[_builtins.str]] = None,
+                 contact_point: Optional[_builtins.str] = None,
+                 group_bies: Optional[Sequence[_builtins.str]] = None,
+                 group_interval: Optional[_builtins.str] = None,
+                 group_wait: Optional[_builtins.str] = None,
+                 mute_timings: Optional[Sequence[_builtins.str]] = None,
+                 named_routing_tree: Optional['outputs.AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree'] = None,
+                 repeat_interval: Optional[_builtins.str] = None,
+                 simplified_routing: Optional['outputs.AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting'] = None):
+        """
+        :param Sequence[_builtins.str] active_timings: Deprecated. A list of time interval names to apply to alerts that match this policy.
+        :param _builtins.str contact_point: Deprecated. The contact point to route notifications that match this rule to.
+        :param Sequence[_builtins.str] group_bies: Deprecated. A list of alert labels to group alerts into notifications by.
+        :param _builtins.str group_interval: Deprecated. Minimum time interval between two notifications for the same group.
+        :param _builtins.str group_wait: Deprecated. Time to wait to buffer alerts of the same group before sending a notification.
+        :param Sequence[_builtins.str] mute_timings: Deprecated. A list of mute timing names to apply to alerts that match this policy.
+        :param 'AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTreeArgs' named_routing_tree: Route notifications to a specific routing tree.
+        :param _builtins.str repeat_interval: Deprecated. Minimum time interval for re-sending a notification if an alert is still firing.
+        :param 'AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRoutingArgs' simplified_routing: Simplified routing to a contact point with optional grouping and timing overrides.
+        """
+        if active_timings is not None:
+            pulumi.set(__self__, "active_timings", active_timings)
+        if contact_point is not None:
+            pulumi.set(__self__, "contact_point", contact_point)
+        if group_bies is not None:
+            pulumi.set(__self__, "group_bies", group_bies)
+        if group_interval is not None:
+            pulumi.set(__self__, "group_interval", group_interval)
+        if group_wait is not None:
+            pulumi.set(__self__, "group_wait", group_wait)
+        if mute_timings is not None:
+            pulumi.set(__self__, "mute_timings", mute_timings)
+        if named_routing_tree is not None:
+            pulumi.set(__self__, "named_routing_tree", named_routing_tree)
+        if repeat_interval is not None:
+            pulumi.set(__self__, "repeat_interval", repeat_interval)
+        if simplified_routing is not None:
+            pulumi.set(__self__, "simplified_routing", simplified_routing)
+
+    @_builtins.property
+    @pulumi.getter(name="activeTimings")
+    @_utilities.deprecated("""Use `simplified_routing.active_timings` instead.""")
+    def active_timings(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Deprecated. A list of time interval names to apply to alerts that match this policy.
+        """
+        return pulumi.get(self, "active_timings")
+
+    @_builtins.property
+    @pulumi.getter(name="contactPoint")
+    @_utilities.deprecated("""Use `simplified_routing.contact_point` instead.""")
+    def contact_point(self) -> Optional[_builtins.str]:
+        """
+        Deprecated. The contact point to route notifications that match this rule to.
+        """
+        return pulumi.get(self, "contact_point")
+
+    @_builtins.property
+    @pulumi.getter(name="groupBies")
+    @_utilities.deprecated("""Use `simplified_routing.group_by` instead.""")
+    def group_bies(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Deprecated. A list of alert labels to group alerts into notifications by.
+        """
+        return pulumi.get(self, "group_bies")
+
+    @_builtins.property
+    @pulumi.getter(name="groupInterval")
+    @_utilities.deprecated("""Use `simplified_routing.group_interval` instead.""")
+    def group_interval(self) -> Optional[_builtins.str]:
+        """
+        Deprecated. Minimum time interval between two notifications for the same group.
+        """
+        return pulumi.get(self, "group_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="groupWait")
+    @_utilities.deprecated("""Use `simplified_routing.group_wait` instead.""")
+    def group_wait(self) -> Optional[_builtins.str]:
+        """
+        Deprecated. Time to wait to buffer alerts of the same group before sending a notification.
+        """
+        return pulumi.get(self, "group_wait")
+
+    @_builtins.property
+    @pulumi.getter(name="muteTimings")
+    @_utilities.deprecated("""Use `simplified_routing.mute_timings` instead.""")
+    def mute_timings(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Deprecated. A list of mute timing names to apply to alerts that match this policy.
+        """
+        return pulumi.get(self, "mute_timings")
+
+    @_builtins.property
+    @pulumi.getter(name="namedRoutingTree")
+    def named_routing_tree(self) -> Optional['outputs.AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree']:
+        """
+        Route notifications to a specific routing tree.
+        """
+        return pulumi.get(self, "named_routing_tree")
+
+    @_builtins.property
+    @pulumi.getter(name="repeatInterval")
+    @_utilities.deprecated("""Use `simplified_routing.repeat_interval` instead.""")
+    def repeat_interval(self) -> Optional[_builtins.str]:
+        """
+        Deprecated. Minimum time interval for re-sending a notification if an alert is still firing.
+        """
+        return pulumi.get(self, "repeat_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="simplifiedRouting")
+    def simplified_routing(self) -> Optional['outputs.AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting']:
+        """
+        Simplified routing to a contact point with optional grouping and timing overrides.
+        """
+        return pulumi.get(self, "simplified_routing")
+
+
+@pulumi.output_type
+class AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "routingTree":
+            suggest = "routing_tree"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertRuleV0Alpha1SpecNotificationSettingsNamedRoutingTree.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 routing_tree: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str routing_tree: The name of the routing tree to use.
+        """
+        if routing_tree is not None:
+            pulumi.set(__self__, "routing_tree", routing_tree)
+
+    @_builtins.property
+    @pulumi.getter(name="routingTree")
+    def routing_tree(self) -> Optional[_builtins.str]:
+        """
+        The name of the routing tree to use.
+        """
+        return pulumi.get(self, "routing_tree")
+
+
+@pulumi.output_type
+class AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "activeTimings":
+            suggest = "active_timings"
+        elif key == "contactPoint":
+            suggest = "contact_point"
+        elif key == "groupBies":
+            suggest = "group_bies"
+        elif key == "groupInterval":
+            suggest = "group_interval"
+        elif key == "groupWait":
+            suggest = "group_wait"
+        elif key == "muteTimings":
+            suggest = "mute_timings"
+        elif key == "repeatInterval":
+            suggest = "repeat_interval"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertRuleV0Alpha1SpecNotificationSettingsSimplifiedRouting.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 active_timings: Optional[Sequence[_builtins.str]] = None,
+                 contact_point: Optional[_builtins.str] = None,
                  group_bies: Optional[Sequence[_builtins.str]] = None,
                  group_interval: Optional[_builtins.str] = None,
                  group_wait: Optional[_builtins.str] = None,
                  mute_timings: Optional[Sequence[_builtins.str]] = None,
                  repeat_interval: Optional[_builtins.str] = None):
         """
-        :param _builtins.str contact_point: The contact point to route notifications that match this rule to.
         :param Sequence[_builtins.str] active_timings: A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
+        :param _builtins.str contact_point: The contact point to route notifications that match this rule to.
         :param Sequence[_builtins.str] group_bies: A list of alert labels to group alerts into notifications by.
         :param _builtins.str group_interval: Minimum time interval between two notifications for the same group.
         :param _builtins.str group_wait: Time to wait to buffer alerts of the same group before sending a notification.
         :param Sequence[_builtins.str] mute_timings: A list of mute timing names to apply to alerts that match this policy.
         :param _builtins.str repeat_interval: Minimum time interval for re-sending a notification if an alert is still firing.
         """
-        pulumi.set(__self__, "contact_point", contact_point)
         if active_timings is not None:
             pulumi.set(__self__, "active_timings", active_timings)
+        if contact_point is not None:
+            pulumi.set(__self__, "contact_point", contact_point)
         if group_bies is not None:
             pulumi.set(__self__, "group_bies", group_bies)
         if group_interval is not None:
@@ -2414,20 +2608,20 @@ class AlertRuleV0Alpha1SpecNotificationSettings(dict):
             pulumi.set(__self__, "repeat_interval", repeat_interval)
 
     @_builtins.property
-    @pulumi.getter(name="contactPoint")
-    def contact_point(self) -> _builtins.str:
-        """
-        The contact point to route notifications that match this rule to.
-        """
-        return pulumi.get(self, "contact_point")
-
-    @_builtins.property
     @pulumi.getter(name="activeTimings")
     def active_timings(self) -> Optional[Sequence[_builtins.str]]:
         """
         A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time.
         """
         return pulumi.get(self, "active_timings")
+
+    @_builtins.property
+    @pulumi.getter(name="contactPoint")
+    def contact_point(self) -> Optional[_builtins.str]:
+        """
+        The contact point to route notifications that match this rule to.
+        """
+        return pulumi.get(self, "contact_point")
 
     @_builtins.property
     @pulumi.getter(name="groupBies")
