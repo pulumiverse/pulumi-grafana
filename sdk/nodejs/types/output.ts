@@ -3486,6 +3486,10 @@ export namespace apps {
              */
             type: string;
             /**
+             * Webhook delivery configuration.
+             */
+            webhook?: outputs.apps.v0alpha1.ProvisioningRepositorySpecWebhook;
+            /**
              * Allowed change workflows: write, branch.
              */
             workflows?: string[];
@@ -3590,6 +3594,13 @@ export namespace apps {
              * Sync target: instance or folder.
              */
             target: string;
+        }
+
+        export interface ProvisioningRepositorySpecWebhook {
+            /**
+             * Optional public webhook base URL override used when incoming webhook delivery must target a different host than the Grafana UI URL.
+             */
+            baseUrl?: string;
         }
 
     }
@@ -6641,7 +6652,7 @@ export namespace slo {
         /**
          * Defines Group By Labels used for per-label alerting. These appear as variables on SLO dashboards to enable filtering and aggregation. Labels must adhere to Prometheus label name schema - "^[a-zA-Z*][a-zA-Z0-9*]*$"
          */
-        groupByLabels?: string[];
+        groupByLabels: string[];
         /**
          * Counter metric for success events (numerator)
          */

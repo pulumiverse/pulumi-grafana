@@ -3483,6 +3483,10 @@ export namespace apps {
              */
             type: pulumi.Input<string>;
             /**
+             * Webhook delivery configuration.
+             */
+            webhook?: pulumi.Input<inputs.apps.v0alpha1.ProvisioningRepositorySpecWebhook>;
+            /**
              * Allowed change workflows: write, branch.
              */
             workflows?: pulumi.Input<pulumi.Input<string>[]>;
@@ -3587,6 +3591,13 @@ export namespace apps {
              * Sync target: instance or folder.
              */
             target: pulumi.Input<string>;
+        }
+
+        export interface ProvisioningRepositorySpecWebhook {
+            /**
+             * Optional public webhook base URL override used when incoming webhook delivery must target a different host than the Grafana UI URL.
+             */
+            baseUrl?: pulumi.Input<string>;
         }
     }
 

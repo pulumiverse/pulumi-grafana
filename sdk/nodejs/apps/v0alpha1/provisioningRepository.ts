@@ -39,6 +39,9 @@ import * as utilities from "../../utilities";
  *             branch: "main",
  *             path: "grafanatftest",
  *         },
+ *         webhook: {
+ *             baseUrl: "https://grafana.example.com",
+ *         },
  *     },
  *     secure: {
  *         token: {
