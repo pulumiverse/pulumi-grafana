@@ -7,6 +7,8 @@ import * as utilities from "../utilities";
 /**
  * Manages Grafana Fleet Management pipelines.
  *
+ * Pipelines are always sent to the API with a Terraform pipeline source (SOURCE_TYPE_TERRAFORM) so Fleet Management can show them as Terraform-managed. Use the optional terraformSourceNamespace argument (defaults to the string "default") for a stable namespace per root or workspace.
+ *
  * * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
  * * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/pipeline-api/)
  * * Step-by-step guide
@@ -90,6 +92,10 @@ export class Pipeline extends pulumi.CustomResource {
      * Name of the pipeline which is the unique identifier for the pipeline
      */
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
+     */
+    declare public readonly terraformSourceNamespace: pulumi.Output<string>;
 
     /**
      * Create a Pipeline resource with the given unique name, arguments, and options.
@@ -109,6 +115,7 @@ export class Pipeline extends pulumi.CustomResource {
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["matchers"] = state?.matchers;
             resourceInputs["name"] = state?.name;
+            resourceInputs["terraformSourceNamespace"] = state?.terraformSourceNamespace;
         } else {
             const args = argsOrState as PipelineArgs | undefined;
             if (args?.contents === undefined && !opts.urn) {
@@ -119,6 +126,7 @@ export class Pipeline extends pulumi.CustomResource {
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["matchers"] = args?.matchers;
             resourceInputs["name"] = args?.name;
+            resourceInputs["terraformSourceNamespace"] = args?.terraformSourceNamespace;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Pipeline.__pulumiType, name, resourceInputs, opts);
@@ -149,6 +157,10 @@ export interface PipelineState {
      * Name of the pipeline which is the unique identifier for the pipeline
      */
     name?: pulumi.Input<string>;
+    /**
+     * Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
+     */
+    terraformSourceNamespace?: pulumi.Input<string>;
 }
 
 /**
@@ -175,4 +187,8 @@ export interface PipelineArgs {
      * Name of the pipeline which is the unique identifier for the pipeline
      */
     name?: pulumi.Input<string>;
+    /**
+     * Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
+     */
+    terraformSourceNamespace?: pulumi.Input<string>;
 }

@@ -274,7 +274,7 @@ export class SLO extends pulumi.CustomResource {
      */
     declare public readonly destinationDatasource: pulumi.Output<outputs.slo.SLODestinationDatasource | undefined>;
     /**
-     * UID for the SLO folder
+     * UID for the SLO folder. Must be non-empty if set; omit the attribute entirely to associate the SLO with the default Grafana SLO folder.
      */
     declare public readonly folderUid: pulumi.Output<string | undefined>;
     /**
@@ -294,7 +294,7 @@ export class SLO extends pulumi.CustomResource {
      */
     declare public readonly queries: pulumi.Output<outputs.slo.SLOQuery[] | undefined>;
     /**
-     * The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+     * The name of a search expression in Grafana Asserts. Must be non-empty if set; omit the attribute entirely to leave it unset. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
      */
     declare public readonly searchExpression: pulumi.Output<string | undefined>;
     /**
@@ -369,7 +369,7 @@ export interface SLOState {
      */
     destinationDatasource?: pulumi.Input<inputs.slo.SLODestinationDatasource>;
     /**
-     * UID for the SLO folder
+     * UID for the SLO folder. Must be non-empty if set; omit the attribute entirely to associate the SLO with the default Grafana SLO folder.
      */
     folderUid?: pulumi.Input<string>;
     /**
@@ -389,7 +389,7 @@ export interface SLOState {
      */
     queries?: pulumi.Input<pulumi.Input<inputs.slo.SLOQuery>[]>;
     /**
-     * The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+     * The name of a search expression in Grafana Asserts. Must be non-empty if set; omit the attribute entirely to leave it unset. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
      */
     searchExpression?: pulumi.Input<string>;
     /**
@@ -419,7 +419,7 @@ export interface SLOArgs {
      */
     destinationDatasource?: pulumi.Input<inputs.slo.SLODestinationDatasource>;
     /**
-     * UID for the SLO folder
+     * UID for the SLO folder. Must be non-empty if set; omit the attribute entirely to associate the SLO with the default Grafana SLO folder.
      */
     folderUid?: pulumi.Input<string>;
     /**
@@ -439,7 +439,7 @@ export interface SLOArgs {
      */
     queries?: pulumi.Input<pulumi.Input<inputs.slo.SLOQuery>[]>;
     /**
-     * The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+     * The name of a search expression in Grafana Asserts. Must be non-empty if set; omit the attribute entirely to leave it unset. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
      */
     searchExpression?: pulumi.Input<string>;
     /**

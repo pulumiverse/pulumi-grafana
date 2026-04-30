@@ -52,6 +52,9 @@ import (
 //						Branch: pulumi.String("main"),
 //						Path:   pulumi.String("grafanatftest"),
 //					},
+//					Webhook: &appsv0alpha1.ProvisioningRepositorySpecWebhookArgs{
+//						BaseUrl: pulumi.String("https://grafana.example.com"),
+//					},
 //				},
 //				Secure: &appsv0alpha1.ProvisioningRepositorySecureArgs{
 //					Token: pulumi.StringMap{

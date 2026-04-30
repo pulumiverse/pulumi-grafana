@@ -55,6 +55,8 @@ __all__ = [
     'ProvisioningRepositorySpecLocalArgsDict',
     'ProvisioningRepositorySpecSyncArgs',
     'ProvisioningRepositorySpecSyncArgsDict',
+    'ProvisioningRepositorySpecWebhookArgs',
+    'ProvisioningRepositorySpecWebhookArgsDict',
 ]
 
 class PlaylistMetadataArgsDict(TypedDict):
@@ -991,6 +993,10 @@ class ProvisioningRepositorySpecArgsDict(TypedDict):
     """
     Sync configuration.
     """
+    webhook: NotRequired[pulumi.Input['ProvisioningRepositorySpecWebhookArgsDict']]
+    """
+    Webhook delivery configuration.
+    """
     workflows: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
     Allowed change workflows: write, branch.
@@ -1009,6 +1015,7 @@ class ProvisioningRepositorySpecArgs:
                  gitlab: Optional[pulumi.Input['ProvisioningRepositorySpecGitlabArgs']] = None,
                  local: Optional[pulumi.Input['ProvisioningRepositorySpecLocalArgs']] = None,
                  sync: Optional[pulumi.Input['ProvisioningRepositorySpecSyncArgs']] = None,
+                 webhook: Optional[pulumi.Input['ProvisioningRepositorySpecWebhookArgs']] = None,
                  workflows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] title: Display name shown in the UI.
@@ -1021,6 +1028,7 @@ class ProvisioningRepositorySpecArgs:
         :param pulumi.Input['ProvisioningRepositorySpecGitlabArgs'] gitlab: GitLab repository configuration.
         :param pulumi.Input['ProvisioningRepositorySpecLocalArgs'] local: Local filesystem repository configuration.
         :param pulumi.Input['ProvisioningRepositorySpecSyncArgs'] sync: Sync configuration.
+        :param pulumi.Input['ProvisioningRepositorySpecWebhookArgs'] webhook: Webhook delivery configuration.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] workflows: Allowed change workflows: write, branch.
         """
         pulumi.set(__self__, "title", title)
@@ -1041,6 +1049,8 @@ class ProvisioningRepositorySpecArgs:
             pulumi.set(__self__, "local", local)
         if sync is not None:
             pulumi.set(__self__, "sync", sync)
+        if webhook is not None:
+            pulumi.set(__self__, "webhook", webhook)
         if workflows is not None:
             pulumi.set(__self__, "workflows", workflows)
 
@@ -1163,6 +1173,18 @@ class ProvisioningRepositorySpecArgs:
     @sync.setter
     def sync(self, value: Optional[pulumi.Input['ProvisioningRepositorySpecSyncArgs']]):
         pulumi.set(self, "sync", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def webhook(self) -> Optional[pulumi.Input['ProvisioningRepositorySpecWebhookArgs']]:
+        """
+        Webhook delivery configuration.
+        """
+        return pulumi.get(self, "webhook")
+
+    @webhook.setter
+    def webhook(self, value: Optional[pulumi.Input['ProvisioningRepositorySpecWebhookArgs']]):
+        pulumi.set(self, "webhook", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1636,5 +1658,34 @@ class ProvisioningRepositorySpecSyncArgs:
     @interval_seconds.setter
     def interval_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "interval_seconds", value)
+
+
+class ProvisioningRepositorySpecWebhookArgsDict(TypedDict):
+    base_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Optional public webhook base URL override used when incoming webhook delivery must target a different host than the Grafana UI URL.
+    """
+
+@pulumi.input_type
+class ProvisioningRepositorySpecWebhookArgs:
+    def __init__(__self__, *,
+                 base_url: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] base_url: Optional public webhook base URL override used when incoming webhook delivery must target a different host than the Grafana UI URL.
+        """
+        if base_url is not None:
+            pulumi.set(__self__, "base_url", base_url)
+
+    @_builtins.property
+    @pulumi.getter(name="baseUrl")
+    def base_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Optional public webhook base URL override used when incoming webhook delivery must target a different host than the Grafana UI URL.
+        """
+        return pulumi.get(self, "base_url")
+
+    @base_url.setter
+    def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "base_url", value)
 
 
