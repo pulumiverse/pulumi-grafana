@@ -55,6 +55,10 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Outputs
         /// </summary>
         public readonly string Type;
         /// <summary>
+        /// Webhook delivery configuration.
+        /// </summary>
+        public readonly Outputs.ProvisioningRepositorySpecWebhook? Webhook;
+        /// <summary>
         /// Allowed change workflows: write, branch.
         /// </summary>
         public readonly ImmutableArray<string> Workflows;
@@ -81,6 +85,8 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Outputs
 
             string type,
 
+            Outputs.ProvisioningRepositorySpecWebhook? webhook,
+
             ImmutableArray<string> workflows)
         {
             Bitbucket = bitbucket;
@@ -93,6 +99,7 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Outputs
             Sync = sync;
             Title = title;
             Type = type;
+            Webhook = webhook;
             Workflows = workflows;
         }
     }

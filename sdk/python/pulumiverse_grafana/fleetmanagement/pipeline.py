@@ -23,7 +23,8 @@ class PipelineArgs:
                  config_type: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 terraform_source_namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Pipeline resource.
 
@@ -32,6 +33,7 @@ class PipelineArgs:
         :param pulumi.Input[_builtins.bool] enabled: Whether the pipeline is enabled for collectors
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] matchers: Used to match against collectors and assign pipelines to them; follows the syntax of Prometheus Alertmanager matchers
         :param pulumi.Input[_builtins.str] name: Name of the pipeline which is the unique identifier for the pipeline
+        :param pulumi.Input[_builtins.str] terraform_source_namespace: Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
         """
         pulumi.set(__self__, "contents", contents)
         if config_type is not None:
@@ -42,6 +44,8 @@ class PipelineArgs:
             pulumi.set(__self__, "matchers", matchers)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if terraform_source_namespace is not None:
+            pulumi.set(__self__, "terraform_source_namespace", terraform_source_namespace)
 
     @_builtins.property
     @pulumi.getter
@@ -103,6 +107,18 @@ class PipelineArgs:
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="terraformSourceNamespace")
+    def terraform_source_namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
+        """
+        return pulumi.get(self, "terraform_source_namespace")
+
+    @terraform_source_namespace.setter
+    def terraform_source_namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "terraform_source_namespace", value)
+
 
 @pulumi.input_type
 class _PipelineState:
@@ -111,7 +127,8 @@ class _PipelineState:
                  contents: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 terraform_source_namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Pipeline resources.
 
@@ -120,6 +137,7 @@ class _PipelineState:
         :param pulumi.Input[_builtins.bool] enabled: Whether the pipeline is enabled for collectors
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] matchers: Used to match against collectors and assign pipelines to them; follows the syntax of Prometheus Alertmanager matchers
         :param pulumi.Input[_builtins.str] name: Name of the pipeline which is the unique identifier for the pipeline
+        :param pulumi.Input[_builtins.str] terraform_source_namespace: Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
         """
         if config_type is not None:
             pulumi.set(__self__, "config_type", config_type)
@@ -131,6 +149,8 @@ class _PipelineState:
             pulumi.set(__self__, "matchers", matchers)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if terraform_source_namespace is not None:
+            pulumi.set(__self__, "terraform_source_namespace", terraform_source_namespace)
 
     @_builtins.property
     @pulumi.getter(name="configType")
@@ -192,6 +212,18 @@ class _PipelineState:
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="terraformSourceNamespace")
+    def terraform_source_namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
+        """
+        return pulumi.get(self, "terraform_source_namespace")
+
+    @terraform_source_namespace.setter
+    def terraform_source_namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "terraform_source_namespace", value)
+
 
 @pulumi.type_token("grafana:fleetManagement/pipeline:Pipeline")
 class Pipeline(pulumi.CustomResource):
@@ -204,9 +236,12 @@ class Pipeline(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 terraform_source_namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         Manages Grafana Fleet Management pipelines.
+
+        Pipelines are always sent to the API with a Terraform pipeline source (SOURCE_TYPE_TERRAFORM) so Fleet Management can show them as Terraform-managed. Use the optional terraform_source_namespace argument (defaults to the string "default") for a stable namespace per root or workspace.
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/pipeline-api/)
@@ -248,6 +283,7 @@ class Pipeline(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Whether the pipeline is enabled for collectors
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] matchers: Used to match against collectors and assign pipelines to them; follows the syntax of Prometheus Alertmanager matchers
         :param pulumi.Input[_builtins.str] name: Name of the pipeline which is the unique identifier for the pipeline
+        :param pulumi.Input[_builtins.str] terraform_source_namespace: Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
         """
         ...
     @overload
@@ -257,6 +293,8 @@ class Pipeline(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages Grafana Fleet Management pipelines.
+
+        Pipelines are always sent to the API with a Terraform pipeline source (SOURCE_TYPE_TERRAFORM) so Fleet Management can show them as Terraform-managed. Use the optional terraform_source_namespace argument (defaults to the string "default") for a stable namespace per root or workspace.
 
         * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
         * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/pipeline-api/)
@@ -311,6 +349,7 @@ class Pipeline(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 terraform_source_namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -327,6 +366,7 @@ class Pipeline(pulumi.CustomResource):
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["matchers"] = matchers
             __props__.__dict__["name"] = name
+            __props__.__dict__["terraform_source_namespace"] = terraform_source_namespace
         super(Pipeline, __self__).__init__(
             'grafana:fleetManagement/pipeline:Pipeline',
             resource_name,
@@ -341,7 +381,8 @@ class Pipeline(pulumi.CustomResource):
             contents: Optional[pulumi.Input[_builtins.str]] = None,
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             matchers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None) -> 'Pipeline':
+            name: Optional[pulumi.Input[_builtins.str]] = None,
+            terraform_source_namespace: Optional[pulumi.Input[_builtins.str]] = None) -> 'Pipeline':
         """
         Get an existing Pipeline resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -354,6 +395,7 @@ class Pipeline(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Whether the pipeline is enabled for collectors
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] matchers: Used to match against collectors and assign pipelines to them; follows the syntax of Prometheus Alertmanager matchers
         :param pulumi.Input[_builtins.str] name: Name of the pipeline which is the unique identifier for the pipeline
+        :param pulumi.Input[_builtins.str] terraform_source_namespace: Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -364,6 +406,7 @@ class Pipeline(pulumi.CustomResource):
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["matchers"] = matchers
         __props__.__dict__["name"] = name
+        __props__.__dict__["terraform_source_namespace"] = terraform_source_namespace
         return Pipeline(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -405,4 +448,12 @@ class Pipeline(pulumi.CustomResource):
         Name of the pipeline which is the unique identifier for the pipeline
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="terraformSourceNamespace")
+    def terraform_source_namespace(self) -> pulumi.Output[_builtins.str]:
+        """
+        Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
+        """
+        return pulumi.get(self, "terraform_source_namespace")
 
