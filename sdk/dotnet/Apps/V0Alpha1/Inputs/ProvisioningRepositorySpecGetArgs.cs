@@ -73,6 +73,12 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1.Inputs
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        /// <summary>
+        /// Webhook delivery configuration.
+        /// </summary>
+        [Input("webhook")]
+        public Input<Inputs.ProvisioningRepositorySpecWebhookGetArgs>? Webhook { get; set; }
+
         [Input("workflows")]
         private InputList<string>? _workflows;
 

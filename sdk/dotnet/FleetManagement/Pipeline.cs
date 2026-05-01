@@ -13,6 +13,8 @@ namespace Pulumiverse.Grafana.FleetManagement
     /// <summary>
     /// Manages Grafana Fleet Management pipelines.
     /// 
+    /// Pipelines are always sent to the API with a Terraform pipeline source (SOURCE_TYPE_TERRAFORM) so Fleet Management can show them as Terraform-managed. Use the optional TerraformSourceNamespace argument (defaults to the string "default") for a stable namespace per root or workspace.
+    /// 
     /// * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
     /// * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/pipeline-api/)
     /// * Step-by-step guide
@@ -89,6 +91,12 @@ namespace Pulumiverse.Grafana.FleetManagement
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `Default` is used.
+        /// </summary>
+        [Output("terraformSourceNamespace")]
+        public Output<string> TerraformSourceNamespace { get; private set; } = null!;
 
 
         /// <summary>
@@ -173,6 +181,12 @@ namespace Pulumiverse.Grafana.FleetManagement
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `Default` is used.
+        /// </summary>
+        [Input("terraformSourceNamespace")]
+        public Input<string>? TerraformSourceNamespace { get; set; }
+
         public PipelineArgs()
         {
         }
@@ -216,6 +230,12 @@ namespace Pulumiverse.Grafana.FleetManagement
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `Default` is used.
+        /// </summary>
+        [Input("terraformSourceNamespace")]
+        public Input<string>? TerraformSourceNamespace { get; set; }
 
         public PipelineState()
         {

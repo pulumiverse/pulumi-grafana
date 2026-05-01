@@ -366,7 +366,7 @@ namespace Pulumiverse.Grafana.Slo
         public Output<Outputs.SLODestinationDatasource?> DestinationDatasource { get; private set; } = null!;
 
         /// <summary>
-        /// UID for the SLO folder
+        /// UID for the SLO folder. Must be non-empty if set; omit the attribute entirely to associate the SLO with the default Grafana SLO folder.
         /// </summary>
         [Output("folderUid")]
         public Output<string?> FolderUid { get; private set; } = null!;
@@ -396,7 +396,7 @@ namespace Pulumiverse.Grafana.Slo
         public Output<ImmutableArray<Outputs.SLOQuery>> Queries { get; private set; } = null!;
 
         /// <summary>
-        /// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        /// The name of a search expression in Grafana Asserts. Must be non-empty if set; omit the attribute entirely to leave it unset. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
         /// </summary>
         [Output("searchExpression")]
         public Output<string?> SearchExpression { get; private set; } = null!;
@@ -481,7 +481,7 @@ namespace Pulumiverse.Grafana.Slo
         public Input<Inputs.SLODestinationDatasourceArgs>? DestinationDatasource { get; set; }
 
         /// <summary>
-        /// UID for the SLO folder
+        /// UID for the SLO folder. Must be non-empty if set; omit the attribute entirely to associate the SLO with the default Grafana SLO folder.
         /// </summary>
         [Input("folderUid")]
         public Input<string>? FolderUid { get; set; }
@@ -529,7 +529,7 @@ namespace Pulumiverse.Grafana.Slo
         }
 
         /// <summary>
-        /// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        /// The name of a search expression in Grafana Asserts. Must be non-empty if set; omit the attribute entirely to leave it unset. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
         /// </summary>
         [Input("searchExpression")]
         public Input<string>? SearchExpression { get; set; }
@@ -571,7 +571,7 @@ namespace Pulumiverse.Grafana.Slo
         public Input<Inputs.SLODestinationDatasourceGetArgs>? DestinationDatasource { get; set; }
 
         /// <summary>
-        /// UID for the SLO folder
+        /// UID for the SLO folder. Must be non-empty if set; omit the attribute entirely to associate the SLO with the default Grafana SLO folder.
         /// </summary>
         [Input("folderUid")]
         public Input<string>? FolderUid { get; set; }
@@ -619,7 +619,7 @@ namespace Pulumiverse.Grafana.Slo
         }
 
         /// <summary>
-        /// The name of a search expression in Grafana Asserts. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
+        /// The name of a search expression in Grafana Asserts. Must be non-empty if set; omit the attribute entirely to leave it unset. This is used in the SLO UI to open the Asserts RCA workbench and in alerts to link to the RCA workbench.
         /// </summary>
         [Input("searchExpression")]
         public Input<string>? SearchExpression { get; set; }

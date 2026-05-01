@@ -241,6 +241,9 @@ class ProvisioningRepository(pulumi.CustomResource):
                     "branch": "main",
                     "path": "grafanatftest",
                 },
+                "webhook": {
+                    "base_url": "https://grafana.example.com",
+                },
             },
             secure={
                 "token": {
@@ -433,6 +436,9 @@ class ProvisioningRepository(pulumi.CustomResource):
                     "url": "https://github.com/example/grafana-dashboards",
                     "branch": "main",
                     "path": "grafanatftest",
+                },
+                "webhook": {
+                    "base_url": "https://grafana.example.com",
                 },
             },
             secure={

@@ -2170,6 +2170,8 @@ type ProvisioningRepositorySpec struct {
 	Title string `pulumi:"title"`
 	// Repository provider type: local, github, git, bitbucket, or gitlab.
 	Type string `pulumi:"type"`
+	// Webhook delivery configuration.
+	Webhook *ProvisioningRepositorySpecWebhook `pulumi:"webhook"`
 	// Allowed change workflows: write, branch.
 	Workflows []string `pulumi:"workflows"`
 }
@@ -2206,6 +2208,8 @@ type ProvisioningRepositorySpecArgs struct {
 	Title pulumi.StringInput `pulumi:"title"`
 	// Repository provider type: local, github, git, bitbucket, or gitlab.
 	Type pulumi.StringInput `pulumi:"type"`
+	// Webhook delivery configuration.
+	Webhook ProvisioningRepositorySpecWebhookPtrInput `pulumi:"webhook"`
 	// Allowed change workflows: write, branch.
 	Workflows pulumi.StringArrayInput `pulumi:"workflows"`
 }
@@ -2337,6 +2341,11 @@ func (o ProvisioningRepositorySpecOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v ProvisioningRepositorySpec) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// Webhook delivery configuration.
+func (o ProvisioningRepositorySpecOutput) Webhook() ProvisioningRepositorySpecWebhookPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpec) *ProvisioningRepositorySpecWebhook { return v.Webhook }).(ProvisioningRepositorySpecWebhookPtrOutput)
+}
+
 // Allowed change workflows: write, branch.
 func (o ProvisioningRepositorySpecOutput) Workflows() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ProvisioningRepositorySpec) []string { return v.Workflows }).(pulumi.StringArrayOutput)
@@ -2464,6 +2473,16 @@ func (o ProvisioningRepositorySpecPtrOutput) Type() pulumi.StringPtrOutput {
 		}
 		return &v.Type
 	}).(pulumi.StringPtrOutput)
+}
+
+// Webhook delivery configuration.
+func (o ProvisioningRepositorySpecPtrOutput) Webhook() ProvisioningRepositorySpecWebhookPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpec) *ProvisioningRepositorySpecWebhook {
+		if v == nil {
+			return nil
+		}
+		return v.Webhook
+	}).(ProvisioningRepositorySpecWebhookPtrOutput)
 }
 
 // Allowed change workflows: write, branch.
@@ -3682,6 +3701,143 @@ func (o ProvisioningRepositorySpecSyncPtrOutput) Target() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+type ProvisioningRepositorySpecWebhook struct {
+	// Optional public webhook base URL override used when incoming webhook delivery must target a different host than the Grafana UI URL.
+	BaseUrl *string `pulumi:"baseUrl"`
+}
+
+// ProvisioningRepositorySpecWebhookInput is an input type that accepts ProvisioningRepositorySpecWebhookArgs and ProvisioningRepositorySpecWebhookOutput values.
+// You can construct a concrete instance of `ProvisioningRepositorySpecWebhookInput` via:
+//
+//	ProvisioningRepositorySpecWebhookArgs{...}
+type ProvisioningRepositorySpecWebhookInput interface {
+	pulumi.Input
+
+	ToProvisioningRepositorySpecWebhookOutput() ProvisioningRepositorySpecWebhookOutput
+	ToProvisioningRepositorySpecWebhookOutputWithContext(context.Context) ProvisioningRepositorySpecWebhookOutput
+}
+
+type ProvisioningRepositorySpecWebhookArgs struct {
+	// Optional public webhook base URL override used when incoming webhook delivery must target a different host than the Grafana UI URL.
+	BaseUrl pulumi.StringPtrInput `pulumi:"baseUrl"`
+}
+
+func (ProvisioningRepositorySpecWebhookArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProvisioningRepositorySpecWebhook)(nil)).Elem()
+}
+
+func (i ProvisioningRepositorySpecWebhookArgs) ToProvisioningRepositorySpecWebhookOutput() ProvisioningRepositorySpecWebhookOutput {
+	return i.ToProvisioningRepositorySpecWebhookOutputWithContext(context.Background())
+}
+
+func (i ProvisioningRepositorySpecWebhookArgs) ToProvisioningRepositorySpecWebhookOutputWithContext(ctx context.Context) ProvisioningRepositorySpecWebhookOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecWebhookOutput)
+}
+
+func (i ProvisioningRepositorySpecWebhookArgs) ToProvisioningRepositorySpecWebhookPtrOutput() ProvisioningRepositorySpecWebhookPtrOutput {
+	return i.ToProvisioningRepositorySpecWebhookPtrOutputWithContext(context.Background())
+}
+
+func (i ProvisioningRepositorySpecWebhookArgs) ToProvisioningRepositorySpecWebhookPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecWebhookPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecWebhookOutput).ToProvisioningRepositorySpecWebhookPtrOutputWithContext(ctx)
+}
+
+// ProvisioningRepositorySpecWebhookPtrInput is an input type that accepts ProvisioningRepositorySpecWebhookArgs, ProvisioningRepositorySpecWebhookPtr and ProvisioningRepositorySpecWebhookPtrOutput values.
+// You can construct a concrete instance of `ProvisioningRepositorySpecWebhookPtrInput` via:
+//
+//	        ProvisioningRepositorySpecWebhookArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProvisioningRepositorySpecWebhookPtrInput interface {
+	pulumi.Input
+
+	ToProvisioningRepositorySpecWebhookPtrOutput() ProvisioningRepositorySpecWebhookPtrOutput
+	ToProvisioningRepositorySpecWebhookPtrOutputWithContext(context.Context) ProvisioningRepositorySpecWebhookPtrOutput
+}
+
+type provisioningRepositorySpecWebhookPtrType ProvisioningRepositorySpecWebhookArgs
+
+func ProvisioningRepositorySpecWebhookPtr(v *ProvisioningRepositorySpecWebhookArgs) ProvisioningRepositorySpecWebhookPtrInput {
+	return (*provisioningRepositorySpecWebhookPtrType)(v)
+}
+
+func (*provisioningRepositorySpecWebhookPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProvisioningRepositorySpecWebhook)(nil)).Elem()
+}
+
+func (i *provisioningRepositorySpecWebhookPtrType) ToProvisioningRepositorySpecWebhookPtrOutput() ProvisioningRepositorySpecWebhookPtrOutput {
+	return i.ToProvisioningRepositorySpecWebhookPtrOutputWithContext(context.Background())
+}
+
+func (i *provisioningRepositorySpecWebhookPtrType) ToProvisioningRepositorySpecWebhookPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecWebhookPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProvisioningRepositorySpecWebhookPtrOutput)
+}
+
+type ProvisioningRepositorySpecWebhookOutput struct{ *pulumi.OutputState }
+
+func (ProvisioningRepositorySpecWebhookOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProvisioningRepositorySpecWebhook)(nil)).Elem()
+}
+
+func (o ProvisioningRepositorySpecWebhookOutput) ToProvisioningRepositorySpecWebhookOutput() ProvisioningRepositorySpecWebhookOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecWebhookOutput) ToProvisioningRepositorySpecWebhookOutputWithContext(ctx context.Context) ProvisioningRepositorySpecWebhookOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecWebhookOutput) ToProvisioningRepositorySpecWebhookPtrOutput() ProvisioningRepositorySpecWebhookPtrOutput {
+	return o.ToProvisioningRepositorySpecWebhookPtrOutputWithContext(context.Background())
+}
+
+func (o ProvisioningRepositorySpecWebhookOutput) ToProvisioningRepositorySpecWebhookPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecWebhookPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProvisioningRepositorySpecWebhook) *ProvisioningRepositorySpecWebhook {
+		return &v
+	}).(ProvisioningRepositorySpecWebhookPtrOutput)
+}
+
+// Optional public webhook base URL override used when incoming webhook delivery must target a different host than the Grafana UI URL.
+func (o ProvisioningRepositorySpecWebhookOutput) BaseUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProvisioningRepositorySpecWebhook) *string { return v.BaseUrl }).(pulumi.StringPtrOutput)
+}
+
+type ProvisioningRepositorySpecWebhookPtrOutput struct{ *pulumi.OutputState }
+
+func (ProvisioningRepositorySpecWebhookPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProvisioningRepositorySpecWebhook)(nil)).Elem()
+}
+
+func (o ProvisioningRepositorySpecWebhookPtrOutput) ToProvisioningRepositorySpecWebhookPtrOutput() ProvisioningRepositorySpecWebhookPtrOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecWebhookPtrOutput) ToProvisioningRepositorySpecWebhookPtrOutputWithContext(ctx context.Context) ProvisioningRepositorySpecWebhookPtrOutput {
+	return o
+}
+
+func (o ProvisioningRepositorySpecWebhookPtrOutput) Elem() ProvisioningRepositorySpecWebhookOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecWebhook) ProvisioningRepositorySpecWebhook {
+		if v != nil {
+			return *v
+		}
+		var ret ProvisioningRepositorySpecWebhook
+		return ret
+	}).(ProvisioningRepositorySpecWebhookOutput)
+}
+
+// Optional public webhook base URL override used when incoming webhook delivery must target a different host than the Grafana UI URL.
+func (o ProvisioningRepositorySpecWebhookPtrOutput) BaseUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProvisioningRepositorySpecWebhook) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BaseUrl
+	}).(pulumi.StringPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PlaylistMetadataInput)(nil)).Elem(), PlaylistMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PlaylistMetadataPtrInput)(nil)).Elem(), PlaylistMetadataArgs{})
@@ -3723,6 +3879,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecLocalPtrInput)(nil)).Elem(), ProvisioningRepositorySpecLocalArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecSyncInput)(nil)).Elem(), ProvisioningRepositorySpecSyncArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecSyncPtrInput)(nil)).Elem(), ProvisioningRepositorySpecSyncArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecWebhookInput)(nil)).Elem(), ProvisioningRepositorySpecWebhookArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProvisioningRepositorySpecWebhookPtrInput)(nil)).Elem(), ProvisioningRepositorySpecWebhookArgs{})
 	pulumi.RegisterOutputType(PlaylistMetadataOutput{})
 	pulumi.RegisterOutputType(PlaylistMetadataPtrOutput{})
 	pulumi.RegisterOutputType(PlaylistOptionsOutput{})
@@ -3763,4 +3921,6 @@ func init() {
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecLocalPtrOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecSyncOutput{})
 	pulumi.RegisterOutputType(ProvisioningRepositorySpecSyncPtrOutput{})
+	pulumi.RegisterOutputType(ProvisioningRepositorySpecWebhookOutput{})
+	pulumi.RegisterOutputType(ProvisioningRepositorySpecWebhookPtrOutput{})
 }

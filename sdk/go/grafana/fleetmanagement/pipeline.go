@@ -14,6 +14,8 @@ import (
 
 // Manages Grafana Fleet Management pipelines.
 //
+// Pipelines are always sent to the API with a Terraform pipeline source (SOURCE_TYPE_TERRAFORM) so Fleet Management can show them as Terraform-managed. Use the optional terraformSourceNamespace argument (defaults to the string "default") for a stable namespace per root or workspace.
+//
 // * [Official documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/)
 // * [API documentation](https://grafana.com/docs/grafana-cloud/send-data/fleet-management/api-reference/pipeline-api/)
 // * Step-by-step guide
@@ -80,6 +82,8 @@ type Pipeline struct {
 	Matchers pulumi.StringArrayOutput `pulumi:"matchers"`
 	// Name of the pipeline which is the unique identifier for the pipeline
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
+	TerraformSourceNamespace pulumi.StringOutput `pulumi:"terraformSourceNamespace"`
 }
 
 // NewPipeline registers a new resource with the given unique name, arguments, and options.
@@ -125,6 +129,8 @@ type pipelineState struct {
 	Matchers []string `pulumi:"matchers"`
 	// Name of the pipeline which is the unique identifier for the pipeline
 	Name *string `pulumi:"name"`
+	// Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
+	TerraformSourceNamespace *string `pulumi:"terraformSourceNamespace"`
 }
 
 type PipelineState struct {
@@ -138,6 +144,8 @@ type PipelineState struct {
 	Matchers pulumi.StringArrayInput
 	// Name of the pipeline which is the unique identifier for the pipeline
 	Name pulumi.StringPtrInput
+	// Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
+	TerraformSourceNamespace pulumi.StringPtrInput
 }
 
 func (PipelineState) ElementType() reflect.Type {
@@ -155,6 +163,8 @@ type pipelineArgs struct {
 	Matchers []string `pulumi:"matchers"`
 	// Name of the pipeline which is the unique identifier for the pipeline
 	Name *string `pulumi:"name"`
+	// Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
+	TerraformSourceNamespace *string `pulumi:"terraformSourceNamespace"`
 }
 
 // The set of arguments for constructing a Pipeline resource.
@@ -169,6 +179,8 @@ type PipelineArgs struct {
 	Matchers pulumi.StringArrayInput
 	// Name of the pipeline which is the unique identifier for the pipeline
 	Name pulumi.StringPtrInput
+	// Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
+	TerraformSourceNamespace pulumi.StringPtrInput
 }
 
 func (PipelineArgs) ElementType() reflect.Type {
@@ -281,6 +293,11 @@ func (o PipelineOutput) Matchers() pulumi.StringArrayOutput {
 // Name of the pipeline which is the unique identifier for the pipeline
 func (o PipelineOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pipeline) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Namespace sent with the pipeline source (always `SOURCE_TYPE_TERRAFORM` in the Fleet Management API). Use a stable value per Terraform root or workspace so the UI shows Terraform as the source and API sync semantics stay consistent. If omitted, the namespace `default` is used.
+func (o PipelineOutput) TerraformSourceNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pipeline) pulumi.StringOutput { return v.TerraformSourceNamespace }).(pulumi.StringOutput)
 }
 
 type PipelineArrayOutput struct{ *pulumi.OutputState }

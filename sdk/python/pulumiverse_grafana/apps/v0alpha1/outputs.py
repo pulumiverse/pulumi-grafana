@@ -36,6 +36,7 @@ __all__ = [
     'ProvisioningRepositorySpecGitlab',
     'ProvisioningRepositorySpecLocal',
     'ProvisioningRepositorySpecSync',
+    'ProvisioningRepositorySpecWebhook',
 ]
 
 @pulumi.output_type
@@ -757,6 +758,7 @@ class ProvisioningRepositorySpec(dict):
                  gitlab: Optional['outputs.ProvisioningRepositorySpecGitlab'] = None,
                  local: Optional['outputs.ProvisioningRepositorySpecLocal'] = None,
                  sync: Optional['outputs.ProvisioningRepositorySpecSync'] = None,
+                 webhook: Optional['outputs.ProvisioningRepositorySpecWebhook'] = None,
                  workflows: Optional[Sequence[_builtins.str]] = None):
         """
         :param _builtins.str title: Display name shown in the UI.
@@ -769,6 +771,7 @@ class ProvisioningRepositorySpec(dict):
         :param 'ProvisioningRepositorySpecGitlabArgs' gitlab: GitLab repository configuration.
         :param 'ProvisioningRepositorySpecLocalArgs' local: Local filesystem repository configuration.
         :param 'ProvisioningRepositorySpecSyncArgs' sync: Sync configuration.
+        :param 'ProvisioningRepositorySpecWebhookArgs' webhook: Webhook delivery configuration.
         :param Sequence[_builtins.str] workflows: Allowed change workflows: write, branch.
         """
         pulumi.set(__self__, "title", title)
@@ -789,6 +792,8 @@ class ProvisioningRepositorySpec(dict):
             pulumi.set(__self__, "local", local)
         if sync is not None:
             pulumi.set(__self__, "sync", sync)
+        if webhook is not None:
+            pulumi.set(__self__, "webhook", webhook)
         if workflows is not None:
             pulumi.set(__self__, "workflows", workflows)
 
@@ -871,6 +876,14 @@ class ProvisioningRepositorySpec(dict):
         Sync configuration.
         """
         return pulumi.get(self, "sync")
+
+    @_builtins.property
+    @pulumi.getter
+    def webhook(self) -> Optional['outputs.ProvisioningRepositorySpecWebhook']:
+        """
+        Webhook delivery configuration.
+        """
+        return pulumi.get(self, "webhook")
 
     @_builtins.property
     @pulumi.getter
@@ -1234,5 +1247,41 @@ class ProvisioningRepositorySpecSync(dict):
         Sync interval in seconds.
         """
         return pulumi.get(self, "interval_seconds")
+
+
+@pulumi.output_type
+class ProvisioningRepositorySpecWebhook(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "baseUrl":
+            suggest = "base_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProvisioningRepositorySpecWebhook. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProvisioningRepositorySpecWebhook.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProvisioningRepositorySpecWebhook.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 base_url: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str base_url: Optional public webhook base URL override used when incoming webhook delivery must target a different host than the Grafana UI URL.
+        """
+        if base_url is not None:
+            pulumi.set(__self__, "base_url", base_url)
+
+    @_builtins.property
+    @pulumi.getter(name="baseUrl")
+    def base_url(self) -> Optional[_builtins.str]:
+        """
+        Optional public webhook base URL override used when incoming webhook delivery must target a different host than the Grafana UI URL.
+        """
+        return pulumi.get(self, "base_url")
 
 

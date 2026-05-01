@@ -53,6 +53,10 @@ namespace Pulumiverse.Grafana.Apps.V0Alpha1
     ///                 Branch = "main",
     ///                 Path = "grafanatftest",
     ///             },
+    ///             Webhook = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySpecWebhookArgs
+    ///             {
+    ///                 BaseUrl = "https://grafana.example.com",
+    ///             },
     ///         },
     ///         Secure = new Grafana.Apps.V0Alpha1.Inputs.ProvisioningRepositorySecureArgs
     ///         {
