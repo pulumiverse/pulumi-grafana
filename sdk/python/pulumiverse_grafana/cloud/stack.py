@@ -39,7 +39,7 @@ class StackArgs:
         :param pulumi.Input[_builtins.str] region_slug: Region slug to assign to this stack. Changing region will destroy the existing stack and create a new one in the desired region. Use the region list API to get the list of available regions: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/#list-regions.
         :param pulumi.Input[_builtins.str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
         :param pulumi.Input[_builtins.bool] wait_for_readiness: Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
-        :param pulumi.Input[_builtins.str] wait_for_readiness_timeout: How long to wait for readiness (if enabled). Defaults to `5m0s`.
+        :param pulumi.Input[_builtins.str] wait_for_readiness_timeout: How long to wait for readiness (if enabled). Defaults to `10m0s`.
         """
         pulumi.set(__self__, "slug", slug)
         if delete_protection is not None:
@@ -159,7 +159,7 @@ class StackArgs:
     @pulumi.getter(name="waitForReadinessTimeout")
     def wait_for_readiness_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        How long to wait for readiness (if enabled). Defaults to `5m0s`.
+        How long to wait for readiness (if enabled). Defaults to `10m0s`.
         """
         return pulumi.get(self, "wait_for_readiness_timeout")
 
@@ -364,7 +364,7 @@ class _StackState:
         :param pulumi.Input[_builtins.str] traces_url: Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
         :param pulumi.Input[_builtins.str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
         :param pulumi.Input[_builtins.bool] wait_for_readiness: Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
-        :param pulumi.Input[_builtins.str] wait_for_readiness_timeout: How long to wait for readiness (if enabled). Defaults to `5m0s`.
+        :param pulumi.Input[_builtins.str] wait_for_readiness_timeout: How long to wait for readiness (if enabled). Defaults to `10m0s`.
         """
         if alertmanager_ip_allow_list_cname is not None:
             pulumi.set(__self__, "alertmanager_ip_allow_list_cname", alertmanager_ip_allow_list_cname)
@@ -1756,7 +1756,7 @@ class _StackState:
     @pulumi.getter(name="waitForReadinessTimeout")
     def wait_for_readiness_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        How long to wait for readiness (if enabled). Defaults to `5m0s`.
+        How long to wait for readiness (if enabled). Defaults to `10m0s`.
         """
         return pulumi.get(self, "wait_for_readiness_timeout")
 
@@ -1820,7 +1820,7 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] slug: Subdomain that the Grafana instance will be available at. Setting slug to `<stack_slug>` will make the instance available at `https://<stack_slug>.grafana.net`.
         :param pulumi.Input[_builtins.str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
         :param pulumi.Input[_builtins.bool] wait_for_readiness: Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
-        :param pulumi.Input[_builtins.str] wait_for_readiness_timeout: How long to wait for readiness (if enabled). Defaults to `5m0s`.
+        :param pulumi.Input[_builtins.str] wait_for_readiness_timeout: How long to wait for readiness (if enabled). Defaults to `10m0s`.
         """
         ...
     @overload
@@ -2202,7 +2202,7 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] traces_url: Base URL of the Traces instance configured for this stack. To use this in the Tempo data source in Grafana, append `/tempo` to the URL.
         :param pulumi.Input[_builtins.str] url: Custom URL for the Grafana instance. Must have a CNAME setup to point to `.grafana.net` before creating the stack
         :param pulumi.Input[_builtins.bool] wait_for_readiness: Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
-        :param pulumi.Input[_builtins.str] wait_for_readiness_timeout: How long to wait for readiness (if enabled). Defaults to `5m0s`.
+        :param pulumi.Input[_builtins.str] wait_for_readiness_timeout: How long to wait for readiness (if enabled). Defaults to `10m0s`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -3088,7 +3088,7 @@ class Stack(pulumi.CustomResource):
     @pulumi.getter(name="waitForReadinessTimeout")
     def wait_for_readiness_timeout(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        How long to wait for readiness (if enabled). Defaults to `5m0s`.
+        How long to wait for readiness (if enabled). Defaults to `10m0s`.
         """
         return pulumi.get(self, "wait_for_readiness_timeout")
 

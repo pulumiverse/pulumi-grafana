@@ -246,7 +246,7 @@ type Stack struct {
 	Url pulumi.StringOutput `pulumi:"url"`
 	// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
 	WaitForReadiness pulumi.BoolPtrOutput `pulumi:"waitForReadiness"`
-	// How long to wait for readiness (if enabled). Defaults to `5m0s`.
+	// How long to wait for readiness (if enabled). Defaults to `10m0s`.
 	WaitForReadinessTimeout pulumi.StringPtrOutput `pulumi:"waitForReadinessTimeout"`
 }
 
@@ -472,7 +472,7 @@ type stackState struct {
 	Url *string `pulumi:"url"`
 	// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
 	WaitForReadiness *bool `pulumi:"waitForReadiness"`
-	// How long to wait for readiness (if enabled). Defaults to `5m0s`.
+	// How long to wait for readiness (if enabled). Defaults to `10m0s`.
 	WaitForReadinessTimeout *string `pulumi:"waitForReadinessTimeout"`
 }
 
@@ -666,7 +666,7 @@ type StackState struct {
 	Url pulumi.StringPtrInput
 	// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
 	WaitForReadiness pulumi.BoolPtrInput
-	// How long to wait for readiness (if enabled). Defaults to `5m0s`.
+	// How long to wait for readiness (if enabled). Defaults to `10m0s`.
 	WaitForReadinessTimeout pulumi.StringPtrInput
 }
 
@@ -691,7 +691,7 @@ type stackArgs struct {
 	Url *string `pulumi:"url"`
 	// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
 	WaitForReadiness *bool `pulumi:"waitForReadiness"`
-	// How long to wait for readiness (if enabled). Defaults to `5m0s`.
+	// How long to wait for readiness (if enabled). Defaults to `10m0s`.
 	WaitForReadinessTimeout *string `pulumi:"waitForReadinessTimeout"`
 }
 
@@ -713,7 +713,7 @@ type StackArgs struct {
 	Url pulumi.StringPtrInput
 	// Whether to wait for readiness of the stack after creating it. The check is a HEAD request to the stack URL (Grafana instance). Defaults to `true`.
 	WaitForReadiness pulumi.BoolPtrInput
-	// How long to wait for readiness (if enabled). Defaults to `5m0s`.
+	// How long to wait for readiness (if enabled). Defaults to `10m0s`.
 	WaitForReadinessTimeout pulumi.StringPtrInput
 }
 
@@ -1303,7 +1303,7 @@ func (o StackOutput) WaitForReadiness() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Stack) pulumi.BoolPtrOutput { return v.WaitForReadiness }).(pulumi.BoolPtrOutput)
 }
 
-// How long to wait for readiness (if enabled). Defaults to `5m0s`.
+// How long to wait for readiness (if enabled). Defaults to `10m0s`.
 func (o StackOutput) WaitForReadinessTimeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringPtrOutput { return v.WaitForReadinessTimeout }).(pulumi.StringPtrOutput)
 }
