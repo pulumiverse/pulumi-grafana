@@ -425,7 +425,7 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public readonly waitForReadiness: pulumi.Output<boolean | undefined>;
     /**
-     * How long to wait for readiness (if enabled). Defaults to `5m0s`.
+     * How long to wait for readiness (if enabled). Defaults to `10m0s`.
      */
     declare public readonly waitForReadinessTimeout: pulumi.Output<string | undefined>;
 
@@ -1027,7 +1027,7 @@ export interface StackState {
      */
     waitForReadiness?: pulumi.Input<boolean>;
     /**
-     * How long to wait for readiness (if enabled). Defaults to `5m0s`.
+     * How long to wait for readiness (if enabled). Defaults to `10m0s`.
      */
     waitForReadinessTimeout?: pulumi.Input<string>;
 }
@@ -1069,7 +1069,7 @@ export interface StackArgs {
      */
     waitForReadiness?: pulumi.Input<boolean>;
     /**
-     * How long to wait for readiness (if enabled). Defaults to `5m0s`.
+     * How long to wait for readiness (if enabled). Defaults to `10m0s`.
      */
     waitForReadinessTimeout?: pulumi.Input<string>;
 }

@@ -227,11 +227,19 @@ class DataSourceConfig(pulumi.CustomResource):
         loki = grafana.oss.DataSource("loki",
             type="loki",
             name="loki",
-            url="http://localhost:3100")
+            url="http://localhost:3100",
+            opts = pulumi.ResourceOptions(ignore_changes=[
+                    "jsonDataEncoded",
+                    "httpHeaders",
+                ]))
         tempo = grafana.oss.DataSource("tempo",
             type="tempo",
             name="tempo",
-            url="http://localhost:3200")
+            url="http://localhost:3200",
+            opts = pulumi.ResourceOptions(ignore_changes=[
+                    "jsonDataEncoded",
+                    "httpHeaders",
+                ]))
         loki_data_source_config = grafana.oss.DataSourceConfig("loki",
             uid=loki.uid,
             json_data_encoded=pulumi.Output.json_dumps({
@@ -299,11 +307,19 @@ class DataSourceConfig(pulumi.CustomResource):
         loki = grafana.oss.DataSource("loki",
             type="loki",
             name="loki",
-            url="http://localhost:3100")
+            url="http://localhost:3100",
+            opts = pulumi.ResourceOptions(ignore_changes=[
+                    "jsonDataEncoded",
+                    "httpHeaders",
+                ]))
         tempo = grafana.oss.DataSource("tempo",
             type="tempo",
             name="tempo",
-            url="http://localhost:3200")
+            url="http://localhost:3200",
+            opts = pulumi.ResourceOptions(ignore_changes=[
+                    "jsonDataEncoded",
+                    "httpHeaders",
+                ]))
         loki_data_source_config = grafana.oss.DataSourceConfig("loki",
             uid=loki.uid,
             json_data_encoded=pulumi.Output.json_dumps({

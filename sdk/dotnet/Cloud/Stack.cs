@@ -617,7 +617,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Output<bool?> WaitForReadiness { get; private set; } = null!;
 
         /// <summary>
-        /// How long to wait for readiness (if enabled). Defaults to `5m0s`.
+        /// How long to wait for readiness (if enabled). Defaults to `10m0s`.
         /// </summary>
         [Output("waitForReadinessTimeout")]
         public Output<string?> WaitForReadinessTimeout { get; private set; } = null!;
@@ -724,7 +724,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<bool>? WaitForReadiness { get; set; }
 
         /// <summary>
-        /// How long to wait for readiness (if enabled). Defaults to `5m0s`.
+        /// How long to wait for readiness (if enabled). Defaults to `10m0s`.
         /// </summary>
         [Input("waitForReadinessTimeout")]
         public Input<string>? WaitForReadinessTimeout { get; set; }
@@ -1473,7 +1473,7 @@ namespace Pulumiverse.Grafana.Cloud
         public Input<bool>? WaitForReadiness { get; set; }
 
         /// <summary>
-        /// How long to wait for readiness (if enabled). Defaults to `5m0s`.
+        /// How long to wait for readiness (if enabled). Defaults to `10m0s`.
         /// </summary>
         [Input("waitForReadinessTimeout")]
         public Input<string>? WaitForReadinessTimeout { get; set; }
