@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Fetches a list of teams from Grafana, optionally filtered by a search keyword.
@@ -18,8 +18,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const all = grafana.getTeams({});
- * const dev = grafana.getTeams({
+ * const all = grafana.oss.getTeams({});
+ * const dev = grafana.oss.getTeams({
  *     query: "dev",
  * });
  * ```
@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
 export function getTeams(args?: GetTeamsArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("grafana:index/getTeams:getTeams", {
+    return pulumi.runtime.invoke("grafana:oss/getTeams:getTeams", {
         "orgId": args.orgId,
         "query": args.query,
     }, opts);
@@ -66,7 +66,7 @@ export interface GetTeamsResult {
     /**
      * The list of matching Grafana teams.
      */
-    readonly teams: outputs.GetTeamsTeam[];
+    readonly teams: outputs.oss.GetTeamsTeam[];
 }
 /**
  * Fetches a list of teams from Grafana, optionally filtered by a search keyword.
@@ -80,8 +80,8 @@ export interface GetTeamsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as grafana from "@pulumiverse/grafana";
  *
- * const all = grafana.getTeams({});
- * const dev = grafana.getTeams({
+ * const all = grafana.oss.getTeams({});
+ * const dev = grafana.oss.getTeams({
  *     query: "dev",
  * });
  * ```
@@ -89,7 +89,7 @@ export interface GetTeamsResult {
 export function getTeamsOutput(args?: GetTeamsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTeamsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("grafana:index/getTeams:getTeams", {
+    return pulumi.runtime.invokeOutput("grafana:oss/getTeams:getTeams", {
         "orgId": args.orgId,
         "query": args.query,
     }, opts);

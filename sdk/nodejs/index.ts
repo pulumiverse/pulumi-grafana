@@ -5,11 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { GetTeamsArgs, GetTeamsResult, GetTeamsOutputArgs } from "./getTeams";
-export const getTeams: typeof import("./getTeams").getTeams = null as any;
-export const getTeamsOutput: typeof import("./getTeams").getTeamsOutput = null as any;
-utilities.lazyLoad(exports, ["getTeams","getTeamsOutput"], () => require("./getTeams"));
-
 export * from "./provider";
 import { Provider } from "./provider";
 

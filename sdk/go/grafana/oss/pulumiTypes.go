@@ -3870,6 +3870,130 @@ func (o GetTeamTeamSyncArrayOutput) Index(i pulumi.IntInput) GetTeamTeamSyncOutp
 	}).(GetTeamTeamSyncOutput)
 }
 
+type GetTeamsTeam struct {
+	Email       string `pulumi:"email"`
+	Id          int    `pulumi:"id"`
+	MemberCount int    `pulumi:"memberCount"`
+	Name        string `pulumi:"name"`
+	OrgId       int    `pulumi:"orgId"`
+	Uid         string `pulumi:"uid"`
+}
+
+// GetTeamsTeamInput is an input type that accepts GetTeamsTeamArgs and GetTeamsTeamOutput values.
+// You can construct a concrete instance of `GetTeamsTeamInput` via:
+//
+//	GetTeamsTeamArgs{...}
+type GetTeamsTeamInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamOutput() GetTeamsTeamOutput
+	ToGetTeamsTeamOutputWithContext(context.Context) GetTeamsTeamOutput
+}
+
+type GetTeamsTeamArgs struct {
+	Email       pulumi.StringInput `pulumi:"email"`
+	Id          pulumi.IntInput    `pulumi:"id"`
+	MemberCount pulumi.IntInput    `pulumi:"memberCount"`
+	Name        pulumi.StringInput `pulumi:"name"`
+	OrgId       pulumi.IntInput    `pulumi:"orgId"`
+	Uid         pulumi.StringInput `pulumi:"uid"`
+}
+
+func (GetTeamsTeamArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeam)(nil)).Elem()
+}
+
+func (i GetTeamsTeamArgs) ToGetTeamsTeamOutput() GetTeamsTeamOutput {
+	return i.ToGetTeamsTeamOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamArgs) ToGetTeamsTeamOutputWithContext(ctx context.Context) GetTeamsTeamOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamOutput)
+}
+
+// GetTeamsTeamArrayInput is an input type that accepts GetTeamsTeamArray and GetTeamsTeamArrayOutput values.
+// You can construct a concrete instance of `GetTeamsTeamArrayInput` via:
+//
+//	GetTeamsTeamArray{ GetTeamsTeamArgs{...} }
+type GetTeamsTeamArrayInput interface {
+	pulumi.Input
+
+	ToGetTeamsTeamArrayOutput() GetTeamsTeamArrayOutput
+	ToGetTeamsTeamArrayOutputWithContext(context.Context) GetTeamsTeamArrayOutput
+}
+
+type GetTeamsTeamArray []GetTeamsTeamInput
+
+func (GetTeamsTeamArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamsTeam)(nil)).Elem()
+}
+
+func (i GetTeamsTeamArray) ToGetTeamsTeamArrayOutput() GetTeamsTeamArrayOutput {
+	return i.ToGetTeamsTeamArrayOutputWithContext(context.Background())
+}
+
+func (i GetTeamsTeamArray) ToGetTeamsTeamArrayOutputWithContext(ctx context.Context) GetTeamsTeamArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTeamsTeamArrayOutput)
+}
+
+type GetTeamsTeamOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTeamsTeam)(nil)).Elem()
+}
+
+func (o GetTeamsTeamOutput) ToGetTeamsTeamOutput() GetTeamsTeamOutput {
+	return o
+}
+
+func (o GetTeamsTeamOutput) ToGetTeamsTeamOutputWithContext(ctx context.Context) GetTeamsTeamOutput {
+	return o
+}
+
+func (o GetTeamsTeamOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeam) string { return v.Email }).(pulumi.StringOutput)
+}
+
+func (o GetTeamsTeamOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTeamsTeam) int { return v.Id }).(pulumi.IntOutput)
+}
+
+func (o GetTeamsTeamOutput) MemberCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTeamsTeam) int { return v.MemberCount }).(pulumi.IntOutput)
+}
+
+func (o GetTeamsTeamOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeam) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetTeamsTeamOutput) OrgId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTeamsTeam) int { return v.OrgId }).(pulumi.IntOutput)
+}
+
+func (o GetTeamsTeamOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTeamsTeam) string { return v.Uid }).(pulumi.StringOutput)
+}
+
+type GetTeamsTeamArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTeamsTeamArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTeamsTeam)(nil)).Elem()
+}
+
+func (o GetTeamsTeamArrayOutput) ToGetTeamsTeamArrayOutput() GetTeamsTeamArrayOutput {
+	return o
+}
+
+func (o GetTeamsTeamArrayOutput) ToGetTeamsTeamArrayOutputWithContext(ctx context.Context) GetTeamsTeamArrayOutput {
+	return o
+}
+
+func (o GetTeamsTeamArrayOutput) Index(i pulumi.IntInput) GetTeamsTeamOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamsTeam {
+		return vs[0].([]GetTeamsTeam)[vs[1].(int)]
+	}).(GetTeamsTeamOutput)
+}
+
 type GetUsersUser struct {
 	// The user's email.
 	Email string `pulumi:"email"`
@@ -4038,6 +4162,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamPreferenceArrayInput)(nil)).Elem(), GetTeamPreferenceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamTeamSyncInput)(nil)).Elem(), GetTeamTeamSyncArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamTeamSyncArrayInput)(nil)).Elem(), GetTeamTeamSyncArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamInput)(nil)).Elem(), GetTeamsTeamArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamsTeamArrayInput)(nil)).Elem(), GetTeamsTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
 	pulumi.RegisterOutputType(DashboardPermissionPermissionOutput{})
@@ -4074,6 +4200,8 @@ func init() {
 	pulumi.RegisterOutputType(GetTeamPreferenceArrayOutput{})
 	pulumi.RegisterOutputType(GetTeamTeamSyncOutput{})
 	pulumi.RegisterOutputType(GetTeamTeamSyncArrayOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamOutput{})
+	pulumi.RegisterOutputType(GetTeamsTeamArrayOutput{})
 	pulumi.RegisterOutputType(GetUsersUserOutput{})
 	pulumi.RegisterOutputType(GetUsersUserArrayOutput{})
 }

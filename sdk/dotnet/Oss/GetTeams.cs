@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Grafana
+namespace Pulumiverse.Grafana.Oss
 {
     public static class GetTeams
     {
@@ -28,9 +28,9 @@ namespace Pulumiverse.Grafana
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var all = Grafana.GetTeams.Invoke();
+        ///     var all = Grafana.Oss.GetTeams.Invoke();
         /// 
-        ///     var dev = Grafana.GetTeams.Invoke(new()
+        ///     var dev = Grafana.Oss.GetTeams.Invoke(new()
         ///     {
         ///         Query = "dev",
         ///     });
@@ -39,7 +39,7 @@ namespace Pulumiverse.Grafana
         /// ```
         /// </summary>
         public static Task<GetTeamsResult> InvokeAsync(GetTeamsArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetTeamsResult>("grafana:index/getTeams:getTeams", args ?? new GetTeamsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetTeamsResult>("grafana:oss/getTeams:getTeams", args ?? new GetTeamsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Fetches a list of teams from Grafana, optionally filtered by a search keyword.
@@ -57,9 +57,9 @@ namespace Pulumiverse.Grafana
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var all = Grafana.GetTeams.Invoke();
+        ///     var all = Grafana.Oss.GetTeams.Invoke();
         /// 
-        ///     var dev = Grafana.GetTeams.Invoke(new()
+        ///     var dev = Grafana.Oss.GetTeams.Invoke(new()
         ///     {
         ///         Query = "dev",
         ///     });
@@ -68,7 +68,7 @@ namespace Pulumiverse.Grafana
         /// ```
         /// </summary>
         public static Output<GetTeamsResult> Invoke(GetTeamsInvokeArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetTeamsResult>("grafana:index/getTeams:getTeams", args ?? new GetTeamsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetTeamsResult>("grafana:oss/getTeams:getTeams", args ?? new GetTeamsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Fetches a list of teams from Grafana, optionally filtered by a search keyword.
@@ -86,9 +86,9 @@ namespace Pulumiverse.Grafana
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var all = Grafana.GetTeams.Invoke();
+        ///     var all = Grafana.Oss.GetTeams.Invoke();
         /// 
-        ///     var dev = Grafana.GetTeams.Invoke(new()
+        ///     var dev = Grafana.Oss.GetTeams.Invoke(new()
         ///     {
         ///         Query = "dev",
         ///     });
@@ -97,7 +97,7 @@ namespace Pulumiverse.Grafana
         /// ```
         /// </summary>
         public static Output<GetTeamsResult> Invoke(GetTeamsInvokeArgs args, InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<GetTeamsResult>("grafana:index/getTeams:getTeams", args ?? new GetTeamsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetTeamsResult>("grafana:oss/getTeams:getTeams", args ?? new GetTeamsInvokeArgs(), options.WithDefaults());
     }
 
 
