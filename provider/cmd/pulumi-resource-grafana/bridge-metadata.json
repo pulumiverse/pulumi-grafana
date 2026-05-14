@@ -2465,6 +2465,15 @@
                     }
                 }
             },
+            "grafana_teams": {
+                "current": "grafana:index/getTeams:getTeams",
+                "majorVersion": 2,
+                "fields": {
+                    "teams": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "grafana_user": {
                 "current": "grafana:oss/getUser:getUser",
                 "majorVersion": 2
@@ -2663,6 +2672,7 @@
             "grafana:fleetManagement/getCollector:getCollector": 1,
             "grafana:fleetManagement/getCollectors:getCollectors": 1,
             "grafana:frontendObservability/getApp:getApp": 1,
+            "grafana:index/getTeams:getTeams": 1,
             "grafana:k6/getLoadTest:getLoadTest": 1,
             "grafana:k6/getLoadTests:getLoadTests": 1,
             "grafana:k6/getProject:getProject": 1,
