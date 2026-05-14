@@ -33,6 +33,7 @@ __all__ = [
     'GetLibraryPanelsPanelResult',
     'GetTeamPreferenceResult',
     'GetTeamTeamSyncResult',
+    'GetTeamsTeamResult',
     'GetUsersUserResult',
 ]
 
@@ -2179,6 +2180,53 @@ class GetTeamTeamSyncResult(dict):
     @pulumi.getter
     def groups(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "groups")
+
+
+@pulumi.output_type
+class GetTeamsTeamResult(dict):
+    def __init__(__self__, *,
+                 email: _builtins.str,
+                 id: _builtins.int,
+                 member_count: _builtins.int,
+                 name: _builtins.str,
+                 org_id: _builtins.int,
+                 uid: _builtins.str):
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "member_count", member_count)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "uid", uid)
+
+    @_builtins.property
+    @pulumi.getter
+    def email(self) -> _builtins.str:
+        return pulumi.get(self, "email")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="memberCount")
+    def member_count(self) -> _builtins.int:
+        return pulumi.get(self, "member_count")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> _builtins.int:
+        return pulumi.get(self, "org_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.str:
+        return pulumi.get(self, "uid")
 
 
 @pulumi.output_type

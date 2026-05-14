@@ -28,6 +28,7 @@ from .get_organization_preferences import *
 from .get_organization_user import *
 from .get_service_account import *
 from .get_team import *
+from .get_teams import *
 from .get_user import *
 from .get_users import *
 from .library_panel import *

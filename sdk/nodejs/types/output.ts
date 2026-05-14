@@ -5657,6 +5657,15 @@ export namespace oss {
         groups: string[];
     }
 
+    export interface GetTeamsTeam {
+        email: string;
+        id: number;
+        memberCount: number;
+        name: string;
+        orgId: number;
+        uid: string;
+    }
+
     export interface GetUsersUser {
         /**
          * The user's email.

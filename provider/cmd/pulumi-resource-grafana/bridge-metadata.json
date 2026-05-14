@@ -2465,6 +2465,15 @@
                     }
                 }
             },
+            "grafana_teams": {
+                "current": "grafana:oss/getTeams:getTeams",
+                "majorVersion": 2,
+                "fields": {
+                    "teams": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "grafana_user": {
                 "current": "grafana:oss/getUser:getUser",
                 "majorVersion": 2
@@ -2693,6 +2702,7 @@
             "grafana:oss/getOrganizationUser:getOrganizationUser": 0,
             "grafana:oss/getServiceAccount:getServiceAccount": 0,
             "grafana:oss/getTeam:getTeam": 1,
+            "grafana:oss/getTeams:getTeams": 1,
             "grafana:oss/getUser:getUser": 0,
             "grafana:oss/getUsers:getUsers": 0,
             "grafana:slo/getSlos:getSlos": 1,

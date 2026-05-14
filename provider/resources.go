@@ -799,6 +799,9 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "team.md",
 				},
 			},
+			"grafana_teams": {
+				Tok: grafanaDataSource(ossMod, "getTeams"),
+			},
 			"grafana_user": {
 				Tok: grafanaDataSource(ossMod, "getUser"),
 				Docs: &tfbridge.DocInfo{

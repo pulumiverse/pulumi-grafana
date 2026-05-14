@@ -179,6 +179,7 @@
         "oss/getOrganizationUser.ts",
         "oss/getServiceAccount.ts",
         "oss/getTeam.ts",
+        "oss/getTeams.ts",
         "oss/getUser.ts",
         "oss/getUsers.ts",
         "oss/index.ts",
