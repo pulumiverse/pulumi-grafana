@@ -117,6 +117,7 @@
         "frontendobservability/app.ts",
         "frontendobservability/getApp.ts",
         "frontendobservability/index.ts",
+        "getTeams.ts",
         "index.ts",
         "k6/getLoadTest.ts",
         "k6/getLoadTests.ts",

@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface GetTeamsTeam {
+    email: string;
+    id: number;
+    memberCount: number;
+    name: string;
+    orgId: number;
+    uid: string;
+}
+
 export namespace alerting {
     export interface AlertEnrichmentMetadata {
         /**
