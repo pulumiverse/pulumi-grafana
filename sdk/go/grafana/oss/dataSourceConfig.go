@@ -41,7 +41,10 @@ import (
 //				Type: pulumi.String("loki"),
 //				Name: pulumi.String("loki"),
 //				Url:  pulumi.String("http://localhost:3100"),
-//			})
+//			}, pulumi.IgnoreChanges([]string{
+//				"jsonDataEncoded",
+//				"httpHeaders",
+//			}))
 //			if err != nil {
 //				return err
 //			}
@@ -49,7 +52,10 @@ import (
 //				Type: pulumi.String("tempo"),
 //				Name: pulumi.String("tempo"),
 //				Url:  pulumi.String("http://localhost:3200"),
-//			})
+//			}, pulumi.IgnoreChanges([]string{
+//				"jsonDataEncoded",
+//				"httpHeaders",
+//			}))
 //			if err != nil {
 //				return err
 //			}
