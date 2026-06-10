@@ -867,6 +867,14 @@ export namespace alerting {
          */
         disableResolveMessage?: boolean;
         /**
+         * Whether to hide the Open URL button in the message. This feature requires Grafana 12.4.0 or later.
+         */
+        hideOpenButton?: boolean;
+        /**
+         * Whether to hide the version info in the message. This feature requires Grafana 12.4.0 or later. Defaults to `false`.
+         */
+        hideVersionInfo?: boolean;
+        /**
          * The templated content of the message.
          */
         message?: string;
@@ -4128,6 +4136,39 @@ export namespace assert {
          * Values to match against.
          */
         values: string[];
+    }
+
+}
+
+export namespace assistant {
+    export interface McpServerConfiguration {
+        /**
+         * Built-in provider ID (e.g. cursor). When set, tools are provided locally.
+         */
+        builtinId?: string;
+        /**
+         * Tool approval policies keyed by tool name (`autoApprove`, `alwaysAsk`, or empty for default).
+         */
+        toolApprovalPolicies?: {[key: string]: string};
+        /**
+         * Tool preferences keyed by tool name (`enabled` or `disabled`).
+         */
+        toolPreferences?: {[key: string]: string};
+        /**
+         * MCP server URL.
+         */
+        url?: string;
+    }
+
+    export interface SkillAllowedTool {
+        /**
+         * Integration UUID.
+         */
+        integrationId: string;
+        /**
+         * MCP tool name.
+         */
+        toolName: string;
     }
 
 }

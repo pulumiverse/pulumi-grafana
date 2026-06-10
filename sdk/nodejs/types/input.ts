@@ -867,6 +867,14 @@ export namespace alerting {
          */
         disableResolveMessage?: pulumi.Input<boolean>;
         /**
+         * Whether to hide the Open URL button in the message. This feature requires Grafana 12.4.0 or later.
+         */
+        hideOpenButton?: pulumi.Input<boolean>;
+        /**
+         * Whether to hide the version info in the message. This feature requires Grafana 12.4.0 or later. Defaults to `false`.
+         */
+        hideVersionInfo?: pulumi.Input<boolean>;
+        /**
          * The templated content of the message.
          */
         message?: pulumi.Input<string>;
@@ -4120,6 +4128,38 @@ export namespace assert {
          * Values to match against.
          */
         values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+}
+
+export namespace assistant {
+    export interface McpServerConfiguration {
+        /**
+         * Built-in provider ID (e.g. cursor). When set, tools are provided locally.
+         */
+        builtinId?: pulumi.Input<string>;
+        /**
+         * Tool approval policies keyed by tool name (`autoApprove`, `alwaysAsk`, or empty for default).
+         */
+        toolApprovalPolicies?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Tool preferences keyed by tool name (`enabled` or `disabled`).
+         */
+        toolPreferences?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * MCP server URL.
+         */
+        url?: pulumi.Input<string>;
+    }
+
+    export interface SkillAllowedTool {
+        /**
+         * Integration UUID.
+         */
+        integrationId: pulumi.Input<string>;
+        /**
+         * MCP tool name.
+         */
+        toolName: pulumi.Input<string>;
     }
 }
 

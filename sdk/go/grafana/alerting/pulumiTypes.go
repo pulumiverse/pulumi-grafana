@@ -8829,6 +8829,10 @@ func (o ContactPointEmailArrayOutput) Index(i pulumi.IntInput) ContactPointEmail
 type ContactPointGooglechat struct {
 	// Whether to disable sending resolve messages. Defaults to `false`.
 	DisableResolveMessage *bool `pulumi:"disableResolveMessage"`
+	// Whether to hide the Open URL button in the message. This feature requires Grafana 12.4.0 or later.
+	HideOpenButton *bool `pulumi:"hideOpenButton"`
+	// Whether to hide the version info in the message. This feature requires Grafana 12.4.0 or later. Defaults to `false`.
+	HideVersionInfo *bool `pulumi:"hideVersionInfo"`
 	// The templated content of the message.
 	Message *string `pulumi:"message"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
@@ -8855,6 +8859,10 @@ type ContactPointGooglechatInput interface {
 type ContactPointGooglechatArgs struct {
 	// Whether to disable sending resolve messages. Defaults to `false`.
 	DisableResolveMessage pulumi.BoolPtrInput `pulumi:"disableResolveMessage"`
+	// Whether to hide the Open URL button in the message. This feature requires Grafana 12.4.0 or later.
+	HideOpenButton pulumi.BoolPtrInput `pulumi:"hideOpenButton"`
+	// Whether to hide the version info in the message. This feature requires Grafana 12.4.0 or later. Defaults to `false`.
+	HideVersionInfo pulumi.BoolPtrInput `pulumi:"hideVersionInfo"`
 	// The templated content of the message.
 	Message pulumi.StringPtrInput `pulumi:"message"`
 	// Additional custom properties to attach to the notifier. Defaults to `map[]`.
@@ -8921,6 +8929,16 @@ func (o ContactPointGooglechatOutput) ToContactPointGooglechatOutputWithContext(
 // Whether to disable sending resolve messages. Defaults to `false`.
 func (o ContactPointGooglechatOutput) DisableResolveMessage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContactPointGooglechat) *bool { return v.DisableResolveMessage }).(pulumi.BoolPtrOutput)
+}
+
+// Whether to hide the Open URL button in the message. This feature requires Grafana 12.4.0 or later.
+func (o ContactPointGooglechatOutput) HideOpenButton() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ContactPointGooglechat) *bool { return v.HideOpenButton }).(pulumi.BoolPtrOutput)
+}
+
+// Whether to hide the version info in the message. This feature requires Grafana 12.4.0 or later. Defaults to `false`.
+func (o ContactPointGooglechatOutput) HideVersionInfo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ContactPointGooglechat) *bool { return v.HideVersionInfo }).(pulumi.BoolPtrOutput)
 }
 
 // The templated content of the message.

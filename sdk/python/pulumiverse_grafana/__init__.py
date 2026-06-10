@@ -16,6 +16,8 @@ if typing.TYPE_CHECKING:
     apps = __apps
     import pulumiverse_grafana.assert_ as __assert_
     assert_ = __assert_
+    import pulumiverse_grafana.assistant as __assistant
+    assistant = __assistant
     import pulumiverse_grafana.cloud as __cloud
     cloud = __cloud
     import pulumiverse_grafana.cloudprovider as __cloudprovider
@@ -48,6 +50,7 @@ else:
     alerting = _utilities.lazy_import('pulumiverse_grafana.alerting')
     apps = _utilities.lazy_import('pulumiverse_grafana.apps')
     assert_ = _utilities.lazy_import('pulumiverse_grafana.assert_')
+    assistant = _utilities.lazy_import('pulumiverse_grafana.assistant')
     cloud = _utilities.lazy_import('pulumiverse_grafana.cloud')
     cloudprovider = _utilities.lazy_import('pulumiverse_grafana.cloudprovider')
     config = _utilities.lazy_import('pulumiverse_grafana.config')
@@ -296,6 +299,38 @@ _utilities.register(
   "fqn": "pulumiverse_grafana.assert_",
   "classes": {
    "grafana:assert/traceConfig:TraceConfig": "TraceConfig"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "assistant/mcpServer",
+  "fqn": "pulumiverse_grafana.assistant",
+  "classes": {
+   "grafana:assistant/mcpServer:McpServer": "McpServer"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "assistant/quickstart",
+  "fqn": "pulumiverse_grafana.assistant",
+  "classes": {
+   "grafana:assistant/quickstart:Quickstart": "Quickstart"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "assistant/rule",
+  "fqn": "pulumiverse_grafana.assistant",
+  "classes": {
+   "grafana:assistant/rule:Rule": "Rule"
+  }
+ },
+ {
+  "pkg": "grafana",
+  "mod": "assistant/skill",
+  "fqn": "pulumiverse_grafana.assistant",
+  "classes": {
+   "grafana:assistant/skill:Skill": "Skill"
   }
  },
  {

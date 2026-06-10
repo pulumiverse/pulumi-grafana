@@ -28,6 +28,7 @@ class CheckArgs:
                  alert_sensitivity: Optional[pulumi.Input[_builtins.str]] = None,
                  basic_metrics_only: Optional[pulumi.Input[_builtins.bool]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  frequency: Optional[pulumi.Input[_builtins.int]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
@@ -41,6 +42,7 @@ class CheckArgs:
         :param pulumi.Input[_builtins.str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `none`.
         :param pulumi.Input[_builtins.bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] enabled: Whether to enable the check. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] folder_uid: The UID of the Grafana folder to associate the check with.
         :param pulumi.Input[_builtins.int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
         :param pulumi.Input[_builtins.int] timeout: Specifies the maximum running time for the check in milliseconds. The minimum acceptable value is 1 second (1000 ms), and the maximum 180 seconds (180000 ms). Defaults to `3000`.
@@ -55,6 +57,8 @@ class CheckArgs:
             pulumi.set(__self__, "basic_metrics_only", basic_metrics_only)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
         if frequency is not None:
             pulumi.set(__self__, "frequency", frequency)
         if labels is not None:
@@ -147,6 +151,18 @@ class CheckArgs:
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The UID of the Grafana folder to associate the check with.
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @folder_uid.setter
+    def folder_uid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "folder_uid", value)
+
+    @_builtins.property
     @pulumi.getter
     def frequency(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -189,6 +205,7 @@ class _CheckState:
                  alert_sensitivity: Optional[pulumi.Input[_builtins.str]] = None,
                  basic_metrics_only: Optional[pulumi.Input[_builtins.bool]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  frequency: Optional[pulumi.Input[_builtins.int]] = None,
                  job: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -203,6 +220,7 @@ class _CheckState:
         :param pulumi.Input[_builtins.str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `none`.
         :param pulumi.Input[_builtins.bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] enabled: Whether to enable the check. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] folder_uid: The UID of the Grafana folder to associate the check with.
         :param pulumi.Input[_builtins.int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
         :param pulumi.Input[_builtins.str] job: Name used for job label.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
@@ -218,6 +236,8 @@ class _CheckState:
             pulumi.set(__self__, "basic_metrics_only", basic_metrics_only)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if folder_uid is not None:
+            pulumi.set(__self__, "folder_uid", folder_uid)
         if frequency is not None:
             pulumi.set(__self__, "frequency", frequency)
         if job is not None:
@@ -270,6 +290,18 @@ class _CheckState:
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The UID of the Grafana folder to associate the check with.
+        """
+        return pulumi.get(self, "folder_uid")
+
+    @folder_uid.setter
+    def folder_uid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "folder_uid", value)
 
     @_builtins.property
     @pulumi.getter
@@ -377,6 +409,7 @@ class Check(pulumi.CustomResource):
                  alert_sensitivity: Optional[pulumi.Input[_builtins.str]] = None,
                  basic_metrics_only: Optional[pulumi.Input[_builtins.bool]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  frequency: Optional[pulumi.Input[_builtins.int]] = None,
                  job: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -496,6 +529,7 @@ class Check(pulumi.CustomResource):
             job="HTTP Defaults",
             target="https://grafana.org",
             enabled=False,
+            folder_uid="test-folder-uid",
             probes=[
                 main.probes["mumbai"],
                 main.probes["mumbai"],
@@ -782,6 +816,7 @@ class Check(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `none`.
         :param pulumi.Input[_builtins.bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] enabled: Whether to enable the check. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] folder_uid: The UID of the Grafana folder to associate the check with.
         :param pulumi.Input[_builtins.int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
         :param pulumi.Input[_builtins.str] job: Name used for job label.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
@@ -907,6 +942,7 @@ class Check(pulumi.CustomResource):
             job="HTTP Defaults",
             target="https://grafana.org",
             enabled=False,
+            folder_uid="test-folder-uid",
             probes=[
                 main.probes["mumbai"],
                 main.probes["mumbai"],
@@ -1206,6 +1242,7 @@ class Check(pulumi.CustomResource):
                  alert_sensitivity: Optional[pulumi.Input[_builtins.str]] = None,
                  basic_metrics_only: Optional[pulumi.Input[_builtins.bool]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
                  frequency: Optional[pulumi.Input[_builtins.int]] = None,
                  job: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -1225,6 +1262,7 @@ class Check(pulumi.CustomResource):
             __props__.__dict__["alert_sensitivity"] = alert_sensitivity
             __props__.__dict__["basic_metrics_only"] = basic_metrics_only
             __props__.__dict__["enabled"] = enabled
+            __props__.__dict__["folder_uid"] = folder_uid
             __props__.__dict__["frequency"] = frequency
             if job is None and not opts.urn:
                 raise TypeError("Missing required property 'job'")
@@ -1254,6 +1292,7 @@ class Check(pulumi.CustomResource):
             alert_sensitivity: Optional[pulumi.Input[_builtins.str]] = None,
             basic_metrics_only: Optional[pulumi.Input[_builtins.bool]] = None,
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+            folder_uid: Optional[pulumi.Input[_builtins.str]] = None,
             frequency: Optional[pulumi.Input[_builtins.int]] = None,
             job: Optional[pulumi.Input[_builtins.str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -1272,6 +1311,7 @@ class Check(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] alert_sensitivity: Can be set to `none`, `low`, `medium`, or `high` to correspond to the check [alert levels](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/configure-alerts/synthetic-monitoring-alerting/). Defaults to `none`.
         :param pulumi.Input[_builtins.bool] basic_metrics_only: Metrics are reduced by default. Set this to `false` if you'd like to publish all metrics. We maintain a [full list of metrics](https://github.com/grafana/synthetic-monitoring-agent/tree/main/internal/scraper/testdata) collected for each. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] enabled: Whether to enable the check. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] folder_uid: The UID of the Grafana folder to associate the check with.
         :param pulumi.Input[_builtins.int] frequency: How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
         :param pulumi.Input[_builtins.str] job: Name used for job label.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Custom labels to be included with collected metrics and logs. The maximum number of labels that can be specified per check is 5. These are applied, along with the probe-specific labels, to the outgoing metrics. The names and values of the labels cannot be empty, and the maximum length is 32 bytes.
@@ -1288,6 +1328,7 @@ class Check(pulumi.CustomResource):
         __props__.__dict__["alert_sensitivity"] = alert_sensitivity
         __props__.__dict__["basic_metrics_only"] = basic_metrics_only
         __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["folder_uid"] = folder_uid
         __props__.__dict__["frequency"] = frequency
         __props__.__dict__["job"] = job
         __props__.__dict__["labels"] = labels
@@ -1321,6 +1362,14 @@ class Check(pulumi.CustomResource):
         Whether to enable the check. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="folderUid")
+    def folder_uid(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The UID of the Grafana folder to associate the check with.
+        """
+        return pulumi.get(self, "folder_uid")
 
     @_builtins.property
     @pulumi.getter

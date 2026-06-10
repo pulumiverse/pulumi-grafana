@@ -34,6 +34,7 @@ const (
 	alertingMod              = "alerting"
 	appsMod                  = "apps"
 	assertsMod               = "assert"
+	assistantMod             = "assistant"
 	cloudMod                 = "cloud"
 	cloudProviderMod         = "cloudProvider"
 	connectionsMod           = "connections"
@@ -911,6 +912,7 @@ func Provider() tfbridge.ProviderInfo {
 			map[string]string{
 				"alerting":             alertingMod,
 				"asserts":              assertsMod,
+				"assistant":            assistantMod,
 				"cloud":                cloudMod,
 				"cloud_provider":       cloudProviderMod,
 				"connections":          connectionsMod,

@@ -4215,6 +4215,14 @@ class ContactPointGooglechatArgsDict(TypedDict):
     """
     Whether to disable sending resolve messages. Defaults to `false`.
     """
+    hide_open_button: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to hide the Open URL button in the message. This feature requires Grafana 12.4.0 or later.
+    """
+    hide_version_info: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to hide the version info in the message. This feature requires Grafana 12.4.0 or later. Defaults to `false`.
+    """
     message: NotRequired[pulumi.Input[_builtins.str]]
     """
     The templated content of the message.
@@ -4237,6 +4245,8 @@ class ContactPointGooglechatArgs:
     def __init__(__self__, *,
                  url: pulumi.Input[_builtins.str],
                  disable_resolve_message: Optional[pulumi.Input[_builtins.bool]] = None,
+                 hide_open_button: Optional[pulumi.Input[_builtins.bool]] = None,
+                 hide_version_info: Optional[pulumi.Input[_builtins.bool]] = None,
                  message: Optional[pulumi.Input[_builtins.str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  title: Optional[pulumi.Input[_builtins.str]] = None,
@@ -4244,6 +4254,8 @@ class ContactPointGooglechatArgs:
         """
         :param pulumi.Input[_builtins.str] url: The Google Chat webhook URL.
         :param pulumi.Input[_builtins.bool] disable_resolve_message: Whether to disable sending resolve messages. Defaults to `false`.
+        :param pulumi.Input[_builtins.bool] hide_open_button: Whether to hide the Open URL button in the message. This feature requires Grafana 12.4.0 or later.
+        :param pulumi.Input[_builtins.bool] hide_version_info: Whether to hide the version info in the message. This feature requires Grafana 12.4.0 or later. Defaults to `false`.
         :param pulumi.Input[_builtins.str] message: The templated content of the message.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Additional custom properties to attach to the notifier. Defaults to `map[]`.
         :param pulumi.Input[_builtins.str] title: The templated content of the title.
@@ -4252,6 +4264,10 @@ class ContactPointGooglechatArgs:
         pulumi.set(__self__, "url", url)
         if disable_resolve_message is not None:
             pulumi.set(__self__, "disable_resolve_message", disable_resolve_message)
+        if hide_open_button is not None:
+            pulumi.set(__self__, "hide_open_button", hide_open_button)
+        if hide_version_info is not None:
+            pulumi.set(__self__, "hide_version_info", hide_version_info)
         if message is not None:
             pulumi.set(__self__, "message", message)
         if settings is not None:
@@ -4284,6 +4300,30 @@ class ContactPointGooglechatArgs:
     @disable_resolve_message.setter
     def disable_resolve_message(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "disable_resolve_message", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hideOpenButton")
+    def hide_open_button(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to hide the Open URL button in the message. This feature requires Grafana 12.4.0 or later.
+        """
+        return pulumi.get(self, "hide_open_button")
+
+    @hide_open_button.setter
+    def hide_open_button(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "hide_open_button", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hideVersionInfo")
+    def hide_version_info(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to hide the version info in the message. This feature requires Grafana 12.4.0 or later. Defaults to `false`.
+        """
+        return pulumi.get(self, "hide_version_info")
+
+    @hide_version_info.setter
+    def hide_version_info(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "hide_version_info", value)
 
     @_builtins.property
     @pulumi.getter

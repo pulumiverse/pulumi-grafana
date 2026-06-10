@@ -20,6 +20,18 @@ namespace Pulumiverse.Grafana.Alerting.Inputs
         public Input<bool>? DisableResolveMessage { get; set; }
 
         /// <summary>
+        /// Whether to hide the Open URL button in the message. This feature requires Grafana 12.4.0 or later.
+        /// </summary>
+        [Input("hideOpenButton")]
+        public Input<bool>? HideOpenButton { get; set; }
+
+        /// <summary>
+        /// Whether to hide the version info in the message. This feature requires Grafana 12.4.0 or later. Defaults to `False`.
+        /// </summary>
+        [Input("hideVersionInfo")]
+        public Input<bool>? HideVersionInfo { get; set; }
+
+        /// <summary>
         /// The templated content of the message.
         /// </summary>
         [Input("message")]

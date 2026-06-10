@@ -13,6 +13,7 @@ import { Provider } from "./provider";
 import * as alerting from "./alerting";
 import * as apps from "./apps";
 import * as assert from "./assert";
+import * as assistant from "./assistant";
 import * as cloud from "./cloud";
 import * as cloudprovider from "./cloudprovider";
 import * as config from "./config";
@@ -33,6 +34,7 @@ export {
     alerting,
     apps,
     assert,
+    assistant,
     cloud,
     cloudprovider,
     config,

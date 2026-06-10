@@ -453,6 +453,37 @@
                     }
                 }
             },
+            "grafana_assistant_mcp_server": {
+                "current": "grafana:assistant/mcpServer:McpServer",
+                "majorVersion": 2,
+                "fields": {
+                    "applications": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "grafana_assistant_quickstart": {
+                "current": "grafana:assistant/quickstart:Quickstart",
+                "majorVersion": 2
+            },
+            "grafana_assistant_rule": {
+                "current": "grafana:assistant/rule:Rule",
+                "majorVersion": 2,
+                "fields": {
+                    "applications": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "grafana_assistant_skill": {
+                "current": "grafana:assistant/skill:Skill",
+                "majorVersion": 2,
+                "fields": {
+                    "allowed_tools": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "grafana_cloud_access_policy": {
                 "current": "grafana:cloud/accessPolicy:AccessPolicy",
                 "majorVersion": 2,
@@ -2571,6 +2602,10 @@
             "grafana:assert/suppressedAssertionsConfig:SuppressedAssertionsConfig": 1,
             "grafana:assert/thresholds:Thresholds": 0,
             "grafana:assert/traceConfig:TraceConfig": 0,
+            "grafana:assistant/mcpServer:McpServer": 1,
+            "grafana:assistant/quickstart:Quickstart": 1,
+            "grafana:assistant/rule:Rule": 1,
+            "grafana:assistant/skill:Skill": 1,
             "grafana:cloud/accessPolicy:AccessPolicy": 0,
             "grafana:cloud/accessPolicyRotatingToken:AccessPolicyRotatingToken": 0,
             "grafana:cloud/accessPolicyToken:AccessPolicyToken": 0,

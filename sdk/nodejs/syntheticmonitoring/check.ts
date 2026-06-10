@@ -116,6 +116,7 @@ import * as utilities from "../utilities";
  *     job: "HTTP Defaults",
  *     target: "https://grafana.org",
  *     enabled: false,
+ *     folderUid: "test-folder-uid",
  *     probes: [
  *         main.then(main => main.probes?.mumbai),
  *         main.then(main => main.probes?.mumbai),
@@ -438,6 +439,10 @@ export class Check extends pulumi.CustomResource {
      */
     declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
+     * The UID of the Grafana folder to associate the check with.
+     */
+    declare public readonly folderUid: pulumi.Output<string | undefined>;
+    /**
      * How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
      */
     declare public readonly frequency: pulumi.Output<number | undefined>;
@@ -486,6 +491,7 @@ export class Check extends pulumi.CustomResource {
             resourceInputs["alertSensitivity"] = state?.alertSensitivity;
             resourceInputs["basicMetricsOnly"] = state?.basicMetricsOnly;
             resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["folderUid"] = state?.folderUid;
             resourceInputs["frequency"] = state?.frequency;
             resourceInputs["job"] = state?.job;
             resourceInputs["labels"] = state?.labels;
@@ -511,6 +517,7 @@ export class Check extends pulumi.CustomResource {
             resourceInputs["alertSensitivity"] = args?.alertSensitivity;
             resourceInputs["basicMetricsOnly"] = args?.basicMetricsOnly;
             resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["folderUid"] = args?.folderUid;
             resourceInputs["frequency"] = args?.frequency;
             resourceInputs["job"] = args?.job;
             resourceInputs["labels"] = args?.labels;
@@ -541,6 +548,10 @@ export interface CheckState {
      * Whether to enable the check. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * The UID of the Grafana folder to associate the check with.
+     */
+    folderUid?: pulumi.Input<string>;
     /**
      * How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
      */
@@ -591,6 +602,10 @@ export interface CheckArgs {
      * Whether to enable the check. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * The UID of the Grafana folder to associate the check with.
+     */
+    folderUid?: pulumi.Input<string>;
     /**
      * How often the check runs in milliseconds (the value is not truly a "frequency" but a "period"). The minimum acceptable value is 1 second (1000 ms), and the maximum is 1 hour (3600000 ms). Defaults to `60000`.
      */

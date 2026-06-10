@@ -83,8 +83,8 @@ import (
 type Route struct {
 	pulumi.CustomResourceState
 
-	// The ID of the escalation chain.
-	EscalationChainId pulumi.StringOutput `pulumi:"escalationChainId"`
+	// The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
+	EscalationChainId pulumi.StringPtrOutput `pulumi:"escalationChainId"`
 	// The ID of the integration.
 	IntegrationId pulumi.StringOutput `pulumi:"integrationId"`
 	// MS teams-specific settings for a route.
@@ -108,9 +108,6 @@ func NewRoute(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.EscalationChainId == nil {
-		return nil, errors.New("invalid value for required argument 'EscalationChainId'")
-	}
 	if args.IntegrationId == nil {
 		return nil, errors.New("invalid value for required argument 'IntegrationId'")
 	}
@@ -143,7 +140,7 @@ func GetRoute(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Route resources.
 type routeState struct {
-	// The ID of the escalation chain.
+	// The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
 	EscalationChainId *string `pulumi:"escalationChainId"`
 	// The ID of the integration.
 	IntegrationId *string `pulumi:"integrationId"`
@@ -162,7 +159,7 @@ type routeState struct {
 }
 
 type RouteState struct {
-	// The ID of the escalation chain.
+	// The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
 	EscalationChainId pulumi.StringPtrInput
 	// The ID of the integration.
 	IntegrationId pulumi.StringPtrInput
@@ -185,8 +182,8 @@ func (RouteState) ElementType() reflect.Type {
 }
 
 type routeArgs struct {
-	// The ID of the escalation chain.
-	EscalationChainId string `pulumi:"escalationChainId"`
+	// The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
+	EscalationChainId *string `pulumi:"escalationChainId"`
 	// The ID of the integration.
 	IntegrationId string `pulumi:"integrationId"`
 	// MS teams-specific settings for a route.
@@ -205,8 +202,8 @@ type routeArgs struct {
 
 // The set of arguments for constructing a Route resource.
 type RouteArgs struct {
-	// The ID of the escalation chain.
-	EscalationChainId pulumi.StringInput
+	// The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
+	EscalationChainId pulumi.StringPtrInput
 	// The ID of the integration.
 	IntegrationId pulumi.StringInput
 	// MS teams-specific settings for a route.
@@ -310,9 +307,9 @@ func (o RouteOutput) ToRouteOutputWithContext(ctx context.Context) RouteOutput {
 	return o
 }
 
-// The ID of the escalation chain.
-func (o RouteOutput) EscalationChainId() pulumi.StringOutput {
-	return o.ApplyT(func(v *Route) pulumi.StringOutput { return v.EscalationChainId }).(pulumi.StringOutput)
+// The ID of the escalation chain. Omit or set to null for a route with no escalation chain.
+func (o RouteOutput) EscalationChainId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Route) pulumi.StringPtrOutput { return v.EscalationChainId }).(pulumi.StringPtrOutput)
 }
 
 // The ID of the integration.

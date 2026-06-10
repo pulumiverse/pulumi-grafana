@@ -25,21 +25,11 @@ import * as utilities from "../utilities";
  *     type: "loki",
  *     name: "loki",
  *     url: "http://localhost:3100",
- * }, {
- *     ignoreChanges: [
- *         "jsonDataEncoded",
- *         "httpHeaders",
- *     ],
  * });
  * const tempo = new grafana.oss.DataSource("tempo", {
  *     type: "tempo",
  *     name: "tempo",
  *     url: "http://localhost:3200",
- * }, {
- *     ignoreChanges: [
- *         "jsonDataEncoded",
- *         "httpHeaders",
- *     ],
  * });
  * const lokiDataSourceConfig = new grafana.oss.DataSourceConfig("loki", {
  *     uid: loki.uid,

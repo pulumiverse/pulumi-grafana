@@ -19,6 +19,14 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         /// </summary>
         public readonly bool? DisableResolveMessage;
         /// <summary>
+        /// Whether to hide the Open URL button in the message. This feature requires Grafana 12.4.0 or later.
+        /// </summary>
+        public readonly bool? HideOpenButton;
+        /// <summary>
+        /// Whether to hide the version info in the message. This feature requires Grafana 12.4.0 or later. Defaults to `False`.
+        /// </summary>
+        public readonly bool? HideVersionInfo;
+        /// <summary>
         /// The templated content of the message.
         /// </summary>
         public readonly string? Message;
@@ -43,6 +51,10 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
         private ContactPointGooglechat(
             bool? disableResolveMessage,
 
+            bool? hideOpenButton,
+
+            bool? hideVersionInfo,
+
             string? message,
 
             ImmutableDictionary<string, string>? settings,
@@ -54,6 +66,8 @@ namespace Pulumiverse.Grafana.Alerting.Outputs
             string url)
         {
             DisableResolveMessage = disableResolveMessage;
+            HideOpenButton = hideOpenButton;
+            HideVersionInfo = hideVersionInfo;
             Message = message;
             Settings = settings;
             Title = title;
